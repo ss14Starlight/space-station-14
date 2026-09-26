@@ -25,18 +25,18 @@ using Content.Server._NullLink.Helpers;
 
 namespace Content.Server.Administration.Notes;
 
-public sealed class AdminNotesEui : BaseEui
+public sealed partial class AdminNotesEui : BaseEui
 {
-    [Dependency] private readonly IAdminManager _admins = default!;
-    [Dependency] private readonly IAdminNotesManager _notesMan = default!;
-    [Dependency] private readonly IPlayerLocator _locator = default!;
+    [Dependency] private IAdminManager _admins = default!;
+    [Dependency] private IAdminNotesManager _notesMan = default!;
+    [Dependency] private IPlayerLocator _locator = default!;
 
     #region Starlight
-    [Dependency] private readonly IEntityManager _entities = default!;
-    [Dependency] private readonly IActorRouter _actors = default!;
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly INullLinkEventBusManager _eventBus = default!;
+    [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private IActorRouter _actors = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private INullLinkEventBusManager _eventBus = default!;
     #endregion
 
     public AdminNotesEui()

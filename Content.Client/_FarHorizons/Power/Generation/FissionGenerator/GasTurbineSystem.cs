@@ -14,13 +14,13 @@ namespace Content.Client._FarHorizons.Power.Generation.FissionGenerator;
 // CC-BY-NC-SA-3.0
 // https://github.com/goonstation/goonstation/blob/ff86b044/code/obj/nuclearreactor/turbine.dm
 
-public sealed class GasTurbineSystem : EntitySystem
+public sealed partial class GasTurbineSystem : EntitySystem
 {
-    [Dependency] private readonly AnimationPlayerSystem _animationPlayer = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
+    [Dependency] private AnimationPlayerSystem _animationPlayer = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
 
     private readonly float _threshold = 1f;
     private float _accumulator = 0;

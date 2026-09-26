@@ -1,0 +1,33 @@
+- type: entity
+  parent: [BaseItem, BaseMagicalContraband ]
+  id: WizardWarTablet
+  name: seal of war
+  description: Raw magic is sealed in this stone. Unleashing it will allow the use of more powerful abilities. However, anyone with advanced sensors in proximity will detect such a magic surge as an act of aggression. If unused, the stone will crumble to dust in 5 minutes, forever sealing the magic within.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/wiz_declarationofwar.rsi
+      layers:
+        - state: sealofwar
+    - type: SpawnItemsOnUse
+      items:
+       - id: WizardWarTabletdrained
+       - id: WizCoin1
+    - type: TimedDespawn
+      lifetime: 300
+
+- type: entity
+  parent: [BaseItem, BaseMagicalContraband ]
+  id: WizardWarTabletdrained
+  name: empty seal of war
+  description: An emptied magical seal.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/wiz_declarationofwar.rsi
+      layers:
+        - state: sealofwardrained
+    - type: AnnounceOnSpawn
+      message: wizard-war
+      ignoreASpace: true
+      sound:
+       path: /Audio/Announcements/attention.ogg
+      color: yellow

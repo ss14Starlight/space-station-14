@@ -1,16 +1,12 @@
-﻿using System.Numerics;
 using Content.Client.Administration.Managers;
+using Content.Client.Construction;
 using Content.Client.Gameplay;
-using Content.Client.Markers;
 using Content.Client.Sandbox;
-using Content.Client.SubFloor;
-using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.DecalPlacer;
 using Content.Client.UserInterface.Systems.Sandbox.Windows;
+using Content.Client._Starlight.Zones;
 using Content.Shared.Input;
 using JetBrains.Annotations;
-using Robust.Client.Debugging;
-using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
@@ -22,23 +18,21 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BaseButton;
+using Content.Client._Starlight.UserInterface.Systems.ZonePlacer;
 
 namespace Content.Client.UserInterface.Systems.Sandbox;
 
 // TODO hud refactor should part of this be in engine?
 [UsedImplicitly]
-public sealed class SandboxUIController : UIController, IOnStateChanged<GameplayState>, IOnSystemChanged<SandboxSystem>
+public sealed partial class SandboxUIController : UIController, IOnStateChanged<GameplayState>, IOnSystemChanged<SandboxSystem>
 {
-    [Dependency] private readonly IConsoleHost _console = default!;
-    [Dependency] private readonly IEyeManager _eye = default!;
-    [Dependency] private readonly IInputManager _input = default!;
-    [Dependency] private readonly ILightManager _light = default!;
-    [Dependency] private readonly IClientAdminManager _admin = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private IConsoleHost _console = default!;
+    [Dependency] private IInputManager _input = default!;
+    [Dependency] private IClientAdminManager _admin = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
-    [UISystemDependency] private readonly DebugPhysicsSystem _debugPhysics = default!;
-    [UISystemDependency] private readonly MarkerSystem _marker = default!;
     [UISystemDependency] private readonly SandboxSystem _sandbox = default!;
+    [UISystemDependency] private readonly ConstructionSystem _construction = default!; // Starlight
 
     private SandboxWindow? _window;
 
@@ -46,6 +40,9 @@ public sealed class SandboxUIController : UIController, IOnStateChanged<Gameplay
     private EntitySpawningUIController EntitySpawningController => UIManager.GetUIController<EntitySpawningUIController>();
     private TileSpawningUIController TileSpawningController => UIManager.GetUIController<TileSpawningUIController>();
     private DecalPlacerUIController DecalPlacerController => UIManager.GetUIController<DecalPlacerUIController>();
+    #region Starlight
+    private ZonePlacerUIController ZonePlacerController => UIManager.GetUIController<ZonePlacerUIController>();
+    #endregion
 
     private Controls.MenuButton? SandboxButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.SandboxButton;
 
@@ -117,13 +114,6 @@ public sealed class SandboxUIController : UIController, IOnStateChanged<Gameplay
         _window.OnOpen += () => { SandboxButton!.Pressed = true; };
         _window.OnClose += () => { SandboxButton!.Pressed = false; };
 
-        // TODO: These need moving to opened so at least if they're not synced properly on open they work.
-        _window.ToggleLightButton.Pressed = !_light.Enabled;
-        _window.ToggleFovButton.Pressed = !_eye.CurrentEye.DrawFov;
-        _window.ToggleShadowsButton.Pressed = !_light.DrawShadows;
-        _window.ShowMarkersButton.Pressed = _marker.MarkersVisible;
-        _window.ShowBbButton.Pressed = (_debugPhysics.Flags & PhysicsDebugFlags.Shapes) != 0x0;
-
         _window.AiOverlayButton.OnPressed += args =>
         {
             var player = _player.LocalEntity;
@@ -143,6 +133,10 @@ public sealed class SandboxUIController : UIController, IOnStateChanged<Gameplay
         _window.SpawnTilesButton.OnPressed += _ => TileSpawningController.ToggleWindow();
         _window.SpawnEntitiesButton.OnPressed += _ => EntitySpawningController.ToggleWindow();
         _window.SpawnDecalsButton.OnPressed += _ => DecalPlacerController.ToggleWindow();
+        _window.SpawnZonesButton.OnPressed += _ => ZonePlacerController.ToggleWindow(); // Starlight
+        _window.ShowZonesButton.OnPressed += _ => EntityManager.System<ZonePlacementSystem>().ToggleShowZones(); // Starlight
+        _window.ShowRoomsButton.OnPressed += _ => EntityManager.System<ZonePlacementSystem>().ToggleShowRooms(); // Starlight
+        _window.FinishConstructionGhostsButton.OnPressed += _ => _construction.DebugFinishAllGhosts(); // Starlight
         _window.GiveFullAccessButton.OnPressed += _ => _sandbox.GiveAdminAccess();
         _window.GiveAghostButton.OnPressed += _ => _sandbox.GiveAGhost();
         _window.ToggleLightButton.OnToggled += _ => _sandbox.ToggleLight();
@@ -152,6 +146,7 @@ public sealed class SandboxUIController : UIController, IOnStateChanged<Gameplay
         _window.ToggleSubfloorButton.OnPressed += _ => _sandbox.ToggleSubFloor();
         _window.ShowMarkersButton.OnPressed += _ => _sandbox.ShowMarkers();
         _window.ShowBbButton.OnPressed += _ => _sandbox.ShowBb();
+        _window.ToggleThermalVisionButton.OnToggled += _ => _sandbox.ToggleThermalVision();
     }
 
     private void CheckSandboxVisibility()

@@ -5,7 +5,6 @@ using Content.Shared.Forensics;
 using Content.Shared.Forensics.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
-using Content.Shared.Inventory;
 using Content.Shared.Labels.EntitySystems;
 
 namespace Content.Server.Forensics
@@ -13,12 +12,12 @@ namespace Content.Server.Forensics
     /// <summary>
     /// Used to transfer fingerprints from entities to forensic pads.
     /// </summary>
-    public sealed class ForensicPadSystem : EntitySystem
+    public sealed partial class ForensicPadSystem : EntitySystem
     {
-        [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly ForensicsSystem _forensics = default!;
-        [Dependency] private readonly LabelSystem _label = default!;
+        [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private ForensicsSystem _forensics = default!;
+        [Dependency] private LabelSystem _label = default!;
 
         public override void Initialize()
         {

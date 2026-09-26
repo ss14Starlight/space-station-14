@@ -1,4 +1,4 @@
-﻿- type: guideEntry
+- type: guideEntry
   id: Security
   name: guide-entry-security
   text: "/ServerInfo/Guidebook/Security/Security.xml"
@@ -6,7 +6,8 @@
   - Forensics
   - Defusal
   - CriminalRecords
-  - SpaceLaw
+  - StirStir #SL Edit
+  - AmmoTypes #SL Edit
 
 - type: guideEntry
   id: Forensics
@@ -22,23 +23,3 @@
   id: CriminalRecords
   name: guide-entry-criminal-records
   text: "/ServerInfo/Guidebook/Security/CriminalRecords.xml"
-
-- type: guideEntry
-  id: SpaceLaw
-  name: guide-entry-rules-space-law
-  text: "/ServerInfo/Guidebook/ServerRules/SpaceLaw/SpaceLaw.xml"
-  children:
-  - SpaceLawCrimeList
-  - SupernaturalEntities #Starlight
-
-# Starlight Start
-- type: guideEntry
-  id: SpaceLawCrimeList
-  name: guide-entry-rules-sl-crime-list
-  text: "/ServerInfo/Guidebook/ServerRules/SpaceLaw/SLCrimeList.xml"
-
-- type: guideEntry
-  id: SupernaturalEntities
-  name: guide-entry-rules-supernatural-entities
-  text: "/ServerInfo/Guidebook/ServerRules/SpaceLaw/SupernaturalEntities.xml"
-#Starlight End

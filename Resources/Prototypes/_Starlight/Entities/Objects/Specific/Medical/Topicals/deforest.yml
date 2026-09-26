@@ -1,0 +1,105 @@
+## Bruise packs
+# Deforest blue bruise packs
+- type: entity
+  name: DeForest bruise pack
+  description: DeForest-Graded Bruise Packs for all your needs.
+  parent: Bluebrutepack1
+  id: DeforestBrutePack
+  suffix: Full
+  components:
+  - type: Sprite
+    state: bluebrutepack2
+  - type: Item
+    heldPrefix: deforestbrutepack
+  - type: Stack
+    stackType: DeforestBrutePack
+    count: 15
+  - type: Healing
+    damageContainers:
+      - Biological
+      - Hybrid
+    delay: 1.6
+    damage:
+      groups:
+        Brute: -12 # 4 for each type in the group
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+  - type: InteractRestriction
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
+
+- type: entity
+  name: DeForest bruise pack
+  description: DeForest-Graded Bruise Packs for all your needs. The blue ones are supposedly rare.
+  parent: DeforestBrutePack
+  id: DeforestBrutePack1
+  suffix: Single
+  components:
+  - type: Sprite
+    state: bluebrutepack
+  - type: Stack
+    stackType: DeforestBrutePack
+    count: 1
+
+- type: stack
+  id: DeforestBrutePack
+  name: stack-deforestbrutepack
+  spawn: DeforestBrutePack1
+  maxCount: 15
+
+## Ointments
+#DeForest blue ointment
+- type: entity
+  name: DeForest ointment
+  description: DeForest's soothing ointment, used to treat severe burns. Does nothing for caustic.
+  parent: Blueointment1
+  id: DeforestOintment
+  suffix: Full
+  components:
+  - type: Sprite
+    state: blueointment3
+  - type: Item
+    heldPrefix: deforestointment
+  - type: Stack
+    stackType: DeforestOintment
+    count: 15
+  - type: Healing
+    damageContainers:
+      - Biological
+      - Hybrid
+    delay: 1.6 # STARLIGHT
+    damage:
+      types:
+        Heat: -4
+        Cold: -4
+        Shock: -4
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
+  - type: InteractRestriction
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
+
+- type: entity
+  name: DeForest ointment
+  description: DeForest's soothing ointment, used to treat severe burns. Does nothing for caustic. The blue ones are supposedly rare.
+  parent: DeforestOintment
+  id: DeforestOintment1
+  suffix: Single
+  components:
+  - type: Sprite
+    state: blueointment
+  - type: Stack
+    stackType: DeforestOintment
+    count: 1
+
+- type: stack
+  id: DeforestOintment
+  name: stack-deforestointment
+  spawn: DeforestOintment1
+  maxCount: 15

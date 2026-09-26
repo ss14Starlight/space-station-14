@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Examine;
 using Content.Shared.NodeContainer;
@@ -14,10 +13,10 @@ namespace Content.Server.NodeContainer.EntitySystems
     /// </summary>
     /// <seealso cref="NodeGroupSystem"/>
     [UsedImplicitly]
-    public sealed class NodeContainerSystem : SharedNodeContainerSystem
+    public sealed partial class NodeContainerSystem : SharedNodeContainerSystem
     {
-        [Dependency] private readonly NodeGroupSystem _nodeGroupSystem = default!;
-        [Dependency] private readonly PipeDockingSystem _pipeDockingSystem = default!;// Starlight: PipeDockingSystem
+        [Dependency] private NodeGroupSystem _nodeGroupSystem = default!;
+        [Dependency] private PipeDockingSystem _pipeDockingSystem = default!;// Starlight: PipeDockingSystem
         private EntityQuery<NodeContainerComponent> _query;
 
         public override void Initialize()

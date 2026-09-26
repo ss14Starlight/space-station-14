@@ -13,14 +13,7 @@
       max: 3
   - type: RailroadCard
     images:
-    - /Textures/_Starlight/Railroading/whiskey.png
-    - /Textures/_Starlight/Railroading/daiquiri.png
-    - /Textures/_Starlight/Railroading/martini.png
-    - /Textures/_Starlight/Railroading/white.png
-    - /Textures/_Starlight/Railroading/margarita.png
-    - /Textures/_Starlight/Railroading/shampagne.png
-    - /Textures/_Starlight/Railroading/glass.png
-    - /Textures/_Starlight/Railroading/shot.png
+    - /Textures/_Starlight/Railroading/drink.png
     description: rr-alcohol-desc
 
 - type: entity

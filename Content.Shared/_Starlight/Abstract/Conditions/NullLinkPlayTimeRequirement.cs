@@ -6,8 +6,8 @@ namespace Content.Shared._Starlight.Abstract.Conditions;
 
 public sealed partial class NullLinkPlayTimeRequirement : BaseRequirement
 {
-    [Dependency] public readonly IPrototypeManager _protos = default!;
-    [Dependency] public readonly INullLinkPlayTimeManager _playtime = default!;
+    [Dependency] public IPrototypeManager _protos = default!;
+    [Dependency] public INullLinkPlayTimeManager _playtime = default!;
 
     [DataField(required: true)]
     public string Server = "";

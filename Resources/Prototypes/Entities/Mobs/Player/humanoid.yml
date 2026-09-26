@@ -554,6 +554,7 @@
       raffle:
         settings: short
       job: CBURN
+    - type: ZombieImmune # Starlight
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst

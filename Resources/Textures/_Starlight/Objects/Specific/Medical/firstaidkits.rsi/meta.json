@@ -105,6 +105,17 @@
     {
       "name": "BrigKube-inhand-left",
       "directions": 4
+    },
+		{
+			"name": "robotic"
+		},
+		{
+      "name": "robotic-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "robotic-inhand-left",
+      "directions": 4
     }
 	]
 }

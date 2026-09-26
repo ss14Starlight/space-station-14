@@ -3,11 +3,8 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Lightning;
 using Content.Server.Radio.EntitySystems;
-using Content.Server._NullLink.Helpers;
 using Content.Server._Starlight.Achievement;
 using Content.Server.Station.Systems;
-using Content.Server._Starlight.Energy.Supermatter;
-using Content.Shared.Abilities.Goliath;
 using Content.Shared.Atmos;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -22,34 +19,38 @@ using Content.Shared.Singularity.Components;
 using Content.Shared._Starlight.Energy.Supermatter;
 using Content.Shared._Starlight.Supermatter.Components;
 using Content.Shared.Inventory;
-using Microsoft.CodeAnalysis;
 using Robust.Server.Audio;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared._Starlight.Abstract;
 
 namespace Content.Server._Starlight.Energy.Supermatter;
 
-public sealed class SupermatterSystem : AccUpdateEntitySystem
+public sealed partial class SupermatterSystem : AccUpdateEntitySystem
 {
-    [Dependency] private readonly AchievementSystem _achievements = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly LightningSystem _lightning = default!;
-    [Dependency] private readonly RadioSystem _radioSystem = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly SupermatterCascadeSystem _cascade = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ExplosionSystem _explosion = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private AchievementSystem _achievements = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private LightningSystem _lightning = default!;
+    [Dependency] private RadioSystem _radioSystem = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private SupermatterCascadeSystem _cascade = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ExplosionSystem _explosion = default!;
+    [Dependency] private InventorySystem _inventory = default!;
 
     private readonly Dictionary<EntityUid, Entity<SupermatterComponent>> _supermatters = [];
     private DamageGroupPrototype? _brute;
     private DamageGroupPrototype? _burn;
     private RadioChannelPrototype? _engi;
+
+    private static readonly ProtoId<DamageGroupPrototype> _burnProtoId = "Burn";
+    private static readonly ProtoId<DamageGroupPrototype> _bruteProtoId = "Brute";
+    private static readonly ProtoId<RadioChannelPrototype> _engiRadioProtoId = "Engineering";
 
     public override void Initialize()
     {
@@ -76,7 +77,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
         if (TryComp<FixturesComponent>(args.User, out var fixture))
             damage = fixture.Fixtures.Select(x => x.Value.Density).Aggregate((i, p) => p + i) / 3;
 
-        _burn ??= _prototypes.Index<DamageGroupPrototype>("Burn");
+        _burn ??= _prototypes.Index(_burnProtoId);
         _damageable.TryChangeDamage(ent.Owner, new(_burn, damage), true);
 
         QueueDel(args.User);
@@ -100,7 +101,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
         if (TryComp<FixturesComponent>(args.OtherEntity, out var fixture))
             damage = fixture.Fixtures.Select(x => x.Value.Density).Aggregate((i, p) => p + i) / 3;
 
-        _burn ??= _prototypes.Index<DamageGroupPrototype>("Burn");
+        _burn ??= _prototypes.Index(_burnProtoId);
         _damageable.TryChangeDamage(ent.Owner, new(_burn, damage), true);
 
         QueueDel(args.OtherEntity);
@@ -160,7 +161,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     {
         var currentDurability = (int)Math.Floor(supermatter.Comp.Durability.Float());
         var lastDurability = (int)Math.Floor(supermatter.Comp.LastSendedDurability.Float());
-        _engi ??= _prototypes.Index<RadioChannelPrototype>("Engineering");
+        _engi ??= _prototypes.Index(_engiRadioProtoId);
 
         if (Math.Abs(currentDurability - lastDurability) < 5)
             return;
@@ -183,7 +184,8 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
 
     private void HandleDestruction(Entity<SupermatterComponent> supermatter)
     {
-        var damageToApply = MathHelper.Clamp((supermatter.Comp.AccBreak / 10) - Const.RegenerationPerSecond, -Const.RegenerationPerSecond, Const.MaxDamagePerSecond);
+        var regen = Const.RegenerationPerSecond * supermatter.Comp.RegenerationModifier;
+        var damageToApply = MathHelper.Clamp((supermatter.Comp.AccBreak / 10) - regen, -regen, Const.MaxDamagePerSecond);
         supermatter.Comp.AccBreak = 0;
 
         supermatter.Comp.Durability = MathHelper.Clamp(supermatter.Comp.Durability - damageToApply, 0f, 100f);
@@ -200,6 +202,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     {
         var radComp = EnsureComp<RadiationSourceComponent>(supermatter.Owner);
         radComp.Intensity = supermatter.Comp.AccRadiation.Float();
+        radComp.Slope = Math.Max(0.15f, supermatter.Comp.AccRadiation.Float() / 10f); ///As radiation gets stronger, the slope increases, ensuring the rads don't pierce the entire fucking station
 
         supermatter.Comp.AccRadiation /= supermatter.Comp.RadiationStability;
     }
@@ -207,6 +210,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     private void HandleGas(Entity<SupermatterComponent> supermatter)
     {
         var gas = _atmosphere.GetTileMixture(supermatter.Owner, true) ?? new();
+
         DamageByPressure(supermatter, gas);
         DamageByTemperature(supermatter, gas);
 
@@ -215,20 +219,35 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
         float heatTransfer = 0;
         float heatModifier = 0;
         float radiationStability = 0;
-
-        for (var i = 0; i < Const.GasProperties.Length; i++)
+        // Reset gas effect modifiers
+        supermatter.Comp.RegenerationModifier = 1f;
+        supermatter.Comp.ReactionModifier = 1f;
+        supermatter.Comp.DestabilizationModifier = 1f;
+        supermatter.Comp.GasDoesDamage = 0f;
+        var gaslength = Math.Min(Const.GasProperties.Length, gas.Moles.Length);//i guess but only issue when enums shrink?
+        for (var i = 0; i < gaslength; i++)
         {
             var prop = Const.GasProperties[i];
+            //var moles = gas.Moles[i]; // used for debugging if needed
             var percent = Math.Clamp(gas.Moles[i] / gas.TotalMoles, 0, 1);
+
             heatTransfer += prop.HeatTransferPerMole * gas.Moles[i];
             heatModifier += prop.HeatModifier * percent;
             radiationStability += prop.RadiationStability * percent;
+
+            supermatter.Comp.RegenerationModifier += prop.RegenerationModifier * percent;
+            supermatter.Comp.ReactionModifier += prop.ReactionModifier * percent;
+            supermatter.Comp.DestabilizationModifier += prop.DestabilizationModifier * percent;
+            supermatter.Comp.GasDoesDamage += prop.GasDamage * percent;
         }
+            // im not sure if this needs to be in the loop
+            supermatter.Comp.RadiationStability = MathHelper.Clamp(radiationStability, Const.MinRadiationStability, Const.MaxRadiationStability);
+            supermatter.Comp.ReactionModifier = MathHelper.Clamp(supermatter.Comp.ReactionModifier, Const.MinReactionModifier, Const.MaxReactionModifier);
+            supermatter.Comp.RegenerationModifier = MathHelper.Clamp(supermatter.Comp.RegenerationModifier, Const.MinRegenerationModifier, Const.MaxRegenerationModifier);
+            supermatter.Comp.DestabilizationModifier =  MathHelper.Clamp(supermatter.Comp.DestabilizationModifier, Const.MinDestabilizationModifier, Const.MaxDestabilizationModifier);
 
-        supermatter.Comp.RadiationStability = MathHelper.Clamp(radiationStability, 1.1, 10);
-
-        ProcessHeat(supermatter, gas, heatTransfer, heatModifier);
-        TryCompensateDamage(supermatter, gas);
+            ProcessHeat(supermatter, gas, heatTransfer * supermatter.Comp.ReactionModifier.Float(), heatModifier);
+            TryCompensateDamage(supermatter, gas);
     }
 
     private static void TryCompensateDamage(Entity<SupermatterComponent> supermatter, GasMixture gas)
@@ -237,9 +256,11 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
         if (breakDelta == 0) return;
         supermatter.Comp.AccBreak -= breakDelta;
 
-        gas.AdjustMoles((int)Gas.Tritium, breakDelta.Float()/2);
+        var ReactionMod = supermatter.Comp.ReactionModifier.Float();//make gases that risk higher reactifify also make more gas/also produce less for "safer" gases
 
-        gas.AdjustMoles((int)Gas.Oxygen, breakDelta.Float()*4);
+        gas.AdjustMoles((int)Gas.Tritium, breakDelta.Float()/2* ReactionMod);
+
+        gas.AdjustMoles((int)Gas.Oxygen, breakDelta.Float()*4* ReactionMod);
     }
 
     private static void ProcessHeat(Entity<SupermatterComponent> supermatter, GasMixture gas, float heatTransfer, float heatModifier)
@@ -257,7 +278,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     {
         if (gas.Temperature <= Const.MaxTemperature) return;
         _audio.PlayPvs(_random.Pick(Const.AudioBurn), supermatter.Owner);
-        _burn ??= _prototypes.Index<DamageGroupPrototype>("Burn");
+        _burn ??= _prototypes.Index(_burnProtoId);
         DamageSpecifier damage = new(_burn, Const.MaxTemperature - gas.Temperature);
         _damageable.TryChangeDamage(supermatter.Owner, damage, true);
     }
@@ -266,7 +287,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     {
         if (gas.Pressure >= Const.MinPressure && gas.Pressure <= Const.MaxPressure) return;
         _audio.PlayPvs(_random.Pick(Const.AudioCrack), supermatter.Owner);
-        _brute ??= _prototypes.Index<DamageGroupPrototype>("Brute");
+        _brute ??= _prototypes.Index(_bruteProtoId);
         DamageSpecifier damage = new(_brute, Math.Max(Const.MinPressure - gas.Pressure, gas.Pressure - Const.MaxPressure) / 100);
         _damageable.TryChangeDamage(supermatter.Owner, damage, true);
     }
@@ -274,12 +295,14 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     private void HandleDamage(Entity<SupermatterComponent> supermatter)
     {
         EnsureComp<DamageableComponent>(supermatter.Owner, out var damageable);
-        var trueDamage = damageable.TotalDamage * Const.DamageMultiplayer;
+        var trueDamage = damageable.TotalDamage * Const.DamageMultiplier;
+        trueDamage += supermatter.Comp.GasDoesDamage;//DamageGases
         _damageable.TryChangeDamage(supermatter.Owner, damageable.Damage.Invert(), true);
-
-        supermatter.Comp.AccBreak = MathHelper.Clamp(supermatter.Comp.AccBreak + (trueDamage * Const.BreakPercent), 0, 9999);
-        supermatter.Comp.AccHeat = MathHelper.Clamp(supermatter.Comp.AccHeat + (trueDamage * Const.HeatPercent), 0, 9999);
-        supermatter.Comp.AccLighting = MathHelper.Clamp(supermatter.Comp.AccLighting + (trueDamage * Const.LightingPercent), 0, 25);
-        supermatter.Comp.AccRadiation = MathHelper.Clamp(supermatter.Comp.AccRadiation + (trueDamage * Const.RadiationPercent), 0, 50);
+        var modifiedDamage = trueDamage * supermatter.Comp.ReactionModifier;
+        // Added supermatter.Comp.ReactionModifier so nitrium and supressing gases can "calm" or agitate the SM
+        supermatter.Comp.AccBreak = MathHelper.Clamp(supermatter.Comp.AccBreak + (modifiedDamage * Const.BreakPercent * supermatter.Comp.DestabilizationModifier), 0, 9999);
+        supermatter.Comp.AccHeat = MathHelper.Clamp(supermatter.Comp.AccHeat + (modifiedDamage * Const.HeatPercent), 0, 9999);
+        supermatter.Comp.AccLighting = MathHelper.Clamp(supermatter.Comp.AccLighting + (modifiedDamage * Const.LightingPercent), 0, 25);
+        supermatter.Comp.AccRadiation = MathHelper.Clamp(supermatter.Comp.AccRadiation + (modifiedDamage * Const.RadiationPercent), 0, 50);
     }
 }

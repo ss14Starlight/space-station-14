@@ -200,6 +200,7 @@
   loadouts:
   - RoboticistLabCoat
   - RoboticistWintercoat
+  - RoboticistWintercoatAlt
 
 - type: loadoutGroup
   id: RoboticistHead
@@ -236,6 +237,14 @@
   - RoboticistDuffel
   - LeatherSatchel
 
+- type: loadoutGroup
+  id: RoboticistNeck
+  name: loadout-group-roboticist-neck
+  minLimit: 0
+  loadouts:
+  - RoboticistScarf
+  - ScientistTie
+
 # IAA
 - type: loadoutGroup
   id: IAAJumpsuit
@@ -266,6 +275,7 @@
   - NanoTrasenRepresentativeTophat
   - NanoTrasenRepresentativeEliteTophat
   - NanoTrasenRepresentativeCap
+  - NanoTrasenRepresentativeBeret
 
 - type: loadoutGroup
   id: NanoTrasenRepresentativeNeck
@@ -313,11 +323,12 @@
 
 - type: loadoutGroup
   id: MagistrateHead
-  name: loadout-group-magistrate-headwear
+  name: loadout-group-magistrate-head
   defaultSelected: 1
   minLimit: 0
   loadouts:
   - MagistrateHeadPwig
+  - MagistrateHeadBeret
 
 - type: loadoutGroup
   id: MagistrateEyewear
@@ -335,7 +346,7 @@
 
 - type: loadoutGroup
   id: MagistrateHands
-  name: loadout-group-magistrate-hands
+  name: loadout-group-magistrate-gloves
   defaultSelected: 1
   minLimit: 0
   maxLimit: 1
@@ -427,6 +438,7 @@
   loadouts:
   - SecurityTaser
   - SecurityDominator
+  - SecurityPeacekeeper
 
 - type: loadoutGroup
   id: SecuritySidearm
@@ -437,6 +449,7 @@
   - SecurityRevolverDispatcher
   - SecurityPistolDP
   - SecurityMk58Gold
+  - SecurityColdCase
 
 # Assorted Boots
 - type: loadoutGroup
@@ -446,9 +459,12 @@
   defaultSelected: 1
   loadouts:
   - BlackShoes
+  - RoboticistWinterBoots
   - ScienceWinterBoots
   - Heels
   - LeatherShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: CaptainShoes
@@ -474,6 +490,8 @@
   - Heels
   - LaceupShoes
   - LeatherShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: MagistrateShoes
@@ -483,6 +501,8 @@
   loadouts:
   - LaceupShoes
   - Heels
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: NanotrasenRepresentativeShoes
@@ -493,6 +513,8 @@
   - LaceupShoes
   - Heels
   - LeatherShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: DetectiveShoes
@@ -521,6 +543,8 @@
   - LeatherShoes
   - Heels
   - LaceupShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: LawyerShoes
@@ -532,6 +556,8 @@
   - Heels
   - LeatherShoes
   - BlackShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: IAAShoes
@@ -543,6 +569,8 @@
   - Heels
   - LeatherShoes
   - BlackShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: BlueShieldShoes
@@ -697,12 +725,12 @@
 - type: loadoutGroup
   id: MimeShoes
   name: loadout-group-mime-shoes
-  minLimit: 0 # Starlight
-  defaultSelected: 1 # Starlight
+  minLimit: 0
+  defaultSelected: 1
   loadouts:
   - WhiteShoes
   - BlackShoes
-  - RollerSkatesLoadout # Starlight
+  - RollerSkatesLoadout
 
 # Service Worker
 - type: loadoutGroup
@@ -727,6 +755,8 @@
   - ServiceWorkerChefJumpsuit
   - ServiceWorkerChefJumpskirt
   - MaidOutfit
+  - JanitorMaidOutfit
+  - JanitorMaidOutfitMini
 
 # Performer
 - type: loadoutGroup
@@ -750,15 +780,6 @@
   - PerformerClownJumpskirt
   - PerformerMimeJumpsuit
   - PerformerMimeJumpskirt
-
-- type: loadoutGroup
-  id: PerformerJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieMusician
-  - LizardPlushieClown
-  - LizardPlushieMime
 
 # Musician
 - type: loadoutGroup
@@ -787,30 +808,66 @@
   - GreenBoxingGloves
   - YellowBoxingGloves
 
-- type: loadoutGroup
-  id: BoxerJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieBoxer
-
 # Reporter
 - type: loadoutGroup
-  id: ReporterHead
-  name: loadout-group-reporter-head
-  minLimit: 0
-  loadouts:
-  - ReporterHeadphonesJob
-  - ReporterHeadphonesGeneric
-  - ReporterHeadphonesHighEnd
-
-# Zookeeper
-- type: loadoutGroup
-  id: ZookeeperJobTrinkets
+  id: ReporterJobTrinkets
   name: loadout-group-jobtrinkets
   minLimit: 0
+  maxLimit: 2
   loadouts:
-  - LizardPlushieZookeeper
+  - DigiboardMassMedia
+  - HoloReporterPin
+
+# Assistant Manager
+- type: loadoutGroup
+  id: AssistantManagerHead
+  name: loadout-group-assistantmanager-head
+  minLimit: 0
+  loadouts:
+  - AssistantManagerHead
+  - AssistantManagerBeret
+
+- type: loadoutGroup
+  id: AssistantManagerJumpsuit
+  name: loadout-group-assistantmanager-jumpsuit
+  loadouts:
+  - AssistantManagerJumpsuit
+  - AssistantManagerJumpskirt
+
+- type: loadoutGroup
+  id: AssistantManagerBackpack
+  name: loadout-group-assistantmanager-backpack
+  loadouts:
+  - AssistantManagerBackpack
+  - AssistantManagerSatchel
+  - AssistantManagerDuffel
+
+- type: loadoutGroup
+  id: AssistantManagerGloves
+  name: loadout-group-assistantmanager-gloves
+  minLimit: 0
+  loadouts:
+  - AssistantManagerGloves
+  - AssistantManagerMittens
+
+- type: loadoutGroup
+  id: AssistantManagerOuterClothing
+  name: loadout-group-assistantmanager-outerclothing
+  minLimit: 0
+  loadouts:
+  - AssistantManagerWintercoat
+
+- type: loadoutGroup
+  id: AssistantManagerShoes
+  name: loadout-group-assistantmanager-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - BlackShoes
+  - WhiteShoes
+  - BlueShoes
+  - BlueWinterBoots
+  - Heels
 
 # Silicon Brain Type
 - type: loadoutGroup
@@ -962,6 +1019,10 @@
   - DutyOfficerJumpskirt
   - DutyOfficerJumpsuitBlue
   - DutyOfficerJumpskirtBlue
+  - DutyOfficerJumpsuitFormal
+  - DutyOfficerJumpskirtFormal
+  - DutyOfficerSeniorJumpsuitFormal
+  - DutyOfficerSeniorJumpskirtFormal
   - DutyOfficerJumpsuitOrange # DeltaV
   - DutyOfficerJumpskirtOrange # DeltaV
 
@@ -1077,6 +1138,7 @@
   loadouts:
   - SecGloves
   - SecGlovesFingerless
+  - SecMittens
 
 - type: loadoutGroup
   id: ParamedicPDA
@@ -1084,3 +1146,107 @@
   loadouts:
   - ParamedicPDA
   - SeniorParamedicPDA
+
+- type: loadoutGroup
+  id: SalvageSpecialistJumpsuit
+  name: loadout-group-salvage-specialist-jumpsuit
+  loadouts:
+  - SalvageSpecialistJumpsuit
+  - SalvageSpecialistJumpskirt
+  - SalvageSpecialistJumpsuitFormal
+  - SalvageSpecialistJumpskirtFormal
+
+- type: loadoutGroup
+  id: CaptainEyewear
+  name: loadout-group-captain-eyewear
+  loadouts:
+  - CaptainGlasses
+  - CaptainHud
+
+- type: loadoutGroup
+  id: SecurityEyewear
+  name: loadout-group-security-eyewear
+  loadouts:
+  - SecurityGlasses
+  - SecurityHud
+  - DetectiveNoirGlasses
+  - SecurityGlassesPrescription
+
+- type: loadoutGroup
+  id: DetectiveLethal
+  name: loadout-group-detective-lethal
+  loadouts:
+  - InspectorBelt
+  - ColdCaseBelt
+
+- type: loadoutGroup
+  id: BrigmedicHead
+  name: loadout-group-brigmedic-head
+  minLimit: 0
+  loadouts:
+  - BrigmedicBeret
+  - BrigmedicNurseHat
+  - CorpsmanBeret
+  - CorpsmanNurseHat
+  - BrigmedicNurseHatOfLife
+  - SecurityHelmet
+
+- type: loadoutGroup
+  id: BrigmedicJumpsuit
+  name: loadout-group-brigmedic-jumpsuit
+  loadouts:
+  - JumpsuitBrigmedic
+  - JumpskirtBrigmedic
+  - JumpsuitCorpsman
+  - JumpskirtCorpsman
+  - FormalBrigmedicJumpsuit
+  - FormalBrigmedicJumpskirt
+  - SeniorBrigmedicJumpsuit
+  - SeniorBrigmedicJumpskirt
+  - CorpsmanResponse
+  - CorpsmanTrauma
+  - BrigmedicJumpsuitOfLife
+  - BrigmedicJumpskirtOfLife
+
+- type: loadoutGroup
+  id: BrigmedicBackpack
+  name: loadout-group-brigmedic-backpack
+  loadouts:
+  - BrigmedicBackpack
+  - BrigmedicSatchel
+  - BrigmedicDuffel
+  - CorpsmanBackpack
+  - CorpsmanSatchel
+  - CorpsmanDuffel
+  - LeatherSatchel
+
+- type: loadoutGroup
+  id: BrigmedicOuterClothing
+  name: loadout-group-brigmedic-outerclothing
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - BrigmedicCoat
+  - BrigmedicLabCoat
+  - CorpsmanCoat
+  - CorpsmanLabCoat
+  - SecurityOfficerWintercoat
+
+- type: loadoutGroup
+  id: BrigmedicEyewear
+  name: loadout-group-brigmedic-eyewear
+  loadouts:
+  - BrigmedicGlasses
+  - BrigmedicHud
+  - BrigmedicEyePatchHud
+  - BrigmeicGlassesPrescription
+  - CorpsmanGlasses
+  - CorpsmanHud
+
+- type: loadoutGroup
+  id: BrigmedicBelt
+  name: loadout-group-brigmedic-belt
+  loadouts:
+  - BrigmedicRig
+  - BrigmedicBelt
+  - CorpsmanBelt

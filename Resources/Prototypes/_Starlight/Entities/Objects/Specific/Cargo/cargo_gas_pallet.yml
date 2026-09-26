@@ -1,7 +1,7 @@
 - type: entity
   parent: GasUnaryBase
-  id: CargoGasPallet
-  name: cargo gas sale tank
+  id: CargoGasPalletSell
+  name: cargo gas selling tank
   description: Stores gasses pumped through piping for sale. Made of plastitanium to discourage pesky vandals.
   components:
   - type: Anchorable
@@ -11,8 +11,9 @@
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
   - type: CargoGasPallet
+    palletType: Sell
     gasMixture:
-      volume: 3000
+      volume: 15000
   - type: Sprite
     drawdepth: FloorObjects
     sprite: _Starlight/Structures/cargo_gas_pallet.rsi
@@ -20,7 +21,7 @@
       - sprite: Structures/Piping/Atmospherics/pipe.rsi
         state: pipeUnaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: cargoGasPallet
+      - state: gas_sell_tank
         map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: AtmosPipeLayers
     spriteRsiPaths: {}
@@ -28,3 +29,19 @@
   - type: PipeColorVisuals
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasVentOpening
+
+- type: entity
+  parent: CargoGasPalletSell
+  id: CargoGasPalletBuy
+  name: cargo gas buying tank
+  description: Stores gasses purchased in bulk, ready to be pumped. Made of plastitanium to discourage pesky vandals.
+  components:
+    - type: CargoGasPallet
+      palletType: Buy
+    - type: Sprite
+      layers:
+        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+          state: pipeUnaryConnectors
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: gas_buy_tank
+          map: [ "enum.SubfloorLayers.FirstLayer" ]

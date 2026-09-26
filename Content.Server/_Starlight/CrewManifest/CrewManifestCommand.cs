@@ -21,10 +21,10 @@ namespace Content.Server._Starlight.CrewManifest;
 
 [AdminCommand(AdminFlags.Fun)]
 [ToolshedCommand]
-public sealed class CrewManifestCommand : ToolshedCommand
+public sealed partial class CrewManifestCommand : ToolshedCommand
 {
-    [Dependency] private readonly IPlayerManager _plr = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private IPlayerManager _plr = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
     private StationRecordsSystem? _records;
     private JobSystem? _job;
     private MindSystem? _mind;

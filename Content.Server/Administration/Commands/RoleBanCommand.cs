@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Text;
-using Content.Server.Administration.Managers;
+﻿using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -12,13 +10,13 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Ban)]
-public sealed class RoleBanCommand : IConsoleCommand
+public sealed partial class RoleBanCommand : IConsoleCommand
 {
-    [Dependency] private readonly IPlayerLocator _locator = default!;
-    [Dependency] private readonly IBanManager _bans = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly ILogManager _log = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private IPlayerLocator _locator = default!;
+    [Dependency] private IBanManager _bans = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private ILogManager _log = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     private ISawmill? _sawmill;
 
@@ -115,7 +113,7 @@ public sealed class RoleBanCommand : IConsoleCommand
         if (success)
         {
             HashSet<string>? roles = new() { role }; // Used for updating webhook
-            _bans.WebhookUpdateRoleBans(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, roles, minutes, severity, reason, DateTimeOffset.UtcNow);
+            _ = _bans.WebhookUpdateRoleBans(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, roles, minutes, severity, reason, DateTimeOffset.UtcNow);
         }
         // Starlight end - webhook for bans
     }

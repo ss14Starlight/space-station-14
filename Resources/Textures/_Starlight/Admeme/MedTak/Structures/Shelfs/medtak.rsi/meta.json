@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "base",
+      "copyright": "Kezu, Base edited by SevenShades"
+    },
+    {
+      "name": "locked",
+      "copyright": "Kezu"
+    },
+    {
+      "name": "unlocked",
+      "copyright": "Kezu"
+    },
+    {
+      "name": "closed",
+      "copyright": "Kezu"
+    },
+    {
+      "name": "open",
+      "copyright": "Kezu"
+    },
+    {
+      "name": "chem-0",
+      "copyright": "Kezu"
+    },
+    {
+      "name": "chem-1",
+      "copyright": "Kezu"
+    },
+    {
+      "name": "chem-2",
+      "copyright": "Kezu"
+    },
+    {
+      "name": "chem-3",
+      "copyright": "Kezu"
+    },
+    {
+      "name": "chem-4",
+      "copyright": "Kezu"
+    },
+    {
+      "name": "chem-5",
+      "copyright": "Kezu"
+    },
+    {
+      "name": "chem-6",
+      "copyright": "Kezu"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+- type: alert
+  id: Wrapped
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/wrapped.rsi
+    state: icon
+  clickEvent: !type:UnWrapAlertEvent
+  name: alerts-wrapped-name
+  description: alerts-wrapped-desc

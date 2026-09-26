@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon_straight",
+	  "copyright": "Made by Way for Starlight"
+    },
+    {
+      "name": "icon_end",
+	  "copyright": "Made by Way for Starlight, edited by Conflee"
+    },
+    {
+      "name": "straight",
+      "directions": 4,
+	  "copyright": "Made by Way for Starlight"
+    },
+    {
+      "name": "end",
+      "directions": 4,
+	  "copyright": "Made by Way for Starlight, edited by Conflee"
+    },
+    {
+      "name": "corner",
+      "directions": 4,
+	  "copyright": "Made by Way for Starlight, edited by Conflee"
+    },
+    {
+      "name": "door_closed",
+      "directions": 4,
+	  "copyright": "Made by Way for Starlight"
+    },
+    {
+      "name": "door_opened",
+      "directions": 4,
+	  "copyright": "Made by Way for Starlight"
+    },
+    {
+      "name": "straight_broken",
+      "directions": 4,
+	  "copyright": "Made by Way for Starlight"
+    }
+  ]
+}

@@ -12,3 +12,49 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#43c4f7"
+
+- type: entity
+  id: CartridgeRifleHP
+  name: cartridge (.20 rifle HP)
+  parent: BaseCartridgeRifle
+  description: A modern intermediate cartridge for combat rifles. Standard kinetic ammunition is common and useful in most situations.
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceHP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#000000"
+
+- type: entity
+  id: CartridgeRifleFMJ
+  name: cartridge (.20 rifle FMJ)
+  parent: BaseCartridgeRifle
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceFMJ
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#B68F0E"
+
+- type: entity
+  id: CartridgeRifleAP
+  name: cartridge (.20 rifle AP)
+  parent: BaseCartridgeRifle
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceAP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#1A8C1A"

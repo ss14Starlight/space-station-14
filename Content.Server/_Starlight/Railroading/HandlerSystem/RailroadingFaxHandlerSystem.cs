@@ -1,16 +1,19 @@
 ﻿using Content.Server.Fax;
-using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Railroading.Components.Handlers.Fax;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Fax.Components;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.HandlerSystem;
 
 public sealed partial class RailroadingFaxHandlerSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -23,7 +26,34 @@ public sealed partial class RailroadingFaxHandlerSystem : EntitySystem
         => SendFax(ent.Comp, args.Subject);
 
     private void OnChosen(Entity<RailroadFaxOnChosenComponent> ent, ref RailroadingCardChosenEvent args)
-        => SendFax(ent.Comp, args.Subject);
+    {
+        if (ent.Comp.Delay <= TimeSpan.Zero)
+        {
+            SendFax(ent.Comp, args.Subject);
+            return;
+        }
+
+        ent.Comp.SendAt = _timing.CurTime + ent.Comp.Delay;
+        ent.Comp.PendingSubject = args.Subject;
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var now = _timing.CurTime;
+        var query = EntityQueryEnumerator<RailroadFaxOnChosenComponent>();
+        while (query.MoveNext(out var comp))
+        {
+            if (comp.SendAt is not { } sendAt || sendAt > now)
+                continue;
+
+            comp.SendAt = null;
+            if (TryComp<RailroadableComponent>(comp.PendingSubject, out var railroadable))
+                SendFax(comp, (comp.PendingSubject.Value, railroadable));
+            comp.PendingSubject = null;
+        }
+    }
 
     private void SendFax(IRailroadFaxComponent component, Entity<RailroadableComponent> subject)
     {

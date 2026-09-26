@@ -14,15 +14,17 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using static Content.Client.Tips.TippyUI;
-using Content.Client.Humanoid; // Starlight
-using Content.Shared.Humanoid; // Starlight
+using Content.Shared.Humanoid;
+using Content.Client._Starlight.Humanoid;
+using JetBrains.Annotations;
 
 namespace Content.Client.Tips;
 
-public sealed class TippyUIController : UIController
+[UsedImplicitly] // Starlight
+public sealed partial class TippyUIController : UIController
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IResourceCache _resCache = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IResourceCache _resCache = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
     [UISystemDependency] private readonly SpriteSystem _sprite = default!;
     [UISystemDependency] private readonly HumanoidAppearanceSystem _appearance = default!; // Starlight
@@ -40,13 +42,12 @@ public sealed class TippyUIController : UIController
     {
         base.Initialize();
         UIManager.OnScreenChanged += OnScreenChanged;
-        SubscribeNetworkEvent<TippyEvent>(OnTippyEvent);
+    // Starlight begin - Why the fuck are we even subscribing to an event in here that should be a crime, moved to system.
     }
 
-    private void OnTippyEvent(TippyEvent msg, EntitySessionEventArgs args)
-    {
+    public void AddTippyToQueue(TippyEvent msg) =>
         _queuedMessages.Enqueue(msg);
-    }
+    // Starlight end
 
     public override void FrameUpdate(FrameEventArgs args)
     {
@@ -152,7 +153,7 @@ public sealed class TippyUIController : UIController
                     paper.BackgroundImagePath = "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png";
                     paper.BackgroundPatchMargin = new(16f, 16f, 16f, 16f);
                     paper.BackgroundModulate = new(255, 255, 204);
-                    paper.FontAccentColor = new(0, 0, 0);
+                    paper.DefaultTextColor = new(0, 0, 0);
                 }
                 tippy.InitLabel(EntityManager.GetComponentOrNull<PaperVisualsComponent>(_entity), _resCache);
 

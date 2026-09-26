@@ -11,8 +11,8 @@ namespace Content.Client._Moffstation.Cards;
 
 public sealed partial class CardDeckVisualizerSystem : ManagedLayerVisualizerSystem<PlayingCardDeckComponent>
 {
-    [Dependency] private readonly SharedPlayingCardsSystem _playingCards = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private SharedPlayingCardsSystem _playingCards = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
 
     protected override ref HashSet<string> GetSpriteLayersAdded(PlayingCardDeckComponent component) =>
         ref component.SpriteLayersAdded;

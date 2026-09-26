@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Original Sprites by SuperJoelD00D, vox taken from https://github.com/vgstation-coders/vgstation13 at 02ff588d59b3c560c685d9ca75e882d32a72d8cb, and Bhijn, Errant and Flareguy, Reworked Sprites by Killer_Tamashi (Discord), Protogen species by Malice-Risu",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "full"
+    },
+    {
+      "name": "l_hand",
+      "directions": 4
+    },
+    {
+      "name": "r_hand",
+      "directions": 4
+    },
+    {
+      "name": "r_foot",
+      "directions": 4
+    },
+    {
+      "name": "l_foot",
+      "directions": 4
+    }
+  ]
+}

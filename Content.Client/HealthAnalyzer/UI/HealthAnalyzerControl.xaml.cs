@@ -17,6 +17,7 @@ using Content.Shared.Chemistry.Reagent; // Starlight
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Medical;
 namespace Content.Client.HealthAnalyzer.UI;
 
 // Health analyzer UI is split from its window because it's used by both the
@@ -25,6 +26,7 @@ namespace Content.Client.HealthAnalyzer.UI;
 [GenerateTypedNameReferences]
 public sealed partial class HealthAnalyzerControl : BoxContainer
 {
+    /* Starlight - replaced health analyzer with custom one
     private readonly IEntityManager _entityManager;
     private readonly SpriteSystem _spriteSystem;
     private readonly IPrototypeManager _prototypes;
@@ -33,10 +35,6 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
     // Starlight-start: Printable health reports.
     public event Action? PrintReportPressed;
 
-    public void SetPrintReportVisible(bool visible)
-    {
-        PrintReportButton.Visible = visible;
-    }
     // Starlight-end
 
     public HealthAnalyzerControl()
@@ -62,10 +60,16 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             || !_entityManager.TryGetComponent<DamageableComponent>(target, out var damageable))
         {
             NoPatientDataText.Visible = true;
+            // Starlight begin - hide chemicals section on invalid target
+            ChemicalsDivider.Visible = false;
+            ChemicalsContainer.Visible = false;
+            // Starlight end
             return;
         }
 
         NoPatientDataText.Visible = false;
+
+        PrintReportButton.Visible = (state.EnablePrint ?? true); // Starlight-edit: Printable health reports.
         PrintReportButton.Disabled = !PrintReportButton.Visible || !(state.ScanMode ?? false) || !(state.CanPrint ?? false); // Starlight-edit: Printable health reports.
         // Scan Mode
 
@@ -139,11 +143,11 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             });
 
         // Damage Groups
-        /* Starlight begin - old damage group sorting by highest damage
-        var damageSortedGroups =
-            damageable.DamagePerGroup.OrderByDescending(damage => damage.Value)
-                .ToDictionary(x => x.Key, x => x.Value);
-         Starlight end */
+        // Starlight begin - old damage group sorting by highest damage
+        //var damageSortedGroups =
+        //    damageable.DamagePerGroup.OrderByDescending(damage => damage.Value)
+        //        .ToDictionary(x => x.Key, x => x.Value);
+        // Starlight end
         IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
         //Starlight begin - Sort damage groups in a fixed order and add metabolizing section
         var sortedGroups = damageable.DamagePerGroup
@@ -151,7 +155,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             .ThenBy(g => g.Key)
             .ToDictionary(g => g.Key, g => g.Value);
 
-        DrawMetabolizingChemicals(state.MetabolizingReagents); // Metabolizing Chemicals Section
+        DrawChemicals(state.Chemicals);
         // Starlight end
         DrawDiagnosticGroups(sortedGroups, damagePerType);
     }
@@ -267,32 +271,34 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         }
     }
 
-    // Metabolizing chemicals display
-    private void DrawMetabolizingChemicals(List<(string ReagentId, FixedPoint2 Quantity)>? reagents)
+    #region Starlight begin
+    private void DrawChemicals(List<(string ReagentId, FixedPoint2 Quantity, FixedPoint2 StomachQuantity)>? chemicals)
     {
         ChemicalsContainer.RemoveAllChildren();
 
-        var hasChemicals = reagents != null && reagents.Count > 0;
+        var hasChemicals = chemicals != null && chemicals.Count > 0;
 
-        ChemicalsDivider.Visible = hasChemicals;
-        ChemicalsContainer.Visible = hasChemicals;
-
-        if (!hasChemicals || reagents == null)
+        if (!hasChemicals || chemicals == null)
+        {
+            ChemicalsDivider.Visible = false;
+            ChemicalsContainer.Visible = false;
             return;
+        }
 
-        // Sort by quantity descending
-        var sortedReagents = reagents.OrderByDescending(r => r.Quantity).ToList();
+        ChemicalsDivider.Visible = true;
+        ChemicalsContainer.Visible = true;
+
+        var sortedReagents = chemicals.OrderByDescending(r => r.Quantity + r.StomachQuantity).ToList();
 
         foreach (var reagent in sortedReagents)
         {
-            var reagentName = reagent.ReagentId;
+            var reagentName = Loc.GetString("health-analyzer-window-entity-unknown-text");
             var reagentColor = Color.White;
 
             if (_prototypes.TryIndex<ReagentPrototype>(reagent.ReagentId, out var reagentProto))
             {
                 reagentName = reagentProto.LocalizedName;
                 reagentColor = reagentProto.SubstanceColor;
-
             }
 
             var rowContainer = new BoxContainer
@@ -317,11 +323,28 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
                 HorizontalAlignment = HAlignment.Left,
             };
 
-            var quantityLabel = new Label
+            var quantityLabel = new RichTextLabel
             {
-                Text = $"{reagent.Quantity}u",
                 HorizontalAlignment = HAlignment.Right,
             };
+
+            var msg = new FormattedMessage();
+            if (reagent.StomachQuantity > FixedPoint2.Zero && reagent.Quantity > FixedPoint2.Zero)
+            {
+                var formatted = Loc.GetString("health-analyzer-window-quantity-both", ("stomach", reagent.StomachQuantity), ("blood", reagent.Quantity));
+                msg.AddMessage(FormattedMessage.FromMarkupOrThrow(formatted));
+            }
+            else if (reagent.StomachQuantity > FixedPoint2.Zero)
+            {
+                var formatted = Loc.GetString("health-analyzer-window-quantity-stomach", ("stomach", reagent.StomachQuantity));
+                msg.AddMessage(FormattedMessage.FromMarkupOrThrow(formatted));
+            }
+            else if (reagent.Quantity > FixedPoint2.Zero)
+            {
+                var formatted = Loc.GetString("health-analyzer-window-quantity-blood", ("blood", reagent.Quantity));
+                msg.AddMessage(FormattedMessage.FromMarkupOrThrow(formatted));
+            }
+            quantityLabel.SetMessage(msg);
 
             rowContainer.AddChild(colorBar);
             rowContainer.AddChild(nameLabel);
@@ -329,10 +352,9 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             ChemicalsContainer.AddChild(rowContainer);
         }
     }
-    // Starlight end
     private Texture GetTexture(string texture)
     {
-        var rsiPath = new ResPath("/Textures/_Starlight/Objects/Devices/health_analyzer.rsi"); // Starlight - new rsi for new icons :)
+        var rsiPath = new ResPath("/Textures/_Starlight/Objects/Devices/health_analyzer.rsi");
         var rsiSprite = new SpriteSpecifier.Rsi(rsiPath, texture);
 
         var rsi = _cache.GetResource<RSIResource>(rsiSprite.RsiPath).RSI;
@@ -344,7 +366,6 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         return _spriteSystem.Frame0(rsiSprite);
     }
 
-    // Starlight-start: damage group titles use shared severity formatting.
     private BoxContainer CreateDiagnosticGroupTitleRow(string text, float damageAmount, string damageGroupId)
     {
         var titleColor = HealthAnalyzerFormatting.GetDamageSeverityColor(damageAmount);
@@ -378,5 +399,6 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
         return titleRow;
     }
-    // Starlight-end
+    #endregion
+    */
 }

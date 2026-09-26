@@ -1,8 +1,28 @@
+# Starlight: Emote order priority is at Resources\Prototypes\_Starlight\Partials\Voice\disease_emotes.yml
+
 - type: emote
   id: Sneeze
   name: chat-emote-name-sneeze
   category: Vocal
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-sneeze"]
+  chatTriggers:
+  - sneeze
+  - sneezes
+  - sneezed
+  - sneeze.
+  - sneezes.
+  - sneezed.
+  - sneeze!
+  - sneezes!
+  - sneezed!
+  - sneeze? # Starlight
+  - sneezes? # Starlight
 
 - type: emote
   id: Cough

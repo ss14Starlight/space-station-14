@@ -37,6 +37,18 @@
       BuildToken: 20
 
 # Uplinks
+- type: entity
+  parent: BaseUplinkRadioPreset
+  id: BaseUplinkRadio40TCDAGD
+  suffix: 40 TC, DAGD
+  components:
+  - type: Store
+    balance:
+      Telecrystal: 40
+  - type: Tag
+    tags:
+    - DAGDUplink
+
 
 # Debug uplink 2000 coins
 - type: entity
@@ -83,4 +95,3 @@
   - type: Store
     balance:
       BuildToken: 0
-

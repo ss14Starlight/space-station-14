@@ -6,7 +6,8 @@ using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Server.Zombies;
-using Content.Server._Starlight.Language; // Starlight-start: zombie language
+using Content.Server._Starlight.Language;
+using Content.Server._Starlight.Statistics;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
@@ -19,23 +20,25 @@ using Content.Shared.Zombies;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using System.Globalization;
+using System.Linq;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
+public sealed partial class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
 {
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly ZombieSystem _zombie = default!;
-    [Dependency] private readonly LanguageSystem _language = default!; // Starlight-start: zombie language
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private RoundEndSystem _roundEnd = default!;
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!; // Starlight
+    [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private ZombieSystem _zombie = default!;
+    [Dependency] private LanguageSystem _language = default!; // Starlight
 
     public override void Initialize()
     {
@@ -44,7 +47,7 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
         SubscribeLocalEvent<InitialInfectedRoleComponent, GetBriefingEvent>(OnGetBriefing);
         SubscribeLocalEvent<ZombieRoleComponent, GetBriefingEvent>(OnGetBriefing);
         SubscribeLocalEvent<IncurableZombieComponent, ZombifySelfActionEvent>(OnZombifySelf);
-        SubscribeLocalEvent<ZombieRuleComponent, AfterAntagEntitySelectedEvent>(OnInitialInfectedSelected); // Starlight-start: zombie language
+        SubscribeLocalEvent<ZombieRuleComponent, AfterAntagEntitySelectedEvent>(OnInitialInfectedSelected); // Starlight
     }
 
     // Starlight-start: zombie language
@@ -87,7 +90,10 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
         else
             args.AddLine(Loc.GetString("zombie-round-end-amount-all"));
 
-        var antags = _antag.GetAntagIdentifiers(uid);
+        var antags = _antag.GetAntagIdentifiers(uid).ToList();
+        _roundStatistics.RecordAntagOutcome(uid, "Zombie", fraction >= 1 ? "AllInfected" : "Contained"); // Starlight
+        _roundStatistics.RecordAntagOutcomeStat("Zombie", "infected_fraction", fraction); // Starlight
+        _roundStatistics.RecordAntagOutcomeStat("Zombie", "initial_infected", antags.Count); // Starlight
         args.AddLine(Loc.GetString("zombie-round-end-initial-count", ("initialCount", antags.Count)));
         foreach (var (_, data, entName) in antags)
         {
@@ -135,7 +141,7 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
             {
                 _chat.DispatchStationAnnouncement(station, Loc.GetString("zombie-shuttle-call"), colorOverride: Color.Crimson);
             }
-            _roundEnd.RequestRoundEnd(null, false);
+            _roundEnd.RequestRoundEnd(checkCooldown: false);
         }
 
         // we include dead for this count because we don't want to end the round

@@ -41,6 +41,7 @@
     components:
       - CosmicCult
       - CosmicColossus
+      - CosmicMinion
       - CosmicAstralBody
       - ShowAntagIcons
   icon:
@@ -55,8 +56,21 @@
     components:
       - CosmicCult
       - CosmicColossus
+      - CosmicMinion
       - CosmicAstralBody
       - ShowAntagIcons
   icon:
     sprite: /Textures/_Starlight/CosmicCult/Icons/antag_icons.rsi
     state: CosmicCultLead
+
+- type: factionIcon
+  id: HivemindFaction
+  isShaded: true
+  priority: 11
+  showTo:
+    components:
+      - ShowAntagIcons
+      - Hivemind
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Changeling

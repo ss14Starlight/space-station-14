@@ -19,7 +19,5 @@ public sealed partial class ActionAddComponent : OnSignAction
     }
 
     public override void ResolveIoC()
-    {
-        _entityManager = IoCManager.Resolve<IEntityManager>();
-    }
+        => _entityManager = IoCManager.Resolve<IEntityManager>();
 }

@@ -1,32 +1,39 @@
 {
   "version": 1,
   "license": "CC-BY-SA-4.0",
-  "copyright": "Made by itsmaitake for Starlight",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "Made by itsmaitake for Starlight"
     },
     {
-      "name": "base"
+      "name": "base",
+      "copyright": "Made by itsmaitake for Starlight"
     },
     {
-      "name": "closed"
+      "name": "closed",
+      "copyright": "Made by itsmaitake for Starlight"
     },
     {
-      "name": "open"
+      "name": "open",
+      "copyright": "Made by itsmaitake for Starlight"
     },
     {
-      "name": "unlocked"
+      "name": "unlocked",
+      "copyright": "Made by itsmaitake for Starlight"
     },
     {
-      "name": "locked"
+      "name": "locked",
+      "copyright": "Made by itsmaitake for Starlight"
     },
     {
-      "name": "welded"
+      "name": "welded",
+      "copyright": "Made by itsmaitake for Starlight"
     },
     {
       "name": "sparking",
@@ -39,7 +46,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Made by itsmaitake for Starlight"
     }
   ]
 }

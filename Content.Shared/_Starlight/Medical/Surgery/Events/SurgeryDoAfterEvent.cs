@@ -3,7 +3,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
-namespace Content.Shared.Starlight.Medical.Surgery;
+namespace Content.Shared._Starlight.Medical.Surgery.Events;
 
 [Serializable, NetSerializable]
 public sealed partial class SurgeryDoAfterEvent : SimpleDoAfterEvent

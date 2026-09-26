@@ -13,7 +13,7 @@
 
 - type: entity
   parent: [BaseBrighteyeObjective]
-  id: BirghteyeSurviveObjective
+  id: BrighteyeSurviveObjective
   name: Protect your core
   description: Ensure your core is not damaged or removed!
   components:
@@ -26,7 +26,7 @@
 
 - type: entity
   parent: [BaseBrighteyeObjective]
-  id: BirghteyePortalObjective
+  id: BrighteyePortalObjective
   name: Open a portal to the dark
   description: Open and keep a portal open to the dark.
   components:

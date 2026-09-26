@@ -1,5 +1,3 @@
-using Content.Server.Construction.Conditions;
-using Content.Server.DeviceNetwork.Components;
 using Content.Server.EUI;
 using Content.Shared.Eui;
 using Content.Shared.Fax.Components;
@@ -11,9 +9,9 @@ using Content.Shared.DeviceNetwork.Components;
 
 namespace Content.Server.Fax.AdminUI;
 
-public sealed class AdminFaxEui : BaseEui
+public sealed partial class AdminFaxEui : BaseEui
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
     private readonly FaxSystem _faxSystem;
     private readonly FollowerSystem _followerSystem;
 

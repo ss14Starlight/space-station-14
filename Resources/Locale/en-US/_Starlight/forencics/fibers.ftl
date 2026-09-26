@@ -1,1 +1,16 @@
 fibers-cloth = cloth
+fibers-fur = fur
+fibers-purple-fur = purple fur
+fibers-red-fur = red fur
+fibers-black-fur = black fur
+fibers-red-and-black-woven-fur = red and black woven fur
+fibers-blue-fur = blue fur
+fibers-teal-fur = teal fur
+fibers-brown-fur = brown fur
+fibers-light-brown-fur = light brown fur
+fibers-grey-fur = grey fur
+fibers-green-fur = green fur
+fibers-orange-fur = orange fur
+fibers-white-fur = white fur
+fibers-yellow-fur = yellow fur
+fibers-dark-black-fur = dark black fur

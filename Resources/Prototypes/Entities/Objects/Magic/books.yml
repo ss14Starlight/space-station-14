@@ -70,6 +70,16 @@
       ownerOnly: false # For ease of debugging.
       balance:
         WizCoin: 99999
+      expectedFaction: #nulls out the expected faction
+
+- type: entity
+  parent: WizardsGrimoire
+  id: WizardsGrimoireNTSF
+  suffix: Wizard, NTSF
+  components:
+    - type: Store
+      balance:
+        WizCoin: 4
 
 - type: entity
   parent: BaseSpellbook

@@ -1,6 +1,6 @@
 ﻿using Robust.Shared.Serialization;
 
-namespace Content.Shared.Starlight.Antags.Abductor;
+namespace Content.Shared._Starlight.Antags.Abductor.Components;
 
 [Serializable, NetSerializable]
 public enum AbductorExperimentatorVisuals : byte

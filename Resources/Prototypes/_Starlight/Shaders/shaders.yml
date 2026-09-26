@@ -66,6 +66,16 @@
   params:
     ThermalBoost: 1.5
     ThermalIntensity: 1
+    ThermalAlpha: 1
+
+- type: shader
+  id: ThermalVisionScreenShaderHalfAlpha
+  kind: source
+  path: "/Textures/_Starlight/Shaders/thermal-screen.swsl"
+  params:
+    ThermalBoost: 1.5
+    ThermalIntensity: 1
+    ThermalAlpha: 0.5
 
 - type: shader
   id: BrightnessShader
@@ -113,3 +123,19 @@
   id: MonumentPulse
   kind: source
   path: "/Textures/_Starlight/CosmicCult/Shaders/monument_pulse.swsl"
+- type: shader
+  id: DisplacedDrawUnshaded
+  kind: source
+  path: "/Textures/_Starlight/Shaders/displacement_unshaded.swsl"
+  params:
+    displacementSize: 127
+
+- type: shader
+  id: LatchTargetOutline
+  kind: source
+  path: "/Textures/Shaders/outline.swsl"
+  params:
+    outline_color: "#FF0000AA"
+    light_boost: 2
+    light_gamma: 1.5
+    light_whitepoint: 48

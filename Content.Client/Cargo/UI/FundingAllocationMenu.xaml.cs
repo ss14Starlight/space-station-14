@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Content.Client.Message;
 using Content.Client.UserInterface.Controls;
@@ -18,9 +17,9 @@ namespace Content.Client.Cargo.UI;
 [GenerateTypedNameReferences]
 public sealed partial class FundingAllocationMenu : FancyWindow
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private readonly EntityQuery<StationBankAccountComponent> _bankQuery;
 

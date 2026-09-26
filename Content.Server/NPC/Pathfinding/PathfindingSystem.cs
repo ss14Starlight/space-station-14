@@ -11,7 +11,7 @@ using Content.Shared.Administration;
 using Content.Shared.Climbing.Components;
 using Content.Shared.Doors.Components;
 using Content.Shared.NPC;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Configuration;
@@ -42,21 +42,21 @@ namespace Content.Server.NPC.Pathfinding
          * See PathfindingSystem.Grid for a description of the grid implementation.
          */
 
-        [Dependency] private readonly IAdminManager _adminManager = default!;
+        [Dependency] private IAdminManager _adminManager = default!;
         // Starlight start
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
         // Starlight end
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IParallelManager _parallel = default!;
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly DestructibleSystem _destructible = default!;
-        [Dependency] private readonly EntityLookupSystem _lookup = default!;
-        [Dependency] private readonly FixtureSystem _fixtures = default!;
-        [Dependency] private readonly NPCSystem _npc = default!;
-        [Dependency] private readonly SharedMapSystem _maps = default!;
-        [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IParallelManager _parallel = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private DestructibleSystem _destructible = default!;
+        [Dependency] private EntityLookupSystem _lookup = default!;
+        [Dependency] private FixtureSystem _fixtures = default!;
+        [Dependency] private NPCSystem _npc = default!;
+        [Dependency] private SharedMapSystem _maps = default!;
+        [Dependency] private SharedPhysicsSystem _physics = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
 
         private readonly Dictionary<ICommonSession, PathfindingDebugMode> _subscribedSessions = new();
 

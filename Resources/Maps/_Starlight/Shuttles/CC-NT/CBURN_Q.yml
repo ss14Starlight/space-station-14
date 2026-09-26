@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 272.0.0
+  engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/14/2026 13:22:53
-  entityCount: 1383
+  time: 05/22/2026 05:27:25
+  entityCount: 1386
 maps: []
 grids:
 - 1
@@ -866,7 +866,7 @@ entities:
       pos: 19.5,-10.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -28030.514
+      secondsUntilStateChange: -28252.055
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -3035,16 +3035,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,-3.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        pai_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: ChairOfficeDark
   entities:
   - uid: 461
@@ -3548,16 +3538,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 10.5,-7.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        pai_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
     - type: DeviceLinkSource
       linkedPorts:
         906:
@@ -3572,16 +3552,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 11.5,-7.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        pai_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
     - type: DeviceLinkSource
       linkedPorts:
         907:
@@ -3598,16 +3568,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,-2.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        pai_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: ComputerId
   entities:
   - uid: 540
@@ -3616,24 +3576,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,-12.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        IdCardConsole-privilegedId: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        IdCardConsole-targetId: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        pai_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: ComputerIFF
   entities:
   - uid: 541
@@ -3642,16 +3584,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,-11.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        pai_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: ComputerRadar
   entities:
   - uid: 542
@@ -3660,16 +3592,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-6.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        pai_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: ComputerShuttle
   entities:
   - uid: 543
@@ -3678,20 +3600,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-7.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        disk_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        pai_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: ComputerSurveillanceCameraMonitor
   entities:
   - uid: 544
@@ -3700,16 +3608,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-8.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        pai_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: CrateCommandSecure
   entities:
   - uid: 545
@@ -3999,6 +3897,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 6.5,-8.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 816
+    components:
+    - type: Transform
+      pos: 2.5,3.5
       parent: 1
     - type: Fixtures
       fixtures: {}
@@ -5693,7 +5598,7 @@ entities:
     - type: Transform
       pos: 11.247004,-0.25175583
       parent: 1
-- proto: GeneratorBasic15kW
+- proto: GeneratorBasic20kW
   entities:
   - uid: 813
     components:
@@ -5709,16 +5614,6 @@ entities:
     components:
     - type: Transform
       pos: -0.5,2.5
-      parent: 1
-  - uid: 816
-    components:
-    - type: Transform
-      pos: 1.5,2.5
-      parent: 1
-  - uid: 817
-    components:
-    - type: Transform
-      pos: 2.5,2.5
       parent: 1
   - uid: 818
     components:
@@ -6489,14 +6384,24 @@ entities:
   - uid: 911
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.3287277,-9.53085
+      pos: -2.476652,-9.480872
       parent: 1
   - uid: 912
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.6724777,-9.296475
+      pos: -2.617277,-9.387122
+      parent: 1
+- proto: MedkitRoboticFilled
+  entities:
+  - uid: 817
+    components:
+    - type: Transform
+      pos: 1.495031,2.576187
+      parent: 1
+  - uid: 1384
+    components:
+    - type: Transform
+      pos: 1.401281,2.716812
       parent: 1
 - proto: MopBucketFull
   entities:
@@ -8593,6 +8498,11 @@ entities:
     - type: Transform
       pos: 0.5,-6.5
       parent: 1
+  - uid: 1385
+    components:
+    - type: Transform
+      pos: 1.5,2.5
+      parent: 1
 - proto: TableReinforcedGlass
   entities:
   - uid: 1152
@@ -8951,6 +8861,14 @@ entities:
       parent: 1
     missingComponents:
     - AccessReader
+- proto: VendingMachineWallMedicalCivilian
+  entities:
+  - uid: 1386
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 15.5,-7.5
+      parent: 1
 - proto: WallShuttle
   entities:
   - uid: 1208

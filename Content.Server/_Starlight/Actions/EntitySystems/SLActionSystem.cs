@@ -1,15 +1,15 @@
 ﻿using Content.Server.Actions;
 using Content.Shared._Starlight.Medical.Limbs;
 using Content.Shared.Actions;
-using Content.Shared.Starlight.Abstract.Codegen;
+using Content.Shared._Starlight.Abstract.Codegen;
 
 namespace Content.Server._Starlight.Actions.EntitySystems;
 
 [GenerateLocalSubscriptions<IWithAction>]
 public sealed partial class SLActionSystem : EntitySystem
 {
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private ActionContainerSystem _actionContainer = default!;
+    [Dependency] private ActionsSystem _actions = default!;
 
     public override void Initialize()
     {

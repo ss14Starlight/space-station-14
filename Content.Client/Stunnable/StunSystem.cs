@@ -15,17 +15,17 @@ using Robust.Client.Graphics;
 
 namespace Content.Client.Stunnable;
 
-public sealed class StunSystem : SharedStunSystem
+public sealed partial class StunSystem : SharedStunSystem
 {
-    [Dependency] private readonly SharedCombatModeSystem _combat = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private SharedCombatModeSystem _combat = default!;
+    [Dependency] private IRobustRandom _random = default!;
     #region Starlight
-    [Dependency] private readonly InputSystem _input = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly AnimationPlayerSystem _animation = default!;
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly SpriteSystem _sprites = default!;
+    [Dependency] private InputSystem _input = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private AnimationPlayerSystem _animation = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Dependency] private SpriteSystem _sprites = default!;
     #endregion
     private readonly int[] _sign = [-1, 1];
 

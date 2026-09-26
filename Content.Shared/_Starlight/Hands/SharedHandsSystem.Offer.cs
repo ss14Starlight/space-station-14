@@ -9,13 +9,14 @@ using Content.Shared.Verbs;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Hands.EntitySystems;
 
 public abstract partial class SharedHandsSystem : EntitySystem
 {
-    [Dependency] private readonly AlertsSystem _alertsSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private AlertsSystem _alertsSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private INetManager _net = default!;
     private ProtoId<AlertPrototype> OfferAlert = "Offer";
 
     private void InitializeOffer()

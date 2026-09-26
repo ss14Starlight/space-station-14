@@ -59,13 +59,15 @@
                 SheetGlass:
                   min: 2
                   max: 2
+    - type: StaticPrice
+      price: 100
     # Starlight-start
+    - type: Pierceable
+      level: Flesh
     - type: Tag
       tags:
         - Shield
-    # Starlight-end
-    - type: StaticPrice
-      price: 100
+    #Starlight-end
 
 - type: entity
   name: base repairable shield
@@ -83,6 +85,10 @@
     fuelCost: 10 # 1/2 of a Welder for a full repair
     doAfterDelay: 5
     allowSelfRepair: false
+  #Starlight-start
+  - type: Pierceable
+    level: Metal
+  # Starlight-end
 
 #Security Shields
 
@@ -203,6 +209,8 @@
                   max: 5
     - type: StaticPrice
       price: 150
+    - type: Pierceable #Starlight
+      level: Wood
 
 #Starlight Changes Start
 
@@ -318,6 +326,8 @@
                 SheetSteel:
                   min: 1
                   max: 2
+    - type: Pierceable #Starlight
+      level: Wood
 
 #Starlight Changes End
 
@@ -373,6 +383,8 @@
             - !type:PlaySoundBehavior
               sound:
                 collection: WoodDestroy
+    - type: Pierceable #Starlight
+      level: Wood
 
 #Magic/Cult Shields (give these to wizard for now)
 
@@ -474,29 +486,48 @@
       - type: DisarmMalus
         malus: 0.6
     - type: Sprite
-      sprite: Objects/Weapons/Melee/e_shield.rsi
+      sprite: _Starlight/Objects/Weapons/Melee/e_shield.rsi # SL
       layers:
         - state: eshield-icon
-        - state: eshield-on
+        - state: eshield-on-base # SL
           color: "#FFFFFF"
           visible: false
           shader: unshaded
           map: [ "shield" ]
+        # SL begin
+        - state: eshield-on-overlay
+          color: '#FFFFFF'
+          visible: false
+          shader: unshaded
+          map: [ "overlay" ]
+        # SL end
     - type: Item
       size: Small
-      sprite: Objects/Weapons/Melee/e_shield.rsi
+    # SL begin
+      sprite: _Starlight/Objects/Weapons/Melee/e_shield.rsi
       heldPrefix: eshield
+    # SL end
     - type: UseDelay
       delay: 0.5
     - type: ToggleableVisuals
       spriteLayer: shield
       inhandVisuals:
+      # SL begin
         left:
-          - state: inhand-left-shield
+          - state: inhand-left-shield-base
             shader: unshaded
+          - state: inhand-left-shield-overlay
+            shader: unshaded
+            map: [ "overlay" ]
         right:
-          - state: inhand-right-shield
+          - state: inhand-right-shield-base
             shader: unshaded
+          - state: inhand-right-shield-overlay
+            shader: unshaded
+            map: [ "overlay" ]
+      modulateIgnoreLayers: [ "overlay" ]
+      additionalLayers: [ "overlay" ]
+      # SL end
     - type: PointLight
       netsync: false
       enabled: false
@@ -554,6 +585,15 @@
                   max: 1
     - type: StaticPrice
       price: 350
+    # Starlight-start
+    - type: Tag
+      tags:
+        - Shield
+    - type: Pierceable
+      level: HardenedMetal
+    - type: EnergyColor
+      color: '#66b4fd'
+    # Starlight-end
 
 - type: entity
   name: broken energy shield

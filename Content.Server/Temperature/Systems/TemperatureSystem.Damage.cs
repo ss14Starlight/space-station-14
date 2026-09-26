@@ -1,6 +1,7 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Body.Components;
 using Content.Server.Temperature.Components;
+using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared.Alert;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -19,10 +20,10 @@ namespace Content.Server.Temperature.Systems;
 /// </summary>
 public sealed partial class TemperatureSystem
 {
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
 
     private EntityQuery<TemperatureDamageComponent> _tempDamageQuery;
     private EntityQuery<ContainerTemperatureComponent> _containerTemperatureQuery;
@@ -34,6 +35,8 @@ public sealed partial class TemperatureSystem
     ///     that we need some mechanism to ensure it doesn't double-dip on damage for both calls.
     /// </summary>
     public HashSet<Entity<TemperatureDamageComponent>> ShouldUpdateDamage = new();
+
+    private readonly List<Entity<TemperatureDamageComponent>> _shouldUpdateDamageBuffer = []; // Starlight
 
     /// <summary>
     /// Alert prototype for Temperature.
@@ -67,22 +70,33 @@ public sealed partial class TemperatureSystem
         _thermalRegulatorQuery = GetEntityQuery<ThermalRegulatorComponent>();
     }
 
+    #region Starlight Edit
+    // Collection modified during Enumeration fix
     private void UpdateDamage()
     {
-        foreach (var entity in ShouldUpdateDamage)
+        _shouldUpdateDamageBuffer.Clear();
+        _shouldUpdateDamageBuffer.AddRange(ShouldUpdateDamage);
+        ShouldUpdateDamage.Clear();
+
+        foreach (var entity in _shouldUpdateDamageBuffer)
         {
             if (Deleted(entity) || Paused(entity))
                 continue;
 
-            var deltaTime = _gameTiming.CurTime - entity.Comp.LastUpdate;
-            if (entity.Comp.TakingDamage && deltaTime < entity.Comp.UpdateInterval)
+            if (!TryComp<TemperatureDamageComponent>(entity.Owner, out var tempDamage))
                 continue;
 
-            ChangeDamage(entity, deltaTime);
+            var deltaTime = _gameTiming.CurTime - tempDamage.LastUpdate;
+
+            if (tempDamage.TakingDamage && deltaTime < tempDamage.UpdateInterval)
+                continue;
+
+            ChangeDamage((entity.Owner, tempDamage), deltaTime);
         }
 
-        ShouldUpdateDamage.Clear();
+        // ShouldUpdateDamage.Clear(); // Starlight Edit: Moved up
     }
+    #endregion
 
     private void ChangeDamage(Entity<TemperatureDamageComponent> entity, TimeSpan deltaTime)
     {
@@ -185,6 +199,7 @@ public sealed partial class TemperatureSystem
 
     private void EnqueueDamage(Entity<TemperatureDamageComponent> ent, ref OnTemperatureChangeEvent args)
     {
+        if (HasComp<TemperatureImmunityComponent>(ent)) return; // Starlight
         if (ShouldUpdateDamage.Add(ent) && !ent.Comp.TakingDamage)
             ent.Comp.LastUpdate = _gameTiming.CurTime;
     }

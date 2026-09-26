@@ -642,7 +642,7 @@
   id: NT4PlayerInstrument
   productEntity: NT4PlayerInstrument
   cost:
-    NTCredit: 1500
+    NTCredit: 750
   categories:
     - SLFashionOther
   conditions:
@@ -698,6 +698,17 @@
   productEntity: ClothingBackpackBunnyGangBundle
   cost:
     NTCredit: 500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: ClothingNeckFoxfire
+  productEntity: ClothingNeckFoxfire
+  cost:
+    NTCredit: 4444
   categories:
     - SLFashionOther
   conditions:

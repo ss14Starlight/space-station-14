@@ -1,0 +1,39 @@
+- type: entity
+  id: LoadoutDummyK9Brown
+  categories: [ HideSpawnMenu ]
+  name: brown
+  description: A brown-coated security K9.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Pets/k9.rsi
+    state: k9-brown
+
+- type: entity
+  id: LoadoutDummyK9Black
+  categories: [ HideSpawnMenu ]
+  name: black
+  description: A black-coated security K9.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Pets/k9.rsi
+    state: k9-black
+
+- type: entity
+  id: LoadoutDummyK9Tan
+  categories: [ HideSpawnMenu ]
+  name: tan
+  description: A tan-coated security K9.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Pets/k9.rsi
+    state: k9-tan
+
+- type: entity
+  id: LoadoutDummyK9Grey
+  categories: [ HideSpawnMenu ]
+  name: grey
+  description: A grey-coated security K9.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Pets/k9.rsi
+    state: k9-grey

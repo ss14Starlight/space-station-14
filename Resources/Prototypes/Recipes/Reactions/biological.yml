@@ -40,7 +40,6 @@
     Water: 4
     Nitrogen: 1
 
-
 - type: reaction
   id: SapBloodBreakdown
   source: true
@@ -83,17 +82,32 @@
     Protein: 6
 
 - type: reaction
-  id: ZombieBloodBreakdown
+  id: SulfurBloodBreakdown
+  source: true
+  requiredMixerCategories:
+  - Centrifuge
+  reactants:
+    SulfurBlood:
+      amount: 20
+  products:
+    Water: 10
+    Sulfur: 2
+    Hydrogen: 1
+    CarbonDioxide: 3
+    Protein: 4
+
+- type: reaction # starlight start
+  id: PutridBloodBreakdown
   source: true
   requiredMixerCategories:
   - Centrifuge
   reactants:
     ZombieBlood:
-      amount: 4
+      amount: 1
   products:
     Mold: 2
     Protein: 1
-    Toxin: 1
+    Toxin: 1 # starlight end
 
 - type: reaction
   id: CycloriteBloodBreakdown

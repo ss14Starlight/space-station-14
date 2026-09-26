@@ -7,7 +7,6 @@ using Content.Shared.Dataset;
 using Content.Shared.Emag.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared._Starlight.Thaven;
-using Content.Shared._Starlight.Thaven.Components;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Robust.Server.GameObjects;
@@ -23,13 +22,13 @@ namespace Content.Server._Starlight.Thaven;
 
 public sealed partial class ThavenMoodsSystem : SharedThavenMoodSystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly UserInterfaceSystem _bui = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private UserInterfaceSystem _bui = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private AudioSystem _audio = default!;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public IReadOnlyList<ThavenMood> SharedMoods => _sharedMoods.AsReadOnly();

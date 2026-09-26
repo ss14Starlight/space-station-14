@@ -1,4 +1,3 @@
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.StationEvents.Components;
 using Content.Server.Traits.Assorted;
 using Content.Shared.GameTicking.Components;
@@ -9,9 +8,9 @@ using Content.Shared.Traits.Assorted;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class MassHallucinationsRule : StationEventSystem<MassHallucinationsRuleComponent>
+public sealed partial class MassHallucinationsRule : StationEventSystem<MassHallucinationsRuleComponent>
 {
-    [Dependency] private readonly ParacusiaSystem _paracusia = default!;
+    [Dependency] private ParacusiaSystem _paracusia = default!;
 
     protected override void Started(EntityUid uid, MassHallucinationsRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {

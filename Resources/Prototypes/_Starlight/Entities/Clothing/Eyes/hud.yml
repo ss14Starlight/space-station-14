@@ -15,10 +15,12 @@
       damageContainers:
         - Biological
         - IPC
+        - Hybrid
     - type: ShowHealthIcons
       damageContainers:
         - Biological
         - IPC
+        - Hybrid
     - type: Tag
       tags:
         - HudMedical
@@ -47,6 +49,21 @@
   name: blue shield hud eyepatch
 
 - type: entity
+  parent: [BaseCommandManagerContraband, ClothingEyesHudCommand]
+  id: ClothingEyesEyepatchHudAssistantManager
+  name: assistant manager hud eyepatch
+  description: A jade-colored heads-up display that scans the humanoids in view and provides accurate data about their ID status. Surrender witness to its' near-invisible string.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Hud/assistantpatch.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Hud/assistantpatch.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+
+- type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
   id: ClothingEyesHudBrigmedic
   name: brigmedic hud
@@ -67,6 +84,7 @@
       tags:
         - HamsterWearable
         - WhitelistChameleon
+        - HudSecurity
     - type: IdentityBlocker
       coverage: EYES
 
@@ -85,6 +103,7 @@
         - PetWearable
         - WhitelistChameleon
         - HudMedical
+        - HudSecurity
 
 - type: entity
   parent: [ClothingEyesEyepatchHudBrigmedic, ClothingHeadEyeBaseFlipped]
@@ -104,6 +123,9 @@
     - type: EyeProtection
       protectionTime: 5
     - type: ShowHealthBars
+      damageContainers:
+        - Biological
+        - Hybrid # Neocytes
     - type: SolutionScanner
     - type: Construction
       graph: GlassesSecHUD
@@ -112,6 +134,7 @@
       tags:
         - HamsterWearable
         - WhitelistChameleon
+        - SecBeltEquip
     - type: IdentityBlocker
       coverage: EYES
 
@@ -166,6 +189,7 @@
     - type: ShowJobIcons
     - type: ShowMindShieldIcons
     - type: ShowCriminalRecordIcons
+    - type: ShowAccess
     - type: EyeProtection
       protectionTime: 5
 
@@ -185,9 +209,11 @@
     - type: ShowHealthBars
       damageContainers:
         - Biological
+        - Hybrid
     - type: ShowHealthIcons
       damageContainers:
         - Biological
+        - Hybrid
     - type: Tag
       tags:
         - HudMedical

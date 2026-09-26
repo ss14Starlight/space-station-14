@@ -8,6 +8,15 @@
 
 - type: entity
   parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostCentCommAligned
+  name: Ghost Role (CentComm Aligned)
+  components:
+    - type: MindRole
+      roleType: CentCommAligned
+      subtype: role-subtype-CentComm
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
   id: MindRoleGhostTSFAligned
   name: Ghost Role (TSF Aligned)
   components:
@@ -161,6 +170,17 @@
 
 - type: entity
   parent: BaseMindRoleAntag
+  id: MindRoleMindControlled
+  name: Mind Controlled Role
+  components:
+  - type: MindRole
+    antagPrototype: MindControlled
+    roleType: TeamAntagonist
+    subtype: role-subtype-mind-controlled
+  - type: MindControl
+
+- type: entity
+  parent: BaseMindRoleAntag
   id: MindRoleTerminator
   name: Terminator Role
   components:
@@ -183,10 +203,10 @@
     roleType: TeamAntagonist
   - type: CosmicCultRole
   - type: RoleBriefing
-    briefing: objective-cosmiccult-charactermenu
+    briefing: cosmiccult-role-short-briefing
 
 - type: entity
-  parent: BaseMindRoleAntag
+  parent: MindRoleGhostRoleTeamAntagonist
   id: MindRoleCosmicColossus
   name: Colossus Role
   components:
@@ -198,3 +218,15 @@
   - type: CosmicColossusRole
   - type: RoleBriefing
     briefing: ghost-role-colossus-charactermenu
+
+- type: entity
+  parent: MindRoleGhostRoleTeamAntagonistFlock
+  id: MindRoleCosmicMinion
+  name: Cosmic Minion Role
+  components:
+  - type: MindRole
+    antagPrototype: CosmicAntagMinion
+    roleType: TeamAntagonist
+    subtype: role-subtype-cosmic-minion
+  - type: RoleBriefing
+    briefing: ghost-role-information-cosmic-minion-description

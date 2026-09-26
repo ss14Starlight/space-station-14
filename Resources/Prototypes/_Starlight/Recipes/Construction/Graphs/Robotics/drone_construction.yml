@@ -1,0 +1,27 @@
+- type: constructionGraph
+  id: Drone
+  start: start
+  graph:
+  - node: start
+    entity: DroneShell
+    edges:
+    - to: drone_complete
+      steps:
+      - assemblyId: generic
+        guideString: drone-construction-guide-string
+      - tool: Screwing
+        doAfter: 1
+      - material: Cable
+        amount: 1
+        doAfter: 1
+        store: part-container
+      - tag: PowerCell
+        name: construction-graph-tag-power-cell
+        store: cell_slot
+      - component: Flash
+        name: construction-graph-component-flash
+        store: part-container
+      - tool: Screwing
+        doAfter: 1
+  - node: drone_complete
+    entity: Drone

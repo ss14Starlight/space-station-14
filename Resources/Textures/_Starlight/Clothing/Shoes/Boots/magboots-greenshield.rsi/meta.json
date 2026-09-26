@@ -1,0 +1,59 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "equipped-FEET",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/debf90acfcafa4fb8d6723a37e0b8ac556c0702b. equipped-FEET-vox & on-equipped-FEET-vox state taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/31d6576ba8102135d058ef49c3cb6ecbe8db8a79/icons/mob/species/vox/shoes.dmi, and equipped-FEET-vox state modified to fix inconsistencies. CentComm recolor by Bornstellar for SS14.",
+            "directions": 4
+        },
+        {
+            "name": "on-equipped-FEET",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/debf90acfcafa4fb8d6723a37e0b8ac556c0702b. equipped-FEET-vox & on-equipped-FEET-vox state taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/31d6576ba8102135d058ef49c3cb6ecbe8db8a79/icons/mob/species/vox/shoes.dmi, and equipped-FEET-vox state modified to fix inconsistencies. CentComm recolor by Bornstellar for SS14.",
+            "directions": 4
+        },
+        {
+            "name": "equipped-FEET-vox",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/debf90acfcafa4fb8d6723a37e0b8ac556c0702b. equipped-FEET-vox & on-equipped-FEET-vox state taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/31d6576ba8102135d058ef49c3cb6ecbe8db8a79/icons/mob/species/vox/shoes.dmi, and equipped-FEET-vox state modified to fix inconsistencies. CentComm recolor by Bornstellar for SS14.",
+            "directions": 4
+        },
+        {
+            "name": "on-equipped-FEET-vox",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/debf90acfcafa4fb8d6723a37e0b8ac556c0702b. equipped-FEET-vox & on-equipped-FEET-vox state taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/31d6576ba8102135d058ef49c3cb6ecbe8db8a79/icons/mob/species/vox/shoes.dmi, and equipped-FEET-vox state modified to fix inconsistencies. CentComm recolor by Bornstellar for SS14.",
+            "directions": 4
+        },
+        {
+            "name": "icon",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/debf90acfcafa4fb8d6723a37e0b8ac556c0702b. equipped-FEET-vox & on-equipped-FEET-vox state taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/31d6576ba8102135d058ef49c3cb6ecbe8db8a79/icons/mob/species/vox/shoes.dmi, and equipped-FEET-vox state modified to fix inconsistencies. CentComm recolor by Bornstellar for SS14."
+        },
+        {
+            "name": "icon-on",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/debf90acfcafa4fb8d6723a37e0b8ac556c0702b. equipped-FEET-vox & on-equipped-FEET-vox state taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/31d6576ba8102135d058ef49c3cb6ecbe8db8a79/icons/mob/species/vox/shoes.dmi, and equipped-FEET-vox state modified to fix inconsistencies. CentComm recolor by Bornstellar for SS14."
+        },
+        {
+            "name": "inhand-left",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/debf90acfcafa4fb8d6723a37e0b8ac556c0702b. equipped-FEET-vox & on-equipped-FEET-vox state taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/31d6576ba8102135d058ef49c3cb6ecbe8db8a79/icons/mob/species/vox/shoes.dmi, and equipped-FEET-vox state modified to fix inconsistencies. CentComm recolor by Bornstellar for SS14.",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/debf90acfcafa4fb8d6723a37e0b8ac556c0702b. equipped-FEET-vox & on-equipped-FEET-vox state taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/31d6576ba8102135d058ef49c3cb6ecbe8db8a79/icons/mob/species/vox/shoes.dmi, and equipped-FEET-vox state modified to fix inconsistencies. CentComm recolor by Bornstellar for SS14.",
+            "directions": 4
+        },
+        {
+            "name": "on-inhand-left",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/debf90acfcafa4fb8d6723a37e0b8ac556c0702b. equipped-FEET-vox & on-equipped-FEET-vox state taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/31d6576ba8102135d058ef49c3cb6ecbe8db8a79/icons/mob/species/vox/shoes.dmi, and equipped-FEET-vox state modified to fix inconsistencies. CentComm recolor by Bornstellar for SS14.",
+            "directions": 4
+        },
+        {
+            "name": "on-inhand-right",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/debf90acfcafa4fb8d6723a37e0b8ac556c0702b. equipped-FEET-vox & on-equipped-FEET-vox state taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/31d6576ba8102135d058ef49c3cb6ecbe8db8a79/icons/mob/species/vox/shoes.dmi, and equipped-FEET-vox state modified to fix inconsistencies. CentComm recolor by Bornstellar for SS14.",
+            "directions": 4
+        }
+    ]
+}

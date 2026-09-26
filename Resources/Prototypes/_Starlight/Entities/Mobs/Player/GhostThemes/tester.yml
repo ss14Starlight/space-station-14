@@ -10,7 +10,7 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
-
+  category: Tester
 
 - type: ghostTheme
   id: Metroid
@@ -24,6 +24,7 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
+  category: Tester
 
 - type: ghostTheme
   id: Imp
@@ -37,6 +38,7 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
+  category: Tester
 
 - type: ghostTheme
   id: Revenant
@@ -50,6 +52,7 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
+  category: Tester
 
 - type: ghostTheme
   id: Ian
@@ -64,6 +67,7 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
+  category: Tester
 
 - type: ghostTheme
   id: IanCute
@@ -78,6 +82,7 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
+  category: Tester
 
 - type: ghostTheme
   id: Skeleton
@@ -92,6 +97,7 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
+  category: Tester
 
 - type: ghostTheme
   id: Sheet
@@ -106,6 +112,7 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
+  category: Tester
 
 - type: ghostTheme
   id: Cat
@@ -120,3 +127,4 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
+  category: Tester

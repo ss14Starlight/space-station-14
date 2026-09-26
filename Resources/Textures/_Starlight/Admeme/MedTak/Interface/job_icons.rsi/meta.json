@@ -1,0 +1,40 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 8,
+        "y": 8
+    },
+    "states": [
+        {
+            "name": "MedTakLeader",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "MedTakDispatcher",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "MedTakMedic",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "MedTakPilot",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "MedTakSecurity",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "MedTakBorg",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "MedTak_Mindshield",
+            "copyright": "SevenShades",
+            "delays": [[ 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1 ]]
+        }
+    ]
+}

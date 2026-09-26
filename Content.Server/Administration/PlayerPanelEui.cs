@@ -16,18 +16,18 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Administration;
 
-public sealed class PlayerPanelEui : BaseEui
+public sealed partial class PlayerPanelEui : BaseEui
 {
-    [Dependency] private readonly IAdminManager _admins = default!;
-    [Dependency] private readonly IConnectionManager _connectionManager = default!; // Starlight
-    [Dependency] private readonly IBanManager _banManager = default!; // NullLink-edit: move to general method at Manager
-    [Dependency] private readonly IActorRouter _actor = default!; // NullLink-edit: Notes sync
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly IAdminNotesManager _notesMan = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly EuiManager _eui = default!;
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
+    [Dependency] private IAdminManager _admins = default!;
+    [Dependency] private IConnectionManager _connectionManager = default!; // Starlight
+    [Dependency] private IBanManager _banManager = default!; // NullLink-edit: move to general method at Manager
+    [Dependency] private IActorRouter _actor = default!; // NullLink-edit: Notes sync
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private IAdminNotesManager _notesMan = default!;
+    [Dependency] private IEntityManager _entity = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private EuiManager _eui = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
 
     private readonly LocatedPlayerData _targetPlayer;
     private int? _notes;

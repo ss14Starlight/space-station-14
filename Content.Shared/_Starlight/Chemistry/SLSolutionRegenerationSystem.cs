@@ -6,16 +6,16 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Chemistry;
 
-public sealed class SLSolutionRegenerationSystem : EntitySystem
+public sealed partial class SLSolutionRegenerationSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<SolutionRegenerationComponent, SolutionContainerChangedEvent>(OnSolutionChanged);
+        SubscribeLocalEvent<SolutionRegenerationComponent, SolutionChangedEvent>(OnSolutionChanged);
     }
 
-    private void OnSolutionChanged(Entity<SolutionRegenerationComponent> ent, ref SolutionContainerChangedEvent args)
+    private void OnSolutionChanged(Entity<SolutionRegenerationComponent> ent, ref SolutionChangedEvent args)
     {
         //make sure the entity isnt terminating
         if (TerminatingOrDeleted(ent))
@@ -25,7 +25,7 @@ public sealed class SLSolutionRegenerationSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        if (args.Solution.AvailableVolume <= FixedPoint2.Zero)
+        if (args.Solution.Comp.Solution.AvailableVolume <= FixedPoint2.Zero)
             return;
 
         EnsureComp<SLActiveSolutionRegenerationComponent>(ent);

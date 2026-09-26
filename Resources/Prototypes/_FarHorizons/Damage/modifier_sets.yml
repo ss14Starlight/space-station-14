@@ -1,3 +1,4 @@
+# Starlight, Neocyte damage modifiers moved to _Starlight/Damage/neocyte_modifier_sets.yml because they are heavily modified.
 - type: damageModifierSet
   id: IPC
   coefficients:

@@ -19,6 +19,8 @@
     instrumentList:
       "Standard": {56: 0}
       "Muted": {59: 0}
+      "Vampiric": {61: 8} # Starlight
+      "Grand": {61: 11} # Starlight
   - type: Sprite
     sprite: Objects/Fun/Instruments/trumpet.rsi
 

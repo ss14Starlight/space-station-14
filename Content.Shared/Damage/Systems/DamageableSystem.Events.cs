@@ -254,6 +254,14 @@ public sealed class DamageModifyEvent(DamageSpecifier damage, EntityUid? origin 
     public readonly EntityUid? Origin = origin;
 }
 
+/// <summary>
+/// Event raised when an entity with <see cref="DamageableComponent" /> has taken some amount of damage.
+/// </summary>
+/// <param name="Damage">The amount of damage the entity is being subject to.</param>
+/// <param name="Origin">The originator of the damage</param>
+/// <param name="InterruptsDoAfters">If the damage being dealt will interrupt do-afters</param>
+[ByRefEvent]
+public readonly record struct DamageDealtEvent(DamageSpecifier Damage, EntityUid? Origin, bool InterruptsDoAfters);
 public sealed class DamageChangedEvent : EntityEventArgs
 {
     /// <summary>

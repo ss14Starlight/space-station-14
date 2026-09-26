@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Maps;
@@ -8,6 +9,7 @@ using Content.Shared.Roles;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Log;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -15,7 +17,7 @@ namespace Content.IntegrationTests.Tests.Station;
 
 [TestFixture]
 [TestOf(typeof(StationJobsSystem))]
-public sealed class StationJobsTest
+public sealed class StationJobsTest : GameTest
 {
     private const string StationMapId = "FooStation";
 
@@ -77,15 +79,15 @@ public sealed class StationJobsTest
   playTimeTracker: PlayTimeDummyChaplain
 ";
 
-    private const int StationCount = 10;
+    private const int StationCount = 10; // Starlight
     private const int CaptainCount = StationCount;
-    private const int PlayerCount = 200;
+    private const int PlayerCount = 200; // Starlight
     private const int TotalPlayers = PlayerCount + CaptainCount;
 
     [Test]
     public async Task AssignJobsTest()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var prototypeManager = server.ResolveDependency<IPrototypeManager>();
@@ -100,23 +102,23 @@ public sealed class StationJobsTest
         {
             for (var i = 0; i < StationCount; i++)
             {
-                stations.Add(stationSystem.InitializeNewStation(fooStationProto.Stations["Station"],
-                    null,
-                    $"Foo {StationCount}"));
+                stations.Add(stationSystem.InitializeNewStation(fooStationProto.Stations["Station"], null, $"Foo {StationCount}"));
             }
         });
 
-        var jobPrioritiesA = new Dictionary<ProtoId<JobPrototype>, JobPriority>()
+        var jobPrioritiesA = new Dictionary<ProtoId<JobPrototype>, JobPriority>
         {
             { "TAssistant", JobPriority.Medium },
             { "TClown", JobPriority.Low },
             { "TMime", JobPriority.High },
         };
-        var jobPrioritiesB = new Dictionary<ProtoId<JobPrototype>, JobPriority>()
+        var jobPrioritiesB = new Dictionary<ProtoId<JobPrototype>, JobPriority>
         {
             { "TCaptain", JobPriority.High },
         };
 
+        #region Starlight
+        // Revert to old behavior for assigning dummy players with job priorities, since we have multislot
         var tideSessions = await pair.AddDummyPlayers(jobPrioritiesA, PlayerCount);
         var capSessions = await pair.AddDummyPlayers(jobPrioritiesB, CaptainCount);
         var allSessions = tideSessions.Concat(capSessions).ToList();
@@ -125,10 +127,11 @@ public sealed class StationJobsTest
         await server.WaitAssertion(() =>
         {
             Assert.That(allSessions, Is.Not.Empty);
+            #endregion
 
             var start = new Stopwatch();
             start.Start();
-            var assigned = stationJobs.AssignJobs(allNetIds, stations);
+            var assigned = stationJobs.AssignJobs(allNetIds, stations); // Starlight
             Assert.That(assigned, Is.Not.Empty);
             var time = start.Elapsed.TotalMilliseconds;
             logmill.Info($"Took {time} ms to distribute {TotalPlayers} players.");
@@ -163,13 +166,12 @@ public sealed class StationJobsTest
                 Assert.That(assigned.Values.Select(x => x.Item1).ToList(), Does.Contain("TCaptain"));
             });
         });
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task AdjustJobsTest()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var prototypeManager = server.ResolveDependency<IPrototypeManager>();
@@ -213,13 +215,12 @@ public sealed class StationJobsTest
                 Assert.That(stationJobs.IsJobUnlimited(station, "TChaplain"), "Could not make TChaplain unlimited.");
             });
         });
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task InvalidRoundstartJobsTest()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var prototypeManager = server.ResolveDependency<IPrototypeManager>();
@@ -257,6 +258,31 @@ public sealed class StationJobsTest
                 }
             });
         });
-        await pair.CleanReturnAsync();
+    }
+}
+
+internal static class JobExtensions
+{
+    public static Dictionary<NetUserId, HumanoidCharacterProfile> AddJob(
+        this Dictionary<NetUserId, HumanoidCharacterProfile> inp, ICommonSession session, string jobId, JobPriority prio = JobPriority.Medium)
+    {
+        var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority> {{ jobId, prio }}; // Starlight
+        inp.Add(session.UserId, HumanoidCharacterProfile.Random().WithJobPreferences(priorities.Keys)); // Starlight
+
+        return inp;
+    }
+
+    public static Dictionary<NetUserId, HumanoidCharacterProfile> AddPreference(
+        this Dictionary<NetUserId, HumanoidCharacterProfile> inp, string jobId, JobPriority prio = JobPriority.Medium)
+    {
+        var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority> {{ jobId, prio }}; // Starlight
+        return inp.ToDictionary(x => x.Key, x => x.Value.WithJobPreferences(priorities.Keys));
+    }
+
+    public static Dictionary<NetUserId, HumanoidCharacterProfile> WithPlayers(
+        this Dictionary<NetUserId, HumanoidCharacterProfile> inp,
+        Dictionary<NetUserId, HumanoidCharacterProfile> second)
+    {
+        return new[] { inp, second }.SelectMany(x => x).ToDictionary(x => x.Key, x => x.Value);
     }
 }

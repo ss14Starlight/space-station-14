@@ -4,7 +4,7 @@ using Content.Client.Resources;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
 using Content.Shared._Starlight.BugReport;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using JetBrains.Annotations;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.Controllers;
@@ -16,11 +16,11 @@ using Robust.Shared.Utility;
 namespace Content.Client._Starlight.UserInterface.Systems.BugReport;
 
 [UsedImplicitly]
-public sealed class BugReportUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
+public sealed partial class BugReportUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
 {
-    [Dependency] private readonly IClientNetManager _net = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IResourceCache _resource = default!;
+    [Dependency] private IClientNetManager _net = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IResourceCache _resource = default!;
 
     // This is the link to the hotbar button
     private MenuButton? _bugReportButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.ReportBugButton;

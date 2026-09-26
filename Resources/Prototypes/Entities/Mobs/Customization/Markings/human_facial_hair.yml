@@ -2,6 +2,7 @@
   id: HumanFacialHairAbe
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: abe
@@ -9,6 +10,7 @@
   id: HumanFacialHairBrokenman
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: brokenman
@@ -16,6 +18,7 @@
   id: HumanFacialHairChin
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: chin
@@ -23,6 +26,7 @@
   id: HumanFacialHairDwarf
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: dwarf
@@ -30,6 +34,7 @@
   id: HumanFacialHairFullbeard
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: fullbeard
@@ -37,6 +42,7 @@
   id: HumanFacialHairCroppedfullbeard
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: croppedfullbeard
@@ -44,6 +50,7 @@
   id: HumanFacialHairGt
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: gt
@@ -51,6 +58,7 @@
   id: HumanFacialHairHip
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: hip
@@ -58,6 +66,7 @@
   id: HumanFacialHairJensen
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: jensen
@@ -65,6 +74,7 @@
   id: HumanFacialHairNeckbeard
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: neckbeard
@@ -72,6 +82,7 @@
   id: HumanFacialHairWise
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: wise
@@ -79,6 +90,7 @@
   id: HumanFacialHairMuttonmus
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: muttonmus
@@ -86,6 +98,7 @@
   id: HumanFacialHairMartialartist
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: martialartist
@@ -93,6 +106,7 @@
   id: HumanFacialHairChinlessbeard
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: chinlessbeard
@@ -100,6 +114,7 @@
   id: HumanFacialHairMoonshiner
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: moonshiner
@@ -107,6 +122,7 @@
   id: HumanFacialHairLongbeard
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: longbeard
@@ -114,6 +130,7 @@
   id: HumanFacialHairVolaju
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: volaju
@@ -121,6 +138,7 @@
   id: HumanFacialHair3oclock
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: 3oclock
@@ -128,6 +146,7 @@
   id: HumanFacialHairFiveoclock
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: fiveoclock
@@ -135,6 +154,7 @@
   id: HumanFacialHair5oclockmoustache
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: 5oclockmoustache
@@ -142,6 +162,7 @@
   id: HumanFacialHair7oclock
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: 7oclock
@@ -149,6 +170,7 @@
   id: HumanFacialHair7oclockmoustache
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: 7oclockmoustache
@@ -156,6 +178,7 @@
   id: HumanFacialHairMoustache
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: moustache
@@ -163,6 +186,7 @@
   id: HumanFacialHairPencilstache
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: pencilstache
@@ -170,6 +194,7 @@
   id: HumanFacialHairSmallstache
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: smallstache
@@ -177,6 +202,7 @@
   id: HumanFacialHairWalrus
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: walrus
@@ -184,6 +210,7 @@
   id: HumanFacialHairFumanchu
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: fumanchu
@@ -191,6 +218,7 @@
   id: HumanFacialHairHogan
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: hogan
@@ -198,6 +226,7 @@
   id: HumanFacialHairSelleck
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: selleck
@@ -205,6 +234,7 @@
   id: HumanFacialHairChaplin
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: chaplin
@@ -212,6 +242,7 @@
   id: HumanFacialHairVandyke
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: vandyke
@@ -219,6 +250,7 @@
   id: HumanFacialHairWatson
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: watson
@@ -226,6 +258,7 @@
   id: HumanFacialHairElvis
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: elvis
@@ -233,6 +266,7 @@
   id: HumanFacialHairMutton
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: mutton
@@ -240,6 +274,7 @@
   id: HumanFacialHairSideburn
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   sprites:
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: sideburn

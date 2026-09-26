@@ -1,8 +1,14 @@
 using Robust.Shared.Configuration;
 
-namespace Content.Shared.Starlight.CCVar;
+namespace Content.Shared._Starlight.CCVar;
 public sealed partial class StarlightCCVars
 {
+    /// <summary>
+    /// Whether or not to automatically add punctuation to the end of a sentence as a player character.
+    /// </summary>
+    public static readonly CVarDef<bool> AutoPunctuate =
+    CVarDef.Create("ic.auto_punctuate", true, CVar.REPLICATED | CVar.CLIENT | CVar.ARCHIVE);
+
     /// <summary>
     /// Minimum width of the separated chat window.
     /// </summary>

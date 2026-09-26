@@ -149,9 +149,6 @@
   id: BotanyHatchet # Storage whitelist: ClothingBeltPlant. ItemMapper: ClothingBeltPlant
 
 - type: Tag
-  id: BotanyHoe # Storage whitelist: ClothingBeltPlant. ItemMapper: ClothingBeltPlant
-
-- type: Tag
   id: BotanyShovel # Storage whitelist: ClothingBeltPlant. ItemMapper: ClothingBeltPlant
 
 - type: Tag # Used for specifically chemistry bottles.
@@ -748,9 +745,6 @@
   id: HiViz # CargoBounty: BountyHiVizVest
 
 - type: Tag
-  id: Hoe # Used by PlantHolderSystem to make tagged entities a pseudo-tool for weeding plants. TODO this sucks!
-
-- type: Tag
   id: HolofanProjector # Storage whitelist: BaseClothingBeltEngineering
 
 - type: Tag
@@ -876,7 +870,7 @@
   id: MagazineGrenade # ShuttleGunDuster
 
 - type: Tag
-  id: MagazineLightRifle # WeaponRifleAk
+  id: MagazineLightRifle # WeaponRifleAk, # Starlight - WeaponRifleLawbringer
 
 - type: Tag
   id: MagazineLightRifleBox # WeaponLightMachineGunL6
@@ -897,13 +891,10 @@
   id: MagazinePistolSubMachineGun # WeaponSubMachineGunC20r, WeaponSubMachineGunDrozd, WeaponSubMachineGunAtreides
 
 - type: Tag
-  id: MagazinePistolHighCapacitySP
-
-- type: Tag
   id: MagazinePistolSubMachineGunTopMounted # WeaponSubMachineGunWt550
 
 - type: Tag
-  id: MagazineRifle # WeaponRifleLecter, WeaponRifleEstoc, WeaponRifleM90GrenadeLauncher
+  id: MagazineRifle # WeaponRifleLecter, WeaponRifleEstoc, # Starlight - Removed WeaponRifleM90GrenadeLauncher
 
 - type: Tag
   id: MagazineShotgun # WeaponShotgunBulldog
@@ -915,9 +906,6 @@
 
 - type: Tag # Used on DungeonRoom prototypes.
   id: Maints # RoomFill spawner whitelist for MaintsRoomMarker.
-
-- type: Tag
-  id: MagazinePistolSubMachineGunSP
 
 - type: Tag
   id: Matchstick # Storage whitelist: Ashtray. ConstructionGraph: ImprovisedShotgunShellGraph
@@ -939,12 +927,6 @@
 
 - type: Tag
   id: Metal # Used by MicrowaveSystem. Causes microwaves to malfunction when tagged entity is nuked.
-
-- type: Tag
-  id: MechAirTank
-
-- type: Tag
-  id: MechThruster
 
 - type: Tag
   id: MicroBomb # ReplacementImplant whitelist on MacroBombImplant.
@@ -1051,9 +1033,6 @@
   id: Packet # Storage whitelist: ClothingBeltChef
 
 - type: Tag
-  id: PaddyUpgradeKit
-
-- type: Tag
   id: Pancake # CargoBounty: BountyPancake
 
 - type: Tag
@@ -1113,9 +1092,6 @@
 
 - type: Tag
   id: PlantBGone # Storage whitelist: ClothingBeltPlant. ItemMapper: ClothingBeltPlant
-
-- type: Tag
-  id: PlantSampleTaker # Used by PlantHolderSystem to make tagged entities a pseudo-tool for trimming seeds. TODO this sucks!
 
 - type: Tag
   id: PlasmaGlassShard # ConstructionGraph: ImprovisedArrowPlasma, PlasmaShiv, SpearPlasma
@@ -1230,9 +1206,6 @@
   id: RipleyPeripheralsControlModule # ConstructionGraph: Ripley
 
 - type: Tag
-  id: RipleyMKIIUpgradeKit
-
-- type: Tag
   id: RipleyRArm # PartAssembly: RipleyHarness. ItemMapper: RipleyHarness
 
 - type: Tag
@@ -1271,9 +1244,6 @@
   id: SecBeltEquip # Storage whitelist: ClothingBeltSecurity
 
 - type: Tag
-  id: BrigmedicBeltEquip
-
-- type: Tag
   id: SecurePlasmaWindoor # Used in ConstructionGraph "Windoor" to navigate between Windoor, PlasmaWindoor, and UraniumWindoor airlocks.
 
 - type: Tag
@@ -1289,7 +1259,7 @@
   id: Sheet # MaterialStorage whitelist for many machines and lathes. Storage whitelist: MaterialBag
 
 - type: Tag
-  id: ShellShotgun # Ammo: AmmoProviderShotgunShell, ClothingBeltBandolier, BaseMagazineShotgun, BaseWeaponShotgun, WeaponFlareGunSecurity
+  id: ShellShotgun # Ammo: AmmoProviderShotgunShell, ClothingBeltBandolier, BaseMagazineShotgun, BaseWeaponShotgun
 
 - type: Tag
   id: ShellShotgunLight # Shotgun shells that are compatible with the flare gun. Subset of ShellShotgun.
@@ -1329,19 +1299,6 @@
 
 - type: Tag # Used on DungeonRoom prototypes.
   id: SnowyLabs # PrefabDunGen whitelist on SnowyLabs DungeonConfig.
-
-- type: Tag
-  id: IndustrialMech
-
-- type: Tag
-  id: IgnoreMele
-
-- type: Tag
-  id: CombatMech
-# TODO: Make medical mech
-
-- type: Tag
-  id: SpecialMech
 
 - type: Tag
   id: Soap # Storage whitelist: BorgModuleCustodial, ClothingBeltJanitor. CargoBounty: BountySoap
@@ -1468,6 +1425,9 @@
 
 - type: Tag
   id: ToySidearm # Storage whitelist: ClothingShoesClownBase
+
+- type: Tag
+  id: ToyKnife # Storage whitelist: ClothingShoesClownBase
 
 - type: Tag
   id: Trash # Tagged entities are generic garbage. They fit inside TrashBag and are destroyed by Recycler.

@@ -1,0 +1,157 @@
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingSmartDispenserMedTakFilledFridge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: fridge
+    solution:
+      maxVol: 50000
+      canReact: false
+      reagents:
+      - ReagentId: Dylovene
+        Quantity: 240
+      - ReagentId: Hyronalin
+        Quantity: 240
+      - ReagentId: Diphenhydramine
+        Quantity: 240
+      - ReagentId: Arithrazine
+        Quantity: 240
+      - ReagentId: Bicaridine
+        Quantity: 240
+      - ReagentId: Lacerinol
+        Quantity: 240
+      - ReagentId: Puncturase
+        Quantity: 240
+      - ReagentId: Bruizine
+        Quantity: 240
+      - ReagentId: Dermaline
+        Quantity: 240
+      - ReagentId: Pyrazine
+        Quantity: 240
+      - ReagentId: Insuzine
+        Quantity: 240
+      - ReagentId: Leporazine
+        Quantity: 240
+      - ReagentId: Sigynate
+        Quantity: 240
+      - ReagentId: Amoxla
+        Quantity: 240
+      - ReagentId: DexalinPlus
+        Quantity: 240
+      - ReagentId: Saline
+        Quantity: 240
+      - ReagentId: TranexamicAcid
+        Quantity: 240
+      - ReagentId: Inaprovaline
+        Quantity: 240
+      - ReagentId: Epinephrine
+        Quantity: 240
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingSmartDispenserMedTakWallmountFilledFridge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: fridge
+    solution:
+      maxVol: 25000
+      canReact: false
+      reagents:
+      - ReagentId: Dylovene
+        Quantity: 120
+      - ReagentId: Hyronalin
+        Quantity: 120
+      - ReagentId: Diphenhydramine
+        Quantity: 120
+      - ReagentId: Arithrazine
+        Quantity: 120
+      - ReagentId: Bicaridine
+        Quantity: 120
+      - ReagentId: Lacerinol
+        Quantity: 120
+      - ReagentId: Puncturase
+        Quantity: 120
+      - ReagentId: Bruizine
+        Quantity: 120
+      - ReagentId: Dermaline
+        Quantity: 120
+      - ReagentId: Pyrazine
+        Quantity: 120
+      - ReagentId: Insuzine
+        Quantity: 120
+      - ReagentId: Leporazine
+        Quantity: 120
+      - ReagentId: Sigynate
+        Quantity: 120
+      - ReagentId: Amoxla
+        Quantity: 120
+      - ReagentId: DexalinPlus
+        Quantity: 120
+      - ReagentId: Saline
+        Quantity: 120
+      - ReagentId: TranexamicAcid
+        Quantity: 120
+      - ReagentId: Inaprovaline
+        Quantity: 120
+      - ReagentId: Epinephrine
+        Quantity: 120
+
+- type: entity
+  parent: PlumbingSmartDispenser
+  id: PlumbingSmartDispenserMedTakFilled
+  name: Smart dispenser
+  description: A smart dispenser prefilled with a broad set of medical reagents.
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Objects/dispenser.rsi
+    noRot: true
+    layers:
+    - state: dispenser
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
+    - state: dispenser-screen
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: SolutionManager
+    solutions:
+    - SolutionPlumbingSmartDispenserMedTakFilledFridge
+
+- type: entity
+  parent: PlumbingSmartDispenserMedTakFilled
+  id: PlumbingSmartDispenserMedTakWallmountFilled
+  name: Wallmount dispenser
+  description: A wallmount smart dispenser filled with a broad set of medical reagents.
+  suffix: Filled
+  components:
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Objects/dispenser.rsi
+    noRot: false
+    layers:
+    - state: wallmount
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
+    - state: wallmount-screen
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: WallMount
+  - type: SubFloorHide
+    allowAnchoringUnderCover: false
+  - type: CollideOnAnchor
+    enable: false
+  - type: Physics
+    canCollide: false
+  - type: PlumbingSmartDispenser
+    solutionName: fridge
+    maxPerReagent: 120
+  - type: SolutionManager
+    solutions:
+    - SolutionPlumbingSmartDispenserMedTakWallmountFilledFridge

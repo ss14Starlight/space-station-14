@@ -142,7 +142,7 @@ public partial class AtmosphereSystem
         var noAirWhenBlocked = false;
         var fixVacuum = false;
 
-        foreach (var ent in _map.GetAnchoredEntities(uid, grid, tile))
+        foreach (var ent in _mapSystem.GetAnchoredEntities(uid, grid, tile))
         {
             if (!_airtightQuery.TryGetComponent(ent, out var airtight))
                 continue;

@@ -1,6 +1,7 @@
 - type: emote
   id: Yip
   name: chat-emote-name-yip
+  priority: 48
   category: Vocal
   available: false
   icon: Interface/Actions/scream.png
@@ -24,6 +25,7 @@
 - type: emote
   id: Mew
   name: chat-emote-name-mew
+  priority: 23
   category: Vocal
   available: false
   icon: { sprite: _Starlight/Interface/Actions/actions_felionoid.rsi, state: cat_print }
@@ -47,6 +49,7 @@
 - type: emote
   id: Hisses
   name: chat-emote-name-hiss
+  priority: 6
   category: Vocal
   available: false
   icon: { sprite: _Starlight/Interface/Actions/actions_felionoid.rsi, state: cat_print }
@@ -74,6 +77,7 @@
 - type: emote
   id: Meow
   name: chat-emote-name-meow
+  priority: 26
   category: Vocal
   available: false
   icon: { sprite: _Starlight/Interface/Actions/actions_felionoid.rsi, state: cat_print }
@@ -101,6 +105,7 @@
 - type: emote
   id: Purr
   name: chat-emote-name-purr
+  priority: 45
   category: Vocal
   available: false
   icon: { sprite: _Starlight/Interface/Actions/actions_felionoid.rsi, state: cat_print }
@@ -128,6 +133,7 @@
 - type: emote
   id: Trill
   name: chat-emote-name-trill
+  priority: 5
   category: Vocal
   available: false
   icon: { sprite: _Starlight/Interface/Actions/actions_felionoid.rsi, state: cat_print }
@@ -155,6 +161,7 @@
 - type: emote
   id: Marr
   name: chat-emote-name-marr
+  priority: 9
   category: Vocal
   available: false
   whitelist:
@@ -177,6 +184,7 @@
 - type: emote
   id: Wurble
   name: chat-emote-name-wurble
+  priority: 12
   category: Vocal
   available: false
   whitelist:
@@ -199,6 +207,7 @@
 - type: emote
   id: Scree
   name: chat-emote-name-scree
+  priority: 30
   category: Vocal
   available: false
   icon: { sprite: _Starlight/Interface/Actions/actions_resomi.rsi, state: bird_call }
@@ -226,6 +235,7 @@
 - type: emote
   id: Call
   name: chat-emote-name-call
+  priority: 46
   category: Vocal
   available: false
   icon: { sprite: _Starlight/Interface/Actions/actions_resomi.rsi, state: bird_call }
@@ -253,6 +263,7 @@
 - type: emote
   id: Squawk
   name: chat-emote-name-squawk
+  priority: 31
   category: Vocal
   available: false
   icon: { sprite: _Starlight/Interface/Actions/actions_resomi.rsi, state: bird_call }
@@ -280,6 +291,7 @@
 - type: emote
   id: Lurr
   name: chat-emote-name-lizardpurr
+  priority: 43
   category: Vocal
   available: false
   icon: { sprite: _Starlight/Interface/Actions/actions_retilian.rsi, state: reptile_call }
@@ -307,6 +319,7 @@
 - type: emote
   id: Liss
   name: chat-emote-name-lizardhiss
+  priority: 21
   category: Vocal
   available: false
   icon: { sprite: _Starlight/Interface/Actions/actions_retilian.rsi, state: reptile_call }
@@ -334,6 +347,7 @@
 - type: emote
   id: Rattle
   name: chat-emote-name-lizardrattle
+  priority: 17
   category: Vocal
   available: false
   icon: { sprite: _Starlight/Interface/Actions/actions_retilian.rsi, state: rattle }
@@ -359,40 +373,9 @@
   - rattles?
 
 - type: emote
-  id: FlapWings
-  name: chat-emote-name-flap-wings
-  category: General # Can't be hands since mothroaches don't have those!
-  available: false
-  icon:
-    sprite: Clothing/Neck/Cloaks/moth.rsi
-    state: icon
-  blacklist:
-    components:
-      - BorgChassis
-  chatMessages: ["chat-emote-msg-flap-wings"]
-  chatTriggers:
-    - flaps
-    - flaps.
-    - flaps!
-    - flaps wings
-    - flaps wings.
-    - flaps wings!
-    - flaps his wings
-    - flaps his wings.
-    - flaps his wings!
-    - flaps her wings
-    - flaps her wings.
-    - flaps her wings!
-    - flaps their wings
-    - flaps their wings.
-    - flaps their wings!
-    - flaps its wings
-    - flaps its wings.
-    - flaps its wings!
-
-- type: emote
   id: Bubble
   name: chat-emote-name-bubble
+  priority: 34
   category: Vocal
   available: false
   icon: Interface/Emotes/squish.png
@@ -412,6 +395,7 @@
 - type: emote
   id: Pop
   name: chat-emote-name-pop
+  priority: 44
   category: Vocal
   available: false
   icon: Interface/Emotes/squish.png
@@ -431,6 +415,7 @@
 - type: emote
   id: Squee
   name: chat-emote-name-squee
+  priority: 0
   category: Vocal
   available: false
   icon: _Starlight/Interface/Emotes/emote-neutral.png
@@ -454,6 +439,7 @@
 - type: emote
   id: Snort
   name: chat-emote-name-snort
+  priority: 18
   category: Vocal
   available: false
   icon: _Starlight/Interface/Emotes/emote-neutral.png
@@ -477,6 +463,7 @@
 - type: emote
   id: LagomorphSnore
   name: chat-emote-name-snore
+  priority: 10
   category: Vocal
   available: false
   icon: _Starlight/Interface/Emotes/emote-snore.png
@@ -498,37 +485,15 @@
   - snores!
 
 - type: emote
-  id: LagomorphSneeze
-  name: chat-emote-name-sneeze
-  category: Vocal
-  available: false
-  icon: _Starlight/Interface/Emotes/emote-rage.png
-  whitelist:
-    components:
-    - Vocal
-  blacklist:
-    components:
-    - BorgChassis
-  chatMessages: ["chat-emote-msg-sneeze"]
-  chatTriggers:
-  - sneeze
-  - sneeze.
-  - sneeze?
-  - sneeze!
-  - sneezes
-  - sneezes.
-  - sneezes?
-  - sneezes!
-
-- type: emote
   id: LagomorphStomp
   name: chat-emote-name-stomp
-  category: Vocal
+  priority: 1
+  category: Hands
   available: false
   icon: _Starlight/Interface/Emotes/stomp-emote.png
   whitelist:
     components:
-    - Vocal
+    - Hands
   blacklist:
     components:
     - BorgChassis
@@ -546,6 +511,7 @@
 - type: emote
   id: ThavenGlub
   name: chat-emote-name-glub
+  priority: 7
   category: Vocal
   available: false
   icon: _Starlight/Interface/Emotes/emote-glub.png
@@ -569,6 +535,7 @@
 - type: emote
   id: ThavenHum
   name: chat-emote-name-hum
+  priority: 19
   category: Vocal
   available: false
   icon: _Starlight/Interface/Emotes/emote-hum.png
@@ -588,3 +555,48 @@
     - hums.
     - hums!
     - hums?
+
+- type: emote
+  id: Arf
+  name: chat-emote-name-arf
+  category: Vocal
+  available: false
+  icon: Interface/Actions/scream.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-arf"]
+  chatTriggers:
+  - arf
+  - arf.
+  - arf!
+  - arf?
+  - arfs
+  - arfs.
+  - arfs!
+  - arfs?
+
+- type: emote
+  id: Blink
+  name: chat-emote-name-blink
+  icon: _Starlight/Interface/Emotes/emote-blink.png
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-blink"]
+  chatTriggers:
+  - blinks
+  - blinks.
+  - blinks!
+  - blinks?
+  - blink
+  - blink.
+  - blink?
+  - blink!
+  - blinked
+  - blinked.
+  - blinked!
+  - blinked?

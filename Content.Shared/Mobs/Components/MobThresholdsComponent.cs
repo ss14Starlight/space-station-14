@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Scaling;
+using Content.Shared._Starlight.Magic.Systems;
 using Content.Shared.Alert;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Systems;
@@ -9,7 +10,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Mobs.Components;
 
 [RegisterComponent, NetworkedComponent]
-[Access(typeof(MobThresholdSystem), typeof(SharedScalingSystem))] // STARLIGHT
+[Access(typeof(MobThresholdSystem), typeof(MobThresholdStatusEffectSystem), typeof(SharedScalingSystem))] // STARLIGHT
 public sealed partial class MobThresholdsComponent : Component
 {
     [DataField("thresholds", required: true)]
@@ -47,6 +48,12 @@ public sealed partial class MobThresholdsComponent : Component
     /// </summary>
     [DataField("allowRevives")]
     public bool AllowRevives;
+
+    // BEGIN STARLIGHT
+    // backup values used by MobThresholdsStatusEffect
+    public SortedDictionary<FixedPoint2, MobState> OriginalThresholds = new();
+    public bool OriginalAllowRevives;
+    // END STARLIGHT
 }
 
 [Serializable, NetSerializable]

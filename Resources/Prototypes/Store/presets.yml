@@ -17,10 +17,13 @@
     - UplinkJob
     - UplinkCybernetics
     - UplinkPointless
+    - UplinkDAGD # funkystation
     currencyWhitelist:
     - Telecrystal
     balance:
       Telecrystal: 0
+    expectedFaction:
+    - Syndicate
 
 - type: entity
   id: StorePresetSpellbook
@@ -34,8 +37,11 @@
     - SpellbookUtility      #Body Swap, Lich, Teleport, Knock, Polymorph
     - SpellbookEquipment    #Battlemage Robes, Staff of Locker
     - SpellbookEvents       #Summon Weapons, Summon Ghosts
+    - SpellbookWar          #War presets
     currencyWhitelist:
     - WizCoin
+    expectedFaction:
+    - Wizard
 
 - type: entity
   id: StorePresetChangeling

@@ -13,6 +13,7 @@
   - type: Tag
     tags:
       - HolofanProjector
+      - HoloprojectorCrafting #SL Edit
   # - type: StaticPrice
   #   price: 50
   # - type: GuideHelp

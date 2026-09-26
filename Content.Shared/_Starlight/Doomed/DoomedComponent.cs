@@ -1,6 +1,5 @@
 using Robust.Shared.GameStates;
 using Content.Shared.Damage;
-using Content.Shared.Alert;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Doomed;

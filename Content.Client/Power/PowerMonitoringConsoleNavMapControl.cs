@@ -1,5 +1,4 @@
 using Content.Client.Pinpointer.UI;
-using Content.Shared.Pinpointer;
 using Content.Shared.Power;
 using Robust.Client.Graphics;
 using Robust.Shared.Collections;
@@ -11,7 +10,7 @@ namespace Content.Client.Power;
 
 public sealed partial class PowerMonitoringConsoleNavMapControl : NavMapControl
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     // Cable indexing
     // 0: CableType.HighVoltage

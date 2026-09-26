@@ -4,7 +4,10 @@ using Content.Shared.Paper;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+
+#region Starlight
+using Content.Shared._Starlight.Fax;
+#endregion
 
 namespace Content.Shared.Fax.Components;
 
@@ -14,23 +17,26 @@ public sealed partial class FaxMachineComponent : Component
     /// <summary>
     /// Name with which the fax will be visible to others on the network
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField("name")]
     public string FaxName { get; set; } = "Unknown";
 
     /// <summary>
     /// Sprite to use when inserting an object.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField, AutoNetworkedField]
     public string InsertingState = "inserting";
 
     /// <summary>
     /// Device address of fax in network to which data will be send
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField("destinationAddress")]
     public string? DestinationFaxAddress { get; set; }
+
+    /// <summary>
+    /// Name of fax in network to which data will be send
+    /// </summary>
+    [DataField("destinationName")]
+    public string? DestinationFaxName { get; set; }
 
     /// <summary>
     /// Contains the item to be sent, assumes it's paper...
@@ -42,21 +48,18 @@ public sealed partial class FaxMachineComponent : Component
     /// Is fax machine should respond to pings in network
     /// This will make it visible to others on the network
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public bool ResponsePings { get; set; } = true;
 
     /// <summary>
     /// Should admins be notified on message receive
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public bool NotifyAdmins { get; set; } = false;
 
     /// <summary>
     /// Should that fax receive nuke codes send by admins. Probably should be captain fax only
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public bool ReceiveNukeCodes { get; set; } = false;
 
@@ -76,7 +79,7 @@ public sealed partial class FaxMachineComponent : Component
     /// Known faxes in network by address with fax names
     /// </summary>
     [ViewVariables]
-    public Dictionary<string, string> KnownFaxes { get; } = new();
+    public Dictionary<string, KnownFax> KnownFaxes { get; } = new(); // Starlight: string => KnownFax
 
     /// <summary>
     /// Print queue of the incoming message
@@ -136,6 +139,51 @@ public sealed partial class FaxMachineComponent : Component
     /// </summary>
     [DataField]
     public EntProtoId PrintOfficePaperId = "PaperOffice";
+
+    /// <summary>
+    ///     If the fax machine should add a bit of text in the end of the fax that specifies from where and to where the fax is for
+    /// </summary>
+    [DataField]
+    public bool AddSenderInfo = true;
+
+    /// <summary>
+    ///     The text that is sent along with the paper's content if <see cref="AddSenderInfo"/> is true
+    /// </summary>
+    [DataField]
+    public LocId SenderInfo = "fax-machine-sender-info";
+
+    #region Starlight
+    /// <summary>
+    /// The current group the fax machine appears in. Affects the color and ordering in the fax machine UI.
+    /// </summary>
+    [DataField("group")]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public ProtoId<FaxGroupPrototype>? CurrentGroup { get; set; }
+
+    /// <summary>
+    /// An intrinsic group this fax machine belongs to, if any. If this is set, the fax machine can always be configured
+    /// to be part of that group, even if the group itself is not normally accessible.
+    /// </summary>
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public ProtoId<FaxGroupPrototype>? IntrinsicGroup { get; set; }
+
+    /// <summary>
+    /// Whether this fax machine is locked to its intrinsic group when configuring it. Emagging unlocks this.
+    /// </summary>
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool IntrinsicLocked { get; set; }
+
+    /// <summary>
+    /// The order of this fax machine within its group. Lower values mean higher up in the list.
+    /// A non-zero means other uncategorized fax machines can have it adjusted to show up before others.
+    /// </summary>
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int Order { get; set; } = 1_000;
+
+    #endregion
 }
 
 [DataDefinition]
@@ -150,20 +198,23 @@ public sealed partial class FaxPrintout
     [DataField(required: true)]
     public string Content { get; private set; } = default!;
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>), required: true)]
-    public string PrototypeId { get; private set; } = default!;
+    [DataField(required: true)]
+    public EntProtoId PrototypeId { get; private set; } = default!;
 
-    [DataField("stampState")]
+    [DataField]
     public string? StampState { get; private set; }
 
-    [DataField("stampedBy")]
+    [DataField]
     public List<StampDisplayInfo> StampedBy { get; private set; } = new();
 
     [DataField]
     public bool Locked { get; private set; }
 
-    // Starlight-start
-    // cargo slips data
+    [DataField]
+    public string? SenderFaxName { get; private set; } = default!;
+
+    #region Starlight
+    // Cargo slips data
     [DataField]
     public string? Product{ get; private set; }
 
@@ -179,7 +230,26 @@ public sealed partial class FaxPrintout
     [DataField]
     public string? Account{ get; private set; }
 
-    // Starlight-end
+    // Metadata
+
+    /// <summary>
+    /// Whether to retain existing metadata when printing the fax. Relevant when copying instead of sending.
+    /// </summary>
+    [DataField]
+    public bool RetainMetadata { get; private set; }
+
+    /// <summary>
+    /// The name of the sending fax machine.
+    /// </summary>
+    [DataField]
+    public string? MetaSender { get; private set; }
+
+    /// <summary>
+    /// The formatted timestamp of when this fax was sent.
+    /// </summary>
+    [DataField]
+    public string? MetaSentAt { get; private set; }
+    #endregion
 
     private FaxPrintout()
     {
@@ -192,13 +262,16 @@ public sealed partial class FaxPrintout
         string? prototypeId = null,
         string? stampState = null,
         List<StampDisplayInfo>? stampedBy = null,
-        bool locked = false,
+        bool locked = false, string? senderFaxName = null,
         //starlight-start
         string? product = null,
         string? requester = null,
         string? reason = null,
         int? orderQuantity = null,
-        string? account = null
+        string? account = null,
+        bool? retainMetadata = false,
+        string? metaSender = null,
+        string? metaSentAt = null
         //starlight-end
         )
     {
@@ -209,12 +282,16 @@ public sealed partial class FaxPrintout
         StampState = stampState;
         StampedBy = stampedBy ?? new List<StampDisplayInfo>();
         Locked = locked;
+        SenderFaxName = senderFaxName;
         // Starlight-start
         Product = product;
         Requester = requester;
         Reason = reason;
         OrderQuantity = orderQuantity;
         Account = account;
+        RetainMetadata = retainMetadata ?? false;
+        MetaSender = metaSender;
+        MetaSentAt = metaSentAt;
         // Starlight-end
 
 

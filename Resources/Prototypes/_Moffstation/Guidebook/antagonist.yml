@@ -1,4 +1,4 @@
 - type: guideEntry
   id: WizardDuel
   name: guide-entry-wizard-duel
-  text: "/ServerInfo/_Moffstation/Guidebook/Antagonist/Wizard_Duel.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Antagonist/Wizard_Duel.xml" # Starlight, moved to Starlight from since we're making a fair bit of changes.

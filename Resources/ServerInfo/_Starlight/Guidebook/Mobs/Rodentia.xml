@@ -1,0 +1,54 @@
+<Document>
+    # Rodentia
+
+    <Box>
+        <GuideEntityEmbed Entity="MobRodentia" Caption=""/>
+    </Box>
+    [color=#ffa500]Warning! This species is not recommended for new players due to major gameplay changes![/color]
+
+    Rodentia are a race of humanoid beings resembling rodents. Resourceful, evasive, sneaky, but fragile.
+
+    ## Language
+    Rodentia have perfected their own tongue called [bold]Squeakish[/bold]. This allows them to communicate to each other in private.
+
+    ## Names
+    Rodentia are named with a descriptor first, followed by a more typical first name.
+
+    ## Sounds
+    Despite being the size of a dwarf, Rodentia possess the vocal cords resembling a small mouse.
+
+    ## Nimble
+    Rodentia are quite nimble and can use this to their advantage by [color=yellow]Sneaking[/color]. When [color=yellow]Sneaking[/color],
+    Rodentia can move freely underneath tables where other species can't fit. They can use this to their advantage to escape from a predator,
+    or hide from a pesky security officer. While underneath tables, Rodentia are limited to the actions that they can take - it's cramped down there!
+
+    ## Mouth Storage
+    Rodentia are able to put small items into their mouth for storage. This will obfuscate their speech, and if they are attacked or
+    slip, the items will fall from their mouth.
+
+    ## Diet
+    Rodentia are a ravenous species, and are constantly on the hunt for food. They will often find themselves getting hungrier [bold]33% Faster[/bold] than other species.
+    However, Rodentia aren't picky eaters. They can consume both raw and cooked meats, as well as food and drink containing Theobromine and Allicin, like Chocolate, Tea,
+    Coffee, Onions or Garlic.
+
+    ## Rummage
+    Using their scavenging skills, Rodentia can rummage through [bold]Disposal Chutes[/bold] to find food.
+
+    ## Mousetrap Vulnerability
+    Despite being the size of a dwarf, Rodentia have always been vulnerable to mousetraps. They will trigger any mousetrap
+    they step on, whether they are wearing shoes or not. Watch your step!
+
+    ## Claw attack
+    Rodentia are able to slash at others with their claws.
+    These attacks deal [color=red]5[/color] points of Slash damage with a hit rate that is the same as a human's fists attack.
+
+    ## Weapon Knockback
+    Rodentia are very lightweight, and as such take so much knockback from large caliber weapons that they get pushed around.
+    Rodentia also will receive [color=yellow]Stun Damage[/color] from large caliber weapons for each shot.
+    In general, the weapons that will give you knockback are [color=yellow]Rifles, Sniper Rifles, Shotguns, LMGs, HMGs, and Grenade Launchers.[/color]
+    Look out especially on Rocket launchers, as since they are recoil-less, you will actually get [color=red]pulled forward with the rocket[/color] for a short distance.
+    The safest weapons to use that will give you no knockback are [color=green]Pistols and SMGs[/color].
+    No slips can help mitigate some of the knockback from firing weapons, but not all of it!
+    Also keep in mind that any stamina resistance you have DOES work to reduce the stamina damage from these weapons.
+
+</Document>

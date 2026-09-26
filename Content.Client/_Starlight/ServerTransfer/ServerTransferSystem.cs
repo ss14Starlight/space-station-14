@@ -3,9 +3,9 @@ using Robust.Client;
 
 namespace Content.Client._Starlight.ServerTransfer;
 
-public sealed class ServerTransferSystem : EntitySystem
+public sealed partial class ServerTransferSystem : EntitySystem
 {
-    [Dependency] private readonly IGameController _gameController = default!;
+    [Dependency] private IGameController _gameController = default!;
 
     private ISawmill _sawmill = default!;
 

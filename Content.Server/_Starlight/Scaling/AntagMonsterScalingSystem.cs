@@ -1,8 +1,7 @@
 using Content.Server.Ghost.Roles.Events;
-using Content.Shared._Starlight.Scaling.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Roles;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Content.Server.StationRecords.Systems;
@@ -13,12 +12,12 @@ using Content.Shared._Starlight.Scaling;
 
 namespace Content.Server._Starlight.Scaling;
 
-public sealed class ScalingSystem : SharedScalingSystem
+public sealed partial class ScalingSystem : SharedScalingSystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly StationRecordsSystem _recordsSystem = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private StationRecordsSystem _recordsSystem = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
 
     private readonly Dictionary<EntityUid, double> _cachedPopulations = new();
 
@@ -38,20 +37,16 @@ public sealed class ScalingSystem : SharedScalingSystem
     }
 
     private void UpdateUniversalHealthWeight(double universalHealthWeight)
-    {
-        _universalHealthWeight = universalHealthWeight;
-    }
+        => _universalHealthWeight = universalHealthWeight;
 
     private void OnMobStartup(EntityUid mob, AntagMonsterScalingComponent scalingComp, ref MapInitEvent args) =>
         TryScaling(mob, scalingComp);
-
 
     private void OnGhostRoleSpawnerUsed(
         EntityUid mob,
         AntagMonsterScalingComponent scalingComp,
         ref GhostRoleSpawnerUsedEvent args) =>
         TryScaling(args.Spawned, scalingComp);
-
 
     private void TryScaling(EntityUid mob, AntagMonsterScalingComponent scalingComp)
     {

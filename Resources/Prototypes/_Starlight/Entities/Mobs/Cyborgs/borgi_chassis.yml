@@ -142,7 +142,7 @@
       prototypes: [SyndicateBorgiGearNoUplink]
 
 - type: entity
-  parent: [ BaseXenoborgChassis, BaseXenoborgTransponder, BaseBorgiChassis ]
+  parent: [ BaseXenoBorgiLanguages, BaseXenoborgChassis, BaseXenoborgTransponder, BaseBorgiChassis ]
   id: XenoBorgiChassis
   name: XenoBorgi
   description:  A man-machine hybrid that aims to replicate itself. They love extracting brains to insert into fresh Xenoborg chassis to grow their army. This one seems to be an borgi type, as it has inferior flesh in exchange for hands to support the other Xenoborgs.
@@ -278,6 +278,7 @@
       name: XenoBorgi
       description: Your job is to assist the mothership with their duties with your pair of hands. You of inferior flesh have a job to do.
       rules: Check your laws upon being fitted to your chassis. You are a team antagonist, and your goal is to kill everyone you can on the station, bring them back to your ship, gib them, and borg them. Exercise prudence about your targetting as you are made of flesh, and therefore feeble.
+      mindRoles: [MindRoleXenoborg]
       important: true # SL
       raffle:
         settings: default
@@ -342,8 +343,8 @@
             - MechReactor
 
 - type: entity
-  parent: [ BaseXenoborgChassisDerelict, BaseXenoborgTransponder, DerelictBorgiChassis ]
-  id: XenoBorgiDerelictBase
+  parent: [ BaseXenoBorgiLanguages, BaseXenoborgChassisDerelict, BaseXenoborgTransponder, DerelictBorgiChassis ]
+  id: DerelictXenoBorgiBase
   name: derelict xenoborgi
   description:  even after all these years. still loves the color blue.
   components:
@@ -432,8 +433,8 @@
         state: corgi
 
 - type: entity
-  parent: XenoBorgiDerelictBase
-  id: XenoBorgiDerelict
+  parent: DerelictXenoBorgiBase
+  id: DerelictXenoBorgi
   suffix: Cell
   components:
     - type: ContainerFill

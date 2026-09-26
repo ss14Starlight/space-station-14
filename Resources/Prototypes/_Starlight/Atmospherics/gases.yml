@@ -1,0 +1,19 @@
+- type: gas
+  id: Ulnitranium
+  name: gases-ulnitranium
+  specificHeat: 80
+  heatCapacityRatio: 1.33
+  molarMass: 32
+  color: ee9568
+  reagent: Ulnitranium
+  pricePerMole: 0.55 # There's less nitrogen breathers, so you have less of a reason to make this.
+
+- type: gas
+  id: ZXA
+  name: gases-zxa
+  specificHeat: 21
+  heatCapacityRatio: 1.5
+  molarMass: 14
+  color: d9ecf0
+  reagent: ZXA
+  pricePerMole: 1.5 # It's more annoying to make than BZ, so it can be better, since you essentially just have to do the BZ reaction twice over.

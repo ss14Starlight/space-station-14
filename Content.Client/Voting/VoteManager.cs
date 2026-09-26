@@ -1,20 +1,13 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using Content.Shared.Voting;
 using Robust.Client;
 using Robust.Client.Audio;
 using Robust.Client.Console;
-using Robust.Client.GameObjects;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
-using Robust.Shared.IoC;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
-using Robust.Shared.Player;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Sources;
-using Robust.Shared.ContentPack;
 
 
 namespace Content.Client.Voting
@@ -32,14 +25,14 @@ namespace Content.Client.Voting
         event Action CanCallStandardVotesChanged;
     }
 
-    public sealed class VoteManager : IVoteManager
+    public sealed partial class VoteManager : IVoteManager
     {
-        [Dependency] private readonly IAudioManager _audio = default!;
-        [Dependency] private readonly IBaseClient _client = default!;
-        [Dependency] private readonly IClientConsoleHost _console = default!;
-        [Dependency] private readonly IClientNetManager _netManager = default!;
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly IResourceCache _res = default!;
+        [Dependency] private IAudioManager _audio = default!;
+        [Dependency] private IBaseClient _client = default!;
+        [Dependency] private IClientConsoleHost _console = default!;
+        [Dependency] private IClientNetManager _netManager = default!;
+        [Dependency] private IGameTiming _gameTiming = default!;
+        [Dependency] private IResourceCache _res = default!;
 
         private readonly Dictionary<StandardVoteType, TimeSpan> _standardVoteTimeouts = new();
         private readonly Dictionary<int, ActiveVote> _votes = new();

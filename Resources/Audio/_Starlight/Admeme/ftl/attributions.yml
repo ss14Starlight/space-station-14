@@ -1,0 +1,19 @@
+- files: ["bluespace_ftl_one.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "made by Conflee"
+  source: "https://github.com/Conflee"
+
+- files: ["bluespace_ftl_many.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "made by Conflee"
+  source: "https://github.com/Conflee"
+
+- files: ["redspace_ftl_one.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "made by Conflee"
+  source: "https://github.com/Conflee"
+
+- files: ["redspace_ftl_many.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "made by Conflee"
+  source: "https://github.com/Conflee"

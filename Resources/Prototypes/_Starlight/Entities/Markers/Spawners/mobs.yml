@@ -76,6 +76,20 @@
     - MobBloodSkeletonKoi
 
 - type: entity
+  parent: MarkerBase
+  id: SpawnMobMonkeyAdvanced
+  name: Advanced Monkey Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: monkey
+      sprite: Mobs/Animals/monkey.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobMonkeyAdvanced
+
+- type: entity
   id: CosmicVoidspawner
   parent: MarkerBase
   name: wisp spawn point
@@ -87,3 +101,31 @@
         - sprite: Mobs/Species/Human/parts.rsi
           state: full
     - type: CosmicVoidSpawn
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobKobold
+  name: Kobold Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: kobold
+      sprite: Mobs/Animals/kobold.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobKobold
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobKoboldAdvanced
+  name: Advanced Kobold Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: kobold
+      sprite: Mobs/Animals/kobold.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobKoboldAdvanced

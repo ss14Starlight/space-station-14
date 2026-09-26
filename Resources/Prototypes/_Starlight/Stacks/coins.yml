@@ -3,3 +3,9 @@
   name: stack-wizcoin
   icon: _Starlight/Objects/Specific/wizcoin.rsi
   spawn: WizCoin1
+
+- type: stack
+  id: CasinoChip
+  name: stack-casino-chip
+  icon: { sprite: /Textures/_Starlight/Admeme/Casino/Objects/casino_chips.rsi, state: chips-0 }
+  spawn: CasinoChip

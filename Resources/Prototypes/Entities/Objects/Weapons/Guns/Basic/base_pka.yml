@@ -14,6 +14,19 @@
     minAngle: -43
     maxAngle: -43
   - type: Wieldable
+    # starlight start
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    damage:
+      types:
+        Blunt: 8
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: MeleeRequiresWield
+  - type: AltFireMelee
+    # starlight end
   - type: Gun
     fireRate: 0.5
     selectedMode: SemiAuto

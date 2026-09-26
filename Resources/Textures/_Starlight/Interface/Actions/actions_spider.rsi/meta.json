@@ -13,14 +13,14 @@
 		},
 		{
 			"name": "lay_eggs",
-			"copyright": "Paradise Station RU",
-            "delays": [
-                [
-                    0.2,
-                    0.2,
-                    0.2
-                ]
-            ]
+			"copyright": "Taken from Paradise Station RU SS13, modified by Rinary1(GitHub) for Starlight SS14",
+			"delays": [
+				[
+					0.2,
+					0.2,
+					0.2
+				]
+			]
 		},
 		{
 			"name": "spiderscream",
@@ -28,11 +28,15 @@
 		},
 		{
 			"name": "evolve",
-			"copyright": "Paradise Station"
+			"copyright": "Taken from Paradise Station SS13, modified by Rinary1(GitHub) for Starlight SS14"
 		},
 		{
 			"name": "acid_vent",
-			"copyright": "Paradise Station"
+			"copyright": "Taken from Paradise Station SS13, modified by Rinary1(GitHub) for Starlight SS14"
+		},
+		{
+			"name": "wrap",
+			"copyright": "Taken from Paradise Station SS13, modified by Rinary1(GitHub) for Starlight SS14"
 		}
 	]
 }

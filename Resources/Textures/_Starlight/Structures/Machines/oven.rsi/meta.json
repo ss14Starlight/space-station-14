@@ -5,22 +5,27 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Paradise Station",
+    "copyright": "State based copyright",
     "states": [
         {
-            "name": "base"
+            "name": "base",
+            "copyright": "Taken from Paradise Station"
         },
         {
-            "name": "broken"
+            "name": "broken",
+            "copyright": "Taken from Paradise Station"
         },
         {
-            "name": "icon"
+            "name": "icon",
+            "copyright": "Taken from Paradise Station"
         },
         {
-            "name": "on"
+            "name": "on",
+            "copyright": "Taken from Paradise Station"
         },
         {
-            "name": "opened"
+            "name": "opened",
+            "copyright": "Taken from Paradise Station"
         },
         {
             "name": "enabled",
@@ -34,7 +39,8 @@
                     0.1,
                     0.1
                 ]
-            ]
+            ],
+            "copyright": "Taken from Paradise Station"
         }
-      ]
-    }
+    ]
+}

@@ -8,3 +8,23 @@
 #   cost: 5000
 #   category: cargoproduct-category-name-science
 #   group: market
+
+- type: cargoProduct
+  id: StationAiUpload
+  icon:
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  product: CrateStationAiUpload
+  cost: 4000
+  category: cargoproduct-category-name-science
+  group: market
+
+- type: cargoProduct
+  id: ScienceAnomalousContainmentSupplies
+  icon:
+    sprite: Structures/Storage/Crates/science.rsi
+    state: icon
+  product: CrateScienceAnomalousContainment
+  cost: 8000
+  category: cargoproduct-category-name-science
+  group: market

@@ -109,7 +109,6 @@
   - type: StaminaDamageOnCollide
     damage: 12 # 9 hits to stun sounds reasonable
 
-
 - type: entity
   name : laser bolt
   id: BulletEnergySMGLaser
@@ -285,6 +284,8 @@
     damage:
       types:
         Cold: 12
+        Structural: 5
+        Blunt: 3
     soundHit:
       path: /Audio/_Starlight/CosmicCult/projectile_razor_hit.ogg
       params:
@@ -351,7 +352,7 @@
       state: arc_cosmic
   - type: EffectVisuals
   - type: PointLight
-    color: "#42a4ae"
+    color: "#9f5ee9"
     radius: 1.5
     energy: 6
     castShadows: false
@@ -369,3 +370,187 @@
   - type: Tag
     tags:
       - HideContextMenu
+
+- type: entity
+  parent: BaseBullet
+  id: CosmicLambdaParticle
+  name: Nullspace stabilizer particles
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    enabled: true
+    color: "#a142ae"
+    radius: 2.0
+    energy: 7.0
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/lambda_projectilevfx.rsi
+    layers:
+      - state: razor
+        shader: unshaded
+  - type: Ammo
+    muzzleFlash: null
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        mask:
+        - Opaque
+  - type: Projectile
+    damage:
+      types:
+        Cold: 5
+  - type: TimedDespawn
+    lifetime: 3
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: AnomalousParticle
+    particleType: Sigma
+    interactionKey: NullspaceStabilizer
+    severityPerSeverityHit: 0
+    stabilityPerDestabilizingHit: 0
+    healthPerWeakeningeHit: 0
+    stabilityPerWeakeningeHit: 0
+
+- type: entity # Starlight Peacekeeper
+  id: BulletGrenadeStinger
+  name: armed stinger grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: SpawnOnTrigger
+    proto: Grenade20mmStinger
+  - type: DeleteOnTrigger
+
+- type: entity # Starlight Peacekeeper
+  id: BulletGrenadeGas
+  name: armed gas grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: SpawnOnTrigger
+    proto: Grenade20mmGas
+  - type: DeleteOnTrigger
+
+- type: entity # Lesser lethal for Peacekeeper
+  parent: BaseBullet
+  id: PelletClusterLesserRubber
+  categories: [ HideSpawnMenu ]
+  name: pellet (ball, rubber)
+  components:
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+       Piercing: 0
+       Blunt: 1
+  - type: StaminaDamageOnCollide
+    damage: 20
+  - type: TimedDespawn
+    lifetime: 0.25
+
+- type: entity
+  id: BulletKineticSub
+  name: small kinetic bolt
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  description: Not too bad, but you still don't want to get hit by it.
+  components:
+  - type: Reflective
+    reflective:
+      - NonEnergy
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: chronobolt
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 10
+        Structural: 15
+  # Short lifespan
+  - type: TimedDespawn
+    lifetime: 0.275 # roughly 6.5 tiles
+  - type: GatheringProjectile
+
+- type: entity
+  id: BulletKineticChain
+  name: small kinetic bolt
+  parent: BulletKineticSub
+  categories: [ HideSpawnMenu ]
+  description: Not too bad, but you still don't want to get hit by it.
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 10
+        Structural: 10
+  - type: TimedDespawn
+    lifetime: .5
+
+- type: entity
+  id: BulletGrenadeBola
+  name: bola grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Blunt: 0 # Bolas don't do damage
+    soundHit:
+      path: /Audio/Effects/hit_kick.ogg
+  - type: Ensnaring
+    freeTime: 2.0
+    breakoutTime: 3.5 # all bola should generally be fast to remove
+    walkSpeed: 0.5 # makeshift bola shouldn't slow too much
+    sprintSpeed: 0.5
+    staminaDamage: 0 # anything but this is gamebreaking
+    canThrowTrigger: false
+    canImpactTrigger: true
+    ensnareFreedPrototype: BolaWeakened
+    canMoveBreakout: true
+    maxEnsnares: 1
+
+- type: entity
+  id: CosmicLambdaBeam
+  parent: BasicHitscan
+  name: Nullspace Stabilizer Beam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 30
+        Structural: 10
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Starlight/CosmicCult/Effects/lambda_beamvfx.rsi
+      state: muzzle_beam_heavy2
+    travelFlash:
+      sprite: _Starlight/CosmicCult/Effects/lambda_beamvfx.rsi
+      state: beam_heavy2
+    impactFlash:
+      sprite: _Starlight/CosmicCult/Effects/lambda_beamvfx.rsi
+      state: impact_beam_heavy2

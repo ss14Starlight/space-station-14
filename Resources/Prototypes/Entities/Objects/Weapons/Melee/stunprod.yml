@@ -2,13 +2,56 @@
   name: stun prod
   parent: [BaseItem, BaseMinorContraband]
   id: Stunprod
-  description: A stun prod for illegal incapacitation.
+  description: A stun prod for illegal incapacitation. Due to its makeshift nature only lower-end powercells can be used as powersources.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/stunprod.rsi
+  #Starlight Start
     layers:
+    - state: stunprod_on
+      visible: false
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_on" ]
     - state: stunprod_off
-      map: [ "enum.ToggleableVisuals.Layer" ]
+      visible: false
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_off" ]
+    - state: stunprod_nocell
+      visible: true
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_nocell" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.StunbatonVisuals.Stunbaton_on:
+        enum.StunbatonVisualLayers.Stunbaton_on:
+          True: { visible: true }
+          False: { visible: false }
+      enum.StunbatonVisuals.Stunbaton_off:
+        enum.StunbatonVisualLayers.Stunbaton_off:
+          True: { visible: true }
+          False: { visible: false }
+      enum.StunbatonVisuals.Stunbaton_nocell:
+        enum.StunbatonVisualLayers.Stunbaton_nocell:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Stunbaton
+    energyPerUse: 180 # from 50 to account for medium power cells. (720 charge with 36 per use = 20 hits, 180 = 4 hits)
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+          - HighTierCell
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: PowerCellDraw
+    drawRate: 6 # 1.5 stun baton, 4x passive drain
+  - type: ToggleCellDraw
+  #Starlight End
   - type: ItemToggle
     soundActivate:
       collection: sparks
@@ -26,8 +69,6 @@
     activatedDamage:
       types:
         Shock: 5
-  - type: Stunbaton
-    energyPerUse: 120
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
@@ -42,9 +83,6 @@
     damage: 35
     sound: /Audio/Weapons/egloves.ogg
   - type: LandAtCursor # it deals stamina damage when thrown
-  - type: Battery
-    maxCharge: 360
-    startingCharge: 360
   - type: UseDelay
   - type: Item
     heldPrefix: off
@@ -56,13 +94,6 @@
     - back
   - type: DisarmMalus
     malus: 0.225
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.ToggleableVisuals.Enabled:
-        enum.ToggleableVisuals.Layer:
-          True: {state: stunprod_on}
-          False: {state: stunprod_off}
   - type: StaticPrice
     price: 100
   - type: Construction

@@ -5,9 +5,9 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._Starlight.Magic;
 
-public sealed class ColorVisualsSystem : VisualizerSystem<ColorVisualsComponent>
+public sealed partial class ColorVisualsSystem : VisualizerSystem<ColorVisualsComponent>
 {
-    [Dependency] private readonly ItemSystem _item = default!;
+    [Dependency] private ItemSystem _item = default!;
 
     public override void Initialize()
     {

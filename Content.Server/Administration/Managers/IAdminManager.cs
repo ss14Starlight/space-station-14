@@ -69,5 +69,17 @@ namespace Content.Server.Administration.Managers
         void PromoteHost(ICommonSession player);
 
         bool TryGetCommandFlags(CommandSpec command, out AdminFlags[]? flags);
+
+        #region Starlight
+        /// <summary>
+        /// Fired when the count of active admins was changed.
+        /// </summary>
+        event Action<int> OnActiveAdminsCountChanged;
+
+        /// <summary>
+        /// Fired when the count of all admins was changed.
+        /// </summary>
+        event Action<int> OnAdminsCountChanged;
+        #endregion
     }
 }

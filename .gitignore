@@ -38,6 +38,9 @@ bld/
 *.VisualState.xml
 TestResult.xml
 
+# Generated integration test shard filters
+.integration-filters/
+
 # Build Results of an ATL Project
 [Dd]ebugPS/
 [Rr]eleasePS/

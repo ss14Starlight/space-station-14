@@ -16,15 +16,15 @@ namespace Content.Server._Starlight.Language;
 
 public sealed partial class LanguageSystem : SharedLanguageSystem
 {
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly RadioSystem _radioSystem = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private RadioSystem _radioSystem = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<LanguageSpeakerComponent, MapInitEvent>(OnInitLanguageSpeaker);
-        SubscribeLocalEvent<LanguageKnowledgeComponent, RadioReceiveEvent>(OnRadioReceiveEvent);
+        SubscribeLocalEvent<LanguageSpeakerComponent, RadioReceiveEvent>(OnRadioReceiveEvent);
         SubscribeLocalEvent<UniversalLanguageSpeakerComponent, DetermineEntityLanguagesEvent>(OnDetermineUniversalLanguages);
         SubscribeNetworkEvent<LanguagesSetMessage>(OnClientSetLanguage);
 
@@ -72,7 +72,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         _radioSystem.SendRadioMessage(source, message, channel, source, language);
     }
 
-    private void OnRadioReceiveEvent(EntityUid uid, LanguageKnowledgeComponent _, ref RadioReceiveEvent args)
+    private void OnRadioReceiveEvent(EntityUid uid, LanguageSpeakerComponent _, ref RadioReceiveEvent args)
     {
         if (args.Language.Speech.RadioChannel is null
             || args.Channel is null

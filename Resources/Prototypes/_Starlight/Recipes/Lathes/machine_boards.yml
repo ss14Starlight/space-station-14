@@ -17,3 +17,8 @@
   parent: [ BaseGoldCircuitboardRecipeHigh, BaseEngineeringMachineRecipeCategory ]
   id: SMESHyperAdvancedMachineCircuitboard
   result: SMESHyperAdvancedMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory ]
+  id: CargoMailBoxMachineCircuitboard
+  result: CargoMailBoxMachineCircuitboard

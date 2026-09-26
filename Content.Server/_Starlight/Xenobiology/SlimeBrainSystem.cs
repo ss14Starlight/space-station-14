@@ -30,9 +30,9 @@ public enum SlimeMood
     Desperate,
 }
 
-public sealed class SlimeBrainSystem : EntitySystem
+public sealed partial class SlimeBrainSystem : EntitySystem
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     /// <summary>
     /// The set of food targets slimes can safely eat.

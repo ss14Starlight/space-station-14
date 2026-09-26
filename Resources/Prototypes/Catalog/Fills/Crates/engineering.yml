@@ -256,6 +256,7 @@
     - id: CellRechargerCircuitboard
     - id: SpaceVillainArcadeComputerCircuitboard
     - id: BlockGameArcadeComputerCircuitboard
+    - id: LancerArcadeComputerCircuitboard # Starlight-edit: Lancer arcade circuitboard
 
 - type: entity
   parent: ToteBase

@@ -28,8 +28,18 @@ namespace Content.Server.Atmos.Components
         ///     These are the inventory slots that are checked for pressure protection. If a slot is missing protection, no protection is applied.
         /// </summary>
         [DataField("protectionSlots")]
-        public List<string> ProtectionSlots = new() { "head", "outerClothing" };
-
+        public List<string> ProtectionSlots = new() { "head" }; // Starlight, outerClothing moved to alternativeProtectionSlots
+        #region Starlight
+        /// <summary>
+        /// Groups of inventory slots where at least one slot in each group must have pressure protection.
+        /// Example: [["outerClothing", "outerClothing2"]] means either suit slot works.
+        /// </summary>
+        [DataField("alternativeProtectionSlots")]
+        public List<List<string>> AlternativeProtectionSlots = new()
+        {
+            new() { "outerClothing" }
+        };
+        #endregion
         /// <summary>
         /// Cached pressure protection values
         /// </summary>

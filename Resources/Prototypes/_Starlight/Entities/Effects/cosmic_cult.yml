@@ -121,9 +121,9 @@
       state: vfx
       shader: unshaded
   - type: PointLight
-    color: "#ffd52e"
-    radius: 1.5
-    energy: 2.5
+    color: "#9052bc"
+    radius: 1.75
+    energy: 35
     castShadows: false
   - type: LightBehaviour
     behaviours:
@@ -132,7 +132,7 @@
       minDuration: 2.025
       maxDuration: 2.025
       startValue: 0.1
-      endValue: 2
+      endValue: 35
       property: Energy
       enabled: true
       isLooped: true

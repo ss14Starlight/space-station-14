@@ -228,7 +228,8 @@
   - type: PointLight
     enabled: false
     radius: 8
-    energy: 5
+    energy: 2 #SL Edits
+    softness: 0.9 #SL Edits
   - type: ItemSlots
     slots:
       cell_slot:

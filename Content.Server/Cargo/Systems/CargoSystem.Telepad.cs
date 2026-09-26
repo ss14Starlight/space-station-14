@@ -28,6 +28,10 @@ public sealed partial class CargoSystem
 
     private void OnTelepadFulfillCargoOrder(ref FulfillCargoOrderEvent args)
     {
+        // Starlight: Bulk gas orders are delivering to ATS. We don't use telepad for those
+        if (args.Order.GasType != null)
+            return;
+
         var query = EntityQueryEnumerator<CargoTelepadComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var tele, out var xform))
         {

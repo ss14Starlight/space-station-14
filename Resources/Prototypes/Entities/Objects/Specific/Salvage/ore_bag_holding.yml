@@ -6,8 +6,8 @@
   components:
   - type: ItemToggle  #starlight edit, added toggle
     onUse: false
-    verbToggleOn: "Activate Magnet"
-    verbToggleOff: "Deactivate Magnet"
+    verbToggleOn: verb-toggle-magnet-activate
+    verbToggleOff: verb-toggle-magnet-deactivate
   - type: ComponentToggler
     components:
     - type: MagnetPickup

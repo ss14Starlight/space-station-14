@@ -1,8 +1,7 @@
 using Content.Shared._Starlight.Devil.DamnationActions;
 using Robust.Shared.Random;
 using System.Linq;
-using Content.Shared.Starlight.Medical.Surgery.Events;
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
+using Content.Shared._Starlight.Medical.Surgery.Events;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Content.Server.Popups;
@@ -11,6 +10,7 @@ using Content.Server.Hands.Systems;
 using Content.Shared.Throwing;
 using Content.Shared._Starlight.Devil;
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 
 namespace Content.Server._Starlight.Devil.DamnationActions;
 

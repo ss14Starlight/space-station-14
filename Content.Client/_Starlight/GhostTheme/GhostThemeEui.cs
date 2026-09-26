@@ -7,9 +7,9 @@ using JetBrains.Annotations;
 namespace Content.Client._Starlight.GhostTheme;
 
 [UsedImplicitly]
-public sealed class GhostThemeEui : BaseEui
+public sealed partial class GhostThemeEui : BaseEui
 {
-    [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
+    [Dependency] private IClientPreferencesManager _preferencesManager = default!;
 
     private readonly GhostThemeWindow _window;
 

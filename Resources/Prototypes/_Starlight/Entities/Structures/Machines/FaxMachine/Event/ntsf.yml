@@ -1,0 +1,26 @@
+# Group
+- type: faxGroup
+  id: FaxGroupNTSF
+  name: fax-group-ntsf
+  color: "#2253b5"
+  order: 1500 # All events: 1500
+  selectable: false
+
+# Single fax -- can be edited for mapping/event purposes.
+- type: entity
+  parent: FaxMachineBase
+  id: FaxMachineNTSF
+  suffix: "NTSF"
+  categories: [ DoNotMap ]
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#2253b5"
+    - type: FaxMachine
+      group: FaxGroupNTSF
+      intrinsicGroup: FaxGroupNTSF
+      intrinsicLocked: true # No impersonating unless emagged
+      name: "NTSF"
+      order: 500

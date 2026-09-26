@@ -1,0 +1,35 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 8,
+    "y": 8
+  },
+  "states": [
+    {
+      "name": "security",
+      "copyright": "Vincolan"
+    },
+    {
+    "name": "manager",
+    "copyright": "Vincolan"
+    },
+    {
+      "name": "owner",
+      "copyright": "Vincolan"
+    },
+    {
+      "name": "dealer",
+      "copyright": "Vincolan"
+    },
+    {
+      "name": "brigmed",
+      "copyright": "Glaud0283"
+    },
+    {
+      "name": "treasurer",
+      "copyright": "Glaud0283"
+    }
+]
+}

@@ -1,6 +1,5 @@
 using Content.Server.Antag.Mimic;
 using Content.Server.GameTicking.Rules;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.VendingMachines;
 using Robust.Shared.Map;
@@ -9,9 +8,9 @@ using System.Linq; // Starlight
 
 namespace Content.Server.Antag;
 
-public sealed class MobReplacementRuleSystem : GameRuleSystem<MobReplacementRuleComponent>
+public sealed partial class MobReplacementRuleSystem : GameRuleSystem<MobReplacementRuleComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     protected override void Started(EntityUid uid, MobReplacementRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {

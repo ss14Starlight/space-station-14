@@ -82,23 +82,13 @@
 
 - type: entity
   id: BriefcaseWeaponBulldogFilled
-  parent: BriefcaseWeapon
+  parent: BriefcaseWeapon # Starlight Edit: BriefcaseWeaponSmall -> BriefcaseWeapon
   name: secure bulldog case
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase:
         id: WeaponShotgunBulldog
-
-- type: entity
-  id: BriefcaseWeaponDMRFilled
-  parent: BriefcaseWeapon
-  name: secure estoc case
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase:
-        id: WeaponRifleEstoc
 
 - type: entity
   id: BriefcaseWeaponChinaLakeFilled

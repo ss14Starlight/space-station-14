@@ -1,29 +1,47 @@
 using System.Diagnostics;
+using Content.Server._Starlight.GameTicking.Rules;
+using Content.Server._Starlight.Statistics;
 using Content.Server.Administration.Logs;
 using Content.Server.RoundEnd;
+using Content.Shared._Starlight.EntityTable;
 using Content.Shared.Database;
 using Content.Shared.EntityTable;
 using Content.Shared.EntityTable.Conditions;
+using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.GameTicking.Rules;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using System.Linq;
+using Content.Server.Chat.Managers;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class DynamicRuleSystem : GameRuleSystem<DynamicRuleComponent>
+public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleComponent>
 {
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!; // Starlight
+    [Dependency] private RoundEndSystem _roundEnd = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    #region Starlight
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private DynamicRuleCooldownSystem _cooldowns = default!;
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!;
+    #endregion
 
     protected override void Added(EntityUid uid, DynamicRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
         base.Added(uid, component, gameRule, args);
 
-        component.Budget = _random.Next(component.StartingBudgetMin, component.StartingBudgetMax);;
+        component.Budget = _random.Next(component.StartingBudgetMin, component.StartingBudgetMax);
         component.NextRuleTime = Timing.CurTime + _random.Next(component.MinRuleInterval, component.MaxRuleInterval);
+        // Starlight begin - If in lobby, add them now so we can metagame!
+        if (_ticker.RunLevel != GameRunLevel.PreRoundLobby) return;
+        component.LastBudgetUpdate = Timing.CurTime;
+        Execute((uid, component));
+        // Starlight end
     }
 
     protected override void Started(EntityUid uid, DynamicRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -32,6 +50,7 @@ public sealed class DynamicRuleSystem : GameRuleSystem<DynamicRuleComponent>
 
         // Since we don't know how long until this rule is activated, we need to
         // set the last budget update to now so it doesn't immediately give the component a bunch of points.
+        if (_ticker.RunLevel == GameRunLevel.PreRoundLobby) return; // Starlight - Don't add them twice!
         component.LastBudgetUpdate = Timing.CurTime;
         Execute((uid, component));
     }
@@ -64,26 +83,79 @@ public sealed class DynamicRuleSystem : GameRuleSystem<DynamicRuleComponent>
     /// Generates and returns a list of randomly selected,
     /// valid rules to spawn based on <see cref="DynamicRuleComponent.Table"/>.
     /// </summary>
-    private IEnumerable<EntProtoId> GetRuleSpawns(Entity<DynamicRuleComponent> entity)
+    private List<EntProtoId> GetRuleSpawns(Entity<DynamicRuleComponent> entity) // Starlight
     {
+        #region Starlight
+        // Modified heavily to support the new GameRuleTableContext, which allows us to check for cooldowns and previous rules.
+        _cooldowns.EnsureRoundInitialized(dynamicRound: true);
         UpdateBudget((entity.Owner, entity.Comp));
+        var budget = entity.Comp.Budget;
+        var previousRules = new List<EntProtoId>();
+        var previousRuleEntities = new HashSet<EntityUid>();
+
+        foreach (var previousRule in _ticker.GetAddedGameRules().Concat(entity.Comp.Rules))
+        {
+            if (!previousRuleEntities.Add(previousRule) ||
+                Deleted(previousRule) ||
+                MetaData(previousRule).EntityPrototype?.ID is not { } prototype)
+            {
+                continue;
+            }
+
+            previousRules.Add(prototype);
+        }
+
+        var gameRuleContext = new GameRuleTableContext(previousRules, _cooldowns.CurrentRuleCooldowns);
         var ctx = new EntityTableContext(new Dictionary<string, object>
         {
-            { HasBudgetCondition.BudgetContextKey, entity.Comp.Budget },
+            { HasBudgetCondition.BudgetContextKey, budget },
         });
+        ctx.SetData(gameRuleContext);
 
-        return _entityTable.GetSpawns(entity.Comp.Table, ctx: ctx);
+        foreach (var rule in _entityTable.GetSpawns(entity.Comp.Table, ctx: ctx))
+        {
+            _prototypeManager.Index(rule)
+                .TryComp(out DynamicRuleCostComponent? cost, EntityManager.ComponentFactory);
+
+            if (_cooldowns.CurrentRuleCooldowns.Contains(rule))
+                continue;
+
+            // HasBudgetCondition should normally reject this rule, but we check here just in case.
+            // We want to avoid negative budgets.
+            if (cost != null && cost.Cost > budget)
+                continue;
+
+            gameRuleContext.SelectedRules.Add(rule);
+
+            if (cost == null)
+                continue;
+
+            budget -= cost.Cost;
+            ctx.SetData(HasBudgetCondition.BudgetContextKey, budget);
+        }
+
+        return gameRuleContext.SelectedRules;
+        #endregion
     }
 
+    // Starlight, added variant budget
     /// <summary>
     /// Updates the budget of the provided dynamic rule component based on the amount of time since the last update
     /// multiplied by the <see cref="DynamicRuleComponent.BudgetPerSecond"/> value.
+    /// After the budget has reached <see cref="DynamicRuleComponent.VariantBudgetThreshold"/> value,
+    /// the budget will increase at the rate specified by <see cref="DynamicRuleComponent.VariantBudgetPerSecond"/> instead.
     /// </summary>
     private void UpdateBudget(Entity<DynamicRuleComponent> entity)
     {
-        var duration = (float) (Timing.CurTime - entity.Comp.LastBudgetUpdate).TotalSeconds;
+        var duration = (float)(Timing.CurTime - entity.Comp.LastBudgetUpdate).TotalSeconds;
 
-        entity.Comp.Budget += duration * entity.Comp.BudgetPerSecond;
+        #region Starlight
+        // If the budget has reached or exceeded the variant threshold, we use the variant budget per second, otherwise we use the normal budget per second.
+        if (entity.Comp.Budget >= entity.Comp.VariantBudgetThreshold)
+            entity.Comp.Budget += duration * entity.Comp.VariantBudgetPerSecond;
+        else
+            entity.Comp.Budget += duration * entity.Comp.BudgetPerSecond;
+        #endregion
         entity.Comp.LastBudgetUpdate = Timing.CurTime;
     }
 
@@ -99,8 +171,11 @@ public sealed class DynamicRuleSystem : GameRuleSystem<DynamicRuleComponent>
             Timing.CurTime + _random.Next(entity.Comp.MinRuleInterval, entity.Comp.MaxRuleInterval);
 
         var executedRules = new List<EntityUid>();
+        var roundStart = _ticker.RunLevel == GameRunLevel.PreRoundLobby; // Starlight
+        var ruleSpawns = GetRuleSpawns(entity);  // Starlight
+        _roundStatistics.RecordDynamicBudget(entity.Comp.Budget);  // Starlight
 
-        foreach (var rule in GetRuleSpawns(entity))
+        foreach (var rule in ruleSpawns) // Starlight
         {
             // Starlight start
             // We add the rule passing along the list of child rules, so that
@@ -115,18 +190,36 @@ public sealed class DynamicRuleSystem : GameRuleSystem<DynamicRuleComponent>
 
             executedRules.Add(ruleUid);
 
+            _cooldowns.ApplyRuleCooldown(rule); // Starlight
+
             if (TryComp<DynamicRuleCostComponent>(ruleUid, out var cost))
             {
                 entity.Comp.Budget -= cost.Cost;
+
                 _adminLog.Add(LogType.EventRan, LogImpact.High, $"{ToPrettyString(entity)} ran rule {ToPrettyString(ruleUid)} with cost {cost.Cost} on budget {entity.Comp.Budget}.");
+                _roundStatistics.RecordDynamicRule(rule.Id, cost.Cost, true, roundStart); // Starlight
             }
             else
             {
                 _adminLog.Add(LogType.EventRan, LogImpact.High, $"{ToPrettyString(entity)} ran rule {ToPrettyString(ruleUid)} which had no cost.");
+                _roundStatistics.RecordDynamicRule(rule.Id, 0f, false, roundStart); // Starlight
             }
         }
 
+        _roundStatistics.RecordDynamicBudget(entity.Comp.Budget); // Starlight
+
         //entity.Comp.Rules.AddRange(executedRules); // Starlight - comment
+
+        // Starlight begin
+        if (_ticker.RunLevel != GameRunLevel.PreRoundLobby) return executedRules;
+
+        List<string> ruleIdList = [];
+        foreach (var meta in executedRules.Select(MetaData))
+            if(meta.EntityPrototype is not null) ruleIdList.Add(meta.EntityPrototype.ID);
+
+        _chat.SendAdminAnnouncement($"Dynamic roundstart rules: {string.Join(", ", ruleIdList)}.");
+        // Starlight end
+
         return executedRules;
     }
 

@@ -5,9 +5,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.EventSelector;
 
-public sealed class EventSelectorRadialMenuBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
+public sealed partial class EventSelectorRadialMenuBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private SimpleRadialMenu? _triggerRadialMenu;
 

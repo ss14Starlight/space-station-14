@@ -1,0 +1,32 @@
+- type: entity
+  parent: [SolutionSmall, Crayon]
+  id: CrayonMagic
+  name: magic rainbow crayon
+  description: A magical crayon. Looks tasty. Mmmm...
+  components:
+  - type: Sprite
+    state: rainbow
+  - type: Item
+    heldPrefix: magic
+    size: Small
+    shape:
+    - 0,0,1,0
+  - type: Crayon
+    color: Red
+    selectableColor: true
+  - type: LimitedCharges
+    maxCharges: 2147483647 # very big number, functionally infinite
+  - type: Tag
+    tags:
+    - Write
+    - Crayon
+    - Recyclable
+    - Trash
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 30
+      - ReagentId: MindbreakerToxin
+        Quantity: 20

@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageEdible, ClothingOuterBaseWinter] # Starlight
   id: ClothingOuterWinterCoat
   name: winter coat
   description: A heavy jacket made from 'synthetic' animal furs.
@@ -8,9 +8,11 @@
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-  - type: TemperatureProtection
-    heatingCoefficient: 1.1
-    coolingCoefficient: 0.35 # Starlight, 0.1 -> 0.35
+  #region Starlight - inherit from ClothingOuterBaseWinter instead
+  #- type: TemperatureProtection
+  #  heatingCoefficient: 1.1
+  #  coolingCoefficient: 0.1
+  #endregion Starlight
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -18,23 +20,20 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Cold: 0.85 # Starlight, I mean, that's literally what they're for...
     priceMultiplier: 0
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.55
+  #region Starlight - inherit from ClothingOuterBaseWinter instead
+  #- type: ZombificationResistance
+  #  zombificationResistanceCoefficient: 0.55
+  #endregion Starlight
   - type: Edible
     requiresSpecialDigestion: true
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 30
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 30
   - type: Tag
     tags:
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+    - MonkeyWearable #Starlight Edit
   - type: StaticPrice
     price: 50
 
@@ -52,6 +51,11 @@
       toggleable-clothing: !type:ContainerSlot {}
       storagebase: !type:Container
         ents: []
+  #Starlight Begin
+  - type: Tag
+    tags:
+    - MonkeyWearable
+  #Starlight End
 
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
@@ -98,6 +102,7 @@
         Slash: 0.85
         Piercing: 1
         Heat: 0.75
+        Cold: 0.70 # Starlight
   - type: ExplosionResistance
     damageCoefficient: 0.90
   - type: Clothing
@@ -132,6 +137,7 @@
         Slash: 0.60
         Piercing: 0.80
         Heat: 0.45
+        Cold: 0.45 # Starlight
   - type: ExplosionResistance
     damageCoefficient: 0.80
   ### SL Comment Out
@@ -261,6 +267,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Cold: 0.85 # Starlight
         Caustic: 0.75
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -293,13 +300,14 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Cold: 0.85 # Starlight
         Caustic: 0.75
     priceMultiplier: 0.15
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterCMO
 
 - type: entity
-  parent: ClothingOuterWinterCoat
+  parent: [ClothingOuterWinterCoat, AllowSuitStorageClothing]
   id: ClothingOuterWinterClown
   name: clown winter coat
   components:
@@ -358,6 +366,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Cold: 0.85 # Starlight
         Caustic: 0.9
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -406,6 +415,15 @@
       toggleable-clothing: !type:ContainerSlot { }
       storagebase: !type:Container
         ents: [ ]
+  - type: Armor # Starlight start
+    modifiers:
+      coefficients:
+        Blunt: 0.7 # Less blunt resist, so it's not just better
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.7
+        Cold: 0.7 # Not as much as Warden
+        Caustic: 0.75 # Starlight end
 ##########################################################
 
 - type: entity
@@ -483,6 +501,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.9
+        Cold: 0.85 # Starlight
         Caustic: 0.9
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -515,6 +534,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Cold: 0.85 # Starlight
         Caustic: 0.9
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -593,6 +613,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.75
+        Cold: 0.70 # Starlight
         Caustic: 0.9
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -649,6 +670,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Cold: 0.85 # Starlight
         Caustic: 0.9
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -705,6 +727,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Cold: 0.85 # Starlight
         Caustic: 0.9
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -732,6 +755,7 @@
         Slash: 0.75
         Piercing: 0.95
         Heat: 0.65
+        Cold: 0.65 # Starlight
   - type: ExplosionResistance
     damageCoefficient: 0.85
   - type: Clothing
@@ -769,6 +793,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Cold: 0.85 # Starlight
         Caustic: 0.9
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -788,6 +813,15 @@
     sprite: Clothing/OuterClothing/WinterCoats/coatwardenarmored.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterWarden
+  - type: Armor # Starlight start
+    modifiers:
+      coefficients:
+        Blunt: 0.7 # Less blunt resist, so it's not just better
+        Slash: 0.65
+        Piercing: 0.7
+        Heat: 0.7
+        Cold: 0.6 # Winter coat, and warden at that, so it can be a lot.
+        Caustic: 0.9 # Starlight end
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot { }
@@ -895,7 +929,7 @@
     sprite: Clothing/OuterClothing/WinterCoats/coatnomi.rsi
 
 - type: entity
-  parent: ClothingOuterWinterCoatToggleable
+  parent: [ClothingOuterWinterCoatToggleable, BaseSlicingRefinable]
   id: ClothingOuterWinterWeb
   name: web winter coat
   description: Feels like the inside of a cocoon, not that this would make you less afraid of being in one.
@@ -918,8 +952,8 @@
   - type: Construction
     graph: WebObjects
     node: coat
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: MaterialWebSilk1
       amount: 5
   - type: FlavorProfile
@@ -927,13 +961,11 @@
       - cobwebs
     ignoreReagents:
       - Fiber
-  - type: SolutionContainerManager
-    solutions: # 15 (3 (fiber count of web) * 5 (to craft)) + 5 (magical crafting bonus)
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 20
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 50 # 50 (10 (fiber count of web) * 5 (to craft))
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterWeb
 

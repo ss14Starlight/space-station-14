@@ -1,4 +1,4 @@
-using Content.Shared.Silicons.StationAi;
+using Content.Shared._Starlight.StationAi;
 
 namespace Content.Client._Starlight.Silicons.StationAi;
 

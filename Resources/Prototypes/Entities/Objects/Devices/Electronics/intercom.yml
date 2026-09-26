@@ -10,5 +10,6 @@
   - type: Tag
     tags:
       - IntercomElectronics
+      - RamChip # FH + Starlight
   - type: StaticPrice
     price: 55

@@ -5,6 +5,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
+using Content.Shared._Starlight.CrawlUnder; // Starlight
 using Content.Shared.Gravity;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
@@ -35,14 +36,14 @@ public abstract partial class SharedStunSystem
 {
     private EntityQuery<CrawlerComponent> _crawlerQuery;
 
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly SharedGunSystem _gunSystem = default!; // 🌟Starlight🌟
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!; // 🌟Starlight🌟
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly StandingStateSystem _standingState = default!;
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private SharedGunSystem _gunSystem = default!; // 🌟Starlight🌟
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedItemSystem _item = default!; // 🌟Starlight🌟
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private StandingStateSystem _standingState = default!;
+    [Dependency] private IConfigurationManager _cfgManager = default!;
 
     private static readonly ProtoId<ItemSizePrototype> MaxItemSize = "Small";
 
@@ -468,6 +469,12 @@ public abstract partial class SharedStunSystem
     /// </summary>
     private bool IntersectingStandingColliders(Entity<TransformComponent?> entity)
     {
+        // Starlight begin
+        // Allows getting up from crawling while sneaking underneath the collider
+        if (TryComp<CrawlUnderObjectsComponent>(entity, out var crawlUnder) && crawlUnder.Enabled)
+            return false;
+        // Starlight end
+
         if (!Resolve(entity, ref entity.Comp))
             return false;
 

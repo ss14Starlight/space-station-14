@@ -1,15 +1,15 @@
-using Content.Shared.Economy;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using Content.Shared.Destructible.Thresholds;
+using Content.Shared._Starlight.Economy;
 
-namespace Content.Server.Economy;
+namespace Content.Server._Starlight.Economy;
 
-public sealed class ItemPriceManager : EntitySystem
+public sealed partial class ItemPriceManager : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
     private readonly Dictionary<string, int> _prototypePrices = new();
 
     private Dictionary<string, MinMax>? _protoPriceCategoriesCache;
@@ -62,7 +62,7 @@ public sealed class ItemPriceManager : EntitySystem
             if (!categories.TryGetValue(priceComp.PriceCategory, out var range))
                 continue;
 
-            var price = _random.Next(range.Min, range.Max + 1);
+            var price = _random.Next((int)range.Min, (int)range.Max + 1);
             _prototypePrices[proto.ID] = price;
         }
     }
@@ -83,7 +83,7 @@ public sealed class ItemPriceManager : EntitySystem
             return null;
         }
 
-        var newPrice = _random.Next(minMax.Min, minMax.Max + 1);
+        var newPrice = _random.Next((int)minMax.Min, (int)minMax.Max + 1);
         _prototypePrices[prototypeId] = newPrice;
         return newPrice;
     }

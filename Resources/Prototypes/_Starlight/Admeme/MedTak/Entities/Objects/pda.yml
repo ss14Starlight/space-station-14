@@ -1,0 +1,88 @@
+- type: entity
+  parent: [ BasePDA, BaseMedTakContraband ]
+  id: MedTakPDA
+  abstract: true
+  components:
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-medtak
+  - type: PdaBorderColor
+    accentVColor: "#d7d7d0"
+    borderColor: "#600000"
+  - type: Sprite
+    sprite: Objects/Devices/pda.rsi
+    layers:
+    - sprite: _Starlight/Admeme/MedTak/Objects/pda.rsi
+      map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda-medtak"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Icon
+    sprite: _Starlight/Admeme/MedTak/Objects/pda.rsi
+    state: pda-medtak
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - AstroNavCartridge
+      - NanoChatCartridge
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+
+- type: entity
+  parent: MedTakPDA
+  id: MedTakPDAMedic
+  name: MedTak medic PDA
+  description: Is it blood or red paint?
+  components:
+  - type: Pda
+    id: MedTakIDCardMedic
+
+- type: entity
+  parent: MedTakPDA
+  id: MedTakPDAPilot
+  name: MedTak pilot PDA
+  description: It's red paint.
+  components:
+  - type: Pda
+    id: MedTakIDCardPilot
+
+- type: entity
+  parent: MedTakPDA
+  id: MedTakPDASecurity
+  name: MedTak security PDA
+  description: It's blood.
+  components:
+  - type: Pda
+    id: MedTakIDCardSecurity
+
+- type: entity
+  parent: MedTakPDA
+  id: MedTakPDATeamLead
+  name: MedTak team leader PDA
+  description: It's blood.
+  components:
+  - type: Pda
+    id: MedTakIDCardTeamLead
+
+- type: entity
+  parent: MedTakPDA
+  id: MedTakPDADispatcher
+  name: MedTak dispatcher PDA
+  description: It's red paint.
+  components:
+  - type: Pda
+    id: MedTakIDCardDispatcher

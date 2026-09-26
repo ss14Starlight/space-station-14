@@ -11,7 +11,7 @@
     layoutId: AirlockService
 
 - type: entity
-  parent: Airlock # Starlight
+  parent: AirlockNT # Starlight
   id: AirlockInternalAffairsLocked # Starlight
   suffix: Internal Affairs, Locked # Starlight
   components:
@@ -464,7 +464,7 @@
     layoutId: AirlockService
 
 - type: entity
-  parent: AirlockGlass # Starlight
+  parent: AirlockNTGlass # Starlight
   id: AirlockInternalAffairsGlassLocked # Starlight
   suffix: Internal Affairs, Locked # Starlight
   components:
@@ -1245,7 +1245,7 @@
   # Starlight start
   - type: RandomGridFill
     pathWeights:
-      "/Maps/Shuttles/escape_pod_small.yml": 40
+      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_small.yml": 40
       "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_cheap.yml": 2
       "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_toilet.yml": 1
       "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_library.yml": 2

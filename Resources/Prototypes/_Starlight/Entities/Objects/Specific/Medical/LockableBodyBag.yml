@@ -51,3 +51,35 @@
   components:
   - type: Foldable
     folded: true
+
+#Green Shield Officer
+- type: entity
+  id: BodyBagCC
+  parent: [ BodyBagLockable, BaseCentcommContraband ]
+  suffix: DO NOT MAP
+  name: CentComm lockable body bag
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Medical/cclockablebodybag.rsi
+    - type: Icon
+      sprite: _Starlight/Objects/Specific/Medical/cclockablebodybag.rsi
+      state: bag
+    - type: AccessReader
+      access: [["BlueShield"]]
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 60
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+
+#Green Shield Officer
+- type: entity
+  id: BodyBagCCFolded
+  parent: BodyBagCC
+  suffix: folded
+  components:
+    - type: Foldable
+      folded: true

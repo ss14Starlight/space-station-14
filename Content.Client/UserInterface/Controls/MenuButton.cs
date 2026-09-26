@@ -1,17 +1,14 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Graphics;
 using Robust.Shared.Input;
-using Robust.Shared.Utility;
 
 namespace Content.Client.UserInterface.Controls;
 
-public sealed class MenuButton : ContainerButton
+public sealed partial class MenuButton : ContainerButton
 {
-    [Dependency] private readonly IInputManager _inputManager = default!;
+    [Dependency] private IInputManager _inputManager = default!;
     public const string StyleClassLabelTopButton = "topButtonLabel";
     // public const string StyleClassRedTopButton = "topButtonLabel";
 

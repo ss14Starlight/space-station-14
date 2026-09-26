@@ -21,23 +21,27 @@ using System.Linq;
 
 namespace Content.Shared.Construction;
 
-public abstract class SharedFlatpackSystem : EntitySystem
+public abstract partial class SharedFlatpackSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
-    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] protected readonly MachinePartSystem MachinePart = default!;
-    [Dependency] protected readonly SharedMaterialStorageSystem MaterialStorage = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedToolSystem _tool = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] protected IPrototypeManager PrototypeManager = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] protected MachinePartSystem MachinePart = default!;
+    [Dependency] protected SharedMaterialStorageSystem MaterialStorage = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedToolSystem _tool = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private TagSystem _tag = default!;
+
+    // Starlight start - Define tag literals
+    private static readonly ProtoId<TagPrototype> _flatpackBlacklistTag = "FlatpackBlacklist";
+    private static readonly ProtoId<TagPrototype> _tableTag = "Table";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -54,7 +58,7 @@ public abstract class SharedFlatpackSystem : EntitySystem
             return;
 
         // Starlight - FlatpackBlacklist Tag
-        if (_tag.HasTag(args.Item, "FlatpackBlacklist"))
+        if (_tag.HasTag(args.Item, _flatpackBlacklistTag.Id))
         {
             args.Cancelled = true;
             return;
@@ -98,7 +102,7 @@ public abstract class SharedFlatpackSystem : EntitySystem
         // make it ignore ghosts
         // Starlight-start
         if (_entityLookup.GetEntitiesIntersecting(coords, LookupFlags.Dynamic | LookupFlags.Static)
-            .Any(entity => entity != uid && (!_tag.HasTag(entity, "Table") || !ent.Comp.AllowUnpackOnTables)))
+            .Any(entity => entity != uid && (!_tag.HasTag(entity, _tableTag.Id) || !ent.Comp.AllowUnpackOnTables)))
         // Starlight-end
         {
             // this popup is on the server because the predicts on the intersection is crazy

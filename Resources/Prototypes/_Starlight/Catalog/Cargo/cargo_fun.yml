@@ -21,7 +21,7 @@
 - type: cargoProduct
   id: FunMegaShark
   icon:
-    sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark.rsi
+    sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark_plushie.rsi
     state: icon
   product: CrateFunMegaShark
   cost: 2500
@@ -34,6 +34,16 @@
     sprite: _Starlight/Objects/Specific/supermatter.rsi
     state: supermatter
   product: CrateSaltLamp
+  cost: 2000
+  category: cargoproduct-category-name-fun
+  group: market
+
+- type: cargoProduct
+  id: MoproachCrate
+  icon:
+    sprite: Mobs/Animals/mothroach/moproach.rsi
+    state: icon
+  product: CrateFunMoproach
   cost: 2000
   category: cargoproduct-category-name-fun
   group: market

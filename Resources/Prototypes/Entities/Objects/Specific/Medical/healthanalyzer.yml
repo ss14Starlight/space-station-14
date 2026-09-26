@@ -24,6 +24,7 @@
   - type: HealthAnalyzer
     damageContainers: # SL
     - Biological
+    - Hybrid # Starlight
     scanningEndSound:
       path: "/Audio/Items/Medical/healthscanner.ogg"
   - type: Tag

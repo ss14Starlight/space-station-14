@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using Content.Shared.Eui;
-using Robust.Client.GameStates;
-using Robust.Client.State;
-using Robust.Shared.IoC;
+﻿using Content.Shared.Eui;
 using Robust.Shared.Network;
 using Robust.Shared.Reflection;
-using Robust.Shared.Utility;
 
 namespace Content.Client.Eui
 {
-    public sealed class EuiManager
+    public sealed partial class EuiManager
     {
-        [Dependency] private readonly IClientNetManager _net = default!;
-        [Dependency] private readonly IReflectionManager _refl = default!;
-        [Dependency] private readonly IDynamicTypeFactory _dtf = default!;
+        [Dependency] private IClientNetManager _net = default!;
+        [Dependency] private IReflectionManager _refl = default!;
+        [Dependency] private IDynamicTypeFactory _dtf = default!;
 
         private readonly Dictionary<uint, EuiData> _openUis = new();
 

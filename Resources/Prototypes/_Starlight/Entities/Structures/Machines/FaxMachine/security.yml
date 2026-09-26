@@ -1,0 +1,84 @@
+# Group
+- type: faxGroup
+  id: FaxGroupSecurity
+  name: fax-group-security
+  order: 4000
+  color: "#ff4242"
+
+# Base
+- type: entity
+  abstract: true
+  parent: FaxMachineBase
+  id: FaxMachineSecurityBase
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#ff4242"
+
+# Fax machines
+- type: entity
+  parent: FaxMachineSecurityBase
+  id: FaxMachineSecurity
+  suffix: "SEC: Security"
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#ff4242"
+    - type: FaxMachine
+      group: FaxGroupSecurity
+      name: "Security"
+      order: 100
+
+- type: entity
+  parent: FaxMachineSecurityBase
+  id: FaxMachineSecurityHoS
+  suffix: "SEC: HoS"
+  components:
+    - type: FaxMachine
+      group: FaxGroupSecurity
+      name: "Head of Security"
+      order: 200
+
+- type: entity
+  parent: FaxMachineSecurityBase
+  id: FaxMachineSecurityWarden
+  suffix: "SEC: Warden"
+  components:
+    - type: FaxMachine
+      group: FaxGroupSecurity
+      name: "Warden"
+      order: 300
+
+- type: entity
+  parent: FaxMachineSecurityBase
+  id: FaxMachineSecurityDetective
+  suffix: "SEC: Detective"
+  components:
+    - type: FaxMachine
+      group: FaxGroupSecurity
+      name: "Detective"
+      order: 400
+
+- type: entity
+  parent: FaxMachineSecurityBase
+  id: FaxMachineSecurityFront
+  suffix: "SEC: Brigmedic"
+  components:
+    - type: FaxMachine
+      group: FaxGroupSecurity
+      name: "Brigmedic"
+      order: 500
+
+- type: entity
+  parent: FaxMachineSecurityBase
+  id: FaxMachineSecurityPrison
+  suffix: "SEC: Prison"
+  components:
+    - type: FaxMachine
+      group: FaxGroupSecurity
+      name: "Prison"
+      order: 600

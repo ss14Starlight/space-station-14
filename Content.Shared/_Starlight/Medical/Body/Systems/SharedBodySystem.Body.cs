@@ -6,13 +6,13 @@ using Content.Shared.Body.Part;
 using Content.Shared.DragDrop;
 using Content.Shared.Gibbing;
 using Content.Shared.Inventory;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
 using Robust.Shared.Random;
 using Content.Shared._Starlight.Medical.Body.Prototypes;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Body.Systems;
 
 public partial class SharedBodySystem
@@ -24,8 +24,8 @@ public partial class SharedBodySystem
      * - Each "connection" is a body part (e.g. arm, hand, etc.) and each part can also contain organs.
      */
 
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private const float GibletLaunchImpulse = 8;
     private const float GibletLaunchImpulseVariance = 3;

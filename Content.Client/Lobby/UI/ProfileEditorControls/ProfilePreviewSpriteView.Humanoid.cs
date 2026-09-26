@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Content.Client.Humanoid;
+using System.Linq;
 using Content.Client.Station;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
@@ -11,8 +10,12 @@ using Content.Shared.Roles;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Shared.Body.Part;
-using Content.Shared.Starlight;
-using Robust.Shared.Utility; // Starlight
+#region Starlight
+using Content.Shared._Starlight.Medical.Limbs;
+using Content.Client._Starlight.Humanoid;
+using Content.Shared._Starlight.Humanoid;
+using Content.Shared._Starlight.Roles;
+#endregion
 
 namespace Content.Client.Lobby.UI.ProfileEditorControls;
 
@@ -108,7 +111,7 @@ public sealed partial class ProfilePreviewSpriteView
                     EntMan,
                     _prototypeManager);
             }
-            catch (UnknownPrototypeException e)
+            catch (UnknownPrototypeException)
             {
                 loadout = new RoleLoadout();
             }
@@ -123,6 +126,13 @@ public sealed partial class ProfilePreviewSpriteView
                 JobName = job.LocalizedName;
                 // Grab the loadout specific name too!
                 LoadoutName = GetLoadoutName(loadout);
+                // Starlight - the preview dummy never reaches the server, so
+                // give client-side systems a chance to react to the loadout too
+                EntMan.EventBus.RaiseLocalEvent(PreviewDummy, new RoleLoadoutAppliedEvent(loadout));
+                // Starlight - actually equip loadout-selected clothing on the
+                // dummy too, same as the humanoid path below does. Borg/AI
+                // never had wearable loadout slots so this was never hit.
+                GiveDummyLoadout(PreviewDummy, loadout);
                 return;
             }
         }

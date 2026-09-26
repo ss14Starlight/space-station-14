@@ -5,19 +5,18 @@ using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Interaction;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Actions;
 
 /// <summary>
 ///     This System handled interactions for the <see cref="ActionOnInteractComponent"/>.
 /// </summary>
-public sealed class ActionOnInteractSystem : EntitySystem
+public sealed partial class ActionOnInteractSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
-    [Dependency] private readonly SharedChargesSystem _charges = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private ActionContainerSystem _actionContainer = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
 
     public override void Initialize()
     {

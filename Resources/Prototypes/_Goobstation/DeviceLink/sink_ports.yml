@@ -1,0 +1,5 @@
+# Vinyl Player
+- type: sinkPort
+  id: StationRadioRigPort
+  name: signal-port-name-radio-rig
+  description: signal-port-description-radio-rig

@@ -5,17 +5,24 @@ using Robust.Client.Console;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Player;
+#region Starlight
+using Robust.Shared.Configuration;
+using Content.Shared._Starlight.Administration.Events;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.Ghost;
+#endregion
 
 namespace Content.Client.Ghost
 {
-    public sealed class GhostSystem : SharedGhostSystem
+    public sealed partial class GhostSystem : SharedGhostSystem
     {
-        [Dependency] private readonly IClientConsoleHost _console = default!;
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly SharedActionsSystem _actions = default!;
-        [Dependency] private readonly PointLightSystem _pointLightSystem = default!;
-        [Dependency] private readonly ContentEyeSystem _contentEye = default!;
-        [Dependency] private readonly SpriteSystem _sprite = default!;
+        [Dependency] private IClientConsoleHost _console = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private SharedActionsSystem _actions = default!;
+        [Dependency] private PointLightSystem _pointLightSystem = default!;
+        [Dependency] private ContentEyeSystem _contentEye = default!;
+        [Dependency] private SpriteSystem _sprite = default!;
+        [Dependency] private IConfigurationManager _cfg = default!; // Starlight
 
         public int AvailableGhostRoleCount { get; private set; }
 
@@ -71,6 +78,8 @@ namespace Content.Client.Ghost
             SubscribeLocalEvent<EyeComponent, ToggleLightingActionEvent>(OnToggleLighting);
             SubscribeLocalEvent<EyeComponent, ToggleFoVActionEvent>(OnToggleFoV);
             SubscribeLocalEvent<GhostComponent, ToggleGhostsActionEvent>(OnToggleGhosts);
+            SubscribeNetworkEvent<GhostCorporealEvent>(OnCorporeal); // Starlight
+            SubscribeNetworkEvent<AdminGhostEvent>(OnAdminGhost); // Starlight
         }
 
         private void OnStartup(EntityUid uid, GhostComponent component, ComponentStartup args)
@@ -211,5 +220,25 @@ namespace Content.Client.Ghost
         {
             GhostVisibility = visibility ?? !GhostVisibility;
         }
+
+        #region Starlight
+
+        private void OnCorporeal(GhostCorporealEvent ev)
+        {
+            var uid = GetEntity(ev.Uid);
+            if (!TryComp<SpriteComponent>(uid, out var comp))
+                return;
+
+            _sprite.SetVisible((uid, comp), ev.IsCorporeal || uid == _playerManager.LocalEntity || GhostVisibility);
+        }
+
+        private void OnAdminGhost(AdminGhostEvent ev)
+        {
+            var value = _cfg.GetCVar(StarlightCCVars.AdminGhostScriptPath);
+            if (value == string.Empty) return;
+            _console.ExecuteCommand(null, $"exec /{value}");
+        }
+
+        #endregion
     }
 }

@@ -5,9 +5,9 @@ namespace Content.Client._Starlight.Antags.Vampires;
 /// <summary>
 /// Handles copying visual data from the vampire to its decoy.
 /// </summary>
-public sealed class VampireDecoySystem : EntitySystem
+public sealed partial class VampireDecoySystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

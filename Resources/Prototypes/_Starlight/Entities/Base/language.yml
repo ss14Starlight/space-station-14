@@ -28,7 +28,10 @@
       - Classical
       - Grumbakul
       - Aielic
+      - Felyaic
       - Lagomorphian
+      - Squeakish
+      - ClassicalSign
 
 - type: entity
   id: BaseBorgiLanguages
@@ -40,6 +43,7 @@
       - GalacticCommon
       - Machine
       - Dog
+      - DogFeral
       understands:
       - GalacticCommon
       - SolCommon
@@ -58,11 +62,15 @@
       - Scratch
       - Thaveyan
       - Dog
+      - DogFeral
       - Darktongue
       - Classical
       - Grumbakul
       - Aielic
+      - Felyaic
       - Lagomorphian
+      - Squeakish
+      - ClassicalSign
 
 - type: entity
   id: BaseSiliconBrainLanguages
@@ -76,3 +84,80 @@
     understands:
     - GalacticCommon
     - Machine
+
+- type: entity
+  id: BaseXenoSiliconLanguages
+  abstract: true
+  components:
+    - type: LanguageSpeaker
+    - type: LanguageKnowledge
+      speaks:
+      - GalacticCommon
+      - Machine
+      understands:
+      - GalacticCommon
+      - SolCommon
+      - Machine
+      - Canilunzt
+      - Sign
+      - Bubblish
+      - Chittin
+      - Draconic
+      - Marish
+      - Moffic
+      - Nekomimetic
+      - Sylvan
+      - Terrum
+      - VoxPidgin
+      - Scratch
+      - Thaveyan
+      - Darktongue
+      - Classical
+      - Grumbakul
+      - Aielic
+      - Felyaic
+      - Lagomorphian
+      - Squeakish
+      - Xeno
+      - Xenomind
+      - ClassicalSign
+
+- type: entity
+  id: BaseXenoBorgiLanguages
+  abstract: true
+  components:
+    - type: LanguageSpeaker
+    - type: LanguageKnowledge
+      speaks:
+      - GalacticCommon
+      - Machine
+      - Dog
+      - DogFeral
+      understands:
+      - GalacticCommon
+      - SolCommon
+      - Machine
+      - Canilunzt
+      - Sign
+      - Bubblish
+      - Chittin
+      - Draconic
+      - Marish
+      - Moffic
+      - Nekomimetic
+      - Sylvan
+      - Terrum
+      - VoxPidgin
+      - Scratch
+      - Thaveyan
+      - Dog
+      - DogFeral
+      - Darktongue
+      - Classical
+      - Grumbakul
+      - Aielic
+      - Felyaic
+      - Lagomorphian
+      - Squeakish
+      - Xeno
+      - ClassicalSign

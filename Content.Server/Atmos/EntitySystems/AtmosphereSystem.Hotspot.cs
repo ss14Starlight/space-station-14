@@ -1,3 +1,4 @@
+using Content.Server._Funkystation.Atmos.Events; // Funky
 using Content.Server.Atmos.Components;
 using Content.Server.Decals;
 using Content.Shared.Atmos;
@@ -32,8 +33,8 @@ public sealed partial class AtmosphereSystem
     /// </summary>
     private static readonly ProtoId<SoundCollectionPrototype> DefaultHotspotSounds = "AtmosHotspot";
 
-    [Dependency] private readonly DecalSystem _decalSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private DecalSystem _decalSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     /// <summary>
     /// Number of cycles the hotspot system must process before it can play another sound
@@ -204,6 +205,14 @@ public sealed partial class AtmosphereSystem
         if (tile.Air == null)
             return;
 
+        // Funky start
+        // Starlight - throttled, continuous ignition sources expose the same tile every tick.
+        if (ShouldRaiseTileExposed(gridAtmosphere.Owner, tile.GridIndices, exposedTemperature))
+        {
+            var ev = new TileExposedEvent(tile.GridIndices, exposedTemperature, exposedVolume, sparkSourceUid);
+            RaiseLocalEvent(gridAtmosphere.Owner, ref ev);
+        }
+        // Funky end
         var oxygen = tile.Air.GetMoles(Gas.Oxygen);
 
         if (oxygen < 0.5f)

@@ -33,6 +33,11 @@
     {
       "name": "equipped-HELMET-resomi",
       "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-rodentia",
+      "directions": 4,
+      "copyright": "Created by Huaqas (GitHub)"
     }
   ]
 }

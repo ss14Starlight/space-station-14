@@ -1,0 +1,50 @@
+<Document>
+  # Wizard Duel
+<!-- Moved to Starlight from Moff Station since we're making a fair bit of changes. -->
+  <Box>
+    [color=#457573][italic]I CHALLENGE THEE TO A DUEL![/italic][/color]
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ClothingHeadHatRedwizard" Caption=""/>
+    <GuideEntityEmbed Entity="ClothingHeadHatWizard" Caption=""/>
+    <GuideEntityEmbed Entity="ClothingHeadHatYellowwizard" Caption=""/>
+    <GuideEntityEmbed Entity="ClothingHeadHatGreenwizard" Caption=""/>
+    <GuideEntityEmbed Entity="ClothingHeadHatPurplewizard" Caption=""/>
+    <GuideEntityEmbed Entity="ClothingHeadHatOrangewizard" Caption=""/>
+  </Box>
+  In aeons of conflict and strife, the various schools of the Space Wizards Federation have learned to resolve their differences in ways that best reflect their unpredictable nature; the ancient rite of a wizard duel!
+  With each faction sending one of their own to act as the representative of their school, these wizards compete to prove that their mastery of sorcery and magic is unparalleled, helping decide the future of the Space Wizards Federation in events following.
+
+  As a result, wizard duelists are a [color=red][bold]Solo Antagonists[/color][/bold] role that causes trouble on station not through direct antagonization, but rather collateral damage fighting other wizard duelists.<!-- Starlight, changed to Solo Antagonists -->
+
+  ## The Rites of Dueling
+  <Box>
+    <GuideEntityEmbed Entity="WizardTeleportScroll" Caption=""/>
+  </Box>
+
+  <Box>
+    <GuideEntityEmbed Entity="RedWizardDuelistMedallion" Caption=""/>
+    <GuideEntityEmbed Entity="BlueWizardDuelistMedallion" Caption=""/>
+    <GuideEntityEmbed Entity="YellowWizardDuelistMedallion" Caption=""/>
+    <GuideEntityEmbed Entity="GreenWizardDuelistMedallion" Caption=""/>
+    <GuideEntityEmbed Entity="PurpleWizardDuelistMedallion" Caption=""/>
+    <GuideEntityEmbed Entity="OrangeWizardDuelistMedallion" Caption=""/>
+  </Box>
+
+  Each wizard duel is a unique and chaotic experience, and often causes untold destruction to any souls unfortunate to be caught in between.
+  With this in mind, there are a few traditions set in place from wizards of yore, that must be upheld for any sanctioned duel:
+  - No duel shall take place on Space Wizards Federation grounds.
+  - All duelists must set the terms of engagement prior to the cast of the first spell.
+  - The duel must involve magic.
+  - Duelists must always wear the colors of their respective school, except when wearing void robes or a space suit, but only if absolutely necessary.
+  - Medallions must be visibly worn by all duelists at all times, without exception.
+  - The victor must hold at least 3 Space Wizards Federation medallions to be declared the winner of the duel. If multiple duelists have 3 or more medallions, then the duel continues until only one duelist remains with 3 or more medallions.
+  - Once the terms of engagement are set, no duelist shall breach said terms.
+  - Outsiders who steal medallions are to be dealt with harshly.
+  - The victor must return alive to tell the tale.
+
+  Terms of engagement often consist of discussion of what spells, wands, and equipment are valid or prohibited from use, what defines victory and defeat, and if collaboration with battleground denizens is permitted.
+
+  Most importantly of all, be creative! Simple combat duels and pointless killing of lesser denizens is unimaginative, and the Space Wizards Federation would rather at least one of you return alive.
+
+</Document>

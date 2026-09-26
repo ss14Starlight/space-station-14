@@ -4,9 +4,9 @@ using Content.Shared._Starlight.Spider.Events;
 
 namespace Content.Server._Starlight.Spider;
 
-public sealed class SpiderBuildingsSystem : EntitySystem
+public sealed partial class SpiderBuildingsSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     public override void Initialize()
     {

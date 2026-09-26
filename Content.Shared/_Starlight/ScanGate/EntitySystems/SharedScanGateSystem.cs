@@ -16,14 +16,14 @@ namespace Content.Shared._Starlight.ScanGate.EntitySystems;
 
 public sealed partial class SharedScanGateSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _powerReceiverSystem = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
-    [Dependency] private readonly SharedDeviceLinkSystem _deviceLink = default!;
-    [Dependency] private readonly PowerCellSystem _powerCellSystem = default!;
-    [Dependency] private readonly ItemToggleSystem _itemToggleSystem = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private SharedPowerReceiverSystem _powerReceiverSystem = default!;
+    [Dependency] private AccessReaderSystem _accessReaderSystem = default!;
+    [Dependency] private SharedDeviceLinkSystem _deviceLink = default!;
+    [Dependency] private PowerCellSystem _powerCellSystem = default!;
+    [Dependency] private ItemToggleSystem _itemToggleSystem = default!;
 
     public override void Initialize()
     {

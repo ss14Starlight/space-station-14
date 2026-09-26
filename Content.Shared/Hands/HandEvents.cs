@@ -149,11 +149,13 @@ namespace Content.Shared.Hands
     {
         public EntityUid BlockingEntity;
         public EntityUid User;
+        public EntityUid VirtualItem; // Starlight
 
-        public VirtualItemDeletedEvent(EntityUid blockingEntity, EntityUid user)
+        public VirtualItemDeletedEvent(EntityUid blockingEntity, EntityUid user, EntityUid virtualItem) // Starlight edit
         {
             BlockingEntity = blockingEntity;
             User = user;
+            VirtualItem = virtualItem; // Starlight
         }
     }
 

@@ -1,0 +1,18 @@
+- type: damageContainer
+  id: Hybrid
+  supportedGroups:
+    - Brute
+    - Burn
+    - Toxin
+    - Airloss
+    - Genetic
+
+- type: damageContainer
+  id: MalignStructure
+  supportedGroups:
+  - Brute
+  - Metaphysical
+  supportedTypes:
+  - Heat
+  - Shock
+  - Structural

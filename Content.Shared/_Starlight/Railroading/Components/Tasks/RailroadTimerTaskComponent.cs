@@ -1,9 +1,6 @@
-using Content.Shared.Chemistry.Reagent;
-using Content.Shared.FixedPoint;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Utility;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Railroading.Components.Tasks;
 
 [RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class RailroadTimerTaskComponent : Component
@@ -14,10 +11,10 @@ public sealed partial class RailroadTimerTaskComponent : Component
     [DataField]
     public TimeSpan Duration = TimeSpan.FromMinutes(1);
 
-    [DataField]
+    [DataField, AutoPausedField]
     public TimeSpan Started = TimeSpan.Zero;
 
-    [DataField]
+    [DataField, AutoPausedField]
     public TimeSpan EndTime = TimeSpan.Zero;
 
     [DataField]

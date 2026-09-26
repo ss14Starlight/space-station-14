@@ -7,7 +7,6 @@ using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Enums;
 using Robust.Shared.Graphics.RSI;
-using Robust.Shared.Maths;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -18,13 +17,13 @@ namespace Content.Client._Starlight.Antags.Vampires;
 /// Overlay that renders monster/animal sprites over humanoids
 /// when the local player has HysteriaVisionComponent.
 /// </summary>
-public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
+public sealed partial class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private readonly TransformSystem _transform;
     private readonly EntityQuery<HysteriaVisionComponent> _hysteriaQuery;

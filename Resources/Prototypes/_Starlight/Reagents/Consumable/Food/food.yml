@@ -6,7 +6,7 @@
   flavor: medicine
   color: "#9d42d5"
   metabolisms:
-    Food:
+    Digestion:
       effects:
       - !type:HealthChange
         damage:
@@ -26,7 +26,7 @@
   flavor: chalky
   color: "#94622d" # medium brown
   metabolisms:
-    Food:
+    Digestion:
       effects:
       - !type:HealthChange
         probability: 0.25
@@ -35,7 +35,19 @@
             Brute: -0.8
       - !type:ModifyBloodLevel
         amount: 1
+      # Starlight edit start - Make food 50% less effective for dwarfs
       - !type:SatiateHunger
+        factor: 0.75
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+      - !type:SatiateHunger
+        factor: 1.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      # Starlight edit end
   plantMetabolism:
   - !type:PlantAdjustNutrition
     amount: 1.5
@@ -53,13 +65,25 @@
   flavor: lemonlimecranberrysoda # 'like Christmas'
   color: "#700620" # dark red, erring on pinkish
   viscosity: 0.55 #Start using syrup to attach your remote recievers to your microwaves!
+  viscosityMin: 1
   tileReactions:
     - !type:SpillTileReaction
   metabolisms:
-    Food:
+    Digestion:
       effects:
+      # Starlight edit start - Make food 50% less effective for dwarfs
+      - !type:SatiateHunger
+        factor: 3.0
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
       - !type:SatiateHunger
         factor: 6.0
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      # Starlight edit end
   pricePerUnit: 5
   footstepSound:
     collection: FootstepSlime
@@ -76,14 +100,26 @@
   flavor: greasy
   color: "#643205" # yup, another generic medium brown
   metabolisms:
-    Food:
+    Digestion:
       effects:
       - !type:HealthChange
         probability: 0.25
         damage:
           groups:
             Brute: -0.4
+      # Starlight edit start - Make food 50% less effective for dwarfs
       - !type:SatiateHunger
+        factor: 0.75
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+      - !type:SatiateHunger
+        factor: 1.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      # Starlight edit end
   pricePerUnit: 3
   footstepSound:
     collection: FootstepSlime
@@ -102,7 +138,7 @@
   flavor: punishment
   color: "#7d7d3c" # ew
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:PopupMessage
         type: Local
@@ -135,3 +171,23 @@
     params:
       volume: 6
 
+- type: reagent
+  id: MintExtract
+  name: reagent-name-juice-mint-extract
+  group: Foods
+  parent: BaseJuice
+  desc: reagent-desc-juice-mint-extract
+  physicalDesc: reagent-physical-desc-mint-extract
+  flavor: minty
+  color: "#b4fbd0"
+  recognizable: true
+
+- type: reagent
+  id: Cinnamon
+  name: reagent-name-cinnamon
+  group: Foods
+  desc: reagent-desc-cinnamon
+  physicalDesc: reagent-physical-desc-cinnamon
+  flavor: cinnamon
+  color: "#7b330c"
+  recognizable: true

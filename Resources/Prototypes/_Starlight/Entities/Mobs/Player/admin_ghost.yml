@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseAGhostAction
+  id: ActionToggleAGhostHide
+  name: Toggle visibility for others
+  description: Hides your ghost from all other non-admin ghosts.
+  components:
+    - type: Action
+      icon: { sprite: Mobs/Ghosts/ghost_human.rsi, state: icon }
+      priority: 8
+    - type: InstantAction
+      event: !type:ToggleAGhostHideEvent

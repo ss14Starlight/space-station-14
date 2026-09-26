@@ -1,7 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Shuttles.Components;
+namespace Content.Shared._Starlight.Shuttles.Components;
 
 /// <summary>
 /// Shape rendered for a <see cref="RadarBlipComponent"/> on shuttle radar.

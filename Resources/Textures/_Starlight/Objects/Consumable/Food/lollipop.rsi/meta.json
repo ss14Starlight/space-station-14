@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "edit of swirl_lollipop taken from tgstation at https://github.com/tgstation/tgstation/commit/9bfce7e50375ac0b347c0236aa282de77c001767",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "white_lollipop"
+    },
+    {
+      "name": "white_lollipop_fill_1"
+    },
+    {
+      "name": "white_lollipop_fill_2"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right_fill_1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left_fill_1",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right_fill_2",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left_fill_2",
+      "directions": 4
+    },
+    {
+      "name": "white_lollipop-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "white_lollipop-equipped-MASK-vox",
+      "directions": 4
+    }
+  ]
+}

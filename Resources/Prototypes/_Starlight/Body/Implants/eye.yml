@@ -40,6 +40,7 @@
       - Inorganic
       - Silicon
       - IPC
+      - Hybrid
 
 - type: entity
   id: EyeImplantMedical
@@ -52,7 +53,13 @@
   - type: FunctionalOrgan
     comps:
     - type: ShowHealthBars
+      damageContainers:
+      - Biological
+      - Hybrid # Neocytes
     - type: ShowHealthIcons
+      damageContainers:
+        - Biological
+        - Hybrid
 
 - type: entity
   id: EyeImplantChemistry
@@ -91,7 +98,13 @@
   - type: FunctionalOrgan
     comps:
     - type: ShowHealthBars
+      damageContainers:
+      - Biological
+      - Hybrid # Neocytes
     - type: ShowHealthIcons
+      damageContainers:
+        - Biological
+        - Hybrid
     - type: ShowJobIcons
     - type: ShowMindShieldIcons
     - type: ShowCriminalRecordIcons

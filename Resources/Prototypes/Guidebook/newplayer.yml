@@ -6,10 +6,15 @@
   children:
   - Controls
   - CharacterCreation
+  # Starlight-start
+  - RoleplayGuideIntro
+  - SS14
+  # Starlight-end
 
 - type: guideEntry
   id: Controls
   name: guide-entry-controls
+  priority: 1 # Starlight-edit
   text: "/ServerInfo/Guidebook/NewPlayer/Controls/Controls.xml"
   children:
   - Radio
@@ -22,6 +27,7 @@
 - type: guideEntry
   id: CharacterCreation
   name: guide-entry-charactercreation
+  priority: 2 # Starlight-edit
   text: "/ServerInfo/Guidebook/NewPlayer/CharacterCreation.xml"
   children:
   - YourFirstCharacter

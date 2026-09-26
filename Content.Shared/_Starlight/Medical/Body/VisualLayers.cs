@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Content.Shared.Humanoid;
+﻿using Content.Shared.Humanoid;
 
 namespace Content.Shared._Starlight.Medical.Body;
 public static class VisualLayers

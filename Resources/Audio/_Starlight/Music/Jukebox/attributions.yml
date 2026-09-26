@@ -14,3 +14,122 @@
   copyright: "Christofori, http://www.christofori.net"
   source: "https://modarchive.org/index.php?request=view_profile&query=69248"
 
+- files: ["thunderdome.ogg"] # Start - Modifying these files to be less loud
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "-Sector11 by MashedByMachines. Converted from MP3 to OGG."
+  source: "https://www.newgrounds.com/audio/listen/312622"
+
+- files: ["endless_space.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Endless Space by SolusLunes. Converted from MP3 to OGG."
+  source: "https://www.newgrounds.com/audio/listen/67583"
+
+- files: ["space_asshole.ogg"]
+  license: "Custom"
+  copyright: "Space Asshole by Chris Remo is used with special permission from the author, under the condition that the project remains non-commercial and open source. The author also requested that a link to his bandcamp be included: https://chrisremo.bandcamp.com/"
+  source: "https://idlethumbs.bandcamp.com/track/space-asshole"
+
+- files: ["the_wizard.ogg"]
+  license: "Custom"
+  copyright: "The Wizard by Chris Remo is used with special permission from the author, under the condition that the project remains non-commercial and open source. The author also requested that a link to his bandcamp be included: https://chrisremo.bandcamp.com/"
+  source: "https://idlethumbs.bandcamp.com/track/the-wizard"
+
+- files: ["skubstep.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "skubstep by finket."
+  source: "https://soundcloud.com/finket/skubstep-extended"
+
+- files: ["atomicamnesiammx.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Atomic Amnesia MMX by Philip Dyer. Converted from MP3 to OGG."
+  source: "https://soundcloud.com/3kliksphilip/atomic-amnesia-mmx-1"
+
+- files: ["singuloose.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Singuloose by Janis Schiedková. Converted from MP3 to OGG."
+  source: "https://soundcloud.com/js_m/singuloose"
+
+- files: ["comet_haley.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Comet Haley by Stellardrone. Converted from MP3 to OGG."
+  source: "https://stellardrone.bandcamp.com/track/comet-halley"
+
+- files: ["Spac_Stac.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Spac Stac by Hayabusa. Converted from MP3 to OGG."
+  source: "https://www.youtube.com/watch?v=grUBe-SZgr0"
+
+- files: ["pwmur.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "phoron will make us rich by Sunbeamstress/Lauren Loveless."
+  source: "https://soundcloud.com/sunbeamstress/phoron-will-make-us-rich"
+
+- files: ["lasers_rip_apart_the_bulkhead.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "lasers rip apart the bulkhead by Sunbeamstress/Lauren Loveless."
+  source: "https://soundcloud.com/sunbeamstress/lasers-rip-apart-the-bulkhead"
+
+- files: ["every_light_is_blinking_at_once.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "every light is blinking at once by Sunbeamstress/Lauren Loveless."
+  source: "https://soundcloud.com/sunbeamstress/every-light-is-blinking-at-once" # End of wizden music, start of starlight music
+
+- files: ["cosmonaut.ogg"]
+  license: "CC-BY-ND-4.0"
+  copyright: "Cosmonaut by Artifyber, for InanimateIJK & their associated projects."
+  source: "https://soundcloud.com/r3dz3r/cosmonaut"
+
+- files: ["breacher.ogg"]
+  license: "CC-BY-ND-4.0"
+  copyright: "Breacher by Artifyber, for InanimateIJK & their associated projects."
+  source: "https://soundcloud.com/r3dz3r/breacher"
+
+- files: ["echoes-in-the-deep.ogg"]
+  license: "CC-BY-ND-4.0"
+  copyright: "Echoes in the Deep by nightyshade @ Trieste Port Discord"
+  source: "https://discord.com/channels/1253266481093808140/1307494081366069331/1370530213653385286"
+
+- files: ["timefracture.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Timefracture by Bad History, shortened by InanimateIJK."
+  source: "https://www.youtube.com/watch?v=INBbCL335NE"
+
+- files: ["762_treastise.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "762 Treastise by Haplogynae, permission given to STARLIGHT."
+  source: "https://soundcloud.com/haplogynae/mikazu-762-treatise"
+
+- files: ["hull_rupture.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Hull Rupture by Haplogynae, permission given to STARLIGHT."
+  source: "https://soundcloud.com/haplogynae/baystation-12-hull-rupture"
+
+- files: ["aggravated_assault_by_melcom_.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "melcom, https://modarchive.org/index.php?request=view_profile&query=68864"
+  source: "https://modarchive.org/index.php?request=view_by_moduleid&query=176234"
+
+- files: ["Bluespace.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Bluespace by Beptol Corporation Acoustics"
+  source: "https://soundcloud.com/beptolacoustics/space-station-14-unofficial-bluespace"
+
+- files: ["thestation.ogg"]
+  license: "CC0-1.0"
+  copyright: "Created by A-Guy173"
+  source: "https://github.com/A-Guy173/Music/tree/main"
+
+- files: ["RedefiningLines.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Redefining Lines by Beptol Corporation Acoustics"
+  source: "https://soundcloud.com/beptolacoustics"
+
+- files: ["HOME_Burn_Chamber_Starlight.ogg"]
+  license: "CC-BY-ND-4.0"
+  copyright: "Created by Randy Goffe (HOME) for Starlight SS14"
+  source: "https://github.com/ss14Starlight/space-station-14/tree/Starlight/Resources/Audio/_Starlight/Lobby/HOME_Burn_Chamber_Starlight.ogg"
+
+- files: ["stenchOfWhiskey.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Stench of Whiskey, by hermitsabee"
+  source: "https://www.youtube.com/watch?v=DEnavbxRlf8" # End

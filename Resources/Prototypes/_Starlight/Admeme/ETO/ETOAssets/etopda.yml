@@ -1,0 +1,138 @@
+
+- type: entity
+  parent: [ ParamedicPDA ]
+  id: ETOCorpsmanPDA
+  name: ETO corpsman PDA
+  description: Nobody dies on your watch, atleast not your team.
+  components:
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-ETOCorpsman
+  - type: Pda
+    id: ETOIDCardCorpsman
+  - type: PdaBorderColor
+    accentVColor: "#b19f21"
+    borderColor: "#3b2905"
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/pda.rsi
+    state: pda-ETOCorpsman
+  - type: Icon
+    sprite: _Starlight/Admeme/ETO/pda.rsi
+    state: pda-ETOCorpsman
+
+- type: entity
+  parent: [ ParamedicPDA ]
+  id: ETOTeamLeadPDA
+  name: ETO team leader PDA
+  description: Lead the team, fight against the corporate giants. Death to our enemy, freedom to their slaves.
+  components:
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-ETOLead
+  - type: Pda
+    id: ETOIDCardTeamLead
+  - type: PdaBorderColor
+    accentVColor: "#633254"
+    borderColor: "#3b2905"
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/pda.rsi
+    state: pda-ETOLead
+  - type: Icon
+    sprite: _Starlight/Admeme/ETO/pda.rsi
+    state: pda-ETOLead
+
+- type: entity
+  parent: BasePDA
+  id: ETOOperativePDA
+  name: ETO operative PDA
+  description: Fight for freedom, fight for the people.
+  components:
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-ETO
+  - type: Pda
+    id: ETOIDCardFootman
+  - type: PdaBorderColor
+    accentVColor: "#3b2905"
+    borderColor: "#3b2905"
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/pda.rsi
+    state: pda-ETO
+  - type: Icon
+    sprite: _Starlight/Admeme/ETO/pda.rsi
+    state: pda-ETO
+
+- type: entity
+  parent: BasePDA
+  id: ETOOperativePDACombatTech
+  name: ETO combat technician PDA
+  description: Build the pillars that support our cause, break the chains that hold us back.
+  components:
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-ETOCombatTech
+  - type: Pda
+    id: ETOIDCardCombatTech
+  - type: PdaBorderColor
+    accentVColor: "#3b2905"
+    borderColor: "#3b2905"
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/pda.rsi
+    state: pda-ETOCombatTech
+  - type: Icon
+    sprite: _Starlight/Admeme/ETO/pda.rsi
+    state: pda-ETOCombatTech
+
+- type: entity
+  parent: BasePDA
+  id: ETOOperativePDAMartyr
+  name: ETO martyr PDA
+  description: Remember who you fight for, remember who you are.
+  components:
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-ETOMartyr
+  - type: Pda
+    id: ETOIDCardMartyr
+  - type: PdaBorderColor
+    accentVColor: "#3b2905"
+    borderColor: "#3b2905"
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/pda.rsi
+    state: pda-ETOMartyr
+  - type: Icon
+    sprite: _Starlight/Admeme/ETO/pda.rsi
+    state: pda-ETOMartyr
+
+- type: entity
+  parent: BasePDA
+  id: ETOOperativePDADemo
+  name: ETO demolitionist PDA
+  description: Blow apart their walls, free those oppressed by your enemies.
+  components:
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-ETODemo
+  - type: Pda
+    id: ETOIDCardDemo
+  - type: PdaBorderColor
+    accentVColor: "#3b2905"
+    borderColor: "#3b2905"
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/pda.rsi
+    state: pda-ETODemo
+  - type: Icon
+    sprite: _Starlight/Admeme/ETO/pda.rsi
+    state: pda-ETODemo

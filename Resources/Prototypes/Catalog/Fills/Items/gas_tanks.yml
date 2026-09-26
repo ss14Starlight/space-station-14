@@ -203,15 +203,3 @@
         Plasma: 2.051379050
       temperature: 293.15
 
-- type: entity
-  id: MechAirTankFilled
-  parent: MechAirTank
-  suffix: Filled
-  components:
-  - type: GasTank
-    outputPressure: 21.3
-    air:
-      volume: 3000
-      moles:
-        - 50.051379050 #starlight, increase to 50 default
-      temperature: 293.15

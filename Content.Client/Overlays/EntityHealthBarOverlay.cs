@@ -88,6 +88,11 @@ public sealed class EntityHealthBarOverlay : Overlay
             if (CalcProgress(uid, mobStateComponent, damageableComponent, mobThresholdsComponent) is not { } deathProgress)
                 continue;
 
+            // Starlight Start: Do not render the health bar is the entity is full health
+            if (deathProgress is (1, false))
+                continue;
+            // Starlight End
+
             var worldPosition = _transform.GetWorldPosition(xform);
             var worldMatrix = Matrix3Helpers.CreateTranslation(worldPosition);
 
@@ -142,13 +147,15 @@ public sealed class EntityHealthBarOverlay : Overlay
             return (ratio, false);
         }
 
-        if (_mobStateSystem.IsCritical(uid, component))
+        if (_mobStateSystem.IsCritical(uid, component) || _mobStateSystem.IsSoftCritical(uid, component)) // Starlight edit: soft crit
         {
             if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold, thresholds) ||
                 !_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Dead, out var deadThreshold, thresholds))
             {
                 return (1, true);
             }
+            if (_mobThresholdSystem.TryGetThresholdForState(uid, MobState.SoftCritical, out var softCritThreshold, thresholds)) // Starlight edit: soft crit
+                critThreshold = softCritThreshold; // Starlight edit: soft crit
 
             var ratio = 1 - ((dmg.TotalDamage - critThreshold) / (deadThreshold - critThreshold)).Value.Float();
 

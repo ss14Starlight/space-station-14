@@ -1,11 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using Robust.Shared.ContentPack;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map.Events;
+#if DEBUG
 using Robust.Shared.Prototypes;
+#endif
 using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Value;
@@ -16,12 +17,12 @@ namespace Content.Server.Maps;
 /// <summary>
 ///     Performs basic map migration operations by listening for engine <see cref="MapLoaderSystem"/> events.
 /// </summary>
-public sealed class MapMigrationSystem : EntitySystem
+public sealed partial class MapMigrationSystem : EntitySystem
 {
 #if DEBUG
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
 #endif
-    [Dependency] private readonly IResourceManager _resMan = default!;
+    [Dependency] private IResourceManager _resMan = default!;
 
     // Starlight-edit
     private static readonly string[] _migrationFiles =

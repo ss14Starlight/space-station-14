@@ -13,13 +13,13 @@ namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 // CC-BY-NC-SA-3.0
 // https://github.com/goonstation/goonstation/blob/ff86b044/code/obj/nuclearreactor/centrifuge.dm
 
-public sealed class NuclearCentrifugeSystem : EntitySystem
+public sealed partial class NuclearCentrifugeSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly StackSystem _stackSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private StackSystem _stackSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
 
     private readonly float _threshold = 1f;
     private float _accumulator = 0f;

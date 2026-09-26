@@ -3,7 +3,7 @@
 - type: latheRecipePack
   id: ScienceBoardsStatic
   recipes:
-  - ProtolatheMachineCircuitboard
+#  - ProtolatheMachineCircuitboard # Starlight, no longer printable, use your departmental one/vault one, emag the board printer, or use the hyperlathe and deal with the drawback
   - AutolatheMachineCircuitboard
   - CircuitImprinterMachineCircuitboard
   - ExosuitFabricatorMachineCircuitboard

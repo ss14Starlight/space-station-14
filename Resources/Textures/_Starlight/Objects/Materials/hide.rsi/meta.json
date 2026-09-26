@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "goliath_hide",
+	  "copyright": "TGstation at https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/stack_objects.dmi"
+    },
+    {
+      "name": "goliathhide-inhand-left",
+	  "copyright": "mubururu_ (github)",
+      "directions": 4
+    },
+    {
+      "name": "goliathhide-inhand-right",
+	  "copyright": "mubururu_ (github)",
+      "directions": 4
+    },
+    {
+      "name": "goliath_hide_2",
+	  "copyright": "TGstation at https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/stack_objects.dmi"
+    },
+    {
+      "name": "goliath_hide_3",
+	  "copyright": "TGstation at https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/stack_objects.dmi"
+    }
+  ]
+}

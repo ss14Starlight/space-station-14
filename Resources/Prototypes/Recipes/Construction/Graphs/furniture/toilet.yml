@@ -22,6 +22,9 @@
             - !type:SpawnPrototype
               prototype: SheetSteel1
               amount: 5
+            - !type:SpawnPrototype # Starlight
+              prototype: SheetPlasteel1 # Starlight
+              amount: 1 # Starlight
             - !type:EmptyAllContainers {}
             - !type:DestroyEntity {}
           conditions:

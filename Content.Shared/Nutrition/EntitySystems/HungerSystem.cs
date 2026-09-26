@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Alert;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
@@ -13,16 +14,16 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
-public sealed class HungerSystem : EntitySystem
+public sealed partial class HungerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private SharedJetpackSystem _jetpack = default!;
 
     private static readonly ProtoId<SatiationIconPrototype> HungerIconOverfedId = "HungerIconOverfed";
     private static readonly ProtoId<SatiationIconPrototype> HungerIconPeckishId = "HungerIconPeckish";
@@ -178,6 +179,16 @@ public sealed class HungerSystem : EntitySystem
         {
             _damageable.TryChangeDamage(uid, damage, true, false);
         }
+
+        // Starlight begin - Better passive damage system than the one above, I just don't want to refactor everything rn.
+        if (!TryComp<DamageableComponent>(uid, out var dmgComp))
+            return;
+
+        if (component.CurrentThreshold >= component.PassiveDamageThreshold &&
+            _damageable.GetDamage((uid, dmgComp)).GetTotal() < component.PassiveDamageCap &&
+            component.PassiveDamageSpecifier is { } passiveDamage && !_mobState.IsDead(uid))
+            _damageable.TryChangeDamage(uid, passiveDamage, true, false);
+        // Starlight end
     }
 
     /// <summary>

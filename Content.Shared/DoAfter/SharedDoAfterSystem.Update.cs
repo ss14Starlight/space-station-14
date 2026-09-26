@@ -1,4 +1,3 @@
-using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Gravity;
 using Content.Shared.Hands.Components;
@@ -6,16 +5,18 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Physics;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.NullSpace; // Starlight
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Shared._Starlight.Antags.Abductor.Components;
+using Content.Shared._Starlight.DoAfter;
 
 namespace Content.Shared.DoAfter;
 
 public abstract partial class SharedDoAfterSystem : EntitySystem
 {
-    [Dependency] private readonly IDynamicTypeFactory _factory = default!;
-    [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private IDynamicTypeFactory _factory = default!;
+    [Dependency] private SharedGravitySystem _gravity = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
 
     private DoAfter[] _doAfters = Array.Empty<DoAfter>();
 
@@ -221,7 +222,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         // This does not mean their hand needs to be empty.
         if (args.NeedHand)
         {
-            if (!handsQuery.TryGetComponent(args.User, out var hands) || hands.Count == 0)
+            if (!handsQuery.TryGetComponent(args.User, out var hands) || (hands.Count == 0 && !HasComp<HandlessDoAfterComponent>(args.User))) // Starlight
                 return true;
 
             // If an item was in the user's hand to begin with,

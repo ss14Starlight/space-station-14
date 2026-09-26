@@ -1,7 +1,6 @@
 using Content.Shared.Access.Systems;
 using Content.Shared.CriminalRecords;
 using Content.Shared.CriminalRecords.Components;
-using Content.Shared.Security;
 using Content.Shared.StationRecords;
 using Robust.Client.Player;
 using Robust.Shared.Prototypes;
@@ -9,11 +8,11 @@ using Robust.Shared.Random;
 
 namespace Content.Client.CriminalRecords;
 
-public sealed class CriminalRecordsConsoleBoundUserInterface : BoundUserInterface
+public sealed partial class CriminalRecordsConsoleBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
     private readonly AccessReaderSystem _accessReader;
 
     private CriminalRecordsConsoleWindow? _window;

@@ -2,14 +2,11 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Shared.CCVar;
-using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
-using Content.Shared.NPC.Systems;
 using Prometheus;
-using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 
@@ -24,9 +21,9 @@ namespace Content.Server.NPC.Systems
             "npc_active_count",
             "Amount of NPCs that are actively processing");
 
-        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-        [Dependency] private readonly HTNSystem _htn = default!;
-        [Dependency] private readonly MobStateSystem _mobState = default!;
+        [Dependency] private IConfigurationManager _configurationManager = default!;
+        [Dependency] private HTNSystem _htn = default!;
+        [Dependency] private MobStateSystem _mobState = default!;
 
         /// <summary>
         /// Whether any NPCs are allowed to run at all.

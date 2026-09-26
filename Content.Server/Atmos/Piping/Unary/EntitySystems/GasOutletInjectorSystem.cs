@@ -1,7 +1,6 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Piping.Unary.Components;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Atmos.Piping;
@@ -11,11 +10,11 @@ using JetBrains.Annotations;
 namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class GasOutletInjectorSystem : EntitySystem
+    public sealed partial class GasOutletInjectorSystem : EntitySystem
     {
-        [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-        [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
+        [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+        [Dependency] private SharedAppearanceSystem _appearance = default!;
+        [Dependency] private NodeContainerSystem _nodeContainer = default!;
 
         public override void Initialize()
         {
@@ -36,8 +35,7 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
             if (args.Handled || !args.Complex)
                 return;
 
-            component.Enabled = !component.Enabled;
-            UpdateAppearance(uid, component);
+            Set(uid, component, !component.Enabled); // Starlight
             args.Handled = true;
         }
 
@@ -76,5 +74,17 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 
             _atmosphereSystem.Merge(environment, removed);
         }
+
+        #region Starlight
+
+        public void Set(EntityUid uid, GasOutletInjectorComponent component, bool value)
+        {
+            if (component.Enabled == value) return;
+            component.Enabled = value;
+            UpdateAppearance(uid, component);
+        }
+
+        #endregion
     }
 }
+

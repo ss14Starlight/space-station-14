@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Made by Conflee",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
@@ -9,19 +9,19 @@
   "states": [
     {
       "name": "core",
-	  "copyright": "Conflee"
+      "copyright": "Conflee"
     },
-	{
+    {
       "name": "doors",
-	  "copyright": "Conflee"
+      "copyright": "Conflee"
     },
-	{
+    {
       "name": "power",
-	  "copyright": "Conflee"
+      "copyright": "Conflee"
     },
-	{
+    {
       "name": "space",
-	  "copyright": "Conflee"
+      "copyright": "Conflee"
     }
   ]
 }

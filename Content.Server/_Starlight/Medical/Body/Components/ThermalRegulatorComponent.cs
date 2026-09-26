@@ -1,6 +1,7 @@
 using Content.Server._Starlight.Medical.Body.Systems;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Body.Components;
 
 [RegisterComponent]

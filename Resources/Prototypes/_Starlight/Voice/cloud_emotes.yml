@@ -1,5 +1,7 @@
 - type: cloudEmote
   id: Mark
+  name: cloud-emote-name-mark
+  priority: 6
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -8,6 +10,8 @@
 
 - type: cloudEmote
   id: Lenny
+  name: cloud-emote-name-lenny
+  priority: 25
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -16,6 +20,8 @@
 
 - type: cloudEmote
   id: Nervous
+  name: cloud-emote-name-nervous
+  priority: 16
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -24,6 +30,8 @@
 
 - type: cloudEmote
   id: Snore
+  name: cloud-emote-name-snore
+  priority: 19
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -32,6 +40,8 @@
 
 - type: cloudEmote
   id: Stare
+  name: cloud-emote-name-stare
+  priority: 24
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -40,6 +50,8 @@
 
 - type: cloudEmote
   id: Weh
+  name: cloud-emote-name-weh
+  priority: 8
   animationTime: 3
   sound: /Audio/Items/Toys/weh.ogg # Weh!
   icon:
@@ -48,6 +60,8 @@
 
 - type: cloudEmote
   id: Xp
+  name: cloud-emote-name-xp
+  priority: 11
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -56,6 +70,8 @@
 
 - type: cloudEmote
   id: Yes
+  name: cloud-emote-name-yes
+  priority: 3
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -64,6 +80,8 @@
 
 - type: cloudEmote
   id: Abductor
+  name: cloud-emote-name-abductor
+  priority: 10
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -72,6 +90,8 @@
 
 - type: cloudEmote
   id: Amongus
+  name: cloud-emote-name-amongus
+  priority: 21
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -80,6 +100,8 @@
 
 - type: cloudEmote
   id: Cool
+  name: cloud-emote-name-cool
+  priority: 12
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -88,6 +110,8 @@
 
 - type: cloudEmote
   id: Crying
+  name: cloud-emote-name-crying
+  priority: 14
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -96,6 +120,8 @@
 
 - type: cloudEmote
   id: Dizzy
+  name: cloud-emote-name-dizzy
+  priority: 4
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -104,6 +130,8 @@
 
 - type: cloudEmote
   id: Flustered
+  name: cloud-emote-name-flustered
+  priority: 5
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -112,6 +140,8 @@
 
 - type: cloudEmote
   id: Heart
+  name: cloud-emote-name-heart
+  priority: 9
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -120,6 +150,8 @@
 
 - type: cloudEmote
   id: Huh
+  name: cloud-emote-name-huh
+  priority: 23
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -128,6 +160,8 @@
 
 - type: cloudEmote
   id: Man
+  name: cloud-emote-name-man
+  priority: 7
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -136,6 +170,8 @@
 
 - type: cloudEmote
   id: No
+  name: cloud-emote-name-no
+  priority: 13
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -144,6 +180,8 @@
 
 - type: cloudEmote
   id: OwO
+  name: cloud-emote-name-owo
+  priority: 20
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -152,6 +190,8 @@
 
 - type: cloudEmote
   id: Pause
+  name: cloud-emote-name-pause
+  priority: 1
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -160,6 +200,8 @@
 
 - type: cloudEmote
   id: Question
+  name: cloud-emote-name-question
+  priority: 22
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -168,6 +210,8 @@
 
 - type: cloudEmote
   id: Shocked
+  name: cloud-emote-name-shocked
+  priority: 0
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -176,6 +220,8 @@
 
 - type: cloudEmote
   id: Sing
+  name: cloud-emote-name-sing
+  priority: 18
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -184,6 +230,8 @@
 
 - type: cloudEmote
   id: Smile
+  name: cloud-emote-name-smile
+  priority: 15
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -192,8 +240,20 @@
 
 - type: cloudEmote
   id: Smoile
+  name: cloud-emote-name-smoile
+  priority: 17
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
     sprite: _Starlight/Effects/cloud_emotes.rsi
     state: emote_smoile
+
+- type: cloudEmote
+  id: Godo
+  name: cloud-emote-name-godo
+  priority: 2
+  animationTime: 3
+  sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
+  icon:
+    sprite: _Starlight/Effects/cloud_emotes.rsi
+    state: emote_godo

@@ -34,6 +34,8 @@
   - type: ScanDetectable # Starlight
   - type: Contraband
     severity: Syndicate
+    allowedDepartments: [  ]
+    allowedJobs: [  ]
 
 # minor contraband not departmentally restricted -- improvised weapons etc
 - type: entity
@@ -195,13 +197,12 @@
     allowedJobs: [ Bartender ]
 
 - type: entity
-  id: BaseSecurityInternalAffairsContraband # Starlight
+  id: BaseSecurityLawContraband # Starlight
   parent: BaseRestrictedContraband
   abstract: true
   components:
   - type: Contraband
-    allowedDepartments: [ Security ]
-    allowedJobs: [ IAA ] # Starlight
+    allowedDepartments: [ Security, Law ] # Starlight
 
 - type: entity
   id: BaseJanitorContraband

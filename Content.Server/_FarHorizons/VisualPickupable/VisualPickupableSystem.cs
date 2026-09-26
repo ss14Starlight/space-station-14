@@ -4,9 +4,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._FarHorizons.VisualPickupable;
 
-public sealed class VisualPickupableSystem : SharedVisualPickupableSystem
+public sealed partial class VisualPickupableSystem : SharedVisualPickupableSystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     private readonly EntProtoId _cloneEnt = "VisualPickupableCloneEntity";
 

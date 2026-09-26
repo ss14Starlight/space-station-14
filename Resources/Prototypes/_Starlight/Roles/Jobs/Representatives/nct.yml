@@ -14,10 +14,9 @@
   startingGear: NanotrasenCareerTrainerGear
   icon: JobIconNanotrasenCareerTrainer
   rules: job-rules-corporate-aligned
-  supervisors: job-supervisors-captain
-  weight: -1
+  supervisors: job-supervisors-nt-personnel
+  displayWeight: 2
   overrideConsoleVisibility: false
-  canBeAntag: false
   joinNotifyCrew: true
   access:
     - Lawyer
@@ -43,7 +42,7 @@
 - type: startingGear
   id: NanotrasenCareerTrainerGear
   equipment:
-    id: NanotrasenCareerTrainerPDA
+    id: NanoTrasenCareerTrainerPDA
     ears: ClothingHeadsetNCT
     neck: Whistle
     pocket1: nctdatachip
@@ -51,7 +50,9 @@
     belt: BoxFolderNanoTrasenClipboard
     gloves: ClothingHandsGlovesColorWhite
     outerClothing: ClothingOuterCoatNCT
-    suitstorage: Flash
+  storage:
+    back:
+    - Flash
 
 - type: chameleonOutfit
   id: NanotrasenCareerTrainerChameleonOutfit

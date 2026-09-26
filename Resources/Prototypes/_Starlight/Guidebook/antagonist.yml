@@ -1,7 +1,7 @@
 - type: guideEntry
   id: Vampires
   name: guide-entry-vampires
-  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Vampire/Vampires.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Antagonist/Vampire/Vampires.xml"
   children:
   - VampiresHemomancer
   - VampiresUmbrae
@@ -11,49 +11,50 @@
 - type: guideEntry
   id: VampiresHemomancer
   name: guide-entry-vampire-hemomancer
-  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Vampire/Hemomancer.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Antagonist/Vampire/Hemomancer.xml"
 
 - type: guideEntry
   id: VampiresUmbrae
   name: guide-entry-vampire-umbrae
-  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Vampire/Umbrae.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Antagonist/Vampire/Umbrae.xml"
 
 - type: guideEntry
   id: VampiresDantalion
   name: guide-entry-vampire-dantalion
-  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Vampire/Dantalion.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Antagonist/Vampire/Dantalion.xml"
 
 - type: guideEntry
   id: VampiresGargantua
   name: guide-entry-vampire-gargantua
-  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Vampire/Gargantua.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Antagonist/Vampire/Gargantua.xml"
 
 - type: guideEntry
   id: Abductors
   name: guide-entry-abductors
-  text: "/ServerInfo/Guidebook/Antagonist/Abductors.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Antagonist/Abductors.xml"
 
 - type: guideEntry
   id: TerrorSpiders
   name: guide-entry-terror-spiders
-  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/TerrorSpider.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Antagonist/TerrorSpider.xml"
 
 - type: guideEntry
   id: Brighteye
   name: roles-antag-brighteye-name
-  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Brighteye.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Antagonist/Brighteye.xml"
 
 - type: guideEntry
   id: SELFAgent
   name: roles-antag-selfagent-name
-  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/SiliconLiberation.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Antagonist/SiliconLiberation.xml"
 
 - type: guideEntry
   id: CosmicCult
   name: guide-entry-cosmiccult
-  text: "/ServerInfo/_StarLight/Guidebook/CosmicCult/CosmicCult.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/CosmicCult/CosmicCult.xml"
   children:
   - CosmicCultMonument
+  - CosmicCultMalignRifts
   - CosmicCultInfluences
   - CosmicCultDeconversion
   - CosmicColossus
@@ -61,24 +62,29 @@
 - type: guideEntry
   id: CosmicCultMonument
   name: guide-entry-cosmiccult-monument
-  text: "/ServerInfo/_StarLight/Guidebook/CosmicCult/CosmicCultMonument.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/CosmicCult/CosmicCultMonument.xml"
 
 - type: guideEntry
   id: CosmicCultInfluences
   name: guide-entry-cosmiccult-influences
-  text: "/ServerInfo/_StarLight/Guidebook/CosmicCult/CosmicCultInfluences.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/CosmicCult/CosmicCultInfluences.xml"
 
 - type: guideEntry
   id: CosmicCultDeconversion
   name: guide-entry-cosmiccult-deconversion
-  text: "/ServerInfo/_StarLight/Guidebook/CosmicCult/CosmicCultDeconversion.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/CosmicCult/CosmicCultDeconversion.xml"
 
 - type: guideEntry
   id: CosmicColossus
   name: guide-entry-cosmiccolossus
-  text: "/ServerInfo/_StarLight/Guidebook/CosmicCult/CosmicColossus.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/CosmicCult/CosmicColossus.xml"
 
 - type: guideEntry
   id: Devil
   name: guide-entry-devil
-  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Devil.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Antagonist/Devil.xml"
+
+- type: guideEntry
+  id: CosmicCultMalignRifts
+  name: guide-entry-cosmiccult-rifts
+  text: "/ServerInfo/_Starlight/Guidebook/CosmicCult/CosmicCultMalignRifts.xml"

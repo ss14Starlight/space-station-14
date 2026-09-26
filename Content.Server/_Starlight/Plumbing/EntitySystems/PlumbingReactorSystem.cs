@@ -3,17 +3,14 @@ using Content.Server._Starlight.Plumbing.Nodes;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
-using Content.Server.UserInterface;
 using Content.Shared._Starlight.Plumbing;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Atmos;
-using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
-using Content.Shared.Power;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -28,18 +25,18 @@ namespace Content.Server._Starlight.Plumbing.EntitySystems;
 ///     target quantities, and then fully reacts the buffer and moves products to output container.
 /// </summary>
 [UsedImplicitly]
-public sealed class PlumbingReactorSystem : EntitySystem
+public sealed partial class PlumbingReactorSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
-    [Dependency] private readonly ChemicalReactionSystem _reactionSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly PlumbingPullSystem _pullSystem = default!;
-    [Dependency] private readonly PowerReceiverSystem _power = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private ChemicalReactionSystem _reactionSystem = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private PlumbingPullSystem _pullSystem = default!;
+    [Dependency] private PowerReceiverSystem _power = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     /// <summary>
     ///     Temperature tolerance for considering target reached (in Kelvin).
@@ -273,9 +270,7 @@ public sealed class PlumbingReactorSystem : EntitySystem
     }
 
     private void OnUIOpened(Entity<PlumbingReactorComponent> ent, ref BoundUIOpenedEvent args)
-    {
-        UpdateUI(ent);
-    }
+        => UpdateUI(ent);
 
     private void UpdateUI(Entity<PlumbingReactorComponent> ent)
     {

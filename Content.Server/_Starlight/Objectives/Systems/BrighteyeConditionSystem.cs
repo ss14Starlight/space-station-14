@@ -1,13 +1,13 @@
 using Content.Shared.Objectives.Components;
 using Content.Shared.Mind;
 using Content.Server._Starlight.Objectives.Components;
-using Content.Shared._Starlight.Shadekin;
+using Content.Shared._Starlight.Shadekin.Components;
 
 namespace Content.Server._Starlight.Objectives.Systems;
 
-public sealed class BrighteyeConditionSystem : EntitySystem
+public sealed partial class BrighteyeConditionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     public override void Initialize()
     {

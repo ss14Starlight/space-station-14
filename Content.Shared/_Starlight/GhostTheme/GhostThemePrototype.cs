@@ -1,11 +1,11 @@
 using Content.Shared._Starlight.Abstract.Conditions;
 using Content.Shared._Starlight.Trail;
-using Content.Shared.Starlight.Utility;
+using Content.Shared._Starlight.Utility;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.GhostTheme;
 
-[Prototype("ghostTheme")]
+[Prototype]
 public sealed partial class GhostThemePrototype : IPrototype
 {
     [IdDataField]
@@ -31,4 +31,7 @@ public sealed partial class GhostThemePrototype : IPrototype
 
     [DataField("requirements")]
     public List<BaseRequirement> Requirements = [];
+
+    [DataField]
+    public ProtoId<GhostThemeCategoryPrototype> Category { get; private set; }
 }

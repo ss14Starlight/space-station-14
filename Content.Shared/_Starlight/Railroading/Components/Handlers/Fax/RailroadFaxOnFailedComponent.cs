@@ -1,4 +1,4 @@
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Railroading.Components.Handlers.Fax;
 
 [RegisterComponent]
 public sealed partial class RailroadFaxOnFailedComponent : Component, IRailroadFaxComponent

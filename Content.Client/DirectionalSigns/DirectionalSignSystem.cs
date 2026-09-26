@@ -1,5 +1,5 @@
 ﻿using System.Numerics;
-using Content.Shared.DirectionalSigns.Components;
+using Content.Shared._Starlight.DirectionalSigns.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Graphics;
@@ -14,10 +14,10 @@ namespace Content.Client.DirectionalSigns;
 /// while keeping directional signs snapped to GRID-space cardinal directions.
 /// Keep changes to client-side sprite to avoid unnecessary network traffic.
 /// </remarks>
-public sealed class DirectionalSignSystem : EntitySystem
+public sealed partial class DirectionalSignSystem : EntitySystem
 {
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     // Cached references to the previous loop used to check for changes
     private IEye? _lastEye;

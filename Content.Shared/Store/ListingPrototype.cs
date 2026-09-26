@@ -6,6 +6,7 @@ using Content.Shared.StoreDiscount.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Store;
 
 namespace Content.Shared.Store;
 
@@ -25,6 +26,7 @@ public partial class ListingData : IEquatable<ListingData>
     public ListingData(ListingData other) : this(
         other.Name,
         other.DiscountCategory,
+        other.SecondHandCategory,
         other.Description,
         other.Conditions,
         other.Icon,
@@ -43,7 +45,8 @@ public partial class ListingData : IEquatable<ListingData>
         other.RestockTime,
         other.DiscountDownTo,
         other.DisableRefund,
-        other.ApplyToMob
+        other.ApplyToMob, // Starlight comma
+        other.DestockTime // Starlight
     )
     {
 
@@ -52,6 +55,7 @@ public partial class ListingData : IEquatable<ListingData>
     public ListingData(
         string? name,
         ProtoId<DiscountCategoryPrototype>? discountCategory,
+        ProtoId<SecondHandCategoryPrototype>? secondHandCategory,
         string? description,
         List<ListingCondition>? conditions,
         SpriteSpecifier? icon,
@@ -70,11 +74,13 @@ public partial class ListingData : IEquatable<ListingData>
         TimeSpan restockTime,
         Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> dataDiscountDownTo,
         bool disableRefund,
-        bool applyToMob
+        bool applyToMob, //Starlight comma
+        TimeSpan destockTime //Starlight
     )
     {
         Name = name;
         DiscountCategory = discountCategory;
+        SecondHandCategory = secondHandCategory;
         Description = description;
         Conditions = conditions?.ToList();
         Icon = icon;
@@ -94,6 +100,7 @@ public partial class ListingData : IEquatable<ListingData>
         DiscountDownTo = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2>(dataDiscountDownTo);
         DisableRefund = disableRefund;
         ApplyToMob = applyToMob;
+        DestockTime = destockTime; //Starlight
     }
 
     [ViewVariables]
@@ -111,6 +118,13 @@ public partial class ListingData : IEquatable<ListingData>
     /// </summary>
     [DataField]
     public ProtoId<DiscountCategoryPrototype>? DiscountCategory;
+
+    /// <summary>
+    /// Second-hand category for this listing. When set, this listing is eligible to appear in the
+    /// Second Hand uplink tab as a worn or damaged variant of a syndicate item.
+    /// </summary>
+    [DataField]
+    public ProtoId<SecondHandCategoryPrototype>? SecondHandCategory;
 
     /// <summary>
     /// The description of the listing. If empty, uses the entity's description (if present)
@@ -228,6 +242,13 @@ public partial class ListingData : IEquatable<ListingData>
     /// </summary>
     [DataField]
     public bool ApplyToMob = false;
+    #region Starlight
+    /// <summary>
+    /// Used to restrict purchase of some items after some time has passed.
+    /// </summary>
+    [DataField]
+    public TimeSpan DestockTime = TimeSpan.Zero;
+    #endregion
 
     public bool Equals(ListingData? listing)
     {
@@ -244,7 +265,8 @@ public partial class ListingData : IEquatable<ListingData>
             ProductEvent?.GetType() != listing.ProductEvent?.GetType() ||
             RestockTime != listing.RestockTime ||
             DisableRefund != listing.DisableRefund ||
-            ApplyToMob != listing.ApplyToMob)
+            ApplyToMob != listing.ApplyToMob || // Starlight OR
+            DestockTime != listing.DestockTime) // Starlight
             return false;
 
         if (Icon != null && !Icon.Equals(listing.Icon))
@@ -309,6 +331,7 @@ public sealed partial class ListingDataWithCostModifiers : ListingData
         : base(
             listingData.Name,
             listingData.DiscountCategory,
+            listingData.SecondHandCategory,
             listingData.Description,
             listingData.Conditions,
             listingData.Icon,
@@ -327,7 +350,8 @@ public sealed partial class ListingDataWithCostModifiers : ListingData
             listingData.RestockTime,
             listingData.DiscountDownTo,
             listingData.DisableRefund,
-            listingData.ApplyToMob
+            listingData.ApplyToMob, // Starlight comma
+            listingData.DestockTime // Starlight
         )
     {
     }
@@ -454,7 +478,7 @@ public sealed partial class ListingDataWithCostModifiers : ListingData
 /// </summary>
 [Prototype]
 [DataDefinition]
-public sealed partial class DiscountCategoryPrototype : IPrototype
+public sealed partial class DiscountCategoryPrototype : IPrototype, IWeightedCategory
 {
     [ViewVariables]
     [IdDataField]

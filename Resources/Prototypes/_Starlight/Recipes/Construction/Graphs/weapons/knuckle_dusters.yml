@@ -1,0 +1,13 @@
+- type: constructionGraph
+  id: ClothingHandsKnuckleDusters
+  start: start
+  graph:
+  - node: start
+    edges:
+      - to: knuckleDusters
+        steps:
+          - material: Plasteel
+            amount: 12
+            doAfter: 10
+  - node: knuckleDusters
+    entity: ClothingHandsKnuckleDusters

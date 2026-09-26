@@ -8,9 +8,9 @@ namespace Content.Client._FarHorizons.Power.UI;
 /// Initializes a <see cref="NuclearReactorWindow"/> and updates it when new server messages are received.
 /// </summary>
 [UsedImplicitly]
-public sealed class NuclearReactorBoundUserInterface : BoundUserInterface
+public sealed partial class NuclearReactorBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     [ViewVariables]
     private NuclearReactorWindow? _window;
@@ -42,6 +42,7 @@ public sealed class NuclearReactorBoundUserInterface : BoundUserInterface
         _window.ItemActionButtonPressed += OnActionButtonPressed;
         _window.EjectButtonPressed += OnEjectButtonPressed;
         _window.ControlRodModify += OnControlRodModify;
+        _window.AckButtonPressed += OnAckButtonPressed;
 
         Update();
     }
@@ -73,5 +74,12 @@ public sealed class NuclearReactorBoundUserInterface : BoundUserInterface
         if (_window is null) return;
 
         SendPredictedMessage(new ReactorControlRodModifyMessage(amount));
+    }
+
+    private void OnAckButtonPressed()
+    {
+        if (_window is null) return;
+
+        SendPredictedMessage(new ReactorAlarmAckMessage());
     }
 }

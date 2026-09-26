@@ -17,8 +17,8 @@ namespace Content.Client.Medical.Cryogenics;
 [GenerateTypedNameReferences]
 public sealed partial class CryoPodWindow : FancyWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public event Action? OnEjectPatientPressed;
     public event Action? OnEjectBeakerPressed;
@@ -28,6 +28,7 @@ public sealed partial class CryoPodWindow : FancyWindow
     {
         IoCManager.InjectDependencies(this);
         RobustXamlLoader.Load(this);
+        HealthAnalyzer.TemperatureInKelvins = true;  // Starlight
         EjectPatientButton.OnPressed += _ => OnEjectPatientPressed?.Invoke();
         EjectBeakerButton.OnPressed += _ => OnEjectBeakerPressed?.Invoke();
         Inject1.OnPressed += _ => OnInjectPressed?.Invoke(1);
@@ -186,9 +187,9 @@ public sealed partial class CryoPodWindow : FancyWindow
                 && (lowestTempRequirement != null || msg.GasMix.Temperature < fallbackTemperatureRequirement));
         var hasChemicals = (hasBeaker && !isBeakerEmpty);
 
-        UpdateChecklistItem(PressureCheck, Loc.GetString("cryo-pod-window-checklist-pressure"), hasCorrectPressure);
-        UpdateChecklistItem(ChemicalsCheck, Loc.GetString("cryo-pod-window-checklist-chemicals"), hasChemicals);
-        UpdateChecklistItem(TemperatureCheck, Loc.GetString("cryo-pod-window-checklist-temperature"), hasTemperatureCheck);
+        UpdateChecklistItem(PressureCheck, "cryo-pod-window-checklist-pressure", hasCorrectPressure);        // Starlight
+        UpdateChecklistItem(ChemicalsCheck, "cryo-pod-window-checklist-chemicals", hasChemicals);            // Starlight
+        UpdateChecklistItem(TemperatureCheck, "cryo-pod-window-checklist-temperature", hasTemperatureCheck); // Starlight
 
         var isReady = (hasCorrectPressure && hasChemicals && hasTemperatureCheck);
         var isCooling = (lowestTempRequirement != null && hasPatient
@@ -204,7 +205,7 @@ public sealed partial class CryoPodWindow : FancyWindow
 
     private void UpdateChecklistItem(Label label, string text, bool isOkay)
     {
-        label.Text = (isOkay ? text : Loc.GetString("cryo-pod-window-checklist-fail", ("item", text)));
+        label.Text = (isOkay ? Loc.GetString(text) : Loc.GetString($"{text}-bad")); // Starlight: nuke emdash
         label.FontColorOverride = (isOkay ? null : Color.Orange);
     }
 
@@ -216,7 +217,7 @@ public sealed partial class CryoPodWindow : FancyWindow
 
         float? result = null;
 
-        foreach (var (_, metabolism) in reagentProto.Metabolisms)
+        foreach (var (_, metabolism) in reagentProto.Metabolisms.Metabolisms)
         {
             foreach (var effect in metabolism.Effects)
             {

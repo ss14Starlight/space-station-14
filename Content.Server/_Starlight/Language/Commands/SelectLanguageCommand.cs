@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Shared.Administration;
 using Content.Shared._Starlight.Language;
 using Robust.Shared.Console;

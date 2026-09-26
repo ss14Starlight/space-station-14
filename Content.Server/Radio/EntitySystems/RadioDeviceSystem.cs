@@ -3,6 +3,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Interaction;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
+using Content.Shared._Goobstation.StationRadio.Components;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -13,9 +14,11 @@ using Content.Shared.Radio.EntitySystems;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Robust.Shared.Prototypes;
+using Content.Shared.Power.EntitySystems; // Goobstation - Radio Host
+// Goobstation - Radio Host
 
 #region Starlight
-using Content.Server._Starlight.Language;
+
 #endregion Starlight
 
 namespace Content.Server.Radio.EntitySystems;
@@ -23,14 +26,16 @@ namespace Content.Server.Radio.EntitySystems;
 /// <summary>
 ///     This system handles radio speakers and microphones (which together form a hand-held radio).
 /// </summary>
-public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
+public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
 {
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly InteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private InteractionSystem _interaction = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+
+    [Dependency] private SharedPowerReceiverSystem _power = default!; // Goobstation - Radio Host
 
     // Used to prevent a shitter from using a bunch of radios to spam chat.
     private HashSet<(string, EntityUid, string)> _recentlySent = new(); // Starlight edit
@@ -130,7 +135,11 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
         if (!quiet && user != null)
         {
             var state = Loc.GetString(component.Enabled ? "handheld-radio-component-on-state" : "handheld-radio-component-off-state");
-            var message = Loc.GetString("handheld-radio-component-on-use", ("radioState", state));
+            // Starlight Start
+            var message = HasComp<StationRadioServerComponent>(uid)
+                ? Loc.GetString("station-radio-server-microphone-on-use", ("radioState", state))
+                : Loc.GetString("handheld-radio-component-on-use", ("radioState", state));
+            // Starlight End
             _popup.PopupEntity(message, user.Value, user.Value);
         }
 
@@ -192,7 +201,7 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
 
     private void OnReceiveRadio(EntityUid uid, RadioSpeakerComponent component, ref RadioReceiveEvent args)
     {
-        if (uid == args.RadioSource)
+        if (uid == args.RadioSource || !_power.IsPowered(uid)) // Goobstation - Radio Host
             return;
 
         var nameEv = new TransformSpeakerNameEvent(args.MessageSource, Name(args.MessageSource));
@@ -202,10 +211,23 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
             ("speaker", Name(uid)),
             ("originalName", nameEv.VoiceName));
 
+        // Starlight - Start - Radio Host
+        var chatType = InGameICChatType.Whisper; // Default, messages from radios are sent as whispers.
+        var transmitRange = ChatTransmitRange.GhostRangeLimit; // Default, all ghosts can hear whispers from radios.
+        if (TryComp<StationRadioReceiverComponent>(uid, out var receiverComp))
+        {
+            transmitRange = ChatTransmitRange.HideChat; // Message hidden from chat if from a Station Radio.
+            chatType = receiverComp.LowVolume ? InGameICChatType.Whisper : InGameICChatType.Speak; // Radios will talk loudly if at full volume.
+        }
+        // Starlight - End
+
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
         var message = args.OriginalChatMsg.Message; // Starlight-edit: The chat system will handle the rest and re-obfuscate if needed.
-        _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimit,
-            nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language); // Starlight
+        _chat.TrySendInGameICMessage(uid, message,
+            chatType, // Starlight - Radio Host (InGameICChatType.Whisper -> chatType)
+            transmitRange,// Starlight - Radio Host (ChatTransmitRange.GhostRangeLimit -> transmitRange)
+            nameOverride: name, checkRadioPrefix: false,
+            languageOverride: args.Language); // Starlight
     }
 
     private void OnIntercomEncryptionChannelsChanged(Entity<IntercomComponent> ent, ref EncryptionChannelsChangedEvent args)

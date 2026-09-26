@@ -1,6 +1,5 @@
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
-using Content.Server.Audio;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
@@ -23,18 +22,18 @@ namespace Content.Server.NukeOps;
 /// <summary>
 ///     This handles nukeops special war mode declaration device and directly using nukeops game rule
 /// </summary>
-public sealed class WarDeclaratorSystem : EntitySystem
+public sealed partial class WarDeclaratorSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!; // SL
-    [Dependency] private readonly StationSystem _station = default!; // SL
-    [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // SL
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private AccessReaderSystem _accessReaderSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!; // SL
+    [Dependency] private StationSystem _station = default!; // SL
+    [Dependency] private AlertLevelSystem _alertLevel = default!; // SL
 
     public override void Initialize()
     {
@@ -68,6 +67,7 @@ public sealed class WarDeclaratorSystem : EntitySystem
 
     private void OnActivated(Entity<WarDeclaratorComponent> ent, ref WarDeclaratorActivateMessage args)
     {
+        var alreadyDeclared = HasWarBeenDeclared(ent); // Starlight: ignore repeat activations, refer to WarDeclaratorSystem.Starlight.cs
         var ev = new WarDeclaredEvent(ent.Comp.CurrentStatus, ent);
         RaiseLocalEvent(ref ev);
 
@@ -81,18 +81,13 @@ public sealed class WarDeclaratorSystem : EntitySystem
         if (ent.Comp.AllowEditingMessage && message != string.Empty)
             ent.Comp.Message = message;
 
-        if (ev.Status == WarConditionStatus.WarReady)
+        //if (ev.Status == WarConditionStatus.WarReady)
+        if (ev.Status == WarConditionStatus.WarReady && !alreadyDeclared) // Starlight: ignore repeat activations, refer to WarDeclaratorSystem.Starlight.cs
         {
             var title = Loc.GetString(ent.Comp.SenderTitle);
             _chat.DispatchGlobalAnnouncement(ent.Comp.Message, title, true, ent.Comp.Sound, ent.Comp.Color);
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(args.Actor):player} has declared war with this text: {ent.Comp.Message}");
-
-            // Starlight - Start
-            _audio.PlayGlobal(_audio.ResolveSound(ent.Comp.WarMusic), Filter.Broadcast(), true, AudioParams.Default.WithVolume(-5f));
-            if (ent.Comp.GammaAlert)
-                if (_station.GetStations().FirstOrNull() is { } station)
-                    _alertLevel.SetLevel(station, "gamma", false, true, true, true);
-            // Starligh - End
+            PlayWarDeclarationEffects(ent); // Starlight: war declaration effects, refer to WarDeclaratorSystem.Starlight.cs
         }
 
         UpdateUI(ent, ev.Status);

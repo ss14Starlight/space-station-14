@@ -10,6 +10,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Body.Components;
 
 /// <summary>
@@ -22,6 +23,7 @@ public sealed partial class BloodstreamComponent : Component
 {
     public const string DefaultBloodSolutionName = "bloodstream";
     public const string DefaultBloodTemporarySolutionName = "bloodstreamTemporary";
+    public const string DefaultMetabolitesSolutionName = "metabolites";
 
     /// <summary>
     /// The next time that blood level will be updated and bloodloss damage dealt.
@@ -147,10 +149,17 @@ public sealed partial class BloodstreamComponent : Component
     /// Defines which reagents are considered as 'blood' and how much of it is normal.
     /// </summary>
     /// <remarks>
-    /// Slime-people might use slime as their blood or something like that.
+    /// Default is human blood at 5 liters (600u) of blood.
     /// </remarks>
     [DataField, AutoNetworkedField]
-    public Solution BloodReferenceSolution = new([new("Blood", 300)]);
+    public Solution BloodReferenceSolution = new([new("Blood", 600)]);
+
+    /// <summary>
+    /// Optional visual color for blood reagents from this entity.
+    /// This is stored on the reagent instance, so transferred blood keeps its color.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public Color? BloodReagentColor;
 
     /// <summary>
     /// Caches the blood data of an entity.
@@ -172,6 +181,19 @@ public sealed partial class BloodstreamComponent : Component
     public string BloodTemporarySolutionName = DefaultBloodTemporarySolutionName;
 
     /// <summary>
+    /// Name/Key that <see cref="MetabolitesSolution"/> is indexed by.
+    /// </summary>
+    [DataField]
+    public string MetabolitesSolutionName = DefaultMetabolitesSolutionName;
+
+    /// <summary>
+    /// Localization prefix for bleeding and low blood level descriptions on health examine.
+    /// Hidden when set to null.
+    /// </summary>
+    [DataField]
+    public string? ExamineLocPrefix = "bloodstream-component";
+
+    /// <summary>
     /// Internal solution for blood storage
     /// </summary>
     [ViewVariables]
@@ -184,6 +206,12 @@ public sealed partial class BloodstreamComponent : Component
     /// </summary>
     [ViewVariables]
     public Entity<SolutionComponent>? TemporarySolution;
+
+    /// <summary>
+    /// Internal solution for metabolite storage
+    /// </summary>
+    [ViewVariables]
+    public Entity<SolutionComponent>? MetabolitesSolution;
 
     /// <summary>
     /// Alert to show when bleeding.

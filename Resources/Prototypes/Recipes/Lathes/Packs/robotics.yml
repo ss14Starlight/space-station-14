@@ -13,6 +13,7 @@
   - AiInterfaceCube
   - MechReactorStandard
   - EmptyOilPack
+  - DroneShell
   # Starlight-end
 
 - type: latheRecipePack
@@ -24,6 +25,7 @@
   - BorgModuleInflatable
   - BorgModuleArtistry
   - BorgModuleUppies # Starlight
+  - BorgModuleGaming # Starlight
 
 - type: latheRecipePack
   id: BorgLimbsStatic

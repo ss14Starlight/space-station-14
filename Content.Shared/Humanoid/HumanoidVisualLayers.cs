@@ -9,6 +9,7 @@ namespace Content.Shared.Humanoid
         Special, // for the cat ears
         TailExtras, // Starlight
         Tail,
+        TailOverlay, // markings that go ontop of tails
         Hair,
         FacialHair,
         UndergarmentTop,
@@ -32,7 +33,10 @@ namespace Content.Shared.Humanoid
         StencilMask,
         Ensnare,
         Fire,
-
+        FaceCover, // Far Horizons
+        FaceCoverCover, // Far Horizons
+        BodyCover, // Far Horizons
+        BodyCoverCover, // Far Horizons
         Other
     }
 }

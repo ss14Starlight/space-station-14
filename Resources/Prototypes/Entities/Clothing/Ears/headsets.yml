@@ -26,6 +26,15 @@
   - type: GuideHelp
     guides:
     - Radio
+  # Starlight, channel muting
+  - type: UserInterface
+    interfaces:
+      enum.EncryptionKeyHolderUiKey.Key:
+        type: EncryptionKeyHolderBoundUserInterface
+  - type: ActivatableUI
+    inHandsOnly: false
+    key: enum.EncryptionKeyHolderUiKey.Key
+  # Starlight End
 
 - type: entity
   parent: ClothingHeadset
@@ -74,19 +83,19 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeySalvage # Starlight
-#      - EncryptionKeyCargo # Starlight
+      - EncryptionKeyCargo
       - EncryptionKeyCommand
       - EncryptionKeyCommon
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/qm.ogg
+  - type: HeadsetLoudMode #Starlight
 
 - type: entity
   parent: [ ClothingHeadset, BaseCentcommContraband ]
   id: ClothingHeadsetCentCom
   name: CentComm headset
-  description: A headset used by the upper echelons of NanoTrasen. # SL
+  description: A headset used by the upper echelons of Central Command. # SL
   components:
   - type: ContainerFill
     containers:
@@ -100,6 +109,7 @@
   - type: RadioChime #Starlight
     sound:
       path: /Audio/_Starlight/Effects/Radio/marauder.ogg
+  - type: HeadsetLoudMode #Starlight
 
 - type: entity
   parent: [ClothingHeadset, BaseCommandContraband]
@@ -118,6 +128,7 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/captain.ogg
+  - type: HeadsetLoudMode #Starlight
 
 - type: entity
   parent: ClothingHeadset
@@ -150,6 +161,7 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/ce.ogg
+  - type: HeadsetLoudMode #Starlight
 
 - type: entity
   parent: ClothingHeadset
@@ -182,6 +194,7 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/cmo.ogg
+  - type: HeadsetLoudMode #Starlight
 
 - type: entity
   parent: ClothingHeadset
@@ -246,9 +259,10 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/rd.ogg
+  - type: HeadsetLoudMode #Starlight
 
 - type: entity
-  parent: [ClothingHeadset, BaseSecurityInternalAffairsContraband] # Starlight
+  parent: [ClothingHeadset, BaseSecurityContraband]
   id: ClothingHeadsetSecurity
   name: security headset
   description: This is used by your elite security force.

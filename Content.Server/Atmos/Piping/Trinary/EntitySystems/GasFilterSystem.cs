@@ -1,8 +1,8 @@
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Piping.Trinary.Components;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Atmos;
@@ -20,15 +20,15 @@ using Robust.Shared.Player;
 namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class GasFilterSystem : EntitySystem
+    public sealed partial class GasFilterSystem : EntitySystem
     {
         [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;
         [Dependency] private IAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-        [Dependency] private readonly SharedAmbientSoundSystem _ambientSoundSystem = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-        [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-        [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
+        [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+        [Dependency] private SharedAmbientSoundSystem _ambientSoundSystem = default!;
+        [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
+        [Dependency] private SharedPopupSystem _popupSystem = default!;
+        [Dependency] private NodeContainerSystem _nodeContainer = default!;
 
         public override void Initialize()
         {
@@ -57,14 +57,14 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             // STARLIGHT - Disable outlet node pressure check for inline filter
             if (!filter.Enabled
                 || !_nodeContainer.TryGetNodes(uid, filter.InletName, filter.FilterName, filter.OutletName, out PipeNode? inletNode, out PipeNode? filterNode, out PipeNode? outletNode)
-                || (outletNode != inletNode && outletNode.Air.Pressure >= Atmospherics.MaxOutputPressure)) // No need to transfer if target is full.
+                || (outletNode.Air.Pressure >= Atmospherics.MaxOutputPressure && filterNode.Air.Pressure >= Atmospherics.MaxOutputPressure)) // No need to transfer if targets are full.
             {
                 _ambientSoundSystem.SetAmbience(uid, false);
                 return;
             }
 
-            //starlight edit - Moved logic to a new method
-            var transferVol = GetTransferRate(filter, args, inletNode.Air, outletNode); //starlight edit
+            // We multiply the transfer rate in L/s by the seconds passed since the last process to get the liters.
+            var transferVol = filter.TransferRate * _atmosphereSystem.PumpSpeedup() * args.dt;
 
             if (transferVol <= 0)
             {
@@ -73,72 +73,47 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             }
 
             var removed = inletNode.Air.RemoveVolume(transferVol);
+            var transferredMoles = 0f; // Starlight - track total gas moved across both filter outputs
 
-            if (filter.FilteredGas.HasValue)
+            if (filter.FilteredGases.Count > 0) // Starlight
             {
-                var wantsToFilter = new GasMixture(removed.Volume) { Temperature = removed.Temperature };
+                var filteredGasMixture = new GasMixture(removed.Volume) { Temperature = removed.Temperature }; // Starlight
+                SetMixture(filter, removed, filteredGasMixture); // Starlight, split all selected gases from passthrough.
 
-                wantsToFilter.SetMoles(filter.FilteredGas.Value, removed.GetMoles(filter.FilteredGas.Value));
-                removed.SetMoles(filter.FilteredGas.Value, 0f);
+                #region Starlight
+                // Wizden only handles one selected gas. We need to apply the cap proportionally
+                // across all selected gases so multi-gas filters preserve their composition.
+                var availableMoles = filteredGasMixture.TotalMoles;
+                var limitMolesFilter =
+                    AtmosphereSystem.MolesToMaxPressure(filteredGasMixture, filterNode.Air, Atmospherics.MaxOutputPressure);
 
-                // starlight edit start - fix subtick
-                var filterVolume = GetTransferRate(filter, args, wantsToFilter, filterNode);
+                var filteredMoles = Math.Clamp(limitMolesFilter, 0f, availableMoles); // clamp against all selected gases
+                var filterRatio = availableMoles > 0f ? filteredMoles / availableMoles : 0f;
 
-                // Remove the filtered volume that actually can fit in the filter
-                var actuallyFiltered = wantsToFilter.RemoveVolume(filterVolume);
+                filteredGasMixture.Multiply(filterRatio);
+                foreach (var (gas, moles) in filteredGasMixture)
+                    removed.AdjustMoles(gas, -moles);
+                #endregion
 
-                // The remaining gas in wantsToFilter should be returned to inlet
-                var returned = wantsToFilter;
-
-                // Put gases in their respective nodes
-                _atmosphereSystem.Merge(filterNode.Air, actuallyFiltered);
-                _atmosphereSystem.Merge(inletNode.Air, returned);
-                // starlight edit end - fix subtick
-
-                _ambientSoundSystem.SetAmbience(uid, wantsToFilter.TotalMoles > 0f); // starlight edit - fix subtick
+                _atmosphereSystem.Merge(filterNode.Air, filteredGasMixture);
+                transferredMoles += filteredGasMixture.TotalMoles; // Starlight
             }
 
-            _atmosphereSystem.Merge(outletNode.Air, removed);
-        }
-
-
-        //starlight fix subtick
-        /// <summary>
-        /// Calculates how many moles of gas to transfer from the inlet to the outlet.
-        /// </summary>
-        /// <param name="filter">A filter component</param>
-        /// <param name="args">Arguments of the event</param>
-        /// <param name="inletGasMixture">Gas mixture in the inlet node (simplified for easier use)</param>
-        /// <param name="outletNode">Output for the gas</param>
-        /// <returns>Returns the flow rate in volume(L/s) of how much gas has to be moved to fill the outlet</returns>
-        private float GetTransferRate(GasFilterComponent filter, AtmosDeviceUpdateEvent args, GasMixture inletGasMixture,
-            PipeNode outletNode)
-        {
-            float wantToTransfer = filter.TransferRate * _atmosphereSystem.PumpSpeedup() * args.dt;
-
-            // Get The Volume to transfer, do not attempt to transfer more than the pipe can hold.
-            float transferVolume = Math.Min(inletGasMixture.Volume, wantToTransfer);
-
-            // Calculate how many moles does this transfer contain
-            float transferMoles =
-                inletGasMixture.Pressure * transferVolume / (inletGasMixture.Temperature * Atmospherics.R);
-
-            // Calculate how many moles can outlet still contain
-            float molesSpaceLeft = (Atmospherics.MaxOutputPressure - outletNode.Air.Pressure) * outletNode.Air.Volume /
-                                   (outletNode.Air.Temperature * Atmospherics.R);
-
-            // Get the lower value of the two, and clamp it to the transfer rate
-            float actualMolesTransfered = Math.Clamp(transferMoles, 0, Math.Max(0, molesSpaceLeft));
-
-            float actualTransferVolume = 0;
-            if (actualMolesTransfered > 0 && inletGasMixture.Pressure > 0)
+            if (removed.TotalMoles > 0f) // Starlight
             {
-                // Calculate how much volume is needed to transfer those moles
-                actualTransferVolume = actualMolesTransfered * inletGasMixture.Temperature * Atmospherics.R /
-                                       inletGasMixture.Pressure;
+                // Fraction of `removed` that can be sent to outlet without exceeding max pressure.
+                var limitRatioOutlet =
+                    AtmosphereSystem.FractionToMaxPressure(removed, outletNode.Air, Atmospherics.MaxOutputPressure);
+
+                // This might end up negative, but such cases are handled correctly by the `RemoveRatio` method.
+                var passthrough = removed.RemoveRatio(limitRatioOutlet);
+
+                _atmosphereSystem.Merge(outletNode.Air, passthrough);
+                transferredMoles += passthrough.TotalMoles; // Starlight
             }
 
-            return actualTransferVolume;
+            _atmosphereSystem.Merge(inletNode.Air, removed);
+            _ambientSoundSystem.SetAmbience(uid, transferredMoles > 0f); // Starlight
         }
 
         private void OnAnchorChanged(EntityUid uid, GasFilterComponent filter, ref AnchorStateChangedEvent args)
@@ -191,7 +166,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 return;
 
             _userInterfaceSystem.SetUiState(uid, GasFilterUiKey.Key,
-                new GasFilterBoundUserInterfaceState(MetaData(uid).EntityName, filter.TransferRate, filter.Enabled, filter.FilteredGas));
+                new GasFilterBoundUserInterfaceState(MetaData(uid).EntityName, filter.TransferRate, filter.Enabled, filter.FilteredGases)); // Starlight
         }
 
         private void UpdateAppearance(EntityUid uid, GasFilterComponent? filter = null)
@@ -222,23 +197,23 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
         private void OnSelectGasMessage(EntityUid uid, GasFilterComponent filter, GasFilterSelectGasMessage args)
         {
-            if (args.Gas.HasValue)
+            if (args.Gases.Count > 0) // Starlight
             {
-                if (Enum.IsDefined(typeof(Gas), args.Gas))
+                if (args.Gases.All(gas => Enum.IsDefined(gas))) // Starlight
                 {
-                    filter.FilteredGas = args.Gas;
+                    filter.FilteredGases = args.Gases; // Starlight: multiple gases
                     _adminLogger.Add(LogType.AtmosFilterChanged, LogImpact.Medium,
-                        $"{ToPrettyString(args.Actor):player} set the filter on {ToPrettyString(uid):device} to {args.Gas.ToString()}");
+                        $"{ToPrettyString(args.Actor):player} set the filter on {ToPrettyString(uid):device} to {ListGases(args)}"); // Starlight: Updated logging
                     DirtyUI(uid, filter);
                 }
                 else
                 {
-                    Log.Warning($"{ToPrettyString(uid)} received GasFilterSelectGasMessage with an invalid ID: {args.Gas}");
+                    Log.Warning($"{ToPrettyString(uid)} received GasFilterSelectGasMessage with (an) invalid ID(s): {ListGases(args)}"); // Starlight: Updated logging
                 }
             }
             else
             {
-                filter.FilteredGas = null;
+                filter.FilteredGases.Clear(); // Starlight
                 _adminLogger.Add(LogType.AtmosFilterChanged, LogImpact.Medium,
                     $"{ToPrettyString(args.Actor):player} set the filter on {ToPrettyString(uid):device} to none");
                 DirtyUI(uid, filter);
@@ -283,5 +258,28 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
             args.DeviceFlipped = inlet != null && filterNode != null && inlet.CurrentPipeDirection.ToDirection() == filterNode.CurrentPipeDirection.ToDirection().GetClockwise90Degrees();
         }
+
+        #region Starlight
+
+        private void SetMixture(GasFilterComponent component, GasMixture removed, GasMixture filteredGasMixture)
+        {
+            foreach (Gas gas in component.FilteredGases)
+            {
+                var moles = removed.GetMoles(gas);
+                filteredGasMixture.SetMoles(gas, moles);
+            }
+        }
+
+        private static string ListGases(GasFilterSelectGasMessage args) => string.Join(", ", args.Gases);
+
+        public void Set(EntityUid uid, GasFilterComponent component, bool value)
+        {
+            if (component.Enabled == value) return;
+            component.Enabled = value;
+            UpdateAppearance(uid, component);
+            DirtyUI(uid, component);
+        }
+
+        #endregion
     }
 }

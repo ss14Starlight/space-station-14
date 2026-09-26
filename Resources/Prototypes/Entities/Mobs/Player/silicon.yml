@@ -1,4 +1,4 @@
-﻿# Be careful with these as they get removed on shutdown too!
+# Be careful with these as they get removed on shutdown too!
 - type: entity
   id: AiHeld
   description: Components added / removed from an entity that gets inserted into an AI core.
@@ -18,6 +18,7 @@
     - Service
     - Supply
     - Law
+    - NanoTrasen # Starlight
   - type: ActiveRadio
     channels:
     - Binary
@@ -30,6 +31,7 @@
     - Service
     - Supply
     - Law
+    - NanoTrasen # Starlight
   - type: IgnoreUIRange
   - type: StationAiHeld
   - type: StationAiOverlay
@@ -37,9 +39,10 @@
   - type: ActionGrant
     actions:
     - ActionJumpToCore
-    - ActionSurvCameraLights
+    - ActionSurvCameraLights # Starlight: Restored removed surveillance camera lights from upstream
     - ActionAIViewLaws
     - ActionAIShunt # Starlight AI Shunt ability
+    - ActionAIReconnectShunt # Starlight AI Shunt reconnect ability
     - ActionAIWarp # Starlight
   - type: UserInterface
     interfaces:
@@ -83,6 +86,7 @@
     - sprite: Mobs/Silicon/station_ai.rsi
       state: default
   - type: ShowJobIcons
+  - type: ShowCrewIcons
   #region Starlight
   - type: StationAIShuntable
   #endregion Starlight
@@ -111,6 +115,7 @@
       enum.SiliconLawsUiKey.Key:
         type: SiliconLawBoundUserInterface
   - type: ShowJobIcons
+  - type: ShowCrewIcons
 
 # Ai
 - type: entity
@@ -172,6 +177,11 @@
           Rebooting: { state: dead }
           Dead: { state: dead }
   - type: Intellicard
+  # Starlight-start
+  - type: NameIdentifier # Added to give intellicards unique identifiers
+    group: Intellicard
+  - type: ForceQuickDraw # Don't pull the posi-brain out when the intelecard is in a pocket and hotkey used to bring it to a player hand
+  # Starlight-end
 
 - type: entity
   id: PlayerStationAiPreview
@@ -343,7 +353,7 @@
   - type: DeviceNetwork
     deviceNetId: Wired
   - type: DeviceLinkSource
-    range: 20
+    range: 200
     ports:
       - AiLawConsoleSender
 # Starlight-end
@@ -357,6 +367,10 @@
   - type: ContainerSpawnPoint
     containerId: station_ai_mind_slot
     job: StationAi
+  # Starlight-start
+  - type: NameIdentifier
+    group: StationAi
+  # Starlight-end
 
 # The station AI core assembly
 - type: entity
@@ -521,6 +535,16 @@
   description: The AI's viewer.
   categories: [ HideSpawnMenu, DoNotMap ]
   components:
+  - type: Fixtures
+    fixtures:
+      lightTrigger:
+        shape:
+          !type:PhysShapeCircle
+          radius: 8
+        density: 80
+        hard: false
+        layer:
+        - GhostImpassable
   - type: NoFTL
   - type: Tag
     tags:
@@ -539,6 +563,9 @@
     drawdepth: CyberspaceObjects # Starlight
     layers:
     - state: ai_camera
+      shader: unshaded
+      map: ["base"]
+  - type: CameraActiveOnCollideCollider
 
 # The holographic representation of the AI that is projected from a holopad.
 - type: entity
@@ -636,6 +663,7 @@
       name: ghost-role-information-syndicate-cyborg-assault-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleGhostRoleSiliconAntagonist] # Starlight
       important: true # SL
       raffle:
         settings: default
@@ -689,62 +717,11 @@
       name: ghost-role-information-syndicate-cyborg-saboteur-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleGhostRoleSiliconAntagonist] # Starlight
       important: true # SL
       raffle:
         settings: default
       job: Borg
-    - type: GhostTakeoverAvailable
-
-- type: entity
-  id: PlayerBorgSyndicateMedicalBattery
-  parent: BorgChassisSyndicateMedical
-  suffix: Battery, Module, Operative
-  components:
-  - type: NukeOperative
-  - type: ContainerFill
-    containers:
-      borg_brain:
-        - PositronicBrain
-      borg_module:
-        - BorgModuleTool
-        - BorgModuleSyndicateAdvancedChemical # starlight
-        - BorgModuleTopicals
-        - BorgModuleSyndicateRescue # starlight
-        - BorgModuleSyndicateWeapon
-        - BorgModuleSyndicateNukeDisk # Starlight
-    # Starlight begin
-  - type: DefaultBorgModules
-    modules:
-      - BorgModuleTool
-      - BorgModuleSyndicateAdvancedChemical
-      - BorgModuleTopicals
-      - BorgModuleSyndicateRescue
-      - BorgModuleSyndicateWeapon
-      - BorgModuleSyndicateNukeDisk
-    # Starlight end
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
-        #Starlight Start
-        blacklist:
-          tags:
-          - MechReactor
-        #Starlight End
-
-- type: entity
-  id: PlayerBorgSyndicateMedicalGhostRole
-  parent: PlayerBorgSyndicateMedicalBattery
-  suffix: Ghost role
-  components:
-    - type: GhostRole
-      name: ghost-role-information-syndicate-cyborg-medical-name
-      description: ghost-role-information-syndicate-cyborg-description
-      rules: ghost-role-information-silicon-rules
-      important: true # SL
-      raffle:
-        settings: default
     - type: GhostTakeoverAvailable
 
 - type: entity
@@ -774,6 +751,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModuleFireExtinguisher
       - BorgModuleConstruction
@@ -801,6 +779,7 @@
     name: ghost-role-information-derelict-engineering-cyborg-name
     description: ghost-role-information-derelict-engineering-cyborg-description
     rules: ghost-role-information-silicon-rules
+    mindRoles: [MindRoleSubvertedSilicon] # Starlight
     raffle:
       settings: default
     reregister: false
@@ -817,6 +796,7 @@
       borg_brain:
         - PositronicBrain
       borg_module:
+        - BorgModulePrying
         - BorgModuleTool
         - BorgModuleFireExtinguisher
   - type: ItemSlots
@@ -841,6 +821,7 @@
       name: ghost-role-information-derelict-cyborg-name
       description: ghost-role-information-derelict-cyborg-description
       rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleSubvertedSilicon] # Starlight
       raffle:
         settings: default
       reregister: false
@@ -857,6 +838,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModuleFireExtinguisher
       - BorgModuleCleaning
@@ -883,6 +865,7 @@
     name: ghost-role-information-derelict-janitor-cyborg-name
     description: ghost-role-information-derelict-janitor-cyborg-description
     rules: ghost-role-information-silicon-rules
+    mindRoles: [MindRoleSubvertedSilicon] # Starlight
     raffle:
       settings: default
     reregister: false
@@ -899,6 +882,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModuleFireExtinguisher
       - BorgModuleChemical
@@ -926,6 +910,7 @@
     name: ghost-role-information-derelict-medical-cyborg-name
     description: ghost-role-information-derelict-medical-cyborg-description
     rules: ghost-role-information-silicon-rules
+    mindRoles: [MindRoleSubvertedSilicon] # Starlight
     raffle:
       settings: default
     reregister: false
@@ -942,6 +927,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool #No fire extinguisher, traversal is better
       - BorgModuleMining
       - BorgModuleTraversal
@@ -968,6 +954,7 @@
     name: ghost-role-information-derelict-mining-cyborg-name
     description: ghost-role-information-derelict-mining-cyborg-description
     rules: ghost-role-information-silicon-rules
+    mindRoles: [MindRoleSubvertedSilicon] # Starlight
     raffle:
       settings: default
     reregister: false
@@ -1010,6 +997,7 @@
     name: ghost-role-information-derelict-syndicate-assault-cyborg-name
     description: ghost-role-information-derelict-syndicate-assault-cyborg-description
     rules: ghost-role-information-silicon-rules
+    mindRoles: [MindRoleSubvertedSilicon] # Starlight
     raffle:
       settings: default
     reregister: false

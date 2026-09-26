@@ -14,14 +14,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -44,7 +44,7 @@
   flavor: medicine
   color: "#51c38c"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         conditions:
@@ -84,7 +84,7 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Avali, Resomi, Vox ]
-        amount: 3
+        amount: 9
         # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent # Amoxla for Cyclorites is a toxin not medicine
         conditions:
@@ -106,7 +106,7 @@
   flavor: medicine
   color: "#dadada"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:GenericStatusEffect
         key: Drunk
@@ -135,7 +135,7 @@
   color: "#850063"
   worksOnTheDead: true
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
         - !type:HealthChange
           conditions:
@@ -164,7 +164,7 @@
   flavor: medicine
   color: "#ff867d"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         probability: 0.3
@@ -200,3 +200,176 @@
         visualType: Large
         messages: [ "barozine-effect-skin-burning", "barozine-effect-muscle-contract" ]
         probability: 0.1
+
+- type: reagent
+  id: Infernaline
+  name: reagent-name-infernaline
+  group: Medicine
+  desc: reagent-desc-infernaline
+  physicalDesc: reagent-physical-desc-otherworldly
+  flavor: bitter
+  color: "#DE8063"
+  metabolisms:
+    Bloodstream:
+      effects:
+        - !type:HealthChange
+          damage:
+            types:
+              Cellular: -2.5
+              Heat: 0.2
+        - !type:ModifyBleed
+          conditions:
+            - !type:ReagentCondition
+              reagent: Infernaline
+              min: 11
+          amount: 0.5
+
+        # Starlight-Start: Cyclorite Metabolism
+        - !type:AdjustReagent
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
+          reagent: Infernaline
+          amount: -0.5
+          # Starlight-End
+
+- type: reagent
+  id: Briomadine
+  name: reagent-name-briomadine
+  group: Medicine
+  desc: reagent-desc-briomadine
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: medicine
+  color: "#ffd275"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:EvenHealthChange
+        damage:
+          Brute: -3.0
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Briomadine
+          min: 20
+        damage:
+          types:
+            Asphyxiation: 1.5
+            Poison: 3.0
+      - !type:Vomit
+        conditions:
+        - !type:ReagentCondition
+          reagent: Briomadine
+          min: 40
+        probability: 0.02
+      - !type:Jitter
+        conditions:
+        - !type:ReagentCondition
+          reagent: Briomadine
+          min: 20
+      - !type:Drunk
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Briomadine
+        amount: -0.5
+
+- type: reagent
+  id: Acrileni
+  name: reagent-name-acrileni
+  group: Medicine
+  desc: reagent-desc-acrileni
+  physicalDesc: reagent-physical-desc-resinfera
+  flavor: medicine
+  color: "#99ff33"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Piercing: -1
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Acrileni
+        amount: -0.5
+
+- type: reagent
+  id: Iceialin
+  name: reagent-name-iceialin
+  group: Medicine
+  desc: reagent-desc-iceialin
+  physicalDesc: reagent-physical-desc-pungent
+  flavor: medicine
+  color: "#7DFAFF"
+  worksOnTheDead: true
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.5
+      effects:
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 4000.00
+        amount: -5000000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 1000.00
+          max: 3999.99
+        amount: -1000000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 500.00
+          max: 999.99
+        amount: -400000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 293.15
+          max: 499.99
+        amount: -100000
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages: [ "leporazine-effect-temperature-adjusting" ]
+        probability: 0.2
+
+- type: reagent
+  id: Respirazone
+  name: reagent-name-respirazone
+  group: Medicine
+  desc: reagent-desc-respirazone
+  physicalDesc: reagent-physical-desc-cloudy
+  allowedDepartments:
+  - Medical
+  flavor: medicine
+  color: "#4fb2a5"
+  metabolisms:
+    Bloodstream:
+      effects:
+      # Universal airloss treatment replacing DexalinPlus + Saline.
+      - !type:HealthChange
+        damage:
+          types:
+            Asphyxiation: -3.5
+            Bloodloss: -3
+      - !type:ModifyBloodLevel
+        amount: 3
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: HeartbreakerToxin
+          min: 1
+        reagent: HeartbreakerToxin
+        amount: -3
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Respirazone
+        amount: -0.5

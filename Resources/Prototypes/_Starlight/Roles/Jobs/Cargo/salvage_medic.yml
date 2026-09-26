@@ -1,0 +1,46 @@
+﻿- type: job
+  id: SalvageMedic
+  name: job-name-salvagemedic
+  description: job-description-salvagemedic
+  rules: job-rules-itg-aligned
+  playTimeTracker: JobSalvageMedic
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobSalvageSpecialist
+      time: 36000 # 10 hours
+    - !type:RoleTimeRequirement
+      role: JobParamedic
+      time: 18000 # 5 hours
+  icon: "JobIconSalvageMedic"
+  startingGear: SalvageMedicGear
+  supervisors: job-supervisors-itg
+  displayWeight: 4
+  access:
+  - Salvage
+  - Maintenance
+  - External
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: NoObjectiveTarget
+
+- type: startingGear
+  id: SalvageMedicGear
+  equipment:
+    eyes: ClothingEyesHudMedical
+    jumpsuit: ClothingUniformJumpsuitSalvageMedic
+    id: SalvageMedicPDA
+    ears: ClothingHeadsetSalvageLead
+
+- type: chameleonOutfit
+  id: SalvageMedicChameleonOutfit
+  job: SalvageMedic
+  equipment:
+    head: ClothingHeadHatCargosoft
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGasExplorer
+    outerClothing: ClothingOuterWinterMiner
+    neck: ClothingNeckScarfStripedBrown
+    gloves: ClothingHandsGlovesColorBlack

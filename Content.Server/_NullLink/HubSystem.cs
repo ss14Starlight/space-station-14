@@ -8,13 +8,16 @@ using Content.Shared._NullLink;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
-using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Starlight.NullLink;
 using NLServer = Starlight.NullLink.Server;
 using NLServerInfo = Starlight.NullLink.ServerInfo;
 using Content.Server.GameTicking;
+using Content.Server.Administration.Managers;
+using Content.Server._NullLink.PlayerData;
+using Content.Server.Players.PlayTimeTracking;
+using Content.Shared.Players.PlayTimeTracking;
 
 namespace Content.Server._NullLink;
 
@@ -22,14 +25,17 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
 {
     private const int MaxEventsPerTick = 2;
 
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IActorRouter _actors = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IActorRouter _actors = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private INullLinkPlayerManager _playerRoles = default!;
+    [Dependency] private PlayTimeTrackingManager _playTime = default!;
 
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IGameMapManager _gameMapManager = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IGameMapManager _gameMapManager = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -142,10 +148,14 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
             Servers = _serverData.ToDictionary(x => x.Key, x => x.Value),
             ServerInfo = _serverInfoData.ToDictionary(x => x.Key, x => x.Value)
         }, args.SenderSession);
+        SendRequirements(args.SenderSession);
     }
 
     private void OnResubscribe(NullLink.Resubscribe _, EntitySessionEventArgs args)
-        => _subscriptions[args.SenderSession] = _timing.RealTime;
+    {
+        _subscriptions[args.SenderSession] = _timing.RealTime;
+        SendRequirements(args.SenderSession);
+    }
     private void OnUnsubscribe(NullLink.Unsubscribe _, EntitySessionEventArgs args)
         => _subscriptions.Remove(args.SenderSession);
 
@@ -192,7 +202,9 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
             Description = server.Description,
             Type = (NullLink.ServerType)server.Type,
             IsAdultOnly = server.IsAdultOnly,
-            ConnectionString = server.ConnectionString
+            ConnectionString = server.ConnectionString,
+            PanicBunkerMinAccountAge = server.PanicBunkerMinAccountAge,
+            PanicBunkerMinOverallMinutes = server.PanicBunkerMinOverallMinutes
         };
     private static NullLink.ServerInfo Map(NLServerInfo info)
         => new()
@@ -200,6 +212,28 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
             Status = (NullLink.ServerStatus)info.Status,
             Players = info.Players,
             MaxPlayers = info.MaxPlayers,
+            PanicBunkerActive = info.PanicBunkerActive,
             СurrentStateStartedAt = info.CurrentStateStartedAt
         };
+
+    private Dictionary<string, bool> BuildRequirements(ICommonSession session)
+    {
+        var result = new Dictionary<string, bool>();
+
+        var overall = _playTime.TryGetTrackerTime(session, PlayTimeTrackingShared.TrackerOverall, out var time)
+            ? time!.Value
+            : TimeSpan.Zero;
+
+        foreach (var (key, server) in _serverData)
+            if (server.PanicBunkerMinOverallMinutes is { } min)
+                result[key] = overall.TotalMinutes < min;
+
+        return result;
+    }
+
+    private void SendRequirements(ICommonSession session)
+        => RaiseNetworkEvent(new NullLink.ServerRequirements
+        {
+            InsufficientPlaytime = BuildRequirements(session)
+        }, session);
 }

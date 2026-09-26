@@ -37,8 +37,8 @@
   - type: ItemToggle
     onUse: false
     onActivate: false
-    verbToggleOn: "Activate Magnet"
-    verbToggleOff: "Deactivate Magnet"
+    verbToggleOn: verb-toggle-magnet-activate
+    verbToggleOff: verb-toggle-magnet-deactivate
     soundActivate:
       collection: sparks
       params:

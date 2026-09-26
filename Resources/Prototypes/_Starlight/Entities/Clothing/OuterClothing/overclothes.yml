@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterBaseWarm]
   id: ClothingOuterBurnedRobes
   name: burned robes
   description: They are riddles with burn marks and smell like ash.
@@ -29,7 +29,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm, AllowSuitStorageClothing]
   id: ClothingOuterRedLeather
   name: red leather jacket
   description: Slick. Would look greasy with a pair of sunglasses.
@@ -44,7 +44,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm, AllowSuitStorageClothing]
   id: ClothingOuterRoughSweater
   name: rough sweater
   description: Smells like buttercups.
@@ -59,7 +59,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm, AllowSuitStorageClothing]
   id: ClothingOuterSoftSweater
   name: soft sweater
   description: Smells like determination.
@@ -74,7 +74,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm, AllowSuitStorageClothing]
   id: ClothingOuterLargeShirt
   name: large shirt
   description: It could fit two of you!
@@ -112,7 +112,7 @@
     sprite: _Starlight/Clothing/OuterClothing/OverClothes/brimstone.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterBaseWarm
   id: ClothingOuterBunnyGang
   name: Bunny Gang Robe
   description: The robe of a secretive group of bunny mercenaries.

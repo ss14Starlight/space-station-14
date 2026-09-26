@@ -1,4 +1,3 @@
-using System.Buffers;
 using System.Numerics;
 using Content.Client.Shuttles.Systems;
 using Content.Shared.Shuttles.Components;
@@ -22,8 +21,8 @@ namespace Content.Client.Shuttles.UI;
 [GenerateTypedNameReferences]
 public sealed partial class ShuttleMapControl : BaseShuttleControl
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IInputManager _inputs = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IInputManager _inputs = default!;
     private readonly SharedMapSystem _mapSystem;
     private readonly ShuttleSystem _shuttles;
     private readonly SharedTransformSystem _xformSystem;

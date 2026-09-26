@@ -1,16 +1,14 @@
-using System;
-using Content.Shared.Destructible.Thresholds;
 using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Railroading.Components.Reward;
 
 [RegisterComponent]
 public sealed partial class RailroadDeliveryRewardComponent : Component
 {
-    [DataField("delivery", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string Delivery;
+    [DataField("delivery")]
+    public EntProtoId Delivery;
 
     [DataField]
     public ProtoId<LocalizedDatasetPrototype>? Dataset = null;
