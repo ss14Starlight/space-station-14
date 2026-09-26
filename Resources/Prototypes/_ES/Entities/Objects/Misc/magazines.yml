@@ -439,3 +439,25 @@
   id: MagazineEngineerNews2
   name: "ShuttleTech #5"
   description: "A magazine containing the latest news on engineering & tech advancements. The headline reads: 'Experimental cryogenic power source research begins'"
+
+# Starlight Start
+- type: entity
+  parent: BaseMagazine
+  id: MagazineCentCommPSO
+  name: "CentComm Pamphlet: PSO Cloning Insurance"
+  description: "A pamphlet advertising 'PSO Cloning Insurance', offered for free to all employees of Central Command. They keep the original you in safe storage, send clones to work in your place, and upload the memories from the clones back to the original. Should you ever die, there is always the original you!"
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: centcomm
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#1d8c44"
+      right:
+      - state: magazine-inhand-right
+        color: "#1d8c44"
+
+# Starlight End

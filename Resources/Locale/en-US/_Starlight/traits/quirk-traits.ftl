@@ -1,2 +1,2 @@
 trait-unclonable-name = Unclonable
-trait-unclonable-desc = Your unique DNA composition is incompatible with cloning technology. You cannot be cloned.
+trait-unclonable-desc = While all crew on stations are clones, with the original body kept safe elsewhere, your unique DNA composition makes cloning your clone impossible.
