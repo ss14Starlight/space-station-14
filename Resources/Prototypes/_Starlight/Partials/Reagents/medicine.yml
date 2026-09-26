@@ -17,3 +17,38 @@
             type: [ Cyclorite ]
           reagent: Saline
           amount: -0.5
+
+- type: !PartialOnly reagent
+  id: Epinephrine
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        conditions:
+          # Soft Crit should also work
+          - !type:MobStateCondition
+            mobstate: SoftCritical
+          - !type:ReagentCondition
+            reagent: Epinephrine
+            max: 20
+        damage:
+          types:
+            Asphyxiation: -3
+            Poison: -0.5
+          groups:
+            Brute: -0.5
+            Burn: -0.5
+
+- type: !PartialOnly reagent
+  id: Inaprovaline
+  metabolisms:
+    Bloodstream:
+      effects:
+        - !type:HealthChange
+          conditions:
+            # Soft Crit should also work
+            - !type:MobStateCondition
+              mobstate: SoftCritical
+          damage:
+            types:
+              Asphyxiation: -2
