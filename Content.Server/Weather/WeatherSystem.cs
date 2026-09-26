@@ -12,17 +12,8 @@ public sealed partial class WeatherSystem : SharedWeatherSystem
     {
         base.Initialize();
 
-        InitEffects();
-
         SubscribeLocalEvent<WeatherStatusEffectComponent, ComponentInit>(OnCompInit);
         SubscribeLocalEvent<WeatherStatusEffectComponent, ComponentShutdown>(OnCompShutdown);
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        UpdateEffects(frameTime);
     }
 
     private void OnCompInit(Entity<WeatherStatusEffectComponent> ent, ref ComponentInit args)

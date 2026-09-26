@@ -115,17 +115,17 @@
     soundHit:
       collection: MetalThud
     damage:
-      groups:
-        Brute: 6
+      types:
+        Blunt: 6
   - type: PassiveDamage # Need it here to disable it.
     allowedStates:
     - Alive
-    damageCap: 0
     damage:
       types:
         Heat: 0
-      groups:
-        Brute: 0
+        Slash: 0
+        Blunt: 0
+        Piercing: 0
   - type: Tag
     tags:
       - CanPilot
@@ -265,8 +265,10 @@
     allowSelfRepair: true
     fuelCost: 10
     damage:
-      groups:
-        Brute: -30 # 10 for each type
+      types:
+        Blunt: -10
+        Piercing: -10
+        Slash: -10
   - type: HumanoidEMPComposite # HumanoidEMPComposite is used to gather EMP effects from HumanoidEMPCompositeElement components on all limbs and organs. These effects added in addition to effects in HumanoidEMP and won't work without it
   - type: HumanoidEMP # HumanoidEMP is needed to receive EMP effects, it may carry its own innate effects, but doesn't have to
     effectCooldown: 2

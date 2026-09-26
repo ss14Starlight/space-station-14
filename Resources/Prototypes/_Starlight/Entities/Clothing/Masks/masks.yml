@@ -39,6 +39,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - SecBeltEquip
   - type: HideLayerClothing
     slots:
     - Hair

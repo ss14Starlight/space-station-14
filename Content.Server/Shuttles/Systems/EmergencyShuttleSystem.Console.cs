@@ -495,9 +495,12 @@ public sealed partial class EmergencyShuttleSystem
         UpdateAllEmergencyConsoles();
 
         var time = TimeSpan.FromSeconds(_authorizeTime);
-        var shuttle = GetShuttle();
-        if (shuttle != null && TryComp<DeviceNetworkComponent>(shuttle, out var net))
+        // Starlight begin
+        var shuttles = GetShuttles();
+        foreach (var shuttle in shuttles)
         {
+            if (shuttle is null || !TryComp<DeviceNetworkComponent>(shuttle, out var net)) continue;
+            // Starlight end
             var payload = new NetworkPayload
             {
                 [ShuttleTimerMasks.ShuttleMap] = shuttle,
