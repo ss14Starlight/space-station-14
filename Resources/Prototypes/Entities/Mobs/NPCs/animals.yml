@@ -3305,7 +3305,7 @@
     speechVerb: Canine
     speechSounds: Dog
   # Starlight Start
-    allowedEmotes: [ 'Bark', 'Snarl', 'Whine', 'Howl', 'Growl', 'Yip', 'Sneeze', 'Blink' ]
+    allowedEmotes: [ 'Bark', 'Snarl', 'Whine', 'Howl', 'Growl', 'Yip', 'Sneeze', 'Yawn', 'Blink' ]
   - type: Vocal
     sounds:
       Male: Dog

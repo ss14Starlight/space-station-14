@@ -619,6 +619,8 @@
       collection: Blinks
     Sneeze:
       collection: VulpkaninSneeze
+    Yawn:
+      collection: VulpkaninYawns
 
 # cat + moth sounds because *yes*
 - type: emoteSounds
