@@ -9,3 +9,28 @@
     - type: SandboxCopyOverride
       override: !type:CreateVariants
         values: *protos
+
+# PR #6362 - Reduced pipe volume
+- type: !PartialOnly entity
+  id: GasPipeManifold
+  components:
+    - type: NodeContainer
+      nodes:
+        south0:
+          !type:PipeNode
+          volume: 25 # Was 50L
+        south1:
+          !type:PipeNode
+          volume: 25 # Was 50L
+        south2:
+          !type:PipeNode
+          volume: 25 # Was 50L
+        north0:
+          !type:PipeNode
+          volume: 25 # Was 50L
+        north1:
+          !type:PipeNode
+          volume: 25 # Was 50L
+        north2:
+          !type:PipeNode
+          volume: 25 # Was 50L

@@ -1,0 +1,13 @@
+
+# PR #6362 - Reduced pipe volume
+- type: !PartialOnly entity
+  id: TegCirculator
+  components:
+    - type: NodeContainer
+      nodes:
+        inlet:
+          !type:PipeNode
+          volume: 50 # Was 100L
+        outlet:
+          !type:PipeNode
+          volume: 50 # Was 100L
