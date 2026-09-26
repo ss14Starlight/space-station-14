@@ -166,11 +166,12 @@ public sealed partial class LatchUIController : UIController
             return;
 
         var uiScale = UIManager.RootControl.UIScale;
+        var viewportOffset = _viewport?.GlobalPosition ?? Vector2.Zero;
         var localWorld = _transform.GetWorldPosition(xform);
-        var localScreen = _eyeManager.WorldToScreen(localWorld) / uiScale;
+        var localScreen = (_eyeManager.WorldToScreen(localWorld) / uiScale) - viewportOffset;
 
         // Screen pixels per tile. Uses length so eye rotation doesn't affect it.
-        var tilePixels = ((_eyeManager.WorldToScreen(localWorld + Vector2.UnitX) / uiScale) - localScreen).Length();
+        var tilePixels = ((_eyeManager.WorldToScreen(localWorld + Vector2.UnitX) / uiScale) - viewportOffset - localScreen).Length();
 
         var top = localScreen.Y;
         var bottom = localScreen.Y;
@@ -179,7 +180,7 @@ public sealed partial class LatchUIController : UIController
             && _entities.TryGetComponent<TransformComponent>(other, out var partnerXform)
             && partnerXform.MapID == eyeMap)
         {
-            var partnerScreen = _eyeManager.WorldToScreen(_transform.GetWorldPosition(partnerXform)) / uiScale;
+            var partnerScreen = (_eyeManager.WorldToScreen(_transform.GetWorldPosition(partnerXform)) / uiScale) - viewportOffset;
             top = MathF.Min(top, partnerScreen.Y);
             bottom = MathF.Max(bottom, partnerScreen.Y);
         }
