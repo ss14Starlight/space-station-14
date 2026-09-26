@@ -1108,19 +1108,22 @@
   metabolisms:
     Bloodstream:
       effects:
-      - !type:EvenHealthChange
+      # Starlight start, use mixmax instead
+      - !type:HealthChange
         damage:
-          Brute: -1
-          Burn: -1
-          Toxin: -0.5
-      # Starlight-Start: Cyclorite Metabolism
+          mixmax:
+            value: -1
+            groups:
+            - Burn
+            - Brute
+            - Toxin
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Cyclorite ]
         reagent: Tricordrazine
         amount: -0.5
-        # Starlight-End
+        # Starlight end
 
 - type: reagent
   id: Lipozine
