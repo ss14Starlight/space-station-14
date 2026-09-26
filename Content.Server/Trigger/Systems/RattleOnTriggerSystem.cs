@@ -1,11 +1,18 @@
-using Content.Server.Administration.Logs;  // Starlight
+using Content.Server.Administration.Logs;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Pinpointer;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Trigger;
 using Content.Shared.Trigger.Components.Effects;
-using Content.Server.Chat.Systems; // Starlight
-using Content.Shared.Database; // Starlight
+using Content.Server.Chat.Systems;
+using Content.Server.StationRecords.Systems;
+using Content.Shared.StationRecords;
+using Content.Shared.Database;
+using Content.Shared.PDA;
+using Content.Server.Station.Systems;
+using Content.Shared.Access.Components;
+using Content.Shared.Access.Systems;
+using Content.Shared.Destructible;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -16,8 +23,13 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private RadioSystem _radio = default!;
     [Dependency] private NavMapSystem _navMap = default!;
-    [Dependency] private ChatSystem _chat = default!; // Starlight
-    [Dependency] private IAdminLogManager _adminLogger = default!; // Starlight
+    #region Starlight
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private StationRecordsSystem _recordsSystem = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private StationSystem _station = default!;
+    #endregion
 
     public override void Initialize()
     {
@@ -51,8 +63,50 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
         var posText = FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString(target.Value));
         var nameText = FormattedMessage.RemoveMarkupOrThrow(MetaData(target.Value).EntityName); // Starlight: Sanitize name
 
-        var message = Loc.GetString(messageId, ("user", nameText), ("position", posText)); // Starlight: Sanitized name
-        #region Starlight
+        // Starlight-start
+        // Gets the job title of the user in the manifest
+        var station = _station.GetOwningStation(target.Value);
+        var jobName = Loc.GetString("rattle-on-trigger-job-unknown");
+
+        if (TryComp<StationRecordsComponent>(station, out var stationRecords))
+        {
+            var recordId = _recordsSystem.GetRecordByName(station.Value, MetaData(target.Value).EntityName);
+            if (recordId != null)
+            {
+                var key = new StationRecordKey(recordId.Value, station.Value);
+                if (_recordsSystem.TryGetRecord<GeneralStationRecord>(key, out var entry, stationRecords))
+                    jobName = !string.IsNullOrWhiteSpace(entry.JobTitle) ? entry.JobTitle : jobName;
+            }
+        }
+
+        // If the manifest check didn't find a job, try to get one from their id card instead
+        if (jobName.Equals(Loc.GetString("rattle-on-trigger-job-unknown")))
+        {
+            if (_accessReader.FindAccessItemsInventory(target.Value, out var items))
+            {
+                foreach (var item in items)
+                {
+                    // ID Card
+                    if (TryComp<IdCardComponent>(item, out var id))
+                    {
+                        jobName = !string.IsNullOrWhiteSpace(id.LocalizedJobTitle) ? id.LocalizedJobTitle : jobName;
+                    }
+
+                    // PDA
+                    if (TryComp<PdaComponent>(item, out var pda)
+                        && pda.ContainedId != null
+                        && TryComp(pda.ContainedId, out id))
+                    {
+                        jobName = !string.IsNullOrWhiteSpace(id.LocalizedJobTitle) ? id.LocalizedJobTitle : jobName;
+                    }
+
+                    if (!jobName.Equals(Loc.GetString("rattle-on-trigger-job-unknown"))) break;
+                }
+            }
+        }
+        jobName = FormattedMessage.RemoveMarkupOrThrow(jobName);
+
+        var message = Loc.GetString(messageId, ("user", nameText), ("job", jobName), ("position", posText));
         //For global announcements, ie, DAGD nuke codes, so they can't just sabotage comms. Could also use this to announce when someone important is dead.
         if (ent.Comp.Global)
         {
@@ -68,6 +122,6 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
         {
             _radio.SendRadioMessage(ent.Owner, message, _prototypeManager.Index(radioChannel), ent.Owner, escapeMarkup: false); //Starlight swapped ent.Comp.RadioChannel for radioChannel, disabled escapeMarkup to allow for stylized messages
         }
-        #endregion
+        // Starlight-end
     }
 }
