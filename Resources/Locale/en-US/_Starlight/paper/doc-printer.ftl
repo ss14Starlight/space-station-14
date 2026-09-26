@@ -1036,7 +1036,7 @@ doc-text-printer-mech-authorization-form =
 
     Mech authorization forms require a stamp from the RD, or the Captain.
 
-    If the mech chasis is a combat class it is required that this document be stamped by RD, HoS, and Captain.[/color][/italic]
+    If the mech chassis is a combat class it is required that this document be stamped by RD, HoS, and Captain.[/color][/italic]
 
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
