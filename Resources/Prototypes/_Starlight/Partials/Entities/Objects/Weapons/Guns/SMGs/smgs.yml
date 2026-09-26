@@ -1,0 +1,90 @@
+- type: !PartialOnly entity
+  id: BaseWeaponSubMachineGun
+  components:
+  - type: Gun
+    minAngle: 10
+    maxAngle: 28
+    angleIncrease: 2
+    angleDecay: 14
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 3.3
+    maxAngleDivider: 2.8
+    angleIncreaseDivider: 3.3
+
+- type: !PartialOnly entity
+  id: WeaponSubMachineGunAtreides
+  parent: !Clear [ BaseWeaponSubMachineGun, BaseGunWieldable, BaseMajorContraband ]
+  components:
+  - type: Gun
+    minAngle: 8
+    maxAngle: 26
+    angleIncrease: 2.5
+    angleDecay: 14
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 2.7
+    maxAngleDivider: 2.6
+    angleIncreaseDivider: 3
+
+- type: !PartialOnly entity
+  id: WeaponSubMachineGunC20r
+  components:
+  - type: Gun
+    minAngle: 10 # Starlight: back to the SMG baseline
+    maxAngle: 28
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 3.3
+    maxAngleDivider: 2.8
+    angleIncreaseDivider: 3.3
+
+- type: !PartialOnly entity
+  id: WeaponSubMachineGunC20rROW
+  components:
+  - type: Gun
+    minAngle: 3
+    angleIncrease: 1
+    angleDecay: 12
+    maxAngle: 12
+
+- type: !PartialOnly entity
+  id: WeaponSubMachineGunDrozd
+  components:
+  - type: Gun
+    minAngle: 10 # Starlight: back to the SMG baseline
+    maxAngle: 28
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 3.3
+    maxAngleDivider: 2.8
+    angleIncreaseDivider: 3.3
+
+- type: !PartialOnly entity
+  id: WeaponSubMachineGunWt550
+  parent: !Clear [ BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband ]
+  components:
+  - type: Gun
+    minAngle: 5
+    maxAngle: 16
+    angleIncrease: 1.2
+    angleDecay: 12
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 1.25
+    maxAngleDivider: 1.25
+    angleIncreaseDivider: 1.5
+
+- type: !PartialOnly entity
+  id: WeaponSubMachineGunBriefcase
+  components:
+  - type: Gun
+    minAngle: 12
+    maxAngle: 26
+    angleIncrease: 2
+    angleDecay: 14

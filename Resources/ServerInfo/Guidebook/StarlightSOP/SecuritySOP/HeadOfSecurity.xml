@@ -9,7 +9,7 @@ Standard [color=#00a933]Code Green[/color] equipment is:
 <Box>
 	<GuideEntityEmbed Entity="WeaponSubMachineGunWt550"/>
 	or
-	<GuideEntityEmbed Entity="WeaponEnergySMG"/>
+	<GuideEntityEmbed Entity="WeaponSubMachineGunEnergy"/>
 </Box>
 <Box>
 	<GuideEntityEmbed Entity="Stunbaton"/>

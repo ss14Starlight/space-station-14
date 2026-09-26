@@ -4,6 +4,20 @@ server-info-connect-discord-button = Link Discord
 ui-escape-connect-steam = Link Steam
 server-info-connect-steam-button = Link Steam
 
+## Graphics
+
+ui-options-trace = Display the bullet's trace
+ui-options-trace-tooltip = If you're lagging while shooting, uncheck this box,
+                           and the hitscan won't display the texture of the smoke behind the flying bullet.
+
+ui-options-holes = Display the bullet's holes
+ui-options-holes-tooltip = If you're lagging while shooting, uncheck this box,
+                           and the hitscan won't display the texture of the bullet holes.
+
+ui-options-sparks = Display sparks
+ui-options-sparks-tooltip = If you're lagging while shooting, uncheck this box,
+                           and the hitscan won't display sparks when the bullet hits a surface.
+
 ## Accessibility
 
 ui-options-arachnophobia = Arachnophobia Mode
@@ -28,7 +42,10 @@ ui-options-radio-chime-mute = Mute Radio Chimes
 ui-options-tab-ui = User Interface
 ui-options-ui-style = User Interface Style
 ui-options-ui-sight-hash = Sight Preferences String
-ui-options-sight-rotation = Sight Rotation
+ui-options-wield-before-rack = Wield before racking
+ui-options-wield-before-rack-tooltip = Using a gun in hand wields it first; racking the bolt happens on the next press.
+ui-options-ranged-sight-rotation = Ranged Sight Rotation
+ui-options-melee-sight-rotation = Melee Sight Rotation
 ui-options-chat-width = Separated Chat Width
 ui-options-ui-ranged-sight = Sights
 ui-options-ranged-sight = Ranged Sight

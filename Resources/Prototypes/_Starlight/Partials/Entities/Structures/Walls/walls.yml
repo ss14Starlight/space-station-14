@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: WallMeat
+  components:
+  - type: Pierceable
+    level: Flesh
+
+- type: !PartialOnly entity
+  id: WallWood
+  components:
+  - type: Pierceable
+    level: Wood

@@ -186,3 +186,26 @@
   - type: FiringPin
     pinType: GunUpgrade
   - type: FiringPinExpedition
+
+- type: entity
+  parent: BaseItem
+  id: FiringPinMelted
+  name: melted firing pin
+  description: A lump of metal that used to be a firing pin, before someone kept shooting.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
+    state: rifle
+    color: "#8a5a3c"
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Weapons/Guns/Casings/casing_fall_2.ogg
+      params:
+        volume: -1
+  - type: Tag
+    tags:
+    - Trash
+  - type: StaticPrice
+    price: 0

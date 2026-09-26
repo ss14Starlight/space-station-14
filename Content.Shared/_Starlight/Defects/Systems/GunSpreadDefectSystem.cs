@@ -2,6 +2,7 @@ using Content.Shared._Starlight.Defects.Components;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Wieldable;
 using Robust.Shared.Random;
 
 namespace Content.Shared._Starlight.Defects.Systems;
@@ -17,15 +18,7 @@ public sealed partial class GunSpreadDefectSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedGunSystem _gunSystem = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<GunSpreadDefectComponent, MapInitEvent>(OnMapInit,
-            after: new[] { typeof(DefectSystem) });
-        SubscribeLocalEvent<GunSpreadDefectComponent, GunRefreshModifiersEvent>(OnRefreshModifiers);
-    }
-
+    [SubscribeLocalEvent(after: new[] { typeof(DefectSystem) })]
     private void OnMapInit(Entity<GunSpreadDefectComponent> ent, ref MapInitEvent args)
     {
         var def = ent.Comp;
@@ -65,6 +58,7 @@ public sealed partial class GunSpreadDefectSystem : EntitySystem
         }
     }
 
+    [SubscribeLocalEvent(after: new[] { typeof(SharedWieldableSystem) })]
     private void OnRefreshModifiers(Entity<GunSpreadDefectComponent> ent, ref GunRefreshModifiersEvent args)
     {
         args.MinAngle += ent.Comp.MinAngleDelta;

@@ -17,16 +17,15 @@
     slots:
     - Back
     - suitStorage
-  - type: GunRequiresWield
   - type: MagazineVisuals
     magState: mag
     steps: 4
     zeroVisible: true
   - type: Gun
-    minAngle: 20
-    maxAngle: 35
-    angleIncrease: 2
-    angleDecay: 10
+    minAngle: 25
+    maxAngle: 45
+    angleIncrease: 4
+    angleDecay: 16
     fireRate: 6
   - type: Appearance
   - type: ItemSlots
@@ -102,10 +101,10 @@
     sprintModifier: 0.85
   - type: HeldSpeedModifier
   - type: Gun
-    minAngle: 20
-    maxAngle: 27
-    angleIncrease: 2
-    angleDecay: 10
+    minAngle: 24
+    maxAngle: 40
+    angleIncrease: 3
+    angleDecay: 12
     fireRate: 5
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp28.ogg

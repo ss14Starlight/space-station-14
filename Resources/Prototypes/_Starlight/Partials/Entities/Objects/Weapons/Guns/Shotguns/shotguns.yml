@@ -1,0 +1,34 @@
+- type: !PartialOnly entity
+  id: BaseWeaponShotgunAny
+  components:
+  - type: Gun
+    minAngle: 8
+    maxAngle: 20
+    angleIncrease: 4
+    angleDecay: 10
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 2
+    maxAngleDivider: 2
+    angleIncreaseDivider: 2
+  - type: GunHeat
+    heatPerShot: 3000
+
+- type: !PartialOnly entity
+  id: WeaponShotgunSawn
+  components:
+  - type: Gun
+    minAngle: 10
+    maxAngle: 24
+    angleIncrease: 5
+    angleDecay: 10
+
+- type: !PartialOnly entity
+  id: WeaponShotgunHandmade
+  components:
+  - type: Gun
+    minAngle: 10
+    maxAngle: 24
+    angleIncrease: 5
+    angleDecay: 10

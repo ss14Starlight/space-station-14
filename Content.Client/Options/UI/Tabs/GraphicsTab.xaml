@@ -26,6 +26,12 @@
                 <CheckBox Name="TracesCheckBox"
                           Text="{Loc 'ui-options-trace'}"
                           ToolTip="{Loc 'ui-options-trace-tooltip'}" />
+                <CheckBox Name="HolesCheckBox"
+                          Text="{Loc 'ui-options-holes'}"
+                          ToolTip="{Loc 'ui-options-holes-tooltip'}" />
+                <CheckBox Name="SparksCheckBox"
+                          Text="{Loc 'ui-options-sparks'}"
+                          ToolTip="{Loc 'ui-options-sparks-tooltip'}" />
                 <CheckBox Name="ClothingStainsCheckBox" Text="{Loc 'ui-options-show-stains'}" />
                 <!-- Interface -->
                 <Label Text="{Loc 'ui-options-interface-label'}" StyleClasses="LabelKeyText"/>
