@@ -47,18 +47,15 @@ public sealed partial class StasisSystem : SharedStasisSystem
             if (comp.NextHeal > curTime || !comp.IsInStasis)
                 continue;
 
-            if (!TryComp<DamageableComponent>(uid, out var damageComponent))
-                continue;
-
             // Negative because your healing
             var modifier = _mobState.IsCritical(uid) ? -comp.CritHealingModifier : -1.0f;
-            var oldDamageCompTotal = damageComponent.TotalDamage;
+            var oldDamageCompTotal = _damageable.GetTotalDamage(uid);
 
             _damageable.TryChangeDamage(uid, modifier * comp.HealingPerUpdate, true, origin: uid);
 
             _bloodstream.TryModifyBleedAmount(uid, modifier * comp.BleedHealPerUpdate);
 
-            var amountHealed = oldDamageCompTotal - damageComponent.TotalDamage;
+            var amountHealed = oldDamageCompTotal - _damageable.GetTotalDamage(uid);
             if(amountHealed > 0)
             {
                 comp.DamageHealed += amountHealed;

@@ -13,6 +13,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Containers.ItemSlots;
 using Content.Server._Starlight.Silicons.Borgs;
 using Content.Shared._Starlight.Silicons.Borgs;
+using Content.Shared.Damage.Systems;
 using Content.Shared.NameIdentifier;
 using Content.Shared.NameModifier.EntitySystems;
 
@@ -23,6 +24,7 @@ public sealed partial class BorgSystem
 {
     [Dependency] private EmagSystem _emag = default!;
     [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 #region Starlight
     [Dependency] private BorgLockdownSystem _lockdown = default!;
     [Dependency] private NameModifierSystem _nameModifierSystem = default!;
@@ -203,7 +205,7 @@ public sealed partial class BorgSystem
             return 1;
         }
 
-        return 1 - ((FixedPoint2)(damageable.TotalDamage / threshold)).Float();
+        return 1 - ((FixedPoint2)(_damageable.GetTotalDamage((uid, damageable)) / threshold)).Float();
     }
 
     /// <summary>

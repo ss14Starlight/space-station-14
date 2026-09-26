@@ -34,7 +34,11 @@ public sealed partial class RepairableSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (!TryComp(ent.Owner, out DamageableComponent? damageable) || damageable.TotalDamage == 0)
+        if (!TryComp(ent.Owner, out DamageableComponent? damageable))
+            return;
+
+        var totalDamage = _damageableSystem.GetTotalDamage((ent.Owner, damageable));
+        if (totalDamage == 0)
             return;
 
         if (ent.Comp.DamageValue != null)
@@ -44,7 +48,7 @@ public sealed partial class RepairableSystem : EntitySystem
         else
             RepairAllDamage((ent, damageable), args.User);
 
-        args.Repeat = ent.Comp.AutoDoAfter && damageable.TotalDamage > 0;
+        args.Repeat = ent.Comp.AutoDoAfter && totalDamage > 0;
         args.Args.Event.Repeat = args.Repeat;
         args.Handled = true;
 
@@ -103,7 +107,7 @@ public sealed partial class RepairableSystem : EntitySystem
         // Starlight-start: Only try repair the target if it is damaged or bleeding
         bool isBleeding = TryComp<BloodstreamComponent>(ent, out var bloodstream) && bloodstream.BleedAmount > 0; //for beings that are repaired with the welder, but can bleed (like IPCs)
 
-        if ((!TryComp<DamageableComponent>(ent.Owner, out var damageable) || damageable.TotalDamage == 0) && !isBleeding)
+        if (_damageableSystem.GetTotalDamage(ent.Owner) == 0 && !isBleeding)
         // Starlight-end
             return;
 
