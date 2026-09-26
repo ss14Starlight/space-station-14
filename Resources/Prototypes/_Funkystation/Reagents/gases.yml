@@ -5,7 +5,7 @@
   desc: reagent-desc-bz
   physicalDesc: reagent-physical-desc-gaseous
   flavor: bitter
-  color: "#9370db"
+  color: "#90560b"
   metabolisms:
     Respiration: # Starlight
       effects:
@@ -113,150 +113,53 @@
         reagent: BZMetabolites
         amount: 1.8
 
-- type: reagent
-  id: Healium
-  name: reagent-name-healium
-  desc: reagent-desc-healium
-  physicalDesc: reagent-physical-desc-gaseous
-  flavor: strange
-  color: "#90560b"
-  metabolisms:
-    Respiration: # Starlight
-      effects:
-      # Starlight BEGIN
-      - !type:EvenHealthChange
-        ignoreResistances: true
-        maxScale: 10
-        damage:
-          Brute: -1.4
-          Burn: -1.1
-          Toxin: -0.8
-      - !type:ModifyBleed
-        maxScale: 7
-        amount: -0.12
-      # Starlight END
-
-      - !type:PopupMessage
-        conditions:
-        - !type:ReagentCondition
-          reagent: Healium
-          min: 4
-        - !type:BloodReagentCondition
-          reagent: NitrosylPlasmide
-          max: 0.1
-        type: Local
-        visualType: Medium
-        messages: [ "effect-sleepy" ]
-        probability: 0.01
-
-      - !type:ModifyStatusEffect
-        conditions:
-        - !type:ReagentCondition
-          reagent: Healium
-          min: 8
-        - !type:BloodReagentCondition
-          reagent: NitrosylPlasmide
-          max: 0.01
-        effectProto: StatusEffectForcedSleeping
-        type: Update
-        time: 1
-
-      - !type:Drunk
-        conditions:
-        - !type:ReagentCondition
-          reagent: Healium
-          min: 4
-        boozePower: 35
-
-    Bloodstream: # Starlight
-      effects:
-      - !type:HealthChange
-        damage:
-          groups:
-            Burn: -0.1
-            Toxin: -0.1
-            Brute: -0.1
-
-      - !type:ModifyStatusEffect
-        conditions:
-        - !type:ReagentCondition
-          reagent: Healium
-          min: 6
-        effectProto: StatusEffectForcedSleeping
-        type: Update
-        time: 3
-
-      - !type:Drunk
-        conditions:
-        - !type:ReagentCondition
-          reagent: Healium
-          min: 3
-        boozePower: 20 # Starlight: Down from 150
-        # needs to be made into hypothium to work well as a chem, use as a gas otherwise
-
-- type: reagent
+- type: reagent # Starlight Start: Nitrium basically completely reworked. Nitrosyl plasmide does the actual heavy lifting mechanically.
   id: Nitrium
   name: reagent-name-nitrium
   desc: reagent-desc-nitrium
   physicalDesc: reagent-physical-desc-gaseous
   flavor: sour
-  color: "#90560B"
+  color: "#fa8072"
   metabolisms:
-    Respiration: # Starlight
+    Respiration:
       effects:
-      - !type:NitriumMovementSpeedModifier
+      - !type:AddReagentToBloodstream
         conditions:
         - !type:ReagentCondition
           reagent: Nitrium
-          min: 1
-          max: 8
-        walkSpeedModifier: 1.25
-        sprintSpeedModifier: 1.25
-
-      - !type:NitriumMovementSpeedModifier
-        conditions:
-        - !type:ReagentCondition
-          reagent: Nitrium
-          min: 8
-          max: 12
-        walkSpeedModifier: 1.4
-        sprintSpeedModifier: 1.4
-
-      - !type:NitriumMovementSpeedModifier
-        conditions:
-        - !type:ReagentCondition
-          reagent: Nitrium
-          min: 12
-        walkSpeedModifier: 1.6
-        sprintSpeedModifier: 1.6
+          min: .1
+          max: 5
+        reagent: NitrosylPlasmide
+        amount: .5
+        maxScale: 2
 
       - !type:AddReagentToBloodstream
         conditions:
         - !type:ReagentCondition
           reagent: Nitrium
-          min: 6
+          min: 1
+          max: 1.5
         reagent: NitrosylPlasmide
-        amount: 2.5
-        maxScale: 2 # Starlight
+        amount: 1
+        maxScale: 2
+
+      - !type:AddReagentToBloodstream
+        conditions:
+        - !type:ReagentCondition
+          reagent: Nitrium
+          min: 1.5
+        reagent: NitrosylPlasmide
+        amount: 1.5
+        maxScale: 2
 
       - !type:GenericStatusEffect
         conditions:
         - !type:ReagentCondition
           reagent: Nitrium
-          min: 8
+          min: 5
         key: Stutter
         component: StutteringAccent
-        time: 5
-
-      - !type:HealthChange
-        conditions:
-        - !type:ReagentCondition
-          reagent: Nitrium
-          min: 10
-        ignoreResistances: true
-        damage:
-          types:
-            Asphyxiation: 3
+        time: 5 # Starlight End
 
 - type: reagent
   id: Pluoxium
