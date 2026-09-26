@@ -32,6 +32,7 @@
                 <CheckBox Name="SparksCheckBox"
                           Text="{Loc 'ui-options-sparks'}"
                           ToolTip="{Loc 'ui-options-sparks-tooltip'}" />
+                <CheckBox Name="ClothingStainsCheckBox" Text="{Loc 'ui-options-show-stains'}" />
                 <!-- Interface -->
                 <Label Text="{Loc 'ui-options-interface-label'}" StyleClasses="LabelKeyText"/>
                 <ui:OptionDropDown Name="DropDownUIScale" Title="{Loc 'ui-options-scale-label'}" />

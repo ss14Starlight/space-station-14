@@ -94,6 +94,7 @@ public sealed partial class GraphicsTab : Control
         Control.AddOptionCheckBox(CCVars.ParallaxLowQuality, ParallaxLowQualityCheckBox);
         // Starlight-start
         Control.AddOptionCheckBox(StarlightCCVars.TracesEnabled, TracesCheckBox);
+        Control.AddOptionCheckBox(StarlightCCVars.ShowClothingStains, ClothingStainsCheckBox);
         Control.AddOptionCheckBox(StarlightCCVars.HolesEnabled, HolesCheckBox);
         Control.AddOptionCheckBox(StarlightCCVars.SparksEnabled, SparksCheckBox);
         // Starlight-end
