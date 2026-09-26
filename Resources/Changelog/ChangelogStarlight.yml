@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: Removed my sani- i mean the debug gens from most evac shuttles.
-    type: Remove
-  id: 408490
-  time: '2026-09-12T07:01:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6056
-- author: Johnny
-  changes:
   - message: Changed most of the evacuation shuttles to use the cooler chairs.
     type: Tweak
   id: 408491
@@ -2799,4 +2792,11 @@ Entries:
   id: 408889
   time: '2026-09-26T10:42:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6358
+- author: Xale
+  changes:
+  - message: Reduced the fire intensity scaling of tainted clothing being set on fire. It is still very lethal if ignored.
+    type: Tweak
+  id: 408890
+  time: '2026-09-26T10:42:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6352
 Order: -1
