@@ -39,7 +39,7 @@
     belt: ClothingBeltMilitaryWebbingERT
     pocket2: WeaponPDW9
     suitstorage: WeaponDisablerSMG
-  storage:
+  storage: !Clear
     back:
     - Binoculars
     - HoloprojectorField
@@ -70,7 +70,7 @@
   id: ERTLeaderGearArmed
   equipment:
     suitstorage: WeaponRifleM52
-  storage:
+  storage: !Clear
     back:
     - MedkitCombatFilled
     - MagazineRifleM52FMJ
@@ -116,7 +116,7 @@
     belt: ChainsawSword
     neck: ClothingNeckStoleChaplain
     pocket2: WeaponPistolColdCase
-  storage:
+  storage: !Clear
     back:
     - JugWater
     - JugWater
@@ -163,7 +163,7 @@
     belt: ClothingBeltMilitaryWebbingERT
     pocket2: WeaponPDW9
     suitstorage: PortableRecharger
-  storage:
+  storage: !Clear
     back:
     - RPD
     - trayScanner
@@ -194,7 +194,7 @@
   equipment:
     suitstorage: PortableRecharger
   storage:
-    back:
+    back: !Clear
     - RPD
     - WelderIndustrialAdvanced
     - WeaponLaserCarbine
@@ -236,7 +236,7 @@
     belt: ClothingBeltMilitaryWebbingERT
     pocket2: WeaponPDW9
     suitstorage: WeaponDisablerSMG
-  storage:
+  storage: !Clear
     back:
     - WeaponPistolMk58Nonlethal
     - MagazinePistolRubber
@@ -265,7 +265,8 @@
   id: ERTSecurityGearArmedRifle
   equipment:
     suitstorage: WeaponRiflePeacemaker
-  storage:
+  inhand: !Clear
+  storage: !Clear
     back:
     - MedicatedSuture
     - GrenadeShrapnel
@@ -284,7 +285,7 @@
   id: ERTSecurityGearArmedGrenade
   equipment:
     suitstorage: WeaponLauncherHydraLethal
-  storage:
+  storage: !Clear
     back:
     - GrenadeBlast
     - GrenadeBlast
@@ -308,7 +309,7 @@
   id: ERTSecurityGearArmedVanguard
   equipment:
     suitstorage: WeaponSubMachineGunWt550r
-  storage:
+  storage: !Clear
     back:
     - ClothingShoesBootsJump
     - TelescopicShield
@@ -333,7 +334,7 @@
   id: ERTSecurityGearArmedShotgun
   equipment:
     suitstorage: WeaponShotgunCombat
-  storage:
+  storage: !Clear
     back:
     - BoxLethalshot
     - BoxDetonator
@@ -356,6 +357,7 @@
 # Medical
 - type: !PartialOnly job
   id: ERTMedical
+  icon: "JobIconERTMedical"
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 72h
@@ -390,21 +392,19 @@
     ears: ClothingHeadsetCentCom
     belt: ClothingBeltMilitaryWebbingERT
     pocket2: WeaponPDW9
-  storage:
+  storage: !Clear
     back:
     - JugGoldenBicaridine
     - AutoMenderBruteFilled
     - JugPunctTranex
     - JugDexPlusSaline
-    - ChemistryBottleAmoxla
-    - ChemistryBottleDiphenhydramine
     - JugGoldenDermaline
     - AutoMenderBurnFilled
+    - ChemistryBottleAmoxla
+    - ChemistryBottleDiphenhydramine
     - ChemistryBottleOmnizine
     - ChemistryBottleOmnizine
-    - TelescopicShield
     - Hypospray
-    - BodyBagLockableFolded
     - BodyBagLockableFolded
     belt:
     - CombatMedipen
@@ -422,17 +422,14 @@
   id: ERTMedicalGearArmed
   equipment:
     suitstorage: WeaponIK60
-  storage:
+  storage: !Clear
     back:
     - JugGoldenBicaridine
     - AutoMenderBruteFilled
     - JugPunctTranex
     - JugDexPlusSaline
-    - ChemistryBottleOmnizine
-    - ChemistryBottleAmoxla
     - JugGoldenDermaline
     - AutoMenderBurnFilled
-    - TelescopicShield
     - Hypospray
     - MagazineBatteryLr30
     - MagazineBatteryLr30
@@ -470,7 +467,7 @@
     belt: ClothingBeltMilitaryWebbingERT
     pocket2: WeaponPDW9
     suitstorage: WeaponLauncherHydra
-  storage:
+  storage: !Clear
     back:
     - TrashBag
     - SoapNT
@@ -485,8 +482,6 @@
     - LightReplacer
     - Holoprojector
     - Plunger
-    - Screwdriver
+    - ToolDebug
     - SprayBottleWater
-    - MoproachCube
-    - MoproachCube
-    - MoproachCube
+    - CCMoproachCubeWrapped
