@@ -123,6 +123,9 @@
   id: TriggerCitrus
   tip: artifact-trigger-hint-citrus
   components:
+  - type: XATCompNearby # Starlight: Citrus items  by proximity
+    requireComponentWithName: Citrus
+    radius: 2
   - type: XATReactive
     reagents:
     - Lemonade
@@ -134,7 +137,9 @@
     - JuiceOrange # Starlight start
     - ScrewdriverCocktail # more orange than vodka
     - Starkist # same
-    - Mimosa # Starlight end, same
+    - Mimosa # same
+    - ArnoldPalmer
+    - Radler # Starlight end
 
 - type: xenoArchTrigger
   id: TriggerSilicon
@@ -189,7 +194,8 @@
   tip: artifact-trigger-hint-tech-disc
   components:
   - type: XATCompNearby
-    requireComponentWithName: TechnologyDisk
+    #requireComponentWithName: TechnologyDisk
+    requireComponentWithName: FloppyDisk # Starlight: more broad match than just technology disks
     radius: 2
 
 - type: xenoArchTrigger

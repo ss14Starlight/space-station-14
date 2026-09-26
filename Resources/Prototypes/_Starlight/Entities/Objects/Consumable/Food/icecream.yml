@@ -207,6 +207,7 @@
   id: FoodSherbetIceCream
   description: Lemon, Lime, Orange, and Strawberry in a fruity tangy blend.
   components:
+  - type: Citrus
   - type: FlavorProfile
     flavors:
     - sherbetIceCream
@@ -256,6 +257,7 @@
   id: FoodOrangeSwirlIceCream
   description: Vanilla ice cream with orange sherbet swirled together.
   components:
+  - type: Citrus
   - type: FlavorProfile
     flavors:
     - orangeSwirlIceCream
@@ -586,6 +588,7 @@
   id: FoodWehIceCream
   description: Lime ice cream in the shape of a beloved plush.
   components:
+  - type: Citrus
   - type: FlavorProfile
     flavors:
     - wehIceCream
@@ -661,6 +664,7 @@
   id: FoodDimensionalIceCream
   description: An ice cream that will make you feel different dimensions.
   components:
+  - type: Citrus
   - type: FlavorProfile
     flavors:
     - dimensionalIceCream
@@ -759,6 +763,7 @@
   id: FoodFluffyBoyIceCream
   description: The power of fluffy boys shines in this ice cream.
   components:
+  - type: Citrus
   - type: FlavorProfile
     flavors:
     - fluffyBoyIceCream
@@ -903,6 +908,7 @@
   id: FoodIanIceCream
   description: Orange and vanilla ice cream in the shape of beloved Ian.
   components:
+  - type: Citrus
   - type: FlavorProfile
     flavors:
     - ianIceCream
@@ -949,6 +955,7 @@
   id: FoodNTMarineIceCream
   description: Sponsored blueberry and lime ice cream to enlist your taste buds.
   components:
+  - type: Citrus
   - type: FlavorProfile
     flavors:
     - ntMarineIceCream
@@ -995,6 +1002,7 @@
   id: FoodRisingSunIceCream
   description: Raspberry, orange, and lemon mixed together to make the ultimate tart ice cream.
   components:
+  - type: Citrus
   - type: FlavorProfile
     flavors:
     - risingSunIceCream
@@ -1041,6 +1049,7 @@
   id: FoodStunBatonIceCream
   description: An orange ice cream fashioned in the shape of a stun baton. Now you can harm baton with ice cream!
   components:
+  - type: Citrus
   - type: MeleeWeapon
     damage:
       types:
@@ -1071,6 +1080,7 @@
   id: FoodSyndieLandIceCream
   description: Cherry and lime ice cream in the shape of your favorite pod war protagonists.
   components:
+  - type: Citrus
   - type: FlavorProfile
     flavors:
     - syndieLandIceCream

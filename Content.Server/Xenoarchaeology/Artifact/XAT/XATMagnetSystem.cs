@@ -19,6 +19,8 @@ public sealed partial class XATMagnetSystem : BaseQueryUpdateXATSystem<XATMagnet
     /// <summary> Pre-allocated and re-used collection.</summary>
     private HashSet<Entity<MagbootsComponent>> _magbootEntities = new();
 
+    partial void CheckActiveMagnets(Entity<XenoArtifactComponent> artifact, Entity<XATMagnetComponent, XenoArtifactNodeComponent> node); // Starlight: Active magnetic inventories trigger the node too
+
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -42,6 +44,8 @@ public sealed partial class XATMagnetSystem : BaseQueryUpdateXATSystem<XATMagnet
             Trigger(artifact, node);
             break;
         }
+
+        CheckActiveMagnets(artifact, node); // Starlight
     }
 
     private void OnMagnetActivated(ref SalvageMagnetActivatedEvent args)
