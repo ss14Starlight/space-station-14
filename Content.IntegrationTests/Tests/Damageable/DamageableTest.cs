@@ -19,8 +19,8 @@ namespace Content.IntegrationTests.Tests.Damageable
     public sealed class DamageableTest : GameTest
     {
         private const string TestDamageableEntityId = "TestDamageableEntityId";
-        private const string TestGroupedDamageEntityId = "TestGroupedDamageEntityId";
-        private const string TestMixMaxDamageEntityId = "TestMixMaxDamageEntityId";
+        private const string TestGroupedDamageEntityId = "TestGroupedDamageEntityId"; // Starlight
+        private const string TestMixMaxDamageEntityId = "TestMixMaxDamageEntityId"; // Starlight
         private const string TestGroup1 = "TestGroup1";
         private const string TestGroup2 = "TestGroup2";
         private const string TestGroup3 = "TestGroup3";
@@ -123,6 +123,7 @@ namespace Content.IntegrationTests.Tests.Damageable
         - {TestDamage2a}
 ";
 
+        #region Starlight
         [Test]
         public async Task TestGroupCombinendHealing()
         {
@@ -219,6 +220,7 @@ namespace Content.IntegrationTests.Tests.Damageable
                     Is.EqualTo(FixedPoint2.New(0.1f)));
             });
         }
+        #endregion
 
         [Test]
         public async Task TestDamageableComponents()
@@ -381,6 +383,7 @@ namespace Content.IntegrationTests.Tests.Damageable
                 sDamageableSystem.ChangeDamage(uid, new DamageSpecifier(group3, -100));
                 Assert.That(sDamageableSystem.GetTotalDamage(ent), Is.EqualTo(FixedPoint2.Zero));
 
+                #region Starlight
                 // Mix-max uses the normal negative healing convention and heals the largest value first.
                 damage = new DamageSpecifier(type3a, FixedPoint2.New(0.6f))
                          + new DamageSpecifier(type3b, FixedPoint2.New(0.2f))
@@ -404,6 +407,7 @@ namespace Content.IntegrationTests.Tests.Damageable
                     Assert.That(sDamageableSystem.GetAllDamage(uid).DamageDict[type2a.ID], Is.EqualTo(FixedPoint2.Zero));
                     Assert.That(sDamageableSystem.GetAllDamage(uid).DamageDict[type3c.ID], Is.EqualTo(FixedPoint2.New(0.1f)));
                 });
+            #endregion
             });
         }
     }

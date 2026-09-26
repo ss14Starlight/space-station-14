@@ -42,6 +42,7 @@ public sealed class DamageSpecifierTest
         Assert.That(difference, Is.EqualTo(output5));
     }
 
+    #region Starlight
     [Test]
     public void TestGroupAndMixMaxOperations()
     {
@@ -69,6 +70,7 @@ public sealed class DamageSpecifierTest
             Assert.That(-input, Is.EqualTo(input.Invert()));
         });
     }
+    #endregion
 
     private static readonly Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2> Input1 = new()
     {
