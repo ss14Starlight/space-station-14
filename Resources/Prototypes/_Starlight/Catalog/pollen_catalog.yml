@@ -16,12 +16,47 @@
   description: pollen-floral-t1-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: alert_pollen }
   cost:
-    PollenPoints: 1
+    PollenPoints: 2
   categories:
   - PollenTreeFloral
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: PollenTreeFloralT2BloomingMoss
+  name: pollen-floral-t2-name
+  description: pollen-floral-t2-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: alert_pollen }
+  cost:
+    PollenPoints: 3
+  categories:
+  - PollenTreeFloral
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - PollenTreeFloralT1AlertPollen
+
+- type: listing
+  id: PollenTreeFloralT3AdvancedPollen
+  name: pollen-floral-t1-name
+  description: pollen-floral-t1-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: alert_pollen }
+  cost:
+    PollenPoints: 4
+  categories:
+  - PollenTreeFloral
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - PollenTreeFloralT2Whatever
+    blacklist:
+    - PollenTreeBarkT3SapSerum
+    - PollenTreeMushroomT3SporeCloud
 
 # Bark
 
@@ -33,7 +68,7 @@
   productAction: PollenTreeBarkT1ActionMakeWood
   applyToMob: true
   cost:
-    PollenPoints: 1
+    PollenPoints: 2
   categories:
   - PollenTreeBark
   conditions:
@@ -71,6 +106,9 @@
   - !type:BuyBeforeCondition
     whitelist:
     - PollenTreeBarkT2Harden
+    blacklist:
+    - PollenTreeFloralT3AdvancedPollen
+    - PollenTreeMushroomT3SporeCloud
 
 
 # Mushroom
@@ -124,3 +162,6 @@
   - !type:BuyBeforeCondition
     whitelist:
     - PollenTreeMushroomT2hivemind
+    blacklist:
+    - PollenTreeFloralT3AdvancedPollen
+    - PollenTreeBarkT3SapSerum

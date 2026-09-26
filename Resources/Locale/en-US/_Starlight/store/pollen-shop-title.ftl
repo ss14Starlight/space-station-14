@@ -15,6 +15,12 @@ pollen-floral-t1-desc = You'll release distress pollen automatically the moment 
 pollen-alert-pollen-self = You release a wave of distress pollen into the air.
 pollen-alert-pollen = You can feel distress pollen coming from near {$location}.
 
+pollen-floral-t2-name = Blooming Moss
+pollen-floral-t2-desc = Cultivate a layer of insulating moss across your bark, blunting both heat and cold.
+
+pollen-floral-t3-name = Advanced Pollen
+pollen-floral-t3-desc = .
+
 pollen-bark-t1-name = Make Wood
 pollen-bark-t1-desc = Cut off some of your body for fresh wood.
 pollen-bark-t2-name = Harden

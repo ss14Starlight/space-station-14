@@ -14,7 +14,7 @@ public sealed partial class PollenCollectorComponent : Component
 
     /// <summary>How many plants get rolled into <see cref="Pollen"/> on spawn.</summary>
     [DataField]
-    public int PlantCount = 5;
+    public int PlantCount = 7;
 
     /// <summary>Points granted per collected plant.</summary>
     [DataField]

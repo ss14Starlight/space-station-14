@@ -25,8 +25,7 @@ using Content.Shared.Popups;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
 using Content.Server.Pinpointer;
-using Content.Server.Chat.Managers;
-using Robust.Server.Player;
+using Content.Shared._Starlight.Temperature.Components;
 
 namespace Content.Server._Starlight.Pollen.System;
 
@@ -51,13 +50,13 @@ public sealed partial class PollenShopSystem : EntitySystem
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private NavMapSystem _navMap = default!;
-    [Dependency] private IChatManager _chatManager = default!;
-    [Dependency] private IPlayerManager _playerManager = default!;
     private static readonly EntProtoId<ObjectiveComponent> _pollenObjective = "PollenCollectionObjective";
     private static readonly EntProtoId _sporeCloudEmitter = "PollenSporeCloudEmitter";
     private static readonly EntProtoId _hardenStatusEffect = "PollenTreeBarkT2PassiveHardenEffect";
     private static readonly EntProtoId _pollenShopAction = "ActionOpenPollenShop";
     private static readonly EntProtoId _woodPlankStack10 = "MaterialWoodPlank10";
+    private const string BloomingMossListingId = "PollenTreeFloralT2BloomingMoss";
+    private static readonly EntProtoId _mossFireResistStatusEffect = "PollenTreeFloralT2PassiveMossFireResistEffect";
     private const string HardenListingId = "PollenTreeBarkT2Harden";
     private static readonly ProtoId<ReagentPrototype> _phytovitalin = "Phytovitalin";
 
@@ -110,6 +109,12 @@ public sealed partial class PollenShopSystem : EntitySystem
         {
             EnsureComp<PollenAlertPollenComponent>(args.Buyer);
         }
+
+        if (args.ListingId == BloomingMossListingId)
+        {
+            GrantMossInsulation(args.Buyer);
+            GrantMossFireResist(args.Buyer);
+        }
     }
 
     public override void Update(float frameTime)
@@ -143,20 +148,32 @@ public sealed partial class PollenShopSystem : EntitySystem
 
         var location = _navMap.GetNearestBeaconString((ent.Owner, xform), onlyName: true);
         var message = Loc.GetString("pollen-alert-pollen", ("location", location));
-        var selfMessage = Loc.GetString("pollen-alert-pollen-self");
 
-        _popup.PopupEntity(selfMessage, ent.Owner, ent.Owner, PopupType.LargeCaution);
+        _popup.PopupEntity(Loc.GetString("pollen-alert-pollen-self"), ent.Owner, ent.Owner, PopupType.LargeCaution);
 
-        foreach (var session in _playerManager.Sessions)
+        var query = EntityQueryEnumerator<PollenCollectorComponent, TransformComponent>();
+        while (query.MoveNext(out var otherUid, out _, out var otherXform))
         {
-            if (session.AttachedEntity is not { } otherUid ||
-                !TryComp<PollenCollectorComponent>(otherUid, out _) ||
-                Transform(otherUid).GridUid != grid)
+            if (otherUid == ent.Owner || otherXform.GridUid != grid)
                 continue;
 
-            _chatManager.DispatchServerMessage(session, otherUid == ent.Owner ? selfMessage : message);
+            _popup.PopupEntity(message, otherUid, otherUid, PopupType.LargeCaution);
         }
     }
+
+    // T2
+
+    // T2
+    private void GrantMossInsulation(EntityUid buyer)
+    {
+        var protection = EnsureComp<TemperatureProtectionComponent>(buyer);
+        protection.CoolingCoefficient = 0.8f; // 20% reduced cold exposure
+        protection.HeatingCoefficient = 0.8f; // 20% reduced heat exposure
+        Dirty(buyer, protection);
+    }
+
+    private void GrantMossFireResist(EntityUid buyer)
+        => _statusEffects.TrySetStatusEffectDuration(buyer, _mossFireResistStatusEffect);
 #endregion Floral
 
 #region Bark

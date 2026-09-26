@@ -15,6 +15,16 @@
     event: !type:IntrinsicStoreActionEvent {}
 
 - type: entity
+  id: PollenTreeFloralT2PassiveMossFireResistEffect
+  components:
+  - type: StatusEffect
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Heat: 0.9
+        Cold: 0.8
+
+- type: entity
   id: PollenTreeBarkT1ActionMakeWood
   name: Make Wood
   description: Cut off some of your body for fresh wood. Deals damage to yourself.
