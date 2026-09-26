@@ -1,18 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (Box) Fixed mining recycler.
-    type: Fix
-  id: 408481
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Xale
-  changes:
-  - message: Puddles are no longer extra slippery, and can now usually be safely traversed by walking.
-    type: Fix
-  id: 408482
-  time: '2026-09-11T06:40:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6089
 - author: Johnny
   changes:
   - message: Changed the portable recharger, you may now see when its in the suit storage slot.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408880
   time: '2026-09-26T09:27:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6337
+- author: Seven Shades & Mack
+  changes:
+  - message: Cards hud button is back.
+    type: Add
+  id: 408881
+  time: '2026-09-26T09:27:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6331
+- author: Seven Shades & Mack
+  changes:
+  - message: There is now a 3 minute delay between picking the criminal card and the NT-ISD fax being sent.
+    type: Tweak
+  id: 408882
+  time: '2026-09-26T09:27:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6331
 Order: -1
