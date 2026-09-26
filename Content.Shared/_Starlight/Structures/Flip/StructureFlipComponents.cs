@@ -57,7 +57,7 @@ public sealed partial class FlippableStructureComponent : Component
     public int FlippedMask = (int)CollisionGroup.TableMask;
 
     /// <summary>
-    /// If structure toppled onto another entity, how much damage it will deal to entity. 
+    /// If structure toppled onto another entity, how much damage it will deal to entity.
     /// </summary>
     [DataField]
     public DamageSpecifier? CrushDamage;
