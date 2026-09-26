@@ -1,11 +1,4 @@
 Entries:
-- author: Citrea
-  changes:
-  - message: Shell Fragements have lost their surplus e.
-    type: Fix
-  id: 408486
-  time: '2026-09-11T14:14:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6100
 - author: Rinary
   changes:
   - message: Added rooms and zones system. Now systems bounded to certain places like chaplain will have 100% accurate.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408885
   time: '2026-09-26T10:19:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6258
+- author: baltdev
+  changes:
+  - message: Added the Twisty Cube, a 3x3x3 turning puzzle identical in functionality (but not copyright) to the Rubik's Cube.
+    type: Add
+  id: 408886
+  time: '2026-09-26T10:42:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6317
 Order: -1
