@@ -234,6 +234,11 @@
   description: flavor-complex-tesla-ice-cream
 
 - type: flavor
+  id: Glubotoxin
+  flavorType: Complex
+  description: flavor-complex-glubotoxin
+
+- type: flavor
   id: chocolateMilk
   flavorType: Complex
   description: flavor-complex-chocolate-milk

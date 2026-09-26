@@ -19,6 +19,8 @@
       path: /Audio/_Starlight/Effects/howl.ogg
     Chitter:
       path: /Audio/Voice/Moth/moth_chitter.ogg
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
 
 - type: !PartialOnly emoteSounds
   id: FemaleHuman
@@ -41,3 +43,113 @@
       path: /Audio/_Starlight/Effects/howl.ogg
     Chitter:
       path: /Audio/Voice/Moth/moth_chitter.ogg
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+
+- type: !PartialOnly emoteSounds
+  id: MaleReptilian
+  sounds:
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+
+- type: !PartialOnly emoteSounds
+  id: FemaleReptilian
+  sounds:
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+
+- type: !PartialOnly emoteSounds
+  id: UnisexReptilian
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+    Honk:
+      collection: BikeHorn
+    Whistle:
+      collection: Whistles
+    Crying:
+      collection: FemaleCry
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: FemaleDeathGasp
+    Liss:
+      collection: ReptilianHiss
+    Lurr:
+      path: /Audio/_Starlight/Voice/Reptilian/lizard_purr.ogg
+    Rattle:
+      path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+
+- type: !PartialOnly emoteSounds
+  id: MaleSlime
+  sounds:
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+
+- type: !PartialOnly emoteSounds
+  id: FemaleSlime
+  sounds:
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+
+- type: !PartialOnly emoteSounds
+  id: UnisexVox
+  sounds:
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+
+- type: !PartialOnly emoteSounds
+  id: UnisexDiona
+  sounds:
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+
+- type: !PartialOnly emoteSounds
+  id: UnisexArachnid
+  sounds:
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+
+- type: !PartialOnly emoteSounds
+  id: UnisexDwarf
+  sounds:
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+
+- type: !PartialOnly emoteSounds
+  id: FemaleDwarf
+  sounds:
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+
+- type: !PartialOnly emoteSounds
+  id: UnisexMoth
+  sounds:
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+
+- type: !PartialOnly emoteSounds
+  id: MaleVulpkanin
+  sounds:
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+
+- type: !PartialOnly emoteSounds
+  id: FemaleVulpkanin
+  sounds:
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+
+- type: !PartialOnly emoteSounds
+  id: Scurret
+  sounds:
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg

@@ -1,0 +1,39 @@
+- type: entity
+  id: ReagentSlimeGlubotoxin
+  parent: ReagentSlime
+  suffix: Glubotoxin
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Glubotoxin
+        Quantity: 200
+  - type: PointLight
+    color: "#009690"
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/elemental.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: alive
+        color: "#009690"
+
+- type: entity
+  id: ReagentSlimeWehJuice
+  parent: ReagentSlime
+  suffix: Weh Juice
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: JuiceThatMakesYouWeh
+        Quantity: 200
+  - type: PointLight
+    color: "#59b23a"
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/elemental.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: alive
+        color: "#59b23a"

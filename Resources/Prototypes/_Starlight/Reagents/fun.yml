@@ -57,3 +57,47 @@
           factor: 2
         - !type:SatiateHunger
           factor: 2
+
+- type: reagent
+  id: Glubotoxin
+  name: reagent-name-glubotoxin
+  group: Toxins
+  desc: reagent-desc-glubotoxin
+  physicalDesc: reagent-physical-desc-salty
+  flavor: Glubotoxin
+  color: "#009690"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.25
+      effects:
+      - !type:Emote
+        emote: ThavenGlub
+        showInChat: true
+        showInGuidebook: true
+        force: true
+        probability: 0.5
+      - !type:Polymorph
+        prototype: SpaceKoiMorph
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Animal ]
+          inverted: true
+        - !type:ReagentCondition
+          reagent: Glubotoxin
+          min: 50
+      - !type:AdjustReagent
+        reagent: Glubotoxin
+        amount: -20
+        conditions:
+        - !type:ReagentCondition
+          reagent: Glubotoxin
+          min: 50
+      - !type:AdjustReagent
+        conditions:
+          - !type:ReagentCondition
+            reagent: Glubotoxin
+            min: 0.11
+          - !type:MetabolizerTypeCondition
+            type: [ Cyclorite ]
+        reagent: Glubotoxin
+        amount: 0.1

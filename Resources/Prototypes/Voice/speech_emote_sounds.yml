@@ -477,13 +477,13 @@
       collection: BikeHorn
     #region Starlight
     Crying:
-      /Audio/_Starlight/Voice/Moth/moth_cry.ogg
+      path: /Audio/_Starlight/Voice/Moth/moth_cry.ogg
     Cough:
-      /Audio/_Starlight/Voice/Moth/moth_cough.ogg
+      path: /Audio/_Starlight/Voice/Moth/moth_cough.ogg
     Yawn:
-      /Audio/_Starlight/Voice/Moth/moth_yawn.ogg
+      path: /Audio/_Starlight/Voice/Moth/moth_yawn.ogg
     Sigh:
-      /Audio/_Starlight/Voice/Moth/moth_sigh.ogg
+      path: /Audio/_Starlight/Voice/Moth/moth_sigh.ogg
     Gasp:
       path: /Audio/_Starlight/Voice/Moth/moth_gasp.ogg
     #endregion Starlight

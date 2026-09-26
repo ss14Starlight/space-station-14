@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: PlushieCarp
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Glubotoxin
+        Quantity: 30
