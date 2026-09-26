@@ -637,6 +637,28 @@
     sprite:  _Starlight/Clothing/Neck/Cloaks/warden.rsi
 
 - type: entity
+  parent: [ ClothingNeckBase ]
+  id: ClothingNeckCloakGunnerySergeant
+  name: gunnery sergeant's cloak
+  description: A cloak that has seen many battles, and beatings.
+  components:
+  - type: Sprite
+    sprite:  _Starlight/Clothing/Neck/Cloaks/gunnery_sergeant.rsi
+  - type: Clothing
+    sprite:  _Starlight/Clothing/Neck/Cloaks/gunnery_sergeant.rsi
+
+- type: entity
+  parent: [ ClothingNeckBase ]
+  id: ClothingNeckMantleGunnerySergeant
+  name: gunnery sergeant's mantle
+  description: A mantle for those whose job it is to get the cadets out of the walls.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Cloaks/gunnery_sergeant_mantle.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Cloaks/gunnery_sergeant_mantle.rsi
+
+- type: entity
   parent: [ClothingNeckMantleCMO, BaseCentcommContraband]
   id: ClothingNeckCloakCMDShawl
   name: central medical division shawl

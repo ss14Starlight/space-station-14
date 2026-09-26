@@ -70,6 +70,11 @@ loadout-group-k9-eyes = K9 eyewear
 
 loadout-group-detective-lethal = Detective lethal sidearm
 
+loadout-group-gunnery-sergeant-head = Sergeant head
+loadout-group-gunnery-sergeant-jumpsuit = Sergeant jumpsuit
+loadout-group-gunnery-sergeant-outerclothing = Sergeant Outer Clothing
+loadout-group-gunnery-sergeant-neck = Sergeant Neck
+
 # Law
 loadout-group-magistrate-jumpsuit = Magistrate jumpsuit
 loadout-group-magistrate-eyewear = Magistrate eyewear
