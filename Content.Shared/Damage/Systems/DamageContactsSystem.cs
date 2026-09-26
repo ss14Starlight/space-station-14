@@ -1,4 +1,5 @@
 using Content.Shared.Damage.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Whitelist;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
@@ -11,6 +12,7 @@ public sealed partial class DamageContactsSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
@@ -31,10 +33,15 @@ public sealed partial class DamageContactsSystem : EntitySystem
         {
             if (_timing.CurTime < damaged.NextSecond)
                 continue;
+
             damaged.NextSecond = _timing.CurTime + TimeSpan.FromSeconds(1);
 
             if (damaged.Damage != null)
+            {
+                if (!damaged.DamageDead && _mobState.IsDead(ent))
+                    continue;
                 _damageable.TryChangeDamage(ent, damaged.Damage, interruptsDoAfters: false);
+             }
         }
     }
 

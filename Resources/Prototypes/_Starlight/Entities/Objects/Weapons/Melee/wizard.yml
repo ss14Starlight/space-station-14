@@ -1,0 +1,49 @@
+#plans for future wizard exclusive weapons
+
+- type: entity
+  name: reaper's scythe
+  parent: [BaseItem, BaseMagicalContraband]
+  id: ReaperScythe
+  description: Fear the reaper.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/reaperscythe.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: 135
+    swingLeft: true
+    damage:
+      types:
+        Slash: 5
+        Structural: 5
+        Poison: 5
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Slash: 25
+        Structural: 50
+        Poison: 25
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Melee/reaperscythe.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: Tool
+    qualities:
+      - Prying
+  - type: Prying
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
+    playSoundOnDoafter: true
+  - type: UseDelay
+    delay: 1
+  - type: DisarmMalus
+    malus: 0.1
+  - type: Reflect
+    reflectProb: 0.25
+    spread: 75

@@ -298,3 +298,112 @@
     count: 5
   - type: TimedDespawn
     lifetime: 0.25
+
+
+- type: entity
+  id: PelletClusterSoul3
+  name: soul fragment
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+      - state: soulfrag
+  - type: Projectile
+    damage:
+      types:
+        Poison: 3
+    soundHit:
+      path: /Audio/Effects/gen_hit.ogg
+  - type: StaminaDamageOnCollide
+    damage: 50
+  - type: TimedDespawn
+    lifetime: 0.1
+
+- type: entity
+  id: ProjectileSoulKnife
+  name: soul knife
+  description: A spinning ethereal knife, better not get close.
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#69ffd4"
+    radius: 1.5
+    energy: 5.0
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 0
+        Slash: 30
+        Poison: 20
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: soulknives
+  - type: TimedDespawn
+    lifetime: 40
+
+- type: entity
+  id: ImpaleSpear
+  name: soul spears
+  description: A dangerous spear of ethereal energy.
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Piercing: 30
+        Poison: 30
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+      fly-by: &flybyfixture
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: spearup
+  - type: TimedDespawn
+    lifetime: 1
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Weapons/slash.ogg
+
+- type: entity
+  id: ProjectilePolyShadow
+  parent: ProjectilePolyboltDoor
+  name: shadow bolt
+  description: Nihil !
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: spell
+  - type: PolymorphOnTrigger
+    polymorph: Shadow
+  - type: WhitelistTriggerCondition
+    userWhitelist:
+      components:
+      - Airlock
+      - Firelock
+      tags:
+      - Wall
