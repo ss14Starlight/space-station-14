@@ -4,7 +4,6 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Pulling.Events;
 using Content.Shared.Whitelist;
-using Robust.Shared.Containers;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 
@@ -24,7 +23,6 @@ public abstract partial class SharedLatchSystem : EntitySystem
         SubscribeLocalEvent<LatchedComponent, RefreshMovementSpeedModifiersEvent>(OnTargetRefreshMovementSpeed);
 
         SubscribeLocalEvent<LatchComponent, AttackAttemptEvent>(OnLatcherAttackAttempt);
-        SubscribeLocalEvent<LatchBlockedHandComponent, ContainerGettingRemovedAttemptEvent>(OnBlockedHandRemoveAttempt);
 
         SubscribeLocalEvent<LatchComponent, BeingPulledAttemptEvent>(OnLatcherBeingPulledAttempt);
         SubscribeLocalEvent<LatchedComponent, BeingPulledAttemptEvent>(OnTargetBeingPulledAttempt);
@@ -145,13 +143,5 @@ public abstract partial class SharedLatchSystem : EntitySystem
         return distance <= halfPerfect + goodWidth
             ? LatchStruggleResult.Good
             : LatchStruggleResult.Miss;
-    }
-
-    /// <summary>
-    /// The latch's blocked hand can't be dropped via the drop key.
-    /// </summary>
-    private void OnBlockedHandRemoveAttempt(EntityUid uid, LatchBlockedHandComponent comp, ref ContainerGettingRemovedAttemptEvent args)
-    {
-        args.Cancel();
     }
 }

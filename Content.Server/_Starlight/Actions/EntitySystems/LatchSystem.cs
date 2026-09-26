@@ -13,7 +13,6 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Pulling.Components;
@@ -22,7 +21,6 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Whitelist;
-using Content.Shared.Wieldable;
 using Robust.Server.Audio;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
@@ -50,8 +48,6 @@ public sealed partial class LatchSystem : SharedLatchSystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
-    [Dependency] private SharedWieldableSystem _wieldable = default!;
     [Dependency] private StandingStateSystem _standing = default!;
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
 
@@ -98,16 +94,10 @@ public sealed partial class LatchSystem : SharedLatchSystem
     }
 
     /// <summary>
-    /// Frees the blocked hand and restores standing, unless crit/death owns the pose.
+    /// Restores standing, unless crit/death owns the pose.
     /// </summary>
     private void OnLatchedShutdown(EntityUid uid, LatchedComponent comp, ComponentShutdown ev)
     {
-        if (comp.BlockedHandItem is { } item && Exists(item))
-        {
-            if (TryComp<VirtualItemComponent>(item, out var virtItem))
-                _virtualItem.DeleteVirtualItem((item, virtItem), uid);
-        }
-
         if (!_mobState.IsIncapacitated(uid))
             _standing.Stand(uid);
 
@@ -234,14 +224,6 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
         if (TryComp<PullableComponent>(target, out var targetPullable))
             _pulling.TryStopPull(target, targetPullable);
-
-        if (_virtualItem.TrySpawnVirtualItemInHand(uid, target, out var blockingItem))
-        {
-            latched.BlockedHandItem = blockingItem;
-            EnsureComp<LatchBlockedHandComponent>(blockingItem.Value);
-        }
-
-        _wieldable.UnwieldAll(target, force: true);
 
         _standing.Down(target, force: true);
 
