@@ -1109,9 +1109,6 @@
     Bloodstream:
       effects:
       - !type:EvenHealthChange
-        conditions:
-        - !type:TotalDamageCondition
-          max: 50
         damage:
           Brute: -1
           Burn: -1
@@ -1556,8 +1553,6 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:TotalDamageCondition
-          max: 50
         - !type:MetabolizerTypeCondition
           type: [ Vampire ]
           inverted: true
@@ -1760,20 +1755,9 @@
         conditions:
         - !type:TemperatureCondition
           max: 213.0
-        - !type:TotalDamageCondition
-          min: 199.9
         damage:
-          Brute: -2
-          Burn: -2
-      - !type:EvenHealthChange
-        conditions:
-        - !type:TemperatureCondition
-          max: 213.0
-        - !type:TotalDamageCondition
-          min: 500
-        damage:
-          Brute: -4
-          Burn: -4
+          Brute: -3
+          Burn: -3
 
 - type: reagent
   id: Necrosol

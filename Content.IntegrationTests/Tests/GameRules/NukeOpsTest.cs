@@ -22,6 +22,7 @@ using Content.Shared.NukeOps;
 using Content.Shared.Pinpointer;
 using Content.Shared.Roles.Components;
 using Content.Shared._Starlight.CCVar;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
@@ -63,6 +64,7 @@ public sealed class NukeOpsTest : GameTest
         var invSys = server.System<InventorySystem>();
         var factionSys = server.System<NpcFactionSystem>();
         var roundEndSys = server.System<RoundEndSystem>();
+        var damageSys = server.System<DamageableSystem>();
 
         server.CfgMan.SetCVar(CCVars.GridFill, true);
         server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight

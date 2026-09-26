@@ -1,5 +1,4 @@
 using Content.Client.Hands.Systems;
-using Content.Client.NPC.HTN;
 using Content.Shared.CCVar;
 using Content.Shared.CombatMode;
 using Robust.Client.Graphics;
