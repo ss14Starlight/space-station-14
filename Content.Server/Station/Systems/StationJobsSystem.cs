@@ -327,19 +327,18 @@ public sealed partial class StationJobsSystem : EntitySystem
     /// <summary>
     /// Removes one job from a player on this station, keeping their other jobs.
     /// </summary>
-    public bool TryRemovePlayerJob(EntityUid station,
+    public bool TryRemovePlayerJob(Entity<StationJobsComponent?> station,
         NetUserId userId,
-        ProtoId<JobPrototype> job,
-        StationJobsComponent? jobsComponent = null)
+        ProtoId<JobPrototype> job)
     {
-        if (!Resolve(station, ref jobsComponent, false))
+        if (!Resolve(station, ref station.Comp, false))
             return false;
 
-        if (!jobsComponent.PlayerJobs.TryGetValue(userId, out var jobs) || !jobs.Remove(job))
+        if (!station.Comp.PlayerJobs.TryGetValue(userId, out var jobs) || !jobs.Remove(job))
             return false;
 
         if (jobs.Count == 0)
-            jobsComponent.PlayerJobs.Remove(userId);
+            station.Comp.PlayerJobs.Remove(userId);
 
         return true;
     }

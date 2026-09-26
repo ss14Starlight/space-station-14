@@ -113,6 +113,7 @@ public sealed partial class CryoTeleportationSystem : EntitySystem
         targetComponent.Station = ev.Station;
         targetComponent.UserId = ev.Player.UserId;
         targetComponent.Job = ev.JobId;
+        targetComponent.JobHolder = ev.Player.UserId;
     }
 
     private void OnMobStateChanged(EntityUid uid, TargetCryoTeleportationComponent comp, ref MobStateChangedEvent args)
@@ -127,14 +128,13 @@ public sealed partial class CryoTeleportationSystem : EntitySystem
     private void ReturnJobSlot(EntityUid body, TargetCryoTeleportationComponent comp)
     {
         if (comp.Station is not { } station
-            || comp.UserId is not { } userId
+            || comp.JobHolder is not { } holder
             || comp.Job is not { } job)
             return;
 
-        if (!_stationJobs.TryRemovePlayerJob(station, userId, job))
+        if (!_stationJobs.TryRemovePlayerJob(station, holder, job)
+            || !_stationJobs.TryAdjustJobSlot(station, job, 1, clamp: true))
             return;
-
-        _stationJobs.TryAdjustJobSlot(station, job, 1, clamp: true);
 
         var slotReturned = new CryoSlotReturnedEvent(body, job);
         RaiseLocalEvent(ref slotReturned);

@@ -29,6 +29,12 @@ public sealed partial class TargetCryoTeleportationComponent : Component
     public ProtoId<JobPrototype>? Job;
 
     /// <summary>
+    /// Player who spawned as <see cref="Job"/>. Unlike <see cref="UserId"/>, never changes.
+    /// </summary>
+    [DataField]
+    public NetUserId? JobHolder;
+
+    /// <summary>
     /// Determines how much extra time we need to wait for cryo teleportation.
     /// </summary>
     [DataField]
