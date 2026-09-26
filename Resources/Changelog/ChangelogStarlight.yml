@@ -1,20 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Box) Added ai cameras to main engine containment.
-    type: Add
-  id: 408476
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
-  - message: (Box) Removed ai cams in captains bathroom.
-    type: Remove
-  id: 408477
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
   - message: (Box) Removed some cameras that peered deep into maints.
     type: Remove
   id: 408478
@@ -2799,4 +2785,18 @@ Entries:
   id: 408875
   time: '2026-09-25T23:45:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6300
+- author: wonderfulnewworld
+  changes:
+  - message: You can now disable viewing stains.
+    type: Tweak
+  id: 408876
+  time: '2026-09-26T00:04:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6349
+- author: wonderfulnewworld
+  changes:
+  - message: Stains will no longer appear on masks that are toggled off.
+    type: Fix
+  id: 408877
+  time: '2026-09-26T00:04:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6349
 Order: -1
