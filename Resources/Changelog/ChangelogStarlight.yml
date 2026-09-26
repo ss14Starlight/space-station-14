@@ -1,18 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: Orwell Citadel Station - Replaced NCT's Office with a Lawyer's Office, moved NCT spawns to bridge, and moved NCT dispatcher to IAA's office.
-    type: Tweak
-  id: 408484
-  time: '2026-09-11T07:28:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6063
-- author: SirLutz
-  changes:
-  - message: lowered Slug armorpen from 60% to 30%.
-    type: Tweak
-  id: 408485
-  time: '2026-09-11T10:45:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6097
 - author: Citrea
   changes:
   - message: Shell Fragements have lost their surplus e.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408883
   time: '2026-09-26T09:54:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6341
+- author: Caws
+  changes:
+  - message: Straitjackets now take 5 seconds to apply to a stunned target instead of 6 seconds. It was already possible to put someone in a straitjacket from being stunned with good timing, this just makes it less annoying.
+    type: Tweak
+  id: 408884
+  time: '2026-09-26T10:19:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6258
+- author: Caws
+  changes:
+  - message: Straitjackets are now a Huge inventory item (4x4) instead of Normal (2x2) inventory item.
+    type: Tweak
+  id: 408885
+  time: '2026-09-26T10:19:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6258
 Order: -1
