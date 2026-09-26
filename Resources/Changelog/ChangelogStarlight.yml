@@ -1,25 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Added rooms and zones system. Now systems bounded to certain places like chaplain will have 100% accurate.
-    type: Add
-  id: 408487
-  time: '2026-09-12T04:53:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6017
-- author: Rinary
-  changes:
-  - message: Changed maintenance ambience, now it checks for maintenance zone instead of platings amount.
-    type: Tweak
-  id: 408488
-  time: '2026-09-12T04:53:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6017
-- author: Johnny
-  changes:
-  - message: Added firelocks and other atmospheric devices to evac shuttles that never had any.
-    type: Add
-  id: 408489
-  time: '2026-09-12T07:01:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6056
 - author: Johnny
   changes:
   - message: Removed my sani- i mean the debug gens from most evac shuttles.
@@ -2799,4 +2778,25 @@ Entries:
   id: 408886
   time: '2026-09-26T10:42:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6317
+- author: Caws
+  changes:
+  - message: Dogs can now blink.
+    type: Fix
+  id: 408887
+  time: '2026-09-26T10:42:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6358
+- author: Caws
+  changes:
+  - message: Dogs can now sneeze.
+    type: Fix
+  id: 408888
+  time: '2026-09-26T10:42:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6358
+- author: Caws
+  changes:
+  - message: Dogs can now yawn.
+    type: Fix
+  id: 408889
+  time: '2026-09-26T10:42:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6358
 Order: -1
