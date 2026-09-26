@@ -27,31 +27,91 @@ book-text-ame-scribbles = I don't know if you're trained already, so I hope this
       Higher will burn the engine out and eventually make it explode. Don't.
       Don't forget to refuel it, it tends to stop at the worst possible time.
 
-book-text-agrichemkit-manual = Thank you for choosing the safe-for-all-ages NanoTrasen Agri-Chem is Fun! chemistry kit, the best learning-adjacent toy of 2468! Be prepared to discover all about the biggest innovations in agriculture since people buried fish with their corn seeds.
+book-text-agrichemkit-manual =
+    {"[head=1][color=#9fed58]────────────────────[/color][/head]"}
+    {"[color=#9fed58]█▄░░█ ▀▀█▀▀[/color]  [head=3][color=#9fed58]NANOTRASEN CORPORATION™[/color][/head]"}
+    {"[color=#9fed58]█▀█▄█ ░░█░░[/color][bolditalic][color=#73b834]  Agri-Chem is fun! Chemistry Kit™[/color][/bolditalic]"}
+    {"[color=#9fed58]█░░▀█ ░░█░░[/color]  [color=#aaaaaa][bolditalic]User Manual[/bolditalic][/color]"}
+    {"[head=1][color=#9fed58]────────────────────[/color][/head]"}
 
-      Contents:
-      5 handily labeled 30u bottles, 1 each of nitrogen, phosphorus, hydrogen, potassium, and ethanol
-      2 Safe-T-Fun(TM) sized 5u vials, 1 each of chlorine and radium
-      1 30u empty bottle, ready for your experiments.
+    Thank you for purchasing the NanoTrasen™ Agri-Chem is Fun! Chemistry Kit™.
 
-      First Experiment: EZ Nutrient
-      To create EZ Nutrient, a fertilizer densely packed with nutrients required for healthy plants, mix equal parts nitrogen, phosphorus, and potassium. To make a full bottle, thats 10u of each.
-      A little bottle of EZ Nutrient replaces a big stack of produce you'd otherwise compost to keep your plants growing strong. And crops you compost are crops you didn't make a profit on, so keep that EZ Nutrient flowing.
+    The NanoTrasen™ Agri-Chem is Fun! Chemistry Kit™ is safe-for-all-ages and the best learning-adjacent toy of 2468!
+    Be prepared to discover all about the biggest innovations in agriculture since people buried fish with their corn seeds!
 
-      Second Experiment: Ammonia and Diethylamine
-      Mix 3 parts hydrogen to 1 part nitrogen and microwave for 30 seconds to make ammonia. It's a healthy, nutritious treat for your crops that aren't at their best.
-      But if you want to impress the judges at your local NanoTrasen-sponsored County Fair, you'll need to add an equal amount of ethanol to your ammonia.
-      This will mix into Diethylamine, a miracle fertilizer that can make plants grow faster AND live longer! Keep the crops you love with you longer thanks to Diethylamine.
+    {"[head=1][color=#9fed58]────────────────────[/color][/head]"}
+    {"[head=1][color=#ff0000]PRODUCT SAFETY WARNING[/color][/head]"}
 
-      Third Experiment: Unstable Mutagen
-      When you're ready to show everyone you're the greatest botanist on the station, you'll need to mix up some unstable mutagen and hope for the best. Despite the scary name, unstable mutagen is entirely safe when applied to plants, but do not drink the appealingly green chemical yourself.
+    {"[head=2][color=#ff0000]Do not ingest any contents of the kit.[/color]"}
+    {"[color=#ff0000]Do not use kit near open flames.[/color][/head]"}
+    {"[color=#aaaaaa][italic]NanoTrasen™ is not liable for any damages that occur due to user negligence or consumption of resulting plant products.[/italic][/color]"}
 
-      Mix equal parts radium, phosphorus, and chlorine together to get a bright green batch of unstable mutagen, the safe and fun way to get the most of your farm. The 15u this kit lets you make could be your introduction to agrichemical stardom!
-      Unstable mutagen can have a wide variety of effects on plant life, including drastic changes to all sorts of growth parameters, produce full of helpful pharmaceuticals, plants that glow in the dark, or creating entirely new species.
+    {"[head=1][color=#9fed58]────────────────────[/color][/head]"}
+    {"[bold][head=2]Contents:[/head][/bold]"}
+    • 1 Bottle Nitrogen | 30u
+    • 1 Bottle Phosphorus | 30u
+    • 1 Bottle Hydrogen | 30u
+    • 1 Bottle Potassium | 30u
+    • 1 Bottle Ethanol | 30u
+    • 1 Vial Chlorine | 5u | Safe-T-Fun™ Vial
+    • 1 Vial Radium | 5u | Safe-T-Fun™ Vial
+    • 1 Empty bottle | 30u capacity
 
-      Each individual plant responds to unstable mutagen differently, so you may want to use small doses on multiple crops and try to crossbreed the best traits from each of those. Applying multiple doses to one plant can stack multiple changes and make it harder to single out desirable traits.
-      Unstable mutagen is entirely safe when used as a fertilizer, and NanoTrasen takes no responsibility for dead crops, excessive water bills, newly sentient plants asking existential questions, or flora-strangled farmhands that may coincidentally occur while using it.
-      Do not drink unstable mutagen. Wash your hands thoroughly after handling. Wash your eyes if you have looked at unstable mutagen for over 30 minutes in a 24 hour period. Store in a dark room between 293–295K. Do not use on corporate holidays. If you begin hearing voices telling you to drink unstable mutagen, please contact your doctor, head of personnel, or exorcist.
+    {"[head=1][color=#9fed58]────────────────────[/color][/head]"}
+    {"[bold][head=2]Experiment 1: EZ Nutrient[/head][/bold]"}
+    EZ Nutrient is a fertilizer densely packed with nutrients required for healthy plants!
+
+    EZ Nutrient is made by mixing equal parts nitrogen, phosphorus, and potassium.
+    • 1: Pour 10u Nitrogen into the empty bottle.
+    • 2: Pour 10u Phosphorus into the mixing bottle.
+    • 3: Pour 10u Potassium into the mixing bottle.
+
+    {"[bold]CONGRATULATIONS![/bold]"}
+    You have successfully made EZ-Nutrient!
+
+    {"[head=1][color=#9fed58]────────────────────[/color][/head]"}
+    {"[bold][head=2]Experiment 2: Diethylamine[/head][/bold]"}
+    Diethylamine is a miracle fertilizer that makes plants grow faster AND live longer!
+
+    First we begin by making ammonia, ammonia is made by heating 3 parts hydrogen to 1 part nitrogen.
+    • 1: Pour 15u Hydrogen into the empty bottle.
+    • 2: Pour 5u Nitrogen into the mixing bottle.
+    • 3: Microwave for 30 seconds.
+
+    You have successfully made Ammonia!
+
+    Diethylamine is made by mixing equal parts ammonia and ethanol.
+    • 4: Pour ammonia into an empty bucket.
+    • 5: Pour 20u ethanol into the bucket.
+
+    {"[bold]CONGRATULATIONS![/bold]"}
+    You have successfully made Diethylamine!
+
+    {"[head=1][color=#9fed58]────────────────────[/color][/head]"}
+    {"[bold][head=2]Experiment 3: Unstable Mutagen[/head][/bold]"}
+    When you're ready to show everyone you're the greatest botanist on the station, you'll need to mix up some unstable mutagen and hope for the best. Despite its scary name, unstable mutagen is entirely safe when applied to plant.
+
+    Mix equal parts radium, phosphorus, and chlorine together to get a bright green batch of unstable mutagen.
+    • 1: Pour 5u Radium into the empty bottle.
+    • 2: Pour 5u Phosphorus into the mixing bottle.
+    • 3: Pour 5u Chlorine into the mixing bottle.
+
+    {"[bold]CONGRATULATIONS![/bold]"}
+    You have successfully made Unstable Mutagen!
+
+    The 15u of Unstable Mutagen this kit lets you make could be your introduction to agrichemical stardom!
+
+    Unstable mutagen can have a wide variety of effects on plant life, including drastic changes to all sorts of growth parameters, produce full of helpful pharmaceuticals, plants that glow in the dark, or creating entirely new species.
+
+    Each individual plant responds to unstable mutagen differently, so you may want to use small doses on multiple crops and try to crossbreed the best traits from each of those. Applying multiple doses to one plant can stack multiple changes and make it harder to single out desirable traits.
+
+    Unstable mutagen is entirely safe when used as a fertilizer.
+    Store in a dark room between 293–295K.
+
+    {"[color=Red]Do not drink unstable mutagen. Wash your hands thoroughly after handling. Wash your eyes if you have looked at unstable mutagen for over 30 minutes in a 24 hour period. Do not use on corporate holidays. If you begin hearing voices telling you to drink unstable mutagen, please contact your doctor, head of personnel, or exorcist.[/color]"}
+
+    {"[color=#aaaaaa][italic]NanoTrasen™ is not liable for dead crops, excessive water usage, newly sentient plants asking existential questions, or flora-strangled farmhands that may coincidentally occur while using it.[/italic][/color]"}
+
 
 book-text-combat-bakery-kit = Thank you for choosing our combat bakery kit!
       Enclosed are two (2) CyberSun patented Throwing Croissants, and one (1) patent-pending Baguette Sword.
