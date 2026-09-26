@@ -35,12 +35,12 @@ namespace Content.Server.Atmos.Reactions
                 burnedFuel = Math.Min(initialTrit, mixture.GetMoles(Gas.Oxygen) / Atmospherics.TritiumBurnFuelRatio) / Atmospherics.TritiumBurnTritFactor;
                 mixture.AdjustMoles(Gas.Tritium, -burnedFuel);
                 mixture.AdjustMoles(Gas.Oxygen, -burnedFuel / Atmospherics.TritiumBurnFuelRatio);
-                energyReleased += (Atmospherics.FireHydrogenEnergyReleased * burnedFuel * (Atmospherics.TritiumBurnTritFactor - 1));
+                energyReleased += ((Atmospherics.FireHydrogenEnergyReleased * 10f) *  burnedFuel * (Atmospherics.TritiumBurnTritFactor - 1)); /// Starlight: Trit burns hotter than regular hydrogen due to being "laced" with plasma. Counteracts other changes.
             }
 
             if (burnedFuel > 0)
             {
-                energyReleased += (Atmospherics.FireHydrogenEnergyReleased * burnedFuel);
+                energyReleased += ((Atmospherics.FireHydrogenEnergyReleased * 10f) * burnedFuel); /// Starlight: Trit burns hotter than regular hydrogen due to being "laced" with plasma. Counteracts other changes.
 
                 // TODO ATMOS Radiation pulse here!
 
