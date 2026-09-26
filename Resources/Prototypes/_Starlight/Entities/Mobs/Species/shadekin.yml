@@ -79,7 +79,6 @@
     - type: PassiveDamage
       allowedStates:
         - Alive
-      damageCap: 20
       damage:
         types:
           Blunt: -0.05

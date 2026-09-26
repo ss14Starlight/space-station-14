@@ -134,7 +134,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
                 : Loc.GetString("health-analyzer-window-entity-unknown-species-text");
     }
 
-    private void DrawVitals(HealthAnalyzerUiState state, EntityUid target, DamageableComponent damageable, FixedPoint2 deathValue)
+    private void DrawVitals(HealthAnalyzerUiState state, EntityUid target, DamageSpecifier damageable, FixedPoint2 deathValue)
     {
         VitalsContainer.RemoveAllChildren();
 
@@ -185,7 +185,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         }));
 
         // Total Damage
-        var totalDamage = damage.GetTotal();
+        var totalDamage = damageable.GetTotal();
         var ratio = CalculateDamageRatio(totalDamage, deathValue);
 
         AddToVitals(GenerateVitalsInformationBlock(new HealthAnalyzerVitalsBlockData

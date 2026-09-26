@@ -25,10 +25,14 @@
           reagent: Phenylpiperidine
           max: 5
         damage: # I think it's balanced as a sort of 'cure all' because you have to administer it slowly or it starts killing extremely quickly
-          groups:
-            Burn: -1.5 # 12.5 heat, shock, and caustic per 5u
-            Brute: -3 # 25 blunt, slash, and pierce per 5u, its a painkiller
           types:
+            Heat: -0.38 # Burn group, -1.5 total: 12.5 heat, shock, and caustic per 5u
+            Shock: -0.38
+            Cold: -0.38
+            Caustic: -0.38
+            Blunt: -1 # Brute group, -3 total: 25 blunt, slash, and pierce per 5u, its a painkiller
+            Slash: -1
+            Piercing: -1
             Poison: -0.5 # 12.5 poison per 5u
       # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
