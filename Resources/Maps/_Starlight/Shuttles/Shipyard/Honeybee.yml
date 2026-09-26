@@ -4,8 +4,8 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 09/26/2026 06:04:33
-  entityCount: 326
+  time: 09/26/2026 08:43:24
+  entityCount: 330
 maps: []
 grids:
 - 1
@@ -914,6 +914,28 @@ entities:
     - type: Transform
       parent: 1
       pos: -1.3609375,1.2476516
+- proto: FirelockGlass
+  entities:
+  - uid: 327
+    components:
+    - type: Transform
+      parent: 1
+      pos: 0.5,-0.5
+  - uid: 328
+    components:
+    - type: Transform
+      parent: 1
+      pos: -3.5,-4.5
+  - uid: 329
+    components:
+    - type: Transform
+      parent: 1
+      pos: 3.5,-6.5
+  - uid: 330
+    components:
+    - type: Transform
+      parent: 1
+      pos: 0.5,-9.5
 - proto: GasFilterInlineAlt3
   entities:
   - uid: 96
