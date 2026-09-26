@@ -4,7 +4,7 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 09/26/2026 08:43:24
+  time: 09/26/2026 09:36:50
   entityCount: 330
 maps: []
 grids:
@@ -207,7 +207,7 @@ entities:
             id: draineast
             color: '#FFFFFFFF'
           decals:
-            59: 1,-9
+            72: 1,-9
         - node:
             id: drainsouth
             color: '#FFFFFFFF'
@@ -233,22 +233,27 @@ entities:
             id: trimlinearrowcweast
             color: '#951710FF'
           decals:
-            65: 0,-8
+            68: 0,-8
+        - node:
+            id: trimlinearrowcwnorth
+            color: '#951710FF'
+          decals:
+            70: 1,-9
         - node:
             id: trimlinearrowcwwest
             color: '#18A2D5FF'
           decals:
-            63: 0,-8
+            67: 0,-8
         - node:
-            id: trimlineeast
+            id: trimlinecornerne
             color: '#951710FF'
           decals:
-            64: 0,-9
+            71: 0,-9
         - node:
             id: trimlinewest
             color: '#18A2D5FF'
           decals:
-            62: 0,-9
+            66: 0,-9
     - type: GridAtmosphere
       version: 2
       data:
