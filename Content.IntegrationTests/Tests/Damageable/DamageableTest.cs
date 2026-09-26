@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Content.IntegrationTests.Fixtures;
 using Content.Shared._Starlight.Damage;
 using Content.Shared.Damage;
@@ -98,29 +99,29 @@ namespace Content.IntegrationTests.Tests.Damageable
     damageContainer: testDamageContainer
 
 - type: entity
-  id: {TestGroupedDamageEntityId}
-  name: {TestGroupedDamageEntityId}
-  components:
-  - type: Damageable
-    damageContainer: testDamageContainer
-    damage:
-      groups:
-        {TestGroup3}: 14
+    id: {TestGroupedDamageEntityId}
+    name: {TestGroupedDamageEntityId}
+    components:
+    - type: Damageable
+        damageContainer: testDamageContainer
+        damage:
+            groups:
+                {TestGroup3}: 14
 
 - type: entity
-  id: {TestMixMaxDamageEntityId}
-  name: {TestMixMaxDamageEntityId}
-  components:
-  - type: Damageable
-    damageContainer: testDamageContainer
-  - type: PassiveDamage
-    damage:
-      mixmax:
-        value: 1
-        groups:
-        - {TestGroup3}
-        types:
-        - {TestDamage2a}
+    id: {TestMixMaxDamageEntityId}
+    name: {TestMixMaxDamageEntityId}
+    components:
+    - type: Damageable
+        damageContainer: testDamageContainer
+    - type: PassiveDamage
+        damage:
+            mixmax:
+                value: 1
+                groups:
+                - {TestGroup3}
+                types:
+                - {TestDamage2a}
 ";
 
         #region Starlight
@@ -386,9 +387,9 @@ namespace Content.IntegrationTests.Tests.Damageable
                 #region Starlight
                 // Mix-max uses the normal negative healing convention and heals the largest value first.
                 damage = new DamageSpecifier(type3a, FixedPoint2.New(0.6f))
-                         + new DamageSpecifier(type3b, FixedPoint2.New(0.2f))
-                         + new DamageSpecifier(type3c, FixedPoint2.New(0.1f))
-                         + new DamageSpecifier(type2a, FixedPoint2.New(0.2f));
+                        + new DamageSpecifier(type3b, FixedPoint2.New(0.2f))
+                        + new DamageSpecifier(type3c, FixedPoint2.New(0.1f))
+                        + new DamageSpecifier(type2a, FixedPoint2.New(0.2f));
                 sDamageableSystem.ChangeDamage(uid, damage, true);
                 sDamageableSystem.ChangeDamage(uid, new DamageSpecifier
                 {
