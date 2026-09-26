@@ -120,7 +120,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         List<IDunGenLayer> layers,
         HashSet<Vector2i> reservedTiles,
         int seed,
-        Random random,
+        IRobustRandom random,
         List<Dungeon>? existing = null)
     {
         var dungeons = new List<Dungeon>();
@@ -135,7 +135,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
 
         for (var i = 0; i < count; i++)
         {
-            position += random.NextPolarVector2(config.MinOffset, config.MaxOffset).Floored();
+            position += random.NextVector2(config.MinOffset, config.MaxOffset).Floored();
 
             foreach (var layer in layers)
             {
@@ -165,14 +165,20 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
     {
         _sawmill.Info($"Generating dungeon {_gen} with seed {_seed} on {_entManager.ToPrettyString(_gridUid)}");
         _grid.CanSplit = false;
-        var random = new Random(_seed);
-        var position = (_position + random.NextPolarVector2(_gen.MinOffset, _gen.MaxOffset)).Floored();
+        var random = new RobustRandom() as IRobustRandom;
+        random.SetSeed(_seed);
+        var position = (_position + random.NextVector2(_gen.MinOffset, _gen.MaxOffset)).Floored();
 
         // Tiles we can no longer generate on due to being reserved elsewhere.
         var reservedTiles = new HashSet<Vector2i>();
 
         var dungeons = await GetDungeons(position, _gen, _gen.Layers, reservedTiles, _seed, random);
         // To make it slightly more deterministic treat this RNG as separate ig.
+
+        // Starlight - Begin
+        if (!ValidateResume())
+            return dungeons;
+        // Starlight - End
 
         // Post-processing after finishing loading.
         if (_targetCoordinates != null)
@@ -210,7 +216,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         IDunGenLayer layer,
         HashSet<Vector2i> reservedTiles,
         int seed,
-        Random random)
+        IRobustRandom random)
     {
         _sawmill.Debug($"Doing postgen {layer.GetType()} for {_gen} with seed {_seed}");
 
@@ -291,7 +297,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
                 break;
             case PrototypeDunGen prototypo:
                 var groupConfig = _prototype.Index(prototypo.Proto);
-                position = (position + random.NextPolarVector2(groupConfig.MinOffset, groupConfig.MaxOffset)).Floored();
+                position = (position + random.NextVector2(groupConfig.MinOffset, groupConfig.MaxOffset)).Floored();
 
                 switch (prototypo.InheritDungeons)
                 {
