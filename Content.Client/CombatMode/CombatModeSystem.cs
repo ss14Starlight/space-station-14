@@ -82,9 +82,6 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
         UpdateHud(entity);
     }
 
-    protected override bool IsNpc(EntityUid uid)
-        => HasComp<HTNComponent>(uid); // Starlight-edit: lambda
-
     private void UpdateHud(EntityUid entity)
     {
         if (entity != _playerManager.LocalEntity || !Timing.IsFirstTimePredicted)
