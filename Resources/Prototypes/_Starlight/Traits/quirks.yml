@@ -69,8 +69,10 @@
             types:
               Blunt: 5
               Piercing: 4
-            groups:
-              Burn: 3
+              Heat: 0.75
+              Shock: 0.75
+              Cold: 0.75
+              Caustic: 0.75
 
 - type: trait
   id: Unlucky

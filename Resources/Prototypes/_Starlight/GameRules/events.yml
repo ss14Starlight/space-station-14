@@ -200,7 +200,6 @@
     children:
     - id: BreakerFlip
     - id: CockroachMigration
-    - id: MoproachMigration # They can clean. This is the lucky pull of this pool.
     - id: MouseMigration
     - id: GasLeak
     - id: KudzuGrowth

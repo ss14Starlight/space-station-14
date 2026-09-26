@@ -2,20 +2,27 @@
   id: WeaponSniperMosin
   components:
   - type: GunWieldBonus
+    angleIncreaseDivider: 1
     minAngleDivider: 8
     maxAngleDivider: 6
     minAngle: 0
     maxAngle: 0
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2
   - type: Gun
     minAngle: 8
     maxAngle: 18
     angleIncrease: 4
     angleDecay: 8
+    spread: 4
 
 - type: !PartialOnly entity
   id: WeaponSniperHristov
   components:
+  - type: !Remove GunRequiresWield
   - type: GunWieldBonus
+    angleIncreaseDivider: 1
     minAngleDivider: 24
     maxAngleDivider: 8
     minAngle: 0
@@ -25,6 +32,7 @@
     maxAngle: 25
     angleIncrease: 6
     angleDecay: 8
+    spread: 5
 
 - type: !PartialOnly entity
   id: WeaponPistolFlintlock
@@ -35,5 +43,8 @@
     angleIncrease: 8
     angleDecay: 18
   - type: GunWieldBonus
+    angleIncreaseDivider: 1.5
+    minAngleDivider: 1.5
+    maxAngleDivider: 1.4
     minAngle: 0
     maxAngle: 0

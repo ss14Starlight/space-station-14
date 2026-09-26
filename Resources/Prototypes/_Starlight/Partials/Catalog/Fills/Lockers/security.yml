@@ -1,4 +1,22 @@
 - type: !PartialOnly entityTable
+  id: FillGunSafeRifleLecter
+  table: !type:AllSelector
+    children: !Clear
+    - id: BoxFiringPin
+    - id: WeaponRifleLecter
+      amount: 3
+    - id: WeaponRifleLawbringer
+      amount: 1
+    - id: MagazineRifleHP
+      amount: 4
+    - id: MagazineRifleSP
+      amount: 4
+    - id: MagazineLightRifleSP
+      amount: 1
+    - id: MagazineLightRifleHP
+      amount: 1
+
+- type: !PartialOnly entityTable  
   id: FillLockerWarden
   table:
     children:

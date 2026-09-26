@@ -18,6 +18,8 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Medical.HealthAnalyzer;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Systems;
 
 namespace Content.Client._Starlight.HealthAnalyzer.UI;
@@ -32,6 +34,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
     private readonly IPrototypeManager _prototypes;
     private readonly IResourceCache _cache;
     private readonly MobThresholdSystem _threshold;
+    private readonly DamageableSystem _damageable;
 
     // Printable health reports.
     public event Action? PrintReportPressed;
@@ -51,6 +54,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
         _spriteSystem = _entityManager.System<SpriteSystem>();
         _threshold = _entityManager.System<MobThresholdSystem>();
+        _damageable = _entityManager.System<DamageableSystem>();
 
         PrintReportButton.OnPressed += _ => PrintReportPressed?.Invoke();
     }
@@ -86,14 +90,15 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
             deathValue = threshold.GetValueOrDefault(200);
         }
 
-        IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
-        var sortedGroups = damageable.DamagePerGroup
+        var damageSpec = _damageable.GetAllDamage(target.Value);
+        IReadOnlyDictionary<ProtoId<DamageTypePrototype>, FixedPoint2> damagePerType = damageSpec.DamageDict;
+        var sortedGroups = damageSpec.GetDamagePerGroup(_prototypes)
             .OrderBy(g => HealthAnalyzerFormatting.GetDamageGroupSortKey(g.Key))
             .ThenBy(g => g.Key)
             .ToDictionary(g => g.Key, g => g.Value);
 
         DrawHeader(state, target.Value);
-        DrawVitals(state, target.Value, damageable, deathValue);
+        DrawVitals(state, target.Value, damageSpec, deathValue);
         DrawAbnormalities(state);
         DrawDamageBreakdown(sortedGroups, damagePerType, deathValue);
         DrawChemicals(state.Chemicals);
@@ -129,7 +134,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
                 : Loc.GetString("health-analyzer-window-entity-unknown-species-text");
     }
 
-    private void DrawVitals(HealthAnalyzerUiState state, EntityUid target, DamageableComponent damageable, FixedPoint2 deathValue)
+    private void DrawVitals(HealthAnalyzerUiState state, EntityUid target, DamageSpecifier damageable, FixedPoint2 deathValue)
     {
         VitalsContainer.RemoveAllChildren();
 
@@ -180,7 +185,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         }));
 
         // Total Damage
-        var totalDamage = damageable.TotalDamage;
+        var totalDamage = damageable.GetTotal();
         var ratio = CalculateDamageRatio(totalDamage, deathValue);
 
         AddToVitals(GenerateVitalsInformationBlock(new HealthAnalyzerVitalsBlockData
@@ -204,8 +209,8 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
             lastRow.AddChild(new BoxContainer { HorizontalExpand = true });
     }
 
-    private void DrawDamageBreakdown(Dictionary<string, FixedPoint2> groups,
-        IReadOnlyDictionary<string, FixedPoint2> damageDict, FixedPoint2 deathValue)
+    private void DrawDamageBreakdown(Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2> groups,
+        IReadOnlyDictionary<ProtoId<DamageTypePrototype>, FixedPoint2> damageDict, FixedPoint2 deathValue)
     {
         GroupsContainer.RemoveAllChildren();
 
@@ -223,7 +228,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
     }
 
     private BoxContainer GenerateDamageCategoryBlock(string categoryId, FixedPoint2 damageValue,
-        IReadOnlyDictionary<string, FixedPoint2> damageDict, FixedPoint2 deathValue)
+        IReadOnlyDictionary<ProtoId<DamageTypePrototype>, FixedPoint2> damageDict, FixedPoint2 deathValue)
     {
         var block = new BoxContainer
         {

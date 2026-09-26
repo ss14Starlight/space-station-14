@@ -191,7 +191,6 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
   - type: Gun
-    fireRate: 6 # Starlight-edit
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
   - type: ItemSlots
@@ -244,23 +243,12 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/estocshot.ogg
-    # Starlight-start
-    minAngle: 3
-    maxAngle: 8
-    spread: 3
-    # Starlight-end
     shotsPerBurst: 3
     selectedMode: Burst
     availableModes:
     - Burst
     - SemiAuto
     burstFireRate: 14
-# Starlight-start
-  - type: GunWieldBonus
-    angleIncreaseDivider: 2
-    minAngleDivider: 2
-    maxAngleDivider: 2
-# Starlight-end
   - type: ItemSlots
     slots:
       gun_magazine:

@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -112,6 +113,7 @@ public sealed partial class BlockingSystem
             return;
 
         var blockFraction = blocking.IsBlocking ? blocking.ActiveBlockFraction : blocking.PassiveBlockFraction;
+        var modifier = blocking.IsBlocking ? blocking.ActiveBlockDamageModifier : blocking.PassiveBlockDamageModifer;
         blockFraction = Math.Clamp(blockFraction, 0, 1);
 
         #region Starlight
@@ -142,8 +144,8 @@ public sealed partial class BlockingSystem
         }
         #endregion
 
-        var modify = new DamageModifierSet();
-        foreach (var key in dmgComp.Damage.DamageDict.Keys)
+        var modify = new DamageModifierSet(modifier);
+        foreach (var key in modifier.Coefficients.Keys.Concat(modifier.FlatReductions.Keys))
         {
             modify.Coefficients.TryAdd(key, 1 - blockFraction);
         }
