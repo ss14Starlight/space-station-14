@@ -24,8 +24,9 @@
       allowSelfRepair: true
       fuelCost: 7.5 # Little cheaper on Neocytes, since they're not fully cybernetic.
       damage:
-        groups:
-          Brute: -24 # 4 for each type with reduction applied
+        Blunt: -8 # 4 for each type with reduction applied
+        Piercing: -8
+        Slash: -8
     - type: Shadekin
       thresholds:
         0.8: Low
@@ -133,9 +134,10 @@
         - Alive
       damageCap: 20
       damage:
-        groups:
-          Brute: -0.07
-          Burn: -0.07
+        Blunt: -0.05
+        Piercing: -0.05
+        Slash: -0.05
+        Heat: -0.07
     - type: Destructible
       thresholds:
         - trigger: !type:DamageTypeTrigger

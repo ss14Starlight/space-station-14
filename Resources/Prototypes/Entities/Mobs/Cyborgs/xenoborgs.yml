@@ -105,7 +105,7 @@
     thresholds:
       0: Alive
       150: Critical # Starlight
-      450: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move # Starlight
+      400: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move # Starlight
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
@@ -125,7 +125,7 @@
             volume: 5
     - trigger:
         !type:DamageTrigger
-        damage: 450 # Starlight
+        damage: 400 # Starlight
       behaviors:
       - !type:PlaySoundBehavior
         sound:

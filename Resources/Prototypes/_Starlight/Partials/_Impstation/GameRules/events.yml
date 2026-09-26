@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: EeepEvent
+  components:
+  - type: StationEvent
+    occursDuringRoundEnd: false

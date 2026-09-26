@@ -260,6 +260,14 @@
       #     groups:
       #       Brute: -0.1
       - !type:Vomit
+        probability: 0.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: Ethanol
+          min: 0.01
+        - !type:MetabolizerTypeCondition
+          type: [ Experiment ]
+      - !type:Vomit
         probability: 0.04
         conditions:
         - !type:ReagentCondition
@@ -671,15 +679,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.06
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
         - !type:MobStateCondition
           mobstate: Critical
         damage:
-          groups:
-            Burn: -1
+          Burn: -1
   # Starlight edit end
 
 - type: reagent
@@ -720,6 +727,12 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.06
+      - !type:EvenHealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+        damage:
+          Brute: 1.5
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
@@ -727,8 +740,6 @@
         damage:
           types:
             Radiation: -3
-          groups:
-            Brute: 1.5
   # Starlight edit end
 
 - type: reagent
@@ -951,14 +962,13 @@
           type: [ Doll ]
         reagent: PseudoceramicPlatelets
         amount: 0.5
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
         damage:
-          groups:
-            Brute: -0.75
-            Burn: -0.375
+          Brute: -0.75
+          Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -1174,14 +1184,13 @@
   metabolisms: # SL vampires
     Digestion:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Bloodsucker ]
         damage:
-          groups:
-            Brute: -3
-            Burn: -1.25
+          Brute: -3
+          Burn: -1.25
       #Starlight Start
       - !type:AdjustReagent
         conditions:
@@ -1195,14 +1204,13 @@
           type: [ Doll ]
         reagent: UncookedAnimalProteins
         amount: 0.5
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
         damage:
-          groups:
-            Brute: -0.75
-            Burn: -0.375
+          Brute: -0.75
+          Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -1222,14 +1230,13 @@
   metabolisms: # SL vampires
     Digestion:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Bloodsucker ]
         damage:
-          groups:
-            Brute: -3
-            Burn: -1.25
+          Brute: -3
+          Burn: -1.25
       #Starlight Start
       - !type:AdjustReagent
         conditions:
@@ -1243,14 +1250,13 @@
           type: [ Doll ]
         reagent: UncookedAnimalProteins
         amount: 0.5
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
         damage:
-          groups:
-            Brute: -0.75
-            Burn: -0.375
+          Brute: -0.75
+          Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -1276,13 +1282,12 @@
         factor: 2
       - !type:SatiateHunger
         factor: -2
-      - !type:HealthChange
+      - !type:EvenHealthChange
         damage:
-          groups:
-            Burn: -1
-            Brute: -1
-            Airloss: -1
-            Toxin: -1
+          Burn: -1
+          Brute: -1
+          Airloss: -1
+          Toxin: -1
 
 - type: reagent
   id: DriestMartini
@@ -1897,6 +1902,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.06
+      - !type:EvenHealthChange
+        conditions:
+        - !type:TotalDamageCondition
+          max: 50
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+        damage:
+          Brute: -1
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition
@@ -1904,8 +1917,6 @@
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
         damage:
-          groups:
-            Brute: -1
           types:
             Poison: -0.5
             Heat: -0.33
@@ -2080,14 +2091,13 @@
           types:
             Asphyxiation: -1
             Bloodloss: -0.5
-      - !type:HealthChange # SL vampires
+      - !type:EvenHealthChange # SL vampires
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Bloodsucker ]
         damage:
-          groups:
-            Brute: -3
-            Burn: -1.25
+          Brute: -3
+          Burn: -1.25
       #Dolls
       - !type:AdjustReagent
         conditions:
@@ -2101,14 +2111,13 @@
           type: [ Doll ]
         reagent: UncookedAnimalProteins
         amount: 0.5
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
         damage:
-          groups:
-            Brute: -0.75
-            Burn: -0.375
+          Brute: -0.75
+          Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -2153,15 +2162,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.06
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
         - !type:MobStateCondition
           mobstate: Critical
         damage:
-          groups:
-            Brute: -1
+          Brute: -1
   # Starlight edit end
 
 - type: reagent
@@ -2501,9 +2509,9 @@
   fizziness: 0.4
 
 - type: reagent
+  parent: BaseAlcohol
   id: WhiteGilgamesh
   name: reagent-name-white-gilgamesh
-  parent: BaseDrink
   desc: reagent-desc-white-gilgamesh
   physicalDesc: reagent-physical-desc-creamy
   flavor: white-gilgamesh

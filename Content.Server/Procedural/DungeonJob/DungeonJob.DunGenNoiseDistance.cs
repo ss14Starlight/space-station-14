@@ -5,6 +5,7 @@ using Content.Shared.Procedural;
 using Content.Shared.Procedural.Distance;
 using Content.Shared.Procedural.DungeonGenerators;
 using Robust.Shared.Map;
+using Robust.Shared.Random;
 
 namespace Content.Server.Procedural.DungeonJob;
 
@@ -25,7 +26,7 @@ public sealed partial class DungeonJob
         NoiseDistanceDunGen dungen,
         HashSet<Vector2i> reservedTiles,
         int seed,
-        Random random)
+        IRobustRandom random)
     {
         var tiles = new List<(Vector2i, Tile)>();
         var matrix = Matrix3Helpers.CreateTranslation(position);
@@ -83,6 +84,10 @@ public sealed partial class DungeonJob
             }
 
             await SuspendDungeon();
+            // Starlight - Begin
+            if (!ValidateResume())
+                return Dungeon.Empty;
+            // Starlight - End
         }
 
         var room = new DungeonRoom(roomTiles, area.Center, area, new HashSet<Vector2i>());
@@ -94,6 +99,10 @@ public sealed partial class DungeonJob
         });
 
         await SuspendDungeon();
+        // Starlight - Begin
+        if (!ValidateResume())
+            return Dungeon.Empty;
+        // Starlight - End
         return dungeon;
     }
 
