@@ -1,62 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: Changed the portable recharger, you may now see when its in the suit storage slot.
-    type: Tweak
-  id: 408483
-  time: '2026-09-11T06:59:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6093
-- author: STARLIGHT TEAM
-  changes:
-  - message: Orwell Citadel Station - Replaced NCT's Office with a Lawyer's Office, moved NCT spawns to bridge, and moved NCT dispatcher to IAA's office.
-    type: Tweak
-  id: 408484
-  time: '2026-09-11T07:28:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6063
-- author: SirLutz
-  changes:
-  - message: lowered Slug armorpen from 60% to 30%.
-    type: Tweak
-  id: 408485
-  time: '2026-09-11T10:45:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6097
-- author: Citrea
-  changes:
-  - message: Shell Fragements have lost their surplus e.
-    type: Fix
-  id: 408486
-  time: '2026-09-11T14:14:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6100
-- author: Rinary
-  changes:
-  - message: Added rooms and zones system. Now systems bounded to certain places like chaplain will have 100% accurate.
-    type: Add
-  id: 408487
-  time: '2026-09-12T04:53:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6017
-- author: Rinary
-  changes:
-  - message: Changed maintenance ambience, now it checks for maintenance zone instead of platings amount.
-    type: Tweak
-  id: 408488
-  time: '2026-09-12T04:53:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6017
-- author: Johnny
-  changes:
-  - message: Added firelocks and other atmospheric devices to evac shuttles that never had any.
-    type: Add
-  id: 408489
-  time: '2026-09-12T07:01:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6056
-- author: Johnny
-  changes:
-  - message: Removed my sani- i mean the debug gens from most evac shuttles.
-    type: Remove
-  id: 408490
-  time: '2026-09-12T07:01:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6056
-- author: Johnny
-  changes:
   - message: Changed most of the evacuation shuttles to use the cooler chairs.
     type: Tweak
   id: 408491
@@ -2799,4 +2743,60 @@ Entries:
   id: 408882
   time: '2026-09-26T09:27:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6331
+- author: Caws
+  changes:
+  - message: After reviewing hiring guidelines, Central Command has determined Blueshield Officers may no longer be pacifists.
+    type: Tweak
+  id: 408883
+  time: '2026-09-26T09:54:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6341
+- author: Caws
+  changes:
+  - message: Straitjackets now take 5 seconds to apply to a stunned target instead of 6 seconds. It was already possible to put someone in a straitjacket from being stunned with good timing, this just makes it less annoying.
+    type: Tweak
+  id: 408884
+  time: '2026-09-26T10:19:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6258
+- author: Caws
+  changes:
+  - message: Straitjackets are now a Huge inventory item (4x4) instead of Normal (2x2) inventory item.
+    type: Tweak
+  id: 408885
+  time: '2026-09-26T10:19:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6258
+- author: baltdev
+  changes:
+  - message: Added the Twisty Cube, a 3x3x3 turning puzzle identical in functionality (but not copyright) to the Rubik's Cube.
+    type: Add
+  id: 408886
+  time: '2026-09-26T10:42:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6317
+- author: Caws
+  changes:
+  - message: Dogs can now blink.
+    type: Fix
+  id: 408887
+  time: '2026-09-26T10:42:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6358
+- author: Caws
+  changes:
+  - message: Dogs can now sneeze.
+    type: Fix
+  id: 408888
+  time: '2026-09-26T10:42:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6358
+- author: Caws
+  changes:
+  - message: Dogs can now yawn.
+    type: Fix
+  id: 408889
+  time: '2026-09-26T10:42:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6358
+- author: Xale
+  changes:
+  - message: Reduced the fire intensity scaling of tainted clothing being set on fire. It is still very lethal if ignored.
+    type: Tweak
+  id: 408890
+  time: '2026-09-26T10:42:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6352
 Order: -1
