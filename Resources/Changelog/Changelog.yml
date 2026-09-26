@@ -3985,10 +3985,3 @@
   id: 9543
   time: '2026-02-25T01:34:33.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/42696
-- author: SlothBasket
-  changes:
-  - message: Fixed incorrect temperature tolerances on several plants introduced by the botany refactor.
-    type: Fix
-  id: 10058
-  time: '2026-09-02T11:40:02.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/45801

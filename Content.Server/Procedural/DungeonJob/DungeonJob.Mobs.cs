@@ -5,7 +5,6 @@ using Content.Shared.Physics;
 using Content.Shared.Procedural;
 using Content.Shared.Procedural.DungeonLayers;
 using Robust.Shared.Collections;
-using Robust.Shared.Random;
 
 namespace Content.Server.Procedural.DungeonJob;
 
@@ -17,7 +16,7 @@ public sealed partial class DungeonJob
     private async Task PostGen(
         MobsDunGen gen,
         Dungeon dungeon,
-        IRobustRandom random)
+        Random random)
     {
         var availableRooms = new ValueList<DungeonRoom>();
         availableRooms.AddRange(dungeon.Rooms);

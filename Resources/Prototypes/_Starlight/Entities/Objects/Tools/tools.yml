@@ -8,6 +8,7 @@
       path: /Audio/Items/wirecutter_drop.ogg
   - type: Tag
     tags:
+    - PlantSampleTaker
     - Wirecutter
   - type: Sprite
     sprite: Objects/Tools/wirecutters.rsi
@@ -19,7 +20,6 @@
       - Cutting
     useSound:
       path: /Audio/Items/wirecutter.ogg
-  - type: BotanySampleTaker
   - type: MeleeWeapon
     wideAnimationRotation: -90
     damage:
@@ -302,6 +302,7 @@
       path: /Audio/Items/wirecutter_drop.ogg
   - type: Tag
     tags:
+    - PlantSampleTaker
     - ImprovisedWirecutter
   - type: Sprite
     sprite: _Starlight/Objects/Tools/improvised_wirecutters.rsi
@@ -314,7 +315,6 @@
     soundHit:
       path: "/Audio/Items/wirecutter.ogg"
     attackRate: 2
-  - type: BotanySampleTaker
   - type: Item
     sprite: _Starlight/Objects/Tools/improvised_wirecutters.rsi
     storedRotation: -90
@@ -642,7 +642,6 @@
         - type: ItemTogglePointLight
         - type: Appearance
         - type: RequiresEyeProtection
-        - type: BotanySampleTaker
         - type: IgnitionSource
           temperature: 700
         - type: ItemToggleMeleeWeapon
@@ -676,6 +675,7 @@
       - Multitool
       - DoorElectronicsConfigurator
       - Wrench
+      - PlantSampleTaker
       - Wirecutter
       - Screwdriver
 
@@ -781,7 +781,6 @@
             - Cutting
           useSound:
             path: /Audio/Items/wirecutter.ogg
-        - type: BotanySampleTaker
         - type: MeleeWeapon
           wideAnimationRotation: -135
           soundHit:
@@ -918,6 +917,7 @@
       - Multitool
       - DoorElectronicsConfigurator
       - Wrench
+      - PlantSampleTaker
       - Wirecutter
       - Screwdriver
 

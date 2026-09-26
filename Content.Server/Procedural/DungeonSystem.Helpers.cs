@@ -1,13 +1,12 @@
 using Content.Shared.NPC;
 using Robust.Shared.Collections;
-using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Procedural;
 
 public sealed partial class DungeonSystem
 {
-    public List<(Vector2i Start, Vector2i End)> MinimumSpanningTree(List<Vector2i> tiles, IRobustRandom random)
+    public List<(Vector2i Start, Vector2i End)> MinimumSpanningTree(List<Vector2i> tiles, System.Random random)
     {
         // Starlight Start: Dont fail all generation if exterior fails
         if (tiles.Count == 0)
