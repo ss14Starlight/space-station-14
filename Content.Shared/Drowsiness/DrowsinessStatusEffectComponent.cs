@@ -21,13 +21,13 @@ public sealed partial class DrowsinessStatusEffectComponent : Component
     public bool KnockdownIncident = false;
 
     /// <summary>
-    /// The random time between sleeping incidents, (min, max).
+    /// The random time between incidents, (min, max).
     /// </summary>
     [DataField]
     public Vector2 TimeBetweenIncidents = new(5f, 60f);
 
     /// <summary>
-    /// The duration of sleeping incidents, (min, max).
+    /// The duration of incidents, (min, max).
     /// </summary>
     [DataField]
     public Vector2 DurationOfIncident = new(2, 5);
