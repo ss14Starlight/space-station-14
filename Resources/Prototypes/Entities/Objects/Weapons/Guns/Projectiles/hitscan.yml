@@ -123,12 +123,6 @@
     impactFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
       state: impact_xray
-  # Starlight-start
-  - type: HitscanPierce
-    chance: 1
-    pierceLevel: Rock
-    deviation: 0
-  # Starlight-end
 
 - type: entity
   parent: BasicHitscan

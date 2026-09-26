@@ -53,7 +53,7 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMilitaryWebbingERT
-    pocket2: WeaponPistolPDW9
+    pocket2: WeaponPDW9
     suitstorage: WeaponDisablerSMG
   storage: # Starlight Start
     back:
@@ -69,7 +69,7 @@
     - PowerDrill
     - DefibrillatorCompact
     belt:
-    - WeaponPistolN1984 # Starlight
+    - WeaponPistolM1911
     - MagazineMagnum
     - Truncheon
     - Handcuffs
@@ -230,7 +230,7 @@
     id: ERTEngineerPDA
     ears: ClothingHeadsetCentCom #Starlight
     belt: ClothingBeltMilitaryWebbingERT
-    pocket2: WeaponPistolPDW9
+    pocket2: WeaponPDW9
     suitstorage: PortableRecharger
   storage:
     back: # Starlight Start
@@ -327,7 +327,7 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetCentCom #Starlight Start
     belt: ClothingBeltMilitaryWebbingERT
-    pocket2: WeaponPistolPDW9
+    pocket2: WeaponPDW9
     suitstorage: WeaponDisablerSMG
   storage:
     back:
@@ -506,7 +506,7 @@
     id: ERTMedicPDA
     ears: ClothingHeadsetCentCom #Starlight
     belt: ClothingBeltMilitaryWebbingERT
-    pocket2: WeaponPistolPDW9
+    pocket2: WeaponPDW9
   storage:
     back:
     - JugGoldenBicaridine
@@ -609,7 +609,7 @@
     id: ERTJanitorPDA
     ears: ClothingHeadsetCentCom #Starlight
     belt: ClothingBeltMilitaryWebbingERT
-    pocket2: WeaponPistolPDW9
+    pocket2: WeaponPDW9
     suitstorage: WeaponLauncherHydra
   storage:
     back:

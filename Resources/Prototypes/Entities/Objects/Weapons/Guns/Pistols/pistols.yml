@@ -1,6 +1,6 @@
 - type: entity
   name: BasePistol
-  parent: [ BaseItem, BaseGunWieldable ] # Starlight-edit
+  parent: BaseItem
   id: BaseWeaponPistol
   description: A rooty tooty point and shooty.
   abstract: true
@@ -34,12 +34,6 @@
     - suitStorage
     - Belt
   - type: Gun
-    # Starlight-start
-    minAngle: 13
-    maxAngle: 24
-    angleDecay: 26
-    angleIncrease: 5
-    # Starlight-end
     fireRate: 6
     selectedMode: SemiAuto
     availableModes:
@@ -84,10 +78,6 @@
   - type: StaticPrice
     price: 500
   # starlight start
-  - type: GunWieldBonus
-    angleIncreaseDivider: 1.5
-    minAngleDivider: 1.5
-    maxAngleDivider: 1.6
   - type: ContainerFill
     containers:
       firing_pin:
@@ -206,12 +196,6 @@
     boltClosed: null
   - type: Gun
     fireRate: 4
-    # Starlight-start
-    minAngle: 10
-    maxAngle: 26
-    angleIncrease: 8
-    angleDecay: 24
-    # Starlight-end
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
       params:
@@ -243,12 +227,6 @@
       firing_pin: !type:Container # starlight
   - type: StaticPrice
     price: 1500
-  # Starligth-start
-  - type: GunWieldBonus
-    angleIncreaseDivider: 1.5
-    minAngleDivider: 1.5
-    maxAngleDivider: 1.5
-  # Starlight-end
 
 - type: entity
   name: mk 58
@@ -292,12 +270,10 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Pistols/N1984.rsi
   - type: Gun
-    # Starlight-start
-    minAngle: 8
-    maxAngle: 34
-    angleIncrease: 13
-    angleDecay: 26
-    # Starlight-end
+    minAngle: 1
+    maxAngle: 20
+    angleIncrease: 8
+    angleDecay: 9
     fireRate: 4
     availableModes:
     - SemiAuto
@@ -321,9 +297,3 @@
         whitelist:
           tags:
             - CartridgeMagnum
-  # Starlight-start
-  - type: GunWieldBonus
-    angleIncreaseDivider: 1.5
-    minAngleDivider: 1.5
-    maxAngleDivider: 1.4
-  # Starlight-end
