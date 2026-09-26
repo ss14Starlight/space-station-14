@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Box) Changed old salvage room to be dilapidated.
-    type: Tweak
-  id: 408479
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
   - message: (Box) Changed mining dock a little.
     type: Tweak
   id: 408480
@@ -2799,4 +2792,11 @@ Entries:
   id: 408878
   time: '2026-09-26T02:03:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6355
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Reverted emote wheel ordering to how it was before the most recent update, and ensured it can't be shuffled around again.
+    type: Tweak
+  id: 408879
+  time: '2026-09-26T08:57:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6338
 Order: -1
