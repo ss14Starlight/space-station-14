@@ -1,74 +1,4 @@
 Entries:
-- author: OJG
-  changes:
-  - message: (Refinery) Fixed the box for vox draining all of distro.
-    type: Fix
-  id: 408505
-  time: '2026-09-12T07:31:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6114
-- author: OJG
-  changes:
-  - message: (Refinery) Moved grav gen APC.
-    type: Fix
-  id: 408506
-  time: '2026-09-12T07:31:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6114
-- author: OJG
-  changes:
-  - message: (Refinery) Made the secure part of comms actually locked.
-    type: Fix
-  id: 408507
-  time: '2026-09-12T07:31:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6114
-- author: SeaborneProto
-  changes:
-  - message: (Manor) Moved all departmental communications consoles to their head of staff's offices..
-    type: Tweak
-  id: 408508
-  time: '2026-09-12T07:31:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6044
-- author: SeaborneProto
-  changes:
-  - message: (Manor) Salvgone. Miner's rejoice, the mining bay has been reduxed to reflect Salvage's departure from the station.
-    type: Remove
-  id: 408509
-  time: '2026-09-12T07:31:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6044
-- author: Dr_Nonnoob
-  changes:
-  - message: 'New traitor items: Fake command stamps. Make sure the stamp is real before approving it. (Also a very low chance of a joke stamp).'
-    type: Add
-  id: 408510
-  time: '2026-09-12T07:31:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5912
-- author: Cvlancer
-  changes:
-  - message: Changed roboticist white winter coat sprites.
-    type: Tweak
-  id: 408511
-  time: '2026-09-12T07:49:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6117
-- author: Cvlancer
-  changes:
-  - message: Fixed transparency error in the white winter coat sprite icon.
-    type: Fix
-  id: 408512
-  time: '2026-09-12T07:49:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6117
-- author: Kamila, wonderfulnewworld
-  changes:
-  - message: Reduced server CPU cost of pinpointers, ignition sources, expendable lights, and temperature-affecting anomalies by throttling their update rate.
-    type: Tweak
-  id: 408513
-  time: '2026-09-12T07:49:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6119
-- author: Swonki
-  changes:
-  - message: Contra tags for salvage equipment.
-    type: Fix
-  id: 408514
-  time: '2026-09-12T18:45:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6121
 - author: Forrestgod
   changes:
   - message: Quartermaster now starts with a cargo key in it.
@@ -2799,4 +2729,74 @@ Entries:
   id: 408904
   time: '2026-09-26T11:23:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6239
+- author: Wizden Team
+  changes:
+  - message: Hyper Autolathe now needs 4 manipulators instead of 3.
+    type: Tweak
+  id: 408905
+  time: '2026-09-26T16:17:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6276
+- author: Wizden Team
+  changes:
+  - message: The Estoc DMR now has less slowdown when wielding and the same accuracy as other rifles.
+    type: Tweak
+  id: 408906
+  time: '2026-09-26T16:17:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6276
+- author: Wizden Team
+  changes:
+  - message: Passive regeneration on mobs no longer stops after taking a certain amount of damage.
+    type: Tweak
+  id: 408907
+  time: '2026-09-26T16:17:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6276
+- author: Wizden Team
+  changes:
+  - message: Hyperzine now heals you when critical, rather than relying on being above a certain amount of damage.
+    type: Tweak
+  id: 408908
+  time: '2026-09-26T16:17:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6276
+- author: Wizden Team
+  changes:
+  - message: Tricordrazine and Holy Water no longer have an upper damage.
+    type: Tweak
+  id: 408909
+  time: '2026-09-26T16:17:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6276
+- author: Wizden Team
+  changes:
+  - message: Changeling devour damage is no longer capped.
+    type: Tweak
+  id: 408910
+  time: '2026-09-26T16:17:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6276
+- author: Wizden Team
+  changes:
+  - message: Vulpkanins can now use Gauze markings.
+    type: Add
+  id: 408911
+  time: '2026-09-26T16:17:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6276
+- author: Wizden Team
+  changes:
+  - message: Spent air grenades cannot be re-triggered.
+    type: Fix
+  id: 408912
+  time: '2026-09-26T16:17:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6276
+- author: Wizden Team
+  changes:
+  - message: Hostile vent critters now crawl out of a single vent, alerting the station about the location in advance.
+    type: Add
+  id: 408913
+  time: '2026-09-26T16:17:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6276
+- author: Wizden Team
+  changes:
+  - message: Vent critters can no longer spawn on unachored vents.
+    type: Remove
+  id: 408914
+  time: '2026-09-26T16:17:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6276
 Order: -1
