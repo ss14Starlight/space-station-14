@@ -37,6 +37,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Pollen.Components;
+using Content.Shared.Botany.Items.Components;
 
 namespace Content.Server._Starlight.Scent.Systems;
 
@@ -108,8 +110,9 @@ public sealed partial class ScentSystem : SharedScentSystem
             PruneExpiredTraces(trace);
 
         var hasOwnScent = TryComp<ScentComponent>(args.Target, out var targetScent) && targetScent.ScentId != null;
+        var isPollen = HasComp<EmitPollenComponent>(args.Target);
 
-        if ((trace == null || trace.Scents.Count == 0) && !hasOwnScent)
+        if ((trace == null || trace.Scents.Count == 0) && !hasOwnScent && !isPollen)
         {
             _popup.PopupEntity(Loc.GetString("scent-sniff-no-scents", ("target", Name(args.Target))), args.Target, ent.Owner);
             args.Handled = true;
@@ -155,6 +158,13 @@ public sealed partial class ScentSystem : SharedScentSystem
 
         var ownScentId = TryComp<ScentComponent>(target, out var targetScent) ? targetScent.ScentId : null;
 
+        if (HasComp<EmitPollenComponent>(target) &&
+            TryComp<ProduceComponent>(target, out var produce) &&
+            produce.PlantProtoId is { } plantId)
+        {
+            entries.Add(new ScentTraceEntry(plantId.ToString(), ScentFreshness.VeryFresh, Loc.GetString("scent-species-non-humanoid")));
+        }
+
         if (!_ui.TryOpenUi(uid, ScentSniffUiKey.Key, uid))
         {
             Log.Warning($"{ToPrettyString(uid)} has SmellerComponent but couldn't open ScentSniffUiKey - " +
@@ -190,6 +200,15 @@ public sealed partial class ScentSystem : SharedScentSystem
     private void OnSmellerZombified(Entity<SmellerComponent> ent, ref EntityZombifiedEvent args) =>
         RemComp<SmellerComponent>(ent.Owner);
 
+    // Helper
+    private string? GetPollenId(EntityUid uid)
+    {
+        if (!TryComp<ProduceComponent>(uid, out var produce) || produce.PlantProtoId is not { } plantId)
+            return null;
+
+        return plantId.ToString();
+    }
+
     private void OnTrackMessage(EntityUid uid, SmellerComponent component, ScentSniffTrackMessage args)
     {
         if (component.SniffTarget is not { } target || !Exists(target))
@@ -203,8 +222,9 @@ public sealed partial class ScentSystem : SharedScentSystem
 
         var isOwnScent = TryComp<ScentComponent>(target, out var targetScent) && targetScent.ScentId == args.ScentId;
         var isTracedScent = TryComp<ScentTraceComponent>(target, out var trace) && trace.Scents.ContainsKey(args.ScentId);
+        var isPollen = HasComp<EmitPollenComponent>(target) && args.ScentId == GetPollenId(target);
 
-        if (!isOwnScent && !isTracedScent)
+        if (!isOwnScent && !isTracedScent && !isPollen)
             return;
 
         SetTrackedScent((uid, component), args.ScentId, target);
@@ -417,7 +437,7 @@ public sealed partial class ScentSystem : SharedScentSystem
         var query = EntityQueryEnumerator<ScentComponent>();
         while (query.MoveNext(out var uid, out var scent))
         {
-            if (scent.ScentId is not { } scentId)
+            if (scent.ScentId == null && scent.AdditionalScents.Count == 0)
                 continue;
 
             if (scent.NextEmitTime == TimeSpan.Zero)
@@ -427,10 +447,34 @@ public sealed partial class ScentSystem : SharedScentSystem
                 continue;
 
             scent.NextEmitTime = now + RollEmitDelay(scent);
+            
+            var scentId = PickScent(scent);
+            if (scentId == null)
+                continue;
 
             if (TryComp(uid, out TransformComponent? xform))
                 EmitScent((uid, scent, xform), scentId);
         }
+    }
+
+    private string? PickScent(ScentComponent scent)
+    {
+        var total = (scent.ScentId != null ? 1 : 0) + scent.AdditionalScents.Count;
+
+        if (total == 0)
+            return null;
+
+        var index = _random.Next(total);
+
+        if (scent.ScentId != null)
+        {
+            if (index == 0)
+                return scent.ScentId;
+
+            return scent.AdditionalScents[index - 1];
+        }
+
+        return scent.AdditionalScents[index];
     }
 
     private TimeSpan RollEmitDelay(ScentComponent scent)
@@ -560,5 +604,32 @@ public sealed partial class ScentSystem : SharedScentSystem
             despawn.Lifetime = (float)decayTime.TotalSeconds;
 
         return true;
+    }
+
+    public bool TryMergePollen(string pollenId, TransformComponent xform, TimeSpan lifetime)
+    {
+        var query = EntityQueryEnumerator<ScentMarkerComponent, TransformComponent>();
+
+        while (query.MoveNext(out var markerUid, out var marker, out var markerXform))
+        {
+            if (!marker.IsPollen || marker.ScentId != pollenId)
+                continue;
+
+            if (!_transform.InRange(xform.Coordinates, markerXform.Coordinates, 0.25f))
+                continue;
+
+            marker.ExpiresAt = _timing.CurTime + lifetime;
+            marker.TotalDuration = lifetime;
+            marker.Strength = 1f;
+
+            Dirty(markerUid, marker);
+
+            if (TryComp<TimedDespawnComponent>(markerUid, out var despawn))
+                despawn.Lifetime = (float)lifetime.TotalSeconds;
+
+            return true;
+        }
+
+        return false;
     }
 }

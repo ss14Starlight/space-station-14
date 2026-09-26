@@ -1,0 +1,167 @@
+- type: storeCategory
+  id: PollenTreeFloral
+  name: pollen-tree-floral-name
+
+- type: storeCategory
+  id: PollenTreeBark
+  name: pollen-tree-bark-name
+
+- type: storeCategory
+  id: PollenTreeMushroom
+  name: pollen-tree-mushroom-name
+
+- type: listing
+  id: PollenTreeFloralT1AlertPollen
+  name: pollen-floral-t1-name
+  description: pollen-floral-t1-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: alert_pollen }
+  cost:
+    PollenPoints: 2
+  categories:
+  - PollenTreeFloral
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: PollenTreeFloralT2BloomingMoss
+  name: pollen-floral-t2-name
+  description: pollen-floral-t2-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: alert_pollen }
+  cost:
+    PollenPoints: 3
+  categories:
+  - PollenTreeFloral
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - PollenTreeFloralT1AlertPollen
+
+- type: listing
+  id: PollenTreeFloralT3AdvancedPollen
+  name: pollen-floral-t1-name
+  description: pollen-floral-t1-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: alert_pollen }
+  cost:
+    PollenPoints: 4
+  categories:
+  - PollenTreeFloral
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - PollenTreeFloralT2Whatever
+    blacklist:
+    - PollenTreeBarkT3SapSerum
+    - PollenTreeMushroomT3SporeCloud
+
+# Bark
+
+- type: listing
+  id: PollenTreeBarkT1MakeWood
+  name: pollen-bark-t1-name
+  description: pollen-bark-t1-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: make_wood }
+  productAction: PollenTreeBarkT1ActionMakeWood
+  applyToMob: true
+  cost:
+    PollenPoints: 2
+  categories:
+  - PollenTreeBark
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: PollenTreeBarkT2Harden
+  name: pollen-bark-t2-name
+  description: pollen-bark-t2-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: open_shop } # TODO
+  cost:
+    PollenPoints: 3
+  categories:
+  - PollenTreeBark
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - PollenTreeBarkT1MakeWood
+
+- type: listing
+  id: PollenTreeBarkT3SapSerum
+  name: pollen-bark-t3-name
+  description: pollen-bark-t3-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: open_shop } # TODO
+  cost:
+    PollenPoints: 4
+  categories:
+  - PollenTreeBark
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - PollenTreeBarkT2Harden
+    blacklist:
+    - PollenTreeFloralT3AdvancedPollen
+    - PollenTreeMushroomT3SporeCloud
+
+
+# Mushroom
+
+- type: listing
+  id: PollenTreeMushroomT1injectorphytovitalin
+  name: pollen-mushroom-t1-name
+  description: pollen-mushroom-t1-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: mush_injection_phytovitalin }
+  productAction: ActionInjectPhytovitalin
+  applyToMob: true
+  cost:
+    PollenPoints: 2
+  categories:
+  - PollenTreeMushroom
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: PollenTreeMushroomT2hivemind
+  name: pollen-mushroom-t2-name
+  description: pollen-mushroom-t2-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: mush_spore_hivemind }
+  productLanguage: Spore
+  cost:
+    PollenPoints: 3
+  categories:
+  - PollenTreeMushroom
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - PollenTreeMushroomT1injectorphytovitalin
+
+- type: listing
+  id: PollenTreeMushroomT3SporeCloud
+  name: pollen-mushroom-t3-name
+  description: pollen-mushroom-t3-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: mush_spore_bomb }
+  productAction: ActionSporeCloud
+  applyToMob: true
+  cost:
+    PollenPoints: 4
+  categories:
+  - PollenTreeMushroom
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - PollenTreeMushroomT2hivemind
+    blacklist:
+    - PollenTreeFloralT3AdvancedPollen
+    - PollenTreeBarkT3SapSerum

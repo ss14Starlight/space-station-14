@@ -1,0 +1,41 @@
+- type: entity
+  parent: BaseObjective
+  id: PollenCollectionObjective
+  components:
+  - type: Objective
+    difficulty: 1.5
+    issuer: objective-issuer-pollen
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_diona.rsi
+      state: open_shop
+  - type: NumberObjective
+    min: 5
+    max: 5
+    title: objective-condition-pollen-collection-title
+  - type: PollenCollectionCondition
+
+- type: entity
+  parent: TearGasSmokeWhite
+  id: PollenSporeCloud
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Occluder
+
+- type: entity
+  id: PollenSporeCloudEmitter
+  name: spore cloud
+  description: An invisible pollen spore emitter.
+  noSpawn: true
+  components:
+  - type: SmokeOnTrigger
+    duration: 30
+    spreadAmount: 10
+    smokePrototype: PollenSporeCloud
+    solution:
+      reagents:
+      - ReagentId: Mycophylin
+        Quantity: 15
+  - type: EmitSoundOnTrigger
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+    positional: true
+  - type: DeleteOnTrigger

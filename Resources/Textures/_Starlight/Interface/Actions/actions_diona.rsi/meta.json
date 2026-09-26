@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "github @sir-lutz",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "open_shop"
+        },
+        {
+            "name": "alert_pollen"
+        },
+        {
+            "name": "make_wood"
+        },
+        {
+            "name": "mush_spore_hivemind"
+        },
+        {
+            "name": "mush_injection_phytovitalin"
+        },
+        {
+            "name": "mush_spore_cloud"
+        }
+    ]
+}

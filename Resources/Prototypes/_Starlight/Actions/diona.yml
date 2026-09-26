@@ -1,0 +1,87 @@
+- type: entity
+  id: ActionOpenPollenShop
+  name: Open pollen shop
+  description: Spend collected pollen points on bodily perks.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_diona.rsi
+      state: open_shop
+    checkCanInteract: false
+    checkConsciousness: false
+  - type: InstantAction
+    event: !type:IntrinsicStoreActionEvent {}
+
+- type: entity
+  id: PollenTreeFloralT2PassiveMossFireResistEffect
+  components:
+  - type: StatusEffect
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Heat: 0.9
+        Cold: 0.8
+
+- type: entity
+  id: PollenTreeBarkT1ActionMakeWood
+  name: Make Wood
+  description: Cut off some of your body for fresh wood. Deals damage to yourself.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_diona.rsi
+      state: make_wood
+    useDelay: 30
+  - type: ConfirmableAction
+    popup: pollen-bark-make-wood-confirm
+  - type: InstantAction
+    event: !type:MakeWoodEvent {}
+
+- type: entity
+  id: PollenTreeBarkT2PassiveHardenEffect
+  components:
+  - type: StatusEffect
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.95
+
+- type: entity
+  id: ActionSporeCloud
+  name: Spore Cloud
+  description: Release a cloud of mycophylin-laced spores around yourself.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_diona.rsi
+      state: mush_spore_cloud
+    useDelay: 60
+  - type: InstantAction
+    event: !type:SporeCloudEvent {}
+
+- type: entity
+  id: ActionInjectPhytovitalin
+  name: Inject Phytovitalin
+  description: Channel for a moment, then inject 5u of Phytovitalin into a target creature or container.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_diona.rsi
+      state: mush_injection_phytovitalin
+    useDelay: 300 # 5 minutes
+  - type: TargetAction
+    interactOnMiss: false
+  - type: EntityTargetAction
+    canTargetSelf: true
+    event: !type:PollenInjectPhytovitalinEvent {}
+

@@ -71,6 +71,7 @@
     tags:
     - Wheat
     - Ruminant
+  - type: EmitPollen # Starlight
 
 - type: entity
   parent: ProduceBaseRuminant
@@ -117,6 +118,7 @@
       reagents:
       - ReagentId: MilkOat
         Quantity: 5
+  - type: EmitPollen # Starlight
 
 - type: entity
   parent: ProduceBaseRuminant
@@ -135,6 +137,7 @@
         Quantity: 15
   - type: Produce
     plantId: SugarcanePlants
+  - type: EmitPollen # Starlight
 
 - type: entity
   parent: [ProduceBase, BaseSlicingRefinable]
@@ -262,6 +265,7 @@
     pierceArmor: false
   - type: Extractable
     grindableSolutionName: food
+  - type: EmitPollen # Starlight
 
 - type: entity
   parent: [ ProduceBase, BaseMajorContraband ]
@@ -327,6 +331,7 @@
     damage:
       types:
         Blunt: 5 # The nettle will "wilt" after 5 hits.
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: banana
@@ -371,6 +376,7 @@
     entries:
       Burger: Banana
       Taco: Banana
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: mimana
@@ -577,6 +583,7 @@
     entries:
       Burger: CarrotBurger
       Taco: Carrot
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: cabbage
@@ -609,6 +616,7 @@
     entries:
       Burger: CabbageBurger
       Taco: Cabbage
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: garlic
@@ -639,6 +647,7 @@
     entries:
       Burger: GarlicBurger
       Taco: Garlic
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: lemon
@@ -677,6 +686,7 @@
     entries:
       Burger: Lemon
       Taco: Lemon
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: lemoon
@@ -750,6 +760,7 @@
     entries:
       Burger: Lime
       Taco: Lime
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: orange
@@ -787,6 +798,7 @@
     entries:
       Burger: Orange
       Taco: Orange
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: extradimensional orange
@@ -865,6 +877,7 @@
   - type: Tag
     tags:
     - Fruit
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: potato
@@ -889,6 +902,7 @@
     entries:
       Burger: Potato
       Taco: Potato
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: tomato
@@ -949,6 +963,7 @@
       Skewer: TomatoSkewer
       Burger: Tomato
       Taco: Tomato
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: blue tomato
@@ -1104,6 +1119,7 @@
     entries:
       Burger: Apple
       Taco: Apple
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: golden apple
@@ -1144,6 +1160,7 @@
     entries:
       Burger: GoldenApple
       Taco: GoldenApple
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: cocoa pod
@@ -1219,6 +1236,7 @@
       Burger: Corn
       Taco: Corn
       Skewer: CornSkewer
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: corn cob
@@ -1271,6 +1289,7 @@
   - type: Tag
     tags:
     - Vegetable
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: red onion
@@ -1303,6 +1322,7 @@
   - type: Tag
     tags:
     - Vegetable
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: chanterelle cluster
@@ -1332,6 +1352,7 @@
   - type: SpeakOnTrigger
     text: dwarf-callout-mushroom
     targetUser: true
+  - type: EmitPollen
   #END STARLIGHT
   - type: Tag
     tags:
@@ -1507,6 +1528,7 @@
       Taco: ChillyPepper
       Burger: ChillyPepper
       Skewer: ChillyPepperSkewer
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: aloe
@@ -1539,6 +1561,7 @@
     entries:
       Taco: Aloe
       Burger: Aloe
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: poppy
@@ -1573,6 +1596,7 @@
     entries:
       Taco: Poppy
       Burger: Poppy
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: lily
@@ -1687,6 +1711,7 @@
     entries:
       Taco: AmbrosiaVulgaris
       Burger: AmbrosiaVulgarisBurger
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: ambrosia deus
@@ -1726,6 +1751,7 @@
     entries:
       Taco: AmbrosiaDeus
       Burger: AmbrosiaDeusBurger
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: galaxythistle
@@ -1757,6 +1783,7 @@
     entries:
       Taco: Galaxythistle
       Burger: GalaxythistleBurger
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: glasstle
@@ -1975,6 +2002,7 @@
         Quantity: 15
   - type: Produce
     plantId: RicePlants
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: soybeans
@@ -2005,6 +2033,7 @@
     entries:
       Taco: Soybeans
       Burger: SoybeansBurger
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: spaceman's trumpet
@@ -2039,6 +2068,7 @@
     entries:
       Taco: SpacemansTrumpet
       Burger: SpacemansTrumpetBurger
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: koibean
@@ -2135,6 +2165,7 @@
   - type: Tag
     tags:
     - Fruit
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: watermelon slice
@@ -2239,6 +2270,7 @@
   - type: Tag
     tags:
     - Fruit
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: holymelon slice
@@ -2349,6 +2381,7 @@
     entries:
       Taco: Berries
       Burger: BerriesBurger
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: bungo fruit
@@ -2388,6 +2421,7 @@
     entries:
       Taco: Bungo
       Burger: Bungo
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: bungo pit
@@ -2450,6 +2484,7 @@
     entries:
       Taco: Pea
       Burger: Pea
+  - type: EmitPollen # Starlight
 
 - type: entity
   parent: FoodProduceBase
@@ -2487,6 +2522,7 @@
     entries:
       Taco: WorldPea
       Burger: WorldPeaBurger
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: pumpkin
@@ -2536,6 +2572,7 @@
     tags:
     - Fruit
     - Vegetable
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: blue pumpkin
@@ -2589,6 +2626,7 @@
   - type: Tag
     tags:
     - Fruit
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: cotton boll
@@ -2701,6 +2739,7 @@
     entries:
       Taco: Cherry
       Burger: Cherry
+  - type: EmitPollen # Starlight
 
 - type: entity
   name: cherry pit

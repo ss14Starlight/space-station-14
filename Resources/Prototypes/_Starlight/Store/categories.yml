@@ -218,3 +218,7 @@
   id: ChangelingAbilityUtility
   name: store-ling-category-utility
   priority: 2
+
+- type: storeCategory
+  id: PollenPerks
+  name: pollen-perks-category-name

@@ -144,3 +144,11 @@
   color: "#8f6741"
   longRange: true
   autoTranslate: Xenomind
+
+- type: radioChannel
+  id: SporeRadio
+  name: language-Spore-name
+  frequency: 77785
+  color: "#b2c21f"
+  longRange: true
+  autoTranslate: Spore
