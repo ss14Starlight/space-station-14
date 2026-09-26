@@ -1,10 +1,15 @@
 - type: !PartialOnly entity
   id: BaseWeaponRevolver
+  parent: [ BaseItem, BaseGunWieldable ]
   components:
   - type: Gun
     minAngle: 4
+    maxAngle: 20
     angleDecay: 16
     angleIncrease: 8
   - type: GunWieldBonus
+    angleIncreaseDivider: 1.5
+    minAngleDivider: 1.5
+    maxAngleDivider: 1.5
     minAngle: 0
     maxAngle: 0

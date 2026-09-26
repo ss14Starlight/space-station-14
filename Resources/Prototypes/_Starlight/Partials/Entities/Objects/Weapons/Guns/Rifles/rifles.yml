@@ -5,6 +5,12 @@
     heatPerShot: 750
 
 - type: !PartialOnly entity
+  id: WeaponRifleLecter
+  components:
+  - type: Gun
+    fireRate: 6
+
+- type: !PartialOnly entity
   id: WeaponRifleEstoc
   components:
   - type: Gun
@@ -12,7 +18,9 @@
     maxAngle: 30
     angleIncrease: 3
     angleDecay: 10
+    spread: 3
   - type: GunWieldBonus
+    angleIncreaseDivider: 2
     minAngleDivider: 8
     maxAngleDivider: 3.75
     minAngle: 0

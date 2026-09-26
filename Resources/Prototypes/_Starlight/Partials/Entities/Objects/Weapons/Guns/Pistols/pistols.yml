@@ -1,5 +1,6 @@
 - type: !PartialOnly entity
   id: BaseWeaponPistol
+  parent: [ BaseItem, BaseGunWieldable ]
   components:
   - type: Gun
     minAngle: 6
@@ -7,6 +8,8 @@
     angleDecay: 16
     angleIncrease: 4
   - type: GunWieldBonus
+    angleIncreaseDivider: 1.5
+    minAngleDivider: 1.5
     maxAngleDivider: 1.5
     minAngle: 0
     maxAngle: 0
@@ -28,7 +31,6 @@
     maxAngle: 24
     angleIncrease: 5
     angleDecay: 16
-  - type: !Remove GunWieldBonus
 
 - type: !PartialOnly entity
   id: WeaponPistolN1984
@@ -39,5 +41,8 @@
     angleIncrease: 8
     angleDecay: 18
   - type: GunWieldBonus
+    angleIncreaseDivider: 1.5
+    minAngleDivider: 1.5
+    maxAngleDivider: 1.4
     minAngle: 0
     maxAngle: 0

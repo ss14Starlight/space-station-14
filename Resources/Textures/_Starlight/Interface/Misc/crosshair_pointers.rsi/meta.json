@@ -1,7 +1,5 @@
 {
   "version": 1,
-  "license": "CC0-1.0",
-  "copyright": "Kenney assets, https://kenney-assets.itch.io/crosshair-pack",
   "size": {
     "x": 32,
     "y": 32
@@ -9,6 +7,8 @@
   "states": [
     {
       "name": "arrows",
+      "copyright": "Kenney assets, https://kenney-assets.itch.io/crosshair-pack",
+      "license": "CC0-1.0",
       "delays": [
         [
           1,
@@ -19,6 +19,8 @@
     },
     {
       "name": "arrows_dot",
+      "copyright": "Kenney assets, https://kenney-assets.itch.io/crosshair-pack",
+      "license": "CC0-1.0",
       "delays": [
         [
           1,
@@ -29,6 +31,8 @@
     },
     {
       "name": "arrows_outer",
+      "copyright": "Kenney assets, https://kenney-assets.itch.io/crosshair-pack",
+      "license": "CC0-1.0",
       "delays": [
         [
           1,
@@ -39,6 +43,8 @@
     },
     {
       "name": "arrows_outer_double",
+      "copyright": "Kenney assets, https://kenney-assets.itch.io/crosshair-pack",
+      "license": "CC0-1.0",
       "delays": [
         [
           1,
@@ -49,6 +55,8 @@
     },
     {
       "name": "basic",
+      "copyright": "Kenney assets, https://kenney-assets.itch.io/crosshair-pack",
+      "license": "CC0-1.0",
       "delays": [
         [
           1,
@@ -61,6 +69,8 @@
     },
     {
       "name": "basic_dot",
+      "copyright": "Kenney assets, https://kenney-assets.itch.io/crosshair-pack",
+      "license": "CC0-1.0",
       "delays": [
         [
           1,
@@ -73,6 +83,8 @@
     },
     {
       "name": "brackets",
+      "copyright": "Kenney assets, https://kenney-assets.itch.io/crosshair-pack",
+      "license": "CC0-1.0",
       "delays": [
         [
           1,
@@ -82,19 +94,29 @@
       ]
     },
     {
-      "name": "cross_dot"
+      "name": "cross_dot",
+      "copyright": "Kenney assets, https://kenney-assets.itch.io/crosshair-pack",
+      "license": "CC0-1.0"
     },
     {
-      "name": "cross_small"
+      "name": "cross_small",
+      "copyright": "Kenney assets, https://kenney-assets.itch.io/crosshair-pack",
+      "license": "CC0-1.0"
     },
     {
-      "name": "cross_small2"
+      "name": "cross_small2",
+      "copyright": "Kenney assets, https://kenney-assets.itch.io/crosshair-pack",
+      "license": "CC0-1.0"
     },
     {
-      "name": "dot"
+      "name": "dot",
+      "copyright": "Kenney assets, https://kenney-assets.itch.io/crosshair-pack",
+      "license": "CC0-1.0"
     },
     {
       "name": "double_dot",
+      "copyright": "Kenney assets, https://kenney-assets.itch.io/crosshair-pack",
+      "license": "CC0-1.0",
       "delays": [
         [
           1,
@@ -105,6 +127,8 @@
     },
     {
       "name": "triple",
+      "copyright": "Kenney assets, https://kenney-assets.itch.io/crosshair-pack",
+      "license": "CC0-1.0",
       "delays": [
         [
           1,
@@ -116,6 +140,8 @@
     },
     {
       "name": "triple_dot",
+      "copyright": "Kenney assets, https://kenney-assets.itch.io/crosshair-pack",
+      "license": "CC0-1.0",
       "delays": [
         [
           1,
