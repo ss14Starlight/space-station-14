@@ -260,6 +260,14 @@
       #     groups:
       #       Brute: -0.1
       - !type:Vomit
+        probability: 0.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: Ethanol
+          min: 0.01
+        - !type:MetabolizerTypeCondition
+          type: [ Experiment ]
+      - !type:Vomit
         probability: 0.04
         conditions:
         - !type:ReagentCondition

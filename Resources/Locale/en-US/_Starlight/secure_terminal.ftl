@@ -221,3 +221,7 @@ secure-terminal-emergency-station-announcement = Access restrictions on all stat
 secure-terminal-end-emergency-station-name = Deactivate Station-Wide Emergency Access
 secure-terminal-end-emergency-station-desc = Deactivate Station-Wide Emergency Access.
 secure-terminal-end-emergency-station-announcement = Access restrictions on all station airlocks have been re-added. Seek station AI or a colleague's assistance if you are stuck.
+
+secure-terminal-unlock-escape-pods-name = Unlock escape pods
+secure-terminal-unlock-escape-pods-desc = Escape pods will be unlocked and crew can launch them at will
+secure-terminal-unlock-escape-pods-announcement = Command has authorized escape pods to be used for evacuation
