@@ -1,11 +1,17 @@
 - type: nameIdentifierGroup
-  id: Intellicard
-  format: name-identifier-format-intellicard
-  minValue: 100
-  maxValue: 999
+  id: CosmicPositronicBrain
+  format: name-identifier-format-positronic-brain
+  minValue: 0
+  maxValue: 10
 
 - type: nameIdentifierGroup
   id: Drone
   format: name-identifier-format-silicon
   minValue: 1000
   maxValue: 9999
+
+- type: nameIdentifierGroup
+  id: Intellicard
+  format: name-identifier-format-intellicard
+  minValue: 100
+  maxValue: 999

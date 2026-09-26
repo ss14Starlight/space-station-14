@@ -36,6 +36,19 @@
           amount: 5
 
 - type: entity
+  id: CrateServiceReligious
+  parent: CratePlastic
+  name: religious supplies crate
+  description: Contains holy water, a censer and a bible.
+  components:
+    - type: StorageFill
+      contents:
+        - id: Bible
+        - id: JugHolywater
+          amount: 2
+        - id: CosmicCenser
+
+- type: entity
   parent: CrateGenericSteel
   id: CrateServiceDocumentPrinter
   name: document printer crate

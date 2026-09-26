@@ -252,7 +252,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = Loc.GetString("admin-verb-text-make-changeling"),
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Changeling/changeling_abilities.rsi"), "transform"),
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/Actions/actions_changeling.rsi"), "transform"),
             Act = () =>
             {
                 _antag.ForceMakeAntag<SLChangelingRuleComponent>(targetPlayer, "SLChangeling");
@@ -267,7 +267,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = Loc.GetString("admin-verb-text-make-vampire"),
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Vampire/actions_vampire.rsi"), "select_class"), // Starlight
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/Actions/actions_vampire.rsi"), "select_class"), // Starlight
             Act = () =>
             {
                 _antag.ForceMakeAntag<VampireRuleComponent>(targetPlayer, DefaultVampireRule);
@@ -315,7 +315,7 @@ public sealed partial class AdminVerbSystem
             {
                 Text = Loc.GetString("admin-verb-text-make-brighteye"),
                 Category = VerbCategory.Antag,
-                Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/Actions/shadekin.rsi"), "rest"),
+                Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/Actions/actions_shadekin.rsi"), "rest"),
                 Act = () =>
                 {
                     _gameTicker.StartGameRule(_theDarkMap); // The Dark should always be spawned for any brighteye.

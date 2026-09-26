@@ -120,6 +120,26 @@
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointCosmicColossus
+  components:
+  - type: GhostRole
+    name: ghost-role-information-colossus-name
+    description: ghost-role-information-colossus-description
+    rules: ghost-role-information-colossus-rules
+    important: true
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    mindRoles:
+    - MindRoleCosmicColossus
+  - type: Sprite
+    layers:
+    - sprite: _Starlight/CosmicCult/Mobs/colossus.rsi
+      state: colossus
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   parent: SpawnPointGhostDerelictBorgi
   id: SpawnPointGhostDerelictXenoBorgi
   components:

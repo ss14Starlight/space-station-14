@@ -1,0 +1,12 @@
+- type: dataset
+  id: Rooms
+  values:
+    - Disposals
+    - The Library
+    - Escape Pod
+    - The Maints Bar
+    - Maints
+    - The Restroom
+    - The Station Anchor
+    - Solars
+    - The Morgue

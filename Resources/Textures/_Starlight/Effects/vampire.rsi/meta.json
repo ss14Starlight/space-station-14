@@ -1,0 +1,316 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "blood_tendril_ent",
+            "delays": [
+                [
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3
+                ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
+        },
+        {
+            "name": "blood_barrier_ent",
+            "delays": [
+                [
+                    0.3,
+                    0.3,
+                    0.3
+                ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
+        },
+        {
+            "name": "vampout",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
+        },
+        {
+            "name": "vampin",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
+        },
+        {
+            "name": "drainbeam",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
+        },
+        {
+            "name": "shadow_snare_base",
+            "copyright": "Taken from Paradise Station 13"
+        },
+        {
+            "name": "pylon",
+            "delays": [
+                [
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3
+                ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
+        },
+        {
+            "name": "mist_in",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
+        },
+        {
+            "name": "mist_out",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
+        },
+        {
+            "name": "shadow_box_atack_effect",
+            "directions": 4,
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    2
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    2
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    2
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    2
+                ]
+            ],
+            "copyright": "Sprites by DocMoth from Starlight"
+        },
+        {
+            "name": "rallyoverlay",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
+        },
+        {
+            "name": "schizo",
+            "directions": 4,
+            "copyright": "Taken from Paradise Station 13"
+        },
+        {
+            "name": "immobilized",
+            "copyright": "Taken from Paradise Station 13"
+        },
+        {
+            "name": "demonic_grasp",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
+        },
+        {
+            "name": "bloodspike",
+            "delays": [
+                [
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    1
+                ]
+            ],
+            "copyright": "Sprites by DocMoth from Starlight"
+        },
+        {
+            "name": "bloodpool",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ],
+            "copyright": "Sprites by DocMoth from Starlight"
+        },
+        {
+            "name": "blood_bond",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
+        },
+        {
+            "name": "stomp_effect",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    1
+                ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
+        }
+    ]
+}

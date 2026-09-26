@@ -8,7 +8,7 @@
     qualities:
     - Slicing
   - type: Sprite
-    sprite: Changeling/arm_blade.rsi # Starlight new changeling armblade sprites
+    sprite: _Starlight/Objects/Weapons/Melee/arm_blade.rsi # Starlight new changeling armblade sprites
     state: icon
   - type: MeleeWeapon
     soundHit:
@@ -22,7 +22,7 @@
         Structural: 20
   - type: Item
     size: Normal
-    sprite: Changeling/arm_blade.rsi
+    sprite: _Starlight/Objects/Weapons/Melee/arm_blade.rsi
   - type: Prying
     speedModifier: 2 # Starlight, faster than the Jaws of life, so you can hunt people down.
     pryPowered: true

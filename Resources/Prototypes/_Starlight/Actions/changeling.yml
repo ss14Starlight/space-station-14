@@ -10,7 +10,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: evolution_menu
     checkCanInteract: false # Let them shop while cuffed/unconscious. Could be neat.
     checkConsciousness: false
@@ -29,7 +29,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: sting_extractdna
   - type: TargetAction
     interactOnMiss: false
@@ -55,7 +55,7 @@
     useDelay: 5
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: stasis_enter
     checkCanInteract: false
     checkConsciousness: false
@@ -75,7 +75,7 @@
     useDelay: 5
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: stasis_exit
     checkCanInteract: false
     checkConsciousness: false
@@ -121,7 +121,7 @@
     useDelay: 1
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: bone_shard
   - type: InstantAction
     event: !type:CreateBoneShardEvent {}
@@ -138,7 +138,7 @@
     useDelay: 2
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: chitinous_armor
   - type: InstantAction
     event: !type:ToggleChitinousArmorEvent {}
@@ -158,7 +158,7 @@
     raiseOnAction: true
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: organic_shield
   - type: InstantAction
     event: !type:OnRetractableItemActionEvent
@@ -182,7 +182,7 @@
     useDelay: 10
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: shriek_dissonant
   - type: InstantAction
     event: !type:ShriekDissonantEvent {}
@@ -201,7 +201,7 @@
     useDelay: 10
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: shriek_resonant
   - type: InstantAction
     event: !type:ShriekResonantEvent {}
@@ -219,7 +219,7 @@
     useDelay: 1
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: strained_muscles
   - type: InstantAction
     event: !type:ToggleStrainedMusclesEvent {}
@@ -238,7 +238,7 @@
     useDelay: 1
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: sting_blind
   - type: TargetAction
     interactOnMiss: false
@@ -261,7 +261,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: sting_cryo
   - type: TargetAction
     interactOnMiss: false
@@ -310,7 +310,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: sting_lethargic
   - type: TargetAction
     interactOnMiss: false
@@ -357,7 +357,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: sting_mute
   - type: TargetAction
     interactOnMiss: false
@@ -380,7 +380,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: sting_armblade
   - type: TargetAction
     interactOnMiss: false
@@ -403,7 +403,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: sting_transform
   - type: TargetAction
     interactOnMiss: false
@@ -429,7 +429,7 @@
     useDelay: 30
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: anatomic_panacea
     checkCanInteract: false
     checkConsciousness: false
@@ -448,7 +448,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: augmented_eyesight
     checkCanInteract: false
   - type: InstantAction
@@ -504,7 +504,7 @@
     useDelay: 5
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: biodegrade
     checkCanInteract: false
     checkConsciousness: false # Break out while unconscious, to encourage people not letting changelings linger around for too long.
@@ -524,7 +524,7 @@
     useDelay: 1
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: chameleon_skin
     checkCanInteract: false
     checkConsciousness: false
@@ -543,7 +543,7 @@
     useDelay: 10
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: epinephrine_overdose
     checkCanInteract: false
   - type: InstantAction
@@ -602,7 +602,7 @@
     useDelay: 30
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: fleshmend
     checkCanInteract: false
   - type: InstantAction
@@ -622,7 +622,7 @@
     useDelay: 5
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: lesser_form
     checkCanInteract: false
   - type: InstantAction
@@ -640,7 +640,7 @@
     useDelay: 2
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: space_adaptation
   - type: InstantAction
     event: !type:ActionSpacesuitEvent {}
@@ -675,7 +675,7 @@
     checkConsciousness: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: hivemind_access
   - type: InstantAction
     event: !type:ActionHivemindAccessEvent {}

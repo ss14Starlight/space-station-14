@@ -19,6 +19,16 @@
   group: market
 
 - type: cargoProduct
+  id: ServiceReligiousSupplies
+  icon:
+    sprite: _Starlight/CosmicCult/Objects/censer.rsi
+    state: icon
+  product: CrateServiceReligious
+  cost: 1500
+  category: cargoproduct-category-name-service
+  group: market
+
+- type: cargoProduct
   id: ServiceDocumentPrinter
   icon:
     sprite: _Starlight/Structures/Machines/printer.rsi

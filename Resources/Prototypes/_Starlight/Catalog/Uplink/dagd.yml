@@ -240,7 +240,7 @@
   id: UplinkMicroBombImplanterDAGD
   name: uplink-micro-bomb-implanter-name
   description: uplink-micro-bomb-implanter-desc
-  icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
+  icon: { sprite: /Textures/Interface/Actions/Implants/implants.rsi, state: explosive }
   productEntity: MicroBombImplanter
   cost:
     Telecrystal: 2
@@ -260,7 +260,7 @@
   id: UplinkMacroBombImplanterDAGD
   name: uplink-macro-bomb-implanter-name
   description: uplink-macro-bomb-implanter-desc
-  icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
+  icon: { sprite: /Textures/Interface/Actions/Implants/implants.rsi, state: explosive }
   productEntity: MacroBombImplanter
   cost:
     Telecrystal: 13

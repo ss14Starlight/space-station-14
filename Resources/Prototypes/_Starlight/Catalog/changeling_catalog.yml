@@ -4,7 +4,7 @@
   id: EvolutionMenuCombatArmblade
   name: evolutionmenu-combat-armblade-name
   description: evolutionmenu-combat-armblade-desc
-  icon: { sprite: Interface/Actions/changeling.rsi, state: armblade }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: armblade }
   productAction: ActionRetractableItemArmBlade
   cost:
     EvolutionPoint: 4
@@ -32,7 +32,7 @@
   id: EvolutionMenuCombatBoneShard
   name: evolutionmenu-combat-boneshard-name
   description: evolutionmenu-combat-boneshard-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: bone_shard }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: bone_shard }
   productAction: ActionCreateBoneShard
   cost:
     EvolutionPoint: 3
@@ -46,7 +46,7 @@
   id: EvolutionMenuCombatChitinousArmor
   name: evolutionmenu-combat-armor-name
   description: evolutionmenu-combat-armor-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: chitinous_armor }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: chitinous_armor }
   productAction: ActionToggleChitinousArmor
   cost:
     EvolutionPoint: 4
@@ -60,7 +60,7 @@
   id: EvolutionMenuCombatOrganicShield
   name: evolutionmenu-combat-shield-name
   description: evolutionmenu-combat-shield-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: organic_shield }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: organic_shield }
   productAction: ActionToggleOrganicShield
   cost:
     EvolutionPoint: 2
@@ -74,7 +74,7 @@
   id: EvolutionMenuCombatShriekDissonant
   name: evolutionmenu-combat-shriek-dissonant-name
   description: evolutionmenu-combat-shriek-dissonant-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: shriek_dissonant }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: shriek_dissonant }
   productAction: ActionShriekDissonant
   cost:
     EvolutionPoint: 2
@@ -88,7 +88,7 @@
   id: EvolutionMenuCombatShriekResonant
   name: evolutionmenu-combat-shriek-resonant-name
   description: evolutionmenu-combat-shriek-resonant-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: shriek_resonant }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: shriek_resonant }
   productAction: ActionShriekResonant
   cost:
     EvolutionPoint: 2
@@ -102,7 +102,7 @@
   id: EvolutionMenuCombatMuscles
   name: evolutionmenu-combat-strainedmuscles-name
   description: evolutionmenu-combat-strainedmuscles-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: strained_muscles }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: strained_muscles }
   productAction: ActionToggleStrainedMuscles
   cost:
     EvolutionPoint: 2
@@ -112,27 +112,13 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-#- type: listing
-#  id: EvolutionMenuCombatSpiders
-#  name: evolutionmenu-combat-spiders-name
-#  description: evolutionmenu-combat-spiders-desc
-#  icon: { sprite: Changeling/changeling_abilities.rsi, state: spiders_spawn }
-#  productAction: ActionSpawnChangelingSpider
-#  cost:
-#    EvolutionPoint: 6
-#  categories:
-#  - ChangelingAbilityCombat
-#  consitions:
-#  - !type:ListingLimitedStockCondition
-#    stock: 1
-
 # sting
 
 - type: listing
   id: EvolutionMenuStingBlind
   name: evolutionmenu-sting-blind-name
   description: evolutionmenu-sting-blind-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: sting_blind }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_blind }
   productAction: ActionStingBlind
   cost:
     EvolutionPoint: 4
@@ -146,7 +132,7 @@
   id: EvolutionMenuStingCryo
   name: evolutionmenu-sting-cryo-name
   description: evolutionmenu-sting-cryo-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: sting_cryo }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_cryo }
   productAction: ActionStingCryo
   cost:
     EvolutionPoint: 3
@@ -174,7 +160,7 @@
   id: EvolutionMenuStingLethargic
   name: evolutionmenu-sting-lethargic-name
   description: evolutionmenu-sting-lethargic-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: sting_lethargic }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_lethargic }
   productAction: ActionStingLethargic
   cost:
     EvolutionPoint: 3 # Starlight, the drain sting is the stronger version of this.
@@ -202,7 +188,7 @@
   id: EvolutionMenuStingMute
   name: evolutionmenu-sting-mute-name
   description: evolutionmenu-sting-mute-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: sting_mute }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_mute }
   productAction: ActionStingMute
   cost:
     EvolutionPoint: 4
@@ -216,7 +202,7 @@
   id: EvolutionMenuStingFakeArmblade
   name: evolutionmenu-sting-armblade-name
   description: evolutionmenu-sting-armblade-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: sting_armblade }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_armblade }
   productAction: ActionStingFakeArmblade
   cost:
     EvolutionPoint: 5
@@ -226,27 +212,13 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-#- type: listing
-#  id: EvolutionMenuStingTransform
-#  name: evolutionmenu-sting-transform-name
-#  description: evolutionmenu-sting-transform-desc
-#  icon: { sprite: Changeling/changeling_abilities.rsi, state: sting_transform }
-#  productAction: ActionStingTransform
-#  cost:
-#    EvolutionPoint: 6
-#  categories:
-#  - ChangelingAbilitySting
-#  conditions:
-#  - !type:ListingLimitedStockCondition
-#    stock: 1
-
 # utility
 
 - type: listing
   id: EvolutionMenuUtilityPanacea
   name: evolutionmenu-utility-panacea-name
   description: evolutionmenu-utility-panacea-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: anatomic_panacea }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: anatomic_panacea }
   productAction: ActionAnatomicPanacea
   cost:
     EvolutionPoint: 2
@@ -260,7 +232,7 @@
   id: EvolutionMenuUtilityEyesight
   name: evolutionmenu-utility-eyesight-name
   description: evolutionmenu-utility-eyesight-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: augmented_eyesight }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: augmented_eyesight }
   productAction: ActionAugmentedEyesight
   cost:
     EvolutionPoint: 2
@@ -303,7 +275,7 @@
   id: EvolutionMenuUtilityBiodegrade
   name: evolutionmenu-utility-biodegrade-name
   description: evolutionmenu-utility-biodegrade-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: biodegrade }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: biodegrade }
   productAction: ActionBiodegrade
   cost:
     EvolutionPoint: 4
@@ -317,7 +289,7 @@
   id: EvolutionMenuUtilityChameleon
   name: evolutionmenu-utility-chameleon-name
   description: evolutionmenu-utility-chameleon-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: chameleon_skin }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: chameleon_skin }
   productAction: ActionChameleonSkin
   cost:
     EvolutionPoint: 4
@@ -331,7 +303,7 @@
   id: EvolutionMenuUtilityOverdose
   name: evolutionmenu-utility-stims-name
   description: evolutionmenu-utility-stims-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: epinephrine_overdose }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: epinephrine_overdose }
   productAction: ActionEphedrineOverdose
   cost:
     EvolutionPoint: 3
@@ -373,7 +345,7 @@
   id: EvolutionMenuUtilityFleshmend
   name: evolutionmenu-utility-fleshmend-name
   description: evolutionmenu-utility-fleshmend-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: fleshmend }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: fleshmend }
   productAction: ActionFleshmend
   cost:
     EvolutionPoint: 5
@@ -383,25 +355,11 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-#- type: listing
-#  id: EvolutionMenuUtilityLastResort
-#  name: evolutionmenu-utility-lastresort-name
-#  description: evolutionmenu-utility-lastresort-desc
-#  icon: { sprite: Changeling/changeling_abilities.rsi, state: last_resort }
-#  productAction: ActionLastResort
-#  cost:
-#    EvolutionPoint: 2
-#  categories:
-#  - ChangelingAbilityUtility
-#  conditions:
-#  - !type:ListingLimitedStockCondition
-#    stock: 1
-
 - type: listing
   id: EvolutionMenuUtilityLesserForm
   name: evolutionmenu-utility-lesserform-name
   description: evolutionmenu-utility-lesserform-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: lesser_form }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: lesser_form }
   productAction: ActionToggleLesserForm
   cost:
     EvolutionPoint: 2
@@ -415,7 +373,7 @@
   id: EvolutionMenuUtilitySpacesuit
   name: evolutionmenu-utility-spacesuit-name
   description: evolutionmenu-utility-spacesuit-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: space_adaptation }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: space_adaptation }
   productAction: ActionToggleSpacesuit
   cost:
     EvolutionPoint: 4
@@ -443,7 +401,7 @@
   id: EvolutionMenuUtilityHivemindAccess
   name: evolutionmenu-utility-hivemindaccess-name
   description: evolutionmenu-utility-hivemindaccess-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: hivemind_access }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: hivemind_access }
   productAction: ActionHivemindAccess
   cost:
     EvolutionPoint: 2

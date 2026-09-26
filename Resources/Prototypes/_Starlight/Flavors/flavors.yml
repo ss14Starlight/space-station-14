@@ -49,6 +49,11 @@
   description: flavor-complex-highlander
 
 - type: flavor
+  id: entropic
+  flavorType: Complex
+  description: flavor-complex-entropy
+
+- type: flavor
   id: thelastcall
   flavorType: Complex
   description: flavor-complex-the-last-call

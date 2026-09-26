@@ -1,0 +1,9 @@
+- type: entity
+  id: ChangelingTransformEffect
+  name: transform effect
+  description: you shouldn't be seeing this normally.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Starlight/Effects/changeling_transform.rsi
+      state: icon
