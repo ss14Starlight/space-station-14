@@ -6,7 +6,7 @@
     difficulty: 1.5
     issuer: objective-issuer-pollen
     icon:
-      sprite: _Starlight/Interface/Actions/actions_diona.rsi # TODO: dedicated objective icon
+      sprite: _Starlight/Interface/Actions/actions_diona.rsi
       state: open_shop
   - type: NumberObjective
     min: 5

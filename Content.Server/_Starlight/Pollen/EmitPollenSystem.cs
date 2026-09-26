@@ -1,10 +1,12 @@
-using Content.Server.Botany.Components;
+using Content.Shared.Botany.Components;
+using Content.Shared.Botany.Systems;
 using Content.Shared._Starlight.Pollen.Components;
 using Content.Shared._Starlight.Scent.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Content.Server._Starlight.Scent.Systems;
+using Content.Shared.Botany.Items.Components;
 
 namespace Content.Server._Starlight.Pollen.Systems;
 
@@ -46,10 +48,10 @@ public sealed partial class EmitPollenSystem : EntitySystem
 
         if (pollenId == null)
         {
-            if (!TryComp<ProduceComponent>(uid, out var produce) || produce.SeedId == null)
+            if (!TryComp<ProduceComponent>(uid, out var produce) || produce.PlantProtoId is not { } plantId)
                 return;
 
-            pollenId = produce.SeedId;
+            pollenId = plantId.ToString();
         }
 
         var lifetime = TimeSpan.FromSeconds(pollen.PollenLifetime);

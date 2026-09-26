@@ -1,5 +1,6 @@
 using Robust.Shared.Prototypes;
-using Content.Server.Botany.Components;
+using Content.Shared.Botany.Components;
+using Content.Shared.Botany.Items.Components;
 
 namespace Content.Server._Starlight.Pollen.Systems;
 
@@ -47,10 +48,10 @@ public sealed partial class PollenCatalogSystem : EntitySystem
 
             if (!proto.Components.TryGetValue("Produce", out var entry) ||
                 entry.Component is not ProduceComponent produce ||
-                produce.SeedId is not { } seedId)
+                produce.PlantProtoId is not { } plantId)
                 continue;
 
-            result.TryAdd(seedId, proto.ID); // first prototype per seed wins
+            result.TryAdd(plantId.ToString(), proto.ID); // first prototype per seed wins
         }
 
         return result;

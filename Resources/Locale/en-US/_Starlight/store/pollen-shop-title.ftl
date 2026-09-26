@@ -10,6 +10,10 @@ pollen-tree-floral-name = Floral
 pollen-tree-bark-name = Bark
 pollen-tree-mushroom-name = Mushroom
 
+pollen-floral-t1-name = Distress Pollen
+pollen-floral-t1-desc = You'll release distress pollen automatically the moment you fall into critical condition.
+pollen-alert-pollen-self = You release a wave of distress pollen into the air.
+pollen-alert-pollen = You can feel distress pollen coming from near {$location}.
 
 pollen-bark-t1-name = Make Wood
 pollen-bark-t1-desc = Cut off some of your body for fresh wood.

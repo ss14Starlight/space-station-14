@@ -11,6 +11,21 @@
   name: pollen-tree-mushroom-name
 
 - type: listing
+  id: PollenTreeFloralT1AlertPollen
+  name: pollen-floral-t1-name
+  description: pollen-floral-t1-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: alert_pollen }
+  cost:
+    PollenPoints: 1
+  categories:
+  - PollenTreeFloral
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+# Bark
+
+- type: listing
   id: PollenTreeBarkT1MakeWood
   name: pollen-bark-t1-name
   description: pollen-bark-t1-desc

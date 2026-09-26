@@ -38,8 +38,7 @@ using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Pollen.Components;
-using Content.Server.Botany.Components;
-using Content.Shared.Botany;
+using Content.Shared.Botany.Items.Components;
 
 namespace Content.Server._Starlight.Scent.Systems;
 
@@ -160,9 +159,10 @@ public sealed partial class ScentSystem : SharedScentSystem
         var ownScentId = TryComp<ScentComponent>(target, out var targetScent) ? targetScent.ScentId : null;
 
         if (HasComp<EmitPollenComponent>(target) &&
-            TryComp<ProduceComponent>(target, out var produce) && produce.SeedId is { } seedId)
+            TryComp<ProduceComponent>(target, out var produce) &&
+            produce.PlantProtoId is { } plantId)
         {
-            entries.Add(new ScentTraceEntry(seedId, ScentFreshness.VeryFresh, Loc.GetString("scent-species-non-humanoid")));
+            entries.Add(new ScentTraceEntry(plantId.ToString(), ScentFreshness.VeryFresh, Loc.GetString("scent-species-non-humanoid")));
         }
 
         if (!_ui.TryOpenUi(uid, ScentSniffUiKey.Key, uid))
@@ -203,10 +203,10 @@ public sealed partial class ScentSystem : SharedScentSystem
     // Helper
     private string? GetPollenId(EntityUid uid)
     {
-        if (!TryComp<ProduceComponent>(uid, out var produce) || produce.SeedId is not { } seedId)
+        if (!TryComp<ProduceComponent>(uid, out var produce) || produce.PlantProtoId is not { } plantId)
             return null;
 
-        return seedId;
+        return plantId.ToString();
     }
 
     private void OnTrackMessage(EntityUid uid, SmellerComponent component, ScentSniffTrackMessage args)

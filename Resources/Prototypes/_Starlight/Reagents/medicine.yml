@@ -391,7 +391,10 @@
     amount: -5
   - !type:PlantAdjustHealth
     amount: 1
-  - !type:PlantPhalanximine {}
+  - !type:PlantChangeTraits
+    trait: PlantTraitUnviable
+    type: Remove
+    minScale: 4
   metabolisms:
     Bloodstream:
       effects:

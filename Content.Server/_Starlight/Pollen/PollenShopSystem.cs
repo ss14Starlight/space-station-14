@@ -24,6 +24,9 @@ using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
+using Content.Server.Pinpointer;
+using Content.Server.Chat.Managers;
+using Robust.Server.Player;
 
 namespace Content.Server._Starlight.Pollen.System;
 
@@ -47,7 +50,9 @@ public sealed partial class PollenShopSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
-
+    [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
     private static readonly EntProtoId<ObjectiveComponent> _pollenObjective = "PollenCollectionObjective";
     private static readonly EntProtoId _sporeCloudEmitter = "PollenSporeCloudEmitter";
     private static readonly EntProtoId _hardenStatusEffect = "PollenTreeBarkT2PassiveHardenEffect";
@@ -55,6 +60,8 @@ public sealed partial class PollenShopSystem : EntitySystem
     private static readonly EntProtoId _woodPlankStack10 = "MaterialWoodPlank10";
     private const string HardenListingId = "PollenTreeBarkT2Harden";
     private static readonly ProtoId<ReagentPrototype> _phytovitalin = "Phytovitalin";
+
+    private const string AlertPollenListingId = "PollenTreeFloralT1AlertPollen";
 
     /// <summary>
     /// Listings that grant a periodic reagent drip when bought, keyed by
@@ -76,6 +83,7 @@ public sealed partial class PollenShopSystem : EntitySystem
         SubscribeLocalEvent<PollenCollectorComponent, PollenSporeCloudEvent>(OnSporeCloud);
         SubscribeLocalEvent<PollenCollectorComponent, PollenInjectPhytovitalinEvent>(OnInjectPhytovitalin);
         SubscribeLocalEvent<PollenCollectorComponent, PollenInjectPhytovitalinDoAfterEvent>(OnInjectPhytovitalinDoAfter);
+        SubscribeLocalEvent<PollenAlertPollenComponent, MobStateChangedEvent>(OnAlertPollenMobStateChanged);
     }
 
     private void OnCollectorInitialized(Entity<PollenCollectorComponent> ent, ref PollenCollectorInitializedEvent args)
@@ -97,6 +105,11 @@ public sealed partial class PollenShopSystem : EntitySystem
         {
             GrantHardenArmor(args.Buyer);
         }
+
+        if (args.ListingId == AlertPollenListingId)
+        {
+            EnsureComp<PollenAlertPollenComponent>(args.Buyer);
+        }
     }
 
     public override void Update(float frameTime)
@@ -114,6 +127,37 @@ public sealed partial class PollenShopSystem : EntitySystem
             AddSerum(uid, perk.Reagent, perk.Amount);
         }
     }
+
+#region Floral
+    // Floral
+
+    // T1
+    private void OnAlertPollenMobStateChanged(Entity<PollenAlertPollenComponent> ent, ref MobStateChangedEvent args)
+    {
+        if (args.OldMobState != MobState.Alive || args.NewMobState != MobState.Critical)
+            return;
+
+        var xform = Transform(ent.Owner);
+        if (xform.GridUid is not { } grid)
+            return;
+
+        var location = _navMap.GetNearestBeaconString((ent.Owner, xform), onlyName: true);
+        var message = Loc.GetString("pollen-alert-pollen", ("location", location));
+        var selfMessage = Loc.GetString("pollen-alert-pollen-self");
+
+        _popup.PopupEntity(selfMessage, ent.Owner, ent.Owner, PopupType.LargeCaution);
+
+        foreach (var session in _playerManager.Sessions)
+        {
+            if (session.AttachedEntity is not { } otherUid ||
+                !TryComp<PollenCollectorComponent>(otherUid, out _) ||
+                Transform(otherUid).GridUid != grid)
+                continue;
+
+            _chatManager.DispatchServerMessage(session, otherUid == ent.Owner ? selfMessage : message);
+        }
+    }
+#endregion Floral
 
 #region Bark
 
