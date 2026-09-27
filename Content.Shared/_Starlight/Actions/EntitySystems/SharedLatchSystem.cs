@@ -1,5 +1,6 @@
 using Content.Shared._Starlight.Actions.Components;
 using Content.Shared._Starlight.Actions.Events;
+using Content.Shared.Gravity;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Pulling.Events;
@@ -21,6 +22,7 @@ public abstract partial class SharedLatchSystem : EntitySystem
 
         SubscribeLocalEvent<LatchComponent, RefreshMovementSpeedModifiersEvent>(OnLatcherRefreshMovementSpeed);
         SubscribeLocalEvent<LatchedComponent, RefreshMovementSpeedModifiersEvent>(OnTargetRefreshMovementSpeed);
+        SubscribeLocalEvent<LatchComponent, IsWeightlessEvent>(OnLatcherIsWeightless);
 
         SubscribeLocalEvent<LatchComponent, AttackAttemptEvent>(OnLatcherAttackAttempt);
 
@@ -80,9 +82,21 @@ public abstract partial class SharedLatchSystem : EntitySystem
             ev.ModifySpeed(0f);
     }
 
+    /// <summary>
+    /// Latcher is weightless while latched to a slowed target.
+    /// </summary>
+    private void OnLatcherIsWeightless(EntityUid uid, LatchComponent comp, ref IsWeightlessEvent ev)
+    {
+        if (!comp.Active || !comp.LatcherWeightless)
+            return;
+
+        ev.IsWeightless = true;
+        ev.Handled = true;
+    }
+
     private void OnTargetRefreshMovementSpeed(EntityUid uid, LatchedComponent comp, RefreshMovementSpeedModifiersEvent ev)
     {
-        ev.ModifySpeed(0f);
+        ev.ModifySpeed(comp.SpeedMultiplier);
     }
 
     /// <summary>

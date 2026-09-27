@@ -11,6 +11,7 @@ using Content.Shared.Charges.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Content.Shared.Gravity;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
@@ -23,6 +24,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Whitelist;
 using Robust.Server.Audio;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 
@@ -46,9 +48,11 @@ public sealed partial class LatchSystem : SharedLatchSystem
     [Dependency] private PullingSystem _pulling = default!;
     [Dependency] private SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private StandingStateSystem _standing = default!;
+    [Dependency] private SharedGravitySystem _gravity = default!;
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
 
     // Subtle relative to explosions (which scale up to ~0.4f) - a jolt, not a blast.
@@ -194,9 +198,15 @@ public sealed partial class LatchSystem : SharedLatchSystem
         comp.StartTime = Timing.CurTime;
         comp.TickPaused = false;
 
+        // Slow targets in SlowPrototypes; pin everyone else.
+        var slowed = IsSlowedTarget(comp, target);
+
         var latched = EnsureComp<LatchedComponent>(target);
         latched.Latcher = uid;
+        latched.SpeedMultiplier = slowed ? comp.SlowSpeedMultiplier : 0f;
         Dirty(target, latched);
+
+        comp.LatcherWeightless = slowed;
 
         // Only some targets get the struggle minigame; everything else about the latch is the same.
         if (_entityWhitelist.IsWhitelistPassOrNull(comp.StruggleWhitelist, target))
@@ -225,7 +235,8 @@ public sealed partial class LatchSystem : SharedLatchSystem
         if (TryComp<PullableComponent>(target, out var targetPullable))
             _pulling.TryStopPull(target, targetPullable);
 
-        _standing.Down(target, force: true);
+        if (!slowed)
+            _standing.Down(target, force: true);
 
         // Re-asserted every tick in Update() too, so it can't be toggled back on.
         _combatMode.SetInCombatMode(uid, false);
@@ -235,6 +246,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
         _speed.RefreshMovementSpeedModifiers(uid);
         _speed.RefreshMovementSpeedModifiers(target);
+        _gravity.RefreshWeightless(uid);
 
         _alert.ShowAlert(uid, comp.LatcherAlert);
         _alert.ShowAlert(target, comp.LatchAlert);
@@ -243,6 +255,24 @@ public sealed partial class LatchSystem : SharedLatchSystem
         _chat.TryEmoteWithoutChat(uid, "Growl");
 
         Dirty(uid, comp);
+    }
+
+    /// <summary>
+    /// True if the target's prototype or any parent, abstract included, is in
+    /// <see cref="LatchComponent.SlowPrototypes"/>.
+    /// </summary>
+    private bool IsSlowedTarget(LatchComponent comp, EntityUid target)
+    {
+        if (comp.SlowPrototypes.Count == 0 || MetaData(target).EntityPrototype is not { } proto)
+            return false;
+
+        foreach (var (id, _) in _prototype.EnumerateAllParents<EntityPrototype>(proto.ID, includeSelf: true))
+        {
+            if (comp.SlowPrototypes.Contains(new EntProtoId(id)))
+                return true;
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -262,6 +292,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         comp.Active = false;
         comp.Target = null;
         comp.TickPaused = false;
+        comp.LatcherWeightless = false;
 
         if (comp.LatchJointId is { } jointId)
         {
@@ -276,6 +307,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         comp.ReleaseActionEntity = null;
 
         _speed.RefreshMovementSpeedModifiers(uid);
+        _gravity.RefreshWeightless(uid);
         _alert.ClearAlert(uid, comp.LatcherAlert);
 
         if (target is { } targetUid && Exists(targetUid))

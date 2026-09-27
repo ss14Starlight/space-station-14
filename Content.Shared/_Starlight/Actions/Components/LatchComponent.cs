@@ -59,6 +59,20 @@ public sealed partial class LatchComponent : Component
     public EntityWhitelist? StruggleWhitelist;
 
     /// <summary>
+    /// Targets whose prototype or any parent, abstract included, is listed here
+    /// are slowed to <see cref="SlowSpeedMultiplier"/> and not knocked down.
+    /// Checked at latch start. Empty pins everyone.
+    /// </summary>
+    /// <remarks>
+    /// Lives on the latcher so every exception is made in one place. Keep it short.
+    /// </remarks>
+    [DataField]
+    public List<EntProtoId> SlowPrototypes = new();
+
+    [DataField]
+    public float SlowSpeedMultiplier = 0.5f;
+
+    /// <summary>
     /// Distance a latch breaks at if exceeded mid-latch. Independent of the
     /// action's own engage range (TargetAction.range on the Latch prototype).
     /// </summary>
@@ -158,7 +172,7 @@ public sealed partial class LatchComponent : Component
     /// Width of the perfect zone, as a fraction of the bar.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float StrugglePerfectWidth = 0.12f;
+    public float StrugglePerfectWidth = 0.1f;
 
     /// <summary>
     /// Width of the good zone on each side of the perfect zone, as a fraction of the bar.
@@ -234,6 +248,13 @@ public sealed partial class LatchComponent : Component
     /// </summary>
     [ViewVariables, AutoNetworkedField]
     public bool Active;
+
+    /// <summary>
+    /// Latcher is weightless while latched to a target in <see cref="SlowPrototypes"/>,
+    /// so floor friction doesn't add to <see cref="SlowSpeedMultiplier"/>.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public bool LatcherWeightless;
 
     /// <summary>
     /// The entity being targeted by the latch.

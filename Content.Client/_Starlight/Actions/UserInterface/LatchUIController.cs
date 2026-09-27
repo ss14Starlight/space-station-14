@@ -28,9 +28,9 @@ public sealed partial class LatchUIController : UIController
 
     private const float VerticalOffset = 1.0f;
 
-    // Bar shake on Bite Harder, matching the K9's own head-shake length.
-    private static readonly TimeSpan _shakeDuration = TimeSpan.FromSeconds(0.3);
-    private const float ShakeMagnitude = 4f;
+    // Bar shake on Bite Harder. Small, since K9s can bite every 0.75s.
+    private static readonly TimeSpan _shakeDuration = TimeSpan.FromSeconds(0.2);
+    private const float ShakeMagnitude = 1.5f;
     private const float ShakeFrequency = 60f;
 
     // How long to hold a press locally before giving up on the server's answer.

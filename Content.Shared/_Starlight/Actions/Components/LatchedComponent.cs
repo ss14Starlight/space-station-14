@@ -10,4 +10,11 @@ public sealed partial class LatchedComponent : Component
 {
     [ViewVariables, AutoNetworkedField]
     public EntityUid Latcher;
+
+    /// <summary>
+    /// Target's movement speed multiplier while latched. 0 pins them.
+    /// Networked for client prediction.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public float SpeedMultiplier;
 }
