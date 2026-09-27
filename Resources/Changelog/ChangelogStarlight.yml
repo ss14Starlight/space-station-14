@@ -1,18 +1,4 @@
 Entries:
-- author: Sir Lutz
-  changes:
-  - message: Dragon Sharkminnows health has been lowered from 150HP to 120HP.
-    type: Tweak
-  id: 408537
-  time: '2026-09-13T23:01:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6154
-- author: Sir Lutz
-  changes:
-  - message: CarpResistance pierce has been lowered from 50% to 35%.
-    type: Tweak
-  id: 408538
-  time: '2026-09-13T23:01:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6154
 - author: Citrea
   changes:
   - message: Dolls now have spooky, edible blood, which does not have healing properties for them.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408936
   time: '2026-09-27T11:38:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6313
+- author: Swonki
+  changes:
+  - message: ITG Chassis. Silicon players can play with salvage if their positronic is handed over.
+    type: Add
+  id: 408937
+  time: '2026-09-27T11:38:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6271
+- author: Swonki
+  changes:
+  - message: ITG Borgi chassis, an option for a silicon to be upgraded with tickets.
+    type: Add
+  id: 408938
+  time: '2026-09-27T11:38:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6271
 Order: -1
