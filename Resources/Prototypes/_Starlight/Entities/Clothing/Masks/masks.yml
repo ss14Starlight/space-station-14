@@ -93,7 +93,7 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Mask/breathtube.rsi
   - type: BreathMask
-  
+
 - type: entity
   parent: [ClothingMaskGas, BaseSovietContraband]
   id: ClothingSovietGasMask
