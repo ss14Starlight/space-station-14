@@ -52,14 +52,11 @@ namespace Content.Server._Starlight.Silicons.Commands
             if (lawset.Laws.Count == 0)
             {
                 shell.WriteLine("None.");
-                return;
             }
 
             for (var i = 0; i < lawset.Laws.Count; i++)
             {
                 var law = lawset.Laws[i];
-                //var identifier = law.LawIdentifierOverride ?? law.Order.ToString();
-                //shell.WriteLine($"- [{i}] {identifier}: {LocalizationManager.GetString(law.LawString)}");
                 shell.WriteLine($"- [{i}]: {LocalizationManager.GetString(law.LawString)}");
 
             }
