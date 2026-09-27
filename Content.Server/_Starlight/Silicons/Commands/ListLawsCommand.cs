@@ -57,11 +57,13 @@ namespace Content.Server._Starlight.Silicons.Commands
             for (var i = 0; i < lawset.Laws.Count; i++)
             {
                 var law = lawset.Laws[i];
-                // Cleanly handle ion laws, they have yucky strings that need to be avoided
-                if (LocalizationManager.TryGetString(law.LawString, out var text))
-                    shell.WriteLine($"- [{law.Order}]: {text}");
-                else
-                    shell.WriteLine($"- [?]: {law.LawString}");
+                // Cleanly handle ion laws, they have yucky formatting problems that need to be avoided
+                var rawId = law.LawIdentifierOverride ?? law.Order.ToString();
+                var id = rawId.StartsWith('[') ? "?" : rawId;
+                var text = LocalizationManager.TryGetString(law.LawString, out var loc)
+                    ? loc
+                    : law.LawString;
+                shell.WriteLine($"- [{id}]: {text}");
             }
         }
 
