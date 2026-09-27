@@ -281,7 +281,6 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/forged_shotgun.rsi
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/forged_shotgun.rsi
-  - type: GunRequiresWield
   - type: BallisticAmmoProvider
     capacity: 2
     proto: null
@@ -342,6 +341,11 @@
     supportedPins: [ Makeshift, GunUpgrade ]
 
 # it's the TOZ!
+  - type: Gun
+    minAngle: 10
+    maxAngle: 24
+    angleIncrease: 5
+    angleDecay: 10
 - type: entity
   name: ZOZ-106
   parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSovietContraband]
