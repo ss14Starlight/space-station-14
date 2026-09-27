@@ -21,7 +21,7 @@ namespace Content.Benchmarks
                 : DefaultConfig.Instance;
 #endif
             var config = ManualConfig.Create(baseConfig);
-            config.BuildTimeout = TimeSpan.FromMinutes(5);
+            config.BuildTimeout = TimeSpan.FromMinutes(20); // Starlight-edit: 5 mins isn't enough
             BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args, config);
         }
     }

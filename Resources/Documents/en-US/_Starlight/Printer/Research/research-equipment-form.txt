@@ -1,0 +1,25 @@
+                          [head=3]NT-CC Consortium Services[/head]
+
+             [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                           [bold]RESEARCH EQUIPMENT PERMIT[/bold]
+────────────────────────────────────────
+  Date and Time: [datetime]
+ Document Compiler: [signature]
+
+ I, [signature], hereby acknowledge the risks of giving out equipment to crew, and accept that violations of corporate law via the giving of items may result in charges against me or the science department.
+
+ Equipment being given out: [form]
+
+ Authorized person: [form]
+
+ Position of authorized person: [form]
+
+ Reason for seeking permit: [form]
+
+ Terms of use: [form]
+
+ I, [signature], accept the terms of use of this item.
+
+ ────────────────────────────────────────
+ ⠀                      [italic]Place for Stamps and/or Signatures[/italic]

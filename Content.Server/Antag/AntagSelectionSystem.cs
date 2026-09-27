@@ -1,5 +1,4 @@
-using Prometheus;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Managers;
@@ -84,7 +83,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     #region Starlight
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private NeocyteSystem _neocyte = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private TagSystem _tag = default!;
     #endregion
 
     // arbitrary random number to give late joining some mild interest.
@@ -127,7 +126,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         SubscribeLocalEvent<InvalidAntagProfileSpawningEvent>(OnInvalidAntagProfile); // Starlight
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnJobsAssigned);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup); // Starlight
     }
 
     protected override void Started(EntityUid uid, AntagSelectionComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -987,7 +985,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         Log.Debug($"Assigned {ToPrettyString(antag):target}, mind {ToPrettyString(mind):target} as antagonist: {ToPrettyString(gameRule):user}");
         _adminLogger.Add(LogType.AntagSelection, $"Assigned {ToPrettyString(antag):target}, mind {ToPrettyString(mind):target} as antagonist: {ToPrettyString(gameRule):user}");
 
-        _antagsSpawned.WithLabels(prototype.ID ?? "unknown").Inc(); // Starlight
+        _roundStatistics.RecordAntagSpawn(prototype.ID ?? "unknown"); // Starlight
 
         SendBriefing(player, prototype.Briefing);
 

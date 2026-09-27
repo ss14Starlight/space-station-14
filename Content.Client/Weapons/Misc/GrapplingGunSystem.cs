@@ -1,4 +1,3 @@
-using System.Net;
 using Content.Client.Hands.Systems;
 using Content.Shared.CombatMode;
 using Content.Shared.Weapons.Misc;
@@ -6,8 +5,6 @@ using Content.Shared.Weapons.Ranged.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Input;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Dynamics.Joints;
 
 namespace Content.Client.Weapons.Misc;
 

@@ -1,0 +1,19 @@
+- type: !PartialOnly reagent
+  id: Saline
+  metabolisms:
+    Bloodstream:
+      effects:
+        - !type:SatiateThirst  # Thirst effect changed from Drink to Medicine
+           factor: 6
+        - !type:ModifyBloodLevel
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Avali, Resomi ]
+            inverted: true
+          amount: 3 # This doesn't replace but adds to what's found in the original prototype.
+        - !type:AdjustReagent
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Cyclorite ]
+          reagent: Saline
+          amount: -0.5

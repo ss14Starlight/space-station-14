@@ -10,7 +10,6 @@
     - Lawyer
     - Engineering
     - Medical
-    - Salvage
     - Cargo
     - Research
     - Service
@@ -33,12 +32,12 @@
     - Surgery
     - Paramedic
     - Mining
-    - SalvageLead
     - Mail
     - Shuttle
     - Journalism
     - Clown
     - Mime
+    - NTPersonnel
 
 - type: accessLevel
   id: Debug1
@@ -88,6 +87,9 @@
   - MedTak
   - Casino
   - Visitor
+  - ETO
+  - Salvage
+  - SalvageLead
 
 - type: accessGroup
   id: Syndicate

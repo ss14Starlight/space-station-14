@@ -1,0 +1,15 @@
+- type: entity
+  id: MedkitCombatFilledETO
+  suffix: Filled, ETO
+  parent: MedkitCombat
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedicatedSuture
+        - id: Gauze
+        - id: SyringeEphedrine
+        - id: CombatMedipenETO
+        - id: BruteAutoInjector
+        - id: CombatMedipenETO

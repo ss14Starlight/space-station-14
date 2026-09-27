@@ -34,8 +34,13 @@
   - type: Appearance
   - type: Edible
     transferAmount: 4
+    utensil: Spoon
     trash:
     - DrinkGlass
+  - type: Solution
+    solution:
+      id: food
+      maxVol: 20
   - type: Sprite
     layers:
     - state: icon_empty
@@ -439,7 +444,7 @@
   name: cherry ice cream
   parent: FoodIceCreamBase
   id: FoodCherryIceCream
-  description: Rich cherry ice cream with some crunchy chocolate chips.
+  description: Rich cherry ice cream.
   components:
   - type: FlavorProfile
     flavors:
@@ -455,10 +460,8 @@
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
-      - ReagentId: Theobromine
-        Quantity: 2
       - ReagentId: Cream
-        Quantity: 13
+        Quantity: 15
 
 - type: entity
   name: apple cinnamon ice cream
@@ -820,3 +823,340 @@
         Quantity: 10
       - ReagentId: Cream
         Quantity: 5
+
+- type: entity
+  name: banana ice cream
+  parent: FoodIceCreamBase
+  id: FoodBananaIceCream
+  description: Banana infused ice cream to make you go nanners.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - bananaIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/banana_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/banana_bowl.rsi
+    state: icon
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
+
+- type: entity
+  name: clown ice cream
+  parent: FoodIceCreamBase
+  id: FoodClownIceCream
+  description: Mischievous ice cream in the shape of the station clown. Honks included.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - clownIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/clown_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/clown_bowl.rsi
+    state: icon
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 12
+      - ReagentId: Honk
+        Quantity: 3
+
+- type: entity
+  name: coconut ice cream
+  parent: FoodIceCreamBase
+  id: FoodCoconutIceCream
+  description: Coconut and ice cream mixed in a simple refreshing combo.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - coconutIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/coconut_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/coconut_bowl.rsi
+    state: icon
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 10
+      - ReagentId: CoconutWater
+        Quantity: 5
+
+- type: entity
+  name: ian ice cream
+  parent: FoodIceCreamBase
+  id: FoodIanIceCream
+  description: Orange and vanilla ice cream in the shape of beloved Ian.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - ianIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/ian_cream_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/ian_cream_bowl.rsi
+    state: icon
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
+
+- type: entity
+  name: nanotrasen ice cream
+  parent: FoodIceCreamBase
+  id: FoodNTIceCream
+  description: Rich blueberry and marshmallows to showcase your favorite space employer!
+  components:
+  - type: FlavorProfile
+    flavors:
+    - ntIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/nt_cream_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/nt_cream_bowl.rsi
+    state: icon
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
+
+- type: entity
+  name: nanotrasen marine ice cream
+  parent: FoodIceCreamBase
+  id: FoodNTMarineIceCream
+  description: Sponsored blueberry and lime ice cream to enlist your taste buds.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - ntMarineIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/nt_marine_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/nt_marine_bowl.rsi
+    state: icon
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
+
+- type: entity
+  name: pineapple ice cream
+  parent: FoodIceCreamBase
+  id: FoodPineappleIceCream
+  description: A cup of tropical pineapple ice cream not under the sea.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - pineappleIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/pineapple_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/pineapple_bowl.rsi
+    state: icon
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
+
+- type: entity
+  name: rising sun ice cream
+  parent: FoodIceCreamBase
+  id: FoodRisingSunIceCream
+  description: Raspberry, orange, and lemon mixed together to make the ultimate tart ice cream.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - risingSunIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/rising_sun_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/rising_sun_bowl.rsi
+    state: icon
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
+
+- type: entity
+  name: rocky ore ice cream
+  parent: FoodIceCreamBase
+  id: FoodRockyOreIceCream
+  description: Mining's favorite cherry ice cream with plenty of ore shaped cookies to dig into.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - rockyOreIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/rocky_ore_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/rocky_ore_bowl.rsi
+    state: icon
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
+
+- type: entity
+  name: stun baton ice cream
+  parent: FoodIceCreamBase
+  id: FoodStunBatonIceCream
+  description: An orange ice cream fashioned in the shape of a stun baton. Now you can harm baton with ice cream!
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 0
+    wideAnimationRotation: 180
+    attackRate: 1.5
+    range: 2.0
+  - type: FlavorProfile
+    flavors:
+    - stunBatonIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/stun_baton_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/stun_baton_bowl.rsi
+    state: icon
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
+
+- type: entity
+  name: syndie-land ice cream
+  parent: FoodIceCreamBase
+  id: FoodSyndieLandIceCream
+  description: Cherry and lime ice cream in the shape of your favorite pod war protagonists.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - syndieLandIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/syndie_land_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/syndie_land_bowl.rsi
+    state: icon
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
+
+- type: entity
+  name: tiramisu ice cream
+  parent: FoodIceCreamBase
+  id: FoodTiramisuIceCream
+  description: Coffee, chocolate, and cinnamon in an ice cream without the blow torch.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - tiramisuIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/tiramisu_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/tiramisu_bowl.rsi
+    state: icon
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 10
+      - ReagentId: Theobromine
+        Quantity: 5
+
+- type: entity
+  name: uranium ice cream
+  parent: FoodIceCreamBase
+  id: FoodUraniumIceCream
+  description: Geiger counter not included for this radioactive ice cream.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - uraniumIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/uranium_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/uranium_bowl.rsi
+    state: icon
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 10
+      - ReagentId: Uranium
+        Quantity: 5
+
+- type: entity
+  name: vox ice cream
+  parent: FoodIceCreamBase
+  id: FoodVoxIceCream
+  description: A cold treat for a bit larger than other birds. It smells a bit odd, but give it to a Vox and they'll be glad to give it a bite or two... or all of it.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - voxIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/vox_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/vox_bowl.rsi
+    state: icon
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15

@@ -12,7 +12,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.SubFloor;
 
-public abstract class SharedTrayScannerSystem : EntitySystem
+public abstract partial class SharedTrayScannerSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!; // starlight edit: removed readonly
     [Dependency] private SharedAudioSystem _audio = default!; // starlight edit: removed readonly

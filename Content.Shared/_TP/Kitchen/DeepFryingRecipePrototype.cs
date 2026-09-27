@@ -6,7 +6,7 @@ namespace Content.Shared._TP.Kitchen;
 /// <summary>
 ///     A recipe for deep fryers.
 /// </summary>
-[Prototype("deepFryingRecipe")]
+[Prototype]
 public sealed partial class DeepFryingRecipePrototype : IPrototype
 {
     [IdDataField]

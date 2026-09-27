@@ -60,13 +60,8 @@
   - type: TypingIndicator
     proto: guardian
   - type: Vocal
-    sounds:
-      Male: MaleThaven
-      Female: FemaleThaven
-      Unsexed: MaleThaven
   - type: Speech
     speechSounds: Alto
-    allowedEmotes: ["ThavenHum", "ThavenGlub"]
   - type: HumanoidAppearance
     species: Thaven
     hideLayersOnEquip:

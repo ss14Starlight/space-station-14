@@ -7,7 +7,6 @@ using Content.Shared.Xenoarchaeology.Artifact.XAE;
 using Robust.Shared.Collections;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Xenoarchaeology.Artifact.XAE;
 

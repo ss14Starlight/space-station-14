@@ -105,3 +105,15 @@
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Avali/organs.rsi
     state: brain
+
+- type: entity
+  id: OrganAvaliTongue
+  parent: OrganHumanTongue
+  suffix: Avali
+  components:
+  - type: OrganTongue
+    allowedEmotes: ['Chirp', 'Hisses', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk']
+    sounds:
+      Male: MaleAvali
+      Female: FemaleAvali
+      Unsexed: MaleAvali

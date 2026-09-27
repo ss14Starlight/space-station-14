@@ -1,7 +1,5 @@
 using System.Linq;
-using Robust.Shared.Player;
 using Content.Shared.Arcade.BlockGame;
-using Content.Server._Starlight.Arcade.Systems;
 using Content.Server._Starlight.Arcade.Components;
 
 namespace Content.Server.Arcade.BlockGame;

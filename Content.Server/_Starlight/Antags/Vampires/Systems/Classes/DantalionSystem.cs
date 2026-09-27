@@ -663,7 +663,7 @@ public sealed partial class DantalionSystem : EntitySystem
                 Dirty(thrall, stamina);
             }
 
-            var rallyEffect = EntityManager.SpawnEntity(dantalion.RallyOverlayEffect, Transform(thrall).Coordinates);
+            var rallyEffect = Spawn(dantalion.RallyOverlayEffect, Transform(thrall).Coordinates);
             _transform.SetParent(rallyEffect, thrall);
 
             ralliedCount++;

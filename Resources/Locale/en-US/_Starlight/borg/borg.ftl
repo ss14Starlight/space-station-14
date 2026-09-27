@@ -39,3 +39,18 @@ borg-module-incompatibility-xenoborg-engiweapon = Incompatible with other Engine
 borg-module-incompatibility-xenoborg-heavyweapon = Incompatible with other Heavy Xenoborg weapon modules.
 borg-module-incompatibility-xenoborg-scoutweapon = Incompatible with other Scout Xenoborg weapon modules.
 borg-module-incompatibility-xenoborg-stealthhypo = Incompatible with other Stealth Xenoborg hypo modules.
+
+# Lock down
+borg-lockdown-engaged-popup = {CAPITALIZE($name)} seizes up as a lock down engages!
+borg-lockdown-released-popup = {CAPITALIZE($name)} whirrs back to life as its lock down is released!
+borg-ui-lockdown = Engage lock down
+borg-ui-lockdown-release = Release lock down
+
+# Chassis reset
+borg-ui-reset-chassis = Revert chassis type
+borg-reset-modules-installed = Remove every optional module from the cyborg first...
+borg-reset-chassis-start-popup = Your chassis is being reverted!
+borg-reset-chassis-popup = {CAPITALIZE($name)} reverts back to a blank chassis!
+borg-type-unselected-transponder = cyborg
+borg-type-unselected-name = Unselected
+borg-type-unselected-desc = A blank chassis that has not picked a type yet.

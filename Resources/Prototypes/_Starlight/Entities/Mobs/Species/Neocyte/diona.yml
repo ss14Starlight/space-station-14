@@ -15,10 +15,6 @@
     - Machine
     - Sylvan
   - type: Vocal
-    sounds:
-      Male: NeoDionaMSounds
-      Female: NeoDionaFSounds
-      Unsexed: NeoDionaMSounds
   - type: Tag
     tags:
     - CanPilot
@@ -82,7 +78,7 @@
           types:
             Poison: -1
             Caustic: -0.5
-            Genetic: -0.05
+            Cellular: -0.05
             Radiation: -0.05
     - reagents: [ PlantBGone ]
       methods: [ Touch ]

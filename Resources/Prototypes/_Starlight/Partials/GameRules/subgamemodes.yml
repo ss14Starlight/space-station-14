@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: SubXenoborgs
+  components:
+  - type: DynamicRuleCooldown
+    cooldown: 1
+    rules:
+    - Xenoborgs
+    presets:
+    - Xenoborgs

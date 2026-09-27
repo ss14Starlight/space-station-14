@@ -86,11 +86,15 @@
     - Alive
     - Critical
     damage:
-      groups:
-        Airloss: -1
-        Brute: -1
-        Burn: -1
-        Toxin: -1
+      types:
+        Asphyxiation: -1
+        Blunt: -0.33
+        Piercing: -0.33
+        Slash: -0.33
+        Heat: -0.33
+        Cold: -0.33
+        Shock: -0.33
+        Poison: -1
 
 - type: entity
   parent: [ MobEeepBase ]
@@ -144,7 +148,9 @@
     damage:
       types:
         Shock: 5
-        Brute: 2
+        Blunt: 0.66
+        Piercing: 0.66
+        Slash: 0.66
   - type: StaminaDamageOnHit
     damage: 20
   - type: Solution
@@ -249,14 +255,17 @@
   - type: Battery
     maxCharge: 3000 #Starlight 1000 -> 3000
     startingCharge: 1000
-#Starlight Removed, let the eep use their attacks to blow stuff up instead
-#  - type: LightningArcShooter
-#    arcDepth: 2
-#    maxLightningArc: 3
-#    shootMinInterval: 10
-#    shootMaxInterval: 15
-#    shootRange: 5
-#    lightningPrototype: Lightning
+    # Starlight-start - Resistance so Eeeps don't kill themselves when their lightning arcs blow up electronics
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+    # Starlight-end
+  - type: LightningArcShooter
+    arcDepth: 2
+    maxLightningArc: 3
+    shootMinInterval: 10
+    shootMaxInterval: 15
+    shootRange: 5
+    lightningPrototype: Lightning
   - type: AnnounceOnSpawn
     message: eeep-spawn
     sender: eeep-spawn-sender
@@ -271,7 +280,7 @@
     disableDuration: 20
   - type: Perishable
     rotAfter: 2000
-#region Starlight
+  # Starlight-start - Balance pass, PR #5171
   - type: MovementSpeedModifier
     baseWalkSpeed: 3
     baseSprintSpeed: 7
@@ -296,4 +305,4 @@
     speedModifier: 8
     useSound:
       path: /Audio/Effects/tesla_consume.ogg
-#regionend Starlight
+  # Starlight-end

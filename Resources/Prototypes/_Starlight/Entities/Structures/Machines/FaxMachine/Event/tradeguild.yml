@@ -14,3 +14,4 @@
       intrinsicLocked: true # No impersonating unless emagged
       name: "Interstellar Trade Guild"
       order: 500
+      notifyAdmins: true

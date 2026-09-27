@@ -2,9 +2,6 @@
   id: BaseDollOrgan
   parent:
   - BaseMob
-  - MobPolymorphable
-  - MobBloodstream
-  - MobFlammable
   - BaseItem
   abstract: true
   components:
@@ -35,17 +32,11 @@
     - Flashed
     - RadiationProtection
     - Adrenaline
-  - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 150
   - type: MobPrice
     price: 150
   - type: FloatingVisuals
   - type: Damageable
     damageContainer: Biological
-  - type: RadiationReceiver
   - type: Stamina
   - type: StunVisuals
   - type: MobState
@@ -168,6 +159,11 @@
   name: tongue
   description: "A fleshy muscle mostly used for whispering secrets from the dark."
   components:
+  - type: OrganTongue
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: FemaleHuman
   - type: Sprite
     state: tongue
 
@@ -280,7 +276,7 @@
 - type: entity
   id: ShellFragmentDoll
   parent: [BaseKnife]
-  name: doll shell fragement
+  name: doll shell fragment
   description: A shell piece, broken off of a doll. Sharp, and looks quite sturdy.
   components:
   - type: Sprite
@@ -296,7 +292,7 @@
     attackRate: 1.0
     damage:
       types:
-        Slash: 15
+        Slash: 10
   - type: OrganShell
   - type: OrganDamage
     damage:

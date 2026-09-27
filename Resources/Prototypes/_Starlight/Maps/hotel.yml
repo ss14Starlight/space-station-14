@@ -56,10 +56,12 @@
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
+            SalvageMedic: [ 1, 1 ]
             MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 6, 8 ]
             MailTech: [ 1, 2 ]
             #civilian
+            AssistantManager: [ 1, 1 ]
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]

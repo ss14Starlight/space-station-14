@@ -77,12 +77,31 @@ public partial record struct CyborgControlData
     /// </summary>
     [DataField(required: true)]
     public string ChassisName = string.Empty;
-
+#region Starlight
     /// <summary>
-    /// Name of the borg's entity, including its silicon id.
+    /// Name of the borg's entity, without its silicon id.
     /// </summary>
     [DataField(required: true)]
     public string Name = string.Empty;
+
+    /// <summary>
+    /// The borg's silicon id, already bracketed, or empty if it has none.
+    /// </summary>
+    [DataField]
+    public string Identifier = string.Empty;
+
+    /// <summary>
+    /// <see cref="Name"/> with <see cref="Identifier"/> after it, the way the borg reads in world.
+    /// </summary>
+    public string FullName => Identifier == string.Empty ? Name : $"{Name} {Identifier}";
+
+    /// <summary>
+    /// Grid coordinates the borg is broadcasting because it needs help, or empty while it is fine.
+    /// See <c>BorgEmergencyBeaconSystem</c> for what counts as needing help.
+    /// </summary>
+    [DataField]
+    public string Location = string.Empty;
+#endregion
 
     /// <summary>
     /// Battery charge from 0 to 1.
@@ -116,6 +135,20 @@ public partial record struct CyborgControlData
     [DataField]
     public bool CanDisable;
 
+#region Starlight
+    /// <summary>
+    /// Whether the borg is currently locked down, which shuts it down the same way running out of power does.
+    /// Controls whether the console offers to engage or release the lockdown.
+    /// </summary>
+    [DataField]
+    public bool LockedDown;
+
+    /// <summary>
+    /// Whether the installed brain actually has someone in it. Meaningless when <see cref="HasBrain"/> is false.
+    /// </summary>
+    [DataField]
+    public bool BrainActive = true;
+#endregion
     /// <summary>
     /// When this cyborg's data will be deleted.
     /// Set by the console when receiving the packet.
@@ -123,8 +156,12 @@ public partial record struct CyborgControlData
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan Timeout = TimeSpan.Zero;
 
-    public CyborgControlData(SpriteSpecifier? chassisSprite, string chassisName, string name, float charge, float hpPercent, int moduleCount, bool hasBrain, bool canDisable)
+    public CyborgControlData(SpriteSpecifier? chassisSprite, string chassisName, string name, float charge, float hpPercent, int moduleCount, bool hasBrain, bool canDisable, bool lockedDown = false, string identifier = "", string location = "", bool brainActive = true) // Starlight
     {
+        LockedDown = lockedDown; // Starlight
+        Identifier = identifier; // Starlight
+        Location = location; // Starlight
+        BrainActive = brainActive; // Starlight
         ChassisSprite = chassisSprite;
         ChassisName = chassisName;
         Name = name;

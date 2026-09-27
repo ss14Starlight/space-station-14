@@ -28,8 +28,8 @@
     state: icon
   - type: Tag
     tags:
-      - HolosignProjector
-      - HoloprojectorCrafting # SL Edit
+    - HolosignProjector
+    - HoloprojectorCrafting # SL Edit
   - type: ForceQuickDraw #Starlight Don't pull the power cell when using hotkeys to remove from pockets
 
 - type: entity
@@ -99,8 +99,8 @@
     state: icon
   - type: Tag
     tags:
-      - HolofanProjector
-      - HoloprojectorCrafting #SL Edit
+    - HolofanProjector
+    - HoloprojectorCrafting #SL Edit
   - type: StaticPrice
     price: 50
   - type: GuideHelp
@@ -144,18 +144,18 @@
   name: force field projector
   description: Creates an impassable forcefield that won't let anything through. Close proximity may or may not cause cancer.
   components:
-    - type: HolosignProjector
-      signProto: HolosignForcefield
-      chargeUse: 120
-    - type: Sprite
-      sprite: Objects/Devices/Holoprojectors/field.rsi
-      state: icon
-    - type: Tag
-      tags:
-        - HolofanProjector
-        - HoloprojectorCrafting #SL Edit
-    - type: StaticPrice
-      price: 130
+  - type: HolosignProjector
+    signProto: HolosignForcefield
+    chargeUse: 120
+  - type: Sprite
+    sprite: Objects/Devices/Holoprojectors/field.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - HolofanProjector
+    - HoloprojectorCrafting #SL Edit
+  - type: StaticPrice
+    price: 130
 
 - type: entity
   parent: HoloprojectorField
@@ -178,19 +178,19 @@
   name: holobarrier projector
   description: Creates a solid but fragile holographic barrier.
   components:
-    - type: HolosignProjector
-      signProto: HolosignSecurity
-      chargeUse: 90
-    - type: Sprite
-      sprite: Objects/Devices/Holoprojectors/security.rsi
-      state: icon
-    - type: Tag
-      tags:
-        - HolofanProjector
-        - SecBeltEquip
-        - HoloprojectorCrafting #SL Edit
-    - type: StaticPrice
-      price: 50
+  - type: HolosignProjector
+    signProto: HolosignSecurity
+    chargeUse: 90
+  - type: Sprite
+    sprite: Objects/Devices/Holoprojectors/security.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - HolofanProjector
+    - SecBeltEquip
+    - HoloprojectorCrafting #SL Edit
+  - type: StaticPrice
+    price: 50
 
 - type: entity
   parent: HoloprojectorSecurity

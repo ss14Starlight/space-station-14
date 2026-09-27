@@ -2,7 +2,8 @@ using Robust.Shared.Audio;
 using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Prototypes; //FarHorizons
-using Content.Shared.Actions;//FarHorizons
+
+//FarHorizons
 
 namespace Content.Server.Medical.Components;
 
@@ -84,6 +85,12 @@ public sealed partial class HealthAnalyzerComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan PrintCooldown = TimeSpan.FromSeconds(5);
+
+    /// <summary>
+    /// is this scanner able to print.
+    /// </summary>
+    [DataField]
+    public bool EnablePrint = true;
     // Starlight-end
 
     /// <summary>

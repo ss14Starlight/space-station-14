@@ -17,8 +17,7 @@ using Content.Shared.EntityEffects.Effects.Body;
 using Content.Shared.EntityEffects.Effects.Solution;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Systems;
-using Robust.Shared.Collections;
-using Robust.Shared.Network;
+using Content.Shared.Random.Helpers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -26,16 +25,14 @@ using Robust.Shared.Timing;
 namespace Content.Shared._Starlight.Medical.Body.Systems;
 
 /// <inheritdoc/>
-public sealed class MetabolizerSystem : EntitySystem
+public sealed partial class MetabolizerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private INetManager _net = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly SharedEntityConditionsSystem _entityConditions = default!;
-    [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private SharedEntityConditionsSystem _entityConditions = default!;
+    [Dependency] private SharedEntityEffectsSystem _entityEffects = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
 
     private EntityQuery<OrganComponent> _organQuery;
     private EntityQuery<SolutionManagerComponent> _solutionQuery;
@@ -54,36 +51,31 @@ public sealed class MetabolizerSystem : EntitySystem
     private void OnMapInit(Entity<MetabolizerComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.AdjustedUpdateInterval;
+        Dirty(ent);
     }
 
     private void OnApplyMetabolicMultiplier(Entity<MetabolizerComponent> ent,
         ref ApplyMetabolicMultiplierEvent args)
     {
         ent.Comp.UpdateIntervalMultiplier = args.Multiplier;
+        Dirty(ent);
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        if (!_net.IsServer)
-            return;
 
-        var metabolizers = new ValueList<(EntityUid Uid, MetabolizerComponent Component)>(Count<MetabolizerComponent>());
         var query = EntityQueryEnumerator<MetabolizerComponent>();
 
         while (query.MoveNext(out var uid, out var comp))
         {
-            metabolizers.Add((uid, comp));
-        }
-
-        foreach (var (uid, metab) in metabolizers)
-        {
             // Only update as frequently as it should
-            if (_gameTiming.CurTime < metab.NextUpdate)
+            if (_gameTiming.CurTime < comp.NextUpdate)
                 continue;
 
-            metab.NextUpdate += metab.AdjustedUpdateInterval;
-            TryMetabolize((uid, metab));
+            comp.NextUpdate += comp.AdjustedUpdateInterval;
+            TryMetabolize((uid, comp));
+            Dirty(uid, comp);
         }
     }
 
@@ -160,7 +152,8 @@ public sealed class MetabolizerSystem : EntitySystem
 
         // randomize the reagent list so we don't have any weird quirks
         // like alphabetical order or insertion order mattering for processing
-        _random.Shuffle(list);
+        var rand = SharedRandomExtensions.PredictedRandom(_gameTiming, GetNetEntity(ent), GetNetEntity(solutionOwner));
+        rand.Shuffle(list);
 
         var isDead = _mobStateSystem.IsDead(solutionOwner.Value);
         // Needed before the unknown-reagent branch so railroading observes every metabolized reagent.
@@ -224,7 +217,7 @@ public sealed class MetabolizerSystem : EntitySystem
                 if (scale < effect.MinScale)
                     continue;
 
-                if (effect.Probability < 1.0f && !_random.Prob(effect.Probability))
+                if (rand.NextFloat() >= effect.Probability)
                     continue;
 
                 // See if conditions apply

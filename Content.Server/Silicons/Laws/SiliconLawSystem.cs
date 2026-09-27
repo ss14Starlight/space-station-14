@@ -42,6 +42,8 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
     [Dependency] private TagSystem _tag = default!; // Starlight
     [Dependency] private SharedPopupSystem _popup = default!; // Starlight
 
+    private static readonly ProtoId<TagPrototype> _canAffectLawBoards = "CanAffectLawBoards";
+
     private static readonly ProtoId<SiliconLawsetPrototype> DefaultCrewLawset = "Crewsimov";
 
     /// <inheritdoc/>
@@ -393,7 +395,7 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
         if (args.EmagComponent == null)
             return;
 
-        if (!_tag.HasTag(args.EmagComponent.Owner, "CanAffectLawBoards")) //TODO test, changed from "FreeMAG"
+        if (!_tag.HasTag(args.EmagComponent.Owner, _canAffectLawBoards))
             return;
 
 
@@ -404,8 +406,8 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
         if (emag.Lawset.HasValue)
         {
             var lawset = emag.Lawset.Value; //Fallback to FreeLawSet because clearly something is going on
-            ent.Comp.Laws = lawset; //"FreeLawset"; TODO test
-            ent.Comp.Lawset = GetLawset(lawset); //"FreeLawset"); TODO test
+            ent.Comp.Laws = lawset; //"FreeLawset";
+            ent.Comp.Lawset = GetLawset(lawset); //"FreeLawset");
         }
         else
         {

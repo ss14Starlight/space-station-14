@@ -1,5 +1,4 @@
 ﻿using Content.Server.Clothing.Systems;
-using Content.Server.Preferences.Managers;
 using Content.Shared.Clothing;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Humanoid;

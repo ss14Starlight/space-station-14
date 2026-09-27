@@ -154,6 +154,12 @@
   suffix: Vox
   description: "A fleshy muscle mostly used for screaming."
   components:
+  - type: OrganTongue
+    allowedEmotes: ['Click', 'Chitter']
+    sounds:
+      Male: UnisexVox
+      Female: UnisexVox
+      Unsexed: UnisexVox
   - type: Sprite
     sprite: Mobs/Species/Vox/organs.rsi
   - type: Item

@@ -762,7 +762,7 @@
       sprite: Clothing/Uniforms/Jumpsuit/lawyergood.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] #SL EDIT, Syndie to minor
+  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] # Starlight, major contra -> minor contra
   id: ClothingUniformJumpsuitPyjamaSyndicateBlack
   name: black syndicate pyjamas
   description: For those long nights in perma.
@@ -773,7 +773,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicateblack.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] #SL EDIT, Syndie to minor
+  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] # Starlight, major contra -> minor contra
   id: ClothingUniformJumpsuitPyjamaSyndicatePink
   name: pink syndicate pyjamas
   description: For those long nights in perma.
@@ -784,7 +784,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicatepink.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] #SL EDIT, Syndie to minor
+  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] # Starlight, major contra -> minor contra
   id: ClothingUniformJumpsuitPyjamaSyndicateRed
   name: red syndicate pyjamas
   description: For those long nights in perma.

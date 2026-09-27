@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: CheekStorage
   name: cheek storage
   description: The cheeks of an animal, capable of storing small objects.
@@ -35,7 +35,7 @@
       organs:
         brain: OrganHumanBrain
         eyes: OrganRodentiaEyes
-        tongue: OrganHumanTongue
+        tongue: OrganRodentiaTongue
         eye_implant: null
         nose_implant: null # 🌟Starlight🌟
         brain_implant: null

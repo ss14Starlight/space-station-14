@@ -1,4 +1,4 @@
-﻿- type: body
+- type: body
   id: Thaven
   name: "thaven"
   root: torso
@@ -10,7 +10,7 @@
       organs:
         brain: OrganThavenBrain
         eyes: OrganThavenEyes
-        tongue: OrganHumanTongue
+        tongue: OrganThavenTongue
         eye_implant: null
         nose_implant: null # 🌟Starlight🌟
         brain_implant: null

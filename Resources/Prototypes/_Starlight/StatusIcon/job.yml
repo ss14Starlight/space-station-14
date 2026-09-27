@@ -73,6 +73,18 @@
     sprite: *starlight-job-icon-rsi
     state: SalvageLead
   jobName: job-name-salvagelead
+  isCrewJob: false
+  tags:
+  - JobIconCrew
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSalvageMedic
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: SalvageMedic
+  isCrewJob: false
+  jobName: job-name-salvagemedic
   tags:
   - JobIconCrew
 
@@ -83,6 +95,7 @@
     sprite: *starlight-job-icon-rsi
     state: SalvageSpecialist
   jobName: job-name-salvagespec
+  isCrewJob: false
   tags:
   - JobIconCrew
 
@@ -425,6 +438,17 @@
     sprite: *starlight-job-icon-rsi
     state: MedicalAssistant
   jobName: job-name-medical-assistant
+  tags:
+  - JobIconCrew
+  - JobIconAssistantManager
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconJanitorAssistant
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: JanitorAssistant
+  jobName: job-name-janitor-assistant
   tags:
   - JobIconCrew
   - JobIconAssistantManager

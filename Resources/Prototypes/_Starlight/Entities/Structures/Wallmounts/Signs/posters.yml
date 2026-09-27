@@ -340,6 +340,26 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterContrabandWantedDavid
+  name: "Wanted, David"
+  description: "A wanted poster for a certain mad scientist. You don't want to see what's behind the helmet. It's probably out of date."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
+    state: wanted_david
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandWantedLex
+  name: "Wanted, Lex Newbell"
+  description: "A wanted poster for a roboticist named Lex. His mask fits his clothes pretty well, you'd think it's standard issue. Seems to be out of date."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
+    state: wanted_lex_newbell
+
+- type: entity
+  parent: PosterBase
   id: PosterLegitSaline
   name: "NO SALINE!"
   description: "An advisory from NanoTrasen's medical department reminding doctors to check their patients' species before administering airloss-related medicines. Saline can kill!"

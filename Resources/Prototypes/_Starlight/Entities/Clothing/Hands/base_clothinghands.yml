@@ -1,0 +1,28 @@
+# Major temperature protection for thick gloves, like mittens.
+- type: entity
+  abstract: true
+  parent: ClothingHandsBase
+  id: ClothingHandsBaseWinter
+  components:
+  - type: TemperatureProtection
+    heatingCoefficient: 1.00
+    coolingCoefficient: 0.80 # gets cold 20% slower
+  - type: Armor
+    modifiers:
+      coefficients:
+        Cold: 0.90 # winter clothing protects from cold
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 5 # average lightbulb
+        Cold: 5 # keeps ya hands safe from cold stuff too
+
+# Minor temperature protection for most other gloves that aren't super thin, like latex.
+- type: entity
+  abstract: true
+  parent: ClothingHandsBase
+  id: ClothingHandsBaseWarm
+  components:
+  - type: TemperatureProtection
+    heatingCoefficient: 1.00
+    coolingCoefficient: 0.95 # gets cold 5% slower

@@ -10,6 +10,11 @@
   id: BlueShield
   name: id-card-access-level-blueshield
 
+- type: accessLevel
+  id: NTPersonnel
+  name: id-card-access-level-ntpersonnel
+  canAddToIdCard: false
+
 - type: accessGroup
   id: NanoTrasen
   tags:
@@ -17,3 +22,4 @@
   - Magistrate
   - BlueShield
   - IAA
+  - NTPersonnel

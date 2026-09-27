@@ -3,11 +3,12 @@
   id: ColossusSpawn
   components:
   - type: StationEvent
-    weight: 3
-    earliestStart: 30
+    weight: 2
+    earliestStart: 45
     reoccurrenceDelay: 20
-    minimumPlayers: 25
+    minimumPlayers: 40
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
   - type: AntagSpawner
     prototype: MobCosmicColossusLone
@@ -15,6 +16,7 @@
     objectives:
     - ColossusSurviveObjective
     - ColossusEffigyObjective
+    - ColossusSacrificeObjective
   - type: AntagSelection
     agentName: role-subtype-colossus
     antags:

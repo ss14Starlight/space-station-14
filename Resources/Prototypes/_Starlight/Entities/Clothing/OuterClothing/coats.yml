@@ -44,6 +44,9 @@
         Slash: 0.9
         Piercing: 0.8
         Cold: 0.85
+  - type: Tag
+    tags:
+    - MonkeyWearable
 
 - type: entity
   parent: [ ClothingOuterBase, ClothingOuterBaseWinter, BaseNanoTrasenContraband, AllowSuitStorageClothingGasTanks ]
@@ -84,6 +87,9 @@
         Slash: 0.9
         Piercing: 0.8
         Cold: 0.85
+  - type: Tag
+    tags:
+    - MonkeyWearable
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatNtrep, BaseNanoTrasenContraband ]
@@ -107,6 +113,9 @@
       coefficients:
         Cold: 0.9
         Caustic: 0.75
+  - type: Tag
+    tags:
+    - MonkeyWearable
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorChemist]
@@ -228,6 +237,9 @@
     priceMultiplier: 0
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.50
+  - type: Tag
+    tags:
+    - MonkeyWearable
 # Fashion-O-Mat END
 
 
@@ -598,3 +610,57 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/chef-centcomm.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/chef-centcomm.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterRockerHeartBomber
+  name: rocker's heart bomber
+  description: Been good to know ya...
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/rockersheartbomber.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/rockersheartbomber.rsi
+      clothingVisuals:
+        outerClothing:
+          - state: equipped-OUTERCLOTHING
+          - state: equipped-OUTERCLOTHING-unshaded
+            shader: unshaded
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterJohnnySamuraiJacket
+  name: johnny's samurai jacket
+  description: Never fade away...
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/johnnysamurai.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/johnnysamurai.rsi
+      clothingVisuals:
+        outerClothing:
+          - state: equipped-OUTERCLOTHING
+          - state: equipped-OUTERCLOTHING-unshaded
+            shader: unshaded
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterEdgerunnerJacket
+  name: edgerunner's jacket
+  description: I'm dead, just like disco
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/edgerunners.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/edgerunners.rsi
+      clothingVisuals:
+        outerClothing:
+          - state: equipped-OUTERCLOTHING
+          - state: equipped-OUTERCLOTHING-unshaded
+            shader: unshaded

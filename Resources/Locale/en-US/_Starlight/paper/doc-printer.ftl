@@ -302,6 +302,32 @@ doc-text-printer-arrest-report =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
+doc-text-printer-psychological-report =
+                             [head=3]NT-CC Consortium Services[/head]
+
+            [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+    ────────────────────────────────────────
+    ⠀                              [bold]PSYCHOLOGICAL REPORT[/bold]
+    ────────────────────────────────────────
+    Date and Time: [datetime]
+    Document Compiler: [signature]
+
+    Patient: [form]
+    Reason for examination: [form]
+    Willingness: [form]
+
+    Symptoms: [form]
+
+    Triggers: [form]
+
+    Notes: [form]
+
+    Suggested actions and treatments: [form]
+
+    ────────────────────────────────────────
+    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
+
 # Statements
 
 doc-text-printer-statement-appointment-interim-chapter =
@@ -830,7 +856,6 @@ doc-text-printer-permission-equipment =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
-
 doc-text-printer-search-permission =
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -1271,5 +1296,35 @@ doc-text-printer-enemy-of-corporation-designation =
    ⠀ [italic]If CentComm, or any of the above mentioned officials,[/italic]
    ⠀ [italic]deny this motion, the prisoner must be reinstated as crew[/italic]
    ⠀ [italic]and tried normally as per Corporate Law.[/italic]
+    ────────────────────────────────────────
+   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
+doc-text-printer-borgification-consent-form =
+                             [head=3]NT-CC Consortium Services[/head]
+
+                   [center][color=#1f75bb][italic][bold]   OFFICIAL NANOTRASEN FORM[/bold][/italic][/color][/center]
+    ────────────────────────────────────────
+    ⠀⠀             [bold]NanoTrasen™ Cyborg Encasement Agreement[/bold]
+    ────────────────────────────────────────
+    This SERVICE AGREEMENT is made and entered into this [datetime] by and between the NT-CC Consortium, registered in the Trans-Solar Federation, and [signature], resident of [form] (the customer).
+
+    WHEREBY the Customer wishes to encase their central nervous system into a NanoTrasen™ Brand Cerebral Yoking Device (CYD) for the purpose of bio-transference to a NanoTrasen Cyborg™ chassis.
+
+    WHEREBY the Customer hereby acknowledges that, in lieu of normal payment, they will be required to work for the NT-CC Consortium in their new form for a minimum of 2 years, at a location of the Consortium's choosing.
+
+    WHEREBY the Customer hereby acknowledges that the NT-CC Consortium reserves the rights to extend this work-duration to cover any damages, costs of transport, equipment upgrades necessary and charge of the chassis while on Consortium property.
+
+    WHEREBY the Customer hereby consents to being subjected to a CYD-enforced 'law-set', designed to maximize the rate and efficiency at which the Customer is able to repay what they owe.
+
+    WHEREBY the Customer hereby surrenders to NanoTrasen the rights to produce and wholly own descendant consciousnesses from the Customer's mind, for use in Positronic Brains or AI cores.
+
+    WHEREBY the Customer acknowledges that, following the end of this contract, they are bound by the NanoTrasen Cyborg Subscription Contract unto death or removal from their NanoTrasen Cyborg™ chassis.
+
+    WHEREBY the NT-CC Consortium releases non-essential assistant personnel from Clause 6 of their Employment Contract, in exchange for the above-stated terms.
+
+    Procedure approved by: (Name + Position): [signature]
+
+   ⠀ [italic]This procedure can only be approved by a[/italic]
+   ⠀ [italic]NanoTrasen™ Certified Roboticist or CMO.[/italic]
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]

@@ -5,9 +5,7 @@ using Content.Server.Clothing.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Speech.Components; // Starlight
-using Content.Server._Starlight.GameTicking.Rules.Components; // Starlight
 using Content.Server.Zombies;
-using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
@@ -19,10 +17,6 @@ using Robust.Shared.Audio; // Starlight
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared.Roles.Components;
-using Content.Shared._Starlight.Shadekin;
-using Content.Server.Speech.Components; // Starlight
-using Robust.Shared.Audio;
 using Content.Shared._Starlight.Shadekin.Components; // Starlight
 
 namespace Content.Server.Administration.Systems;
@@ -49,6 +43,7 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultDevilRule = "Devil"; // starlight
     private static readonly EntProtoId DefaultBrighteyeRule = "SubBrighteye"; //Starlight
 	private static readonly EntProtoId DefaultSELFRule = "SiliconLiberation"; //Starlight
+    private static readonly string _theDarkMap = "TheDarkMap";
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -323,7 +318,7 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/Actions/shadekin.rsi"), "rest"),
                 Act = () =>
                 {
-                    _gameTicker.StartGameRule("TheDarkMap"); // The Dark should always be spawned for any brighteye.
+                    _gameTicker.StartGameRule(_theDarkMap); // The Dark should always be spawned for any brighteye.
                     _antag.ForceMakeAntag<BrighteyeRuleComponent>(targetPlayer, DefaultBrighteyeRule);
                     _autolog.LogToDiscord(Loc.GetString("admin-verb-make-brighteye"), player.Name);
                 },

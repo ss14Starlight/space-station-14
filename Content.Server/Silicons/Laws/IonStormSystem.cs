@@ -1,13 +1,12 @@
-using Content.Server.StationEvents.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Dataset;
 using Content.Shared.FixedPoint;
-using Content.Shared.GameTicking.Components;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
+using Content.Shared._Starlight.Silicons.Borgs; // Starlight
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
@@ -46,6 +45,9 @@ public sealed partial class IonStormSystem : EntitySystem
     /// </summary>
     public void IonStormTarget(Entity<SiliconLawBoundComponent, IonStormTargetComponent> ent, bool adminlog = true)
     {
+        if (CompOrNull<StationAIShuntComponent>(ent)?.Return != null) // Starlight
+            return;
+
         var lawBound = ent.Comp1;
         var target = ent.Comp2;
         if (!_robustRandom.Prob(target.Chance))

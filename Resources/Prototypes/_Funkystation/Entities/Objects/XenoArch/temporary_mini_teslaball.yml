@@ -1,0 +1,14 @@
+- type: entity
+  parent: TeslaMiniEnergyBall
+  id: BaseEnergyBallTemporary
+  name: "temporary tesla"
+  components:
+  - type: LightningArcShooter
+    arcDepth: 2
+    maxLightningArc: 3
+    shootMinInterval: 5
+    shootMaxInterval: 8
+    shootRange: 5
+    lightningPrototype: LightningRevenant
+  - type: TimedDespawn
+    lifetime: 10

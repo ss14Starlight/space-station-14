@@ -1,6 +1,6 @@
 - type: entity
   save: false
-  name: Urist McDuskin #pronounced Dusk-Kin
+  name: Urist McShadowster
   parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseMobSpecies, BaseSpeciesPickupableHuge]
   id: BaseMobNeoKin
   abstract: true
@@ -24,8 +24,10 @@
       allowSelfRepair: true
       fuelCost: 7.5 # Little cheaper on Neocytes, since they're not fully cybernetic.
       damage:
-        groups:
-          Brute: -24 # 4 for each type with reduction applied
+        types:
+          Blunt: -8 # 4 for each type with reduction applied
+          Piercing: -8
+          Slash: -8
     - type: Shadekin
       thresholds:
         0.8: Low
@@ -86,12 +88,7 @@
     - type: Speech
       speechVerb: Robotic
       speechSounds: Borg
-      allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Bubble', 'Pop', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk', 'ThavenHum', 'ThavenGlub', 'Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore']
     - type: Vocal
-      sounds:
-        Male: NeoKinMSounds
-        Female: NeoKinFSounds
-        Unsexed: NeoKinMSounds
     - type: MeleeWeapon
       soundHit:
         collection: AlienClaw
@@ -136,11 +133,12 @@
     - type: PassiveDamage
       allowedStates:
         - Alive
-      damageCap: 20
       damage:
-        groups:
-          Brute: -0.07
-          Burn: -0.07
+        types:
+          Blunt: -0.05
+          Piercing: -0.05
+          Slash: -0.05
+          Heat: -0.07
     - type: Destructible
       thresholds:
         - trigger: !type:DamageTypeTrigger

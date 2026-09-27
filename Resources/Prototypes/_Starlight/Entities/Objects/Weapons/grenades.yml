@@ -60,6 +60,26 @@
     price: 500
   - type: EorgPreventTrigger # Starlight
 
+- type: entity
+  parent: AirGrenade
+  id: HalonGasGrenade
+  name: halon gas grenade
+  description: A special solid state chemical grenade used for quickly releasing halon gas to extinguish fires.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Grenades/halon_gas.rsi
+  - type: ReleaseGasOnTrigger
+    keysIn:
+    - timer
+    removeFraction: 0.25
+    air:
+      volume: 500
+      moles:
+        Halon: 250 # Halon
+      temperature: 250
+  - type: StaticPrice
+    price: 500
+
 - type: entity # Starlight Grenade spawn the Peacekeeper stinger round
   id: Grenade20mmStinger
   parent: ProjectileGrenadeBase

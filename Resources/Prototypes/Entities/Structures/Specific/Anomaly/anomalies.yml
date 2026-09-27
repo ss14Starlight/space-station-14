@@ -117,6 +117,13 @@
     damage:
       types:
         Heat: 10
+  # Starlight Start
+  - type: ChildEntities
+    childPrototypes:
+      - prototype: OverlayFireEffect
+      - prototype: OverlayEmbersEffect
+      - prototype: OverlaySmokeEffect
+  # Starlight End
 
 - type: entity
   id: AnomalyGravity
@@ -273,6 +280,10 @@
       - MobFleshClamp
       - MobFleshLover
       - FleshKudzu
+  # Starlight Start
+  - type: ParticleEmitter
+    effect: DrippingBlood
+  # Starlight End
 
 - type: entity
   id: AnomalyBluespace
@@ -322,6 +333,12 @@
       collection: RadiationPulse
       params:
         volume: 5
+  # Starlight Start
+  - type: ChildEntities
+    childPrototypes:
+      - prototype: OverlayBluespaceBurstEffect
+      - prototype: OverlayBluespaceSparksEffect
+  # Starlight End
 
 - type: entity
   id: AnomalyIce
@@ -378,6 +395,10 @@
     damage:
       types:
         Cold: 10
+  # Starlight Start
+  - type: ParticleEmitter
+    effect: SnowFall
+  # Starlight End
 
 - type: entity
   id: AnomalyRockBase
@@ -989,6 +1010,10 @@
     solution: anomaly
   - type: InjectableSolution
     solution: beaker
+  # Starlight Start
+  - type: ParticleEmitter
+    effect: DrippingLiquid
+  # Starlight End
 
 - type: entity
   id: AnomalyShadow
@@ -1054,6 +1079,10 @@
     damage:
       types:
         Cold: 10
+  # Starlight Start
+  - type: ParticleEmitter
+    effect: ShadowMist
+  # Starlight End
 
 - type: entity
   id: AnomalyTech
@@ -1089,6 +1118,10 @@
     ports:
       - Pulse
       - Timer
+  # Starlight Start
+  - type: ParticleEmitter
+    effect: BluespaceSparks
+  # Starlight End
 
 - type: entity
   id: AnomalyTechBeam

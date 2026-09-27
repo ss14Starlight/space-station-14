@@ -16,6 +16,7 @@ public sealed partial class DarkenedVisionOverlay : Overlay
     public override bool RequestScreenTexture => true;
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
     private readonly ShaderInstance _circleMaskShader;
+    private static readonly ProtoId<ShaderPrototype> _circleMaskShaderId = "CircleMask";
 
     public DarkenedVisionComponent? DarkenedVision;
 
@@ -23,7 +24,7 @@ public sealed partial class DarkenedVisionOverlay : Overlay
     public DarkenedVisionOverlay()
     {
         IoCManager.InjectDependencies(this);
-        _circleMaskShader = _prototypeManager.Index<ShaderPrototype>("CircleMask").InstanceUnique();
+        _circleMaskShader = _prototypeManager.Index(_circleMaskShaderId).InstanceUnique();
     }
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {

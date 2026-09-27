@@ -52,7 +52,6 @@ namespace Content.Client.Access.UI
         // The job that will be picked if the ID doesn't have a job on the station.
         private static ProtoId<JobPrototype> _defaultJob = "Assistant";
         // Starlight-edit: Start
-        private ProtoId<AccessGroupPrototype>? _selectedAccessGroup = null;
         public Action<ProtoId<AccessGroupPrototype>>? OnGroupSelected;
 
         private HashSet<ProtoId<AccessLevelPrototype>> _pendingPressedAccessLevels = new();

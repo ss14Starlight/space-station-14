@@ -19,7 +19,6 @@ using Content.Server.Hands.Systems;
 using Content.Shared.PowerCell;
 using Content.Shared.Destructible;
 using Content.Shared.PowerCell.Components;
-using Content.Server.Power.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Server.Popups;
 using Content.Server.Power.Components;

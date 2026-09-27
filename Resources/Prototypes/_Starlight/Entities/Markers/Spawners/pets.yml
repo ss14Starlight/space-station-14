@@ -45,3 +45,18 @@
   - type: ConditionalSpawner
     prototypes:
     - MobPenguinFlippers
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobLizardCecil
+  name: Cecil Spawner
+  suffix: CC Pet
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: lizard
+      sprite: Mobs/Animals/lizard.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobLizardCecil

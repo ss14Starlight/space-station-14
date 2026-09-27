@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 8,
+        "y": 8
+    },
+    "states": [
+        {
+            "name": "ETO",
+            "copyright": "The Purple Screen"
+        },
+        {
+            "name": "ETO_Corpsman",
+            "copyright": "The Purple Screen"
+        },
+        {
+            "name": "ETO_Demo",
+            "copyright": "The Purple Screen"
+        },
+        {
+            "name": "ETO_Leader",
+            "copyright": "The Purple Screen"
+        },
+        {
+            "name": "ETO_Martyr",
+            "copyright": "The Purple Screen"
+        },
+        {
+            "name": "ETO_CombatTech",
+            "copyright": "The Purple Screen"
+        }
+    ]
+}
