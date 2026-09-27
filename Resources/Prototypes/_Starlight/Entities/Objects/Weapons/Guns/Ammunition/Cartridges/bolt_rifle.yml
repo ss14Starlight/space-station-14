@@ -1,6 +1,8 @@
 # Starlight
 - type: entity
-  parent: [ BaseCartridge, BaseMajorContraband ]
+  parent:
+  - BaseCartridge
+  - BaseMajorContraband
   id: Cartridge48Rifle
   name: cartridge (.48 rifle)
   description: A heavy intermediate cartridge of uncertain origin. Sits somewhere between a magnum round and an anti-materiel shell. Proprietary — don't expect to find it on any shelf.
@@ -14,7 +16,8 @@
     sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
     layers:
     - state: base
-      map: ["enum.AmmoVisualLayers.Base"]
+      map:
+      - "enum.AmmoVisualLayers.Base"
   - type: Appearance
   - type: SpentAmmoVisuals
   - type: StaticPrice

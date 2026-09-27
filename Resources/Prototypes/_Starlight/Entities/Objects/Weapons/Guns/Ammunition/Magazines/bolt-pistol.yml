@@ -24,9 +24,9 @@
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/impact_bolt_pistol.rsi
     layers:
-    - state: icon
+    - state: base
       map:
-      - enum.GunVisualLayers.icon
+      - enum.GunVisualLayers.Base
   - type: MagazineVisuals
     magState: mag
     steps: 6
