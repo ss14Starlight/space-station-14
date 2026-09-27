@@ -1,13 +1,6 @@
 Entries:
 - author: Sir Lutz
   changes:
-  - message: Dragon rift rarespawns have been reduced, base spawn Holocarp from 20% to 7%, sharks from 5% to 2% (they are doubled when the rift is finished).
-    type: Tweak
-  id: 408536
-  time: '2026-09-13T23:01:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6154
-- author: Sir Lutz
-  changes:
   - message: Dragon Sharkminnows health has been lowered from 150HP to 120HP.
     type: Tweak
   id: 408537
@@ -2799,4 +2792,11 @@ Entries:
   id: 408935
   time: '2026-09-27T11:15:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6353
+- author: VBlankFF
+  changes:
+  - message: Changed trackers and deathrattles to display the job title of the dying person next to their name.
+    type: Tweak
+  id: 408936
+  time: '2026-09-27T11:38:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6313
 Order: -1
