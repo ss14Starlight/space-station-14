@@ -128,7 +128,7 @@ public abstract partial class SharedAtmosphereSystem
     [PublicAPI]
     public bool IsMixtureIgnitable(GasMixture mixture, float epsilon = 0.001f)
     {
-        return IsMixtureFuel(mixture, epsilon) && IsMixtureOxidizer(mixture, epsilon) && !IsMixtureModerator(mixture, epsilon); // STARLIGHT
+        return IsMixtureFuel(mixture, epsilon) && IsMixtureOxidizer(mixture, epsilon) && !IsMixtureModerator(mixture); // STARLIGHT
     }
 
     /// <summary>

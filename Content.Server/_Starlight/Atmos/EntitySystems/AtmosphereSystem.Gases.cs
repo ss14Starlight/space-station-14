@@ -6,10 +6,10 @@ namespace Content.Server.Atmos.EntitySystems;
 
 public sealed partial class AtmosphereSystem
 {
-    public override bool IsMixtureModerator(GasMixture mixture, float epsilon = Atmospherics.Epsilon)
+    public override bool IsMixtureModerator(GasMixture mixture)
     {
         Span<float> tmp = stackalloc float[Atmospherics.AdjustedNumberOfGases];
         NumericsHelpers.Multiply(mixture.Moles, GasModeratorMask, tmp);
-        return NumericsHelpers.HorizontalAdd(tmp) > epsilon;
+        return NumericsHelpers.HorizontalAdd(tmp) > 5.0f;
     }
 }

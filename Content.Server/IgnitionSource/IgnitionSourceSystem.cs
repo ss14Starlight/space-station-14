@@ -8,7 +8,7 @@ public sealed partial class IgnitionSourceSystem : SharedIgnitionSourceSystem
 {
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedContainerSystem _container = default!; // STARLIGHT
 
     public override void Update(float frameTime)
     {
