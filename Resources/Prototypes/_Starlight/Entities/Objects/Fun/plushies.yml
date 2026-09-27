@@ -1,6 +1,62 @@
 # Character Plushies - Keep alphabetical, please!
 - type: entity
   parent: BaseShadekinPlushie
+  id: PlushieBarfo # greasi (Discord) / Original_Username2 (SS14)
+  name: barfo plushie
+  description: A plushie of a small, elusive, and odd looking security officer. Seems familiar somehow.
+  components:
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Fun/Plushies/barfo_plushie.rsi
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/Plushies/barfo_plushie.rsi
+      state: icon
+    - type: Clothing
+      quickEquip: false
+      sprite: _Starlight/Objects/Fun/Plushies/barfo_plushie.rsi
+      slots:
+        - HEAD
+      clothingVisuals:
+        head:
+          - state: equipped-HELMET
+    - type: Edible
+      requiresSpecialDigestion: true
+      useSound:
+        collection: FelionoidHisses
+    - type: EmitSoundOnActivate
+      sound: &SoundBikeHorn
+        collection: BikeHorn
+        params:
+          variation: 0.125
+    - type: EmitSoundOnCollide
+      sound: *SoundBikeHorn
+    - type: EmitSoundOnTrigger
+      sound: *SoundBikeHorn
+    - type: EmitSoundOnLand
+      sound:
+        collection: FelionoidHisses
+    - type: EmitSoundOnUse
+      sound: *SoundBikeHorn
+    - type: MeleeWeapon
+      wideAnimationRotation: 180
+      soundHit: *SoundBikeHorn
+    - type: Extractable
+      juiceSolution:
+        reagents:
+          - ReagentId: Laughter
+            Quantity: 30
+    - type: Solution
+      id: food
+      solution:
+        maxVol: 20
+        reagents:
+          - ReagentId: Fiber
+            Quantity: 10
+          - ReagentId: Laughter
+            Quantity: 10
+
+- type: entity
+  parent: BaseShadekinPlushie
   id: PlushieBrightheart # rtasva
   name: brightheart plushie
   description: A plushie of a small, elusive, and odd looking security officer. Seems familiar somehow.
