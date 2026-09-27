@@ -27,7 +27,7 @@ using static Content.Shared._Moffstation.Clothing.ModularHud.Components.ModularH
 
 namespace Content.Shared._Moffstation.Clothing.ModularHud.Systems;
 
-/// This system implements the behavior of <see cref="ModularHudComponent"/>s. It hands three basic things:
+/// This system implements the behavior of <see cref="ModularHudComponent"/>s. It handles three basic things:
 /// <list type="bullet">
 /// <item>Visuals</item>
 /// <item>Basic interactions</item>
@@ -37,10 +37,10 @@ namespace Content.Shared._Moffstation.Clothing.ModularHud.Systems;
 /// <b>Visuals</b>
 /// More or less just <see cref="SyncVisuals"/>, sets <see cref="AppearanceComponent"/>'s data to colors determined by
 /// <see cref="ModularHudModuleComponent.Visuals"/> for the client visualizer system to handle.
-///
+/// <br/>
 /// <b>Basic Interactions</b>
 /// Insertion / extraction of modules, examine implementations, verbs, the usual component stuff.
-///
+/// <br/>
 /// <b>HUD Effect Relaying</b>
 /// This is the real power of modular HUDs. HUD effects on preexisting entities are implemented by raising events on the
 /// wearer of the HUD, and then a system will relay those events to worn entities, allowing the HUD entity to handle the
@@ -61,6 +61,8 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     [Dependency] private SharedToolSystem _tool = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
 
+    [Dependency] private EntityQuery<ModularHudModuleComponent> _modularHudModuleQuery;
+
     /// The lists contained here specify the layers and (by implicit ordering) precedence for each visual category. For
     /// example, the highest priority lens color will apply to `Lens`, then the next highest will apply to
     /// `LensAccentMajor`, and so on.
@@ -79,17 +81,6 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<ModularHudComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<ModularHudComponent, ComponentRemove>(OnComponentRemove);
-        SubscribeLocalEvent<ModularHudComponent, GotEquippedEvent>(OnGotEquipped);
-        SubscribeLocalEvent<ModularHudComponent, GotUnequippedEvent>(OnGotUneqipped);
-        SubscribeLocalEvent<ModularHudComponent, EntInsertedIntoContainerMessage>(OnEntInsertedIntoContainerMessage);
-        SubscribeLocalEvent<ModularHudComponent, EntRemovedFromContainerMessage>(OnEntRemovedFromContainerMessage);
-        SubscribeLocalEvent<ModularHudComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<ModularHudComponent, InteractUsingEvent>(OnInteractUsing);
-        SubscribeLocalEvent<ModularHudComponent, HudModulesRemovalDoAfterEvent>(OnHudModulesRemovalDoAfter);
-        SubscribeLocalEvent<ModularHudComponent, GetVerbsEvent<InteractionVerb>>(OnGetInteractionVerbs);
 
         // Relays for module events.
         SubscribeRelaysForEffectEvents<SolutionScanEvent>();
@@ -138,11 +129,12 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     {
         foreach (var moduleEnt in entity.Comp.ModuleContainer?.ContainedEntities ?? [])
         {
-            if (TryComp<ModularHudModuleComponent>(moduleEnt, out var moduleComp))
+            if (_modularHudModuleQuery.TryComp(moduleEnt, out var moduleComp))
                 yield return (moduleEnt, moduleComp);
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnStartup(Entity<ModularHudComponent> entity, ref ComponentStartup args)
     {
         entity.Comp.ModuleContainer = _container.EnsureContainer<Container>(entity, entity.Comp.ModuleContainerId);
@@ -150,15 +142,17 @@ public abstract partial class SharedModularHudSystem : EntitySystem
         SyncVisuals(entity);
     }
 
+    [SubscribeLocalEvent]
     private void OnComponentRemove(Entity<ModularHudComponent> entity, ref ComponentRemove args) => RefreshEffectsForModules(GetModules(entity));
 
+    [SubscribeLocalEvent]
     private void OnInteractUsing(Entity<ModularHudComponent> entity, ref InteractUsingEvent args)
     {
         if (args.Handled)
             return;
 
         // Module insertion
-        if (TryComp<ModularHudModuleComponent>(args.Used, out var moduleComp))
+        if (_modularHudModuleQuery.TryComp(args.Used, out var moduleComp))
         {
             if (entity.Comp.ModuleContainer is null)
             {
@@ -168,7 +162,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
 
             if (entity.Comp.NumContainedModules >= entity.Comp.MaximumContainedModules)
             {
-                _popup.PopupPredictedCursor(
+                _popup.PopupCursor(
                     Loc.GetString(
                         entity.Comp.ModuleSlotsFullErrorText,
                         ("hud", Name(entity))
@@ -181,7 +175,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
             var moduleFailureReqs = GetRequirementFailures(entity, (args.Used, moduleComp)).ToList();
             if (moduleFailureReqs.Count != 0)
             {
-                _popup.PopupPredictedCursor(
+                _popup.PopupCursor(
                     string.Join(", ", moduleFailureReqs),
                     args.User
                 );
@@ -206,7 +200,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
 
             if (!usedHasQuality)
             {
-                _popup.PopupPredictedCursor(
+                _popup.PopupCursor(
                     Loc.GetString(
                         entity.Comp.MissingToolQualityErrorText,
                         ("quality", Loc.GetString(toolQuality?.Name ?? "Unknown")),
@@ -231,13 +225,14 @@ public abstract partial class SharedModularHudSystem : EntitySystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnGetInteractionVerbs(Entity<ModularHudComponent> entity, ref GetVerbsEvent<InteractionVerb> args)
     {
         if (!args.CanAccess || !args.CanComplexInteract)
             return;
 
         // Module insertion
-        if (args.Using is { } used && TryComp<ModularHudModuleComponent>(args.Using, out var moduleComp))
+        if (args.Using is { } used && _modularHudModuleQuery.TryComp(args.Using, out var moduleComp))
         {
             if (entity.Comp.ModuleContainer is null)
             {
@@ -316,6 +311,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     }
 
     /// Describes what, if anything, is in this HUD.
+    [SubscribeLocalEvent]
     private void OnExamined(Entity<ModularHudComponent> entity, ref ExaminedEvent args)
     {
         using (args.PushGroup(nameof(ModularHudComponent)))
@@ -340,6 +336,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     }
 
     /// Removes all modules from this HUD when the doafter is completed.
+    [SubscribeLocalEvent]
     private void OnHudModulesRemovalDoAfter(Entity<ModularHudComponent> entity, ref HudModulesRemovalDoAfterEvent args)
     {
         if (args.Cancelled || entity.Comp.ModuleContainer is null)
@@ -352,32 +349,36 @@ public abstract partial class SharedModularHudSystem : EntitySystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnEntInsertedIntoContainerMessage(
         Entity<ModularHudComponent> entity,
         ref EntInsertedIntoContainerMessage args
     )
     {
         if (args.Container.ID != entity.Comp.ModuleContainerId ||
-            !HasComp<ModularHudModuleComponent>(args.Entity))
+            !_modularHudModuleQuery.HasComp(args.Entity))
             return;
 
         RefreshVisualsAndEffects(entity, equippee: null);
     }
 
+    [SubscribeLocalEvent]
     private void OnEntRemovedFromContainerMessage(
         Entity<ModularHudComponent> entity,
         ref EntRemovedFromContainerMessage args
     )
     {
         if (args.Container.ID != entity.Comp.ModuleContainerId ||
-            !TryComp<ModularHudModuleComponent>(args.Entity, out var comp))
+            !_modularHudModuleQuery.TryComp(args.Entity, out var comp))
             return;
 
         RefreshVisualsAndEffects(entity, equippee: null, [(args.Entity, comp)]);
     }
 
+    [SubscribeLocalEvent]
     private void OnGotEquipped(Entity<ModularHudComponent> entity, ref GotEquippedEvent args) => RefreshVisualsAndEffects(entity, args.EquipTarget); // Starlight
 
+    [SubscribeLocalEvent]
     private void OnGotUneqipped(Entity<ModularHudComponent> entity, ref GotUnequippedEvent args) => RefreshVisualsAndEffects(entity, args.EquipTarget); // Starlight
 
     /// This function contains a functional grab-bag of whatever function calls / event raisings need to happen to cause

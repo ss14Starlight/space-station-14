@@ -21,13 +21,6 @@ public sealed partial class ModularHudVisualizerSystem : VisualizerSystem<Modula
     [Dependency] private IReflectionManager _reflect = default!;
     [Dependency] private InventorySystem _inventory = default!; // Starlight
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<ModularHudVisualsComponent, GetInhandVisualsEvent>(OnGetInhandVisuals);
-        SubscribeLocalEvent<ModularHudVisualsComponent, GetEquipmentVisualsEvent>(OnGetClothingVisuals);
-    }
-
     /// Updates the icon sprites when receiving an <see cref="AppearanceChangeEvent"/>, and triggers in-hand and
     /// clothing sprites to update as well.
     protected override void OnAppearanceChange(
@@ -90,6 +83,7 @@ public sealed partial class ModularHudVisualizerSystem : VisualizerSystem<Modula
     }
 
     /// Updates the in-hand sprites.
+    [SubscribeLocalEvent]
     private void OnGetInhandVisuals(Entity<ModularHudVisualsComponent> entity, ref GetInhandVisualsEvent args)
     {
         // Not all layers exist on all in-hand sprites. Don't try to modulate layers which aren't present.
@@ -113,6 +107,7 @@ public sealed partial class ModularHudVisualizerSystem : VisualizerSystem<Modula
     }
 
     /// Updates clothing sprites.
+    [SubscribeLocalEvent]
     private void OnGetClothingVisuals(Entity<ModularHudVisualsComponent> entity, ref GetEquipmentVisualsEvent args)
     {
         // No layers if the clothing isn't in an "equipped" slot.
@@ -122,6 +117,7 @@ public sealed partial class ModularHudVisualizerSystem : VisualizerSystem<Modula
         {
             return;
         }
+
         // Some species use different states, so make sure we consider those here.
         var speciesId = CompOrNull<InventoryComponent>(args.Equipee)?.SpeciesId;
         var excludedLayers = entity.Comp.EquippedExcludedLayers.GetExcludedLayersOrDefaultForSpecies(speciesId);
@@ -164,20 +160,19 @@ public sealed partial class ModularHudVisualizerSystem : VisualizerSystem<Modula
 
         foreach (var key in Enum.GetValues<ModularHudVisualKeys>())
         {
-            if (visualsLayerToRsiState(key) is not { } state)
-                continue;
-
-            var hasAppearance =
-                AppearanceSystem.TryGetData<ModularHudVisualData>(entity, key, out var data, appearance);
-            layers.Add((
-                $"{visualKeyPrefix}-{_reflect.GetEnumReference(key)}",
-                new PrototypeLayerData
-                {
-                    State = state,
-                    Visible = data.Visible,
-                    Color = data.Color,
-                }
-            ));
+            if (visualsLayerToRsiState(key) is { } state &&
+                AppearanceSystem.TryGetData<ModularHudVisualData>(entity, key, out var data, appearance))
+            {
+                layers.Add((
+                    $"{visualKeyPrefix}-{_reflect.GetEnumReference(key)}",
+                    new PrototypeLayerData
+                    {
+                        State = state,
+                        Visible = data.Visible,
+                        Color = data.Color,
+                    }
+                ));
+            }
         }
     }
 
