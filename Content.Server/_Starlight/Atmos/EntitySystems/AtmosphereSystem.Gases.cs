@@ -1,6 +1,7 @@
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.EntitySystems;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Atmos.EntitySystems;
 
 public sealed partial class AtmosphereSystem

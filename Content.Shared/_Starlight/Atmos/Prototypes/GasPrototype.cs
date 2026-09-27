@@ -1,5 +1,6 @@
 using Robust.Shared.Prototypes;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Atmos.Prototypes
 {
     public sealed partial class GasPrototype : IPrototype
