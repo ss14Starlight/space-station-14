@@ -365,3 +365,16 @@
   delay: 1
   rotation: User
   fx: EffectRCDConstruct0
+
+- type: rcd
+  id: GasInletSiphon
+  category: Vents
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/air_siphon.png
+  mode: ConstructObject
+  prototype: GasInletSiphon
+  cost: 4
+  delay: 0
+  collisionMask: Impassable
+  rotation: User
+  hasLayers: true
+  fx: EffectRCDConstruct0
