@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld, mkanke, Tea, Frogoo, TheSecondLord, ratsmageddon, Miish, G, Sparlight, gaesnek, ItsMaitake
-  changes:
-  - message: Artifacts, on average, are 4 nodes bigger, but they can also be both wider and taller now.
-    type: Tweak
-  id: 408534
-  time: '2026-09-13T22:06:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5982
 - author: Sir Lutz
   changes:
   - message: flatarmor from Carps.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408933
   time: '2026-09-27T00:31:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6367
+- author: Johnny
+  changes:
+  - message: Changed all three of the SELF loadouts to hopefully be more comparable to each other in terms of strength, while giving the loadouts more of a theme to them.
+    type: Tweak
+  id: 408934
+  time: '2026-09-27T10:46:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6288
 Order: -1
