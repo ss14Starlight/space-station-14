@@ -1,15 +1,9 @@
 ﻿- type: entity
   id: OrganExperimentStomach
-  parent: [OrganAnimalStomach, BaseOrganStomach]
+  parent: [OrganAnimalStomach]
   name: stomach
   description: "Gross. This is hard to stomach."
   components:
-  - type: Sprite
-    sprite: Mobs/Species/Human/organs.rsi
-    state: stomach
-  - type: Item
-    size: Small
-    heldPrefix: stomach
   - type: Stomach
   - type: SolutionManager
     solutions:
@@ -18,6 +12,41 @@
     - SolutionOrganStomach50
   - type: Metabolizer
     updateInterval: 0.75
+
+- type: entity
+  id: OrganExperimentHeart
+  parent: [BaseAnimalOrgan, BaseOrganHeart]
+  name: heart
+  description: "Skips a beat at the sight of landmines."
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Organ
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [ Experiment ]
+    stages: [ Bloodstream ]
+    updateInterval: 0.75
+  - type: Item
+    size: Small
+    heldPrefix: heart
+
+- type: entity
+  id: OrganExperimentLiver
+  parent: [ BaseAnimalOrgan, BaseOrganLiver]
+  name: liver
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: liver
+  - type: Organ
+  - type: Metabolizer
+    maxReagents: 1
+    metabolizerTypes: [ Experiment ]
+    stages: [ Metabolites ]
+  - type: Item
+    size: Small
+    heldPrefix: liver
 
 - type: entity
   id: OrganExperimentEyes
@@ -49,7 +78,3 @@
       Male: Experiment
       Female: Experiment
       Unsexed: Experiment
-  - type: OrganVisualization
-    layer: Eyes
-    prototypes:
-      Default: MobExperimentEyes

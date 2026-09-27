@@ -26,8 +26,6 @@
       Alive:
         reagent: Omnizine
         quantity: 10
-        minDamage: 49
-        maxDamage: 120
       Critical:
         reagent: Omnizine
         quantity: 10

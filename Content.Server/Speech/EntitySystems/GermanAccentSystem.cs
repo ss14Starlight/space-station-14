@@ -40,6 +40,9 @@
 //            }
 //        }
 
+//        // now, apply word replacements
+//        msg = _replacement.ApplyReplacements(msg, "german");
+
 //        // replace th with zh (for zhis, zhat, etc. the => ze is handled by replacements already)
 //        var msgBuilder = new StringBuilder(msg);
 //        foreach (Match match in RegexTh.Matches(msg))
