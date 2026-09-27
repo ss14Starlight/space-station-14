@@ -9,12 +9,13 @@
   "states": [
     {
       "name": "equipped-HELMET",
-      "copyright": "",
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Originally from https://github.com/tgstation/tgstation/commit/53d1f1477d22a11a99c6c6924977cd431075761b, edited into Barfo by Original_Username2 (SS14)",
       "directions": 4
     },
     {
       "name": "icon",
-      "copyright": "",
+      "copyright": "https://github.com/austation/austation/blob/HEAD/icons/obj/plushes.dmi, edited from from tgstation https://github.com/tgstation/tgstation/blob/master/icons/mob/pets.dmi, edited into Barfo by Original_Username2 (SS14)",
       "size": {
         "x": 64,
         "y": 64
@@ -22,12 +23,14 @@
     },
     {
       "name": "inhand-left",
-      "copyright": "",
+      "license": "CC-BY-SA-3.0",
+      "copyright": "CawsForConcern (GitHub), edits of in-hand kitten plushie sprites by oliveoil238, edited into Barfo by Original_Username2 (SS14)",
       "directions": 4
     },
     {
       "name": "inhand-right",
-      "copyright": "",
+      "license": "CC-BY-SA-3.0",
+      "copyright": "CawsForConcern (GitHub), edits of in-hand kitten plushie sprites by oliveoil238, edited into Barfo by Original_Username2 (SS14)",
       "directions": 4
     }
   ]

@@ -1,9 +1,9 @@
 # Character Plushies - Keep alphabetical, please!
 - type: entity
-  parent: BaseShadekinPlushie
-  id: PlushieBarfo # greasi (Discord) / Original_Username2 (SS14)
+  parent: BasePlushie
+  id: PlushieBarfo # Original_Username2 (SS14) / greasi (Discord)
   name: barfo plushie
-  description: A plushie of a small, elusive, and odd looking security officer. Seems familiar somehow.
+  description: Soft, cuddly, and suspiciously up to something! This talking Barfo plushie has lots to say!
   components:
     - type: Item
       size: Small
@@ -45,6 +45,9 @@
         reagents:
           - ReagentId: Laughter
             Quantity: 30
+    - type: Speech
+      speechSounds: Cat
+      speechVerb: Felionoid # for pais (In the secret stash)
     - type: Solution
       id: food
       solution:
