@@ -306,8 +306,13 @@
         density: 350
         mask:
         - MachineMask
+        # Starlight-start
+        # Specifying that the layer is not MachineLayer so armory sentry turret projectiles pass through suit storages
         layer:
-        - MachineLayer
+        - MidImpassable
+        - LowImpassable
+        - BulletImpassable
+        # Starlight-end
   - type: EntityStorage
   - type: ContainerContainer
     containers:
