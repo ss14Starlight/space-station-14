@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server._Starlight.SecureTerminal;
 using Content.Shared.GameTicking;
 using Content.Shared._Starlight.SecureTerminal;
@@ -169,7 +170,10 @@ public sealed partial class RoundStatisticsSystem
         var query = EntityQueryEnumerator<SecureCommandTerminalStationComponent>();
         while (query.MoveNext(out _, out var station))
         {
-            penalty = Math.Max(penalty, station.SalaryPenalty);
+            var stationPenalty = station.SalaryModifiers.Values
+                .Where(modifier => modifier < 0)
+                .Sum(modifier => -modifier);
+            penalty = Math.Max(penalty, stationPenalty);
         }
 
         return penalty;

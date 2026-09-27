@@ -150,7 +150,8 @@ public sealed partial class ToolRefinableSystem : EntitySystem
         {
             // TODO: Use RandomPredicted https://github.com/space-wizards/RobustToolbox/pull/5849
             var rndSeed = SharedRandomExtensions.HashCodeCombine((int)_gameTiming.CurTick.Value, args.User.Id, uid.Id);
-            var rng = new System.Random(rndSeed);
+            var rng = new RobustRandom();
+            rng.SetSeed(rndSeed);
             SpawnRefinement(component.RefineResult, uid, rng);
         }
 
@@ -161,7 +162,7 @@ public sealed partial class ToolRefinableSystem : EntitySystem
         _destructible.DestroyEntity(uid);
     }
 
-    private void SpawnRefinement(List<EntitySpawnEntry> spawnList, EntityUid source, System.Random rng)
+    private void SpawnRefinement(List<EntitySpawnEntry> spawnList, EntityUid source, IRobustRandom rng)
     {
         var spawns = EntitySpawnCollection.GetSpawns(spawnList, rng);
         var spawned = new List<EntityUid>(spawns.Count);
@@ -176,7 +177,7 @@ public sealed partial class ToolRefinableSystem : EntitySystem
 
             if (container == null || !_container.Insert(refineResultUid, container))
             {
-                var randVect = rng.NextPolarVector2(2.0f, 2.5f);
+                var randVect = rng.NextVector2(2.0f, 2.5f);
                 _physics.SetLinearVelocity(refineResultUid, randVect);
             }
         }

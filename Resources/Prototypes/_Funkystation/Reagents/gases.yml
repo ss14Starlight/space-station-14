@@ -170,12 +170,11 @@
 
     Bloodstream: # Starlight
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         damage:
-          groups:
-            Burn: -0.1
-            Toxin: -0.1
-            Brute: -0.1
+          Burn: -0.1
+          Toxin: -0.1
+          Brute: -0.1
 
       - !type:ModifyStatusEffect
         conditions:
