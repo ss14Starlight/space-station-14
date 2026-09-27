@@ -1,39 +1,4 @@
 Entries:
-- author: Citrea
-  changes:
-  - message: Dolls now have spooky, edible blood, which does not have healing properties for them.
-    type: Tweak
-  id: 408539
-  time: '2026-09-13T23:38:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6104
-- author: Citrea
-  changes:
-  - message: Doll blood healing reduced by 50%.
-    type: Tweak
-  id: 408540
-  time: '2026-09-13T23:38:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6104
-- author: Citrea
-  changes:
-  - message: Dolls with Fox and Moth masks can now use the respective emotes.
-    type: Add
-  id: 408541
-  time: '2026-09-13T23:38:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6104
-- author: wonderfulnewworld
-  changes:
-  - message: Walking in water tiles (not puddles) now gradually cleans your clothes.
-    type: Add
-  id: 408542
-  time: '2026-09-13T23:58:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6123
-- author: wonderfulnewworld
-  changes:
-  - message: Washing yourself in a washing machine now cleans your clothes.
-    type: Add
-  id: 408543
-  time: '2026-09-13T23:58:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6123
 - author: wonderfulnewworld
   changes:
   - message: You can now examine stains on your clothes.
@@ -2799,4 +2764,39 @@ Entries:
   id: 408938
   time: '2026-09-27T11:38:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6271
+- author: Floximo
+  changes:
+  - message: Added sleepiness, for every chemical or gas that can put someone to sleep.
+    type: Add
+  id: 408939
+  time: '2026-09-27T19:09:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6116
+- author: Floximo
+  changes:
+  - message: Now lots of drinks as well as drugs are working against sleepiness.
+    type: Tweak
+  id: 408940
+  time: '2026-09-27T19:09:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6116
+- author: Floximo
+  changes:
+  - message: Added forced sleep builds a resistance against forced sleep. After 10-20 minutes this resistance outperforms sleep inducing drugs.
+    type: Add
+  id: 408941
+  time: '2026-09-27T19:09:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6116
+- author: Floximo
+  changes:
+  - message: Now getting shaken or receiving damage work against sleepiness. If the sleep is light, it also has a chance to wake the target.
+    type: Tweak
+  id: 408942
+  time: '2026-09-27T19:09:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6116
+- author: Floximo
+  changes:
+  - message: You can no longer change internals while unconscious.
+    type: Fix
+  id: 408943
+  time: '2026-09-27T19:09:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6116
 Order: -1
