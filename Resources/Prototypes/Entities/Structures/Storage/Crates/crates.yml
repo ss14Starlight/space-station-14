@@ -417,8 +417,14 @@
         density: 135
         mask:
         - CrateMask #this is so they can go under plastic flaps
+        # starlight-start
+        # Specifying that the layer is not LargeMobLayer so armory sentry turret projectiles pass through livestock crates
         layer:
-        - LargeMobLayer
+        - HighImpassable
+        - MidImpassable
+        - LowImpassable
+        - BulletImpassable
+        # starlight-end
   - type: Construction
     graph: CrateLivestock
     node: cratelivestock
@@ -529,8 +535,13 @@
         density: 50
         mask:
         - CrateMask #this is so they can go under plastic flaps
+        # starlight-start
+        # Specifying that the layer is not MachineLayer so armory sentry turret projectiles pass through lock boxes
         layer:
-        - MachineLayer
+        - MidImpassable
+        - LowImpassable
+        - BulletImpassable
+        # starlight-end
   - type: Paintable
     group: null
 

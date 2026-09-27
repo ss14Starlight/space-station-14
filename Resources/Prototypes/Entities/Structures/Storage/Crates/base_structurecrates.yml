@@ -43,8 +43,13 @@
         mask:
         - CrateMask #this is so they can go under plastic flaps
         #- SovietLayer #Starlight: make generics collide with soviet crates #It also makes them entirely impassable to everything else
+        # starlight-start
+        # Specifying that the layer is not MachineLayer so armory sentry turret projectiles pass through crates
         layer:
-        - MachineLayer
+        - MidImpassable
+        - LowImpassable
+        - BulletImpassable
+        # starlight-end
   - type: EntityStorage
   - type: PlaceableSurface
     isPlaceable: false # defaults to closed.

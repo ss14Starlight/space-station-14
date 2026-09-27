@@ -11,8 +11,13 @@
   - type: Fixtures
     fixtures:
       fix1:
+        # starlight-start
+        # Specifying that the layer is not SovietLayer so armory sentry turret projectiles pass through SKB armaments crates
         layer:
-          - SovietLayer
+          - MidImpassable
+          - LowImpassable
+          - BulletImpassable
+        # starlight-end
   - type: TimedDespawn
     lifetime: 900
   - type: EmitSoundOnSpawn
