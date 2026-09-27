@@ -8,7 +8,7 @@ namespace Content.Server.Xenoarchaeology.Artifact.XAT;
 
 public sealed partial class XATMagnetSystem
 {
-    private HashSet<Entity<MagnetPickupComponent>> _magnetEntities = new();
+    private readonly HashSet<Entity<MagnetPickupComponent>> _magnetEntities = new();
 
     // Active magnetic inventories trigger the node too
     partial void CheckActiveMagnets(Entity<XenoArtifactComponent> artifact, Entity<XATMagnetComponent, XenoArtifactNodeComponent> node)
