@@ -587,7 +587,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             return Angle.Zero;
 
         var theta = GetNextShotTheta(gun.Comp, curTime ?? Timing.CurTime);
-        return new Angle(theta * GetMovementSpreadModifier((gun, gun.Comp)));
+        return new Angle(ApplyMovementSpread((gun, gun.Comp), theta));
     }
 
     /// <summary>
@@ -625,9 +625,21 @@ public abstract partial class SharedGunSystem : EntitySystem
         return 1f + (mover.Sprinting ? gun.Comp.SprintSpreadModifier : gun.Comp.WalkSpreadModifier);
     }
 
+    /// <summary>
+    /// Applies the movement penalty to a spread.
+    /// </summary>
+    private double ApplyMovementSpread(Entity<GunComponent> gun, double theta)
+    {
+        var modifier = GetMovementSpreadModifier(gun);
+        if (modifier <= 1f)
+            return theta;
+
+        return Math.Max(theta, gun.Comp.MovingMinAngle.Theta) * modifier;
+    }
+
     public Angle GetRecoilAngle(Entity<GunComponent> gun, Angle direction, TimeSpan? curTime = null)
     {
-        var spread = UpdateCurrentAngle(gun, curTime).Theta * GetMovementSpreadModifier(gun);
+        var spread = ApplyMovementSpread(gun, UpdateCurrentAngle(gun, curTime).Theta);
 
         // Convert it so angle can go either side.
 #pragma warning disable CS0618

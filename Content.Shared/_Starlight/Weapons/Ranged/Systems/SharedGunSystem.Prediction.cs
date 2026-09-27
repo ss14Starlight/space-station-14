@@ -46,15 +46,11 @@ public abstract partial class SharedGunSystem
 
         var random = GetShotRandom(gun, HashCode.Combine(PelletSalt, ammoIndex));
         var angles = new Angle[spread.Count];
+        var sector = (end - start) / spread.Count;
 
         for (var i = 0; i < spread.Count; i++)
         {
-            angles[i] = new Angle(start + ((end - start) * i / (spread.Count - 1)));
-
-#pragma warning disable CS0618
-            var deviation = random.NextFloat((float) spread.MinDeviation.Theta, (float) spread.MaxDeviation.Theta);
-#pragma warning restore CS0618
-            angles[i] += new Angle(random.NextDouble() < 0.5 ? deviation : -deviation);
+            angles[i] = new Angle(start + (sector * (i + random.NextDouble())));
         }
 
         return angles;

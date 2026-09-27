@@ -127,3 +127,10 @@
   path: "/Textures/_Starlight/Shaders/gun_heat.swsl"
   params:
     heat: 0
+
+- type: shader
+  id: GunHeatInhand
+  kind: source
+  path: "/Textures/_Starlight/Shaders/gun_heat_inhand.swsl"
+  params:
+    heat: 0

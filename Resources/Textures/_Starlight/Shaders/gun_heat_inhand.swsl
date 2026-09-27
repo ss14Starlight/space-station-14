@@ -1,0 +1,13 @@
+uniform highp float heat;
+
+void fragment() {
+    highp vec4 col = zTexture(UV);
+
+    highp vec3 glow = mix(vec3(0.75, 0.08, 0.02), vec3(1.0, 0.55, 0.15), heat);
+    highp float intensity = 0.2 + (0.5 * heat);
+
+    col.rgb = mix(col.rgb, glow, intensity);
+    COLOR = col;
+
+    lightSample = mix(lightSample, vec3(1.0), intensity);
+}
