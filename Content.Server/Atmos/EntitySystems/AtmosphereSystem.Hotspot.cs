@@ -205,6 +205,15 @@ public sealed partial class AtmosphereSystem
         if (!IsMixtureOxidizer(tile.Air))
             return;
 
+        #region FUNKY-STARLIGHT
+        // reagent fire stuff, ignition sources create hotspots through atmos, this is where we feed it back to the reagent fire systems
+        if (ShouldRaiseTileExposed(gridAtmosphere.Owner, tile.GridIndices, exposedTemperature))
+        {
+            var ev = new TileExposedEvent(tile.GridIndices, exposedTemperature, exposedVolume, sparkSourceUid);
+            RaiseLocalEvent(gridAtmosphere.Owner, ref ev);
+        }
+        #endregion
+
         var isFlammable = IsMixtureIgnitable(tile.Air);
 
         if (tile.Hotspot.Valid)
