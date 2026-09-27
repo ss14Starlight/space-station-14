@@ -117,6 +117,7 @@ public abstract partial class SharedAtmosphereSystem
         NumericsHelpers.Multiply(mixture.Moles, GasOxidiserFuelMask, buffer);
     }
 
+    #region STARLIGHT
     /// <summary>
     /// Determines if a <see cref="GasMixture"/> is ignitable or not.
     /// This is a combination of determining if a mixture both has oxidizer and fuel.
@@ -126,10 +127,8 @@ public abstract partial class SharedAtmosphereSystem
     /// considered ignitable, for both oxidizer and fuel.</param>
     /// <returns>True if the <see cref="GasMixture"/> is ignitable, otherwise, false.</returns>
     [PublicAPI]
-    public bool IsMixtureIgnitable(GasMixture mixture, float epsilon = 0.001f)
-    {
-        return IsMixtureFuel(mixture, epsilon) && IsMixtureOxidizer(mixture, epsilon) && !IsMixtureModerator(mixture); // STARLIGHT
-    }
+    public bool IsMixtureIgnitable(GasMixture mixture, float epsilon = 0.001f) => IsMixtureFuel(mixture, epsilon) && IsMixtureOxidizer(mixture, epsilon) && !IsMixtureModerator(mixture);
+    #endregion
 
     /// <summary>
     /// Determines if a <see cref="GasMixture"/> has fuel gases in it or not.
