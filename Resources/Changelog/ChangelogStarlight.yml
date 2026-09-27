@@ -1,13 +1,6 @@
 Entries:
 - author: Sir Lutz
   changes:
-  - message: flatarmor from Carps.
-    type: Remove
-  id: 408535
-  time: '2026-09-13T23:01:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6154
-- author: Sir Lutz
-  changes:
   - message: Dragon rift rarespawns have been reduced, base spawn Holocarp from 20% to 7%, sharks from 5% to 2% (they are doubled when the rift is finished).
     type: Tweak
   id: 408536
@@ -2799,4 +2792,11 @@ Entries:
   id: 408934
   time: '2026-09-27T10:46:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6288
+- author: Sparlight
+  changes:
+  - message: Fixed several issues with job slots not reopening when a player abandons their previous life.
+    type: Fix
+  id: 408935
+  time: '2026-09-27T11:15:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6353
 Order: -1
