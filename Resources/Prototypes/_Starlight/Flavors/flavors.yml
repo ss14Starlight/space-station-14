@@ -317,3 +317,8 @@
   id: voxIceCream
   flavorType: Complex
   description: flavor-complex-vox-ice-cream
+
+- type: flavor
+  id: sawianBlood
+  flavorType: Complex
+  description: flavor-complex-sawian-blood

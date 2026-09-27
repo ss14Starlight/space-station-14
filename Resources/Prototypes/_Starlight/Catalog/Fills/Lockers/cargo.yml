@@ -412,6 +412,8 @@
         prob: 0.3
         rolls: !type:ConstantNumberSelector
           value: 3
+      - id: OilPack
+        amount: 2
       - id: ClothingNeckMantleMedic
       - id: ITGTrackerImplanter
       - id: BoxBodyBag

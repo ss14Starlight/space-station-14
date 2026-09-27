@@ -38,6 +38,7 @@ using Content.Shared.Kitchen;
 using Content.Shared.Localizations;
 using Robust.Server;
 using Robust.Server.ServerStatus;
+using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
@@ -124,6 +125,8 @@ namespace Content.Server.Entry
             base.Init();
             Dependencies.BuildGraph();
             Dependencies.InjectDependencies(this);
+
+            _cfg.OverrideDefault(CVars.LookupEnableServerLightTree, true); // Starlight - ShadekinSystem needs the light tree
 
             LoadConfigPresets(_cfg, _res, _log.GetSawmill("configpreset"));
 

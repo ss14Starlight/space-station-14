@@ -31,6 +31,7 @@
     image: /Textures/_Starlight/Railroading/antag.png
     description: rr-criminal-desc
   - type: RailroadFaxOnChosen
+    delay: 180
     addresses:
     - Captain's Office # PR #4706: Remove once fax protos are used everywhere
     - Captain

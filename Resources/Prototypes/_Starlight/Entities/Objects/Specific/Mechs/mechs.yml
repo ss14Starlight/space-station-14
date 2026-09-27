@@ -870,3 +870,80 @@
           - MechReactorHigh
         mech-gas-tank-slot:
           - MechAirTankFilled
+
+# Other faction mechs
+
+# USSP
+- type: entity
+  id: MechPodeba
+  parent: [ BaseMech, CombatMech, BaseSovietContraband ]
+  name: Podeba
+  description: A Soviet combat mech. It is slower and older than other mechs, but makes up for it with sheer durability and strength.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      noRot: true
+      sprite: _Starlight/Objects/Specific/Mechs/Mechs/podeba.rsi
+      layers:
+        - map: [ "enum.MechVisualLayers.Base" ]
+          state: base
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/_Starlight/Effects/mass_driver_launching.ogg
+    - type: Mech
+      baseState: base
+      openState: base-open
+      brokenState: base-broken
+      mechToPilotDamageMultiplier: 0.0
+      airtight: true
+      maxIntegrity: 650
+      pilotWhitelist:
+        components:
+          - HumanoidAppearance
+    - type: MeleeWeapon
+      hidden: true
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 30 #THWACK
+          Structural: 180
+    - type: MeleeThrowOnHit
+      speed: 15
+      distance: 8
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2 #All mechs walk at the same speed
+      baseSprintSpeed: 2.5
+    - type: Damageable
+      damageModifierSet: DarkGygaxArmor
+    - type: MechThrusters
+    - type: PointLight
+      lightMask: ConeSingle
+      autoRot: true
+      radius: 6
+      energy: 5
+      enabled: false
+    - type: Prying
+      pryPowered: true
+
+- type: entity
+  id: MechPodebaBattery
+  parent: MechPodeba
+  suffix: Battery, Air
+  components:
+    - type: ContainerFill
+      containers:
+        mech-battery-slot:
+          - MechReactorMicro
+        mech-gas-tank-slot:
+          - MechAirTankFilled
+
+- type: entity
+  id: MechPodebaFilled
+  parent: MechPodebaBattery
+  suffix: Battery, Filled
+  components:
+    - type: Mech
+      startingEquipment:
+        - WeaponMechCombatUltraRifle
+        - WeaponMechCombatShotgun
+        - WeaponMechCombatMissileRack6

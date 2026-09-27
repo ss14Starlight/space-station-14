@@ -35,6 +35,7 @@
     prototypes:
       Default: CyberEyesNightVision
       Resomi: ResomiCyberEyesNightVision
+      Experiment: ExperimentCyberEyesNightVision
   - type: HumanoidEMPCompositeElement
     effect:
       glitchDuration: 10.0
@@ -61,6 +62,7 @@
     prototypes:
       Default: CyberEyesThermalVision
       Resomi: ResomiCyberEyesThermalVision
+      Experiment: ExperimentCyberEyesThermalVision
   - type: HumanoidEMPCompositeElement
     effect:
       glitchDuration: 10.0
@@ -99,6 +101,7 @@
       Vox: MobVoxEyes
       Cyclorite: MobCycloriteEyes
       Abductor: MobAbductorEyes
+      Experiment: MobExperimentEyes
   - type: HumanoidEMPCompositeElement
     effect:
       glitchDuration: 10.0

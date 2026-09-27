@@ -85,6 +85,24 @@
       inverted: true
 
 - type: trait
+  id: ClassicalSignLanguage
+  name: trait-language-classicalsign-name
+  description: trait-language-classicalsign-desc
+  category: LanguageTraits
+  cost: 2
+  effects:
+    - !type:LanguageEffect
+      languagesSpoken:
+        - ClassicalSign
+      languagesUnderstood:
+        - ClassicalSign
+  requirements:
+    - !type:TraitsRequirement
+      traits:
+        - Iterator
+      inverted: true
+
+- type: trait
   id: Classical
   name: trait-language-classical-name
   description: trait-language-classical-desc

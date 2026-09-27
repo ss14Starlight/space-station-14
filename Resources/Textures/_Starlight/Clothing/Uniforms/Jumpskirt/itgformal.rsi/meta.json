@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "Hanz, edited by Swonkus (Github)"
+    },
+    {
+      "name": "equipped-INNERCLOTHING",
+      "directions": 4,
+      "copyright": "Hanz"
+    },
+    {
+      "name": "equipped-INNERCLOTHING-vox",
+      "directions": 4,
+      "copyright": "Made by semkagamez (discord) for Space Station 14 server Dead Space, edited by Swonkus"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+      "copyright": "Made by semkagamez (discord) for Space Station 14 server Dead Space"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+      "copyright": "Made by semkagamez (discord) for Space Station 14 server Dead Space"
+    }
+  ]
+}

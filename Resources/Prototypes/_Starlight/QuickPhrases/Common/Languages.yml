@@ -81,6 +81,11 @@
 
 - type: quickPhrase
   parent: BaseSpeciesLanguagePhrase
+  id: ClassicalSignPhrase
+  text: language-ClassicalSign-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
   id: GrumbakulPhrase
   text: language-Grumbakul-name
 
