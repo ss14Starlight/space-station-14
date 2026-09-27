@@ -11,6 +11,7 @@ latch-instruction-latchtarget-struggle = Struggle to break free faster!
 
 latch-struggle-button = Struggle
 latch-struggle-hint = Struggle when the line hits the light zone!
+latch-struggle-hint-key = Press {$key} when the line hits the light zone!
 latch-struggle-perfect = Perfect!
 latch-struggle-good = Good!
 latch-struggle-miss = Miss...

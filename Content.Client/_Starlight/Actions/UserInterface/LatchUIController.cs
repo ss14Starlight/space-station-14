@@ -5,11 +5,15 @@ using Content.Client.Actions;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Shared._Starlight.Actions.Components;
 using Content.Shared._Starlight.Actions.EntitySystems;
+using Content.Shared.Input;
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
+using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Input;
+using Robust.Shared.Input.Binding;
 using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.Actions.UserInterface;
@@ -25,6 +29,7 @@ public sealed partial class LatchUIController : UIController
     [Dependency] private IEyeManager _eyeManager = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IInputManager _input = default!;
 
     private const float VerticalOffset = 1.0f;
 
@@ -80,6 +85,12 @@ public sealed partial class LatchUIController : UIController
         _control.BiteHarderPressed += OnBiteHarderPressed;
         _control.StrugglePressed += OnStrugglePressed;
         viewport.AddChild(_control);
+
+        CommandBinds.Unregister<LatchUIController>();
+        CommandBinds.Builder
+            .Bind(ContentKeyFunctions.LatchStruggle,
+                new PointerInputCmdHandler(OnStruggleKey, ignoreUp: false, outsidePrediction: true))
+            .Register<LatchUIController>();
     }
 
     private void OnScreenUnload()
@@ -92,6 +103,24 @@ public sealed partial class LatchUIController : UIController
 
         _control?.Orphan();
         _control = null;
+
+        CommandBinds.Unregister<LatchUIController>();
+    }
+
+    /// <summary>
+    /// Struggles on key down while the local player has the struggle bar.
+    /// Returning false otherwise lets a shared key (Space by default) fall
+    /// through to Jump.
+    /// </summary>
+    private bool OnStruggleKey(in PointerInputCmdHandler.PointerInputCmdArgs args)
+    {
+        if (_player.LocalEntity is not { } local || !_entities.HasComponent<LatchStruggleComponent>(local))
+            return false;
+
+        if (args.State == BoundKeyState.Down)
+            OnStrugglePressed();
+
+        return true;
     }
 
     private void OnBiteHarderPressed()
@@ -176,6 +205,10 @@ public sealed partial class LatchUIController : UIController
 
         var now = _timing.CurTime + GetTickRemainder();
         var shake = GetShakeOffset();
+
+        _control.StruggleKey = _input.TryGetKeyBinding(ContentKeyFunctions.LatchStruggle, out var binding)
+            ? binding.GetKeyString()
+            : null;
 
         if (struggle.Block != LatchStruggleBlock.None)
         {

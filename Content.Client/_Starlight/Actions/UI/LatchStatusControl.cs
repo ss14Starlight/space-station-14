@@ -40,6 +40,11 @@ public sealed class LatchStatusControl : PanelContainer
     /// </summary>
     public event Action? StrugglePressed;
 
+    /// <summary>
+    /// Name of the key bound to struggle, shown in the hint. Null if unbound.
+    /// </summary>
+    public string? StruggleKey { get; set; }
+
     public LatchStatusControl()
     {
         MouseFilter = MouseFilterMode.Ignore;
@@ -209,7 +214,9 @@ public sealed class LatchStatusControl : PanelContainer
                 LatchStruggleResult.Perfect => Loc.GetString("latch-struggle-perfect"),
                 LatchStruggleResult.Good => Loc.GetString("latch-struggle-good"),
                 LatchStruggleResult.Miss => Loc.GetString("latch-struggle-miss"),
-                _ => Loc.GetString("latch-struggle-hint"),
+                _ => StruggleKey is null
+                    ? Loc.GetString("latch-struggle-hint")
+                    : Loc.GetString("latch-struggle-hint-key", ("key", StruggleKey)),
             },
         };
         _struggleStatus.FontColorOverride = block != LatchStruggleBlock.None ? _blockedTextColor : null;
