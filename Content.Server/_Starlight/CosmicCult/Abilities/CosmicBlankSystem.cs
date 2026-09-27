@@ -38,7 +38,7 @@ public sealed partial class CosmicBlankSystem : EntitySystem
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
-	[Dependency] private NPCSystem _npc = default!;
+    [Dependency] private NPCSystem _npc = default!;
 
     public override void Initialize()
     {
