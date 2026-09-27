@@ -1,6 +1,6 @@
 # Robotics
 - type: entity
-  parent: Airlock
+  parent: AirlockScience
   id: AirlockRobotics
   suffix: Robotics
   components:
@@ -10,7 +10,7 @@
     group: AirlockStandard
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockScienceGlass
   id: AirlockRoboticsGlass
   suffix: Robotics
   components:
@@ -21,7 +21,7 @@
 
 # Surgery
 - type: entity
-  parent: Airlock
+  parent: AirlockMedical
   id: AirlockSurgery
   suffix: Surgery
   components:
@@ -31,7 +31,7 @@
     group: AirlockStandard
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockMedicalGlass
   id: AirlockSurgeryGlass
   suffix: Surgery
   components:
@@ -42,7 +42,7 @@
 
 # Paramedic
 - type: entity
-  parent: Airlock
+  parent: AirlockMedical
   id: AirlockParamedic
   suffix: Paramedic
   components:
@@ -52,7 +52,7 @@
     group: AirlockStandard
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockMedicalGlass
   id: AirlockParamedicGlass
   suffix: Paramedic
   components:
@@ -66,51 +66,43 @@
 # ---------------------
 # Salvage/Mining Shared
 - type: entity
-  parent: Airlock
+  parent: AirlockCargo
   id: AirlockSalvageMining
   suffix: Salvage, Mining
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/salvagemining.rsi
-  - type: Wires
-    layoutId: AirlockCargo
   - type: Paintable
     group: AirlockStandard
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockCargoGlass
   id: AirlockSalvageMiningGlass
   suffix: Salvage, Mining
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Glass/salvagemining.rsi
-  - type: Wires
-    layoutId: AirlockCargo
   - type: Paintable
     group: AirlockGlass
 
 # Mining/Cargo Shared
 - type: entity
-  parent: Airlock
+  parent: AirlockCargo
   id: AirlockMiningCargo
   suffix: Mining
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/mining_cargo.rsi
-  - type: Wires
-    layoutId: AirlockCargo
   - type: Paintable
     group: AirlockStandard
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockCargoGlass
   id: AirlockMiningCargoGlass
   suffix: Mining
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Glass/mining_cargo.rsi
-  - type: Wires
-    layoutId: AirlockCargo
   - type: Paintable
     group: AirlockGlass
 
@@ -188,7 +180,7 @@
 
 # Mail
 - type: entity
-  parent: Airlock
+  parent: AirlockCargo
   id: AirlockMail
   suffix: Mail
   components:
@@ -200,7 +192,7 @@
     group: AirlockStandard
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockCargoGlass
   id: AirlockMailGlass
   suffix: Mail
   components:
@@ -294,6 +286,25 @@
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Glass/brigmedic.rsi
 
+# Service
+- type: entity
+  parent: Airlock
+  id: AirlockService
+  suffix: Service
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services.rsi
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockServiceGlass
+  suffix: Service
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/services.rsi
+  - type: Paintable
+    group: AirlockGlass
+
 # NT
 - type: entity
   parent: Airlock
@@ -318,3 +329,165 @@
     layoutId: AirlockNT
   - type: Paintable
     group: AirlockGlass
+
+# Maints
+- type: entity
+  parent: AirlockRobotics
+  id: AirlockRoboticsMaints
+  suffix: Robotics Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/robotics_maints.rsi
+
+- type: entity
+  parent: AirlockParamedic
+  id: AirlockParamedicMaints
+  suffix: Paramedic Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/paramedic_maints.rsi
+
+- type: entity
+  parent: AirlockSurgery
+  id: AirlockSurgeryMaints
+  suffix: Surgery Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/surgery_maints.rsi
+
+- type: entity
+  parent: AirlockMail
+  id: AirlockMailMaints
+  suffix: AirlockMail Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/mail_maints.rsi
+
+- type: entity
+  parent: AirlockBrigmed
+  id: AirlockBrigmedMaints
+  suffix: Brigmed Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/brigmedic_maints.rsi
+
+- type: entity
+  parent: AirlockService
+  id: AirlockServiceMaints
+  suffix: Service Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
+
+- type: entity
+  parent: AirlockAtmospherics
+  id: AirlockAtmosphericsMaints
+  suffix: Atmospherics Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/atmospherics_maints.rsi
+
+- type: entity
+  parent: AirlockCargo
+  id: AirlockCargoMaints
+  suffix: Cargo Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/cargo_maints.rsi
+
+- type: entity
+  parent: AirlockCentralCommand
+  id: AirlockCentcommMaints
+  suffix: Centcomm Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/centcomm_maints.rsi
+
+- type: entity
+  parent: AirlockChemistry
+  id: AirlockChemistryMaints
+  suffix: Chemistry Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/chemistry_maints.rsi
+
+- type: entity
+  parent: AirlockCommand
+  id: AirlockCommandMaints
+  suffix: Command Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/command_maints.rsi
+
+- type: entity
+  parent: AirlockEngineering
+  id: AirlockEngineeringMaints
+  suffix: Engineering Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/engineering_maints.rsi
+
+- type: entity
+  parent: AirlockEVA
+  id: AirlockEvaMaints
+  suffix: Command (EVA) Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/eva_maints.rsi
+
+- type: entity
+  parent: AirlockHydroponics
+  id: AirlockHydroponicsMaints
+  suffix: Hydroponics Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/hydroponics_maints.rsi
+
+- type: entity
+  parent: AirlockMedical
+  id: AirlockMedicalMaints
+  suffix: Medical Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/medical_maints.rsi
+
+- type: entity
+  parent: AirlockMining
+  id: AirlockMiningMaints
+  suffix: Mining Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/mining_cargo_maints.rsi
+
+- type: entity
+  parent: AirlockNT
+  id: AirlockNTMaints
+  suffix: NanoTrasen Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/nanotrasen_maints.rsi
+
+- type: entity
+  parent: AirlockScience
+  id: AirlockScienceMaints
+  suffix: Science Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/science_maints.rsi
+
+- type: entity
+  parent: AirlockSecurity
+  id: AirlockSecurityMaints
+  suffix: Security Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/security_maints.rsi
+
+- type: entity
+  parent: AirlockVirology
+  id: AirlockVirologyMaints
+  suffix: Virology Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/virology_maints.rsi
+
