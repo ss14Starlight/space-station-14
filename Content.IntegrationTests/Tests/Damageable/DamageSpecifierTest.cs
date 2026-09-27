@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Content.Shared._Starlight.Damage;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -40,6 +41,43 @@ public sealed class DamageSpecifierTest
         difference.Clamp(-0.25f, 0.25f);
         Assert.That(difference, Is.EqualTo(output5));
     }
+
+    #region Starlight
+    [Test]
+    public void TestGroupAndMixMaxOperations()
+    {
+        DamageSpecifier input = new()
+        {
+            DamageGroupDict = new Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2>
+            {
+                { "Burn", -3 },
+            },
+            MixMax = new DamageSpecifierMixMax
+            {
+                Value = 1,
+                Groups = new List<ProtoId<DamageGroupPrototype>> { "Burn" },
+                Types = new List<ProtoId<DamageTypePrototype>> { "Slash", "Blunt" },
+            },
+        };
+
+        var scaled = input * 2;
+        var negated = -input;
+        var inverted = input.Invert();
+        Assert.Multiple(() =>
+        {
+            Assert.That(scaled.DamageGroupDict["Burn"], Is.EqualTo(FixedPoint2.New(-6)));
+            Assert.That(scaled.MixMax, Is.Not.Null);
+            Assert.That(scaled.MixMax!.Value, Is.EqualTo(FixedPoint2.New(2)));
+            Assert.That(input.MixMax!.Value, Is.EqualTo(FixedPoint2.New(1)));
+            Assert.That(negated.DamageGroupDict["Burn"], Is.EqualTo(FixedPoint2.New(3)));
+            Assert.That(negated.MixMax, Is.Not.Null);
+            Assert.That(negated.MixMax!.Value, Is.EqualTo(FixedPoint2.New(-1)));
+            Assert.That(inverted.DamageGroupDict["Burn"], Is.EqualTo(FixedPoint2.New(3)));
+            Assert.That(inverted.MixMax, Is.Not.Null);
+            Assert.That(inverted.MixMax!.Value, Is.EqualTo(FixedPoint2.New(-1)));
+        });
+    }
+    #endregion
 
     private static readonly Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2> Input1 = new()
     {

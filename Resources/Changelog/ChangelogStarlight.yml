@@ -1,27 +1,6 @@
 Entries:
 - author: wonderfulnewworld, mkanke, Tea, Frogoo, TheSecondLord, ratsmageddon, Miish, G, Sparlight, gaesnek, ItsMaitake
   changes:
-  - message: Added over 40 new Arti Sci nodes as well as mobs and objects to populate them.
-    type: Add
-  id: 408531
-  time: '2026-09-13T22:06:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5982
-- author: wonderfulnewworld, mkanke, Tea, Frogoo, TheSecondLord, ratsmageddon, Miish, G, Sparlight, gaesnek, ItsMaitake
-  changes:
-  - message: Added over 20 new triggers that an Artifact can require to activate.
-    type: Add
-  id: 408532
-  time: '2026-09-13T22:06:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5982
-- author: wonderfulnewworld, mkanke, Tea, Frogoo, TheSecondLord, ratsmageddon, Miish, G, Sparlight, gaesnek, ItsMaitake
-  changes:
-  - message: Meowls, available at cargo.
-    type: Add
-  id: 408533
-  time: '2026-09-13T22:06:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5982
-- author: wonderfulnewworld, mkanke, Tea, Frogoo, TheSecondLord, ratsmageddon, Miish, G, Sparlight, gaesnek, ItsMaitake
-  changes:
   - message: Artifacts, on average, are 4 nodes bigger, but they can also be both wider and taller now.
     type: Tweak
   id: 408534
@@ -2799,4 +2778,25 @@ Entries:
   id: 408930
   time: '2026-09-26T18:04:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6251
+- author: wonderfulnewworld
+  changes:
+  - message: Tricordizine and Doctor's Delight now prioritize higher damage types instead of healing uniformly.
+    type: Tweak
+  id: 408931
+  time: '2026-09-27T00:31:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6367
+- author: wonderfulnewworld
+  changes:
+  - message: Lowered total healing by Tricordizine and Doctor's Delight.
+    type: Tweak
+  id: 408932
+  time: '2026-09-27T00:31:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6367
+- author: wonderfulnewworld
+  changes:
+  - message: Doctor's Delight can now heal genetic.
+    type: Tweak
+  id: 408933
+  time: '2026-09-27T00:31:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6367
 Order: -1
