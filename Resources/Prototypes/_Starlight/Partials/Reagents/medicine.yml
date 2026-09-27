@@ -1,0 +1,23 @@
+- type: !PartialOnly reagent
+  id: Epinephrine
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:ReduceSleepiness
+        time: 2
+
+- type: !PartialOnly reagent
+  id: Ethyloxyephedrine
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:ReduceSleepiness
+        time: 1.5
+
+- type: !PartialOnly reagent
+  id: Diphenylmethylamine
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:ReduceSleepiness
+        time: 2

@@ -92,19 +92,6 @@
           max: 0.1
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
-
-      - !type:ModifySleepiness # Starlight: Sleepiness reservoir.
-        conditions:
-        - !type:ReagentCondition
-          reagent: ZXA
-          min: 1
-        - !type:BloodReagentCondition
-          reagent: NitrosylPlasmide
-          max: 0.1
-        effectProto: StatusEffectSleepiness # Starlight: Sleepiness effect
-        maximumSleepiness: 120s # Starlight: Low max sleepiness
-        time: 9.0 # Starlight: this might sound overly strong, but its somehow only a little stronger than NitrousOxide. Ticks also seam to happen less often
-
       - !type:AdjustReagent
         conditions:
         - !type:ReagentCondition

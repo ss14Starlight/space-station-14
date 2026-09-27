@@ -48,8 +48,6 @@
       - !type:ModifyStatusEffect
         effectProto: StatusEffectPainNumbness
         time: 2
-      - !type:ReduceSleepiness # Starlight: Reduces sleepiness stronger than Epinephrine
-        time: 2.5
       # Interactions
       - !type:ModifyStatusEffect
         conditions:
@@ -96,8 +94,6 @@
       - !type:ModifyKnockdown
         time: 1
         type: Remove
-      - !type:ReduceSleepiness # Starlight: reduces sleepiness
-        time: 1.5
       # Side effects
       - !type:Jitter
       - !type:PopupMessage
@@ -163,8 +159,6 @@
         effectProto: StatusEffectForcedSleeping
         time: 3
         type: Remove
-      - !type:ReduceSleepiness # Starlight: Strongest sleep antagonist
-        time: 4.5
       - !type:GenericStatusEffect
         key: Adrenaline
         component: IgnoreSlowOnDamage
@@ -242,10 +236,6 @@
         effectProto: StatusEffectSeeingRainbow
         time: 16
         type: Add
-      - !type:ModifySleepiness # Starlight: THC causes sleepiness, but smoking has only little amounts of it. Can be used for sleep if refined.
-        effectProto: StatusEffectSleepiness
-        maximumSleepiness: 60s
-        time: 2.5 # Starlight
 
 - type: reagent
   id: Nicotine

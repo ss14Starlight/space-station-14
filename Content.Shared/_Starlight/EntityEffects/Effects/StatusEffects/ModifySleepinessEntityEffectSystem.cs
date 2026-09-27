@@ -14,7 +14,7 @@ public sealed partial class ModifySleepinessEntityEffectSystem : EntityEffectSys
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private StatusEffectsSystem _status = default!;
-    public override void Initialize() => base.Initialize();
+
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<ModifySleepiness> args)
     {
         if (args.Effect.Time is not { } effectTime)
@@ -31,7 +31,7 @@ public sealed partial class ModifySleepinessEntityEffectSystem : EntityEffectSys
         if (!_status.TryGetTime(entity, args.Effect.EffectProto, out var current))
         {
             var initialTime = GetResistedTime(entity, time, args.Effect.MaximumSleepiness,
-                args.Effect.FullResistanceAfter, out _, out _);
+                args.Effect.FullResistanceAfter, out var resistance, out var ratio);
             if (initialTime <= TimeSpan.Zero ||
                 !_status.TryAddStatusEffectDuration(
                     entity,
@@ -59,7 +59,7 @@ public sealed partial class ModifySleepinessEntityEffectSystem : EntityEffectSys
             return;
 
         var resistedTime = GetResistedTime(current.EffectEnt, time, args.Effect.MaximumSleepiness,
-            args.Effect.FullResistanceAfter, out _, out _);
+            args.Effect.FullResistanceAfter, out var currentResistance, out var currentRatio);
         var newDuration = currentDuration < TimeSpan.Zero ? resistedTime : currentDuration + resistedTime;
         if (newDuration > args.Effect.MaximumSleepiness)
             newDuration = args.Effect.MaximumSleepiness;
