@@ -206,3 +206,74 @@
   suffix: Chameleon, Insulated
   components:
   - type: Insulated
+
+- type: entity
+  parent:
+  - ClothingHandsGlovesCombat
+  - BaseToggleClothing
+  id: ClothingHandsPryingGloves # To use as a parent for Hardsuit Gauntlets for heavy suits such as Apex, HOS, BSO or Juggsuit. Should be reserved for truly advanced suits that border the "power armor" style. Hardsuit gauntlet's melee should do around 16 blunt dmg, with Apex and Jugg doing either different or more dmg.
+  name: prying gloves [DO NOT MAP]
+  description: ""
+  components:
+  - type: ToggleClothing
+    action: ActionTogglePryingGloves
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Prying
+      pryPowered: true
+      speedModifier: 1.5
+      playSoundOnDoafter: true
+      useSoundOnDoafter:
+        path: /Audio/_Starlight/Machines/airlock_pry.ogg
+      useSound:
+        path: /Audio/Items/jaws_pry.ogg
+        params:
+          pitch: 0.5
+
+- type: entity
+  parent: BaseToggleAction
+  id: ActionTogglePryingGloves
+  name: Toggle prying functions
+  description: Toggle the integrated prying functions.
+
+- type: entity
+  id: ClothingHandsApexGauntlets
+  name: Apex Hardsuit Gauntlets
+  description: Armored Gaunltets with crusher-clawed fingers meant to tear into rock, metal and flesh.
+  parent:
+  - BaseHighlyIllegalContraband
+  - ClothingHandsPryingGloves
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Gloves/salvage.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Gloves/salvage.rsi
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+    fiberColor: fibers-brown
+  - type: MeleeWeapon
+    autoAttack: true
+    attackRate: 1.5
+    damage:
+      types:
+        Blunt: "6"
+        Structural: "20"
+        Slash: "12"
+    soundHit:
+      params:
+        pitch: 0.5
+      collection: Knuckles
+    animation: WeaponArcClaw
+    mustBeEquippedToUse: true
+    soundNoDamage:
+      collection: ""
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.9
+        Piercing: 0.9
+        Slash: 0.9
+        Blunt: 0.9
+

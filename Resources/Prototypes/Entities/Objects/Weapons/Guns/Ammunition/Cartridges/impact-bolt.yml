@@ -1,0 +1,35 @@
+- type: entity
+  parent:
+  - BaseItem
+  - BaseMajorContraband
+  id: CartridgeImpactBolt
+  name: impact bolt
+  description: The Standard explosive ammunition used by bolt weapons.
+  components:
+  - type: Tag
+    tags:
+    - CartridgeImpactBolt
+  - type: Item
+    size: Tiny
+  - type: CartridgeAmmo
+    proto: BulletImpactBolt
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: frag
+      map:
+      - "enum.AmmoVisualLayers.Base"
+  - type: Explosive
+    explosionType: ImpactBolt
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 1
+    maxTileBreak: 0
+    canCreateVacuum: false
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    suffix: false
+    state: Impact Bold
+  - type: StaticPrice
+    price: 10

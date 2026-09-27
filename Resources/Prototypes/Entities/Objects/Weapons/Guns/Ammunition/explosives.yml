@@ -81,7 +81,10 @@
 - type: entity
   id: GrenadeBlast
   name: blast grenade
-  parent: [ BaseGrenade, BaseSecurityContraband ] # Starlight edit: Major -> Security contraband
+  parent:
+  - BaseGrenade
+  - BaseSecurityContraband
+  # Starlight edit: Major -> Security contraband
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeBlast
@@ -89,7 +92,8 @@
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
     - state: blast
-      map: ["enum.AmmoVisualLayers.Base"]
+      map:
+      - "enum.AmmoVisualLayers.Base"
   - type: Appearance
   - type: SpentAmmoVisuals
     state: blast

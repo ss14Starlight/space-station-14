@@ -115,6 +115,12 @@
   - SpeedLoaderShotgunEmpty
   - SpeedLoaderShotgunSlug
   - SpeedLoaderShotgunBeanbag
+# Bolt
+  - MagazineBoltRifleEmpty
+  - MagazineBoltRifle
+  - MagazineBoltPistolEmpty
+  - MagazineBoltPistol
+  - MagazineBoxBoltRifle
 # Battery
   - MagazineBatteryLr30
 # Peacekeeper
