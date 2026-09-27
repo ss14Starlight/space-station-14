@@ -11,6 +11,8 @@ using Robust.Shared.Map;
 using Content.Shared.Stunnable;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
+using Content.Shared.Popups;
+using Content.Shared._Starlight.Cybernetics.Components;
 
 namespace Content.Shared._Starlight.Actions.EntitySystems;
 
@@ -25,6 +27,7 @@ public abstract partial class SharedJumpSystem : EntitySystem
     [Dependency] private ActionContainerSystem _actionContainer = default!;
     [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private SharedChargesSystem _chargesSystem = default!;
+    [Dependency] private SharedPopupSystem _popups = default!;
 
     public override void Initialize()
     {
@@ -93,6 +96,12 @@ public abstract partial class SharedJumpSystem : EntitySystem
     private void OnJump(JumpActionEvent args)
     {
         if (args.Handled) return;
+
+        if (args.IsCybernetic && TryComp(args.Performer, out CyberneticDisruptionComponent? _))
+        {
+            _popups.PopupClient(Loc.GetString("retractable-item-cybernetics-disrupted"), args.Performer, args.Performer);
+            return;
+        }
 
         Jump(args.Performer, args.Performer, args.Target, args);
         args.Handled = true;

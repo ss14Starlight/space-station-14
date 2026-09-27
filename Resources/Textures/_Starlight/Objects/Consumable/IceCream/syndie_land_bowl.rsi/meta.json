@@ -1,0 +1,41 @@
+{
+    "version": 1,
+    "size":
+    {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based Copyright",
+    "states":
+    [
+        {
+            "name": "icon",
+			"copyright": "Created by DreadfulTaco on Starlight Discord."
+        },
+        {
+            "name": "icon_empty",
+			"copyright": "Created by DreadfulTaco on Starlight Discord."
+        },
+        {
+            "name": "fill-1",
+			"copyright": "Created by DreadfulTaco on Starlight Discord."
+        },
+        {
+            "name": "fill-2",
+			"copyright": "Created by DreadfulTaco on Starlight Discord."
+        },
+        {
+            "name": "fill-3",
+			"copyright": "Created by DreadfulTaco on Starlight Discord."
+        },
+        {
+            "name": "fill-4",
+			"copyright": "Created by DreadfulTaco on Starlight Discord."
+        },
+        {
+            "name": "fill-5",
+			"copyright": "Created by DreadfulTaco on Starlight Discord."
+        }
+    ]
+}

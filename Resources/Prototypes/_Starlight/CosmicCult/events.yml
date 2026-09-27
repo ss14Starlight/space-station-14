@@ -8,6 +8,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 40
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
   - type: AntagSpawner
     prototype: MobCosmicColossusLone

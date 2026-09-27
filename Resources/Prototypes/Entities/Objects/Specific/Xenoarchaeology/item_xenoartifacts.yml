@@ -69,8 +69,8 @@
   components:
   - type: XenoArtifact
     nodeCount:
-      min: 12 # Starlight, we have double the number of triggers, so we can have more nodes per artifact now.
-      max: 16 # Starlight
+      min: 9
+      max: 13
 
 - type: entity
   id: ArtifactFragment

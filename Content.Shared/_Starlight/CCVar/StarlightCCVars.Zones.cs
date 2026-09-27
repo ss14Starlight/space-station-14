@@ -15,4 +15,7 @@ public sealed partial class StarlightCCVars
 
     public static readonly CVarDef<int> MaxZoneSeeds =
         CVarDef.Create("zones.max_seeds", 5, CVar.SERVERONLY);
+
+    public static readonly CVarDef<int> ZoneCorridorDoorCount =
+        CVarDef.Create("zones.corridor_door_count", 3, CVar.SERVERONLY);
 }

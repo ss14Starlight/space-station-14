@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: ClothingHeadHatPlaguedoctor
+  components:
+  - type: Armor
+    modifiers: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.95

@@ -430,6 +430,15 @@
     - type: Paper
       content: doc-text-printer-art-permit
 
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentBorgificationConsentForm
+  name: Borgification Consent Form
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-borgification-consent-form
+
 # OrdersAndInstructions
 
 - type: entity

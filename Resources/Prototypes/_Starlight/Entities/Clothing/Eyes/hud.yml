@@ -62,7 +62,6 @@
     tags:
     - PetWearable
     - WhitelistChameleon
-    - HudSecurity
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
@@ -85,6 +84,7 @@
       tags:
         - HamsterWearable
         - WhitelistChameleon
+        - HudSecurity
     - type: IdentityBlocker
       coverage: EYES
 
@@ -103,6 +103,7 @@
         - PetWearable
         - WhitelistChameleon
         - HudMedical
+        - HudSecurity
 
 - type: entity
   parent: [ClothingEyesEyepatchHudBrigmedic, ClothingHeadEyeBaseFlipped]
@@ -133,6 +134,7 @@
       tags:
         - HamsterWearable
         - WhitelistChameleon
+        - SecBeltEquip
     - type: IdentityBlocker
       coverage: EYES
 

@@ -131,7 +131,7 @@ public sealed partial class DragonRiftSystem
                         }
                         else
                         {
-                            spawnPrototype = new EntProtoId("RiftCarpHolo");
+                            spawnPrototype = new EntProtoId("MobCarpDragon");
                         }
                     }
                 }
