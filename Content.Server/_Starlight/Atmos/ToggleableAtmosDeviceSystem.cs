@@ -8,7 +8,13 @@ public sealed partial class ToggleableAtmosDeviceSystem : EntitySystem
 
     public override void Initialize() => base.Initialize();
 
+    /// <summary>
+    /// Sets the device to the boolean value
+    /// </summary>
     public void Set(EntityUid uid, bool value) => RaiseLocalEvent(uid, new SetToggleSignalReceivedEvent(value));
+    /// <summary>
+    /// Toggles the device
+    /// </summary>
     public void Toggle(EntityUid uid) => RaiseLocalEvent(uid, new ToggleSignalReceivedEvent());
 }
 

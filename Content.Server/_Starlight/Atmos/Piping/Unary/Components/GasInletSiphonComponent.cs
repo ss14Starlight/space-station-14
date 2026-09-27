@@ -13,7 +13,7 @@ public sealed partial class GasInletSiphonComponent : Component
     public float TransferRate
     {
         get => _transferRate;
-        set => Math.Clamp(value, 0f, MaxTransferRate);
+        set => _transferRate = Math.Clamp(value, 0f, MaxTransferRate);
     }
 
     private float _transferRate = 200;
@@ -25,6 +25,6 @@ public sealed partial class GasInletSiphonComponent : Component
     [GuidebookData]
     public float MaxPressure = Atmospherics.MaxOutputPressure;
 
-    [DataField("inlet")]
+    [DataField("outlet")]
     public string OutletName = "pipe";
 }
