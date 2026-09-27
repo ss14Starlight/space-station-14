@@ -15,6 +15,10 @@
   prefRoles:
   - CosmicAntagCultist
   allowNonHumans: true
+  whitelist:
+    components:
+    - HumanoidAppearance
+    - CosmicCultConvertible
   blacklist:
     components:
     - AntagImmune
