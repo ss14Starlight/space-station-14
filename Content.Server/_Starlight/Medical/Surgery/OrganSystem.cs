@@ -307,8 +307,8 @@ public sealed partial class OrganSystem : EntitySystem
          || damageRule.Damage is null
          || !TryComp<DamageableComponent>(args.Body, out _))
             return;
-
-        var transferredDamage = GetImplantTransferredDamage(ent.Comp.Damage, damageRule.Damage);
+        var damageSpec = _damageableSystem.GetAllDamage(ent!);
+        var transferredDamage = GetImplantTransferredDamage(damageSpec, damageRule.Damage);
         if (transferredDamage.Empty)
             return;
 
