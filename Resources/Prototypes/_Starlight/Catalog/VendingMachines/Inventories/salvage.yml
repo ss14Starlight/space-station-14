@@ -255,6 +255,30 @@
       stock: 5
     - !type:BuyerAccessCondition
 
+- type: listing
+  id: VendorSalvageSalvageBorgi
+  productEntity: ITGBorgiChassis
+  cost:
+    SalvageTicket: 1000
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSalvageMiningBorg
+  productEntity: SalvageMiningBorg
+  cost:
+    SalvageTicket: 1
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+    - !type:BuyerAccessCondition
+
 #- type: listing
 #  id: VendorSalvageExpeditionEncryptionKey
 #  productEntity: EncryptionKeyExpedition
@@ -648,3 +672,5 @@
     - SalvageCybernetics
   conditions:
     - !type:BuyerAccessCondition
+
+
