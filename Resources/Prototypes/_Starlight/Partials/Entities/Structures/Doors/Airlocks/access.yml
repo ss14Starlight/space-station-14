@@ -1,3 +1,47 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - AirlockChapelLocked
+    - AirlockChapelGlassLocked
+    - AirlockChapelStandardGlassLocked
+  suffix: Shrine, Locked # Chapel -> Shrine
+
+- type: !PartialOnly entity
+  id: AirlockEVALocked
+  suffix: Command (EVA), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: !Clear [ DoorElectronicsCommand ]
+
+- type: !PartialOnly entity
+  id: AirlockEVAGlassLocked
+  suffix: Command (EVA), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: !Clear [ DoorElectronicsCommand ]
+
+- type: !PartialOnly entity
+  id: AirlockExternalGlassShuttleEscape
+  components:
+  # swap from gridfill to random grid fill
+  - type: !Remove GridFill
+    addComponents: !Remove
+  - type: RandomGridFill
+    pathWeights:
+      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_small.yml": 40
+      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_cheap.yml": 2
+      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_toilet.yml": 1
+      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_library.yml": 2
+      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_lounge.yml": 2
+      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_pet.yml": 2
+      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_verysmall.yml": 1
+    addComponents:
+    - type: IFF
+      flags:
+      - HideLabel
+
 # Keep alphabetical
 - type: !PartialOnly entity
   id: AirlockMaintArmoryLocked

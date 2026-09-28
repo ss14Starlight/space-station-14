@@ -3,7 +3,7 @@
   id: WardrobeBase
   parent: ClosetSteelBase
   abstract: true
-  description: It's a storage unit for standard-issue NanoTrasen attire. # SL
+  description: It's a storage unit for standard-issue Nanotrasen attire.
 
 # Colored
 
@@ -169,7 +169,7 @@
   id: WardrobeChapel
   parent: WardrobeBlack
   name: chaplain's wardrobe
-  description: It's a storage unit for NanoTrasen-approved religious attire. # Starlight
+  description: It's a storage unit for Nanotrasen-approved religious attire.
 
 - type: entity
   id: ClosetLegal

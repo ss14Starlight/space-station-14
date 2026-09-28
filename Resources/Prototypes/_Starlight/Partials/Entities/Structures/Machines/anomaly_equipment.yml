@@ -1,0 +1,25 @@
+- type: !PartialOnly entity
+  id: MachineAPE
+  components:
+  - type: CosmicLambdaParticleSource
+  - type: DoAfter
+  - type: Emitter
+    selectableTypes:
+    - CosmicLambdaParticle
+    setTypePorts:
+      SetParticleLambda: CosmicLambdaParticle
+  - type: DeviceLinkSink
+    ports:
+      - SetParticleLambda
+
+- type: !PartialOnly entity
+  id: MachineAnomalyGenerator
+  components:
+# SL Start: Lighting Update
+  - type: PointLight
+    autoRot: true
+    color: "#9933c4"
+    radius: 5
+    energy: 0.5
+    castShadows: true
+# SL End

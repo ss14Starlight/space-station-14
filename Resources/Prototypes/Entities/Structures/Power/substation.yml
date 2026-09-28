@@ -30,7 +30,6 @@
     supplyRampTolerance: 5000
     supplyRampRate: 1000
   - type: StationInfiniteBatteryTarget
-  - type: StationAiWhitelist #Starlight
 
   # Interface
   - type: BatteryInterface
@@ -66,7 +65,7 @@
   # Ambient sound
   - type: AmbientOnPowered
   - type: AmbientSound
-    volume: -4 #SL edit -5 -> -4
+    volume: -5
     sound:
       path: /Audio/Ambience/Objects/buzzing.ogg
 

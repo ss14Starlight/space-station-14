@@ -1,0 +1,12 @@
+- type: !PartialOnly entity
+  id: BaseBarSign
+  components:
+  - type: AmbientSound
+    volume: -7
+    range: 4
+    sound:
+      path: /Audio/_Starlight/Effects/Machinery/electric_buzz.ogg
+
+- type: !PartialOnly entity
+  id: BarSignWhiskeyEchoes
+  description: An elite bar for elite oper-wait, this is a NanoTrasen station. Why's this sign in the database?

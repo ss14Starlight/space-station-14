@@ -5,7 +5,6 @@
   name: security robot showcase
   description: A non-functional replica of an old security robot.
   components:
-    - type: Rotatable # SL Edit
     - type: Anchorable
     - type: Damageable
       damageContainer: StructuralInorganic
@@ -40,9 +39,8 @@
   description: A non-functional replica of an old security robot.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Decorations/showcase.rsi #SL Edit
+    sprite: Structures/Decoration/showcase.rsi
     state: showcase_1
-    noRot: true #SL Edit
 
 - type: entity
   id: ShowcaseRobotWhite
@@ -51,28 +49,25 @@
   description: A non-functional replica of an old robot.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Decorations/showcase.rsi #SL Edit
+    sprite: Structures/Decoration/showcase.rsi
     state: showcase_2
-    noRot: true #SL Edit
 
 - type: entity
   id: ShowcaseRobotAntique
   parent: BaseShowcaseRobot
-  name: cargo mech showcase #SL Edit
-  description: A non-functional replica of an old cargo mech. #SL Edit
+  name: cargo robot showcase
+  description: A non-functional replica of an old cargo robot.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Decorations/showcase.rsi #SL Edit
+    sprite: Structures/Decoration/showcase.rsi
     state: showcase_3
-    noRot: true #SL Edit
 
 - type: entity
   id: ShowcaseRobotMarauder
   parent: BaseShowcaseRobot
-  name: durand MK1 showcase #SL Edit
-  description: A non-functional replica of a MK1 Durand. #SL Edit
+  name: marauder showcase
+  description: A non-functional replica of a marauder, painted green.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Decorations/showcase.rsi #SL Edit
+    sprite: Structures/Decoration/showcase.rsi
     state: showcase_4
-    noRot: true #SL Edit

@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: StationMapAssembly
+  components:
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          scanner_electronics: { state: station_map_frame2 }

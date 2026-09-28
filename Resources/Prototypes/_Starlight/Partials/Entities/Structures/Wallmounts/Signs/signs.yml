@@ -1,0 +1,31 @@
+- type: !PartialOnly entity
+  id: SignDirectionalChapel
+  name: shrine sign # Chapel -> Shrine
+  description: A direction sign, pointing out which way the Shrine is. # Chapel -> Shrine
+
+- type: !PartialOnly entity
+  id: SignBath
+  suffix: Washrooms
+
+- type: !PartialOnly entity
+  id: SignChapel
+  name: shrine sign # Chapel -> Shrine
+  description: A sign indicating the Shrine. # Chapel -> Shrine
+
+- type: !PartialOnly entity
+  id: SignRestroom
+  suffix: Washrooms
+
+- type: !PartialOnly entity
+  id: SignHead
+  description: An official sign indicating the dwellings of a NanoTrasen-certified head of department.
+
+- type: !PartialOnly entity
+  id: SignLawyer
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+
+- type: !PartialOnly entity
+  id: SignZomlab
+  description: The final remains of a shut-down NanoTrasen research project that aimed to harness the powers of Romerol. I wonder how that went...

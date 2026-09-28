@@ -1,0 +1,14 @@
+- type: !PartialOnly entity
+  id: SodaDispenserEmpty
+  components:
+  # Power Cell Soda dispenser
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        blacklist:
+          tags:
+          - MechReactor

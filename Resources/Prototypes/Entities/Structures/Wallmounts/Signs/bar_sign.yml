@@ -4,11 +4,6 @@
   name: bar sign
   abstract: true
   components:
-  - type: AmbientSound #SL
-    volume: -7 #SL
-    range: 4 #SL
-    sound: #SL
-      path: /Audio/_Starlight/Effects/Machinery/electric_buzz.ogg #SL
   - type: WallMount
     arc: 360
   - type: Sprite
@@ -288,7 +283,7 @@
   parent: BaseBarSign
   id: BarSignWhiskeyEchoes
   name: Whiskey Echoes
-  description: An elite bar for elite oper-wait, this is a NanoTrasen station. Why's this sign in the database? # SL
+  description: An elite bar for elite oper-wait, this is a Nanotrasen station. Why's this sign in the database?
   components:
   - type: BarSign
     current: WhiskeyEchoes

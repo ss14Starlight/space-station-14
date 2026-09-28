@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: AnomalyInjectionRock
+  components:
+  - type: TileSpawnAnomaly
+    entries:
+    - !CombineIndex:0 floor: FloorAstroAsteroidTile
+    - !CombineIndex:1 floor: FloorAstroAsteroidTile

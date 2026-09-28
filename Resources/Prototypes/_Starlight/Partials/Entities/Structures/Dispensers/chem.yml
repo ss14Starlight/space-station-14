@@ -1,0 +1,73 @@
+- type: !PartialOnly entity
+  id: ChemDispenserEmpty
+  components:
+  - type: Sprite
+    state: !Remove
+    # Chem Dispenser unpowered/wiring panel states
+    layers:
+      - state: industrial-off
+      - state: industrial-working
+        visible: false
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      - state: industrial-panel
+        map: ["enum.WiresVisualLayers.MaintenancePanel"]
+        visible: false
+    snapCardinals: false # allow non-cardinal rotation for chem dispenser to avoid conflict with 4 direction plumbing connector sprites
+  # Generatable Reagents
+  - type: ReagentDispenser
+    generatableReagents:
+      Iron: 2 # ReagentId: x energy for 1 quantity
+      Carbon: 2
+      Copper: 2
+      Hydrogen: 2
+      Oxygen: 0 # You really can't pump oxygen or generate it on 2525?
+      Sugar: 2
+      Silicon: 5
+      Phosphorus: 5
+  - type: WiresVisuals
+  - type: Appearance
+  - type: BatteryVisuals
+
+- type: !PartialOnly entity
+  id: ChemDispenser
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        # Carbon, Copper, Sugar, Hydrogen, Iron, Oxygen, Phosphorus and Silicon jugs removed; the dispenser generates them
+        children: !Clear
+        - !Index:0
+          id: JugAluminium
+        - !Index:0
+          id: JugChlorine
+        - !Index:0
+          id: JugEthanol
+        - !Index:0
+          id: JugFluorine
+        - !Index:0
+          id: JugIodine
+        - !Index:0
+          id: JugLithium
+        - !Index:0
+          id: JugMercury
+        - !Index:0
+          id: JugNitrogen
+        - !Index:0
+          id: JugPotassium
+        - !Index:0
+          id: JugRadium
+        - !Index:0
+          id: JugSodium
+        - !Index:0
+          id: JugSulfur
+  # Filled powercell slot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        blacklist:
+          tags:
+          - MechReactor

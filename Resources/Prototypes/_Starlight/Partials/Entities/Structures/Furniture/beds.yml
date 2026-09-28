@@ -1,0 +1,23 @@
+- type: !PartialOnly entity
+  id: DogBed
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/pet_beds.rsi
+  - type: Damageable
+    damageModifierSet: Inflatable
+  - type: Destructible
+    thresholds:
+    - !CombineIndex:0 behaviors:
+      - !type:PlaySoundBehavior
+        !CombineIndex:0 sound:
+          collection: WeakHit
+    - !CombineIndex:1 behaviors:
+      - !type:PlaySoundBehavior
+        !CombineIndex:1 sound:
+          collection: WeakHit
+      - !type:SpawnEntitiesBehavior
+        !CombineIndex:2 spawn:
+          MaterialWoodPlank: !Remove
+          MaterialCloth1:
+            min: 1
+            max: 2

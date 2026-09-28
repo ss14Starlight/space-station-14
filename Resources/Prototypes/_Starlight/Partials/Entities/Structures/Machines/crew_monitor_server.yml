@@ -1,0 +1,26 @@
+- type: !PartialOnly entity
+  id: CrewMonitoringServer
+  categories: [ ShouldMapStation ]
+  components:
+    # Moffstation - Add abstract crewmon server parent.
+    #     These components are provided by BaseCrewMonitoringServer, shared with the blade server variant.
+    - type: !Remove CrewMonitoringServer
+    - type: !Remove SingletonDeviceNetServer
+    - type: !Remove DeviceNetwork
+      deviceNetId: !Remove
+      transmitFrequencyId: !Remove
+      receiveFrequencyId: !Remove
+      autoConnect: !Remove
+    - type: !Remove WirelessNetworkConnection
+      range: !Remove
+    - type: !Remove StationLimitedNetwork
+    - type: !Remove ApcPowerReceiver
+      powerLoad: !Remove
+    - type: !Remove ExtensionCableReceiver
+    - type: !Remove WiresPanel
+    - type: !Remove WiresVisuals
+    - type: !Remove Appearance
+    - type: !Remove GenericVisualizer
+      visuals: !Remove
+    - type: !Remove GuideHelp
+      guides: !Remove

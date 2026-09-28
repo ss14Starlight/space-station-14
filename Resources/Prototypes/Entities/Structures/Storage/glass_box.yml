@@ -148,7 +148,6 @@
 - type: entity
   parent: GlassBoxLaser
   id: GlassBoxLaserFilled
-  categories: [ ShouldMapStation ] # Starlight
   suffix: AntiqueLaser, Filled
   components:
   - type: ContainerFill

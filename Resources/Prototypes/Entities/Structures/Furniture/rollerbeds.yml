@@ -80,9 +80,6 @@
             True: {visible: false}
     - type: StaticPrice
       price: 120
-    - type: Tag # Starlight edit: add tag
-      tags:
-      - RollerBed
 
 - type: entity
   parent: RollerBed
@@ -132,7 +129,6 @@
   - type: Item
     heldPrefix: emergency_rollerbed
   - type: Sprite
-    sprite: _Starlight/Structures/Furniture/rollerbed.rsi # Starlight
     layers:
     - state: emergency_rollerbed
       map: ["unfoldedLayer"]

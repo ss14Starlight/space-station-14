@@ -129,11 +129,6 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/shuttle_syndicate.rsi
-    # Starlight Start
-  - type: ContainerFill
-    containers:
-      board: [ BaseDoorElectronicsSyndicate ]
-    # Starlight End
 
 - type: entity
   parent: AirlockShuttle
@@ -141,11 +136,6 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/shuttle_syndicate.rsi
-    # Starlight Start
-  - type: ContainerFill
-    containers:
-      board: [ BaseDoorElectronicsSyndicate ]
-    # Starlight End
 
 - type: entity
   parent: AirlockShuttle
@@ -153,8 +143,3 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/shuttle_xenoborg.rsi
-  # Starlight Start
-  - type: ContainerFill
-    containers:
-      board: [ BaseDoorElectronicsXenoborg ]
-  # Starlight End

@@ -1,0 +1,47 @@
+- type: !PartialOnly entity
+  id: BaseRailing
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi
+
+- type: !PartialOnly entity
+  id: Railing
+  name: railing
+  suffix: steel
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi
+
+- type: !PartialOnly entity
+  id: RailingCorner
+  name: railing
+  suffix: steel, corner
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi
+
+- type: !PartialOnly entity
+  id: RailingCornerSmall
+  name: railing
+  suffix: steel, corner small
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi
+
+- type: !PartialOnly entity
+  id: RailingRound
+  name: railing
+  suffix: steel, round
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi

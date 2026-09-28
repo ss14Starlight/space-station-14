@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: PortalRed
+  components:
+  - type: PointLight
+    netsync: !Remove
+
+- type: !PartialOnly entity
+  id: ShadowPortal
+  components:
+  - type: DarkLight

@@ -1,0 +1,119 @@
+- type: !PartialOnly entity
+  id: AlwaysPoweredWallLight
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/Lighting/light_tube.rsi
+  - type: PointLight
+    offset: "0, -0.495" # reverts Upstream #44843, which made wall mounted lights look extremely sharp
+  # ES START
+  - type: ESSparkOnHit
+  # ES END
+
+- type: !PartialOnly entity
+  id: PoweredlightEmpty
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/Lighting/light_tube.rsi
+
+- type: !PartialOnly entity
+  id: AlwaysPoweredLightExterior
+  components:
+  - type: PointLight
+    energy: 4 # 4.5 -> 4
+    softness: 0.8 # 0.5 -> 0.8
+
+- type: !PartialOnly entity
+  id: SmallLight
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/Lighting/light_small.rsi
+
+- type: !PartialOnly entity
+  id: PoweredSmallLightEmpty
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/Lighting/light_small.rsi
+  - type: PointLight
+    offset: "0, -0.495" # reverts Upstream #44843, which made wall mounted lights look extremely sharp
+
+- type: !PartialOnly entity
+  id: EmergencyLight
+  description: A small light with an internal battery that turns on as soon as it stops receiving any power. NanoTrasen technology allows it to adapt its color to alert crew to the conditions of the station.
+  components:
+  - type: PointLight
+    radius: 7
+    energy: 1
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/Lighting/emergency_light.rsi
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - PoweredlightCyan
+    - AlwaysPoweredlightCyan
+  components:
+  - type: PointLight
+    color: "#5ae8ed"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - PoweredlightBlue
+    - AlwaysPoweredlightBlue
+  components:
+  - type: PointLight
+    color: "#4ca1eb"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - PoweredlightYellow
+    - AlwaysPoweredlightYellow
+  components:
+  - type: PointLight
+    color: "#edd25a"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - PoweredlightPink
+    - AlwaysPoweredlightPink
+  components:
+  - type: PointLight
+    color: "#f075c7"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - PoweredlightOrange
+    - AlwaysPoweredlightOrange
+  components:
+  - type: PointLight
+    color: "#ea863e"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - PoweredlightBlack
+    - AlwaysPoweredlightBlack
+  components:
+  - type: PointLight
+    color: "#4d4d4d"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - PoweredlightRed
+    - AlwaysPoweredlightRed
+  components:
+  - type: PointLight
+    color: "#ec5555"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - PoweredlightGreen
+    - AlwaysPoweredlightGreen
+  components:
+  - type: PointLight
+    color: "#7eeb4c"

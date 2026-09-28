@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: AnomalyCoreShadow
+  components:
+  - type: Tag
+    tags:
+      - AnomalyCoreShadow

@@ -2,7 +2,7 @@
   id: ClosetBase
   parent: [ BaseStructureDynamic, BasePaperLabelableVisualized ]
   name: closet
-  description: A standard-issue NanoTrasen storage unit. # SL
+  description: A standard-issue Nanotrasen storage unit.
   abstract: true
   components:
   - type: Animateable
@@ -102,9 +102,6 @@
     stateDoorClosed: generic_door
   - type: StaticPrice
     price: 75
-  # Starlight-start: Blinding from containers
-  - type: ChildBlockVision
-  # Starlight-end
 
 # steel closet base (that can be constructed/deconstructed)
 - type: entity
@@ -125,7 +122,7 @@
   id: BaseWallCloset
   abstract: true
   name: wall closet
-  description: A standard-issue NanoTrasen storage unit, now on walls. # SL
+  description: A standard-issue Nanotrasen storage unit, now on walls.
   components:
   - type: ResistLocker
   - type: Weldable
@@ -200,10 +197,6 @@
   components:
   - type: AccessReader
   - type: Lock
-    # Starlight Start
-    popupMessage: false
-    powerNeeded: true
-    # Starlight End
   - type: LockVisuals
   - type: Sprite
     sprite: Structures/Storage/wall_locker.rsi
@@ -218,45 +211,8 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
-    # Starlight Start: Maintenance panel
-    - state: panel_open
-      sprite: Structures/Storage/closet.rsi
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-      visible: false
-    - state: electrified_ai
-      sprite: Interface/Misc/ai_hud.rsi
-      shader: unshaded
-      visible: false
-      map: ["enum.ElectrifiedLayers.HUD"]
-    - state: electrified
-      sprite: Effects/electricity.rsi
-      shader: unshaded
-      visible: false
-      map: ["enum.ElectrifiedLayers.Sparks"]
-    # Starlight End
   - type: Paintable
     group: WallLocker
-  # Starlight Start: Wires panel
-  - type: PoweredLocker
-  - type: StationAiWhitelist
-  - type: WiresPanel
-  - type: WiresPanelSecurity
-    wiresAccessible: True
-  - type: WiresVisuals
-  - type: Wires
-    boardName: wires-board-name-locker
-    layoutId: Locker
-  - type: UserInterface
-    interfaces:
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: GenericVisualizer
-    visuals:
-      enum.ElectrifiedVisuals.ShowSparks:
-        enum.ElectrifiedLayers.Sparks:
-          True: { visible: True }
-          False: { visible: False }
-  # Starlight End
 
 #Base suit storage unit
 #I am terribly sorry for duplicating the closet almost-wholesale, but the game malds at me if I don't so here we are.

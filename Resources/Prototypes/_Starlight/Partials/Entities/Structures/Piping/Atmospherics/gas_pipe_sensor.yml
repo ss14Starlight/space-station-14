@@ -12,3 +12,10 @@
       override: !type:CreateVariants
         values: *protos
 
+- type: !PartialOnly entity
+  id: GasPipeSensor
+  components:
+  - type: DeviceNetwork
+    prefix: device-address-prefix-sensor
+  - type: VentCrawlTube
+  - type: VentCrawlTransit

@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: WardrobeBase
+  description: It's a storage unit for standard-issue NanoTrasen attire.
+
+- type: !PartialOnly entity
+  id: WardrobeChapel
+  description: It's a storage unit for NanoTrasen-approved religious attire.

@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - WindoorChapelLocked
+    - WindoorSecureChapelLocked
+  suffix: Shrine, Locked # Chapel -> Shrine

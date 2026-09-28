@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: SyndicateBomb
+  components:
+  - type: Explosive
+    intensitySlope: 1 # Changed from 10 to 1 to make the explosion more spread out

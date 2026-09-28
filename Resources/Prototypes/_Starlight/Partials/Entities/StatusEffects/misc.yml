@@ -1,0 +1,35 @@
+- type: !PartialOnly entity
+  id: StatusEffectForcedSleeping
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+        - MobState
+    maximumDuration: 2m # <-- The only change relative to parent component definition
+
+- type: !PartialOnly entity
+  id: StatusEffectDrowsiness
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+    maximumDuration: 3m # <-- The only change relative to parent component definition
+
+- type: !PartialOnly entity
+  id: StatusEffectSeeingRainbow
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+        - MobState
+    maximumDuration: 25m # <-- The only change relative to parent component definition
+
+- type: !PartialOnly entity
+  id: StatusEffectWoozy
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+        - MobState
+    maximumDuration: 25m # <-- The only change relative to parent component definition

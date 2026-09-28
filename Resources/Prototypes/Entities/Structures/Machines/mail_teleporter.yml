@@ -1,12 +1,9 @@
 - type: entity
   id: CargoMailTeleporter
-  categories: [ ShouldMapStation ] # Starlight
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   name: mail teleporter
   description: Periodically teleports in mail to deliver across the station.
   components:
-  - type: AccessReader # Starlight
-    access: [["Mail"]] # Starlight
   - type: Fixtures
     fixtures:
       fix1:
@@ -55,5 +52,3 @@
   - type: DeliverySpawner
     table: !type:NestedSelector
       tableId: RandomDeliveryBasic
-    emagTable: !type:NestedSelector #Starlight
-      tableId: RandomDeliveryEvil #Starlight

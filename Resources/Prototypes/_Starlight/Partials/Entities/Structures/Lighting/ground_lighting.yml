@@ -1,0 +1,23 @@
+- type: !PartialOnly entity
+  id: LightPostSmall
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Lighting/LightPosts/small_light_post.rsi
+  - type: PointLight
+    energy: 2 # 2.5 -> 2
+  - type: RCDDeconstructable
+    cost: 4
+    delay: 2
+    fx: EffectRCDDeconstruct2
+
+- type: !PartialOnly entity
+  id: PoweredLightPostSmallEmpty
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Lighting/LightPosts/small_light_post.rsi
+
+- type: !PartialOnly entity
+  id: PoweredLEDLightPostSmall
+  components:
+  - type: PointLight
+    radius: 13 # 15 -> 13

@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - SurveillanceCameraRouterEngineering
+    - SurveillanceCameraRouterSecurity
+    - SurveillanceCameraRouterScience
+    - SurveillanceCameraRouterSupply
+    - SurveillanceCameraRouterCommand
+    - SurveillanceCameraRouterService
+    - SurveillanceCameraRouterMedical
+    - SurveillanceCameraRouterGeneral
+    - SurveillanceCameraWirelessRouterEntertainment
+  categories: [ ShouldMapStation ]

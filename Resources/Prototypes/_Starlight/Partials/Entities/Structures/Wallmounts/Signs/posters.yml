@@ -1,4 +1,65 @@
 - type: !PartialOnly entity
+  id: PosterContrabandMissingGloves
+  description: "This poster references the uproar that followed NanoTrasen's financial cuts toward insulated-glove purchases."
+
+- type: !PartialOnly entity
+  id: PosterContrabandHackingGuide
+  description: "This poster details the internal workings of the common NanoTrasen airlock. Sadly, it appears out of date."
+
+- type: !PartialOnly entity
+  id: PosterContrabandRIPBadger
+  description: "This seditious poster references NanoTrasen's genocide of a space station full of badgers."
+
+- type: !PartialOnly entity
+  id: PosterContrabandPower
+  description: "A poster that positions the seat of power outside NanoTrasen."
+
+- type: !PartialOnly entity
+  id: PosterContrabandRebelsUnite
+  description: "A poster urging the viewer to rebel against NanoTrasen."
+
+- type: !PartialOnly entity
+  id: PosterContrabandInterdyne
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/interdyne.rsi # To match the flippo
+    state: interdyne
+
+- type: !PartialOnly entity
+  id: PosterLegitNanotrasenLogo
+  name: "NanoTrasen Logo"
+  description: "A poster depicting the NanoTrasen logo."
+
+- type: !PartialOnly entity
+  id: PosterLegit50thAnniversaryVintageReprint
+  description: "A reprint of a poster from 2505, commemorating the 50th Anniversary of Nanoposters Manufacturing, a subsidiary of NanoTrasen."
+
+- type: !PartialOnly entity
+  id: PosterLegitPDAAd
+  description: "A poster advertising the latest PDA from NanoTrasen suppliers."
+
+- type: !PartialOnly entity
+  id: PosterLegitEnlist
+  description: "Enlist in the NanoTrasen Special Forces today!"
+
+- type: !PartialOnly entity
+  id: PosterLegitNoERP
+  description: "This poster reminds the crew that Eroticism and Pornography are banned on NanoTrasen stations."
+
+- type: !PartialOnly entity
+  id: PosterLegitThereIsNoGasGiant
+  description: "NanoTrasen has issued posters, like this one, to all stations reminding them that rumours of a gas giant are false."
+
+- type: !PartialOnly entity
+  id: PosterLegitVacation
+  name: "NanoTrasen Corporate Perks: Vacation"
+
+- type: !PartialOnly entity
+  id: PosterLegitNTTGC
+  name: "NanoTrasen Tactical Game Cards"
+  description: "An advertisement for NanoTrasen's TCG cards: BUY MORE CARDS."
+
+- type: !PartialOnly entity
   id: PosterContrabandSyndicateRecruitment
   components:
   - type: Contraband

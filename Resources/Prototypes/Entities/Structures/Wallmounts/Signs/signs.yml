@@ -56,8 +56,8 @@
 - type: entity
   parent: BaseSignDirectional
   id: SignDirectionalChapel
-  name: shrine sign # Starlight: Chapel -> Shrine
-  description: A direction sign, pointing out which way the Shrine is. # Starlight: Chapel -> Shrine
+  name: chapel sign
+  description: A direction sign, pointing out which way the Chapel is.
   components:
   - type: Sprite
     state: direction_chapel
@@ -354,7 +354,6 @@
 - type: entity
   parent: BaseSign
   id: SignBath
-  suffix: Washrooms # Starlight
   name: bathroom sign
   description: A sign indicating the bathroom.
   components:
@@ -453,8 +452,8 @@
 - type: entity
   parent: BaseSign
   id: SignChapel
-  name: shrine sign # Starlight: Chapel -> Shrine
-  description: A sign indicating the Shrine. # Starlight: Chapel -> Shrine
+  name: chapel sign
+  description: A sign indicating the chapel.
   components:
   - type: Sprite
     state: chapel
@@ -517,7 +516,6 @@
 - type: entity
   parent: BaseSign
   id: SignRestroom
-  suffix: Washrooms # Starlight
   name: restroom sign
   description: A sign indicating where you go to... What do you do here again?
   components:
@@ -609,7 +607,7 @@
   parent: BaseSign
   id: SignHead
   name: head sign
-  description: An official sign indicating the dwellings of a NanoTrasen-certified head of department. # SL
+  description: An official sign indicating the dwellings of a Nanotrasen-certified head of department.
   components:
   - type: Sprite
     state: commander
@@ -658,7 +656,6 @@
   description: A sign indicating the presence of the (typically absent) rule of law.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/signs.rsi # Starlight
     state: law
 
 - type: entity
@@ -1016,7 +1013,7 @@
   parent: BaseSign
   id: SignZomlab
   name: zombie lab sign
-  description: The final remains of a shut-down NanoTrasen research project that aimed to harness the powers of Romerol. I wonder how that went... # SL
+  description: The final remains of a shut-down Nanotrasen research project that aimed to harness the powers of Romerol. I wonder how that went...
   components:
   - type: Sprite
     state: zomlab

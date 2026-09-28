@@ -1,6 +1,6 @@
 - type: entity
   id: Girder
-  parent: [ BaseStructureDynamic, BaseStructureDissolvable ] # Starlight-edit
+  parent: [ BaseStructureDynamic, BaseStructureDissolvable ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: girder
   description: A large structural assembly made out of metal; It requires a layer of metal before it can be considered a wall.
   components:

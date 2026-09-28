@@ -34,8 +34,6 @@
     interfaces:
       enum.FaxUiKey.Key:
         type: FaxBoundUi
-      enum.FaxMachineConfigureUiKey.Key: # Starlight
-        type: FaxMachineConfigureBoundUserInterface # Starlight
   - type: StationAiWhitelist
   - type: ApcPowerReceiver
     powerLoad: 250
@@ -50,11 +48,9 @@
       whitelist:
         components:
           - FaxableObject #used to be PaperComponent - brainfood1183
-      # Starlight-edit: removed blacklist
-      #      blacklist:
-      #        components:
-      #          - CargoSlip
-
+      blacklist:
+        components:
+          - CargoSlip
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:
@@ -78,45 +74,46 @@
 
 # Special
 - type: entity
-  parent: FaxMachineCentralCommandBase # Starlight
+  parent: FaxMachineCentralCommandBase # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: FaxMachineCentcom
-  #name: long range fax machine # Starlight: Inherit name
-  suffix: "CC: Central Command" # Starlight
+  name: CentComm long range fax machine
+  suffix: CentCom
   components:
-  # Starlight: No Sprite override
+  - type: Sprite
+    layers:
+      - state: icon
+        map: [ "base" ]
+        color: "#bfe3ff"
   - type: FaxMachine
-    group: FaxGroupCentralCommand # Starlight
-    intrinsicGroup: FaxGroupCentralCommand # Starlight
-    order: 100 # Starlight
     name: "Central Command"
     notifyAdmins: true
 
 - type: entity
-  parent: FaxMachineSyndicateBase # Starlight
+  parent: FaxMachineSyndicateBase # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: FaxMachineSyndie
-  #name: syndicate long range fax machine # Starlight: Inherit name
-  suffix: "Syndicate: ERR*?*%!" # Starlight
+  name: syndicate long range fax machine
+  suffix: Syndicate
   components:
-  # Starlight: No Sprite override
+  - type: Sprite
+    layers:
+      - state: icon
+        map: [ "base" ]
+        color: "#a3a3a3"
   - type: FaxMachine
     name: "ERR*?*%!"
-    group: FaxGroupSyndicate # Starlight
-    order: 200 # Starlight
     responsePings: false
     notifyAdmins: true
   - type: Emagged
     emagType: Interaction
 
 - type: entity
-  parent: FaxMachineCommandBase # Starlight
+  parent: FaxMachineCommandBase # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: FaxMachineCaptain
-  #name: captain long range fax machine # Starlight: Inherit name
-  suffix: "CMD: Captain, NukeCodes" # Starlight
+  name: captain long range fax machine
+  suffix: NukeCodes
   components:
     - type: FaxMachine
-      group: FaxGroupCommand # Starlight
-      order: 200 # Starlight
-      name: "Captain"
+      name: "Captain's Office"
       receiveNukeCodes: true
     - type: StealTarget
       stealGroup: FaxMachineCaptain

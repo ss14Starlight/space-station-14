@@ -1,0 +1,19 @@
+- type: !PartialOnly entity
+  id: BaseSMES
+  components:
+  - type: AmbientSound
+    volume: -6 # -7 -> -6
+    range: 4 # 3 -> 4
+  - type: Sprite
+    sprite: _Starlight/Structures/Power/smes.rsi
+  - type: PowerMonitoringDevice
+    sprite: _Starlight/Structures/Power/smes.rsi
+  - type: StationAiWhitelist
+
+- type: !PartialOnly entity
+  id: SMESAdvanced
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Power/smes.rsi
+  - type: PowerMonitoringDevice
+    sprite: _Starlight/Structures/Power/smes.rsi

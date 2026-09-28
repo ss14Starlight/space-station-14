@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: CargoMailTeleporter
+  categories: [ ShouldMapStation ]
+  components:
+  - type: AccessReader
+    access: [["Mail"]]
+  - type: DeliverySpawner
+    emagTable: !type:NestedSelector
+      tableId: RandomDeliveryEvil

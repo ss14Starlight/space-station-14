@@ -15,3 +15,30 @@
     - type: SandboxCopyOverride
       override: !type:CreateVariants
         values: *protos
+
+- type: !PartialOnly entity
+  id: GasVentPumpFreezer
+  components:
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentPumpFreezer
+      Secondary: GasVentPumpFreezerAlt1
+      Tertiary: GasVentPumpFreezerAlt2
+      Quaternary: GasVentPumpFreezerAlt3
+      Quinary: GasVentPumpFreezerAlt4
+
+- type: !PartialOnly entity
+  id: GasVentScrubberFreezer
+  components:
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentScrubberFreezer
+      Secondary: GasVentScrubberFreezerAlt1
+      Tertiary: GasVentScrubberFreezerAlt2
+      Quaternary: GasVentScrubberFreezerAlt3
+      Quinary: GasVentScrubberFreezerAlt4
+
+- type: !PartialOnly entity
+  id: AirAlarmFreezer
+  name: freezer air alarm
+  description: An air alarm set up for use in freezers. It doesn't raise an alarm about the cold.

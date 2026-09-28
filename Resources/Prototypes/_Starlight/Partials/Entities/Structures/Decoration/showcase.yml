@@ -1,0 +1,26 @@
+- type: !PartialOnly entity
+  id: BaseShowcaseRobot
+  components:
+    - type: Rotatable
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - ShowcaseRobot
+    - ShowcaseRobotWhite
+    - ShowcaseRobotAntique
+    - ShowcaseRobotMarauder
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Decorations/showcase.rsi
+    noRot: true
+
+- type: !PartialOnly entity
+  id: ShowcaseRobotAntique
+  name: cargo mech showcase
+  description: A non-functional replica of an old cargo mech.
+
+- type: !PartialOnly entity
+  id: ShowcaseRobotMarauder
+  name: durand MK1 showcase
+  description: A non-functional replica of a MK1 Durand.

@@ -1,0 +1,37 @@
+- type: !PartialOnly entity
+  id: Morgue
+  categories: [ ShouldMapStation ]
+  components:
+  # add paper labelling
+  - type: Sprite
+    layers:
+    - state: paper
+      visible: false
+      sprite: _Starlight/Structures/Storage/morgue-labels.rsi
+      map: [ "enum.PaperLabelVisuals.Layer" ]
+  - type: PaperLabel
+    labelSlot:
+      insertVerbText: comp-paper-label-insert
+      ejectVerbText: comp-paper-label-eject
+      whitelist:
+        components:
+          - Paper
+      blacklist:
+        tags:
+          - Book
+  - type: ItemSlots
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: false }
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PaperLabelVisuals.LabelType:
+        enum.PaperLabelVisuals.Layer:
+          Paper: { state: paper }
+          Bounty: { state: bounty }
+          CaptainsPaper: { state: captains_paper }
+          Invoice: { state: invoice }

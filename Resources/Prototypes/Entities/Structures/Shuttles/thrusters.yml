@@ -27,7 +27,7 @@
     - type: Physics
       bodyType: Static
     - type: Rotatable
-      rotateWhileAnchored: false # Starlight
+      rotateWhileAnchored: true
     - type: Thruster
       damage:
         types:
@@ -57,8 +57,6 @@
     - type: GuideHelp
       guides:
       - ShuttleCraft
-    - type: Anchorable # Starlight
-      delay: 10
   placement:
     mode: SnapgridCenter
 
@@ -106,7 +104,6 @@
 - type: entity
   parent: Thruster
   id: ThrusterXenoborg
-  name: xenoborg thruster # Starlight
   components:
   # temporary solution until thruster rework
   - type: Thruster
@@ -294,7 +291,6 @@
 - type: entity
   id: DebugGyroscope
   parent: BaseThruster
-  name: gyroscope # Starlight
   suffix: DEBUG
   components:
   - type: Thruster

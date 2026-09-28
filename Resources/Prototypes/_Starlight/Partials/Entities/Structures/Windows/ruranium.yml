@@ -1,0 +1,12 @@
+- type: !PartialOnly entity
+  id: UraniumReinforcedWindowDirectional
+  components:
+  - type: Destructible
+    thresholds:
+    - !CombineIndex:1 behaviors:
+      - !type:SpawnEntitiesBehavior
+        !CombineIndex:1 spawn: # Can no longer duplicate uranium
+          ShardGlassUranium:
+            max: 1
+          PartRodMetal:
+            max: 1

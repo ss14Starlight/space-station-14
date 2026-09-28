@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: ClosetJanitorBomb
+  categories: !Remove # Why is this DNM???
+
+- type: !PartialOnly entity
+  id: ClosetMaintenance
+  components:
+  - type: RoundstartMonsterSpawn
+  - type: EntityStorage
+    airtight: false # Allow air to move between the inside and outside of the locker, so that mobs that spawn in it don't suffocate

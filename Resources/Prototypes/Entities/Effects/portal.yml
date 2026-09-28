@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   id: BasePortal
   abstract: true
   name: bluespace portal
@@ -37,6 +37,7 @@
     color: OrangeRed
     radius: 3
     energy: 1
+    netsync: false
 
 - type: entity
   id: PortalBlue
@@ -50,7 +51,7 @@
     radius: 3
     energy: 1
     netsync: false
-
+    
 - type: entity
   id: PortalArtifact
   parent: BasePortal
@@ -122,4 +123,3 @@
     volume: -3
     sound:
       path: /Audio/Ambience/anomaly_scary.ogg
-  - type: DarkLight # Starlight

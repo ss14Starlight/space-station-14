@@ -1,0 +1,17 @@
+- type: !PartialOnly entity
+  id: ParticlesProjectile
+  components:
+  - type: Projectile
+    projectileType: Intangible
+    maximumHits: 3
+    deleteOnMaximumHits: true
+
+- type: !PartialOnly entity
+  id: AntiParticlesProjectile
+  components:
+  - type: Projectile
+    projectileType: Intangible
+    maximumHits: 3
+    deleteOnMaximumHits: true
+  - type: SinguloFood
+    energy: -30 # Stronger

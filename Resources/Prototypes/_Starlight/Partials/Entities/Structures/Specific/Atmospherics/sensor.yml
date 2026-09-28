@@ -1,0 +1,22 @@
+- type: !PartialOnly entity
+  id: AirSensorBase
+  components:
+  - type: DeviceNetwork
+    prefix: !Remove # prefix moved to AirSensor and GasPipeSensor, vents and scrubbers inherit this base too
+  - type: AtmosMonitor
+    gasThresholdPrototypes:
+      # Starlight gases
+      Ulnitranium: stationUlnitranium
+      ZXA: stationZXA
+
+- type: !PartialOnly entity
+  id: AirSensor
+  components:
+  - type: DeviceNetwork
+    prefix: device-address-prefix-sensor
+  # RPD
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
+    rpd: true

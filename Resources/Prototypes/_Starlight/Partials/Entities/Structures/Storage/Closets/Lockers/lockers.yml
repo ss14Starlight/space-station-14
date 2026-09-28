@@ -1,0 +1,95 @@
+# Appearance/EntityStorageVisuals moved to LockerBaseSecure
+- type: !PartialOnly entity
+  id: LockerSteel
+  suffix: Mapping
+  components: !Remove
+
+- type: !PartialOnly entity
+  id: LockerQuarterMaster
+  components:
+  - type: WiresPanelSecurity # Maintenance panel
+    securityLevel: medSecurity
+
+- type: !PartialOnly entity
+  id: LockerCaptain
+  components:
+  - type: WiresPanelSecurity # Maintenance panel
+    securityLevel: medSecurity # Maintenance panel
+
+- type: !PartialOnly entity
+  id: LockerHeadOfPersonnel
+  components:
+  - type: WiresPanelSecurity # Maintenance panel
+    securityLevel: medSecurity # Maintenance panel
+
+- type: !PartialOnly entity
+  id: LockerChiefEngineer
+  components:
+  - type: WiresPanelSecurity # Maintenance panel
+    securityLevel: medSecurity # Maintenance panel
+
+- type: !PartialOnly entity
+  id: LockerParamedic
+  components:
+  - type: AccessReader
+    access: !Clear [ [ "Paramedic" ] ]
+
+- type: !PartialOnly entity
+  id: LockerChiefMedicalOfficer
+  components:
+  - type: WiresPanelSecurity # Maintenance panel
+    securityLevel: medSecurity # Maintenance panel
+
+- type: !PartialOnly entity
+  id: LockerResearchDirector
+  components:
+  - type: WiresPanelSecurity # Maintenance panel
+    securityLevel: medSecurity # Maintenance panel
+
+- type: !PartialOnly entity
+  id: LockerHeadOfSecurity
+  components:
+  - type: WiresPanelSecurity # Maintenance panel
+    securityLevel: medSecurity # Maintenance panel
+
+- type: !PartialOnly entity
+  id: LockerWarden
+  components:
+  - type: WiresPanelSecurity # Maintenance panel
+    securityLevel: medSecurity # Maintenance panel
+
+- type: !PartialOnly entity
+  id: LockerSecurity
+  components:
+  - type: AccessReader
+    access: [["Cadet"]] # add cadet
+
+- type: !PartialOnly entity
+  id: LockerClown
+  categories: [ ShouldMapStation ]
+  components:
+  - type: AccessReader
+    access: !Clear [["Clown"]]
+
+- type: !PartialOnly entity
+  id: LockerMime
+  categories: [ ShouldMapStation ]
+  components:
+  - type: AccessReader
+    access: !Clear [["Mime"]]
+
+- type: !PartialOnly entity
+  id: LockerRepresentative
+  name: NanoTrasen representative's locker
+  components:
+  - type: AccessReader
+    access: !Clear [["Ntrep"]]
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: ntr
+    stateDoorOpen: nanotrasen-black_open
+    stateDoorClosed: ntr_door
+  # Maintenance panel
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity

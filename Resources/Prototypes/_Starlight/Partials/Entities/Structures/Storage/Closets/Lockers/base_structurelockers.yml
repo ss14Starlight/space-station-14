@@ -1,0 +1,61 @@
+- type: !PartialOnly entity
+  id: LockerBase
+  abstract: !Remove
+  components:
+  - type: Lock
+    popupMessage: false
+    powerNeeded: true
+  - type: Sprite
+    layers:
+    # Maintenance panel (written in reverse: partial list items are appended back to front)
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.Sparks"]
+    - state: electrified_ai
+      sprite: Interface/Misc/ai_hud.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.HUD"]
+    - state: panel_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+  # Wires panel
+  - type: Tag
+    tags:
+      - Locker
+  - type: PoweredLocker
+  - type: StationAiWhitelist
+  - type: WiresPanel
+  - type: WiresPanelSecurity
+    wiresAccessible: True
+  - type: WiresVisuals
+  - type: Wires
+    boardName: wires-board-name-locker
+    layoutId: Locker
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: GenericVisualizer
+    visuals:
+      enum.ElectrifiedVisuals.ShowSparks:
+        enum.ElectrifiedLayers.Sparks:
+          True: { visible: True }
+          False: { visible: False }
+
+- type: !PartialOnly entity
+  id: LockerBaseSecure
+  abstract: !Remove
+  name: secure closet
+  components:
+  # Base Locker
+  - type: Tag
+    tags:
+      - SecuredLocker
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: secure
+    stateDoorOpen: secure_open
+    stateDoorClosed: secure_door

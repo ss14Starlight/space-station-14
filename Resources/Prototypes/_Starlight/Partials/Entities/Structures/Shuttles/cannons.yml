@@ -1,0 +1,36 @@
+- type: !PartialOnly entity
+  id: ShuttleGunSvalinnMachineGun
+  components:
+  - type: AutoLoader
+    container: cell_slot
+    whitelist:
+      tags:
+      - PowerCell
+      - PowerCellSmall
+
+- type: !PartialOnly entity
+  id: ShuttleGunPerforator
+  components:
+  - type: AutoLoader
+    container: cell_slot
+    whitelist:
+      tags:
+      - PowerCage
+
+- type: !PartialOnly entity
+  id: ShuttleGunFriendship
+  components:
+  - type: AutoLoader
+    container: ballistic-ammo
+    whitelist:
+      tags:
+      - Grenade
+
+- type: !PartialOnly entity
+  id: ShuttleGunDuster
+  components:
+  - type: AutoLoader
+    container: gun_magazine
+    whitelist:
+      tags:
+      - MagazineGrenade

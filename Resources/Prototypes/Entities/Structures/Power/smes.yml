@@ -9,12 +9,12 @@
     mode: SnapgridCenter
   components:
     - type: AmbientSound
-      volume: -6 #SL edit -7 -> -6
-      range: 4 #SL edit 3 -> 4
+      volume: -7
+      range: 3
       sound:
         path: /Audio/Ambience/Objects/periodic_beep.ogg
     - type: Sprite
-      sprite: _Starlight/Structures/Power/smes.rsi #SL Edit
+      sprite: Structures/Power/smes.rsi
       snapCardinals: true
       layers:
         - state: smes
@@ -55,7 +55,7 @@
       sourceNode: input
       loadNode: output
       collectionName: smes
-      sprite: _Starlight/Structures/Power/smes.rsi #SL Edit
+      sprite: Structures/Power/smes.rsi
       state: static
     - type: BatteryDischarger
       voltage: High
@@ -102,7 +102,6 @@
       - PowerStorage
       - VoltageNetworks
       - Power
-    - type: StationAiWhitelist #Starlight
 
     # Interface
     - type: BatteryInterface
@@ -144,7 +143,7 @@
   description: An even-higher-capacity superconducting magnetic energy storage (SMES) unit.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Power/smes.rsi #SL Edit
+    sprite: Structures/Power/smes.rsi
     snapCardinals: true
     layers:
     - state: advancedsmes
@@ -171,7 +170,7 @@
     sourceNode: input
     loadNode: output
     collectionName: smes
-    sprite: _Starlight/Structures/Power/smes.rsi #SL Edit
+    sprite: Structures/Power/smes.rsi
     state: advancedsmes-static
 
 - type: entity

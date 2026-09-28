@@ -1,3 +1,46 @@
+- type: !PartialOnly entity
+  id: AirlockSyndicate
+  components:
+  - type: Wires
+    layoutId: AirlockSyndicate
+  - type: ContainerFill
+    containers:
+      board: [ BaseDoorElectronicsSyndicate ]
+
+- type: !PartialOnly entity
+  id: AirlockCentralCommand
+  components:
+  - type: Wires
+    layoutId: AirlockCentralCommand
+  - type: ContainerFill
+    containers:
+      board: [ BaseDoorElectronicsCentComm ]
+
+- type: !PartialOnly entity
+  id: AirlockXenoborg
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ BaseDoorElectronicsXenoborg ]
+
+- type: !PartialOnly entity
+  id: AirlockSyndicateGlass
+  components:
+  - type: Wires
+    layoutId: AirlockSyndicate
+  - type: ContainerFill
+    containers:
+      board: [ BaseDoorElectronicsSyndicate ]
+
+- type: !PartialOnly entity
+  id: AirlockCentralCommandGlass
+  components:
+  - type: Wires
+    layoutId: AirlockCentralCommand
+  - type: ContainerFill
+    containers:
+      board: [ BaseDoorElectronicsCentComm ]
+
 # Keep alphabetical
 - type: !PartialOnly entity
   id: AirlockMaintGlass

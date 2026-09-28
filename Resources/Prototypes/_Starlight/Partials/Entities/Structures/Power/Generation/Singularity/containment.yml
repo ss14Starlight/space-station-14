@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: ContainmentField
+  components:
+  - type: ContainmentField
+    throwForce: 10 # Stop yeeting players through walls and into deep-space

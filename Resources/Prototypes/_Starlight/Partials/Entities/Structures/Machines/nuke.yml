@@ -1,0 +1,15 @@
+- type: !PartialOnly entity
+  id: NuclearBomb
+  categories: [ ShouldMapStation ]
+  suffix: ROUND ENDING
+  components:
+  - type: Tag
+    tags:
+    - UnDissolvable
+
+- type: !PartialOnly entity
+  id: NuclearBombUnanchored
+  suffix: ROUND ENDING, unanchored
+  components:
+  - type: NukeLabel
+    prefix: "nuke-label-syndicate"

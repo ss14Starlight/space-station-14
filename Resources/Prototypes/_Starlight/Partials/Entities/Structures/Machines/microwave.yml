@@ -1,0 +1,24 @@
+# Microwave component replaced by CookingDevice
+- type: !PartialOnly entity
+  id: KitchenMicrowave
+  components:
+  - type: !Remove Microwave
+    capacity: !Remove
+  - type: CookingDevice
+    capacity: 10
+
+- type: !PartialOnly entity
+  id: SyndicateMicrowave
+  components:
+  - type: !Remove Microwave
+    cookTimeMultiplier: !Remove
+    baseHeatMultiplier: !Remove
+    capacity: !Remove
+    canMicrowaveIdsSafely: !Remove
+    explosionChance: !Remove
+  - type: CookingDevice
+    cookTimeMultiplier: 0.5
+    baseHeatMultiplier: 200
+    capacity: 10
+    canMicrowaveIdsSafely: false
+    explosionChance: 0.3

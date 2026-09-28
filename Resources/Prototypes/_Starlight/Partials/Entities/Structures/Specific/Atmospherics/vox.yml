@@ -16,4 +16,43 @@
       override: !type:CreateVariants
         values: *protos
 
+- type: !PartialOnly entity
+  id: AirSensorVoxBase
+  components:
+  - type: AtmosMonitor
+    gasThresholdPrototypes:
+      # Starlight gases
+      Ulnitranium: stationUlnitranium
+      ZXA: stationZXA
 
+- type: !PartialOnly entity
+  id: GasVentPumpVox
+  components:
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentPumpVox
+      Secondary: GasVentPumpVoxAlt1
+      Tertiary: GasVentPumpVoxAlt2
+      Quaternary: GasVentPumpVoxAlt3
+      Quinary: GasVentPumpVoxAlt4
+
+- type: !PartialOnly entity
+  id: GasVentScrubberVox
+  components:
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentScrubberVox
+      Secondary: GasVentScrubberVoxAlt1
+      Tertiary: GasVentScrubberVoxAlt2
+      Quaternary: GasVentScrubberVoxAlt3
+      Quinary: GasVentScrubberVoxAlt4
+  - type: GasVentScrubber
+    filterGases:
+    # Starlight gases (written in reverse: partial list items are appended back to front)
+    - ZXA
+    - Ulnitranium
+
+- type: !PartialOnly entity
+  id: AirAlarmVox
+  name: vox air alarm
+  description: An air alarm set up for use in vox quarters. It expects nitrogen, and treats oxygen as a hazard.

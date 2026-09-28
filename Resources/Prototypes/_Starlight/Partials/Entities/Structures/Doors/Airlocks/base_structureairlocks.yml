@@ -1,0 +1,19 @@
+- type: !PartialOnly entity
+  id: Airlock
+  components:
+  - type: Ricochetable
+    chance: 1
+  - type: Pierceable
+    level: HardenedMetal
+  - type: Door
+    closeSound:
+      path: /Audio/_ES/Machines/airlock_close.ogg # Ephemeral Space - better door timings
+  - type: Destructible
+    thresholds:
+    - !CombineIndex:0 trigger: !type:DamageTrigger
+        damage: 300
+  # ES START
+  - type: ESSparkOnHit
+    prob: 0.25
+    count: 2
+  # ES END

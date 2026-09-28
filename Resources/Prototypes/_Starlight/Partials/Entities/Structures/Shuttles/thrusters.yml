@@ -1,6 +1,10 @@
 - type: !PartialOnly entity
   id: BaseThruster
   components:
+  - type: Rotatable
+    rotateWhileAnchored: false
+  - type: Anchorable
+    delay: 10
   - type: WiresPanel
   - type: WiresVisuals
   - type: AdjustableThruster
@@ -26,3 +30,11 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
       visible: false
+
+- type: !PartialOnly entity
+  id: ThrusterXenoborg
+  name: xenoborg thruster
+
+- type: !PartialOnly entity
+  id: DebugGyroscope
+  name: gyroscope

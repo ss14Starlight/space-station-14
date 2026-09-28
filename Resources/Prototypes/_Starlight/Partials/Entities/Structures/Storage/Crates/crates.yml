@@ -1,0 +1,64 @@
+- type: !PartialOnly entity
+  id: CrateFreezer
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.StorageVisualLayers.Base"]
+      - state: closed
+        map: ["enum.StorageVisualLayers.Door"]
+      - state: welded
+        visible: false
+        map: ["enum.WeldableLayers.BaseWelded"]
+      - state: freezer_ribbon_sealed # <-- The only real change relative to CrateGeneric.
+        sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
+        visible: false
+        map: [ "enum.TamperSealLayers.Sealed" ]
+      - state: paper
+        sprite: Structures/Storage/Crates/labels.rsi
+        map: ["enum.PaperLabelVisuals.Layer"]
+
+- type: !PartialOnly entity
+  id: CrateContrabandStorageSecure
+  categories: [ ShouldMapStation ]
+
+- type: !PartialOnly entity
+  id: CrateLivestock
+  components:
+  - type: Sprite
+    layers:
+    - !Index:2
+      state: livestock_ribbon_sealed # Tamper seal
+      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]
+  - type: TamperSealable
+    destroyToolQualities: [ Cutting, Slicing ]
+
+- type: !PartialOnly entity
+  id: CrateLockBoxSecurity
+  components:
+  - type: AccessReader
+    access: [["Cadet"]] # add cadet
+
+- type: !PartialOnly entity
+  id: CratePirate
+  components:
+  - type: Sprite
+    layers:
+    - !Index:3
+      state: pirate_ribbon_sealed
+      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]
+
+- type: !PartialOnly entity
+  id: CrateToyBox
+  components:
+  - type: Sprite
+    layers:
+    - !Index:3
+      state: toybox_ribbon_sealed
+      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]

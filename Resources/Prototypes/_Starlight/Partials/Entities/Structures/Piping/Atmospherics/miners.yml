@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: GasMinerCarbonDioxide
+  categories: [ ShouldMapStation ]
+
+- type: !PartialOnly entity
+  id: GasMinerWaterVapor
+  categories: [ ShouldMapStation ]

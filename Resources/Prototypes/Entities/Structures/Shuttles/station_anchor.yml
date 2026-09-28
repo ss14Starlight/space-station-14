@@ -53,7 +53,6 @@
 
 - type: entity
   id: StationAnchor
-  categories: [ ShouldMapStation ] # Starlight
   parent: [StationAnchorBase, BaseMachinePowered, ConstructibleMachine]
   placement:
     mode: AlignTileAny

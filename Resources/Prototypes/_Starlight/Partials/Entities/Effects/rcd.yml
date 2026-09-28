@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: EffectRCDBase
+  components:
+  # Moffstation - More sparks
+  - type: ESSparkOnTrigger
+    count: 2 # less sparks
+    sparkPrototype: SLEffectSparksRCD # a little smaller
+  - type: TriggerOnSpawn

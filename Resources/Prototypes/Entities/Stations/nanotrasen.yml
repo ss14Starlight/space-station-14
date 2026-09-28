@@ -39,7 +39,7 @@
     - BaseStation
     - BaseStationAlertLevels
     - BaseStationNanotrasen
-    - BaseStationCryoTeleportation
+    - BaseStationCryoTeleportation # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   categories: [ HideSpawnMenu ]
   components:
     - type: Transform

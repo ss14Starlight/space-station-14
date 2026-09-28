@@ -45,24 +45,6 @@
     sprite: Structures/Storage/Crates/freezer.rsi
   - type: Sprite
     sprite: Structures/Storage/Crates/freezer.rsi
-    # Starlight BEGIN
-    layers:
-      - state: base
-        map: ["enum.StorageVisualLayers.Base"]
-      - state: closed
-        map: ["enum.StorageVisualLayers.Door"]
-      - state: welded
-        visible: false
-        map: ["enum.WeldableLayers.BaseWelded"]
-      - state: freezer_ribbon_sealed # <-- The only real change relative to CrateGeneric.
-        sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
-        visible: false
-        map: [ "enum.TamperSealLayers.Sealed" ]
-      - state: paper
-        sprite: Structures/Storage/Crates/labels.rsi
-        map: ["enum.PaperLabelVisuals.Layer"]
-    # Starlight END
-
   - type: AntiRottingContainer
   - type: ExplosionResistance
     damageCoefficient: 0.50
@@ -330,7 +312,6 @@
   parent: [ CrateBaseSecure, BaseSecurityContraband ]
   suffix: Armory, Secure
   id: CrateContrabandStorageSecure
-  categories: [ ShouldMapStation ] # Starlight
   name: contraband storage crate
   description: An armory access locked crate for storing contraband confiscated from suspects or prisoners.
   components:
@@ -377,12 +358,6 @@
     - state: base
     - state: closed
       map: ["enum.StorageVisualLayers.Door"]
-      # Starlight BEGIN
-    - state: livestock_ribbon_sealed # Tamper seal
-      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
-      visible: false
-      map: [ "enum.TamperSealLayers.Sealed" ]
-      # Starlight END
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
       offset: "-0.25,0.625"
@@ -426,10 +401,6 @@
     - entity_storage
   - type: StaticPrice
     price: 125
-    # Starlight BEGIN
-  - type: TamperSealable
-    destroyToolQualities: [ Cutting, Slicing ]
-    # Starlight END
 
 - type: entity
   parent: CrateGeneric
@@ -652,7 +623,7 @@
   - type: OverrideSell
     overrideAccount: Security
   - type: AccessReader
-    access: [["Security"], ["Cadet"]] # Starlight: add cadet
+    access: [["Security"]]
 
 - type: entity
   id: CrateLockBoxService
@@ -700,12 +671,6 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
-      # Starlight BEGIN
-    - state: pirate_ribbon_sealed
-      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
-      visible: false
-      map: [ "enum.TamperSealLayers.Sealed" ]
-      # Starlight END
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
       offset: "0.0,-0.09375"
@@ -735,12 +700,6 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
-      # Starlight BEGIN
-    - state: toybox_ribbon_sealed
-      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
-      visible: false
-      map: [ "enum.TamperSealLayers.Sealed" ]
-      # Starlight END
     - state: paper
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: Icon

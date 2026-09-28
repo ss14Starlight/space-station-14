@@ -1,15 +1,9 @@
 - type: entity
   parent: BaseStructure
   id: CryogenicSleepUnit
-  categories: [ ShouldMapStation ] # Starlight - some empty pods should be mapped
   name: cryogenic sleep unit
   description: A super-cooled container that keeps crewmates safe during space travel.
   components:
-  - type: AmbientSound #SL
-    volume: -7 #SL
-    range: 4 #SL
-    sound: #SL
-      path: /Audio/_Starlight/Effects/Machinery/electric_buzz.ogg #SL
   - type: Anchorable
     flags:
     - Anchorable
@@ -66,8 +60,7 @@
 - type: entity
   parent: CryogenicSleepUnit
   id: CryogenicSleepUnitSpawner
-  categories: [ DoNotMap ] # Starlight - this cryo unit will make people spawn at cryosleep at roundstart instead of mapped spawnpoints!
-  suffix: Spawner, Roundstart AllJobs, DO NOT MAP # Starlight
+  suffix: Spawner, Roundstart AllJobs
   components:
   - type: ContainerSpawnPoint
     containerId: storage
@@ -76,7 +69,6 @@
 - type: entity
   parent: CryogenicSleepUnit
   id: CryogenicSleepUnitSpawnerLateJoin
-  categories: [ ShouldMapStation ] # Starlight - these are always required for latejoining
   suffix: Spawner, LateJoin
   components:
     - type: ContainerSpawnPoint

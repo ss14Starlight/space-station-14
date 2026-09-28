@@ -31,7 +31,7 @@
 - type: entity
   parent: AirlockServiceLocked
   id: AirlockChapelLocked
-  suffix: Shrine, Locked # Starlight: Chapel -> Shrine
+  suffix: Chapel, Locked
   components:
   - type: ContainerFill
     containers:
@@ -431,14 +431,14 @@
     containers:
       board: [ DoorElectronicsVault ]
 
-- type: entity # 🌟Starlight begin
-  parent: AirlockEVA
+- type: entity
+  parent: AirlockEVA # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: AirlockEVALocked
-  suffix: Command (EVA), Locked
+  suffix: EVA, Locked
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsCommand ] # Starlight end🌟
+      board: [ DoorElectronicsExternal ]
 
 # Glass Airlocks
 - type: entity
@@ -594,7 +594,7 @@
 - type: entity
   parent: AirlockServiceGlassLocked
   id: AirlockChapelGlassLocked
-  suffix: Shrine, Locked # Starlight: Chapel -> Shrine
+  suffix: Chapel, Locked
   components:
   - type: ContainerFill
     containers:
@@ -603,7 +603,7 @@
 - type: entity
   parent: AirlockStandardGlass
   id: AirlockChapelStandardGlassLocked
-  suffix: Shrine, Locked # Starlight: Chapel -> Shrine
+  suffix: Chapel, Locked
   components:
   - type: ContainerFill
     containers:
@@ -836,14 +836,14 @@
     containers:
       board: [ DoorElectronicsArmory ]
 
-- type: entity # 🌟Starlight begin
-  parent: AirlockEVAGlass
+- type: entity
+  parent: AirlockEVAGlass # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: AirlockEVAGlassLocked
-  suffix: Command (EVA), Locked
+  suffix: EVA, Locked
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsCommand ] # Starlight end🌟
+      board: [ DoorElectronicsExternal ]
 
 - type: entity
   parent: AirlockSyndicateGlass
@@ -1223,18 +1223,7 @@
   id: AirlockExternalGlassShuttleEscape
   suffix: External, Escape 3x4, Glass, Docking
   components:
-  #- type: GridFill # Starlight - swap from gridfill to random grid fill
-  # Starlight start
-  - type: RandomGridFill
-    pathWeights:
-      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_small.yml": 40
-      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_cheap.yml": 2
-      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_toilet.yml": 1
-      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_library.yml": 2
-      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_lounge.yml": 2
-      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_pet.yml": 2
-      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_verysmall.yml": 1
-    # Starlight end
+  - type: GridFill
     addComponents:
     - type: IFF
       flags:

@@ -1,0 +1,18 @@
+- type: !PartialOnly entity
+  id: CryogenicSleepUnit
+  categories: [ ShouldMapStation ] # some empty pods should be mapped
+  components:
+  - type: AmbientSound
+    volume: -7
+    range: 4
+    sound:
+      path: /Audio/_Starlight/Effects/Machinery/electric_buzz.ogg
+
+- type: !PartialOnly entity
+  id: CryogenicSleepUnitSpawner
+  categories: [ DoNotMap ] # this cryo unit will make people spawn at cryosleep at roundstart instead of mapped spawnpoints!
+  suffix: Spawner, Roundstart AllJobs, DO NOT MAP
+
+- type: !PartialOnly entity
+  id: CryogenicSleepUnitSpawnerLateJoin
+  categories: [ ShouldMapStation ] # these are always required for latejoining

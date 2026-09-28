@@ -25,13 +25,12 @@
   id: LockerSteel
   parent: LockerBaseSecure
   name: secure closet
-  suffix: Mapping # Starlight-edit
-#  components: Starlight-edit: Moved to LockerBaseSecure
-#  - type: Appearance
-#  - type: EntityStorageVisuals
-#    stateBaseClosed: secure
-#    stateDoorOpen: secure_open
-#    stateDoorClosed: secure_door
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: secure
+    stateDoorOpen: secure_open
+    stateDoorClosed: secure_door
 
 # Cargo
 - type: entity
@@ -46,8 +45,6 @@
     stateDoorClosed: qm_door
   - type: AccessReader
     access: [["Quartermaster"]]
-  - type: WiresPanelSecurity # Starlight: Maintenance panel
-    securityLevel: medSecurity
 
 - type: entity
   id: LockerSalvageSpecialist
@@ -76,8 +73,6 @@
     stateDoorClosed: cap_door
   - type: AccessReader
     access: [["Captain"]]
-  - type: WiresPanelSecurity # Starlight-edit: Maintenance panel
-    securityLevel: medSecurity # Starlight-edit: Maintenance panel
 
 - type: entity
   id: LockerHeadOfPersonnel
@@ -91,8 +86,6 @@
     stateDoorClosed: hop_door
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
-  - type: WiresPanelSecurity # Starlight-edit: Maintenance panel
-    securityLevel: medSecurity # Starlight-edit: Maintenance panel
 
 # CE
 - type: entity
@@ -107,8 +100,6 @@
     stateDoorClosed: ce_door
   - type: AccessReader
     access: [ [ "ChiefEngineer" ] ]
-  - type: WiresPanelSecurity # Starlight-edit: Maintenance panel
-    securityLevel: medSecurity # Starlight-edit: Maintenance panel
 
 # Electrical supplies
 - type: entity
@@ -268,7 +259,7 @@
     stateDoorOpen: paramed_open
     stateDoorClosed: paramed_door
   - type: AccessReader
-    access: [ [ "Paramedic" ] ] # Starlight
+    access: [ [ "Medical" ] ]
 
 
 # Chemical
@@ -298,8 +289,6 @@
     stateDoorClosed: cmo_door
   - type: AccessReader
     access: [ [ "ChiefMedicalOfficer" ] ]
-  - type: WiresPanelSecurity # Starlight-edit: Maintenance panel
-    securityLevel: medSecurity # Starlight-edit: Maintenance panel
 
 # Science
 - type: entity
@@ -314,8 +303,6 @@
     stateDoorClosed: rd_door
   - type: AccessReader
     access: [ [ "ResearchDirector" ] ]
-  - type: WiresPanelSecurity # Starlight-edit: Maintenance panel
-    securityLevel: medSecurity # Starlight-edit: Maintenance panel
 
 - type: entity
   id: LockerScientist
@@ -343,8 +330,6 @@
     stateDoorClosed: hos_door
   - type: AccessReader
     access: [["HeadOfSecurity"]]
-  - type: WiresPanelSecurity # Starlight-edit: Maintenance panel
-    securityLevel: medSecurity # Starlight-edit: Maintenance panel
 
 # Warden
 - type: entity
@@ -359,8 +344,6 @@
     stateDoorClosed: warden_door
   - type: AccessReader
     access: [["Armory"]]
-  - type: WiresPanelSecurity # Starlight-edit: Maintenance panel
-    securityLevel: medSecurity # Starlight-edit: Maintenance panel
 
 # Brigmedic
 - type: entity
@@ -388,7 +371,7 @@
     stateDoorOpen: sec_open
     stateDoorClosed: sec_door
   - type: AccessReader
-    access: [["Security"], ["Cadet"]] # Starlight: add cadet
+    access: [["Security"]]
 
 - type: entity
   id: GunSafe
@@ -594,13 +577,12 @@
 # Clown
 - type: entity
   id: LockerClown
-  categories: [ ShouldMapStation ] # Starlight
   name: clown locker
   parent: LockerBaseSecure
   components:
   - type: Appearance
   - type: AccessReader
-    access: [["Clown"]] # Starlight
+    access: [["Theatre"]]
   - type: EntityStorageVisuals
     stateBaseClosed: clown
     stateDoorOpen: clown_open
@@ -609,13 +591,12 @@
 # Mime
 - type: entity
   id: LockerMime
-  categories: [ ShouldMapStation ] # Starlight
   name: mime locker
   parent: LockerBaseSecure
   components:
   - type: Appearance
   - type: AccessReader
-    access: [["Mime"]] # Starlight
+    access: [["Theatre"]]
   - type: EntityStorageVisuals
     stateBaseClosed: mime
     stateDoorOpen: mime_open
@@ -624,17 +605,13 @@
 # Representative
 - type: entity
   id: LockerRepresentative
-  name: NanoTrasen representative's locker # Starlight, added apostrophe s
+  name: representative locker
   parent: LockerBaseSecure
   components:
   - type: Appearance
   - type: AccessReader
-    access: [["Ntrep"]] # Starlight start
-  - type: Sprite
-    sprite: _Starlight/Structures/Storage/closet.rsi
+    access: [["Command"]]
   - type: EntityStorageVisuals
-    stateBaseClosed: ntr
-    stateDoorOpen: nanotrasen-black_open
-    stateDoorClosed: ntr_door
-  - type: WiresPanelSecurity # Starlight end, Maintenance panel
-    securityLevel: medSecurity
+    stateBaseClosed: hop
+    stateDoorOpen: hop_open
+    stateDoorClosed: representative_door

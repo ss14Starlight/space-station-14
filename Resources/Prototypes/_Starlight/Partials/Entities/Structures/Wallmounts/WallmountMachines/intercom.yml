@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: BaseIntercom
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/intercom.rsi
+
+- type: !PartialOnly entity
+  id: IntercomAssembly
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/intercom.rsi
+  - type: InteractionOutline
+  - type: Clickable

@@ -1,6 +1,5 @@
 - type: entity
   id: Morgue
-  categories: [ ShouldMapStation ] # Starlight
   name: morgue
   description: Used to store bodies until someone fetches them. Includes a high-tech alert system for false-positives!
   placement:
@@ -21,20 +20,6 @@
       visible: false
       map: ["enum.MorgueVisualLayers.Light"]
       shader: unshaded
-    - state: paper # 🌟Starlight begin - add paper labelling
-      visible: false
-      sprite: _Starlight/Structures/Storage/morgue-labels.rsi
-      map: [ "enum.PaperLabelVisuals.Layer" ]
-  - type: PaperLabel
-    labelSlot:
-      insertVerbText: comp-paper-label-insert
-      ejectVerbText: comp-paper-label-eject
-      whitelist:
-        components:
-          - Paper
-      blacklist:
-        tags:
-          - Book # Starlight end🌟
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -64,8 +49,7 @@
   - type: ContainerContainer
     containers:
       entity_storage: !type:Container
-      paper_label: !type:ContainerSlot # Starlight
-  - type: ItemSlots # Starlight
+      paper_label: !type:ContainerSlot # Starlight - partials can't add empty values
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -78,18 +62,6 @@
         enum.StorageVisualLayers.Door:
           True: { visible: true}
           False: { visible: false}
-        enum.PaperLabelVisuals.Layer: # 🌟Starlight begin - add paper labelling
-          True: { visible: false }
-      enum.PaperLabelVisuals.HasLabel:
-        enum.PaperLabelVisuals.Layer:
-          True: { visible: true }
-          False: { visible: false }
-      enum.PaperLabelVisuals.LabelType:
-        enum.PaperLabelVisuals.Layer:
-          Paper: { state: paper }
-          Bounty: { state: bounty }
-          CaptainsPaper: { state: captains_paper }
-          Invoice: { state: invoice } # Starlight end🌟
       enum.MorgueVisuals.Contents:
         # toggle contents light indicator:
         enum.MorgueVisualLayers.Light:

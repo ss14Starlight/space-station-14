@@ -39,7 +39,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 60 #Starlight
+        damage: 120
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -816,7 +816,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 60 #Starlight
+        damage: 150
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]

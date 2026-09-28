@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: TintedWindow
+  description: Smart tinted window with state switching option.
+  components:
+  - type: ToggleableOccluder
+  - type: DeviceLinkSink
+    ports:
+    - On
+    - Off
+    - Toggle

@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: DefibrillatorCabinet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/defib_cabinet.rsi # new sprites

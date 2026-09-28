@@ -1,0 +1,43 @@
+- type: !PartialOnly entity
+  id: FaxMachineBase
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.FaxMachineConfigureUiKey.Key:
+        type: FaxMachineConfigureBoundUserInterface
+  - type: FaxMachine
+    paperSlot:
+      blacklist: !Remove
+
+- type: !PartialOnly entity
+  id: FaxMachineCentcom
+  name: !Remove # Inherit name
+  suffix: "CC: Central Command"
+  components:
+  - type: !Remove Sprite # No Sprite override
+    layers: !Remove
+  - type: FaxMachine
+    group: FaxGroupCentralCommand
+    intrinsicGroup: FaxGroupCentralCommand
+    order: 100
+
+- type: !PartialOnly entity
+  id: FaxMachineSyndie
+  name: !Remove # Inherit name
+  suffix: "Syndicate: ERR*?*%!"
+  components:
+  - type: !Remove Sprite # No Sprite override
+    layers: !Remove
+  - type: FaxMachine
+    group: FaxGroupSyndicate
+    order: 200
+
+- type: !PartialOnly entity
+  id: FaxMachineCaptain
+  name: !Remove # Inherit name
+  suffix: "CMD: Captain, NukeCodes"
+  components:
+    - type: FaxMachine
+      group: FaxGroupCommand
+      order: 200
+      name: "Captain"

@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: ComputerTechnologyDiskTerminal
+  components:
+  - type: GenericVisualizer  # Override to prevent edge connection sprites
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: icon, sprite: Structures/Machines/tech_disk_printer.rsi }
+  - type: EdgeConnection
+    connectionKey: other

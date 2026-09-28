@@ -1,0 +1,4 @@
+- type: !PartialOnly entity
+  id: DisposalUnitBase
+  components:
+  - type: ChildBlockVision

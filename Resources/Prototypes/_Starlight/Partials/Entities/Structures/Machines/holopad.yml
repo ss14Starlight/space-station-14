@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: Holopad
+  components:
+  - type: PointLight
+    castShadows: false # lighting optimization
+
+- type: !PartialOnly entity
+  id: HolopadServiceChapel
+  suffix: Shrine # Chapel -> Shrine

@@ -1,0 +1,20 @@
+- type: !PartialOnly entity
+  id: AirlockGlassShuttleSyndicate
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ BaseDoorElectronicsSyndicate ]
+
+- type: !PartialOnly entity
+  id: AirlockShuttleSyndicate
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ BaseDoorElectronicsSyndicate ]
+
+- type: !PartialOnly entity
+  id: AirlockShuttleXenoborg
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ BaseDoorElectronicsXenoborg ]

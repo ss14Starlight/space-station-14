@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: CoreSubstation
+  components:
+  - type: StationAiWhitelist
+  - type: AmbientSound
+    volume: -4 # -5 -> -4

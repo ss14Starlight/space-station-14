@@ -1,0 +1,12 @@
+- type: !PartialOnly entity
+  id: RollerBed
+  components:
+    - type: Tag
+      tags:
+      - RollerBed
+
+- type: !PartialOnly entity
+  id: EmergencyRollerBed
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/rollerbed.rsi

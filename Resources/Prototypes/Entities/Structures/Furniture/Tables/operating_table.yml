@@ -2,7 +2,7 @@
   id: OperatingTable
   parent: Bed
   name: operating table
-  description: Special medical table for surgery. # Starlight
+  description: Special medical table for surgery. This one just seems to be a useless prop, though.
   components:
   - type: Sprite
     sprite: Structures/Furniture/Tables/optable.rsi
@@ -11,17 +11,3 @@
   - type: Icon
     sprite: Structures/Furniture/Tables/optable.rsi
     state: operating_table
-  - type: OperatingTable
-  # Starlight-start: Surgery body scanner
-  - type: HealOnBuckle
-    damage: {}
-  - type: InteractionOutline
-  - type: DeviceList
-  - type: DeviceNetwork
-    deviceNetId: Wired
-  - type: DeviceLinkSink
-    ports:
-      - BodyScannerReceiver
-  - type: PlaceableSurface
-    isPlaceable: false
-  # Starlight-end

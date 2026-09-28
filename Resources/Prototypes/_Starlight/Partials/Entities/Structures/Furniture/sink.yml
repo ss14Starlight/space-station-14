@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: SinkEmpty
+  components:
+  - type: Construction
+    graph: Sink
+    node: sink
+  - type: WashingFixture

@@ -1,7 +1,7 @@
 - type: entity
   id: MiningWindow
   name: mining window
-  parent: [ WindowRCDResistant, BaseDeltaPressureReinforcedGlass ] # Starlight
+  parent: [ WindowRCDResistant, BaseDeltaPressureReinforcedGlass ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   components:
   - type: Sprite
     drawdepth: WallTops
@@ -52,7 +52,7 @@
     price: 100
 
 - type: entity
-  parent: MiningWindow # Starlight
+  parent: MiningWindow # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: MiningWindowDiagonal
   suffix: diagonal
   placement:

@@ -1,0 +1,17 @@
+- type: !PartialOnly entity
+  id: OperatingTable
+  description: Special medical table for surgery.
+  components:
+  - type: OperatingTable
+  # Surgery body scanner
+  - type: HealOnBuckle
+    damage: {}
+  - type: InteractionOutline
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSink
+    ports:
+      - BodyScannerReceiver
+  - type: PlaceableSurface
+    isPlaceable: false

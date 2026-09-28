@@ -1,10 +1,8 @@
 - type: entity
   parent: [BaseStructure, StructureWheeled, BaseMajorContraband]
   id: NuclearBomb
-  categories: [ ShouldMapStation ] # Starlight
   name: nuclear fission explosive
   description: You probably shouldn't stick around to see if this is armed.
-  suffix: ROUND ENDING # Starlight
   components:
   - type: Transform
     anchored: true
@@ -112,7 +110,6 @@
   - type: Tag
     tags:
     - GhostOnlyWarp
-    - UnDissolvable # Starlight-edit
   - type: WarpPoint
     follow: true
     location: nuclear bomb
@@ -124,16 +121,12 @@
 - type: entity
   parent: NuclearBomb
   id: NuclearBombUnanchored
-  suffix: ROUND ENDING, unanchored # Starlight
+  suffix: unanchored
   components:
   - type: Transform
     anchored: false
   - type: Physics
     bodyType: Dynamic
-  # Starlight-start
-  - type: NukeLabel
-    prefix: "nuke-label-syndicate"
-  # Starlight-end
 
 - type: entity
   parent: StorageTankBig

@@ -1,0 +1,14 @@
+- type: !PartialOnly entity
+  id: ComputerTelevision
+  components:
+  - type: GenericVisualizer  # Override to prevent edge connection sprites
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        console:
+          None: { state: television}
+  - type: EdgeConnection
+    connectionKey: other
+  - type: PointLight
+    radius: 2.0
+    energy: 1.5
+    castShadows: false # lighting optimization

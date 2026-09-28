@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseStructure, BaseStructureDissolvable ] # Starlight-edit
+  parent: [ BaseStructure, BaseStructureDissolvable ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: BaseRailing
   abstract: true
   name: railing
@@ -7,9 +7,9 @@
   components:
   - type: Sprite
     drawdepth: SmallObjects
-    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    sprite: Structures/Walls/railing.rsi
   - type: Icon
-    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    sprite: Structures/Walls/railing.rsi
   - type: Physics
     bodyType: Static
   - type: InteractionOutline
@@ -28,14 +28,10 @@
 - type: entity
   parent: BaseRailing
   id: Railing
-  name: railing #SL
-  suffix: steel #SL
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
     state: side
   - type: Icon
-    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
     state: side
   - type: Fixtures
     fixtures:
@@ -78,14 +74,10 @@
 - type: entity
   parent: BaseRailing
   id: RailingCorner
-  name: railing #SL
-  suffix: steel, corner #SL
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
     state: corner
   - type: Icon
-    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
     state: corner
   - type: Fixtures
     fixtures:
@@ -137,14 +129,10 @@
 - type: entity
   parent: BaseRailing
   id: RailingCornerSmall
-  name: railing #SL
-  suffix: steel, corner small #SL
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
     state: corner_small
   - type: Icon
-    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
     state: corner_small
   - type: Fixtures
     fixtures:
@@ -187,14 +175,10 @@
 - type: entity
   parent: BaseRailing
   id: RailingRound
-  name: railing #SL
-  suffix: steel, round #SL
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
     state: round
   - type: Icon
-    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
     state: round
   - type: Fixtures
     fixtures:
