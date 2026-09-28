@@ -2,8 +2,8 @@
 - type: entity
   name: CODE-6 "Arbitration"
   id: WeaponMedTakLightMachineGun
-  parent: [ BaseWeaponLightMachineGun, BaseMedTakContraband ]
-  description: "An ultralight assault LMG developed for MedTak security.\nAccepts .30 box magazines."
+  parent: [ BaseWeaponLightMachineGun, BaseVariableHeavySettings, BaseMedTakContraband ]
+  description: "An ultralight assault LMG developed for MedTak security.\nAccepts HVA box magazines."
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/MedTak/Weapons/LMG.rsi
@@ -33,45 +33,19 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: LightRifleHeavyMagazineSP
+        startingItem: MagazineVariableBoxHeavy
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
         whitelist:
           tags:
-            - LightRifleHeavy
+            - BoxHVA
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifleSP
+        startingItem: RoundVariableHeavy
         priority: 1
         whitelist:
           tags:
-            - CartridgeLightRifle
-  - type: GunToggleableAmmo
-    settings:
-    - damage: # HP
-        types:
-          Piercing: 25
-      armorPiercing: -1.00
-      ricochetChance: 0.15
-      pierceChance: 0.03
-      pierceDeviation: 0.05
-      pierceLevel: "Wood"
-      name: Hollow Point
-      icon:
-        sprite: _Starlight/Interface/Actions/actions_borg.rsi
-        state: medtak-aid-module
-    - damage: # FMJ
-        types:
-          Piercing: 13
-      armorPiercing: 0.25
-      ricochetChance: 0.30
-      pierceChance: 0.69
-      pierceDeviation: 0.05
-      pierceLevel: "Metal"
-      name: Armour Piercing
-      icon:
-        sprite: _Starlight/Interface/Actions/actions_borg.rsi
-        state: medtak-combat-module
+            - RoundHVA
   - type: HeldSpeedModifier
   - type: Gun
     soundGunshot:
@@ -87,9 +61,9 @@
 # Rifle
 - type: entity
   name: CODE-9 "Compliance"
-  parent: [ BaseWeaponRifle, BaseMedTakContraband ]
+  parent: [ BaseWeaponRifle, BaseVariableLightSettings, BaseMedTakContraband ]
   id: WeaponMedTakRifle
-  description: "A bullpuped heavy rifle designed for MedTak operators.\nAccepts heavy .20 rifle magazines."
+  description: "A bullpuped rifle designed for MedTak operators.\nAccepts MVA magazines."
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/MedTak/Weapons/Rifle.rsi
@@ -116,20 +90,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifleM52SP
+        startingItem: MagazineVariableMedium
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineRifleM52
+            - MagazineMVA
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         priority: 1
         whitelist:
           tags:
-          - CartridgeRifle
+          - RoundMVA
   - type: MagazineVisuals
     magState: mag
     steps: 4
@@ -138,7 +112,7 @@
 
 - type: entity
   name: CODE-9 ROW
-  parent: BaseItem
+  parent: [ BaseItem, BaseVariableMediumSettings]
   id: WeaponMedTakRifleROW
   description: "A cut-down CODE-9 designed for cyborgs, feeding from a slowly recharging internal ammo fabricator"
   components:
@@ -172,9 +146,9 @@
   - type: BallisticAmmoProvider
     whitelist:
       tags:
-      - CartridgeRifle
-    capacity: 24
-    proto: CartridgeRifleSP
+      - RoundMVA
+    capacity: 25
+    proto: RoundVariableMedium
     cycleable: false
   - type: BallisticAmmoSelfRefiller
     autoRefillRate: 4s
@@ -219,9 +193,9 @@
 # SMG
 - type: entity
   name: CODE-10 "Intervention"
-  parent: [BaseWeaponSubMachineGun, BaseMedTakContraband]
+  parent: [BaseWeaponSubMachineGun, BaseVariableLightSettings, BaseMedTakContraband]
   id: WeaponMedTakSubMachineGun
-  description: A compact submachine gun with an integral supressor. It features an advanced recoil system, but suffers slightly in rate of fire.
+  description: "A compact submachine gun with an integral supressor. It features an advanced recoil system, but suffers slightly in rate of fire.\nAccepts LVA magazines."
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/MedTak/Weapons/SMG.rsi
@@ -248,6 +222,24 @@
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/pdw90_shot.ogg
       params:
         volume: -2
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineVariableLight
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLVA
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - RoundLVA
   - type: MagazineVisuals
     magState: mag
     steps: 6

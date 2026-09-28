@@ -1,0 +1,84 @@
+- type: entity
+  parent: BaseItem
+  id: BaseMagazineBoxVariable
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - RoundMVA
+    proto: RoundVariableMedium
+    capacity: 50
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Weapons/Magazines/ammoboxes.rsi
+  - type: MagazineVisuals
+    magState: MVA_mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVariable
+  id: MagazineBoxVariableHeavy
+  name: ammunition box (HVA)
+  description: A box of Heavy Variable rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: RoundVariableHeavy
+    whitelist:
+      tags:
+        - RoundHVA
+    capacity: 75
+  - type: Sprite
+    layers:
+    - state: HVA_box
+      map: ["enum.GunVisualLayers.Base"]
+    - state: HVA_mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: HVA_mag
+    steps: 7
+    zeroVisible: false
+
+- type: entity
+  parent: BaseMagazineBoxVariable
+  id: MagazineBoxVariableMedium
+  name: ammunition box (MVA)
+  description: A box of Medium Variable rounds.
+  components:
+  - type: BallisticAmmoProvider
+  - type: Sprite
+    layers:
+    - state: MVA_box
+      map: ["enum.GunVisualLayers.Base"]
+    - state: MVA_mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineBoxVariable
+  id: MagazineBoxVariableLight
+  name: ammunition box (LVA)
+  description: A box of Light Variable rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: RoundVariableLight
+    whitelist:
+      tags:
+        - RoundLVA
+    capacity: 75
+  - type: Sprite
+    layers:
+    - state: LVA_box
+      map: ["enum.GunVisualLayers.Base"]
+    - state: LVA_mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: LVA_mag
+    steps: 4
+    zeroVisible: false

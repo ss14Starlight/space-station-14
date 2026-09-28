@@ -2,4 +2,4 @@
 
 namespace Content.Shared._Starlight.Weapons.Ranged.Ammo;
 
-public sealed partial class GunToggleAmmoActionEvent : InstantActionEvent;
+public sealed partial class GunSelectableAmmoActionEvent : InstantActionEvent;

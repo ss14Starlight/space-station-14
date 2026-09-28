@@ -14,15 +14,15 @@
 
 - type: entity
   parent: BaseAction
-  id: MedTakActionToggleAmmo
-  name: Toggle Ammo Type
+  id: MedTakActionSelectAmmo
+  name: Select Ammo Type
   description: Switch the ammo type fired by this gun.
   components:
   - type: Action
     icon:
-      sprite: _Starlight/Interface/Actions/actions_borg.rsi
-      state: medtak-aid-module
+      sprite: _Starlight/Admeme/MedTak/Weapons/ammo-selection.rsi
+      state: standard-kinetic
     useDelay: 0.25
     itemIconStyle: NoItem
   - type: InstantAction
-    event: !type:GunToggleAmmoActionEvent
+    event: !type:GunSelectableAmmoActionEvent
