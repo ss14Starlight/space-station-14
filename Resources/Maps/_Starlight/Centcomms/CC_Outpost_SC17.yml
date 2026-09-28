@@ -4,8 +4,8 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 09/28/2026 03:53:11
-  entityCount: 9982
+  time: 09/28/2026 03:54:37
+  entityCount: 9983
 maps: []
 grids:
 - 1
@@ -5678,7 +5678,7 @@ entities:
       pos: -6.5,-13.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -27052.65
+      secondsUntilStateChange: -27138.877
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -54247,6 +54247,12 @@ entities:
       parent: 1
       rot: -1.5707963267948966 rad
       pos: -72.5,5.5
+  - uid: 9983
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: -48.5,14.5
 - proto: PoweredlightBlue
   entities:
   - uid: 7743
@@ -67159,7 +67165,7 @@ entities:
         DoorStatus: True
     - type: Door
       state: Opening
-      secondsUntilStateChange: -64129.305
+      secondsUntilStateChange: -64215.53
     - type: Airlock
       autoClose: False
   - uid: 9956
@@ -67173,7 +67179,7 @@ entities:
         DoorStatus: True
     - type: Door
       state: Opening
-      secondsUntilStateChange: -64138.57
+      secondsUntilStateChange: -64224.797
     - type: Airlock
       autoClose: False
   - uid: 9957
@@ -67187,7 +67193,7 @@ entities:
         DoorStatus: True
     - type: Door
       state: Opening
-      secondsUntilStateChange: -68778.055
+      secondsUntilStateChange: -68864.28
     - type: Airlock
       autoClose: False
   - uid: 9958
@@ -67201,7 +67207,7 @@ entities:
         DoorStatus: True
     - type: Door
       state: Opening
-      secondsUntilStateChange: -68779.42
+      secondsUntilStateChange: -68865.65
     - type: Airlock
       autoClose: False
 - proto: WindoorSecureChemistryLocked
