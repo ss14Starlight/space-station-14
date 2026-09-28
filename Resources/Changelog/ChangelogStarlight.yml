@@ -1,18 +1,4 @@
 Entries:
-- author: ya314a, Fahreyy, Teddiousbear.
-  changes:
-  - message: 16 New Jumpskirts.
-    type: Add
-  id: 408557
-  time: '2026-09-14T07:34:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6038
-- author: ya314a, Fahreyy, Teddiousbear.
-  changes:
-  - message: 24 New Beret/BountyHunterHats/Caps.
-    type: Add
-  id: 408558
-  time: '2026-09-14T07:34:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6038
 - author: STARLIGHT TEAM
   changes:
   - message: '"Damper II" by Beptol Corporation to vinyls and NukeOps music list.'
@@ -2799,4 +2785,18 @@ Entries:
   id: 408956
   time: '2026-09-28T09:54:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6325
+- author: Floximo
+  changes:
+  - message: AI can now access shuttles that are connected with a remote shuttle console to their gird.
+    type: Add
+  id: 408957
+  time: '2026-09-28T09:54:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6055
+- author: Floximo
+  changes:
+  - message: Error resolved that caused a lot of logs, created by the AI camera eye not being a physical entity.
+    type: Fix
+  id: 408958
+  time: '2026-09-28T09:54:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6055
 Order: -1
