@@ -1,18 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Social Interactions can be performed on a wider variety of entities now, allowing you to finally be able to Boop or Pet Ian.
-    type: Add
-  id: 408555
-  time: '2026-09-14T04:15:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6156
-- author: ya314a, Fahreyy, Teddiousbear.
-  changes:
-  - message: 16 New Jumpsuits.
-    type: Add
-  id: 408556
-  time: '2026-09-14T07:34:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6038
 - author: ya314a, Fahreyy, Teddiousbear.
   changes:
   - message: 16 New Jumpskirts.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408954
   time: '2026-09-28T09:21:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6383
+- author: TaserTheFox
+  changes:
+  - message: New AAC buttons, including, Sawians, Dolls, Soft crit, and Assistant Managers!
+    type: Add
+  id: 408955
+  time: '2026-09-28T09:54:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6325
+- author: TaserTheFox
+  changes:
+  - message: Moved salv team in AAC tablet to its own group, the ITG.
+    type: Tweak
+  id: 408956
+  time: '2026-09-28T09:54:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6325
 Order: -1
