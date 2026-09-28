@@ -26,7 +26,7 @@ internal sealed partial class ShowSubFloor : LocalizedEntityCommands
     [Dependency] private SubFloorHideSystem _subfloorSystem = default!;
 
     public override string Command => "showsubfloor";
-
+    //Starlight start - Subfloor layers
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         if (args.Length == 0) return;
@@ -41,12 +41,11 @@ internal sealed partial class ShowSubFloor : LocalizedEntityCommands
     }
 
     public override ValueTask<CompletionResult> GetCompletionAsync(IConsoleShell shell, string[] args, string argStr,
-        CancellationToken cancel)
-    {
-        return ValueTask.FromResult(CompletionResult.FromHintOptions(
+        CancellationToken cancel) =>
+        ValueTask.FromResult(CompletionResult.FromHintOptions(
             Enum.GetNames<SubFloorVisibilityMask>(),
             "<layer>"));
-    }
+    //Starlight end - Subfloor layers
 }
 
 internal sealed partial class NotifyCommand : LocalizedEntityCommands

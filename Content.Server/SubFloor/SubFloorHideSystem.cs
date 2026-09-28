@@ -11,7 +11,7 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private SharedEyeSystem _eye = default!;
 
-    private Dictionary<ICommonSession, int> _showFloors = new();
+    private Dictionary<ICommonSession, int> _showFloors = new(); //Starlight edit - Subfloor layers
 
     public override void Initialize()
     {
@@ -52,6 +52,7 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
         if (!TryComp(ent, out EyeComponent? eyeComp))
             return;
 
+        //Starlight start - Subfloor layers
         if (ev.Value)
         {
             if (_showFloors.ContainsKey(args.SenderSession))
@@ -74,6 +75,7 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
                 }
             }
         }
+        //Starlight end - Subfloor layers
 
         _eye.RefreshVisibilityMask((ent.Value, eyeComp));
 

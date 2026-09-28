@@ -151,7 +151,7 @@ namespace Content.Client.Sandbox
 
         public void ToggleSubFloor()
         {
-            _consoleHost.ExecuteCommand("showsubfloor All");
+            _consoleHost.ExecuteCommand("showsubfloor All"); //Starlight edit - Subfloor layers
         }
 
         public void ShowMarkers()

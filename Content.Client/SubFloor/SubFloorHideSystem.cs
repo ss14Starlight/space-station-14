@@ -14,7 +14,7 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
     [Dependency] private IUserInterfaceManager _ui = default!;
 
     private bool _showVentPipe;
-    public SubFloorVisibilityMask _showLayers;
+    public SubFloorVisibilityMask _showLayers; //Starlight edit - Subfloor layers
 
 
     [ViewVariables(VVAccess.ReadWrite)]
@@ -72,7 +72,7 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
         }
 
         var revealed = !covered || scannerRevealed || showVentPipe ||
-                       _showLayers.HasFlag((SubFloorVisibilityMask)component.SubfloorLayer);
+                       _showLayers.HasFlag((SubFloorVisibilityMask)component.SubfloorLayer); //Starlight edit - Subfloor layers
 
         // set visibility & color of each layer
         foreach (var layer in args.Sprite.AllLayers)

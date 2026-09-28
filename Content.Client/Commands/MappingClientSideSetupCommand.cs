@@ -23,7 +23,7 @@ internal sealed partial class MappingClientSideSetupCommand : LocalizedEntityCom
 
         _markerSystem.MarkersVisible = true;
         _lightManager.Enabled = false;
-        _subfloorSystem.ToggleLayer(SubFloorVisibilityMask.All);
+        _subfloorSystem.ToggleLayer(SubFloorVisibilityMask.All); //Starlight edit - Subfloor layers
         _actionSystem.LoadActionAssignments("/mapping_actions.yml", false);
     }
 }

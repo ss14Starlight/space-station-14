@@ -239,6 +239,8 @@ namespace Content.Shared.SubFloor
         SecondLayer // Starlight
     }
 
+    #region Starlight
+
     [Flags, FlagsFor(typeof(VisibilityMask))]
     public enum SubFloorVisibilityMask : int
     {
@@ -251,4 +253,5 @@ namespace Content.Shared.SubFloor
         Other = 1 << 5,
         All = Pipes | LV | MV | HV | Disposal | Other,
     }
+    #endregion
 }

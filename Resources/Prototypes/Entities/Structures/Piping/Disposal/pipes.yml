@@ -16,7 +16,7 @@
   - type: Visibility
     layer: 1
   - type: SubFloorHide
-    subfloorLayer: Disposal
+    subfloorLayer: Disposal # Starlight edit - Subfloor layers
   - type: Clickable
   - type: InteractionOutline
   - type: Physics

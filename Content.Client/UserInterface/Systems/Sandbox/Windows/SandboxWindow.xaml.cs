@@ -41,7 +41,7 @@ public sealed partial class SandboxWindow : DefaultWindow
     {
         base.Opened();
 
-        ToggleSubfloorButton.Pressed = _subFloorSystem._showLayers.HasFlag(SubFloorVisibilityMask.All);
+        ToggleSubfloorButton.Pressed = _subFloorSystem._showLayers.HasFlag(SubFloorVisibilityMask.All); // Starlight edit - Subfloor layers
         ToggleLightButton.Pressed = !_lightManager.Enabled;
         ToggleFovButton.Pressed = !_eyeManager.CurrentEye.DrawFov;
         ToggleShadowsButton.Pressed = !_lightManager.DrawShadows;

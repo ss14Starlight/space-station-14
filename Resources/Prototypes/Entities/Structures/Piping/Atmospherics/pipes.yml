@@ -17,7 +17,7 @@
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
   - type: SubFloorHide
-    subfloorLayer: Pipes
+    subfloorLayer: Pipes # Starlight edit - Subfloor layers
   - type: CollideOnAnchor
   - type: Anchorable
   - type: Rotatable

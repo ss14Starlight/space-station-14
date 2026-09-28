@@ -8,7 +8,7 @@
     flags:
     - Anchorable
   - type: SubFloorHide
-    subfloorLayer: Pipes
+    subfloorLayer: Pipes # Starlight edit - Subfloor layers
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
   - type: CargoGasPallet
