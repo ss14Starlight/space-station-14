@@ -1,25 +1,4 @@
 Entries:
-- author: Mack
-  changes:
-  - message: Cyborgs not having a brain.
-    type: Fix
-  id: 408576
-  time: '2026-09-14T11:16:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6138
-- author: Mack
-  changes:
-  - message: Medical Cyborgs breaking when reset.
-    type: Fix
-  id: 408577
-  time: '2026-09-14T11:16:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6138
-- author: Rtasva
-  changes:
-  - message: Added washing machines, K9s, assistant manager, mailboxes, and more to Saltern.
-    type: Add
-  id: 408578
-  time: '2026-09-14T11:16:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6139
 - author: Rtasva
   changes:
   - message: Added laundry room, radio station, and assistant managers to Leth.
@@ -2799,4 +2778,25 @@ Entries:
   id: 408975
   time: '2026-09-28T10:18:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5989
+- author: Johnny
+  changes:
+  - message: Added some glorious equipment to the pobeda.
+    type: Add
+  id: 408976
+  time: '2026-09-28T10:38:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6390
+- author: Johnny
+  changes:
+  - message: The pobedas equipment has been made more fair.
+    type: Tweak
+  id: 408977
+  time: '2026-09-28T10:38:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6390
+- author: Johnny
+  changes:
+  - message: Fixed the name on the pobeda, it is not a podeba.
+    type: Fix
+  id: 408978
+  time: '2026-09-28T10:38:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6390
 Order: -1
