@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: The atmos fire extinguisher and bluespace fire extinguisher now accept bleach.
-    type: Add
-  id: 408545
-  time: '2026-09-13T23:58:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6123
-- author: wonderfulnewworld
-  changes:
   - message: Wringing out/washing clothes with toggleable components now also cleans the toggleable part.
     type: Tweak
   id: 408546
@@ -2799,4 +2792,11 @@ Entries:
   id: 408944
   time: '2026-09-27T19:37:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6339
+- author: Caws
+  changes:
+  - message: (Orwell) Assistant Managers no long roundstart in the Conference Room (that they can't get out of).
+    type: Fix
+  id: 408945
+  time: '2026-09-28T08:56:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6322
 Order: -1
