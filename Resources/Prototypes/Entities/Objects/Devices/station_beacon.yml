@@ -37,6 +37,7 @@
   - type: Visibility
     layer: 1
   - type: SubFloorHide
+    subfloorLayer: Other
   - type: Anchorable
   - type: Construction
     graph: StationBeaconPart

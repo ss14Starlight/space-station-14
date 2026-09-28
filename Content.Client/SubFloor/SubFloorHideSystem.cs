@@ -13,26 +13,9 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
     [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private IUserInterfaceManager _ui = default!;
 
-    private bool _showAll;
     private bool _showVentPipe;
+    public SubFloorVisibilityMask _showLayers;
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    public bool ShowAll
-    {
-        get => _showAll;
-        set
-        {
-            if (_showAll == value) return;
-            _showAll = value;
-            _ui.GetUIController<SandboxUIController>().SetToggleSubfloors(value);
-
-            var ev = new ShowSubfloorRequestEvent()
-            {
-                Value = value,
-            };
-            RaiseNetworkEvent(ev);
-        }
-    }
 
     [ViewVariables(VVAccess.ReadWrite)]
     public bool ShowVentPipe
@@ -63,7 +46,7 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
     private void OnPlayerDetached(LocalPlayerDetachedEvent ev)
     {
         // Vismask resets so need to reset this.
-        ShowAll = false;
+        _showLayers = SubFloorVisibilityMask.None;
     }
 
     private void OnRequestReceived(ShowSubfloorRequestEvent ev)
@@ -80,7 +63,7 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
         _appearance.TryGetData<bool>(uid, SubFloorVisuals.Covered, out var covered, args.Component);
         _appearance.TryGetData<bool>(uid, SubFloorVisuals.ScannerRevealed, out var scannerRevealed, args.Component);
 
-        scannerRevealed &= !ShowAll; // no transparency for show-subfloor mode.
+        scannerRevealed &= _showLayers == SubFloorVisibilityMask.None; // no transparency for show-subfloor mode.
 
         var showVentPipe = false;
         if (HasComp<PipeAppearanceComponent>(uid))
@@ -88,7 +71,8 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
             showVentPipe = ShowVentPipe;
         }
 
-        var revealed = !covered || ShowAll || scannerRevealed || showVentPipe;
+        var revealed = !covered || scannerRevealed || showVentPipe ||
+                       _showLayers.HasFlag((SubFloorVisibilityMask)component.SubfloorLayer);
 
         // set visibility & color of each layer
         foreach (var layer in args.Sprite.AllLayers)
@@ -112,7 +96,7 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
 
         _sprite.SetVisible((uid, args.Sprite), hasVisibleLayer || revealed);
 
-        if (ShowAll)
+        if (_showLayers != SubFloorVisibilityMask.None)
         {
             // Allows sandbox mode to make wires visible over other stuff.
             component.OriginalDrawDepth ??= args.Sprite.DrawDepth;
@@ -142,4 +126,23 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
             _appearance.QueueUpdate(uid, appearance);
         }
     }
+
+    #region Starlight
+
+    public void ToggleLayer(SubFloorVisibilityMask mask)
+    {
+        if (mask == SubFloorVisibilityMask.None)
+            return;
+
+        _showLayers ^= mask;
+
+        var ev = new ShowSubfloorRequestEvent
+        {
+            Value = (_showLayers & mask) != 0,
+            Layer = (int)mask
+        };
+        RaiseNetworkEvent(ev);
+    }
+
+    #endregion
 }

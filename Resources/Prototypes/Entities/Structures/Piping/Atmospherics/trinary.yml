@@ -10,6 +10,7 @@
       tags:
         - Unstackable
     - type: SubFloorHide
+      subfloorLayer: Pipes
       blockInteractions: false
       blockAmbience: false
     - type: NodeContainer
@@ -36,6 +37,7 @@
     mode: AlignAtmosPipeLayers # starlight
   components:
     - type: SubFloorHide
+      subfloorLayer: Pipes
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
@@ -117,6 +119,7 @@
     mode: AlignAtmosPipeLayers # starlight
   components:
   - type: SubFloorHide
+    subfloorLayer: Pipes
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
   - type: Sprite
@@ -193,6 +196,7 @@
     mode: AlignAtmosPipeLayers # starlight
   components:
     - type: SubFloorHide
+      subfloorLayer: Pipes
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
@@ -350,6 +354,7 @@
       tags:
         - Unstackable
     - type: SubFloorHide
+      subfloorLayer: Pipes
       blockInteractions: false
       blockAmbience: false
       visibleLayers:

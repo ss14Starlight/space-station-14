@@ -4,6 +4,7 @@
   components:
   - type: Appearance
   - type: SubFloorHide
+    subfloorLayer: Other
   - type: Anchorable
   - type: CollideOnAnchor
   - type: Transform

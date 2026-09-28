@@ -17,6 +17,7 @@
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
   - type: SubFloorHide
+    subfloorLayer: Pipes
   - type: CollideOnAnchor
   - type: Anchorable
   - type: Rotatable

@@ -1,6 +1,10 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Content.Client.Markers;
 using Content.Client.Popups;
 using Content.Client.SubFloor;
+using Content.Shared.SubFloor;
 using Robust.Shared.Console;
 
 namespace Content.Client.Commands;
@@ -25,7 +29,23 @@ internal sealed partial class ShowSubFloor : LocalizedEntityCommands
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        _subfloorSystem.ShowAll ^= true;
+        if (args.Length == 0) return;
+
+        foreach (var layer in args)
+        {
+            if (Enum.TryParse<SubFloorVisibilityMask>(layer, out var mask))
+            {
+                _subfloorSystem.ToggleLayer(mask);
+            }
+        }
+    }
+
+    public override ValueTask<CompletionResult> GetCompletionAsync(IConsoleShell shell, string[] args, string argStr,
+        CancellationToken cancel)
+    {
+        return ValueTask.FromResult(CompletionResult.FromHintOptions(
+            Enum.GetNames<SubFloorVisibilityMask>(),
+            "<layer>"));
     }
 }
 
