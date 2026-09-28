@@ -577,6 +577,15 @@ public sealed partial class LatchSystem : SharedLatchSystem
                 continue;
             }
 
+            // Follow the target if it starts or stops floating mid-latch.
+            var targetFloating = IsFloatingTarget(target);
+            if (comp.LatcherWeightless != targetFloating)
+            {
+                comp.LatcherWeightless = targetFloating;
+                _gravity.RefreshWeightless(uid);
+                Dirty(uid, comp);
+            }
+
             // Knocked out of range; the joint pulls it back, this just times out if it can't.
             var distance = (_transform.GetWorldPosition(uid) - _transform.GetWorldPosition(target)).Length();
             if (distance > comp.DriftBreakRange + comp.DriftBreakTolerance &&
