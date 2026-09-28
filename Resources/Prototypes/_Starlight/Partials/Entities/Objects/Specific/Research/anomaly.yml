@@ -1,0 +1,19 @@
+- type: !PartialOnly entity
+  id: AnomalyLocatorEmpty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor
+
+- type: !PartialOnly entity
+  id: AnomalyLocatorWideEmpty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor
