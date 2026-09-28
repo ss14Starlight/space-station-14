@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Wringing out/washing clothes with toggleable components now also cleans the toggleable part.
-    type: Tweak
-  id: 408546
-  time: '2026-09-13T23:58:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6123
-- author: wonderfulnewworld
-  changes:
   - message: Wring out time is a little faster.
     type: Tweak
   id: 408547
@@ -2799,4 +2792,11 @@ Entries:
   id: 408945
   time: '2026-09-28T08:56:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6322
+- author: RedSpeeds
+  changes:
+  - message: Fixed A error related to vent critters spawning.
+    type: Fix
+  id: 408946
+  time: '2026-09-28T09:21:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6368
 Order: -1
