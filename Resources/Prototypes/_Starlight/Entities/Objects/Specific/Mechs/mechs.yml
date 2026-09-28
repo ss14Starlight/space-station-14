@@ -883,7 +883,7 @@
     - type: Sprite
       drawdepth: Mobs
       noRot: true
-      sprite: _Starlight/Objects/Specific/Mechs/Mechs/podeba.rsi
+      sprite: _Starlight/Objects/Specific/Mechs/Mechs/pobeda.rsi
       layers:
         - map: [ "enum.MechVisualLayers.Base" ]
           state: base
@@ -933,7 +933,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorMicro
+          - MechReactorBurnout
         mech-gas-tank-slot:
           - MechAirTankFilled
 
