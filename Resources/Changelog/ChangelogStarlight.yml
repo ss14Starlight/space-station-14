@@ -1,67 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: '"Damper II" by Beptol Corporation to vinyls and NukeOps music list.'
-    type: Add
-  id: 408559
-  time: '2026-09-14T08:00:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6065
-- author: Xale
-  changes:
-  - message: Avali are again poisoned by theobromine.
-    type: Fix
-  id: 408560
-  time: '2026-09-14T08:27:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6092
-- author: qbrx
-  changes:
-  - message: Changeling biodegrade can melt bolas.
-    type: Tweak
-  id: 408561
-  time: '2026-09-14T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6071
-- author: Xale
-  changes:
-  - message: Avali can now eat raw food again.
-    type: Fix
-  id: 408562
-  time: '2026-09-14T08:27:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6088
-- author: Teddiousbear, ya314a.
-  changes:
-  - message: New Plushie.
-    type: Add
-  id: 408563
-  time: '2026-09-14T08:58:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6096
-- author: RedSpeeds
-  changes:
-  - message: Changed Groupchat to have a member limit of 30 to combat lag.
-    type: Tweak
-  id: 408564
-  time: '2026-09-14T09:24:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6111
-- author: Mack
-  changes:
-  - message: Fixed issue when trying to pry the a tile when something ontop is blocking it.
-    type: Fix
-  id: 408565
-  time: '2026-09-14T09:24:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6077
-- author: Xale
-  changes:
-  - message: Added 5 new cargo bounties.
-    type: Add
-  id: 408566
-  time: '2026-09-14T09:24:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6115
-- author: wonderfulnewworld, YaraaraY
-  changes:
-  - message: Wall stains no longer have mixels.
-    type: Tweak
-  id: 408567
-  time: '2026-09-14T09:54:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6120
 - author: wonderfulnewworld, YaraaraY
   changes:
   - message: Wall stains will now visibly vary depending on how much liquid is on them.
@@ -2799,4 +2736,67 @@ Entries:
   id: 408958
   time: '2026-09-28T09:54:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6055
+- author: Caws
+  changes:
+  - message: (CentComm GNT9) Cecil (sea salt).
+    type: Add
+  id: 408959
+  time: '2026-09-28T09:54:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6384
+- author: Caws
+  changes:
+  - message: (CentComm GNT9) Fryers in the kitchen for CC chefs.
+    type: Add
+  id: 408960
+  time: '2026-09-28T09:54:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6384
+- author: Caws
+  changes:
+  - message: (CentComm GNT9) Added way more biomass to cloning.
+    type: Add
+  id: 408961
+  time: '2026-09-28T09:54:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6384
+- author: Caws
+  changes:
+  - message: (CentComm GNT9) Added Interdyne medical vendor for a certain debrief room.
+    type: Add
+  id: 408962
+  time: '2026-09-28T09:54:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6384
+- author: Caws
+  changes:
+  - message: (CentComm GNT9) Reworked Debrief. It now has just one entrance/exit and a better 'viewing' area for crew. The shutters have been replaced with blast doors to prevent people being annoying by prying the shutters open and closed.
+    type: Tweak
+  id: 408963
+  time: '2026-09-28T09:54:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6384
+- author: Caws
+  changes:
+  - message: (CentComm GNT9) Brigmedic now uses Brigmedic doors.
+    type: Fix
+  id: 408964
+  time: '2026-09-28T09:54:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6384
+- author: Caws
+  changes:
+  - message: (CentComm GNT9) Security now uses Brig doors and Security doors were appropriate, instead of IAA doors.
+    type: Fix
+  id: 408965
+  time: '2026-09-28T09:54:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6384
+- author: Caws
+  changes:
+  - message: (CentComm GNT9) Removed problematic portable flashers from Security.
+    type: Remove
+  id: 408966
+  time: '2026-09-28T09:54:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6384
+- author: Caws
+  changes:
+  - message: (CentComm GNT9) Removed hidden Decimus armour from CC's Armoury.
+    type: Remove
+  id: 408967
+  time: '2026-09-28T09:54:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6384
 Order: -1
