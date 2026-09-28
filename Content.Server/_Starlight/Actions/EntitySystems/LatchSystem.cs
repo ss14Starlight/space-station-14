@@ -16,6 +16,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
@@ -23,6 +24,7 @@ using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Whitelist;
 using Robust.Server.Audio;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
@@ -206,7 +208,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         latched.SpeedMultiplier = slowed ? comp.SlowSpeedMultiplier : 0f;
         Dirty(target, latched);
 
-        comp.LatcherWeightless = slowed;
+        comp.LatcherWeightless = IsFloatingTarget(target);
 
         // Only some targets get the struggle minigame; everything else about the latch is the same.
         if (_entityWhitelist.IsWhitelistPassOrNull(comp.StruggleWhitelist, target))
@@ -258,6 +260,15 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
         Dirty(uid, comp);
     }
+
+    /// <summary>
+    /// True if the target floats: InAir and able to move in air, like carp,
+    /// dragons, and colossi, regardless of gravity.
+    /// </summary>
+    private bool IsFloatingTarget(EntityUid target) =>
+        TryComp<PhysicsComponent>(target, out var body)
+            && body.BodyStatus == BodyStatus.InAir
+            && HasComp<CanMoveInAirComponent>(target);
 
     /// <summary>
     /// True if the target's prototype or any parent, abstract included, is in
@@ -415,8 +426,10 @@ public sealed partial class LatchSystem : SharedLatchSystem
             return;
 
         // The client's frame sits up to one tick past its stamped tick; honour that, no further.
+        // Clamp passes NaN through, and TimeSpan throws on it.
+        var tickOffset = float.IsFinite(msg.TickOffset) ? msg.TickOffset : 0f;
         var maxOffset = (float) Timing.TickPeriod.TotalSeconds;
-        var offset = TimeSpan.FromSeconds(Math.Clamp(msg.TickOffset, 0f, maxOffset));
+        var offset = TimeSpan.FromSeconds(Math.Clamp(tickOffset, 0f, maxOffset));
         var cursor = GetStruggleCursor(struggle, now + offset);
         var result = GradeStruggle(cursor, struggle.ZoneCenter, latch.StrugglePerfectWidth, latch.StruggleGoodWidth);
 

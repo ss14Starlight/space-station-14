@@ -250,8 +250,8 @@ public sealed partial class LatchComponent : Component
     public bool Active;
 
     /// <summary>
-    /// Latcher is weightless while latched to a target in <see cref="SlowPrototypes"/>,
-    /// so floor friction doesn't add to <see cref="SlowSpeedMultiplier"/>.
+    /// Latcher is weightless while latched to a floating target (InAir and able
+    /// to move in air), so it floats with them.
     /// </summary>
     [ViewVariables, AutoNetworkedField]
     public bool LatcherWeightless;

@@ -85,7 +85,7 @@ public abstract partial class SharedLatchSystem : EntitySystem
     }
 
     /// <summary>
-    /// Latcher is weightless while latched to a slowed target.
+    /// Latcher is weightless while latched to a floating target.
     /// </summary>
     private void OnLatcherIsWeightless(EntityUid uid, LatchComponent comp, ref IsWeightlessEvent ev)
     {
