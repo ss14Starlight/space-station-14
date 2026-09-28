@@ -72,7 +72,7 @@ public sealed partial class TriggerSystem
         {
             var mapCoords = _transform.GetMapCoordinates(target);
             if (predicted)
-                EntityManager.PredictedSpawn(proto, mapCoords, overrides); // Starlight edit
+                PredictedSpawn(proto, mapCoords, overrides); // Starlight
             else if (_net.IsServer)
                 Spawn(proto, mapCoords, overrides); // Starlight edit
         }

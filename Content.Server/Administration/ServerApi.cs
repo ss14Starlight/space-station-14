@@ -1,18 +1,22 @@
 ﻿using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
+using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
+using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.Maps;
 using Content.Server.RoundEnd;
 using Content.Shared.Administration.Managers;
 using Content.Shared.CCVar;
+using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Prototypes;
 using Robust.Server.ServerStatus;
@@ -57,9 +61,14 @@ public sealed partial class ServerApi : IPostInjectInit
     [Dependency] private ILogManager _logManager = default!;
     [Dependency] private IEntitySystemManager _entitySystemManager = default!;
     [Dependency] private ILocalizationManager _loc = default!;
+    [Dependency] private IPlayerLocator _locator = default!;
+    [Dependency] private IBanManager _bans = default!;
+    [Dependency] private IServerDbManager _db = default!;
 
     private string _token = string.Empty;
     private ISawmill _sawmill = default!;
+    private const int Ipv4_CIDR = 32;
+    private const int Ipv6_CIDR = 64;
 
     void IPostInjectInit.PostInject()
     {
@@ -75,6 +84,7 @@ public sealed partial class ServerApi : IPostInjectInit
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/round/end", ActionRoundEnd);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/round/restartnow", ActionRoundRestartNow);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/kick", ActionKick);
+        RegisterActorHandler(HttpMethod.Post, "/admin/actions/ban", ActionBan);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/add_game_rule", ActionAddGameRule);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/end_game_rule", ActionEndGameRule);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/force_preset", ActionForcePreset);
@@ -303,6 +313,86 @@ public sealed partial class ServerApi : IPostInjectInit
             }
 
             await RespondOk(context);
+        });
+    }
+
+    /// <summary>
+    ///     Bans a player.
+    /// </summary>
+    private async Task ActionBan(IStatusHandlerContext context, Actor actor)
+    {
+        var body = await ReadJson<BanActionBody>(context);
+        if (body == null)
+            return;
+
+        await RunOnMainThread(async () =>
+        {
+            var located = await _locator.LookupIdByNameOrIdAsync(body.Guid.ToString());
+
+            if (located == null)
+            {
+                await RespondError(
+                    context,
+                    ErrorCode.PlayerNotFound,
+                    HttpStatusCode.UnprocessableContent,
+                    "Player not found");
+                return;
+            }
+
+            var bans = await _db.GetServerBansAsync(userId: located.UserId,
+                address: null,
+                hwId: null,
+                modernHWIds: located.LastModernHWIds,
+                includeUnbanned: false);
+            if (bans.Count > 0)
+            {
+                await RespondError(
+                    context,
+                    ErrorCode.PlayerAlreadyBanned,
+                    HttpStatusCode.Conflict,
+                    "Player is already banned.");
+                return;
+            }
+
+            var reason = body.Reason ?? "No reason supplied";
+            // STARLIGHT: We dont have this
+            // var info = new CreateServerBanInfo(reason);
+            //
+            // info.AddHWId(located.LastHWId);
+            // info.AddUser(located.UserId, located.Username);
+            // info.WithSeverity(body.Severity);
+            // if (body.Minutes != null && body.Minutes != 0)
+            // {
+            //     info.WithMinutes(body.Minutes.Value);
+            // }
+            //
+            // info.WithBanningAdmin(new NetUserId(actor.Guid));
+            //
+            // // Add the ip if the user is currently connected.
+            // if (_playerManager.TryGetSessionById(new NetUserId(body.Guid), out var player))
+            // {
+            //     info.AddAddress(player.Channel.RemoteEndPoint.Address);
+            // }
+            //Starlight start - Work around
+            (IPAddress, int)? ip = null;
+            if (_playerManager.TryGetSessionById(new NetUserId(body.Guid), out var player))
+            {
+                var ipadd = player.Channel.RemoteEndPoint.Address;
+                var hidInt = ipadd.AddressFamily == AddressFamily.InterNetworkV6 ? Ipv6_CIDR : Ipv4_CIDR;
+                ip = (ipadd, hidInt);
+
+            }
+
+            uint minutes = 0;
+            if (body.Minutes != null)
+            {
+                minutes = body.Minutes.Value;
+            }
+            await _bans.CreateServerBan(located.UserId, located.Username, new NetUserId(actor.Guid), ip, located.LastHWId, minutes, body.Severity, reason);
+            //Starlight end
+            await RespondOk(context);
+
+            _sawmill.Info($"Banned player {located.Username} ({located.UserId}) for {reason} lasting {body.Minutes ?? 0} minutes by {FormatLogActor(actor)}");
         });
     }
 
@@ -615,6 +705,14 @@ public sealed partial class ServerApi : IPostInjectInit
         public string? Reason { get; init; }
     }
 
+    private sealed class BanActionBody
+    {
+        public required Guid Guid { get; init; }
+        public string? Reason { get; init; }
+        public NoteSeverity Severity { get; init; }
+        public uint? Minutes { get; init; }
+    }
+
     private sealed class GameRuleActionBody
     {
         public required string GameRuleId { get; init; }
@@ -656,6 +754,7 @@ public sealed partial class ServerApi : IPostInjectInit
         PlayerNotFound = 4,
         GameRuleNotFound = 5,
         BadRequest = 6,
+        PlayerAlreadyBanned = 7,
     }
 
     #endregion

@@ -1,6 +1,7 @@
 using Content.Shared._Starlight.Shadekin.Components;
 using Robust.Client.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.Shadekin;
 
@@ -9,15 +10,21 @@ public sealed partial class ShadegenSystem : EntitySystem
     [Dependency] private PointLightSystem _lightSys = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private readonly HashSet<EntityUid> _updateQueue = new();
 
-    public override void Initialize()
-        => base.Initialize();
+    private TimeSpan _nextUpdate = TimeSpan.Zero;
+    private readonly TimeSpan _updateCooldown = TimeSpan.FromSeconds(0.2f);
 
     public override void FrameUpdate(float frameTime)
     {
         base.FrameUpdate(frameTime);
+
+        if (_timing.RealTime < _nextUpdate)
+            return;
+
+        _nextUpdate = _timing.RealTime + _updateCooldown;
 
         var shadeQuery = EntityQueryEnumerator<ShadegenComponent>();
 

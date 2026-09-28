@@ -274,8 +274,9 @@ namespace Content.Server.Atmos.EntitySystems
 
             if (flammable.Displacement != null)
                 _appearance.SetData(uid, FireVisuals.FireDisplacement, flammable.Displacement.Value.Id, appearance);
-            else
-                _appearance.RemoveData(uid, FireVisuals.FireDisplacement);
+            // Starlight - RemoveData always dirties, only call it when there's something to remove.
+            else if (_appearance.TryGetData<string>(uid, FireVisuals.FireDisplacement, out _, appearance))
+                _appearance.RemoveData(uid, FireVisuals.FireDisplacement, appearance);
 
             // Also enable toggleable-light visuals
             // This is intended so that matches & candles can re-use code for un-shaded layers on in-hand sprites.
@@ -422,8 +423,8 @@ namespace Content.Server.Atmos.EntitySystems
             var curTime = _timing.CurTime;
 
             // TODO: This needs cleanup to take off the crust from TemperatureComponent and shit.
-            var query = EntityQueryEnumerator<FlammableComponent, TransformComponent>();
-            while (query.MoveNext(out var uid, out var flammable, out _))
+            var query = EntityQueryEnumerator<FlammableComponent>(); // Starlight-edit
+            while (query.MoveNext(out var uid, out var flammable))
             {
                 if (curTime < flammable.NextUpdate)
                     continue;

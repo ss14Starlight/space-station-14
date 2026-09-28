@@ -9,6 +9,7 @@ spray-painter-style-airlockstandard-brigmedic = Brigmedic
 spray-painter-style-airlockstandard-mail = Mail
 spray-painter-style-airlockstandard-retromining = Retro Mining
 spray-painter-style-airlockstandard-retrosalvage = Retro Salvage
+spray-painter-style-airlockstandard-nanotrasen = Nanotrasen
 
 # Glass Airlocks
 spray-painter-style-airlockglass-robotics = Robotics
@@ -21,6 +22,7 @@ spray-painter-style-airlockglass-retrosalvage = Retro Salvage
 spray-painter-style-airlockglass-retromining = Retro Mining
 spray-painter-style-airlockglass-brigmedic = Brigmedic
 spray-painter-style-airlockglass-mail = Mail
+spray-painter-style-airlockglass-nanotrasen = Nanotrasen
 
 # Lockers
 spray-painter-style-locker-magistrate = Magistrate

@@ -49,6 +49,8 @@
   - PrintedDocumentConstructionPermitRecipe
   - PrintedDocumentSurgeryConsentPermitRecipe
   - PrintedDocumentArtPermitRecipe
+  - PrintedDocumentBorgificationConsentFormRecipe
+  - PrintedDocumentMechAuthorizationFormRecipe
   # OrdersAndInstructions
   - PrintedDocumentDismissalOrderRecipe
   - PrintedDocumentAccessRevocationOrderRecipe

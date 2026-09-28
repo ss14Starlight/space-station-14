@@ -276,7 +276,7 @@
 - type: entity
   id: ShellFragmentDoll
   parent: [BaseKnife]
-  name: doll shell fragement
+  name: doll shell fragment
   description: A shell piece, broken off of a doll. Sharp, and looks quite sturdy.
   components:
   - type: Sprite

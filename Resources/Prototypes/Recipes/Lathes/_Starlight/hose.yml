@@ -1,0 +1,7 @@
+- type: latheRecipe
+  parent: BasePartRecipe
+  id: GasCanisterHose
+  result: GasCanisterHose
+  materials:
+    Plastic: 100
+    Steel: 50

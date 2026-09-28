@@ -4,10 +4,11 @@
   components:
   - type: StationEvent
     weight: 2
-    earliestStart: 30
+    earliestStart: 45
     reoccurrenceDelay: 20
-    minimumPlayers: 30
+    minimumPlayers: 40
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
   - type: AntagSpawner
     prototype: MobCosmicColossusLone
