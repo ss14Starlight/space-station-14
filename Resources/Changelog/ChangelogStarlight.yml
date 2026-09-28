@@ -1,60 +1,4 @@
 Entries:
-- author: wonderfulnewworld, YaraaraY
-  changes:
-  - message: Wall stains will now visibly vary depending on how much liquid is on them.
-    type: Tweak
-  id: 408568
-  time: '2026-09-14T09:54:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6120
-- author: wonderfulnewworld, YaraaraY
-  changes:
-  - message: Reduced server CPU cost of reagent fires, flammable clothes, and flammable wall stains by throttling their update rate.
-    type: Tweak
-  id: 408569
-  time: '2026-09-14T09:54:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6120
-- author: wonderfulnewworld, YaraaraY
-  changes:
-  - message: Fires should spread a little slower.
-    type: Fix
-  id: 408570
-  time: '2026-09-14T09:54:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6120
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Newspapers now obscure your identity when held.
-    type: Add
-  id: 408571
-  time: '2026-09-14T09:54:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6126
-- author: Demented
-  changes:
-  - message: Wire Harness.
-    type: Add
-  id: 408572
-  time: '2026-09-14T10:29:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6128
-- author: Demented
-  changes:
-  - message: Maints Loot.
-    type: Add
-  id: 408573
-  time: '2026-09-14T10:29:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6128
-- author: Teddiousbear.
-  changes:
-  - message: remove duplicate items from cap's locker.
-    type: Fix
-  id: 408574
-  time: '2026-09-14T10:29:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6129
-- author: Mack
-  changes:
-  - message: Station AI getting Law 0 when exiting a shunt.
-    type: Fix
-  id: 408575
-  time: '2026-09-14T11:16:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6138
 - author: Mack
   changes:
   - message: Cyborgs not having a brain.
@@ -2799,4 +2743,60 @@ Entries:
   id: 408967
   time: '2026-09-28T09:54:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6384
+- author: BriocheBear
+  changes:
+  - message: Added Glubotoxin to the game! Makes you glub. When 50u is metabolized at once, the subject will temporarily morph into a space koi.
+    type: Add
+  id: 408968
+  time: '2026-09-28T10:18:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5989
+- author: BriocheBear
+  changes:
+  - message: Added chance for a bottle of Glubotoxin to spawn in medical chem cases.
+    type: Add
+  id: 408969
+  time: '2026-09-28T10:18:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5989
+- author: BriocheBear
+  changes:
+  - message: Added chance for a Glub auto-injector to spawn in auto-injector packs.
+    type: Add
+  id: 408970
+  time: '2026-09-28T10:18:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5989
+- author: BriocheBear
+  changes:
+  - message: Added weh & glub reagent slimes. They are just as deadly, good luck!
+    type: Add
+  id: 408971
+  time: '2026-09-28T10:18:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5989
+- author: BriocheBear
+  changes:
+  - message: Space koi can now feel the love! Space koi will now show hearts when pet, and make the glub sound effect.
+    type: Tweak
+  id: 408972
+  time: '2026-09-28T10:18:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5989
+- author: BriocheBear
+  changes:
+  - message: Space koi can no longer access the carp hivemind.
+    type: Remove
+  id: 408973
+  time: '2026-09-28T10:18:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5989
+- author: BriocheBear
+  changes:
+  - message: All species now able to make the thaven glub sound effect, with the condition of metabolizing Glubotoxin.
+    type: Tweak
+  id: 408974
+  time: '2026-09-28T10:18:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5989
+- author: BriocheBear
+  changes:
+  - message: All species now able to make the weh and hew sound effects, as some were not already capable of doing so.
+    type: Tweak
+  id: 408975
+  time: '2026-09-28T10:18:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5989
 Order: -1
