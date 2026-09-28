@@ -24,7 +24,7 @@ public sealed partial class ToggleableSignalSystem : EntitySystem
         if (!TryComp<ToggleableAtmosDeviceComponent>(entity, out var device))
             return;
 
-        var component = new Entity<ToggleableAtmosDeviceComponent>(entity.Owner, device);
+        var component = new Entity<ToggleableAtmosDeviceComponent?>(entity.Owner, device);
 
         var state = SignalState.Momentary;
         args.Data?.TryGetValue(DeviceNetworkConstants.LogicState, out state);
