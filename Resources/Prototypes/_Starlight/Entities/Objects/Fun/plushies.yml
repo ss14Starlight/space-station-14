@@ -1,6 +1,6 @@
 # Character Plushies - Keep alphabetical, please!
 - type: entity
-  parent: BasePlushie
+  parent: BaseFelionoidPlushie
   id: PlushieBarfo # Original_Username2 (SS14) / greasi (Discord)
   name: barfo plushie
   description: Soft, cuddly, and suspiciously up to something! This talking Barfo plushie has lots to say!
