@@ -115,27 +115,11 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
         if (!Resolve(entity, ref appearance, false))
             return;
 
-        if (!_powerReceiverSystem.IsPowered(entity))
-        {
-            if (!siphon.Enabled)
-                _appearance.SetData(entity, GasInletSiphonVisuals.State, GasInletSiphonState.UnpoweredOff);
-            else
-                _appearance.SetData(entity, GasInletSiphonVisuals.State, GasInletSiphonState.UnpoweredOn);
-
-            _ambientSoundSystem.SetAmbience(entity, false);
-        } else
-        {
-            if (!siphon.Enabled)
-                {
-                    _appearance.SetData(entity, GasInletSiphonVisuals.State, GasInletSiphonState.Off);
-                    _ambientSoundSystem.SetAmbience(entity, false);
-                }
-            else
-            {
-                _appearance.SetData(entity, GasInletSiphonVisuals.State, GasInletSiphonState.On);
-                _ambientSoundSystem.SetAmbience(entity, true);
-            }
-        }
+        var enabled = siphon.Enabled;
+        var powered = _powerReceiverSystem.IsPowered(entity);
+        var state = (enabled ? 2 : 0) + (powered ? 1 : 0);
+        _appearance.SetData(entity, GasInletSiphonVisuals.State, (GasInletSiphonState)state);
+        _ambientSoundSystem.SetAmbience(entity, enabled && powered);
     }
 
     private void Set(Entity<GasInletSiphonComponent> entity, GasInletSiphonComponent siphon, bool value)
