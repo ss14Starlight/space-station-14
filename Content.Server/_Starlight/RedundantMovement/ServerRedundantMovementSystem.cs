@@ -163,13 +163,7 @@ public sealed partial class ServerRedundantMovementSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SLMoverController _mover = default!;
 
-    public override void Initialize()
-    {
-        UpdatesBefore.Add(typeof(SLMoverController));
-    }
+    public override void Initialize() => UpdatesBefore.Add(typeof(SLMoverController));
 
-    public override void Update(float frameTime)
-    {
-        _manager.ApplyInput(_timing.CurTick, _mover);
-    }
+    public override void Update(float frameTime) => _manager.ApplyInput(_timing.CurTick, _mover);
 }
