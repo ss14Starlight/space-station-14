@@ -246,6 +246,8 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
         _speed.RefreshMovementSpeedModifiers(uid);
         _speed.RefreshMovementSpeedModifiers(target);
+        _speed.RefreshWeightlessModifiers(uid);
+        _speed.RefreshWeightlessModifiers(target);
         _gravity.RefreshWeightless(uid);
 
         _alert.ShowAlert(uid, comp.LatcherAlert);
@@ -307,6 +309,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         comp.ReleaseActionEntity = null;
 
         _speed.RefreshMovementSpeedModifiers(uid);
+        _speed.RefreshWeightlessModifiers(uid);
         _gravity.RefreshWeightless(uid);
         _alert.ClearAlert(uid, comp.LatcherAlert);
 
@@ -316,6 +319,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
             RemComp<LatchedComponent>(targetUid);
             _alert.ClearAlert(targetUid, comp.LatchAlert);
             _speed.RefreshMovementSpeedModifiers(targetUid);
+            _speed.RefreshWeightlessModifiers(targetUid);
         }
 
         Dirty(uid, comp);

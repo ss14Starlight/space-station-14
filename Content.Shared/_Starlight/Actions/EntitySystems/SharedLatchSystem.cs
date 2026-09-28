@@ -22,6 +22,8 @@ public abstract partial class SharedLatchSystem : EntitySystem
 
         SubscribeLocalEvent<LatchComponent, RefreshMovementSpeedModifiersEvent>(OnLatcherRefreshMovementSpeed);
         SubscribeLocalEvent<LatchedComponent, RefreshMovementSpeedModifiersEvent>(OnTargetRefreshMovementSpeed);
+        SubscribeLocalEvent<LatchComponent, RefreshWeightlessModifiersEvent>(OnLatcherRefreshWeightless);
+        SubscribeLocalEvent<LatchedComponent, RefreshWeightlessModifiersEvent>(OnTargetRefreshWeightless);
         SubscribeLocalEvent<LatchComponent, IsWeightlessEvent>(OnLatcherIsWeightless);
 
         SubscribeLocalEvent<LatchComponent, AttackAttemptEvent>(OnLatcherAttackAttempt);
@@ -97,6 +99,19 @@ public abstract partial class SharedLatchSystem : EntitySystem
     private void OnTargetRefreshMovementSpeed(EntityUid uid, LatchedComponent comp, RefreshMovementSpeedModifiersEvent ev)
     {
         ev.ModifySpeed(comp.SpeedMultiplier);
+    }
+
+    // Weightless movement reads WeightlessModifier, not the walk/sprint modifiers,
+    // so the latch has to apply its speed changes here too.
+    private void OnLatcherRefreshWeightless(EntityUid uid, LatchComponent comp, ref RefreshWeightlessModifiersEvent ev)
+    {
+        if (comp.Active)
+            ev.ModifyAcceleration(1f, 0f);
+    }
+
+    private void OnTargetRefreshWeightless(EntityUid uid, LatchedComponent comp, ref RefreshWeightlessModifiersEvent ev)
+    {
+        ev.ModifyAcceleration(1f, comp.SpeedMultiplier);
     }
 
     /// <summary>
