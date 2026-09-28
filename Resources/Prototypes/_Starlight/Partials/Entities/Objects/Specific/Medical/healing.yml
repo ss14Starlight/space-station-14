@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: Bloodpack
+  components:
+  - type: Healing
+    damageContainers:
+    - Hybrid
+    modifyBloodLevel: 30

@@ -14,7 +14,6 @@ using Content.Shared.Maps;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
 using Content.Shared._Funkystation.Fluids;
-using Content.Shared._Funkystation.Footprints;
 using Content.Shared._Funkystation.WallStains;
 using Content.Shared.Gravity;
 using Content.Shared.Standing;
@@ -41,9 +40,10 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TurfSystem _turf = default!;
+    #region Starlight
     [Dependency] private EntityQuery<PuddleComponent> _puddleQuery = default!;
-    [Dependency] private EntityQuery<FootprintComponent> _footprintQuery = default!; // Funky/Starlight
     [Dependency] private EntityQuery<EvaporationSparkleComponent> _evaporationSparklesQuery = default!;
+    #endregion
 
     /*
      * TODO: Need some sort of way to do blood slash / vomit solution spill on its own
@@ -155,7 +155,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
                     break;
             }
 
-            // If there is nothing left to overflow from our tile, then we'll stop this tile being an active spreader
+            // If there is nothing left to overflow from our tile, then we'll stop this tile being a active spreader
             if (overflow.Volume == FixedPoint2.Zero)
             {
                 RemCompDeferred<ActiveEdgeSpreaderComponent>(entity);
@@ -542,12 +542,13 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
         // Get normalized co-ordinate for spill location and spill it in the centre
         // TODO: Does SnapGrid or something else already do this?
+        // Starlight-start: reuse injected queries and the current anchored-entity API.
         var anchored = _map.GetAnchoredEntities(gridId, mapGrid, tileRef.GridIndices);
 
         while (anchored.MoveNext(out var ent))
         {
             // If there's existing sparkles then delete it
-            if (_evaporationSparklesQuery.TryGetComponent(ent, out var sparkles))
+            if (_evaporationSparklesQuery.TryGetComponent(ent, out _))
             {
                 QueueDel(ent.Value);
                 continue;
@@ -555,9 +556,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
             if (!_puddleQuery.TryGetComponent(ent, out var puddle))
                 continue;
-
-            if (_footprintQuery.HasComponent(ent.Value)) // Funky/Starlight
-                continue;
+            // Starlight-end
 
             if (TryAddSolution(ent.Value, solution, sound, puddleComponent: puddle))
             {
@@ -591,15 +590,14 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         if (!TryComp<MapGridComponent>(tile.GridUid, out var grid))
             return false;
 
+        // Starlight-start: reuse the injected query and the current anchored-entity API.
         var anc = _map.GetAnchoredEntities(tile.GridUid, grid, tile.GridIndices);
 
         while (anc.MoveNext(out var ent))
         {
             if (!_puddleQuery.HasComponent(ent.Value))
                 continue;
-
-            if (_footprintQuery.HasComponent(ent.Value)) // Funky/Starlight
-                continue;
+            // Starlight-end
 
             puddleUid = ent.Value;
             return true;

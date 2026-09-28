@@ -1,0 +1,34 @@
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.FixedPoint;
+using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
+
+namespace Content.Shared.Fluids;
+
+public abstract partial class SharedPuddleSystem
+{
+    #region Starlight
+    [Dependency] private INetManager _net = default!;
+
+    private TimeSpan _nextEvaporationUpdate = TimeSpan.MaxValue;
+    private readonly List<ProtoId<ReagentPrototype>> _evaporationReagents = [];
+
+    private void ScheduleEvaporation(TimeSpan time)
+    {
+        if (time < _nextEvaporationUpdate)
+            _nextEvaporationUpdate = time;
+    }
+
+    private bool HasEvaporatingReagent(Solution solution)
+    {
+        foreach (var (reagent, _) in solution.Contents)
+        {
+            if (_prototypeManager.Index<ReagentPrototype>(reagent.Prototype).EvaporationSpeed > FixedPoint2.Zero)
+                return true;
+        }
+
+        return false;
+    }
+    #endregion
+}

@@ -87,6 +87,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         AddAnomalyToBody(ent);
     }
 
+/* // Starlight alteration
     private void AddAnomalyToBody(Entity<InnerBodyAnomalyComponent> ent)
     {
         if (!_proto.Resolve(ent.Comp.InjectionProto, out var injectedAnom))
@@ -96,8 +97,18 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
             return;
 
         ent.Comp.Injected = true;
+#region Starlight
+        if (ent.Comp.InjectionProto == "CosmicAnomalyInjection")
+        {
+            if (!_npcFaction.IsMember(ent.Owner, _cosmicCultFaction))
+            {
+                _npcFaction.AddFaction(ent.Owner, _cosmicCultFaction);
+                ent.Comp.AddedCosmicCultFaction = true;
+            }
+        }
 
-        ProcessComponents(ent, injectedAnom.Components, true); // Starlight
+        ProcessComponents(ent, injectedAnom.Components, true);
+#endregion
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
         _jitter.DoJitter(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration), true);
@@ -125,6 +136,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         }
         Dirty(ent);
     }
+*/
 
     private void OnAnomalyPulse(Entity<InnerBodyAnomalyComponent> ent, ref AnomalyPulseEvent args)
     {
@@ -132,6 +144,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         _jitter.DoJitter(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration / 2 * args.Severity), true);
     }
 
+/* // Starlight alteration
     private void OnAnomalySupercritical(Entity<InnerBodyAnomalyComponent> ent, ref AnomalySupercriticalEvent args)
     {
         // Starlight Start
@@ -141,6 +154,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
 
         _gibbing.Gib(ent.Owner);
     }
+*/
 
     private void OnSeverityChanged(Entity<InnerBodyAnomalyComponent> ent, ref AnomalySeverityChangedEvent args)
     {
@@ -210,6 +224,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         RemoveAnomalyFromBody(ent);
     }
 
+    /* // Starlight alteration
     private void RemoveAnomalyFromBody(Entity<InnerBodyAnomalyComponent> ent)
     {
         if (!ent.Comp.Injected)
@@ -217,6 +232,13 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
 
         // Starlight Start
         ent.Comp.Injected = false;
+
+        if (ent.Comp.AddedCosmicCultFaction = true)
+        {
+            _npcFaction.RemoveFaction(ent.Owner, _cosmicCultFaction);
+            ent.Comp.AddedCosmicCultFaction = false;
+        }
+
         Dirty(ent);
         // Starlight End
         if (_proto.Resolve(ent.Comp.InjectionProto, out var injectedAnom))
@@ -247,7 +269,9 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         // ent.Comp.Injected = false; // Starlight Edit: Moved
         // RemCompDeferred<AnomalyComponent>(ent); // Starlight Edit: Removed
     }
+    */
 
+    /*
     #region Starlight
     private void ProcessComponents(
         EntityUid target,
@@ -284,4 +308,5 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         }
     }
     #endregion
+    */
 }

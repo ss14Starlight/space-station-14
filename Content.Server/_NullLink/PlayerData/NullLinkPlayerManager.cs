@@ -33,6 +33,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager, IAch
     [Dependency] private IAdminManager _adminManager = default!;
     [Dependency] private ITaskManager _taskManager = default!;
     [Dependency] private INetConfigurationManager _netConfigManager = default!;
+    [Dependency] private UserDbDataManager _userDb = default!;
 
     private readonly ConcurrentDictionary<Guid, PlayerData> _playerById = [];
     private readonly ConcurrentDictionary<Guid, ICommonSession> _mentors = [];
@@ -55,6 +56,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager, IAch
         _netMgr.RegisterNetMessage<MsgAchievementNotification>();
         _playerManager.PlayerStatusChanged += PlayerStatusChanged;
         InitializeLinking();
+        InitializePlayTime();
         _cfg.OnValueChanged(NullLinkCCVars.RoleReqMentors, UpdateMentors, true);
         _cfg.OnValueChanged(NullLinkCCVars.AdminRankBuilder, UpdateAdminBuilder, true);
         _cfg.OnValueChanged(NullLinkCCVars.TitleBuild, UpdateTitleBuilder, true);
@@ -119,6 +121,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager, IAch
                     serverGrain2.PlayerDisconnected(e.Session.UserId)
                         .FireAndForget(err => _sawmill.Error($"PlayerDisconnected dispatch failed: {err}"));
                 _playerById.Remove(e.Session.UserId, out _);
+                _playTimeSynced.Remove(e.Session.UserId, out _);
                 _mentors.Remove(e.Session.UserId, out _);
                 _discordPromptOpen.Remove(e.Session);
                 break;

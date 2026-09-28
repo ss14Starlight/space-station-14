@@ -1,3 +1,5 @@
+alerts-cards-name = [color=lightblue]Challenge available[/color]
+alerts-cards-desc = You're [color=lightblue]facing a choice[/color]. Click the alert to open your character menu and see your available paths.
 alerts-cybernetic-disruption-name = [color=red]Cybernetics disrupted[/color]
 alerts-cybernetic-disruption-desc = You're [color=red]disrupted[/color]! Something is impairing your cybernetic implants.
 alerts-doomed-name = Doomed

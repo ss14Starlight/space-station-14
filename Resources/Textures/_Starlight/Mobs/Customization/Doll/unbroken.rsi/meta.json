@@ -156,6 +156,11 @@
             "name": "unbroken_torso",
             "directions": 4,
     		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_m",
+            "directions": 4,
+    		"copyright": "Maitake"
         }
     ]
 }

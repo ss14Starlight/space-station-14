@@ -97,6 +97,8 @@ WEIGHT_OVERRIDES = {
     "DynamicBudgetUpdateTest": 0.2,
     "DynamicMutuallyExclusiveRulesRejectionTest": 0.2,
     "DynamicRuleCooldownTest": 0.2,
+    "DynamicRuleCooldownGroupTest": 0.2,
+    "DynamicRuleCooldownNonDynamicDecrementTest": 0.2,
     "EORPluralizationTest": 0.5,
     "EmergencyEvacTest": 0.5,
     "EnsureNoEdgeClobbering": 0.5,

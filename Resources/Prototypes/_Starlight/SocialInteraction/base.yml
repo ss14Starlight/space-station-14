@@ -1,0 +1,28 @@
+# Add these as parents to prototypes that should be able to be interacted with in a simple way (looking, waving).
+- type: entity
+  abstract: true
+  id: SocialInteractionReceiverSimple
+  components:
+  - type: SocialInteractionReceiver
+    interactionPrototypes:
+    - Wave
+    - Look
+
+# Add these as parents to prototypes that can be interacted with in more complex ways (species, living things, complex machines).
+- type: entity
+  abstract: true
+  id: SocialInteractionReceiverComplex
+  components:
+  - type: SocialInteractionReceiver
+    interactionPrototypes:
+    - Pet
+    - Boop
+    - Wave
+    - Look
+
+# Add as a parent to prototypes that should be able to do social interactions.
+- type: entity
+  abstract: true
+  id: SocialInteractionGiver
+  components:
+  - type: SocialInteractionGiver

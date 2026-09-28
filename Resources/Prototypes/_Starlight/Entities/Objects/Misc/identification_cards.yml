@@ -202,7 +202,7 @@
       listNumber: false
 
 - type: entity
-  parent: [ IDCardStandard, BaseCargoContraband ]
+  parent: [ IDCardStandard, BaseSalvageContraband ]
   id: SalvageLeadIDCard
   name: salvage lead ID card
   components:
@@ -1063,7 +1063,7 @@
     listNumber: false
 
 - type: entity
-  parent: [ IDCardStandard, BaseCargoContraband ]
+  parent: [ IDCardStandard, BaseSalvageContraband ]
   id: SalvageMedicIDCard
   name: salvage medic ID card
   components:

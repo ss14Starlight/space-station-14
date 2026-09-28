@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Server._Starlight.Commands;
-using Content.Server._Starlight.Toolshed;
+using Content.Shared._Starlight.Commands;
 using Content.Server.Administration;
 using Content.Shared._Starlight.NameConfusion;
 using Content.Shared.Administration;
@@ -235,12 +234,12 @@ public sealed class NameConfusionCommand : ToolshedCommand
         _conf = EntitySystemManager.GetEntitySystem<NameConfusionSystem>();
         if (!TryComp(uid, out comp))
         {
-            CommandMarkup.Error(ctx, $"Entity {uid} has no {nameof(NameConfusionComponent)}. Run {CommandMarkup.Highlight(ctx, "nconf:addname")} first.");
+            CommandMarkup.Error(ctx, $"Entity {uid} has no {nameof(NameConfusionComponent)}. Run {CommandMarkup.Highlight("nconf:addname")} first.");
             return false;
         }
 
         if (comp.Names.Count != 0) return true;
-        CommandMarkup.Error(ctx, $"Entity {uid} has no names to pick from. Run {CommandMarkup.Highlight(ctx, "nconf:addname")} first.");
+        CommandMarkup.Error(ctx, $"Entity {uid} has no names to pick from. Run {CommandMarkup.Highlight("nconf:addname")} first.");
         return false;
     }
 }

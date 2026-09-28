@@ -9,6 +9,9 @@ language-GalacticCommon-description = The common galactic tongue, engineered for
 language-Sign-name = Galactic Sign Language
 language-Sign-description = A sign language commonly used for those who are deaf or mute. Especially popular with spacers, due to practicality in airless environments.
 
+language-ClassicalSign-name = Classical Sign Language
+language-ClassicalSign-description = An older, more obscure sign language originating from Terra. It is completely distinct from Galactic Sign Language.
+
 language-SolCommon-name = Sol Common
 language-SolCommon-description = An artifical language designed by the Trans-Solar Federation for ease of use and concise communication.
 

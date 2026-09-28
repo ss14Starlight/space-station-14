@@ -21,4 +21,12 @@ public sealed partial class WallStainComponent : Component
     // Tracks which face of the wall this stain is applied to
     [DataField, AutoNetworkedField]
     public Vector2i Direction { get; set; } = Vector2i.Zero;
+
+    // how full the stain is
+    [DataField, AutoNetworkedField]
+    public float FillLevel { get; set; }
+
+    // fixed stain seed so every client scatters the same splats
+    [DataField, AutoNetworkedField]
+    public int SplatSeed { get; set; }
 }
