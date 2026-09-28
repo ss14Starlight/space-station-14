@@ -602,10 +602,9 @@
 # Salvage
 - type: entity
   id: SalvageTechFab
-  categories: [ ShouldMapStation ]
   parent: BaseLatheLube
   name: salvage techfab
-  description: Prints equipment for use by the station's supply department.
+  description: Prints equipment for use by the ITG's salvage team.
   components:
     - type: Sprite
       sprite: _Starlight/Structures/Machines/techfab.rsi
@@ -622,9 +621,14 @@
           map: ["enum.WiresVisualLayers.MaintenancePanel"]
     - type: Machine
       board: SalvageTechFabCircuitboard
+    - type: MaterialStorage
+      whitelist: *StandardMaterialWhitelist
+    - type: OreSiloClient
     - type: Lathe
       idleState: icon
-      runningState: icon
+      runningState: building
+      unlitIdleState: unlit
+      unlitRunningState: unlit-building
       staticPacks:
         # Static stuff that Salvage could reasonable use
         - StarlightCargoToolsStatic
@@ -648,8 +652,16 @@
         - StarlightSecurityEmagWeaponsStatic
         - StarlightSecurityAmmoStatic
         - StarlightSyndicateAmmoStatic
-    - type: MaterialStorage
-      whitelist: *StandardMaterialWhitelist
-    - type: StealTarget
-      stealGroup: DepartmentalTechFabCircuitboard
-    - type: OreSiloClient
+        - SyndicateAmmoStatic
+    - type: BlueprintReceiver
+      whitelist:
+        tags:
+          - BlueprintAutolathe
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+        machine_parts: !type:Container
+        blueprint: !type:Container
+    - type: EmptyOnMachineDeconstruct
+      containers:
+        - blueprint
