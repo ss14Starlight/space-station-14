@@ -34,10 +34,11 @@ public sealed partial class ServerRedundantMovementManager : IServerRedundantMov
 
     private void HandleMovementMessage(RedundantMovementMessage msg)
     {
-        var channel = _playerManager.GetSessionByChannel(msg.MsgChannel);
-        if (channel == null) return;
-        if (!_trackers.TryGetValue(channel, out var tracker))
-            _trackers.Add(channel, tracker = new());
+        if (!_playerManager.TryGetSessionByChannel(msg.MsgChannel, out var session) || session == null)
+            return;
+
+        if (!_trackers.TryGetValue(session, out var tracker))
+            _trackers.Add(session, tracker = new());
 
         tracker.Ingest(msg.TickData);
 
