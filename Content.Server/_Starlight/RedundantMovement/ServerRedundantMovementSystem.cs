@@ -28,9 +28,8 @@ public sealed partial class ServerRedundantMovementManager : IServerRedundantMov
 
     private void OnDisconnect(object? sender, NetDisconnectedArgs e)
     {
-        var channel = _playerManager.GetSessionByChannel(e.Channel);
-        if (channel != null)
-            _trackers.Remove(channel);
+        if (_playerManager.TryGetSessionByChannel(e.Channel, out var session) && session != null)
+            _trackers.Remove(session);
     }
 
     private void HandleMovementMessage(RedundantMovementMessage msg)
