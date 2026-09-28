@@ -14,30 +14,27 @@ public sealed partial class ToggleableSignalSystem : EntitySystem
     [Dependency] private DeviceLinkSystem _signalSystem = default!;
     [Dependency] private ToggleableAtmosDeviceSystem _toggleableAtmosDeviceSystem = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<ToggleableSignalComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<ToggleableSignalComponent, SignalReceivedEvent>(OnSignalReceived);
-    }
+    [SubscribeLocalEvent]
+    private void OnInit(Entity<ToggleableSignalComponent> entity, ref ComponentInit args) =>
+        _signalSystem.EnsureSinkPorts(entity, entity.Comp.OnPort, entity.Comp.OffPort, entity.Comp.TogglePort);
 
-    private void OnInit(EntityUid uid, ToggleableSignalComponent component, ComponentInit args) =>
-        _signalSystem.EnsureSinkPorts(uid, component.OnPort, component.OffPort, component.TogglePort);
-
-    private void OnSignalReceived(EntityUid uid, ToggleableSignalComponent component, ref SignalReceivedEvent args)
+    [SubscribeLocalEvent]
+    private void OnSignalReceived(Entity<ToggleableSignalComponent> entity, ref SignalReceivedEvent args)
     {
-        if (!TryComp<ToggleableAtmosDeviceComponent>(uid, out _))
+        if (!TryComp<ToggleableAtmosDeviceComponent>(entity, out var device))
             return;
+
+        var component = new Entity<ToggleableAtmosDeviceComponent>(entity.Owner, device);
 
         var state = SignalState.Momentary;
         args.Data?.TryGetValue(DeviceNetworkConstants.LogicState, out state);
 
         if (state is not (SignalState.High or SignalState.Momentary)) return;
-        if (args.Port == component.OnPort)
-            _toggleableAtmosDeviceSystem.Set(uid, true);
-        else if (args.Port == component.OffPort)
-            _toggleableAtmosDeviceSystem.Set(uid, false);
-        else if (args.Port == component.TogglePort)
-            _toggleableAtmosDeviceSystem.Toggle(uid);
+        if (args.Port == entity.Comp.OnPort)
+            _toggleableAtmosDeviceSystem.Set(component, true);
+        else if (args.Port == entity.Comp.OffPort)
+            _toggleableAtmosDeviceSystem.Set(component, false);
+        else if (args.Port == entity.Comp.TogglePort)
+            _toggleableAtmosDeviceSystem.Toggle(component);
     }
 }

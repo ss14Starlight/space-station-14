@@ -26,63 +26,61 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
     [Dependency] private AmbientSoundSystem _ambientSoundSystem = default!;
     [Dependency] private EntityManager _entityManager = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
+    [SubscribeLocalEvent]
+    private void OnMapInit(Entity<GasInletSiphonComponent> entity, ref MapInitEvent args) => UpdateState(entity, entity.Comp);
 
-        SubscribeLocalEvent<GasInletSiphonComponent, AtmosDeviceUpdateEvent>(OnAirSiphonUpdated);
-        SubscribeLocalEvent<GasInletSiphonComponent, ActivateInWorldEvent>(OnActivate);
-        SubscribeLocalEvent<GasInletSiphonComponent, AtmosDeviceEnabledEvent>(OnGasInletSiphonEnterAtmosphere);
-        SubscribeLocalEvent<GasInletSiphonComponent, AtmosDeviceDisabledEvent>(OnGasInletSiphonLeaveAtmosphere);
-        SubscribeLocalEvent<GasInletSiphonComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<GasInletSiphonComponent, PowerChangedEvent>(OnPowerChanged);
-        SubscribeLocalEvent<ToggleableAtmosDeviceComponent, SetToggleSignalReceivedEvent>(OnSetToggleSignalReceived);
-        SubscribeLocalEvent<ToggleableAtmosDeviceComponent, ToggleSignalReceivedEvent>(OnToggleSignalReceived);
-    }
-
-    private void OnMapInit(EntityUid uid, GasInletSiphonComponent component, MapInitEvent args) => UpdateState(uid, component);
-
-    private void OnActivate(EntityUid uid, GasInletSiphonComponent component, ActivateInWorldEvent args)
+    [SubscribeLocalEvent]
+    private void OnActivate(Entity<GasInletSiphonComponent> entity, ref ActivateInWorldEvent args)
     {
         if (args.Handled || !args.Complex)
             return;
 
-        Set(uid, component, !component.Enabled);
-        UpdateState(uid, component);
+        Set(entity, entity.Comp, !entity.Comp.Enabled);
+        UpdateState(entity, entity.Comp);
         args.Handled = true;
     }
 
-    private void OnSetToggleSignalReceived(EntityUid uid, ToggleableAtmosDeviceComponent component, ref SetToggleSignalReceivedEvent args)
+    [SubscribeLocalEvent]
+    private void OnSetToggleSignalReceived(Entity<ToggleableAtmosDeviceComponent> entity, ref SetToggleSignalReceivedEvent args)
     {
-        if (!_entityManager.TryGetComponent<GasInletSiphonComponent>(uid, out var device))
+        if (!_entityManager.TryGetComponent<GasInletSiphonComponent>(entity, out var device))
             return;
-        Set(uid, device, args.Value);
+
+        var siphonEntity = new Entity<GasInletSiphonComponent>(entity.Owner, device);
+        Set(siphonEntity, device, args.Value);
     }
 
-    private void OnToggleSignalReceived(EntityUid uid, ToggleableAtmosDeviceComponent component, ref ToggleSignalReceivedEvent args)
+    [SubscribeLocalEvent]
+    private void OnToggleSignalReceived(Entity<ToggleableAtmosDeviceComponent> entity, ref ToggleSignalReceivedEvent args)
     {
-        if (!_entityManager.TryGetComponent<GasInletSiphonComponent>(uid, out var device))
+        if (!_entityManager.TryGetComponent<GasInletSiphonComponent>(entity, out var device))
             return;
 
-        Set(uid, device, !device.Enabled);
+        var siphonEntity = new Entity<GasInletSiphonComponent>(entity.Owner, device);
+        Set(siphonEntity, device, !device.Enabled);
     }
 
-    private void OnGasInletSiphonEnterAtmosphere(EntityUid uid, GasInletSiphonComponent component, ref AtmosDeviceEnabledEvent args) => UpdateState(uid, component);
+    [SubscribeLocalEvent]
+    private void OnGasInletSiphonEnterAtmosphere(Entity<GasInletSiphonComponent> entity, ref AtmosDeviceEnabledEvent args) => UpdateState(entity, entity.Comp);
 
-    private void OnGasInletSiphonLeaveAtmosphere(EntityUid uid, GasInletSiphonComponent component, ref AtmosDeviceDisabledEvent args) => UpdateState(uid, component);
+    [SubscribeLocalEvent]
+    private void OnGasInletSiphonLeaveAtmosphere(Entity<GasInletSiphonComponent> entity, ref AtmosDeviceDisabledEvent args) => UpdateState(entity, entity.Comp);
 
-    private void OnAirSiphonUpdated(EntityUid uid, GasInletSiphonComponent siphon, ref AtmosDeviceUpdateEvent args)
+    [SubscribeLocalEvent]
+    private void OnAirSiphonUpdated(Entity<GasInletSiphonComponent> entity, ref AtmosDeviceUpdateEvent args)
     {
-        if (!_powerReceiverSystem.IsPowered(uid))
+        if (!_powerReceiverSystem.IsPowered(entity))
             return;
 
-        if (!siphon.Enabled || !_nodeContainer.TryGetNode(uid, siphon.OutletName, out PipeNode? outlet))
+        var siphon = entity.Comp;
+
+        if (!siphon.Enabled || !_nodeContainer.TryGetNode(entity.Owner, siphon.OutletName, out PipeNode? outlet))
             return;
 
         if (args.Grid is not {} grid)
             return;
 
-        var position = _transformSystem.GetGridTilePositionOrDefault(uid);
+        var position = _transformSystem.GetGridTilePositionOrDefault(entity.Owner);
         var environment = _atmosphereSystem.GetTileMixture(grid, args.Map, position, true);
 
         Scrub(args.dt, siphon, environment, outlet.Air);
@@ -109,38 +107,40 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
         _atmosphereSystem.Merge(destination, removed);
     }
 
-    private void OnPowerChanged(EntityUid uid, GasInletSiphonComponent component, ref PowerChangedEvent args) => UpdateState(uid, component);
+    [SubscribeLocalEvent]
+    private void OnPowerChanged(Entity<GasInletSiphonComponent> entity, ref PowerChangedEvent args) => UpdateState(entity, entity.Comp);
 
-    private void UpdateState(EntityUid uid, GasInletSiphonComponent siphon, AppearanceComponent? appearance = null)
+    private void UpdateState(Entity<GasInletSiphonComponent> entity, GasInletSiphonComponent siphon, AppearanceComponent? appearance = null)
     {
-        if (!Resolve(uid, ref appearance, false))
+        if (!Resolve(entity, ref appearance, false))
             return;
 
-        _ambientSoundSystem.SetAmbience(uid, true);
+        if (!_powerReceiverSystem.IsPowered(entity))
+        {
+            if (!siphon.Enabled)
+                _appearance.SetData(entity, GasInletSiphonVisuals.State, GasInletSiphonState.UnpoweredOff);
+            else
+                _appearance.SetData(entity, GasInletSiphonVisuals.State, GasInletSiphonState.UnpoweredOn);
 
-        if (!_powerReceiverSystem.IsPowered(uid) && !siphon.Enabled) {
-            _ambientSoundSystem.SetAmbience(uid, false);
-            _appearance.SetData(uid, GasInletSiphonVisuals.State, GasInletSiphonState.UnpoweredOff, appearance);
-        } else if (!_powerReceiverSystem.IsPowered(uid) && siphon.Enabled)
+            _ambientSoundSystem.SetAmbience(entity, false);
+        } else
         {
-            _ambientSoundSystem.SetAmbience(uid, false);
-            _appearance.SetData(uid, GasInletSiphonVisuals.State, GasInletSiphonState.UnpoweredOn, appearance);
-        } else if (_powerReceiverSystem.IsPowered(uid) && !siphon.Enabled)
-        {
-            _ambientSoundSystem.SetAmbience(uid, false);
-            _appearance.SetData(uid, GasInletSiphonVisuals.State, GasInletSiphonState.Off, appearance);
-        } else if (_powerReceiverSystem.IsPowered(uid) && siphon.Enabled)
-        {
-            _appearance.SetData(uid, GasInletSiphonVisuals.State, GasInletSiphonState.On, appearance);
+            if (!siphon.Enabled)
+                _appearance.SetData(entity, GasInletSiphonVisuals.State, GasInletSiphonState.Off);
+            else
+            {
+                _appearance.SetData(entity, GasInletSiphonVisuals.State, GasInletSiphonState.On);
+                _ambientSoundSystem.SetAmbience(entity, true);
+            }
         }
     }
 
-    private void Set(EntityUid uid, GasInletSiphonComponent siphon, bool value)
+    private void Set(Entity<GasInletSiphonComponent> entity, GasInletSiphonComponent siphon, bool value)
     {
         if (siphon.Enabled == value)
             return;
 
         siphon.Enabled = value;
-        UpdateState(uid, siphon);
+        UpdateState(entity, siphon);
     }
 }

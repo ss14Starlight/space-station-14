@@ -11,9 +11,9 @@ public enum GasInletSiphonVisuals : byte
 [Serializable, NetSerializable]
 public enum GasInletSiphonState : byte
 {
-    Off,
-    On,
     UnpoweredOff,
-    UnpoweredOn
+    Off,
+    UnpoweredOn,
+    On,
 }
 

@@ -6,16 +6,14 @@ public sealed partial class ToggleableAtmosDeviceSystem : EntitySystem
 {
     [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
 
-    public override void Initialize() => base.Initialize();
-
     /// <summary>
     /// Sets the device to the boolean value
     /// </summary>
-    public void Set(EntityUid uid, bool value) => RaiseLocalEvent(uid, new SetToggleSignalReceivedEvent(value));
+    public void Set(Entity<ToggleableAtmosDeviceComponent> entity, bool value) => RaiseLocalEvent(entity, new SetToggleSignalReceivedEvent(value));
     /// <summary>
     /// Toggles the device
     /// </summary>
-    public void Toggle(EntityUid uid) => RaiseLocalEvent(uid, new ToggleSignalReceivedEvent());
+    public void Toggle(Entity<ToggleableAtmosDeviceComponent> entity) => RaiseLocalEvent(entity, new ToggleSignalReceivedEvent());
 }
 
 public record struct SetToggleSignalReceivedEvent(bool Value);

@@ -36,6 +36,13 @@
         Tertiary: GasInletSiphonAlt2
         Quaternary: GasInletSiphonAlt3
         Quinary: GasInletSiphonAlt4
+      spriteLayersRsiPaths:
+        enum.PipeVisualLayers.Pipe:
+          Primary: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
+          Secondary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+          Tertiary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+          Quaternary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+          Quinary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -46,6 +53,7 @@
             On: { color: "#5eff5e" }
             UnpoweredOn: { color: "#022102" }
     - type: PipeColorVisuals
+    - type: AtmosDevice
     - type: GasInletSiphon
     - type: Construction
       graph: GasUnaryStarlight

@@ -177,7 +177,7 @@
   canBuildInImpassable: false
   conditions:
     - !type:NoUnstackableInTile
-  alternativePrototypes:
+  alternativePrototypes: &GasInletSiphonAltProtos
   - GasInletSiphon
   - GasInletSiphonAlt1
   - GasInletSiphonAlt2
@@ -195,12 +195,7 @@
   canBuildInImpassable: false
   conditions:
     - !type:NoUnstackableInTile
-  alternativePrototypes:
-  - GasInletSiphon
-  - GasInletSiphonAlt1
-  - GasInletSiphonAlt2
-  - GasInletSiphonAlt3
-  - GasInletSiphonAlt4
+  alternativePrototypes: *GasInletSiphonAltProtos
 
 - type: construction
   id: GasInletSiphonAlt2
@@ -213,12 +208,7 @@
   canBuildInImpassable: false
   conditions:
     - !type:NoUnstackableInTile
-  alternativePrototypes:
-  - GasInletSiphon
-  - GasInletSiphonAlt1
-  - GasInletSiphonAlt2
-  - GasInletSiphonAlt3
-  - GasInletSiphonAlt4
+  alternativePrototypes: *GasInletSiphonAltProtos
 
 - type: construction
   id: GasInletSiphonAlt3
@@ -231,12 +221,7 @@
   canBuildInImpassable: false
   conditions:
     - !type:NoUnstackableInTile
-  alternativePrototypes:
-  - GasInletSiphon
-  - GasInletSiphonAlt1
-  - GasInletSiphonAlt2
-  - GasInletSiphonAlt3
-  - GasInletSiphonAlt4
+  alternativePrototypes: *GasInletSiphonAltProtos
 
 - type: construction
   id: GasInletSiphonAlt4
@@ -249,12 +234,7 @@
   canBuildInImpassable: false
   conditions:
     - !type:NoUnstackableInTile
-  alternativePrototypes:
-  - GasInletSiphon
-  - GasInletSiphonAlt1
-  - GasInletSiphonAlt2
-  - GasInletSiphonAlt3
-  - GasInletSiphonAlt4
+  alternativePrototypes: *GasInletSiphonAltProtos
 
 # region binary
 
