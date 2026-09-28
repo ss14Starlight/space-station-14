@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: MobCivilian
+  components:
+  - type: Loadout
+    prototypes:
+    - !Remove LimitedPassengerGear
+    - LimitedAssistantGear
+
+- type: !PartialOnly entity
+  id: MobCluwne
+  components:
+  - type: Cluwne
+    unremovable: true

@@ -1,0 +1,58 @@
+- type: !PartialOnly entity
+  id: BaseMobAsteroid
+  components:
+  - type: Body
+    prototype: Animal
+
+- type: !PartialOnly entity
+  id: MobGoliath
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Aliens/Asteroid/goliath.rsi
+  - type: MobThresholds
+    thresholds:
+      250: Dead
+      150: !Remove
+
+- type: !PartialOnly entity
+  id: ActionGoliathTentacle
+  components:
+  - type: Action
+    icon:
+      sprite: _Starlight/Mobs/Aliens/Asteroid/goliath.rsi
+    iconOn:
+      sprite: _Starlight/Mobs/Aliens/Asteroid/goliath.rsi
+
+- type: !PartialOnly entity
+  id: GoliathTentacle
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Aliens/Asteroid/goliath.rsi
+
+- type: !PartialOnly entity
+  id: BaseEffectGoliathTentacleSpawn
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Aliens/Asteroid/goliath.rsi
+
+- type: !PartialOnly entity
+  id: MobHivelord
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Aliens/Asteroid/hivelord.rsi
+
+- type: !PartialOnly entity
+  id: MobHivelordBrood
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Aliens/Asteroid/hivelord.rsi
+
+- type: !PartialOnly entity
+  id: MobBasilisk
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Aliens/Asteroid/basilisk.rsi
+  - type: MobThresholds
+    thresholds:
+      75: Dead
+      45: !Remove

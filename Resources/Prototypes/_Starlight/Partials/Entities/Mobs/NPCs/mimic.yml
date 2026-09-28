@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: MobMimic
+  components:
+  - type: NpcFactionMember
+    factions:
+    - !Remove SimpleHostile
+    - SimpleNeutral

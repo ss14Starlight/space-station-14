@@ -1,0 +1,47 @@
+- type: !PartialOnly marking
+  id: SlimeGradientLeftArm
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [SlimePerson, NeoSlimePerson, Neocyte]
+
+- type: !PartialOnly marking
+  id: SlimeGradientRightArm
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [SlimePerson, NeoSlimePerson, Neocyte]
+
+- type: !PartialOnly marking
+  id: SlimeGradientLeftLeg
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [SlimePerson, NeoSlimePerson, Neocyte]
+
+- type: !PartialOnly marking
+  id: SlimeGradientRightLeg
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [SlimePerson, NeoSlimePerson, Neocyte]
+
+- type: !PartialOnly marking
+  id: SlimeGradientLeftFoot
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [SlimePerson, NeoSlimePerson, Neocyte]
+
+- type: !PartialOnly marking
+  id: SlimeGradientRightFoot
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [SlimePerson, NeoSlimePerson, Neocyte]
+
+- type: !PartialOnly marking
+  id: SlimeGradientLeftHand
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [SlimePerson, NeoSlimePerson, Neocyte]
+
+- type: !PartialOnly marking
+  id: SlimeGradientRightHand
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [SlimePerson, NeoSlimePerson, Neocyte]

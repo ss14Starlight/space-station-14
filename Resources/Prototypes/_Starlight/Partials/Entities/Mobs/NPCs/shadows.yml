@@ -1,0 +1,12 @@
+- type: !PartialOnly entity
+  id: MobCatShadow
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Cat
+    - CatFeral
+    understands:
+    - Cat
+    - CatFeral
+  - type: !Remove ReplacementAccent
+    accent: !Remove

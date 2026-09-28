@@ -1,0 +1,179 @@
+- type: !PartialOnly marking
+  id: VulpClawsHandLeft
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpClawsHandRight
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpClawsFootLeft
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpClawsFootRight
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsCrestLegLeft
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsCrestArmLeft
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsCrestFootLeft
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsCrestHandLeft
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsCrestLegRight
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsCrestArmRight
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsCrestFootRight
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsCrestHandRight
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsFadeLegLeft
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsFadeArmLeft
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsFadeFootLeft
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsFadeHandLeft
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsFadeLegRight
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsFadeArmRight
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsFadeFootRight
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsFadeHandRight
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsSharpLegLeft
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsSharpArmLeft
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsSharpLongArmLeft
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsSharpFootLeft
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsSharpHandLeft
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsSharpLegRight
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsSharpArmRight
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsSharpLongArmRight
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsSharpFootRight
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPointsSharpHandRight
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]

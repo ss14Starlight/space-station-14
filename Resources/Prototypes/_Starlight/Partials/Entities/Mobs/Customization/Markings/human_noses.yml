@@ -1,0 +1,34 @@
+- type: !PartialOnly marking
+  id: HumanNoseSchnozz
+  groupWhitelist: !Remove
+  markingCategory: Snout
+  followSkinColor: true
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Neocyte] # Neocytes. I doubt it'll be much visible though
+
+- type: !PartialOnly marking
+  id: HumanNoseNubby
+  groupWhitelist: !Remove
+  markingCategory: Snout
+  followSkinColor: true
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Neocyte] # Neocytes
+
+- type: !PartialOnly marking
+  id: HumanNoseDroop
+  groupWhitelist: !Remove
+  markingCategory: Snout
+  followSkinColor: true
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Neocyte] # Neocytes
+
+- type: !PartialOnly marking
+  id: HumanNoseBlob
+  groupWhitelist: !Remove
+  markingCategory: Snout
+  followSkinColor: true
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Neocyte] # Neocytes
+
+- type: !PartialOnly marking
+  id: HumanNoseUppie
+  groupWhitelist: !Remove
+  markingCategory: Snout
+  followSkinColor: true
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Neocyte] # Neocytes

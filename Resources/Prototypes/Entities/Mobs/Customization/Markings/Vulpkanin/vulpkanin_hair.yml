@@ -255,8 +255,7 @@
 - type: marking
   id: VulpFacialHairGoatee
   bodyPart: FacialHair
-  markingCategory: FacialHair
-  speciesRestriction: [ Vulpkanin ]
+  groupWhitelist: [ Vulpkanin ]
   canBeDisplaced: false
   sprites:
   - sprite: Mobs/Customization/Vulpkanin/facial_hair.rsi

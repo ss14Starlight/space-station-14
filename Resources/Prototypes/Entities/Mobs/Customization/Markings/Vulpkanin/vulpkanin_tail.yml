@@ -52,8 +52,7 @@
 - type: marking
   id: VulpTailVulp
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
+  groupWhitelist: [ Vulpkanin ]
   sprites:
     - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: vulp
@@ -63,8 +62,7 @@
 - type: marking
   id: VulpTailVulpFade
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
+  groupWhitelist: [ Vulpkanin ]
   sprites:
     - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: vulp

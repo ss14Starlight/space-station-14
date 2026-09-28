@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: MobLivingLight
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Floral

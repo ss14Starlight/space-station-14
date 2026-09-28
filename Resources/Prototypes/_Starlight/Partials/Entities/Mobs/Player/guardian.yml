@@ -1,0 +1,27 @@
+- type: !PartialOnly entity
+  id: MobGuardianBase
+  components:
+  - type: AntagImmune
+
+- type: !PartialOnly entity
+  id: MobHoloparasiteGuardian
+  components:
+  - type: GhostRole
+    important: true
+
+- type: !PartialOnly entity
+  id: MobIfritGuardian
+  components:
+  - type: GhostRole
+    important: true
+
+- type: !PartialOnly entity
+  id: MobHoloClownGuardian
+  components:
+  - type: GhostRole
+    important: true
+  - type: Body
+    prototype: Primate
+  - type: Hands
+    activeHandId: !Remove
+    hands: !Remove

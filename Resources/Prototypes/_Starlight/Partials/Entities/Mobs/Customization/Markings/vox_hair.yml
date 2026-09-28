@@ -1,0 +1,173 @@
+- type: !PartialOnly marking
+  id: VoxHairAfro
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairBraids
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairBushy
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairCrestedQuills
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairEmperorQuills
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairFlowing
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairHawk
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairHedgehog
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairHorns
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairKeelQuills
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairKeetQuills
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairKingly
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairLongBraid
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairMadScientist
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairMange
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairMohawk
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairNights
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairPony
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairRazorClipped
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairRazor
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairSortBraid
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairShortQuills
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairSlick
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairSpotty
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairSurf
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairTielQuills
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairWiseBraid
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairYasu
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxHairCatfish
+  groupWhitelist: !Remove
+  markingCategory: Hair
+  speciesRestriction: [Vox, NeoVox]

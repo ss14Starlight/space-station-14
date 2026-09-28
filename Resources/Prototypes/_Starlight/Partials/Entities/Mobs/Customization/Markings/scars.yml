@@ -1,0 +1,83 @@
+- type: !PartialOnly marking
+  id: ScarEyeRight
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, SlimePerson, NeoSlimePerson, Elf, NeoElf, Neocyte] # Add Elf and Neocytes
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: ScarEyeLeft
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, SlimePerson, NeoSlimePerson, Elf, NeoElf, Neocyte] # Add Elf and Neocytes
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: ScarTopSurgeryShort
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Reptilian, NeoReptilian, SlimePerson, NeoSlimePerson, Moth, NeoMoth, Arachnid, NeoArachnid, Diona, NeoDiona, Elf, NeoElf, Neocyte] # Add Elf and Neocytes
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: ScarTopSurgeryLong
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Reptilian, NeoReptilian, SlimePerson, NeoSlimePerson, Moth, NeoMoth, Arachnid, NeoArachnid, Diona, NeoDiona, Elf, NeoElf, Neocyte] # Add Elf and Neocytes
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: ScarChest
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Reptilian, NeoReptilian, SlimePerson, NeoSlimePerson, Moth, NeoMoth, Arachnid, NeoArachnid, Diona, NeoDiona, Elf, NeoElf, Neocyte] # Add Elf and Neocytes
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: ScarNeck
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Reptilian, NeoReptilian, SlimePerson, NeoSlimePerson, Elf, NeoElf, Neocyte] # Add Elf and Neocytes
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: ScarChestBullets
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Reptilian, NeoReptilian, SlimePerson, NeoSlimePerson, Moth, NeoMoth, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Add Elf and Neocytes
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: ScarStomachBullets
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Reptilian, NeoReptilian, SlimePerson, NeoSlimePerson, Moth, NeoMoth, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Add Elf and Neocytes
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: ScarFace1
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Reptilian, NeoReptilian, SlimePerson, NeoSlimePerson, Moth, NeoMoth, Elf, NeoElf, Neocyte] # Add Elf and Neocytes
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: ScarFace2
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Reptilian, NeoReptilian, SlimePerson, NeoSlimePerson, Moth, NeoMoth, Elf, NeoElf, Neocyte] # Add Elf and Neocytes
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: ScarEyeRightSmall
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Reptilian, NeoReptilian, SlimePerson, NeoSlimePerson, Elf, NeoElf, Neocyte] # Add Elf and Neocytes
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: ScarEyeLeftSmall
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Reptilian, NeoReptilian, SlimePerson, NeoSlimePerson, Elf, NeoElf, Neocyte] # Add Elf and Neocytes
+  followSkinColor: true

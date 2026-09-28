@@ -1,0 +1,41 @@
+- type: !PartialOnly marking
+  id: VoxFacialHairBeard
+  groupWhitelist: !Remove
+  markingCategory: FacialHair
+  speciesRestriction: [Vox, NeoVox] # Not sure how much of this will be visible, but it's here in case we make different types of Neocyte heads in the future
+
+- type: !PartialOnly marking
+  id: VoxFacialHairColonel
+  groupWhitelist: !Remove
+  markingCategory: FacialHair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxFacialHairFu
+  groupWhitelist: !Remove
+  markingCategory: FacialHair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxFacialHairMane
+  groupWhitelist: !Remove
+  markingCategory: FacialHair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxFacialHairManeSmall
+  groupWhitelist: !Remove
+  markingCategory: FacialHair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxFacialHairNeck
+  groupWhitelist: !Remove
+  markingCategory: FacialHair
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxFacialHairTufts
+  groupWhitelist: !Remove
+  markingCategory: FacialHair
+  speciesRestriction: [Vox, NeoVox]

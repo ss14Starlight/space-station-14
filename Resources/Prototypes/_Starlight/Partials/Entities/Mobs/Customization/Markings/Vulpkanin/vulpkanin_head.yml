@@ -1,0 +1,41 @@
+- type: !PartialOnly marking
+  id: VulpHeadBlaze
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpHeadMask
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpPatch
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpSlash
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpStripes1
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpStripes2
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpVulpine
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]

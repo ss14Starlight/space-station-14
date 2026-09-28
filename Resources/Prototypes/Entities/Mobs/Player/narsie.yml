@@ -4,14 +4,6 @@
   name: Nar'Sie
   description: Your mind begins to bubble and ooze as it tries to comprehend what it sees.
   components:
-  # begin starlight
-  - type: LanguageKnowledge
-    speaks:
-    - Darktongue
-    understands:
-    - Darktongue
-  - type: UniversalLanguageSpeaker
-  # end starlight
   - type: Sprite
     sprite: Mobs/Demons/narsie.rsi
     drawdepth: Ghosts
@@ -32,7 +24,7 @@
       shader: unshaded
   # spawn animation lasts 3.5 seconds
   - type: TimedDespawn
-    lifetime: 10
+    lifetime: 3.5
   - type: SpawnOnDespawn
     prototype: MobNarsie
 
@@ -43,8 +35,6 @@
   - type: AnnounceOnSpawn
     message: narsie-has-risen
     sender: narsie-has-risen-sender
-    ignoreASpace: true # Starlight
-    globalAnnounce: true # Starlight
     sound:
       path: /Audio/Misc/narsie_rises.ogg
     color: red
@@ -86,9 +76,7 @@
     - Command
     - CentCom
     - Engineering
-    - Law # Starlight
     - Medical
-    - NanoTrasen # Starlight
     - Science
     - Security
     - Service

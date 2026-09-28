@@ -1,0 +1,13 @@
+- type: !PartialOnly marking
+  id: VulpSnoutVulpineLines
+  groupWhitelist: !Remove
+  bodyPart: Snout
+  markingCategory: SnoutCover
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpSnoutTop
+  groupWhitelist: !Remove
+  bodyPart: Snout
+  markingCategory: SnoutCover
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]

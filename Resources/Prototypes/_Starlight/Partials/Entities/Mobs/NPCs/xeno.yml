@@ -1,0 +1,31 @@
+- type: !PartialOnly entity
+  id: MobXeno
+  components:
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Xeno
+    - Xenomind
+    understands:
+    - Xeno
+    - Xenomind
+  - type: ThermalVision
+  - type: GhostRole
+    mindRoles:
+    - MindRoleGhostRoleXeno
+  - type: Xeno # component for inheritance
+  - type: AntagImmune # this is an obscure interaction that happens because they have hands
+
+- type: !PartialOnly entity
+  id: MobXenoQueen
+  components:
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Xeno
+    - Xenomind
+    understands:
+    - GalacticCommon
+    - Xeno
+    - Xenomind

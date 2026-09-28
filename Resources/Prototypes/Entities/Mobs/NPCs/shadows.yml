@@ -36,22 +36,13 @@
     speedModifierThresholds:
       60: 0.7
       80: 0.5
-
+      
 - type: entity
   name: shadow cat
   parent: BaseShadowMob
   id: MobCatShadow
   description: A lovely piece of darkness. Hope he doesn't bring you a curse.
   components:
-  # Starlight-start: Languages
-  - type: LanguageKnowledge
-    speaks:
-    - Cat
-    - CatFeral
-    understands:
-    - Cat
-    - CatFeral
-  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/cat.rsi
@@ -59,6 +50,8 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: cat
   - type: Physics
+  - type: ReplacementAccent
+    accent: cat
   - type: InteractionPopup
     successChance: 0.01 # you cant pet shadow cat... almost
     interactSuccessString: petting-success-cat

@@ -1,0 +1,22 @@
+- type: !PartialOnly marking
+  id: CatEars
+  groupWhitelist: !Remove
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human, NeoHuman, Neocyte]
+
+- type: !PartialOnly marking
+  id: CatTail
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Human, NeoHuman, Neocyte]
+  emotes:
+    - emotePrototype: Mew
+      requiredMarkings:
+        - CatEars
+    - emotePrototype: Meow
+      requiredMarkings:
+        - CatEars
+    - emotePrototype: Trill
+      requiredMarkings:
+        - CatEars

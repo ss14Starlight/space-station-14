@@ -11,7 +11,7 @@
   - type: MobMover
   - type: NpcFactionMember
     factions:
-    - SimpleNeutral # Starlight edit
+    - SimpleHostile
   - type: Sprite
     drawdepth: Mobs
     sprite: Structures/Machines/VendingMachines/cola.rsi

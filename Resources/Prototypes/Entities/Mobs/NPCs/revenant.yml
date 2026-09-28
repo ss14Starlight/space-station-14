@@ -6,13 +6,8 @@
   name: revenant
   description: A spooky ghostie.
   components:
-  - type: DarkLight # Starlight
-  - type: LanguageSpeaker
-  - type: UniversalLanguageSpeaker
   - type: Emag
     emagType: All
-  - type: ThermalVision # Starlight
-    effectPrototype: EffectThermalVisionRevenant # Starlight
   - type: Input
     context: "ghost"
   - type: Spectral
@@ -35,7 +30,6 @@
     visMask:
       - Normal
       - Ghost
-      - NullSpace # Starlight
   - type: ContentEye
     maxZoom: 1.2, 1.2
   - type: NameIdentifier
@@ -45,7 +39,6 @@
     name: ghost-role-information-revenant-name
     description: ghost-role-information-revenant-description
     rules: ghost-role-information-antagonist-rules
-    important: true # SL
     mindRoles:
     - MindRoleGhostRoleSoloAntagonist
     raffle:
@@ -72,12 +65,11 @@
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
   - type: Visibility
-    layer: 32 # Starlight - nullspace vis layer (1 << 5)
+    layer: 2 #ghost vis layer
   - type: ActionGrant
     actions:
     - ActionRevenantShop
   - type: Store
-    name: store-preset-name-revenant #Starlight UI change for data purity
     categories:
     - RevenantAbilities
     currencyWhitelist:

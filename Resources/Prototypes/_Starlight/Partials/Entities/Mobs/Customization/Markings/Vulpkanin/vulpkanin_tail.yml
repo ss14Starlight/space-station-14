@@ -1,0 +1,11 @@
+- type: !PartialOnly marking
+  id: VulpTailVulp
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]
+
+- type: !PartialOnly marking
+  id: VulpTailVulpFade
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte]

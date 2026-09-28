@@ -1,0 +1,174 @@
+- type: !PartialOnly marking
+  id: DionaThornsHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaThornsBody
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaFlowersHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaFlowersBody
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaLeafCover
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaBloomHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaBracketHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaBrushHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaCornflowerHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaFicusHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaGarlandHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaKingHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaLaurelHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaLeafyHeadTop
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaLotusHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaMeadowHeadTop
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaOakHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaPalmHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaRootHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaRoseHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaRoseyHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaShrubHeadTop
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaSpinnerHeadSide
+  groupWhitelist: !Remove
+  markingCategory: HeadSide
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaSproutHeadSide
+  groupWhitelist: !Remove
+  markingCategory: HeadSide
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaVineHeadTop
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaVinelHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaVinesHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaWildflowerHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Diona, NeoDiona, Neocyte]
+
+- type: !PartialOnly marking
+  id: DionaVineOverlay
+  groupWhitelist: !Remove
+  bodyPart: LLeg
+  markingCategory: Overlay
+  speciesRestriction: [Diona, NeoDiona, Neocyte]

@@ -1,0 +1,12 @@
+- type: !PartialOnly entity
+  id: MobMoproach
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Mothroach
+    understands:
+    - Moffic
+    - Mothroach
+    - GalacticCommon
+  - type: Absorbent
+    pickupAmount: 5 # small feet

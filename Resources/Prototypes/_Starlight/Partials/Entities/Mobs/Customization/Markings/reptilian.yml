@@ -1,0 +1,251 @@
+- type: !PartialOnly marking
+  id: LizardFrillsAquatic
+  groupWhitelist: !Remove
+  markingCategory: HeadSide
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardFrillsShort
+  groupWhitelist: !Remove
+  markingCategory: HeadSide
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardFrillsSimple
+  groupWhitelist: !Remove
+  markingCategory: HeadSide
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardFrillsDivinity
+  groupWhitelist: !Remove
+  markingCategory: HeadSide
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardFrillsBig
+  groupWhitelist: !Remove
+  markingCategory: HeadSide
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardFrillsAxolotl
+  groupWhitelist: !Remove
+  markingCategory: HeadSide
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardFrillsHood
+  groupWhitelist: !Remove
+  markingCategory: HeadSide
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardFrillsNeckfull
+  groupWhitelist: !Remove
+  markingCategory: HeadSide
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardHornsAngler
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardHornsCurled
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardHornsRam
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardHornsShort
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardHornsSimple
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardHornsDouble
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardTailSmooth
+  groupWhitelist: !Remove
+  waggingId: LizardTailSmoothAnimated
+  markingCategory: Tail
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardTailLarge
+  groupWhitelist: !Remove
+  waggingId: LizardTailLargeAnimated
+  markingCategory: Tail
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardTailSpikes
+  groupWhitelist: !Remove
+  waggingId: LizardTailSpikesAnimated
+  markingCategory: Tail
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardTailLTiger
+  groupWhitelist: !Remove
+  waggingId: LizardTailLTigerAnimated
+  markingCategory: Tail
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardTailDTiger
+  groupWhitelist: !Remove
+  waggingId: LizardTailDTigerAnimated
+  markingCategory: Tail
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardTailAquatic
+  groupWhitelist: !Remove
+  waggingId: LizardTailAquaticAnimated
+  markingCategory: Tail
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardSnoutRound
+  groupWhitelist: !Remove
+  markingCategory: Snout
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardSnoutSharp
+  groupWhitelist: !Remove
+  markingCategory: Snout
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardSnoutSplotch
+  groupWhitelist: !Remove
+  markingCategory: Snout
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardSnoutVisageRound
+  groupWhitelist: !Remove
+  markingCategory: Snout
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardSnoutVisageSharp
+  groupWhitelist: !Remove
+  markingCategory: Snout
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardChestTiger
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardHeadTiger
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardLArmTiger
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Reptilian, NeoReptilian]
+
+- type: !PartialOnly marking
+  id: LizardLLegTiger
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Reptilian, NeoReptilian]
+
+- type: !PartialOnly marking
+  id: LizardRArmTiger
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Reptilian, NeoReptilian]
+
+- type: !PartialOnly marking
+  id: LizardRLegTiger
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Reptilian, NeoReptilian]
+
+- type: !PartialOnly marking
+  id: LizardHornsArgali
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardHornsAyrshire
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardHornsMyrsore
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardHornsBighorn
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardHornsDemonic
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardHornsKoboldEars
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardHornsFloppyKoboldEars
+  groupWhitelist: !Remove
+  markingCategory: HeadSide
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardChestUnderbelly
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardChestBackspikes
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: LizardChestFin
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]

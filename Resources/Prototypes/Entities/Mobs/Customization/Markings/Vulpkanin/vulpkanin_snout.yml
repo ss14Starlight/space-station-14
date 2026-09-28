@@ -31,9 +31,8 @@
 
 - type: marking
   id: VulpSnoutVulpineLines
-  bodyPart: Snout
-  markingCategory: SnoutCover
-  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
+  bodyPart: SnoutCover
+  groupWhitelist: [ Vulpkanin ]
   sprites:
     - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
       state: vulpine-lines
@@ -60,9 +59,8 @@
 
 - type: marking
   id: VulpSnoutTop
-  bodyPart: Snout
-  markingCategory: SnoutCover
-  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
+  bodyPart: SnoutCover
+  groupWhitelist: [ Vulpkanin ]
   sprites:
     - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
       state: snout-top

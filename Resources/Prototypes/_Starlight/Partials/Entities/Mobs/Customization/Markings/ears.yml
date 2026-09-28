@@ -1,0 +1,41 @@
+- type: !PartialOnly marking
+  id: HumanLongEars
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  followSkinColor: true
+  speciesRestriction: [Dwarf, NeoDwarf, Neocyte] # remove elf ears from humans (and give them to elves)
+
+- type: !PartialOnly marking
+  id: LongEarsWide
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  followSkinColor: true
+  speciesRestriction: [Dwarf, NeoDwarf, Neocyte] # remove elf ears from humans (and give them to elves)
+
+- type: !PartialOnly marking
+  id: LongEarsSmall
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  followSkinColor: true
+  speciesRestriction: [Dwarf, NeoDwarf, Neocyte] # remove elf ears from humans (and give them to elves)
+
+- type: !PartialOnly marking
+  id: LongEarsUpwards
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  followSkinColor: true
+  speciesRestriction: [Dwarf, NeoDwarf, Neocyte] # remove elf ears from humans (and give them to elves)
+
+- type: !PartialOnly marking
+  id: LongEarsTall
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  followSkinColor: true
+  speciesRestriction: [Dwarf, NeoDwarf, Neocyte] # remove elf ears from humans (and give them to elves)
+
+- type: !PartialOnly marking
+  id: LongEarsThin
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  followSkinColor: true
+  speciesRestriction: [Dwarf, NeoDwarf, Neocyte] # remove elf ears from humans (and give them to elves)

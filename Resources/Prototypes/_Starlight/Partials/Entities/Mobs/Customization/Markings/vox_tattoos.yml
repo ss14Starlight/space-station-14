@@ -1,0 +1,133 @@
+- type: !PartialOnly marking
+  id: TattooVoxHeartLeftArm
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: TattooVoxHeartRightArm
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: TattooVoxHiveChest
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: TattooVoxNightlingChest
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: TattooVoxNightbelt
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: TattooVoxChestV
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: TattooVoxUnderbelly
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: TattooVoxTailRing
+  groupWhitelist: !Remove
+  markingCategory: Overlay
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: TattooEyeVoxRight
+  groupWhitelist: !Remove
+  markingCategory: Overlay
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: TattooEyeVoxLeft
+  groupWhitelist: !Remove
+  markingCategory: Overlay
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: TattooEyeshadowVoxSmall
+  groupWhitelist: !Remove
+  markingCategory: Overlay
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: TattooEyeshadowVoxMedium
+  groupWhitelist: !Remove
+  markingCategory: Overlay
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: TattooEyeshadowVoxLarge
+  groupWhitelist: !Remove
+  markingCategory: Overlay
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxTattooEyeliner
+  groupWhitelist: !Remove
+  markingCategory: Overlay
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxBeakCoverStripe
+  groupWhitelist: !Remove
+  bodyPart: Snout # no visual nubody
+  markingCategory: SnoutCover # no visual nubody
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxBeakCoverTip
+  groupWhitelist: !Remove
+  bodyPart: Snout # no visual nubody
+  markingCategory: SnoutCover # no visual nubody
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: TattooVoxArrowHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: TattooVoxNightlingHead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxVisage
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxVisageL
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxVisageR
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxCheek
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Vox, NeoVox]

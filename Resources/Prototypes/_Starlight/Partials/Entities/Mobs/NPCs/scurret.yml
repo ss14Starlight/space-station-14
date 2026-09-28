@@ -1,0 +1,29 @@
+- type: !PartialOnly entity
+  id: MobBaseScurret
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - ScurretSign
+    understands:
+    - ScurretSign
+    - GalacticCommon
+  - type: AlwaysRevolutionaryConvertible
+  - type: StatusIcon # marks them as crew
+    bounds: -0.5,-0.5,0.5,0.5
+  - type: Puller
+  - type: !Remove ReplacementAccent
+    accent: !Remove
+
+- type: !PartialOnly entity
+  id: MobBaseEmotionalSupportScurret
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - ScurretSign
+    understands:
+    - ScurretSign
+    - GalacticCommon
+  - type: NpcFactionMember
+    factions:
+    - !Remove Passive
+    - Nanotrasen

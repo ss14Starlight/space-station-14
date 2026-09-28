@@ -4,10 +4,6 @@
   save: false
   id: BaseControllable
   components:
-  # Starlight-start
-  - type: LanguageSpeaker
-  - type: ParentCanBlockVision
-  # Starlight-end
   - type: Sprite
     noRot: true
     drawdepth: Mobs
@@ -43,50 +39,6 @@
   - type: RequireProjectileTarget
     active: False
   - type: StunVisuals
-  - type: TextToSpeech
-  - type: CustomLimbVisualizer
-    displacements:
-      LHand:
-        sizeMaps:
-          32:
-            sprite: _Starlight/CustomLimb/displacement.rsi
-            state: l_hand
-      RHand:
-        sizeMaps:
-          32:
-            sprite: _Starlight/CustomLimb/displacement.rsi
-            state: r_hand
-      LLeg:
-        sizeMaps:
-          32:
-            sprite: _Starlight/CustomLimb/displacement.rsi
-            state: l_leg
-      RLeg:
-        sizeMaps:
-          32:
-            sprite: _Starlight/CustomLimb/displacement.rsi
-            state: r_leg
-      LFoot:
-        sizeMaps:
-          32:
-            sprite: _Starlight/CustomLimb/displacement.rsi
-            state: l_foot
-      RFoot:
-        sizeMaps:
-          32:
-            sprite: _Starlight/CustomLimb/displacement.rsi
-            state: r_foot
-      LArm:
-        sizeMaps:
-          32:
-            sprite: _Starlight/CustomLimb/displacement.rsi
-            state: l_arm
-      RArm:
-        sizeMaps:
-          32:
-            sprite: _Starlight/CustomLimb/displacement.rsi
-            state: r_arm
-
 
 # The progenitor. This should only container the most basic components possible.
 # Only put things on here if every mob *must* have it. This includes ghosts.

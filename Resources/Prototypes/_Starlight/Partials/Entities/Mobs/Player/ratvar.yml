@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: MobRatvar
+  components:
+  - type: AnnounceOnSpawn
+    ignoreASpace: true
+    globalAnnounce: true
+  - type: ActiveRadio
+    channels:
+    - Law
+    - NanoTrasen

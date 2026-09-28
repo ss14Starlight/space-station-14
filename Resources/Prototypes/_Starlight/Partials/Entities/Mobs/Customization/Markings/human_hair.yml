@@ -1,0 +1,807 @@
+- type: !PartialOnly marking
+  id: HumanHairAfro
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairAfro2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBaby
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBigafro
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairAntenna
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBalding
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBedhead
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBedheadv2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBedheadv3
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairCube
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairPulato
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLongBedhead
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLongBedhead2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairFloorlengthBedhead
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBeehive
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBeehivev2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBob
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBob2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBobcut
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBob4
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBob5
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBobcurl
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBoddicker
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBowlcut
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBowlcut2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBraid
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBraided
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBraidfront
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBraid2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairHbraid
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairShortbraid
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBraidtail
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBun
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBunhead2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBun3
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLargebun
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairManbun
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairTightbun
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBusiness
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBusiness2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBusiness3
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBusiness4
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBuzzcut
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairCia
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairClassicAfro
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairClassicBigAfro
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairClassicBusiness
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairClassicCia
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairClassicCornrows2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairClassicFloorlengthBedhead
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairClassicModern
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairClassicMulder
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairClassicWisp
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairCoffeehouse
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairCombover
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairCornrows
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairCornrows2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairCornrowbun
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairCornrowbraid
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairCornrowtail
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairCrewcut
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairCrewcut2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairCurls
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairC
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairDandypompadour
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairDevilock
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairDoublebun
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairDoublebunLong
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairDreads
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairDrillruru
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairDrillhairextended
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairEmo
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairEmofringe
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairNofade
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairHighfade
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairMedfade
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLowfade
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBaldfade
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairFeather
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairFather
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairSargeant
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairFlair
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBigflattop
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairFlow
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairGelled
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairGentle
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairHalfbang
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairHalfbang2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairHalfshaved
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairHedgehog
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairHimecut
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairHimecut2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairShorthime
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairHimeup
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairHitop
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairJade
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairJensen
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairJoestar
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairKeanu
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairKusanagi
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLong
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLong2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLong3
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLongWithBundles
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLongovereye
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLbangs
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLongemo
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLongfringe
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLongsidepart
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairMegaeyebrows
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairMessy
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairModern
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairMohawk
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairNitori
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairReversemohawk
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairUnshavenMohawk
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairMulder
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairOdango
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairOmbre
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairOneshoulder
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairShortovereye
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairOxton
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairParted
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairPart
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairKagami
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairPigtails
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairPigtails2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairPixie
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairPompadour
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBigpompadour
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairPonytail
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairPonytail2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairPonytail3
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairPonytail4
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairPonytail5
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairPonytail6
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairPonytail7
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairHighponytail
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairStail
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLongstraightponytail
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairCountry
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairFringetail
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairSidetail
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairSidetail2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairSidetail3
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairSidetail4
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairSpikyponytail
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairPoofy
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairQuiff
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairRonin
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairShaved
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairShavedpart
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairShortbangs
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairA
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairShorthair2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairShorthair3
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairD
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairE
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairF
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairShorthairg
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHair80s
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairRosa
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairB
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairSidecut
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairSkinhead
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairProtagonist
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairSpikey
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairSpiky
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairSpiky2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairSpookyLong
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairSwept
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairSwept2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairBAlt
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairThinning
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairThinningfront
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairThinningrear
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairTopknot
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairTressshoulder
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairTrimmed
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairTrimflat
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairTwintail
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairTwoStrands
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairUndercut
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairUndercutleft
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairUndercutright
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairUnkept
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairUpdo
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairVlong
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLongest
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLongest2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairVeryshortovereyealternate
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairVlongfringe
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairVolaju
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairWisp
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairUneven
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairTailed
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairClassicLong2
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairClassicLong3
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairShaped
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLongBow
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairLongWithBangs
+  markingCategory: Hair
+
+- type: !PartialOnly marking
+  id: HumanHairOverEyePigtail
+  markingCategory: Hair

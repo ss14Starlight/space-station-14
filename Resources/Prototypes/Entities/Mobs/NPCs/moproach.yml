@@ -19,15 +19,6 @@
   id: MobMoproach
   description: This little mothroach has mopshoes on its feet! How adorable!
   components:
-  # Starlight-start: Languages
-  - type: LanguageKnowledge
-    speaks:
-    - Mothroach
-    understands:
-    - Moffic
-    - Mothroach
-    - GalacticCommon
-  # Starlight-end
   - type: GhostRole
     name: ghost-role-information-moproach-name
     description: ghost-role-information-moproach-description
@@ -50,7 +41,7 @@
     rootTask:
       task: MoproachCompound
   - type: Absorbent
-    pickupAmount: 5 # small feet
+    pickupAmount: 2 # small feet
   - type: UseDelay
     delay: 0.5 # quick feet
   - type: SolutionManager

@@ -1,8 +1,7 @@
 - type: marking
   id: LizardFrillsAquatic
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: frills_aquatic
@@ -10,8 +9,7 @@
 - type: marking
   id: LizardFrillsShort
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: frills_short
@@ -19,8 +17,7 @@
 - type: marking
   id: LizardFrillsSimple
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: frills_simple
@@ -28,8 +25,7 @@
 - type: marking
   id: LizardFrillsDivinity
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: frills_divinity
@@ -37,8 +33,7 @@
 - type: marking
   id: LizardFrillsBig
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: frills_big
@@ -46,8 +41,7 @@
 - type: marking
   id: LizardFrillsAxolotl
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: frills_axolotl
@@ -55,8 +49,7 @@
 - type: marking
   id: LizardFrillsHood
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: frills_hood_primary
@@ -66,8 +59,7 @@
 - type: marking
   id: LizardFrillsNeckfull
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: frills_neckfull
@@ -75,8 +67,7 @@
 - type: marking
   id: LizardHornsAngler
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_angler
@@ -84,8 +75,7 @@
 - type: marking
   id: LizardHornsCurled
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_curled
@@ -93,8 +83,7 @@
 - type: marking
   id: LizardHornsRam
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_ram
@@ -102,8 +91,7 @@
 - type: marking
   id: LizardHornsShort
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_short
@@ -111,8 +99,7 @@
 - type: marking
   id: LizardHornsSimple
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_simple
@@ -120,8 +107,7 @@
 - type: marking
   id: LizardHornsDouble
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_double
@@ -129,9 +115,7 @@
 - type: marking
   id: LizardTailSmooth
   bodyPart: Tail
-  waggingId: LizardTailSmoothAnimated # Starlight
-  markingCategory: Tail
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_smooth_primary
@@ -141,9 +125,7 @@
 - type: marking
   id: LizardTailLarge
   bodyPart: Tail
-  waggingId: LizardTailLargeAnimated # Starlight
-  markingCategory: Tail
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_large
@@ -151,9 +133,7 @@
 - type: marking
   id: LizardTailSpikes
   bodyPart: Tail
-  waggingId: LizardTailSpikesAnimated # Starlight
-  markingCategory: Tail
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_spikes
@@ -161,9 +141,7 @@
 - type: marking
   id: LizardTailLTiger
   bodyPart: Tail
-  waggingId: LizardTailLTigerAnimated # Starlight
-  markingCategory: Tail
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_ltiger
@@ -171,9 +149,7 @@
 - type: marking
   id: LizardTailDTiger
   bodyPart: Tail
-  waggingId: LizardTailDTigerAnimated # Starlight
-  markingCategory: Tail
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_dtiger
@@ -181,9 +157,7 @@
 - type: marking
   id: LizardTailAquatic
   bodyPart: Tail
-  waggingId: LizardTailAquaticAnimated # Starlight
-  markingCategory: Tail
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_aquatic
@@ -191,9 +165,8 @@
 - type: marking
   id: LizardSnoutRound
   bodyPart: Snout
-  markingCategory: Snout
   forcedColoring: true
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: snout_round
@@ -201,9 +174,8 @@
 - type: marking
   id: LizardSnoutSharp
   bodyPart: Snout
-  markingCategory: Snout
   forcedColoring: true
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: snout_sharp
@@ -211,8 +183,7 @@
 - type: marking
   id: LizardSnoutSplotch
   bodyPart: Snout
-  markingCategory: Snout
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: snout_splotch_primary
@@ -222,8 +193,7 @@
 - type: marking
   id: LizardSnoutVisageRound
   bodyPart: Snout
-  markingCategory: Snout
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: visage_round
@@ -231,8 +201,7 @@
 - type: marking
   id: LizardSnoutVisageSharp
   bodyPart: Snout
-  markingCategory: Snout
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: visage_sharp
@@ -240,8 +209,7 @@
 - type: marking
   id: LizardChestTiger
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: body_tiger
@@ -249,8 +217,7 @@
 - type: marking
   id: LizardHeadTiger
   bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: head_tiger
@@ -258,8 +225,7 @@
 - type: marking
   id: LizardLArmTiger
   bodyPart: LArm
-  markingCategory: Arms
-  speciesRestriction: [Reptilian, NeoReptilian] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: l_arm_tiger
@@ -267,8 +233,7 @@
 - type: marking
   id: LizardLLegTiger
   bodyPart: LLeg
-  markingCategory: Legs
-  speciesRestriction: [Reptilian, NeoReptilian] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: l_leg_tiger
@@ -276,8 +241,7 @@
 - type: marking
   id: LizardRArmTiger
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Reptilian, NeoReptilian] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: r_arm_tiger
@@ -285,8 +249,7 @@
 - type: marking
   id: LizardRLegTiger
   bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [Reptilian, NeoReptilian] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: r_leg_tiger
@@ -294,8 +257,7 @@
 - type: marking
   id: LizardHornsArgali
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_argali
@@ -303,8 +265,7 @@
 - type: marking
   id: LizardHornsAyrshire
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_ayrshire
@@ -312,8 +273,7 @@
 - type: marking
   id: LizardHornsMyrsore
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_myrsore
@@ -321,8 +281,7 @@
 - type: marking
   id: LizardHornsBighorn
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_bighorn
@@ -330,8 +289,7 @@
 - type: marking
   id: LizardHornsDemonic
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_demonic
@@ -339,8 +297,7 @@
 - type: marking
   id: LizardHornsKoboldEars
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_kobold_ears
@@ -348,8 +305,7 @@
 - type: marking
   id: LizardHornsFloppyKoboldEars
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_floppy_kobold_ears
@@ -357,8 +313,7 @@
 - type: marking
   id: LizardChestUnderbelly
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: body_underbelly
@@ -366,8 +321,7 @@
 - type: marking
   id: LizardChestBackspikes
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: body_backspikes
@@ -375,8 +329,7 @@
 - type: marking
   id: LizardChestFin
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: body_fin
@@ -387,7 +340,7 @@
   bodyPart: Tail
   markingCategory: Tail
   staticId: LizardTailSmooth # Starlight
-  speciesRestriction: []
+  speciesRestriction: [] # Starlight - kept in place: partials cannot add an empty list
   sprites:
     - sprite: Mobs/Customization/reptilian_parts.rsi
       state: tail_smooth_wagging_primary
@@ -399,7 +352,7 @@
   bodyPart: Tail
   markingCategory: Tail
   staticId: LizardTailLarge # Starlight
-  speciesRestriction: []
+  speciesRestriction: [] # Starlight - kept in place: partials cannot add an empty list
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_large_wagging
@@ -409,7 +362,7 @@
   bodyPart: Tail
   markingCategory: Tail
   staticId: LizardTailSpikes # Starlight
-  speciesRestriction: []
+  speciesRestriction: [] # Starlight - kept in place: partials cannot add an empty list
   sprites:
     - sprite: Mobs/Customization/reptilian_parts.rsi
       state: tail_spikes_wagging
@@ -419,7 +372,7 @@
   bodyPart: Tail
   markingCategory: Tail
   staticId: LizardTailLTiger # Starlight
-  speciesRestriction: []
+  speciesRestriction: [] # Starlight - kept in place: partials cannot add an empty list
   sprites:
     - sprite: Mobs/Customization/reptilian_parts.rsi
       state: tail_ltiger_wagging
@@ -429,7 +382,7 @@
   bodyPart: Tail
   markingCategory: Tail
   staticId: LizardTailDTiger # Starlight
-  speciesRestriction: []
+  speciesRestriction: [] # Starlight - kept in place: partials cannot add an empty list
   sprites:
     - sprite: Mobs/Customization/reptilian_parts.rsi
       state: tail_dtiger_wagging
@@ -439,7 +392,7 @@
   bodyPart: Tail
   markingCategory: Tail
   staticId: LizardTailAquatic # Starlight
-  speciesRestriction: []
+  speciesRestriction: [] # Starlight - kept in place: partials cannot add an empty list
   sprites:
     - sprite: Mobs/Customization/reptilian_parts.rsi
       state: tail_aquatic_wagging

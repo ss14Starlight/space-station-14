@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: MobHellspawn
+  components:
+  - type: GhostRole
+    important: true
+  - type: Body
+    prototype: Animal

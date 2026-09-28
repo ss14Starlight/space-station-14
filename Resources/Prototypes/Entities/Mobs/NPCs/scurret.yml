@@ -4,18 +4,12 @@
 - type: entity
   name: scurret
   id: MobBaseScurret
-  parent: [ MobBaseAncestor, BaseSpeciesPickupable ] #Starlight - give the scurret uppies.
+  parent: [ MobBaseAncestor, BaseSpeciesPickupable ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   abstract: true
   components:
-  # Starlight-start: Languages
-  - type: LanguageKnowledge
-    speaks:
-    - ScurretSign
-    understands:
-    - ScurretSign
-    - GalacticCommon
-  # Starlight-end
   # Custom names
+  - type: ReplacementAccent
+    accent: scurret
   - type: Sprite
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -151,9 +145,6 @@
     soundsId: Scurret
   - type: Deathgasp
     prototype: ScurretDeathgasp # You monster
-  - type: AlwaysRevolutionaryConvertible
-  - type: StatusIcon # marks them as crew
-    bounds: -0.5,-0.5,0.5,0.5
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -161,7 +152,6 @@
     - CanPilot
     - VimPilot
     - AnomalyHost
-  - type: Puller # STARLIGHT ADDITION
 
 # Spawnable scurrets have a random name and colour.
 
@@ -200,19 +190,11 @@
   parent: MobBaseScurret
   abstract: true
   components:
-  # Starlight-start: Languages
-    - type: LanguageKnowledge
-      speaks:
-      - ScurretSign
-      understands:
-      - ScurretSign
-      - GalacticCommon
-  # Starlight-end
     - type: Loadout
       prototypes: [ EmotionalSupportScurretGear ]
     - type: NpcFactionMember
       factions:
-      - Nanotrasen
+      - Passive
     - type: GhostRole
       makeSentient: true
       name: ghost-role-information-emotional-support-scurret-name

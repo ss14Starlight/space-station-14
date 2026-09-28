@@ -1,0 +1,173 @@
+- type: !PartialOnly marking
+  id: ArachnidCheliceraeDownwards
+  groupWhitelist: !Remove
+  markingCategory: HeadSide
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidCheliceraeInwards
+  groupWhitelist: !Remove
+  markingCategory: HeadSide
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidAppendagesDefault
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidAppendagesSharp
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidAppendagesStingers
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidAppendagesZigZag
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidAppendagesCurled
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidAppendagesChipped
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidAppendagesHarvest
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidAppendagesShort
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidAppendagesFreaky
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidTorsoStripes
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidTorsoSlashes
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidTorsoX
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidTorsoCross
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidTorsoHeart
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidTorsoHourglass
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidTorsoNailAndHammer
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidTorsoStar
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidTorsoArrows
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidTorsoCore
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidTorsoFiddleback
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidTorsoSkull
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidTorsoTarget
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidRArmStripes
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidLArmStripes
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidRLegStripes
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidLLegStripes
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]
+
+- type: !PartialOnly marking
+  id: ArachnidOverlayFuzzy
+  groupWhitelist: !Remove
+  markingCategory: Overlay
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte]

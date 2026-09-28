@@ -5,17 +5,6 @@
   parent: SimpleSpaceMobBase
   description: They mostly come at night. Mostly.
   components:
-  # Starlight-start: Languages
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - Xeno
-    - Xenomind
-    understands:
-    - Xeno
-    - Xenomind
-  # Starlight-end
-  - type: ThermalVision
   - type: Insulated
   - type: CombatMode
   - type: InputMover
@@ -113,10 +102,6 @@
     rules: ghost-role-information-xeno-rules
     raffle:
       settings: default
-    # Starlight start
-    mindRoles:
-    - MindRoleGhostRoleXeno
-    # Starlight end
   - type: GhostTakeoverAvailable
   - type: TypingIndicator
     proto: alien
@@ -135,8 +120,6 @@
     molsPerSecondPerUnitMass: 0.0005
   - type: Speech
     speechVerb: LargeMob
-  - type: Xeno # Starlight, component for inheritance
-  - type: AntagImmune # Starlight, this is an obscure interaction that happens because they have hands
 
 - type: entity
   name: praetorian
@@ -213,18 +196,6 @@
   parent: MobXeno
   id: MobXenoQueen
   components:
-  # Starlight-start: Languages
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - GalacticCommon
-    - Xeno
-    - Xenomind
-    understands:
-    - GalacticCommon
-    - Xeno
-    - Xenomind
-  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/queen.rsi

@@ -1,0 +1,17 @@
+- type: !PartialOnly entity
+  id: MobRevenant
+  components:
+  - type: DarkLight
+  - type: LanguageSpeaker
+  - type: UniversalLanguageSpeaker
+  - type: ThermalVision
+    effectPrototype: EffectThermalVisionRevenant
+  - type: Eye
+    visMask:
+    - NullSpace
+  - type: GhostRole
+    important: true
+  - type: Visibility
+    layer: 32 # nullspace vis layer (1 << 5)
+  - type: Store
+    name: store-preset-name-revenant # UI change for data purity

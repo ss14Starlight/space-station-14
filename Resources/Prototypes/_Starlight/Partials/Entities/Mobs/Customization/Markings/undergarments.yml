@@ -1,0 +1,143 @@
+- type: !PartialOnly marking
+  id: UndergarmentBottomBoxers
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentBottom
+  speciesRestriction: [Arachnid, NeoArachnid, Diona, NeoDiona, Human, NeoHuman, Dwarf, NeoDwarf, Moth, NeoMoth, SlimePerson, NeoSlimePerson, Shadekin, NeoKin, Elf, NeoElf, Neocyte] # Add Shadekin, NeoKin, Elves, and Neocytes
+
+- type: !PartialOnly marking
+  id: UndergarmentBottomBriefs
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentBottom
+  speciesRestriction: [Arachnid, NeoArachnid, Diona, NeoDiona, Human, NeoHuman, Dwarf, NeoDwarf, Moth, NeoMoth, SlimePerson, NeoSlimePerson, Shadekin, NeoKin, Elf, NeoElf, Neocyte] # Add Shadekin, NeoKin, Elves, and Neocytes
+
+- type: !PartialOnly marking
+  id: UndergarmentBottomSatin
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentBottom
+  speciesRestriction: [Arachnid, NeoArachnid, Diona, NeoDiona, Human, NeoHuman, Dwarf, NeoDwarf, Moth, NeoMoth, SlimePerson, NeoSlimePerson, Shadekin, NeoKin, Elf, NeoElf, Neocyte] # Add Shadekin, NeoKin, Elves, and Neocytes
+
+- type: !PartialOnly marking
+  id: UndergarmentTopBra
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Arachnid, NeoArachnid, Diona, NeoDiona, Human, NeoHuman, Dwarf, NeoDwarf, Moth, NeoMoth, Reptilian, SlimePerson, NeoSlimePerson, Shadekin, NeoKin, Elf, NeoElf, Neocyte] # Add Shadekin, NeoKin, Elves, and Neocytes
+
+- type: !PartialOnly marking
+  id: UndergarmentTopSportsbra
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Arachnid, NeoArachnid, Diona, NeoDiona, Human, NeoHuman, Dwarf, NeoDwarf, Moth, NeoMoth, Reptilian, SlimePerson, NeoSlimePerson, Shadekin, NeoKin, Elf, NeoElf, Neocyte] # Add Shadekin, NeoKin, Elves, and Neocytes
+
+- type: !PartialOnly marking
+  id: UndergarmentTopBinder
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Arachnid, NeoArachnid, Diona, NeoDiona, Human, NeoHuman, Dwarf, NeoDwarf, Moth, NeoMoth, Reptilian, SlimePerson, NeoSlimePerson, Shadekin, NeoKin, Elf, NeoElf, Neocyte] # Add Shadekin, NeoKin, Elves, and Neocytes
+
+- type: !PartialOnly marking
+  id: UndergarmentTopTanktop
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Arachnid, NeoArachnid, Diona, NeoDiona, Human, NeoHuman, Dwarf, NeoDwarf, Moth, NeoMoth, Reptilian, SlimePerson, NeoSlimePerson, Shadekin, NeoKin, Elf, NeoElf, Neocyte] # Add Shadekin, NeoKin, Elves, and Neocytes
+
+- type: !PartialOnly marking
+  id: UndergarmentBottomBoxersVox
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentBottom
+  speciesRestriction: [Vox, NeoVox, Neocyte]
+
+- type: !PartialOnly marking
+  id: UndergarmentBottomBriefsVox
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentBottom
+  speciesRestriction: [Vox, NeoVox, Neocyte]
+
+- type: !PartialOnly marking
+  id: UndergarmentBottomSatinVox
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentBottom
+  speciesRestriction: [Vox, NeoVox, Neocyte]
+
+- type: !PartialOnly marking
+  id: UndergarmentTopBraVox
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Vox, NeoVox, Neocyte]
+
+- type: !PartialOnly marking
+  id: UndergarmentTopSportsbraVox
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Vox, NeoVox, Neocyte]
+
+- type: !PartialOnly marking
+  id: UndergarmentTopBinderVox
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Vox, NeoVox, Neocyte]
+
+- type: !PartialOnly marking
+  id: UndergarmentTopTanktopVox
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Vox, NeoVox, Neocyte]
+
+- type: !PartialOnly marking
+  id: UndergarmentBottomBoxersReptilian
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentBottom
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: UndergarmentBottomBriefsReptilian
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentBottom
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: UndergarmentBottomSatinReptilian
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentBottom
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
+
+- type: !PartialOnly marking
+  id: UndergarmentBottomBoxersVulpkanin
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentBottom
+  speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte]
+
+- type: !PartialOnly marking
+  id: UndergarmentBottomBriefsVulpkanin
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentBottom
+  speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte]
+
+- type: !PartialOnly marking
+  id: UndergarmentBottomSatinVulpkanin
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentBottom
+  speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte]
+
+- type: !PartialOnly marking
+  id: UndergarmentTopBraVulpkanin
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte]
+
+- type: !PartialOnly marking
+  id: UndergarmentTopSportsbraVulpkanin
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte]
+
+- type: !PartialOnly marking
+  id: UndergarmentTopBinderVulpkanin
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte]
+
+- type: !PartialOnly marking
+  id: UndergarmentTopTanktopVulpkanin
+  groupWhitelist: !Remove
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte]

@@ -1,0 +1,24 @@
+- type: !PartialOnly entity
+  id: MothershipCore
+  components:
+  - type: RoboticsConsole
+    allowBorgControl: true # allow mothership AND ONLY MOTHERSHIP to explode xenoborgs
+    radioChannel: Mothership # Send the destruction message in the appropriately red mothership channel
+  - type: DeviceNetwork
+    transmitFrequencyId: Xenoborg # actually allow the mothership to blow stuff up
+  - type: WarpPoint
+    blacklist:
+      tags: # This is here because Wizard
+      - GhostOnlyWarp
+  - type: Tag
+    tags:
+    - GhostOnlyWarp
+  - type: BorgChassis
+    jobIconOverride: JobIconXenoborgMothership
+    jobTitleOverride: chat-radio-mothership
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor

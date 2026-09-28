@@ -1,20 +1,20 @@
 - type: entity
   name: civilian
-  parent: BaseMobHuman # Starlight Edit: MobHuman -> BaseMobHuman
+  parent: BaseMobHuman # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: MobCivilian
   description: A miserable pile of secrets.
   components:
   - type: InputMover
   - type: MobMover
   - type: Loadout
-    prototypes: [LimitedAssistantGear]
+    prototypes: [LimitedPassengerGear]
   - type: NpcFactionMember
     factions:
     - NanoTrasen
 
 - type: entity
   name: salvager
-  parent: BaseMobHuman # Starlight Edit: MobHuman -> BaseMobHuman
+  parent: BaseMobHuman # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: MobSalvager
   components:
     - type: NpcFactionMember
@@ -31,7 +31,7 @@
 
 - type: entity
   name: spirate
-  parent: BaseMobHuman # Starlight Edit: MobHuman -> BaseMobHuman
+  parent: BaseMobHuman # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: MobSpirate
   description: Yarr!
   components:
@@ -49,7 +49,7 @@
 
 - type: entity
   name: syndicate footsoldier
-  parent: BaseMobHuman # Starlight Edit: MobHuman -> BaseMobHuman
+  parent: BaseMobHuman # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: MobSyndicateFootsoldier
   components:
     - type: NpcFactionMember
@@ -70,7 +70,7 @@
   id: MobSyndicateFootsoldierPilot
 
 - type: entity
-  parent: BaseMobHuman # Starlight Edit: MobHuman -> BaseMobHuman
+  parent: BaseMobHuman # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   suffix: Dead
   save: false # mobs are currently not saveable.
   id: SalvageHumanCorpse
@@ -96,6 +96,5 @@
   description: A polymorphed unfortunate.
   components:
   - type: Cluwne
-    unremovable: true #Starlight
   - type: Speech
     speechVerb: Cluwne

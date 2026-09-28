@@ -1,0 +1,719 @@
+- type: !PartialOnly marking
+  id: MothAntennasDefault
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasCharred
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasDbushy
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasDcurvy
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasDfan
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasDpointy
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasFeathery
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasFirewatch
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasGray
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasJungle
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasMoffra
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasOakworm
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasPlasmafire
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasMaple
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasRoyal
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasStriped
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasWhitefly
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasWitchwing
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothAntennasUnderwing
+  groupWhitelist: !Remove
+  markingCategory: HeadTop
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsDefault
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsCharred
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsDbushy
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsDeathhead
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsFan
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsDfan
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsFeathery
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsFirewatch
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsGothic
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsJungle
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsLadybug
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsMaple
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsMoffra
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsOakworm
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsPlasmafire
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsPointy
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsRoyal
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsStellar
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsStriped
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsSwirly
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsWhitefly
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsWitchwing
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothWingsUnderwing
+  groupWhitelist: !Remove
+  markingCategory: Tail
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothChestCharred
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothHeadCharred
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothLLegCharred
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRLegCharred
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothLArmCharred
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRArmCharred
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothChestDeathhead
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothHeadDeathhead
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothLLegDeathhead
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRLegDeathhead
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothLArmDeathhead
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRArmDeathhead
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothChestFan
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothHeadFan
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothLLegFan
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRLegFan
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothLArmFan
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRArmFan
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothChestFirewatch
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothHeadFirewatch
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothLLegFirewatch
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRLegFirewatch
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothLArmFirewatch
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRArmFirewatch
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothChestGothic
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothHeadGothic
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothLLegGothic
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRLegGothic
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothLArmGothic
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRArmGothic
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothChestJungle
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothHeadJungle
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothLLegJungle
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRLegJungle
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothLArmJungle
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRArmJungle
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothChestMoonfly
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothHeadMoonfly
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothLLegMoonfly
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRLegMoonfly
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothLArmMoonfly
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRArmMoonfly
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothChestOakworm
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothHeadOakworm
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothLLegOakworm
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRLegOakworm
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothLArmOakworm
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRArmOakworm
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothChestPointy
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothHeadPointy
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothLLegPointy
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRLegPointy
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothLArmPointy
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRArmPointy
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothChestRagged
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothHeadRagged
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothLLegRagged
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRLegRagged
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothLArmRagged
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRArmRagged
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothChestRoyal
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothHeadRoyal
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothLLegRoyal
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRLegRoyal
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothLArmRoyal
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRArmRoyal
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothChestWhitefly
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothHeadWhitefly
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothLLegWhitefly
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRLegWhitefly
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothLArmWhitefly
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRArmWhitefly
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothChestWitchwing
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothHeadWitchwing
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Moth, NeoMoth, Neocyte]
+
+- type: !PartialOnly marking
+  id: MothLLegWitchwing
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRLegWitchwing
+  groupWhitelist: !Remove
+  markingCategory: Legs
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothLArmWitchwing
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]
+
+- type: !PartialOnly marking
+  id: MothRArmWitchwing
+  groupWhitelist: !Remove
+  markingCategory: Arms
+  speciesRestriction: [Moth, NeoMoth]

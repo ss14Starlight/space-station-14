@@ -1,0 +1,26 @@
+- type: !PartialOnly entity
+  id: MobNarsieBase
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Darktongue
+    understands:
+    - Darktongue
+  - type: UniversalLanguageSpeaker
+
+- type: !PartialOnly entity
+  id: MobNarsieSpawn
+  components:
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: !PartialOnly entity
+  id: MobNarsie
+  components:
+  - type: AnnounceOnSpawn
+    ignoreASpace: true
+    globalAnnounce: true
+  - type: ActiveRadio
+    channels:
+    - Law
+    - NanoTrasen

@@ -1,0 +1,82 @@
+- type: !PartialOnly marking
+  id: VoxScarEyeRight
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Vox, NeoVox]
+
+- type: !PartialOnly marking
+  id: VoxScarEyeLeft
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Vox, NeoVox]
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: VoxScarTopSurgeryShort
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Vox, NeoVox]
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: VoxScarTopSurgeryLong
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Vox, NeoVox]
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: VoxScarChest
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Vox, NeoVox]
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: VoxScarNeck
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Vox, NeoVox]
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: VoxScarChestBullets
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Vox, NeoVox]
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: VoxScarStomachBullets
+  groupWhitelist: !Remove
+  markingCategory: Chest
+  speciesRestriction: [Vox, NeoVox]
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: VoxScarFace1
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Vox, NeoVox]
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: VoxScarFace2
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Vox, NeoVox]
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: VoxScarEyeRightSmall
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Vox, NeoVox]
+  followSkinColor: true
+
+- type: !PartialOnly marking
+  id: VoxScarEyeLeftSmall
+  groupWhitelist: !Remove
+  markingCategory: Head
+  speciesRestriction: [Vox, NeoVox]
+  followSkinColor: true

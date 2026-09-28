@@ -1,0 +1,174 @@
+- type: !PartialOnly marking
+  id: HumanFacialHairAbe
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairBrokenman
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairChin
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairDwarf
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairFullbeard
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairCroppedfullbeard
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairGt
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairHip
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairJensen
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairNeckbeard
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairWise
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairMuttonmus
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairMartialartist
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairChinlessbeard
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairMoonshiner
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairLongbeard
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairVolaju
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHair3oclock
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairFiveoclock
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHair5oclockmoustache
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHair7oclock
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHair7oclockmoustache
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairMoustache
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairPencilstache
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairSmallstache
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairWalrus
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairFumanchu
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairHogan
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairSelleck
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairChaplin
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairVandyke
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairWatson
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairElvis
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairMutton
+  markingCategory: FacialHair
+  canBeDisplaced: true
+
+- type: !PartialOnly marking
+  id: HumanFacialHairSideburn
+  markingCategory: FacialHair
+  canBeDisplaced: true

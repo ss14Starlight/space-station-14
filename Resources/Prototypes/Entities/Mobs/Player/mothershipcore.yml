@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseControllable, BaseStructure, BaseXenoSiliconLanguages] # Starlight
+  parent: [ BaseControllable, BaseStructure, BaseXenoSiliconLanguages] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: MothershipCore
   name: mothership core
   description: A sentient machine that can produce Xenoborgs. Without this the Xenoborgs are doomed.
@@ -93,12 +93,12 @@
   - type: SurveillanceCameraSpeaker
   - type: SurveillanceCameraMonitor
   - type: RoboticsConsole
-    allowBorgControl: true # Starlight - allow mothership AND ONLY MOTHERSHIP to explode xenoborgs
-    radioChannel: Mothership # Starlight - Send the destruction message in the appropriately red mothership channel
+    allowBorgControl: false
+    radioChannel: Xenoborg
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: Mothership
-    transmitFrequencyId: Xenoborg # Starlight - actually allow the mothership to blow stuff up
+    transmitFrequencyId: Mothership
   - type: WirelessNetworkConnection
     range: 10000 # mothership can see them from very far
   - type: WiresPanel
@@ -126,9 +126,6 @@
   - type: WarpPoint
     location: Mothership Core
     follow: true
-    blacklist: # Starlight start
-      tags: # This is here because Wizard
-      - GhostOnlyWarp # Starlight end
   - type: VoiceOverride
     nameOverride: MOTHERSHIP CORE
   - type: TypingIndicator
@@ -162,7 +159,6 @@
     - SiliconEmotes
     - CanPilot
     - Structure
-    - GhostOnlyWarp # Starlight
   - type: GuideHelp
     guides:
     - Robotics
@@ -177,8 +173,6 @@
     disableExplosionRecursion: true
     canBeStripped: false
   - type: BorgChassis
-    jobIconOverride: JobIconXenoborgMothership # Starlight
-    jobTitleOverride: chat-radio-mothership # Starlight
     canOpenSelfUi: true
     maxModules: 2
     hasMindState: core-e
@@ -203,11 +197,6 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMicroreactor
-        #Starlight Start
-        blacklist:
-          tags:
-          - MechReactor
-        #Starlight End
   - type: Puller
     needsHands: false
   - type: Eye
