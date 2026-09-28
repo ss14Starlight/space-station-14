@@ -126,7 +126,10 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
         } else
         {
             if (!siphon.Enabled)
-                _appearance.SetData(entity, GasInletSiphonVisuals.State, GasInletSiphonState.Off);
+                {
+                    _appearance.SetData(entity, GasInletSiphonVisuals.State, GasInletSiphonState.Off);
+                    _ambientSoundSystem.SetAmbience(entity, false);
+                }
             else
             {
                 _appearance.SetData(entity, GasInletSiphonVisuals.State, GasInletSiphonState.On);

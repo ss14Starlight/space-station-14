@@ -9,11 +9,24 @@ public sealed partial class ToggleableAtmosDeviceSystem : EntitySystem
     /// <summary>
     /// Sets the device to the boolean value
     /// </summary>
-    public void Set(Entity<ToggleableAtmosDeviceComponent> entity, bool value) => RaiseLocalEvent(entity, new SetToggleSignalReceivedEvent(value));
+    public void Set(Entity<ToggleableAtmosDeviceComponent?> entity, bool value)
+    {
+        if (!Resolve(entity, ref entity.Comp, false))
+            return;
+
+        RaiseLocalEvent(entity, new SetToggleSignalReceivedEvent(value));
+    }
+
     /// <summary>
     /// Toggles the device
     /// </summary>
-    public void Toggle(Entity<ToggleableAtmosDeviceComponent> entity) => RaiseLocalEvent(entity, new ToggleSignalReceivedEvent());
+    public void Toggle(Entity<ToggleableAtmosDeviceComponent?> entity)
+    {
+        if (!Resolve(entity, ref entity.Comp, false))
+            return;
+
+        RaiseLocalEvent(entity, new ToggleSignalReceivedEvent());
+    }
 }
 
 public record struct SetToggleSignalReceivedEvent(bool Value);
