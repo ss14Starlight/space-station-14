@@ -57,7 +57,13 @@
 
 # Fix air injector showing as Disabled in sprite and such, despite being enabled by default
 - type: !PartialOnly entity
-  id: GasOutletInjector
+  id: !type:CreateVariants
+    values:
+      - GasOutletInjector
+      - GasOutletInjectorAlt1
+      - GasOutletInjectorAlt2
+      - GasOutletInjectorAlt3
+      - GasOutletInjectorAlt4
   components:
     - type: Sprite
       layers:
