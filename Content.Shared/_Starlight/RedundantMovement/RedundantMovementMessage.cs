@@ -12,15 +12,9 @@ public sealed class RedundantMovementAckMessage : NetMessage
 
     public GameTick Tick { get; set; }
 
-    public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
-    {
-        buffer.Write(Tick);
-    }
+    public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer) => buffer.Write(Tick);
 
-    public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
-    {
-        Tick = buffer.ReadGameTick();
-    }
+    public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer) => Tick = buffer.ReadGameTick();
 }
 
 public sealed class RedundantMovementMessage : NetMessage
@@ -78,10 +72,7 @@ public sealed class RedundantMovementMessage : NetMessage
         }
     }
 
-    public override string ToString()
-    {
-        return $"RMove: tick {SentTick} sending {TickData.Count} ticks of redundancy";
-    }
+    public override string ToString() => $"RMove: tick {SentTick} sending {TickData.Count} ticks of redundancy";
 }
 
 public record struct InputChange(ushort Subtick, PackedMovementButtons HeldButtons);
