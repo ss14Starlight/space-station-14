@@ -346,7 +346,42 @@
     autoRechargePauseTime: 44
 
 - type: entity
-  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband ]
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband, BaseCentcommContraband ]
+  id: WeaponIonCarbine
+  name: ion carbine
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/ion_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    size: Normal
+    shape:
+    - 0, 0, 3, 1
+  - type: BatterySelfRecharger
+    autoRechargeRate: 40 #100sec+60Sec Pause
+    autoRechargePauseTime: 60
+  - type: BatteryAmmoProvider
+    proto: EmpPulse
+    fireCost: 250
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: EmpImmune
+  - type: GunWieldBonus
+    maxAngle: -10
+    minAngle: -10
+  - type: Gun
+    fireRate: 0.6
+
+- type: entity
+  parent: WeaponIonCarbine
   id: WeaponIonRifle
   name: ion rifle
   components:
@@ -365,57 +400,16 @@
     slots:
     - suitStorage
     - Back
-  - type: Gun
-    fireRate: 0.6
-  - type: BatterySelfRecharger
-    autoRechargeRate: 40 #100sec+60Sec Pause
-    autoRechargePauseTime: 60
-  - type: BatteryAmmoProvider
-    proto: EmpPulse
-    fireCost: 250
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
   - type: Appearance
   - type: EmpImmune
-  - type: GunRequiresWield
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 8
     pvsIncrease: 0.3
-
-- type: entity
-  parent: [BaseWeaponBattery, BaseSecurityContraband ]
-  id: WeaponIonCarbine
-  name: ion carbine
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Battery/ion_carbine.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: Item
-    size: Normal
-    shape:
-    - 0, 0, 3, 1
-  - type: Gun
-    fireRate: 0.6
-  - type: BatterySelfRecharger
-    autoRechargeRate: 40 #100sec+60Sec Pause
-    autoRechargePauseTime: 60
-  - type: BatteryAmmoProvider
-    proto: EmpPulse
-    fireCost: 250
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
-  - type: Appearance
-  - type: EmpImmune
 
 - type: entity
   name: immolator laser gun
@@ -570,7 +564,7 @@
 - type: entity
   name: PDW-9 taser pistol
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
-  id: WeaponPDW9
+  id: WeaponPistolPDW9
   description: A compact pulse core in a classic NanoTrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
   components:
   - type: Appearance
@@ -647,7 +641,7 @@
 
 - type: entity
   parent: [ BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband ]
-  id: WeaponEnergySniper
+  id: WeaponSniperEnergy
   name: LWAP
   components:
   - type: Sprite
@@ -665,16 +659,25 @@
     slots:
     - Back
   - type: Gun
+    minAngle: 12
+    maxAngle: 22
     fireRate: 0.5
+    angleIncrease: 6
+    angleDecay: 8
   - type: BatteryAmmoProvider
     proto: SniperBolt
     fireCost: 100
+  - type: GunWieldBonus
+    angleIncreaseDivider: 1
+    minAngleDivider: 12
+    maxAngleDivider: 7
+    minAngle: 0
+    maxAngle: 0
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
   - type: Appearance
-  - type: GunRequiresWield
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 5
@@ -885,8 +888,8 @@
 
 - type: entity
   name: proto-5x energy gun
-  parent: [BaseWeaponBattery, BaseGrandTheftContraband]
-  id: WeaponEnergySMG
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGrandTheftContraband]
+  id: WeaponSubMachineGunEnergy
   description: A one-of-a-kind prototype energy sub-machine gun. It offers high energy firepower and a powerful self recharge.
   components:
   - type: CanDualWield
@@ -916,6 +919,10 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
       params:
          volume: -2
+    minAngle: 10
+    maxAngle: 28
+    angleIncrease: 2
+    angleDecay: 14
   - type: BatteryAmmoProvider
     proto: BulletEnergySMGLaser
     fireCost: 50
@@ -957,6 +964,14 @@
       - FiringPinAdvancedLaser
   - type: FiringPinHolder
     supportedPins: [ AdvancedLaser ]
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 2
+    maxAngleDivider: 2
+    angleIncreaseDivider: 2
+  - type: GunHeat
+    heatPerShot: 1000
 
 - type: entity
   name: pulse cannon

@@ -29,16 +29,14 @@ public sealed partial class RejuvenateSystem : EntitySystem
 
     private void OnRejuvenateInstantEvent(Entity<ActionsComponent> ent, ref RejuvenateInstantActionEvent args)
     {
-        if (TryComp<DamageableComponent>(args.Performer, out var damageable)) {
-            Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2> preservedDamage = new();
-            foreach (var damageType in args.PreserveDamageTypes)
-            {
-                if (damageable.Damage.DamageDict.TryGetValue(damageType, out var damage))
-                    preservedDamage[damageType] = damage;
-            }
-            PerformRejuvenate(args.Performer);
-            _damageable.TryChangeDamage(args.Performer, new() { DamageDict = preservedDamage }, ignoreResistances: true);
-        } else PerformRejuvenate(args.Performer);
+        Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2> preservedDamage = new();
+        var damageSpecs = _damageable.GetAllDamage(args.Performer);
+        foreach (var damageType in damageSpecs.DamageDict)
+            if (args.PreserveDamageTypes.Contains(damageType.Key))
+                preservedDamage[damageType.Key] = damageType.Value;
+
+        PerformRejuvenate(args.Performer);
+        _damageable.TryChangeDamage(args.Performer, new() { DamageDict = preservedDamage }, ignoreResistances: true);
 
         _popup.PopupPredicted(Loc.GetString("entity-rejuvenated-popup", ("name", Name(args.Performer))), args.Performer, args.Performer, PopupType.LargeCaution);
         _audio.PlayPredicted(_sound, args.Performer, args.Performer);

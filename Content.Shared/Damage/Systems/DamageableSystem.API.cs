@@ -1,13 +1,10 @@
 using System.Linq;
 using Content.Shared._FarHorizons.Damage;
+using Content.Shared._Starlight.Medical.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
-
-#region Starlight
-using Content.Shared._Starlight.Medical.Damage;
-#endregion Starlight
 
 namespace Content.Shared.Damage.Systems;
 
@@ -36,6 +33,8 @@ public sealed partial class DamageableSystem
     {
         if (!_damageableQuery.Resolve(ent, ref ent.Comp, false))
             return;
+
+        damage = ResolveStoredDamage(damage); // Starlight
 
         foreach (var type in ent.Comp.Damage.DamageDict.Keys)
         {
@@ -129,6 +128,8 @@ public sealed partial class DamageableSystem
 
         if (!_damageableQuery.Resolve(ent, ref ent.Comp, false))
             return damageDone;
+
+        damage = ResolveDamageChange((ent, ent.Comp), damage); // Starlight
 
         if (damage.Empty)
             return damageDone;
@@ -267,7 +268,7 @@ public sealed partial class DamageableSystem
             var count = keys.Count;
             // We do this to ensure that we always round up when dividing to avoid excess loops.
             // We already have logic to prevent healing more than we have.
-            var maxHeal = count == 1 ? remaining : (remaining + FixedPoint2.Epsilon * (count - 1)) / count;
+            var maxHeal = count == 1 ? remaining : (remaining + (FixedPoint2.Epsilon * (count - 1))) / count;
 
             // Iterate backwards since we're removing items.
             for (var i = count - 1; i >= 0; i--)
@@ -350,7 +351,7 @@ public sealed partial class DamageableSystem
         ProtoId<DamageGroupPrototype>? group = null)
     {
         // get the damage should be healed (either all or only from one group)
-        damage = group == null ? GetDamage(ent) : GetDamage(ent, group.Value);
+        damage = group == null ? GetPositiveDamage(ent) : GetPositiveDamage(ent, group.Value);
 
         // If trying to heal more than the total damage of damageEntity just heal everything
         return damage.GetTotal() > amount;
@@ -362,7 +363,7 @@ public sealed partial class DamageableSystem
     /// <param name="ent">entity with damage</param>
     /// <param name="group">group of damage to get values from</param>
     /// <returns></returns>
-    public DamageSpecifier GetDamage(Entity<DamageableComponent> ent, ProtoId<DamageGroupPrototype> group)
+    public DamageSpecifier GetPositiveDamage(Entity<DamageableComponent> ent, ProtoId<DamageGroupPrototype> group)
     {
         // No damage if no group exists...
         if (!_prototypeManager.Resolve(group, out var groupProto))
@@ -387,7 +388,7 @@ public sealed partial class DamageableSystem
     /// </summary>
     /// <param name="ent">entity with damage</param>
     /// <returns></returns>
-    public DamageSpecifier GetDamage(Entity<DamageableComponent> ent)
+    public DamageSpecifier GetPositiveDamage(Entity<DamageableComponent> ent)
     {
         var damage = new DamageSpecifier();
         damage.DamageDict.EnsureCapacity(ent.Comp.Damage.DamageDict.Count);
@@ -431,13 +432,26 @@ public sealed partial class DamageableSystem
                 damage.DamageDict[key] *= UniversalAllHealModifier;
         }
 
+        #region Starlight
+        foreach (var (key, value) in damage.DamageGroupDict)
+        {
+            if (value == 0)
+                continue;
+
+            if (value > 0)
+            {
+                damage.DamageGroupDict[key] *= UniversalAllDamageModifier;
+                continue;
+            }
+
+            damage.DamageGroupDict[key] *= UniversalAllHealModifier;
+        }
+
+        damage.MixMax?.Value *= UniversalAllHealModifier;
+        #endregion
+
         return damage;
     }
-
-#region Starlight
-    public void ClearAllDamage(Entity<DamageableComponent?> ent) =>
-        SetAllDamage(ent, FixedPoint2.Zero);
-#endregion
 
     /// <summary>
     ///     Sets all damage types supported by a <see cref="Components.DamageableComponent"/> to the specified value.
@@ -478,48 +492,51 @@ public sealed partial class DamageableSystem
         Dirty(ent);
     }
 
-    // Begin Stellar - We need to be able to change DamageContainer to make cultists vulnerable to Holy Damage
-    public void SetDamageContainerID(Entity<DamageableComponent?> ent, ProtoId<DamageContainerPrototype>? damageContainerId)
+    /// <summary>
+    /// Gets the damages currently sustained by an entity.
+    /// </summary>
+    [Obsolete("Do not rely on the ability to determine a numerically quantifiable amount of damage")]
+    public DamageSpecifier GetAllDamage(Entity<DamageableComponent?> ent)
+    {
+        if (!_damageableQuery.Resolve(ent, ref ent.Comp))
+            return new();
+
+        return ent.Comp.Damage.Clone();
+    }
+
+    /// <summary>
+    /// Gets the total amount of damage currently sustained by an entity.
+    /// </summary>
+    [Obsolete("Do not rely on the ability to determine a numerically quantifiable amount of damage")]
+    public FixedPoint2 GetTotalDamage(Entity<DamageableComponent?> ent)
     {
         if (!_damageableQuery.Resolve(ent, ref ent.Comp, false))
-            return;
+            return FixedPoint2.Zero;
 
-        ent.Comp.DamageContainerID = damageContainerId;
-        Dirty(ent);
-    }
-    // End Stellar
-
-    #region Starlight
-
-    /// <summary>
-    ///     Adds to the additive damage modifiers of the DamageableComponent
-    /// </summary>
-    public void AddAdditiveModifierSet(Entity<DamageableComponent?> ent, EntityUid source, DamageModifierSet mods)
-    {
-        if(!Resolve(ent, ref ent.Comp))
-            return;
-
-        foreach (var coefficient in mods.Coefficients)
-            ent.Comp.AdditiveCoefficients.TryAdd((source, coefficient.Key), coefficient.Value);
-
-        foreach (var modifier in mods.FlatReductions)
-            ent.Comp.AdditiveModifiers.TryAdd((source, modifier.Key), modifier.Value);
+        return ent.Comp.TotalDamage;
     }
 
     /// <summary>
-    ///     Subtracts from the additive damage modifiers of the DamageableComponent
+    /// Gets the total amount of damage currently sustained by an entity, indexed by damage group.
     /// </summary>
-    public void RemoveAdditiveModifierSet(Entity<DamageableComponent?> ent, EntityUid source, DamageModifierSet mods)
+    [Obsolete("Do not rely on the ability to determine a numerically quantifiable amount of damage")]
+    public IReadOnlyDictionary<ProtoId<DamageGroupPrototype>, FixedPoint2> GetDamagePerGroup(Entity<DamageableComponent?> ent)
     {
-        if(!Resolve(ent, ref ent.Comp))
-            return;
+        if (!_damageableQuery.Resolve(ent, ref ent.Comp))
+            return new Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2>();
 
-        foreach (var coefficient in mods.Coefficients)
-            ent.Comp.AdditiveCoefficients.Remove((source, coefficient.Key));
-
-        foreach (var modifier in mods.FlatReductions)
-            ent.Comp.AdditiveModifiers.Remove((source, modifier.Key));
+        return ent.Comp.DamagePerGroup;
     }
 
-    #endregion Starlight
+    /// <summary>
+    /// Returns whether the entity can be damaged by the given type of damage
+    /// </summary>
+    [Obsolete("Do not rely on the ability to determine if an entity will be able to be damaged by something")]
+    public bool CanBeDamagedBy(Entity<DamageableComponent?> ent, ProtoId<DamageTypePrototype> type)
+    {
+        if (!_damageableQuery.Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        return SupportsType(ent.Comp.DamageContainerID, type);
+    }
 }

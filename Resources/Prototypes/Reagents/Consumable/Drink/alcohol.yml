@@ -1282,12 +1282,18 @@
         factor: 2
       - !type:SatiateHunger
         factor: -2
-      - !type:EvenHealthChange
+      # Starlight start, use Mixmax instead
+      - !type:HealthChange
         damage:
-          Burn: -1
-          Brute: -1
-          Airloss: -1
-          Toxin: -1
+          mixmax:
+            value: -0.5
+            groups:
+            - Burn
+            - Brute
+            - Airloss
+            - Toxin
+            - Genetic
+      # Starlight end
 
 - type: reagent
   id: DriestMartini
@@ -1904,16 +1910,12 @@
         amount: 0.06
       - !type:EvenHealthChange
         conditions:
-        - !type:TotalDamageCondition
-          max: 50
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
         damage:
           Brute: -1
       - !type:HealthChange
         conditions:
-        - !type:TotalDamageCondition
-          max: 50
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
         damage:

@@ -34,22 +34,23 @@
       types:
         Caustic: 0.2
     passiveDamage:
-      groups:
-        Brute: -0.18
       types:
         Heat: -0.09
         Poison: -0.15
+        Blunt: -0.06
+        Slash: -0.06
+        Piercing: -0.06
     passiveThreshold: Peckish
     passiveCap: 200
   - type: PassiveDamage # while fed and above and below 100 damage they heal brute at three times the normal rate and heal heat at double.
     allowedStates:
     - Alive
-    damageCap: 100
     damage:
-      groups:
-        Brute: -0.09
       types:
         Heat: -0.09
+        Blunt: -0.03
+        Slash: -0.03
+        Piercing: -0.03
   - type: Thirst
   - type: Icon
     sprite: _Starlight/Mobs/Species/Experiment/parts.rsi

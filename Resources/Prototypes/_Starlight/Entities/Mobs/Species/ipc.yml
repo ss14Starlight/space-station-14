@@ -120,12 +120,12 @@
   - type: PassiveDamage # Need it here to disable it.
     allowedStates:
     - Alive
-    damageCap: 0
     damage:
       types:
         Heat: 0
-      groups:
-        Brute: 0
+        Slash: 0
+        Blunt: 0
+        Piercing: 0
   - type: Tag
     tags:
       - CanPilot
