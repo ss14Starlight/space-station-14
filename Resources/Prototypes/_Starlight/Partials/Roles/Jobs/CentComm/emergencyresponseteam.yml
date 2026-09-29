@@ -22,7 +22,7 @@
     shoes: ClothingShoesBootsJackFilled
     head: ClothingHeadHelmetERTLeader
     outerClothing: ClothingOuterVestWebEliteCentcomm
-    pocket2: WeaponPDW9
+    pocket2: WeaponPistolPDW9
 
 - type: !PartialOnly startingGear
   id: ERTLeaderGearEVA
@@ -38,7 +38,7 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMilitaryWebbingERT
-    pocket2: WeaponPDW9
+    pocket2: WeaponPistolPDW9
     suitstorage: WeaponDisablerSMG
   storage: !Clear
     back:
@@ -71,7 +71,7 @@
   id: ERTLeaderGearArmed
   equipment:
     suitstorage: WeaponRifleM52
-    pocket2: WeaponPDW9
+    pocket2: WeaponPistolPDW9
   storage: !Clear
     back:
     - MedkitCombatFilled
@@ -150,7 +150,7 @@
   equipment:
     shoes: ClothingShoesBootsJackFilled
     outerClothing: ClothingOuterVestWebEliteCentcomm
-    pocket2: WeaponPDW9
+    pocket2: WeaponPistolPDW9
 
 - type: !PartialOnly startingGear
   id: ERTEngineerGearEVA
@@ -165,7 +165,7 @@
     id: ERTEngineerPDA
     ears: ClothingHeadsetCentCom
     belt: ClothingBeltMilitaryWebbingERT
-    pocket2: WeaponPDW9
+    pocket2: WeaponPistolPDW9
     suitstorage: PortableRecharger
   storage: !Clear
     back:
@@ -223,7 +223,7 @@
   id: ERTSecurityGear
   equipment:
     outerClothing: ClothingOuterVestWebEliteCentcomm
-    pocket2: WeaponPDW9
+    pocket2: WeaponPistolPDW9
 
 - type: !PartialOnly startingGear
   id: ERTSecurityGearEVA
@@ -239,7 +239,7 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetCentCom
     belt: ClothingBeltMilitaryWebbingERT
-    pocket2: WeaponPDW9
+    pocket2: WeaponPistolPDW9
     suitstorage: WeaponDisablerSMG
   storage: !Clear
     back:
@@ -382,7 +382,7 @@
   id: ERTMedicalGear
   equipment:
     outerClothing: ClothingOuterArmorPlate
-    pocket2: WeaponPDW9
+    pocket2: WeaponPistolPDW9
 
 - type: !PartialOnly startingGear
   id: ERTMedicalGearEVA
@@ -397,7 +397,7 @@
     id: ERTMedicPDA
     ears: ClothingHeadsetCentCom
     belt: ClothingBeltMilitaryWebbingERT
-    pocket2: WeaponPDW9
+    pocket2: WeaponPistolPDW9
   storage: !Clear
     back:
     - JugGoldenBicaridine
@@ -457,7 +457,7 @@
   id: ERTJanitorGear
   equipment:
     outerClothing: ClothingOuterVestWebEliteCentcomm
-    pocket2: WeaponPDW9
+    pocket2: WeaponPistolPDW9
 
 - type: !PartialOnly startingGear
   id: ERTJanitorGearEVA
@@ -472,7 +472,7 @@
     id: ERTJanitorPDA
     ears: ClothingHeadsetCentCom
     belt: ClothingBeltMilitaryWebbingERT
-    pocket2: WeaponPDW9
+    pocket2: WeaponPistolPDW9
     suitstorage: WeaponLauncherHydra
   storage: !Clear
     back:
