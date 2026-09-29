@@ -96,8 +96,6 @@ public sealed partial class AirAlarmSystem
                     % 4 //and then normalize to NSEW
                 )];
 
-                Log.Info($"{offset}");
-
                 if (!_xform.TryGetMapOrGridCoordinates(ent, out var coords, xform))
                     return; //no coords?
 
