@@ -1,13 +1,6 @@
 Entries:
 - author: Fahreyy, @TeddiousbearPA
   changes:
-  - message: Added Magistrate Beret.
-    type: Add
-  id: 408633
-  time: '2026-09-14T20:15:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6067
-- author: Fahreyy, @TeddiousbearPA
-  changes:
   - message: Added RD Beret.
     type: Add
   id: 408634
@@ -2799,4 +2792,11 @@ Entries:
   id: 409032
   time: '2026-09-29T21:06:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6395
+- author: qbrx
+  changes:
+  - message: Fixed cheap lighter and forged omnitool fuel.
+    type: Fix
+  id: 409033
+  time: '2026-09-29T21:06:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6389
 Order: -1
