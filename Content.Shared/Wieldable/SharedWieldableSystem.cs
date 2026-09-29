@@ -47,7 +47,7 @@ public abstract partial class SharedWieldableSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<WieldableComponent, UseInHandEvent>(OnUseInHand, before: [typeof(SharedGunSystem), typeof(BatteryWeaponFireModesSystem)]); //starlight fix
+        SubscribeLocalEvent<WieldableComponent, UseInHandEvent>(OnUseInHand, before: [typeof(BatteryWeaponFireModesSystem)]); //starlight fix
         SubscribeLocalEvent<WieldableComponent, ItemUnwieldedEvent>(OnItemUnwielded);
         SubscribeLocalEvent<WieldableComponent, GotUnequippedHandEvent>(OnItemLeaveHand);
         SubscribeLocalEvent<WieldableComponent, VirtualItemDeletedEvent>(OnVirtualItemDeleted);
@@ -127,10 +127,16 @@ public abstract partial class SharedWieldableSystem : EntitySystem
         if (TryComp(bonus, out WieldableComponent? wield) &&
             wield.Wielded)
         {
+            // Starlight-start: Add support for multiplicative bonuses
             args.MinAngle += bonus.Comp.MinAngle;
+            args.MinAngle /= bonus.Comp.MinAngleDivider;
             args.MaxAngle += bonus.Comp.MaxAngle;
+            args.MaxAngle /= bonus.Comp.MaxAngleDivider;
             args.AngleDecay += bonus.Comp.AngleDecay;
+            args.AngleDecay /= bonus.Comp.AngleDecayDivider;
             args.AngleIncrease += bonus.Comp.AngleIncrease;
+            args.AngleIncrease /= bonus.Comp.AngleIncreaseDivider;
+            // Starlight-end
         }
     }
 
