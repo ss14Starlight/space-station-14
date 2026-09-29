@@ -1,27 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Silica) Moved Mail Room to be its own thing.
-    type: Add
-  id: 408593
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
-  - message: (Silica) Sauna now uses the 3D platforms and looks wayyy better.
-    type: Add
-  id: 408594
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
-  - message: (Silica) Toilet paper, hand dryers, and sanitizer dispensers to washrooms.
-    type: Add
-  id: 408595
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
   - message: (Silica) NCT spawns moved to Bridge.
     type: Tweak
   id: 408596
@@ -2799,4 +2778,25 @@ Entries:
   id: 408992
   time: '2026-09-29T18:37:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6320
+- author: Sparlight
+  changes:
+  - message: Partial smellers can no longer identify the species associated with a scent.
+    type: Remove
+  id: 408993
+  time: '2026-09-29T18:37:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6318
+- author: Sparlight
+  changes:
+  - message: Partial smellers can only perceive scent imprints for up to 2 minutes before they expire, down from 5 minutes.
+    type: Tweak
+  id: 408994
+  time: '2026-09-29T18:37:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6318
+- author: Sparlight
+  changes:
+  - message: All smellers can now only track a scent for up to 5 minutes before it dissipates.
+    type: Tweak
+  id: 408995
+  time: '2026-09-29T18:37:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6318
 Order: -1
