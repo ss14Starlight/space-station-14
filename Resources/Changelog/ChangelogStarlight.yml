@@ -1,74 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Silica) The two lifepods east of Sauna have been combined into one lifeboat.
-    type: Tweak
-  id: 408600
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
-  - message: (Silica) Swapped the windoors out for full doors at the Engineering maints crossover.
-    type: Tweak
-  id: 408601
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
-  - message: (Silica) Made Janitor Closet a little bigger.
-    type: Tweak
-  id: 408602
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
-  - message: (Silica) Misalsigned bar stool in Maints bar.
-    type: Fix
-  id: 408603
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
-  - message: (Silica) Every toilet is now connected to disposals.
-    type: Fix
-  id: 408604
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
-  - message: (Silica) Removed a random above-floor gas manifold in the freezer.
-    type: Fix
-  id: 408605
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
-  - message: (Silica) Some stray MV and HV wires that went nowhere.
-    type: Fix
-  id: 408606
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
-  - message: (Silica) NCT Office has been made into a generic office.
-    type: Remove
-  id: 408607
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
-  - message: Record crates can now hold non-sleeved vinyls (you animals).
-    type: Tweak
-  id: 408608
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Swonki
-  changes:
-  - message: Salvage ID card computer perms.
-    type: Fix
-  id: 408609
-  time: '2026-09-14T12:12:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6143
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: Fixed the Transfer/Discard buttons in the ChemMaster's Classic layout not working correctly.
@@ -2799,4 +2729,74 @@ Entries:
   id: 408999
   time: '2026-09-29T19:34:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6364
+- author: Rinary
+  changes:
+  - message: Added covers system.
+    type: Add
+  id: 409000
+  time: '2026-09-29T19:34:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6334
+- author: Rinary
+  changes:
+  - message: Added 4 different barricades(more info about them in PR desc).
+    type: Add
+  id: 409001
+  time: '2026-09-29T19:34:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6334
+- author: Rinary
+  changes:
+  - message: Added spread bonus when you're holding pistol and shield in the same time.
+    type: Add
+  id: 409002
+  time: '2026-09-29T19:34:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6334
+- author: Rinary
+  changes:
+  - message: Added tables flip, you can use this as cover.
+    type: Add
+  id: 409003
+  time: '2026-09-29T19:34:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6334
+- author: Rinary
+  changes:
+  - message: Added vending machines flip, you can use this as cover.
+    type: Add
+  id: 409004
+  time: '2026-09-29T19:34:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6334
+- author: Rinary
+  changes:
+  - message: Added unlucky trait which makes you to flip vending machines on yourself with certain chance when you're bumping into them.
+    type: Add
+  id: 409005
+  time: '2026-09-29T19:34:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6334
+- author: Rinary
+  changes:
+  - message: Added a chance to flip vending machines on yourself when you're bumped into them while slipped.
+    type: Add
+  id: 409006
+  time: '2026-09-29T19:34:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6334
+- author: Rinary
+  changes:
+  - message: Added sandbag material.
+    type: Add
+  id: 409007
+  time: '2026-09-29T19:34:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6334
+- author: Rinary
+  changes:
+  - message: Added 12 sandbags to warden's locker(2 barricades).
+    type: Add
+  id: 409008
+  time: '2026-09-29T19:34:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6334
+- author: Rinary
+  changes:
+  - message: Added sandbags to cargo order system(30 for 1000).
+    type: Add
+  id: 409009
+  time: '2026-09-29T19:34:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6334
 Order: -1
