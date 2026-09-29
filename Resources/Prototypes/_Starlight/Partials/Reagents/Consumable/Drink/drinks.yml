@@ -37,10 +37,3 @@
       effects:
       - !type:ReduceSleepiness
         time: 0.2
-
-- type: !PartialOnly reagent
-  id: Water
-  metabolisms:
-    Respiration:
-      effects:
-        - !CombineIndex:0 maxScale: 9 # Prevent single-breath crit/death in Laspi
