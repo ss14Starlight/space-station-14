@@ -1,13 +1,6 @@
 Entries:
 - author: Rtasva
   changes:
-  - message: Added laundry room, radio station, and assistant managers to Leth.
-    type: Add
-  id: 408579
-  time: '2026-09-14T11:16:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6139
-- author: Rtasva
-  changes:
   - message: More Saltern & Leth QOL Fixes.
     type: Tweak
   id: 408580
@@ -2799,4 +2792,11 @@ Entries:
   id: 408978
   time: '2026-09-28T10:38:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6390
+- author: Pickra
+  changes:
+  - message: Temporarily removed Peacekeeper bola option for now due to time constraints.
+    type: Remove
+  id: 408979
+  time: '2026-09-29T08:54:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6400
 Order: -1
