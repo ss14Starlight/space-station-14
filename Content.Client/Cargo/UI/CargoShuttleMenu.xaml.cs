@@ -32,7 +32,11 @@ namespace Content.Client.Cargo.UI
 
             foreach (var order in orders)
             {
-                 var proto = protoManager.Index(order.CargoProductId); // Starlight
+                 if (!protoManager.Resolve(order.Product, out var productProto))
+                     continue;
+
+                 var product = protoManager.Index<EntityPrototype>(productProto.Product);
+                 var productName = product.Name;
                  var account = protoManager.Index(order.Account);
 
                  var row = new CargoOrderRow
@@ -43,7 +47,7 @@ namespace Content.Client.Cargo.UI
                      {
                          Text = Loc.GetString(
                              "cargo-console-menu-populate-orders-cargo-order-row-product-name-text",
-                             ("productName", order.ProductName), // Starlight
+                             ("productName", productName), // Starlight
                              ("orderAmount", order.OrderQuantity - order.NumDispatched),
                              ("orderRequester", order.Requester),
                              ("accountColor", account.Color),

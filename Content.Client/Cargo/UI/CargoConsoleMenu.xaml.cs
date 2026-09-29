@@ -211,10 +211,11 @@ namespace Content.Client.Cargo.UI
 
             foreach (var order in orders)
             {
-                if (order.Approved)
+                if (order.Approved || !_protoManager.Resolve(order.Product, out var productProto))
                     continue;
 
-                var proto = _protoManager.Index(order.CargoProductId); // Starlight
+                var product = _protoManager.Index<EntityPrototype>(productProto.Product);
+                var productName = productProto.Name;
                 var requester = !string.IsNullOrEmpty(order.Requester) ?
                     order.Requester : Loc.GetString("cargo-console-menu-order-row-alerts-requester-unknown");
                 var account = _protoManager.Index(order.Account);
@@ -229,7 +230,7 @@ namespace Content.Client.Cargo.UI
                             "cargo-console-menu-order-row-title",
                             ("productName", order.ProductName),
                             ("orderAmount", order.OrderQuantity),
-                            ("orderPrice", order.Price)),
+                            ("orderPrice", productProto.Cost)),
                     },
 
                     Stride =
@@ -241,7 +242,7 @@ namespace Content.Client.Cargo.UI
                         },
                     },
 
-                    Icon = { Texture = _spriteSystem.Frame0(proto.Icon) }, // Starlight
+                    Icon = { Texture = _spriteSystem.Frame0(product) },
 
                     ProductName =
                     {

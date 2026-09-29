@@ -157,18 +157,17 @@ namespace Content.Server.Spawners.EntitySystems
             if (TerminatingOrDeleted(ent) || !Exists(ent))
                 return;
 
-            var xform = Transform(ent);
-            var coords = _xform.GetMapCoordinates(ent, xform);
-            var rotation = _xform.GetWorldRotation(xform);
+            var coords = Transform(ent).Coordinates;
             var offset = ent.Comp.Offset;
 
             var spawns = _entityTable.GetSpawns(ent.Comp.Table);
             foreach (var proto in spawns)
             {
-                var vOffset = _robustRandom.NextVector2(-offset, offset);
-                var trueCoords = coords.Offset(vOffset);
+                var xOffset = _robustRandom.NextFloat(-offset, offset);
+                var yOffset = _robustRandom.NextFloat(-offset, offset);
+                var trueCoords = coords.Offset(new Vector2(xOffset, yOffset));
 
-                Spawn(proto, trueCoords, rotation: rotation);
+                SpawnAttachedTo(proto, trueCoords);
             }
         }
     }
