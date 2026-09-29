@@ -94,7 +94,6 @@ public sealed partial class SharedStructureFlipSystem : EntitySystem
             NeedHand = true,
         });
 
-
     [SubscribeLocalEvent]
     private void OnFlipDoAfter(Entity<FlippableStructureComponent> ent, ref StructureFlipDoAfterEvent args)
     {

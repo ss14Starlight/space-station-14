@@ -141,7 +141,7 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
             return false;
 
         var along = Vector2.Dot(offset, shotDirection);
-        var across = MathF.Abs(offset.X * shotDirection.Y - offset.Y * shotDirection.X);
+        var across = MathF.Abs((offset.X * shotDirection.Y) - (offset.Y * shotDirection.X));
 
         return along > 0f && across <= ShelterLineTolerance;
     }
