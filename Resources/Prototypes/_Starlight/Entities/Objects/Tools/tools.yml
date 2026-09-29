@@ -973,6 +973,7 @@
     - Deconstruct
     - AirAlarm
     - AirSensor
+    - GasInletSiphon
   - type: LimitedCharges
     maxCharges: 90
   - type: Sprite

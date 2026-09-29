@@ -1,67 +1,4 @@
 Entries:
-- author: Rtasva
-  changes:
-  - message: Added laundry room, radio station, and assistant managers to Leth.
-    type: Add
-  id: 408579
-  time: '2026-09-14T11:16:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6139
-- author: Rtasva
-  changes:
-  - message: More Saltern & Leth QOL Fixes.
-    type: Tweak
-  id: 408580
-  time: '2026-09-14T11:16:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6139
-- author: Conflee
-  changes:
-  - message: 'Box: Added Laundry Rooms, Round Tables, Box Shelves, and Random Medical Vend  Markers, Evidence Room.'
-    type: Tweak
-  id: 408581
-  time: '2026-09-14T11:16:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6132
-- author: Conflee
-  changes:
-  - message: "Cog: Added Laundry Rooms, Round Tables, Box Shelves, Random Medical Vend Markers, Evidence Room, K9's, Assistant Managers, Mail Boxes, and removed Salvage from the station."
-    type: Tweak
-  id: 408582
-  time: '2026-09-14T11:16:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6132
-- author: Conflee
-  changes:
-  - message: 'Fland: Added Laundry Rooms, Round Tables, Box Shelves, Random Medical Vend Markers, Evidence Room, Assistant Managers, and removed Salvage from the station.'
-    type: Tweak
-  id: 408583
-  time: '2026-09-14T11:16:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6132
-- author: Conflee
-  changes:
-  - message: 'Kiloton: Added Laundry Rooms, Round Tables, Box Shelves, Random Medical Vend Markers, Evidence Room, Assistant Managers, and removed Salvage from the station.'
-    type: Tweak
-  id: 408584
-  time: '2026-09-14T11:16:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6132
-- author: Conflee
-  changes:
-  - message: "Space Mall: Added Laundry Rooms, Round Tables, Box Shelves, Random Medical Vend Markers, K9's, Assistant Managers, Mail Boxes, a plumbing line from Chemistry to Brigmedical, and removed Salvage from the station."
-    type: Tweak
-  id: 408585
-  time: '2026-09-14T11:16:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6132
-- author: Caws
-  changes:
-  - message: (Silica) Mailboxes.
-    type: Add
-  id: 408586
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
-  - message: (Silica) Radio Host.
-    type: Add
-  id: 408587
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
 - author: Caws
   changes:
   - message: (Silica) Laundromat.
@@ -2799,4 +2736,67 @@ Entries:
   id: 408978
   time: '2026-09-28T10:38:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6390
+- author: Pickra
+  changes:
+  - message: Temporarily removed Peacekeeper bola option for now due to time constraints.
+    type: Remove
+  id: 408979
+  time: '2026-09-29T08:54:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6400
+- author: Scarlet Inanis Lightweaver
+  changes:
+  - message: Added a reptilian ethnicity trait! the Drakari.
+    type: Add
+  id: 408980
+  time: '2026-09-29T08:54:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6403
+- author: Scarlet Lightweaver
+  changes:
+  - message: Changed the sec sop for CODE GREEN, Armory weapons must remain the armory and not the brig now.
+    type: Tweak
+  id: 408981
+  time: '2026-09-29T14:16:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6404
+- author: joshujo
+  changes:
+  - message: Air siphons, the active counterpart to the air injector!
+    type: Add
+  id: 408982
+  time: '2026-09-29T14:56:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6374
+- author: qbrx
+  changes:
+  - message: Brute automender now heals instead of damage.
+    type: Fix
+  id: 408983
+  time: '2026-09-29T14:56:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6397
+- author: Rinary
+  changes:
+  - message: Fixed time requirements for NullLink playtime (try 2).
+    type: Fix
+  id: 408984
+  time: '2026-09-29T17:00:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6361
+- author: redmushie
+  changes:
+  - message: Air injectors now correctly show enabled/disabled state when initially spawned during mapping.
+    type: Fix
+  id: 408985
+  time: '2026-09-29T17:30:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6392
+- author: redmushie
+  changes:
+  - message: Reduced pipe volume by 50%.
+    type: Tweak
+  id: 408986
+  time: '2026-09-29T17:30:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6362
+- author: redmushie
+  changes:
+  - message: Added GTS "Bellows" gas hauler shuttle.
+    type: Add
+  id: 408987
+  time: '2026-09-29T17:30:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6328
 Order: -1
