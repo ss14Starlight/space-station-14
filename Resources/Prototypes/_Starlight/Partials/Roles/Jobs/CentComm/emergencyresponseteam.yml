@@ -427,7 +427,7 @@
   parent: ERTMedicalGearEVA
   id: ERTMedicalGearArmed
   equipment:
-    suitstorage: WeaponIK60
+    suitstorage: WeaponRifleIK60
   storage: !Clear
     back:
     - JugGoldenBicaridine
