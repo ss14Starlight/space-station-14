@@ -33,6 +33,14 @@ public sealed partial class StartingGearPrototype : IPrototype, IInheritingProto
     [DataField]
     [AlwaysPushInheritance]
     public Dictionary<string, List<EntProtoId>> Storage { get; set; } = new();
+
+    [DataField]
+    [AlwaysPushInheritance]
+    public Dictionary<string, EntProtoId> Organs { get; set;} = new();
+
+    [DataField]
+    [AlwaysPushInheritance]
+    public Dictionary<string, EntProtoId> BodyParts { get; set;} = new();
 }
 
 /// <summary>
@@ -54,6 +62,16 @@ public interface IEquipmentLoadout
     /// Inserts entities into the specified slot's storage (if it does have storage).
     /// </summary>
     public Dictionary<string, List<EntProtoId>> Storage { get; set; }
+
+    /// <summary>
+    /// Inserts organ entites into the entity
+    /// </summary>
+    public Dictionary<string, EntProtoId> Organs { get; set; }
+
+    /// <summary>
+    /// Inserts body part entites into the entity
+    /// </summary>
+    public Dictionary<string, EntProtoId> BodyParts { get; set; }
 
     /// <summary>
     /// Gets the entity prototype ID of a slot in this starting gear.

@@ -49,4 +49,15 @@ public sealed partial class LoadoutPrototype : IPrototype, IEquipmentLoadout
     /// <inheritdoc />
     [DataField]
     public Dictionary<string, List<EntProtoId>> Storage { get; set; } = new();
+
+    #region Starlight
+    /// <inheritdoc />
+    [DataField]
+    public Dictionary<string, EntProtoId> Organs { get; set; } = new();
+
+    /// <inheritdoc />
+    [DataField]
+    public Dictionary<string, EntProtoId> BodyParts { get; set; } = new();
+    #endregion
 }
+
