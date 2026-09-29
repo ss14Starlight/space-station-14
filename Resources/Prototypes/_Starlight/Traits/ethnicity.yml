@@ -71,6 +71,7 @@
     - !type:SpeciesRequirement
       species:
         - Elf
+        - NeoElf
 
 - type: trait
   id: Drakari
