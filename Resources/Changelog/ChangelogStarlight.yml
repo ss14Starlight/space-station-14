@@ -1,13 +1,6 @@
 Entries:
 - author: Conflee
   changes:
-  - message: 'Box: Added Laundry Rooms, Round Tables, Box Shelves, and Random Medical Vend  Markers, Evidence Room.'
-    type: Tweak
-  id: 408581
-  time: '2026-09-14T11:16:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6132
-- author: Conflee
-  changes:
   - message: "Cog: Added Laundry Rooms, Round Tables, Box Shelves, Random Medical Vend Markers, Evidence Room, K9's, Assistant Managers, Mail Boxes, and removed Salvage from the station."
     type: Tweak
   id: 408582
@@ -2799,4 +2792,11 @@ Entries:
   id: 408980
   time: '2026-09-29T08:54:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6403
+- author: Scarlet Lightweaver
+  changes:
+  - message: Changed the sec sop for CODE GREEN, Armory weapons must remain the armory and not the brig now.
+    type: Tweak
+  id: 408981
+  time: '2026-09-29T14:16:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6404
 Order: -1
