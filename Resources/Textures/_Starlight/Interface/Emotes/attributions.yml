@@ -1,12 +1,52 @@
  # Attempted to keep the files in alphabetical order so its easier to audit.
  # Finding individual authors is an unfeasible task. If you can reference the author please do so.
 
-- files: ["emote-hum.png"]
+- files: ["emote-blink.png"]
   license: "CC-BY-SA-3.0"
-  copyright: "Modified from sigh.png by Sarahon"
-  source: "https://github.com/SummerIsTooWarm"
+  copyright: "Modified from laugh.png and salute.png by Sarahon"
+  source: "https://github.com/CawsForConcern"
+
+- files: ["emote-cry.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "By DocMoth"
+  source: "https://github.com/DocMoth"
+
+- files: ["emote-fear.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "By DocMoth"
+  source: "https://github.com/DocMoth"
 
 - files: ["emote-glub.png"]
   license: "CC-BY-SA-3.0"
   copyright: "Created by SummerIsTooWarm"
   source: "https://github.com/SummerIsTooWarm"
+
+- files: ["emote-honk.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "By DocMoth"
+  source: "https://github.com/DocMoth"
+
+- files: ["emote-hum.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Modified from sigh.png by Sarahon"
+  source: "https://github.com/SummerIsTooWarm"
+
+- files: ["emote-neutral.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "By DocMoth"
+  source: "https://github.com/DocMoth"
+
+- files: ["emote-rage.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "By DocMoth"
+  source: "https://github.com/DocMoth"
+
+- files: ["emote-snore.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "By DocMoth"
+  source: "https://github.com/DocMoth"
+
+- files: ["stomp-emote.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "By DocMoth"
+  source: "https://github.com/DocMoth"

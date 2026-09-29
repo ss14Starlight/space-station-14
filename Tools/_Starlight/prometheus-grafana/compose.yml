@@ -1,5 +1,26 @@
+# Container stdout is uncapped by default, which let Loki's own query logging grow a 200MB
+# json log in under half an hour. Cap every service.
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 services:
+  loki:
+    logging: *logging
+    image: grafana/loki:3.7.0
+    user: "0"
+    command:
+      - -config.file=/etc/loki/local-config.yml
+    ports:
+      - "127.0.0.1:${LOKI_PORT:-3100}:3100"
+    volumes:
+      - ./loki.yml:/etc/loki/local-config.yml:ro
+      - loki-data:/tmp/loki
+
   prometheus:
+    logging: *logging
     image: prom/prometheus:latest
     command:
       - --config.file=/etc/prometheus/prometheus.yml
@@ -16,12 +37,16 @@ services:
       start_period: 5s
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
-      # - prometheus-data:/prometheus
+      - prometheus-data:/prometheus
 
   grafana:
+    logging: *logging
     image: grafana/grafana:latest
     depends_on:
-      - prometheus
+      loki:
+        condition: service_started
+      prometheus:
+        condition: service_healthy
     environment:
       GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-starlight}
@@ -38,10 +63,11 @@ services:
       retries: 30
       start_period: 5s
     volumes:
-      # - grafana-data:/var/lib/grafana
+      - grafana-data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning:ro
       - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
 
-# volumes:
-#   grafana-data:
-#   prometheus-data:
+volumes:
+  loki-data:
+  grafana-data:
+  prometheus-data:

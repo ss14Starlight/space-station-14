@@ -7,6 +7,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Revenant.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio;
@@ -34,14 +35,13 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         SubscribeLocalEvent<SocialInteractionReceiverComponent, GetVerbsEvent<Verb>>(AddSocialInteractionVerbs);
     }
 
+    /// <summary>
+    /// Adds the Social Interaction verbs to the right-click context menu.
+    /// </summary>
     private void AddSocialInteractionVerbs(EntityUid uid, SocialInteractionReceiverComponent component, GetVerbsEvent<Verb> args)
     {
         // ensure the Giver is awake and alive
         if (IsDeadOrIncapacitated(args.User))
-            return;
-
-        //check if the user also has a interaction giver
-        if (!HasComp<SocialInteractionGiverComponent>(args.User))
             return;
 
         //create a verb subcategory
@@ -55,7 +55,7 @@ public sealed partial class SocialInteractionSystem : EntitySystem
                 continue;
 
             // check if interaction needs physical contact
-            if (proto.IsPhysical && (!CheckInteractable(args.User, args.Target)))
+            if (proto.IsPhysical && !CheckInteractable(args.User, args.Target))
                 continue;
 
             // check if this interaction allows self-targeting
@@ -67,7 +67,7 @@ public sealed partial class SocialInteractionSystem : EntitySystem
             {
                 Text = Loc.GetString(proto.VerbName),
                 Category = category,
-                Act = () => InteractionPopupAction(uid, args, proto)
+                Act = () => InteractionAction(uid, args, proto)
             };
 
             args.Verbs.Add(verb);
@@ -84,12 +84,16 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         if (HasComp<GhostComponent>(user)
             || HasComp<StunnedComponent>(user)
             || HasComp<SleepingComponent>(user)
+            || HasComp<RevenantComponent>(user) // revenants are ghosts
             || _mobStateSystem.IsIncapacitated(user))
             return true;
 
         return false;
     }
 
+    /// <summary>
+    /// Used to check if a physical interaction is possible.
+    /// </summary>
     private bool CheckInteractable(EntityUid user, EntityUid target)
     {
         if (!_actionBlockerSystem.CanInteract(user, target))
@@ -101,7 +105,10 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         return true;
     }
 
-    private void InteractionPopupAction(EntityUid uid, GetVerbsEvent<Verb> args, SocialInteractionPrototype proto)
+    /// <summary>
+    /// Performs our Social Interaction
+    /// </summary>
+    private void InteractionAction(EntityUid uid, GetVerbsEvent<Verb> args, SocialInteractionPrototype proto)
     {
         // ensure the Giver is awake and alive
         if (IsDeadOrIncapacitated(args.User))
@@ -114,6 +121,18 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         // check if interaction needs physical contact
         if (proto.IsPhysical && !CheckInteractable(args.User, args.Target))
             return;
+
+        if (!TryComp<SocialInteractionGiverComponent>(args.User, out var giverComp))
+            return;
+
+        var curTime = _timing.CurTime;
+
+        // prevent spamming interactions
+        if (giverComp.LastInteractTime is { } lastInteractTime
+            && curTime < lastInteractTime + proto.InteractDelay)
+            return;
+
+        giverComp.LastInteractTime = curTime;
 
         var selfTarget = args.User == args.Target; // whether or not we're interacting with ourselves
         var msg = ""; // Stores the text to be shown in the popup message
@@ -154,7 +173,7 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         }
 
         // now popup filtered to user - skip if it's self-targeted
-        if(!selfTarget)
+        if (!selfTarget)
             _popupSystem.PopupClient(msg, uid, args.User);
 
         if (proto.SoundPerceivedByOthers)
@@ -166,7 +185,7 @@ public sealed partial class SocialInteractionSystem : EntitySystem
             _audio.PlayLocal(sfx, args.Target, args.User);
 
             // don't play sounds twice if you're the target
-            if(args.User != args.Target)
+            if (args.User != args.Target)
                 _audio.PlayEntity(sfx, Filter.Entities(args.Target), args.Target, false);
         }
     }

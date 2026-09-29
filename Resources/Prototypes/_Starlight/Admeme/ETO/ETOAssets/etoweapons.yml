@@ -17,12 +17,7 @@
     sprite: _Starlight/Admeme/ETO/weapons/g36/g36hands.rsi
   - type: Clothing
     sprite: _Starlight/Admeme/ETO/weapons/g36/g36.rsi
-  - type: GunWieldBonus
-    minAngle: -13
-    maxAngle: -10
   - type: Gun
-    minAngle: 13
-    maxAngle: 17
     fireRate: 5
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/m90.ogg
@@ -89,8 +84,6 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/estocshot.ogg
-    minAngle: 30
-    maxAngle: 43
     shotsPerBurst: 3
     selectedMode: FullAuto
     availableModes:
@@ -98,9 +91,6 @@
     - Burst
     - SemiAuto
     burstFireRate: 14
-  - type: GunWieldBonus
-    minAngle: -28
-    maxAngle: -25
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -150,11 +140,12 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -19
-    maxAngle: -24
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 3.3
+    maxAngleDivider: 2.8
+    angleIncreaseDivider: 3.3
   - type: Gun
-    minAngle: 21
-    maxAngle: 32
     fireRate: 4.5
     availableModes:
     - FullAuto

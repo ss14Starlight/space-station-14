@@ -93,10 +93,12 @@
         },
         {
             "name": "inhand-left",
+            "copyright": "TherealStarVerse",
             "directions": 4
         },
         {
             "name": "inhand-right",
+            "copyright": "TherealStarVerse",
             "directions": 4
         }
     ]

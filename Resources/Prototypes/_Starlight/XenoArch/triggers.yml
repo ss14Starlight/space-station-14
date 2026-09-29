@@ -29,8 +29,7 @@
     TriggerMagnet: 1
     TriggerVodka: 1 #Funky changes start
     TriggerMilk: 1
-    TriggerBleach: 0.5
-    TriggerCleaner: 1
+    TriggerBleach: 1
     TriggerLube: 0.5
     TriggerLSD: 0.5
     TriggerSilicon: 0.5

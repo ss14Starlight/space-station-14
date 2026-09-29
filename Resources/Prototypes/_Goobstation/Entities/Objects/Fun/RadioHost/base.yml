@@ -46,6 +46,9 @@
     damage:
       types:
         Slash: 5
+  - type: Damageable # Starlight begin - wait so did breaking vinyls just never fucking work on goob LMAO
+    damageContainer: Inorganic
+    damageModifierSet: FlimsyMetallic # Starlight end
   - type: Tag
     tags:
     - VinylSleeveFit
@@ -120,6 +123,21 @@
   - type: Tag
     tags:
     - CD
+  # Starlight start - We don't want CDs to turn into broken vinyls.
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  # Starlight end
 
 # Base Disk Sleeve
 - type: entity

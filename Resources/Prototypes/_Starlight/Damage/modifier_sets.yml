@@ -310,18 +310,36 @@
     Piercing: 0.5
     Cold: 0.1 # Deathcult frozen stone
     Heat: 0.75
-    Shock: 0.6
+    Shock: 0.1
     Structural: 0.75 # similar to Metallic, but not as crazy as Rock
+    Holy: 1.5 # Both Chaplain and ERT does not oneshot but do solid damage.
   flatReductions:
     Blunt: 5
     Cold: 10
 
 - type: damageModifierSet
+  id: StructuralMalignStone
+  coefficients:
+    Blunt: 0.5
+    Slash: 0.25
+    Piercing: 0.5
+    Heat: 0.5
+    Shock: 0.1 # Its stone
+    Structural: 1.5 # Easier to remove
+    Holy: 2 # chaplains can smite the door
+  flatReductions:
+    Blunt: 10
+    Slash: 10
+    Piercing: 10
+    Heat: 10
+    Structural: 10
+
+- type: damageModifierSet
   id: CivilianSilicon
   coefficients:
-    Blunt: 0.65
+    Blunt: 0.75
     Slash: 0.45
-    Piercing: 0.70
+    Piercing: 0.75
     Shock: 1.2
     Heat: 0.8
   flatReductions:
@@ -330,11 +348,11 @@
 - type: damageModifierSet
   id: ArmoredSilicon
   coefficients:
-    Blunt: 0.45
+    Blunt: 0.55
     Slash: 0.3
-    Piercing: 0.60
+    Piercing: 0.65
     Shock: 1.1
     Heat: 0.65
   flatReductions:
-    Blunt: 5
+    Blunt: 4
     Heat: 3
