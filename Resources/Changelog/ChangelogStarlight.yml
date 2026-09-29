@@ -1,11 +1,4 @@
 Entries:
-- author: Rtasva
-  changes:
-  - message: More Saltern & Leth QOL Fixes.
-    type: Tweak
-  id: 408580
-  time: '2026-09-14T11:16:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6139
 - author: Conflee
   changes:
   - message: 'Box: Added Laundry Rooms, Round Tables, Box Shelves, and Random Medical Vend  Markers, Evidence Room.'
@@ -2799,4 +2792,11 @@ Entries:
   id: 408979
   time: '2026-09-29T08:54:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6400
+- author: Scarlet Inanis Lightweaver
+  changes:
+  - message: Added a reptilian ethnicity trait! the Drakari.
+    type: Add
+  id: 408980
+  time: '2026-09-29T08:54:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6403
 Order: -1
