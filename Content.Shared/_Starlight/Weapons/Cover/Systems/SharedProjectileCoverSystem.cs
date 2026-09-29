@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._Starlight.Random;
 using Content.Shared._Starlight.Weapons.Cover.Components;
 using Content.Shared.Physics;
 using Content.Shared.Projectiles;
@@ -97,7 +98,7 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
         if (comp.BlockChance >= 1f)
             return true;
 
-        return Roll(shot, cover.Owner) < comp.BlockChance;
+        return DeterministicRandom.Prob(GetNetEntity(shot), GetNetEntity(cover), comp.BlockChance);
     }
 
     public bool IsShotStopped(EntityUid cover, EntityUid shot, EntityUid? shooter, float? distance = null,
@@ -167,19 +168,5 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
             return false;
 
         return (coverPos.Position - shooterPos.Position).Length() <= comp.PointBlankRange;
-    }
-
-    private float Roll(EntityUid shot, EntityUid cover)
-    {
-        var seed = HashCode.Combine(GetNetEntity(shot).Id, GetNetEntity(cover).Id);
-
-        var hash = (uint)seed;
-        hash ^= hash >> 16;
-        hash *= 0x7feb352d;
-        hash ^= hash >> 15;
-        hash *= 0x846ca68b;
-        hash ^= hash >> 16;
-
-        return hash / (float)uint.MaxValue;
     }
 }
