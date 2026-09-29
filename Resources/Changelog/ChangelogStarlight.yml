@@ -1,48 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Orwell) Added a laundry machine to captains bathroom alongside increasing captains bathroom size.
-    type: Add
-  id: 408616
-  time: '2026-09-14T12:40:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6155
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Added proper disposals piping to several toilets.
-    type: Add
-  id: 408617
-  time: '2026-09-14T12:40:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6155
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Added a small cargo breakroom where salv used to be.
-    type: Add
-  id: 408618
-  time: '2026-09-14T12:40:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6155
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Changed lawyers office to be able to see into processing room and Speak directly with gen pop prisoners through a window.
-    type: Tweak
-  id: 408619
-  time: '2026-09-14T12:40:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6155
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Fixed armory and brigmedic station beacons.
-    type: Fix
-  id: 408620
-  time: '2026-09-14T12:40:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6155
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Fixed an airvent in security that wasnt connected via piping error.
-    type: Fix
-  id: 408621
-  time: '2026-09-14T12:40:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6155
-- author: Cvlancer
-  changes:
   - message: (Orwell) Fixed PA control computer being mapped the wrong direction.
     type: Fix
   id: 408622
@@ -2799,4 +2757,46 @@ Entries:
   id: 409015
   time: '2026-09-29T20:08:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6372
+- author: DocMoth
+  changes:
+  - message: Removed poison heal for Expi.
+    type: Remove
+  id: 409016
+  time: '2026-09-29T20:42:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6386
+- author: DocMoth
+  changes:
+  - message: Adjusted Expi healing to be split evenly between passive and the hunger regenerative factor.
+    type: Tweak
+  id: 409017
+  time: '2026-09-29T20:42:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6386
+- author: DocMoth
+  changes:
+  - message: The additional healing factor of Expis now stops once reaching critical state.
+    type: Tweak
+  id: 409018
+  time: '2026-09-29T20:42:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6386
+- author: DocMoth
+  changes:
+  - message: Expis now have 3 times increased thirst.
+    type: Tweak
+  id: 409019
+  time: '2026-09-29T20:42:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6386
+- author: DocMoth
+  changes:
+  - message: Expis are now harmed by acid.
+    type: Fix
+  id: 409020
+  time: '2026-09-29T20:42:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6386
+- author: DocMoth
+  changes:
+  - message: Laspi regen returned to double baseline value.
+    type: Fix
+  id: 409021
+  time: '2026-09-29T20:42:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6386
 Order: -1
