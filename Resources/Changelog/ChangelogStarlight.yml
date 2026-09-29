@@ -1,67 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Fixed PA control computer being mapped the wrong direction.
-    type: Fix
-  id: 408622
-  time: '2026-09-14T12:40:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6155
-- author: Sparlight
-  changes:
-  - message: K9s and other handless creatures can now buckle themselves to pet and dog beds.
-    type: Add
-  id: 408623
-  time: '2026-09-14T13:45:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6074
-- author: Sparlight
-  changes:
-  - message: Removed K9 loadout options for air tanks since one was simply the better option.
-    type: Remove
-  id: 408624
-  time: '2026-09-14T13:45:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6074
-- author: FishtopherDoe
-  changes:
-  - message: Fixed the ETO medipen and the Advanced medipen, alongside fixing the combat stim injector so it actually starts with its injection. also fixes some small grammar issues on some eto items.
-    type: Fix
-  id: 408625
-  time: '2026-09-14T14:15:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6060
-- author: Xale
-  changes:
-  - message: Washing machine now removes lube and glue from items.
-    type: Add
-  id: 408626
-  time: '2026-09-14T14:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6105
-- author: Xale
-  changes:
-  - message: Washing machine now cleans any crewmember that happens to find themselves inside. Crew are still advised to use sinks to safely to wash themselves.
-    type: Add
-  id: 408627
-  time: '2026-09-14T14:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6105
-- author: RedSpeeds
-  changes:
-  - message: Fixed Tongue containing body emotes and it overriding existing emotes.
-    type: Fix
-  id: 408628
-  time: '2026-09-14T14:44:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6112
-- author: Conflee
-  changes:
-  - message: Added 14 new paintings to the game, all scaled down versions of CC0 historial pieces.
-    type: Add
-  id: 408629
-  time: '2026-09-14T15:07:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6136
-- author: STARLIGHT TEAM
-  changes:
-  - message: You can now customise the fluff of Moth person wing markings separatey from the wings.
-    type: Tweak
-  id: 408630
-  time: '2026-09-14T15:32:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6140
 - author: Krasunir
   changes:
   - message: Added Janimov lawset. Maybe Barratry would be playable now...
@@ -2799,4 +2736,67 @@ Entries:
   id: 409021
   time: '2026-09-29T20:42:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6386
+- author: Caws
+  changes:
+  - message: (CentComm SC17) Cecil (sea salt).
+    type: Add
+  id: 409022
+  time: '2026-09-29T21:06:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6385
+- author: Caws
+  changes:
+  - message: (CentComm SC17) Fryers in the kitchen for CC chefs.
+    type: Add
+  id: 409023
+  time: '2026-09-29T21:06:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6385
+- author: Caws
+  changes:
+  - message: (CentComm SC17) Added way more biomass to cloning.
+    type: Add
+  id: 409024
+  time: '2026-09-29T21:06:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6385
+- author: Caws
+  changes:
+  - message: (CentComm SC17) Tripled the number of defibs in Medical.
+    type: Add
+  id: 409025
+  time: '2026-09-29T21:06:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6385
+- author: Caws
+  changes:
+  - message: (CentComm SC17) Tripled the number of battery chargers in Medical.
+    type: Add
+  id: 409026
+  time: '2026-09-29T21:06:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6385
+- author: Caws
+  changes:
+  - message: (CentComm G24) Added Interdyne medical vendor for a certain debrief room.
+    type: Add
+  id: 409027
+  time: '2026-09-29T21:06:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6385
+- author: Caws
+  changes:
+  - message: (CentComm G24) Re-added the small room at Debrief for admins to quietly spawn in their CC operators.
+    type: Add
+  id: 409028
+  time: '2026-09-29T21:06:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6385
+- author: Caws
+  changes:
+  - message: (CentComm SC17) Reworked Debrief heavily, addinga  new side-corridor for a better debrief viewing experience. Shutters have been replaced with blast doors to reduce people being annoying with them.
+    type: Tweak
+  id: 409029
+  time: '2026-09-29T21:06:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6385
+- author: Caws
+  changes:
+  - message: (CentComm SC17) Fixed a bunch of air alarms not being linked to anything.
+    type: Fix
+  id: 409030
+  time: '2026-09-29T21:06:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6385
 Order: -1
