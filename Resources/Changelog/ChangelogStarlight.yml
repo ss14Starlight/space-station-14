@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Silica) Moved Service lathe to the Bar.
-    type: Tweak
-  id: 408598
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
   - message: (Silica) Rebranded the Salvage Bay as the Mining Bay.
     type: Tweak
   id: 408599
@@ -2799,4 +2792,11 @@ Entries:
   id: 408997
   time: '2026-09-29T19:02:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6304
+- author: qbrx
+  changes:
+  - message: Dwarves in medical roles now spawn with their survival box.
+    type: Fix
+  id: 408998
+  time: '2026-09-29T19:02:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6345
 Order: -1
