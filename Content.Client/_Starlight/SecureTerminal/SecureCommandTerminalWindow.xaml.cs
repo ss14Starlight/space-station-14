@@ -16,6 +16,7 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
 {
     [Dependency] private IPrototypeManager _protos = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private Content.Client.Administration.Managers.IClientAdminManager _adminManager = default!;
 
     public event Action<string>? OnRequest;
     public event Action<string>? OnAuthorize;
@@ -445,7 +446,7 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
                 AuthDescLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(
                     $"[color=yellow]{Loc.GetString("secure-terminal-awaiting-admin-desc")}[/color]"));
                 RebuildAuthorizerList(proposal);
-                AuthorizeButton.Disabled = true;
+                AuthorizeButton.Disabled = !_adminManager.IsActive();
                 DenyButton.Disabled = false;
                 DenyButton.Text = Loc.GetString("secure-terminal-deny-button");
             }

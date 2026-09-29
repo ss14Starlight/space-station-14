@@ -471,6 +471,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         if (comp.Admin)
         {
             proposal.AdminApproved = true;
+            CloseAdminApprovalEuis(stationUid.Value, msg.RequestId);
             _roundStatistics.RecordSecureTerminalAuthorization(msg.RequestId, proto.ActionType, true);
             _autolog.LogToDiscord($"authorized secure terminal proposal: {msg.RequestId}", ToPrettyString(actor));
         }
@@ -548,7 +549,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         }
 
         var tags = _access.FindAccessTags(actor);
-        if (!tags.Contains((Robust.Shared.Prototypes.ProtoId<Content.Shared.Access.AccessLevelPrototype>)"Command"))
+        if (!comp.Admin && !tags.Contains((Robust.Shared.Prototypes.ProtoId<Content.Shared.Access.AccessLevelPrototype>)"Command"))
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-request-denied"), actor, PopupType.Medium);
             return;
