@@ -12,10 +12,16 @@
   startingGear: ResearchAssistantGear
   icon: "JobIconResearchAssistant"
   supervisors: job-supervisors-science
-  canBeAntag: false
   access:
   - Research
   - Maintenance
+# starlight-start
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: AntagImmune
+    - type: NoObjectiveTarget
+# starlight-end
 
 - type: startingGear
   id: ResearchAssistantGear

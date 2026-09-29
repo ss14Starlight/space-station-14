@@ -3,10 +3,6 @@
   path: /Fonts/_Starlight/Signature.ttf
 
 - type: font
-  id: Icon
-  path: /Fonts/_Starlight/GameIcons/game-icons.ttf
-
-- type: font
   id: Lymphatic
   path: /Fonts/_Starlight/Lymphatic.ttf
 
@@ -49,3 +45,73 @@
 - type: font
   id: Cosmic
   path: /Fonts/_Starlight/Cosmic.otf
+
+- type: font
+  id: Squeakish
+  path: /Fonts/_Starlight/Squeakish.otf
+
+# DotMatrix
+- type: font
+  id: DotMatrix
+  path: "/Fonts/_Starlight/DotMatrix/DotMatrix-Regular.otf"
+
+- type: font
+  id: DotMatrixBold
+  path: "/Fonts/_Starlight/DotMatrix/DotMatrix-Bold.otf"
+
+- type: font
+  id: DotMatrixItalic
+  path: "/Fonts/_Starlight/DotMatrix/DotMatrix-Italic.otf"
+
+- type: font
+  id: DotMatrixBoldItalic
+  path: "/Fonts/_Starlight/DotMatrix/DotMatrix-BoldItalic.otf"
+
+- type: font
+  id: DotMatrixCondensed
+  path: "/Fonts/_Starlight/DotMatrix/DotMatrix-CondensedRegular.otf"
+
+- type: font
+  id: DotMatrixCondensedBold
+  path: "/Fonts/_Starlight/DotMatrix/DotMatrix-CondensedBold.otf"
+
+- type: font
+  id: DotMatrixCondensedItalic
+  path: "/Fonts/_Starlight/DotMatrix/DotMatrix-CondensedItalic.otf"
+
+- type: font
+  id: DotMatrixCondensedBoldItalic
+  path: "/Fonts/_Starlight/DotMatrix/DotMatrix-CondensedBoldItalic.otf"
+
+# DotMatrix Duo
+- type: font
+  id: DotMatrixDuo
+  path: "/Fonts/_Starlight/DotMatrix/DotMatrixDuo-Regular.otf"
+
+- type: font
+  id: DotMatrixDuoBold
+  path: "/Fonts/_Starlight/DotMatrix/DotMatrixDuo-Bold.otf"
+
+- type: font
+  id: DotMatrixDuoItalic
+  path: "/Fonts/_Starlight/DotMatrix/DotMatrixDuo-Italic.otf"
+
+- type: font
+  id: DotMatrixDuoBoldItalic
+  path: "/Fonts/_Starlight/DotMatrix/DotMatrixDuo-BoldItalic.otf"
+
+- type: font
+  id: DotMatrixDuoCondensed
+  path: "/Fonts/_Starlight/DotMatrix/DotMatrixDuo-CondensedRegular.otf"
+
+- type: font
+  id: DotMatrixDuoCondensedBold
+  path: "/Fonts/_Starlight/DotMatrix/DotMatrixDuo-CondensedBold.otf"
+
+- type: font
+  id: DotMatrixDuoCondensedItalic
+  path: "/Fonts/_Starlight/DotMatrix/DotMatrixDuo-CondensedItalic.otf"
+
+- type: font
+  id: DotMatrixDuoCondensedBoldItalic
+  path: "/Fonts/_Starlight/DotMatrix/DotMatrixDuo-CondensedBoldItalic.otf"

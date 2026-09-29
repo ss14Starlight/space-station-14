@@ -1,17 +1,19 @@
-﻿using Content.Shared.Starlight.Antags.Abductor;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Utility;
 using Robust.Shared.Prototypes;
 using static Robust.Client.UserInterface.Control;
+using Content.Shared._Starlight.Antags.Abductor.Components;
+using Content.Shared._Starlight.Antags.Abductor.UI;
+using Content.Shared._Starlight.Antags.Abductor.Prototypes;
 
 namespace Content.Client._Starlight.Antags.Abductor;
 
 [UsedImplicitly]
-public sealed class AbductorConsoleBui : BoundUserInterface
+public sealed partial class AbductorConsoleBui : BoundUserInterface
 {
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
 
     [ViewVariables]
     private AbductorConsoleWindow? _window;

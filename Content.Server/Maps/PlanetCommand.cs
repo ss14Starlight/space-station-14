@@ -1,20 +1,11 @@
 using System.Linq;
 using Content.Server.Administration;
-using Content.Server.Atmos;
-using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
 using Content.Server.Parallax;
 using Content.Shared.Administration;
-using Content.Shared.Atmos;
-using Content.Shared.Gravity;
-using Content.Shared.Movement.Components;
 using Content.Shared.Parallax.Biomes;
-using Robust.Shared.Audio;
 using Robust.Shared.Console;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 
 namespace Content.Server.Maps;
 
@@ -22,11 +13,11 @@ namespace Content.Server.Maps;
 /// Converts the supplied map into a "planet" with defaults.
 /// </summary>
 [AdminCommand(AdminFlags.Mapping)]
-public sealed class PlanetCommand : LocalizedEntityCommands
+public sealed partial class PlanetCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
+    [Dependency] private SharedMapSystem _map = default!;
 
     public override string Command => "planet";
     public override string Description => Loc.GetString("cmd-planet-desc");

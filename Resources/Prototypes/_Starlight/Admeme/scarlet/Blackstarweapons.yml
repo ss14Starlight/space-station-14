@@ -3,6 +3,7 @@
   name: Prometheus battle rifle
   parent: [WeaponRifleLecter, BaseMajorContraband]
   id: WeaponRiflePrometheus
+  suffix: Admeme
   description: "A heavily modified Lecter battle rifle issued to Blackstar Dreadwalker operatives. A 3-round burst mechanism has been machined into the action, making it lethal at any range. Feeds from .20 rifle magazines."
   components:
   - type: Sprite
@@ -19,10 +20,6 @@
     burstFireRate: 8
     shotsPerBurst: 3
     burstCooldown: 0.6
-    minAngle: 21
-    maxAngle: 32
-    angleIncrease: 2
-    angleDecay: 16
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -34,8 +31,5 @@
     magState: mag
     steps: 5
     zeroVisible: true
-  - type: GunWieldBonus
-    minAngle: -20
-    maxAngle: -28
   - type: SpeedModifiedOnWield
     walkModifier: 0.80

@@ -35,6 +35,10 @@
             "name": "mag-unshaded-4"
         },
         {
+            "name": "inhand-left",
+            "directions": 4
+        },
+        {
             "name": "mag0-inhand-left",
             "directions": 4
         },
@@ -44,6 +48,10 @@
         },
         {
             "name": "mag1-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
             "directions": 4
         },
         {

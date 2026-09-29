@@ -8,11 +8,11 @@ using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.Xenobiology.MiscItems;
 
-public sealed class XenobiologyConsoleCameraTaggerSystem : EntitySystem
+public sealed partial class XenobiologyConsoleCameraTaggerSystem : EntitySystem
 {
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly StationAiSystem _stationAiSystem = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private StationAiSystem _stationAiSystem = default!;
 
     public override void Initialize()
     {

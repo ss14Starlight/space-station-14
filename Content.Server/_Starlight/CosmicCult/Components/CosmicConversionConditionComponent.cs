@@ -1,4 +1,4 @@
-namespace Content.Server.Objectives.Components;
+namespace Content.Server._Starlight.CosmicCult.Components;
 
 [RegisterComponent]
 public sealed partial class CosmicConversionConditionComponent : Component

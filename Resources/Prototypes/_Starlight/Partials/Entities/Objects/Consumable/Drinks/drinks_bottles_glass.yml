@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: DrinkBottleGlassBase
+  components:
+  - type: ShakeSpillable
+    solutionName: drink
+  - type: ReactionMixer
+    mixerType: None
+    reactionTypes:
+    - Shake

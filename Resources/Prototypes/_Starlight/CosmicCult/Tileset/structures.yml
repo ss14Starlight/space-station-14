@@ -39,7 +39,7 @@
     radius: 1.5
     energy: 1.6
     enabled: true # Test fail if false
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
     offset: "0, 0.4"
     castShadows: false
@@ -232,39 +232,6 @@
       - !type:PlaySoundBehavior
         sound:
           collection: GlassBreak
-
-
-
-- type: entity
-  id: CosmicMalignRift
-  name: malign rift
-  description: A malign light pours forth from within.
-  placement:
-    mode: SnapgridCenter
-  components:
-  - type: InteractionOutline
-  - type: Sprite
-    sprite: _Starlight/CosmicCult/Tileset/malignrift.rsi
-    drawdepth: Mobs
-    snapCardinals: true
-    offset: 0,0.27
-    layers:
-      - state: rift-unshaded
-        shader: unshaded
-  - type: Clickable
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    castShadows: false
-    color: "#42a4ae"
-  - type: CosmicCultExamine
-    cultistText: cosmic-examine-text-forthecult
-  - type: CosmicMalignRift
-  - type: CosmicCorrupting
-    corruptionMaxTicks: 6
-    corruptionSpeed: 8
-    corruptionChance: 1
-    corruptionReduction: 0.16
 
 ##################### SPIRE
 - type: entity

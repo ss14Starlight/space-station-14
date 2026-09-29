@@ -6,15 +6,14 @@
   flavor: medicine
   color: "#9d42d5"
   metabolisms:
-    Food:
+    Digestion:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         damage:
-          groups:
-            Brute: -2
-            Burn: -2
-            Toxin: -2
-            Genetic: -2
+          Brute: -2
+          Burn: -2
+          Toxin: -2
+          Genetic: -2
 
 # basically the same as protein, but having a separate chemical allows us to extract it from peas
 - type: reagent
@@ -26,13 +25,12 @@
   flavor: chalky
   color: "#94622d" # medium brown
   metabolisms:
-    Food:
+    Digestion:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         probability: 0.25
         damage:
-          groups:
-            Brute: -0.8
+          Brute: -0.8
       - !type:ModifyBloodLevel
         amount: 1
       # Starlight edit start - Make food 50% less effective for dwarfs
@@ -65,10 +63,11 @@
   flavor: lemonlimecranberrysoda # 'like Christmas'
   color: "#700620" # dark red, erring on pinkish
   viscosity: 0.55 #Start using syrup to attach your remote recievers to your microwaves!
+  viscosityMin: 1
   tileReactions:
     - !type:SpillTileReaction
   metabolisms:
-    Food:
+    Digestion:
       effects:
       # Starlight edit start - Make food 50% less effective for dwarfs
       - !type:SatiateHunger
@@ -99,13 +98,12 @@
   flavor: greasy
   color: "#643205" # yup, another generic medium brown
   metabolisms:
-    Food:
+    Digestion:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         probability: 0.25
         damage:
-          groups:
-            Brute: -0.4
+          Brute: -0.4
       # Starlight edit start - Make food 50% less effective for dwarfs
       - !type:SatiateHunger
         factor: 0.75
@@ -137,7 +135,7 @@
   flavor: punishment
   color: "#7d7d3c" # ew
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:PopupMessage
         type: Local
@@ -170,3 +168,23 @@
     params:
       volume: 6
 
+- type: reagent
+  id: MintExtract
+  name: reagent-name-juice-mint-extract
+  group: Foods
+  parent: BaseJuice
+  desc: reagent-desc-juice-mint-extract
+  physicalDesc: reagent-physical-desc-mint-extract
+  flavor: minty
+  color: "#b4fbd0"
+  recognizable: true
+
+- type: reagent
+  id: Cinnamon
+  name: reagent-name-cinnamon
+  group: Foods
+  desc: reagent-desc-cinnamon
+  physicalDesc: reagent-physical-desc-cinnamon
+  flavor: cinnamon
+  color: "#7b330c"
+  recognizable: true

@@ -1,0 +1,93 @@
+﻿- type: guideEntry
+  id: CorporateLaw
+  name: guide-entry-corporate-law
+  priority: 4
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/CorporateLaw.xml"
+  children:
+  - CrimeList
+  - TreatmentOfPrisoners
+  - SearchAndSeizure
+  - Permits
+  - LegalRepresentation
+  - PenalCode
+  - CivilCode
+  - Jurisdiction
+  - SupernaturalEntities
+
+- type: guideEntry
+  id: TreatmentOfPrisoners
+  name: guide-entry-treatment-of-prisoners
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/TreatmentOfPrisoners.xml"
+
+- type: guideEntry
+  id: SearchAndSeizure
+  name: guide-entry-search-and-seizure
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/SearchAndSeizure.xml"
+
+- type: guideEntry
+  id: Permits
+  name: guide-entry-permits
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/PermitClause.xml"
+
+- type: guideEntry
+  id: Implantation
+  name: guide-entry-implantation
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/Implantation.xml"
+
+- type: guideEntry
+  id: Sentencing
+  name: guide-entry-sentencing
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/Sentencing.xml"
+
+- type: guideEntry
+  id: Parole
+  name: guide-entry-parole
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/Parole.xml"
+
+- type: guideEntry
+  id: LegalRepresentation
+  name: guide-entry-legal-representation
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/LegalRepresentation.xml"
+  children:
+  - PleaBargains
+
+- type: guideEntry
+  id: PenalCode
+  name: guide-entry-penal-code
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/PenalCode.xml"
+  children:
+  - Sentencing
+  - Implantation
+  - Parole
+
+- type: guideEntry
+  id: CivilCode
+  name: guide-entry-civil-code
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/CivilCode.xml"
+  children:
+  - PettyDisputes
+
+- type: guideEntry
+  id: CrimeList
+  name: guide-entry-crime-list
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/CrimeList.xml"
+
+- type: guideEntry
+  id: Jurisdiction
+  name: guide-entry-jurisdiction
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/Jurisdiction.xml"
+
+- type: guideEntry
+  id: PettyDisputes
+  name: guide-entry-petty-disputes
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/PettyDisputes.xml"
+
+- type: guideEntry
+  id: PleaBargains
+  name: guide-entry-plea-bargains
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/PleaBargains.xml"
+
+- type: guideEntry
+  id: SupernaturalEntities
+  name: guide-entry-rules-supernatural-entities
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/SupernaturalEntities.xml"

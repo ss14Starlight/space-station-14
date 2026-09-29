@@ -36,13 +36,13 @@ public sealed partial class ActionAddAntag : OnSignAction
         {
             var targetComp = _componentFactory.GetComponent(antag.TargetComponent);
 
-            var fmakeantag = typeof(AntagSelectionSystem).GetMethod(nameof(AntagSelectionSystem.ForceMakeAntag));
+            var fmakeantag = typeof(AntagSelectionSystem).GetMethod(nameof(AntagSelectionSystem.ForceMakeAntag), [typeof(ICommonSession), typeof(EntProtoId)]);
             if (fmakeantag == null)
             {
                 continue;
             }
             var generic = fmakeantag.MakeGenericMethod(targetComp.GetType());
-            generic.Invoke(_antag, [actor.PlayerSession, antag.Antag.Id]);
+            generic.Invoke(_antag, [actor.PlayerSession, antag.Antag]);
         }
 
         if (!ParadoxClone) return false;

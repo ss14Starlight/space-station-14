@@ -1,5 +1,7 @@
 using Content.Shared.Actions;
 using Robust.Shared.GameStates;
+using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.CosmicCult;
 
@@ -22,3 +24,10 @@ public sealed partial class EventCosmicColossusSunder : WorldTargetActionEvent;
 public sealed partial class EventCosmicColossusIngress : EntityTargetActionEvent;
 public sealed partial class EventCosmicColossusHibernate : InstantActionEvent;
 public sealed partial class EventCosmicColossusEffigy : InstantActionEvent;
+
+// MISC ACTIONS
+public sealed partial class EventCosmicAnomalyIngress : EntityTargetActionEvent
+{
+    public SoundSpecifier IngressSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/ability_ingress.ogg");
+    public EntProtoId GenericVFX = "CosmicGenericVFX";
+}

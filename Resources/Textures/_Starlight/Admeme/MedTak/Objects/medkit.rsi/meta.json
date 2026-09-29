@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "medtak-inhand-left",
+      "directions": 4,
+      "copyright": "Original sprites by Conflee, edits by SevenShades"
+    },
+    {
+      "name": "medtak-inhand-right",
+      "directions": 4,
+      "copyright": "Original sprites by Conflee, edits by SevenShades"
+    },
+    {
+      "name": "medkit",
+      "copyright": "Original sprites by Conflee, edits by SevenShades"
+    }
+  ]
+}

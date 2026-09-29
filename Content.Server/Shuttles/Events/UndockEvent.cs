@@ -7,8 +7,10 @@ namespace Content.Server.Shuttles.Events;
 /// </summary>
 public sealed class UndockEvent : EntityEventArgs
 {
-    public DockingComponent DockA = default!;
-    public DockingComponent DockB = default!;
+    // Starlight-start
+    public Entity<DockingComponent> DockA = default!;
+    public Entity<DockingComponent> DockB = default!;
+    // Starlight-end
 
     public EntityUid GridAUid = default!;
     public EntityUid GridBUid = default!;

@@ -351,6 +351,9 @@ ghost-role-information-mothership-core-desc = You are the core of the xenoborg m
 ghost-role-information-xenoborg-name = Xenoborg
 ghost-role-information-xenoborg-desc = A strange cyborg made to replicate itself and take over the station by turning any sentient being into xenoborgs.
 
+ghost-role-information-xenoroach-name = Xenoroach
+ghost-role-information-xenoroach-description = A tiny biomechanical spy-bot deployed by the Xenoborg Mothership. Crawl through vents, slip under doors, and relay what you see back to the Mothership Core. You are fragile — your greatest weapon is your small size.
+
 ghost-role-information-wizard-name = Wizard
 ghost-role-information-wizard-desc = YER A WIZARD! Show the station what your magic is made of.
 

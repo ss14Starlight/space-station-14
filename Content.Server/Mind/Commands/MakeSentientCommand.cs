@@ -1,16 +1,17 @@
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
-using Content.Server._Starlight.Language; // Starlight
-using Content.Shared._Starlight.Language.Components; // Starlight
-using Content.Shared._Starlight.Language.Systems; // Starlight
+// Starlight
+// Starlight
+
+// Starlight
 
 namespace Content.Server.Mind.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class MakeSentientCommand : LocalizedEntityCommands
+public sealed partial class MakeSentientCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly MindSystem _mindSystem = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
 
     public override string Command => "makesentient";
 

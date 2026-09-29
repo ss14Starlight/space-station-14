@@ -1,30 +1,28 @@
 using System.Numerics;
 using Content.Server.Actions;
 using Content.Server.Popups;
-using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared.Maps;
-using Content.Shared.Station.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Content.Shared._Starlight.NullSpace;
+using Content.Shared._Starlight.NullSpace.Components;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
-public sealed class CosmicMonumentSystem : EntitySystem
+public sealed partial class CosmicMonumentSystem : EntitySystem
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly CosmicCultRuleSystem _cultRule = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly MonumentSystem _monument = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private CosmicCultRuleSystem _cultRule = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private MonumentSystem _monument = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private StationSystem _station = default!;
 
     private static readonly EntProtoId _monumentCollider = "MonumentCollider";
     private static readonly EntProtoId _monumentCosmicCultMoveEnd = "MonumentCosmicCultMoveEnd";
@@ -131,7 +129,7 @@ public sealed class CosmicMonumentSystem : EntitySystem
         var station = _station.GetStationInMap(xform.MapID);
         EntityUid? stationGrid = null;
         if (station is { } stationUid)
-            stationGrid = _station.GetLargestGrid((stationUid, (StationDataComponent?) null));
+            stationGrid = _station.GetLargestGrid((stationUid, null));
 
         if (stationGrid is not null && stationGrid != xform.GridUid)
         {

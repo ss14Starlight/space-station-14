@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
-using Content.Server.Interaction;
 using Content.Server.Popups;
 using Content.Server.Stunnable;
 using Content.Shared.Administration;
@@ -10,7 +9,6 @@ using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Instruments;
 using Content.Shared.Instruments.UI;
-using Content.Shared.Physics;
 using Content.Shared.Popups;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
@@ -19,24 +17,22 @@ using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.GameStates;
-using Robust.Shared.Player;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Instruments;
 
 [UsedImplicitly]
 public sealed partial class InstrumentSystem : SharedInstrumentSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IConsoleHost _conHost = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly StunSystem _stuns = default!;
-    [Dependency] private readonly UserInterfaceSystem _bui = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
-    [Dependency] private readonly IAdminLogManager _admingLogSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IConsoleHost _conHost = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private StunSystem _stuns = default!;
+    [Dependency] private UserInterfaceSystem _bui = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private ExamineSystemShared _examineSystem = default!;
+    [Dependency] private IAdminLogManager _admingLogSystem = default!;
 
     private const float MaxInstrumentBandRange = 10f;
 
@@ -57,6 +53,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
         SubscribeNetworkEvent<InstrumentSetMasterEvent>(OnMidiSetMaster);
         SubscribeNetworkEvent<InstrumentSetFilteredChannelEvent>(OnMidiSetFilteredChannel);
         SubscribeNetworkEvent<InstrumentSetChannelsEvent>(OnMidiSetChannels);
+        SubscribeNetworkEvent<InstrumentSetMidiMinVolumeEvent>(OnMidiSetMinVolume);
 
         Subs.BuiEvents<InstrumentComponent>(InstrumentUiKey.Key, subs =>
         {
@@ -81,7 +78,8 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
             AllowProgramChange = component.AllowProgramChange,
             RespectMidiLimits = component.RespectMidiLimits,
             Master = GetNetEntity(component.Master),
-            FilteredChannels = component.FilteredChannels
+            FilteredChannels = component.FilteredChannels,
+            MinVolume = component.MinVolume,
         };
     }
 
@@ -139,6 +137,17 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
         Clean(uid, instrument);
     }
 
+    private void OnMidiSetMinVolume(InstrumentSetMidiMinVolumeEvent msg, EntitySessionEventArgs args)
+    {
+        var uid = GetEntity(msg.Uid);
+
+        if (!TryComp(uid, out InstrumentComponent? instrument))
+            return;
+
+        instrument.MinVolume = msg.MinVolume;
+
+        Dirty(uid, instrument);
+    }
 
     private void OnMidiSetChannels(InstrumentSetChannelsEvent msg, EntitySessionEventArgs args)
     {
@@ -438,20 +447,22 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
                 if (Deleted(master))
                 {
                     Clean(uid, instrument);
+                    continue;
                 }
 
                 var masterActive = activeQuery.CompOrNull(master);
                 if (masterActive == null)
                 {
                     Clean(uid, instrument);
+                    continue;
                 }
 
                 var trans = transformQuery.GetComponent(uid);
                 var masterTrans = transformQuery.GetComponent(master);
-                if (!_transform.InRange(masterTrans.Coordinates, trans.Coordinates, 10f)
-)
+                if (!_transform.InRange(masterTrans.Coordinates, trans.Coordinates, 10f))
                 {
                     Clean(uid, instrument);
+                    continue;
                 }
             }
 

@@ -6,7 +6,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Starlight.Shadekin;
+namespace Content.Shared._Starlight.Shadekin.Components;
 
 #region Shadekin
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentPause, AutoGenerateComponentState]

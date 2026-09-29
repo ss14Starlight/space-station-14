@@ -1,4 +1,3 @@
-using System;
 using System.Numerics;
 using Content.Client.Computer;
 using Content.Shared.Solar;
@@ -89,11 +88,11 @@ namespace Content.Client.Power
 
     }
 
-    public sealed class SolarControlNotARadar : Control
+    public sealed partial class SolarControlNotARadar : Control
     {
         // This is used for client-side prediction of the panel rotation.
         // This makes the display feel a lot smoother.
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
+        [Dependency] private IGameTiming _gameTiming = default!;
 
         private SolarControlConsoleBoundInterfaceState _lastState = new(0, 0, 0, 0);
 

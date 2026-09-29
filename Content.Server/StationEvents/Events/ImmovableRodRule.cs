@@ -1,22 +1,20 @@
 using System.Numerics;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.ImmovableRod;
 using Content.Server.StationEvents.Components;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Storage;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
 using System.Linq;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class ImmovableRodRule : StationEventSystem<ImmovableRodRuleComponent>
+public sealed partial class ImmovableRodRule : StationEventSystem<ImmovableRodRuleComponent>
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly GunSystem _gun = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private GunSystem _gun = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     protected override void Started(EntityUid uid, ImmovableRodRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {

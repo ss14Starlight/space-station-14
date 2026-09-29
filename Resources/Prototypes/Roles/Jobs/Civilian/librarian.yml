@@ -39,6 +39,7 @@
       - Classical
       - Darktongue
       - Lagomorphian
+      - Squeakish
       understands:
       - GalacticCommon
       - Scratch
@@ -60,6 +61,7 @@
       - Classical
       - Darktongue
       - Lagomorphian
+      - Squeakish
   # Starlight end
 
 - type: startingGear

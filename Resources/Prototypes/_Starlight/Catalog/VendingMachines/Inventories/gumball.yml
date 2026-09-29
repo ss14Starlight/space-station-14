@@ -1,0 +1,16 @@
+- type: vendingMachineInventory
+  id: GumballInventory
+  startingInventory:
+    FoodSnackGumballWhite: 3
+    FoodSnackGumballRed: 3
+    FoodSnackGumballOrange: 3
+    FoodSnackGumballYellow: 3
+    FoodSnackGumballLime: 3
+    FoodSnackGumballGreen: 3
+    FoodSnackGumballLightBlue: 3
+    FoodSnackGumballBlue: 3
+    FoodSnackGumballPurple: 3
+    FoodSnackGumballPink: 3
+  contrabandInventory:
+    FoodSnackGumballBlack: 1
+    FoodSnackGumballBloodRed: 1

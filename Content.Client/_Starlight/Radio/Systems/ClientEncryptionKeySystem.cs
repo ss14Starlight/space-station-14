@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Server.Administration.Systems;
+using Content.Shared._Starlight;
 using Content.Shared.Radio.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -10,10 +10,10 @@ namespace Content.Client._Starlight.Radio.Systems;
 /// <summary>
 /// Handles sprite overrides for the encryption key.
 /// </summary>
-public sealed class ClientEncryptionKeySystem : EntitySystem
+public sealed partial class ClientEncryptionKeySystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly StarlightEntitySystem _sl = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private StarlightEntitySystem _sl = default!;
 
     public override void Initialize()
     {

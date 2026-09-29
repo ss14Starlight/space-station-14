@@ -1,11 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq; // NullLink
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Server._NullLink.Core; // NullLink
-using Content.Server._NullLink.Helpers; // NullLink
-using Content.Server._NullLink.PlayerData;
+using Content.Server._NullLink.Core;
+using Content.Server._NullLink.Helpers;
 using Content.Server.Database;
 using Content.Shared.CCVar;
 using Content.Shared.Players.PlayTimeTracking;
@@ -18,8 +17,8 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Starlight.NullLink; // NullLink
-using PlayTime = Starlight.NullLink.PlayTime; // NullLink
+using Starlight.NullLink;
+using PlayTime = Starlight.NullLink.PlayTime;
 
 namespace Content.Server.Players.PlayTimeTracking;
 
@@ -61,17 +60,17 @@ public delegate void CalcPlayTimeTrackersCallback(ICommonSession player, HashSet
 /// Operations like refreshing and sending play time info to clients are deferred until the next frame (note: not tick).
 /// </para>
 /// </remarks>
-public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjectInit
+public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjectInit
 {
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly IActorRouter _actor = default!; // NullLink
-    [Dependency] private readonly IPlayerManager _player = default!; // NullLink
-    [Dependency] private readonly IServerNetManager _net = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ITaskManager _task = default!;
-    [Dependency] private readonly IRuntimeLog _runtimeLog = default!;
-    [Dependency] private readonly UserDbDataManager _userDb = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private IActorRouter _actor = default!; // NullLink
+    [Dependency] private IPlayerManager _player = default!; // NullLink
+    [Dependency] private IServerNetManager _net = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ITaskManager _task = default!;
+    [Dependency] private IRuntimeLog _runtimeLog = default!;
+    [Dependency] private UserDbDataManager _userDb = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -377,28 +376,6 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         QueueRefreshTrackers(session);
         QueueSendTimers(session);
     }
-
-    // NullLink start
-    public void EnrichWithNullLink(Dictionary<string, TimeSpan> playtime, Guid userId)
-        => _task.RunOnMainThread(() =>
-    {
-        if (!_player.TryGetSessionById(new NetUserId(userId), out var session))
-            return;
-
-        if (!_playTimeData.TryGetValue(session, out var data))
-            return;
-
-        var merged = new Dictionary<string, TimeSpan>(playtime);
-        foreach (var (tracker, time) in data.TrackerTimes)
-        {
-            if (merged.TryGetValue(tracker, out var nullinked))
-                merged[tracker] = time + nullinked;
-            else
-                merged[tracker] = time;
-        }
-        data.MergedTrackerTimes = merged;
-    });
-    // NullLink end
 
     public void ClientDisconnected(ICommonSession session)
     {

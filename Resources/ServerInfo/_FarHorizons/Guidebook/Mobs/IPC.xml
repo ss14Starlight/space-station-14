@@ -2,7 +2,7 @@
   # IPCs
 
   <Box>
-    <GuideEntityEmbed Entity="MobIPC" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceIPC" Caption=""/>
   </Box>
 
   [color=#ffa500]Warning! This species is not recommended for new players due to major gameplay changes![/color]

@@ -18,7 +18,6 @@
   - Engineering
   - Medical
   - Quartermaster
-  - Salvage
   - Cargo
   - Research
   - Service
@@ -34,20 +33,22 @@
   - Atmospherics
   - GenpopEnter
   - GenpopLeave
+  - Journalism # Goobstation
   - Cadet # Starlight start
   - Magistrate
   - Ntrep
   - IAA
   - Brigmedic
   - BlueShield
-  - Robotics
+  - Robotics # Adding another access? Make sure to also assign it to CyborgAllAccess.
   - Surgery
   - Paramedic
   - Mining
-  - SalvageLead
   - Mail
-  - Pirate # Adding another access? Make sure to also assign it to CyborgAllAccess.
-  - Debrief # Starlight end
+  - Debrief
+  - Shuttle
+  - Clown
+  - Mime # Starlight end
 
 
 - type: accessGroup

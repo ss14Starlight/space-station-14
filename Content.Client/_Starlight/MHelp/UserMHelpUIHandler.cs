@@ -1,7 +1,6 @@
 using System.Numerics;
 using Content.Client._Starlight.MHelp.UI;
-using Content.Client.UserInterface.Systems.Bwoink;
-using Content.Shared.Starlight.MHelp;
+using Content.Shared._Starlight.MHelp;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Network;
 
@@ -9,6 +8,7 @@ namespace Content.Client._Starlight.MHelp;
 
 public sealed class UserMHelpUIHandler(NetUserId owner) : IMHelpUIHandler
 {
+    private readonly NetUserId _owner = owner;
     public bool IsMentor => false;
     public bool IsOpen => _window is { Disposed: false, IsOpen: true };
     private DefaultWindow? _window;

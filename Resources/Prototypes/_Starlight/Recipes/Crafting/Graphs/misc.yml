@@ -1,4 +1,4 @@
-﻿- type: constructionGraph
+- type: constructionGraph
   id: DrinkWaterBottleEmpty
   start: start
   graph:
@@ -12,3 +12,62 @@
   - node: waterbottle
     entity: DrinkWaterBottleEmpty
 
+- type: constructionGraph
+  id: ClothingMaskMimeSecurity
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: mask
+      steps:
+      - tag: MimeMask
+        name: construction-graph-tag-mime-mask
+        icon:
+          sprite: /Textures/Clothing/Mask/mime.rsi
+          state: icon
+        doAfter: 2
+      - tag: CheapSunglasses
+        name: construction-graph-tag-cheap-sunglasses
+        icon:
+          sprite: /Textures/Clothing/Eyes/Glasses/sunglasses.rsi
+          state: icon
+        doAfter: 2
+  - node: mask
+    entity: ClothingMaskMimeSecurity
+
+- type: constructionGraph
+  id: FalseShutterProjectorEmpty
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: projector
+      steps:
+      - tag: HoloprojectorCrafting
+        name: construction-graph-tag-holoprojector
+        icon:
+          sprite: Objects/Devices/Holoprojectors/atmos.rsi
+          state: icon
+        doAfter: 2
+      - material: Cable
+        amount: 5
+        doAfter: 4
+      - material: ReinforcedGlass
+        amount: 5
+        doAfter: 4
+  - node: projector
+    entity: FalseShutterProjectorEmpty
+
+- type: constructionGraph
+  id: SilkWovenCuffs
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: cuffs
+      steps:
+      - material: WebSilk
+        amount: 8
+        doAfter: 20
+  - node: cuffs
+    entity: WebHandcuffs

@@ -387,3 +387,16 @@
     useCharge: 0
   - type: UseDelay
     delay: 10.0
+
+# Greenshield Officer
+- type: entity
+  parent: [ ClothingNeckBase ]
+  categories: [ DoNotMap ]
+  id: ClothingNeckGreenshield
+  name: greenshield mantle
+  description: Extraordinary decorative drape over the shoulders.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Neck/Mantles/ERTmantle.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Neck/Mantles/ERTmantle.rsi

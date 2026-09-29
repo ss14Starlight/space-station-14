@@ -1,20 +1,22 @@
 using Robust.Client.Graphics;
 using Robust.Shared.Player;
-using Content.Shared._Starlight.NullSpace;
 using Robust.Shared.Prototypes;
-using Content.Client._Starlight.Overlay;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
+using Content.Shared._Starlight.NullSpace.Systems;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Client._Starlight.Overlay.Overlays;
 
 namespace Content.Client._Starlight;
 
 public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 {
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerMan = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private ISharedPlayerManager _playerMan = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private NullSpaceOverlay _overlay = default!;
+    private static readonly ProtoId<ShaderPrototype> _nullSpaceShaderId = "NullSpaceShader";
 
     public override void Initialize()
     {
@@ -31,7 +33,7 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
         SubscribeLocalEvent<ShowNullSpaceComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<ShowNullSpaceComponent, GotEquippedEvent>(GotEquippedEvent);
 
-        _overlay = new(_prototypeManager.Index<ShaderPrototype>("NullSpaceShader"));
+        _overlay = new(_prototypeManager.Index(_nullSpaceShaderId));
     }
 
     private void OnInit(EntityUid uid, Component component, ComponentInit args)
@@ -65,7 +67,7 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 
     private void GotEquippedEvent(EntityUid uid, ShowNullSpaceComponent component, GotEquippedEvent args)
     {
-        if (args.Equipee != _playerMan.LocalEntity
+        if (args.EquipTarget != _playerMan.LocalEntity
             || !component.ShowShader
             || !TryComp<ClothingComponent>(uid, out var clothing)
             || !clothing.Slots.HasFlag(args.SlotFlags))

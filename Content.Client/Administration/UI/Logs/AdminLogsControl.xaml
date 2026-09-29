@@ -50,7 +50,7 @@
                     <Label Name="Count" Access="Public"/>
                     <Control HorizontalExpand="True"/>
                     <Button Name="ExportLogs" Access="Public" Text="{Loc admin-logs-export}"/>
-                    <Button Name="PopOutButton" Access="Public" Text="{Loc admin-logs-pop-out}"/>
+                    <!-- Starlight: Remove popout button -->
                 </BoxContainer>
                 <BoxContainer Orientation="Horizontal">
                     <LineEdit Name="LogSearch" Access="Public" StyleClasses="actionSearchBox"

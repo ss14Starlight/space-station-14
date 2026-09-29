@@ -1,9 +1,7 @@
-﻿using System.Numerics;
-using Content.Shared.Humanoid;
-using Robust.Shared.Prototypes;
+﻿using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
-// ReSharper disable CheckNamespace
+// ReSharper disable once CheckNamespace
 
 namespace Content.Shared.Humanoid.Markings;
 

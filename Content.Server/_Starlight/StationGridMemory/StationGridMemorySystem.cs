@@ -3,9 +3,9 @@ using Content.Shared.Station.Components;
 
 namespace Content.Server._Starlight.StationGridMemory;
 
-public sealed class StationGridMemorySystem : EntitySystem
+public sealed partial class StationGridMemorySystem : EntitySystem
 {
-    [Dependency] private readonly MetaDataSystem _meta = default!;
+    [Dependency] private MetaDataSystem _meta = default!;
 
     public override void Initialize()
     {

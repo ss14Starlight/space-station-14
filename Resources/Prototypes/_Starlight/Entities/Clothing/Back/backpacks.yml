@@ -44,7 +44,7 @@
     sprite: _Starlight/Clothing/Back/Backpacks/hop.rsi
 
 - type: entity
-  parent: [ClothingBackpack, BaseCommandContraband]
+  parent: [ClothingBackpack, BaseCommandManagerContraband]
   id: ClothingBackpackCommandGeneric
   name: command backpack
   description: A Command-colored backpack with NanoTrasen's colors. It has an aura of non-descript authority.
@@ -96,7 +96,7 @@
       - 0,0,8,4
 
 - type: entity
-  parent: ClothingBackpack
+  parent: [ClothingBackpack, BaseSheatheWeapon]
   id: ClothingBackpackBunnyGang
   name: Bunny Gang Backpack
   description: A sword that is actually a backpack. It's impressive how they managed to fit things in there, even so, inventory management will be a trial.

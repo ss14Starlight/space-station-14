@@ -98,8 +98,8 @@ public sealed partial class RCDComponent : Component
     /// Last free-mode layer selected on the client.
     /// Used by the server as the authoritative layer when placing layered pipes in Free mode.
     /// </summary>
-    [DataField]
-    public AtmosPipeLayer? LastSelectedLayer { get; set; } = null;
+    [DataField, AutoNetworkedField]
+    public AtmosPipeLayer? LastSelectedLayer { get; set; }
 
     /// <summary>
     /// Current pipe layer / build mode for RPD

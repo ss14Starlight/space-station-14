@@ -2,7 +2,6 @@ using System.Numerics;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 

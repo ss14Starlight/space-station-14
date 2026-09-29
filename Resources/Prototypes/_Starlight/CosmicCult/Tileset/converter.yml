@@ -15,13 +15,26 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.3,0.4,0.6"
+        density: 155
         mask:
         - LargeMobMask
         layer:
-        - WallLayer
-        density: 100
-        hard: true
-  - type: SpriteFade
+        - MachineLayer
+        - InteractImpassable
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors: #excess damage, don't spawn entities.
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
   - type: Sprite
     sprite: _Starlight/CosmicCult/Tileset/cosmicconstructpylon.rsi
     layers:
@@ -79,17 +92,3 @@
     floodFillStarting: true
     corruptionMaxTicks: 12
     corruptionSpeed: 1.25
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak

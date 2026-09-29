@@ -18,6 +18,24 @@
       chemicalComposition:
         Silicon: 20
     - type: Circuitboard
+    - type: Edible #FH - Start
+      requiresSpecialDigestion: true
+      delay: 3
+      forceFeedDelay: 10
+    - type: FlavorProfile
+      flavors:
+      - shocking
+    - type: Solution
+      id: food
+      solution:
+        maxVol: 15
+        reagents:
+        - ReagentId: BatteryAcid
+          Quantity: 15
+    - type: Tag
+      tags:
+      - RamChip # FH + Starlight
+# FH - End
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -280,7 +298,7 @@
   - type: Sprite
     state: cpu_supply
   - type: ComputerBoard
-    prototype: ComputerSalvageJobBoard
+    prototype: ComputerSalvageJobBoardITG
   #Starlight start
   - type: Construction
     deconstructionTarget: null
@@ -297,15 +315,15 @@
     - type: Sprite
       state: cpu_supply
     - type: ComputerBoard
-      prototype: ComputerSalvageExpedition
+      prototype: ComputerSalvageExpeditionITG
     - type: StealTarget
       stealGroup: SalvageExpeditionsComputerCircuitboard
 
 - type: entity
   parent: BaseComputerCircuitboard
   id: CargoShuttleConsoleCircuitboard
-  name: cargo shuttle console board
-  description: A computer printed circuit board for a cargo shuttle console.
+  name: remote cargo shuttle console board # Starlight begin
+  description: A computer printed circuit board for a remote cargo shuttle console. # Starlight end
   components:
   - type: Sprite
     state: cpu_supply
@@ -327,6 +345,7 @@
   - type: Tag
     tags:
     - SurveillanceCameraMonitorCircuitboard
+    - RamChip # FH
   #Starlight start
   - type: Construction
     deconstructionTarget: null
@@ -367,6 +386,7 @@
     - type: Tag
       tags:
         - ComputerTelevisionCircuitboard
+        - RamChip # FH
 
 - type: entity
   parent: BaseComputerCircuitboard

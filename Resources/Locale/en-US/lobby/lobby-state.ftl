@@ -26,7 +26,7 @@ lobby-state-background-no-background-text = No menu art loaded.
 lobby-state-background-unknown-title = [color=dimgray]Unknown title[/color]
 lobby-state-background-unknown-artist = [color=dimgray]Unknown artist[/color]
 
-#starlight edit remove demeaning comments
+# starlight edit remove demeaning comments
 lobby-state-playtime-comment-normal =
     You've spent {$hours} {$hours ->
     [1]hour

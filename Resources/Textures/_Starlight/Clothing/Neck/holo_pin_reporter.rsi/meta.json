@@ -1,0 +1,28 @@
+﻿{
+  "version": 1,
+  "license": "CC0-1.0",
+  "copyright": "Made by Vincolan",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "Vincolan",
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "holopin-sign",
+      "delays": [[ 0.8, 0.8, 0.8, 0.8 ]],
+      "copyright": "Vincolan",
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "holopin-equipped-NECK",
+      "directions": 4,
+      "copyright": "Vincolan",
+      "license": "CC0-1.0"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "handdryer",
+            "directions": 4,
+			"copyright": "taken from https://github.com/SPLURT-Station/S.P.L.U.R.T-tg"
+        },
+        {
+            "name": "toiletroll",
+            "directions": 4,
+			"copyright": "created for Triad by Kepteyn"
+        },
+        {
+            "name": "toiletrolloffset",
+            "directions": 4,
+			"copyright": "created for Triad by Kepteyn"
+        },
+        {
+            "name": "handsanitiser",
+            "directions": 4,
+			"copyright": "created for Triad by Kepteyn"
+        }
+    ]
+}

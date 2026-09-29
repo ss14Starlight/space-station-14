@@ -1,0 +1,27 @@
+- type: constructionGraph
+  id: WindowBlinds
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: WindowBlinds
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Plastic
+              amount: 2
+              doAfter: 2
+    - node: WindowBlinds
+      entity: WindowBlinds
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: SheetPlastic1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 3

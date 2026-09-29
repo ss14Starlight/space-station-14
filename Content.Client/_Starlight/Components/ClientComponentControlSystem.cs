@@ -2,10 +2,10 @@ using Content.Shared._Starlight.Components;
 
 namespace Content.Client._Starlight.Components;
 
-public sealed class ClientComponentControlSystem : EntitySystem
+public sealed partial class ClientComponentControlSystem : EntitySystem
 {
-    [Dependency] private readonly IViewVariablesManager _vvm = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!;
+    [Dependency] private IViewVariablesManager _vvm = default!;
+    [Dependency] private IComponentFactory _factory = default!;
 
     public override void Initialize()
     {

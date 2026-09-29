@@ -6,13 +6,13 @@ using Content.Shared.StatusEffectNew;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Speech.EntitySystems;
+namespace Content.Server._Starlight.Speech.EntitySystems;
 
-public sealed class SlurredSystem : SharedSlurredSystem
+public sealed partial class SlurredSystem : SharedSlurredSystem
 {
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     /// <summary>
     /// Divisor applied to total seconds used to get the odds of slurred speech occuring.

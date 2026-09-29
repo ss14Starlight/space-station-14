@@ -7,7 +7,7 @@
   - XenoborgHeavyRecipe
   - XenoborgScoutRecipe
   - XenoborgStealthRecipe
-  - XenoborgiRecipe #Starlight
+  - XenoroachRecipe #Starlight
 
 - type: latheRecipePack
   id: XenoborgUpgradeModules

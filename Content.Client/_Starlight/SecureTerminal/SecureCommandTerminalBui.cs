@@ -1,7 +1,7 @@
-using Content.Shared.Starlight.SecureTerminal;
+using Content.Shared._Starlight.SecureTerminal;
 using Robust.Client.UserInterface;
 
-namespace Content.Client.Starlight.SecureTerminal;
+namespace Content.Client._Starlight.SecureTerminal;
 
 public sealed class SecureCommandTerminalBui : BoundUserInterface
 {

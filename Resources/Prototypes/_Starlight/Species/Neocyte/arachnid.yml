@@ -1,0 +1,101 @@
+- type: species
+  id: NeoArachnid
+  name: subspecies-name-neoarachnid
+  roundStart: true
+  prototype: MobNeoArachnid
+  sprites: MobNeoArachnidSprites
+  markingLimits: MobNeoArachnidMarkingLimits
+  dollPrototype: AppearanceNeoArachnid
+  defaultSkinTone: "#385878"
+  skinColoration: Hues
+  customName: true
+  roundstartCyberwareCapacity: 6
+  subspeciesOf: Neocyte
+  subspeciesName: subspecies-name-neoarachnid
+  loadout: NeocyteLoadout
+  maleFirstNames: NamesArachnidFirst
+  femaleFirstNames: NamesArachnidFirst
+  lastNames: NamesArachnidLast
+  sexes:
+  - Unsexed
+  profileMigration:
+    oldSpecies:
+    - ProtoArachnid
+
+- type: speciesBaseSprites
+  id: MobNeoArachnidSprites
+  sprites:
+    Eyes: MobNeocyteEyes
+    Head: MobArachnidHead
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Chest: MobArachnidTorso
+    Tail: MobHumanoidAnyMarking
+    LArm: MobArachnidLArm
+    RArm: MobArachnidRArm
+    LHand: MobArachnidLHand
+    RHand: MobArachnidRHand
+    LLeg: MobArachnidLLeg
+    RLeg: MobArachnidRLeg
+    LFoot: MobArachnidLFoot
+    RFoot: MobArachnidRFoot
+    FaceCover: MobHumanoidAnyMarking
+    FaceCoverCover: MobHumanoidAnyMarking
+    BodyCover: MobHumanoidAnyMarking
+    BodyCoverCover: MobHumanoidAnyMarking
+
+- type: markingPoints
+  id: MobNeoArachnidMarkingLimits
+  onlyWhitelisted: true
+  points:
+    FaceCover:
+      points: 1
+      required: true
+      defaultMarkings: [ NeoArachnidVisor ]
+    FaceCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ NeoArachnidLEDFace ]
+    BodyCover:
+      points: 1
+      required: true
+      defaultMarkings: [ NeocyteMediumArmor ]
+    BodyCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ NeocyteLights ]
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Snout:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ ArachnidAppendagesDefault ]
+    HeadTop:
+      points: 2
+      required: false
+    Head:
+      points: 2
+      required: false
+    HeadSide:
+      points: 1
+      required: true
+      defaultMarkings: [ ArachnidCheliceraeDownwards ]
+    Chest:
+      points: 2
+      required: false
+    Legs:
+      points: 2
+      required: false
+    Arms:
+      points: 2
+      required: false

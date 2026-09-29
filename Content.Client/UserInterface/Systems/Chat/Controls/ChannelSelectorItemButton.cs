@@ -1,4 +1,3 @@
-using Content.Client.Stylesheets;
 using Content.Shared.Chat;
 using Robust.Client.UserInterface.Controls;
 

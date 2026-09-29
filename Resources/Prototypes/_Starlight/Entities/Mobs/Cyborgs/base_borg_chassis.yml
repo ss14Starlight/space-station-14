@@ -180,6 +180,7 @@
     - Biological
     - Inorganic
     - Silicon
+    - Hybrid # Neocytes
   - type: ShowHealthIcons
   - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons

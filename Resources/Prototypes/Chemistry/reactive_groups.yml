@@ -1,4 +1,4 @@
-﻿- type: reactiveGroup
+- type: reactiveGroup
   id: Flammable
 
 - type: reactiveGroup
@@ -6,6 +6,3 @@
 
 - type: reactiveGroup
   id: Acidic
-
-- type: reactiveGroup
-  id: Unholy

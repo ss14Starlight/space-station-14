@@ -1,10 +1,11 @@
-<controls:FancyWindow xmlns="https://spacestation14.io"
+<!-- Starlight: Reworked to PopOutFancyWindow for popout support -->
+<ui:ShuttleConsoleWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       xmlns:ui="clr-namespace:Content.Client.Shuttles.UI"
                       Title="{Loc 'shuttle-console-window-title'}"
                       SetSize="960 762"
                       MinSize="960 762">
-    <BoxContainer Orientation="Vertical">
+    <BoxContainer Name="RootContainer" Orientation="Vertical">
         <!-- Top row mode buttons -->
         <BoxContainer Name="ModeButtons"
                        Orientation="Horizontal"
@@ -40,4 +41,4 @@
             <ui:DockingScreen Name="DockContainer" Visible="False"/>
         </BoxContainer>
     </BoxContainer>
-</controls:FancyWindow>
+</ui:ShuttleConsoleWindow>

@@ -17,15 +17,15 @@ namespace Content.Shared.Hands.EntitySystems;
 
 public abstract partial class SharedHandsSystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] protected readonly SharedContainerSystem ContainerSystem = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedStorageSystem _storage = default!;
-    [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
-    [Dependency] private readonly SharedVirtualItemSystem _virtualSystem = default!;
-    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] protected SharedContainerSystem ContainerSystem = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedStorageSystem _storage = default!;
+    [Dependency] protected SharedTransformSystem TransformSystem = default!;
+    [Dependency] private SharedVirtualItemSystem _virtualSystem = default!;
+    [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
 
     public event Action<Entity<HandsComponent>, string, HandLocation>? OnPlayerAddHand;
     public event Action<Entity<HandsComponent>, string>? OnPlayerRemoveHand;
@@ -92,10 +92,13 @@ public abstract partial class SharedHandsSystem
         container.OccludesLight = false;
 
         ent.Comp.Hands.Add(handName, hand);
-        //Starlight start
+        #region Starlight
+        //ent.Comp.SortedHands.Add(handName);
+        // we use LINQ + ToList instead of the list sort because it's a stable sort vs the list sort
+        //ent.Comp.SortedHands = ent.Comp.SortedHands.OrderBy(handId => ent.Comp.Hands[handId].Location).ToList();
         switch (hand.Location)
         {
-            case HandLocation.Middle: //Middle hands are functional hands but on hotbar. Special sorting for this would be possible, but quite inefficient.
+            case HandLocation.Middle:
             case HandLocation.Functional:
                 ent.Comp.SortedHands.Add(handName);
                 break;
@@ -103,7 +106,7 @@ public abstract partial class SharedHandsSystem
                 ent.Comp.SortedHands.Insert(Math.Min((int)hand.Location, ent.Comp.SortedHands.Count), handName);
                 break;
         }
-        //Starlight end
+        #endregion
         Dirty(ent);
 
         OnPlayerAddHand?.Invoke((ent, ent.Comp), handName, hand.Location);

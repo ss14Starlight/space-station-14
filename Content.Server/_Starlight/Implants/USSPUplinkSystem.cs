@@ -1,4 +1,3 @@
-using Content.Server.Revolutionary.Components;
 using Content.Shared.Revolutionary.Components;
 using Content.Server.Store.Systems;
 using Content.Shared.Implants;
@@ -8,17 +7,23 @@ using Content.Server.Popups;
 using Content.Shared.Popups;
 using Content.Shared.IdentityManagement;
 using Content.Server.RoundEnd;
-using Content.Shared.Implants.Components;
-
+using Content.Shared._Starlight.Implants.Components;
 using Content.Server.GameTicking.Rules;
-namespace Content.Server.Implants;
-public sealed class USSPUplinkSystem : EntitySystem
+using Content.Server.Implants;
+using Content.Shared._Starlight.Revolutionary.Components;
+using Content.Shared._Starlight.Store.Conditions;
+using Content.Server._Starlight.Revolutionary.Components;
+using Content.Shared.Store;
+using Robust.Shared.Prototypes;
+
+namespace Content.Server._Starlight.Implants;
+public sealed partial class USSPUplinkSystem : EntitySystem
 {
-    [Dependency] private readonly StoreSystem _storeSystem = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly RevolutionaryRuleSystem _rev = default!;
-    [Dependency] private readonly SubdermalImplantSystem _implant = default!;
+    [Dependency] private StoreSystem _storeSystem = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private RevolutionaryRuleSystem _rev = default!;
+    [Dependency] private SubdermalImplantSystem _implant = default!;
 
     public override void Initialize()
     {
@@ -43,7 +48,7 @@ public sealed class USSPUplinkSystem : EntitySystem
     private void ResetUplinkStocks()
     {
         // Use reflection to access the private static dictionaries in StockLimitedListingCondition
-        var type = typeof(Content.Shared.Store.Conditions.StockLimitedListingCondition);
+        var type = typeof(StockLimitedListingCondition);
 
         // Get the _stockCounts dictionary
         var stockCountsField = type.GetField("_stockCounts",
@@ -92,7 +97,7 @@ public sealed class USSPUplinkSystem : EntitySystem
     public void SynchronizeAllUplinks()
     {
         // Get all head revolutionaries
-        var headQuery = EntityManager.EntityQueryEnumerator<HeadRevolutionaryComponent>();
+        var headQuery = EntityQueryEnumerator<HeadRevolutionaryComponent>();
         while (headQuery.MoveNext(out var uid, out var headRev))
         {
             // Call the SynchronizeAllUplinksByOwner method for each head revolutionary
@@ -206,7 +211,7 @@ public sealed class USSPUplinkSystem : EntitySystem
 
             // Find all revolutionaries that were converted by this head revolutionary
             // and add telebonds for each one
-            var convertedRevs = EntityManager.EntityQuery<RevolutionaryComponent, RevolutionaryConverterComponent>();
+            var convertedRevs = EntityQuery<RevolutionaryComponent, RevolutionaryConverterComponent>();
             int convertedCount = 0;
 
             foreach (var (_, converterComp) in convertedRevs)
@@ -241,7 +246,7 @@ public sealed class USSPUplinkSystem : EntitySystem
             if (originalOwner != null && originalOwner.Value != args.Implanted)
             {
                 // Only change ownership if the implanted entity is a head revolutionary
-                var uplinkOwnerComp = EnsureComp<Content.Shared.Implants.Components.USSPUplinkOwnerComponent>(uid);
+                var uplinkOwnerComp = EnsureComp<USSPUplinkOwnerComponent>(uid);
                 uplinkOwnerComp.OwnerUid = args.Implanted;
 
                 // Notify the original owner that their uplink has been claimed by another head revolutionary
@@ -257,7 +262,7 @@ public sealed class USSPUplinkSystem : EntitySystem
             {
                 var ownerComp = EnsureComp<USSPUplinkOwnerComponent>(uid);
                 // Try to find a head revolutionary who might own this uplink
-                var headQuery = EntityManager.EntityQueryEnumerator<HeadRevolutionaryComponent, HeadRevolutionaryImplantComponent>();
+                var headQuery = EntityQueryEnumerator<HeadRevolutionaryComponent, HeadRevolutionaryImplantComponent>();
                 while (headQuery.MoveNext(out var implantOwner, out var _, out var headRevImplant))
                 {
                     if (headRevImplant.ImplantUid != uid)
@@ -271,7 +276,7 @@ public sealed class USSPUplinkSystem : EntitySystem
                 if (ownerComp.OwnerUid == null)
                 {
                     // Get all head revolutionaries
-                    var headRevsQuery = EntityManager.EntityQueryEnumerator<HeadRevolutionaryComponent>();
+                    var headRevsQuery = EntityQueryEnumerator<HeadRevolutionaryComponent>();
                     while (headRevsQuery.MoveNext(out var headRevOwner, out var headRev))
                     {
                         // Check if this head revolutionary has this implant
@@ -301,10 +306,10 @@ public sealed class USSPUplinkSystem : EntitySystem
                 if (ownerComp.OwnerUid == null)
                 {
                     // Get all head revolutionaries
-                    var implantedHeadRevsQuery = EntityManager.EntityQueryEnumerator<HeadRevolutionaryComponent, HeadRevolutionaryImplantComponent>();
+                    var implantedHeadRevsQuery = EntityQueryEnumerator<HeadRevolutionaryComponent, HeadRevolutionaryImplantComponent>();
                     while (implantedHeadRevsQuery.MoveNext(out var headRevImplantOwner, out var _, out var headRevImplant))
                     {
-                        if (headRevImplant.ImplantUid != null && EntityManager.EntityExists(headRevImplant.ImplantUid.Value))
+                        if (headRevImplant.ImplantUid != null && Exists(headRevImplant.ImplantUid.Value))
                         {
                             // Set this head revolutionary as the owner of the uplink
                             ownerComp.OwnerUid = headRevImplantOwner;
@@ -345,7 +350,7 @@ public sealed class USSPUplinkSystem : EntitySystem
                 if (originalOwner != null)
                 {
                     // Find all uplinks owned by this head revolutionary
-                    var uplinkQuery = EntityManager.EntityQueryEnumerator<Content.Shared.Implants.Components.USSPUplinkOwnerComponent, StoreComponent>();
+                    var uplinkQuery = EntityQueryEnumerator<USSPUplinkOwnerComponent, StoreComponent>();
                     while (uplinkQuery.MoveNext(out var uplinkOwnerOwner, out var uplinkOwner, out var uplinkStore))
                     {
                         if (uplinkOwner.OwnerUid == originalOwner && uplinkOwnerOwner != uid)
@@ -372,7 +377,7 @@ public sealed class USSPUplinkSystem : EntitySystem
                     // Also check if the owner has an uplink
                     if (TryComp<HeadRevolutionaryImplantComponent>(originalOwner.Value, out var ownerImplant) &&
                         ownerImplant.ImplantUid != null &&
-                        EntityManager.EntityExists(ownerImplant.ImplantUid.Value) &&
+                        Exists(ownerImplant.ImplantUid.Value) &&
                         ownerImplant.ImplantUid.Value != uid)
                     {
                         var ownerUplinkUid = ownerImplant.ImplantUid.Value;
@@ -398,7 +403,7 @@ public sealed class USSPUplinkSystem : EntitySystem
                 {
                     // If we don't have an owner, just get the global maximum conversion value
                     // This ensures we get the correct values even if the original owner isn't properly set
-                    var uplinkQuery = EntityManager.EntityQueryEnumerator<StoreComponent>();
+                    var uplinkQuery = EntityQueryEnumerator<StoreComponent>();
                     while (uplinkQuery.MoveNext(out var uplinkStoreOwner, out var uplinkStore))
                     {
                         if (uplinkStoreOwner == uid)
@@ -445,7 +450,7 @@ public sealed class USSPUplinkSystem : EntitySystem
                 if (HasComp<RevolutionaryComponent>(args.Implanted) &&
                     TryComp<HeadRevolutionaryImplantComponent>(originalOwner.Value, out var headRevImplant) &&
                     headRevImplant.ImplantUid != null &&
-                    EntityManager.EntityExists(headRevImplant.ImplantUid.Value))
+                    Exists(headRevImplant.ImplantUid.Value))
                 {
                     // Directly sync the currencies from the head revolutionary's uplink to this uplink
                     SyncUplinkCurrencies(headRevImplant.ImplantUid.Value, uid);
@@ -504,7 +509,7 @@ public sealed class USSPUplinkSystem : EntitySystem
                 }
 
                 // Add the Conversion currency back
-                var currencyToAdd = new Dictionary<string, FixedPoint2> { { "Conversion", spentAmount } };
+                var currencyToAdd = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "Conversion", spentAmount } };
                 _storeSystem.TryAddCurrency(currencyToAdd, args.StoreUid);
             }
         }
@@ -515,7 +520,7 @@ public sealed class USSPUplinkSystem : EntitySystem
         {
             foreach (var condition in args.PurchasedItem.Conditions)
             {
-                if (condition is Content.Shared.Store.Conditions.StockLimitedListingCondition)
+                if (condition is StockLimitedListingCondition)
                 {
                     isStockLimited = true;
                     break;
@@ -538,7 +543,7 @@ public sealed class USSPUplinkSystem : EntitySystem
     public void AddConversionToAllHeadRevs(StoreSystem storeSystem)
     {
         // Get all USSPUplinkImplant entities in the game
-        var query = EntityManager.AllEntityQueryEnumerator<MetaDataComponent, StoreComponent>();
+        var query = AllEntityQuery<MetaDataComponent, StoreComponent>();
         var uplinkEntities = new List<EntityUid>();
 
         while (query.MoveNext(out var metadataOwner, out var metadata, out var _))
@@ -552,12 +557,12 @@ public sealed class USSPUplinkSystem : EntitySystem
         // Add Conversion to all uplinks
         foreach (var uplinkEntity in uplinkEntities)
         {
-            var currencyToAdd = new Dictionary<string, FixedPoint2> { { "Conversion", FixedPoint2.New(1) } };
+            var currencyToAdd = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "Conversion", FixedPoint2.New(1) } };
             var success = storeSystem.TryAddCurrency(currencyToAdd, uplinkEntity);
         }
 
         // Show popup to all head revolutionaries (private)
-        var headRevsQuery = EntityManager.EntityQueryEnumerator<HeadRevolutionaryComponent>();
+        var headRevsQuery = EntityQueryEnumerator<HeadRevolutionaryComponent>();
         while (headRevsQuery.MoveNext(out var headRevOwner, out var headRev))
         {
             // Get the current conversion value to show in the popup
@@ -566,7 +571,7 @@ public sealed class USSPUplinkSystem : EntitySystem
             // Try to get the head revolutionary's uplink
             if (TryComp<HeadRevolutionaryImplantComponent>(headRevOwner, out var implantComp) &&
                 implantComp.ImplantUid != null &&
-                EntityManager.EntityExists(implantComp.ImplantUid.Value) &&
+                Exists(implantComp.ImplantUid.Value) &&
                 TryComp<StoreComponent>(implantComp.ImplantUid.Value, out var store))
             {
                 conversionValue = store.Balance.GetValueOrDefault("Conversion", FixedPoint2.New(1));
@@ -598,7 +603,7 @@ public sealed class USSPUplinkSystem : EntitySystem
         _storeSystem.UpdateAllUSSPUplinkUIs();
 
         // Get all head revolutionaries
-        var headRevsQuery = EntityManager.EntityQueryEnumerator<HeadRevolutionaryComponent>();
+        var headRevsQuery = EntityQueryEnumerator<HeadRevolutionaryComponent>();
         while (headRevsQuery.MoveNext(out var headRevOwner, out var _))
         {
             // Synchronize all uplinks owned by this head revolutionary

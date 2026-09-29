@@ -8,7 +8,7 @@ namespace Content.Client._Starlight.Character.UI;
 [GenerateTypedNameReferences]
 public sealed partial class CharacterViewControl : Control
 {
-    [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private IEntityManager _entMan = default!;
 
     public Direction? SpriteDirection
     {

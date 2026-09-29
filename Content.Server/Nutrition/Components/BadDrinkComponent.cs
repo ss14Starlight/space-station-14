@@ -1,5 +1,3 @@
-using Content.Server.Nutrition.EntitySystems;
-
 namespace Content.Server.Nutrition.Components;
 
 /// <summary>

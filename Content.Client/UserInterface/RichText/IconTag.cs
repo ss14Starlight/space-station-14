@@ -1,23 +1,21 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Numerics;
 using Content.Shared.StatusIcon;
 using Content.Shared.CCVar; // Starlight
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.RichText;
-using Robust.Shared.IoC;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Client.UserInterface.RichText;
 
-public sealed class IconTag : IMarkupTag
+public sealed partial class IconTag : IMarkupTag
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IEntitySystemManager _entitySystem = default!;
     private SpriteSystem? _spriteSystem;
-    [Dependency] private readonly Robust.Shared.Configuration.IConfigurationManager _cfg = default!; // Starlight
+    [Dependency] private Robust.Shared.Configuration.IConfigurationManager _cfg = default!; // Starlight
 
     public string Name => "icon";
 

@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC0-1.0",
-    "copyright": "Created by EmoGarbage404 (github) for Space Station 14. icon-construction.png created by deltanedas (github). syndicateborgbomb.png created by Mangohydra (github). icon-chem.png & icon-mining-adv.png created by mubururu_ (github) icon-inflatable.png made by FungiFellow (GitHub), Xenoborg modules sprites by Samuka-C (github), icon-artistry by Kittygyat, icon-hands.png by Citrea, command, hauling and mining bases, icon-cooking, icon-bartending, icon-mats, icon-mail, icon-paperwork, icon-loading, and icon-surgery by TacoLlama (github)",
+    "copyright": "Created by EmoGarbage404 (github) for Space Station 14. icon-construction.png created by deltanedas (github). syndicateborgbomb.png created by Mangohydra (github). icon-chem.png & icon-mining-adv.png created by mubururu_ (github) icon-inflatable.png made by FungiFellow (GitHub), Xenoborg modules sprites by Samuka-C (github), icon-artistry by Kittygyat",
     "size": {
         "x": 32,
         "y": 32
@@ -26,13 +26,7 @@
             "name": "icon-artifacts"
         },
         {
-            "name": "icon-bartending"
-        },
-        {
             "name": "icon-cables"
-        },
-        {
-            "name": "icon-cooking"
         },
         {
             "name": "icon-inflatable"
@@ -107,9 +101,6 @@
             "name": "icon-rcd"
         },
         {
-            "name": "icon-surgery"
-        },
-        {
             "name": "icon-template"
         },
         {
@@ -182,12 +173,6 @@
             "name": "icon-bomb"
         },
         {
-            "name": "icon-nt"
-        },
-        {
-            "name": "icon-hands"
-        },
-        {
             "name": "medical"
         },
         {
@@ -221,30 +206,6 @@
             "name": "xenoborg_stealth"
         },
         {
-            "name": "command"
-        },
-        {
-            "name": "hauling"
-        },
-        {
-            "name": "mining"
-        },
-        {
-            "name": "icon-mats"
-        },
-        {
-            "name": "icon-mail"
-        },
-        {
-            "name": "icon-paperwork"
-        },
-        {
-            "name": "icon-loading"
-        },
-        {
-            "name": "icon-plumbing"
-        },
-        {
             "name": "base-icon-inhand-left",
             "directions": 4
         },
@@ -275,16 +236,6 @@
         {
             "name": "base-stripes-inhand-right",
             "directions": 4
-        },
-        {
-            "name": "makeshift"
-        },
-        {
-            "name": "icon-knife"
-        },
-        {
-            "name": "icon-salvage-defense"
         }
     ]
-
 }

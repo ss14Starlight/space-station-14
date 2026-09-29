@@ -46,6 +46,7 @@
         - id: HolofanProjector
         - id: GasAnalyzer
         - id: trayScanner
+        - id: AccessConfigurator # Starlight-edit
 
 - type: entityTable
   id: BeltSecurityEntityTable
@@ -232,6 +233,7 @@
         children:
         - id: WeaponRevolverInspector
         - id: SpeedLoaderMagnumSP
+        - id: SpeedLoaderMagnumSP # Starlight, get an extra since the pistol has more slots now
 
 - type: entity
   id: ClothingBeltChefFilled

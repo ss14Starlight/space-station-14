@@ -4,8 +4,8 @@ namespace Content.Shared.MassMedia.Systems;
 
 public abstract class SharedNewsSystem : EntitySystem
 {
-    public const int MaxTitleLength = 25;
-    public const int MaxContentLength = 2048;
+    public const int MaxTitleLength = 35; // Starlight, slight increase
+    public const int MaxContentLength = 3072; // Starlight, +50% increase
 }
 
 [Serializable, NetSerializable]
@@ -25,6 +25,16 @@ public struct NewsArticle
 
     [ViewVariables]
     public TimeSpan ShareTime;
+    // Starlight-edit: start
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int Likes;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int Dislikes;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int Views;
+    // Starlight-edit: end
 }
 
 [ByRefEvent]

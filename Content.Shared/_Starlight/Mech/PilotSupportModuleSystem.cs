@@ -6,10 +6,10 @@ using Content.Shared.Whitelist;
 
 namespace Content.Shared._Starlight.Mech;
 
-public sealed class PilotSupportModuleSystem : EntitySystem
+public sealed partial class PilotSupportModuleSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMechSystem _mech = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private SharedMechSystem _mech = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

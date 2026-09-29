@@ -9,11 +9,7 @@
     - SmartSubwooferBorgiChassis
     - SubwooferBorgiChassis
     - StationBorgiChassis
-    - SmartSubwooferBorgiChassis
-    - SubwooferBorgiChassis
-    - StationBorgiChassis
     - MobCorgiSmartGhostrole
-    - MobCorgiSmartNoGalcom
 
 - type: entity
   parent: RehydratableAnimalCube

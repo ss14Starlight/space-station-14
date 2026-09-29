@@ -22,6 +22,17 @@
 
 - type: entity
   parent: ClothingHeadHatHoodWinterBase
+  id: ClothingHeadHatHoodWinterRoboAlt
+  categories: [ HideSpawnMenu ]
+  name: white robotics winter coat hood
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hoods/Coat/hoodrobo.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hoods/Coat/hoodrobo.rsi
+
+- type: entity
+  parent: ClothingHeadHatHoodWinterBase
   id: ClothingHeadHatHoodCorpsman
   categories: [ HideSpawnMenu ]
   name: corpsman's hood

@@ -16,7 +16,7 @@ public sealed partial class SlimeLocateFeedingSpotOperator : HTNOperator
      * Should be used when there are no nearby food sources.
      */
 
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     private SlimeBrainSystem _slimeBrainSystem = default!;
     private PathfindingSystem _pathfinding = default!;

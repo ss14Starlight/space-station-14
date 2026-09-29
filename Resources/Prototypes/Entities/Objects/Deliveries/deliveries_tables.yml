@@ -98,9 +98,15 @@
     - id: SnapPopBox
     - id: CrazyLube
     - id: CrazyGlue #Starlight End
-    - id: StrangePill # Starlight-edit: Moved From Rare Letter loot table, to Uncommon Letter loot table
+    - id: StrangePill # Starlight start, Moved From Rare Letter loot table, to Uncommon Letter loot table
       amount: !type:RangeNumberSelector
         range: 1, 3
+    - id: OminousPill
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - id: WeirdPill
+      amount: !type:RangeNumberSelector
+        range: 1, 3 # Starlight end
 - type: entityTable # TODO: Add more variety!
   id: LetterRareEntityTable # Interesting things that can actually be of use, should never be more expensive than 500 spesos
   table: !type:GroupSelector #Starlight Note: Unlike Upstream, we can go over 500 spesos, but for entries that help to build value to the mechanic.
@@ -116,7 +122,11 @@
     - id: SyndicateBusinessCard
       weight: 0.5
     - id: NukeDiskFake
-      weight: 0.5 #Starlight A End
+      weight: 0.5
+    - id: GoldenPill
+      weight: 0.5
+      amount: !type:RangeNumberSelector
+        range: 1, 2 #Starlight A End
     #- id: StrangePill # Starlight-Remove-start: Moved From Rare Letter loot table, to Uncommon loot table. To provide more useful loot on lower rarity Letters.
       #amount: !type:RangeNumberSelector
         #range: 1, 3

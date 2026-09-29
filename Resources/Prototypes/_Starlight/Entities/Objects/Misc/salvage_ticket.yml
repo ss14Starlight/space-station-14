@@ -53,6 +53,9 @@
   - type: Currency
     price:
       SalvageTicket: 1
+  - type: Tag # Starlight
+    tags:
+      - SalvageTicket
 
 - type: material
   id: SalvageTicket

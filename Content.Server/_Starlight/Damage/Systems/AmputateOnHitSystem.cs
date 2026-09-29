@@ -1,7 +1,7 @@
 using System.Linq;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server._Starlight.Medical.Limbs;
-using Content.Server.Administration.Systems;
+using Content.Shared._Starlight;
 using Content.Shared._Starlight.Damage.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -12,13 +12,13 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Damage.Systems;
 
-public sealed class MeleeThrowOnHitSystem : EntitySystem
+public sealed partial class MeleeThrowOnHitSystem : EntitySystem
 {
-    [Dependency] private readonly UseDelaySystem _delay = default!;
-    [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
-    [Dependency] private readonly LimbSystem _limbSystem = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private UseDelaySystem _delay = default!;
+    [Dependency] private StarlightEntitySystem _entitySystem = default!;
+    [Dependency] private LimbSystem _limbSystem = default!;
+    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
     public override void Initialize()
         => SubscribeLocalEvent<AmputateOnHitComponent, MeleeHitEvent>(OnMeleeHit);
 

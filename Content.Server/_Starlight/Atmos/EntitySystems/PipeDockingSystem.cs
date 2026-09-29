@@ -5,7 +5,7 @@ using Content.Shared.NodeContainer;
 using Content.Shared.Atmos;
 using Robust.Shared.Map.Components;
 using Content.Server.NodeContainer.EntitySystems;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 
 namespace Content.Server._Starlight.Atmos.EntitySystems;
@@ -13,13 +13,13 @@ namespace Content.Server._Starlight.Atmos.EntitySystems;
 /// <summary>
 /// Allows pipes to connect over docks.
 /// </summary>
-public sealed class PipeDockingSystem : EntitySystem
+public sealed partial class PipeDockingSystem : EntitySystem
 {
     #region Dependencies
 
-    [Dependency] public readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly NodeGroupSystem _nodeGroupSystem = default!;
+    [Dependency] public SharedMapSystem _mapSystem = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private NodeGroupSystem _nodeGroupSystem = default!;
 
     private readonly List<PipeNode> _dockAPipes = [];
     private readonly List<PipeNode> _dockBPipes = [];
@@ -53,11 +53,8 @@ public sealed class PipeDockingSystem : EntitySystem
         if (!DockPipes)
             return;
 
-        if (!TryGetDockEntity(ev.DockA, out var dockA) || !TryGetDockEntity(ev.DockB, out var dockB))
-            return;
-
-        GetDockConnectingPipes(dockA, _dockAPipes);
-        GetDockConnectingPipes(dockB, _dockBPipes);
+        GetDockConnectingPipes(ev.DockA, _dockAPipes);
+        GetDockConnectingPipes(ev.DockB, _dockBPipes);
 
         foreach (var pipeA in _dockAPipes)
         {
@@ -73,11 +70,8 @@ public sealed class PipeDockingSystem : EntitySystem
 
     private void OnUndocked(UndockEvent ev)
     {
-        if (!TryGetDockEntity(ev.DockA, out var dockA) || !TryGetDockEntity(ev.DockB, out var dockB))
-            return;
-
-        GetDockConnectingPipes(dockA, _dockAPipes, includeDisabled: true);
-        GetDockConnectingPipes(dockB, _dockBPipes, includeDisabled: true);
+        GetDockConnectingPipes(ev.DockA, _dockAPipes, includeDisabled: true);
+        GetDockConnectingPipes(ev.DockB, _dockBPipes, includeDisabled: true);
 
         foreach (var pipeA in _dockAPipes)
         {
@@ -334,14 +328,6 @@ public sealed class PipeDockingSystem : EntitySystem
         tile = _mapSystem.TileIndicesFor(gridUid, grid, xform.Coordinates);
         return true;
     }
-
-#pragma warning disable CS0618 // Using .Owner for Performance.
-    private static bool TryGetDockEntity(DockingComponent component, out EntityUid uid)
-    {
-        uid = component.Owner;
-        return true;
-    }
-#pragma warning restore CS0618
 
     private void LinkPipes(PipeNode a, PipeNode b)
     {

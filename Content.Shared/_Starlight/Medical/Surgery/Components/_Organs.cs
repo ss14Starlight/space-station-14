@@ -1,13 +1,16 @@
 ﻿using Content.Shared.Actions;
+using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Tag;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-namespace Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
+namespace Content.Shared._Starlight.Medical.Surgery.Components;
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class EyeImplantComponent : Component;
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class NoseImplantComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class HandImplantComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class BrainImplantComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class OrganBrainComponent : Component;
@@ -20,11 +23,18 @@ namespace Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class OrganKidneysComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class LeftArmComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class RightArmComponent : Component;
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class OrganShellComponent : Component;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class OrganTongueComponent : Component
 {
     [DataField]
     public bool IsMuted;
+
+    [DataField] public List<ProtoId<EmotePrototype>> AllowedEmotes = new();
+
+    [DataField] public Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>? Sounds;
+
+    [DataField] public bool AllowAllVocalEmotes;
 }
 
 [RegisterComponent, NetworkedComponent]
@@ -52,6 +62,10 @@ public sealed partial class FunctionalOrganComponent : Component
 
     [DataField("comps")]
     public ComponentRegistry? Components;
+
+    // Populated at install time with the component types this specific organ instance actually
+    // added, so extraction only removes what it installed, not whatever's currently present.
+    public HashSet<Type> Installed = [];
 }
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
@@ -87,6 +101,29 @@ public sealed partial class OpenStorageOrganEvent : InstantActionEvent
 {
     [DataField]
     public string Key = "InternalStorage";
+}
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class MarkingOrganComponent : Component
+{
+    [DataField]
+    public List<ProtoId<MarkingPrototype>> AppliedMarkings = [];
+
+    [DataField]
+    public Dictionary<ProtoId<MarkingPrototype>, (bool isGlowing, IReadOnlyList<Color> markingColors)> Markings = [];
+
+    [DataField]
+    public bool StoreMarkings = false;
+
+    [DataField]
+    public bool IsGlowing = false;
+}
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class DamageModifierOrganComponent : Component
+{
+    [DataField(required: true)]
+    public DamageModifierSet Modifiers = default!;
 }
 
 [RegisterComponent, NetworkedComponent]

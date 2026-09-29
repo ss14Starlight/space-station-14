@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from https://github.com/Baystation12/Baystation12/blob/fc2196fa74492570e5abb847085afca0e53f4ea8/icons/obj/power.dmi. Modified to split light layers. Modified again to support pipe layering.",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
@@ -51,7 +51,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Taken from https://github.com/Baystation12/Baystation12/blob/fc2196fa74492570e5abb847085afca0e53f4ea8/icons/obj/power.dmi. Modified to split light layers. Modified again to support pipe layering."
     },
     {
       "name": "circ-2-light",
@@ -97,7 +98,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Taken from https://github.com/Baystation12/Baystation12/blob/fc2196fa74492570e5abb847085afca0e53f4ea8/icons/obj/power.dmi. Modified to split light layers. Modified again to support pipe layering."
     },
     {
       "name": "circ-1",
@@ -127,7 +129,8 @@
           0.2,
           0.2
         ]
-      ]
+      ],
+      "copyright": "Taken from https://github.com/Baystation12/Baystation12/blob/fc2196fa74492570e5abb847085afca0e53f4ea8/icons/obj/power.dmi. Modified to split light layers. Modified again to support pipe layering."
     },
     {
       "name": "circ-1-light",
@@ -157,15 +160,18 @@
           0.2,
           0.2
         ]
-      ]
+      ],
+      "copyright": "Taken from https://github.com/Baystation12/Baystation12/blob/fc2196fa74492570e5abb847085afca0e53f4ea8/icons/obj/power.dmi. Modified to split light layers. Modified again to support pipe layering."
     },
     {
       "name": "circ-0",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Taken from https://github.com/Baystation12/Baystation12/blob/fc2196fa74492570e5abb847085afca0e53f4ea8/icons/obj/power.dmi. Modified to split light layers. Modified again to support pipe layering."
     },
     {
       "name": "circ-0-light",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Taken from https://github.com/Baystation12/Baystation12/blob/fc2196fa74492570e5abb847085afca0e53f4ea8/icons/obj/power.dmi. Modified to split light layers. Modified again to support pipe layering."
     }
   ]
 }

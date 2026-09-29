@@ -7,10 +7,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._FarHorizons.Silicons.Glitching;
 
-public sealed class GlitchingSystem : EntitySystem
+public sealed partial class GlitchingSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     private TimeSpan _nextUpdate = TimeSpan.Zero;
     private TimeSpan _refreshRate = TimeSpan.FromSeconds(5);

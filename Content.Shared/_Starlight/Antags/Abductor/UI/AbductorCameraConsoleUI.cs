@@ -1,7 +1,8 @@
-﻿using Robust.Shared.Prototypes;
+﻿using Content.Shared._Starlight.Antags.Abductor.Components;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Starlight.Antags.Abductor;
+namespace Content.Shared._Starlight.Antags.Abductor.UI;
 
 [Serializable, NetSerializable]
 public sealed class AbductorConsoleBuiState : BoundUserInterfaceState

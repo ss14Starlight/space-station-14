@@ -47,3 +47,13 @@
   cost: 800
   category: cargoproduct-category-name-medical
   group: market
+
+- type: cargoProduct
+  id: EngineeringGrenades
+  icon:
+    sprite: _Starlight/Objects/Weapons/Grenades/halon_gas.rsi
+    state: icon
+  product: CardboardBoxLargeEngiGasGrenades
+  cost: 4200
+  category: cargoproduct-category-name-engineering
+  group: market

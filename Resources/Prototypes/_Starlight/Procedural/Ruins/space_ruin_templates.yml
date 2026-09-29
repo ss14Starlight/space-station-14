@@ -1,0 +1,113 @@
+# Ruin-specific biome templates.
+# SpaceRuin: full salvage-style loot (structures/mobs) — kept for possible future magnet use.
+# SpaceRuinWreck: WreckSwarm-only — scrap/treasure/mobs, but no thrusters or gyros.
+
+- type: biomeTemplate
+  id: SpaceRuin
+  layers:
+  - !type:BiomeDecalLayer
+    allowAllTiles: true
+    threshold: -0.5
+    divisions: 1
+    noise:
+      seed: 1
+      frequency: 1
+    decals:
+    - DirtHeavy
+    - DirtHeavy
+    - DirtHeavy
+    - DirtMedium
+    - DirtMedium
+    - DirtLight
+  - !type:BiomeEntityLayer
+    allowAllTiles: true
+    threshold: 0.45
+    noise:
+      seed: 1
+      noiseType: OpenSimplex2
+      fractalType: Ridged
+      octaves: 4
+      frequency: 0.065
+      gain: 2
+      lacunarity: 1.5
+    entities:
+    - SalvageSpawnerStructuresVarious
+  - !type:BiomeEntityLayer
+    allowAllTiles: true
+    threshold: 0.2
+    noise:
+      seed: 1
+      frequency: 1
+    entities:
+    - SalvageSpawnerScrapValuable
+    - SalvageSpawnerScrapCommon
+    - SalvageSpawnerScrapCommon
+    - SalvageSpawnerScrapCommon
+    - SalvageSpawnerScrapCommon75
+  - !type:BiomeEntityLayer
+    allowAllTiles: true
+    threshold: 0.7
+    noise:
+      seed: 1
+      frequency: 1
+    entities:
+    - SalvageSpawnerTreasure
+    - SalvageSpawnerTreasure
+    - SalvageSpawnerTreasureValuable
+  - !type:BiomeEntityLayer
+    allowAllTiles: true
+    threshold: 0.925
+    noise:
+      seed: 1
+      frequency: 1
+    entities:
+    - SalvageSpawnerMobMagnet75
+
+# Used by WreckSwarm ruin chunks — no structure layer (avoids thrusters/gyros on kinetic debris).
+- type: biomeTemplate
+  id: SpaceRuinWreck
+  layers:
+  - !type:BiomeDecalLayer
+    allowAllTiles: true
+    threshold: -0.5
+    divisions: 1
+    noise:
+      seed: 1
+      frequency: 1
+    decals:
+    - DirtHeavy
+    - DirtHeavy
+    - DirtHeavy
+    - DirtMedium
+    - DirtMedium
+    - DirtLight
+  - !type:BiomeEntityLayer
+    allowAllTiles: true
+    threshold: 0.2
+    noise:
+      seed: 1
+      frequency: 1
+    entities:
+    - SalvageSpawnerScrapValuable
+    - SalvageSpawnerScrapCommon
+    - SalvageSpawnerScrapCommon
+    - SalvageSpawnerScrapCommon
+    - SalvageSpawnerScrapCommon75
+  - !type:BiomeEntityLayer
+    allowAllTiles: true
+    threshold: 0.7
+    noise:
+      seed: 1
+      frequency: 1
+    entities:
+    - SalvageSpawnerTreasure
+    - SalvageSpawnerTreasure
+    - SalvageSpawnerTreasureValuable
+  - !type:BiomeEntityLayer
+    allowAllTiles: true
+    threshold: 0.925
+    noise:
+      seed: 1
+      frequency: 1
+    entities:
+    - SalvageSpawnerMobMagnet75

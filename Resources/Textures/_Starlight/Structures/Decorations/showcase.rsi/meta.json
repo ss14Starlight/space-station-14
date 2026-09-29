@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "showcase_1",
+	  "copyright": "https://github.com/vgstation-coders/vgstation13/blob/HEAD/icons/mob/robots.dmi",
+      "directions": 4
+    },
+    {
+      "name": "showcase_2",
+	  "copyright": "https://github.com/vgstation-coders/vgstation13/blob/HEAD/icons/mob/robots.dmi",
+      "directions": 4
+    },
+    {
+      "name": "showcase_3",
+	  "copyright": "https://github.com/vgstation-coders/vgstation13/blob/HEAD/icons/mecha/mecha.dmi",
+      "directions": 4
+    },
+    {
+      "name": "showcase_4",
+	  "copyright": "https://github.com/vgstation-coders/vgstation13/blob/HEAD/icons/mecha/mecha.dmi",
+      "directions": 4
+    },
+    {
+      "name": "showcase_5",
+	  "copyright": "https://github.com/vgstation-coders/vgstation13/blob/HEAD/icons/mecha/mecha.dmi",
+      "directions": 4
+    },
+    {
+      "name": "showcase_6",
+	  "copyright": "Abyssal Hardsuit/Helmet made by Lev (Discord) for TP14",
+      "directions": 4
+    }
+  ]
+}

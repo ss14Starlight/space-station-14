@@ -1,109 +1,145 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from tgstation, additional attributions available in the Resources/Textures/Tiles/attributions.yml file. Ice tile and Snow tile modifications",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "tile_carpet_deco"
+            "name": "tile_carpet_deco",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "tile_dark_bitile"
+            "name": "tile_dark_bitile",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "tile_hierophant"
+            "name": "tile_hierophant",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "tile_sepia"
+            "name": "tile_sepia",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "tile_steel_bitile"
+            "name": "tile_steel_bitile",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "tile_terracotta"
+            "name": "tile_terracotta",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "tile_terracotta_diagonal"
+            "name": "tile_terracotta_diagonal",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "tile_terracotta_small"
+            "name": "tile_terracotta_small",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "tile_white_bitile"
+            "name": "tile_white_bitile",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "darkwood"
+            "name": "darkwood",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "darkwood-large"
+            "name": "darkwood-large",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "darkwoodpatternfloor"
+            "name": "darkwoodpatternfloor",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
             "name": "darkwood-inhand-right",
-            "directions": 4
+            "directions": 4,
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
             "name": "darkwood-inhand-left",
-            "directions": 4
+            "directions": 4,
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "tile_metal_dark"
+            "name": "tile_metal_dark",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "tile_metal_engie"
+            "name": "tile_metal_engie",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "tile_metal_med"
+            "name": "tile_metal_med",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "tile_metal_sci"
+            "name": "tile_metal_sci",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "tile_metal_sec"
+            "name": "tile_metal_sec",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "tile_metal_service"
+            "name": "tile_metal_service",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "tile_astro_dirt"
+            "name": "tile_astro_dirt",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "3x3black"
+            "name": "3x3black",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "3x3brown"
+            "name": "3x3brown",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "3x3steel"
+            "name": "3x3steel",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "3x3white"
+            "name": "3x3white",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "old_concrete_tiles"
+            "name": "old_concrete_tiles",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "old_concrete_bricks"
+            "name": "old_concrete_bricks",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "ornate"
+            "name": "ornate",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "rough_metal"
+            "name": "rough_metal",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "rusty_metal"
+            "name": "rusty_metal",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "steel_grate"
+            "name": "steel_grate",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         },
         {
-            "name": "techfloor_greeb"
+            "name": "techfloor_greeb",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
+        },
+        {
+            "name": "artcarpet",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         }
     ]
 }

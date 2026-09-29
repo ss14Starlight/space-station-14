@@ -1,6 +1,4 @@
-using Robust.Shared.Random;
-
-namespace Content.Shared.Starlight;
+namespace Content.Shared._Starlight;
 
 public static class ListExtensions
 {

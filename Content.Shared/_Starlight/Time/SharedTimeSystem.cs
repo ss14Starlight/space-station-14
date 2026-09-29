@@ -4,10 +4,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Time;
 
-public abstract class SharedTimeSystem : EntitySystem
+public abstract partial class SharedTimeSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedGameTicker _gameTicker = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedGameTicker _gameTicker = default!;
 
     // Default value is sensible but will be updated later.
     protected DateTime Date = DateTime.UtcNow.AddYears(500);

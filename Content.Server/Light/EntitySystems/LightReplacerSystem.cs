@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server.Light.Components;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Light.EntitySystems;
@@ -7,19 +6,18 @@ using Content.Shared.Light.Components;
 using Content.Shared.Popups;
 using Content.Shared.Storage;
 using JetBrains.Annotations;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Light.EntitySystems;
 
 [UsedImplicitly]
-public sealed class LightReplacerSystem : SharedLightReplacerSystem
+public sealed partial class LightReplacerSystem : SharedLightReplacerSystem
 {
-    [Dependency] private readonly PoweredLightSystem _poweredLight = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private PoweredLightSystem _poweredLight = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {

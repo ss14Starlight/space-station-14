@@ -1,0 +1,38 @@
+<Document>
+  # Supermatter Structural Recovery
+
+  The Supermatter crystal continuously repairs structural damage over time.
+
+  Damage to the crystal creates unstable areas within its structure. These areas break down and release gaseous byproducts.
+
+  <Box>
+    <GuideEntityEmbed Entity="SupermatterCrystal" Caption="Surface damage caused by stress." />
+  </Box>
+
+  ## Structural Recovery
+
+  After taking damage, the crystal gradually restores its structure.
+
+  The recovery process is always active and cannot be completely stopped. However, certain rare atmospheric compounds can influence the recovery rate.
+
+  Some gases can increase structural recovery, while others can reduce it. These effects modify the recovery speed but do not prevent regeneration entirely.
+
+  As long as structural recovery matches or exceeds incoming damage, the crystal remains stable.
+
+  If damage exceeds the recovery rate, stability will continue to decrease until a delamination event occurs.
+
+  ## Gas Production
+
+  Damaged crystal material decomposes into Oxygen and Tritium.
+
+  These gases are released into the chamber while the crystal is under stress.
+
+  <Box>
+    <GuideEntityEmbed Entity="OxygenCanister" Caption="Oxygen" />
+    <GuideEntityEmbed Entity="TritiumCanister" Caption="Tritium" />
+  </Box>
+
+  Atmospherics can collect and process these gases for station use.
+
+  Higher stress levels create larger amounts of damaged material, increasing gas production while also increasing strain on the crystal.
+</Document>

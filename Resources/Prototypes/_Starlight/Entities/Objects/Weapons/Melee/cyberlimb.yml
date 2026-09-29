@@ -83,7 +83,9 @@
     soundSwing:
       path: /Audio/Weapons/punchmiss.ogg
   - type: Item
-  - type: Sharp
+  - type: Tool
+    qualities:
+    - Slicing
   - type: Tag
     tags:
       - CyberHandItem

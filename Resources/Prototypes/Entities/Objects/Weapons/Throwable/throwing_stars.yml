@@ -51,26 +51,3 @@
   # also limits the crew's use
   - type: TimedDespawn
     lifetime: 30
-
-- type: entity
-  parent: ThrowingStar
-  id: ThrowingStarChangeling
-  name: bone shard
-  components:
-  - type: Sprite
-    sprite: Changeling/bone_shard.rsi
-    layers:
-    - state: icon
-      map: ["base"]
-  - type: TimedDespawn
-    lifetime: 30
-  - type: DamageOtherOnHit # Starlight start
-    damage:
-      types:
-        Slash: 7
-        Piercing: 8
-  - type: StaminaDamageOnCollide # More of a stunning weapon, since it's pretty bad at dealing actual damage.
-    damage: 35
-  - type: StaminaDamageOnEmbed
-    damage: 10 # Starlight end
-

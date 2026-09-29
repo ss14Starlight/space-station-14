@@ -1,0 +1,25 @@
+- type: construction
+  id: MilkCrate
+  graph: MilkCrateGraph
+  startNode: start
+  targetNode: milkCrate
+  category: construction-category-storage
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: RecordMilkCrate
+  graph: MilkCrateGraph
+  startNode: start
+  targetNode: recordMilkCrate
+  category: construction-category-storage
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+# SyndicateMilkCrate has no recipe to keep it out of the crafting menu, its graph node remains so it can be deconstructed.

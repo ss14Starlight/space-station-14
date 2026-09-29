@@ -1,36 +1,39 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from OracleStation at https://github.com/OracleStation/OracleStation/blob/c1046bdd14674dc5a8631074aaa6650770b2937e/icons/obj/turnstile.dmi. Arrow by EmoGarbage404 (github). | Recolor by Way for Starlight",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-          "name": "arrow",
-          "delays": [
-            [
-              0.5,
-              0.1,
-              0.1,
-              0.1,
-              0.1,
-              0.1,
-              0.1,
-              0.1,
-              0.1,
-              0.1,
-              0.1
-            ]
-          ]
+            "name": "arrow",
+            "delays": [
+                [
+                    0.5,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ],
+            "copyright": "EmoGarbage404 (github)."
         },
         {
-            "name": "turnstile"
+            "name": "turnstile",
+            "copyright": "Taken from OracleStation at https://github.com/OracleStation/OracleStation/blob/c1046bdd14674dc5a8631074aaa6650770b2937e/icons/obj/turnstile.dmi. | Recolor by Way for Starlight"
         },
         {
             "name": "turnstile_map",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Taken from OracleStation at https://github.com/OracleStation/OracleStation/blob/c1046bdd14674dc5a8631074aaa6650770b2937e/icons/obj/turnstile.dmi. | Recolor by Way for Starlight"
         },
         {
             "name": "operate",
@@ -46,7 +49,8 @@
                     0.1,
                     0.1
                 ]
-            ]
+            ],
+            "copyright": "Taken from OracleStation at https://github.com/OracleStation/OracleStation/blob/c1046bdd14674dc5a8631074aaa6650770b2937e/icons/obj/turnstile.dmi. | Recolor by Way for Starlight"
         },
         {
             "name": "deny",
@@ -59,7 +63,8 @@
                     0.1,
                     0.1
                 ]
-            ]
+            ],
+            "copyright": "Taken from OracleStation at https://github.com/OracleStation/OracleStation/blob/c1046bdd14674dc5a8631074aaa6650770b2937e/icons/obj/turnstile.dmi. | Recolor by Way for Starlight"
         }
     ]
 }

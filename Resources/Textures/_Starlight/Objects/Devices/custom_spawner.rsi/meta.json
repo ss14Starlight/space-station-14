@@ -1,0 +1,49 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "state based copyright",
+    "size":
+    {
+        "x": 32,
+        "y": 32
+    },
+    "states":
+    [
+        {
+            "name": "pad",
+			"copyright": "docmoth"
+        },
+        {
+            "name": "default-holo",
+			"copyright": "neomoth"
+        },
+        {
+            "name": "overlay",
+			"copyright": "docmoth"
+        },
+        {
+            "name": "powered",
+			"copyright": "docmoth"
+        },
+        {
+            "name": "activation",
+			"copyright": "docmoth",
+            "delays":
+            [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        }
+    ]
+}

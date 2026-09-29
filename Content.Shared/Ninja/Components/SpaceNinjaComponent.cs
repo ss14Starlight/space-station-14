@@ -49,6 +49,14 @@ public sealed partial class SpaceNinjaComponent : Component
     [DataField]
     public EntProtoId SpiderChargeObjective = "SpiderChargeObjective";
 
+    /// Starlight Region Start
+    /// <summary>
+    /// Objective to complete for pod hacking.
+    /// </summary>
+    [DataField]
+    public EntProtoId ExtractObjective = "ExtractObjective";
+    /// Starlight Region End
+
     /// <summary>
     /// Alert to show for suit power.
     /// </summary>

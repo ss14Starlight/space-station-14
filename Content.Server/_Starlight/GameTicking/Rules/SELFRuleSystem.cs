@@ -1,15 +1,15 @@
 using Content.Server.Antag;
 using Content.Server.Roles;
 using Content.Server.GameTicking.Rules;
-using Content.Shared._Starlight.Roles.Components;
 using Content.Shared._Starlight.Antags.SELF;
 using SELFRuleComponent = Content.Server._Starlight.GameTicking.Rules.Components.SELFRuleComponent;
+using Content.Shared._Starlight.Roles;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 
-public sealed class SELFRuleSystem : GameRuleSystem<SELFRuleComponent>
+public sealed partial class SELFRuleSystem : GameRuleSystem<SELFRuleComponent>
 {
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
 
     public override void Initialize()
     {

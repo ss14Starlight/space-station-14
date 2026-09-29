@@ -5,7 +5,7 @@ namespace Content.Server._Starlight.EntityTable;
 
 public sealed partial class HolidayConditionSystem : EntitySystem
 {
-    [Dependency] private readonly HolidaySystem _holiday = default!;
+    [Dependency] private HolidaySystem _holiday = default!;
 
     public override void Initialize()
     {

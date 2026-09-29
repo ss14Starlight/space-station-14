@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Server.Chemistry.Components;
-using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Containers.ItemSlots;
@@ -20,7 +19,6 @@ using Content.Server.Hands.Systems;
 using Content.Shared.PowerCell;
 using Content.Shared.Destructible;
 using Content.Shared.PowerCell.Components;
-using Content.Server.Power.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
@@ -36,22 +34,22 @@ namespace Content.Server.Chemistry.EntitySystems
     /// <seealso cref="ReagentDispenserComponent"/>
     /// </summary>
     [UsedImplicitly]
-    public sealed class ReagentDispenserSystem : EntitySystem
+    public sealed partial class ReagentDispenserSystem : EntitySystem
     {
-        [Dependency] private readonly AudioSystem _audioSystem = default!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-        [Dependency] private readonly SolutionTransferSystem _solutionTransferSystem = default!;
-        [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
-        [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly OpenableSystem _openable = default!;
-        [Dependency] private readonly HandsSystem _handsSystem = default!;
+        [Dependency] private AudioSystem _audioSystem = default!;
+        [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+        [Dependency] private SolutionTransferSystem _solutionTransferSystem = default!;
+        [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
+        [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private OpenableSystem _openable = default!;
+        [Dependency] private HandsSystem _handsSystem = default!;
 
         // Starlight-start
-        [Dependency] private readonly PowerCellSystem _powercell = default!;
-        [Dependency] private readonly SharedContainerSystem _container = default!;
-        [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly SharedBatterySystem _battery = default!;
+        [Dependency] private PowerCellSystem _powercell = default!;
+        [Dependency] private SharedContainerSystem _container = default!;
+        [Dependency] private PopupSystem _popup = default!;
+        [Dependency] private SharedBatterySystem _battery = default!;
         private readonly Dictionary<EntityUid, float> _uiUpdateAccumulators = new();
         private const float UiUpdateInterval = 0.5f;
         // Starlight-end
@@ -61,7 +59,7 @@ namespace Content.Server.Chemistry.EntitySystems
             base.Initialize();
 
             SubscribeLocalEvent<ReagentDispenserComponent, ComponentStartup>(SubscribeUpdateUiState);
-            SubscribeLocalEvent<ReagentDispenserComponent, SolutionContainerChangedEvent>(SubscribeUpdateUiState);
+            SubscribeLocalEvent<ReagentDispenserComponent, SolutionChangedEvent>(SubscribeUpdateUiState);
             SubscribeLocalEvent<ReagentDispenserComponent, EntInsertedIntoContainerMessage>(SubscribeUpdateUiState, after: [typeof(SharedStorageSystem)]);
             SubscribeLocalEvent<ReagentDispenserComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUiState, after: [typeof(SharedStorageSystem)]);
             SubscribeLocalEvent<ReagentDispenserComponent, BoundUIOpenedEvent>(SubscribeUpdateUiState);

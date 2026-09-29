@@ -2,6 +2,7 @@
   id: SentientSlimeCore
   parent: [BaseItem, BaseOrganBrain]
   name: sentient slime core
+  suffix: Slime
   description: "The source of incredible, unending gooeyness."
   components:
     - type: Sprite
@@ -11,26 +12,18 @@
     - type: Metabolizer
       maxReagents: 6
       metabolizerTypes: [ Slime ]
-      removeEmpty: true
-      groups:
-        - id: Food
-        - id: Drink
-        - id: Alcohol
-          rateModifier: 2.5
-    - type: SolutionContainerManager
+      stages: [ Digestion, Metabolites ]
+    - type: SolutionManager
       solutions:
-        stomach:
-          maxVol: 50.0
-        organ:
-          reagents:
-          - ReagentId: Slime
-            Quantity: 10
-
+      - SolutionOrganSlime
+      - SolutionOrganFoodGreyMatterLarge
+      - SolutionOrganStomach50
 
 - type: entity
   id: OrganSlimeLungs
   parent: [BaseHumanOrgan, BaseOrganLungs]
   name: slime gas sacs
+  suffix: Slime
   description: "Collects nitrogen, which slime cells use for maintenance."
   components:
   - type: Sprite
@@ -41,35 +34,23 @@
   - type: Lung
     alert: LowNitrogen
   - type: Metabolizer
-    removeEmpty: true
-    solutionOnBody: false
-    solution: "Lung"
     metabolizerTypes: [ Slime ]
-    groups:
-    - id: Gas
-      rateModifier: 100.0
-  - type: SolutionContainerManager
+    stages: [ Respiration ]
+  - type: SolutionManager
     solutions:
-      organ:
-        reagents:
-        - ReagentId: Slime
-          Quantity: 10
-      Lung:
-        maxVol: 100.0
-        canReact: false
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganSlime
+    - SolutionOrganFoodSlime
+    - SolutionOrganLung
   - type: Item
     size: Small
     heldPrefix: lungs
+
 
 - type: entity
   id: OrganSlimeHeart
   parent: [BaseHumanOrgan, BaseOrganHeart]
   name: slime circulator
+  suffix: Slime
   description: "A little circulator what makes the fluid move through the slime body."
   components:
   - type: Sprite
@@ -81,17 +62,14 @@
   - type: Metabolizer
     maxReagents: 6
     metabolizerTypes: [ Slime ]
-    removeEmpty: true
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
+    stages: [ Bloodstream ]
 
 # Starlight start
 - type: entity
   id: OrganSlimePeepoids
   parent: [BaseHumanOrgan, BaseOrganEyes]
   name: peepoids
+  suffix: Slime
   description: "Primitive and goopy, but more or less just as good as the human equivalent."
   components:
   - type: Sprite
@@ -109,8 +87,15 @@
   id: OrganSlimeSlurpoid
   parent: OrganHumanTongue
   name: slurpoid
+  suffix: Slime
   description: "It has all the consistency of gelatin."
   components:
+  - type: OrganTongue
+    allowedEmotes: ['Squish', 'Bubble', 'Pop']
+    sounds:
+      Male: MaleSlime
+      Female: FemaleSlime
+      Unsexed: MaleSlime
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Slime/organs.rsi
     state: slurpoid

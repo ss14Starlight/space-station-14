@@ -1,0 +1,160 @@
+- type: entity
+  parent: BaseStorageItem
+  id: EvidenceBag
+  name: evidence bag
+  description: A small bag for holding criminal evidence.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Security/evidence_bag.rsi #SL Edit
+    layers:
+    - state: icon
+    - state: paper_label
+      sprite: _Starlight/Objects/Specific/Security/evidence_bag.rsi #SL Edit
+      map: [ "enum.PaperLabelVisuals.Layer" ]
+      offset: 0, 0
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,2
+  - type: Appearance
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,1,2
+  - type: GenericVisualizer
+    visuals:
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PaperLabelVisuals.LabelType:
+        enum.PaperLabelVisuals.Layer:
+          Paper: { state: paper_label }
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+      dropper: !type:ContainerSlot
+      paper_label: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      dropper:
+        name: dropper
+        whitelist:
+          tags:
+          - Dropper
+        priority: 9
+  - type: PaperLabel
+    labelSlot:
+      insertVerbText: comp-paper-label-insert
+      ejectVerbText: comp-paper-label-eject
+      whitelist:
+        components:
+        - Paper
+      blacklist:
+        tags:
+        - Book
+  - type: ItemMapper
+    mapLayers:
+      dropper:
+        minCount: 1
+        whitelist:
+          tags:
+          - Dropper
+      paper_label:
+        minCount: 1
+        whitelist:
+          components:
+          - Paper
+    sprite: _Starlight/Objects/Specific/Security/evidence_bag.rsi #SL Edit
+  - type: StaticPrice
+    price: 1
+
+- type: entity
+  parent: EvidenceBag
+  id: EvidenceBagFilled
+  name: evidence bag
+  description: A small bag for holding criminal evidence.
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ForensicPad
+  - type: ItemSlots
+    slots:
+      dropper:
+        name: dropper
+        startingItem: Dropper
+        whitelist:
+          tags:
+          - Dropper
+
+- type: entity
+  parent: CardboardBoxLargeEvidence
+  id: CardboardBoxLargeEvidenceFilled
+  name: evidence supplies box
+  suffix: FILLED
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EvidenceBagFilled
+          amount: 2
+
+- type: entity
+  parent: CardboardBoxLargeEvidence
+  id: CardboardBoxLargeEvidenceFilledExtras
+  name: extra evidence supplies box
+  suffix: EXTRAS
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: BoxEvidenceMarkers
+          amount: 2
+        - id: EvidenceBagFilled
+          amount: 4
+        - id: Dropper
+          amount: 2
+        - id: HandLabeler
+        - id: ForensicPad
+          amount: 4
+
+- type: entity
+  parent: BoxShelf
+  id: BoxShelfEvidenceRoom
+  suffix: Evidence
+  components:
+  - type: ItemSlots
+    slots:
+      fill4:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 9
+        startingItem: CardboardBoxLargeEvidenceFilled
+      fill3:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 8
+        startingItem: CardboardBoxLargeEvidenceFilled
+      fill2:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 7
+        startingItem: CardboardBoxLargeEvidenceFilled
+      fill1:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 6
+        startingItem: CardboardBoxLargeEvidenceFilled

@@ -1,0 +1,15 @@
+- type: entity
+  parent: [ ClothingBackpackSatchel, BaseMedTakContraband ]
+  id: ClothingBackpackSatchelMedTak
+  name: MedTak satchel
+  description: A spacious satchel.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Clothing/Back/Satchels/medtak.rsi
+  - type: Storage
+    grid:
+    - 0,0,1,3
+    - 3,0,7,3
+    - 9,0,10,3
+  - type: ExplosionResistance
+    damageCoefficient: 0.1

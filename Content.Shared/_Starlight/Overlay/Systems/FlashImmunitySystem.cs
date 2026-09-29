@@ -1,15 +1,16 @@
+using Content.Shared._Starlight.Overlay.Components;
+using Content.Shared._Starlight.Overlay.Events;
 using Content.Shared.Clothing.Components;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Flash.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Robust.Shared.Player;
 
-namespace Content.Shared.Starlight.Overlay;
+namespace Content.Shared._Starlight.Overlay.Systems;
 
-public sealed class FlashImmunitySystem : EntitySystem
+public sealed partial class FlashImmunitySystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private InventorySystem _inventory = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -54,14 +55,14 @@ public sealed class FlashImmunitySystem : EntitySystem
 
     private void OnFlashImmunityEquipped(EntityUid uid, FlashImmunityComponent component, GotEquippedEvent args)
     {
-        FlashImmunityCheckEvent flashImmunityChangedEvent = new(uid, HasFlashImmunityVisionBlockers(args.Equipee));
-        RaiseLocalEvent(args.Equipee, flashImmunityChangedEvent);
+        FlashImmunityCheckEvent flashImmunityChangedEvent = new(uid, HasFlashImmunityVisionBlockers(args.EquipTarget));
+        RaiseLocalEvent(args.EquipTarget, flashImmunityChangedEvent);
     }
 
     private void OnFlashImmunityUnEquipped(EntityUid uid, FlashImmunityComponent component, GotUnequippedEvent args)
     {
-        FlashImmunityCheckEvent flashImmunityChangedEvent = new(uid, HasFlashImmunityVisionBlockers(args.Equipee));
-        RaiseLocalEvent(args.Equipee, flashImmunityChangedEvent);
+        FlashImmunityCheckEvent flashImmunityChangedEvent = new(uid, HasFlashImmunityVisionBlockers(args.EquipTarget));
+        RaiseLocalEvent(args.EquipTarget, flashImmunityChangedEvent);
     }
 
     private EntityUid GetPossibleWearer(EntityUid uid)
@@ -77,7 +78,7 @@ public sealed class FlashImmunitySystem : EntitySystem
 
     public bool HasFlashImmunityVisionBlockers(EntityUid uid)
     {
-        if (EntityManager.TryGetComponent(uid, out FlashImmunityComponent? flashImmunityComponent))
+        if (TryComp(uid, out FlashImmunityComponent? flashImmunityComponent))
         {
             if (flashImmunityComponent.BlocksSpecialVision)
                 return true;
@@ -89,7 +90,7 @@ public sealed class FlashImmunitySystem : EntitySystem
             var slots = _inventory.GetSlotEnumerator((uid, inventoryComp), SlotFlags.WITHOUT_POCKET);
             while (slots.MoveNext(out var slot))
             {
-                if (slot.ContainedEntity != null && EntityManager.TryGetComponent(slot.ContainedEntity, out FlashImmunityComponent? wornFlashImmunityComponent))
+                if (slot.ContainedEntity != null && TryComp(slot.ContainedEntity, out FlashImmunityComponent? wornFlashImmunityComponent))
                 {
                     if (wornFlashImmunityComponent.BlocksSpecialVision)
                         return true;

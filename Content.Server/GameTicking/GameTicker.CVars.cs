@@ -1,7 +1,6 @@
 using Content.Server.Discord;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
-using Content.Shared.Starlight;
 
 namespace Content.Server.GameTicking
 {
@@ -79,6 +78,7 @@ namespace Content.Server.GameTicking
 #if EXCEPTION_TOLERANCE
             Subs.CVar(_cfg, CCVars.RoundStartFailShutdownCount, value => RoundStartFailShutdownCount = value, true);
 #endif
+            Subs.CVar(_cfg, CCVars.GameTickerIgnoredPresets, value => _ignoredRules = value.Split(","));
         }
     }
 }

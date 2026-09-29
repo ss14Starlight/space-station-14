@@ -1,6 +1,5 @@
 ﻿using Content.Server.Worldgen.Components.Debris;
 using Content.Shared.Maps;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 
@@ -9,11 +8,11 @@ namespace Content.Server.Worldgen.Systems.Debris;
 /// <summary>
 ///     This handles populating simple structures, simply using a loot table for each tile.
 /// </summary>
-public sealed class SimpleFloorPlanPopulatorSystem : BaseWorldSystem
+public sealed partial class SimpleFloorPlanPopulatorSystem : BaseWorldSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     /// <inheritdoc />
     public override void Initialize()

@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 64
+    },
+    "copyright": "State based copyright",
+    "license": "Custom",
+    "states": [
+        {
+            "name": "gas_tank",
+            "copyright": "Based off /canister.rsi/air.png by Conf (Starlight), turned into gas tank by @sevenshades_ (Discord), size tweaks by redmushie (GitHub)",
+            "license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "gas_tank_overlay",
+            "copyright": "Originally hazard_middle from Monke Station, adjusted to fit gas tank by .spaghettibird (Discord), warning sign added and opacity slightly reduced by redmushie (GitHub)",
+            "license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "gas_tank_icon",
+            "copyright": "Combined gas_tank + gas_tank_overlay states. gas_tank Based off /canister.rsi/air.png by Conf (Starlight), created by @sevenshades_ (Discord), size tweaks by redmushie (GitHub). gas_tank_overlay originally hazard_middle from Monke Station, adjusted to fit gas tank by .spaghettibird (Discord), warning sign added and opacity slightly reduced by redmushie (GitHub). Combined into gas_tank_icon by redmushie (GitHub).",
+            "license": "CC-BY-SA-3.0"
+        }
+    ]
+}

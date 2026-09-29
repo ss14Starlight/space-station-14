@@ -117,7 +117,7 @@
       rules: ghost-role-information-silicon-rules
       important: true # SL
       mindRoles:
-      - MindRoleGhostRoleSilicon
+      - MindRoleGhostRoleSiliconAntagonist # Starlight
       raffle:
         settings: default
       job: Borg

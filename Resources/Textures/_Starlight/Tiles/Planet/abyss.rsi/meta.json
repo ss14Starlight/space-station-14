@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Darkrell",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
@@ -21,7 +21,8 @@
           0.2,
           0.2
         ]
-      ]
+      ],
+      "copyright": "Darkrell"
     },
     {
       "name": "abyss2",
@@ -32,7 +33,8 @@
           2,
           2
         ]
-      ]
+      ],
+      "copyright": "Darkrell"
     },
     {
       "name": "abyss3",
@@ -43,7 +45,8 @@
           2,
           2
         ]
-      ]
+      ],
+      "copyright": "Darkrell"
     },
     {
       "name": "abyss4",
@@ -54,7 +57,8 @@
           2,
           2
         ]
-      ]
+      ],
+      "copyright": "Darkrell"
     },
     {
       "name": "abyss5",
@@ -65,7 +69,8 @@
           2,
           2
         ]
-      ]
+      ],
+      "copyright": "Darkrell"
     }
   ]
 }

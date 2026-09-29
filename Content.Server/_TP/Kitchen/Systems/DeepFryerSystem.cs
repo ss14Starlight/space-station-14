@@ -25,21 +25,22 @@ using Robust.Shared.Timing;
 namespace Content.Server._TP.Kitchen.Systems;
 
 
-public sealed class DeepFryerSystem : EntitySystem
+public sealed partial class DeepFryerSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly PowerReceiverSystem _power = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private PowerReceiverSystem _power = default!;
+    [Dependency] private PowerStateSystem _powerState = default!; // Starlight
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private SharedItemSystem _item = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -259,6 +260,7 @@ public sealed class DeepFryerSystem : EntitySystem
             }
 
             deepFryerComp.IsEnabled = !deepFryerComp.IsEnabled;
+            _powerState.TrySetWorkingState(deepFryerEnt.Owner, deepFryerComp.IsEnabled); // Starlight
         }
 
         args.Handled = true;
@@ -301,6 +303,19 @@ public sealed class DeepFryerSystem : EntitySystem
                     _audio.Stop(soundEntity.Value);
                     _fryerSounds[uid] = null;
                 }
+
+                // Starlight start
+                if (_container.TryGetContainer(uid, deepFryerComp.ContainerId, out var pausedContainer))
+                {
+                    foreach (var paused in pausedContainer.ContainedEntities)
+                    {
+                        if (_cookingStartTimes.TryGetValue(paused, out var pausedStart))
+                            _cookingStartTimes[paused] = pausedStart + TimeSpan.FromSeconds(frameTime);
+                    }
+                }
+
+                continue;
+                // Starlight end
             }
 
             // Now we check for if the deep fryer has enough oil. If not, disable it and skip the loop.
@@ -314,6 +329,7 @@ public sealed class DeepFryerSystem : EntitySystem
             if (cookingOilAmnt <= 25 || solName.Volume <= 25)
             {
                 deepFryerComp.IsEnabled = false;
+                _powerState.TrySetWorkingState(uid, false); // Starlight
                 _appearance.SetData(uid, DeepFryerVisuals.Active, false);
                 continue;
             }

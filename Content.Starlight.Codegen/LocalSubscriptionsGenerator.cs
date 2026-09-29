@@ -11,7 +11,7 @@ namespace Content.Starlight.Codegen;
 [Generator]
 public sealed class LocalSubscriptionsGenerator : IIncrementalGenerator
 {
-    private const string AttributeName = "Content.Shared.Starlight.Abstract.Codegen.GenerateLocalSubscriptionsAttribute`1";
+    private const string AttributeName = "Content.Shared._Starlight.Abstract.Codegen.GenerateLocalSubscriptionsAttribute`1";
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {

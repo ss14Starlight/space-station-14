@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Shared.Access;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests._Starlight.Access;
 
-public sealed class CyborgAllAccessParityTest
+public sealed class CyborgAllAccessParityTest : GameTest
 {
 
     /// <summary>
@@ -13,7 +14,18 @@ public sealed class CyborgAllAccessParityTest
     /// </summary>
     private static readonly HashSet<ProtoId<AccessLevelPrototype>> _exclusions =
     [
-        new("Debrief") // Borgs are not head of staff, and should not be in debrief.
+        new("Debrief"), // Borgs are not head of staff, and should not be in debrief.
+        new("Captain"),
+        new("HeadOfPersonnel"),
+        new("ChiefEngineer"),
+        new("ChiefMedicalOfficer"),
+        new("HeadOfSecurity"),
+        new("ResearchDirector"),
+        new("Armory"),
+        new("Quartermaster"),
+        new("Magistrate"),
+        new("Ntrep"),
+        new("BlueShield"),
     ];
 
     private static readonly ProtoId<AccessGroupPrototype> _allAccessGroup = "AllAccess";
@@ -25,7 +37,7 @@ public sealed class CyborgAllAccessParityTest
     [Test]
     public async Task CyborgAllAccessEqualsAllAccessMinusExclusions()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
         var protoManager = server.ResolveDependency<IPrototypeManager>();
 
@@ -56,10 +68,6 @@ public sealed class CyborgAllAccessParityTest
                     $"Resources/Prototypes/Access/misc.yml, " +
                     $"or remove them from CyborgAllAccess.");
             }
-
         });
-
-        await pair.CleanReturnAsync();
     }
-
 }

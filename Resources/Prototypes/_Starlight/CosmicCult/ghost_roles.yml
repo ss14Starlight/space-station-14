@@ -12,7 +12,7 @@
     allowSpeech: true
     allowMovement: true
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
+    - MindRoleCosmicColossus
   - type: Sprite
     layers:
     - sprite: _Starlight/CosmicCult/Mobs/colossus.rsi

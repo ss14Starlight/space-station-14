@@ -1,0 +1,15 @@
+- type: constructionGraph
+  id: CdRackGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: CdRackNode
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 3
+              doAfter: 4
+    - node: CdRackNode
+      entity: CdRack

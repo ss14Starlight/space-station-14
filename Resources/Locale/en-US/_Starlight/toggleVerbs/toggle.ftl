@@ -1,0 +1,4 @@
+verb-toggle-magnet-activate = Activate Magnet
+verb-toggle-magnet-deactivate = Deactivate Magnet
+
+verb-categories-switch = Switch

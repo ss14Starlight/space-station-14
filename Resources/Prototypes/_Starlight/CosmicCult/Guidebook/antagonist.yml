@@ -4,6 +4,7 @@
   text: "/ServerInfo/_Starlight/Guidebook/CosmicCult/CosmicCult.xml"
   children:
   - CosmicCultMonument
+  - CosmicCultMalignRifts
   - CosmicCultInfluences
   - CosmicCultDeconversion
   - CosmicColossus
@@ -12,6 +13,11 @@
   id: CosmicCultMonument
   name: guide-entry-cosmiccult-monument
   text: "/ServerInfo/_Starlight/Guidebook/CosmicCult/CosmicCultMonument.xml"
+
+- type: guideEntry
+  id: CosmicCultMalignRifts
+  name: guide-entry-cosmiccult-rifts
+  text: "/ServerInfo/_Starlight/Guidebook/CosmicCult/CosmicCultMalignRifts.xml"
 
 - type: guideEntry
   id: CosmicCultInfluences

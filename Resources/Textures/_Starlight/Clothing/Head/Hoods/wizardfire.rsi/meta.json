@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Romero/Littlemen",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "equipped-HELMET",
+      "directions": 4,
+      "copyright": "Romero/Littlemen"
+    },
+    {
+      "name": "equipped-HELMET-avali",
+      "directions": 4,
+      "copyright": "Modified by DocMoth"
+    }
+  ]
+}

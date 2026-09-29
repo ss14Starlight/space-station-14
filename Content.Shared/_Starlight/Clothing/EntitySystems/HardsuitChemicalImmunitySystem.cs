@@ -1,7 +1,7 @@
 using Content.Shared._Starlight.Chemistry.Events;
 using Content.Shared._Starlight.Clothing.Components;
+using Content.Shared._Starlight.Combat.OnHit;
 using Content.Shared.Clothing.Components;
-using Content.Shared.Damage.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
@@ -13,11 +13,11 @@ namespace Content.Shared._Starlight.Clothing.EntitySystems;
 /// System that handles hardsuit chemical immunity, preventing injection-based attacks
 /// when wearing hardsuits with the immunity component.
 /// </summary>
-public sealed class HardsuitChemicalImmunitySystem : EntitySystem
+public sealed partial class HardsuitChemicalImmunitySystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {
@@ -70,7 +70,7 @@ public sealed class HardsuitChemicalImmunitySystem : EntitySystem
             return;
 
         var parent = Transform(ent).ParentUid;
-        if (!EntityManager.EntityExists(parent))
+        if (Exists(parent))
             return;
 
         // Check if helmet is equipped - if not, allow injection
@@ -89,7 +89,7 @@ public sealed class HardsuitChemicalImmunitySystem : EntitySystem
                 parent, parent, PopupType.Small);
 
             // Show popup to the attacker as well
-            if (args.Attacker.HasValue && EntityManager.EntityExists(args.Attacker.Value))
+            if (args.Attacker.HasValue && Exists(args.Attacker.Value))
             {
                 _popup.PopupEntity(Loc.GetString("hardsuit-chemical-immunity-blocked-attacker"),
                     parent, args.Attacker.Value, PopupType.Small);
@@ -113,7 +113,7 @@ public sealed class HardsuitChemicalImmunitySystem : EntitySystem
             return;
 
         var parent = Transform(ent).ParentUid;
-        if (!EntityManager.EntityExists(parent))
+        if (!Exists(parent))
             return;
 
         // Check if helmet is equipped
@@ -132,7 +132,7 @@ public sealed class HardsuitChemicalImmunitySystem : EntitySystem
                 parent, parent, PopupType.Small);
 
             // Show popup to the attacker as well
-            if (args.Source.HasValue && EntityManager.EntityExists(args.Source.Value))
+            if (args.Source.HasValue && Exists(args.Source.Value))
             {
                 _popup.PopupEntity(Loc.GetString("hardsuit-chemical-immunity-blocked-attacker"),
                     parent, args.Source.Value, PopupType.Small);

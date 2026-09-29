@@ -63,12 +63,14 @@
        enabled: true
        isLooped: true
        reverseWhenFinished: true
+  - type: HealthExaminable
+    locPrefix: cosmic
 
 - type: entity
   categories: [ HideSpawnMenu ]
-  parent: BaseStructure
+  # parent: BaseStructure
   id: CosmicChantryWisp
-  name: Wisp
+  name: Trapped Wisp
   components:
   - type: Sprite
     sprite: _Starlight/CosmicCult/Mobs/wisp.rsi
@@ -77,6 +79,8 @@
         shader: unshaded
   - type: Speech
   - type: Transform
+  - type: Physics
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -87,6 +91,4 @@
         - LargeMobMask
         layer:
         - WallLayer
-  #region Starlight languages
   - type: UniversalLanguageSpeaker
-  #endregion

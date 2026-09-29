@@ -10,9 +10,9 @@ namespace Content.Server._Starlight.CoolingUnit;
 
 public sealed partial class CoolingUnitSystem : SharedCoolingUnitSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly TemperatureSystem _tempSys = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private TemperatureSystem _tempSys = default!;
 
     private TimeSpan _nextUpdate = TimeSpan.Zero;
     private readonly TimeSpan _updateCooldown = TimeSpan.FromSeconds(1f);

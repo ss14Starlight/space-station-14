@@ -1,30 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Content.Server.Hands.Systems;
-using Content.Server._Starlight.Medical.Surgery;
-using Content.Shared._Starlight.Medical.Damage;
+﻿using Content.Shared._Starlight.Medical.Damage;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
-using Content.Shared.Damage;
-using Content.Shared.Hands.Components;
-using Content.Shared.Humanoid;
-using Content.Shared.Interaction;
-using Content.Shared.Interaction.Components;
-using Content.Shared.NukeOps;
-using Content.Shared.Random.Helpers;
-using Content.Shared.Starlight.Medical.Surgery;
-using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
-using Robust.Server.Containers;
-using Robust.Shared.Localization;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Medical;
-public sealed class LimbDamageSystem : EntitySystem
+public sealed partial class LimbDamageSystem : EntitySystem
 {
     //[Dependency] private readonly IRobustRandom _rand = default!;
     //[Dependency] private readonly BodySystem _body = default!;

@@ -1,0 +1,82 @@
+﻿- type: entity
+  id: PlastitaniumAirlockIndestructible
+  parent: Airlock
+  name: plastitanium airlock
+  suffix: Indestructible
+  components:
+  - type: Sprite
+    sprite: _Blimpuf/Structures/Doors/Airlocks/plastitanium.rsi
+    snapCardinals: true
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+    - state: closed_unlit
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseUnlit"]
+      visible: false
+    - state: welded
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: bolted_unlit
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseBolted"]
+    - state: emergency_unlit
+      map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
+      shader: unshaded
+    - state: panel_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      shader: unshaded
+      visible: false
+    - state: electrified_ai
+      sprite: Interface/Misc/ai_hud.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.HUD"]
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.Sparks"]
+    - state: sparks
+      map: ["enum.DoorVisualLayers.BaseEmagging"]
+      shader: unshaded
+      visible: false
+  - type: WiresPanelSecurity
+    wiresAccessible: false
+    securityLevel: maxSecurity # Realistically you should never see this, but just in case...
+  - type: Lock
+    locked: true
+    unlockOnClick: false
+    showLockVerbs: false
+    showExamine: false
+    breakOnAccessBreaker: false
+  - type: LockedWiresPanel
+  - type: Tag
+    tags:
+      - Airlock
+      - AccessBreakerImmune
+      - Inedible
+  - type: GuideHelp
+    guides:
+    - Airlocks
+    - Networking
+
+- type: entity
+  id: PlastitaniumAirlock
+  parent: PlastitaniumAirlockIndestructible
+  suffix: ""
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: Tag
+    tags:
+      - Airlock
+      - AccessBreakerImmune

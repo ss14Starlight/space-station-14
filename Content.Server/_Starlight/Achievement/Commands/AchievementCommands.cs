@@ -24,10 +24,10 @@ internal static class AchievementCommandHelpers
 }
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class AchievementUnlockCommand : LocalizedCommands
+public sealed partial class AchievementUnlockCommand : LocalizedCommands
 {
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IEntitySystemManager _systems = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private IEntitySystemManager _systems = default!;
 
     public override string Command => "achievement_unlock";
     public override string Description => "Unlocks an achievement for a player.";
@@ -65,10 +65,10 @@ public sealed class AchievementUnlockCommand : LocalizedCommands
 }
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class AchievementLockCommand : LocalizedCommands
+public sealed partial class AchievementLockCommand : LocalizedCommands
 {
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IEntitySystemManager _systems = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private IEntitySystemManager _systems = default!;
 
     public override string Command => "achievement_lock";
     public override string Description => "Locks (revokes) an achievement for a player.";
@@ -106,12 +106,12 @@ public sealed class AchievementLockCommand : LocalizedCommands
 }
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class AchievementProgressCommand : LocalizedCommands
+public sealed partial class AchievementProgressCommand : LocalizedCommands
 {
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IEntitySystemManager _systems = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly INullLinkPlayerManager _nullLink = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private IEntitySystemManager _systems = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private INullLinkPlayerManager _nullLink = default!;
 
     public override string Command => "achievement_progress";
     public override string Description => "Shows achievement progress for a player. If no key is specified, shows all progress.";
@@ -171,11 +171,11 @@ public sealed class AchievementProgressCommand : LocalizedCommands
 }
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class AchievementResetCommand : LocalizedCommands
+public sealed partial class AchievementResetCommand : LocalizedCommands
 {
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IEntitySystemManager _systems = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private IEntitySystemManager _systems = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public override string Command => "achievement_reset";
     public override string Description => "Resets achievement progress for a player. If no key is specified, resets all progress.";

@@ -89,23 +89,6 @@
 
 - type: entity
   parent: BaseAction
-  id: ActionToggleDome
-  name: Toggle energy dome
-  description: Turn the energy barrier on or off.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: BigAction
-    priority: -10
-    icon:
-      sprite: Objects/Weapons/Melee/e_shield.rsi
-      state: eshield-on
-    useDelay: 1
-  - type: InstantAction
-    event: !type:ToggleActionEvent
-
-- type: entity
-  parent: BaseAction
   id: ActionOpenStorageImplant
   name: Toggle Storage Implant
   description: Opens or closes the storage implant embedded under your skin
@@ -433,16 +416,15 @@
     useDelay: 1
     itemIconStyle: BigAction
 
-#  TODO: Add back once we have animated tails again. Were removed due to the sprite rework, causing all of them to not fit anymore.
-# - type: entity
-#   parent: ActionToggleWagging
-#   id: ActionToggleWaggingVulpkanin
-#   components:
-#   - type: Action
-#     icon: { sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi, state: tail-wag-icon }
-#     iconOn: { sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi, state: tail-wag-icon }
-#     itemIconStyle: NoItem
-#     useDelay: 1 # Prevents Emote Spam
+- type: entity
+  parent: ActionToggleWagging
+  id: ActionToggleWaggingVulpkanin
+  components:
+  - type: Action
+    icon: { sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi, state: tail-wag-icon }
+    iconOn: { sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi, state: tail-wag-icon }
+    itemIconStyle: NoItem
+    useDelay: 1 # Prevents Emote Spam
 
 - type: entity
   parent: BaseAction

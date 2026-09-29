@@ -2,7 +2,7 @@ using Content.Shared.Tag;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Clothing.Components;
+namespace Content.Shared._Starlight.Clothing;
 
 /// <summary>
 /// Adds the given tags when the item is equipped.

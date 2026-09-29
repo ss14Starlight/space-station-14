@@ -24,10 +24,10 @@
   parent: PartSkeleton
   components:
     - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "torso_m"
     - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "torso_m"
     - type: BodyPart
       partType: Torso
@@ -47,10 +47,10 @@
       - GalacticCommon
   # Starlight End
     - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "skull_icon"
     - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "skull_icon"
     - type: BodyPart
       partType: Head
@@ -87,10 +87,10 @@
   parent: PartSkeleton
   components:
     - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "l_arm"
     - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "l_arm"
     - type: BodyPart
       partType: Arm
@@ -102,10 +102,10 @@
   parent: PartSkeleton
   components:
     - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "r_arm"
     - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "r_arm"
     - type: BodyPart
       partType: Arm
@@ -117,10 +117,10 @@
   parent: PartSkeleton
   components:
     - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "l_hand"
     - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "l_hand"
     - type: BodyPart
       partType: Hand
@@ -132,10 +132,10 @@
   parent: PartSkeleton
   components:
     - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "r_hand"
     - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "r_hand"
     - type: BodyPart
       partType: Hand
@@ -147,10 +147,10 @@
   parent: PartSkeleton
   components:
     - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "l_leg"
     - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "l_leg"
     - type: BodyPart
       partType: Leg
@@ -163,10 +163,10 @@
   parent: PartSkeleton
   components:
     - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "r_leg"
     - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "r_leg"
     - type: BodyPart
       partType: Leg
@@ -179,10 +179,10 @@
   parent: PartSkeleton
   components:
     - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "l_foot"
     - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "l_foot"
     - type: BodyPart
       partType: Foot
@@ -194,10 +194,10 @@
   parent: PartSkeleton
   components:
     - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "r_foot"
     - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
+      sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "r_foot"
     - type: BodyPart
       partType: Foot

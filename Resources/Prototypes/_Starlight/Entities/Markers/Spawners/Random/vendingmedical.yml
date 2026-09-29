@@ -1,0 +1,111 @@
+- type: entity
+  id: RandomVendingMedical
+  name: random medical vending machine spawner
+  suffix: Departmental
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _Starlight/Structures/Machines/VendingMachines/random.rsi
+        state: medical
+  - type: RandomSpawner
+    prototypes:
+      - VendingMachineMedical
+      - VendingMachineMedical
+      - VendingMachineMedical
+      - VendingMachineMedical
+      - VendingMachineMedical
+      - VendingMachineMedical
+      - VendingMachineMedical # 70% chance of NanoMed Plus, ignoring the rare prototype
+      - VendingMachineMedicalDeforest
+      - VendingMachineMedicalDeforest # 20% chance of DeForest Interstellar
+      - VendingMachineMedicalSyndicate # 10# chance of Interdyne Enterprise
+    chance: 1
+    rarePrototypes:
+    - VendingMachineMedicalGold # 1% chance of NanoMed Plus GOLD
+    rareChance: 0.01
+
+- type: entity
+  id: RandomVendingMedicalCivilian
+  name: random medical vending machine spawner
+  suffix: Civilian
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _Starlight/Structures/Machines/VendingMachines/random.rsi
+        state: medical-civilian
+  - type: RandomSpawner
+    prototypes:
+      - VendingMachineMedicalBase
+      - VendingMachineMedicalBase
+      - VendingMachineMedicalBase
+      - VendingMachineMedicalBase
+      - VendingMachineMedicalBase
+      - VendingMachineMedicalBase
+      - VendingMachineMedicalBase # 70% chance of NanoMed Civilian, ignoring the rare prototype
+      - VendingMachineMedicalBaseDeforest
+      - VendingMachineMedicalBaseDeforest # 20% chance of DeForest Planetary
+      - VendingMachineMedicalBaseSyndicate # 10# chance of Interdyne Commercial
+    chance: 1
+    rarePrototypes:
+    - VendingMachineMedicalBaseGold # 1% chance of NanoMed Civilian GOLD
+    rareChance: 0.01
+
+- type: entity
+  id: RandomVendingMedicalWall
+  name: random medical vending machine spawner
+  suffix: Departmental, Wallmount
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _Starlight/Structures/Machines/VendingMachines/random.rsi
+        state: wallmed
+  - type: RandomSpawner
+    prototypes:
+      - VendingMachineWallMedical
+      - VendingMachineWallMedical
+      - VendingMachineWallMedical
+      - VendingMachineWallMedical
+      - VendingMachineWallMedical
+      - VendingMachineWallMedical
+      - VendingMachineWallMedical # 70% chance of NanoMed, ignoring the rare prototype
+      - VendingMachineWallMedicalDeforest
+      - VendingMachineWallMedicalDeforest # 20% chance of DeForest health-aid interstellar
+      - VendingMachineWallMedicalSyndicate # 10# chance of Interdyne life-aid enterprise
+    chance: 1
+    rarePrototypes:
+    - VendingMachineWallMedicalGold # 1% chance of NanoMed GOLD
+    rareChance: 0.01
+
+- type: entity
+  id: RandomVendingMedicalCivilianWall
+  name: random medical vending machine spawner
+  suffix: Civilian, Wallmount
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _Starlight/Structures/Machines/VendingMachines/random.rsi
+        state: wallmed-civilian
+  - type: RandomSpawner
+    prototypes:
+      - VendingMachineWallMedicalCivilian
+      - VendingMachineWallMedicalCivilian
+      - VendingMachineWallMedicalCivilian
+      - VendingMachineWallMedicalCivilian
+      - VendingMachineWallMedicalCivilian
+      - VendingMachineWallMedicalCivilian
+      - VendingMachineWallMedicalCivilian # 70% chance of NanoMed band-aid, ignoring the rare prototype
+      - VendingMachineWallMedicalCivilianDeforest
+      - VendingMachineWallMedicalCivilianDeforest # 20% chance of DeForest health-aid planetary
+      - VendingMachineWallMedicalCivilianSyndicate # 10# chance of Interdyne life-aid commercial
+    chance: 1
+    rarePrototypes:
+    - VendingMachineWallMedicalCivilianGold # 1% chance of NanoMed band-aid GOLD
+    rareChance: 0.01

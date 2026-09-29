@@ -1,6 +1,4 @@
-using Robust.Shared.GameStates;
-
-namespace Content.Shared.VentCrawl.Tube.Components;
+namespace Content.Shared._Starlight.VentCrawl.Components;
 
 [RegisterComponent]
 public sealed partial class VentCrawlManifoldComponent : Component

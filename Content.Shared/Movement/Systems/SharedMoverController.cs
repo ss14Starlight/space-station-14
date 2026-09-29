@@ -45,21 +45,21 @@ namespace Content.Shared.Movement.Systems;
 /// </summary>
 public abstract partial class SharedMoverController : VirtualController
 {
-    [Dependency] private   readonly IConfigurationManager _configManager = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] protected readonly ITileDefinitionManager _tileDefinitionManager = default!;
-    [Dependency] private   readonly ActionBlockerSystem _blocker = default!;
-    [Dependency] protected readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private   readonly InventorySystem _inventory = default!;
-    [Dependency] private   readonly MobStateSystem _mobState = default!;
-    [Dependency] private   readonly SharedAudioSystem _audio = default!;
-    [Dependency] private   readonly SharedContainerSystem _container = default!;
-    [Dependency] protected readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] protected readonly SharedGravitySystem _gravity = default!;
-    [Dependency] protected readonly SharedTransformSystem _transform = default!;
-    [Dependency] private   readonly TagSystem _tags = default!;
-    [Dependency] private   readonly SharedActionsSystem _action = default!; //🌟Starlight🌟
-    [Dependency] private   readonly SharedChargesSystem _charges = default!; //🌟Starlight🌟
+    [Dependency] private   IConfigurationManager _configManager = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] protected ITileDefinitionManager _tileDefinitionManager = default!;
+    [Dependency] private   ActionBlockerSystem _blocker = default!;
+    [Dependency] protected EntityLookupSystem _lookup = default!;
+    [Dependency] private   InventorySystem _inventory = default!;
+    [Dependency] private   MobStateSystem _mobState = default!;
+    [Dependency] private   SharedAudioSystem _audio = default!;
+    [Dependency] private   SharedContainerSystem _container = default!;
+    [Dependency] protected SharedMapSystem _mapSystem = default!;
+    [Dependency] protected SharedGravitySystem _gravity = default!;
+    [Dependency] protected SharedTransformSystem _transform = default!;
+    [Dependency] private   TagSystem _tags = default!;
+    [Dependency] private   SharedActionsSystem _action = default!; //🌟Starlight🌟
+    [Dependency] private   SharedChargesSystem _charges = default!; //🌟Starlight🌟
 
     protected EntityQuery<CanMoveInAirComponent> CanMoveInAirQuery;
     protected EntityQuery<FootstepModifierComponent> FootstepModifierQuery;
@@ -88,9 +88,9 @@ public abstract partial class SharedMoverController : VirtualController
     /// <summary>
     /// Cache the mob movement calculation to re-use elsewhere.
     /// </summary>
-    public ConcurrentDictionary<EntityUid, bool> UsedMobMovement = new(); // Starlight
-
-    private readonly HashSet<EntityUid> _aroundColliderSet = [];
+    // Starlight start
+    public ConcurrentDictionary<EntityUid, bool> UsedMobMovement = new();
+    // Starlight end
 
     public override void Initialize()
     {
@@ -410,8 +410,19 @@ public abstract partial class SharedMoverController : VirtualController
             return;
 
         mover.Comp.WishDir = wishDir;
-        Dirty(mover);
+        // Starlight start
+        DirtyMover(mover.Owner, mover.Comp);
+        // Starlight end
     }
+
+    // Starlight start
+    /// <summary>
+    /// Marks an input mover dirty. Virtual so the server can defer dirtying while movers are processed
+    /// on worker threads — Dirty -> DirtyEntity -> EntityDirtied (PVS) is not thread-safe and contends
+    /// across cores. The default behaviour is an immediate dirty.
+    /// </summary>
+    protected virtual void DirtyMover(EntityUid uid, InputMoverComponent mover) => Dirty(uid, mover);
+    // Starlight end
 
     public void LerpRotation(EntityUid uid, InputMoverComponent mover, float frameTime)
     {
@@ -435,12 +446,16 @@ public abstract partial class SharedMoverController : VirtualController
             }
 
             mover.RelativeRotation = (mover.RelativeRotation + adjustment).FlipPositive();
-            Dirty(uid, mover);
+            // Starlight start
+            DirtyMover(uid, mover);
+            // Starlight end
         }
         else if (!angleDiff.Equals(Angle.Zero))
         {
             mover.RelativeRotation = mover.TargetRelativeRotation.FlipPositive();
-            Dirty(uid, mover);
+            // Starlight start
+            DirtyMover(uid, mover);
+            // Starlight end
         }
     }
 
@@ -501,9 +516,13 @@ public abstract partial class SharedMoverController : VirtualController
         var (uid, collider, mover, transform) = entity;
         var enlargedAABB = _lookup.GetWorldAABB(entity.Owner, transform).Enlarged(mover.GrabRange);
 
-        _aroundColliderSet.Clear();
-        lookupSystem.GetEntitiesIntersecting(transform.MapID, enlargedAABB, _aroundColliderSet);
-        foreach (var otherEntity in _aroundColliderSet)
+        // Starlight start
+        // Local set so this is safe to call from the parallel mover pass: the broadphase trees are only
+        // read here (they aren't mutated until the physics solve runs), and there's no shared buffer.
+        var aroundColliderSet = new HashSet<EntityUid>();
+        // Starlight end
+        lookupSystem.GetEntitiesIntersecting(transform.MapID, enlargedAABB, aroundColliderSet);
+        foreach (var otherEntity in aroundColliderSet)
         {
             if (otherEntity == uid)
                 continue; // Don't try to push off of yourself!

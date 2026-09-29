@@ -11,15 +11,15 @@ using Content.Server._Starlight.Achievement; // Starlight: Achievements
 
 namespace Content.Server._Starlight.Paper;
 
-public sealed class AntagOnSignSystem : EntitySystem
+public sealed partial class AntagOnSignSystem : EntitySystem
 {
-    [Dependency] private readonly AchievementSystem _achievements = default!; // Starlight: Achievements
+    [Dependency] private AchievementSystem _achievements = default!; // Starlight: Achievements
 
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
     private ISawmill _sawmill = default!;
 
     private readonly EntProtoId _paradoxCloneRuleId = "ParadoxCloneSpawn";
@@ -62,18 +62,17 @@ public sealed class AntagOnSignSystem : EntitySystem
         {
             var targetComp = _componentFactory.GetComponent(antag.TargetComponent);
 
-            var fmakeantag = typeof(AntagSelectionSystem).GetMethod(nameof(AntagSelectionSystem.ForceMakeAntag));
+            var fmakeantag = typeof(AntagSelectionSystem).GetMethod(nameof(AntagSelectionSystem.ForceMakeAntag), [typeof(ICommonSession), typeof(EntProtoId)]);
             if (fmakeantag == null)
             {
                 _sawmill.Error("Failed to reflect \"ForceMakeAntag\" method from AntagSelectionSystem for genericization");
                 continue;
             }
             var generic = fmakeantag.MakeGenericMethod(targetComp.GetType());
-            generic.Invoke(_antag, [session, antag.Antag.Id]);
+            generic.Invoke(_antag, [session, antag.Antag]);
         }
         // Starlight Start: Achievements
-        if (TryComp<MetaDataComponent>(uid, out var meta)
-            && meta.EntityPrototype?.ID is SyndicateRecruitmentLetterId or RRSyndicateRecruitmentLetterId)
+        if (MetaData(uid).EntityPrototype?.ID is SyndicateRecruitmentLetterId or RRSyndicateRecruitmentLetterId)
         {
             _achievements.QueueUnlockAchievement(signer, "treason");
         }

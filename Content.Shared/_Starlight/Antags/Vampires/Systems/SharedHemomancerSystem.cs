@@ -1,11 +1,10 @@
-using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 
 namespace Content.Shared._Starlight.Antags.Vampires.Systems;
 
-public sealed class SharedHemomancerSystem : EntitySystem
+public sealed partial class SharedHemomancerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedVampireActionUseSystem _vampireActions = default!;
+    [Dependency] private SharedVampireActionUseSystem _vampireActions = default!;
 
     public override void Initialize()
     {

@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Medical.CrewMonitoring;
+namespace Content.Shared._Starlight.Medical.CrewMonitoring;
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class CrewMonitoringFilterComponent : Component

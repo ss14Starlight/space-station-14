@@ -70,28 +70,6 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
-
-- type: entity
-  id: MagazineLightRifleHP
-  name: "magazine (.30 rifle HP)"
-  parent: BaseMagazineLightRifle
-  description: Curved 30-round double stack magazine for combat rifles. Intended to hold general-purpose kinetic ammunition.
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleHP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      right:
-      - state: inhand-right-mag
-
 - type: entity
   parent: MagazineLightRifleSP
   id: MagazineLightRifleEmpty
@@ -104,40 +82,6 @@
   - type: Sprite
     layers:
     - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      right:
-      - state: inhand-right-mag
-
-- type: entity
-  id: MagazineLightRifleFMJ
-  name: "magazine (.30 rifle FMJ)"
-  parent: BaseMagazineLightRifle
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleFMJ
-  - type: Sprite
-    layers:
-    - state: fmj
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: MagazineLightRifleAP
-  name: "magazine (.30 rifle AP)"
-  parent: BaseMagazineLightRifle
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleAP
-  - type: Sprite
-    layers:
-    - state: ap
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -216,47 +160,3 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: MagazineLightRifleMaxim
-  name: "pan magazine (.30 rifle)"
-  parent: BaseMagazineLightRifle
-  components:
-  - type: Tag
-    tags:
-      - MagazineLightRiflePan
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
-    capacity: 47
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/maxim.rsi
-
-- type: entity
-  id: MagazineLightRiflePkBox
-  name: "PK munitions box (.30 rifle)"
-  parent: BaseMagazineLightRifle
-  components:
-  - type: Tag
-    tags:
-      - MagazineLightRifleBox
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
-    capacity: 80
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: stripe
-      color: "#ff6e52"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#ff6e52"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#ff6e52"

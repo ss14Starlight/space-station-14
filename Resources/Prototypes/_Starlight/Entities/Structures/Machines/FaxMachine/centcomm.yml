@@ -1,0 +1,25 @@
+# Group
+- type: faxGroup
+  id: FaxGroupCentralCommand
+  name: fax-group-centcomm
+  order: 1000
+  color: "#00b700"
+  selectable: false
+  selectableEmagged: true
+
+# Base
+- type: entity
+  abstract: true
+  parent: FaxMachineBase
+  id: FaxMachineCentralCommandBase
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#00b700"
+
+# Fax machines
+
+## Primary CC fax machine is from upstream, so it's missing here, it has order=100.
+## Event CC fax machine is in ./events/centcomm.yml, order=500.

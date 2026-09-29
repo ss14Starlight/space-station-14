@@ -74,3 +74,45 @@
     - MobGoldBlackKoi
     - MobRedCircleKoi
     - MobBloodSkeletonKoi
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMonkeyAdvanced
+  name: Advanced Monkey Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: monkey
+      sprite: Mobs/Animals/monkey.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobMonkeyAdvanced
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobKobold
+  name: Kobold Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: kobold
+      sprite: Mobs/Animals/kobold.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobKobold
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobKoboldAdvanced
+  name: Advanced Kobold Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: kobold
+      sprite: Mobs/Animals/kobold.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobKoboldAdvanced

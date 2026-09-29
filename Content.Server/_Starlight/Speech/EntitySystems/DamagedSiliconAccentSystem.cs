@@ -3,6 +3,7 @@ using Content.Server.Destructible;
 using Content.Server.Speech.EntitySystems;
 using Content.Shared.Speech.Components;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell;
@@ -11,12 +12,13 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Speech.EntitySystems;
 
-public sealed class DamagedSiliconAccentSystem : EntitySystem
+public sealed partial class DamagedSiliconAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedBatterySystem _battery = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedBatterySystem _battery = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private DestructibleSystem _destructibleSystem = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     public override void Initialize()
     {
@@ -46,7 +48,7 @@ public sealed class DamagedSiliconAccentSystem : EntitySystem
             if (ent.Comp.OverrideTotalDamage.HasValue)
                 damage = ent.Comp.OverrideTotalDamage.Value;
             else if (TryComp<DamageableComponent>(uid, out var damageable))
-                damage = damageable.TotalDamage;
+                damage = _damageable.GetTotalDamage(uid);
             // Corrupt due to damage (drop, repeat, replace with symbols)
             args.Message.Text = CorruptDamage(args.Message.Text, damage, ent);
         }

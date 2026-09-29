@@ -1,14 +1,15 @@
 {
   "version": 1,
   "license": "CC0-1.0",
-  "copyright": "Made by Conflee and Penguinwizzard for Starlight",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "mass_scanner0"
+      "name": "mass_scanner0",
+      "copyright": "Made by Conflee and Penguinwizzard for Starlight"
     },
     {
       "name": "unshaded",
@@ -35,7 +36,8 @@
           0.2,
           0.2
         ]
-      ]
+      ],
+      "copyright": "Made by Conflee and Penguinwizzard for Starlight"
     }
   ]
 }

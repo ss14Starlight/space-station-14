@@ -1,5 +1,6 @@
 - type: entity
   id: KitchenStove
+  categories: [ ShouldMapStation ]
   parent: [ BaseMachinePowered, SmallConstructibleMachine ]
   name: stove
   description: It's a small magic.
@@ -76,7 +77,10 @@
     canCreateVacuum: false
     deleteAfterExplosion: false
   - type: ApcPowerReceiver
-    powerLoad: 400
+    powerLoad: 5
+  - type: PowerState
+    idlePowerDraw: 5
+    workingPowerDraw: 400
   - type: Machine
     board: StoveMachineCircuitboard
   - type: ContainerContainer

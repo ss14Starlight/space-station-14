@@ -1,7 +1,6 @@
 //Copyright © 2025 .cerol (Discord), Licensed under MIT License.
 //Changes after https://github.com/ss14Starlight/space-station-14/pull/2054/commits/e18dafedad110b20cdc17d054fe35413a1831f59 licensed under Starlight License.
 
-using Content.Shared.Damage;
 using Content.Shared.Gibbing;
 using Content.Shared.Throwing;
 using Content.Shared.EntityTable;
@@ -11,15 +10,15 @@ using Robust.Shared.Random;
 using Robust.Shared.Network;
 using Content.Shared.Damage.Systems;
 
-namespace Content.Server._Starlight.PinataSystem;
+namespace Content.Shared._Starlight.PinataSystem;
 
-public sealed class PinataSystem : EntitySystem
+public sealed partial class PinataSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly EntityTableSystem _entityTable =  default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private EntityTableSystem _entityTable =  default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {

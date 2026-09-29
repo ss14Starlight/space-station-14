@@ -83,3 +83,18 @@
     icon:
       sprite: Objects/Magic/magicactions.rsi
       state: gib
+
+# Xenoroach Self-Destruct
+- type: entity
+  parent: [BaseSuicideAction, BaseImplantAction]
+  id: ActionActivateXenoroachSelfDestruct
+  name: Self-Destruct
+  description: Activates your self-destruct sequence, dissolving your chassis and leaving only a pool of acid.
+  components:
+  - type: Action
+    checkCanInteract: false
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: gib
