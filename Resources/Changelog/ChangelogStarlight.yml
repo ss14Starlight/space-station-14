@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Silica) Laundromat.
-    type: Add
-  id: 408588
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
   - message: (Silica) K9 jobspawn.
     type: Add
   id: 408589
@@ -2799,4 +2792,11 @@ Entries:
   id: 408987
   time: '2026-09-29T17:30:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6328
+- author: Musiklie
+  changes:
+  - message: Added the ChemMaster 1000, an ancient precursor to our updated model, this version is cheaper to make but only can hold 500u before becoming full. Maints chemistry is now a whole lot easier.
+    type: Add
+  id: 408988
+  time: '2026-09-29T18:05:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5735
 Order: -1
