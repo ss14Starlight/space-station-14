@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Silica) Rebranded the Salvage Bay as the Mining Bay.
-    type: Tweak
-  id: 408599
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
   - message: (Silica) The two lifepods east of Sauna have been combined into one lifeboat.
     type: Tweak
   id: 408600
@@ -2799,4 +2792,11 @@ Entries:
   id: 408998
   time: '2026-09-29T19:02:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6345
+- author: STARLIGHT TEAM
+  changes:
+  - message: Soft-crit experiments are now buckled instantly.
+    type: Fix
+  id: 408999
+  time: '2026-09-29T19:34:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6364
 Order: -1
