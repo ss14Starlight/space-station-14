@@ -1,13 +1,6 @@
 Entries:
 - author: Conflee
   changes:
-  - message: 'Kiloton: Added Laundry Rooms, Round Tables, Box Shelves, Random Medical Vend Markers, Evidence Room, Assistant Managers, and removed Salvage from the station.'
-    type: Tweak
-  id: 408584
-  time: '2026-09-14T11:16:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6132
-- author: Conflee
-  changes:
   - message: "Space Mall: Added Laundry Rooms, Round Tables, Box Shelves, Random Medical Vend Markers, K9's, Assistant Managers, Mail Boxes, a plumbing line from Chemistry to Brigmedical, and removed Salvage from the station."
     type: Tweak
   id: 408585
@@ -2799,4 +2792,11 @@ Entries:
   id: 408983
   time: '2026-09-29T14:56:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6397
+- author: Rinary
+  changes:
+  - message: Fixed time requirements for NullLink playtime (try 2).
+    type: Fix
+  id: 408984
+  time: '2026-09-29T17:00:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6361
 Order: -1
