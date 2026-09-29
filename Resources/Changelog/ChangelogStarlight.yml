@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Silica) Radio Host.
-    type: Add
-  id: 408587
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
   - message: (Silica) Laundromat.
     type: Add
   id: 408588
@@ -2799,4 +2792,11 @@ Entries:
   id: 408986
   time: '2026-09-29T17:30:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6362
+- author: redmushie
+  changes:
+  - message: Added GTS "Bellows" gas hauler shuttle.
+    type: Add
+  id: 408987
+  time: '2026-09-29T17:30:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6328
 Order: -1
