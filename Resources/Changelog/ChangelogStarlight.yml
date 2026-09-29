@@ -1,18 +1,4 @@
 Entries:
-- author: Krasunir
-  changes:
-  - message: Added Janimov lawset. Maybe Barratry would be playable now...
-    type: Add
-  id: 408631
-  time: '2026-09-14T20:15:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6164
-- author: Fahreyy, @TeddiousbearPA
-  changes:
-  - message: Added NTR Beret.
-    type: Add
-  id: 408632
-  time: '2026-09-14T20:15:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6067
 - author: Fahreyy, @TeddiousbearPA
   changes:
   - message: Added Magistrate Beret.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409030
   time: '2026-09-29T21:06:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6385
+- author: TaserTheFox
+  changes:
+  - message: All librarians can now speak Classical sign.
+    type: Add
+  id: 409031
+  time: '2026-09-29T21:06:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6395
+- author: TaserTheFox
+  changes:
+  - message: Visiting librarians can now speak crew languages.
+    type: Fix
+  id: 409032
+  time: '2026-09-29T21:06:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6395
 Order: -1
