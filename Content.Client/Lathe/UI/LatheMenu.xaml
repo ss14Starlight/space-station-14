@@ -4,6 +4,7 @@
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:ui="clr-namespace:Content.Client.Materials.UI"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:lathe="clr-namespace:Content.Client._Starlight.Lathe"
     Title="{Loc 'lathe-menu-title'}"
     MinSize="550 450"
     SetSize="750 500">
@@ -77,6 +78,7 @@
                     Orientation="Horizontal"
                     Align="End"
                     HorizontalExpand="True">
+                    <lathe:LatheLinkingDisplay Name="LatheLinking"/> <!-- Starlight -->
                     <Button
                         Name="ServerListButton"
                         Text="{Loc 'lathe-menu-server-list'}"

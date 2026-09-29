@@ -1,0 +1,9 @@
+﻿<PanelContainer xmlns="https://spacestation14.io"
+                SizeFlagsStretchRatio="8"
+                HorizontalExpand="True"
+                VerticalExpand="True">
+    <BoxContainer Orientation="Horizontal" Name="ButtonBox" Visible="False">
+        <Button SizeFlagsStretchRatio="50" HorizontalExpand="True" Name="LinkingEjectButton" Access="Public" Text="Eject" ToolTip="" ToggleMode="True" StyleClasses="OpenRight" Pressed="True" />
+        <Button SizeFlagsStretchRatio="50" HorizontalExpand="True" Name="LinkingTransferButton" Access="Public" Text="Not linked" ToolTip="{Loc lathe-menu-linking-linked-tooltip}" ToggleMode="True" StyleClasses="OpenLeft"/>
+    </BoxContainer>
+</PanelContainer>

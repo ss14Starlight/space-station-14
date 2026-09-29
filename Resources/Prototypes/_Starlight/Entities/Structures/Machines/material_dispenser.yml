@@ -1,0 +1,74 @@
+﻿- type: entity
+  id: MachineMaterialDispenser
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: material packer
+  description: An advanced machine, capable of distributing materials into crates.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Machines/material_dispenser.rsi
+      snapCardinals: true
+      layers:
+        - state: base
+          map: ["base"]
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.PowerDeviceVisuals.Powered:
+          base:
+            True: { state: active }
+            False: { state: base }
+    - type: MaterialStorage
+      insertOnInteract: false
+      whitelist:
+        tags:
+          - Sheet
+          - RawMaterial
+          - Ingot
+    - type: ActivatableUI
+      key: enum.MaterialDispenserUiKey.Key
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.MaterialDispenserUiKey.Key:
+          type: MaterialDispenserBoundUserInterface
+    - type: Machine
+      board: MaterialDispenserMachineCircuitBoard
+    - type: MaterialDispenser
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+        machine_parts: !type:Container
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.4,-0.4,0.4,0.4"
+          density: 190
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 300
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:ChangeConstructionNodeBehavior
+              node: machineFrame
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+    - type: WiresVisuals
+    - type: WiresPanel
+    - type: StaticPrice
+      price: 1500
+    - type: DeviceList
+    - type: DeviceNetwork
+      deviceNetId: Wired
+    - type: DeviceLinkSink
+      ports:
+        - LatheReceiver

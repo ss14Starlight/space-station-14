@@ -18,6 +18,7 @@
     - id: ClothingOuterHardsuitLuxmax
     - id: MiningShuttleConsoleCircuitboard
     - id: CargoTechFabFlatpack
+    - id: MaterialDispenserFlatpack
     - id: BookSecureTerminalManual # Starlight
     - id: PrintedDocumentGreenshiftAlert
       conditions:
