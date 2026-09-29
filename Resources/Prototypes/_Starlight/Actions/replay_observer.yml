@@ -1,0 +1,20 @@
+# Granted to the ReplayObserver. clientExclusive because replays have no server.
+
+- type: entity
+  parent: ActionToggleGhostHearing
+  id: ActionReplayToggleGhostHearing
+  components:
+  - type: Action
+    clientExclusive: true
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionReplayTogglePlayerOverlay
+  name: Toggle Player Overlay
+  description: Show usernames and antagonist status above players in this replay.
+  components:
+  - type: Action
+    icon: Interface/VerbIcons/information.svg.192dpi.png
+    clientExclusive: true
+  - type: InstantAction
+    event: !type:ReplayTogglePlayerOverlayActionEvent
