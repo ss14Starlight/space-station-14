@@ -185,7 +185,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         comp.MaxEndTime = Timing.CurTime + comp.MaxDuration;
         comp.NextTickTime = Timing.CurTime + comp.TickInterval;
         comp.StartTime = Timing.CurTime;
-        comp.TickPaused = false;
+        comp.TickPaused = _mobState.IsCritical(target) || _mobState.IsSoftCritical(target);
 
         var latched = EnsureComp<LatchedComponent>(target);
         latched.Latcher = uid;
@@ -320,7 +320,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         if (!comp.Active)
             return;
 
-        if (ev.NewMobState is MobState.Critical or MobState.Dead)
+        if (ev.NewMobState is not MobState.Alive)
             EndLatch(uid, comp);
     }
 
@@ -343,7 +343,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         }
 
         // Incapacitated (crit): pause damage, keep the pin active.
-        latchComp.TickPaused = ev.NewMobState == MobState.Critical;
+        latchComp.TickPaused = ev.NewMobState is MobState.Critical or MobState.SoftCritical;
     }
 
     /// <summary>
@@ -363,7 +363,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
             // Stunned/slept latcher ends the latch immediately.
             if (HasComp<StunnedComponent>(uid) ||
                 HasComp<SleepingComponent>(uid) ||
-                _mobState.IsIncapacitated(uid))
+                _mobState.IsDead(uid))
             {
                 EndLatch(uid, comp);
                 continue;
