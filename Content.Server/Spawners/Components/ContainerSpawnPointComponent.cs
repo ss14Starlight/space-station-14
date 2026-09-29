@@ -25,11 +25,13 @@ public sealed partial class ContainerSpawnPointComponent : Component, ISpawnPoin
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public ProtoId<JobPrototype>? Job;
 
+    #region Starlight
     /// <summary>
     /// An optional department specifier
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public ProtoId<DepartmentPrototype>? Department;
+    #endregion
 
     /// <summary>
     /// The type of spawn point
