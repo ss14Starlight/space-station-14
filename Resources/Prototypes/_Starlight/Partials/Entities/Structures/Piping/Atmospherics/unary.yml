@@ -17,4 +17,40 @@
       override: !type:CreateVariants
         values: *protos
 
-
+- type: !PartialOnly entity
+  id: BaseGasCondenser
+  categories: [ ShouldMapStation ]
+  components:
+    - type: Sprite
+      snapCardinals: false # plumbing ducts are 4 directional, so this causes a debug assert to fail
+    - type: PlumbingConnectorAppearance
+      offset: 0.09375
+    - type: PlumbingOutlet
+      solutionName: tank
+      connectedOutlets: true
+      outletNames:
+      - outletNorth
+      - outletEast
+      - outletWest
+    - type: NodeContainer
+      nodes:
+        pipe:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: South
+        outletNorth:
+          !type:PlumbingNode
+          nodeGroupID: Plumbing
+          pipeDirection: North
+        outletEast:
+          !type:PlumbingNode
+          nodeGroupID: Plumbing
+          pipeDirection: East
+        outletWest:
+          !type:PlumbingNode
+          nodeGroupID: Plumbing
+          pipeDirection: West
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0

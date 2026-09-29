@@ -23,7 +23,7 @@ public sealed partial class SpawnEntityFromTableEntityEffectSystem : EntityEffec
     protected override void Effect(Entity<TransformComponent> entity, ref EntityEffectEvent<SpawnEntityFromTable> args)
     {
         var quantity = args.Effect.Number * (int)Math.Floor(args.Scale);
-        var random = _robustRandom.GetRandom();
+        var random = _robustRandom;
 
         if (_net.IsServer)
         {
