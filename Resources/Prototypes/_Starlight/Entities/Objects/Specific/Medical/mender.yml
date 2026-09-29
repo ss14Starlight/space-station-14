@@ -62,9 +62,9 @@
       - Hybrid
     damage:
       types:
-        Blunt: 0.66
-        Piercing: 0.66
-        Slash: 0.66
+        Blunt: -0.66
+        Piercing: -0.66
+        Slash: -0.66
     healingBeginSound:
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
     healingEndSound:
