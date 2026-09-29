@@ -226,23 +226,23 @@ public sealed partial class MetabolizerSystem : EntitySystem
                 if (effect.Conditions != null && !CanMetabolizeEffect(actualEntity, ent, solutionEntity.Value, effect.Conditions))
                     continue;
 
-                ApplyEffect(effect, effectScale); // Starlight
+                ApplyEffect(effect, effectScale);
 
             }
 
             // TODO: We should have to do this with metabolism. ReagentEffect struct needs refactoring and so does metabolism!
-            void ApplyEffect(EntityEffect effect, float effectScale) // Starlight: +scale
+            void ApplyEffect(EntityEffect effect, float effectScale)
             {
                 switch (effect)
                 {
                     case ModifyLungGas:
-                        _entityEffects.ApplyEffect(ent, effect, effectScale); // Starlight
+                        _entityEffects.ApplyEffect(ent, effect, effectScale);
                         break;
                     case AdjustReagent:
-                        _entityEffects.ApplyEffect(solutionEntity.Value, effect, effectScale); // Starlight
+                        _entityEffects.ApplyEffect(solutionEntity.Value, effect, effectScale);
                         break;
                     default:
-                        _entityEffects.ApplyEffect(actualEntity, effect, effectScale); // Starlight
+                        _entityEffects.ApplyEffect(actualEntity, effect, effectScale);
                         break;
                 }
             }
