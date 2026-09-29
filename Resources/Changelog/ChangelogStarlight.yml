@@ -1,11 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: "Space Mall: Added Laundry Rooms, Round Tables, Box Shelves, Random Medical Vend Markers, K9's, Assistant Managers, Mail Boxes, a plumbing line from Chemistry to Brigmedical, and removed Salvage from the station."
-    type: Tweak
-  id: 408585
-  time: '2026-09-14T11:16:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6132
 - author: Caws
   changes:
   - message: (Silica) Mailboxes.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408984
   time: '2026-09-29T17:00:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6361
+- author: redmushie
+  changes:
+  - message: Air injectors now correctly show enabled/disabled state when initially spawned during mapping.
+    type: Fix
+  id: 408985
+  time: '2026-09-29T17:30:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6392
 Order: -1
