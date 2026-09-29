@@ -1,13 +1,6 @@
 Entries:
 - author: Rhapsody (Pepta Vismahl)
   changes:
-  - message: Fixed the Transfer/Discard buttons in the ChemMaster's Classic layout not working correctly.
-    type: Fix
-  id: 408610
-  time: '2026-09-14T12:40:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6144
-- author: Rhapsody (Pepta Vismahl)
-  changes:
   - message: Extremely long chemical names in the ChemMaster now truncate.
     type: Tweak
   id: 408611
@@ -2799,4 +2792,11 @@ Entries:
   id: 409009
   time: '2026-09-29T19:34:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6334
+- author: infiniteb1u3
+  changes:
+  - message: Edited contents of agrichemkit manual to be more readable.
+    type: Tweak
+  id: 409010
+  time: '2026-09-29T19:34:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6363
 Order: -1
