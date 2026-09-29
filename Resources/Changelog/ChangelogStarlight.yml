@@ -1,13 +1,6 @@
 Entries:
 - author: Xale
   changes:
-  - message: Animals in different containers can no longer breed.
-    type: Tweak
-  id: 408636
-  time: '2026-09-14T21:10:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6085
-- author: Xale
-  changes:
   - message: Animal offspring will now be placed in the same container as the parent.
     type: Tweak
   id: 408637
@@ -2799,4 +2792,11 @@ Entries:
   id: 409035
   time: '2026-09-29T21:37:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6407
+- author: Hot Mic
+  changes:
+  - message: "Update Shipyard Shuttle: ISM \"Honeybee\" Mini-Flores. ISM has changed the interior design of the shuttle and now it's better, and the galaxy can see your well-grown plants."
+    type: Tweak
+  id: 409036
+  time: '2026-09-29T21:55:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6360
 Order: -1
