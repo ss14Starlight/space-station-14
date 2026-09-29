@@ -1,27 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Orwell) Added several toilet paper holders and hand sanitizers around station.
-    type: Add
-  id: 408613
-  time: '2026-09-14T12:40:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6155
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Added washroom to the bathroom area near hop, and another one near dorms.
-    type: Add
-  id: 408614
-  time: '2026-09-14T12:40:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6155
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Added a laundry machine to maints sauna, gen pop substation.
-    type: Add
-  id: 408615
-  time: '2026-09-14T12:40:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6155
-- author: Cvlancer
-  changes:
   - message: (Orwell) Added a laundry machine to captains bathroom alongside increasing captains bathroom size.
     type: Add
   id: 408616
@@ -2799,4 +2778,25 @@ Entries:
   id: 409012
   time: '2026-09-29T20:08:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6369
+- author: Arkanic
+  changes:
+  - message: Fix reagent fires not working.
+    type: Fix
+  id: 409013
+  time: '2026-09-29T20:08:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6372
+- author: Arkanic
+  changes:
+  - message: Fix atmos gases not igniting, and hypernob not moderating ignition.
+    type: Fix
+  id: 409014
+  time: '2026-09-29T20:08:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6372
+- author: Arkanic
+  changes:
+  - message: Prevent items in bags, containers, pockets, and hands from igniting puddles on the floor. Don't slip with a welder in your hand though!.
+    type: Fix
+  id: 409015
+  time: '2026-09-29T20:08:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6372
 Order: -1
