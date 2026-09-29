@@ -1,13 +1,6 @@
 Entries:
 - author: Conflee
   changes:
-  - message: 'Fland: Added Laundry Rooms, Round Tables, Box Shelves, Random Medical Vend Markers, Evidence Room, Assistant Managers, and removed Salvage from the station.'
-    type: Tweak
-  id: 408583
-  time: '2026-09-14T11:16:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6132
-- author: Conflee
-  changes:
   - message: 'Kiloton: Added Laundry Rooms, Round Tables, Box Shelves, Random Medical Vend Markers, Evidence Room, Assistant Managers, and removed Salvage from the station.'
     type: Tweak
   id: 408584
@@ -2799,4 +2792,11 @@ Entries:
   id: 408982
   time: '2026-09-29T14:56:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6374
+- author: qbrx
+  changes:
+  - message: Brute automender now heals instead of damage.
+    type: Fix
+  id: 408983
+  time: '2026-09-29T14:56:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6397
 Order: -1
