@@ -217,7 +217,7 @@ public sealed partial class MetabolizerSystem : EntitySystem
             {
                 if (scale < effect.MinScale)
                     continue;
-                var effectScale = Math.Min(scale, effect.MaxScale ?? scale); // Starlight
+                var effectScale = Math.Min(scale, effect.MaxScale ?? scale);
 
                 if (rand.NextFloat() >= effect.Probability)
                     continue;
