@@ -36,7 +36,7 @@ public sealed partial class StartingGearPrototype : IPrototype, IInheritingProto
 
     [DataField]
     [AlwaysPushInheritance]
-    public Dictionary<string, EntProtoId> Organs { get; set;} = new();
+    public Dictionary<string, OrganEntry> Organs { get; set;} = new();
 
     [DataField]
     [AlwaysPushInheritance]
@@ -66,7 +66,7 @@ public interface IEquipmentLoadout
     /// <summary>
     /// Inserts organ entites into the entity
     /// </summary>
-    public Dictionary<string, EntProtoId> Organs { get; set; }
+    public Dictionary<string, OrganEntry> Organs { get; set; }
 
     /// <summary>
     /// Inserts body part entites into the entity

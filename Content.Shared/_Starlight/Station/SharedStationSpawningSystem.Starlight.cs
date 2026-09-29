@@ -55,9 +55,9 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
 
         var coords = _xformSystem.GetMapCoordinates(entity);
 
-        foreach (var (slotName, entProto) in startingGear.Organs)
+        foreach (var (slotName, organEntry) in startingGear.Organs)
         {
-            var spawned = Spawn(entProto, coords);
+            var spawned = Spawn(organEntry.Proto, coords);
 
             if (!TryComp<OrganComponent>(spawned, out var organComp))
             {
@@ -65,7 +65,7 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
                 continue;
             }
 
-            if (!TryInsertOrgan(entity, body, slotName, spawned, organComp))
+            if (!TryInsertOrgan(entity, body, slotName, spawned, organComp, organEntry.Replace))
                 Del(spawned);
         }
     }
@@ -93,22 +93,45 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
         BodyComponent body,
         string slotName,
         EntityUid organUid,
-        OrganComponent organComp)
+        OrganComponent organComp,
+        bool replace)
     {
-        var containerId = SharedBodySystem.GetPartSlotContainerId(slotName);
 
         foreach (var (ownerUid, partComp) in _body.GetBodyChildren(bodyEntity, body))
         {
-            foreach (var (organName, organSlot) in partComp.Organs)
+            if (!organHasKey(partComp, slotName))
+                continue;
+
+            if (replace)
             {
-                if (slotName == organName)
+                var containerId = SharedBodySystem.GetOrganContainerId(slotName);
+
+                if (_containers.TryGetContainer(ownerUid, containerId, out var container) 
+                    && container.ContainedEntities.Count > 0)
                 {
-                    return _body.InsertOrgan(ownerUid, organUid, slotName, partComp, organComp);
+                    var preexistingOrganId = container.ContainedEntities[0];
+                    if (!_body.RemoveOrgan(preexistingOrganId))
+                        Log.Warning($"Failed to remove pre-existing organ in slot {slotName}.");
+
+                    Del(preexistingOrganId);
                 }
             }
-            
-        }
 
+            
+            return _body.InsertOrgan(ownerUid, organUid, slotName, partComp, organComp);
+        }
+        
+        return false;
+    }
+
+    private bool organHasKey(BodyPartComponent partComp, string key)
+    {
+        foreach (var (slotId, _) in partComp.Organs)
+        {
+            if (key == slotId)
+                return true;
+        }
+        
         return false;
     }
 }

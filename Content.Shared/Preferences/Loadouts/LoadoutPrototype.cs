@@ -53,7 +53,7 @@ public sealed partial class LoadoutPrototype : IPrototype, IEquipmentLoadout
     #region Starlight
     /// <inheritdoc />
     [DataField]
-    public Dictionary<string, EntProtoId> Organs { get; set; } = new();
+    public Dictionary<string, OrganEntry> Organs { get; set; } = new();
 
     /// <inheritdoc />
     [DataField]
