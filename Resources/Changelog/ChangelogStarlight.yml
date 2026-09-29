@@ -1,34 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Silica) K9 jobspawn.
-    type: Add
-  id: 408589
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
-  - message: (Silica) New counters.
-    type: Add
-  id: 408590
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
-  - message: (Silica) Assistant Managers.
-    type: Add
-  id: 408591
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
-  - message: (Silica) Washing machines to SEC and MED.
-    type: Add
-  id: 408592
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
   - message: (Silica) Moved Mail Room to be its own thing.
     type: Add
   id: 408593
@@ -2799,4 +2771,32 @@ Entries:
   id: 408988
   time: '2026-09-29T18:05:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5735
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed various systems not considering soft critical as critical.
+    type: Fix
+  id: 408989
+  time: '2026-09-29T18:37:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6320
+- author: STARLIGHT TEAM
+  changes:
+  - message: Zombification also buffs soft critical thresholds.
+    type: Fix
+  id: 408990
+  time: '2026-09-29T18:37:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6320
+- author: STARLIGHT TEAM
+  changes:
+  - message: Expies eyes actually glow at round start.
+    type: Fix
+  id: 408991
+  time: '2026-09-29T18:37:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6320
+- author: STARLIGHT TEAM
+  changes:
+  - message: latched K9s should not longer deal damage or critical or soft critical targets.
+    type: Fix
+  id: 408992
+  time: '2026-09-29T18:37:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6320
 Order: -1
