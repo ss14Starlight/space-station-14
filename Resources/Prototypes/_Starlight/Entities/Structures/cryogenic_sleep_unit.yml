@@ -1,0 +1,23 @@
+# Latejoin Departmental Spawns
+- type: entity
+  parent: CryogenicSleepUnit
+  id: CryogenicSleepUnitSpawnerLateJoin
+  categories: [ ShouldMapStation ] # Starlight - these are always required for latejoining
+  suffix: Spawner, LateJoin
+  components:
+    - type: ContainerSpawnPoint
+      containerId: storage
+      spawnType: LateJoin
+      department: ITG
+
+# Latejoin Departmental Spawns
+- type: entity
+  parent: CryogenicSleepUnit
+  id: CryogenicSleepUnitSpawnerLateJoin
+  categories: [ ShouldMapStation ] # Starlight - these are always required for latejoining
+  suffix: Spawner, LateJoin
+  components:
+    - type: ContainerSpawnPoint
+      containerId: storage
+      spawnType: LateJoin
+      department: Command
