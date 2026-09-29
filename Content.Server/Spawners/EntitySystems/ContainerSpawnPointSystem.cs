@@ -26,7 +26,7 @@ public sealed partial class ContainerSpawnPointSystem : EntitySystem
         SubscribeLocalEvent<PlayerSpawningEvent>(HandlePlayerSpawning, before: new []{ typeof(SpawnPointSystem) });
     }
 
-    //starlight almost a whole damn rewrite
+    //starlight priority spawning
     private bool IsJobAllowed(ContainerSpawnPointComponent spawnPoint, ProtoId<JobPrototype>? job)
     {
         if (job == null)
@@ -85,10 +85,12 @@ public sealed partial class ContainerSpawnPointSystem : EntitySystem
                     return;
                 }
             }
+            //starlight end
         }
 
         var query = EntityQueryEnumerator<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>();
         var possibleContainers = new List<Entity<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>>();
+        //starlight
         var spawnPriority = -1;
 
         while (query.MoveNext(out var uid, out var spawnPoint, out var container, out var xform))
@@ -116,6 +118,7 @@ public sealed partial class ContainerSpawnPointSystem : EntitySystem
             if (priority == spawnPriority)
                 possibleContainers.Add((uid, spawnPoint, container, xform));
         }
+        //starlight end
 
         if (possibleContainers.Count == 0)
             return;
