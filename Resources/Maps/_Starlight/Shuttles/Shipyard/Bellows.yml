@@ -35,7 +35,7 @@ entities:
       name: GTS-A1-100KL "Bellows"
     - type: Transform
       parent: invalid
-      pos: 58.5,15.625
+      pos: -3.5,-8
     - type: MapGrid
       chunks:
         0,0:
