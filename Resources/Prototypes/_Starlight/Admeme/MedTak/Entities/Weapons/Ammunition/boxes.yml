@@ -71,7 +71,7 @@
     whitelist:
       tags:
         - RoundLVA
-    capacity: 75
+    capacity: 60
   - type: Sprite
     layers:
     - state: LVA_box
