@@ -1,11 +1,4 @@
 Entries:
-- author: DenneMiao
-  changes:
-  - message: Added four new vinyls by randomcuts.
-    type: Add
-  id: 408612
-  time: '2026-09-14T12:40:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6151
 - author: Cvlancer
   changes:
   - message: (Orwell) Added several toilet paper holders and hand sanitizers around station.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409011
   time: '2026-09-29T20:08:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6381
+- author: qbrx
+  changes:
+  - message: Fixed mechs becoming super laggy to pilot after firing their guns.
+    type: Fix
+  id: 409012
+  time: '2026-09-29T20:08:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6369
 Order: -1
