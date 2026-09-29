@@ -36,4 +36,18 @@ public sealed partial class GunWieldBonusComponent : Component
 
     [DataField]
     public LocId? WieldBonusExamineMessage = "gunwieldbonus-component-examine";
+
+    #region Starlight
+    [DataField, AutoNetworkedField]
+    public float MinAngleDivider = 1f;
+
+    [DataField, AutoNetworkedField]
+    public float MaxAngleDivider = 1f;
+
+    [DataField, AutoNetworkedField]
+    public float AngleDecayDivider = 1f;
+
+    [DataField, AutoNetworkedField]
+    public float AngleIncreaseDivider = 1f;
+    #endregion
 }

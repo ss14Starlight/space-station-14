@@ -63,6 +63,31 @@
         },
         {
           "name": "rodentia2"
+        },
+        {
+            "name": "sawian0",
+            "copyright": "Modified from base talking by DocMoth",
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "sawian3",
+            "copyright": "Modified from base talking by DocMoth",
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
         }
     ]
 }

@@ -25,3 +25,13 @@
   strategy: !type:ClampedHslColoration
     saturation: [0.0, 0.60]
     lightness: [0.2, 0.9]
+
+- type: skinColoration
+  id: ExperimentColors
+  strategy: !type:ClampedHslColoration
+    hue: [0.0972, 0.125]
+    saturation: [0.90, 1]
+    lightness: [0.90, 1]
+
+
+

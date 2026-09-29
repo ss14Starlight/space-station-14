@@ -3,6 +3,7 @@ using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
+using Content.Shared.Localizations;
 using Content.Shared.Verbs;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -54,6 +55,8 @@ public sealed partial class DamageExamineSystem : EntitySystem
     private FormattedMessage GetDamageExamine(DamageSpecifier damageSpecifier, string? type = null)
     {
         var msg = new FormattedMessage();
+        damageSpecifier = damageSpecifier.DamageGroupDict.Count == 0 // Starlight
+            ? damageSpecifier : damageSpecifier.ResolveGroups(_prototype); // Starlight
 
         if (string.IsNullOrEmpty(type))
         {
@@ -78,6 +81,27 @@ public sealed partial class DamageExamineSystem : EntitySystem
                 msg.AddMarkupOrThrow(Loc.GetString("damage-value", ("type", _prototype.Index<DamageTypePrototype>(damage.Key).LocalizedName), ("amount", damage.Value)));
             }
         }
+
+        #region Starlight
+        if (damageSpecifier.MixMax != null && damageSpecifier.MixMax.Value < FixedPoint2.Zero)
+        {
+            var targets = new List<string>();
+            foreach (var group in damageSpecifier.MixMax.Groups)
+            {
+                targets.Add(_prototype.Index<DamageGroupPrototype>(group).LocalizedName);
+            }
+
+            foreach (var damageType in damageSpecifier.MixMax.Types)
+            {
+                targets.Add(_prototype.Index<DamageTypePrototype>(damageType).LocalizedName);
+            }
+
+            msg.PushNewline();
+            msg.AddMarkupOrThrow(Loc.GetString("damage-mixmax-value",
+                ("amount", -damageSpecifier.MixMax.Value),
+                ("types", ContentLocalizationManager.FormatList(targets))));
+        }
+        #endregion
 
         return msg;
     }

@@ -21,27 +21,14 @@ using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes; // Starlight
-using Prometheus;
 using Content.Shared._Starlight.Voting; //Starlight
+using Content.Server._Starlight.Statistics;
 
 namespace Content.Server.Voting.Managers
 {
     public sealed partial class VoteManager
     {
 
-        #region Starlight data collection
-        private static readonly Counter _gamemode_vote = Metrics.CreateCounter(
-            "sl_gamemode_vote",
-            "Gamemode vote results",
-            [ "option" ]
-        );
-
-        private static readonly Counter _map_vote = Metrics.CreateCounter(
-            "sl_map_vote",
-            "Map/Station vote results",
-            [ "option" ]
-        );
-        #endregion
         [Dependency] private IPlayerLocator _locator = default!;
         [Dependency] private ILogManager _logManager = default!;
         [Dependency] private IBanManager _bans = default!;
@@ -50,6 +37,7 @@ namespace Content.Server.Voting.Managers
         private VotingSystem? _votingSystem;
         private RoleSystem? _roleSystem;
         private GameTicker? _gameTicker;
+        private RoundStatisticsSystem? _roundStatistics; // Starlight
 
         private readonly Dictionary<string, int> _presetCooldown = new();
 
@@ -315,14 +303,18 @@ namespace Content.Server.Voting.Managers
                     }
                 }
 
-                #region Starlight
+                // Starlight Start
                 for (int i = 0; i < options.Options.Count; i++)
                 {
-                    _gamemode_vote.WithLabels(
-                        options.Options[i].text
-                    ).Inc(args.Votes[i]);
+                    var option = (GamePresetPrototype) options.Options[i].data;
+                    _roundStatistics ??= _entityManager.System<RoundStatisticsSystem>();
+                    _roundStatistics.RecordVoteResult(
+                        "gamemode",
+                        option.ID,
+                        args.Votes[i],
+                        option.ID == pickedPreset.ID);
                 }
-                #endregion
+                // Starlight End
                 //add the key we picked to the cooldown list
                 //if its secret, never add it
                 if (!(secretPreset != null && pickedPreset.ID == secretPreset.ID))
@@ -370,31 +362,48 @@ namespace Content.Server.Voting.Managers
 
             vote.OnFinished += (_, args) =>
             {
+                // Starlight Start
+                var topVotes = args.Votes.Max();
+                int pickedIndex;
                 GameMapPrototype picked;
                 if (args.Winner == null)
                 {
-                    picked = (GameMapPrototype) _random.Pick(args.Winners);
+                    List<int> tied = [];
+                    for (var i = 0; i < args.Votes.Count; i++)
+                        if (args.Votes[i] == topVotes)
+                            tied.Add(i);
+
+                    pickedIndex = _random.Pick(tied);
+                    picked = (GameMapPrototype) options.Options[pickedIndex].data;
                     _chatManager.DispatchServerAnnouncement(
                         Loc.GetString("ui-vote-map-tie"));
                 }
                 else
                 {
+                    pickedIndex = args.Votes.IndexOf(topVotes);
                     picked = (GameMapPrototype) args.Winner;
                 }
+                // Starlight End
                 _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-win"));
 
                 _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Map vote finished: {picked.MapName}");
                 var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
                 if (ticker.CanUpdateMap())
                 {
-                    #region Starlight
+                    // Starlight Start
+                    var secretOptionText = Loc.GetString("ui-vote-secret-map");
                     for (int i = 0; i < options.Options.Count; i++)
                     {
-                        _map_vote.WithLabels(
-                            options.Options[i].text
-                        ).Inc(args.Votes[i]);
+                        var isSecret = options.Options[i].text == secretOptionText;
+                        var option = (GameMapPrototype) options.Options[i].data;
+                        _roundStatistics ??= _entityManager.System<RoundStatisticsSystem>();
+                        _roundStatistics.RecordVoteResult(
+                            "map",
+                            isSecret ? "Secret" : option.ID,
+                            args.Votes[i],
+                            i == pickedIndex);
                     }
-                    #endregion
+                    // Starlight End
                     if (_gameMapManager.CheckMapExists(picked.ID))
                     {
                         _gameMapManager.SelectMap(picked.ID);
