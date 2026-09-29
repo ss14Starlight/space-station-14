@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Silica) Mailboxes.
-    type: Add
-  id: 408586
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
   - message: (Silica) Radio Host.
     type: Add
   id: 408587
@@ -2799,4 +2792,11 @@ Entries:
   id: 408985
   time: '2026-09-29T17:30:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6392
+- author: redmushie
+  changes:
+  - message: Reduced pipe volume by 50%.
+    type: Tweak
+  id: 408986
+  time: '2026-09-29T17:30:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6362
 Order: -1
