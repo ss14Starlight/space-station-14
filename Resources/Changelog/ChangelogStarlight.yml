@@ -1,11 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Extremely long chemical names in the ChemMaster now truncate.
-    type: Tweak
-  id: 408611
-  time: '2026-09-14T12:40:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6144
 - author: DenneMiao
   changes:
   - message: Added four new vinyls by randomcuts.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409010
   time: '2026-09-29T19:34:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6363
+- author: Light
+  changes:
+  - message: Fixed the health analyzer UI after upstream merge.
+    type: Fix
+  id: 409011
+  time: '2026-09-29T20:08:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6381
 Order: -1
