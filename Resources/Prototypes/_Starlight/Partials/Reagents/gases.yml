@@ -1,4 +1,11 @@
 - type: !PartialOnly reagent
+  id: Oxygen
+  metabolisms:
+    Respiration:
+      effects:
+        - !CombineIndex:2 maxScale: 28 # Cap Vox oxygen breathing damage at ~20 per breath (inhale+exhale) to be sure there is time to respond.
+
+- type: !PartialOnly reagent
   id: NitrousOxide
   metabolisms:
     Respiration:
