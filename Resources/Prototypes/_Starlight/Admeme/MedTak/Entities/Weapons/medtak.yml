@@ -62,7 +62,7 @@
 # Rifle
 - type: entity
   name: CODE-9 "Compliance"
-  parent: [ BaseWeaponRifle, BaseVariableLightSettings, BaseMedTakContraband ]
+  parent: [ BaseWeaponRifle, BaseVariableMediumSettings, BaseMedTakContraband ]
   id: WeaponMedTakRifle
   description: "A bullpuped rifle designed for MedTak operators.\nAccepts MVA magazines."
   suffix: Admeme

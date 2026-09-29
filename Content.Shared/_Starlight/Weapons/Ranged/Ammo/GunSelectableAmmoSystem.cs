@@ -6,6 +6,7 @@ using Content.Shared.Popups;
 using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Hitscan.Events;
 using Content.Shared.Weapons.Hitscan.Systems;
+using Content.Shared.Interaction.Events;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._Starlight.Weapons.Ranged.Ammo;
@@ -23,6 +24,7 @@ public sealed partial class GunSelectableAmmoSystem : EntitySystem
         SubscribeLocalEvent<GunSelectableAmmoComponent, GunSelectableAmmoActionEvent>(OnSelectAmmoAction);
         SubscribeLocalEvent<HitscanBasicDamageComponent, HitscanTraceEvent>(OnHitscanShot, before: [typeof(HitscanBasicRaycastSystem)]);
         SubscribeLocalEvent<GunSelectableAmmoComponent, GunSelectableAmmoSelectMessage>(OnRadialSelected);
+        SubscribeLocalEvent<GunSelectableAmmoComponent, DroppedEvent>(OnDropped);
     }
 
     private void OnGetItemActions(Entity<GunSelectableAmmoComponent> ent, ref GetItemActionsEvent args)
@@ -51,6 +53,8 @@ public sealed partial class GunSelectableAmmoSystem : EntitySystem
             return;
     }
 
+    private void OnDropped(Entity<GunSelectableAmmoComponent> ent, ref DroppedEvent args) => _ui.CloseUi(ent.Owner, GunSelectableAmmoUiKey.Key, args.User);
+
     private bool SelectAmmo(Entity<GunSelectableAmmoComponent> ent, EntityUid user, int index)
     {
         if (ent.Comp.Settings.Count == 0)
@@ -63,7 +67,8 @@ public sealed partial class GunSelectableAmmoSystem : EntitySystem
         settingIndex = index;
 
         var setting = ent.Comp.Settings[settingIndex];
-        _popup.PopupClient(Loc.GetString(setting.Name) + " ammunition selected", user, user, PopupType.Medium);
+        var popup = Loc.GetString("setting-ammunition-selected", ("ammo", Loc.GetString(setting.Name)));
+        _popup.PopupClient(popup, user, user, PopupType.Medium);
 
         _audio.PlayPredicted(ent.Comp.SelectSound, ent, user);
 
