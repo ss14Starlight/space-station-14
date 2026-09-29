@@ -13,6 +13,10 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
     [Dependency] private SharedBodySystem _body = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
 
+
+    /// <summary>
+    /// Spawns and attaches body parts defined in the starting gear prototype
+    /// </summary>
     public void EquipBodyPartGear(EntityUid entity, IEquipmentLoadout? startingGear)
     {
         if (startingGear is null || startingGear.BodyParts.Count == 0)
@@ -30,7 +34,7 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
             if (!TryComp<BodyPartComponent>(spawned, out var partComp))
             {
                 Del(spawned);
-                return;
+                continue;
             }
 
             if (!TryAttachLimb(entity, body, slotName, spawned, partComp))
@@ -38,6 +42,9 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Spawns and attaches organs defined in the starting gear prototype
+    /// </summary>
     public void EquipOrganGear(EntityUid entity, IEquipmentLoadout? startingGear)
     {
         if (startingGear is null || startingGear.Organs.Count == 0)
@@ -55,7 +62,7 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
             if (!TryComp<OrganComponent>(spawned, out var organComp))
             {
                 Del(spawned);
-                return;
+                continue;
             }
 
             if (!TryInsertOrgan(entity, body, slotName, spawned, organComp))
@@ -96,8 +103,7 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
             {
                 if (slotName == organName)
                 {
-                    _body.InsertOrgan(ownerUid, organUid, slotName, partComp, organComp);
-                    return true;
+                    return _body.InsertOrgan(ownerUid, organUid, slotName, partComp, organComp);
                 }
             }
             
