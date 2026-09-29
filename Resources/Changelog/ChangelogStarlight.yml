@@ -1,13 +1,6 @@
 Entries:
 - author: Conflee
   changes:
-  - message: "Cog: Added Laundry Rooms, Round Tables, Box Shelves, Random Medical Vend Markers, Evidence Room, K9's, Assistant Managers, Mail Boxes, and removed Salvage from the station."
-    type: Tweak
-  id: 408582
-  time: '2026-09-14T11:16:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6132
-- author: Conflee
-  changes:
   - message: 'Fland: Added Laundry Rooms, Round Tables, Box Shelves, Random Medical Vend Markers, Evidence Room, Assistant Managers, and removed Salvage from the station.'
     type: Tweak
   id: 408583
@@ -2799,4 +2792,11 @@ Entries:
   id: 408981
   time: '2026-09-29T14:16:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6404
+- author: joshujo
+  changes:
+  - message: Air siphons, the active counterpart to the air injector!
+    type: Add
+  id: 408982
+  time: '2026-09-29T14:56:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6374
 Order: -1
