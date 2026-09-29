@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Silica) NCT spawns moved to Bridge.
-    type: Tweak
-  id: 408596
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
-  - message: (Silica) Increased maxPlayers to 150.
-    type: Tweak
-  id: 408597
-  time: '2026-09-14T11:46:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6142
-- author: Caws
-  changes:
   - message: (Silica) Moved Service lathe to the Bar.
     type: Tweak
   id: 408598
@@ -2799,4 +2785,18 @@ Entries:
   id: 408995
   time: '2026-09-29T18:37:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6318
+- author: Mack
+  changes:
+  - message: Add syncing for turret control panels.
+    type: Add
+  id: 408996
+  time: '2026-09-29T19:02:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6304
+- author: Mack
+  changes:
+  - message: Read only turret control panel.
+    type: Add
+  id: 408997
+  time: '2026-09-29T19:02:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6304
 Order: -1
