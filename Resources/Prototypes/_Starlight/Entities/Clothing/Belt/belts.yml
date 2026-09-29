@@ -407,7 +407,7 @@
 - type: entity
   parent: [ClothingBeltStorageBase, BaseSecurityContraband]
   id: ClothingPouchPeacekeeper
-  name: peacekeeper grenade pouch
+  name: peacekeeper shell pouch
   description: Tactical storage for peacekeeper shells.
   components:
   - type: Sprite
