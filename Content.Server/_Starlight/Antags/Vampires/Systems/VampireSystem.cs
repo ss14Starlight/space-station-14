@@ -317,29 +317,6 @@ public sealed partial class VampireSystem : EntitySystem
         return current <= max * 0.5f;
     }
 
-    private bool IsAlive(EntityUid uid, DamageableComponent? damageable, MobThresholdsComponent? thresholds)
-    {
-        damageable ??= CompOrNull<DamageableComponent>(uid);
-        thresholds ??= CompOrNull<MobThresholdsComponent>(uid);
-
-        if (damageable == null)
-            return true;
-
-        if (!_mobThreshold.TryGetDeadThreshold(uid, out var deadThreshold, thresholds) ||
-            deadThreshold == null ||
-            deadThreshold.Value == FixedPoint2.Zero)
-        {
-            return true;
-        }
-
-        var max = deadThreshold.Value.Float();
-        if (max <= 0f)
-            return true;
-
-        var current = damageable.TotalDamage.Float();
-        return current < max;
-    }
-
     private void DustEntity(EntityUid uid)
     {
         var coords = Transform(uid).Coordinates;
@@ -368,9 +345,8 @@ public sealed partial class VampireSystem : EntitySystem
         var before = comp.BloodFullness;
         var wasStarving = before <= 0f;
         var changed = false;
-        var damageable = CompOrNull<DamageableComponent>(uid);
-        var thresholds = CompOrNull<MobThresholdsComponent>(uid);
-        var alive = IsAlive(uid, damageable, thresholds); // No hunger while dead
+        var alive = !TryComp<MobStateComponent>(uid, out var mobState) ||
+                    mobState.CurrentState != Shared.Mobs.MobState.Dead; // No hunger while dead
 
         if (before > 0f && alive && _gameTicker.RunLevel < GameRunLevel.PostRound) // No hunger EOR
         {
