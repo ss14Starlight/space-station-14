@@ -1,6 +1,7 @@
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Random.Helpers;
 using Content.Shared.StatusEffectNew;
+using Content.Shared._Starlight.Sleepiness.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -61,7 +62,17 @@ public sealed partial class NarcolepsySystem : EntitySystem
                 narcolepsy.MinTimeBetweenIncidents + (narcolepsy.MaxTimeBetweenIncidents - narcolepsy.MinTimeBetweenIncidents) * rand.NextDouble() + duration;
             DirtyField(uid, narcolepsy, nameof(narcolepsy.NextIncidentTime));
 
-            _statusEffects.TryAddStatusEffectDuration(uid, SleepingSystem.StatusEffectForcedSleeping, duration);
+            // Starlight-start
+            if (HasComp<SleepingComponent>(uid))
+                continue;
+
+            if (!_statusEffects.TryAddStatusEffectDuration(uid, "StatusEffectSleepiness", out var statusEffect, duration) ||
+                statusEffect is null || !TryComp<SleepinessStatusEffectComponent>(statusEffect.Value, out var sleepiness))
+                continue;
+
+            sleepiness.SleepImmediately = true;
+            Dirty(statusEffect.Value, sleepiness);
+            // Starlight-end
         }
     }
 }

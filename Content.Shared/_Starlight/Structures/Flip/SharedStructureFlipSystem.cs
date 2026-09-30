@@ -94,7 +94,6 @@ public sealed partial class SharedStructureFlipSystem : EntitySystem
             NeedHand = true,
         });
 
-
     [SubscribeLocalEvent]
     private void OnFlipDoAfter(Entity<FlippableStructureComponent> ent, ref StructureFlipDoAfterEvent args)
     {
@@ -130,10 +129,8 @@ public sealed partial class SharedStructureFlipSystem : EntitySystem
         var wasAnchored = xform.Anchored;
 
         DamageSpecifier? damage = null;
-#pragma warning disable CS0618 // Blame wizdens, they make all numeric damage getters as obsolote, I don't care on "don't rely on abilty to determine numbers"
         if (TryComp<DamageableComponent>(target, out var damageComp) && _damageable.GetAllDamage((target, damageComp)) is { } oldDamage)
             damage = new DamageSpecifier(oldDamage);
-#pragma warning restore CS0618
 
         var rotation = faceUser
             ? GetRotationTowards(target, user, xform)
