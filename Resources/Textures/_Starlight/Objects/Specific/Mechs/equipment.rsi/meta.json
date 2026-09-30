@@ -9,6 +9,17 @@
   "states": [
     {
       "name": "exosuit_beacon"
+    },
+    {
+      "name": "mecha_sovieter"
+    },
+    {
+      "name": "inhand-left-sovieter",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-sovieter",
+      "directions": 4
     }
   ]
 }
