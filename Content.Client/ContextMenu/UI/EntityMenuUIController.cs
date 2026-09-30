@@ -18,6 +18,7 @@ using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.State;
 using Robust.Client.UserInterface;
+using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input;
@@ -58,6 +59,7 @@ namespace Content.Client.ContextMenu.UI
         [UISystemDependency] private readonly CombatModeSystem _combatMode = default!;
 
         private bool _updating;
+        private PopupContainer? _menuRoot;
 
         /// <summary>
         ///     This maps the currently displayed entities to the actual GUI elements.
@@ -90,11 +92,18 @@ namespace Content.Client.ContextMenu.UI
         /// <summary>
         ///     Given a list of entities, sort them into groups and them to a new entity menu.
         /// </summary>
-        public void OpenRootMenu(List<EntityUid> entities)
+        public void OpenRootMenu(List<EntityUid> entities, UIRoot? uiRoot = null)
         {
             // close any old menus first.
             if (_context.RootMenu.Visible)
                 _context.Close();
+
+            _menuRoot = uiRoot?.ModalRoot ?? _userInterfaceManager.ModalRoot;
+            if (_context.RootMenu.Parent != _menuRoot)
+            {
+                _context.RootMenu.Orphan();
+                _menuRoot.AddChild(_context.RootMenu);
+            }
 
             var entitySpriteStates = GroupEntities(entities);
             var orderedStates = entitySpriteStates.ToList();
@@ -289,7 +298,7 @@ namespace Content.Client.ContextMenu.UI
         private void AddGroupToUI(List<EntityUid> group)
         {
             EntityMenuElement element = new();
-            ContextMenuPopup subMenu = new(_context, element);
+            ContextMenuPopup subMenu = new(_context, element, _menuRoot!.Root);
 
             AddGroupToMenu(group, subMenu);
 
@@ -314,7 +323,7 @@ namespace Content.Client.ContextMenu.UI
         private void AddEntityToMenu(EntityUid entity, ContextMenuPopup menu)
         {
             var element = new EntityMenuElement(entity);
-            element.SubMenu = new ContextMenuPopup(_context, element);
+            element.SubMenu = new ContextMenuPopup(_context, element, _menuRoot!.Root);
             element.SubMenu.OnPopupOpen += () => _verb.OpenVerbMenu(entity, popup: element.SubMenu);
             element.SubMenu.OnPopupHide += element.SubMenu.MenuBody.RemoveAllChildren;
             _context.AddElement(menu, element);

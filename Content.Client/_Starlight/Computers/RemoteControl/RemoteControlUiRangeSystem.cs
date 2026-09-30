@@ -1,30 +1,29 @@
 using Content.Client._Starlight.Computers.RemoteControl;
-using Content.Shared.Hands.EntitySystems;
+using Content.Shared._Starlight.Computers.RemoteControl;
+using Content.Shared.Interaction;
 using Robust.Shared.GameObjects;
 
 namespace Content.Client._Starlight.Computers.RemoteControl;
 
-public sealed class RemoteControlUiRangeSystem : EntitySystem
+public sealed partial class RemoteControlUiRangeSystem : EntitySystem
 {
     private RemoteControlInterface _remoteControl = default!;
-    private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         _remoteControl = EntityManager.System<RemoteControlInterface>();
-        _hands = EntityManager.System<SharedHandsSystem>();
-        SubscribeLocalEvent<BoundUserInterfaceCheckRangeEvent>(OnCheckRange);
     }
 
+    [SubscribeLocalEvent]
     private void OnCheckRange(ref BoundUserInterfaceCheckRangeEvent args)
     {
-        if (_remoteControl.ControlledEntity is not { } remoteEntity
-            || (args.Target != remoteEntity
-                && (!_hands.TryGetActiveItem(remoteEntity, out var heldItem)
-                    || heldItem != args.Target)))
+        if (_remoteControl.ControlledEntity is not { } remoteEntity || args.UiKey is RemoteControlUIKey)
             return;
 
-        args.Result = BoundUserInterfaceRangeResult.Pass;
+        args.Result = _interaction.InRangeUnobstructed(remoteEntity, args.Target, args.Data.InteractionRange)
+            ? BoundUserInterfaceRangeResult.Pass
+            : BoundUserInterfaceRangeResult.Fail;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Content.Client.Construction;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._DEN.QuickConstruction.Components;
 using Content.Shared._DEN.QuickConstruction.Prototypes;
@@ -26,7 +27,17 @@ public sealed partial class QuickConstructionBoundUserInterface : BoundUserInter
     protected override void Open()
     {
         base.Open();
+        OpenMenu(remote: false);
+    }
 
+    public void OpenRemote()
+    {
+        base.Open();
+        OpenMenu(remote: true);
+    }
+
+    private void OpenMenu(bool remote)
+    {
         if (!EntMan.TryGetComponent<QuickConstructableComponent>(Owner, out var quickConstructable)
             || !_prototypeManager.TryIndex(quickConstructable.Category, out var prototype))
             return;
@@ -34,12 +45,16 @@ public sealed partial class QuickConstructionBoundUserInterface : BoundUserInter
         var models = ConvertToButtons(prototype.ConstructionEntries, prototype.CategoryEntries);
 
         _menu = this.CreateWindow<SimpleRadialMenu>();
-        _menu.Track(Owner);
         _menu.SetButtons(models);
+
+        // Starlight start
+        if (remote && EntMan.System<RemoteControlInterface>().OpenRemoteRadialMenu(_menu))
+            return;
+        // Starlight end
+
+        _menu.Track(Owner);
         _menu.OpenOverMouseScreenPosition();
     }
-
-    public void OpenRemote() => Open();
 
     // Starlight Edit Start
     private IEnumerable<RadialMenuOptionBase> ConvertToButtons(
@@ -110,9 +125,16 @@ public sealed partial class QuickConstructionBoundUserInterface : BoundUserInter
     {
         var constructionSystem = EntMan.System<ConstructionSystem>();
 
+        // Starlight start
+        if (EntMan.System<Content.Client._Starlight.Computers.RemoteControl.RemoteConstructionPlacementSystem>()
+            .TryBegin(proto))
+            return;
+        // Starlight end
+
         if (proto.Type == ConstructionType.Item)
         {
-            constructionSystem.TryStartItemConstruction(proto.ID);
+            if (!EntMan.System<RemoteControlInterface>().TryRequestItemConstruction(proto.ID))
+                constructionSystem.TryStartItemConstruction(proto.ID);
             return;
         }
 

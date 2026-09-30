@@ -429,23 +429,31 @@ namespace Content.Server.Construction
         // LEGACY CODE. See warning at the top of the file!
         private async void HandleStartStructureConstruction(TryStartStructureConstructionMessage ev, EntitySessionEventArgs args)
         {
+            if (args.SenderSession.AttachedEntity is not {Valid: true} user)
+            {
+                Log.Error($"Client sent {nameof(TryStartStructureConstructionMessage)} with no attached entity!");
+                return;
+            }
+
+            await TryStartStructureConstruction(ev, user, args.SenderSession);
+        }
+
+        public async Task TryStartStructureConstruction(
+            TryStartStructureConstructionMessage ev,
+            EntityUid user,
+            ICommonSession session)
+        {
             if (!PrototypeManager.TryIndex(ev.PrototypeName, out ConstructionPrototype? constructionPrototype))
             {
                 Log.Error($"Tried to start construction of invalid recipe '{ev.PrototypeName}'!");
-                RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack));
+                RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack), session);
                 return;
             }
 
             if (!PrototypeManager.TryIndex(constructionPrototype.Graph, out ConstructionGraphPrototype? constructionGraph))
             {
                 Log.Error($"Invalid construction graph '{constructionPrototype.Graph}' in recipe '{ev.PrototypeName}'!");
-                RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack));
-                return;
-            }
-
-            if (args.SenderSession.AttachedEntity is not {Valid: true} user)
-            {
-                Log.Error($"Client sent {nameof(TryStartStructureConstructionMessage)} with no attached entity!");
+                RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack), session);
                 return;
             }
 
@@ -464,9 +472,7 @@ namespace Content.Server.Construction
             var startNode = constructionGraph.Nodes[constructionPrototype.StartNode];
             var targetNode = constructionGraph.Nodes[constructionPrototype.TargetNode];
             var pathFind = constructionGraph.Path(startNode.Name, targetNode.Name);
-
-
-            if (_beingBuilt.TryGetValue(args.SenderSession, out var set))
+            if (_beingBuilt.TryGetValue(session, out var set))
             {
                 if (!set.Add(ev.Ack))
                 {
@@ -477,7 +483,7 @@ namespace Content.Server.Construction
             else
             {
                 var newSet = new HashSet<int> {ev.Ack};
-                _beingBuilt[args.SenderSession] = newSet;
+                _beingBuilt[session] = newSet;
             }
 
             var location = GetCoordinates(ev.Location);
@@ -496,10 +502,7 @@ namespace Content.Server.Construction
                 }
             }
 
-            void Cleanup()
-            {
-                _beingBuilt[args.SenderSession].Remove(ev.Ack);
-            }
+            void Cleanup() => _beingBuilt[session].Remove(ev.Ack);
 
             if (!_actionBlocker.CanInteract(user, null)
                 || !TryComp(user, out HandsComponent? hands) || _handsSystem.GetActiveItem((user, hands)) == null)
@@ -571,7 +574,7 @@ namespace Content.Server.Construction
                 return;
             }
 
-            RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack, GetNetEntity(structure)));
+            RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack, GetNetEntity(structure)), session);
             _adminLogger.Add(LogType.Construction, LogImpact.Low, $"{ToPrettyString(user):player} has turned a {ev.PrototypeName} construction ghost into {ToPrettyString(structure)} at {Transform(structure).Coordinates}");
             Cleanup();
         }

@@ -280,6 +280,24 @@ namespace Content.Client.Construction
                 return false;
             }
 
+            // Starlight start
+            return TrySpawnGhost(prototype, loc, dir, user, out ghost);
+            // Starlight end
+        }
+
+        // Starlight start
+        public bool TrySpawnGhost(
+            ConstructionPrototype prototype,
+            EntityCoordinates loc,
+            Direction dir,
+            EntityUid user,
+            [NotNullWhen(true)] out EntityUid? ghost,
+            bool showPopup = true)
+        {
+            ghost = null;
+            if (!user.IsValid())
+                return false;
+
             if (!TryGetRecipePrototype(prototype.ID, out var targetProtoId) || !PrototypeManager.TryIndex(targetProtoId, out EntityPrototype? targetProto))
                 return false;
 
@@ -292,7 +310,7 @@ namespace Content.Client.Construction
             if (!_examineSystem.InRangeUnOccluded(user, loc, 20f, predicate: predicate))
                 return false;
 
-            if (!CheckConstructionConditions(prototype, loc, dir, user, showPopup: true))
+            if (!CheckConstructionConditions(prototype, loc, dir, user, showPopup))
                 return false;
 
             ghost = Spawn("constructionghost", loc);
@@ -336,6 +354,7 @@ namespace Content.Client.Construction
 
             return true;
         }
+        // Starlight end
 
         private bool CheckConstructionConditions(ConstructionPrototype prototype, EntityCoordinates loc, Direction dir,
             EntityUid user, bool showPopup = false)

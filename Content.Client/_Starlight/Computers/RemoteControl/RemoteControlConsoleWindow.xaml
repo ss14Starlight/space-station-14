@@ -1,55 +1,55 @@
-<controls:FancyWindow xmlns="https://spacestation14.io"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+<remote:RemoteControlConsoleWindow xmlns="https://spacestation14.io"
+    xmlns:remote="clr-namespace:Content.Client._Starlight.Computers.RemoteControl"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:inventory="clr-namespace:Content.Client.UserInterface.Systems.Inventory.Controls"
     xmlns:alerts="clr-namespace:Content.Client.UserInterface.Systems.Alerts.Widgets"
     xmlns:ui="clr-namespace:Robust.Client.UserInterface.Controls"
     xmlns:viewport="clr-namespace:Content.Client.Viewport"
-    x:Class="Content.Client._Starlight.Computers.RemoteControl.RemoteControlConsoleWindow"
     Title="Remote control"
     SetSize="1024 770"
     MinSize="800 608">
-    <ui:LayoutContainer HorizontalExpand="True" VerticalExpand="True"
+        <LayoutContainer Name="RootContainer" Access="Public"
+                            HorizontalExpand="True" VerticalExpand="True"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True"
-                      ui:LayoutContainer.AnchorLeft="0" ui:LayoutContainer.AnchorTop="0"
-                      ui:LayoutContainer.AnchorRight="1" ui:LayoutContainer.AnchorBottom="1"
-                      ui:LayoutContainer.MarginLeft="8" ui:LayoutContainer.MarginTop="8"
-                      ui:LayoutContainer.MarginRight="-8" ui:LayoutContainer.MarginBottom="-8">
+                      LayoutContainer.AnchorLeft="0" LayoutContainer.AnchorTop="0"
+                      LayoutContainer.AnchorRight="1" LayoutContainer.AnchorBottom="1"
+                      LayoutContainer.MarginLeft="8" LayoutContainer.MarginTop="8"
+                      LayoutContainer.MarginRight="-8" LayoutContainer.MarginBottom="-8">
             <Label Name="StatusLabel" Access="Public" Text="No remote entity connected" HorizontalAlignment="Center" />
             <viewport:ScalingViewport Name="RemoteView" Access="Public" VerticalExpand="True" HorizontalExpand="True" Margin="0" MinSize="400 400" MouseFilter="Pass" />
         </BoxContainer>
         <BoxContainer Name="ActionButtons" Access="Public" Orientation="Horizontal"
                       HorizontalAlignment="Center"
-                      ui:LayoutContainer.AnchorLeft="0" ui:LayoutContainer.AnchorRight="1"
-                      ui:LayoutContainer.AnchorTop="0"
-                      ui:LayoutContainer.MarginTop="8" />
+                      LayoutContainer.AnchorLeft="0" LayoutContainer.AnchorRight="1"
+                      LayoutContainer.AnchorTop="0"
+                      LayoutContainer.MarginTop="8" />
         <controls:SwitchButton Name="ControlButton" Access="Public" MinWidth="140" MinHeight="32"
                                OnStateText="Controlling" OffStateText="Viewing"
-                               ui:LayoutContainer.AnchorLeft="1" ui:LayoutContainer.AnchorTop="0"
-                               ui:LayoutContainer.AnchorRight="1"
-                               ui:LayoutContainer.MarginLeft="-148" ui:LayoutContainer.MarginTop="8"
-                               ui:LayoutContainer.MarginRight="-8" />
-        <ui:LayoutContainer Name="InventoryButtons" Access="Public"
+                               LayoutContainer.AnchorLeft="1" LayoutContainer.AnchorTop="0"
+                               LayoutContainer.AnchorRight="1"
+                               LayoutContainer.MarginLeft="-148" LayoutContainer.MarginTop="8"
+                               LayoutContainer.MarginRight="-8" />
+        <LayoutContainer Name="InventoryButtons" Access="Public"
                       Visible="False"
-                      ui:LayoutContainer.AnchorLeft="0" ui:LayoutContainer.AnchorTop="1"
-                      ui:LayoutContainer.AnchorBottom="1"
-                      ui:LayoutContainer.MarginLeft="8" ui:LayoutContainer.MarginTop="-144"
-                      ui:LayoutContainer.MarginBottom="-80" />
+                       LayoutContainer.AnchorLeft="0" LayoutContainer.AnchorTop="1"
+                       LayoutContainer.AnchorBottom="1"
+                       LayoutContainer.MarginLeft="8" LayoutContainer.MarginTop="-144"
+                       LayoutContainer.MarginBottom="-80" />
         <TextureButton Name="InventoryToggleButton" Access="Public" MinSize="64 64"
-                       ui:LayoutContainer.AnchorLeft="0" ui:LayoutContainer.AnchorRight="0"
-                       ui:LayoutContainer.AnchorTop="1" ui:LayoutContainer.AnchorBottom="1"
-                       ui:LayoutContainer.MarginLeft="8" ui:LayoutContainer.MarginTop="-72"
-                       ui:LayoutContainer.MarginRight="-72" ui:LayoutContainer.MarginBottom="-8" />
+                       LayoutContainer.AnchorLeft="0" LayoutContainer.AnchorRight="0"
+                       LayoutContainer.AnchorTop="1" LayoutContainer.AnchorBottom="1"
+                       LayoutContainer.MarginLeft="8" LayoutContainer.MarginTop="-72"
+                       LayoutContainer.MarginRight="-72" LayoutContainer.MarginBottom="-8" />
         <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center"
-                      ui:LayoutContainer.AnchorLeft="0" ui:LayoutContainer.AnchorRight="1"
-                      ui:LayoutContainer.AnchorTop="1" ui:LayoutContainer.AnchorBottom="1"
-                      ui:LayoutContainer.MarginTop="-72" ui:LayoutContainer.MarginBottom="-8">
+                       LayoutContainer.AnchorLeft="0" LayoutContainer.AnchorRight="1"
+                       LayoutContainer.AnchorTop="1" LayoutContainer.AnchorBottom="1"
+                       LayoutContainer.MarginTop="-72" LayoutContainer.MarginBottom="-8">
             <inventory:ItemStatusPanel Name="ActiveDeviceStatusPanel" Access="Public" SetWidth="125" SetHeight="60" Margin="0 0 8 2" />
             <BoxContainer Name="HandButtons" Access="Public" Orientation="Horizontal" />
         </BoxContainer>
         <alerts:AlertsUI Name="RemoteAlerts" Access="Public" MouseFilter="Ignore"
-                         ui:LayoutContainer.AnchorLeft="0" ui:LayoutContainer.AnchorTop="0"
-                         ui:LayoutContainer.MarginLeft="8" ui:LayoutContainer.MarginTop="8" />
-    </ui:LayoutContainer>
-</controls:FancyWindow>
+                          LayoutContainer.AnchorLeft="0" LayoutContainer.AnchorTop="0"
+                          LayoutContainer.MarginLeft="8" LayoutContainer.MarginTop="8" />
+    </LayoutContainer>
+</remote:RemoteControlConsoleWindow>

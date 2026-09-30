@@ -1,9 +1,12 @@
 using Content.Client.Eye;
-using Content.Client.Actions;
+using Content.Client.Construction;
 using Content.Client._DEN.QuickConstruction.UI;
+using Content.Client._Starlight.UserInterface;
 using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared._DEN.QuickConstruction.Events;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Actions.Components;
+using Content.Shared.Silicons.Laws.Components;
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
@@ -40,15 +43,16 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
         _eyeLerpingSystem = EntMan.System<EyeLerpingSystem>();
         _remoteControl = EntMan.System<RemoteControlInterface>();
         _remoteControl.InteractionRequested += OnRemoteMenuInteraction;
-        _window = new RemoteControlConsoleWindow(EntMan.System<ActionsSystem>());
+        _remoteControl.ItemConstructionRequested += OnRemoteItemConstruction;
+        _window = this.CreatePopOutableWindow<RemoteControlConsoleWindow>(EntMan);
         _window.ToggleControl += ToggleControl;
         _window.RemoteInteractionPressed += RemoteInteractionPressed;
         _window.RemoteActionPressed += RemoteActionPressed;
         _window.RemoteHandPressed += RemoteHandPressed;
         _window.RemoteInventoryPressed += RemoteInventoryPressed;
         _window.InitializeViewport();
-        _window.OnClose += OnWindowClosed;
-        _window.OpenCentered();
+        _remoteControl.SetStatusWindow(_window);
+        _window.OnFinalClose += OnWindowClosed;
     }
 
     private void OnWindowClosed() => Close();
@@ -92,7 +96,9 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
             && controllerEntity == _playerManager.LocalEntity;
 
         _window.SetControlState(controlling, remoteState.Controller != null);
-        _remoteControl.SetControlledEntity(controlling ? _remoteEntity : null);
+        _remoteControl.SetControlledEntity(controlling ? _remoteEntity : null,
+            controlling ? _window.RemoteEye : null,
+            controlling ? _window.RemoteViewport : null);
 
         _remoteActionEntities.Clear();
         _remoteActionEntities.AddRange(remoteState.Actions);
@@ -140,7 +146,9 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
         {
             if (EntMan.TryGetEntity(action, out var actionEntity)
                 && actionEntity is { } uid
-                && EntMan.HasComponent<ActionComponent>(uid))
+                && EntMan.HasComponent<ActionComponent>(uid)
+                && (!EntMan.TryGetComponent<InstantActionComponent>(uid, out var instantAction)
+                    || instantAction.Event is not ToggleLawsScreenEvent))
                 actions.Add(uid);
         }
 
@@ -160,15 +168,45 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
     private void RemoteActionPressed(EntityUid action)
         => SendMessage(new RemoteControlActionMessage { Action = EntMan.GetNetEntity(action) });
 
+    private void OnRemoteItemConstruction(string prototypeName)
+        => SendMessage(new RemoteControlBuildItemConstructionMessage { PrototypeName = prototypeName });
+
     private void RemoteInteractionPressed(NetCoordinates coordinates, EntityUid? target, bool altInteract,
-        RemoteControlInteractionAction action)
-        => SendMessage(new RemoteControlInteractionMessage
+        bool activateInWorld,
+        RemoteControlInteractionAction action, AtmosPipeLayer? pipeLayer)
+    {
+        if (!altInteract
+            && action == RemoteControlInteractionAction.Interact
+            && EntMan.System<RemoteConstructionPlacementSystem>().TryCommit())
+            return;
+
+        if (!altInteract
+            && action == RemoteControlInteractionAction.Interact
+            && target is { } ghost
+            && EntMan.TryGetComponent<ConstructionGhostComponent>(ghost, out var ghostComp)
+            && ghostComp.Prototype is { } prototype)
+        {
+            var transform = EntMan.GetComponent<TransformComponent>(ghost);
+            SendMessage(new RemoteControlBuildConstructionMessage
+            {
+                Location = EntMan.GetNetCoordinates(transform.Coordinates),
+                PrototypeName = prototype.ID,
+                Angle = transform.LocalRotation,
+                Ack = ghost.GetHashCode(),
+            });
+            return;
+        }
+
+        SendMessage(new RemoteControlInteractionMessage
         {
             Coordinates = coordinates,
             Target = target is { } entity ? EntMan.GetNetEntity(entity) : null,
             AltInteract = altInteract,
+            ActivateInWorld = activateInWorld,
             Action = action,
+            PipeLayer = pipeLayer,
         });
+    }
 
     private void OnRemoteMenuInteraction(EntityUid target, bool altInteract, RemoteControlInteractionAction action)
     {
@@ -197,6 +235,8 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
         if (disposing)
         {
             _remoteControl.InteractionRequested -= OnRemoteMenuInteraction;
+            _remoteControl.ItemConstructionRequested -= OnRemoteItemConstruction;
+            _remoteControl.SetStatusWindow(null);
             _remoteControl.SetControlledEntity(null);
 
             if (_remoteEntity is { } remoteEntity)
@@ -208,7 +248,7 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
 
             if (_window is { } window)
             {
-                window.OnClose -= OnWindowClosed;
+                window.OnFinalClose -= OnWindowClosed;
                 window.ToggleControl -= ToggleControl;
                 window.RemoteInteractionPressed -= RemoteInteractionPressed;
                 window.RemoteActionPressed -= RemoteActionPressed;
@@ -218,9 +258,7 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
                 window.SetRemoteEntity(null);
                 window.SetConnected(false);
                 window.SetControlState(false, false);
-                if (window.IsOpen)
-                    window.Close();
-
+                window.DisposePopOut();
                 window.Dispose();
             }
         }

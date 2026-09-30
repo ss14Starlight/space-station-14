@@ -33,6 +33,8 @@ public sealed class RemoteControlInventorySlotState
 {
     public required string Name { get; init; }
     public required string Group { get; init; }
+    public required string TextureName { get; init; }
+    public required string FullTextureName { get; init; }
     public NetEntity? Item { get; init; }
     public bool HasStorage { get; init; }
 }

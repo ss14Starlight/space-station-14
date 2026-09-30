@@ -1,6 +1,8 @@
 using Robust.Shared.Serialization;
 using Robust.Shared.Map;
 using Content.Shared.Storage;
+using Content.Shared.Atmos.Components;
+using Robust.Shared.Maths;
 
 namespace Content.Shared._Starlight.Computers.RemoteControl;
 
@@ -41,7 +43,24 @@ public sealed class RemoteControlInteractionMessage : BoundUserInterfaceMessage
     public required NetCoordinates Coordinates { get; init; }
     public NetEntity? Target { get; init; }
     public bool AltInteract { get; init; }
+    public bool ActivateInWorld { get; init; }
     public RemoteControlInteractionAction Action { get; init; }
+    public AtmosPipeLayer? PipeLayer { get; init; }
+}
+
+[Serializable, NetSerializable]
+public sealed class RemoteControlBuildConstructionMessage : BoundUserInterfaceMessage
+{
+    public required NetCoordinates Location { get; init; }
+    public required string PrototypeName { get; init; }
+    public required Angle Angle { get; init; }
+    public required int Ack { get; init; }
+}
+
+[Serializable, NetSerializable]
+public sealed class RemoteControlBuildItemConstructionMessage : BoundUserInterfaceMessage
+{
+    public required string PrototypeName { get; init; }
 }
 
 [Serializable, NetSerializable]

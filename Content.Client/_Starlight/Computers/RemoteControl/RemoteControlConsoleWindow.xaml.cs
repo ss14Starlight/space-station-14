@@ -14,10 +14,13 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
 using Content.Client.Viewport;
 using Content.Client.UserInterface.Systems.Viewport;
+using Content.Client._Starlight.UserInterface;
 using Content.Shared.ActionBlocker;
 using Robust.Client.State;
 using Content.Client.Examine;
 using Content.Shared.Interaction;
+using Content.Client._Starlight.RCD;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.UserInterface;
@@ -33,8 +36,9 @@ using Robust.Shared.Maths;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Robust.Client.UserInterface.Controls;
 using Robust.Client.Player;
+using Robust.Client.Placement;
+using Robust.Client.UserInterface.Controls;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -42,7 +46,7 @@ using System.Numerics;
 namespace Content.Client._Starlight.Computers.RemoteControl;
 
 [GenerateTypedNameReferences]
-public sealed partial class RemoteControlConsoleWindow : FancyWindow
+public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 {
     [Dependency] private IEyeManager _eyeManager = default!;
     [Dependency] private IStateManager _stateManager = default!;
@@ -57,6 +61,7 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
     private readonly ActionBlockerSystem _actionBlocker;
     private readonly IPlayerManager _playerManager;
     [Dependency] private IInputManager _inputManager = default!;
+    [Dependency] private IPlacementManager _placementManager = default!;
     private readonly ItemStatusPanel _activeDeviceStatusPanel;
     private readonly TextureButton _inventoryToggleButton;
     private readonly Robust.Shared.Graphics.Eye _remoteEye = new();
@@ -64,19 +69,27 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
     private EntityUid? _remoteEntity;
     private bool _commandBindsRegistered;
     private bool _inventoryOpen;
+    private SimpleRadialMenu? _remoteRadialMenu;
+    private Vector2 _remoteMouseViewportPosition;
     public event Action? ToggleControl;
-    public event Action<NetCoordinates, EntityUid?, bool, RemoteControlInteractionAction>? RemoteInteractionPressed;
+    public event Action<NetCoordinates, EntityUid?, bool, bool, RemoteControlInteractionAction, AtmosPipeLayer?>? RemoteInteractionPressed;
     public event Action<EntityUid>? RemoteActionPressed;
     public event Action<string, RemoteControlHandAction>? RemoteHandPressed;
     public event Action<string, RemoteControlInventoryAction>? RemoteInventoryPressed;
 
+    protected override Control Control => RootContainer;
+
+    public IEye RemoteEye => _remoteEye;
+    public IViewportControl RemoteViewport => RemoteView;
+
     public override void Close()
     {
+        _remoteRadialMenu?.Close();
         UnregisterCommandBinds();
         base.Close();
     }
 
-    public RemoteControlConsoleWindow(ActionsSystem actionsSystem)
+    public RemoteControlConsoleWindow()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -85,7 +98,7 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
         _inventoryToggleButton = FindControl<TextureButton>("InventoryToggleButton");
         _inventoryToggleButton.TextureNormal = Theme.ResolveTextureOrNull("Slots/back")?.Texture;
         _inventoryToggleButton.OnPressed += _ => ToggleInventory();
-        _actionsSystem = actionsSystem;
+        _actionsSystem = _entityManager.System<ActionsSystem>();
         _actionBlocker = _entityManager.System<ActionBlockerSystem>();
         _playerManager = IoCManager.Resolve<IPlayerManager>();
         InitializeRemoteStatus();
@@ -94,6 +107,7 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
         _entityMenu = IoCManager.Resolve<IUserInterfaceManager>().GetUIController<EntityMenuUIController>();
         _examineSystem = _entityManager.System<ExamineSystem>();
         _verbSystem = _entityManager.System<VerbSystem>();
+        OnPopout += RegisterCommandBinds;
     }
 
     protected override void Opened()
@@ -117,18 +131,21 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
         if (_remoteControl.ControlledEntity is not { } remoteEntity)
             return false;
 
-        _examineSystem.DoExamine(targetEntity, userOverride: remoteEntity);
+        _examineSystem.DoExamine(targetEntity, userOverride: remoteEntity, uiRoot: RemoteView.Root);
         return true;
     }
 
     private bool HandleRemoteUse(in PointerInputCmdHandler.PointerInputCmdArgs args)
         => HandleRemoteInteraction(args, false);
 
+    private bool HandleRemoteActivateInWorld(in PointerInputCmdHandler.PointerInputCmdArgs args)
+        => HandleRemoteInteraction(args, false, activateInWorld: true);
+
     private bool HandleRemoteAltUse(in PointerInputCmdHandler.PointerInputCmdArgs args)
         => HandleRemoteInteraction(args, true);
 
     private bool HandleRemotePull(in PointerInputCmdHandler.PointerInputCmdArgs args)
-        => HandleRemoteInteraction(args, false, RemoteControlInteractionAction.TryPull);
+        => HandleRemoteInteraction(args, false, action: RemoteControlInteractionAction.TryPull);
 
     private bool HandleRemoteMovePulled(in PointerInputCmdHandler.PointerInputCmdArgs args)
     {
@@ -138,16 +155,22 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
             || puller.Pulling is null)
             return false;
 
-        return HandleRemoteInteraction(args, false, RemoteControlInteractionAction.MovePulledObject);
+        return HandleRemoteInteraction(args, false, action: RemoteControlInteractionAction.MovePulledObject);
     }
 
     private bool HandleRemoteContextMenu(in PointerInputCmdHandler.PointerInputCmdArgs args)
     {
-        if (_inputManager.IsKeyDown(Keyboard.Key.Control) && HandleRemoteMovePulled(args))
-            return true;
-
         if (args.State != BoundKeyState.Down || !RemoteView.GlobalRect.Contains(args.ScreenCoordinates.Position))
             return false;
+
+        if (_entityManager.System<RemoteConstructionPlacementSystem>().IsActive)
+        {
+            _entityManager.System<RemoteConstructionPlacementSystem>().Clear();
+            return true;
+        }
+
+        if (_inputManager.IsKeyDown(Keyboard.Key.Control) && HandleRemoteMovePulled(args))
+            return true;
 
         if (_remoteControl.ControlledEntity is not { } remoteEntity)
             return false;
@@ -156,12 +179,13 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
         if (!_verbSystem.TryGetEntityMenuEntities(mapPosition, remoteEntity, _remoteEye.DrawFov, out var entities))
             return false;
 
-        _entityMenu.OpenRootMenu(entities);
+        _entityMenu.OpenRootMenu(entities, RemoteView.Root);
         return true;
     }
 
     private bool HandleRemoteInteraction(in PointerInputCmdHandler.PointerInputCmdArgs args, bool altInteract,
-        RemoteControlInteractionAction action = RemoteControlInteractionAction.Interact)
+        RemoteControlInteractionAction action = RemoteControlInteractionAction.Interact,
+        bool activateInWorld = false)
     {
         if (!IoCManager.Resolve<IGameTiming>().IsFirstTimePredicted
             || args.State != BoundKeyState.Down
@@ -174,6 +198,7 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
             return false;
 
         var target = GetRemoteTarget(mapPosition);
+        var pipeLayer = _placementLayer;
 
         var coordinates = _mapManager.MapExists(mapPosition.MapId)
             && _mapManager.TryFindGridAt(mapPosition, out var grid, out _)
@@ -183,9 +208,16 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
             _entityManager.GetNetCoordinates(coordinates),
             target,
             altInteract,
-            action);
+            activateInWorld,
+            action,
+            pipeLayer);
         return true;
     }
+
+    private AtmosPipeLayer? _placementLayer
+        => _placementManager.CurrentMode is AlignRPDAtmosPipeLayers mode
+            ? mode.CurrentLayer
+            : null;
 
     private EntityUid? GetRemoteTarget(MapCoordinates coordinates)
         => _stateManager.CurrentState is GameplayStateBase screen
@@ -196,6 +228,11 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
     {
         base.FrameUpdate(args);
 
+        UpdateRemoteEye();
+    }
+
+    public void UpdateRemoteEye()
+    {
         if (_sourceEye == null)
             return;
 
@@ -205,8 +242,6 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
         _remoteEye.DrawFov = _sourceEye.DrawFov;
         _remoteEye.DrawLight = _sourceEye.DrawLight;
         _remoteEye.Rotation = _sourceEye.Rotation;
-
-        UpdateRemoteStatusIfDue();
     }
 
     public void InitializeViewport()
@@ -216,7 +251,37 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
         RemoteView.RenderScaleMode = ScalingViewportRenderScaleMode.Fixed;
         RemoteView.FixedRenderScale = 1;
         RemoteView.OnResized += OnViewportResized;
+        RemoteView.OnViewportMouseMove += OnRemoteViewportMouseMove;
         OnViewportResized();
+    }
+
+    private void OnRemoteViewportMouseMove(Vector2 position)
+    {
+        if (_remoteControl.ControlledEntity is not { })
+            return;
+
+        _remoteMouseViewportPosition = position;
+        _remoteControl.SetRemoteMousePosition(RemoteView.PixelToMap(position));
+    }
+
+    public bool OpenRemoteRadialMenu(SimpleRadialMenu menu)
+    {
+        if (_remoteControl.ControlledEntity is null || !RemoteView.Visible)
+            return false;
+
+        _remoteRadialMenu?.Close();
+        _remoteRadialMenu = menu;
+        menu.OnClose += OnRemoteRadialMenuClosed;
+        menu.OpenEmbedded(RootContainer, RemoteView.Position + RemoteView.Size / 2);
+        return true;
+    }
+
+    private void OnRemoteRadialMenuClosed()
+    {
+        if (_remoteRadialMenu is { } menu)
+            menu.OnClose -= OnRemoteRadialMenuClosed;
+
+        _remoteRadialMenu = null;
     }
 
     public void SetConnected(bool connected)
@@ -266,8 +331,6 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
             return;
 
         _remoteEntity = entity;
-        _nextRemoteAlertUpdate = TimeSpan.Zero;
-
         if (entity is { } remoteEntity)
             UpdateRemoteStatus(remoteEntity);
         else
@@ -359,7 +422,7 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
                 && heldEntity is { } heldUid
                 && _remoteEntity is { } remoteEntity)
             {
-                _examineSystem.DoExamine(heldUid, userOverride: remoteEntity);
+                _examineSystem.DoExamine(heldUid, userOverride: remoteEntity, uiRoot: RemoteView.Root);
             }
 
             args.Handle();
@@ -395,8 +458,8 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
 
             var slotButton = new SlotButton
             {
-                ButtonTexturePath = "Slots/pocket",
-                FullButtonTexturePath = "SlotBackground",
+                ButtonTexturePath = slot.TextureName,
+                FullButtonTexturePath = slot.FullTextureName,
                 StorageTexturePath = "Slots/back",
                 SlotName = slot.Name,
             };
@@ -440,6 +503,9 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
         CommandBinds.Builder
             .Bind(EngineKeyFunctions.Use,
                 new PointerInputCmdHandler(HandleRemoteUse, outsidePrediction: true))
+            .BindBefore(ContentKeyFunctions.ActivateItemInWorld,
+                new PointerInputCmdHandler(HandleRemoteActivateInWorld, outsidePrediction: true),
+                typeof(SharedInteractionSystem))
             .BindBefore(ContentKeyFunctions.AltActivateItemInWorld,
                 new PointerInputCmdHandler(HandleRemoteAltUse, outsidePrediction: true),
                 typeof(SharedInteractionSystem))
@@ -451,8 +517,9 @@ public sealed partial class RemoteControlConsoleWindow : FancyWindow
             .BindBefore(EngineKeyFunctions.UseSecondary,
                 new PointerInputCmdHandler(HandleRemoteContextMenu, outsidePrediction: true),
                 typeof(EntityMenuUIController))
-            .Bind(ContentKeyFunctions.ExamineEntity,
-                new PointerInputCmdHandler(HandleRemoteExamine, outsidePrediction: true))
+            .BindBefore(ContentKeyFunctions.ExamineEntity,
+                new PointerInputCmdHandler(HandleRemoteExamine, outsidePrediction: true),
+                typeof(ExamineSystem))
             .Register<RemoteControlConsoleWindow>();
         _commandBindsRegistered = true;
     }

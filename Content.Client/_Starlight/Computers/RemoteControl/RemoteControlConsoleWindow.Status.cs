@@ -2,6 +2,7 @@ using Content.Client.Alerts;
 using Content.Client.UserInterface.Systems.Alerts.Widgets;
 using Content.Shared.Alert;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -16,30 +17,26 @@ namespace Content.Client._Starlight.Computers.RemoteControl;
 public sealed partial class RemoteControlConsoleWindow
 {
     private ClientAlertsSystem _alertsSystem = default!;
+    private DamageableSystem _damageable = default!;
     private MobThresholdSystem _mobThreshold = default!;
     private PowerCellSystem _powerCell = default!;
     private SharedBatterySystem _battery = default!;
     private readonly Dictionary<AlertKey, AlertState> _remoteAlertStates = new();
-    private TimeSpan _nextRemoteAlertUpdate;
 
     private void InitializeRemoteStatus()
     {
         _alertsSystem = _entityManager.System<ClientAlertsSystem>();
+        _damageable = _entityManager.System<DamageableSystem>();
         _mobThreshold = _entityManager.System<MobThresholdSystem>();
         _powerCell = _entityManager.System<PowerCellSystem>();
         _battery = _entityManager.System<SharedBatterySystem>();
     }
 
-    private void UpdateRemoteStatusIfDue()
+    public void UpdateRemoteStatus()
     {
         if (_remoteEntity is not { } remoteEntity)
             return;
 
-        var timing = IoCManager.Resolve<IGameTiming>();
-        if (timing.CurTime < _nextRemoteAlertUpdate)
-            return;
-
-        _nextRemoteAlertUpdate = timing.CurTime + TimeSpan.FromSeconds(1);
         UpdateRemoteStatus(remoteEntity);
     }
 
@@ -68,7 +65,7 @@ public sealed partial class RemoteControlConsoleWindow
                 || _mobThreshold.TryGetThresholdForState(remoteEntity, MobState.Critical,
                     out maximumDamage, thresholds);
             var damageRatio = hasMaximumDamage && maximumDamage > 0
-                ? Math.Clamp((damageable.TotalDamage / maximumDamage.Value).Float(), 0f, 1f)
+                ? Math.Clamp((_damageable.GetTotalDamage((remoteEntity, damageable)) / maximumDamage.Value).Float(), 0f, 1f)
                 : 0f;
             severity = (short)MathF.Round(MathHelper.Lerp(
                 healthPrototype.MinSeverity,

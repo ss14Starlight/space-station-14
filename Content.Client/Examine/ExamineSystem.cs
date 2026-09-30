@@ -42,6 +42,7 @@ namespace Content.Client.Examine
         private EntityUid _examinedEntity;
         private EntityUid _examiningEntity;
         private Popup? _examineTooltipOpen;
+        private UIRoot? _examineTooltipRoot;
         private ScreenCoordinates _popupPos;
         private CancellationTokenSource? _requestCancelTokenSource;
         private int _idCounter;
@@ -81,6 +82,9 @@ namespace Content.Client.Examine
         {
             if (_examineTooltipOpen is not {Visible: true}) return;
             if (!_examinedEntity.Valid || _playerManager.LocalEntity is not { } player) return;
+
+            if (_examineTooltipRoot is not null)
+                return;
 
             if (_remoteControl.ControlledEntity == null && _examiningEntity != player)
                 return;
@@ -169,13 +173,13 @@ namespace Content.Client.Examine
             var entity = GetEntity(ev.EntityUid);
 
             OpenTooltip(player.Value, entity, out _, out _, ev.CenterAtCursor, ev.OpenAtOldTooltip, ev.KnowTarget,
-                _examiningEntity); // Starlight-edit
+                _examiningEntity, _examineTooltipRoot); // Starlight
             UpdateTooltipInfo(player.Value, entity, ev.Message, ev.Verbs, getVerbs: false);
         }
 
         public override void SendExamineTooltip(EntityUid player, EntityUid target, FormattedMessage message, bool getVerbs, bool centerAtCursor)
         {
-            OpenTooltip(player, target, out _, out _, centerAtCursor); // Starlight-ediit
+            OpenTooltip(player, target, out _, out _, centerAtCursor, examiner: _examiningEntity, uiRoot: _examineTooltipRoot); // Starlight
             UpdateTooltipInfo(player, target, message, getVerbs: getVerbs);
         }
 
@@ -186,21 +190,24 @@ namespace Content.Client.Examine
         /// </summary>
         public void OpenTooltip(EntityUid player, EntityUid target, out RichTextLabel? nameLabel, out string? name,
             bool centeredOnCursor = true, bool openAtOldTooltip = true, bool knowTarget = true,
-            EntityUid? examiner = null) // Starlight-edit: need to get the label oughh
+            EntityUid? examiner = null, UIRoot? uiRoot = null) // Starlight: optional examiner and uiRoot support
         {
             // Close any examine tooltip that might already be opened
             // Before we do that, save its position. We'll prioritize opening any new popups there if
             // openAtOldTooltip is true.
             ScreenCoordinates? oldTooltipPos = _examineTooltipOpen != null ? _popupPos : null;
+            var oldTooltipRoot = _examineTooltipOpen?.Root?.ModalRoot;
             CloseTooltip();
 
             // cache entity for Update function
             _examinedEntity = target;
             _examiningEntity = examiner ?? player;
+            _examineTooltipRoot = uiRoot;
 
             const float minWidth = 300;
 
-            if (openAtOldTooltip && oldTooltipPos != null)
+            var targetPopupRoot = uiRoot?.ModalRoot ?? _userInterfaceManager.ModalRoot;
+            if (openAtOldTooltip && oldTooltipPos != null && oldTooltipRoot == targetPopupRoot)
             {
                 _popupPos = oldTooltipPos.Value;
             }
@@ -216,7 +223,7 @@ namespace Content.Client.Examine
 
             // Actually open the tooltip.
             _examineTooltipOpen = new Popup { MaxWidth = 400 };
-            _userInterfaceManager.ModalRoot.AddChild(_examineTooltipOpen);
+            targetPopupRoot.AddChild(_examineTooltipOpen);
             var panel = new PanelContainer() { Name = "ExaminePopupPanel" };
             panel.AddStyleClass(StyleClassEntityTooltip);
             panel.ModulateSelfOverride = Color.LightGray.WithAlpha(0.90f);
@@ -417,7 +424,8 @@ namespace Content.Client.Examine
             }
         }
 
-        public void DoExamine(EntityUid entity, bool centeredOnCursor = true, EntityUid? userOverride = null)
+        public void DoExamine(EntityUid entity, bool centeredOnCursor = true, EntityUid? userOverride = null,
+            UIRoot? uiRoot = null) // Starlight: uiRoot support
         {
             var playerEnt = userOverride ?? _playerManager.LocalEntity;
             if (playerEnt == null)
@@ -425,7 +433,8 @@ namespace Content.Client.Examine
 
             FormattedMessage message;
 
-            OpenTooltip(playerEnt.Value, entity, out var label, out var name, centeredOnCursor, false); // Starlight-edit
+            OpenTooltip(playerEnt.Value, entity, out var label, out var name, centeredOnCursor, false,
+                examiner: userOverride, uiRoot: uiRoot); // Starlight: optional examiner and uiRoot support
 
             // Always update tooltip info from client first.
             // If we get it wrong, server will correct us later anyway.
@@ -475,6 +484,7 @@ namespace Content.Client.Examine
                 _requestCancelTokenSource.Cancel();
                 _requestCancelTokenSource = null;
             }
+
         }
     }
 
