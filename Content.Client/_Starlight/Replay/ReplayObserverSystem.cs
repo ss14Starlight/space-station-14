@@ -29,9 +29,9 @@ public sealed partial class ReplayObserverSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
 
-    private static readonly EntProtoId _hearingAction = "ActionReplayToggleGhostHearing";
-    private static readonly EntProtoId _playerOverlayAction = "ActionReplayTogglePlayerOverlay";
-    private static readonly EntProtoId _statusIconsAction = "ActionReplayToggleStatusIcons";
+    private static readonly EntProtoId _hearingActionProto = "ActionReplayToggleGhostHearing";
+    private static readonly EntProtoId _playerOverlayActionProto = "ActionReplayTogglePlayerOverlay";
+    private static readonly EntProtoId _statusIconsActionProto = "ActionReplayToggleStatusIcons";
 
     /// <summary>
     /// Deferred a frame so setup runs after GhostSystem's attach handling, which resets ghost visibility.
@@ -158,16 +158,16 @@ public sealed partial class ReplayObserverSystem : EntitySystem
             _actions.AddAction(uid, ref ghost.ToggleGhostsActionEntity, ghost.ToggleGhostsAction);
 
             // The regular hearing action is handled server-side.
-            _actions.AddAction(uid, ref ghost.ToggleGhostHearingActionEntity, _hearingAction);
+            _actions.AddAction(uid, ref ghost.ToggleGhostHearingActionEntity, _hearingActionProto);
             _actions.SetToggled(ghost.ToggleGhostHearingActionEntity, !_hearAll);
         }
 
         _overlayAction = null;
-        _actions.AddAction(uid, ref _overlayAction, _playerOverlayAction);
+        _actions.AddAction(uid, ref _overlayAction, _playerOverlayActionProto);
         _actions.SetToggled(_overlayAction, _overlayEnabled);
 
         _statusIconsAction = null;
-        _actions.AddAction(uid, ref _statusIconsAction, _statusIconsAction);
+        _actions.AddAction(uid, ref _statusIconsAction, _statusIconsActionProto);
         _actions.SetToggled(_statusIconsAction, _statusIconsEnabled);
         _statusIconsShown = false; // A fresh observer has none of the HUD components yet.
 
