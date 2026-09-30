@@ -5,9 +5,9 @@
   description: Literally the sturdiest thing you have ever seen.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Tables/abductor_table.rsi
+    sprite: _Starlight/Structures/Furniture/Tables/abductor_table.rsi
   - type: Icon
-    sprite: _Starlight/Structures/Tables/abductor_table.rsi
+    sprite: _Starlight/Structures/Furniture/Tables/abductor_table.rsi
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepFloor
@@ -19,9 +19,9 @@
   description: Looks like a good place to put a drink down.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Tables/steel_counter.rsi
+    sprite: _Starlight/Structures/Furniture/Tables/steel_counter.rsi
   - type: Icon
-    sprite: _Starlight/Structures/Tables/steel_counter.rsi
+    sprite: _Starlight/Structures/Furniture/Tables/steel_counter.rsi
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
@@ -63,9 +63,9 @@
   description: Looks like a good place to put a drink down.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Tables/wood_counter.rsi
+    sprite: _Starlight/Structures/Furniture/Tables/wood_counter.rsi
   - type: Icon
-    sprite: _Starlight/Structures/Tables/wood_counter.rsi
+    sprite: _Starlight/Structures/Furniture/Tables/wood_counter.rsi
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Wood
@@ -108,9 +108,9 @@
   description: Looks like a good place to put a drink down.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Tables/kitchen_counter.rsi
+    sprite: _Starlight/Structures/Furniture/Tables/kitchen_counter.rsi
   - type: Icon
-    sprite: _Starlight/Structures/Tables/kitchen_counter.rsi
+    sprite: _Starlight/Structures/Furniture/Tables/kitchen_counter.rsi
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
@@ -152,9 +152,9 @@
   description: Looks like a good place to put a drink down.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Tables/retro_counter_sw.rsi
+    sprite: _Starlight/Structures/Furniture/Tables/retro_counter_sw.rsi
   - type: Icon
-    sprite: _Starlight/Structures/Tables/retro_counter_sw.rsi
+    sprite: _Starlight/Structures/Furniture/Tables/retro_counter_sw.rsi
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
@@ -196,9 +196,9 @@
   description: Looks like a good place to put a drink down.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Tables/retro_counter_wo.rsi
+    sprite: _Starlight/Structures/Furniture/Tables/retro_counter_wo.rsi
   - type: Icon
-    sprite: _Starlight/Structures/Tables/retro_counter_wo.rsi
+    sprite: _Starlight/Structures/Furniture/Tables/retro_counter_wo.rsi
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
@@ -240,9 +240,9 @@
   description: Looks like a good place to put a drink down.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Tables/retro_counter_wt.rsi
+    sprite: _Starlight/Structures/Furniture/Tables/retro_counter_wt.rsi
   - type: Icon
-    sprite: _Starlight/Structures/Tables/retro_counter_wt.rsi
+    sprite: _Starlight/Structures/Furniture/Tables/retro_counter_wt.rsi
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
@@ -284,9 +284,9 @@
   description: Looks like a good place to put a drink down.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Tables/diner_counter.rsi
+    sprite: _Starlight/Structures/Furniture/Tables/diner_counter.rsi
   - type: Icon
-    sprite: _Starlight/Structures/Tables/diner_counter.rsi
+    sprite: _Starlight/Structures/Furniture/Tables/diner_counter.rsi
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic

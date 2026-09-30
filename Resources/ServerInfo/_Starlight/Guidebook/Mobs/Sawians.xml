@@ -17,11 +17,10 @@
     At [color=red]100 damage[/color] they enter "soft critical" state, where they can [color=yellow]crawl, talk, and use items. [/color]
     They will however take [color=red]Asphyxiation[/color] Damage,
     eventually passing out at [color=red]150 damage[/color] before ultimately dying at [color=red]200 damage[/color].
-    - Their extremely fast metabolism makes them great at healing most wounds, though it comes at the cost of highly increased hunger, which can kill them in extreme scenarios.
-    - They get hungry [color=red]3 times faster[/color] than humans, but they [color=green]regenerate health naturally[/color] while [color=orange]below 100 damage[/color],
-    and [color=green]have an additional healing[/color] while they are [color=red]not starving[/color],
-    effectively making them [color=green]heal three times faster[/color] while [color=red]not critical.[/color]
-    - While they are starving they gradually take [color=orange]0.2 Caustic[/color] damage every second until death.
+    - Their hastened metabolism makes them process chems and poisons faster.
+    - They get hungry and thirsty [color=red]3 times faster[/color] than humans, but they [color=green]have an additional healing[/color] while they are [color=red]not starving[/color],
+    effectively making them [color=green]heal twice as fast passively[/color] while [color=red]not critical.[/color]
+    - While they are starving they gradually take [color=orange]0.5 Caustic[/color] damage every second until death.
 
 
     #Conformity
