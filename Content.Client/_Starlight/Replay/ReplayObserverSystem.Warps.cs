@@ -18,6 +18,8 @@ public sealed partial class ReplayObserverSystem
 
     public List<GhostWarp> GetReplayWarps()
     {
+        UpdateMindJobPresence();
+
         var warps = new List<GhostWarp>();
         var local = _player.LocalEntity;
 

@@ -78,6 +78,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
     private void OnPlaybackStopped()
     {
         ShutdownPlayerOverlay();
+        ResetActionsBarOffset();
         ResetState();
     }
 
@@ -93,6 +94,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _hearAll = true;
         _overlayEnabled = false;
         _overlayRefreshAccumulator = 0f;
+        _replayHasMindJobs = false;
     }
 
     private void OnAttached(EntityUid uid, ReplaySpectatorComponent component, LocalPlayerAttachedEvent args)
@@ -122,6 +124,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
             SaveViewSettings(observer);
 
         UpdatePlayerOverlay(frameTime);
+        UpdateActionsBarOffset();
     }
 
     private void SetupObserver(EntityUid uid)

@@ -23,6 +23,10 @@ public sealed partial class WarpPointNetworkingSystem : EntitySystem
         SubscribeLocalEvent<WarpPointComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<WarpPointComponent, ComponentHandleState>(OnHandleState);
 
+        // Robust skips state for prototype components that were never dirtied, and NavMapSystem sets beacon warp
+        // names on map init without dirtying them.
+        SubscribeLocalEvent<WarpPointComponent, MapInitEvent>(OnMapInit);
+
         // NavMapSystem renames these without dirtying them. Handler order doesn't matter; state is read at send time.
         SubscribeLocalEvent<WarpPointComponent, NavMapBeaconConfigureBuiMessage>(OnBeaconConfigured);
     }
@@ -36,6 +40,12 @@ public sealed partial class WarpPointNetworkingSystem : EntitySystem
             return;
 
         ent.Comp.Location = state.Location;
+    }
+
+    private void OnMapInit(Entity<WarpPointComponent> ent, ref MapInitEvent args)
+    {
+        if (_net.IsServer)
+            Dirty(ent);
     }
 
     private void OnBeaconConfigured(Entity<WarpPointComponent> ent, ref NavMapBeaconConfigureBuiMessage args)

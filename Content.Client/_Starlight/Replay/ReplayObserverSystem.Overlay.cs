@@ -75,6 +75,8 @@ public sealed partial class ReplayObserverSystem
 
     private void RefreshPlayerList()
     {
+        UpdateMindJobPresence();
+
         var players = new Dictionary<NetUserId, PlayerInfo>();
 
         var query = AllEntityQuery<MindComponent>();
