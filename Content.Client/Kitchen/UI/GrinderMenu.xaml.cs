@@ -71,7 +71,7 @@ public sealed partial class GrinderMenu : FancyWindow
 
         var active = _grinder.IsActive((_owner, grinderComp));
         var beaker = _slots.GetItemOrNull(_owner, ReagentGrinderComponent.BeakerSlotId);
-        var powered = _power.IsPowered(_owner);
+        var powered = !grinderComp.NeedsPower || _power.IsPowered(_owner); // Starlight
         var hasInput = grinderComp.InputContainer.ContainedEntities.Any();
         var canGrind = hasInput && grinderComp.InputContainer.ContainedEntities.All(x => _grinder.CanGrind(x));
         var canJuice = hasInput && grinderComp.InputContainer.ContainedEntities.All(x => _grinder.CanJuice(x));

@@ -10,16 +10,11 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.EntityTable;
 using Content.Shared.Prototypes;
-using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.VendingMachines;
 using Content.Shared.Wires;
 using Robust.Shared.GameObjects;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-#region Starlight
-using Content.Shared._Starlight.Antags.Abductor.Prototypes;
-#endregion
 
 namespace Content.IntegrationTests.Tests
 {
@@ -43,87 +38,87 @@ namespace Content.IntegrationTests.Tests
         // Starlight end
 
         [TestPrototypes]
-        private const string Prototypes = @"
-- type: entity
-  name: HumanVendingDummy
-  id: HumanVendingDummy
-  components:
-  - type: Hands
-  - type: ComplexInteraction
-  - type: Body
-    prototype: Human
+        private const string Prototypes = """
+        -   type: entity
+            name: HumanVendingDummy
+            id: HumanVendingDummy
+            components:
+            -   type: Hands
+            -   type: ComplexInteraction
+            -   type: Body
+                prototype: Human
 
-- type: entity
-  parent: FoodSnackBase
-  id: TestRamen
-  name: TestRamen
+        -   type: entity
+            parent: FoodSnackBase
+            id: TestRamen
+            name: TestRamen
 
-- type: vendingMachineInventory
-  id: TestInventory
-  startingInventory:
-    TestRamen: 1
+        -   type: vendingMachineInventory
+            id: TestInventory
+            startingInventory:
+                TestRamen: 1
 
-- type: vendingMachineInventory
-  id: OtherTestInventory
-  startingInventory:
-    TestRamen: 3
+        -   type: vendingMachineInventory
+            id: OtherTestInventory
+            startingInventory:
+                TestRamen: 3
 
-- type: vendingMachineInventory
-  id: BigTestInventory
-  startingInventory:
-    TestRamen: 4
+        -   type: vendingMachineInventory
+            id: BigTestInventory
+            startingInventory:
+                TestRamen: 4
 
-- type: entity
-  parent: BaseVendingMachineRestock
-  id: TestRestockWrong
-  name: TestRestockWrong
-  components:
-  - type: VendingMachineRestock
-    canRestock:
-    - OtherTestInventory
+        -   type: entity
+            parent: BaseVendingMachineRestock
+            id: TestRestockWrong
+            name: TestRestockWrong
+            components:
+            -   type: VendingMachineRestock
+                canRestock:
+                - OtherTestInventory
 
-- type: entity
-  parent: BaseVendingMachineRestock
-  id: TestRestockCorrect
-  name: TestRestockCorrect
-  components:
-  - type: VendingMachineRestock
-    canRestock:
-    - TestInventory
+        -   type: entity
+            parent: BaseVendingMachineRestock
+            id: TestRestockCorrect
+            name: TestRestockCorrect
+            components:
+            -   type: VendingMachineRestock
+                canRestock:
+                - TestInventory
 
-- type: entity
-  parent: BaseVendingMachineRestock
-  id: TestRestockExplode
-  name: TestRestockExplode
-  components:
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 20
-      behaviors:
-      - !type:DumpRestockInventory
-      - !type:DoActsBehavior
-        acts: [ 'Destruction' ]
-  - type: VendingMachineRestock
-    canRestock:
-    - BigTestInventory
+        -   type: entity
+            parent: BaseVendingMachineRestock
+            id: TestRestockExplode
+            name: TestRestockExplode
+            components:
+            -   type: Damageable
+                damageContainer: Inorganic
+                damageModifierSet: Metallic
+            -   type: Destructible
+                thresholds:
+                -   trigger:
+                        !type:DamageTrigger
+                        damage: 20
+                    behaviors:
+                    -   !type:DumpRestockInventory
+                    -   !type:DoActsBehavior
+                        acts: [ 'Destruction' ]
+            -   type: VendingMachineRestock
+                canRestock:
+                - BigTestInventory
 
-- type: entity
-  parent: VendingMachine
-  id: VendingMachineTest
-  name: Test Ramen
-  components:
-  - type: Wires
-    layoutId: Vending
-  - type: VendingMachine
-    pack: TestInventory
-  - type: Sprite
-    sprite: error.rsi
-";
+        -   type: entity
+            parent: VendingMachine
+            id: VendingMachineTest
+            name: Test Ramen
+            components:
+            -   type: Wires
+                layoutId: Vending
+            -   type: VendingMachine
+                pack: TestInventory
+            -   type: Sprite
+                sprite: error.rsi
+        """;
 
         [Test]
         public async Task TestAllRestocksAreAvailableToBuy()
@@ -180,19 +175,20 @@ namespace Content.IntegrationTests.Tests
                 // which are spawned by EntityTableContainerFill on a CargoProduct.
                 foreach (var proto in prototypeManager.EnumeratePrototypes<CargoProductPrototype>())
                 {
-                    if (!proto.Product.HasValue) continue; // Starlight: We have gas orders, proto.Product will be null!
+                    if (proto.Product is not { } product)
+                        continue; // Starlight: gas orders do not have an entity product.
                     // If the cargo product's product is the restock itself, just remove it.
-                    restockEntities.Remove(proto.Product.Id);
+                    restockEntities.Remove(product.Id);
 
                     // Check if the product is an entity which spawns a restock.
-                    if (entitiesWhichSpawnRestocks.TryGetValue(proto.Product.Id, out var restocksSpawnedByProduct))
+                    if (entitiesWhichSpawnRestocks.TryGetValue(product.Id, out var restocksSpawnedByProduct))
                     {
                         foreach (var entry in restocksSpawnedByProduct)
                         {
                             restockEntities.Remove(entry);
                         }
 
-                        entitiesWhichSpawnRestocks.Remove(proto.Product.Id);
+                        entitiesWhichSpawnRestocks.Remove(product.Id);
                     }
                 }
                 // Any entities left in restockEntities are restocks which can't be bought from Cargo.

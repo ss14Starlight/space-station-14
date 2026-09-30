@@ -175,7 +175,7 @@ public sealed partial class GasTileDangerousTemperatureOverlay : Overlay
             () =>
             {
                 _grids.Clear();
-                _mapManager.FindGridsIntersecting(mapId, worldAABB, ref _grids);
+                _mapSys.FindGridsIntersecting(mapId, worldAABB, ref _grids);
 
                 foreach (var grid in _grids)
                 {

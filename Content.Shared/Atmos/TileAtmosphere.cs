@@ -157,7 +157,7 @@ public sealed class TileAtmosphere : IGasMixtureHolder
     /// Used to determine when LINDA should dismantle an excited group
     /// or extend its time alive.
     /// </summary>
-    [DataField("lastShare")]
+    [ViewVariables]
     public float LastShare;
 
     /// <summary>

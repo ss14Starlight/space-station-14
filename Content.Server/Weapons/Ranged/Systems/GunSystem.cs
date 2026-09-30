@@ -21,7 +21,6 @@ using Robust.Shared.Random;
 #region Starlight
 using Content.Shared.Mech.Components;
 using Robust.Server.GameObjects;
-using Robust.Shared.Random;
 #endregion Starlight
 
 namespace Content.Server.Weapons.Ranged.Systems;

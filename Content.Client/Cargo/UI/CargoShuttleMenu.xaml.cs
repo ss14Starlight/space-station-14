@@ -35,14 +35,13 @@ namespace Content.Client.Cargo.UI
                  if (!protoManager.Resolve(order.Product, out var productProto))
                      continue;
 
-                 var product = protoManager.Index<EntityPrototype>(productProto.Product);
-                 var productName = product.Name;
+                 var productName = productProto.Name;
                  var account = protoManager.Index(order.Account);
 
                  var row = new CargoOrderRow
                  {
                      Order = order,
-                     Icon = { Texture = sprites.Frame0(proto.Icon) }, // Starlight
+                     Icon = { Texture = sprites.Frame0(productProto.Icon) }, // Starlight
                      ProductName =
                      {
                          Text = Loc.GetString(

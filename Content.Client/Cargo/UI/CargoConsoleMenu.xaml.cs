@@ -214,7 +214,6 @@ namespace Content.Client.Cargo.UI
                 if (order.Approved || !_protoManager.Resolve(order.Product, out var productProto))
                     continue;
 
-                var product = _protoManager.Index<EntityPrototype>(productProto.Product);
                 var productName = productProto.Name;
                 var requester = !string.IsNullOrEmpty(order.Requester) ?
                     order.Requester : Loc.GetString("cargo-console-menu-order-row-alerts-requester-unknown");
@@ -228,7 +227,7 @@ namespace Content.Client.Cargo.UI
                     {
                         Text = Loc.GetString(
                             "cargo-console-menu-order-row-title",
-                            ("productName", order.ProductName),
+                            ("productName", productName),
                             ("orderAmount", order.OrderQuantity),
                             ("orderPrice", productProto.Cost)),
                     },
@@ -242,7 +241,7 @@ namespace Content.Client.Cargo.UI
                         },
                     },
 
-                    Icon = { Texture = _spriteSystem.Frame0(product) },
+                    Icon = { Texture = _spriteSystem.Frame0(productProto.Icon) },
 
                     ProductName =
                     {

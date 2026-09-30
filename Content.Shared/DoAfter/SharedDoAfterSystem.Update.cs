@@ -16,13 +16,13 @@ namespace Content.Shared.DoAfter;
 public abstract partial class SharedDoAfterSystem : EntitySystem
 {
     [Dependency] private IDynamicTypeFactory _factory = default!;
-#if EXCEPTION_TOLERANCE
     [Dependency] private SharedGravitySystem _gravity = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
-#endif
     [Dependency] private SharedHandsSystem _hands = default!;
+#if EXCEPTION_TOLERANCE
     [Dependency] private INetManager _netManager = default!;
     [Dependency] private IRuntimeLog _runtimeLog = default!;
+#endif
 
     private DoAfter[] _doAfters = Array.Empty<DoAfter>();
 
@@ -85,7 +85,6 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
                 throw; // No tolerance, just rethrow.
 #endif
             }
-
         }
     }
 

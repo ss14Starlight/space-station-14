@@ -2,7 +2,6 @@ using Content.Shared.Cargo.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using System.Text;
-using Content.Shared.Atmos.Prototypes;
 
 namespace Content.Shared.Cargo
 {
@@ -58,11 +57,6 @@ namespace Content.Shared.Cargo
             Requester = requester;
             Reason = reason;
             Account = account;
-            StationId = stationId; // Starlight BEGIN
-            CargoProductId = cargoProductId;
-            GasType = gasType;
-            GasMoles = gasMoles;
-            GasTemperature = gasTemp; // Starlight END
         }
 
         public void SetApproverData(string? approver)

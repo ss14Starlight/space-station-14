@@ -47,11 +47,8 @@ namespace Content.Shared.Cargo.Prototypes
                 {
                     _name = Loc.GetString(nameLoc);
                 }
-                else if (!string.IsNullOrEmpty(_nameLoc)) // Starlight
-                    return _name = Loc.GetString(_nameLoc); // Starlight
-
-                if (!string.IsNullOrEmpty(Product) && // Starlight
-                    IoCManager.Resolve<IPrototypeManager>().Resolve(Product, out var prototype)) // Starlight
+                else if (Product is { } product &&
+                         IoCManager.Resolve<IPrototypeManager>().Resolve(product, out var prototype))
                 {
                     _name = prototype.Name;
                 }
@@ -75,7 +72,8 @@ namespace Content.Shared.Cargo.Prototypes
                 {
                     _description = Loc.GetString(descLoc);
                 }
-                else if (IoCManager.Resolve<IPrototypeManager>().Resolve(Product, out var prototype))
+                else if (Product is { } product &&
+                         IoCManager.Resolve<IPrototypeManager>().Resolve(product, out var prototype))
                 {
                     _description = prototype.Description;
                 }
@@ -94,7 +92,7 @@ namespace Content.Shared.Cargo.Prototypes
         ///     The entity prototype ID of the product.
         /// </summary>
         [DataField]
-        public EntProtoId? Product { get; private set; } // Starlight: possibly empty string => possibly null EntProtoId
+        public EntProtoId? Product { get; private set; } // Starlight: gas products do not spawn an entity.
 
         /// <summary>
         /// The entity to spawn and insert the product into. If null, just the product is spawned.

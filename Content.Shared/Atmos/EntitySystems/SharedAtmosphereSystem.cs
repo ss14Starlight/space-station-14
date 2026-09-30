@@ -3,14 +3,12 @@ using Content.Shared.Atmos.Prototypes;
 using Content.Shared.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Systems;
 using Robust.Shared.Configuration;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Atmos.EntitySystems;
 
 public abstract partial class SharedAtmosphereSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _cfg = default!;
-    [Dependency] protected IPrototypeManager ProtoMan = default!;
     [Dependency] private SharedInternalsSystem _internals = default!;
     [Dependency] protected SharedTransformSystem XformSystem = default!;
 

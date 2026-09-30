@@ -21,5 +21,5 @@ public sealed partial class ExtractableComponent : Component
     /// The reagents to transfer into the beaker when the grinder is set to grind mode.
     /// </summary>
     [DataField]
-    public string? GrindableSolutionNameName; // Starlight
+    public string? GrindableSolutionName; // Starlight
 };
