@@ -1,19 +1,20 @@
 - type: thiefBackpackSet
   id: SaboteurSELF
-  name: The Saboteur
+  name: The Breacher
   description: self-backpack-category-saboteur-description
   sprite:
     sprite: Objects/Tools/jaws_of_life.rsi
     state: syn_jaws_pry
   content:
   - SyndicateJawsOfLife
-  - WelderIndustrialAdvanced
-  - PowerDrill
+  - WelderExperimental
+  - Omnitool
   - Multitool
-  - ClothingHandsGlovesInsulatedChameleon
-  - RadioJammer
+  - C4
+  - C4
   - FreedomImplanter
-  - ClothingEyesGlassesMeson
+  - EmpImplanter
+  - WeaponPistolDeagle
 
 - type: thiefBackpackSet
   id: PressSELF
@@ -28,6 +29,14 @@
   - MicrophoneInstrument
   - VoiceMaskImplanter
   - ScramImplanter
+  - BoxStampsFake
+  - CyberPen
+  - BoxTapeRecorder
+  - ClothingHeadHatFedoraPress
+  - ClothingMultipleHeadphonesReporter
+  - HoloReporterPin
+  - ClothingOuterPressArmor
+  - ClothingUniformJumpsuitReporter
 
 - type: thiefBackpackSet
   id: SpySELF
@@ -39,5 +48,6 @@
   content:
   - StorageImplanter
   - ChameleonProjector
-  - WeaponPistolStechkin
+  - WeaponEnergyCrossbowWorn
   - CameraBug
+  - RadioJammer
