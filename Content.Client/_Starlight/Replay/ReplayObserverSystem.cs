@@ -74,6 +74,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _replayPlayback.ReplayPlaybackStopped -= OnPlaybackStopped;
 
         ShutdownRoundSummary();
+        ShutdownViewer();
     }
 
     private void OnPlaybackStarted(MappingDataNode yamlMappingNode, List<object> objects) => ResetState();
@@ -134,6 +135,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
 
         UpdatePlayerOverlay(frameTime, IsHudHidden());
         UpdateStatusIcons();
+        EnsureStatusIconOverlay();
         UpdateActionsBarOffset();
         UpdateRadar(frameTime);
     }
@@ -142,8 +144,14 @@ public sealed partial class ReplayObserverSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        if (IsReplayActive)
-            UpdateViewer();
+        if (!IsReplayActive)
+            return;
+
+        UpdateViewer();
+
+        // Replay playback only updates systems that opt in to running outside prediction, and the UI system doesn't,
+        // so no UI window would ever open or close. Run it here; live play updates it normally.
+        _ui.Update(frameTime);
     }
 
     private void SetupObserver(EntityUid uid)
