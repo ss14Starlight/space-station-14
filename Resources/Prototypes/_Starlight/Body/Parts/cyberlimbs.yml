@@ -268,7 +268,7 @@
   id: LeftFootCyber
   name: "left cyber foot"
   parent: [PartCyber, BaseLeftFoot]
-  description: A surgically-installed cybernetic foot that lets you move just a bit faster than its organic counterpart.
+  description: A surgically-installed cybernetic foot with no additional functionality.
   components:
     - type: BaseLayerId
       layers:
@@ -299,7 +299,7 @@
   id: RightFootCyber
   name: "right cyber foot"
   parent: [PartCyber, BaseRightFoot]
-  description: A surgically-installed cybernetic foot that lets you move just a bit faster than its organic counterpart.
+  description: A surgically-installed cybernetic foot with no additional functionality.
   components:
     - type: BaseLayerId
       layers:
