@@ -72,7 +72,7 @@
 - type: entity
   id: BrainImplantNexus
   name: Nexus uplink
-  description: An example of advanced Avali technology, a surgically-installed brain implant that grants you access to the Nexus, a technological network that allows you to communicate with anyone else who also has a nexus implant. Avali and Resomi are given this implant at birth.
+  description: A surgically-installed brain implant that grants you access to the Nexus, a technological network that allows you to communicate with anyone else who also has a Nexus implant. Avali and Resomi are given this implant at birth.
   parent: BaseEntityBrainImplant
   components:
   - type: Sprite
