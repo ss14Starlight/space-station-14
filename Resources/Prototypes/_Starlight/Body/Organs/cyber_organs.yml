@@ -127,7 +127,7 @@
 - type: entity
   id: VocalCyberTongue
   name: vocal cyber tongue
-  description: A surgically-installed cybernetic tongue that has full range of movement and some taste receptors to boot. It allows you to replicate the vocal mannerisms of anyh humanoid species.
+  description: A surgically-installed cybernetic tongue that has full range of movement and some taste receptors to boot. It allows you to replicate the vocal mannerisms of any humanoid species.
   parent: [OrganCyber, BaseOrganTongue]
   components:
     - type: Sprite

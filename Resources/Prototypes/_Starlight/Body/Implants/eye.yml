@@ -90,7 +90,7 @@
 - type: entity
   id: EyeImplantSyndie
   name: syndie implant
-  description: A shady surgically-installed eye implant that allows you to see the security information and health of station crew, as well as highlight syndicate allies.
+  description: A shady surgically-installed eye implant that allows you to see the security information and health of organic crew, as well as highlight syndicate allies.
   parent: [ BaseEntityEyeImplant, BaseSyndicateContraband ]
   components:
   - type: Sprite

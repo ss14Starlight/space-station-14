@@ -51,7 +51,7 @@
 - type: entity
   id: HandImplantThrusters
   name: thruster implant
-  description: A surgically-installed hand implant that allows the user to manuever in space as if they had a jetpack, thanks to wrist-mounted micro-thrusters.
+  description: A surgically-installed hand implant that allows the user to maneuver in space as if they had a jetpack, thanks to wrist-mounted micro-thrusters.
   parent: BaseEntityHandImplant
   components:
   - type: Sprite

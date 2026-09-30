@@ -88,7 +88,7 @@
 - type: entity
   id: BrainImplantExpiScan
   name: health scanner implant
-  description: A surgically-installed brain implant the provides a readout of your present physical health.
+  description: A surgically-installed brain implant that provides a readout of your present physical health.
   parent: BaseEntityBrainImplant
   components:
   - type: Sprite
