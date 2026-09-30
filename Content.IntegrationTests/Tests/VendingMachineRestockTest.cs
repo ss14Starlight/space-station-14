@@ -34,6 +34,7 @@ namespace Content.IntegrationTests.Tests
             "VendingMachineRestockMagical",
             "VendingMachineRestockSyndicate",
             "VendingMachineRestockCentComm",
+            "VendingMachineRestockAbductorDispenser"
         };
         // Starlight end
 
@@ -139,6 +140,7 @@ namespace Content.IntegrationTests.Tests
                 {
                     if (proto.Abstract
                         || pair.IsTestPrototype(proto)
+                        || _ignoredPrototypes.Contains(proto.ID) // Starlight
                         || !proto.HasComponent<VendingMachineRestockComponent>())
                         continue;
 
