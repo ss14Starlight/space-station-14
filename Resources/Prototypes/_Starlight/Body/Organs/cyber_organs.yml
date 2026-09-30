@@ -153,7 +153,7 @@
     maxReagents: 1
     metabolizerTypes: [BudgetCyber]
     stages: [ Metabolites ]
-    
+
 - type: entity
   id: BudgetCyberStomach
   name: budget cyber stomach
