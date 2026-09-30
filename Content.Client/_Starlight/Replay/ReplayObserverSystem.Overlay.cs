@@ -17,6 +17,7 @@ public sealed partial class ReplayObserverSystem
     private const float OverlayRefreshInterval = 1f;
 
     private bool _overlayEnabled;
+    private bool _overlayShown;
     private float _overlayRefreshAccumulator;
 
     private void OnTogglePlayerOverlay(EntityUid uid, ReplaySpectatorComponent component, ReplayTogglePlayerOverlayActionEvent args)
@@ -25,7 +26,7 @@ public sealed partial class ReplayObserverSystem
             return;
 
         args.Handled = true;
-        SetPlayerOverlay(!_overlayEnabled);
+        _overlayEnabled = !_overlayEnabled;
         _actions.SetToggled(_overlayAction, _overlayEnabled);
 
         var msg = _overlayEnabled
@@ -34,35 +35,37 @@ public sealed partial class ReplayObserverSystem
         _popup.PopupEntity(msg, uid);
     }
 
-    private void SetPlayerOverlay(bool enabled)
-    {
-        _overlayEnabled = enabled;
-        _overlayRefreshAccumulator = 0f;
-
-        if (enabled)
-        {
-            _admin.HideOverlayPlaytime = true;
-            RefreshPlayerList();
-            _admin.AdminOverlayOn();
-        }
-        else
-        {
-            _admin.AdminOverlayOff();
-        }
-    }
-
     private void ShutdownPlayerOverlay()
     {
-        if (_overlayEnabled)
+        if (_overlayShown)
             _admin.AdminOverlayOff();
 
+        _overlayShown = false;
         _admin.SetPlayerList(null);
         _admin.HideOverlayPlaytime = false;
     }
 
-    private void UpdatePlayerOverlay(float frameTime)
+    private void UpdatePlayerOverlay(float frameTime, bool hudHidden)
     {
-        if (!_overlayEnabled)
+        var show = _overlayEnabled && !hudHidden;
+        if (show != _overlayShown)
+        {
+            _overlayShown = show;
+            _overlayRefreshAccumulator = 0f;
+
+            if (show)
+            {
+                _admin.HideOverlayPlaytime = true;
+                RefreshPlayerList();
+                _admin.AdminOverlayOn();
+            }
+            else
+            {
+                _admin.AdminOverlayOff();
+            }
+        }
+
+        if (!_overlayShown)
             return;
 
         _overlayRefreshAccumulator += frameTime;

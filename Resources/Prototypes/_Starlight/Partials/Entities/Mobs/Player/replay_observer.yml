@@ -1,0 +1,14 @@
+- type: !PartialOnly entity
+  id: ReplayObserver
+  components:
+  - type: BypassInteractionChecks # Reveals strip-hidden slots and items, as for aghosts.
+  - type: RadarConsole
+    followEntity: true
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionObserverShowRadar

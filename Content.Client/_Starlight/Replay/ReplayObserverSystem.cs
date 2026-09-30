@@ -31,6 +31,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
 
     private static readonly EntProtoId _hearingAction = "ActionReplayToggleGhostHearing";
     private static readonly EntProtoId _playerOverlayAction = "ActionReplayTogglePlayerOverlay";
+    private static readonly EntProtoId _statusIconsAction = "ActionReplayToggleStatusIcons";
 
     /// <summary>
     /// Deferred a frame so setup runs after GhostSystem's attach handling, which resets ghost visibility.
@@ -56,11 +57,13 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         SubscribeLocalEvent<ReplaySpectatorComponent, ToggleGhostsActionEvent>(OnToggleGhosts);
         SubscribeLocalEvent<ReplaySpectatorComponent, ToggleGhostHearingActionEvent>(OnToggleHearing);
         SubscribeLocalEvent<ReplaySpectatorComponent, ReplayTogglePlayerOverlayActionEvent>(OnTogglePlayerOverlay);
+        SubscribeLocalEvent<ReplaySpectatorComponent, ReplayToggleStatusIconsActionEvent>(OnToggleStatusIcons);
 
         _replayPlayback.ReplayPlaybackStarted += OnPlaybackStarted;
         _replayPlayback.ReplayPlaybackStopped += OnPlaybackStopped;
 
         InitializeRoundSummary();
+        InitializeViewer();
     }
 
     public override void Shutdown()
@@ -93,8 +96,14 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _ghostsVisible = true;
         _hearAll = true;
         _overlayEnabled = false;
+        _overlayShown = false;
         _overlayRefreshAccumulator = 0f;
+        _statusIconsEnabled = true;
+        _statusIconsShown = false;
+        _statusIconsAction = null;
         _replayHasMindJobs = false;
+        _viewing.Clear();
+        _radarAccumulator = 0f;
     }
 
     private void OnAttached(EntityUid uid, ReplaySpectatorComponent component, LocalPlayerAttachedEvent args)
@@ -123,8 +132,19 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         if (_observer is { } observer && observer == _player.LocalEntity && Exists(observer))
             SaveViewSettings(observer);
 
-        UpdatePlayerOverlay(frameTime);
+        var hudHidden = IsHudHidden();
+        UpdatePlayerOverlay(frameTime, hudHidden);
+        UpdateStatusIcons(hudHidden);
         UpdateActionsBarOffset();
+        UpdateRadar(frameTime);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (IsReplayActive)
+            UpdateViewer();
     }
 
     private void SetupObserver(EntityUid uid)
@@ -145,6 +165,11 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _overlayAction = null;
         _actions.AddAction(uid, ref _overlayAction, _playerOverlayAction);
         _actions.SetToggled(_overlayAction, _overlayEnabled);
+
+        _statusIconsAction = null;
+        _actions.AddAction(uid, ref _statusIconsAction, _statusIconsAction);
+        _actions.SetToggled(_statusIconsAction, _statusIconsEnabled);
+        _statusIconsShown = false; // A fresh observer has none of the HUD components yet.
 
         ApplyViewSettings(uid);
         _ghost.ToggleGhostVisibility(_ghostsVisible);

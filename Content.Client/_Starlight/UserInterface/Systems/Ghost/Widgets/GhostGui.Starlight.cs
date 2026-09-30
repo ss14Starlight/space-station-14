@@ -18,8 +18,7 @@ public sealed partial class GhostGui
             _roundSummaryButton.SetPositionInParent(GhostWarpButton.GetPositionInParent() + 1);
         }
 
-        if (_roundSummaryButton != null)
-            _roundSummaryButton.Visible = replay;
+        _roundSummaryButton?.Visible = replay;
 
         NewLifeButton.Visible = !replay;
         CharacterEditorButton.Visible = !replay;
