@@ -78,6 +78,11 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
 
         var result = SelectHit(ent, shooter, mapCords, args.ShotDirection, pointer, args.Target, rayCastResults, args.PredictionSeed);
 
+        // Starlight-start
+        if (TryFindCover(ent, mapCords, args.ShotDirection, shooter, result?.Distance ?? ent.Comp.MaxDistance, args.Target) is { } cover)
+            result = cover;
+        // Starlight-end
+
         var distanceTried = result?.Distance ?? ent.Comp.MaxDistance;
 
         var isRoot = false;
