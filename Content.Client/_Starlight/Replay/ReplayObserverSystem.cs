@@ -132,9 +132,8 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         if (_observer is { } observer && observer == _player.LocalEntity && Exists(observer))
             SaveViewSettings(observer);
 
-        var hudHidden = IsHudHidden();
-        UpdatePlayerOverlay(frameTime, hudHidden);
-        UpdateStatusIcons(hudHidden);
+        UpdatePlayerOverlay(frameTime, IsHudHidden());
+        UpdateStatusIcons();
         UpdateActionsBarOffset();
         UpdateRadar(frameTime);
     }

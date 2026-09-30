@@ -35,19 +35,18 @@ public sealed partial class ReplayObserverSystem
         _popup.PopupEntity(msg, uid);
     }
 
-    private void UpdateStatusIcons(bool hudHidden)
+    private void UpdateStatusIcons()
     {
         if (_observer is not { } observer || observer != _player.LocalEntity || !Exists(observer))
             return;
 
-        var show = _statusIconsEnabled && !hudHidden;
-        if (show == _statusIconsShown)
+        if (_statusIconsEnabled == _statusIconsShown)
             return;
 
-        _statusIconsShown = show;
+        _statusIconsShown = _statusIconsEnabled;
         var components = _proto.Index(StatusHudComponents).Components;
 
-        if (show)
+        if (_statusIconsShown)
         {
             EntityManager.AddComponents(observer, components, removeExisting: false);
             return;
