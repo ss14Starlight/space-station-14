@@ -73,3 +73,14 @@
               Shock: 0.75
               Cold: 0.75
               Caustic: 0.75
+
+- type: trait
+  id: Unlucky
+  name: trait-unlucky-name
+  description: trait-unlucky-desc
+  category: Quirks
+  cost: 0
+  effects:
+    - !type:AddCompsEffect
+      components:
+        - type: Unlucky

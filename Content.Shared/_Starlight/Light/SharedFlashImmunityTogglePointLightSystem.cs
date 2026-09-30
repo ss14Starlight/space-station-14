@@ -10,7 +10,7 @@ public sealed partial class SharedFlashImmunityTogglePointLightSystem : EntitySy
 
     [SubscribeLocalEvent]
     private void OnComponentStartUp(Entity<FlashImmunityTogglePointLightComponent> ent, ref ComponentStartup args)
-        =>  ToggleLight(ent, !_flash.HasFlashImmunityVisionBlockers(ent));
+        =>  ToggleLight(ent, _flash.HasFlashImmunityVisionBlockers(ent));
 
     [SubscribeLocalEvent]
     private void OnFlashImmunityChanged(Entity<FlashImmunityTogglePointLightComponent> ent, ref FlashImmunityCheckEvent args)

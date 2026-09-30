@@ -85,6 +85,9 @@ public abstract partial class SharedDeployableTurretControllerSystem : EntitySys
 
     public bool IsUserAllowedAccess(Entity<DeployableTurretControllerComponent> ent, EntityUid user)
     {
+        if (IsReadOnly(ent)) // Starlight
+            return false;
+
         if (_accessreader.IsAllowed(user, ent))
             return true;
 
