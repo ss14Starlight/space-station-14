@@ -3,6 +3,7 @@ using Content.Client.Replay.Spectator;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Roles.Jobs;
 using Content.Shared.Warps;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
@@ -14,12 +15,11 @@ public sealed partial class ReplayObserverSystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedJobSystem _jobs = default!;
     [Dependency] private ReplaySpectatorSystem _spectator = default!;
 
     public List<GhostWarp> GetReplayWarps()
     {
-        UpdateMindJobPresence();
-
         var warps = new List<GhostWarp>();
         var local = _player.LocalEntity;
 
@@ -39,8 +39,7 @@ public sealed partial class ReplayObserverSystem
 
             var name = Name(ent);
 
-            EntityUid? mindId = _mind.TryGetMind(ent, out var foundMind, out _) ? foundMind : null;
-            if (TryGetReplayJobName(ent, mindId, out var job))
+            if (_mind.TryGetMind(ent, out var mindId, out _) && _jobs.MindTryGetJobName(mindId, out var job))
                 name = $"{name} ({job})";
 
             warps.Add(new GhostWarp(GetNetEntity(ent), name, false));

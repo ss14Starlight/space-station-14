@@ -14,7 +14,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._Starlight.Replay;
 
-// Opens the real strip, storage and paper UIs as the observer. Ghosts may open UIs but not act in them.
+// Opens real UIs (inventory, bags, paper, laws) as the observer. Ghosts may open UIs but not act in them.
 // Recorded UI state closes windows whenever someone in the recording opens or closes the same UI, so
 // windows are reopened until the viewer closes them. Reopening runs just before the UI system's update processes its
 // close queue, so the window survives rather than flickering.
@@ -28,8 +28,6 @@ public sealed partial class ReplayObserverSystem
 
     private void InitializeViewer()
     {
-        UpdatesOutsidePrediction = true;
-
         SubscribeLocalEvent<GetVerbsEvent<Verb>>(OnGetViewerVerbs);
         SubscribeLocalEvent<CloseBoundInterfaceMessage>(OnUiClosedByViewer);
 
@@ -81,8 +79,6 @@ public sealed partial class ReplayObserverSystem
 
         if (HasComp<StrippableComponent>(ev.Target))
             AddViewerVerb(ev, StrippingUiKey.Key, "replay-observer-verb-view-inventory", "outfit.svg.192dpi.png");
-
-        // Bags need no verb here: the regular "Open Storage" verb works for the observer.
 
         if (HasComp<PaperComponent>(ev.Target))
             AddViewerVerb(ev, PaperComponent.PaperUiKey.Key, "replay-observer-verb-read", "examine.svg.192dpi.png");

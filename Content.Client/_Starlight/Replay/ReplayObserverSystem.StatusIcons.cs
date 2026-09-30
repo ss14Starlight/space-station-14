@@ -20,7 +20,7 @@ public sealed partial class ReplayObserverSystem
     [Dependency] private ShowHealthBarsSystem _healthBars = default!;
     [Dependency] private ShowHealthIconsSystem _healthIcons = default!;
 
-    private static readonly EntProtoId StatusHudComponents = "ReplayObserverStatusHud";
+    private static readonly EntProtoId _statusHudProto = "ReplayObserverStatusHud";
 
     private bool _statusIconsEnabled = true;
     private bool _statusIconsShown;
@@ -61,7 +61,7 @@ public sealed partial class ReplayObserverSystem
             return;
 
         _statusIconsShown = _statusIconsEnabled;
-        var components = _proto.Index(StatusHudComponents).Components;
+        var components = _proto.Index(_statusHudProto).Components;
 
         if (_statusIconsShown)
         {

@@ -78,8 +78,6 @@ public sealed partial class ReplayObserverSystem
 
     private void RefreshPlayerList()
     {
-        UpdateMindJobPresence();
-
         var players = new Dictionary<NetUserId, PlayerInfo>();
 
         var query = AllEntityQuery<MindComponent>();
@@ -99,7 +97,7 @@ public sealed partial class ReplayObserverSystem
                 continue;
 
             var roleComp = _roles.GetRoleCompByTime(mind);
-            TryGetReplayJobName(ent, mindId, out var job);
+            var job = _jobs.MindTryGetJob(mindId, out var jobProto) ? jobProto.LocalizedName : string.Empty;
             var connected = session != null && session.Status is SessionStatus.Connected or SessionStatus.InGame;
 
             players[userId] = new PlayerInfo(

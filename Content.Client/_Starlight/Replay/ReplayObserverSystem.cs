@@ -53,6 +53,9 @@ public sealed partial class ReplayObserverSystem : EntitySystem
     {
         base.Initialize();
 
+        // Replay playback only runs Update for systems that opt in to running outside prediction.
+        UpdatesOutsidePrediction = true;
+
         SubscribeLocalEvent<ReplaySpectatorComponent, LocalPlayerAttachedEvent>(OnAttached);
         SubscribeLocalEvent<ReplaySpectatorComponent, ToggleGhostsActionEvent>(OnToggleGhosts);
         SubscribeLocalEvent<ReplaySpectatorComponent, ToggleGhostHearingActionEvent>(OnToggleHearing);
@@ -103,7 +106,6 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _statusIconsEnabled = true;
         _statusIconsShown = false;
         _statusIconsAction = null;
-        _replayHasMindJobs = false;
         _viewing.Clear();
         _radarAccumulator = 0f;
     }
