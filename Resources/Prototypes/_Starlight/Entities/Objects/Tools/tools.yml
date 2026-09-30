@@ -681,7 +681,7 @@
 
 - type: entity
   name: forged omnitool
-  parent: BaseItem
+  parent: [SolutionWelder, BaseItem]
   id: OmnitoolForged
   description: Some absolute psychopath decided to saw off the heads of all tools they could find and smash it together into a makeshift drill. Looks nice, considering it's origins.
   components:
@@ -697,13 +697,12 @@
       shader: unshaded
       map: ["enum.ToggleableVisuals.Layer"]
   - type: RefillableSolution
-    solution: Welder
+    solution: welder
   - type: Tool
     useSound:
       collection: Welder
     qualities: [ Welding ]
   - type: Solution
-    id: Welder
     solution:
       reagents:
       - ReagentId: WeldingFuel
@@ -875,7 +874,7 @@
         - type: ToggleableVisuals
           spriteLayer: flame
         - type: RefillableSolution
-          solution: Welder
+          solution: welder
         - type: Tool
           useSound:
             collection: Welder
@@ -973,6 +972,7 @@
     - Deconstruct
     - AirAlarm
     - AirSensor
+    - GasInletSiphon
   - type: LimitedCharges
     maxCharges: 90
   - type: Sprite
