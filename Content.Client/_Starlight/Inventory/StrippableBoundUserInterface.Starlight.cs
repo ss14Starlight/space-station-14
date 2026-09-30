@@ -13,7 +13,7 @@ public sealed partial class StrippableBoundUserInterface
     private bool TryReplaySlotPressed(GUIBoundKeyEventArgs ev, SlotControl slot)
     {
         var replay = EntMan.System<ReplayObserverSystem>();
-        if (!replay.IsReplayActive)
+        if (!replay.IsViewing())
             return false;
 
         if (ev.Function == EngineKeyFunctions.Use || ev.Function == ContentKeyFunctions.ActivateItemInWorld)
