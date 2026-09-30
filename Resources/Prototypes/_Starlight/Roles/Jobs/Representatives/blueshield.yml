@@ -18,6 +18,7 @@
     - !type:TraitsRequirement
       traits:
         - Iterator
+        - Pacifist
       inverted: true
   startingGear: BlueShieldGear
   icon: JobIconBlueShield
@@ -57,6 +58,7 @@
     - Journalism
     - Clown
     - Mime
+    - NTPersonnel
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]
