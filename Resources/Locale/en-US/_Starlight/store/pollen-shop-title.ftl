@@ -19,7 +19,8 @@ pollen-floral-t2-name = Blooming Moss
 pollen-floral-t2-desc = Cultivate a layer of insulating moss across your bark, blunting both heat and cold.
 
 pollen-floral-t3-name = Advanced Pollen
-pollen-floral-t3-desc = .
+pollen-floral-t3-desc = Release a drifting cloud of potent pollen that lingers for a minute, affecting anyone nearby.
+pollen-name-advancedpollen = pollen
 
 pollen-bark-t1-name = Make Wood
 pollen-bark-t1-desc = Cut off some of your body for fresh wood.

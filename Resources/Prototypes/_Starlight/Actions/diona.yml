@@ -65,7 +65,7 @@
       state: mush_spore_cloud
     useDelay: 60
   - type: InstantAction
-    event: !type:SporeCloudEvent {}
+    event: !type:PollenSporeCloudEvent {}
 
 - type: entity
   id: ActionInjectPhytovitalin

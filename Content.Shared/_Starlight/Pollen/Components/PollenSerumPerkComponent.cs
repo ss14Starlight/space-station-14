@@ -14,7 +14,7 @@ namespace Content.Server._Starlight.Pollen.Components;
 public sealed partial class PollenSerumPerkComponent : Component
 {
     [DataField]
-    public ProtoId<ReagentPrototype> Reagent = "phytovitalin";
+    public ProtoId<ReagentPrototype> Reagent = "Phytovitalin";
 
     [DataField]
     public float Amount = 1f;

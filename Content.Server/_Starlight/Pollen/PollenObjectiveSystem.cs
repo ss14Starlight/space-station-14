@@ -75,10 +75,6 @@ public sealed partial class PollenObjectiveSystem : EntitySystem
 
             collector.ObjectiveGranted = true;
 
-            // Diona died and reformed: discard any stale objective still
-            // pointing at the old (now-dead) body. Dying means losing your
-            // collected pollen progress, so this is a clean slate, not a
-            // repoint.
             if (_mind.TryFindObjective((mindId, mind), _pollenObjective.Id, out var stale))
                 _mind.TryRemoveObjective(mindId, mind, stale.Value);
 

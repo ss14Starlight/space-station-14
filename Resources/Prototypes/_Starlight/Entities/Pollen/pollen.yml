@@ -39,3 +39,19 @@
     sound: /Audio/Items/smoke_grenade_smoke.ogg
     positional: true
   - type: DeleteOnTrigger
+
+- type: entity
+  id: PollenAdvancedPollenCloud
+  name: floral wisp
+  description: A cluster of potent pollen drifting on the air.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Interface/Actions/actions_diona.rsi # TODO: real cloud sprite/animation
+    layers:
+    - state: alert_pollen
+  - type: EmitPollen
+    pollenId: advancedpollen
+  - type: TimedDespawn
+    lifetime: 60
+  - type: PollenAdvancedPollen

@@ -1,9 +1,8 @@
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Systems;
 using Content.Shared._Starlight.Pollen.Components;
-using Content.Shared._Starlight.Scent.Components;
 using Robust.Shared.Random;
-using Robust.Shared.Spawners;
+
 using Robust.Shared.Timing;
 using Content.Server._Starlight.Scent.Systems;
 using Content.Shared.Botany.Items.Components;
@@ -15,8 +14,6 @@ public sealed partial class EmitPollenSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private ScentSystem _scent = default!;
-
-    private const string PollenMarkerPrototype = "ScentMarker";
 
     public override void Update(float frameTime)
     {
@@ -48,35 +45,15 @@ public sealed partial class EmitPollenSystem : EntitySystem
 
         if (pollenId == null)
         {
-            if (!TryComp<ProduceComponent>(uid, out var produce) || produce.PlantProtoId is not { } plantId)
+            if (!TryComp<ProduceComponent>(uid, out var produce) ||
+                produce.PlantProtoId is not { } plantId)
                 return;
 
             pollenId = plantId.ToString();
         }
 
         var lifetime = TimeSpan.FromSeconds(pollen.PollenLifetime);
-
-        if (_scent.TryMergePollen(pollenId, transform, lifetime))
-            return;
-
-        var marker = SpawnAtPosition(PollenMarkerPrototype, transform.Coordinates);
-
-        if (!TryComp<ScentMarkerComponent>(marker, out var markerComp))
-        {
-            Del(marker);
-            return;
-        }
-
-        markerComp.ScentId = pollenId;
-        markerComp.IsPollen = true;
-        markerComp.Strength = 1f;
-        markerComp.ExpiresAt = _timing.CurTime + lifetime;
-        markerComp.TotalDuration = lifetime;
-
-        Dirty(marker, markerComp);
-
-        if (TryComp<TimedDespawnComponent>(marker, out var despawn))
-            despawn.Lifetime = pollen.PollenLifetime;
+        _scent.EmitPollenMarker(ref pollen.LastMarkerEntity, pollenId, transform.Coordinates, lifetime);
     }
 
     private TimeSpan RollEmitDelay(EmitPollenComponent pollen)

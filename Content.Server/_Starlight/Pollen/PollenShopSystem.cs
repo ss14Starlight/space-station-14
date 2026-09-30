@@ -26,6 +26,8 @@ using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
 using Content.Server.Pinpointer;
 using Content.Shared._Starlight.Temperature.Components;
+using Robust.Shared.Physics.Systems;
+using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Pollen.System;
 
@@ -50,6 +52,7 @@ public sealed partial class PollenShopSystem : EntitySystem
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private NavMapSystem _navMap = default!;
+
     private static readonly EntProtoId<ObjectiveComponent> _pollenObjective = "PollenCollectionObjective";
     private static readonly EntProtoId _sporeCloudEmitter = "PollenSporeCloudEmitter";
     private static readonly EntProtoId _hardenStatusEffect = "PollenTreeBarkT2PassiveHardenEffect";
@@ -59,6 +62,8 @@ public sealed partial class PollenShopSystem : EntitySystem
     private static readonly EntProtoId _mossFireResistStatusEffect = "PollenTreeFloralT2PassiveMossFireResistEffect";
     private const string HardenListingId = "PollenTreeBarkT2Harden";
     private static readonly ProtoId<ReagentPrototype> _phytovitalin = "Phytovitalin";
+    private const string AdvancedPollenListingId = "PollenTreeFloralT3AdvancedPollen";
+    
 
     private const string AlertPollenListingId = "PollenTreeFloralT1AlertPollen";
 
@@ -115,6 +120,12 @@ public sealed partial class PollenShopSystem : EntitySystem
             GrantMossInsulation(args.Buyer);
             GrantMossFireResist(args.Buyer);
         }
+
+        if (args.ListingId == AdvancedPollenListingId)
+        {
+            var perk = EnsureComp<PollenAdvancedComponent>(args.Buyer);
+            perk.NextSpawn = _timing.CurTime + TimeSpan.FromSeconds(10);
+        }
     }
 
     public override void Update(float frameTime)
@@ -162,8 +173,6 @@ public sealed partial class PollenShopSystem : EntitySystem
     }
 
     // T2
-
-    // T2
     private void GrantMossInsulation(EntityUid buyer)
     {
         var protection = EnsureComp<TemperatureProtectionComponent>(buyer);
@@ -174,6 +183,9 @@ public sealed partial class PollenShopSystem : EntitySystem
 
     private void GrantMossFireResist(EntityUid buyer)
         => _statusEffects.TrySetStatusEffectDuration(buyer, _mossFireResistStatusEffect);
+    
+    // T3
+
 #endregion Floral
 
 #region Bark

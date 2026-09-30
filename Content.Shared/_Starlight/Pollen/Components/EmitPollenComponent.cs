@@ -41,4 +41,7 @@ public sealed partial class EmitPollenComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan NextEmitTime;
+
+    [DataField]
+    public EntityUid? LastMarkerEntity;
 }

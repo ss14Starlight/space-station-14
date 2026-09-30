@@ -7,7 +7,7 @@ namespace Content.Shared._Starlight.Scent.Components;
 /// A short-lived, invisible-to-normal-vision object left behind by a ScentComponent entity.
 /// TimedDespawnComponent handles despawn. See scent_marker.yml.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)] // , Access(typeof(SharedScentSystem))
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), Access(typeof(SharedScentSystem))]
 public sealed partial class ScentMarkerComponent : Component
 {
     [DataField, AutoNetworkedField]

@@ -25,13 +25,13 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private ScentSystem _scent = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private BloodstreamSystem _bloodstream = default!;
     [Dependency] private CharacterRecordsSystem _characterRecords = default!;
     [Dependency] private SharedDarkenedVisionSystem _darkenedVision = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
 
     private static TimeSpan s_checkInterval = TimeSpan.FromSeconds(1);
     private static TimeSpan s_sneezeInterval = TimeSpan.FromSeconds(10);
@@ -62,13 +62,10 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
 
             sensitive.NextInteraction = now + s_checkInterval;
 
-            var pollenQuery = EntityQueryEnumerator<ScentMarkerComponent, TransformComponent>();
-            while (pollenQuery.MoveNext(out _, out var pollen, out var pollenTransform))
+            var nearby = _lookup.GetEntitiesInRange(sensitiveTransform.Coordinates, sensitive.PollenRange);
+            foreach (var candidate in nearby)
             {
-                if (!pollen.IsPollen)
-                    continue;
-
-                if (!_transform.InRange(sensitiveTransform.Coordinates, pollenTransform.Coordinates, sensitive.PollenRange))
+                if (!TryComp<ScentMarkerComponent>(candidate, out var pollen) || !pollen.IsPollen)
                     continue;
 
                 if (!_random.Prob(sensitive.InteractionChance))

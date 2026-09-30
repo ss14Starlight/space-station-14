@@ -6,7 +6,12 @@ namespace Content.Shared._Starlight.Pollen;
 [Serializable, NetSerializable]
 public sealed partial class PollenInjectPhytovitalinDoAfterEvent : DoAfterEvent
 {
+    [DataField]
     public NetEntity Action;
+
+    public PollenInjectPhytovitalinDoAfterEvent()
+    {
+    }
 
     public PollenInjectPhytovitalinDoAfterEvent(NetEntity action) => Action = action;
 

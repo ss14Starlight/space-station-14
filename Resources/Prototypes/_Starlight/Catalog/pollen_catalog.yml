@@ -27,7 +27,7 @@
   id: PollenTreeFloralT2BloomingMoss
   name: pollen-floral-t2-name
   description: pollen-floral-t2-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: alert_pollen }
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: blooming_moss }
   cost:
     PollenPoints: 3
   categories:
@@ -41,9 +41,10 @@
 
 - type: listing
   id: PollenTreeFloralT3AdvancedPollen
-  name: pollen-floral-t1-name
-  description: pollen-floral-t1-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: alert_pollen }
+  name: pollen-floral-t3-name
+  description: pollen-floral-t3-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: alert_pollen } # TODO
+  applyToMob: true
   cost:
     PollenPoints: 4
   categories:
@@ -53,7 +54,7 @@
     stock: 1
   - !type:BuyBeforeCondition
     whitelist:
-    - PollenTreeFloralT2Whatever
+    - PollenTreeFloralT2BloomingMoss
     blacklist:
     - PollenTreeBarkT3SapSerum
     - PollenTreeMushroomT3SporeCloud

@@ -39,6 +39,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Pollen.Components;
 using Content.Shared.Botany.Items.Components;
+using Robust.Shared.Map;
 
 namespace Content.Server._Starlight.Scent.Systems;
 
@@ -606,30 +607,50 @@ public sealed partial class ScentSystem : SharedScentSystem
         return true;
     }
 
-    public bool TryMergePollen(string pollenId, TransformComponent xform, TimeSpan lifetime)
+    /// <summary>
+    /// Emits or refreshes a pollen marker for an emitter (a plant, or any other
+    /// pollen source). If the emitter's last marker still exists, matches this
+    /// pollenId, and is within merge range, refreshes it in place instead of
+    /// scanning every ScentMarkerComponent on the server. Otherwise spawns a
+    /// fresh marker and records it via lastMarker.
+    /// </summary>
+    /// <param name="lastMarker">
+    /// The emitter's cached last-marker reference (e.g. EmitPollenComponent.LastMarkerEntity).
+    /// Updated in place when a new marker is spawned.
+    /// </param>
+    /// <returns>The marker entity now associated with this emitter.</returns>
+    public EntityUid EmitPollenMarker(ref EntityUid? lastMarker, string pollenId, EntityCoordinates coordinates, TimeSpan lifetime)
     {
-        var query = EntityQueryEnumerator<ScentMarkerComponent, TransformComponent>();
-
-        while (query.MoveNext(out var markerUid, out var marker, out var markerXform))
+        if (lastMarker is { } tail &&
+            TryComp<ScentMarkerComponent>(tail, out var marker) &&
+            marker.IsPollen && marker.ScentId == pollenId &&
+            TryComp(tail, out TransformComponent? tailXform) &&
+            _transform.InRange(coordinates, tailXform.Coordinates, 0.25f))
         {
-            if (!marker.IsPollen || marker.ScentId != pollenId)
-                continue;
-
-            if (!_transform.InRange(xform.Coordinates, markerXform.Coordinates, 0.25f))
-                continue;
-
             marker.ExpiresAt = _timing.CurTime + lifetime;
             marker.TotalDuration = lifetime;
             marker.Strength = 1f;
+            Dirty(tail, marker);
 
-            Dirty(markerUid, marker);
-
-            if (TryComp<TimedDespawnComponent>(markerUid, out var despawn))
+            if (TryComp<TimedDespawnComponent>(tail, out var despawn))
                 despawn.Lifetime = (float)lifetime.TotalSeconds;
 
-            return true;
+            return tail;
         }
 
-        return false;
+        var newMarker = SpawnAtPosition(ScentMarkerPrototype, coordinates);
+        var newMarkerComp = Comp<ScentMarkerComponent>(newMarker);
+        newMarkerComp.ScentId = pollenId;
+        newMarkerComp.IsPollen = true;
+        newMarkerComp.Strength = 1f;
+        newMarkerComp.ExpiresAt = _timing.CurTime + lifetime;
+        newMarkerComp.TotalDuration = lifetime;
+        Dirty(newMarker, newMarkerComp);
+
+        if (TryComp<TimedDespawnComponent>(newMarker, out var newDespawn))
+            newDespawn.Lifetime = (float)lifetime.TotalSeconds;
+
+        lastMarker = newMarker;
+        return newMarker;
     }
 }
