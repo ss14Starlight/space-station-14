@@ -75,15 +75,15 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Slime
-  - type: PassiveDamage # Around 8 damage a minute healed
+  - type: PassiveDamage # Double the Baseline for other species
     allowedStates:
     - Alive
-    damageCap: 65
     damage:
       types:
         Heat: -0.14
-      groups:
-        Brute: -0.14
+        Blunt: -0.10
+        Piercing: -0.10
+        Slash: -0.10
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:

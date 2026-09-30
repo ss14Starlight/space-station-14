@@ -74,7 +74,7 @@ public sealed partial class StencilOverlay : Overlay
         }
 
         if (_statusEffects.TryEffectsWithComp(mapUid, out _weatherSet))
-            DrawWeather(args, _weatherSet);
+            DrawWeather(args, res, _weatherSet, invMatrix);
 
         if (_entManager.TryGetComponent<RestrictedRangeComponent>(mapUid, out var restrictedRangeComponent))
             DrawRestrictedRange(args, res, restrictedRangeComponent, invMatrix);
