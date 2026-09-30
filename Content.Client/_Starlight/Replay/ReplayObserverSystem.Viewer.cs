@@ -82,11 +82,12 @@ public sealed partial class ReplayObserverSystem
         if (HasComp<StrippableComponent>(ev.Target))
             AddViewerVerb(ev, StrippingUiKey.Key, "replay-observer-verb-view-inventory", "outfit.svg.192dpi.png");
 
-        if (HasComp<StorageComponent>(ev.Target))
-            AddViewerVerb(ev, StorageComponent.StorageUiKey.Key, "replay-observer-verb-view-contents", "open.svg.192dpi.png");
+        // Bags need no verb here: the regular "Open Storage" verb works for the observer.
 
         if (HasComp<PaperComponent>(ev.Target))
             AddViewerVerb(ev, PaperComponent.PaperUiKey.Key, "replay-observer-verb-read", "examine.svg.192dpi.png");
+
+        AddLawVerbs(ev);
     }
 
     private void AddViewerVerb(GetVerbsEvent<Verb> ev, Enum key, string loc, string icon)
@@ -138,6 +139,7 @@ public sealed partial class ReplayObserverSystem
         if (key is StorageComponent.StorageUiKey)
             PrepareStorageView(target, observer);
 
+        ApplyLawState(target, key);
         ForceOpen(target, key, observer);
 
         if (_ui.IsUiOpen(target, key, observer))

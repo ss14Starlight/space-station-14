@@ -104,7 +104,7 @@ public sealed partial class StorageUIController : UIController, IOnSystemChanged
             OnPieceUnpressed(args, window, piece);
         };
 
-        if (StaticStorageUIEnabled && !IsReplayViewing()) // Starlight
+        if (UsesDockedWindows()) // Starlight
         {
             var hotbar = UIManager.GetActiveUIWidgetOrNull<HotbarGui>();
             // this lambda handles the nested storage case

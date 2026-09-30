@@ -64,6 +64,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
 
         InitializeRoundSummary();
         InitializeViewer();
+        InitializeLaws();
     }
 
     public override void Shutdown()

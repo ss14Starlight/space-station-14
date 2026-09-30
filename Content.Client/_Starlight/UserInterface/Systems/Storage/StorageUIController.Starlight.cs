@@ -6,8 +6,10 @@ namespace Content.Client.UserInterface.Systems.Storage;
 
 public sealed partial class StorageUIController
 {
-    // Static storage docks bag windows into the hands hotbar, which the handless replay observer doesn't show.
-    private bool IsReplayViewing() => EntityManager.System<ReplayObserverSystem>().IsViewing();
+    /// <summary>
+    /// Whether bag windows dock into the hands hotbar. The handless replay observer has no hotbar, so its windows float.
+    /// </summary>
+    public bool UsesDockedWindows() => StaticStorageUIEnabled && !EntityManager.System<ReplayObserverSystem>().IsViewing();
 
     // In replays, E on an item in a bag opens it like E in the world does, including nested bags.
     private bool TryReplayActivateItem(GUIBoundKeyEventArgs args, EntityUid item)
