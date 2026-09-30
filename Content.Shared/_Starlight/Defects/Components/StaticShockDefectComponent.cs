@@ -12,7 +12,7 @@ public sealed partial class StaticShockDefectComponent : DefectComponent
     public StaticShockDefectComponent()
     {
         Prob = 0.20f;
-        DefectLabel = "faulty discharge capacitor";
+        DefectLabel = "defect-label-faulty-discharge-capacitor";
     }
 
     // Per-use probability of shocking the holder.

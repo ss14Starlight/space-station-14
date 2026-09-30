@@ -176,9 +176,9 @@
   parent: MarkerBase
   components:
   - type: GhostRole
-    name: Cluwne Beast
-    description: Spread laughter and chaos by hitting and turning the crew into cluwnes.
-    rules: You are an antagonist, transform as many of the crew as you can into cluwnes.
+    name: ghost-role-information-spawn-point-ghost-cluwne-beast-name
+    description: ghost-role-information-spawn-point-ghost-cluwne-beast-description
+    rules: ghost-role-information-spawn-point-ghost-cluwne-beast-rules
     mindRoles: [MindRoleGhostRoleSoloAntagonist]
   - type: GhostRoleMobSpawner
     prototype: MobCluwneBeast

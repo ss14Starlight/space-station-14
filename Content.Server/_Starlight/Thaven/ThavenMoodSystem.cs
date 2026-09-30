@@ -200,7 +200,7 @@ public sealed partial class ThavenMoodsSystem : SharedThavenMoodSystem
 
             if (proto.AllowDuplicateMoodVars)
             {
-                mood.MoodVars.Add(name, _random.Pick(dataset));
+                mood.MoodVars.Add(name, LocalizeMoodVar(datasetID, _random.Pick(dataset)));
                 continue;
             }
 
@@ -209,10 +209,11 @@ public sealed partial class ThavenMoodsSystem : SharedThavenMoodSystem
             while (choices.Count > 0)
             {
                 var choice = _random.PickAndTake(choices);
-                if (alreadyChosen.Contains(choice) || mood.MoodVars.ContainsValue(choice))
+                var value = LocalizeMoodVar(datasetID, choice);
+                if (alreadyChosen.Contains(choice) || mood.MoodVars.ContainsValue(value))
                     continue;
 
-                mood.MoodVars.TryAdd(name, choice);
+                mood.MoodVars.TryAdd(name, value);
                 alreadyChosen.Add(choice);
                 foundChoice = true;
                 break;
@@ -225,6 +226,33 @@ public sealed partial class ThavenMoodsSystem : SharedThavenMoodSystem
         }
 
         return mood;
+    }
+
+    /// <summary>
+    /// Localizes a mood variable picked from a dataset: thaven-mood-var-{dataset}-{value}.
+    /// Falls back to the raw value when there is no such key - some moods use
+    /// select expressions on the raw value (FoodRestrictions, SpeechRestrictions etc.).
+    /// </summary>
+    private string LocalizeMoodVar(ProtoId<DatasetPrototype> dataset, string value)
+    {
+        var key = $"thaven-mood-var-{ToKebab(dataset.Id)}-{ToKebab(value)}";
+        return Loc.TryGetString(key, out var localized) ? localized : value;
+    }
+
+    private static string ToKebab(string text)
+    {
+        var sb = new System.Text.StringBuilder(text.Length);
+        for (var i = 0; i < text.Length; i++)
+        {
+            var c = text[i];
+            if (char.IsUpper(c) && i > 0 && char.IsLower(text[i - 1]))
+                sb.Append('-');
+            var next = char.IsLetterOrDigit(c) ? char.ToLowerInvariant(c) : '-';
+            if (next == '-' && sb.Length > 0 && sb[^1] == '-')
+                continue;
+            sb.Append(next);
+        }
+        return sb.ToString().Trim('-');
     }
 
     /// <summary>

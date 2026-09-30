@@ -125,12 +125,12 @@ public sealed partial class AbductorConsoleBui : BoundUserInterface
 
         var priceLabel = new Label
         {
-            Text = $" Price: {price}",
+            Text = Loc.GetString("abductor-price", ("price", price)),
         };
 
         var buyButton = new Button
         {
-            Text = "Buy",
+            Text = Loc.GetString("abductor-buy"),
             HorizontalExpand = true,
         };
 
@@ -162,15 +162,15 @@ public sealed partial class AbductorConsoleBui : BoundUserInterface
         _window.TargetLabel.Children.Clear();
 
         var padMsg = new FormattedMessage();
-        padMsg.AddMarkupOrThrow(state.AlienPadFound ? "pad: [color=green]connected[/color]" : "pad: [color=red]not found[/color]");
+        padMsg.AddMarkupOrThrow(Loc.GetString("abductor-pad", ("found", state.AlienPadFound)));
         _window.PadLabel.SetMessage(padMsg);
 
         var dispencerMsg = new FormattedMessage();
-        dispencerMsg.AddMarkupOrThrow(state.DispencerFound ? "dispencer: [color=green]connected[/color]" : "dispencer: [color=red]not found[/color]");
+        dispencerMsg.AddMarkupOrThrow(Loc.GetString("abductor-dispencer", ("found", state.DispencerFound)));
         _window.DispencerLabel.SetMessage(dispencerMsg);
 
         var msg = new FormattedMessage();
-        msg.AddMarkupOrThrow(state.Target == null ? "target: [color=red]NONE[/color]" : $"target: [color=green]{state.TargetName}[/color]");
+        msg.AddMarkupOrThrow(state.Target == null ? Loc.GetString("abductor-target-none") : Loc.GetString("abductor-target", ("name", state.TargetName ?? string.Empty)));
         _window.TeleportButton.Disabled = state.Target == null || !state.AlienPadFound;
         _window.TeleportButton.OnPressed += _ =>
         {
@@ -182,11 +182,11 @@ public sealed partial class AbductorConsoleBui : BoundUserInterface
         // experiment tab
 
         var experimentatorMsg = new FormattedMessage();
-        experimentatorMsg.AddMarkupOrThrow(state.AlienPadFound ? "experimentator: [color=green]connected[/color]" : "experimentator: [color=red]not found[/color]");
+        experimentatorMsg.AddMarkupOrThrow(Loc.GetString("abductor-experimentator", ("found", state.AlienPadFound)));
         _window.ExperimentatorLabel.SetMessage(experimentatorMsg);
 
         var victimMsg = new FormattedMessage();
-        victimMsg.AddMarkupOrThrow(state.VictimName == null ? "victim: [color=red]NONE[/color]" : $"victim: [color=green]{state.VictimName}[/color]");
+        victimMsg.AddMarkupOrThrow(state.VictimName == null ? Loc.GetString("abductor-victim-none") : Loc.GetString("abductor-victim", ("name", state.VictimName)));
         _window.VictimLabel.SetMessage(victimMsg);
 
         _window.CompleteExperimentButton.Disabled = state.VictimName == null;
@@ -245,7 +245,7 @@ public sealed partial class AbductorConsoleBui : BoundUserInterface
         if (_window.DisabledLabel.GetMessage() is null)
         {
             var text = new FormattedMessage();
-            text.AddMarkupOrThrow("[color=red][font size=16]You need to plug in abductor armor![/font][/color]");
+            text.AddMarkupOrThrow(Loc.GetString("abductor-need-armor"));
             _window.DisabledLabel.SetMessage(text);
         }
 
