@@ -25,7 +25,23 @@ public sealed partial class GunSystem
     private const double MispredictAngleDegrees = 0.01;
     private const float MispredictDistance = 0.05f;
 
-    private readonly List<(NetEntity Gun, TimeSpan Expires, HitscanTrace Predicted)> _pendingHitscans = new();
+    private readonly List<PendingHitscan> _pendingHitscans = new();
+
+    /// <summary>
+    /// Effects of a predicted trace, kept so they can be removed if the server disagrees with the prediction.
+    /// </summary>
+    private sealed class PredictedHitscanEffects
+    {
+        public readonly List<EntityUid> Entities = new();
+        public bool Cancelled;
+    }
+
+    private readonly record struct PendingHitscan(NetEntity Gun, int Seed, TimeSpan Expires, HitscanTrace Predicted, PredictedHitscanEffects Effects);
+
+    /// <summary>
+    /// Set while a predicted trace is being rendered, so every spawned effect gets recorded.
+    /// </summary>
+    private PredictedHitscanEffects? _recordingEffects;
 
     private void InitializePrediction()
         => Subs.CVar(_cfg, StarlightCCVars.HitscanPrediction, value => _hitscanPrediction = value, true);
@@ -88,8 +104,9 @@ public sealed partial class GunSystem
             Traces = traces,
         };
 
-        FireEffect(ev, 0f, trace);
-        _pendingHitscans.Add((GetNetEntity(gun), Timing.RealTime + _pendingHitscanTimeout, trace));
+        var effects = new PredictedHitscanEffects();
+        FireEffect(ev, 0f, trace, effects);
+        _pendingHitscans.Add(new PendingHitscan(GetNetEntity(gun), seed, Timing.RealTime + _pendingHitscanTimeout, trace, effects));
     }
 
     private MapCoordinates MuzzleFrom(MapCoordinates from, Vector2 direction, EntityUid? user)
@@ -100,31 +117,54 @@ public sealed partial class GunSystem
         return from.Offset(direction.Normalized() * MechMuzzleOffset);
     }
 
+    /// <summary>
+    /// Matches a server trace to the pending prediction of the same shot.
+    /// </summary>
+    /// <returns>True if the first trace was predicted correctly and is already on screen.</returns>
     private bool TryConsumePredictedHitscan(HitscanEvent ev)
     {
         if (_pendingHitscans.Count == 0
             || ev.Shooter is not { } shooter
             || ev.Gun is not { } gun
+            || ev.PredictionSeed is not { } seed
             || GetEntity(shooter) != _player.LocalEntity)
             return false;
 
         var now = Timing.RealTime;
         _pendingHitscans.RemoveAll(pending => pending.Expires < now);
 
-        var index = _pendingHitscans.FindIndex(pending => pending.Gun == gun);
+        var index = _pendingHitscans.FindIndex(pending => pending.Gun == gun && pending.Seed == seed);
         if (index < 0)
             return false;
 
-        var predicted = _pendingHitscans[index].Predicted;
+        var pending = _pendingHitscans[index];
         _pendingHitscans.RemoveAt(index);
 
-        if (ev.Traces.Count > 0)
-            CheckMisprediction(gun, predicted, ev.Traces[0]);
+        if (ev.Traces.Count > 0 && IsPredictedCorrectly(gun, pending.Predicted, ev.Traces[0]))
+            return true;
 
-        return true;
+        // The server disagrees: drop what we drew and let the authoritative trace render instead.
+        CancelPredictedEffects(pending.Effects);
+        return false;
     }
 
-    private void CheckMisprediction(NetEntity gun, HitscanTrace predicted, HitscanTrace actual)
+    private void CancelPredictedEffects(PredictedHitscanEffects effects)
+    {
+        effects.Cancelled = true;
+
+        foreach (var ent in effects.Entities)
+        {
+            if (!TerminatingOrDeleted(ent))
+                QueueDel(ent);
+        }
+
+        effects.Entities.Clear();
+    }
+
+    private void RecordPredictedEffect(EntityUid ent)
+        => _recordingEffects?.Entities.Add(ent);
+
+    private bool IsPredictedCorrectly(NetEntity gun, HitscanTrace predicted, HitscanTrace actual)
     {
         var angleDiff = Math.Abs(Angle.ShortestDistance(predicted.Angle, actual.Angle).Degrees);
         var distanceDiff = Math.Abs(predicted.Distance - actual.Distance);
@@ -132,12 +172,13 @@ public sealed partial class GunSystem
         if (angleDiff <= MispredictAngleDegrees
             && distanceDiff <= MispredictDistance
             && predicted.ImpactedEnt == actual.ImpactedEnt)
-            return;
+            return true;
 
         var cause = angleDiff > MispredictAngleDegrees ? "direction" : "world";
         Log.Debug($"Mispredicted hitscan from {ToPrettyString(GetEntity(gun))}, {cause}: "
             + $"angle {predicted.Angle.Degrees:F3} vs {actual.Angle.Degrees:F3}, "
             + $"distance {predicted.Distance:F2} vs {actual.Distance:F2}, "
             + $"hit {ToPrettyString(GetEntity(predicted.ImpactedEnt))} vs {ToPrettyString(GetEntity(actual.ImpactedEnt))}");
+        return false;
     }
 }

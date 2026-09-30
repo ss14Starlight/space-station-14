@@ -828,6 +828,11 @@ public abstract partial class SharedGunSystem : EntitySystem
         // Starlight-start
         public NetEntity? Shooter;
         public NetEntity? Gun;
+
+        /// <summary>
+        /// Seed of the shot this trace belongs to, lets the shooter match it to its predicted trace.
+        /// </summary>
+        public int? PredictionSeed;
         // Starlight-end
     }
 

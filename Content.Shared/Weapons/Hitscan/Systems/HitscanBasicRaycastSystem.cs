@@ -78,11 +78,6 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
 
         var result = SelectHit(ent, shooter, mapCords, args.ShotDirection, pointer, args.Target, rayCastResults, args.PredictionSeed);
 
-        // Starlight-start
-        if (TryFindCover(ent, mapCords, args.ShotDirection, shooter, result?.Distance ?? ent.Comp.MaxDistance, args.Target) is { } cover)
-            result = cover;
-        // Starlight-end
-
         var distanceTried = result?.Distance ?? ent.Comp.MaxDistance;
 
         var isRoot = false;
@@ -123,7 +118,7 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
         if (attemptEvent.Cancelled)
         { // Starlight start - added block with additional command before return
             if (isRoot)
-                FireEffects(ent, args.OutputTrace, args.Shooter, args.Gun);
+                FireEffects(ent, args.OutputTrace, args.Shooter, args.Gun, args.PredictionSeed);
             // Starlight end
             return;
         } // Starlight
@@ -133,7 +128,7 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
 
         // Starlight start
         if (isRoot)
-            FireEffects(ent, args.OutputTrace, args.Shooter, args.Gun);
+            FireEffects(ent, args.OutputTrace, args.Shooter, args.Gun, args.PredictionSeed);
         // Starlight end
     }
 
@@ -167,7 +162,7 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
         };
     }
 
-    private void FireEffects(EntityUid hitscan, List<HitscanTrace> traces, EntityUid? shooter, EntityUid gun)
+    private void FireEffects(EntityUid hitscan, List<HitscanTrace> traces, EntityUid? shooter, EntityUid gun, int? predictionSeed) // Starlight-edit
     {
         if (!_visualsQuery.TryComp(hitscan, out var visuals))
         {
@@ -187,6 +182,7 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
             // Starlight-start
             Shooter = GetNetEntity(shooter),
             Gun = GetNetEntity(gun),
+            PredictionSeed = predictionSeed,
             // Starlight-end
         };
 

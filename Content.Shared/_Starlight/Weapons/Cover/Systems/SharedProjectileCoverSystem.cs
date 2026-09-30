@@ -99,11 +99,12 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
         if (comp.BlockChance >= 1f)
             return true;
 
+        // A predicted hitscan is a throwaway client entity with its own NetEntity id, so the shot seed
+        // replaces the shot id when given: client and server have to roll the same value.
         return DeterministicRandom.Prob(
             comp.BlockChance,
-            GetNetEntity(shot).Id,
-            GetNetEntity(cover).Id,
-            seed ?? 0);
+            seed ?? GetNetEntity(shot).Id,
+            GetNetEntity(cover).Id);
     }
 
     public bool IsShotStopped(EntityUid cover, EntityUid shot, EntityUid? shooter, float? distance = null,

@@ -148,8 +148,9 @@ public sealed partial class GunSystem : SharedGunSystem
             delay = FireEffect(ev, delay, ev.Traces[i]);
     }
 
-    private float FireEffect(HitscanEvent visuals, float delay, HitscanTrace trace)
+    private float FireEffect(HitscanEvent visuals, float delay, HitscanTrace trace, PredictedHitscanEffects? predicted = null) // Starlight-edit
     {
+        _recordingEffects = predicted; // Starlight
         //The real bullet speed is so high that the bullet isn’t visible at all. So, let's slow it down 5x.
         var length = trace.Distance / (visuals.Speed / 5000);
         if (trace.MuzzleCoordinates is { } muzzleCoordinates)
@@ -163,15 +164,23 @@ public sealed partial class GunSystem : SharedGunSystem
         if (visuals.TravelFlash is { } travel && trace.TravelCoordinates is { } travelCoordinates && (_tracesEnabled || visuals.Bullet is null))
             RenderFlash(travelCoordinates, trace.Angle, travel, trace.Distance - 1.5f, true, false, length, delay);
         delay += length;
+        _recordingEffects = null; // Starlight
 
         if ((visuals.ImpactFlash is not null || trace.ImpactedEnt is not null) && (_tracesEnabled || visuals.Bullet is null))
             Timer.Spawn((int)delay, () =>
             {
+                // Starlight-start - the server corrected this prediction before it landed
+                if (predicted?.Cancelled == true)
+                    return;
+
+                _recordingEffects = predicted;
+                // Starlight-end
                 if (visuals.ImpactFlash is { } impact)
                     RenderFlash(trace.ImpactCoordinates, trace.Angle, impact, 1f, false, true, length, delay);
 
                 if (trace.ImpactedEnt is { } netEnt && GetEntity(netEnt) is EntityUid ent)
                     RenderDisplacements(GetCoordinates(trace.ImpactCoordinates), trace.Angle, ent);
+                _recordingEffects = null; // Starlight
             });
         return delay;
     }
@@ -189,6 +198,7 @@ public sealed partial class GunSystem : SharedGunSystem
             return;
 
         var ent = Spawn(ImpactProto, coords);
+        RecordPredictedEffect(ent); // Starlight
         var spriteComp = Comp<SpriteComponent>(ent);
 
         var xform = Transform(ent);
@@ -205,13 +215,13 @@ public sealed partial class GunSystem : SharedGunSystem
         {
             var radians = MathF.PI / 180f * (float)angle.Degrees;
             var holeCoords = coords.Offset(new Vector2(MathF.Cos(radians), MathF.Sin(radians)) * _random.NextFloat(0f, 0.5f));
-            Spawn(BulletHoleProto, holeCoords);
+            RecordPredictedEffect(Spawn(BulletHoleProto, holeCoords)); // Starlight-edit
         }
 
         if (_sparksEnabled
             && TryComp<PierceableComponent>(target, out var pierceable)
             && pierceable.Level >= PierceLevel.Metal)
-            Spawn(SparksProto, coords);
+            RecordPredictedEffect(Spawn(SparksProto, coords)); // Starlight-edit
     }
     private void RenderBullet(NetCoordinates coordinates, Angle angle, ExtendedSpriteSpecifier sprite, float distance, float length, float delay)
     {
@@ -224,6 +234,7 @@ public sealed partial class GunSystem : SharedGunSystem
             return;
 
         var ent = Spawn(HitscanProto, coords);
+        RecordPredictedEffect(ent); // Starlight
         var spriteComp = Comp<SpriteComponent>(ent);
         var spriteEnt = (ent, spriteComp);
 
@@ -295,6 +306,7 @@ public sealed partial class GunSystem : SharedGunSystem
             return;
 
         var ent = Spawn(HitscanProto, coords);
+        RecordPredictedEffect(ent); // Starlight
         var spriteEnt = (ent, Comp<SpriteComponent>(ent));
 
         var xform = Transform(ent);
@@ -320,7 +332,11 @@ public sealed partial class GunSystem : SharedGunSystem
         despawn.Lifetime = (time / 1000) + 1000;
 
         if (delay != 0)
-            Timer.Spawn((int)delay, () => _sprite.SetVisible(spriteEnt, true)); // Starlight-edit
+            Timer.Spawn((int)delay, () =>
+            {
+                if (!Deleted(ent))
+                    _sprite.SetVisible(spriteEnt, true);
+            }); // Starlight-edit
 
         Timer.Spawn((int)time, () =>
         {

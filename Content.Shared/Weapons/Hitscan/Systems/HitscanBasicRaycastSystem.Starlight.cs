@@ -73,7 +73,7 @@ public sealed partial class HitscanBasicRaycastSystem
         if (seed is not { } value)
             return _rand.Prob(chance);
 
-        return new System.Random(HashCode.Combine(value, GetNetEntity(rolledFor).Id)).Prob(chance);
+        return new System.Random(SharedRandomExtensions.HashCodeCombine(value, GetNetEntity(rolledFor).Id)).Prob(chance);
     }
 
     public HitscanTrace PredictTrace(
