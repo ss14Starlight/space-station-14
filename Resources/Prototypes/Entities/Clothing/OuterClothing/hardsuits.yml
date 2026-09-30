@@ -479,6 +479,7 @@
     - WhitelistChameleon
   - type: StealTarget # Starlight
     stealGroup: CEHardsuit # Starlight
+  - type: SupermatterImmune # Starlight
 
 #Chief Medical Officer's Hardsuit
 - type: entity
