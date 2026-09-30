@@ -11,7 +11,7 @@ namespace Content.Shared.Atmos.Components;
 /// instead of trying to scour this component or others for the data you need.
 /// </summary>
 [RegisterComponent, Serializable,
- Access(typeof(SharedAtmosphereSystem), typeof(SharedGasTileOverlaySystem), typeof(SharedAtmosDebugOverlaySystem))]
+Access(typeof(SharedAtmosphereSystem), typeof(SharedGasTileOverlaySystem), typeof(SharedAtmosDebugOverlaySystem))]
 public sealed partial class GridAtmosphereComponent : Component
 {
     /// <summary>

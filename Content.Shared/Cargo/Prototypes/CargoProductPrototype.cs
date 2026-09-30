@@ -48,7 +48,7 @@ namespace Content.Shared.Cargo.Prototypes
                     _name = Loc.GetString(nameLoc);
                 }
                 else if (Product is { } product &&
-                         IoCManager.Resolve<IPrototypeManager>().Resolve(product, out var prototype))
+                            IoCManager.Resolve<IPrototypeManager>().Resolve(product, out var prototype))
                 {
                     _name = prototype.Name;
                 }
@@ -73,7 +73,7 @@ namespace Content.Shared.Cargo.Prototypes
                     _description = Loc.GetString(descLoc);
                 }
                 else if (Product is { } product &&
-                         IoCManager.Resolve<IPrototypeManager>().Resolve(product, out var prototype))
+                            IoCManager.Resolve<IPrototypeManager>().Resolve(product, out var prototype))
                 {
                     _description = prototype.Description;
                 }
