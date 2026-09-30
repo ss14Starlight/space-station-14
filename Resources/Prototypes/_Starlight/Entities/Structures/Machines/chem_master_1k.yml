@@ -6,10 +6,12 @@
   placement:
     mode: SnapgridCenter
   components:
+   # Starlight-start: Make ChemMaster rotatable.
   - type: Transform
     noRot: false
   - type: Rotatable
     rotateWhileAnchored: true
+    # Starlight-end
   - type: Sprite
     sprite: _Starlight/Structures/Machines/mixer1k.rsi
     snapCardinals: false
@@ -18,9 +20,11 @@
     - state: mixer1k_screens
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
+      # Starlight-start: Plumbing connector visuals
   - type: PlumbingConnectorAppearance
     offset: 0.09375
   - type: AtmosPipeColor
+  # Starlight-end
   - type: Icon
     sprite: _Starlight/Structures/Machines/mixer1k.rsi
     state: mixer1k_empty
@@ -66,7 +70,7 @@
   - type: UserInterface
     interfaces:
       enum.ChemMasterUiKey.Key:
-        type: ChemMasterBoundUserInterface
+        type: ModernChemMasterBui
   - type: ApcPowerReceiver
     powerLoad: 150
   - type: Appearance
@@ -106,11 +110,11 @@
         whitelist:
           components:
           - PAI
-  - type: SolutionContainerManager
-    solutions:
-      buffer:
-        maxVol: 500
-        canReact: false
+  - type: Solution # Chemmaster is special in how it interacts with reagents. For now.
+    id: buffer
+    solution:
+      maxVol: 10000
+      canReact: false
   - type: DumpableSolution
     solution: buffer
   - type: GuideHelp
