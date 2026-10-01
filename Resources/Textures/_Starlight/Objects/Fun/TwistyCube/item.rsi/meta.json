@@ -1,0 +1,40 @@
+{
+    "version": 1,
+    "license": "CC0-1.0",
+    "copyright": "Made by baltdev for SS14. Feel free to use for whatever.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+      { "name": "full" },
+      { "name": "base" },
+      { "name": "bl-2" },
+      { "name": "f" },
+      { "name": "fb-1" },
+      { "name": "fbl-1" },
+      { "name": "fbl-3" },
+      { "name": "fbr-1" },
+      { "name": "fl-1" },
+      { "name": "fl-2" },
+      { "name": "fr-1" },
+      { "name": "ft-1" },
+      { "name": "ft-2" },
+      { "name": "ftl-1" },
+      { "name": "ftl-2" },
+      { "name": "ftl-3" },
+      { "name": "ftr-1" },
+      { "name": "ftr-2" },
+      { "name": "kbl-3" },
+      { "name": "kl-2" },
+      { "name": "kt-2" },
+      { "name": "ktl-2" },
+      { "name": "ktl-3" },
+      { "name": "ktr-2" },
+      { "name": "l" },
+      { "name": "t" },
+      { "name": "tl-1" },
+      { "name": "tl-2" },
+      { "name": "tr-1" }
+    ]
+}
