@@ -39,7 +39,7 @@
         pitch: 1.5
         variation: 0.12
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 3
+    rechargeCooldown: 2
     rechargeSound:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
       params:
@@ -87,9 +87,10 @@
   - type: Gun
     fireRate: 1
     selectedMode: SemiAuto
-    angleDecay: 45
-    minAngle: 44
-    maxAngle: 45
+    minAngle: 1
+    maxAngle: 30
+    angleIncrease: 5
+    angleDecay: 3
     projectileSpeed: 20
     availableModes:
     - SemiAuto
@@ -99,7 +100,7 @@
         pitch: 1.5
         variation: 0.12
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 3
+    rechargeCooldown: 2
     rechargeSound:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
       params:
@@ -110,7 +111,7 @@
     capacity: 6
     count: 6
   - type: CanDualWield
-    dualWieldInaccuracyPenalty: 68
+    dualWieldInaccuracyPenalty: 15
   - type: Tag
     tags:
     - AppraisalTool

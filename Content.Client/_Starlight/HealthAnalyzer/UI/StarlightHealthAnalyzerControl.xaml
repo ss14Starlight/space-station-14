@@ -54,12 +54,6 @@
         </BoxContainer>
     </BoxContainer>
 
-    <PanelContainer Name="AlertsDivider" Visible="False" StyleClasses="LowDivider" />
-
-    <BoxContainer Name="AlertsContainer" Visible="False" Margin="0 5" Orientation="Vertical" HorizontalAlignment="Center">
-
-    </BoxContainer>
-
     <Label Name="DamageGroupsHeader" Text="{Loc 'starlight-health-analyzer-window-section-damage'}" Align="Center" StyleClasses="LabelKeyText" Margin="0 8 0 0" />
     <BoxContainer
         Name="GroupsContainer"
@@ -67,9 +61,17 @@
         Orientation="Vertical">
     </BoxContainer>
 
-    <!-- Chems -->
-    <PanelContainer Name="ChemicalsDivider" Visible="False" StyleClasses="LowDivider" />
+    <Label Name="AbnormalitiesHeader" Text="{Loc 'starlight-health-analyzer-window-section-abnormalities'}" Align="Center" StyleClasses="LabelKeyText" Margin="0 8 0 0" />
+    <GridContainer
+        Name="AbnormalitiesContainer"
+        Visible="False"
+        Margin="8"
+        Columns="2"
+        HSeparationOverride="4"
+        VSeparationOverride="16">
+    </GridContainer>
 
+    <Label Name="ChemicalsHeader" Text="{Loc 'starlight-health-analyzer-window-section-chemicals'}" Align="Center" StyleClasses="LabelKeyText" Margin="0 8 0 0" />
     <BoxContainer
         Name="ChemicalsContainer"
         Visible="False"
