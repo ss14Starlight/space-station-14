@@ -214,7 +214,10 @@ public sealed partial class ReplayObserverSystem : EntitySystem
     private void OnToggleGhosts(EntityUid uid, ReplaySpectatorComponent component, ToggleGhostsActionEvent args)
     {
         // GhostSystem does the toggle and ignores handled events, so leave this unhandled.
-        if (IsReplayActive && uid == _observer)
-            _ghostsVisible = !_ghostsVisible;
+        if (!IsReplayActive || uid != _observer)
+            return;
+
+        _ghostsVisible = !_ghostsVisible;
+        _overlayRefreshAccumulator = OverlayRefreshInterval; // Refresh labels next frame.
     }
 }

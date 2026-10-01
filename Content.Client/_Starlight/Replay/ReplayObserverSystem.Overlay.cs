@@ -4,6 +4,7 @@ using Content.Shared.Administration;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
+using Robust.Client.GameObjects;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 
@@ -90,6 +91,10 @@ public sealed partial class ReplayObserverSystem
             var entity = session?.AttachedEntity ?? mind.CurrentEntity;
 
             if (entity is not { } ent || !Exists(ent))
+                continue;
+
+            // No label for anyone not drawn, e.g. ghosts while ghost visibility is off.
+            if (TryComp<SpriteComponent>(ent, out var sprite) && !sprite.Visible)
                 continue;
 
             // Prefer the mind driving the user's current entity.
