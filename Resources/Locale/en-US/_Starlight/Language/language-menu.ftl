@@ -11,3 +11,6 @@ language-menu-understood-tab-description = Languages you can understand but may 
 
 language-menu-choose-button = Choose
 language-menu-chat-prefix = chat prefix: { $prefix }
+
+language-menu-current = Current Language:
+language-menu-open-tooltip = Open the Language Menu

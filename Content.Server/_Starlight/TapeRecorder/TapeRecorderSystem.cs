@@ -31,9 +31,6 @@ public sealed partial class TapeRecorderSystem : SharedTapeRecorderSystem
         SubscribeLocalEvent<TapeCassetteComponent, MapInitEvent>(OnCassetteMapInit);
     }
 
-    /// <summary>
-    /// Pre-recorded tapes store loc keys in their prototype, resolve them once so playback, printing and corruption use the text.
-    /// </summary>
     private void OnCassetteMapInit(Entity<TapeCassetteComponent> ent, ref MapInitEvent args)
     {
         foreach (var message in ent.Comp.RecordedData)
