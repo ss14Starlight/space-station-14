@@ -1,13 +1,6 @@
 Entries:
 - author: DreadfulTaco, FlameyTheRandom
   changes:
-  - message: 14 more flavors of ice cream to make.
-    type: Add
-  id: 408639
-  time: '2026-09-14T21:11:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6159
-- author: DreadfulTaco, FlameyTheRandom
-  changes:
   - message: The ability to eat ice cream with a spoon.
     type: Add
   id: 408640
@@ -2799,4 +2792,11 @@ Entries:
   id: 409038
   time: '2026-10-01T08:41:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6308
+- author: Johnny
+  changes:
+  - message: ERT Loadouts now use the partials system.
+    type: Tweak
+  id: 409039
+  time: '2026-10-01T09:08:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6359
 Order: -1
