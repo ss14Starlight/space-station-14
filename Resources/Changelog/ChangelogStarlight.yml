@@ -1,11 +1,4 @@
 Entries:
-- author: dove15567
-  changes:
-  - message: Added the Xenosocialized trait, a language trait costing -2 points that removes the species' native language from the character.
-    type: Add
-  id: 408645
-  time: '2026-09-14T22:06:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6137
 - author: Caws
   changes:
   - message: Social Interactions are now disabled when ghosted, stunned, sleeping, critical or dead.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409044
   time: '2026-10-01T09:39:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6417
+- author: JMxm5
+  changes:
+  - message: 'The following machine boards can be flatpacked again: point defense battery, sentry turret, substation, SMES, advanced SMES, hyper advanced SMES.'
+    type: Fix
+  id: 409045
+  time: '2026-10-01T10:13:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6424
 Order: -1
