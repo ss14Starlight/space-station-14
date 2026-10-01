@@ -1,10 +1,8 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Starlight.IdentityManagement.Components;
 using Content.Shared._Starlight.StatusIcon;
 using Content.Shared.Access.Components;
 using Content.Shared.Examine;
 using Content.Shared.Inventory;
-using Content.Shared.PDA;
 using Content.Shared.Verbs;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -84,31 +82,6 @@ public sealed partial class IdExaminableSystem : EntitySystem
 
         return null;
     }
-
-    #region Starlight
-    private bool TryGetIdFromSlot(EntityUid uid, string slot, [NotNullWhen(true)] out IdCardComponent? idComp)
-    {
-        if (_inventorySystem.TryGetSlotEntity(uid, slot, out var idUid))
-        {
-            // PDA
-            if (TryComp(idUid, out PdaComponent? pda) &&
-                TryComp<IdCardComponent>(pda.ContainedId, out var id))
-            {
-                idComp = id;
-                return true;
-            }
-            // ID Card
-            if (TryComp(idUid, out id))
-            {
-                idComp = id;
-                return true;
-            }
-        }
-
-        idComp = null;
-        return false;
-    }
-    #endregion Starlight
 
     private string GetNameAndJob(IdCardComponent id)
     {
