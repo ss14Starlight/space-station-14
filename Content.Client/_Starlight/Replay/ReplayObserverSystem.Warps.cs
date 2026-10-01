@@ -78,7 +78,7 @@ public sealed partial class ReplayObserverSystem
     /// <summary>
     /// Same pick as FollowerSystem.GetMostGhostFollowed. Warps only, since following would edit the target's recorded
     /// FollowedComponent. Admin status isn't recorded, so aghosts are excluded by prototype.
-    /// Shows a flyover text when no eligible followed target exists as a fail state. 
+    /// Shows a flyover text when no eligible followed target exists as a fail state.
     /// </summary>
     public void WarpToMostFollowed()
     {
