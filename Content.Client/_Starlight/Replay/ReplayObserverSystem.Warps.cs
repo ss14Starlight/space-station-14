@@ -75,8 +75,10 @@ public sealed partial class ReplayObserverSystem
         _spectator.SpawnSpectatorGhost(new EntityCoordinates(uid, default), true);
     }
 
-    // Same pick as FollowerSystem.GetMostGhostFollowed. Warps only, since following would edit the target's recorded
-    // FollowedComponent. Admin status isn't recorded, so aghosts are excluded by prototype.
+    /// <summary>
+    /// Same pick as FollowerSystem.GetMostGhostFollowed. Warps only, since following would edit the target's recorded
+    /// FollowedComponent. Admin status isn't recorded, so aghosts are excluded by prototype.
+    /// </summary>
     public void WarpToMostFollowed()
     {
         var counts = new Dictionary<EntityUid, int>();
