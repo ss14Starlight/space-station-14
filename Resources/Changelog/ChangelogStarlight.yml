@@ -1,11 +1,4 @@
 Entries:
-- author: DreadfulTaco, FlameyTheRandom
-  changes:
-  - message: Fixed sprites to properly reflect their volume.
-    type: Fix
-  id: 408641
-  time: '2026-09-14T21:11:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6159
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: Re-added AI's ability to toggle camera lights when their view is near a camera.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409040
   time: '2026-10-01T09:08:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6371
+- author: wonderfulnewworld
+  changes:
+  - message: Firebombs are craftable again.
+    type: Fix
+  id: 409041
+  time: '2026-10-01T09:39:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6416
 Order: -1
