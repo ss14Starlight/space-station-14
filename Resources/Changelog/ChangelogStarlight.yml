@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: "Added a new setting: Automatically punctuate in-character messages, which is on by default. This adds a period to the end of your IC messages if you didn't put any punctuation at the end. Can be turned off under Escape -> Options -> General."
-    type: Add
-  id: 408667
-  time: '2026-09-17T16:16:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6215
 - author: Citrea
   changes:
   - message: Returned many reagent storage containers to more reasonable inventory sizes.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409066
   time: '2026-10-01T12:44:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6411
+- author: Sparlight
+  changes:
+  - message: Scent - full smellers are briefly hinted the direction toward a scent imprint's originator when scent tracking begins.
+    type: Add
+  id: 409067
+  time: '2026-10-01T13:06:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6335
 Order: -1
