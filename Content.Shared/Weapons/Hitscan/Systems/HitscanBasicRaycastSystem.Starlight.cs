@@ -64,8 +64,20 @@ public sealed partial class HitscanBasicRaycastSystem
 
         if (TryFindCover(hitscan, from, direction, shooter, result?.Distance ?? hitscan.Comp.MaxDistance, target, seed) is { } cover)
             result = cover;
+        // Low cover that bullets normally fly over (counters, crates) still catches a shot at someone lying behind it.
+        else if (result is { } hit && target is { } aimed && hit.HitEntity == aimed && _cover.TryGetShelter(aimed, direction, out var shelter))
+            result = ShelterHit(from, direction, shelter, hit.Distance);
 
         return result;
+    }
+
+    private RayCastResults ShelterHit(MapCoordinates from, Vector2 direction, EntityUid shelter, float maxDistance)
+    {
+        var normal = direction.LengthSquared() > 0f ? Vector2.Normalize(direction) : direction;
+        var along = Vector2.Dot(_transform.GetWorldPosition(shelter) - from.Position, normal);
+        var distance = Math.Clamp(along, 0f, maxDistance);
+
+        return new RayCastResults(distance, from.Position + normal * distance, shelter);
     }
 
     private bool Prob(float chance, int? seed, EntityUid rolledFor)

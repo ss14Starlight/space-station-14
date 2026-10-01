@@ -5,6 +5,7 @@ using Content.Shared.Projectiles;
 using Content.Shared.Standing;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Whitelist;
+using Robust.Shared.Containers;
 using Robust.Shared.Physics.Events;
 
 namespace Content.Shared._Starlight.Weapons.Cover.Systems;
@@ -12,6 +13,7 @@ namespace Content.Shared._Starlight.Weapons.Cover.Systems;
 public sealed partial class SharedProjectileCoverSystem : EntitySystem
 {
     [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private StandingStateSystem _standing = default!;
@@ -41,6 +43,15 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
         if ((args.OtherFixture.CollisionMask & (int)CollisionGroup.BulletImpassable) == 0)
             return;
 
+        // Someone shooting out of the crate or locker they hide in hits its walls, it is no cover for them.
+        if (projectile.Shooter is { } shooter
+            && !TerminatingOrDeleted(shooter)
+            && _container.TryGetOuterContainer(shooter, Transform(shooter), out var container)
+            && container.Owner == cover.Owner)
+        {
+            return;
+        }
+
         var aimedAt = CompOrNull<TargetedProjectileComponent>(other)?.Target;
         var direction = Direction(args.OtherBody.LinearVelocity);
 
@@ -59,7 +70,7 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
             return;
         }
 
-        if (Direction(args.OurBody.LinearVelocity) is { } direction && IsShelteredFromShot(args.OtherEntity, direction))
+        if (Direction(args.OurBody.LinearVelocity) is { } direction && TryGetShelter(args.OtherEntity, direction, out _))
             args.Cancelled = true;
     }
 
@@ -80,7 +91,7 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
     {
         var comp = cover.Comp;
 
-        if (comp.BlockChance <= 0f)
+        if (!CanShelter(comp))
             return false;
 
         if (_whitelist.IsWhitelistFail(comp.Whitelist, shot) || _whitelist.IsWhitelistPass(comp.Blacklist, shot))
@@ -91,6 +102,9 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
 
         if (aimedAt is { } target && shotDirection is { } direction && IsSheltering(cover, target, direction))
             return true;
+
+        if (comp.ProneOnly)
+            return false;
 
         if (IsPointBlank(cover, shooter, distance))
             return false;
@@ -112,18 +126,32 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
         && !IsShotStopped((cover, comp), shot, shooter, distance, aimedAt, shotDirection, seed);
 
     public bool IsShelteredFromShot(EntityUid target, Vector2 shotDirection)
+        => TryGetShelter(target, shotDirection, out _);
+
+    /// <summary>
+    /// Finds the cover a lying target hides behind from a shot flying in <paramref name="shotDirection"/>.
+    /// </summary>
+    public bool TryGetShelter(EntityUid target, Vector2 shotDirection, out EntityUid shelter)
     {
+        shelter = default;
+
         if (!_standing.IsDown(target))
             return false;
 
         foreach (var cover in _lookup.GetEntitiesInRange<ProjectileCoverComponent>(Transform(target).Coordinates, ShelterSearchRange))
         {
-            if (cover.Comp.BlockChance > 0f && IsSheltering(cover, target, shotDirection))
-                return true;
+            if (cover.Owner == target || !CanShelter(cover.Comp) || !IsSheltering(cover, target, shotDirection))
+                continue;
+
+            shelter = cover.Owner;
+            return true;
         }
 
         return false;
     }
+
+    private static bool CanShelter(ProjectileCoverComponent comp)
+        => comp.ProneOnly || comp.BlockChance > 0f;
 
     private bool IsSheltering(Entity<ProjectileCoverComponent> cover, EntityUid target, Vector2 shotDirection)
     {
