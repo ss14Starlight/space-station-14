@@ -16,15 +16,15 @@ public sealed class LatchStruggleBar : Control
     private const float BorderThickness = 2f;
     private const float CursorWidth = 2f;
 
-    private static readonly Color BorderColor = new(0.59f, 0.46f, 0.90f);
-    private static readonly Color TrackColor = new(0.12f, 0.14f, 0.16f);
-    private static readonly Color GoodColor = new(0.86f, 0.64f, 0.99f);
-    private static readonly Color PerfectColor = new(0.97f, 0.91f, 0.98f);
-    private static readonly Color CursorColor = Color.White;
-    private static readonly Color CursorPerfectColor = new(1f, 0.84f, 0.3f);
-    private static readonly Color CursorGoodColor = new(0.55f, 0.95f, 0.55f);
-    private static readonly Color CursorMissColor = new(0.95f, 0.3f, 0.3f);
-    private static readonly Color PausedColor = new(0.35f, 0.35f, 0.38f);
+    private static readonly Color _borderColor = new(0.59f, 0.46f, 0.90f);
+    private static readonly Color _trackColor = new(0.12f, 0.14f, 0.16f);
+    private static readonly Color _goodColor = new(0.86f, 0.64f, 0.99f);
+    private static readonly Color _perfectColor = new(0.97f, 0.91f, 0.98f);
+    private static readonly Color _cursorColor = Color.White;
+    private static readonly Color _cursorPerfectColor = new(1f, 0.84f, 0.3f);
+    private static readonly Color _cursorGoodColor = new(0.55f, 0.95f, 0.55f);
+    private static readonly Color _cursorMissColor = new(0.95f, 0.3f, 0.3f);
+    private static readonly Color _pausedColor = new(0.35f, 0.35f, 0.38f);
 
     public float ZoneCenter;
     public float PerfectWidth;
@@ -60,7 +60,7 @@ public sealed class LatchStruggleBar : Control
 
         var left = margin + shake;
         var right = PixelWidth - margin + shake;
-        handle.DrawRect(new UIBox2(left, 0f, right, PixelHeight), Tint(BorderColor));
+        handle.DrawRect(new UIBox2(left, 0f, right, PixelHeight), Tint(_borderColor));
 
         var trackLeft = left + border;
         var trackRight = right - border;
@@ -70,22 +70,22 @@ public sealed class LatchStruggleBar : Control
 
         var top = border;
         var bottom = PixelHeight - border;
-        handle.DrawRect(new UIBox2(trackLeft, top, trackRight, bottom), Tint(TrackColor));
+        handle.DrawRect(new UIBox2(trackLeft, top, trackRight, bottom), Tint(_trackColor));
 
-        float X(float fraction) => trackLeft + Math.Clamp(fraction, 0f, 1f) * trackWidth;
+        float X(float fraction) => trackLeft + (Math.Clamp(fraction, 0f, 1f) * trackWidth);
 
         var halfPerfect = PerfectWidth / 2f;
-        handle.DrawRect(new UIBox2(X(ZoneCenter - halfPerfect - GoodWidth), top, X(ZoneCenter + halfPerfect + GoodWidth), bottom), Tint(GoodColor));
-        handle.DrawRect(new UIBox2(X(ZoneCenter - halfPerfect), top, X(ZoneCenter + halfPerfect), bottom), Tint(PerfectColor));
+        handle.DrawRect(new UIBox2(X(ZoneCenter - halfPerfect - GoodWidth), top, X(ZoneCenter + halfPerfect + GoodWidth), bottom), Tint(_goodColor));
+        handle.DrawRect(new UIBox2(X(ZoneCenter - halfPerfect), top, X(ZoneCenter + halfPerfect), bottom), Tint(_perfectColor));
 
         var cursorHalf = MathF.Max(1f, CursorWidth * UIScale) / 2f;
         var cursorX = X(Cursor);
         var cursorColor = Result switch
         {
-            LatchStruggleResult.Perfect => CursorPerfectColor,
-            LatchStruggleResult.Good => CursorGoodColor,
-            LatchStruggleResult.Miss => CursorMissColor,
-            _ => CursorColor,
+            LatchStruggleResult.Perfect => _cursorPerfectColor,
+            LatchStruggleResult.Good => _cursorGoodColor,
+            LatchStruggleResult.Miss => _cursorMissColor,
+            _ => _cursorColor,
         };
         handle.DrawRect(new UIBox2(cursorX - cursorHalf, 0f, cursorX + cursorHalf, PixelHeight), Tint(cursorColor));
     }
@@ -93,5 +93,5 @@ public sealed class LatchStruggleBar : Control
     /// <summary>
     /// Greys everything out while struggling is paused.
     /// </summary>
-    private Color Tint(Color color) => Paused ? Color.InterpolateBetween(color, PausedColor, 0.75f) : color;
+    private Color Tint(Color color) => Paused ? Color.InterpolateBetween(color, _pausedColor, 0.75f) : color;
 }

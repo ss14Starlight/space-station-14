@@ -97,9 +97,7 @@ public abstract partial class SharedLatchSystem : EntitySystem
     }
 
     private void OnTargetRefreshMovementSpeed(EntityUid uid, LatchedComponent comp, RefreshMovementSpeedModifiersEvent ev)
-    {
-        ev.ModifySpeed(comp.SpeedMultiplier);
-    }
+        => ev.ModifySpeed(comp.SpeedMultiplier);
 
     // Weightless movement reads WeightlessModifier, not the walk/sprint modifiers,
     // so the latch has to apply its speed changes here too.
@@ -110,9 +108,7 @@ public abstract partial class SharedLatchSystem : EntitySystem
     }
 
     private void OnTargetRefreshWeightless(EntityUid uid, LatchedComponent comp, ref RefreshWeightlessModifiersEvent ev)
-    {
-        ev.ModifyAcceleration(1f, comp.SpeedMultiplier);
-    }
+        => ev.ModifyAcceleration(1f, comp.SpeedMultiplier);
 
     /// <summary>
     /// Blocks manual attacks while latched, so Bite Harder is the only option.
