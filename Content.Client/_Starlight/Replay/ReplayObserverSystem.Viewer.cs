@@ -1,5 +1,6 @@
 using Content.Client.Storage;
 using Content.Client.Verbs.UI;
+using Content.Shared.Chemistry;
 using Content.Shared.Input;
 using Content.Shared.Interaction;
 using Content.Shared.Paper;
@@ -22,6 +23,9 @@ public sealed partial class ReplayObserverSystem
 {
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
+
+    // Machines whose UI state the server pushes on every change, so recordings always have it.
+    private static readonly Enum[] _machineViewKeys = [ChemMasterUiKey.Key, ReagentDispenserUiKey.Key];
 
     private readonly HashSet<(EntityUid Target, Enum Key)> _viewing = new();
     private readonly List<(EntityUid Target, Enum Key)> _viewingScratch = new();
@@ -60,6 +64,16 @@ public sealed partial class ReplayObserverSystem
             return true;
         }
 
+        // Before storage: dispensers also hold their jugs in a storage grid.
+        foreach (var key in _machineViewKeys)
+        {
+            if (!_ui.HasUi(target, key))
+                continue;
+
+            OpenView(target, key);
+            return true;
+        }
+
         if (TryViewContents(target))
             return true;
 
@@ -82,6 +96,11 @@ public sealed partial class ReplayObserverSystem
 
         if (HasComp<PaperComponent>(ev.Target))
             AddViewerVerb(ev, PaperComponent.PaperUiKey.Key, "replay-observer-verb-read", "examine.svg.192dpi.png");
+
+        foreach (var key in _machineViewKeys)
+        {
+            AddViewerVerb(ev, key, "replay-observer-verb-view-contents", "open.svg.192dpi.png");
+        }
 
         AddLawVerbs(ev);
     }
