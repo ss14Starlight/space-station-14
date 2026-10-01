@@ -1,18 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Re-added AI's ability to toggle camera lights when their view is near a camera.
-    type: Add
-  id: 408642
-  time: '2026-09-14T21:42:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6102
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Fixed sprite jittering when moving in and out of range of a camera as AI.
-    type: Fix
-  id: 408643
-  time: '2026-09-14T21:42:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6102
 - author: STARLIGHT TEAM
   changes:
   - message: Cold Case pistol now uses the correct firing pin.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409041
   time: '2026-10-01T09:39:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6416
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Modified the description of almost every surgically-installed cybernetic and implant to clarify its function. If no description was present, one was added.
+    type: Tweak
+  id: 409042
+  time: '2026-10-01T09:39:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6415
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Modified the description of the warden's neural link disruptor to make it clear what it actually does (when you use it on someone it retracts their cybernetic limbs and locks them out for ten minutes).
+    type: Tweak
+  id: 409043
+  time: '2026-10-01T09:39:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6415
 Order: -1
