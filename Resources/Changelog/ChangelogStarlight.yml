@@ -1,18 +1,4 @@
 Entries:
-- author: SirLutz
-  changes:
-  - message: Civilian Silicon Blunt reduced from 5 -> 2.
-    type: Tweak
-  id: 408651
-  time: '2026-09-16T18:34:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6180
-- author: SirLutz
-  changes:
-  - message: Armored Silicon Blunt reduced from 8 -> 5.
-    type: Tweak
-  id: 408652
-  time: '2026-09-16T18:34:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6180
 - author: wonderfulnewworld, mkanke
   changes:
   - message: Reverted Artifact size increase.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409050
   time: '2026-10-01T12:01:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6421
+- author: Johnny
+  changes:
+  - message: (Evac Raven) Pipe dock standard, weeee.
+    type: Tweak
+  id: 409051
+  time: '2026-10-01T12:24:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6413
+- author: Johnny
+  changes:
+  - message: (Evac Raven) NT Has funded gravity for this evacuation shuttle.
+    type: Fix
+  id: 409052
+  time: '2026-10-01T12:24:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6413
 Order: -1
