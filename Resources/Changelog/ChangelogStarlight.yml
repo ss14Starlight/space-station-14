@@ -1,18 +1,4 @@
 Entries:
-- author: Xale
-  changes:
-  - message: Animal offspring will now be placed in the same container as the parent.
-    type: Tweak
-  id: 408637
-  time: '2026-09-14T21:10:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6085
-- author: Xale
-  changes:
-  - message: There is now a delay after spawning before animals will attempt to breed.
-    type: Tweak
-  id: 408638
-  time: '2026-09-14T21:10:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6085
 - author: DreadfulTaco, FlameyTheRandom
   changes:
   - message: 14 more flavors of ice cream to make.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409036
   time: '2026-09-29T21:55:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6360
+- author: ItsCharles
+  changes:
+  - message: Add public Enabled field for Dual Wielding.
+    type: Add
+  id: 409037
+  time: '2026-10-01T08:41:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6308
+- author: ItsCharles
+  changes:
+  - message: Enable dual wielding on the cap gun.
+    type: Tweak
+  id: 409038
+  time: '2026-10-01T08:41:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6308
 Order: -1
