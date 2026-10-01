@@ -1,102 +1,4 @@
 Entries:
-- author: wonderfulnewworld, mkanke
-  changes:
-  - message: Reverted Artifact size increase.
-    type: Tweak
-  id: 408653
-  time: '2026-09-16T21:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6170
-- author: wonderfulnewworld, mkanke
-  changes:
-  - message: The egg, tech disk, and flash protection triggers are now more legible.
-    type: Tweak
-  id: 408654
-  time: '2026-09-16T21:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6170
-- author: wonderfulnewworld, mkanke
-  changes:
-  - message: Combined bleach and space cleaner triggers.
-    type: Tweak
-  id: 408655
-  time: '2026-09-16T21:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6170
-- author: wonderfulnewworld, mkanke
-  changes:
-  - message: You now get turned back into yourself if you die as a skeleton polymorph.
-    type: Tweak
-  id: 408656
-  time: '2026-09-16T21:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6170
-- author: wonderfulnewworld, mkanke
-  changes:
-  - message: No more infinite agent ids.
-    type: Fix
-  id: 408657
-  time: '2026-09-16T21:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6170
-- author: wonderfulnewworld
-  changes:
-  - message: Dynamic will now share game preset cooldowns with Secret.
-    type: Add
-  id: 408658
-  time: '2026-09-16T22:03:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6190
-- author: wonderfulnewworld
-  changes:
-  - message: 'The following gamerules/presets will now share cooldowns with each other when rolled via Dynamic into Secret/ Dynamic into Dynamic/Secret into Dynamic: (Nukeops + NukeopsLate + Nukeops (Preset)), (Zombie + Zombieteor), (Xenoborgs + SubXenoborgs), (Survival + KesslerSyndrome), (KesslerSyndrome + Zombieteor).'
-    type: Add
-  id: 408659
-  time: '2026-09-16T22:03:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6190
-- author: wonderfulnewworld
-  changes:
-  - message: Halved rarity of WizardDuel in both Secret and Dynamic, and increased its Dynamic cost.
-    type: Tweak
-  id: 408660
-  time: '2026-09-16T22:03:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6190
-- author: wonderfulnewworld
-  changes:
-  - message: Extended no longer has a cooldown, ShitStation and WizardDuel now have a 2 round cooldown.
-    type: Tweak
-  id: 408661
-  time: '2026-09-16T22:03:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6190
-- author: wonderfulnewworld
-  changes:
-  - message: Glue, Slime, Sap, Cranberry Sauce, and Syrup now require at least 1u in a puddle to slow you down.
-    type: Tweak
-  id: 408662
-  time: '2026-09-16T22:23:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6205
-- author: Caws
-  changes:
-  - message: Revenants can no longer socially interact with stuff. The dead aren't very sociable, after all.
-    type: Fix
-  id: 408663
-  time: '2026-09-17T01:51:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6183
-- author: Caws
-  changes:
-  - message: Social interactions now have a one (1) second cooldown to mitigate spamming.
-    type: Fix
-  id: 408664
-  time: '2026-09-17T01:51:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6183
-- author: OJG
-  changes:
-  - message: (Novo Lobster) A supermatter array north of the containment engine and east of the AI core.
-    type: Add
-  id: 408665
-  time: '2026-09-17T04:56:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6148
-- author: OJG
-  changes:
-  - message: (Novo Lobster) A pipe from the new supermatter to transport products directly to atmos for either fueling the TEG or economic uses.
-    type: Add
-  id: 408666
-  time: '2026-09-17T04:56:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6148
 - author: Caws
   changes:
   - message: "Added a new setting: Automatically punctuate in-character messages, which is on by default. This adds a period to the end of your IC messages if you didn't put any punctuation at the end. Can be turned off under Escape -> Options -> General."
@@ -2799,4 +2701,102 @@ Entries:
   id: 409052
   time: '2026-10-01T12:24:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6413
+- author: Cvlancer
+  changes:
+  - message: (Ming) Added a disposal chute, hand labeler, mini plasma vial, variety instrument collection to nct classroom.
+    type: Add
+  id: 409053
+  time: '2026-10-01T12:44:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6411
+- author: Cvlancer
+  changes:
+  - message: (Ming) Added a togglable door holder to keep the classroom open.
+    type: Add
+  id: 409054
+  time: '2026-10-01T12:44:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6411
+- author: Cvlancer
+  changes:
+  - message: (Ming) Added a laundry machine to a maints bathroom area.
+    type: Add
+  id: 409055
+  time: '2026-10-01T12:44:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6411
+- author: Cvlancer
+  changes:
+  - message: (Ming) Added a ton of toilet paper and other bathroom decorations around station.
+    type: Add
+  id: 409056
+  time: '2026-10-01T12:44:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6411
+- author: Cvlancer
+  changes:
+  - message: (Ming) Added a little lounge area for mining to replace lost salvage stuff.
+    type: Add
+  id: 409057
+  time: '2026-10-01T12:44:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6411
+- author: Cvlancer
+  changes:
+  - message: (Ming) Fixed surgery and paramedic doors being the wrong access.
+    type: Fix
+  id: 409058
+  time: '2026-10-01T12:44:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6411
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a shell to construct a shuttle near shuttle construction bay.
+    type: Add
+  id: 409059
+  time: '2026-10-01T12:44:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6411
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a bit more room to maints shop.
+    type: Add
+  id: 409060
+  time: '2026-10-01T12:44:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6411
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a laundry machine to security, science storage room, morgue, bathroom, nuclear reactor suit up, gen pop island.
+    type: Add
+  id: 409061
+  time: '2026-10-01T12:44:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6411
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a laundromat near dorms.
+    type: Add
+  id: 409062
+  time: '2026-10-01T12:44:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6411
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a clean bot to gen pop island.
+    type: Add
+  id: 409063
+  time: '2026-10-01T12:44:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6411
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a supply bot to gen pop island.
+    type: Add
+  id: 409064
+  time: '2026-10-01T12:44:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6411
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Fixed roboticist having two holopads.
+    type: Fix
+  id: 409065
+  time: '2026-10-01T12:44:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6411
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Fixed the turnstiles at gen pop island.
+    type: Fix
+  id: 409066
+  time: '2026-10-01T12:44:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6411
 Order: -1
