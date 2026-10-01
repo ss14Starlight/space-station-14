@@ -41,19 +41,6 @@
     stockLimit: 2
 
 - type: listing
-  id: SKBWhistle
-  name: whistle-name
-  description: whistle-desc
-  productEntity: CommanderWhistle
-  cost:
-    Conversion: 19
-  categories:
-  - RevUplinkPassive
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
-
-- type: listing
   id: SKBBanner
   name: banner-name
   description: banner-desc
@@ -309,9 +296,32 @@
     Telebond: 1
   categories:
   - RevUplinkShuttle
+
+- type: listing
+  id: GiftedShuttleBundle
+  name: syndicate-soviet-shuttle-bundle-name
+  description: syndicate-soviet-shuttle-bundle-desc
+  productEntity: CrateNameSyndicateShuttleBundle
+  cost:
+    Telebond: 18
+  categories:
+  - RevUplinkShuttle
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 2
+    stockLimit: 1
+
+- type: listing
+  id: small-power-cage
+  name: small-power-cage-name
+  description: small-power-cage-desc
+  productEntity: PowerCageSmall
+  cost:
+    Telebond: 1
+  categories:
+  - RevUplinkShuttle
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 5
 
 - type: listing
   id: high-power-cage
@@ -319,12 +329,25 @@
   description: high-power-cage-desc
   productEntity: PowerCageHigh
   cost:
-    Telebond: 2
+    Telebond: 5
   categories:
   - RevUplinkShuttle
   conditions:
   - !type:StockLimitedListingCondition
     stockLimit: 1
+
+- type: listing
+  id: frag-grenade
+  name: frag-grenade-name
+  description: frag-grenade-desc
+  productEntity: GrenadeFrag
+  cost:
+    Telebond: 1
+  categories:
+  - RevUplinkShuttle
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 4
 
 - type: listing
   id: LSE-400c
@@ -365,6 +388,19 @@
   - !type:StockLimitedListingCondition
     stockLimit: 1
 
+- type: listing
+  id: StolenShuttleGunOfFriendship
+  name: stolen-soviet-friendship-name
+  description: stolen-soviet-friendship-desc
+  productEntity: ShuttleGunFriendship
+  cost:
+    Telebond: 12
+  categories:
+  - RevUplinkShuttle
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 1
+
 # Deception
 
 - type: listing
@@ -374,12 +410,12 @@
   icon: { sprite: _Starlight/Objects/Devices/encryption_keys.rsi, state: soviet_label }
   productEntity: EncryptionKeySoviet
   cost:
-    Telebond: 4
+    Telebond: 1
   categories:
   - RevUplinkDeception
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 5
+    stockLimit: 30
 
 # Pointless
 
@@ -392,9 +428,6 @@
     Telebond: 1
   categories:
   - RevUplinkPointless
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 2
 
 - type: listing
   id: USSPUshanka
@@ -407,7 +440,7 @@
   - RevUplinkPointless
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 4
+    stockLimit: 20
 
 - type: listing
   id: USSPUniform
@@ -420,7 +453,53 @@
   - RevUplinkPointless
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 4
+    stockLimit: 10
+
+- type: listing
+  id: USSPOldUniform
+  name: sovietolduniform-name
+  description: sovietolduniform-desc
+  productEntity: ClothingUniformJumpsuitSoviet
+  cost:
+    Telebond: 0
+  categories:
+  - RevUplinkPointless
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 10
+
+- type: listing
+  id: USSPNewspaperPropaganda
+  name: soviet-propaganda-name
+  description: soviet-propaganda-desc
+  productEntity: MagazineRevolutionary5
+  cost:
+    Telebond: 0
+  categories:
+  - RevUplinkPointless
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 10
+
+- type: listing
+  id: SKBWhistle
+  name: whistle-name
+  description: whistle-desc
+  productEntity: CommanderWhistle
+  cost:
+    Telebond: 1
+  categories:
+  - RevUplinkPointless
+
+- type: listing
+  id: USSPRevolutionaryBanner
+  name: soviet-banner-name
+  description: soviet-banner-desc
+  productEntity: BannerSovietHammer
+  cost:
+    Telebond: 2
+  categories:
+  - RevUplinkPointless
 
 - type: listing
   id: USSPZaporozhianBundle
@@ -429,12 +508,12 @@
   icon: { sprite: Clothing/Head/Hats/hetman_hat.rsi, state: icon }
   productEntity: ClothingBackpackDuffelZaporozhianBundle
   cost:
-    Telebond: 1
+    Telebond: 5
   categories:
   - RevUplinkPointless
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 1
+    stockLimit: 10
 
 - type: listing
   id: USSPVodkizine

@@ -62,14 +62,22 @@ soviet-encryption-key-desc = Features exotic woodpeckers. Priyom.
 # Shuttle
 stole-remote-signaller-name = Remote signaller
 stole-remote-signaller-desc = Boom! Links devices.
+syndicate-soviet-shuttle-bundle-name = Shuttle Bundle
+syndicate-soviet-shuttle-bundle-desc = A gift from some well known friends, use it wisely as it costs alot.
+small-power-cage-name = Small-capacity power cage
+small-power-cage-desc = More disposable power cages usable with the LSE1200c, you probably can afford to lose it.
 high-power-cage-name = High-capacity power cage
 high-power-cage-desc = LSE-1200c's power ammo. Don't lose it.
+frag-grenade-name = Frag Grenade
+frag-grenade-desc = Ammo for the stolen friendship cannon, dont have much here sadly.
 lse-400c-name = LSE-400c
 lse-400c-desc = Basic laser emplacement weapon. Requires a power cell, link and a signaleer.
 stolen-ptk800-name = PTK-800 (NT)
 stolen-ptk800-desc = Stolen mining weaponry for breaching. Requires link and a signaleer.
 lse-1200c-name = LSE-1200c
 lse-1200c-desc = A more advanced laser emplacement weapon. Requires a 'power cage', link and a signaleer.
+stolen-soviet-friendship-name = EXP-320g (NT)
+stolen-soviet-friendship-desc = A small gun emplacement stolen from a NT scout ship, use it wisely.
 
 # Pointless
 soviet-medals-name = Soviet sets of medals
@@ -78,6 +86,12 @@ ushanka-name = Ushanka
 ushanka-desc = Perfect for winter in Siberia, da?
 sovietuniform-name = Soviet Uniform
 sovietuniform-desc = Ploughshares to Swords, Assistant to Commisar.
+sovietolduniform-name = Old Soviet Uniform
+sovietolduniform-desc = Ploughshares to Swords, Assistant to Commisar's Assistant.
+soviet-propaganda-name = Truthful Newspapers
+soviet-propaganda-desc = Share the word! Share the word!
+soviet-banner-name = Glorious Soviet Banner
+soviet-banner-desc = Stand tall within our space, as this space is OURS COMRADES!
 zapo-name = Zaporozhian sich bundle
 zapo-desc = Cossacks- have gone to space, and have earned respect within the union.
 vodkizine-name = vodkizine bottle

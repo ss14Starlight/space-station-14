@@ -166,7 +166,7 @@
 
 - type: storeCategory
   id: RevUplinkShuttle
-  name: Artillery
+  name: Shuttles
 
 - type: storeCategory
   id: RevUplinkDeception
