@@ -1,13 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: Armored Silicon (Xenos & Assaultborg) armor reduced from 50% to 40%.
-    type: Tweak
-  id: 408648
-  time: '2026-09-16T18:34:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6180
-- author: SirLutz
-  changes:
   - message: Civilian Silicon Heat Flat Reduction removed.
     type: Remove
   id: 408649
@@ -2799,4 +2792,11 @@ Entries:
   id: 409047
   time: '2026-10-01T10:45:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6423
+- author: JMxm5
+  changes:
+  - message: Plasma sheets can be inserted into electrolyzers again.
+    type: Fix
+  id: 409048
+  time: '2026-10-01T11:09:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6430
 Order: -1
