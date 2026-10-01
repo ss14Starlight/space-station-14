@@ -10,30 +10,22 @@ public abstract partial class SharedVinylPlayerSystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _container = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<VinylPlayerComponent, EntInsertedIntoContainerMessage>(OnVinylInserted);
-        SubscribeLocalEvent<VinylPlayerComponent, EntRemovedFromContainerMessage>(OnVinylRemove);
-        SubscribeLocalEvent<VinylPlayerComponent, DestructionEventArgs>(OnDestruction);
-        SubscribeLocalEvent<VinylPlayerComponent, PowerChangedEvent>(OnPowerChanged);
-
-        SubscribeLocalEvent<VinylPlayerComponent, ExaminedEvent>(OnExamined); // Shift Click to view what Vinyl is inserted.
-    }
-
+    [SubscribeLocalEvent]
     protected virtual void OnPowerChanged(EntityUid uid, VinylPlayerComponent comp, PowerChangedEvent args)
     {
     }
 
+    [SubscribeLocalEvent]
     protected virtual void OnDestruction(EntityUid uid, VinylPlayerComponent comp, DestructionEventArgs args)
     {
-
     }
 
+    [SubscribeLocalEvent]
     protected virtual void OnVinylInserted(EntityUid uid, VinylPlayerComponent comp, EntInsertedIntoContainerMessage args)
     {
     }
 
+    [SubscribeLocalEvent]
     protected virtual void OnVinylRemove(EntityUid uid, VinylPlayerComponent comp, EntRemovedFromContainerMessage args)
     {
     }
@@ -41,6 +33,7 @@ public abstract partial class SharedVinylPlayerSystem : EntitySystem
     /// <summary>
     /// Show what vinyl is currently inserted when examined.
     /// </summary>
+    [SubscribeLocalEvent]
     private void OnExamined(EntityUid uid, VinylPlayerComponent comp, ref ExaminedEvent args)
     {
         if (!_container.TryGetContainer(uid, "vinyl", out var container) || container.ContainedEntities.Count == 0) // confirm actual container ID

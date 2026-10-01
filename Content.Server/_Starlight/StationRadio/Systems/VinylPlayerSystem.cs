@@ -25,7 +25,7 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
         if (comp.SoundEntity != null && !args.Powered)
             comp.SoundEntity = _audio.Stop(comp.SoundEntity);
 
-        if (!_stationRadio.TryGetLinkedServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp)) // Starlight - Add Station Radio Resume Play
+        if (!_stationRadio.TryGetLinkedServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp))
             return;
 
         serverComp.CurrentSong = null;
@@ -36,7 +36,7 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
 
     protected override void OnDestruction(EntityUid uid, VinylPlayerComponent comp, DestructionEventArgs args)
     {
-        if (!_stationRadio.TryGetLinkedServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp)) // Starlight - Add Station Radio Resume Play
+        if (!_stationRadio.TryGetLinkedServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp))
             return;
 
         serverComp.CurrentSong = null;
@@ -57,15 +57,10 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
         if (!TryComp(args.Entity, out VinylComponent? vinylcomp) || vinylcomp.Song == null || !_power.IsPowered(uid))
             return;
 
-        //var audio = _audio.PlayPvs(vinylcomp.Song, uid, comp.DefaultParams); // uhhhh vinyl can have playPVS i guess, sure :')
-        //if (audio != null)
-        //    comp.SoundEntity = audio.Value.Entity;
-
-        // Used by VinylSummonRuleSystem
         var ev = new VinylInsertedEvent(args.Entity);
         RaiseLocalEvent(uid, ref ev);
 
-        if (!_stationRadio.TryGetLinkedPoweredServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp)) // Starlight - Start - Add Station Radio Resume Play
+        if (!_stationRadio.TryGetLinkedPoweredServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp))
             return;
 
         serverComp.CurrentSong = vinylcomp.Song;
@@ -86,17 +81,14 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
         if (comp.SoundEntity != null)
             comp.SoundEntity = _audio.Stop(comp.SoundEntity);
 
-        // Used by VinylSummonRuleSystem
         var ev = new VinylRemovedEvent(args.Entity);
         RaiseLocalEvent(uid, ref ev);
 
-        if (!_stationRadio.TryGetPoweredGridServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp)) // Starlight - Start - Add Station Radio Resume Play
+        if (!_stationRadio.TryGetPoweredGridServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp))
             return;
 
-        // Starlight - Start - Add Station Radio Resume Play
         serverComp.CurrentSong = null;
         serverComp.PlaybackStartTime = null;
-        // Starlight - End
         var serverXform = Transform(uid);
         var query = EntityQueryEnumerator<StationRadioReceiverComponent>();
         while (query.MoveNext(out var receiver, out var _))

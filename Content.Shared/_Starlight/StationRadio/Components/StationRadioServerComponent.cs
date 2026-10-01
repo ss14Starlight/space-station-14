@@ -1,10 +1,9 @@
-using Robust.Shared.Audio; // Starlight - Add Station Radio Resume Play
+using Robust.Shared.Audio;
 
 namespace Content.Shared._Starlight.StationRadio.Components;
 
-[RegisterComponent] // Starlight edit - did not need to be networked.
+[RegisterComponent]
 public sealed partial class StationRadioServerComponent : Component
-    // Starlight - Add the ability for Station Radios to resume play.
 {
     /// <summary>
     /// The song currently being broadcasted.
@@ -19,4 +18,4 @@ public sealed partial class StationRadioServerComponent : Component
     [DataField]
     public TimeSpan? PlaybackStartTime;
 }
-    // Starlight - End
+

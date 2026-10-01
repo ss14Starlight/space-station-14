@@ -7,10 +7,10 @@ namespace Content.Shared._Starlight.StationRadio.Events;
 public sealed class StationRadioMediaPlayedEvent : EntityEventArgs
 {
     public SoundPathSpecifier MediaPlayed { get; }
-    public TimeSpan StartTime; // Starlight - Add Station Radio Resume Play
-    public StationRadioMediaPlayedEvent(SoundPathSpecifier media, TimeSpan startTime = default) // Starlight - Add Station Radio Resume Play
+    public TimeSpan StartTime;
+    public StationRadioMediaPlayedEvent(SoundPathSpecifier media, TimeSpan startTime = default)
     {
         MediaPlayed = media;
-        StartTime = startTime; // Starlight - Add Station Radio Resume Play
+        StartTime = startTime;
     }
 }

@@ -6,7 +6,6 @@ namespace Content.Shared._Starlight.StationRadio.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class StationRadioReceiverComponent : Component
 {
-    /// Starlight edit start
     /// <summary>
     /// The sound entity. Client only.
     /// </summary>
@@ -67,5 +66,4 @@ public sealed partial class StationRadioReceiverComponent : Component
     /// </remarks>
     [DataField, AutoNetworkedField]
     public AudioParams BoostedParams = AudioParams.Default.WithMaxDistance(12f);
-    /// Starlight Edit end
 }
