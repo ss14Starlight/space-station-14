@@ -41,17 +41,6 @@ public abstract partial class SharedPlayingCardsSystem
 
     private void OnStartup(Entity<PlayingCardComponent> entity, ref ComponentStartup args)
     {
-        // Starlight edit Start
-        if (Loc.TryGetString(entity.Comp.ObverseName, out var obverseName))
-            entity.Comp.ObverseName = obverseName;
-        if (Loc.TryGetString(entity.Comp.ReverseName, out var reverseName))
-            entity.Comp.ReverseName = reverseName;
-        if (Loc.TryGetString(entity.Comp.Description, out var description))
-            entity.Comp.Description = description;
-        if (entity.Comp.ReverseDescription is { } reverse && Loc.TryGetString(reverse, out var reverseDescription))
-            entity.Comp.ReverseDescription = reverseDescription;
-        // Starlight edit End
-
         var ev = new PlayingCardFlippedEvent();
         RaiseLocalEvent(entity, ref ev);
     }
@@ -61,7 +50,7 @@ public abstract partial class SharedPlayingCardsSystem
         if (!args.IsInDetailsRange || entity.Comp.FaceDown)
             return;
 
-        args.PushMarkup(Loc.GetString(ExamineText, ("target", entity.Comp.ObverseName)));
+        args.PushMarkup(Loc.GetString(ExamineText, ("target", Localize(entity.Comp.ObverseName)))); // Starlight edit
     }
 
     private void OnActivateInWorld(Entity<PlayingCardComponent> entity, ref ActivateInWorldEvent args)
@@ -78,7 +67,7 @@ public abstract partial class SharedPlayingCardsSystem
         _metadata.SetEntityName(entity, entity.Comp.Name());
         _metadata.SetEntityDescription(
             entity,
-            entity.Comp.FaceDown ? entity.Comp.ReverseDescription ?? "" : entity.Comp.Description
+            Localize(entity.Comp.FaceDown ? entity.Comp.ReverseDescription ?? "" : entity.Comp.Description) // Starlight edit
         );
         _appearance.SetData(entity, PlayingCardVisuals.IsFaceDown, entity.Comp.FaceDown);
         Dirty(entity);
