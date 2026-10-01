@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Social Interactions are now disabled when ghosted, stunned, sleeping, critical or dead.
-    type: Fix
-  id: 408646
-  time: '2026-09-15T01:45:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6167
 - author: SirLutz
   changes:
   - message: Heavy Xenoborg health has also been lowered, Crit 250 -> 150, Dead 750 -> 450.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409045
   time: '2026-10-01T10:13:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6424
+- author: qbrx
+  changes:
+  - message: Fixed news manager digi-board.
+    type: Fix
+  id: 409046
+  time: '2026-10-01T10:45:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6420
 Order: -1
