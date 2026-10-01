@@ -510,6 +510,10 @@ public sealed partial class GunSystem : SharedGunSystem
                     Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
                     Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
                     fired = true; // Starlight
+                    // Starlight-start - delete the client-side hitscan entity so it doesn't pile up on the shooter (mech lag)
+                    if (IsClientSide(ent!.Value))
+                        Del(ent.Value);
+                    // Starlight-end
                     break;
             }
         }

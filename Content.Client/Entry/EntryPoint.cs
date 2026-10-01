@@ -44,6 +44,7 @@ using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
+using Content.Client._Starlight.RedundantMovement;
 
 namespace Content.Client.Entry
 {
@@ -88,6 +89,7 @@ namespace Content.Client.Entry
         [Dependency] private ISharedNullLinkPlayerRolesReqManager _sharedNullLinkPlayer = default!; //NullLink
         [Dependency] private PreWrittenDocumentManager _documentManager = default!; // Starlight
         [Dependency] private IClientAchievementManager _achievementManager = default!; // Starlight
+        [Dependency] private IClientRedundantMovementManager _redundantMovement = default!; // Starlight
         [Dependency] private ClientFeedbackManager _feedbackManager = null!;
 
         public override void PreInit()
@@ -160,6 +162,7 @@ namespace Content.Client.Entry
             //_jobRequirements.Initialize(); //🌟Starlight🌟 - Moved to PostInit
             _playbackMan.Initialize();
             _clientsidePlaytimeManager.Initialize();
+            _redundantMovement.Initialize(); // Starlight
 
             //AUTOSCALING default Setup!
             _configManager.SetCVar("interface.resolutionAutoScaleUpperCutoffX", 1080);
