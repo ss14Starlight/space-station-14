@@ -47,7 +47,7 @@ public sealed partial class GhostUIController
         if (!IsReplay())
             return false;
 
-        _replayObserver?.WarpToRandomPlayer();
+        _replayObserver?.WarpToMostFollowed();
         return true;
     }
 }

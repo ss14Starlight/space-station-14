@@ -10,3 +10,4 @@ replay-observer-status-icons-on = Status icons enabled.
 replay-observer-status-icons-off = Status icons disabled.
 replay-observer-verb-view-laws = View Laws
 replay-observer-verb-view-moods = View Moods
+replay-observer-ghostnado-none = Nobody is being followed.

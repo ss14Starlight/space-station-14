@@ -1,18 +1,22 @@
-using System.Linq;
 using Content.Client.Replay.Spectator;
+using Content.Shared.Follower.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Roles.Jobs;
+using Content.Shared.Tag;
 using Content.Shared.Warps;
 using Robust.Shared.Map;
-using Robust.Shared.Random;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.Replay;
 
 public sealed partial class ReplayObserverSystem
 {
-    [Dependency] private IRobustRandom _random = default!;
+    private static readonly EntProtoId _adminObserverProto = "AdminObserver";
+    private static readonly ProtoId<TagPrototype> _notGhostnadoWarpableTag = "NotGhostnadoWarpable";
+
+    [Dependency] private TagSystem _tags = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedJobSystem _jobs = default!;
@@ -71,12 +75,48 @@ public sealed partial class ReplayObserverSystem
         _spectator.SpawnSpectatorGhost(new EntityCoordinates(uid, default), true);
     }
 
-    public void WarpToRandomPlayer()
+    // Same pick as FollowerSystem.GetMostGhostFollowed. Warps only, since following would edit the target's recorded
+    // FollowedComponent. Admin status isn't recorded, so aghosts are excluded by prototype.
+    public void WarpToMostFollowed()
     {
-        var players = GetReplayWarps().Where(w => !w.IsWarpPoint).ToList();
-        if (players.Count == 0)
-            return;
+        var counts = new Dictionary<EntityUid, int>();
+        var query = AllEntityQuery<FollowerComponent, GhostComponent, MetaDataComponent>();
+        while (query.MoveNext(out var uid, out var follower, out _, out var meta))
+        {
+            if (uid == _observer
+                || meta.EntityPrototype?.ID == _adminObserverProto.Id
+                || !_player.TryGetSessionByEntity(uid, out _))
+            {
+                continue;
+            }
 
-        WarpTo(_random.Pick(players).Entity);
+            var followed = follower.Following;
+            if (!Exists(followed) || _tags.HasTag(followed, _notGhostnadoWarpableTag))
+                continue;
+
+            counts.TryGetValue(followed, out var count);
+            counts[followed] = count + 1;
+        }
+
+        EntityUid? target = null;
+        var most = 0;
+        foreach (var (followed, count) in counts)
+        {
+            if (count <= most)
+                continue;
+
+            most = count;
+            target = followed;
+        }
+
+        if (target == null)
+        {
+            if (_player.LocalEntity is { } local)
+                _popup.PopupEntity(Loc.GetString("replay-observer-ghostnado-none"), local);
+
+            return;
+        }
+
+        WarpTo(GetNetEntity(target.Value));
     }
 }
