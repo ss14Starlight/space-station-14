@@ -12,6 +12,7 @@ using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
+using Content.Shared.Interaction;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
@@ -38,6 +39,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private SharedChargesSystem _charges = default!;
     [Dependency] private SharedChatSystem _chat = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private CombatModeSystem _combatMode = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private SharedJointSystem _joints = default!;
@@ -129,6 +131,10 @@ public sealed partial class LatchSystem : SharedLatchSystem
         if (!comp.Active || comp.Target is not { } target)
             return false;
 
+        // Can't bite through a wall.
+        if (comp.ObstructedSince != null)
+            return false;
+
         // Ratio of the bite's damage that got through armor.
         var effectiveness = 0f;
 
@@ -185,6 +191,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         comp.MaxEndTime = Timing.CurTime + comp.MaxDuration;
         comp.NextTickTime = Timing.CurTime + comp.TickInterval;
         comp.StartTime = Timing.CurTime;
+        comp.ObstructedSince = null;
         comp.TickPaused = _mobState.IsCritical(target) || _mobState.IsSoftCritical(target);
 
         var latched = EnsureComp<LatchedComponent>(target);
@@ -235,15 +242,22 @@ public sealed partial class LatchSystem : SharedLatchSystem
         Dirty(uid, comp);
     }
 
+    protected override void BreakLatch(EntityUid latcher, LatchComponent comp)
+    {
+        EndLatch(latcher, comp);
+    }
+
     /// <summary>
     /// Ends the latch. Safe to call on an already-inactive component.
     /// </summary>
-    private void EndLatch(EntityUid uid, LatchComponent comp)
+    /// <param name="forceRefund">Refund the charge even outside the usual grace period.</param>
+    private void EndLatch(EntityUid uid, LatchComponent comp, bool forceRefund = false)
     {
         var target = comp.Target;
 
         // Refund if the latch ended almost immediately.
-        if (comp.Active && comp.ActionEntity is { } actionEnt && Timing.CurTime - comp.StartTime < comp.RefundGracePeriod)
+        if (comp.Active && comp.ActionEntity is { } actionEnt &&
+            (forceRefund || Timing.CurTime - comp.StartTime < comp.RefundGracePeriod))
         {
             _charges.AddCharges((actionEnt, null, null), 1);
             _action.ClearCooldown(actionEnt);
@@ -252,6 +266,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         comp.Active = false;
         comp.Target = null;
         comp.TickPaused = false;
+        comp.ObstructedSince = null;
 
         if (comp.LatchJointId is { } jointId)
         {
@@ -347,6 +362,17 @@ public sealed partial class LatchSystem : SharedLatchSystem
     }
 
     /// <summary>
+    /// Centre-to-centre raycast with the same mask melee uses, so "obstructed"
+    /// here means exactly what stops the target from hitting back.
+    /// </summary>
+    private bool HasLatchLineOfSight(EntityUid uid, EntityUid target)
+    {
+        var from = _transform.GetMapCoordinates(uid);
+        var to = _transform.GetMapCoordinates(target);
+        return _interaction.InRangeUnobstructed(from, to, range: 0f, predicate: e => e == uid || e == target);
+    }
+
+    /// <summary>
     /// Per-tick upkeep: end conditions, DoT ticks, combat-mode enforcement.
     /// </summary>
     public override void Update(float frameTime)
@@ -390,10 +416,27 @@ public sealed partial class LatchSystem : SharedLatchSystem
                 continue;
             }
 
+            // Pulled round a corner by the joint; the target can't swing back through
+            // the wall, so break the latch if it doesn't clear up quickly. Refund it
+            // if the obstruction began right as the latch landed (an unlucky snap).
+            if (!HasLatchLineOfSight(uid, target))
+            {
+                comp.ObstructedSince ??= now;
+                if (now - comp.ObstructedSince.Value >= comp.ObstructionBreakDelay)
+                {
+                    EndLatch(uid, comp, comp.ObstructedSince.Value - comp.StartTime < comp.RefundGracePeriod);
+                    continue;
+                }
+            }
+            else
+            {
+                comp.ObstructedSince = null;
+            }
+
             // Re-assert every tick so this can't be toggled back on mid-latch.
             _combatMode.SetInCombatMode(uid, false);
 
-            if (!comp.TickPaused && now >= comp.NextTickTime)
+            if (!comp.TickPaused && comp.ObstructedSince == null && now >= comp.NextTickTime)
             {
                 DealTick(uid, comp, target);
                 comp.NextTickTime = now + comp.TickInterval;

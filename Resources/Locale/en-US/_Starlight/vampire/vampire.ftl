@@ -169,6 +169,7 @@ vampire-seismic-stomp-activate = The ground shudders beneath your fury!
 vampire-overwhelming-force-start = Your presence becomes immovable.
 vampire-overwhelming-force-stop = You relax your iron grip.
 vampire-overwhelming-force-too-heavy = This object is far too heavy to move!
+vampire-overwhelming-force-latch-blocked = You can't get a grip on something so immovable!
 vampire-overwhelming-force-door-pried = You wrench the door open with brute strength.
 
 vampire-demonic-grasp-hit = A demonic claw seizes you!

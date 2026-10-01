@@ -1,4 +1,5 @@
 using Content.Server.Bible.Components;
+using Content.Shared._Starlight.Actions.EntitySystems;
 using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Prototypes;
@@ -54,6 +55,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private BlindableSystem _blindable = default!;
     [Dependency] private SharedStealthSystem _stealth = default!;
+    [Dependency] private SharedLatchSystem _latch = default!;
     private static readonly SoundSpecifier _biteSound = new SoundPathSpecifier("/Audio/Effects/bite.ogg");
     private static readonly SoundSpecifier _devourSound = new SoundPathSpecifier("/Audio/Effects/demon_consume.ogg");
     private readonly Dictionary<EntityUid, List<EntityUid>> _playerShadowSnares = new();
@@ -966,6 +968,9 @@ public sealed partial class VampireSystem : EntitySystem
         _statusEffects.TryRemoveStatusEffect(uid, SharedStunSystem.StunId);
         _stun.TryUnstun(uid);
         RemComp<KnockedDownComponent>(uid);
+
+        // A latch pins like a stun, so shaking off stuns shakes off the latcher too.
+        _latch.TryBreakLatch(uid);
     }
 
     private void PurgeRejuvenateReagents(EntityUid uid, VampireRejuvenateIIActionEvent args)

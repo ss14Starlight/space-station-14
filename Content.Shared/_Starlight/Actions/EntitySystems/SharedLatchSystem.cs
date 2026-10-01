@@ -48,9 +48,46 @@ public abstract partial class SharedLatchSystem : EntitySystem
         if (!_whitelist.IsWhitelistPassOrNull(comp.Whitelist, target))
             return;
 
+        var attempt = new LatchAttemptEvent(uid, target);
+        RaiseLocalEvent(target, ref attempt);
+        if (attempt.Cancelled)
+            return;
+
         CreateLatchJoint(uid, comp, target);
         StartLatch(uid, comp, target);
         ev.Handled = true;
+    }
+
+    /// <summary>
+    /// Ends any active latch <paramref name="uid"/> is part of, whether as the
+    /// latcher or the target. For abilities that should break a latch outright.
+    /// </summary>
+    /// <returns>True if a latch was found and ended.</returns>
+    public bool TryBreakLatch(EntityUid uid)
+    {
+        if (TryComp<LatchComponent>(uid, out var comp) && comp.Active)
+        {
+            BreakLatch(uid, comp);
+            return true;
+        }
+
+        if (TryComp<LatchedComponent>(uid, out var latched)
+            && TryComp<LatchComponent>(latched.Latcher, out var latcherComp)
+            && latcherComp.Active
+            && latcherComp.Target == uid)
+        {
+            BreakLatch(latched.Latcher, latcherComp);
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Authoritative latch teardown. Overridden serverside.
+    /// </summary>
+    protected virtual void BreakLatch(EntityUid latcher, LatchComponent comp)
+    {
     }
 
     /// <summary>

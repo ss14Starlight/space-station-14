@@ -1,5 +1,6 @@
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared._Starlight.Actions.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
@@ -492,6 +493,15 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         var soln = new Solution();
         soln.AddReagent(PolytrinicAcidPrototype, 10f);
+
+        // Latched: free ourselves and splash whoever had their teeth in us, same as a puller.
+        if (TryComp<LatchedComponent>(uid, out var latched) && Exists(latched.Latcher))
+        {
+            var latcher = latched.Latcher;
+            _latch.TryBreakLatch(uid);
+            _puddle.TrySplashSpillAt(latcher, Transform(latcher).Coordinates, soln, out _);
+            return;
+        }
 
         if (_pull.IsPulled(uid))
         {
