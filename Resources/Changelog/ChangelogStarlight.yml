@@ -1,13 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: Armored Silicon Heat Flat Reduction lowered from 6 to 3.
-    type: Tweak
-  id: 408650
-  time: '2026-09-16T18:34:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6180
-- author: SirLutz
-  changes:
   - message: Civilian Silicon Blunt reduced from 5 -> 2.
     type: Tweak
   id: 408651
@@ -2799,4 +2792,11 @@ Entries:
   id: 409049
   time: '2026-10-01T11:32:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6427
+- author: JMxm5
+  changes:
+  - message: (Hotel) Increased the number of atmos tech latejoin slots (2 -> 3) to match the number of lockers.
+    type: Fix
+  id: 409050
+  time: '2026-10-01T12:01:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6421
 Order: -1
