@@ -230,6 +230,9 @@ public sealed partial class SharedGargantuaSystem : EntitySystem
         args.Cancelled = true;
     }
 
+    /// <summary>
+    /// Overwhelming Force makes the vampire impossible to latch onto, same as pulls and shoves.
+    /// </summary>
     private void OnOverwhelmingForceLatchAttempt(EntityUid uid, GargantuaComponent component, ref LatchAttemptEvent args)
     {
         if (!component.OverwhelmingForceActive)

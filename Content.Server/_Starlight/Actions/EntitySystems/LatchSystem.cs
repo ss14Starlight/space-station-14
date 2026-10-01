@@ -12,7 +12,6 @@ using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.Interaction;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
@@ -39,7 +38,6 @@ public sealed partial class LatchSystem : SharedLatchSystem
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private SharedChargesSystem _charges = default!;
     [Dependency] private SharedChatSystem _chat = default!;
-    [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private CombatModeSystem _combatMode = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private SharedJointSystem _joints = default!;
@@ -242,9 +240,10 @@ public sealed partial class LatchSystem : SharedLatchSystem
         Dirty(uid, comp);
     }
 
-    protected override void BreakLatch(EntityUid latcher, LatchComponent comp)
+    /// <inheritdoc/>
+    protected override void BreakLatch(Entity<LatchComponent> latcher)
     {
-        EndLatch(latcher, comp);
+        EndLatch(latcher.Owner, latcher.Comp);
     }
 
     /// <summary>
@@ -359,17 +358,6 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
         // Incapacitated (crit): pause damage, keep the pin active.
         latchComp.TickPaused = ev.NewMobState is MobState.Critical or MobState.SoftCritical;
-    }
-
-    /// <summary>
-    /// Centre-to-centre raycast with the same mask melee uses, so "obstructed"
-    /// here means exactly what stops the target from hitting back.
-    /// </summary>
-    private bool HasLatchLineOfSight(EntityUid uid, EntityUid target)
-    {
-        var from = _transform.GetMapCoordinates(uid);
-        var to = _transform.GetMapCoordinates(target);
-        return _interaction.InRangeUnobstructed(from, to, range: 0f, predicate: e => e == uid || e == target);
     }
 
     /// <summary>

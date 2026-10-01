@@ -949,6 +949,10 @@ public sealed partial class VampireSystem : EntitySystem
         args.Handled = true;
     }
 
+    /// <summary>
+    /// Shared Rejuvenate cleanup: optionally restores stamina, and optionally
+    /// clears stuns, knockdown, and any latch holding the vampire.
+    /// </summary>
     private void ResetRejuvenateEffects(EntityUid uid, bool resetStamina, bool removeStuns)
     {
         if (resetStamina && TryComp<StaminaComponent>(uid, out var stamina))
