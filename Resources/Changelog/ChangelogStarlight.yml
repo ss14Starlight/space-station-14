@@ -1,11 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: Cold Case pistol now uses the correct firing pin.
-    type: Fix
-  id: 408644
-  time: '2026-09-14T21:42:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6076
 - author: dove15567
   changes:
   - message: Added the Xenosocialized trait, a language trait costing -2 points that removes the species' native language from the character.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409043
   time: '2026-10-01T09:39:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6415
+- author: Musiklie
+  changes:
+  - message: Fixed Chemmaster1k not working.
+    type: Fix
+  id: 409044
+  time: '2026-10-01T09:39:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6417
 Order: -1
