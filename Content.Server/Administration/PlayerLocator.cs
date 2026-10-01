@@ -152,8 +152,7 @@ namespace Content.Server.Administration
         private LocatedPlayerData ReturnForSession(ICommonSession session) // Starlight: non-static, uses resolved IP
         {
             var userId = session.UserId;
-            var address = _connectionManager.GetResolvedAddress(userId)
-                          ?? session.Channel.RemoteEndPoint.Address; // Starlight: prefer resolved IP
+            var address = _connectionManager.GetPlayerAddress(session); // Starlight: resolved IP, never the SNAT address
             var hwId = session.Channel.UserData.GetModernHwid();
             return new LocatedPlayerData(
                 userId,
