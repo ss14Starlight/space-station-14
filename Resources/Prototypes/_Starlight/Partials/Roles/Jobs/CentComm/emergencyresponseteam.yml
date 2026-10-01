@@ -1,0 +1,19 @@
+- type: !PartialOnly startingGear
+  id: ERTMedicalGearArmed
+  equipment:
+    suitstorage: WeaponRifleIK60
+
+- type: !PartialOnly startingGear
+  id: ERTLeaderGearEVA
+  equipment:
+    pocket2: WeaponPistolPDW9
+  storage:
+    belt:
+    - !Remove WeaponPistolM1911
+    - !Index:0 WeaponPistolN1984
+
+- type: !PartialOnly startingGear
+  id: !type:CreateVariants
+    values: [ ERTEngineerGearEVA, ERTSecurityGearEVA, ERTMedicalGearEVA, ERTJanitorGearEVA ]
+  equipment:
+    pocket2: WeaponPistolPDW9
