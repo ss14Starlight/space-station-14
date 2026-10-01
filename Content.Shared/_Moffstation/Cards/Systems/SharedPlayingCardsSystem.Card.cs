@@ -41,6 +41,17 @@ public abstract partial class SharedPlayingCardsSystem
 
     private void OnStartup(Entity<PlayingCardComponent> entity, ref ComponentStartup args)
     {
+        // Starlight edit Start: card names in YAML can be loc keys (dynamic cards get theirs from the deck later)
+        if (Loc.TryGetString(entity.Comp.ObverseName, out var obverseName))
+            entity.Comp.ObverseName = obverseName;
+        if (Loc.TryGetString(entity.Comp.ReverseName, out var reverseName))
+            entity.Comp.ReverseName = reverseName;
+        if (Loc.TryGetString(entity.Comp.Description, out var description))
+            entity.Comp.Description = description;
+        if (entity.Comp.ReverseDescription is { } reverse && Loc.TryGetString(reverse, out var reverseDescription))
+            entity.Comp.ReverseDescription = reverseDescription;
+        // Starlight edit End
+
         var ev = new PlayingCardFlippedEvent();
         RaiseLocalEvent(entity, ref ev);
     }
