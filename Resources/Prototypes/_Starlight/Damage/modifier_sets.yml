@@ -337,9 +337,9 @@
 - type: damageModifierSet
   id: CivilianSilicon
   coefficients:
-    Blunt: 0.65
+    Blunt: 0.75
     Slash: 0.45
-    Piercing: 0.70
+    Piercing: 0.75
     Shock: 1.2
     Heat: 0.8
   flatReductions:
@@ -348,11 +348,11 @@
 - type: damageModifierSet
   id: ArmoredSilicon
   coefficients:
-    Blunt: 0.45
+    Blunt: 0.55
     Slash: 0.3
-    Piercing: 0.60
+    Piercing: 0.65
     Shock: 1.1
     Heat: 0.65
   flatReductions:
-    Blunt: 5
+    Blunt: 4
     Heat: 3

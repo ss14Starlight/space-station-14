@@ -5,10 +5,12 @@ using Content.Server.Revolutionary.Components;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Alert;
 using Content.Shared.Database;
 using Content.Shared.Examine;
 using Robust.Server.Player;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Collections;
@@ -35,6 +37,9 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
     [Dependency] private StarlightEntitySystem _entitySystem = default!;
     [Dependency] private RailroadRuleSystem _railroadRule = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+
+    private static readonly ProtoId<AlertPrototype> CardsAlert = "RailroadingChoice";
 
     private readonly Dictionary<ICommonSession, CardSelectionEui> _openUis = [];
 
@@ -43,9 +48,17 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
         base.Initialize();
         SubscribeLocalEvent<RailroadCardComponent, MapInitEvent>(OnMapInit);
         SubscribeNetworkEvent<OpenCardsRequestEvent>(OnOpenCardsRequest);
+        SubscribeLocalEvent<RailroadCardsPendingComponent, ComponentStartup>(OnPendingStartup);
+        SubscribeLocalEvent<RailroadCardsPendingComponent, ComponentShutdown>(OnPendingShutdown);
         SubscribeLocalEvent<RailroadableComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<RailroadableComponent, CollectObjectivesEvent>(OnCollectObjectiveInfo);
     }
+
+    private void OnPendingStartup(Entity<RailroadCardsPendingComponent> ent, ref ComponentStartup args)
+        => _alerts.ShowAlert(ent.Owner, CardsAlert);
+
+    private void OnPendingShutdown(Entity<RailroadCardsPendingComponent> ent, ref ComponentShutdown args)
+        => _alerts.ClearAlert(ent.Owner, CardsAlert);
 
     private void OnMapInit(Entity<RailroadCardComponent> ent, ref MapInitEvent args)
     {

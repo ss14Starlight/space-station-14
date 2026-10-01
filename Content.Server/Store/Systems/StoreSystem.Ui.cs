@@ -20,8 +20,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Prometheus; //Starlight
 using Content.Server._Starlight.Language;
+using Content.Server._Starlight.Statistics;
 using Content.Shared._Starlight.Store.Events;
 using Content.Shared._Starlight.Store.Conditions;
 using Content.Server._Starlight.Revolutionary;
@@ -31,15 +31,8 @@ namespace Content.Server.Store.Systems;
 
 public sealed partial class StoreSystem
 {
-    #region Starlight
-    private static readonly Counter _storePurchasesMetric = Metrics.CreateCounter(
-        "sl_store_purchases",
-        "Everything bounght from a \"store\" which include ling upgrades, traitor uplinks, wizard grimoires",
-        ["store_name", "purchased_item", "discounted"]
-    );
-    #endregion
-
     [Dependency] private IAdminLogManager _admin = default!;
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!; // Starlight
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private ActionContainerSystem _actionContainer = default!;
@@ -382,13 +375,7 @@ public sealed partial class StoreSystem
             }
         }
 
-        #region Starlight statistics
-        _storePurchasesMetric.WithLabels([
-            Loc.GetString(component.Name),
-            listing.ID,
-            listing.IsCostModified.ToString()
-        ]).Inc(1); //we observe *1* purchase of the item.
-        #endregion
+        _roundStatistics.RecordStorePurchase(component.Name.Id, listing.ID, listing.IsCostModified); // Starlight
     }
 
     /// <summary>

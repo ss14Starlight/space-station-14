@@ -237,3 +237,51 @@
     - SiliconEmotes
     - Unimplantable
     - EmagImmune
+
+# Salvage
+- type: entity
+  parent: MiningBorgChassisDerelict
+  id: SalvageMiningBorg
+  name: salvage cyborg
+  description: A man-machine hybrid that assists the guild. This one has seen more than its share of use.
+  suffix: Battery, Module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - BorgModulePrying
+      - BorgModuleTool #No fire extinguisher, traversal is better
+      - BorgModuleMining
+      - BorgModuleTraversal
+      - BorgModuleAppraisal
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
+  - type: RandomMetadata
+    nameSegments: [NamesBorg]
+  - type: SiliconLawProvider
+    laws: itgLawset
+  - type: Access
+    tags:
+    - Salvage
+  - type: AccessReader
+    access: [["Salvage"]]
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Expedition
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Expedition
+  - type: IonStormTarget
+    chance: 0.05

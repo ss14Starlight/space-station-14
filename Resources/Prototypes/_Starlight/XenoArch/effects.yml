@@ -126,11 +126,11 @@
     - id: XenoArtifactShatterWindows
       weight: 1.0
     - id: XenoArtifactFoamDermaline #Funky changes start, splitting up the table for repeatability
-      weight: 0.7
+      weight: 0.6
     - id: XenoArtifactFoamArithrazine
-      weight: 0.7
+      weight: 0.4
     - id: XenoArtifactFoamBicaridine
-      weight: 0.7
+      weight: 0.6
     - id: XenoArtifactFoamInaprovaline
       weight: 0.7
     - id: XenoArtifactFoamKelotane
@@ -138,7 +138,7 @@
     - id: XenoArtifactFoamDexalin
       weight: 0.7
     - id: XenoArtifactFoamOmnizine
-      weight: 0.5
+      weight: 0.2
     - id: XenoArtifactFoamTritium
       weight: 0.7
     - id: XenoArtifactFoamPlasma
@@ -154,7 +154,7 @@
     - id: XenoArtifactFoamNapalm
       weight: 0.7
     - id: XenoArtifactFoamCarpoToxin
-      weight: 0.7
+      weight: 0.4
     - id: XenoArtifactFoamChloralHydrate
       weight: 0.7
     - id: XenoArtifactFoamMold
@@ -162,11 +162,11 @@
     - id: XenoArtifactFoamAmatoxin
       weight: 0.7
     - id: XenoArtifactPuddleDermaline
-      weight: 0.7
+      weight: 0.6
     - id: XenoArtifactPuddleArithrazine
-      weight: 0.7
+      weight: 0.5
     - id: XenoArtifactPuddleBicaridine
-      weight: 0.7
+      weight: 0.6
     - id: XenoArtifactPuddleInaprovaline
       weight: 0.7
     - id: XenoArtifactPuddleKelotane
@@ -174,17 +174,17 @@
     - id: XenoArtifactPuddleDexalin
       weight: 0.7
     - id: XenoArtifactPuddleOmnizine
-      weight: 0.5
+      weight: 0.2
     - id: XenoArtifactPuddleNapalm
       weight: 0.7
     - id: XenoArtifactPuddleToxin
       weight: 0.7
     - id: XenoArtifactPuddleEpinephrine
-      weight: 0.7
+      weight: 0.5
     - id: XenoArtifactPuddleCognizine
-      weight: 0.5
+      weight: 0.2
     - id: XenoArtifactPuddleUltravasculine
-      weight: 0.5
+      weight: 0.2
     - id: XenoArtifactPuddleDesoxyephedrine
       weight: 0.5
     - id: XenoArtifactPuddlePax
@@ -443,7 +443,7 @@
       max: 3
     #replaceDescription: true # Funky
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Aluminium
@@ -458,7 +458,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Carbon
@@ -473,7 +473,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Chlorine
@@ -488,7 +488,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Copper
@@ -503,7 +503,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Ethanol
@@ -518,7 +518,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Fluorine
@@ -533,7 +533,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Sugar
@@ -548,7 +548,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Hydrogen
@@ -563,7 +563,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Iodine
@@ -578,7 +578,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Iron
@@ -593,7 +593,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Lithium
@@ -608,7 +608,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Mercury
@@ -623,7 +623,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Nitrogen
@@ -638,7 +638,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Oxygen
@@ -653,7 +653,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Phosphorus
@@ -668,7 +668,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Radium
@@ -683,7 +683,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Silicon
@@ -698,7 +698,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Sodium
@@ -728,7 +728,7 @@
       min: 1
       max: 3
     chemicalSolution:
-      maxVol: 500
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Sulfur
@@ -829,8 +829,8 @@
   - type: XenoArtifactNode
     maxDurability: 7
     maxDurabilityCanDecreaseBy:
-      min: 0
-      max: 5
+      min: 1
+      max: 4
   - type: XAEFoam
     replaceDescription: true
     reagents:
@@ -844,8 +844,8 @@
   - type: XenoArtifactNode
     maxDurability: 7
     maxDurabilityCanDecreaseBy:
-      min: 0
-      max: 5
+      min: 1
+      max: 4
   - type: XAEFoam
     replaceDescription: true
     reagents:
@@ -859,8 +859,8 @@
   - type: XenoArtifactNode
     maxDurability: 7
     maxDurabilityCanDecreaseBy:
-      min: 0
-      max: 5
+      min: 1
+      max: 4
   - type: XAEFoam
     replaceDescription: true
     reagents:
@@ -874,8 +874,8 @@
   - type: XenoArtifactNode
     maxDurability: 7
     maxDurabilityCanDecreaseBy:
-      min: 0
-      max: 5
+      min: 1
+      max: 4
   - type: XAEFoam
     replaceDescription: true
     reagents:
@@ -889,8 +889,8 @@
   - type: XenoArtifactNode
     maxDurability: 7
     maxDurabilityCanDecreaseBy:
-      min: 0
-      max: 5
+      min: 1
+      max: 4
   - type: XAEFoam
     replaceDescription: true
     reagents:
@@ -904,8 +904,8 @@
   - type: XenoArtifactNode
     maxDurability: 7
     maxDurabilityCanDecreaseBy:
-      min: 0
-      max: 5
+      min: 1
+      max: 4
   - type: XAEFoam
     replaceDescription: true
     reagents:
@@ -919,8 +919,8 @@
   - type: XenoArtifactNode
     maxDurability: 7
     maxDurabilityCanDecreaseBy:
-      min: 0
-      max: 5
+      min: 1
+      max: 4
   - type: XAEFoam
     replaceDescription: true
     reagents:
@@ -1069,7 +1069,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Dermaline
@@ -1085,7 +1085,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Arithrazine
@@ -1101,7 +1101,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Bicaridine
@@ -1117,7 +1117,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Inaprovaline
@@ -1133,7 +1133,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Kelotane
@@ -1149,7 +1149,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Dexalin
@@ -1165,7 +1165,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Omnizine
@@ -1181,7 +1181,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Napalm
@@ -1197,7 +1197,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Toxin
@@ -1213,7 +1213,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Epinephrine
@@ -1229,7 +1229,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Cognizine
@@ -1245,7 +1245,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Ultravasculine
@@ -1261,7 +1261,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Desoxyephedrine
@@ -1277,7 +1277,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Pax
@@ -1293,7 +1293,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Siderlac
