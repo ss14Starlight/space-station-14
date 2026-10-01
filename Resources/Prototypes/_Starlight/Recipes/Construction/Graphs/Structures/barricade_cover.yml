@@ -1,0 +1,77 @@
+- type: constructionGraph
+  id: BarricadeCover
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: steel
+      steps:
+      - material: Steel
+        amount: 3
+        doAfter: 3
+    - to: wood
+      steps:
+      - material: WoodPlank
+        amount: 4
+        doAfter: 3
+    - to: glass
+      steps:
+      - material: WoodPlank
+        amount: 2
+        doAfter: 2
+      - material: Glass
+        amount: 2
+        doAfter: 2
+
+  - node: steel
+    entity: BarricadeSteel
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity {}
+      conditions:
+      - !type:EntityAnchored
+        anchored: true
+      steps:
+      - tool: Anchoring
+        doAfter: 2
+      - tool: Welding
+        doAfter: 4
+
+  - node: wood
+    entity: BarricadeWood
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialWoodPlank1
+        amount: 3
+      - !type:DeleteEntity {}
+      conditions:
+      - !type:EntityAnchored
+        anchored: true
+      steps:
+      - tool: Prying
+        doAfter: 4
+
+  - node: glass
+    entity: BarricadeGlass
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialWoodPlank1
+        amount: 1
+      - !type:SpawnPrototype
+        prototype: SheetGlass1
+        amount: 1
+      - !type:DeleteEntity {}
+      conditions:
+      - !type:EntityAnchored
+        anchored: true
+      steps:
+      - tool: Prying
+        doAfter: 3
