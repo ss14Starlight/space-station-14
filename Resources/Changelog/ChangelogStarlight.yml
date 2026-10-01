@@ -1,13 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: Civilian Silicon Heat Flat Reduction removed.
-    type: Remove
-  id: 408649
-  time: '2026-09-16T18:34:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6180
-- author: SirLutz
-  changes:
   - message: Armored Silicon Heat Flat Reduction lowered from 6 to 3.
     type: Tweak
   id: 408650
@@ -2799,4 +2792,11 @@ Entries:
   id: 409048
   time: '2026-10-01T11:09:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6430
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed shadekin eye sprites being inconsistent depending on which direction they were facing.
+    type: Fix
+  id: 409049
+  time: '2026-10-01T11:32:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6427
 Order: -1
