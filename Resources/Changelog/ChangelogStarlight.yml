@@ -1,13 +1,6 @@
 Entries:
 - author: DreadfulTaco, FlameyTheRandom
   changes:
-  - message: The ability to eat ice cream with a spoon.
-    type: Add
-  id: 408640
-  time: '2026-09-14T21:11:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6159
-- author: DreadfulTaco, FlameyTheRandom
-  changes:
   - message: Fixed sprites to properly reflect their volume.
     type: Fix
   id: 408641
@@ -2799,4 +2792,11 @@ Entries:
   id: 409039
   time: '2026-10-01T09:08:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6359
+- author: mikeysaurus
+  changes:
+  - message: Adds lslaws command for admins to easily view Silicon laws, like they can with objectives.
+    type: Add
+  id: 409040
+  time: '2026-10-01T09:08:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6371
 Order: -1
