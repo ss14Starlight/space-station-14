@@ -183,6 +183,7 @@
         - to: InterdyneSyndicateFlag
           steps:
             - tag: SyndieCard
+              store: cardcontainer
               name: syndie-card
               icon:
                 sprite: Objects/Misc/bureaucracy.rsi
@@ -363,6 +364,7 @@
         - to: SyndieFlag
           steps:
             - tag: SyndieCard
+              store: cardcontainer
               name: syndie-card
               icon:
                 sprite: Objects/Misc/bureaucracy.rsi
@@ -397,9 +399,9 @@
       edges:
         - to: InterdyneFlag
           completed:
-            - !type:GivePrototype
-              prototype: SyndicateBusinessCard
-              amount: 1
+            - !type:EmptyAllContainers
+              pickup: false
+              emptyAtUser: true
           steps:
             - tool: Cutting
               doAfter: 8
@@ -409,9 +411,9 @@
       edges:
         - to: NTFlag
           completed:
-            - !type:GivePrototype
-              prototype: SyndicateBusinessCard
-              amount: 1
+            - !type:EmptyAllContainers
+              pickup: false
+              emptyAtUser: true
           steps:
             - tool: Cutting
               doAfter: 8
