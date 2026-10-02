@@ -1,10 +1,8 @@
 - type: entity
-  parent:
-  - BaseItem
-  - BaseMajorContraband
+  parent: [ BaseItem, BaseMajorContraband ]
   id: MagazineBoltPistol
   name: bolt pistol magazine (standard)
-  description: A 10-round magazine for impact bolts.
+  description: An 8-round magazine for impact bolts.
   components:
   - type: Tag
     tags:
@@ -17,20 +15,16 @@
       tags:
       - CartridgeImpactBolt
     proto: CartridgeImpactBolt
-    capacity: 10
+    capacity: 8
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/impact_bolt_pistol.rsi
     layers:
-    - state: base
+    - state: icon
       map:
       - enum.GunVisualLayers.Base
-  - type: MagazineVisuals
-    magState: mag
-    steps: 6
-    zeroVisible: false
   - type: Appearance
 
 - type: entity

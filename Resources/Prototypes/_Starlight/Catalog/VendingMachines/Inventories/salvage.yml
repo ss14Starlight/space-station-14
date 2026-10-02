@@ -304,11 +304,12 @@
   id: VendorSalvageWeaponBoltRifle
   productEntity: WeaponRifleBolt
   cost:
-    SalvageTicket: 1750
+    SalvageTicket: "1500"
   categories:
   - SalvageWeapons
   conditions:
   - !type:BuyerAccessCondition
+
 
 - type: listing
   id: VendorSalvageWeaponBoltPistol
@@ -430,12 +431,10 @@
   productEntity: MagazineBoltPistol
   cost:
     SalvageTicket: 150
-
-#Merc Stuff
-
-
-
-
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
 - type: listing
   id: VendorSalvageClothingHeadHatBeretSalvageMercPurple
   productEntity: ClothingHeadHatBeretSalvageMercPurple

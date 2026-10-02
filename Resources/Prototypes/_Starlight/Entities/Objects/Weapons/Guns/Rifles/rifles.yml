@@ -607,14 +607,12 @@
 
 - type: entity
   name: Bolt Rifle
-  parent:
-  - BaseWeaponRifle
-  - BaseSalvageContraband
+  parent: [ BaseWeaponRifle, BaseSalvageContraband ]
   id: WeaponRifleBolt
-  description: A terrifyingly powerfull rifle manufactured by the ITG for their frontier logistic escorts and salvage teams. Fires high-caliber explosive impact bolts. Watch out for the recoil.
+  description: A terrifyingly powerfull and rugged rifle manufactured by the ITG for their frontier logistic escorts and salvage teams. Fires high-caliber explosive impact bolts. Watch out for the recoil.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Rifles/m16.rsi
+    sprite: _Starlight\Objects\Weapons\Guns\Rifles\impact_bolt_rifle.rsi
     layers:
     - state: base
       map:
@@ -636,7 +634,7 @@
   - type: Gun
     minAngle: "20"
     maxAngle: "24"
-    fireRate: 4
+    fireRate: 3.5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -644,7 +642,9 @@
     - FullAuto
     shotsPerBurst: 3
     soundGunshot:
-      path: /Audio/_Starlight/Weapons/Guns/Gunshots/m90.ogg
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp.ogg
+      params:
+        pitch: 0.7
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -665,5 +665,7 @@
           - CartridgeImpactBolt
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 1
     zeroVisible: true
+  - type: Appearance
+ 

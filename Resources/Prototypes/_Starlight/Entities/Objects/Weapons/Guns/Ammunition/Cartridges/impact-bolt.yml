@@ -1,10 +1,8 @@
 - type: entity
-  parent:
-  - BaseItem
-  - BaseMajorContraband
+  parent: [ BaseItem, BaseMajorContraband ]
   id: CartridgeImpactBolt
   name: impact bolt
-  description: The Standard explosive ammunition used by bolt weapons.
+  description: The Standard explosive caseless ammunition used by bolt weapons. A bit strange but it works, albeit its a bit slower than most standard kinetic rounds.
   components:
   - type: Tag
     tags:
@@ -15,9 +13,9 @@
     proto: BulletImpactBolt
     deleteOnSpawn: true
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    sprite: _Starlight\Objects\Weapons\Guns\Ammunition\Casings\impact_bolt.rsi
     layers:
-    - state: frag
+    - state: base
       map:
       - "enum.AmmoVisualLayers.Base"
   - type: Explosive
