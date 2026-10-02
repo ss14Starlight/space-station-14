@@ -233,14 +233,19 @@ public sealed partial class ScentTrackingSystem : EntitySystem
     // Convert.ToUInt32 is blocked by the client sandbox and kills the client silently on startup.
     private static Color GetScentColor(Entity<ScentMarkerComponent> ent)
     {
-        var scentId = ent.Comp.ScentId;
+        return GetScentColor(ent.Comp.ScentId, ent.Comp.IsPollen);
+    }
 
-        if (ent.Comp.IsPollen)
+    internal static Color GetScentColor(string scentId)
+    {
+        return GetScentColor(scentId, false);
+    }
+
+    private static Color GetScentColor(string scentId, bool isPollen)
+    {
+        if (isPollen)
         {
-            uint hash = 2166136261; 
-            // Something Determinitic prime, went to an AI for this.
-            // thought about having them randomized, but them having always the same color is also something.
-            // also bananas are now now smells green
+            uint hash = 2166136261;
 
             foreach (var c in scentId)
             {
@@ -256,7 +261,7 @@ public sealed partial class ScentTrackingSystem : EntitySystem
             return Color.White;
 
         var seed = uint.Parse(scentId[..8], NumberStyles.HexNumber);
-        var normalHue = (seed % 360) / 360f;
-        return Color.FromHsv(new Vector4(normalHue, 0.85f, 1f, 1f));
+        var hue = seed % 360 / 360f;
+        return Color.FromHsv(new Vector4(hue, 0.85f, 1f, 1f));
     }
 }
