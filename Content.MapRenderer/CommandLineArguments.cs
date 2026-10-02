@@ -5,7 +5,7 @@ using Content.MapRenderer.Extensions;
 
 namespace Content.MapRenderer;
 
-public sealed class CommandLineArguments
+public sealed partial class CommandLineArguments // Starlight-edit: partial
 {
     public List<string> Maps { get; set; } = new();
     public OutputFormat Format { get; set; } = OutputFormat.png;
@@ -76,6 +76,19 @@ public sealed class CommandLineArguments
                     break;
 
                 default:
+                    // Starlight-start
+                    if (parsed.TryParseStarlight(argument, enumerator, out var starlightValid))
+                    {
+                        if (!starlightValid)
+                        {
+                            parsed = null;
+                            return false;
+                        }
+
+                        break;
+                    }
+                    // Starlight-end
+
                     if (argument.StartsWith('-'))
                     {
                         Console.WriteLine($"Unknown argument: {argument}");
@@ -86,6 +99,8 @@ public sealed class CommandLineArguments
                     break;
             }
         }
+
+        parsed.ApplyStarlightDefaults(); // Starlight
 
         if (parsed.ArgumentsAreFileNames && parsed.Maps.Count == 0)
         {
@@ -118,6 +133,7 @@ Options:
         Output images and data used for map viewer parallax.
     -h / --help
         Displays this help text");
+        PrintStarlightHelp(); // Starlight
     }
 }
 
