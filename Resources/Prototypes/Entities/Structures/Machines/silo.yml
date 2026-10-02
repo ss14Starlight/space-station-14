@@ -24,6 +24,27 @@
       - Sheet
       - RawMaterial
       - Ingot
+  # Starlight Edit Start - Add toggleable magnet pickup
+  - type: ItemToggle
+    onUse: false
+    onActivate: false
+    verbToggleOn: verb-toggle-magnet-activate
+    verbToggleOff: verb-toggle-magnet-deactivate
+    soundActivate:
+      collection: sparks
+      params:
+        variation: 0.250
+    soundDeactivate:
+      collection: sparks
+      params:
+        variation: 0.250
+  - type: AltUseToggle
+  - type: ComponentToggler
+    components:
+    - type: MagnetPickup
+      requiresEquipping: false
+      slotFlags: 0
+  # Starlight Edit End
   - type: ActivatableUI
     key: enum.OreSiloUiKey.Key
   - type: ActivatableUIRequiresPower

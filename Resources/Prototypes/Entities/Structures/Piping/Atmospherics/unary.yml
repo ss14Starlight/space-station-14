@@ -32,10 +32,8 @@
       time: 3
     # Starlight start
     - type: VentCrawlTube
+      blocksVision: false
     - type: VentCrawlEntry
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: ApcPowerReceiver
     - type: ExtensionCableReceiver
@@ -107,10 +105,8 @@
     - type: Weldable
       time: 3
     - type: VentCrawlTube
+      blocksVision: false
     - type: VentCrawlEntry
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: SubFloorHide
       visibleLayers:
@@ -157,10 +153,8 @@
       time: 3
     # Starlight start
     - type: VentCrawlTube
+      blocksVision: false
     - type: VentCrawlEntry
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: ApcPowerReceiver
     - type: ExtensionCableReceiver
@@ -274,14 +268,22 @@
     - type: VentCrawlJunction
       degrees:
         - 0
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+      prefix: device-address-prefix-air-injector
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - On
+        - Off
+        - Toggle
+    - type: GasOutletInjectorSignal
     # Starlight end
     - type: GuideHelp
       guides:
       - AirInjector
-    - type: ChildBlockVision # Starlight-edit
 
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
@@ -346,10 +348,6 @@
     - type: VentCrawlJunction
       degrees:
         - 0
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
-    - type: ChildBlockVision
     # Starlight end
 
 - type: entity
@@ -392,12 +390,6 @@
     - type: VentCrawlJunction
       degrees:
         - 0
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
-        machine_board: !type:Container
-        machine_parts: !type:Container
-    - type: ChildBlockVision
     # Starlight end
 
 - type: entity
@@ -449,12 +441,6 @@
     - type: VentCrawlJunction
       degrees:
         - 0
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
-        machine_board: !type:Container
-        machine_parts: !type:Container
-    - type: ChildBlockVision
     # Starlight end
 
 - type: entity
@@ -497,7 +483,7 @@
     board: HellfireHeaterMachineCircuitBoard
 
 - type: entity
-  parent: [ BaseMachinePowered, SmallConstructibleMachine ]
+  parent: [ SolutionTank, SolutionHuge, BaseMachinePowered, SmallConstructibleMachine ]
   id: BaseGasCondenser
   name: condenser
   description: Condenses gases into liquids. Now we just need some plumbing.
@@ -579,10 +565,6 @@
         pipeDirection: South
   - type: Transform
     noRot: false
-  - type: SolutionContainerManager
-    solutions:
-      tank:
-        maxVol: 400
   - type: MixableSolution
     solution: tank
   - type: DrainableSolution
@@ -595,15 +577,3 @@
   - type: GuideHelp
     guides:
     - GasCondensing
-  # Starlight start
-  - type: VentCrawlTube
-  - type: VentCrawlJunction
-    degrees:
-      - 0
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
-      machine_board: !type:Container
-      machine_parts: !type:Container
-  - type: ChildBlockVision
-  # Starlight end

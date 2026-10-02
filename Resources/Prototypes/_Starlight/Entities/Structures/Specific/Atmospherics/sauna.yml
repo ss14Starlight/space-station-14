@@ -1,0 +1,174 @@
+# Sauna atmosphere - water vapour is ignored and left unscrubbed, temperature uses
+# saunaTemperature. Every other gas keeps its station threshold.
+
+# Air Sensor
+
+- type: entity
+  abstract: true
+  parent: AirSensorBase
+  id: AirSensorSaunaBase
+  suffix: Sauna Atmosphere
+  components:
+  - type: AtmosMonitor
+    temperatureThresholdId: saunaTemperature
+    gasThresholdPrototypes:
+      Oxygen: saunaOxygen
+      Nitrogen: saunaNitrogen
+      CarbonDioxide: stationCO2
+      Plasma: stationPlasma
+      Tritium: stationTritium
+      WaterVapor: ignore
+      Ammonia: stationAmmonia
+      NitrousOxide: stationNO
+      Frezon: danger
+      BZ: stationBZ
+      Healium: stationHealium
+      Nitrium: danger
+      Pluoxium: stationPluoxium
+      Hydrogen: danger
+      HyperNoblium: stationHyperNoblium
+      ProtoNitrate: danger
+      Zauker: danger
+      Halon: danger
+      Helium: stationHelium
+      AntiNoblium: danger
+      Ulnitranium: stationUlnitranium
+      ZXA: stationZXA
+
+- type: entity
+  parent: [AirSensorSaunaBase, AirSensor]
+  id: AirSensorSauna
+  description: An air sensor set up for use in saunas. It ignores humidity, and heat until it turns harmful.
+
+# Gas Vent
+
+# Inherits the thresholds so no variant has to list the sensor base as a second
+# parent. Declares no sprite, so the vanilla alt sprite reaches the placement ghost.
+- type: entity
+  abstract: true
+  parent: AirSensorSaunaBase
+  id: GasVentPumpSaunaBase
+  components:
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentPumpSauna
+      Secondary: GasVentPumpSaunaAlt1
+      Tertiary: GasVentPumpSaunaAlt2
+      Quaternary: GasVentPumpSaunaAlt3
+      Quinary: GasVentPumpSaunaAlt4
+
+- type: entity
+  parent: [GasVentPumpSaunaBase, GasVentPump]
+  id: GasVentPumpSauna
+  placement:
+    mode: AlignAtmosPipeLayers
+  description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
+
+- type: entity
+  parent: [GasVentPumpSaunaBase, GasVentPumpAlt1]
+  id: GasVentPumpSaunaAlt1
+  categories: [ HideSpawnMenu ]
+  description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
+
+- type: entity
+  parent: [GasVentPumpSaunaBase, GasVentPumpAlt2]
+  id: GasVentPumpSaunaAlt2
+  categories: [ HideSpawnMenu ]
+  description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
+
+- type: entity
+  parent: [GasVentPumpSaunaBase, GasVentPumpAlt3]
+  id: GasVentPumpSaunaAlt3
+  categories: [ HideSpawnMenu ]
+  description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
+
+- type: entity
+  parent: [GasVentPumpSaunaBase, GasVentPumpAlt4]
+  id: GasVentPumpSaunaAlt4
+  categories: [ HideSpawnMenu ]
+  description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
+
+# Gas Scrubber
+
+# filterGases replaces the inherited list wholesale, so this is the default set
+# with WaterVapor dropped. It lives here rather than on the primary so the alts
+# inherit it without the primary's sprite.
+- type: entity
+  abstract: true
+  parent: AirSensorSaunaBase
+  id: GasVentScrubberSaunaBase
+  components:
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentScrubberSauna
+      Secondary: GasVentScrubberSaunaAlt1
+      Tertiary: GasVentScrubberSaunaAlt2
+      Quaternary: GasVentScrubberSaunaAlt3
+      Quinary: GasVentScrubberSaunaAlt4
+  - type: GasVentScrubber
+    filterGases:
+    - CarbonDioxide
+    - Plasma
+    - Tritium
+    - Ammonia
+    - NitrousOxide
+    - Frezon
+    - BZ
+    - Healium
+    - Nitrium
+    - Hydrogen
+    - HyperNoblium
+    - ProtoNitrate
+    - Zauker
+    - Halon
+    - Helium
+    - AntiNoblium
+    - ZXA
+
+- type: entity
+  parent: [GasVentScrubberSaunaBase, GasVentScrubber]
+  id: GasVentScrubberSauna
+  placement:
+    mode: AlignAtmosPipeLayers
+  description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
+
+- type: entity
+  parent: [GasVentScrubberSaunaBase, GasVentScrubberAlt1]
+  id: GasVentScrubberSaunaAlt1
+  categories: [ HideSpawnMenu ]
+  description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
+
+- type: entity
+  parent: [GasVentScrubberSaunaBase, GasVentScrubberAlt2]
+  id: GasVentScrubberSaunaAlt2
+  categories: [ HideSpawnMenu ]
+  description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
+
+- type: entity
+  parent: [GasVentScrubberSaunaBase, GasVentScrubberAlt3]
+  id: GasVentScrubberSaunaAlt3
+  categories: [ HideSpawnMenu ]
+  description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
+
+- type: entity
+  parent: [GasVentScrubberSaunaBase, GasVentScrubberAlt4]
+  id: GasVentScrubberSaunaAlt4
+  categories: [ HideSpawnMenu ]
+  description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
+
+# Air Alarm
+
+# Auto mode off, otherwise an alarm state change reapplies the hardcoded filter
+# defaults and the sauna scrubs its own steam. Same reason as AirAlarmFreezer.
+# Group Invalid drops it from the alerts console queries.
+- type: entity
+  parent: AirAlarmUnlocked
+  id: AirAlarmSauna
+  name: sauna air alarm
+  suffix: Sauna Atmosphere, unlocked, auto mode disabled
+  description: An air alarm set up for use in saunas. It doesn't report to the station's alert console.
+  components:
+  - type: AirAlarm
+    autoMode: false
+  - type: AtmosAlertsDevice
+    group: Invalid

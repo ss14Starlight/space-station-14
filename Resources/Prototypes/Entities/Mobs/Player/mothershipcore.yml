@@ -93,12 +93,12 @@
   - type: SurveillanceCameraSpeaker
   - type: SurveillanceCameraMonitor
   - type: RoboticsConsole
-    allowBorgControl: false
-    radioChannel: Xenoborg
+    allowBorgControl: true # Starlight - allow mothership AND ONLY MOTHERSHIP to explode xenoborgs
+    radioChannel: Mothership # Starlight - Send the destruction message in the appropriately red mothership channel
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: Mothership
-    transmitFrequencyId: Mothership
+    transmitFrequencyId: Xenoborg # Starlight - actually allow the mothership to blow stuff up
   - type: WirelessNetworkConnection
     range: 10000 # mothership can see them from very far
   - type: WiresPanel

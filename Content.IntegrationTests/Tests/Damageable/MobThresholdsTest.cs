@@ -1,9 +1,11 @@
+using Content.IntegrationTests.Fixtures;
+using Content.IntegrationTests.Utility;
 using Content.Shared.Alert;
 using Content.Shared.Mobs.Components;
 
 namespace Content.IntegrationTests.Tests.Damageable;
 
-public sealed class MobThresholdsTest
+public sealed class MobThresholdsTest : GameTest
 {
     /// <summary>
     /// Inspects every entity prototype with a <see cref="MobThresholdsComponent"/> and makes
@@ -12,7 +14,7 @@ public sealed class MobThresholdsTest
     [Test]
     public async Task ValidateMobThresholds()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var entMan = server.EntMan;
@@ -34,7 +36,5 @@ public sealed class MobThresholdsTest
                 }
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 }

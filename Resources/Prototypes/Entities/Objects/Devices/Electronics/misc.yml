@@ -10,4 +10,5 @@
   - type: Tag
     tags:
       - FreezerElectronics
+      - RamChip # FH + Starlight
   - type: DoorElectronics

@@ -1,7 +1,4 @@
-﻿using Content.Shared.Clothing;
-using Content.Shared.Implants;
-using Content.Shared.Preferences.Loadouts;
-using Content.Shared.Roles;
+﻿using Content.Shared.Implants;
 using Content.Shared.Timing;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;

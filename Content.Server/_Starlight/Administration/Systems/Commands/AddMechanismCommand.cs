@@ -6,9 +6,9 @@ using Robust.Shared.Console;
 namespace Content.Server._Starlight.Administration.Systems.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class AddMechanismCommand : IConsoleCommand
+public sealed partial class AddMechanismCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     public string Command => "addmechanism";
     public string Description => "Adds a given entity to a containing body.";

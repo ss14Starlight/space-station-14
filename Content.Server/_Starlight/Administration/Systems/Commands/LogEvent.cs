@@ -1,14 +1,13 @@
-using Content.Server._Starlight.Administration.Systems;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 
-namespace Content.Server._Starlight.Administration.Commands;
+namespace Content.Server._Starlight.Administration.Systems.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class LogEventCommand : LocalizedEntityCommands
+public sealed partial class LogEventCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!;
+    [Dependency] private AutoDiscordLogSystem _autolog = default!;
 
     public override string Command => "logevent";
     public override string Description => "Quickly log something on the discord, this can be an event, admeme, ect...";

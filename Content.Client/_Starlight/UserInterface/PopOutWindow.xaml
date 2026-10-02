@@ -1,0 +1,5 @@
+<controls:PopOutWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._Starlight.UserInterface">
+
+</controls:PopOutWindow>

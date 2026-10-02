@@ -28,4 +28,14 @@ public sealed partial class EmitSoundOnTriggerComponent : BaseXOnTriggerComponen
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool Predicted;
+    #region Starlight
+    /// <summary>
+    /// Play the sound globally.
+    /// Don't use unless you have a good reason.
+    /// That said, if you do have that reason, then you can use a stereo sound for this.
+    /// Need this here since this doesn't share the same stuff as BaseEmitSound
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Global;
+    #endregion Starlight
 }

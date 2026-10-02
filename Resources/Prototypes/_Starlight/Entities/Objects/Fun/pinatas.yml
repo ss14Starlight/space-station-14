@@ -15,13 +15,13 @@
   - type: Edible
     requiresSpecialDigestion: true
     delay: 2
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 10
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Pinatas/clown.rsi
     state: pinata

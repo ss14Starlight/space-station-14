@@ -3,7 +3,7 @@ using Content.Shared.Shuttles.Components;
 using Robust.Client.Input;
 using Robust.Client.Player;
 
-namespace Content.Client.PAI;
+namespace Content.Client._Starlight.PAI;
 
 /// <summary>
 /// Safety net: if the shuttle console is deleted while the local player is still piloting it,
@@ -11,10 +11,10 @@ namespace Content.Client.PAI;
 /// leaving PilotComponent on the PAI and the input stuck in "shuttle" mode.
 /// This system resets the input context on the client side so the screen never stays frozen.
 /// </summary>
-public sealed class PAIShuttleConsoleSystem : EntitySystem
+public sealed partial class PAIShuttleConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly IInputManager _input = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IInputManager _input = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
 
     public override void Initialize()
     {

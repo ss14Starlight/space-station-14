@@ -3,16 +3,15 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Slippery;
 using Content.Shared._Starlight.Mech.Equipment.Components;
 using Content.Shared._Starlight.Mech.Equipment.EntitySystems;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Starlight.Mech.Equipment.EntitySystems;
 
-public sealed class MechAirHornSystem : SharedMechAirHornSystem
+public sealed partial class MechAirHornSystem : SharedMechAirHornSystem
 {
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly SlipperySystem _slippery = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private SlipperySystem _slippery = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     protected override void OnHonkHorn(EntityUid uid, MechAirHornComponent comp, MechActivateAirHornEvent args)
     {

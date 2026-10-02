@@ -14,20 +14,19 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
-    Medicine:
+    Bloodstream:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         damage:
-          groups:
-            Burn: -4
-            Brute: -4
+          Burn: -4
+          Brute: -4
 
 - type: entity
   parent: [ DrinkVisualsAllFilled, DrinkBottleGlassBaseFull ]
@@ -35,12 +34,12 @@
   name: Uncle Git's Cannonball Courage
   description: A battered amber bottle bearing a skull-and-anchor label. The faded text reads "Uncle Git's Cannonball Courage Rumizine — Drink before battle, not after." Smells like rum, gunpowder, and questionable medical practice.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Rumizine
-          Quantity: 100
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Rumizine
+        Quantity: 100
   - type: Label
     currentLabel: reagent-name-rumizine
   - type: Sprite

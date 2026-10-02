@@ -5,7 +5,7 @@ namespace Content.Shared._Starlight.Slippery;
 
 public sealed partial class SlipOnHitSystem : EntitySystem
 {
-    [Dependency] private readonly SlipperySystem _slippery = default!;
+    [Dependency] private SlipperySystem _slippery = default!;
 
     public override void Initialize()
     {

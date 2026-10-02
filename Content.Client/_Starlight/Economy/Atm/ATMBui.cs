@@ -1,4 +1,4 @@
-﻿using Content.Shared.Starlight.Economy.Atm;
+﻿using Content.Shared._Starlight.Economy.Atm;
 using JetBrains.Annotations;
 using Robust.Shared.Utility;
 
@@ -40,7 +40,7 @@ public sealed class ATMBui : BoundUserInterface
         if (_window != null) return;
         _window = new ATMWindow();
         _window.OnClose += Close;
-        _window.Title = "Automated Teller Machine";
+        _window.Title = Loc.GetString("ui-atm-title");
 
         _window.WithdrawTabButton.OnPressed += _ =>
         {

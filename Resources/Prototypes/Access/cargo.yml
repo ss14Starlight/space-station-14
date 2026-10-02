@@ -14,8 +14,7 @@
   id: Cargo
   tags:
   - Quartermaster
-  - Salvage
-  - SalvageLead # Starlight
   - Mining # Starlight
   - Mail # Starlight
   - Cargo
+  - Shuttle # Starlight

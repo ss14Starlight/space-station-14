@@ -35,6 +35,15 @@
     department: Security
     time: 36000 #10 hrs
 
+  # Access
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgSecurity
+
 # Syndicate borgs
 
 - type: borgType
@@ -59,6 +68,29 @@
 
   radioChannels:
   - Syndicate
+
+  addComponents:
+  - type: HealthAnalyzer
+    damageContainers:
+    - Biological
+    - Hybrid
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+    - ActionMedTek
+  - type: UserInterface
+    interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+      enum.BorgUiKey.Key:
+        type: BorgBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.BorgSwitchableTypeUiKey.SelectBorgType:
+        type: BorgSelectTypeUserInterface
+      enum.HealthAnalyzerUiKey.Key:
+        type: HealthAnalyzerBoundUserInterface
 
   # Visual
   inventoryTemplateId: borgShort
@@ -153,6 +185,7 @@
   - BorgModulePrying
   - BorgModuleTool
   - BorgModulePaperwork
+  - BorgModulePaperworkPrinting
 
   radioChannels:
   - Common
@@ -160,6 +193,7 @@
   - Science
   - Law
 
+  # Access
   addComponents:
   - type: Access
     groups:
@@ -167,6 +201,7 @@
     tags:
     - Borg
     - Debrief
+    - HeadOfPersonnel
 
   # Visual
   inventoryTemplateId: borgTall
@@ -209,3 +244,34 @@
   # Pet
   petSuccessString: petting-success-cargo-cyborg
   petFailureString: petting-failure-cargo-cyborg
+
+  # Access
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgCargo
+        - Quartermaster
+
+# The blank chassis a selectable borg has before it picks a type.
+- type: borgType
+  id: unselected
+
+  dummyPrototype: BorgChassisSelectable
+
+  extraModuleCount: 0
+
+  radioChannels:
+  - Science
+
+  inventoryTemplateId: borg
+  spritePath: Mobs/Silicon/Chassis/generic.rsi
+  spriteBodyState: borg
+  spriteHasMindState: borg_e
+  spriteNoMindState: borg_e_r
+  spriteToggleLightState: borg_l
+
+  petSuccessString: petting-success-generic-cyborg
+  petFailureString: petting-failure-generic-cyborg

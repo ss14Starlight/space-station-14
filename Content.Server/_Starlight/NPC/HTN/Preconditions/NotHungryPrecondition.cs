@@ -9,7 +9,7 @@ namespace Content.Server._Starlight.NPC.HTN.Preconditions;
 /// </summary>
 public sealed partial class NotHungryPrecondition : HTNPrecondition
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     [DataField(required: true)]
     public HungerThreshold MinHungerState = HungerThreshold.Starving;

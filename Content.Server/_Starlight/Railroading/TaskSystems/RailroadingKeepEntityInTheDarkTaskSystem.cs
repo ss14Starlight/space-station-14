@@ -1,18 +1,20 @@
-using Content.Server._Starlight.Objectives.Events;
-using Content.Server._Starlight.Shadekin;
 using Content.Server.Objectives.Systems;
-using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Objectives.Events;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Railroading.Components.Tasks;
 using Content.Shared._Starlight.Railroading.Events;
+using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Mind;
 using Content.Shared.Objectives;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.TaskSystems;
 
 public sealed partial class RailroadKeepEntityInTheDarkTaskSystem : EntitySystem
 {
-    [Dependency] private readonly RailroadingSystem _railroading = default!;
-    [Dependency] private readonly ShadekinSystem _shadekin = default!;
-    [Dependency] private readonly TargetObjectiveSystem _target = default!;
+    [Dependency] private RailroadingSystem _railroading = default!;
+    [Dependency] private ShadekinSystem _shadekin = default!;
+    [Dependency] private TargetObjectiveSystem _target = default!;
+
     public override void Initialize()
     {
         base.Initialize();

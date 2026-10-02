@@ -44,12 +44,28 @@
       "name": "makeshift"
     },
     {
+      "name": "makeshift-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "makeshift-inhand-right",
+	  "directions": 4
+    },
+    {
       "name": "mercenary",
       "copyright": "Edited from TG Station's default.png by @redmushie (github)"
     },
     {
-      "name": "medtak",
-      "copyright": "Edited from TG Station's default.png by SevenShades"
+      "name": "centcom"
+    },
+    {
+      "name": "centcomgold"
+    },
+    {
+      "name": "centcomsilver"
+    },
+    {
+      "name": "nanotrasen"
     }
   ]
 }

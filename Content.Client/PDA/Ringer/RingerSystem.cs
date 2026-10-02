@@ -1,6 +1,5 @@
 using Content.Shared.PDA;
 using Content.Shared.PDA.Ringer;
-using Content.Shared.Store.Components;
 
 namespace Content.Client.PDA.Ringer;
 

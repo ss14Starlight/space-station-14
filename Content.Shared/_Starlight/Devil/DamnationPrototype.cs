@@ -13,19 +13,36 @@ public sealed partial class DamnationPrototype : IPrototype
     /// Name of the damnation
     /// </summary>
     [DataField("name")]
-    public string Name = "DAMNATION!!!!";
+    private LocId _name = "DAMNATION!!!!";
+
+    public string Name => Loc.GetString(_name);
 
     /// <summary>
     /// Description of the curse
     /// </summary>
     [DataField("description")]
-    public string Description = "THY END IS NOW!!!!";
+    private LocId _description = "THY END IS NOW!!!!";
+
+    public string Description => Loc.GetString(_description);
 
     /// <summary>
-    /// Cost of the curse. Negative are punishments, Positive are benefits.
+    /// Cost of the damnation. Negative are punishments, Positive are benefits.
     /// </summary>
     [DataField("cost")]
     public int Cost = 0;
+
+    /// <summary>
+    /// Maximum number of uses this damnation. -1 indicates infinite uses available.
+    /// </summary>
+    [DataField("maxUses")]
+    public int MaxUses = -1;
+
+    /// <summary>
+    /// What category does the damnation belong to?
+    /// This is used in the UI to split the damnations into their respective tabs.
+    /// </summary>
+    [DataField("category")]
+    public string Category = "curses";
 
     /// <summary>
     /// List of components to add to the player

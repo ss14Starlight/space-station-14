@@ -1,0 +1,125 @@
+name: Render Map Viewer
+
+on:
+  workflow_dispatch:
+    inputs:
+      maps:
+        description: "Game map prototype IDs, space separated (e.g. StarlightBagel StarlightBox). Empty with empty directories renders the default directories."
+        required: false
+        default: ""
+      directories:
+        description: "Directories to render every map from, space separated, relative to the repository root."
+        required: false
+        default: ""
+      type:
+        description: "Force the map type, otherwise detected from the map file."
+        required: false
+        default: auto
+        type: choice
+        options: [ auto, station, shuttle ]
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+env:
+  MAPS_REPO: ss14Starlight/Starlight.Maps
+  MAPS_BASE_URL: https://raw.githubusercontent.com/ss14Starlight/Starlight.Maps/main
+  DEFAULT_DIRECTORIES: Resources/Maps/_Starlight/Stations Resources/Maps/_Starlight/Shuttles
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 300
+
+    steps:
+      - name: Checkout Starlight
+        uses: actions/checkout@v7
+
+      - name: Setup Submodule
+        run: |
+          git submodule update --init --recursive
+
+      - name: Pull engine updates
+        uses: space-wizards/submodule-dependency@v0.1.5
+
+      - name: Update Engine Submodules
+        run: |
+          cd RobustToolbox/
+          git submodule update --init --recursive
+
+      - name: Checkout Starlight.Maps
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ env.MAPS_REPO }}
+          token: ${{ secrets.MAPS_REPO_TOKEN }}
+          persist-credentials: false
+          path: Starlight.Maps
+          fetch-depth: 1
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Install dependencies
+        run: dotnet restore Content.MapRenderer
+
+      - name: Build Project
+        run: dotnet build Content.MapRenderer --configuration Release --no-restore /m
+
+      - name: Render maps
+        id: render
+        shell: bash # pipefail, so a crash isn't hidden by tee
+        env:
+          MAPS: ${{ inputs.maps }}
+          DIRECTORIES: ${{ inputs.directories }}
+          TYPE: ${{ inputs.type }}
+        run: |
+          set -euo pipefail
+          args=(--viewer -o "$GITHUB_WORKSPACE/Starlight.Maps" --base-url "$MAPS_BASE_URL")
+
+          if [ -z "$MAPS" ] && [ -z "$DIRECTORIES" ]; then
+            DIRECTORIES="$DEFAULT_DIRECTORIES"
+          fi
+
+          for dir in $DIRECTORIES; do
+            args+=(-d "$dir")
+          done
+
+          if [ "$TYPE" != "auto" ]; then
+            args+=(--type "$TYPE")
+          fi
+
+          for map in $MAPS; do
+            args+=("$map")
+          done
+
+          echo "Content.MapRenderer ${args[*]}"
+          dotnet run --project Content.MapRenderer --configuration Release --no-build -- "${args[@]}" | tee render.log
+
+      - name: Summarize render
+        id: summary
+        if: ${{ !cancelled() && steps.render.outcome != 'skipped' }}
+        run: |
+          {
+            echo 'body<<EOF'
+            echo "Rendered by [${GITHUB_WORKFLOW} #${GITHUB_RUN_NUMBER}](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}) from ${GITHUB_REPOSITORY}@${GITHUB_SHA::10}."
+            echo
+            grep -E '^(Wrote (Station|Shuttle)|Painting map .* failed)' render.log | sed -E 's#^Wrote (Station|Shuttle) (.*) to .*#- \1: \2#; s#^Painting map (.*) failed.*#- **Failed:** \1#' || true
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create pull request
+        if: ${{ !cancelled() && steps.render.outcome != 'skipped' }}
+        uses: peter-evans/create-pull-request@v7
+        with:
+          path: Starlight.Maps
+          token: ${{ secrets.MAPS_REPO_TOKEN }}
+          branch: map-render/${{ github.run_id }}
+          delete-branch: true
+          commit-message: Render maps from ${{ github.repository }}@${{ github.sha }}
+          title: Map render ${{ github.run_number }}
+          body: ${{ steps.summary.outputs.body }}

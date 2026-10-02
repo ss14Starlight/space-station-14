@@ -122,10 +122,12 @@
         - BodyBag
         - Vial
         - AutoMender
+        - PatchPack
        components:
         - Injector
         - Pill
         - HandLabeler
+        - ConditionalHealing
     #Starlight end
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #SL Edit

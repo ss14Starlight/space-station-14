@@ -9,8 +9,28 @@
     ClothingNeckScarfStripedLightBlue: 3
     ClothingNeckScarfStripedOrange: 3
     ClothingNeckScarfStripedPurple: 3
+    # Starlight Start
+    ClothingNeckScarfSolidRed: 3
+    ClothingNeckScarfSolidGreen: 3
+    ClothingNeckScarfSolidBlue: 3
+    ClothingNeckScarfSolidBlack: 3
+    ClothingNeckScarfSolidBrown: 3
+    ClothingNeckScarfSolidLightBlue: 3
+    ClothingNeckScarfSolidOrange: 3
+    ClothingNeckScarfSolidPurple: 3
+    # Starlight end
     ClothingOuterCoatTrench: 6
-    ClothingOuterWinterCoat: 6
+    ClothingOuterWinterColorWhite: 3 #Starlight start, adding the colored coats
+    ClothingOuterWinterColorGray: 3
+    ClothingOuterWinterColorBlack: 3
+    ClothingOuterWinterColorBlue: 3
+    ClothingOuterWinterColorGreen: 3
+    ClothingOuterWinterColorOrange: 3
+    ClothingOuterWinterColorRed: 3
+    ClothingOuterWinterColorYellow: 3
+    ClothingOuterWinterColorPurple: 3
+    ClothingOuterWinterColorLightBrown: 3
+    ClothingOuterWinterColorBrown: 3 # Starlight end
     ClothingShoesBootsWinter: 6
     ClothingOuterFlannelRed: 2
     ClothingOuterFlannelBlue: 2
@@ -68,6 +88,8 @@
     ClothingHeadHatXmasCrown: 2
   contrabandInventory: # Starlight
     ClothingHandsMittensColorDarkBlack: 2 # Starlight
+    ClothingOuterRockerHeartBomber: 2 #Starlight
+    ClothingOuterJohnnySamuraiJacket: 2 #Starlight
   emaggedInventory:
     ClothingNeckScarfStripedSyndieGreen: 3
     ClothingNeckScarfStripedSyndieRed: 3

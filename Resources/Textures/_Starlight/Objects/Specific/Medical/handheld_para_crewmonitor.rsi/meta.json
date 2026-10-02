@@ -5,7 +5,7 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Created by TacoLlama (github), in-hands modified by SeamLesss (github) from Objects/Misc/qm_clipboard.rsi/inhand-(left/right), in-hands further modified for Paramed by wonderfulnewworld (github), separated into frame/powered/alert by redmushie (github,discord)",
+    "copyright": "State based copyright",
     "states": [
         {
             "name": "scanner",
@@ -17,23 +17,28 @@
                     0.4,
                     0.4
                 ]
-            ]
+            ],
+            "copyright": "SevenShades"
         },
 		{
             "name": "scanner-inhand-left",
-            "directions": 4
+            "directions": 4,
+            "copyright": "in-hands modified by SeamLesss (github) from Objects/Misc/qm_clipboard.rsi/inhand-(left/right), in-hands further modified for Paramed by wonderfulnewworld (github)"
         },
         {
             "name": "scanner-inhand-right",
-            "directions": 4
+            "directions": 4,
+            "copyright": "in-hands modified by SeamLesss (github) from Objects/Misc/qm_clipboard.rsi/inhand-(left/right), in-hands further modified for Paramed by wonderfulnewworld (github)"
         },
         {
             "name": "icon",
-            "directions": 1
+            "directions": 1,
+            "copyright": "SevenShades"
         },
         {
             "name": "frame",
-            "directions": 1
+            "directions": 1,
+            "copyright": "SevenShades, separated into frame/powered/alert by redmushie (github,discord)"
         },
         {
             "name": "powered",
@@ -45,7 +50,8 @@
                     0.4,
                     0.4
                 ]
-            ]
+            ],
+            "copyright": "SevenShades, separated into frame/powered/alert by redmushie (github,discord)"
         },
         {
             "name": "alert",
@@ -55,7 +61,8 @@
                     0.3,
                     0.3
                 ]
-            ]
+            ],
+            "copyright": "Separated into frame/powered/alert by redmushie (github,discord)"
         }
     ]
 }

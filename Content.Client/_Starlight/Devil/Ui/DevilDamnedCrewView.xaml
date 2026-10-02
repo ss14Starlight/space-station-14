@@ -1,0 +1,18 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:style="clr-namespace:Content.Client.Stylesheets"
+         xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+         Margin="5 5 5 5">
+    <PanelContainer VerticalExpand="True"
+                    HorizontalExpand="False">
+        <BoxContainer Orientation="Vertical">
+            <SpriteView Name="DamnedSprite"
+                        SetSize="64 64"
+                        Scale="2 2"
+                        OverrideDirection="South"
+                        HorizontalAlignment="Center"/>
+            <Label Name="DamnedName"
+                   StyleClasses="LabelKeyText"
+                   HorizontalAlignment="Center"/>
+        </BoxContainer>
+    </PanelContainer>
+</Control>

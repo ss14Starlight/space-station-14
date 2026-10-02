@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "states": [
+    {
+      "name": "full",
+      "delays": [
+        [
+          1
+        ]
+      ],
+      "copyright": "Taken from tg station"
+    },
+    {
+      "name": "state_0",
+      "directions": 4,
+      "delays": [
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ]
+      ],
+      "copyright": "Taken from tg station"
+    },
+    {
+      "name": "state_1",
+      "directions": 4,
+      "delays": [
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ]
+      ],
+      "copyright": "Taken from tg station"
+    },
+    {
+      "name": "state_2",
+      "directions": 4,
+      "delays": [
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ]
+      ],
+      "copyright": "Taken from tg station"
+    },
+    {
+      "name": "state_3",
+      "directions": 4,
+      "delays": [
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ]
+      ],
+      "copyright": "Taken from tg station"
+    },
+    {
+      "name": "state_4",
+      "directions": 4,
+      "delays": [
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ]
+      ],
+      "copyright": "Taken from tg station"
+    },
+    {
+      "name": "state_5",
+      "directions": 4,
+      "delays": [
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ]
+      ],
+      "copyright": "Taken from tg station"
+    },
+    {
+      "name": "state_6",
+      "directions": 4,
+      "delays": [
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ]
+      ],
+      "copyright": "Taken from tg station"
+    },
+    {
+      "name": "state_7",
+      "directions": 4,
+      "delays": [
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ]
+      ],
+      "copyright": "Taken from tg station"
+    }
+  ]
+}

@@ -1,36 +1,5 @@
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformJumpsuitAssistant
-  name: assistant jumpsuit
-  description: A tasteful green jumpsuit that reminds you of the good old days.
-  components:
-  - type: RollUpSleeves
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/color.rsi
-    layers:
-    - state: icon
-      color: "#639137"
-    - state: trinkets-icon
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-        color: "#639137"
-      - state: trinkets-inhand-left
-      right:
-      - state: inhand-right
-        color: "#639137"
-      - state: trinkets-inhand-right
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/color.rsi
-    clothingVisuals:
-      jumpsuit:
-      - state: equipped-INNERCLOTHING
-        color: "#639137"
-      - state: trinkets-equipped-INNERCLOTHING
-
-- type: entity
-  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitDeathSquad
   name: death squad uniform
   description: Advanced armored jumpsuit used by special forces in special operations.
@@ -421,7 +390,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/hos_parade.rsi
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseCommandManagerContraband ] # Starlight, Assistant Manager.
   id: ClothingUniformJumpsuitCommandGeneric
   name: command jumpsuit
   description: A generic Command-colored jumpsuit not associated with any particular department.
@@ -793,7 +762,7 @@
       sprite: Clothing/Uniforms/Jumpsuit/lawyergood.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] #SL EDIT, Syndie to minor
+  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] # Starlight, major contra -> minor contra
   id: ClothingUniformJumpsuitPyjamaSyndicateBlack
   name: black syndicate pyjamas
   description: For those long nights in perma.
@@ -804,7 +773,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicateblack.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] #SL EDIT, Syndie to minor
+  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] # Starlight, major contra -> minor contra
   id: ClothingUniformJumpsuitPyjamaSyndicatePink
   name: pink syndicate pyjamas
   description: For those long nights in perma.
@@ -815,7 +784,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicatepink.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] #SL EDIT, Syndie to minor
+  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] # Starlight, major contra -> minor contra
   id: ClothingUniformJumpsuitPyjamaSyndicateRed
   name: red syndicate pyjamas
   description: For those long nights in perma.
@@ -1247,7 +1216,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/senior_officer.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, BaseSlicingRefinable]
   id: ClothingUniformJumpsuitWeb
   name: web jumpsuit
   description: Makes it clear that you are one with the webs.
@@ -1256,9 +1225,8 @@
     sprite: Clothing/Uniforms/Jumpsuit/web.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/web.rsi
-  - type: Butcherable
-    butcheringType: Knife
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: MaterialWebSilk1
       amount: 8
   - type: FlavorProfile
@@ -1266,13 +1234,6 @@
       - cobwebs
     ignoreReagents:
       - Fiber
-  - type: SolutionContainerManager
-    solutions: # 24 (3 (fiber count of web) * 8 (to craft)) + 6 (magical crafting bonus)
-      food:
-        maxVol: 30
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 30
   - type: Construction
     graph: WebObjects
     node: jumpsuit

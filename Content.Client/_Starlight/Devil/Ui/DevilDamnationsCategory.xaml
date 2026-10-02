@@ -1,0 +1,20 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+         xmlns:style="clr-namespace:Content.Client.Stylesheets">
+    <BoxContainer Orientation="Vertical"
+                  VerticalExpand="True">
+        <ScrollContainer HScrollEnabled="False"
+                         VerticalExpand="True"
+                         Margin="10 10 10 10">
+            <Control VerticalExpand="True">
+                <RichTextLabel Name="CategoryTitle"
+                               VerticalAlignment="Top"/>
+                <Control MinHeight="10"/>
+                <BoxContainer Name="DamnationsDisplayContainer"
+                              Orientation="Vertical"
+                              VerticalExpand="True">
+                </BoxContainer>
+            </Control>
+        </ScrollContainer>
+    </BoxContainer>
+</Control>

@@ -88,6 +88,9 @@ entities:
     - type: Shuttle
       dampingModifier: 0.25
     - type: ImplicitRoof
+    - type: Tag
+      tags:
+        - ERTShuttle
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -9130,7 +9133,7 @@ entities:
     - type: Transform
       pos: 13.5,-10.5
       parent: 1
-- proto: TurnstileCentComm
+- proto: TurnstileCentCommCommand
   entities:
   - uid: 1213
     components:

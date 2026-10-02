@@ -1,23 +1,20 @@
 ﻿using System.Numerics;
-using Content.Client.Parallax.Data;
 using Content.Client.Parallax.Managers;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Robust.Shared.ViewVariables;
 
 namespace Content.Client.Parallax;
 
 /// <summary>
 ///     Renders the parallax background as a UI control.
 /// </summary>
-public sealed class ParallaxControl : Control
+public sealed partial class ParallaxControl : Control
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IParallaxManager _parallaxManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IParallaxManager _parallaxManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private string _parallaxPrototype = "FastSpace";
 

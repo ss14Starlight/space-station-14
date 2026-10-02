@@ -10,11 +10,11 @@ using Robust.Shared.Toolshed.Syntax;
 using Robust.Shared.Toolshed.TypeParsers;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Administration.Commands;
+namespace Content.Server._Starlight.Administration.Systems.Commands;
 
-public sealed class ISupportsCustomChannelsTypeParser : CustomTypeParser<Type>
+public sealed partial class ISupportsCustomChannelsTypeParser : CustomTypeParser<Type>
 {
-    [Dependency] private readonly IComponentFactory _factory = default!;
+    [Dependency] private IComponentFactory _factory = default!;
 
     public override bool TryParse(ParserContext ctx, [NotNullWhen(true)] out Type? result)
     {

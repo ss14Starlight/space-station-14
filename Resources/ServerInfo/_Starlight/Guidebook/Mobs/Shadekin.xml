@@ -31,20 +31,20 @@
   There are instances as well of some Shadekin whom have become acclimated to provide their own titles, replacing previous ones.
   This is not an aspect taken lightly by them nor other Shadekin, such a decision is akin to throwing away their previous selves.
 
-  ## Nightvision
-  Shadekin due to their natural adaptation to their home dimension have innate Night-vision.
+  ## Night Vision
+  Shadekin due to their natural adaptation to their home dimension have innate night vision.
   Capable of seeing and viewing things even in the most abyss-like darknesses, not needing any form of light providing device.
   When wearing flash resistant equipment their vision will be normal.
-  This can be easily sorted by the Shadekin wearing a HUD variant, no longer having flash resistance, but keeping the utility that their nightvision and the HUD provide.
+  This can be easily sorted by the Shadekin wearing a HUD variant, no longer having flash resistance, but keeping the utility that their night vision and the HUD provide.
   <Box>
-    <GuideEntityEmbed Entity="ClothingEyesGlassesSecurity" Scale="5" Caption="Security Glasses\nNo Nightvision\nHas flash immunity"/>
-    <GuideEntityEmbed Entity="ClothingEyesHudSecurity" Scale="5" Caption="Security Hud\nNightvision\nNo flash immunity"/>
+    <GuideEntityEmbed Entity="ClothingEyesGlassesSecurity" Scale="5" Caption="Security Glasses\nNo night vision\nHas flash immunity"/>
+    <GuideEntityEmbed Entity="ClothingEyesHudSecurity" Scale="5" Caption="Security Hud\nNight vision\nNo flash immunity"/>
   </Box>
 
   ## LIGHT SENSITIVITY
   [color=yellow]Light Exposure: Dark[/color]
   - Passive Regeneration is buffed.
-  - Nightvision.
+  - Night Vision.
 
   [color=yellow]Light Exposure: Low[/color]
   - No Buffs/Nerfs.

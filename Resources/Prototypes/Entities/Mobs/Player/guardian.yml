@@ -111,6 +111,9 @@
     - type: Tag
       tags:
         - CannotSuicide
+        - StunImmune
+        - SlowImmune
+    - type: AntagImmune # Starlight
 
 # From the uplink injector
 - type: entity
@@ -243,15 +246,6 @@
       #     location: Left
       # Starlight edit End: Reverted NuBody
     - type: ComplexInteraction
-    - type: Clumsy
-      gunShootFailDamage:
-        types:
-          Blunt: 5
-          Piercing: 4
-          Heat: 3
-      catchingFailDamage:
-        types:
-          Blunt: 1
     - type: MeleeWeapon
       angle: 30
       animation: WeaponArcFist
@@ -266,9 +260,6 @@
     - type: RandomMetadata
       nameSegments:
       - NamesClown
-    # - type: NpcFactionMember Starlight-edit
-    #  factions:
-    #     - Syndicate
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound

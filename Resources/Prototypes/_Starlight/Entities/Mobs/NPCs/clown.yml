@@ -1,6 +1,6 @@
 ﻿- type: entity
   id: BaseMobClown
-  parent: BaseMobFlesh
+  parent: [BaseMobFlesh, BaseSlicingRefinable]
   name: aberrant clown
   description: A slippery mass of hilarious matter, animated through honktacular energy.
   abstract: true
@@ -12,8 +12,8 @@
   - type: Sprite
     drawdepth: Mobs
     sprite: _Starlight/Mobs/Aliens/clown_kudzu.rsi
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
       - id: MaterialBananium1
       - id: SnapPopBox
         orGroup: ToyGroup
@@ -77,7 +77,7 @@
     bloodReferenceSolution:
         reagents:
         - ReagentId: Laughter
-          Quantity: 100
+          Quantity: 200
   - type: InjectOnHit
     limit: 20
     reagents:

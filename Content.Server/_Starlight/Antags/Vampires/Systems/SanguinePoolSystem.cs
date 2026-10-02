@@ -10,14 +10,14 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
-public sealed class SanguinePoolSystem : SharedSanguinePoolSystem
+public sealed partial class SanguinePoolSystem : SharedSanguinePoolSystem
 {
     private const int MaxPoolsProcessedPerUpdate = 64;
 
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly PolymorphSystem _polymorph = default!;
-    [Dependency] private readonly PuddleSystem _puddle = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private PolymorphSystem _polymorph = default!;
+    [Dependency] private PuddleSystem _puddle = default!;
 
     public override void Update(float frameTime)
     {

@@ -25,7 +25,9 @@
     <Compile Update="_Starlight\Weapon\Components\GunComponent.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Remove="DeltaV\Storage\Components\MouthStorageComponent.cs" />
   </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\Robust.CompNetworkGenerator.targets" />
+  <Import Project="..\RobustToolbox\MSBuild\Robust.EntitySystemSubscriptionsGenerator.targets" />
 </Project>

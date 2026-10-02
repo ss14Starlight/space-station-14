@@ -76,12 +76,28 @@ namespace Content.Shared.Atmos.Prototypes
         /// <summary>
         /// The reagent that this gas will turn into when inhaled.
         /// </summary>
-        [DataField("reagent", customTypeSerializer:typeof(PrototypeIdSerializer<ReagentPrototype>))]
-        public string? Reagent { get; private set; } = default!;
+        [DataField("reagent")]
+        public ProtoId<ReagentPrototype>? Reagent { get; private set; } = default!;
 
         [DataField("color")] public string Color { get; private set; } = string.Empty;
 
         [DataField("pricePerMole")]
         public float PricePerMole { get; set; } = 0;
+
+        /// <summary>
+        /// Whether the gas is considered to be flammable.
+        /// This is used generically across Atmospherics to determine
+        /// if things like hotspots are allowed to ignite if an
+        /// oxidizer is present.
+        /// </summary>
+        [DataField]
+        public bool IsFuel;
+
+        /// <summary>
+        /// Whether the gas is considered to be an oxidizer.
+        /// Same reasoning as <see cref="IsFuel"/> but for oxidizers.
+        /// </summary>
+        [DataField]
+        public bool IsOxidizer;
     }
 }

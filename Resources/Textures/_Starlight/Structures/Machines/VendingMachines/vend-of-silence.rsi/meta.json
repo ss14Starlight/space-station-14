@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "normal-unshaded",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "copyright": "by Turk1shcat(Github)"
+    },
+    {
+      "name": "eject-unshaded",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "by Turk1shcat(Github)"
+    },
+    {
+      "name": "deny-unshaded",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "by Turk1shcat(Github)"
+    },
+    {
+      "name": "broken",
+      "copyright": "by Turk1shcat(Github)"
+    },
+    {
+      "name": "off",
+      "copyright": "by Turk1shcat(Github)"
+    },
+    {
+      "name": "panel",
+      "copyright": "by Turk1shcat(Github)"
+    }
+  ]
+}

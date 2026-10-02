@@ -19,7 +19,8 @@
     - AllHostile
     - Gorilla
     - Abductor
-    - Pirate # starlight
+    - Pirate
+    - CosmicCult
 
 - type: npcFaction
   id: DungeonSoviet
@@ -39,7 +40,8 @@
     - AllHostile
     - Gorilla
     - Abductor
-    - Pirate # starlight
+    - Pirate
+    - CosmicCult
 
 - type: npcFaction
   id: DungeonSyndicate
@@ -60,7 +62,8 @@
     - AllHostile
     - Gorilla
     - Abductor
-    - Pirate # starlight
+    - Pirate
+    - CosmicCult
 
 - type: npcFaction
   id: Gorilla
@@ -84,7 +87,8 @@
     - DungeonSoviet
     - DungeonSyndicate
     - Abductor
-    - Pirate # starlight
+    - Pirate
+    - CosmicCult
 
 - type: npcFaction
   id: NanoTrasenSilicon # purely making this so zombies STOP ATTACKING FUCKING SILICONS
@@ -106,6 +110,7 @@
   - Gorilla
   - Abductor
   - Pirate
+  - CosmicCult
 
 - type: npcFaction
   id: SyndicateSilicon # Again, zombies fuck you.
@@ -126,15 +131,16 @@
     - Dragon
     - Gorilla
     - Abductor
-    - Pirate # starlight
+    - Pirate
+    - CosmicCult
 
 - type: npcFaction
   id: Abductor
   hostile: # SimpleHostile with additions so that it gets attacked by mobs
   - NanoTrasen
-  - NanoTrasenSilicon # starlight
+  - NanoTrasenSilicon
   - Syndicate
-  - SyndicateSilicon # starlight
+  - SyndicateSilicon
   - DungeonSyndicate
   - DungeonSoviet
   - Passive
@@ -153,7 +159,8 @@
   # New
   - Dragon
   - SimpleHostile
-  - Pirate # starlight
+  - Pirate
+  - CosmicCult
 
 - type: npcFaction
   id: Pirate
@@ -177,3 +184,93 @@
   - Dragon
   - Gorilla
   - Abductor
+  - CosmicCult
+
+- type: npcFaction
+  id: Floral # It's so plant anom creatures don't attack diona.
+
+- type: npcFaction
+  id: Changeling
+  hostile:
+  - NanoTrasen
+  - NanoTrasenSilicon
+  - Syndicate
+  - SyndicateSilicon
+  - Zombie
+  - Revolutionary
+  - AllHostile
+  - Gorilla
+  - Pirate
+  - CosmicCult
+
+- type: npcFaction
+  id: Vampire
+  hostile:
+  - NanoTrasen
+  - NanoTrasenSilicon
+  - Syndicate
+  - SyndicateSilicon
+  - Zombie
+  - Revolutionary
+  - Xeno
+  - Changeling
+  - AllHostile
+  - Gorilla
+  - Pirate
+  - CosmicCult
+
+- type: npcFaction
+  id: HonkHostile
+  hostile:
+  - NanoTrasen
+  - NanoTrasenSilicon
+  - Syndicate
+  - SyndicateSilicon
+  - Passive
+  - PetsNT
+  - Zombie
+  - AllHostile
+  - Wizard
+  - Xenoborg
+  - Gorilla
+  - Pirate
+  - CosmicCult
+
+- type: npcFaction
+  id: HonkNeutral
+  hostile:
+    - SimpleHostile
+    - Syndicate
+    - SyndicateSilicon
+    - Xeno
+    - Zombie
+    - AllHostile
+    - Gorilla
+    - Abductor
+    - CosmicCult
+
+- type: npcFaction
+  id: CosmicCult
+  hostile:
+    - NanoTrasen
+    - NanoTrasenSilicon
+    - Syndicate
+    - SyndicateSilicon
+    - Xeno
+    - Zombie
+    - Abductor
+    - Dragon
+    - Wizard
+    - Gorilla
+    - DungeonSoviet
+    - DungeonSyndicate
+    - Abyss
+    - AllHostile
+    - SimpleHostile
+    - SimpleNeutral
+    - PetsNT
+    - Mouse
+    - HonkHostile
+    - HonkNeutral
+    - Floral
+    - Passive

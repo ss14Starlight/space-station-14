@@ -2,14 +2,13 @@ using Content.Shared.Examine;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Localization;
 
 namespace Content.Shared._Starlight.Silicons.Borgs;
 
-public sealed class LawboardSystem : EntitySystem
+public sealed partial class LawboardSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
 
     public override void Initialize()
     {

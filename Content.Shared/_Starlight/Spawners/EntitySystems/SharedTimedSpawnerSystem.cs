@@ -7,10 +7,10 @@ using Content.Shared.Mobs.Components;
 
 namespace Content.Shared._Starlight.Spawners.EntitySystems;
 
-public sealed class SharedTimedSpawnerSystem : EntitySystem
+public sealed partial class SharedTimedSpawnerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private readonly List<(EntityUid uid, TimedSpawnerComponent comp)> _toFire = new();
 
@@ -65,7 +65,14 @@ public sealed class SharedTimedSpawnerSystem : EntitySystem
         for (var i = 0; i < number; i++)
         {
             var entity = random.Pick(component.Prototypes);
-            PredictedSpawnAtPosition(entity, coordinates);
+            if (component.AllowContainerPlacement)
+            {
+                PredictedSpawnNextToOrDrop(entity, uid);
+            }
+            else
+            {
+                PredictedSpawnAtPosition(entity, coordinates);
+            }
         }
 
         if (component.DespawnWhenDone)

@@ -14,11 +14,11 @@ using GasCanisterComponent = Content.Shared.Atmos.Piping.Unary.Components.GasCan
 
 namespace Content.Server.Atmos.Piping.Unary.EntitySystems;
 
-public sealed class GasCanisterSystem : SharedGasCanisterSystem
+public sealed partial class GasCanisterSystem : SharedGasCanisterSystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private AtmosphereSystem _atmos = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private NodeContainerSystem _nodeContainer = default!;
 
     public override void Initialize()
     {
@@ -48,7 +48,7 @@ public sealed class GasCanisterSystem : SharedGasCanisterSystem
 
     protected override void DirtyUI(EntityUid uid, GasCanisterComponent? canister = null, NodeContainerComponent? nodeContainer = null)
     {
-        if (!Resolve(uid, ref canister, ref nodeContainer))
+        if (!Resolve(uid, ref canister, ref nodeContainer, logMissing: false))
             return;
 
         var portStatus = false;
@@ -103,7 +103,16 @@ public sealed class GasCanisterSystem : SharedGasCanisterSystem
         if (MathHelper.CloseToPercent(canister.Air.Pressure, canister.LastPressure))
             return;
 
-        DirtyUI(uid, canister, nodeContainer);
+        RefreshCanister(uid, canister); // Starlight
+    }
+    #region Starlight
+    // I kept it in here, because much of that function i took out of OnCanisterUpdated
+    public void RefreshCanister(EntityUid uid, GasCanisterComponent canister)
+    {
+        if (!TryComp<AppearanceComponent>(uid, out var appearance)) // Starlight: safeguard
+            return;
+
+        DirtyUI(uid, canister); // Starlight: make sure that the UI is also updated when the canister is refreshed.
 
         canister.LastPressure = canister.Air.Pressure;
 
@@ -124,6 +133,7 @@ public sealed class GasCanisterSystem : SharedGasCanisterSystem
             _appearance.SetData(uid, GasCanisterVisuals.PressureState, 3, appearance);
         }
     }
+    #endregion
 
     /// <summary>
     /// Mix air from a gas container into a pipe net.

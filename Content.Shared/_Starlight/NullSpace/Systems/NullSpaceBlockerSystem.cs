@@ -1,15 +1,15 @@
-using Content.Shared._Starlight.CosmicCult;
+using Content.Shared._Starlight.NullSpace.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.NullSpace;
+namespace Content.Shared._Starlight.NullSpace.Systems;
 
-public sealed class NullSpaceBlockerSystem : EntitySystem
+public sealed partial class NullSpaceBlockerSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedPvsOverrideSystem _pvs = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedPvsOverrideSystem _pvs = default!;
     public EntProtoId _shadekinShadow = "ShadekinShadow";
     public override void Initialize()
     {

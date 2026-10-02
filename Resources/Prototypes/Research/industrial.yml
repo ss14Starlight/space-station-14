@@ -95,6 +95,7 @@
   - SolarControlComputerCircuitboard
   - SolarTrackerElectronics
   - EmitterCircuitboard
+  - APCAdvancedElectronics # Starlight
   radioChannels:
   - Engineering
 
@@ -210,6 +211,7 @@
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
+  - BluespaceFireExtinguisher # Starlight
   technologyPrerequisites:
   - BluespaceManipulation
   radioChannels:

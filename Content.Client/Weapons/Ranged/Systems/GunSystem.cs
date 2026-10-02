@@ -4,6 +4,7 @@ using Content.Client.Gameplay;
 using Content.Client.Items;
 using Content.Client.Weapons.Ranged.Components;
 using Content.Shared.Camera;
+using Content.Shared.CCVar;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
 using Content.Shared.Weapons.Hitscan.Components;
@@ -19,6 +20,7 @@ using Robust.Client.Player;
 using Robust.Client.State;
 using Robust.Shared.Animations;
 using Robust.Shared.Audio;
+using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -26,67 +28,79 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using SharedGunSystem = Content.Shared.Weapons.Ranged.Systems.SharedGunSystem;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
-using Content.Shared.CCVar; // Starlight | ES Screenshake
-
-#region Starlight
 using Content.Client.DisplacementMap;
 using Content.Shared._Starlight.Effects;
-using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared.Mech.Components;
-using Content.Shared.Starlight.Utility;
-using Content.Shared.Starlight.CCVar;
-using Content.Shared.Weapons.Hitscan.Events;
+using Content.Shared._Starlight.Utility;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Timing;
-using Robust.Shared.Configuration;
-#endregion Starlight
+using Robust.Shared.Random;
+using Content.Shared._Starlight.Combat.Ranged.Pierce;
+using Content.Shared._Starlight.Weapons.Hitscan.Events;
+using Content.Shared.Mobs.Components;
 
 namespace Content.Client.Weapons.Ranged.Systems;
 
-// There’ve been so many radical changes here that you can basically consider the entire file as being under the Starlight folder now.
+// There've been so many radical changes here that you can basically consider the entire file as being under the Starlight folder now.
 public sealed partial class GunSystem : SharedGunSystem
 {
-    [Dependency] private readonly AnimationPlayerSystem _animPlayer = default!;
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly IInputManager _inputManager = default!;
-    [Dependency] private readonly InputSystem _inputSystem = default!;
-    [Dependency] private readonly IOverlayManager _overlayManager = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IStateManager _state = default!;
-    [Dependency] private readonly SharedCameraRecoilSystem _recoil = default!;
-    [Dependency] private readonly SharedMapSystem _maps = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private AnimationPlayerSystem _animPlayer = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private IInputManager _inputManager = default!;
+    [Dependency] private InputSystem _inputSystem = default!;
+    [Dependency] private IOverlayManager _overlayManager = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IStateManager _state = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private SharedCameraRecoilSystem _recoil = default!;
+    [Dependency] private SharedMapSystem _maps = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
-#region Starlight
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly DisplacementMapSystem _displacement = default!;
-#endregion Starlight
+    #region Starlight
+    [Dependency] private IComponentFactory _factory = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private DisplacementMapSystem _displacement = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public static readonly EntProtoId HitscanProto = "HitscanEffect";
     public const string ImpactProto = "ImpactEffect";
+    public const string BulletHoleProto = "BulletHoleEffect";
+    public const string SparksProto = "ImpactSparksEffect";
     private DisplacementEffect _displacementEffect = null!;
+    private static readonly ProtoId<DisplacementEffect> _displacementEffectId = "ImpactDisplacement";
     private bool _tracesEnabled = true;
+    private bool _holesEnabled = true;
+    private bool _sparksEnabled = true;
     public override void Shutdown()
     {
         base.Shutdown();
         _cfg.UnsubValueChanged(StarlightCCVars.TracesEnabled, OnTracesEnabledChanged);
+        _cfg.UnsubValueChanged(StarlightCCVars.HolesEnabled, OnHolesEnabledChanged);
+        _cfg.UnsubValueChanged(StarlightCCVars.SparksEnabled, OnSparksEnabledChanged);
     }
     private void OnTracesEnabledChanged(bool tracesEnabled)
         => _tracesEnabled = tracesEnabled;
 
+    private void OnHolesEnabledChanged(bool holesEnabled)
+        => _holesEnabled = holesEnabled;
+
+    private void OnSparksEnabledChanged(bool sparksEnabled)
+        => _sparksEnabled = sparksEnabled;
+
+    #endregion Starlight
+
     public bool SpreadOverlay
     {
-        get => _spreadOverlay;
+        get;
         set
         {
-            if (_spreadOverlay == value)
+            if (field == value)
                 return;
 
-            _spreadOverlay = value;
+            field = value;
 
-            if (_spreadOverlay)
+            if (field)
             {
                 _overlayManager.AddOverlay(new GunSpreadOverlay(
                     EntityManager,
@@ -104,27 +118,20 @@ public sealed partial class GunSystem : SharedGunSystem
         }
     }
 
-    private bool _spreadOverlay;
-
     public override void Initialize()
     {
         base.Initialize();
+        // Starlight-start
         _cfg.OnValueChanged(StarlightCCVars.TracesEnabled, OnTracesEnabledChanged, true);
+        _cfg.OnValueChanged(StarlightCCVars.HolesEnabled, OnHolesEnabledChanged, true);
+        _cfg.OnValueChanged(StarlightCCVars.SparksEnabled, OnSparksEnabledChanged, true);
+        // Starlight-end
 
         UpdatesOutsidePrediction = true;
-        SubscribeLocalEvent<AmmoCounterComponent, ItemStatusCollectMessage>(OnAmmoCounterCollect);
-        SubscribeAllEvent<MuzzleFlashEvent>(OnMuzzleFlash);
-
-        // Plays animated effects on the client.
-        SubscribeNetworkEvent<HitscanEvent>(OnHitscan);
-
-        InitializeMagazineVisuals();
-        InitializeSpentAmmo();
-
-        _displacementEffect = _proto.Index<DisplacementEffect>("displacementEffect");
+        _displacementEffect = _proto.Index(_displacementEffectId);
     }
 
-
+    [EventSubscription]
     private void OnMuzzleFlash(MuzzleFlashEvent args)
     {
         var gunUid = GetEntity(args.Uid);
@@ -132,13 +139,12 @@ public sealed partial class GunSystem : SharedGunSystem
         CreateEffect(gunUid, args, gunUid);
     }
 
+    [SubscribeNetworkEvent]
     private void OnHitscan(HitscanEvent ev)
     {
         var delay = 0f;
         foreach (var trace in ev.Traces)
-        {
             delay = FireEffect(ev, delay, trace);
-        }
     }
 
     private float FireEffect(HitscanEvent visuals, float delay, HitscanTrace trace)
@@ -164,20 +170,18 @@ public sealed partial class GunSystem : SharedGunSystem
                     RenderFlash(trace.ImpactCoordinates, trace.Angle, impact, 1f, false, true, length, delay);
 
                 if (trace.ImpactedEnt is { } netEnt && GetEntity(netEnt) is EntityUid ent)
-                    RenderDisplacementImpact(GetCoordinates(trace.ImpactCoordinates), trace.Angle, ent);
+                    RenderDisplacements(GetCoordinates(trace.ImpactCoordinates), trace.Angle, ent);
             });
         return delay;
     }
 
-    private void RenderDisplacementImpact(EntityCoordinates coords, Angle angle, EntityUid target)
+    private void RenderDisplacements(EntityCoordinates coords, Angle angle, EntityUid target)
     {
-        if (!TryComp<SpriteComponent>(target, out var sprite))
+        if (!TryComp<SpriteComponent>(target, out var sprite)
+            || !TryComp(coords.EntityId, out TransformComponent? relativeXform))
             return;
 
-        if (!TryComp(coords.EntityId, out TransformComponent? relativeXform))
-            return;
-
-        if (!sprite!.AllLayers.TryFirstOrDefault(x => (x.ActualRsi ?? x.Rsi) != null && x.RsiState != null, out var layer))
+        if (!sprite.AllLayers.TryFirstOrDefault(x => (x.ActualRsi ?? x.Rsi) != null && x.RsiState != null, out var layer))
             return;
 
         if (layer.PixelSize.X != 32 || layer.PixelSize.Y != 32)
@@ -195,6 +199,18 @@ public sealed partial class GunSystem : SharedGunSystem
         _sprite.LayerSetRsiState((ent, spriteComp), "unshaded", layer.RsiState);
         spriteComp["unshaded"].Visible = true;
         _displacement.TryAddDisplacement(_displacementEffect.Displacement, (ent, spriteComp), 0, "unshaded", out _);
+
+        if (_holesEnabled && !HasComp<MobStateComponent>(target))
+        {
+            var radians = MathF.PI / 180f * (float)angle.Degrees;
+            var holeCoords = coords.Offset(new Vector2(MathF.Cos(radians), MathF.Sin(radians)) * _random.NextFloat(0f, 0.5f));
+            Spawn(BulletHoleProto, holeCoords);
+        }
+
+        if (_sparksEnabled
+            && TryComp<PierceableComponent>(target, out var pierceable)
+            && pierceable.Level >= PierceLevel.Metal)
+            Spawn(SparksProto, coords);
     }
     private void RenderBullet(NetCoordinates coordinates, Angle angle, ExtendedSpriteSpecifier sprite, float distance, float length, float delay)
     {
@@ -420,6 +436,7 @@ public sealed partial class GunSystem : SharedGunSystem
             Target = target,
             Coordinates = GetNetCoordinates(coordinates),
             Gun = GetNetEntity(gun),
+            Continuous = _cfg.GetCVar(CCVars.ControlHoldToAttackRanged),
         });
     }
 
@@ -434,6 +451,11 @@ public sealed partial class GunSystem : SharedGunSystem
         // This also means any ammo specific stuff can be grabbed as necessary.
         var direction = TransformSystem.ToMapCoordinates(fromCoordinates).Position - TransformSystem.ToMapCoordinates(toCoordinates).Position;
         var worldAngle = direction.ToAngle().Opposite();
+
+        // Starlight-start: Update angle on client
+        UpdateCurrentAngle(gun);
+        gun.Comp.LastFire = gun.Comp.NextFire;
+        // Starlight-end
 
         foreach (var (ent, shootable) in ammo)
         {
@@ -488,6 +510,10 @@ public sealed partial class GunSystem : SharedGunSystem
                     Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
                     Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
                     fired = true; // Starlight
+                    // Starlight-start - delete the client-side hitscan entity so it doesn't pile up on the shooter (mech lag)
+                    if (IsClientSide(ent!.Value))
+                        Del(ent.Value);
+                    // Starlight-end
                     break;
             }
         }

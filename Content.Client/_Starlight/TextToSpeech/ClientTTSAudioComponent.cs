@@ -1,6 +1,6 @@
 ﻿using Robust.Shared.Audio;
 
-namespace Content.Client._Starlight.TTS;
+namespace Content.Client._Starlight.TextToSpeech;
 
 [RegisterComponent]
 [Access(typeof(TextToSpeechSystem))]

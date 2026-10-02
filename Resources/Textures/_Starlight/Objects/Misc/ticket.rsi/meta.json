@@ -1,23 +1,51 @@
 {
-    "version":1,
-    "size":{
-        "x":32,
-        "y":32
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State Based Copyright",
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6, Modified by DRkYosif (github)"
     },
-    "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6",
-    "states":[
-        {
-            "name":"icon"
-        },
-        {
-            "name": "burn",
-            "delays": [
-                [
-                    0.5,
-                    0.5
-                ]
-            ]
-      }
-    ]
+    {
+      "name": "icon_cas",
+      "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6, Modified by DRkYosif (github)",
+      "delays": [
+        [
+          10,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ]
+      ]
+    },
+    {
+      "name": "logo_nt",
+      "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6"
+    },
+    {
+      "name": "logo_cas",
+      "copyright": "Discord: @vincolan"
+    },
+    {
+      "name": "burn",
+      "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    }
+  ]
 }

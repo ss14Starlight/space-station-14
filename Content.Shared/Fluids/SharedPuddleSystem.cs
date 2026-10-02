@@ -28,19 +28,23 @@ namespace Content.Shared.Fluids;
 
 public abstract partial class SharedPuddleSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] protected readonly ISharedAdminLogManager AdminLogger = default!;
-    [Dependency] protected readonly OpenableSystem Openable = default!;
-    [Dependency] protected readonly ReactiveSystem Reactive = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] protected readonly SharedPopupSystem Popups = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly SpeedModifierContactsSystem _speedModContacts = default!;
-    [Dependency] private readonly StepTriggerSystem _stepTrigger = default!;
-    [Dependency] private readonly TileFrictionController _tile = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] protected ISharedAdminLogManager AdminLogger = default!;
+    [Dependency] protected OpenableSystem Openable = default!;
+    [Dependency] protected ReactiveSystem Reactive = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] protected SharedAudioSystem Audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] protected SharedPopupSystem Popups = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private SpeedModifierContactsSystem _speedModContacts = default!;
+    [Dependency] private StepTriggerSystem _stepTrigger = default!;
+    [Dependency] private TileFrictionController _tile = default!;
+
+    private EntityQuery<StepTriggerComponent> _stepTriggerQuery;
+    private EntityQuery<ReactiveComponent> _reactiveQuery;
+    private EntityQuery<EvaporationComponent> _evaporationQuery;
 
     private ProtoId<ReagentPrototype>[] _standoutReagents = [];
 
@@ -55,16 +59,12 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     // loses & then gains reagents in a single tick.
     private HashSet<EntityUid> _deletionQueue = [];
 
-    private EntityQuery<StepTriggerComponent> _stepTriggerQuery;
-    private EntityQuery<ReactiveComponent> _reactiveQuery;
-    private EntityQuery<EvaporationComponent> _evaporationQuery;
-
     public override void Initialize()
     {
         base.Initialize();
         // Shouldn't need re-anchoring.
         SubscribeLocalEvent<PuddleComponent, AnchorStateChangedEvent>(OnAnchorChanged);
-        SubscribeLocalEvent<PuddleComponent, SolutionContainerChangedEvent>(OnSolutionUpdate);
+        SubscribeLocalEvent<PuddleComponent, SolutionChangedEvent>(OnSolutionUpdate);
         SubscribeLocalEvent<PuddleComponent, GetFootstepSoundEvent>(OnGetFootstepSound);
         SubscribeLocalEvent<PuddleComponent, ExaminedEvent>(HandlePuddleExamined);
         SubscribeLocalEvent<PuddleComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
@@ -95,7 +95,9 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
         _deletionQueue.Clear();
 
-        TickEvaporation();
+        // Starlight - avoid enumerating every evaporation component between scheduled ticks.
+        if (_timing.CurTime >= _nextEvaporationUpdate)
+            TickEvaporation();
     }
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs ev)
@@ -112,21 +114,25 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         _standoutReagents = [.. _prototypeManager.EnumeratePrototypes<ReagentPrototype>().Where(x => x.Standsout).Select(x => x.ID)];
     }
 
-    private void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionContainerChangedEvent args)
+    protected virtual void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionChangedEvent args) // Starlight
     {
-        if (args.SolutionId != entity.Comp.SolutionName)
+        // The changes are already networked as part of the same game state.
+        if (_timing.ApplyingState)
             return;
 
-        if (args.Solution.Volume <= 0)
+        if (args.Solution.Comp.Id != entity.Comp.SolutionName)
+            return;
+
+        if (args.Solution.Comp.Solution.Volume <= 0)
         {
             _deletionQueue.Add(entity);
             return;
         }
 
         _deletionQueue.Remove(entity);
-        UpdateSlip((entity, entity.Comp), args.Solution);
-        UpdateSlow(entity, args.Solution);
-        UpdateEvaporation(entity, args.Solution);
+        UpdateSlip((entity, entity.Comp), args.Solution.Comp.Solution);
+        UpdateSlow(entity, args.Solution.Comp.Solution);
+        UpdateEvaporation(entity, args.Solution.Comp.Solution);
         UpdateAppearance((entity, entity.Comp));
     }
 
@@ -214,7 +220,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
                 var interpolateValue = quantity.Float() / solution.Volume.Float();
                 color = Color.InterpolateBetween(color,
-                    _prototypeManager.Index<ReagentPrototype>(standout).SubstanceColor,
+                    solution.GetColorWithOnly(_prototypeManager, standout), // Blimpuf edit
                     interpolateValue);
             }
         }
@@ -321,9 +327,12 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     private void UpdateSlow(EntityUid uid, Solution solution)
     {
         var maxViscosity = 0f;
-        foreach (var (reagent, _) in solution.Contents)
+        foreach (var (reagent, quantity) in solution.Contents) // Starlight
         {
             var reagentProto = _prototypeManager.Index<ReagentPrototype>(reagent.Prototype);
+            if (quantity < reagentProto.ViscosityMin) // Starlight
+                continue; // Starlight
+
             maxViscosity = Math.Max(maxViscosity, reagentProto.Viscosity);
         }
 

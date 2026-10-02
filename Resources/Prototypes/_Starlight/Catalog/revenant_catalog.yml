@@ -1,0 +1,25 @@
+- type: listing
+  id: RevenantChillOfTheGrave
+  name: revenant-chill-name
+  description: revenant-chill-desc
+  productAction: ActionRevenantChill
+  cost:
+    StolenEssence: 50
+  categories:
+  - RevenantAbilities
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: RevenantMisfire
+  name: revenant-misfire-name
+  description: revenant-misfire-desc
+  productAction: ActionRevenantMisfire
+  cost:
+    StolenEssence: 20
+  categories:
+  - RevenantAbilities
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

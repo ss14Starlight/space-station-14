@@ -12,9 +12,9 @@ namespace Content.Server.Humanoid;
 
 public sealed partial class HumanoidAppearanceSystem
 {
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly BodySystem _body = default!; //Starlight
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private BodySystem _body = default!; //Starlight
 
     private void OnVerbsRequest(EntityUid uid, HumanoidAppearanceComponent component, GetVerbsEvent<Verb> args)
     {

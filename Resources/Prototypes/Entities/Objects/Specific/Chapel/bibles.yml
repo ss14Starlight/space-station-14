@@ -8,13 +8,19 @@
     delay: 10.0
   - type: Bible
     damage:
-      groups:
-        Brute: -15
-        Burn: -15
+      types:
+        Blunt: -5
+        Piercing: -5
+        Slash: -5
+        Heat: -5
+        Cold: -5
+        Shock: -5
     damageOnFail:
-      groups:
-        Brute: 15
-        Airloss: 15
+      types:
+        Blunt: 5
+        Piercing: 5
+        Slash: 5
+        Asphyxiation: 15
     damageOnUntrainedUse: ## What a non-chaplain takes when attempting to heal someone
       types:
         Heat: 10
@@ -77,9 +83,11 @@
       types:
         Caustic: 20 ## ~15 dps
     damageOnFail:
-      groups:
-        Brute: 15
-        Airloss: 25
+      types:
+        Blunt: 5
+        Piercing: 5
+        Slash: 5
+        Asphyxiation: 25
     damageOnUntrainedUse:
       types:
         Caustic: 50
@@ -88,7 +96,7 @@
         Caustic: 50
     damageUnholy: ## What damage is dealt when a chaplain hits an unholy creature
       types:
-        types: 20
+        Cellular: 20 # Starlight
     failChance: 0
     locPrefix: "necro"
     healSound: "/Audio/Effects/lightburn.ogg"
@@ -113,17 +121,6 @@
     event: !type:SummonActionEvent
 
 - type: entity
-  parent: Bible
-  name: tanakh
-  description: "For God's chosen crewmembers"
-  id: BibleTanakh
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Chapel/tanakh.rsi
-  - type: Item
-    sprite: Objects/Specific/Chapel/tanakh.rsi
-
-- type: entity
   id: BibleDruid
   name: druidic tablet
   parent: Bible
@@ -144,17 +141,6 @@
     sprite: Objects/Specific/Chapel/communistmanifesto.rsi
   - type: Item
     sprite: Objects/Specific/Chapel/communistmanifesto.rsi
-
-- type: entity
-  parent: Bible
-  name: satanic bible
-  description: "What could possibly go wrong?"
-  id: BibleSatanic
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Chapel/satanicbible.rsi
-  - type: Item
-    sprite: Objects/Specific/Chapel/satanicbible.rsi
 
 - type: entity
   id: BibleNarsie

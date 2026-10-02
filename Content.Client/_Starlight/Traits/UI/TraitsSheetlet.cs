@@ -4,7 +4,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using static Content.Client.Stylesheets.StylesheetHelpers;
 
-namespace Content.Client._DV.Traits.UI;
+namespace Content.Client._Starlight.Traits.UI;
 
 [CommonSheetlet]
 public sealed class TraitsSheetlet<T> : Sheetlet<T> where T : PalettedStylesheet

@@ -15,14 +15,14 @@ namespace Content.Shared._Starlight.Xenobiology;
 /// <summary>
 /// Handles the general behavior of slimes.
 /// </summary>
-public sealed class SlimeSystem : EntitySystem
+public sealed partial class SlimeSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly HungerSystem _hungerSystem = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private HungerSystem _hungerSystem = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
 
     public List<SlimeSplitRecord> SlimeSplitRecords = new();
 

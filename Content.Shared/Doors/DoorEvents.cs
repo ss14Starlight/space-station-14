@@ -8,10 +8,12 @@ namespace Content.Shared.Doors
     public sealed class DoorStateChangedEvent : EntityEventArgs
     {
         public readonly DoorState State;
+        public readonly EntityUid? User; // Starlight
 
-        public DoorStateChangedEvent(DoorState state)
+        public DoorStateChangedEvent(DoorState state, EntityUid? user = null) // Starlight: add user param
         {
             State = state;
+            User = user; // Starlight: add user
         }
     }
 

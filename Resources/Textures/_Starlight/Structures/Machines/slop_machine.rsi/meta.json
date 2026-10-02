@@ -1,17 +1,19 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "inserting & unlit made by stickycheZ101 - building, icon, & panel made by conflee",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "Conflee"
     },
     {
-      "name": "panel"
+      "name": "panel",
+      "copyright": "Conflee"
     },
     {
       "name": "unlit",
@@ -25,7 +27,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "made by stickycheZ101"
     },
     {
       "name": "building",
@@ -36,7 +39,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Conflee"
     },
     {
       "name": "inserting",
@@ -47,7 +51,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "made by stickycheZ101"
     }
   ]
 }

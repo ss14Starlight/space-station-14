@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken and edited from Paradise Station wiki https://paradisestation.org/wiki/index.php/Changeling , sting_transform and sting_armblade retextures made by whateverusername0, heat/starve, night/thermal, and desoxyephedrine/amalgam modified from their base by wonderfulnewworld (GitHub)",
+    "copyright": "Taken and edited from Paradise Station wiki https://paradisestation.org/wiki/index.php/Changeling , sting_transform and sting_armblade retextures made by whateverusername0, heat/starve, night/thermal, desoxyephedrine/amalgam and protogen modified from their base by wonderfulnewworld (GitHub)",
     "size": {
         "x": 32,
         "y": 32
@@ -34,6 +34,11 @@
         },
 		{
             "name": "sting_starve",
+			"copyright": "Paradise Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+		{
+            "name": "protogen_armor",
 			"copyright": "Paradise Station, wonderfulnewworld",
 			"license": "CC-BY-SA-3.0"
         }

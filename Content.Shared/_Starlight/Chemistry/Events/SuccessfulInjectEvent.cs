@@ -1,5 +1,4 @@
 using Content.Shared.Chemistry.Components;
-using Robust.Shared.GameObjects;
 
 namespace Content.Shared._Starlight.Chemistry.Events;
 

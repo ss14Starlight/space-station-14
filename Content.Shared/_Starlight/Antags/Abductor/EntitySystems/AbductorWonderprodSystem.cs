@@ -12,10 +12,10 @@ namespace Content.Shared._Starlight.Antags.Abductor.EntitySystems;
 /// System that handles abductor wonderprod interactions with hardsuit immunity.
 /// When a wonderprod hits someone with hardsuit protection, it reduces its stamina damage to stunbaton levels instead of full wonderprod damage.
 /// </summary>
-public sealed class AbductorWonderprodSystem : EntitySystem
+public sealed partial class AbductorWonderprodSystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedStaminaSystem _stamina = default!;
 
     public override void Initialize()
     {

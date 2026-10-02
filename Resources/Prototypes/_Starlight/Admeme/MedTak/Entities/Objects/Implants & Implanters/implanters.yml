@@ -1,0 +1,71 @@
+- type: entity
+  id: MedTakImplanter
+  parent: BaseImplantOnlyImplanter
+  description: A compact disposable implanter meant to quickly and (mostly) painlessly place an implant below the skin.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Objects/implanter.rsi
+    state: implanter0
+    layers:
+    - state: implanter1
+      map: [ "implantFull" ]
+      visible: true
+    - state: implanter0
+      map: [ "implantOnly" ]
+  - type: Item
+    sprite: _Starlight/Admeme/MedTak/Objects/implanter.rsi
+    heldPrefix: implanter
+  - type: Implanter
+    implantTime: 2.5
+
+- type: entity
+  id: MedTakImplanterMindShield
+  name: MedTak mindshield implanter
+  parent: MedTakImplanter
+  components:
+  - type: Implanter
+    implant: MedTakMindShieldImplant
+
+# Tracker tiers
+- type: entity
+  id: MedTakImplanterTrackingBronze
+  name: MedTak bronze tracker
+  parent: MedTakImplanter
+  components:
+  - type: Implanter
+    implant: TrackingImplantMedTakBronze
+
+- type: entity
+  id: MedTakImplanterTrackingSilver
+  name: MedTak silver tracker
+  parent: MedTakImplanter
+  components:
+  - type: Implanter
+    implant: TrackingImplantMedTakSilver
+
+- type: entity
+  id: MedTakImplanterTrackingGold
+  name: MedTak gold tracker
+  parent: MedTakImplanter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Objects/implanter.rsi
+    state: implanter0
+    layers:
+    - state: implanter1
+      map: [ "implantFull" ]
+      visible: true
+    - state: implanter0
+      map: [ "implantOnly" ]
+    - state: gold
+  - type: Implanter
+    implant: TrackingImplantMedTakGold
+
+- type: entity
+  id: MedTakImplanterTrackingTeam
+  name: MedTak tracker
+  parent: MedTakImplanter
+  components:
+  - type: Implanter
+    implant: TrackingImplantMedTakTeam

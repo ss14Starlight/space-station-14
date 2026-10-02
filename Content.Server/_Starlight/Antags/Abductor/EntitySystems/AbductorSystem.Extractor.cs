@@ -1,20 +1,20 @@
-using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Interaction;
-using Content.Shared.Starlight.Medical.Surgery;
 using Content.Shared.DoAfter;
 using Content.Shared.Body.Systems;
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Body.Organ;
+using Content.Shared._Starlight.Antags.Abductor.EntitySystems;
+using Content.Shared._Starlight.Antags.Abductor.Components;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 
-namespace Content.Server._Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor.EntitySystems;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
 
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly ISharedAdminLogManager _admin = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private ISharedAdminLogManager _admin = default!;
 
     public void InitializeExtractor()
     {

@@ -8,12 +8,14 @@ rcd-component-examine-build-details = It's currently set to build {MAKEPLURAL($n
 ### Interaction Messages
 
 # Mode change
-rcd-component-change-mode = The RCD is now set to '{$mode}' mode.
-rcd-component-change-build-mode = The RCD is now set to build {MAKEPLURAL($name)}.
+# Starlight-start: name the actual device, since the RPD, RPLD and all experimental variants share these messages
+rcd-component-change-mode = The {$device} is now set to '{$mode}' mode.
+rcd-component-change-build-mode = The {$device} is now set to build {MAKEPLURAL($name)}.
 
 # Ammo count
-rcd-component-no-ammo-message = The RCD has run out of charges!
-rcd-component-insufficient-ammo-message = The RCD doesn't have enough charges left!
+rcd-component-no-ammo-message = The {$device} has run out of charges!
+rcd-component-insufficient-ammo-message = The {$device} doesn't have enough charges left!
+# Starlight-end
 
 # Deconstruction
 rcd-component-tile-indestructible-message = That tile can't be destructed!
@@ -29,6 +31,7 @@ rcd-component-must-build-on-subfloor-message = You can only build that on expose
 rcd-component-cannot-build-on-subfloor-message = You can't build that on exposed subfloor!
 rcd-component-cannot-build-on-occupied-tile-message = You can't build here, the space is already occupied!
 rcd-component-cannot-build-identical-tile = That tile already exists there!
+rcd-component-cannot-build-identical-entity = That already exists there!
 
 
 ### Category names

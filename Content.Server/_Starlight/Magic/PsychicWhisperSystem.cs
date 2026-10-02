@@ -5,16 +5,16 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared._Starlight.Magic.Events;
 using Robust.Shared.Player;
 
-namespace Content.Server._Starlight.Magic.Systems;
+namespace Content.Server._Starlight.Magic;
 
 /// <summary>
 ///     Implementation for the Elf 'Psychic Whisper' Cantrip
 /// </summary>
-public sealed class PsychicWhisperSystem : EntitySystem
+public sealed partial class PsychicWhisperSystem : EntitySystem
 {
-    [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
-    [Dependency] private readonly PrayerSystem _prayerSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private QuickDialogSystem _quickDialog = default!;
+    [Dependency] private PrayerSystem _prayerSystem = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
 
     public override void Initialize()
     {

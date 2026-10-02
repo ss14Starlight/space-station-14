@@ -8,15 +8,14 @@ namespace Content.Server._Starlight.Magic;
 /// System that spawns IceCrust debris while projectiles with IceTrailComponent are flying.
 /// Creates a trail of frozen debris behind the projectile at regular intervals.
 /// </summary>
-public sealed class IceTrailSystem : EntitySystem
+public sealed partial class IceTrailSystem : EntitySystem
 {
     // System dependencies
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ITileDefinitionManager _tileDefManager = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -56,7 +55,7 @@ public sealed class IceTrailSystem : EntitySystem
             var coords = _transformSystem.GetMapCoordinates(uid, xform);
 
             // Try to find the grid at this position
-            if (!_mapManager.TryFindGridAt(coords, out var gridUid, out var grid))
+            if (!_mapSystem.TryFindGridAt(coords, out var gridUid, out var grid))
                 continue; // No grid found, can't spawn ice
 
             // Convert map coordinates to tile indices

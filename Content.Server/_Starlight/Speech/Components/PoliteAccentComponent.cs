@@ -1,6 +1,6 @@
-using Content.Server.Speech.EntitySystems;
+using Content.Server._Starlight.Speech.EntitySystems;
 
-namespace Content.Server.Speech.Components;
+namespace Content.Server._Starlight.Speech.Components;
 
 [RegisterComponent]
 [Access(typeof(PoliteAccentSystem))]

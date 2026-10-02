@@ -1,18 +1,18 @@
-using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Server.Access.Systems;
 using Robust.Shared.Prototypes;
 using Content.Shared.Access.Components;
 using System.Linq;
 using Content.Shared.Access;
+using Content.Shared._Starlight.Railroading.Components;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.HandlerSystem;
 
 public sealed partial class RailroadingModifyIdCardHandlerSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IdCardSystem _idCard = default!;
-    [Dependency] private readonly AccessSystem _access = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IdCardSystem _idCard = default!;
+    [Dependency] private AccessSystem _access = default!;
 
     public override void Initialize()
     {

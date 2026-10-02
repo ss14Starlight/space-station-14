@@ -11,10 +11,10 @@ namespace Content.Server._Starlight.Plumbing.EntitySystems;
 ///     Handles plumbing inlet behavior: actively pulls reagents from inlet nodes into a solution.
 /// </summary>
 [UsedImplicitly]
-public sealed class PlumbingInletSystem : EntitySystem
+public sealed partial class PlumbingInletSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
-    [Dependency] private readonly PlumbingPullSystem _pullSystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private PlumbingPullSystem _pullSystem = default!;
 
     public override void Initialize()
     {
@@ -31,6 +31,10 @@ public sealed class PlumbingInletSystem : EntitySystem
 
         // Plumbing filters handle inlet pulling in PlumbingFilterSystem to split into lanes.
         if (HasComp<PlumbingFilterComponent>(ent.Owner))
+            return;
+
+        // Inline filters handle inlet pulling in PlumbingInlineFilterSystem so only listed reagents are requested.
+        if (HasComp<PlumbingInlineFilterComponent>(ent.Owner))
             return;
 
         if (!_solutionSystem.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out var solutionEnt, out var solution))

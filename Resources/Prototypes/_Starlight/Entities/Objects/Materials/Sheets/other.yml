@@ -43,7 +43,7 @@
     count: 1
 
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, BaseSlicingRefinable]
   id: CheapInsulatedFabric
   name: cheap insulated fabric
   description: A bolt of rough insulated fabric, not much use in it's current form.
@@ -53,9 +53,8 @@
       state: cheapinsulativefabric
     - type: Item
       sprite: _Starlight/Objects/Misc/insults.rsi
-    - type: Butcherable
-      butcheringType: Knife
-      spawned:
+    - type: ToolRefinable
+      refineResult:
         - id: InsulatedThread
     - type: Tag
       tags:

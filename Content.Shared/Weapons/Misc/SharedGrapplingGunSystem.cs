@@ -21,19 +21,19 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Weapons.Misc;
 
-public abstract class SharedGrapplingGunSystem : VirtualController
+public abstract partial class SharedGrapplingGunSystem : VirtualController
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly IEntityManager _entities = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedJointSystem _joints = default!;
-    [Dependency] private readonly SharedGunSystem _gun = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedJointSystem _joints = default!;
+    [Dependency] private SharedGunSystem _gun = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
 
     public const string GrapplingJoint = "grappling";
 
@@ -77,7 +77,6 @@ public abstract class SharedGrapplingGunSystem : VirtualController
 
         TryComp<AppearanceComponent>(uid, out var appearance);
         _appearance.SetData(uid, SharedTetherGunSystem.TetherVisualsStatus.Key, false, appearance);
-        Dirty(uid, component);
     }
 
     private void OnGrapplingDeselected(EntityUid uid, GrapplingGunComponent component, HandDeselectedEvent args)
@@ -182,6 +181,7 @@ public abstract class SharedGrapplingGunSystem : VirtualController
         }
 
         component.Reeling = value;
+
         DirtyField(uid, component, nameof(GrapplingGunComponent.Reeling));
     }
 
@@ -199,7 +199,6 @@ public abstract class SharedGrapplingGunSystem : VirtualController
             {
                 if (_netManager.IsServer) // Client might not receive the joint due to PVS culling, so lets not spam them with 23895739 mispredicted ungrapples
                     Ungrapple((uid, grappling), true);
-
                 continue;
             }
 

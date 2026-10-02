@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Client.Guidebook.Richtext;
+using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Kitchen;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface.Controls;
@@ -15,8 +16,8 @@ namespace Content.Client.Guidebook.Controls;
 [UsedImplicitly]
 public sealed partial class GuideMicrowaveGroupEmbed : BoxContainer, IDocumentTag
 {
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private readonly ISawmill _sawmill;
 
@@ -59,5 +60,16 @@ public sealed partial class GuideMicrowaveGroupEmbed : BoxContainer, IDocumentTa
             var embed = new GuideMicrowaveEmbed(recipe);
             AddChild(embed);
         }
-    }
+        //startlight start
+
+        var reactions = _prototype.EnumeratePrototypes<ReactionPrototype>()
+            .Where(r => r.InGuidebookGroup(group))
+            .OrderBy(r => r.ID);
+
+        foreach (var reaction in reactions)
+        {
+            AddChild(new GuideMicrowaveEmbed(reaction));
+        }
+        // starlight end
+}
 }

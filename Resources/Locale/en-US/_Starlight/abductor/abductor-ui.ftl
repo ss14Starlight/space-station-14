@@ -60,3 +60,23 @@ objective-condition-abduct-description = (use the Gizmo on a subdued victim, the
 abductor-role-greeting = I am a professional combat scientist of a high-tech race. My task is to abduct humans, conduct experiments on them, and return them intact for the purity of the experiment. It is not in my interest to destroy the station, kill, or assist the crew.
 
 roles-antag-abductor-objective = Kidnap station crew and perform your experiments on them!
+
+abductor-price = { " " }Price: { $price }
+abductor-buy = Buy
+abductor-pad = pad: { $found ->
+        [true] [color=green]connected[/color]
+       *[false] [color=red]not found[/color]
+    }
+abductor-dispencer = dispencer: { $found ->
+        [true] [color=green]connected[/color]
+       *[false] [color=red]not found[/color]
+    }
+abductor-experimentator = experimentator: { $found ->
+        [true] [color=green]connected[/color]
+       *[false] [color=red]not found[/color]
+    }
+abductor-target = target: [color=green]{ $name }[/color]
+abductor-target-none = target: [color=red]NONE[/color]
+abductor-victim = victim: [color=green]{ $name }[/color]
+abductor-victim-none = victim: [color=red]NONE[/color]
+abductor-need-armor = [color=red][font size=16]You need to plug in abductor armor![/font][/color]

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "EmoGarbage"
+    },
+	{
+      "name": "cargo",
+	  "copyright": "EmoGarbage, modified by wonderfulnewworld (GitHub)"
+    },
+	{
+      "name": "service",
+	  "copyright": "EmoGarbage, recolored by wonderfulnewworld (GitHub)"
+    },
+    {
+      "name": "command",
+	  "copyright": "EmoGarbage, edited into command wonderfulnewworld (GitHub)"
+    },
+    {
+      "name": "nanotrasen",
+	  "copyright": "EmoGarbage, edited into nanotrasen wonderfulnewworld (GitHub)"
+    },
+    {
+      "name": "centralcommand",
+	  "copyright": "EmoGarbage, edited into centralcommand wonderfulnewworld (GitHub)"
+    },
+	{
+      "name": "syndicate",
+	  "copyright": "EmoGarbage, edited into syndicate wonderfulnewworld (GitHub)"
+    },
+    {
+      "name": "panel",
+	  "copyright": "EmoGarbage"
+    },
+    {
+      "name": "unlit",
+	  "copyright": "EmoGarbage"
+    },
+    {
+      "name": "inserting",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ],
+	  "copyright": "EmoGarbage"
+    }
+  ]
+}

@@ -21,6 +21,7 @@
   name: chat-speech-verb-name-mumble
   speechVerbStrings:
   - chat-speech-verb-mumble
+  fontSize: 10 #Starlight
 
 - type: speechVerb
   id: DefaultExclamation
@@ -35,6 +36,7 @@
   speechVerbStrings:
   - chat-speech-verb-exclamation-strong
   priority: 10
+  fontSize: 14 #starlight, yelling
 
 - type: speechVerb
   id: Arachnid
@@ -93,13 +95,6 @@
   - chat-speech-verb-vox-1
   - chat-speech-verb-vox-2
   - chat-speech-verb-vox-3
-
-- type: speechVerb
-  id: Resomi
-  name: chat-speech-verb-name-resomi
-  speechVerbStrings:
-  - chat-speech-verb-resomi-1
-  - chat-speech-verb-resomi-2
 
 - type: speechVerb
   id: Plant

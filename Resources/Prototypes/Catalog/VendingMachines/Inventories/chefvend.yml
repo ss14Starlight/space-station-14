@@ -25,6 +25,9 @@
     KitchenOvenFlatpack: 1
     KitchenStoveFlatpack: 1
     SlopDispenserFlatpack: 1
+    JugIceCream: 2
+    JugCocoaPowder: 1
+    DrinkCreamCarton: 1
     # Starlight-end
   contrabandInventory:
     EggBoxBroken: 1
@@ -35,6 +38,7 @@
   emaggedInventory:
     FoodMeatHuman: 4
     FoodFriedfelionoid: 1
+    FoodFriedRodentia: 1
     HeadVulpkanin: 1
     FoodCakeResomiSlice: 2
     # Starlight End

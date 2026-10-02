@@ -28,6 +28,7 @@ public sealed partial class JobEntry : BoxContainer
         }
         ManifestLabel.SetMarkup(Loc.GetString("job-board-ui-label-items", ("item", string.Join(", ", items))));
         RewardLabel.SetMarkup(Loc.GetString("bounty-console-reward-label", ("reward", job.Reward)));
+        TicketsLabel.SetMarkup(Loc.GetString("bounty-console-tickets-label", ("tickets", job.Tickets))); // Starlight-edit: add tickets
         DescriptionLabel.SetMarkup(Loc.GetString(job.Description));
 
         if (job.Sprite != null)

@@ -1,0 +1,6 @@
+- type: latheRecipePack
+  id: StarlightContainersStatic
+  recipes:
+  - Bucket
+  - Jug
+  - ChemistryEmptyBottle01

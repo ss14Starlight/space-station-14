@@ -9,15 +9,14 @@ using Robust.Shared.Player;
 
 namespace Content.Client.Sandbox
 {
-    public sealed class SandboxSystem : SharedSandboxSystem
+    public sealed partial class SandboxSystem : SharedSandboxSystem
     {
-        [Dependency] private readonly IClientAdminManager _adminManager = default!;
-        [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
-        [Dependency] private readonly IMapManager _map = default!;
-        [Dependency] private readonly IPlacementManager _placement = default!;
-        [Dependency] private readonly ContentEyeSystem _contentEye = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
-        [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+        [Dependency] private IClientAdminManager _adminManager = default!;
+        [Dependency] private IClientConsoleHost _consoleHost = default!;
+        [Dependency] private IPlacementManager _placement = default!;
+        [Dependency] private ContentEyeSystem _contentEye = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
+        [Dependency] private SharedMapSystem _mapSystem = default!;
 
         private bool _sandboxEnabled;
         public bool SandboxAllowed { get; private set; }
@@ -83,6 +82,11 @@ namespace Content.Client.Sandbox
             RaiseNetworkEvent(new MsgSandboxSuicide());
         }
 
+        public void ToggleThermalVision()
+        {
+            RaiseNetworkEvent(new MsgSandboxThermalVision());
+        }
+
         public bool Copy(ICommonSession? session, EntityCoordinates coords, EntityUid uid)
         {
             if (!SandboxAllowed)
@@ -93,7 +97,9 @@ namespace Content.Client.Sandbox
                 && TryComp(uid, out MetaDataComponent? comp)
                 && !comp.EntityDeleted)
             {
-                if (comp.EntityPrototype == null || comp.EntityPrototype.HideSpawnMenu || comp.EntityPrototype.Abstract)
+                var entProto = comp.EntityPrototype; //Starlight: redirect the gas pipes to parent
+                SLOverrideCopy(uid, ref entProto, out bool overriden); //Starlight: redirect the gas pipes to parent
+                if (entProto == null || (entProto.HideSpawnMenu && !overriden) || entProto.Abstract) //Starlight: redirect the gas pipes to parent
                     return false;
 
                 if (_placement.Eraser)
@@ -101,17 +107,17 @@ namespace Content.Client.Sandbox
 
                 _placement.BeginPlacing(new()
                 {
-                    EntityType = comp.EntityPrototype.ID,
+                    EntityType = entProto.ID, //Starlight: redirect the gas pipes to parent
                     IsTile = false,
                     TileType = 0,
-                    PlacementOption = comp.EntityPrototype.PlacementMode
+                    PlacementOption = entProto.PlacementMode //Starlight: redirect the gas pipes to parent
                 });
                 return true;
             }
 
             // Try copy tile.
 
-            if (!_map.TryFindGridAt(_transform.ToMapCoordinates(coords), out var gridUid, out var grid) || !_mapSystem.TryGetTileRef(gridUid, grid, coords, out var tileRef))
+            if (!_mapSystem.TryFindGridAt(_transform.ToMapCoordinates(coords), out var gridUid, out var grid) || !_mapSystem.TryGetTileRef(gridUid, grid, coords, out var tileRef))
                 return false;
 
             if (_placement.Eraser)

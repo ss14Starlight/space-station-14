@@ -1,12 +1,11 @@
 using Content.Server.Atmos.Piping.Components;
 using Content.Shared.Atmos.Piping;
-using Robust.Server.GameObjects;
 
 namespace Content.Server.Atmos.Piping.EntitySystems
 {
-    public sealed class AtmosPipeColorSystem : EntitySystem
+    public sealed partial class AtmosPipeColorSystem : EntitySystem
     {
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+        [Dependency] private SharedAppearanceSystem _appearance = default!;
 
         public override void Initialize()
         {
@@ -14,6 +13,7 @@ namespace Content.Server.Atmos.Piping.EntitySystems
 
             SubscribeLocalEvent<AtmosPipeColorComponent, ComponentStartup>(OnStartup);
             SubscribeLocalEvent<AtmosPipeColorComponent, ComponentShutdown>(OnShutdown);
+            SLInitialize();//Starlight: Mapping trick to color network
         }
 
         private void OnStartup(EntityUid uid, AtmosPipeColorComponent component, ComponentStartup args)

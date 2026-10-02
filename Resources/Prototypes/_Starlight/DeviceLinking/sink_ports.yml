@@ -27,3 +27,18 @@
   id: TicketMachineBurnTickets
   name: signal-port-name-ticket-machine-burntickets
   description: signal-port-description-ticket-machine-burntickets
+
+- type: sinkPort
+  id: SetParticleLambda
+  name: signal-port-name-set-particle-lambda
+  description: signal-port-description-set-particle-lambda
+
+- type: sinkPort
+  id: TriggerSpawn
+  name: signal-port-name-trigger-spawn
+  description: signal-port-description-trigger-spawn
+
+- type: sinkPort
+  id: TurretControllerSyncReceiver
+  name: signal-port-name-turret-controller-sync-receiver
+  description: signal-port-description-turret-controller-sync-receiver

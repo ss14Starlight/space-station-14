@@ -7,10 +7,10 @@ namespace Content.Server._Starlight.EdgeConnection;
 /// Handles visual edge connections between entities placed adjacent to each other.
 /// Updates appearance data based on neighboring entities with matching connection keys.
 /// </summary>
-public sealed class EdgeConnectionSystem : EntitySystem
+public sealed partial class EdgeConnectionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedMapSystem _map = default!;
 
     public override void Initialize()
     {

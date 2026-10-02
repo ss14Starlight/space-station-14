@@ -12,11 +12,11 @@ namespace Content.Shared.Containers;
 
 public sealed partial class DragInsertContainerSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly ClimbSystem _climb = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private ClimbSystem _climb = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
 
     public override void Initialize()
     {
@@ -83,7 +83,7 @@ public sealed partial class DragInsertContainerSystem : EntitySystem
         if (!comp.UseVerbs)
             return;
 
-        if (!args.CanInteract || !args.CanAccess || args.Hands == null)
+        if (!args.CanInteract || !args.CanAccess) // Starlight - remove hands check here so handless entities can cryo
             return;
 
         if (!_container.TryGetContainer(uid, comp.ContainerId, out var container))
@@ -94,7 +94,7 @@ public sealed partial class DragInsertContainerSystem : EntitySystem
             return;
 
         // Eject verb
-        if (container.ContainedEntities.Count > 0)
+        if (args.Hands != null && container.ContainedEntities.Count > 0) // Starlight - hands nullcheck
         {
             // make sure that we can actually take stuff out of the container
             var emptyableCount = 0;

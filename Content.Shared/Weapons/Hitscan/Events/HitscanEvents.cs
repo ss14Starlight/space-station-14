@@ -1,6 +1,9 @@
 using System.Numerics;
 using Content.Shared.Damage;
 using Robust.Shared.Map;
+#region Starlight
+using Content.Shared._Starlight.Weapons.Hitscan.Events;
+#endregion
 
 namespace Content.Shared.Weapons.Hitscan.Events;
 

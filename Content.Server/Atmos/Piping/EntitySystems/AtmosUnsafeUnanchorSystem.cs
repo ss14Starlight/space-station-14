@@ -1,6 +1,5 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Popups;
@@ -14,11 +13,11 @@ using JetBrains.Annotations;
 namespace Content.Server.Atmos.Piping.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class AtmosUnsafeUnanchorSystem : EntitySystem
+    public sealed partial class AtmosUnsafeUnanchorSystem : EntitySystem
     {
-        [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-        [Dependency] private readonly NodeGroupSystem _group = default!;
-        [Dependency] private readonly PopupSystem _popup = default!;
+        [Dependency] private AtmosphereSystem _atmosphere = default!;
+        [Dependency] private NodeGroupSystem _group = default!;
+        [Dependency] private PopupSystem _popup = default!;
 
         public override void Initialize()
         {

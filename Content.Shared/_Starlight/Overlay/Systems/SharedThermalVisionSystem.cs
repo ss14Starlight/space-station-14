@@ -1,16 +1,13 @@
-﻿using System;
-using Content.Shared.Actions;
-using Content.Shared.Clothing.Components;
-using Content.Shared.Clothing.EntitySystems;
-using Content.Shared.Starlight.Overlay;
+﻿using Content.Shared.Actions;
 using Robust.Shared.Prototypes;
-using static Content.Shared.Weapons.Ranged.Systems.SharedGunSystem;
+using Content.Shared._Starlight.Overlay.Components;
+using Content.Shared._Starlight.Overlay.Events;
 
-namespace Content.Shared.Eye.Blinding.Components;
+namespace Content.Shared._Starlight.Overlay.Systems;
 
-public abstract class SharedThermalVisionSystem : EntitySystem
+public abstract partial class SharedThermalVisionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
 
     protected virtual bool IsPredict() => false;
     public EntProtoId Action = "ActionToggleThermal";

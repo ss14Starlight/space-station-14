@@ -88,11 +88,14 @@
     Brutepack: 5
     AloeCream: 5
     Bloodpack: 5
-    ChemistryBottleInaprovaline: 5
+    ChemistryBottleInaprovaline: 3 # Starlight
+    ChemistryBottleEpinephrine: 3 # Starlight
     Syringe: 5
-    PillTricordrazine: 10
-    PillIron: 5
-    PillCopper: 5
+    BoxBottle: 3 # Starlight
+    PillCanisterTricordrazine: 2 # Starlight
+    PillCanisterIron: 1 # Starlight
+    PillCanisterCopper: 1 # Starlight
+    PillCanisterPotassiumIodide: 1 # Starlight
   contrabandInventory:
     PillCanisterRandom: 1
     PillSpaceDrugs: 3

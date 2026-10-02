@@ -1,6 +1,6 @@
 - type: entity
   name: terror spider
-  parent: [ SimpleMobBase, MobCombat ]
+  parent: [ SimpleSpaceMobBaseAntag, MobRespirator, BaseSlicingRefinable ]
   id: MobTerrorSpider
   description: a deadly hybrid of a giant spider and xenomorph.
   abstract: true
@@ -23,6 +23,24 @@
     - Xenomind
   - type: ThermalVision
     useAlternativeShader: true
+  - type: Barotrauma
+    maxDamage: 500
+    damage:
+      types:
+        Blunt: 0.2
+  - type: PressureProtection
+    highPressureModifier: 20
+    highPressureMultiplier: 1000
+  - type: TemperatureDamage
+    heatDamageThreshold: 400
+    coldDamageThreshold: 220
+    coldDamage:
+      types:
+        Cold: 0.1
+    heatDamage:
+      types:
+        Heat: 1.5
+  - type: TerrorSpider
   - type: OptionsVisualizer
     visuals:
       base:
@@ -58,8 +76,8 @@
         Base: dead
       Dead:
         Base: dead
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeatSpider
       amount: 4
   - type: CombatMode
@@ -81,12 +99,11 @@
     damage:
       types:
         Piercing: 18
-  - type: SolutionContainerManager
-    solutions:
-      melee:
-        maxVol: 30
+  - type: Solution
+    id: melee
+    solution:
+      maxVol: 30
   - type: SolutionRegeneration
-    solution: melee
     generated:
       reagents:
       - ReagentId: Mechanotoxin
@@ -104,7 +121,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
-        Quantity: 150
+        Quantity: 300
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
@@ -123,13 +140,16 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 159
     damage:
       types:
         Poison: -0.07
-      groups:
-        Brute: -0.07
-        Burn: -0.07
+        Blunt: -0.02
+        Slash: -0.02
+        Piercing: -0.02
+        Heat: -0.02
+        Shock: -0.02
+        Cold: -0.02
+        Caustic: -0.02
   - type: NpcFactionMember
     factions:
       - Xeno
@@ -143,6 +163,7 @@
     name: ghost-role-terror-spider-name
     description: ghost-role-terror-spider-description
     rules: ghost-role-terror-spider-rules
+    mindRoles: [MindRoleGhostRoleTeamAntagonist]
     raffle:
       settings: short
   - type: GhostTakeoverAvailable
@@ -173,14 +194,19 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 209
+
     damage:
       types:
         Poison: -0.8
-      groups:
-        Brute: -0.8
-        Burn: -0.8
-        Airloss: -1.5
+        Blunt: -0.27
+        Slash: -0.27
+        Piercing: -0.27
+        Heat: -0.2
+        Shock: -0.2
+        Cold: -0.2
+        Caustic: -0.2
+        Asphyxiation: -0.75
+        Bloodloss: -0.75
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -241,14 +267,18 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 119
     damage:
       types:
         Poison: -0.5
-      groups:
-        Brute: -0.5
-        Burn: -0.5
-        Airloss: -1.5
+        Blunt: -0.17
+        Slash: -0.17
+        Piercing: -0.17
+        Heat: -0.13
+        Shock: -0.13
+        Cold: -0.13
+        Caustic: -0.13
+        Asphyxiation: -0.75
+        Bloodloss: -0.75
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -304,14 +334,19 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 119
+
     damage:
       types:
         Poison: -0.5
-      groups:
-        Brute: -0.5
-        Burn: -0.5
-        Airloss: -1.5
+        Blunt: -0.17
+        Slash: -0.17
+        Piercing: -0.17
+        Heat: -0.13
+        Shock: -0.13
+        Cold: -0.13
+        Caustic: -0.13
+        Asphyxiation: -0.75
+        Bloodloss: -0.75
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -381,14 +416,19 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 179
+
     damage:
       types:
         Poison: -0.5
-      groups:
-        Brute: -0.5
-        Burn: -0.5
-        Airloss: -1.5
+        Blunt: -0.17
+        Slash: -0.17
+        Piercing: -0.17
+        Heat: -0.13
+        Shock: -0.13
+        Cold: -0.13
+        Caustic: -0.13
+        Asphyxiation: -0.75
+        Bloodloss: -0.75
 
 - type: entity
   name: terror black
@@ -436,14 +476,19 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 314
+
     damage:
       types:
         Poison: -0.8
-      groups:
-        Brute: -0.8
-        Burn: -0.8
-        Airloss: -1.5
+        Blunt: -0.27
+        Slash: -0.27
+        Piercing: -0.27
+        Heat: -0.2
+        Shock: -0.2
+        Cold: -0.2
+        Caustic: -0.2
+        Asphyxiation: -0.75
+        Bloodloss: -0.75
 
 - type: entity
   name: terror purple
@@ -506,14 +551,19 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 179
+
     damage:
       types:
         Poison: -0.5
-      groups:
-        Brute: -0.5
-        Burn: -0.5
-        Airloss: -1.5
+        Blunt: -0.17
+        Slash: -0.17
+        Piercing: -0.17
+        Heat: -0.13
+        Shock: -0.13
+        Cold: -0.13
+        Caustic: -0.13
+        Asphyxiation: -0.75
+        Bloodloss: -0.75
 
 - type: entity
   name: terror white
@@ -563,13 +613,17 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 474
+
     damage:
       types:
         Poison: -0.1
-      groups:
-        Brute: -0.1
-        Burn: -0.1
+        Blunt: -0.03
+        Slash: -0.03
+        Piercing: -0.03
+        Heat: -0.03
+        Shock: -0.03
+        Cold: -0.03
+        Caustic: -0.03
 
 # Princess
 
@@ -609,14 +663,19 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 269
+
     damage:
       types:
         Poison: -1
-      groups:
-        Brute: -1
-        Burn: -1
-        Airloss: -2
+        Blunt: -0.33
+        Slash: -0.33
+        Piercing: -0.33
+        Heat: -0.25
+        Shock: -0.25
+        Cold: -0.25
+        Caustic: -0.25
+        Asphyxiation: -1
+        Bloodloss: -1
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -679,11 +738,15 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 269
     damage:
       types:
         Poison: -1
-      groups:
-        Brute: -1
-        Burn: -1
-        Airloss: -2
+        Blunt: -0.33
+        Slash: -0.33
+        Piercing: -0.33
+        Heat: -0.25
+        Shock: -0.25
+        Cold: -0.25
+        Caustic: -0.25
+        Asphyxiation: -1
+        Bloodloss: -1

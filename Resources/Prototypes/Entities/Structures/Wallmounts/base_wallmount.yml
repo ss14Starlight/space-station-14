@@ -1,5 +1,6 @@
 - type: entity
   id: BaseWallmount
+  parent: [SocialInteractionReceiverSimple] # Starlight
   abstract: true
   placement:
     mode: SnapgridCenter
@@ -55,3 +56,8 @@
   - type: ExtensionCableReceiver
   - type: LightningTarget
     priority: 1
+  # ES Start
+  - type: ESSparkOnHit
+    prob: 0.25
+    count: 2
+  # ES End

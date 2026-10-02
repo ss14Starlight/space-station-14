@@ -1,0 +1,26 @@
+# Group
+- type: faxGroup
+  id: FaxGroupUSSP
+  name: fax-group-ussp
+  color: "#ed7300"
+  order: 1500 # All events: 1500
+  selectable: false
+
+# Single fax -- can be edited for mapping/event purposes.
+- type: entity
+  parent: FaxMachineBase
+  id: FaxMachineUSSP
+  suffix: "USSP"
+  categories: [ DoNotMap ]
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#ed7300"
+    - type: FaxMachine
+      group: FaxGroupUSSP
+      intrinsicGroup: FaxGroupUSSP
+      intrinsicLocked: true # No impersonating unless emagged
+      name: "USSP"
+      order: 500

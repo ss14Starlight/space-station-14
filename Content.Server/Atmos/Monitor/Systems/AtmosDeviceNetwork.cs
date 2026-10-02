@@ -1,4 +1,3 @@
-using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Shared.Atmos.Monitor.Components;
 using Content.Shared.DeviceNetwork;
@@ -9,7 +8,7 @@ namespace Content.Server.Atmos.Monitor.Systems;
 ///     Generic device network commands useful for atmos devices,
 ///     as well as some helper commands.
 /// </summary>
-public sealed class AtmosDeviceNetworkSystem : EntitySystem
+public sealed partial class AtmosDeviceNetworkSystem : EntitySystem
 {
     /// <summary>
     ///     Register a device's address on this device.
@@ -26,7 +25,7 @@ public sealed class AtmosDeviceNetworkSystem : EntitySystem
     /// </summary>
     public const string SyncData = "atmos_sync_data";
 
-    [Dependency] private readonly DeviceNetworkSystem _deviceNet = default!;
+    [Dependency] private DeviceNetworkSystem _deviceNet = default!;
 
     public void Register(EntityUid uid, string? address)
     {

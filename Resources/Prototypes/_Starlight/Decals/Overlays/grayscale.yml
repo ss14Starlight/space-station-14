@@ -71,6 +71,70 @@
     state: 3x3_checkered
 
 - type: decal
+  id: diagonaloverlaylarge1
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_overlay_large_1
+
+- type: decal
+  id: diagonaloverlaylarge2
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_overlay_large_2
+
+- type: decal
+  id: diagonaloverlaylarge3
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_overlay_large_3
+
+- type: decal
+  id: diagonaloverlaylarge4
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_overlay_large_4
+
+- type: decal
+  id: diagonalcorneroverlaylarge1
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_overlay_corner_large_1
+
+- type: decal
+  id: diagonalcorneroverlaylarge2
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_overlay_corner_large_2
+
+- type: decal
+  id: diagonalcorneroverlaylarge3
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_overlay_corner_large_3
+
+- type: decal
+  id: diagonalcorneroverlaylarge4
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_overlay_corner_large_4
+
+- type: decal
   id: 3x3checkeredalt
   tags: ["station", "overlay"]
   defaultCustomColor: true

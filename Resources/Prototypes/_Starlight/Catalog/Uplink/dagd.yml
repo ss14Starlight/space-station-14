@@ -1,0 +1,616 @@
+- type: listing
+  id: UplinkGrenadierRigDAGD
+  name: uplink-grenadier-rig-name
+  description: uplink-grenadier-rig-desc
+  productEntity: ClothingBeltMilitaryWebbingGrenadeFilled
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 6
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkDAGD
+  conditions:
+  - !type:BuyerObjectiveWhitelistCondition
+    whitelist:
+      components:
+        - DieCondition
+
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+        - SurplusBundle
+
+- type: listing
+  id: UplinkAmmoBundleDAGD
+  name: uplink-ammo-bundle-name
+  description: uplink-ammo-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateAmmoFilled
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkMedsBundleDAGD
+  name: uplink-meds-bundle-name
+  description: uplink-meds-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateMedicalBundleFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 16
+  cost:
+    Telecrystal: 24
+  categories:
+  - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkNukieAntimovCircuitBoardDAGD
+  name: uplink-antimov-law-name
+  description: uplink-antimov-law-desc
+  productEntity: AntimovCircuitBoard
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 20
+  cost:
+    Telecrystal: 24
+  categories:
+  - UplinkDAGD
+  conditions:
+  - !type:BuyerObjectiveWhitelistCondition
+    whitelist:
+      components:
+        - DieCondition
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkStarterKitDAGD
+  name: uplink-starter-kit-name
+  description: uplink-starter-kit-desc
+  productEntity: ClothingBackpackDuffelSyndicateFilledStarterKit
+  cost:
+    Telecrystal: 40
+  categories:
+  - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+        - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+        - SurplusBundle
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgAssaultBundleDAGD
+  name:  uplink-reinforcement-radio-assault-cyborg-bundle-name
+  description: uplink-reinforcement-radio-assault-cyborg-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateFilledSyndicateCyborgAssault
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault }
+  cost:
+    Telecrystal: 40 # Starlight
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgMedicalBundleDAGD
+  name: uplink-reinforcement-radio-medical-cyborg-bundle-name
+  description: uplink-reinforcement-radio-medical-cyborg-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateFilledSyndicateCyborgMedical
+  icon: {
+      sprite: Objects/Devices/communication.rsi,
+      state: old-radio-borg-assault,
+    } # TODO BETTER ICON
+  cost:
+    Telecrystal: 30
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgSaboturBundleDAGD
+  name: uplink-reinforcement-radio-saboteur-cyborg-bundle-name
+  description: uplink-reinforcement-radio-saboteur-cyborg-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateFilledSyndicateCyborgSaboteur
+  icon: {
+      sprite: Objects/Devices/communication.rsi,
+      state: old-radio-borg-assault,
+    } # TODO BETTER ICON
+  cost:
+    Telecrystal: 30
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgStealthBundleDAGD
+  name: uplink-reinforcement-radio-stealth-cyborg-bundle-name
+  description: uplink-reinforcement-radio-stealth-cyborg-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateFilledSyndicateCyborgStealth
+  icon: {
+      sprite: Objects/Devices/communication.rsi,
+      state: old-radio-borg-assault,
+    } # TODO BETTER ICON
+  cost:
+    Telecrystal: 20
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkSyndicateBorgiKittedBundleDAGD
+  name: uplink-syndicate-borgi-kitted-bundle-name
+  description: uplink-syndicate-borgi-kitted-bundle-desc
+  icon: { sprite: Objects/Fun/Balloons/corgi.rsi, state: icon }
+  productEntity: SyndiBorgiKit1Bundle
+  cost:
+    Telecrystal: 40
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkSyndicateBorgiSpeedBundleDAGD
+  name: uplink-syndicate-borgi-speed-bundle-name
+  description: uplink-syndicate-borgi-speed-bundle-desc
+  icon: { sprite: Objects/Fun/Balloons/corgi.rsi, state: icon }
+  productEntity: SyndiBorgiKit2Bundle
+  cost:
+    Telecrystal: 30
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkMicroBombImplanterDAGD
+  name: uplink-micro-bomb-implanter-name
+  description: uplink-micro-bomb-implanter-desc
+  icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
+  productEntity: MicroBombImplanter
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkDAGD
+  conditions:
+  - !type:BuyerObjectiveWhitelistCondition
+    whitelist:
+      components:
+      - DieCondition
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkMacroBombImplanterDAGD
+  name: uplink-macro-bomb-implanter-name
+  description: uplink-macro-bomb-implanter-desc
+  icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
+  productEntity: MacroBombImplanter
+  cost:
+    Telecrystal: 13
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkDeathAcidifierImplanterDAGD
+  name: uplink-death-acidifier-implant-name
+  description: uplink-death-acidifier-implant-desc
+  icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: gib }
+  productEntity: DeathAcidifierImplanter
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkDeathRattleDAGD
+  name: uplink-deathrattle-implant-name
+  description: uplink-deathrattle-implant-desc
+  productEntity: BoxDeathRattleImplants
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkClothingOuterArmorRaidDAGD
+  name: uplink-syndie-raid-name
+  description: uplink-syndie-raid-desc
+  icon: { sprite: /Textures/Clothing/OuterClothing/Armor/syndie-raid.rsi, state: icon }
+  productEntity: ClothingBackpackSyndicateRaidBundle
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkDAGD
+  conditions:
+  - !type:BuyerObjectiveWhitelistCondition
+    whitelist:
+      components:
+        - DieCondition
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+        - SurplusBundle
+
+- type: listing
+  id: UplinkClothingOuterHardsuitJuggernautDAGD
+  name: uplink-clothing-outer-hardsuit-juggernaut-name
+  description: uplink-clothing-outer-hardsuit-juggernaut-desc
+  icon: { sprite: /Textures/Structures/Storage/Crates/syndicate.rsi, state: icon }
+  productEntity: CrateCybersunJuggernautBundle
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkClothingEyesHudSyndicateDAGD
+  name: uplink-clothing-eyes-hud-syndicate-name
+  description: uplink-clothing-eyes-hud-syndicate-desc
+  productEntity: ClothingEyesHudSyndicate
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkWeaponShotgunMinotaurDAGD
+  name: uplink-minotaur-name
+  description: uplink-minotaur-desc
+  productEntity: ClothingBackpackDuffelSyndicateFilledMinotaurShotgun
+  icon:
+    {
+      sprite: /Textures/_Starlight/Objects/Weapons/Guns/Shotguns/minotaur.rsi,
+      state: icon,
+    }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 15
+  cost:
+    Telecrystal: 20
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkWeaponRiflePitpullDAGD
+  name: uplink-pitbull-bundle-name
+  description: uplink-pitbull-bundle-desc
+  icon:
+    {
+      sprite: /Textures/_Starlight/Objects/Weapons/Guns/Rifles/pitbull.rsi,
+      state: icon,
+    }
+  productEntity: ClothingBackpackDuffelSyndicateFilledBullpup
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 13
+  cost:
+    Telecrystal: 17
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkMagazineMagnumRifleDAGD
+  name: uplink-rifle-magazine-pitbull-name
+  description: uplink-rifle-magazine-pitbull-desc
+  icon:
+    {
+      sprite: /Textures/_Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Magnum/magnum_rifle_mag.rsi,
+      state: mag-1,
+    }
+  productEntity: MagazineMagnumRifleSP
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkShotgunBreachingMagazineDAGD
+  name: uplink-breaching-magazine-name
+  description: uplink-breaching-magazine-desc
+  icon:
+    {
+      sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi,
+      state: breach,
+    }
+  productEntity: MagazineShotgunBreach
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkEnergyDomeSyndieDAGD
+  name: uplink-energy-dome-name
+  description: uplink-energy-dome-desc
+  productEntity: EnergyDomeGeneratorPersonalSyndie
+  cost:
+    Telecrystal: 10
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkGearAcidifierImplanterDAGD
+  name: uplink-gear-acidifier-implant-name
+  description: uplink-gear-acidifier-implant-desc
+  icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: gib }
+  productEntity: GearAcidifierImplanter
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkToxicGrenadeDAGD
+  name: uplink-toxic-grenade-name
+  description: uplink-toxic-grenade-desc
+  productEntity: ToxicGasGrenade
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkDAGD
+  conditions:
+  - !type:BuyerObjectiveWhitelistCondition
+    whitelist:
+      components:
+      - DieCondition
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+        - SurplusBundle
+
+- type: listing
+  id: UplinkX4DAGD
+  name: uplink-x4-name
+  description: uplink-x4-desc
+  productEntity: X4
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkDAGD
+  conditions:
+  - !type:BuyerObjectiveWhitelistCondition
+    whitelist:
+      components:
+      - DieCondition
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+        - SurplusBundle
+
+- type: listing
+  id: UplinkX4BundleDAGD
+  name: uplink-x4-bundle-name
+  description: uplink-x4-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateX4tBundle
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 12
+  cost:
+    Telecrystal: 18 #you're buying bulk so its a 25% discount, so no additional random discount over it
+  categories:
+  - UplinkDAGD
+  conditions:
+  - !type:BuyerObjectiveWhitelistCondition
+    whitelist:
+      components:
+      - DieCondition
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+        - SurplusBundle
+
+- type: listing
+  id: UplinkDarkGygaxDAGD
+  name: uplink-mech-teleporter-assault-name
+  description: uplink-mech-teleporter-assault-desc
+  icon: { sprite: /Textures/_Starlight/Objects/Specific/Mechs/Mechs/darkgygax.rsi, state: base }
+  productEntity: CrateCybersunDarkGygaxBundle
+  cost:
+    Telecrystal: 30
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkMaulerDAGD
+  name: uplink-mech-teleporter-heavy-name
+  description: uplink-mech-teleporter-heavy-desc
+  icon: { sprite: /Textures/_Starlight/Objects/Specific/Mechs/Mechs/mauler.rsi, state: base }
+  productEntity: CrateCybersunMaulerBundle
+  cost:
+    Telecrystal: 45
+  categories:
+    - UplinkDAGD
+  conditions:
+    - !type:BuyerObjectiveWhitelistCondition
+      whitelist:
+        components:
+          - DieCondition
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle

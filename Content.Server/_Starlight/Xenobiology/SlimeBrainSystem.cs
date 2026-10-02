@@ -1,6 +1,7 @@
 using Content.Shared._Starlight.Xenobiology;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Map;
@@ -30,9 +31,10 @@ public enum SlimeMood
     Desperate,
 }
 
-public sealed class SlimeBrainSystem : EntitySystem
+public sealed partial class SlimeBrainSystem : EntitySystem
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     /// <summary>
     /// The set of food targets slimes can safely eat.
@@ -76,9 +78,8 @@ public sealed class SlimeBrainSystem : EntitySystem
         if (OnlyTarget.HasValue)
             if (!(damage.DamageContainerID.HasValue && damage.DamageContainerID.Value == OnlyTarget.Value))
                 return false;
-
         // Only target entities that are not damaged enough
-        if (!(damage.TotalDamage < TargetDamageThreshold)) return false;
+        if (!(_damageable.GetTotalDamage(entity) < TargetDamageThreshold)) return false;
 
         return true;
     }

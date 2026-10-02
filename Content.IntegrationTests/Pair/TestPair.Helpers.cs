@@ -74,7 +74,7 @@ public sealed partial class TestPair
         //Assert.That(prefs.SelectedCharacterIndex, Is.EqualTo(0)); //Starlight has no concept of "selected character"
 
         var profile = (HumanoidCharacterProfile)prefs.Characters[0];
-        var newProfile = profile.WithAntagPreference(id, value);
+        var newProfile = profile.WithAntagPreference(id, value).AsEnabled(); // Starlight, make sure antags are actually enabled
         await Server.WaitPost(() => prefMan.SetProfile(userId, 0, newProfile).Wait());
     }
 

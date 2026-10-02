@@ -1,7 +1,7 @@
 ﻿using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Starlight.Economy;
+namespace Content.Shared._Starlight.Economy;
 
 [Prototype("Salaries")]
 public sealed partial class SalariesPrototype : IPrototype
@@ -15,4 +15,7 @@ public sealed partial class SalariesPrototype : IPrototype
 
     [DataField]
     public Dictionary<ProtoId<AntagPrototype>, int> Antags = new();
+
+    [DataField]
+    public Dictionary<ProtoId<JobPrototype>, string> Sender = new();
 }

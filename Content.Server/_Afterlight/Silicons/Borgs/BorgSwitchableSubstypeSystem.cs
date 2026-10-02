@@ -6,9 +6,9 @@ namespace Content.Server._Afterlight.Silicons.Borgs;
 /// <summary>
 /// Server-side logic that shouldn't be exposed to the client.
 /// </summary>
-public sealed class BorgSwitchableSubstypeSystem : SharedBorgSwitchableSubtypeSystem
+public sealed partial class BorgSwitchableSubstypeSystem : SharedBorgSwitchableSubtypeSystem
 {
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
 
     protected override void SelectBorgSubtype(Entity<BorgSwitchableSubtypeComponent> ent)
     {

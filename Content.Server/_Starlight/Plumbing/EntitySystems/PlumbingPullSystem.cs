@@ -22,10 +22,10 @@ namespace Content.Server._Starlight.Plumbing.EntitySystems;
 ///     (e.g., pulling from a beaker inside a dispenser).
 /// </summary>
 [UsedImplicitly]
-public sealed class PlumbingPullSystem : EntitySystem
+public sealed partial class PlumbingPullSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
 
     private EntityQuery<PlumbingOutletComponent> _outletQuery;
 

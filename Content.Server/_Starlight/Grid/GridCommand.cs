@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Starlight.Commands;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Content.Shared.Ghost;
@@ -10,9 +11,9 @@ namespace Content.Server._Starlight.Grid;
 
 [AdminCommand(AdminFlags.Admin)]
 [ToolshedCommand]
-public sealed class GridCommand : ToolshedCommand
+public sealed partial class GridCommand : ToolshedCommand
 {
-    [Dependency] private readonly IPlayerManager _plr = default!;
+    [Dependency] private IPlayerManager _plr = default!;
 
     [CommandImplementation("getplayers")]
     public IEnumerable<EntityUid> GetPlayersOnGrid([PipedArgument] EntityUid grid, bool excludeGhosts = false)
@@ -44,7 +45,7 @@ public sealed class GridCommand : ToolshedCommand
     {
         if (TryComp<StationMemberComponent>(uid, out var member) || TryComp(Transform(uid).GridUid, out member))
             return member.Station;
-        ctx.WriteMarkup($"[color=red]Entity {uid} is not on a station and is not a station grid.[/color]");
+        CommandMarkup.Error(ctx, $"Entity {uid} is not on a station and is not a station grid.");
         return EntityUid.Invalid;
     }
 

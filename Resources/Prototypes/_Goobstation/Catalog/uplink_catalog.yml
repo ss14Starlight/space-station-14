@@ -1,0 +1,56 @@
+# Radio Host
+- type: listing
+  id: UplinkCdDiskSyndicate
+  name: uplink-cddisksyndicate-name
+  description: uplink-cddisksyndicate-desc
+  productEntity: CDSyndicateFM
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkPointless
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkCdDiskNumber
+  name: uplink-cddisknumber-name
+  description: uplink-cddisknumber-desc
+  productEntity: CDNumbers
+  cost:
+    Telecrystal: 6 # I don't know how to balance it, but the disk takes over 2 minutes to play and activate the threat. After the first time, I don't think anyone else will fall for it.
+  categories:
+  - UplinkDisruption
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkNuclearCommanderCds
+  name: uplink-box-nuclearoperativecds-name
+  description: uplink-box-nuclearoperativecds-desc
+  productEntity: BoxNuclearCommanderCds
+  categories:
+    - UplinkPointless
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: entity
+  id: BoxNuclearCommanderCds
+  parent: [BoxCardboardSmall, BaseSyndicateContraband]
+  name: nuclear operative announcement cds
+  description: A box filled with disgruntled messages. Recorded and burnt onto CDs. Ready for play.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CDNukieAnnouncement
+        - id: CDNukieFigurines
+        - id: CDNukieSupport
+        - id: CDNukieResignation

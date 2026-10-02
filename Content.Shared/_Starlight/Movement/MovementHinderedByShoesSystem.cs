@@ -6,9 +6,9 @@ using Content.Shared._Starlight.Movement.Components;
 
 namespace Content.Shared._Starlight.Movement;
 
-public sealed class MovementHinderedByShoesSystem : EntitySystem
+public sealed partial class MovementHinderedByShoesSystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private InventorySystem _inventory = default!;
 
     public override void Initialize()
     {

@@ -1,14 +1,14 @@
+using Content.Shared._Starlight.Revolutionary.Components;
 using Content.Shared.Dragon;
-using Content.Shared.Revolutionary.Components;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameStates;
 
 namespace Content.Client.Dragon;
 
-public sealed class DragonSystem : EntitySystem
+public sealed partial class DragonSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPointLightSystem _lights = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SharedPointLightSystem _lights = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

@@ -11,7 +11,7 @@ namespace Content.Client._Starlight.Plumbing.UI;
 [GenerateTypedNameReferences]
 public sealed partial class PlumbingFilterWindow : DefaultWindow
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public event Action<bool>? OnToggle;
     public event Action<string>? OnAddReagent;

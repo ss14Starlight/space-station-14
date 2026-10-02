@@ -12,10 +12,10 @@ namespace Content.Server._Starlight.Plumbing.EntitySystems;
 /// Reagent destruction is handled by the shared <see cref="Content.Shared.Fluids.EntitySystems.DrainSystem"/>.
 /// </summary>
 [UsedImplicitly]
-public sealed class PlumbingDisposalSystem : EntitySystem
+public sealed partial class PlumbingDisposalSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {

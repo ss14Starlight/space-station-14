@@ -1,0 +1,23 @@
+// Barrel heat glow. Gun sprites point right, so the glow starts at the muzzle (right edge)
+// and creeps towards the middle of the sprite as the gun heats up.
+uniform highp float heat;
+
+void fragment() {
+    highp vec4 col = zTexture(UV);
+
+    // UV2 is in sprite space, 0 at the left edge and 1 at the right edge.
+    // Even a barely hot gun shows a glowing muzzle; the glow then creeps to the middle.
+    highp float front = mix(0.85, 0.5, heat);
+    highp float mask = smoothstep(front, front + 0.2, UV2.x);
+    highp float intensity = mask * (0.45 + 0.55 * heat);
+
+    // Dull red where it just started heating, orange at the very tip of a hot barrel.
+    highp float tip = smoothstep(0.6, 1.0, UV2.x) * heat;
+    highp vec3 glow = mix(vec3(0.75, 0.08, 0.02), vec3(1.0, 0.55, 0.15), tip);
+
+    col.rgb = mix(col.rgb, glow, intensity * 0.75);
+    COLOR = col;
+
+    // Hot metal glows in the dark.
+    lightSample = mix(lightSample, vec3(1.0), intensity);
+}

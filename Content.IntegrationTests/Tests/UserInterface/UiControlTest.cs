@@ -1,14 +1,19 @@
 using System.Linq;
 using Content.Client.Lobby.UI;
+using Content.IntegrationTests.Fixtures;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.ContentPack;
 using Robust.Shared.IoC;
 using Robust.Shared.Reflection;
 
+#region Starlight
+using Content.Client._Starlight.Lobby.UI;
+#endregion
+
 namespace Content.IntegrationTests.Tests.UserInterface;
 
 [TestFixture]
-public sealed class UiControlTest
+public sealed class UiControlTest : GameTest
 {
     // You should not be adding to this.
     private Type[] _ignored = new Type[]
@@ -22,10 +27,7 @@ public sealed class UiControlTest
     [Test]
     public async Task TestWindows()
     {
-        var pair = await PoolManager.GetServerClient(new PoolSettings()
-        {
-            Connected = true,
-        });
+        var pair = Pair;
         var activator = pair.Client.ResolveDependency<IDynamicTypeFactory>();
         var refManager = pair.Client.ResolveDependency<IReflectionManager>();
         var loader = pair.Client.ResolveDependency<IModLoader>();
@@ -50,7 +52,5 @@ public sealed class UiControlTest
                 activator.CreateInstance(type, oneOff: true, inject: false);
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 }

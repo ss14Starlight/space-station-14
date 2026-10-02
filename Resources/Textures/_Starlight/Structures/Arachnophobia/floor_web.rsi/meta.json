@@ -1,46 +1,55 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Programmer Art by Citrea",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "full"
+      "name": "full",
+      "copyright": "Programmer Art by Citrea"
     },
     {
       "name": "web_0",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Programmer Art by Citrea"
     },
     {
       "name": "web_1",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Programmer Art by Citrea"
     },
     {
       "name": "web_2",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Programmer Art by Citrea"
     },
     {
       "name": "web_3",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Programmer Art by Citrea"
     },
     {
       "name": "web_4",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Programmer Art by Citrea"
     },
     {
       "name": "web_5",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Programmer Art by Citrea"
     },
     {
       "name": "web_6",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Programmer Art by Citrea"
     },
     {
       "name": "web_7",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Programmer Art by Citrea"
     }
   ]
 }

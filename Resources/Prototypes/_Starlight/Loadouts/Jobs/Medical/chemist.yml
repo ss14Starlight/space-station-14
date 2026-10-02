@@ -113,7 +113,7 @@
   equipment:
     belt: SeniorChemBag
 
-# Senior Outer clothing
+# Senior Lab Coat
 - type: loadout
   id: SeniorChemistLabCoat
   effects:
@@ -121,6 +121,15 @@
         proto: SeniorChemist
   equipment:
     outerClothing: ClothingOuterCoatLabSeniorChemist
+
+# Senior Long Lab Coat
+- type: loadout
+  id: SeniorChemistLabCoatLong
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: SeniorChemist
+  equipment:
+    outerClothing: ClothingOuterCoatLabSeniorChemistLong
 
 # Hand labeler
 - type: loadout

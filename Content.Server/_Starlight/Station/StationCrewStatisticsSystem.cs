@@ -1,17 +1,15 @@
 using Content.Server.GameTicking;
-using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Station;
 using Content.Shared.Roles;
-using Content.Shared.Station;
 using Content.Shared.StationRecords;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Station;
 
-public sealed class StationCrewStatisticsSystem : EntitySystem
+public sealed partial class StationCrewStatisticsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStationRecordsSystem _records = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private SharedStationRecordsSystem _records = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     public override void Initialize()
         => SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRoundEnd);

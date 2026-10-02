@@ -1,5 +1,4 @@
 using Content.Shared.Popups;
-using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -7,11 +6,11 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Popups
 {
-    public sealed class PopupSystem : SharedPopupSystem
+    public sealed partial class PopupSystem : SharedPopupSystem
     {
-        [Dependency] private readonly IPlayerManager _player = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private IPlayerManager _player = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
 
         public override void PopupCursor(string? message, PopupType type = PopupType.Small)
         {

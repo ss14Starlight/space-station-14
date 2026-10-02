@@ -1,11 +1,10 @@
 using Content.Shared.GameTicking;
-using Content.Shared.Radio;
 
 namespace Content.Server.Radio.EntitySystems;
 
 public sealed partial class RadioSystem
 {
-    [Dependency] private readonly SharedGameTicker _ticker = default!;
+    [Dependency] private SharedGameTicker _ticker = default!;
 
     private string ObfuscateName(string anonymousAlias, EntityUid source)
     {

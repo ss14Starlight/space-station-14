@@ -74,7 +74,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: FluorosulfuricAcid
-        Quantity: 650
+        Quantity: 1300
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -82,8 +82,8 @@
      collection: AlienClaw
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 20
+      types:
+        Piercing: 20
   - type: DamageStateVisuals
     states:
       Alive:
@@ -95,7 +95,6 @@
   - type: Puller
     needsHands: false
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatXeno
       amount: 5
@@ -144,8 +143,8 @@
     baseSprintSpeed: 6.0
   - type: MeleeWeapon
     damage:
-     groups:
-       Brute: 15
+     types:
+       Slash: 15
   - type: Fixtures
     fixtures:
       fix1:
@@ -169,7 +168,6 @@
     sprite: Mobs/Aliens/Xenos/rouny.rsi
     offset: 0,0.6
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatRouny
       amount: 3

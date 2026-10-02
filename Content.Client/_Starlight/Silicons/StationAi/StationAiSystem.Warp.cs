@@ -1,6 +1,8 @@
 using Content.Client._Starlight.Silicons.StationAi;
+using Content.Shared._Starlight.StationAi;
 using Content.Shared.Silicons.StationAi;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Client.Silicons.StationAi;
 
 public sealed partial class StationAiSystem

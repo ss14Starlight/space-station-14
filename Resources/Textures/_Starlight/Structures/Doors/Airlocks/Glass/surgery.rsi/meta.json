@@ -1,23 +1,27 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, taco_llama, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "assembly"
+      "name": "assembly",
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
-      "name": "bolted_unlit"
+      "name": "bolted_unlit",
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
-      "name": "closed"
+      "name": "closed",
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
-      "name": "closed_unlit"
+      "name": "closed_unlit",
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
       "name": "closing",
@@ -30,7 +34,8 @@
           0.07,
           0.2
         ]
-      ]
+      ],
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
       "name": "closing_unlit",
@@ -43,7 +48,8 @@
           0.07,
           0.2
         ]
-      ]
+      ],
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
       "name": "deny_unlit",
@@ -56,7 +62,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
       "name": "open",
@@ -64,7 +71,8 @@
         [
           1
         ]
-      ]
+      ],
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
       "name": "opening",
@@ -77,7 +85,8 @@
           0.07,
           0.2
         ]
-      ]
+      ],
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
       "name": "opening_unlit",
@@ -90,7 +99,8 @@
           0.07,
           0.2
         ]
-      ]
+      ],
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
       "name": "panel_closing",
@@ -103,7 +113,8 @@
           0.07,
           0.2
         ]
-      ]
+      ],
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
       "name": "panel_open",
@@ -111,7 +122,8 @@
         [
           1
         ]
-      ]
+      ],
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
       "name": "panel_opening",
@@ -124,7 +136,8 @@
           0.07,
           0.2
         ]
-      ]
+      ],
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
       "name": "sparks",
@@ -137,7 +150,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
       "name": "sparks_broken",
@@ -150,7 +164,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
       "name": "sparks_damaged",
@@ -164,7 +179,8 @@
           0.1,
           1.7
         ]
-      ]
+      ],
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
       "name": "sparks_open",
@@ -177,10 +193,12 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
-      "name": "welded"
+      "name": "welded",
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     },
     {
       "name": "emergency_unlit",
@@ -189,7 +207,8 @@
           0.4,
           0.4
         ]
-      ]
+      ],
+      "copyright": "Made by Salem.uwu, Abby, Conflee, Motherain, Cephalo, SevenShades, and aexxie for Starlight / Afterlight with inspiration from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24"
     }
   ]
 }

@@ -15,9 +15,9 @@ public sealed partial class StoreListingControl : Control
 {
     public event Action<string, string>? OnListingHoverEntered; // Starlight
     public event Action? OnListingHoverExited; // Starlight
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IEntityManager _entity = default!;
+    [Dependency] private IGameTiming _timing = default!;
     private readonly ClientGameTicker _ticker;
 
     private readonly ListingDataWithCostModifiers _data;
@@ -77,11 +77,15 @@ public sealed partial class StoreListingControl : Control
         var stationTime = _timing.CurTime.Subtract(_ticker.RoundStartTimeSpan);
         if (_data.RestockTime > stationTime)
             return false;
+        #region Starlight
+        // Remove item if Destock time window has passed.
+        if (_data.DestockTime < stationTime  && _data.DestockTime != TimeSpan.Zero)
+            return false;
 
         // Starlight: Check if the listing is marked as unavailable (e.g., when a rift is active or out of stock)
         if (_data.Unavailable)
             return false;
-        // Starlight End
+        #endregion
 
         return true;
     }
@@ -94,6 +98,12 @@ public sealed partial class StoreListingControl : Control
             var timeLeftToBuy = stationTime - _data.RestockTime;
             StoreItemBuyButton.Text =  timeLeftToBuy.Duration().ToString(@"mm\:ss");
         }
+        #region Starlight
+        else if (_data.DestockTime < stationTime && _data.DestockTime != TimeSpan.Zero)
+        {
+            StoreItemBuyButton.Text =  Loc.GetString("store-listing-late");
+        }
+        #endregion
         else
         {
             DiscountSubText.Text = _discount;

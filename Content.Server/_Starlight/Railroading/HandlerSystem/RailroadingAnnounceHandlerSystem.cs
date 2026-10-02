@@ -1,17 +1,17 @@
 ﻿using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
-using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Railroading.Components.Handlers;
 using Content.Shared._Starlight.Railroading.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.HandlerSystem;
 
 public sealed partial class RailroadingAnnounceHandlerSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
 
     public override void Initialize()
     {

@@ -31,33 +31,33 @@ namespace Content.Server._FarHorizons.Silicons.IPC;
 /// <inheritdoc/>
 public sealed partial class IPCSystem : SharedIPCSystem
 {
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly BatteryDrainerSystem _drainer = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly MobStateSystem _state = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
-    [Dependency] private readonly EuiManager _euiManager = default!;
-    [Dependency] private readonly SharedBatterySystem _battery = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly TemperatureSystem _tempSys = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private BatteryDrainerSystem _drainer = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private MobStateSystem _state = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private DoAfterSystem _doAfter = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private EuiManager _euiManager = default!;
+    [Dependency] private SharedBatterySystem _battery = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private IConfigurationManager _cfgManager = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private TemperatureSystem _tempSys = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private AtmosphereSystem _atmos = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private BloodstreamSystem _bloodstream = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
+    [Dependency] private ElectrocutionSystem _electrocution = default!;
 
 
     public override void Initialize()

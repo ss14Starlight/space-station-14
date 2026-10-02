@@ -1,0 +1,9 @@
+- type: entity
+  id: StandardNanotrasenStation
+  parent:
+    - StandardNanotrasenStationTestOnly
+    - BaseStationAlertArmories
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Transform
+

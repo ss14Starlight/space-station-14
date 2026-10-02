@@ -4,7 +4,6 @@ using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
-using Content.Shared.Body;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Parallax;
@@ -24,12 +23,15 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using FTLMapComponent = Content.Shared.Shuttles.Components.FTLMapComponent;
-using Content.Server._Starlight.Station; // Starlight
-using Content.Server.Camera; // Starlight
-using Content.Shared._Starlight.Camera; // Starlight
-using Content.Shared.Station.Components; // Starlight
+#region Starlight
+using Content.Server._Starlight.Station;
+using Content.Server.Camera;
+using Content.Shared._Starlight.Camera;
+using Content.Shared.Station.Components;
 using Robust.Server.Player;
-using Content.Shared.Body.Components; // Starlight
+using Content.Shared.Body.Components;
+using Content.Shared.Atmos.Components;
+#endregion
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -38,9 +40,9 @@ public sealed partial class ShuttleSystem
     /*
      * This is a way to move a shuttle from one location to another, via an intermediate map for fanciness.
      */
-    [Dependency] private readonly ScreenshakeSystem _shake = default!; // Starlight
-    [Dependency] private readonly IPlayerManager _plr = default!; // Starlight
-    [Dependency] private readonly CameraRecoilSystem _recoil = default!; // Starlight
+    [Dependency] private ScreenshakeSystem _shake = default!; // Starlight
+    [Dependency] private IPlayerManager _plr = default!; // Starlight
+    [Dependency] private CameraRecoilSystem _recoil = default!; // Starlight
 
     private readonly SoundSpecifier _startupSound = new SoundPathSpecifier("/Audio/Effects/Shuttle/hyperspace_begin.ogg")
     {
@@ -517,9 +519,7 @@ public sealed partial class ShuttleSystem
                 {
                     foreach (var grid in stationData.Grids)
                     {
-                        if (!TryComp<TransformComponent>(grid, out var gridXform))
-                            continue;
-
+                        var gridXform = Transform(grid);
                         if (gridXform.MapUid is not { } stationMap || !Exists(stationMap))
                             continue;
 
@@ -773,6 +773,7 @@ public sealed partial class ShuttleSystem
 
     /// <summary>
     /// Puts everyone unbuckled on the floor, paralyzed.
+    /// #Starlight  Added check for MovedByPressureComponent to see if the entity is disabled, if so, toss them if spaced and skip stun.
     /// </summary>
     private void DoTheDinosaur(TransformComponent xform)
     {
@@ -785,6 +786,12 @@ public sealed partial class ShuttleSystem
         {
             foreach (var child in toKnock)
             {
+                // Starlight START
+                // If the entity has a MovedByPressureComponent, check if it's disabled, if so, skip the stun (e.g. magboots).
+                if (TryComp<MovedByPressureComponent>(child, out var moved) && !moved.Enabled)
+                    continue;
+                // Starlight END
+
                 _stuns.TryUpdateParalyzeDuration(child, _hyperspaceKnockdownTime);
 
                 // If the guy we knocked down is on a spaced tile, throw them too

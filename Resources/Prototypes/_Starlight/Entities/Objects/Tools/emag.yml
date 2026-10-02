@@ -100,3 +100,24 @@
     - type: AutoRecharge
     - type: StaticPrice
       price: 2500
+
+- type: entity
+  parent: [BaseItem, BaseSalvageContraband]
+  id: EmagSalvage # dont use, emag hasnt been differentiated yet
+  suffix: ""
+  name: ITG Silicon Encoder
+  description: A legally approved silicon lawset override device that aligns a silicon with the ITG.
+  categories: [ DoNotMap ]
+  components:
+  - type: Emag
+    lawset: SalvageLawset
+    components:
+    owningFaction: NanoTrasen
+    channelAdd:
+      - Expedition
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/emag.rsi
+    state: icon
+  - type: Item
+    sprite: _Starlight/Objects/Tools/emag.rsi
+  - type: LimitedCharges

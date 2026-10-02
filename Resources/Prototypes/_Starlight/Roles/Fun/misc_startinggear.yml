@@ -1,0 +1,25 @@
+- type: startingGear
+  id: MobKikiGear
+  equipment:
+    head: ClothingHeadBandBotany
+    ears: ClothingHeadsetService
+    jumpsuit: ClothingUniformJumpskirtHydroponics
+    belt: ClothingBeltPlantFilled
+    id: KikiPDA
+    back: ClothingBackpackSatchelHydroponics
+  storage:
+    back:
+    - BoxSurvival
+
+- type: startingGear
+  id: MobStirStirGear
+  equipment:
+    ears: ClothingHeadsetAssistant
+    jumpsuit: ClothingUniformJumpsuitPrisoner
+    id: StirStirPDA
+    head: ClothingHeadHatBeretPrison
+
+- type: startingGear
+  id: StartingGearDrone
+  equipment:
+    back: DroneBag

@@ -1,5 +1,4 @@
 using Content.Shared.Decals;
-using Content.Shared.Random.Helpers;
 using Content.Shared.Sprite;
 using Content.Shared.Item;
 using Robust.Shared.GameStates;
@@ -8,11 +7,11 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Sprite;
 
-public sealed class RandomSpriteSystem: SharedRandomSpriteSystem
+public sealed partial class RandomSpriteSystem: SharedRandomSpriteSystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedItemSystem _item = default!;
 
     public override void Initialize()
     {

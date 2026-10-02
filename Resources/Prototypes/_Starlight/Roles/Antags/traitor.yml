@@ -1,0 +1,6 @@
+- type: antag
+  id: MindControlled
+  name: roles-antag-mind-controlled-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-mind-controlled-objective

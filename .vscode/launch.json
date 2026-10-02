@@ -34,6 +34,22 @@
             "preLaunchTask": "build"
         },
         {
+            "name": "Server (Grafana)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Content.Server/Content.Server.dll",
+            "args": [
+                "--cvar",
+                "metrics.enabled=true",
+                "--cvar",
+                "metrics.host=*"
+            ],
+            "console": "integratedTerminal",
+            "stopAtEntry": false,
+            "preLaunchTask": "build-grafana",
+            "postDebugTask": "grafana-down"
+        },
+        {
             "name": "YAML Linter",
             "type": "coreclr",
             "request": "launch",
