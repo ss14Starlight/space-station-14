@@ -98,7 +98,7 @@ public sealed partial class LanguageMenuWindow : DefaultWindow
             HorizontalExpand = true
         };
 
-        var button = new Button { Text = "Choose" };
+        var button = new Button { Text = Loc.GetString("language-menu-choose-button") };
         button.OnPressed += _ => OnLanguageChosen(language);
         state.Button = button;
 
@@ -132,7 +132,7 @@ public sealed partial class LanguageMenuWindow : DefaultWindow
         if (proto?.ChatPrefix is not null)
         {
             var prefix = new RichTextLabel { HorizontalExpand = true };
-            prefix.SetMessage($"chat prefix: {SharedLanguageSystem.ChatPrefixChar}{proto.ChatPrefix}");
+            prefix.SetMessage(Loc.GetString("language-menu-chat-prefix", ("prefix", $"{SharedLanguageSystem.ChatPrefixChar}{proto.ChatPrefix}")));
             container.AddChild(prefix);
         }
 

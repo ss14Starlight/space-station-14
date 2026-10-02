@@ -29,7 +29,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazineShotgun
         priority: 2
         whitelist:
@@ -241,7 +241,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazineShotgun
         priority: 2
         whitelist:
@@ -305,7 +305,7 @@
   - type: ItemSlots
     slots:
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         priority: 1
         whitelist:
           tags:

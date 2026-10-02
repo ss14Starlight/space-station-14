@@ -1265,6 +1265,91 @@
         - CorgiWearable
         - Hardsuit
 
+# COSMIC CULT HARDSUIT BODY
+- type: entity
+  parent: [ ClothingOuterHardsuitBase, BaseCosmicCultItem ] # Starlight Edit: Contraband
+  id: ClothingOuterHardsuitCosmicCult
+  name: entropic armor
+  description: An unsettling hardsuit, numbing to the touch. It pulses with a glow that makes you feel like you've forgotten something..
+  components:
+  - type: CosmicEquipment
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Clothing/cosmiccult_armor.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _Starlight/CosmicCult/Clothing/cosmiccult_armor.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
+        Radiation: 0.6
+        Caustic: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetCosmicCult
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+#Shoulder mounted flashlight
+  - type: ToggleableVisuals # Starlight Edit
+    spriteLayer: light
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING-light
+        shader: unshaded
+  - type: ItemTogglePointLight # Starlight
+  - type: Appearance
+  - type: HandheldLight
+    addPrefix: false
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: PointLight
+    enabled: false
+    color: "#42a4ae"
+    radius: 5
+    energy: 3.4
+    lightMask: SLCosmic
+    autoRot: true
+    netsync: false
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        startValue: 0.1
+        endValue: 2.0
+        isLooped: true
+  - type: Battery
+    maxCharge: 100
+    startingCharge: 100
+  - type: BatterySelfRecharger
+    autoRechargeRate: 5
+  - type: TypingIndicatorClothing
+    proto: CosmicTyping
+  - type: TheDarkImmune
+
 # Greenshield Officer
 - type: entity
   parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieCommander, AllowSuitStorageClothing, ClothingOuterStorageBase ]
@@ -1315,9 +1400,9 @@
   suffix: Unremoveable
   components:
   - type: Sprite
-    sprite: Changeling/ling_spacesuit.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/changeling.rsi
   - type: Clothing
-    sprite: Changeling/ling_spacesuit.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/changeling.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.225
     lowPressureMultiplier: 1000
