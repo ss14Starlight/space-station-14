@@ -154,7 +154,7 @@ public sealed partial class ShowAccessSystem : EntitySystem
         // Get groups then sort alphabetically to stay organized but also to make sure the order is same on client+server.
         var groups = _proto.EnumeratePrototypes<AccessGroupPrototype>()
             .Where(group => !_blacklistedGroups.Contains(group.ID)).ToList();
-        groups = groups.OrderBy(GetGroupName).ToList();
+        groups = groups.OrderBy(group => group.GetAccessGroupName()).ToList();
 
         /*
          * Move command if present to top of list since despite that not being alphabetical order it's arguably the most important.
@@ -175,19 +175,19 @@ public sealed partial class ShowAccessSystem : EntitySystem
         var grouped = new Dictionary<ProtoId<AccessLevelPrototype>, string>();
         foreach (var group in groups)
         {
-            var name = GetGroupName(group);
+            var name = group.GetAccessGroupName();
             foreach (var tag in group.Tags) grouped.TryAdd(tag, name);
         }
 
         // alphabetically sort the actual access tags into their sorted groups.
         var sorted = new Dictionary<string, SortedSet<string>>();
-        var Ungrouped = Loc.GetString("show-access-examined-ungrouped");
+        var ungrouped = Loc.GetString("show-access-examined-ungrouped");
         foreach (var protoId in protoIds)
         {
             if (!_proto.TryIndex(protoId, out var proto))
                 continue;
             var name = Loc.GetString("show-access-examined-access", ("access", Loc.GetString(proto.Name ?? proto.ID)));
-            var group = grouped.GetValueOrDefault(protoId, Ungrouped);
+            var group = grouped.GetValueOrDefault(protoId, ungrouped);
             if (!sorted.TryGetValue(group, out var list))
             {
                 list = [];
@@ -199,9 +199,9 @@ public sealed partial class ShowAccessSystem : EntitySystem
         // now just grab all the names of the access tags and shove them into a single string list (and also move ungrouped to the back)
         var result = new List<string>();
         foreach (var group in sorted.Keys
-                     .Where(g => g != Ungrouped)
+                     .Where(g => g != ungrouped)
                      .OrderBy(g => g)
-                     .Append(Ungrouped))
+                     .Append(ungrouped))
         {
             if (!sorted.TryGetValue(group, out var accessList) || accessList.Count == 0)
                 continue;
@@ -213,13 +213,5 @@ public sealed partial class ShowAccessSystem : EntitySystem
 
         // voilà this code sucks here's your ordered access tags
         return result;
-    }
-
-    private string GetGroupName(AccessGroupPrototype group)
-    {
-        if (group.Name is { } name)
-            return Loc.GetString(name);
-
-        return Loc.TryGetString($"access-group-name-{CaseConversion.PascalToKebab(group.ID)}", out var localized) ? localized : group.ID;
     }
 }
