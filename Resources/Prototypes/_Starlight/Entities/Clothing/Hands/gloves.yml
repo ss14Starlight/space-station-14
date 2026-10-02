@@ -206,29 +206,3 @@
   suffix: Chameleon, Insulated
   components:
   - type: Insulated
-
-- type: entity
-  parent:
-  - ClothingHandsGlovesCombat
-  - BaseToggleClothing
-  id: ClothingHandsPryingGloves # To use as a parent for Hardsuit Gauntlets for heavy suits such as Apex, HOS, BSO or Juggsuit. Should be reserved for truly advanced suits that border the "power armor" style. Hardsuit gauntlet's melee should do around 16 blunt dmg, with Apex and Jugg doing either different or more dmg.
-  name: prying gloves [DO NOT MAP]
-  description: ""
-  components:
-  - type: ToggleClothing
-    action: ActionTogglePryingGloves
-    disableOnUnequip: true
-  - type: ComponentToggler
-    parent: true
-    components:
-    - type: Prying
-      pryPowered: true
-      speedModifier: 1.5
-      playSoundOnDoafter: true
-      useSoundOnDoafter:
-        path: /Audio/_Starlight/Machines/airlock_pry.ogg
-      useSound:
-        path: /Audio/Items/jaws_pry.ogg
-        params:
-          pitch: 0.5
-
