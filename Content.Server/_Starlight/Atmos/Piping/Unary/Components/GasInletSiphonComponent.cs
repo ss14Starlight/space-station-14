@@ -6,9 +6,11 @@ namespace Content.Server._Starlight.Atmos.Piping.Unary.Components;
 [RegisterComponent]
 public sealed partial class GasInletSiphonComponent : Component
 {
+    [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public bool Enabled = false;
+    public bool Enabled;
 
+    [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public float TransferRate
     {
@@ -21,7 +23,7 @@ public sealed partial class GasInletSiphonComponent : Component
 
     [DataField]
     [GuidebookData]
-    public float MaxPressure = Atmospherics.MaxOutputPressure;
+    public float MaxPressure = 2 * Atmospherics.MaxOutputPressure;
 
     [DataField("outlet")]
     public string OutletName = "pipe";
