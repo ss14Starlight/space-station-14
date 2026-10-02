@@ -173,3 +173,24 @@
           amount: 1
         - id: ClothingShoesBootsMagSec
           amount: 1
+
+- type: entity
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband]
+  id: GunSafeMelee # To save remapping
+  name: melee safe
+  description: Contains a set of heavy melee weapons.
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: melee_gunsafe_doors
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SpearAthena
+          amount: 2
+        - id: SwordAres
+          amount: 2
+        - id: ClothingShoesSpikedBoots
+          amount: 4
+        - id: RiotShield
+          amount: 4

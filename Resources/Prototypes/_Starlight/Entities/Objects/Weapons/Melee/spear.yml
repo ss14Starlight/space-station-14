@@ -17,3 +17,34 @@
     damage:
       types:
         Piercing: 25
+
+- type: entity
+  name: tactical spear "Athena"
+  parent: Spear
+  id: SpearAthena
+  description: Impressed by a crewmember managing to kill their bodyguard with a spear, a CentCom official commissioned the “Athena” tactical spear for their security forces.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/athena.rsi
+  - type: MeleeWeapon
+    attackRate: 2
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Piercing: 5
+        Slash: 5
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 15
+        Slash: 15
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 3
+        Slash: 4
+        Structural: 10
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 1
