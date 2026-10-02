@@ -415,7 +415,7 @@
   name: Bolt Rifle
   parent: [ BaseWeaponRifle, BaseSalvageContraband ]
   id: WeaponRifleBolt
-  description: A terrifyingly powerfull and rugged rifle manufactured by the ITG for their frontier logistic escorts and salvage teams. Fires high-caliber explosive impact bolts. Watch out for the recoil.
+  description: A terrifyingly powerful and rugged rifle manufactured by the ITG for their frontier logistic escorts and salvage teams. Fires high-caliber explosive impact bolts. Watch out for the recoil.
   components:
   - type: Sprite
     sprite: _Starlight\Objects\Weapons\Guns\Rifles\impact_bolt_rifle.rsi
