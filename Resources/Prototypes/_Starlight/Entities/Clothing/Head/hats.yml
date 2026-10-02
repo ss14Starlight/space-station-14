@@ -505,7 +505,7 @@
   parent: [ClothingHeadBase, BaseCentcommContraband]
   id: ClothingHeadHatCapCentcommCAD
   name: Central Administration Division cap
-  description: An blue cap, that's too cool for you crewmate.
+  description: A blue cap, that's too cool for you crewmate.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/centcommcapCAD.rsi
