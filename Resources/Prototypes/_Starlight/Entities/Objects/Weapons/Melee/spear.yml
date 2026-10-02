@@ -50,3 +50,5 @@
         Blunt: 1
   - type: DisarmMalus
     malus: 0.6
+  - type: StaticPrice
+    price: 1000
