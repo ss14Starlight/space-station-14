@@ -290,10 +290,6 @@
 #  - !type:BuyerAccessCondition
 
 #weapons
-
-
-
-
 - type: listing
   id: VendorSalvageWeaponLaserImmolator
   productEntity: WeaponLaserImmolator
@@ -358,7 +354,13 @@
   id: VendorSalvageWeaponBoltRifle
   productEntity: WeaponRifleBolt
   cost:
-    SalvageTicket: "1500"
+    SalvageTicket: 1500
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorSalvageWeaponSPKA
   productEntity: WeaponSPKA
   cost:
@@ -368,12 +370,16 @@
   conditions:
   - !type:BuyerAccessCondition
 
-
 - type: listing
   id: VendorSalvageWeaponBoltPistol
   productEntity: WeaponPistolBolt
   cost:
     SalvageTicket: 750
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
+  
 - type: listing
   id: VendorSalvageWeaponRegulator
   productEntity: WeaponRegulator
@@ -394,12 +400,7 @@
   conditions:
   - !type:BuyerAccessCondition
     
-
 #consumables
-
-
-
-
 - type: listing
   id: VendorSalvageSpeedLoaderSpesoConversion
   productEntity: SpaceCash100
@@ -539,6 +540,8 @@
   - SalvageConsumeables
   conditions:
   - !type:BuyerAccessCondition
+
+#Merc Stuff
 - type: listing
   id: VendorSalvageClothingHeadHatBeretSalvageMercPurple
   productEntity: ClothingHeadHatBeretSalvageMercPurple
@@ -609,10 +612,6 @@
 #  conditions:
 #  - !type:BuyerAccessCondition
 
-
-
-
-
 - type: listing
   id: VendorSalvageClothingHeadHelmetSalvageMerc
   productEntity: ClothingHeadHelmetSalvageMerc
@@ -674,10 +673,6 @@
   - !type:BuyerAccessCondition
 
 #Cybernetics
-
-
-
-
 - type: listing
   id: VendorSalvageBrainImplantCommsExpedition
   productEntity: BrainImplantCommsExpedition
@@ -717,5 +712,3 @@
     - SalvageCybernetics
   conditions:
     - !type:BuyerAccessCondition
-
-
