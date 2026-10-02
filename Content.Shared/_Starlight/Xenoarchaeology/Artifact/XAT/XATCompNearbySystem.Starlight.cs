@@ -8,7 +8,6 @@ public sealed partial class XATCompNearbySystem
 {
     [Dependency] private TagSystem _tag = default!;
 
-    // Check how many entities with the required tag are nearby
     private int CountMatchingEntities(XATCompNearbyComponent comp, HashSet<Entity<IComponent>> entities)
     {
         var matched = 0;
