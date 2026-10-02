@@ -1,39 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (Elkridge) Added an assistant manager to hop line.
-    type: Add
-  id: 408679
-  time: '2026-09-18T08:32:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6168
-- author: Cvlancer
-  changes:
-  - message: (Elkridge) Added a k9 to security locker room.
-    type: Add
-  id: 408680
-  time: '2026-09-18T08:32:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6168
-- author: Cvlancer
-  changes:
-  - message: (Elkridge) Added a washroom near janitor's closet.
-    type: Add
-  id: 408681
-  time: '2026-09-18T08:32:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6168
-- author: Cvlancer
-  changes:
-  - message: (Elkridge) Changed mail windoor to mail access.
-    type: Tweak
-  id: 408682
-  time: '2026-09-18T08:32:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6168
-- author: Cvlancer
-  changes:
-  - message: (Elkridge) Changed salv room to be a miner break room.
-    type: Tweak
-  id: 408683
-  time: '2026-09-18T08:32:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6168
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: Switched Cosmic Cult premonition and finale themes out for higher quality versions.
@@ -2799,4 +2764,39 @@ Entries:
   id: 409078
   time: '2026-10-02T18:56:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6425
+- author: Sparlight
+  changes:
+  - message: Pacifists will be able to 'struggle' out of a K9's latch using a new minigame.
+    type: Add
+  id: 409079
+  time: '2026-10-02T19:16:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6382
+- author: Sparlight
+  changes:
+  - message: Removed K9 latch hand-blocking.  You can now use both hands while latched.
+    type: Remove
+  id: 409080
+  time: '2026-10-02T19:16:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6382
+- author: Sparlight
+  changes:
+  - message: Specific mobs (colossus and space dragon) now only slow when latched.
+    type: Tweak
+  id: 409081
+  time: '2026-10-02T19:16:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6382
+- author: Sparlight
+  changes:
+  - message: K9s latched onto floating creatures (carp, space dragons, colossi and similar) become weightless for the duration of the latch.
+    type: Tweak
+  id: 409082
+  time: '2026-10-02T19:16:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6382
+- author: Sparlight
+  changes:
+  - message: The 'Jump' keybind in the Controls settings now has a proper locale string.
+    type: Fix
+  id: 409083
+  time: '2026-10-02T19:16:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6382
 Order: -1
