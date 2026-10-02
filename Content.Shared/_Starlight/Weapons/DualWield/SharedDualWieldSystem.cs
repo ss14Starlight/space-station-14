@@ -30,7 +30,7 @@ public sealed partial class SharedDualWieldSystem : EntitySystem
     /// </summary>
     private void OnGunRefreshModifiers(Entity<CanDualWieldComponent> gun, ref GunRefreshModifiersEvent args)
     {
-        if (gun.Comp.DualWieldInaccuracyPenalty <= 0f)
+        if (!gun.Comp.Enabled || gun.Comp.DualWieldInaccuracyPenalty <= 0f)
             return;
 
         // The gun lives in a ContainerSlot whose parent is the holder entity
@@ -64,7 +64,8 @@ public sealed partial class SharedDualWieldSystem : EntitySystem
         else
         {
             // Safety check — both guns must have CanDualWieldComponent
-            if (!HasComp<CanDualWieldComponent>(leftGun) || !HasComp<CanDualWieldComponent>(rightGun))
+            if (!TryComp<CanDualWieldComponent>(leftGun, out var leftCanDual) || !leftCanDual.Enabled
+                || !TryComp<CanDualWieldComponent>(rightGun, out var rightCanDual) || !rightCanDual.Enabled)
             {
                 _popup.PopupClient(Loc.GetString("dual-wield-too-heavy"), user, user);
                 return;
