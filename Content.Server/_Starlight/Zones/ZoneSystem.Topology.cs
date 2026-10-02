@@ -43,6 +43,8 @@ public sealed partial class ZoneSystem
     private readonly HashSet<Vector2i> _raceSetB = [];
 
     private readonly Dictionary<ushort, int> _votes = [];
+    private readonly Dictionary<ushort, int> _zoneVotes = [];
+    private readonly HashSet<ushort> _majority = [];
 
     private static int BlockMask(AtmosDirection dir)
         => ((int) dir << (int) NavMapChunkType.Wall) | ((int) dir << (int) NavMapChunkType.Airlock);
@@ -486,30 +488,53 @@ public sealed partial class ZoneSystem
     private (ushort Zone, bool Strong) CountVotes()
     {
         var total = 0;
-        var top = NoZone;
-        var topVotes = 0;
+        _zoneVotes.Clear();
 
         foreach (var (zone, votes) in _votes)
         {
             total += votes;
 
-            if (votes < topVotes || (votes == topVotes && CompareZones(zone, top) <= 0))
-                continue;
-
-            top = zone;
-            topVotes = votes;
+            foreach (var member in GetZones(zone))
+            {
+                var id = GetZoneId(member);
+                _zoneVotes[id] = _zoneVotes.GetValueOrDefault(id) + votes;
+            }
         }
 
         if (total == 0)
             return (NoZone, false);
 
-        if (topVotes * 2 > total)
-            return (top, true);
+        _majority.Clear();
+        var topVotes = 0;
+        var topPriority = int.MinValue;
 
-        if (total >= _corridorDoorCount && CorridorZone != NoZone)
+        foreach (var (zone, votes) in _zoneVotes)
+        {
+            if (votes * 2 > total)
+                _majority.Add(zone);
+
+            var priority = ZonePriority(zone);
+            if (votes < topVotes || (votes == topVotes && priority < topPriority))
+                continue;
+
+            topVotes = votes;
+            topPriority = priority;
+        }
+
+        if (_majority.Count > 0)
+            return (GetZoneSet(_majority), true);
+
+        _majority.Clear();
+        foreach (var (zone, votes) in _zoneVotes)
+        {
+            if (votes == topVotes && ZonePriority(zone) == topPriority)
+                _majority.Add(zone);
+        }
+
+        if (_majority.Count > 1 && total >= _corridorDoorCount && CorridorZone != NoZone)
             return (CorridorZone, false);
 
-        return (top, false);
+        return (GetZoneSet(_majority), false);
     }
 
     #endregion

@@ -229,6 +229,7 @@ public sealed partial class AmeControllerSystem : EntitySystem
             return;
 
         controller.Injecting = value;
+        UpdateAmbience(uid, controller); // Starlight
         UpdateDisplay(uid, controller.Stability, controller);
         if (!value && TryComp<PowerSupplierComponent>(uid, out var powerOut))
             powerOut.MaxSupply = 0;

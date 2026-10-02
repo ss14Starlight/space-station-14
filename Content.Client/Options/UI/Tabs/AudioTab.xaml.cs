@@ -82,6 +82,16 @@ public sealed partial class AudioTab : Control
             SliderTtsChime,
             scale: ContentAudioSystem.TtsMultiplier);
 
+        // Per-category volumes are gain multipliers defaulting to 1, so the slider starts at 50% with room to boost.
+        AddCategorySlider(StarlightCCVars.StationHumVolume, SliderStationHum);
+        AddCategorySlider(StarlightCCVars.EnvironmentVolume, SliderEnvironment);
+        AddCategorySlider(StarlightCCVars.EffectsVolume, SliderEffects);
+        AddCategorySlider(StarlightCCVars.FootstepsVolume, SliderFootsteps);
+        AddCategorySlider(StarlightCCVars.HandlingVolume, SliderHandling);
+        AddCategorySlider(StarlightCCVars.CombatVolume, SliderCombat);
+        AddCategorySlider(StarlightCCVars.VoiceVolume, SliderVoice);
+        AddCategorySlider(StarlightCCVars.AnnouncementVolume, SliderAnnouncement);
+
         // Starlight end
 
         Control.AddOptionCheckBox(CCVars.LobbyMusicEnabled, LobbyMusicCheckBox);
@@ -109,16 +119,19 @@ public sealed partial class AudioTab : Control
         _admin.AdminStatusUpdated -= UpdateAdminButtonsVisibility;
     }
 
-
     private void UpdateAdminButtonsVisibility()
-    {
-        BwoinkSoundCheckBox.Visible = _admin.IsActive();
-    }
+        => BwoinkSoundCheckBox.Visible = _admin.IsActive(); // Starlight-edit: lambda
 
     private void OnMasterVolumeSliderChanged(float value)
-    {
         // TODO: I was thinking of giving OptionsTabControlRow a flag to "set CVar immediately", but I'm deferring that
         // until there's a proper system for enforcing people don't close the window with pending changes.
-        _audio.SetMasterGain(value);
-    }
+        => _audio.SetMasterGain(value); // Starlight-edit: lambda
+
+    #region Starlight
+    private void AddCategorySlider(CVarDef<float> cvar, OptionSlider slider)
+        => Control.AddOptionPercentSlider(cvar, slider, scale: CategoryVolumeMultiplier);
+
+    private const float CategoryVolumeMultiplier = 2f;
+
+    #endregion
 }

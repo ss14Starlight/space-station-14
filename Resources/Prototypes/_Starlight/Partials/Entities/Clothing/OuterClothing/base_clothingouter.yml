@@ -3,3 +3,12 @@
   components:
   - type: ExaminableSolution
     solution: stain
+  - type: EmitSoundOnPickup
+    sound:
+      collection: ClothPickup
+  - type: EmitSoundOnLand
+    sound:
+      collection: ClothDrop
+  - type: Clothing
+    equipSound:
+      path: /Audio/Items/jumpsuit_equip.ogg
