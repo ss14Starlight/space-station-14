@@ -5,7 +5,7 @@
     xmlns:gunnery="clr-namespace:Content.Client._Starlight.Weapons.Gunnery"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     x:Class="Content.Client._Starlight.Weapons.Gunnery.GunneryConsoleWindow"
-    Title="Gunnery Console"
+    Title="{Loc 'gunnery-title'}"
     SetSize="1100 740"
     MinSize="800 540">
 
@@ -48,27 +48,27 @@
 
                 <CheckBox
                     Name="FilterEnergy"
-                    Text="Energy"
+                    Text="{Loc 'gunnery-energy'}"
                     Pressed="True"
-                    ToolTip="Show energy weapons" />
+                    ToolTip="{Loc 'gunnery-energy-tooltip'}" />
 
                 <CheckBox
                     Name="FilterRocket"
-                    Text="Rocket"
+                    Text="{Loc 'gunnery-rocket'}"
                     Pressed="True"
-                    ToolTip="Show rocket/missile launchers" />
+                    ToolTip="{Loc 'gunnery-rocket-tooltip'}" />
 
                 <CheckBox
                     Name="FilterBallistic"
-                    Text="Ballistic"
+                    Text="{Loc 'gunnery-ballistic'}"
                     Pressed="True"
-                    ToolTip="Show ballistic artillery" />
+                    ToolTip="{Loc 'gunnery-ballistic-tooltip'}" />
 
                 <CheckBox
                     Name="FilterUnknown"
-                    Text="Other"
+                    Text="{Loc 'gunnery-other'}"
                     Pressed="True"
-                    ToolTip="Show uncategorised weapons" />
+                    ToolTip="{Loc 'gunnery-other-tooltip'}" />
 
             </BoxContainer>
 
@@ -92,11 +92,11 @@
             <!-- Legend -->
             <BoxContainer Orientation="Horizontal" Margin="2,0,2,2" SeparationOverride="8">
                 <Label Text="■" FontColorOverride="#44FF44" />
-                <Label Text="Ready" FontColorOverride="#888888" />
+                <Label Text="{Loc 'gunnery-ready'}" FontColorOverride="#888888" />
                 <Label Text="■" FontColorOverride="#FF4444" />
-                <Label Text="Cooldown" FontColorOverride="#888888" />
+                <Label Text="{Loc 'gunnery-cooldown'}" FontColorOverride="#888888" />
                 <Label Text="■" FontColorOverride="#FF8800" />
-                <Label Text="No ammo" FontColorOverride="#888888" />
+                <Label Text="{Loc 'gunnery-no-ammo'}" FontColorOverride="#888888" />
             </BoxContainer>
 
             <PanelContainer VerticalExpand="True">

@@ -1110,6 +1110,7 @@
   - type: HitscanPierce
     chance: 0.02
   - type: HitscanIgniteEffect
+    fireStacks: 0.125 # half the typical number, as our shotguns fire 12 pellets instead of 6 like upstream
   - type: HitscanBasicVisuals
     bullet:
       sprite:
