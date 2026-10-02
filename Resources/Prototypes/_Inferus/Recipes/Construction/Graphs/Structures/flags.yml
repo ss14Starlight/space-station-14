@@ -178,6 +178,39 @@
           steps:
             - tool: Cutting
               doAfter: 1
+    - node: NonbinaryFlag
+      entity: NonbinaryFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: GenderfluidFlag
+      entity: GenderfluidFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: GenderqueerFlag
+      entity: GenderqueerFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
 
     - node: WaffleCoFlag
       entity: WaffleCoFlag
@@ -336,6 +369,43 @@
           steps:
             - tool: Cutting
               doAfter: 1
+
+    - node: NonbinaryFlag
+      entity: NonbinaryFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+
+    - node: GenderfluidFlag
+      entity: GenderfluidFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+
+    - node: GenderqueerFlag
+      entity: GenderqueerFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+
     - node: InterdyneSyndicateFlag
       entity: InterdyneSyndicateFlag
       edges:
@@ -347,6 +417,7 @@
           steps:
             - tool: Cutting
               doAfter: 1
+
     - node: SyndieFlag
       entity: SyndieFlag
       edges:

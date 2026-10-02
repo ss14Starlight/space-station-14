@@ -101,3 +101,39 @@
     - type: Construction
       graph: Flags
       node: LesbianFlag
+
+- type: entity
+  parent: BaseFlagInferus
+  id: NonbinaryFlag
+  name: nonbinary flag
+  description: Silicons hate them! …Not really, bigotry is banned on NT stations.
+  components:
+    - type: Sprite
+      state: enby_flag
+    - type: Construction
+      graph: Flags
+      node: NonbinaryFlag
+
+- type: entity
+  parent: BaseFlagInferus
+  id: GenderfluidFlag
+  name: genderfluid flag
+  description: Don't let it wash down the drain.
+  components:
+    - type: Sprite
+      state: genderfluid_flag
+    - type: Construction
+      graph: Flags
+      node: GenderfluidFlag
+
+- type: entity
+  parent: BaseFlagInferus
+  id: GenderqueerFlag
+  name: genderqueer flag
+  description: We get a little silly with it.
+  components:
+    - type: Sprite
+      state: genderqueer_flag
+    - type: Construction
+      graph: Flags
+      node: GenderqueerFlag
