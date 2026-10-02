@@ -41,7 +41,7 @@ public sealed partial class SlimeFireproofPotionSystem : EntitySystem
 
         if (!successfulChange)
         {
-            _popupSystem.PopupEntity("Fire and heat protection already at maximum. Item unaffected.", args.User, args.User);
+            _popupSystem.PopupEntity(Loc.GetString("slime-fireproof-max"), args.User, args.User);
             return;
         }
         ent.Comp.RemainingUses -= 1;

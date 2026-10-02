@@ -153,7 +153,7 @@
   - type: ItemSlots
     slots:
       vinyl:
-        name: vinyl
+        name: item-slot-component-slot-name-vinyl
         insertSound: /Audio/_Goobstation/RadioStation/Vinyls/vinylInsert.ogg
         ejectSound: /Audio/_Goobstation/RadioStation/Vinyls/vinylEject.ogg
         whitelist:
@@ -179,7 +179,7 @@
   - type: ItemSlots
     slots:
       vinyl:
-        name: vinyl
+        name: item-slot-component-slot-name-vinyl
         insertSound: /Audio/_Goobstation/RadioStation/Vinyls/vinylInsert.ogg
         ejectSound: /Audio/_Goobstation/RadioStation/Vinyls/vinylEject.ogg
         whitelist:

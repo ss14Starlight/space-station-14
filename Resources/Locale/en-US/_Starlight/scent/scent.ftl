@@ -3,6 +3,7 @@ scent-sniff-window-empty = No scents detected.
 scent-sniff-window-empty-traces = No other scent traces detected.
 scent-sniff-window-entry-id = [color={$color}]Scent ({$id}...)[/color]
 scent-sniff-window-entry-detail = [color={$color}]{$species} - {$freshness}[/color]
+scent-sniff-window-entry-detail-no-species = [color={$color}]{$freshness}[/color]
 scent-sniff-window-track-tooltip = Click to track this scent
 scent-sniff-window-tracking-popup = You start tracking this scent.
 scent-sniff-window-track-own = Track this creature's scent directly
@@ -18,6 +19,7 @@ scent-freshness-not-very-fresh = Not Very Fresh
 scent-sniff-no-scents = There are no scents on { $target }!
 
 scent-sneeze-popup = You clear your nose of your tracked scent.
+scent-track-fades-popup = The scent you were tracking fades...
 
 scent-cleaning-self = You start washing the { $evidence } off yourself...
 scent-cleaning-other = You start washing the { $evidence } off { $target }...

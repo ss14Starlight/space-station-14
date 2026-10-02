@@ -84,6 +84,10 @@ public sealed partial class DungeonJob
             }
 
             await SuspendDungeon();
+            // Starlight - Begin
+            if (!ValidateResume())
+                return Dungeon.Empty;
+            // Starlight - End
         }
 
         var room = new DungeonRoom(roomTiles, area.Center, area, new HashSet<Vector2i>());
@@ -95,6 +99,10 @@ public sealed partial class DungeonJob
         });
 
         await SuspendDungeon();
+        // Starlight - Begin
+        if (!ValidateResume())
+            return Dungeon.Empty;
+        // Starlight - End
         return dungeon;
     }
 
