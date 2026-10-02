@@ -22,8 +22,8 @@ public sealed partial class GunSystem
 
     private bool _hitscanPrediction = true;
 
-    private const double MispredictAngleDegrees = 0.01;
-    private const float MispredictDistance = 0.05f;
+    private const double MispredictAngleDegrees = 1;
+    private const float MispredictDistance = 0.5f;
 
     private readonly List<PendingHitscan> _pendingHitscans = new();
 
@@ -134,13 +134,18 @@ public sealed partial class GunSystem
         _pendingHitscans.RemoveAll(pending => pending.Expires < now);
 
         var index = _pendingHitscans.FindIndex(pending => pending.Gun == gun && pending.Seed == seed);
+        var seedMatched = index >= 0;
+
+        if (!seedMatched)
+            index = _pendingHitscans.FindIndex(pending => pending.Gun == gun);
+
         if (index < 0)
             return false;
 
         var pending = _pendingHitscans[index];
         _pendingHitscans.RemoveAt(index);
 
-        if (ev.Traces.Count > 0 && IsPredictedCorrectly(gun, pending.Predicted, ev.Traces[0]))
+        if (seedMatched && ev.Traces.Count > 0 && IsPredictedCorrectly(gun, pending.Predicted, ev.Traces[0]))
             return true;
 
         // The server disagrees: drop what we drew and let the authoritative trace render instead.
