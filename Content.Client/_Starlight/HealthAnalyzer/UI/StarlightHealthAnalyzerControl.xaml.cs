@@ -91,6 +91,12 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         }
 
         var damageSpec = _damageable.GetAllDamage(target.Value);
+        // i have no idea for a better fix. i hate this.
+        foreach (var type in _prototypes.EnumeratePrototypes<DamageTypePrototype>())
+        {
+            if (_damageable.CanBeDamagedBy((target.Value, damageable), type.ID))
+                damageSpec.DamageDict.TryAdd(type.ID, FixedPoint2.Zero);
+        }
         IReadOnlyDictionary<ProtoId<DamageTypePrototype>, FixedPoint2> damagePerType = damageSpec.DamageDict;
         var sortedGroups = damageSpec.GetDamagePerGroup(_prototypes)
             .OrderBy(g => HealthAnalyzerFormatting.GetDamageGroupSortKey(g.Key))

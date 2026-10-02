@@ -35,16 +35,14 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-
-#region Starlight
 using Content.Shared._Starlight.Weapons.DualWield;
 using Content.Shared.Mech.Components;
 using Content.Shared._Starlight.Utility;
 using Content.Shared.Weapons.Hitscan.Events;
+using Content.Shared.Movement.Components;
 using Content.Shared._Starlight.Camera;
 using Content.Shared._Starlight.VentCrawl.Components;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
-#endregion Starlight
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -578,6 +576,63 @@ public abstract partial class SharedGunSystem : EntitySystem
     }
 
     #region Starlight
+
+    /// <summary>
+    /// Spread cone the next shot would have if fired at <paramref name="curTime"/>, including the movement penalty.
+    /// Does not modify the gun, so it is safe to call every frame (e.g. for the crosshair).
+    /// </summary>
+    public Angle PeekSpread(Entity<GunComponent?> gun, TimeSpan? curTime = null)
+    {
+        if (!Resolve(gun, ref gun.Comp, false))
+            return Angle.Zero;
+
+        var theta = GetNextShotTheta(gun.Comp, curTime ?? Timing.CurTime);
+        return new Angle(theta * GetMovementSpreadModifier((gun, gun.Comp)));
+    }
+
+    /// <summary>
+    /// Advances <see cref="GunComponent.CurrentAngle"/> for a shot fired now and returns it.
+    /// Must only be called when the gun actually fires.
+    /// </summary>
+    public Angle UpdateCurrentAngle(Entity<GunComponent> gun, TimeSpan? curTime = null)
+    {
+        gun.Comp.CurrentAngle = new Angle(GetNextShotTheta(gun.Comp, curTime ?? Timing.CurTime));
+        return gun.Comp.CurrentAngle;
+    }
+
+    private static double GetNextShotTheta(GunComponent comp, TimeSpan curTime)
+    {
+        // LastFire is set to NextFire, so it is in the future while the gun is cycling.
+        // Recoil only starts decaying once the gun could fire again.
+        var timeSinceLastFire = Math.Max(0, (curTime - comp.LastFire).TotalSeconds);
+        return MathHelper.Clamp(
+            comp.CurrentAngle.Theta + comp.AngleIncreaseModified.Theta - (comp.AngleDecayModified.Theta * timeSinceLastFire),
+            comp.MinAngleModified.Theta,
+            comp.MaxAngleModified.Theta);
+    }
+
+    /// <summary>
+    /// Multiplier applied to the spread while the holder is moving.
+    /// </summary>
+    public float GetMovementSpreadModifier(Entity<GunComponent> gun)
+    {
+        var holder = Transform(gun).ParentUid;
+        if (!TryComp<InputMoverComponent>(holder, out var mover) || !mover.CanMove || !mover.HasDirectionalMovement)
+            return 1f;
+
+        // Sprinting is the default (running) movement, walking is the slow one.
+        return 1f + (mover.Sprinting ? gun.Comp.SprintSpreadModifier : gun.Comp.WalkSpreadModifier);
+    }
+
+    public Angle GetRecoilAngle(Entity<GunComponent> gun, Angle direction, TimeSpan? curTime = null)
+    {
+        var spread = UpdateCurrentAngle(gun, curTime).Theta * GetMovementSpreadModifier(gun);
+
+        // Convert it so angle can go either side.
+        var random = Random.NextFloat(-0.5f, 0.5f);
+        return new Angle(direction.Theta + (spread * random));
+    }
+
     public bool IsChamberClosed(EntityUid gunEntity)
         => Appearance.TryGetData(gunEntity, AmmoVisuals.BoltClosed, out bool boltClosed) && boltClosed;
     #endregion
