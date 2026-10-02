@@ -187,3 +187,369 @@
     delay: 1.5
   - type: SpawnOnTrigger
     proto: EruptionBomb
+
+- type: entity
+  parent: ActionFreezeRune
+  id: ActionSoulKnives
+  name: Rune of soul cutting
+  description: Summons a magical rune that will place several immobile soul knives, hurting anyone who comes in contact with them (30 seconds cooldown).
+  components:
+  - type: Action
+    useDelay: 30
+    icon:
+        sprite: _Starlight/Objects/Magic/magicactions.rsi
+        state: kniverune
+  - type: TargetAction
+    range: 16
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: KnivesRune
+        amount: 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-soulknives
+    tts: action-speech-spell-soulknives-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  id: KnivesRune
+  name: rune of soul cutting
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/magicactions.rsi
+    layers:
+    - state: kniveruneanim
+  - type: CustomSpawner
+    enabled: true
+    spawnOnInterval: true
+    spawnInterval: 0.1
+    oneShot: true
+    strategy: All
+    spawnData:
+    - protoId: Runeknifespawn
+      spawnOffsets:
+      - -2, 2
+    - protoId: Runeknifespawn
+      spawnOffsets:
+      - 0, 2
+    - protoId: Runeknifespawn
+      spawnOffsets:
+      - 2, 2
+    - protoId: Runeknifespawn
+      spawnOffsets:
+      - -1, 1
+    - protoId: Runeknifespawn
+      spawnOffsets:
+      - 1, 1
+    - protoId: Runeknifespawn
+      spawnOffsets:
+      - 0, 1
+    - protoId: Runeknifespawn
+      spawnOffsets:
+      - -2, 0
+    - protoId: Runeknifespawn
+      spawnOffsets:
+      - 2, 0
+    - protoId: Runeknifespawn
+      spawnOffsets:
+      - 0, -1
+    - protoId: Runeknifespawn
+      spawnOffsets:
+      - -1, -1
+    - protoId: Runeknifespawn
+      spawnOffsets:
+      - 1, -1
+    - protoId: Runeknifespawn
+      spawnOffsets:
+      - -2, -2
+    - protoId: Runeknifespawn
+      spawnOffsets:
+      - 0, -2
+    - protoId: Runeknifespawn
+      spawnOffsets:
+      - 2, -2
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  parent: BaseRune
+  id: Runeknifespawn
+  name: orb
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: orbknives
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    examinable: false
+    popup: null
+    delay: 2
+  - type: SpawnOnTrigger
+    keysIn:
+    - timer
+    proto: ProjectileSoulKnife
+  - type: TimedDespawn
+    lifetime: 2.1
+
+- type: entity
+  parent: ActionFreezeRune
+  id: ActionImpale
+  name: Impale
+  description: Summons spears from the ground that will impale anyone that can't move away in time (10 seconds cooldown).
+  components:
+  - type: Action
+    useDelay: 10
+    icon:
+        sprite: _Starlight/Objects/Magic/magicactions.rsi
+        state: impale
+  - type: TargetAction
+    range: 10
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: SummoningImpale
+        amount: 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-impale
+    tts: action-speech-spell-impale-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  id: SummoningImpale
+  name: coiled spears
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: speardown
+  - type: CustomSpawner
+    enabled: true
+    spawnOnInterval: true
+    spawnInterval: 0.1
+    oneShot: true
+    strategy: All
+    spawnData:
+    - protoId: CoiledSpears
+      spawnOffsets:
+      - 0, 2
+    - protoId: CoiledSpears
+      spawnOffsets:
+      - -1, 1
+    - protoId: CoiledSpears
+      spawnOffsets:
+      - 0, 1
+    - protoId: CoiledSpears
+      spawnOffsets:
+      - 1, 1
+    - protoId: CoiledSpears
+      spawnOffsets:
+      - -2, 0
+    - protoId: CoiledSpears
+      spawnOffsets:
+      - -1, 0
+    - protoId: CoiledSpears
+      spawnOffsets:
+      - 0, 0
+    - protoId: CoiledSpears
+      spawnOffsets:
+      - 1, 0
+    - protoId: CoiledSpears
+      spawnOffsets:
+      - 2, 0
+    - protoId: CoiledSpears
+      spawnOffsets:
+      - -1, -1
+    - protoId: CoiledSpears
+      spawnOffsets:
+      - 0, -1
+    - protoId: CoiledSpears
+      spawnOffsets:
+      - 1, -1
+    - protoId: CoiledSpears
+      spawnOffsets:
+      - 0, -2
+  - type: TimedDespawn
+    lifetime: 0.5
+
+- type: entity
+  parent: BaseRune
+  id: CoiledSpears
+  name: coiled spears
+  description: Watch out!!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: speardown
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    examinable: false
+    popup: null
+    delay: 1.5
+  - type: SpawnOnTrigger
+    keysIn:
+    - timer
+    proto: ImpaleSpear
+  - type: TimedDespawn
+    lifetime: 1.55
+
+- type: entity
+  parent: ActionFreezeRune
+  id: ActionAnnihilationRune
+  name: Great rune of annihilation
+  description: Materialise your bottomless malice in a rune that will annihilate anything in its radius after 4 seconds (80 seconds cooldown).
+  components:
+  - type: Action
+    useDelay: 80
+    icon:
+        sprite: _Starlight/Objects/Magic/magicactions.rsi
+        state: annihilation
+  - type: TargetAction
+    range: 16
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: RuneAnnihilation
+        amount: 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-annihilationrune
+    tts: action-speech-spell-annihilationrune-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  id: RuneAnnihilation
+  parent: BaseRune
+  name: great rune of annihilation
+  description: Your instincts scream at you, you do not want to get close.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Magic/annihilation.rsi
+      layers:
+        - state: annihilation
+    - type: TriggerOnSpawn
+    - type: TimerTrigger
+      delay: 4
+    - type: TimedDespawn
+      lifetime: 14
+    - type: SpawnOnTrigger
+      keysIn:
+      - timer
+      proto: annihilationsmite
+    - type: EmitSoundOnSpawn
+      sound:
+        path: /Audio/_Starlight/Magic/annihilationrune.ogg
+
+
+- type: entity
+  id: annihilationsmite
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/annihilation.rsi
+    layers:
+      - state: annihilationsmite
+  - type: Clickable
+  - type: Fixtures
+    fixtures:
+       rune:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-2,-2,2,2"
+        hard: false
+        mask:
+          - ItemMask
+        layer:
+          - SlipLayer
+  - type: Physics
+  - type: DamageContacts
+    ignoreWhitelist:
+        tags:
+          - DarkWizard
+    damageDead: false
+    damage:
+      types:
+        Slash: 50
+        Asphyxiation: 200
+        Structural: 50
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  parent: ActionFreezeRune
+  id: ActionRuneGravity
+  name: Rune of gravity
+  description: Summon a rune that will quickly pull anything close towards it, dont stay close! (30 seconds cooldown).
+  components:
+  - type: Action
+    useDelay: 30
+    icon:
+        sprite: _Starlight/Objects/Magic/magicactions.rsi
+        state: gravity
+  - type: TargetAction
+    range: 16
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: RuneGravity
+        amount: 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-runegravity
+    tts: action-speech-spell-runegravity-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  id: RuneGravity
+  parent: BaseRune
+  name: rune of gravity
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      layers:
+        - state: gravityrune
+    - type: TriggerOnSpawn
+    - type: TimerTrigger
+      delay: 1.2
+    - type: TimedDespawn
+      lifetime: 7
+    - type: SpawnOnTrigger
+      keysIn:
+      - timer
+      proto: RuneGravityEffect
+
+- type: entity
+  id: RuneGravityEffect
+  suffix: Gravity
+  parent: GlandEffectBase
+  components:
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Effects/Grenades/Supermatter/supermatter_start.ogg
+      params:
+        volume: 5
+  - type: AmbientSound
+    enabled: true
+    volume: -5
+    range: 14
+    sound:
+      path: /Audio/Effects/Grenades/Supermatter/supermatter_loop.ogg
+  - type: GravityWell
+    maxRange: 4
+    minRange: 0
+    baseRadialAcceleration: 6
+    baseTangentialAcceleration: 6
+    gravPulsePeriod: 0.01
+  - type: SingularityDistortion
+    intensity: 10
+    falloffPower: 1.5
+  - type: TimedDespawn
+    lifetime: 6

@@ -30,6 +30,43 @@
     },
     {
       "name": "eruptionbomb"
+    },
+    {
+      "name": "soulfrag"
+    },
+    {
+      "name": "orbknives",
+      "delays": [
+       [
+        0.3,
+        0.3,
+        0.3,
+        0.3
+        ]
+       ]
+    },
+    {
+      "name": "soulknives",
+      "delays": [
+       [
+        0.3,
+        0.3,
+        0.3,
+        0.3
+        ]
+       ]
+    },
+    {
+      "name": "speardown",
+      "delays": [
+       [
+        0.75,
+        0.75
+       ]
+            ]
+     },
+    {
+      "name": "spearup"
     }
   ]
 }

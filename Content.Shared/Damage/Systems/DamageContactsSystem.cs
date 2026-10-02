@@ -1,4 +1,5 @@
 using Content.Shared.Damage.Components;
+using Content.Shared.Mobs.Systems; // Starlight-change
 using Content.Shared.Whitelist;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
@@ -11,6 +12,7 @@ public sealed partial class DamageContactsSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private MobStateSystem _mobState = default!; // Starlight-change
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
@@ -31,10 +33,18 @@ public sealed partial class DamageContactsSystem : EntitySystem
         {
             if (_timing.CurTime < damaged.NextSecond)
                 continue;
+
             damaged.NextSecond = _timing.CurTime + TimeSpan.FromSeconds(1);
 
-            if (damaged.Damage != null)
-                _damageable.TryChangeDamage(ent, damaged.Damage, interruptsDoAfters: false);
+            if (damaged.Damage == null)
+                continue;
+
+            // Starlight-start: By default, don't damage entities that are already dead to not doomstack damage.
+            if (!damaged.DamageDead && _mobState.IsDead(ent))
+                continue;
+
+            _damageable.TryChangeDamage(ent, damaged.Damage, interruptsDoAfters: false);
+            // Starlight-end
         }
     }
 
@@ -70,5 +80,6 @@ public sealed partial class DamageContactsSystem : EntitySystem
 
         var damagedByContact = EnsureComp<DamagedByContactComponent>(otherUid);
         damagedByContact.Damage = component.Damage;
+        damagedByContact.DamageDead = component.DamageDead; // Starlight-change
     }
 }

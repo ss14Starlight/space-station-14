@@ -219,3 +219,29 @@
     iceChance: 0.60  # Starlight: 60% ice, 40% snow
     iceEntityId: IceCrust  # Starlight: Ice crust debris entity
     snowTileId: FloorSnow  # Starlight: Snow floor tile
+
+- type: entity
+  parent: BaseAction
+  id: ActionDarkPassage
+  name: Dark passage
+  description: Glare at the walls in front of you, collapsing them to nothingness (20 seconds cooldown).
+  components:
+  - type: Action
+    useDelay: 20
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    icon:
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      state: darkpassage
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:MultiProjectileSpellEvent
+      prototype: ProjectilePolyShadow
+      projectileCount: 3
+      spreadDegrees: 30
+  - type: SpeakOnAction
+    sentence: action-speech-spell-darkpassage
+    tts: action-speech-spell-darkpassage-tts
+    modifier: Spell

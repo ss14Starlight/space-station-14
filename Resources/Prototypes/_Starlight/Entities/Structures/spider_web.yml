@@ -216,3 +216,41 @@
     blacklist:
       components:
       - IgnoreSpiderWeb
+
+
+- type: entity
+  id: SpiderWebSoul
+  parent: SpiderWebStrong
+  name: soul web
+  description: Web similar to a spider's, the strands are incredibly sharp and resistant.
+  components:
+  - type: Sprite
+    color: "#31F5C0"
+  - type: SpeedModifierContacts
+    blacklist:
+        tags:
+          - DarkWizard
+    walkSpeedModifier: 0.3
+    sprintSpeedModifier: 0.3
+  - type: DamageContacts
+    ignoreWhitelist:
+        tags:
+          - DarkWizard
+    damage:
+      types:
+        Slash: 4
+        Poison: 2
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: PointLight
+    radius: 1
+    energy: 3
+    color: "#31F5C0"
+  - type: TimedDespawn
+    lifetime: 5
