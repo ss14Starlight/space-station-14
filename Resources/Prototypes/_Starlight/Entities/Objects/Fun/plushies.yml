@@ -301,6 +301,47 @@
         - state: equipped-HELMET
 
 - type: entity
+  parent: [BaseLizardPlushie, BaseSyndicateContraband]
+  id: PlushieLinari # LynatiKr20
+  name: linari miun plushie
+  description: An expertly crafted plush lizard in tactical officer gear, absent from the standard NanoTrasen catalogues. The stitching on the back says "Property of the Syndicate." Holding it makes you feel like you're breaking at least three corporate regulations.
+  components:
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Fun/Plushies/linari-miun-plushie.rsi
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/Plushies/linari-miun-plushie.rsi
+      state: icon
+    - type: EmitSoundOnUse
+      sound:
+        path: /Audio/Items/Toys/toysqueak1.ogg
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Items/Toys/toysqueak2.ogg
+    - type: EmitSoundOnActivate
+      sound:
+        path: /Audio/Items/Toys/toysqueak1.ogg
+    - type: EmitSoundOnTrigger
+      sound:
+        path: /Audio/Items/Toys/toysqueak2.ogg
+    - type: Edible
+      requiresSpecialDigestion: true
+      useSound:
+        path: /Audio/Items/Toys/toysqueak3.ogg
+    - type: MeleeWeapon
+      wideAnimationRotation: 180
+      soundHit:
+        path: /Audio/Items/Toys/toysqueak2.ogg
+    - type: Clothing
+      quickEquip: false
+      sprite: _Starlight/Objects/Fun/Plushies/linari-miun-plushie.rsi
+      slots:
+        - HEAD
+      clothingVisuals:
+        head:
+          - state: equipped-HELMET
+
+- type: entity
   parent: BaseMothPlushie
   id: PlushieMozan # puddleboat
   name: mozan plushie
@@ -725,6 +766,47 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieGnome
+
+- type: entity
+  parent: BaseLizardPlushie
+  id: PlushieKiki
+  name: Kiki plushie
+  description: An honorable member of the kob... wait a minute, this is just a cute marketable plushie of Kiki!
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/kiki_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/kiki_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Items/Toys/Kiki/OnUse.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Toys/Kiki/OnLand.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Items/Toys/Kiki/OnActivate.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Items/Toys/Kiki/OnTrigger.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/_Starlight/Items/Toys/Kiki/OnTrigger.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Items/Toys/Kiki/Nomf.ogg
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/kiki_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
 
 - type: entity
   parent: BasePlushie

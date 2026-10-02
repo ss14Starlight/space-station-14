@@ -282,6 +282,7 @@
     - Equipment
     - StarlightScienceWeapons
     - WirelessCameraHandheld
+    - StarlightExperimentalwelderOnly
   - type: EmagLatheRecipes
     emagDynamicPacks:
     # They can keep the "best thing to emag" trait
@@ -308,6 +309,7 @@
 # Command, paperwork stuff, mostly
 - type: entity
   id: CommandTechFab
+  categories: [ ShouldMapStation ]
   parent: BaseLatheLube
   name: command techfab
   description: Prints equipment for use by the station's command department.

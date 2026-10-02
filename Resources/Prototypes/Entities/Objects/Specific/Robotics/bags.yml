@@ -1,0 +1,25 @@
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: DroneBag
+  name: Drone Storage Cube
+  suffix: Unremoveable
+  description: An internal pocket to hold your stuff. The space is limited.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/drone_storage_cube.rsi
+    state: drone_storage_cube
+  - type: Unremoveable
+  - type: Clothing
+    slots: [back]
+  - type: Storage
+    grid:
+    - 0,0,7,1
+    maxItemSize: Normal
+  - type: PrivateStorage
+    accessDelay: 3.0
+    accessPopup: drone-bag-accessing
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+

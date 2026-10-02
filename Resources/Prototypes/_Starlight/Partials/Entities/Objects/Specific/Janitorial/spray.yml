@@ -1,11 +1,67 @@
 - type: !PartialOnly entity
   id: SprayBottleBase
   components:
-  - type: Spray
-    transferAmount: 6 # 10 sprays per 60u bottle
+  - type: Solution
+    solution:
+      maxVol: 120
 
 - type: !PartialOnly entity
   id: MegaSprayBottle
   components:
-  - type: Spray
-    transferAmount: 8 # 15 sprays per 120u bottle
+  - type: Solution
+    solution:
+      maxVol: 240
+
+- type: !PartialOnly entity
+  id: SprayBottleWater
+  components:
+  - type: Solution
+    solution:
+      reagents: !Remove
+      - ReagentId: Water
+        Quantity: 60
+
+- type: !PartialOnly entity
+  id: SprayBottleWater
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Water
+        Quantity: 120
+
+- type: !PartialOnly entity
+  id: SprayBottleSpaceCleaner
+  components:
+  - type: Solution
+    solution:
+      reagents: !Remove
+      - ReagentId: SpaceCleaner
+        Quantity: 60
+
+- type: !PartialOnly entity
+  id: SprayBottleSpaceCleaner
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: SpaceCleaner
+        Quantity: 120
+
+- type: !PartialOnly entity
+  id: MegaSprayBottleSpaceCleaner
+  components:
+  - type: Solution
+    solution:
+      reagents: !Remove
+      - ReagentId: SpaceCleaner
+        Quantity: 120
+
+- type: !PartialOnly entity
+  id: MegaSprayBottleSpaceCleaner
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: SpaceCleaner
+        Quantity: 240

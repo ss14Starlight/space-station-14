@@ -1,5 +1,0 @@
-<Project>
-    <PropertyGroup>
-        <EnableNUnitRunner>true</EnableNUnitRunner>
-    </PropertyGroup>
-</Project>

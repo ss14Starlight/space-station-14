@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: Bucket
+  components:
+  - type: Item
+    size: Normal #revert container size ballooning
+    shape:
+    - !Remove 0,0,2,3
+    - 0,0,1,2

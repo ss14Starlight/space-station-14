@@ -1,2 +1,4 @@
-rattle-on-trigger-dead-message = {$user} has died {$position}.
-rattle-on-trigger-critical-message = {$user} life signs critical, immediate assistance required {$position}.
+# Starlight: These now display job titles.
+
+rattle-on-trigger-dead-message = {$user} ({$job}) has died {$position}.
+rattle-on-trigger-critical-message = {$user} ({$job}) life signs critical, immediate assistance required {$position}.

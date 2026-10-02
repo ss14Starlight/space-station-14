@@ -13,13 +13,23 @@
     - Shadekin
     - Felionoid
     - Thaven
-    - NeoDiona
-    - NeoResomi
-    - NeoVox
+    - NeoArachnid
     - NeoAvali
+    - NeoCyclorite
+    - NeoDwarf
+    - NeoDiona
     - NeoFelionoid
-    - NeoKin
+    - NeoHuman
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoSlimePerson
     - NeoThaven
+    - NeoVox
+    - NeoVulpkanin
+    - NeoKin
+    - NeoElf
+    - NeoLagomorph
   components:
     - type: AutoImplant
       implants:
@@ -778,21 +788,22 @@
     - Doll
     - Elf
     - NeoArachnid
-    - NeoDiona
-    - NeoReptilian
-    - NeoResomi
-    - NeoVox
-    - NeoVulpkanin
     - NeoAvali
-    - NeoFelionoid
-    - NeoKin
-    - NeoThaven
     - NeoCyclorite
     - NeoDwarf
+    - NeoDiona
+    - NeoFelionoid
+    - NeoHuman
     - NeoMoth
+    - NeoReptilian
+    - NeoResomi
     - NeoSlimePerson
-    - NeoLagomorph
+    - NeoThaven
+    - NeoVox
+    - NeoVulpkanin
+    - NeoKin
     - NeoElf
+    - NeoLagomorph
     - Neocyte
   components:
     - type: GhostRole
@@ -919,6 +930,23 @@
   id: CCGreenshieldBasic
   speciesBlacklist:
     - Vox
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDwarf
+    - NeoDiona
+    - NeoFelionoid
+    - NeoHuman
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoVox
+    - NeoVulpkanin
+    - NeoKin
+    - NeoElf
+    - NeoLagomorph
   parent: EventHumanoidCentcomm
   randomizeName: false
   components:
@@ -1077,3 +1105,24 @@
     - type: AntagImmune
     - type: NoObjectiveTarget
 
+# Blacklist for Neocyte variants, as they otherwise overwhelm the randomizer due to technically counting as separate species
+- type: randomHumanoidSettings
+  id: NeocyteVariantBlacklist
+  speciesBlacklist:
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDwarf
+    - NeoDiona
+    - NeoFelionoid
+    - NeoHuman
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoVox
+    - NeoVulpkanin
+    - NeoKin
+    - NeoElf
+    - NeoLagomorph

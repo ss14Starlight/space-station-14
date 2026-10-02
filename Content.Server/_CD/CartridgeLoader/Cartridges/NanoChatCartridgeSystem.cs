@@ -881,7 +881,7 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
             return;
 
         var members = recipient.Value.Members ?? new HashSet<uint>();
-        if (members.Contains(inviteeNumber))
+        if (members.Contains(inviteeNumber) || members.Count >= recipient.Value.MaxMembers) //Starlight edit - Member limit
             return;
 
         // Add member to group

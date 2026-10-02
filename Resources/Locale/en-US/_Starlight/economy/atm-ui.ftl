@@ -82,3 +82,5 @@ economy-chat-donate-18-wrapped-message = [bold]Commission fee payment has been r
 
 economy-chat-donate-19-message = Dividend payment has been credited to your balance. Amount: {$amount} cr.
 economy-chat-donate-19-wrapped-message = [bold]Dividend payment has been credited to your balance. Amount: [color=green]{$amount}[/color][/bold] cr.
+
+ui-atm-title = Automated Teller Machine

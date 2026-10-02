@@ -1,0 +1,263 @@
+- type: entity
+  parent: CratePrivateSecure
+  id: CrateITGMedicalSurplus
+  name: ITG Medical Surplus Crate
+  description: A box containing medical supplies from the back of an ITG warehouse
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: MedicalSurplusMedkitEntityTable
+        - !type:NestedSelector
+          tableId: MedicalSurplusMedkitEntityTable
+        - !type:NestedSelector
+          tableId: MedicalSurplusChemsEntityTable
+        - !type:NestedSelector
+          tableId: MedicalSurplusChemsEntityTable
+        - !type:NestedSelector
+          tableId: MedicalSurplusGiftsEntityTable
+        - !type:NestedSelector
+          tableId: MedicalSurplusGiftsEntityTable
+
+- type: entityTable
+  id: MedicalSurplusMedkitEntityTable
+  table: !type:GroupSelector
+    children:
+    - id: MedkitAdvancedFilled
+      weight: 0.5
+    - id: MedkitFilled
+      weight: 1
+    - id: MedkitCombatFilled
+      weight: 0.25
+    - id: MedkitToxin
+      weight: 0.5
+    - id: MedkitRadiation
+      weight: .25
+    - id: MedkitBurn
+      weight: 0.5
+
+- type: entityTable
+  id: MedicalSurplusChemsEntityTable
+  table: !type:GroupSelector
+    children:
+    - id: JugTrico
+      weight: 0.5
+    - id: JugDexPlusSaline
+      weight: 0.5
+    - id: JugDylovene
+      weight: 1
+    - id: JugPuncturase
+      weight: 0.01
+    - id: JugBicaridine
+      weight: 1
+    - id: JugDermaline
+      weight: 1
+    - id: JugDexalinPlus
+      weight: 0.5
+    - id: JugHyronalin
+      weight: 0.25
+    - id: JugSaline
+      weight: 1
+    - id: JugWeldingFuel
+      weight: 0.5
+
+- type: entityTable
+  id: MedicalSurplusGiftsEntityTable
+  table: !type:GroupSelector
+    children:
+    - id: CigaretteOmnizine
+      weight: 1
+    - id: JetInjector
+      weight: 0.5
+    - id: ChemistryBottleEpinephrine
+      weight: 1
+    - id: BruteAutoInjector
+      weight: 0.5
+    - id: BurnAutoInjector
+      weight: .5
+    - id: EmergencyMedipen
+      weight: 1
+    - id: CombatMedipen
+      weight: 0.1
+    - id: DefibrillatorCompact
+      weight: 0.25
+    - id: ClothingEyesGlassesChemical
+      weight: .25
+    - id: GoldenJug
+      weight: 0.1
+    - id: LauncherSyringe
+      weight: 0.25
+    - id: CryostasisBeaker
+      weight: .2
+    - id: AdvancedJetInjector
+      weight: 0.5
+
+- type: entity
+  parent: CratePrivateSecure
+  id: CrateITGShotgunSurplus
+  name: ITG Shotgun Surplus Crate
+  description: A box containing weapons from the back of an ITG warehouse
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: ShotgunSurplusGunEntityTable
+        - !type:NestedSelector
+          tableId: ShotgunSurplusGunEntityTable
+        - !type:NestedSelector
+          tableId: ShotgunSurplusAmmoEntityTable
+        - !type:NestedSelector
+          tableId: ShotgunSurplusAmmoEntityTable
+        - !type:NestedSelector
+          tableId: ShotgunSurplusAmmoEntityTable
+        - !type:NestedSelector
+          tableId: ShotgunSurplusAmmoEntityTable
+
+- type: entityTable
+  id: ShotgunSurplusGunEntityTable
+  table: !type:GroupSelector
+    children:
+    - id: WeaponShotgunRiot
+      weight: 0.75
+    - id: WeaponShotgunEnforcer
+      weight: 1
+    - id: WeaponShotgunKammerer
+      weight: 1
+    - id: WeaponShotgunCombat
+      weight: 0.5
+    - id: WeaponShotgunCycler
+      weight: .15
+
+- type: entityTable
+  id: ShotgunSurplusAmmoEntityTable
+  table: !type:GroupSelector
+    children:
+    - id: BoxLethalshot
+      weight: 1
+    - id: BoxShotgunSlug
+      weight: 1
+    - id: BoxShotgunIncendiary
+      weight: .25
+
+- type: entity
+  parent: CratePrivateSecure
+  id: CrateITGSurplus
+  name: ITG Surplus Trading Crate
+  description: A box containing good from the back of an ITG warehouse, meant to be pawned off to station side shmucks
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: EngineeringSurplusEntityTable
+        - !type:NestedSelector
+          tableId: ServiceSurplusEntityTable
+        - !type:NestedSelector
+          tableId: SecuritySurplusEntityTable
+        - !type:NestedSelector
+          tableId: FunSurplusEntityTable
+
+- type: entityTable
+  id: EngineeringSurplusEntityTable
+  table: !type:GroupSelector
+    children:
+    - id: BZCanister
+      weight: .75
+    - id: RCDAmmo
+      amount: 3
+      weight: 1
+    - id: WeaponParticleDecelerator
+      weight: .25
+    - id: PowerDrill
+      weight: .25
+    - id: MetalFoamGrenade
+      amount: 3
+      weight: .25
+    - id: ElectrolyzerMachineCircuitboard
+      weight: .1
+
+- type: entityTable
+  id: SecuritySurplusEntityTable
+  table: !type:GroupSelector
+    children:
+    - id: ClothingHandsGlovesCombat
+      amount: 3
+      weight: .75
+    - id: TrackingImplant
+      amount: 3
+      weight: 1
+    - id: GrenadeStinger
+      amount: 3
+      weight: .25
+    - id: GrenadeFlashBang
+      amount: 3
+      weight: .25
+
+- type: entityTable
+  id: ServiceSurplusEntityTable
+  table: !type:GroupSelector
+    children:
+    - id: CowCube
+      amount: 3
+      weight: 1
+    - id: GoatCube
+      amount: 3
+      weight: 1
+    - id: ReagentContainerFlour
+      amount: 3
+      weight: 1
+    - id: AssortedForgeParts
+      weight: .5
+    - id: AdvMopItem
+      weight: .5
+
+- type: entityTable
+  id: FunSurplusEntityTable
+  table: !type:GroupSelector
+    children:
+    - id: PinpointerUniversal
+      weight: .01
+    - id: WeaponLauncherChonoLoke
+      weight: .15
+    - id: MakeshiftID
+      weight: .1
+    - id: BluespaceCrystal
+      amount: 5
+      weight: .1
+    - id: Claymore
+      weight: .05
+    - id: ClothingBackpackSyndicate
+      weight: .15
+    - id: OrganVoxLiver
+      amount: 5
+      weight: .25
+    - id: PyrottonBol
+      weight: .3
+    - id: WeaponPistolCHIMP
+      weight: .05
+    - id: CannonBall
+      weight: .25
+    - id: WeaponPistolFlintlock
+      weight: .15
+    - id: StrangePill
+      amount: 10
+      weight: .3
+    - id: CorporateCircuitBoard
+      weight: .05
+    - id: FoodBoxPizzaFilled
+      weight: .5
+    - id: FoodBoxDonut
+      weight: .05
+    - id: Pizzabomb
+      weight: .02
+    - id: MechVim
+      weight: .1
+    - id: MobCobraSpace
+      weight: .05
+    - id: MobCarpHolo
+      weight: .05

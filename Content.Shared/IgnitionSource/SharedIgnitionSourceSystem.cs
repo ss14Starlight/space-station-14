@@ -18,20 +18,11 @@ public abstract partial class SharedIgnitionSourceSystem : EntitySystem
         SubscribeLocalEvent<IgnitionSourceComponent, IgnitionEvent>(OnIgnitionEvent);
     }
 
-    private void OnIsHot(Entity<IgnitionSourceComponent> ent, ref IsHotEvent args)
-    {
-        args.IsHot |= ent.Comp.Ignited;
-    }
+    private void OnIsHot(Entity<IgnitionSourceComponent> ent, ref IsHotEvent args) => args.IsHot |= ent.Comp.Ignited;
 
-    private void OnItemToggle(Entity<ItemToggleHotComponent> ent, ref ItemToggledEvent args)
-    {
-        SetIgnited(ent.Owner, args.Activated);
-    }
+    private void OnItemToggle(Entity<ItemToggleHotComponent> ent, ref ItemToggledEvent args) => SetIgnited(ent.Owner, args.Activated);
 
-    private void OnIgnitionEvent(Entity<IgnitionSourceComponent> ent, ref IgnitionEvent args)
-    {
-        SetIgnited((ent.Owner, ent.Comp), args.Ignite);
-    }
+    private void OnIgnitionEvent(Entity<IgnitionSourceComponent> ent, ref IgnitionEvent args) => SetIgnited((ent.Owner, ent.Comp), args.Ignite);
 
     /// <summary>
     /// Simply sets the ignited field to the ignited param.
@@ -44,5 +35,6 @@ public abstract partial class SharedIgnitionSourceSystem : EntitySystem
 
         ent.Comp.Ignited = ignited;
         Dirty(ent, ent.Comp);
+        OnIgnitionStateChanged((ent.Owner, ent.Comp)); // Starlight
     }
 }
