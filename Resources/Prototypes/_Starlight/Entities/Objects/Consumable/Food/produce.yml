@@ -1,7 +1,7 @@
 - type: entity
   name: organ pod
   description: Strangest salad you've ever seen.
-  parent: FoodProduceBase
+  parent: [FoodProduceBase, BaseSlicingRefinable]
   id: FoodOrganTree
   components:
     - type: FlavorProfile
@@ -11,20 +11,18 @@
       sprite: _Starlight/Objects/Specific/Hydroponics/organtree.rsi
       state: produce
     - type: Produce
-      seedId: organTree
-    - type: Butcherable
-      butcheringType: Knife
-      spawned:
+      plantId: OrganTreePlants
+    - type: ToolRefinable
+      refineResult:
         - id: EffectOrganTree
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 5
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 2
-            - ReagentId: Vitamin
-              Quantity: 2
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 2
+          - ReagentId: Vitamin
+            Quantity: 2
     - type: Tag
       tags:
         - Fruit
@@ -51,19 +49,18 @@
     - type: FlavorProfile
       flavors:
         - perfid
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 14
-          reagents:
-            - ReagentId: DevilJuice
-              Quantity: 5
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: DevilJuice
+            Quantity: 5
     - type: Sprite
       sprite: _Starlight/Objects/Specific/Hydroponics/evil_apple.rsi
     - type: Item
       heldPrefix: produce
     - type: Produce
-      seedId: evilApple
+      plantId: EvilApplePlants
     - type: Tag
       tags:
         - Fruit
@@ -77,19 +74,18 @@
     - type: FlavorProfile
       flavors:
         - bitter
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: Acrileni
-              Quantity: 5
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Acrileni
+            Quantity: 5
     - type: Sprite
       sprite: _Starlight/Objects/Specific/Hydroponics/resinfera.rsi
     - type: Item
       heldPrefix: produce
     - type: Produce
-      seedId: resinfera
+      plantId: ResinferaPlants
     - type: Tag
       tags:
         - Fruit
@@ -108,19 +104,18 @@
         reagents:
         - ReagentId: MintExtract
           Quantity: 10
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 5
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 5
     - type: Sprite
       sprite: _Starlight/Objects/Specific/Hydroponics/mint.rsi
     - type: Item
       heldPrefix: produce
     - type: Produce
-      seedId: mint
+      plantId: MintPlants
     - type: Tag
       tags:
         - Vegetable
@@ -134,7 +129,7 @@
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/spearmint.rsi
   - type: Produce
-    seedId: spearMint
+    plantId: SpearMintPlants
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
@@ -154,19 +149,18 @@
     - type: FlavorProfile
       flavors:
         - cinnamon
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: Cinnamon
-              Quantity: 5
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Cinnamon
+            Quantity: 5
     - type: Sprite
       sprite: _Starlight/Objects/Specific/Hydroponics/cinnamon.rsi
     - type: Item
       heldPrefix: produce
     - type: Produce
-      seedId: cinnamon
+      plantId: CinnamonPlants
     - type: Tag
       tags:
         - Vegetable
@@ -180,13 +174,13 @@
     - type: PotencyVisuals
     - type: Extractable
       grindableSolutionName: food
-    - type: SolutionContainerManager
-      solutions:
-        flare:
-          maxVol: 5
-          reagents:
-            - ReagentId: Oil
-              Quantity: 5
+    - type: Solution
+      id: flare
+      solution:
+        maxVol: 5
+        reagents:
+          - ReagentId: Oil
+            Quantity: 5
     - type: ExpendableLight
       glowDuration: 145
       fadeOutDuration: 15
@@ -208,4 +202,4 @@
     - type: Item
       heldPrefix: unlit
     - type: Produce
-      seedId: cinnaflare
+      plantId: CinnaflarePlants

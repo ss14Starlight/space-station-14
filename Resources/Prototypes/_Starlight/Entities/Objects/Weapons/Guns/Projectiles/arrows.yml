@@ -22,13 +22,13 @@
     damage:
       types:
         Piercing: 2
-  - type: SolutionContainerManager
-    solutions:
-      ammo:
-        maxVol: 60
-        reagents:
-        - ReagentId: ConcentratedCorgiJuice
-          Quantity: 60
+  - type: Solution
+    id: ammo
+    solution:
+      maxVol: 60
+      reagents:
+      - ReagentId: ConcentratedCorgiJuice
+        Quantity: 60
   - type: SolutionInjectOnEmbed
     transferAmount: 60
     solution: ammo

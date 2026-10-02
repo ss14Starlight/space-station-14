@@ -18,21 +18,9 @@
     - Fox
     - Dog
   - type: Wagging
-  - type: Hunger # on 1.5x more
-    thresholds:
-      Overfed: 250
-      Okay: 200
-      Peckish: 150
-      Starving: 100
-      Dead: 0
+  - type: Hunger # on 1.1x more
     baseDecayRate: 0.018
-  - type: Thirst # Starlight start, on 1.5x more
-    thresholds:
-      OverHydrated: 650
-      Okay: 500
-      Thirsty: 350
-      Parched: 200
-      Dead: 0
+  - type: Thirst # Starlight start, on 1.25x more
     baseDecayRate: 0.125
   - type: TemperatureDamage # Ported over from CD. Afterall, it does make sense that something with fur can handle more cold/less heat. Basegame Moths, apparently, have similar resistances.
     heatDamageThreshold: 325
@@ -49,6 +37,11 @@
   - type: TemperatureProtection
     heatingCoefficient: 1.2
     coolingCoefficient: 0.3
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: SulfurBlood
+        Quantity: 600
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
     state: full
@@ -115,10 +108,6 @@
     targetZoom: "1.125, 1.125"
     maxZoom: "1.125, 1.125"
   - type: Vocal
-    sounds:
-      Male: NeoVulpkaninMSounds
-      Female: NeoVulpkaninFSounds
-      Unsexed: NeoVulpkaninMSounds
   - type: MeleeWeapon # Starlight start
     soundHit:
       path: /Audio/Weapons/pierce.ogg
@@ -127,6 +116,13 @@
       types:
         Piercing: 2
         Slash: 3
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#ccac1f"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
   - type: MessyDrinker
     spillChance: 0.05 # 🌟Starlight🌟 26% chance to spill per 30u of liquid, Starlight end
   - type: Sprite # Drawlayers. Top to bottom in order I believe.

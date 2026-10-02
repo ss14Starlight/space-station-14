@@ -1,5 +1,4 @@
 using Content.Shared.Construction.Prototypes;
-using Content.Shared.DoAfter;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Construction.Components

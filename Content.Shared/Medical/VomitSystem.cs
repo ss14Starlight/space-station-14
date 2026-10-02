@@ -12,6 +12,8 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
+using Content.Shared._Funkystation.Fluids;
+using Content.Shared._Funkystation.WallStains; // Funky Wall Stains
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
@@ -134,6 +136,15 @@ public sealed partial class VomitSystem : EntitySystem
             // Makes a vomit solution the size of 90% of the chemicals removed from the chemstream
             solution.AddReagent(new ReagentId(VomitPrototype, _bloodstream.GetEntityBloodData((uid, bloodStream))), vomitAmount);
         }
+
+        // Forky - Start - Stains
+        var stainEv = new SpilledOnEvent(uid, solution.Clone());
+        RaiseLocalEvent(uid, stainEv);
+        // Forky - End
+
+        // Funky Wall Stains
+        var splashEv = new SplashOnWallEvent(Transform(uid).Coordinates, solution.Clone());
+        RaiseLocalEvent(ref splashEv);
 
         if (_puddle.TrySpillAt(uid, solution, out var puddle, false))
         {

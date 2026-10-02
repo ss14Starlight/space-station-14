@@ -10,6 +10,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Popups; //Starlight
+using Content.Shared.Overlays;
 using Content.Shared.Radio.Components;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
@@ -40,6 +41,10 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
     [Dependency] private IEntityManager _entMan = default!; // Starlight
     [Dependency] private TagSystem _tag = default!; // Starlight
     [Dependency] private SharedPopupSystem _popup = default!; // Starlight
+
+    private static readonly ProtoId<TagPrototype> _canAffectLawBoards = "CanAffectLawBoards";
+
+    private static readonly ProtoId<SiliconLawsetPrototype> DefaultCrewLawset = "Crewsimov";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -360,6 +365,11 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
             && TryComp<StationAiHolderComponent>(ent.Comp.Core.Value, out var holder)
             && holder.Slot.ContainerSlot?.ContainedEntity is { } update)
         {
+            if (TryComp<ShowCrewIconsComponent>(update, out var crewIconComp))
+            {
+                crewIconComp.UncertainCrewBorder = DefaultCrewLawset != provider.Laws;
+                Dirty(update, crewIconComp);
+            }
             SetLaws(lawset.Laws, update, provider.LawUploadSound);
             // Components on lawboards TODO remove components provided by the old board when it is removed.
             if (provider.Components != null)
@@ -385,7 +395,7 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
         if (args.EmagComponent == null)
             return;
 
-        if (!_tag.HasTag(args.EmagComponent.Owner, "CanAffectLawBoards")) //TODO test, changed from "FreeMAG"
+        if (!_tag.HasTag(args.EmagComponent.Owner, _canAffectLawBoards))
             return;
 
 
@@ -396,8 +406,8 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
         if (emag.Lawset.HasValue)
         {
             var lawset = emag.Lawset.Value; //Fallback to FreeLawSet because clearly something is going on
-            ent.Comp.Laws = lawset; //"FreeLawset"; TODO test
-            ent.Comp.Lawset = GetLawset(lawset); //"FreeLawset"); TODO test
+            ent.Comp.Laws = lawset; //"FreeLawset";
+            ent.Comp.Lawset = GetLawset(lawset); //"FreeLawset");
         }
         else
         {

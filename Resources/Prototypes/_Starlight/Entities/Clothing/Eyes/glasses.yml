@@ -25,6 +25,7 @@
     tags:
     - HamsterWearable
     - WhitelistChameleon
+    - SecBeltEquip
   - type: IdentityBlocker
     coverage: EYES
 
@@ -54,6 +55,7 @@
     tags:
     - HamsterWearable
     - WhitelistChameleon
+    - SecBeltEquip
   - type: IdentityBlocker
     coverage: EYES
 
@@ -230,6 +232,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - SecBeltEquip
 
 - type: entity
   parent: [ClothingEyesBase, ShowMedicalIcons]
@@ -261,8 +264,8 @@
   - type: VisionCorrection
   - type: Tag
     tags:
-    - HudSecurity
     - WhitelistChameleon
+    - SecBeltEquip
 
 - type: entity
   parent: ClothingEyesGlassesChemical

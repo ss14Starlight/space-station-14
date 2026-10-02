@@ -12,15 +12,10 @@
       - RamChip
       - Trash
     isSpecialDigestibleExclusive: false
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
 
 - type: entity
   id: OrganNeoVoxHeart
@@ -48,3 +43,14 @@
     stages: [ Respiration ]
   - type: Lung
     alert: LowNitrogen
+
+- type: entity
+  id: OrganNeoVoxTongue
+  parent: OrganNeocyteTongue
+  suffix: Neo-Vox
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: NeoVoxMSounds
+      Female: NeoVoxFSounds
+      Unsexed: NeoVoxMSounds

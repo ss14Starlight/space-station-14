@@ -10,7 +10,7 @@ namespace Content.Shared.Humanoid;
 
 [DataDefinition]
 [Serializable, NetSerializable]
-public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, IEquatable<HumanoidCharacterAppearance>
+public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCharacterAppearance>
 {
     [DataField("hair")]
     public string HairStyleId { get; set; } = HairStyles.DefaultHairStyle;
@@ -163,7 +163,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         {
             SkinColorationStrategyInput.Unary => skinColoration.FromUnary(speciesPrototype.DefaultHumanSkinTone),
             SkinColorationStrategyInput.Color => skinColoration.ClosestSkinColor(speciesPrototype.DefaultSkinTone),
-            _ => skinColoration.ClosestSkinColor(speciesPrototype.DefaultSkinTone),
+            _ => skinColoration.ClosestSkinColor(speciesPrototype.DefaultSkinTone)
         };
 
         return new(
@@ -230,6 +230,9 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             case HumanoidEyeColor.FullWhite:
                 newEyeColor = Humanoid.EyeColor.MakeFullWhiteValid(newEyeColor);
                 break;
+            case HumanoidEyeColor.Sawian:
+                newEyeColor = Humanoid.EyeColor.ClosestSawianColor(Color.White);
+                break;
             default:
                 break;
 
@@ -271,6 +274,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         var hairColor = ClampColor(appearance.HairColor);
         var facialHairColor = ClampColor(appearance.FacialHairColor);
         var eyeColor = ClampColor(appearance.EyeColor);
+        var eyeGlow = appearance.EyeGlowing; //starlight
 
         var width = appearance.Width; //starlight
         var height = appearance.Height; //starlight
@@ -313,9 +317,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             skinColor = strategy.EnsureVerified(skinColor);
 
             // Starlight - Start
-            if (!Humanoid.EyeColor.VerifyEyeColor(speciesProto.EyeColoration, eyeColor))
+            if (!Humanoid.EyeColor.VerifyEyeColor(speciesProto.EyeColoration, eyeColor, glow: eyeGlow))
             {
                 eyeColor = Humanoid.EyeColor.ValidEyeColor(speciesProto.EyeColoration, eyeColor);
+                eyeGlow = Humanoid.EyeColor.ValidEyeGlow(speciesProto.EyeColoration, eyeGlow) ?? eyeGlow;
             }
 
             // this isn't a clamp, it's a reset if either is out of range
@@ -337,14 +342,14 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             facialHairColor,
             appearance.FacialHairGlowing, //starlight
             eyeColor,
-            appearance.EyeGlowing, //starlight
+            eyeGlow, //starlight
             skinColor,
             markingSet.GetForwardEnumerator().ToList(),
             width, //starlight
             height); //starlight
     }
 
-    public bool MemberwiseEquals(ICharacterAppearance maybeOther)
+    public bool MemberwiseEquals(HumanoidCharacterAppearance maybeOther)
     {
         if (maybeOther is not HumanoidCharacterAppearance other) return false;
         if (HairStyleId != other.HairStyleId) return false;

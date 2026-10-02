@@ -70,8 +70,10 @@
     allowSelfRepair: true
     fuelCost: 7.5 # Little cheaper on Neocytes, since they're not fully cybernetic.
     damage:
-      groups:
-        Brute: -24 # 4 for each type with reduction applied
+      types:
+        Blunt: -8 # 4 for each type with reduction applied
+        Piercing: -8
+        Slash: -8
   - type: Hunger
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
@@ -115,7 +117,6 @@
           Shock: 10
           Heat: 10
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatHuman
       amount: 5
@@ -188,12 +189,7 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
-    allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Bubble', 'Pop', 'Bubble', 'Pop', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk', 'ThavenHum', 'ThavenGlub', 'Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore']
   - type: Vocal
-    sounds:
-      Male: NeoHumanMSounds
-      Female: NeoHumanFSounds
-      Unsexed: NeoHumanMSounds
   - type: UniversalHealModifier
     modifier: 0.5
 

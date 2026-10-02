@@ -131,6 +131,7 @@
   physicalDesc: reagent-physical-desc-gaseous
   flavor: bitter
   color: "#cccccc"
+  flammability: 3 # Funky change
   boilingPoint: -253.0
   meltingPoint: -259.2
 
@@ -368,6 +369,7 @@
   plantMetabolism:
   - !type:PlantAdjustMutationLevel
     amount: 0.6
+    mutationTable: RandomPlantMutations
   - !type:PlantAdjustToxins
     amount: 4
   - !type:PlantAdjustHealth

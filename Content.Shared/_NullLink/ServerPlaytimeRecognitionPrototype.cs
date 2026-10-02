@@ -3,7 +3,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._NullLink;
 
-[Prototype("serverPlaytimeRecognition")]
+[Prototype]
 public sealed partial class ServerPlaytimeRecognitionPrototype : IPrototype, ISerializationHooks
 {
     [ViewVariables]

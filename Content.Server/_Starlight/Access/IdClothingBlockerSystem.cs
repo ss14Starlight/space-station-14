@@ -31,7 +31,7 @@ public sealed partial class IdClothingBlockerSystem : SharedIdClothingBlockerSys
     {
         if (component.FreezeUser)
         {
-            var blockedComponent = EntityManager.EnsureComponent<IdClothingFrozenComponent>(wearer);
+            var blockedComponent = EnsureComp<IdClothingFrozenComponent>(wearer);
             blockedComponent.ClothingItem = clothingUid;
             Dirty(wearer, blockedComponent);
         }

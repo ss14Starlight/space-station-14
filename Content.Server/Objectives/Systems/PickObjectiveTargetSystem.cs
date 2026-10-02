@@ -1,13 +1,8 @@
 using Content.Server.Objectives.Components;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
-using Content.Server.GameTicking.Rules;
-using Content.Server.Revolutionary.Components;
-using Robust.Shared.Random;
-using System.Linq;
 using Content.Shared.Mind.Filters;
 using Content.Shared._Starlight.Railroading.Events;
-using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Components;
 
 namespace Content.Server.Objectives.Systems;

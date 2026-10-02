@@ -91,6 +91,16 @@
       "name": "shock",
       "directions": 1,
       "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "metaphysical",
+      "directions": 1,
+      "copyright": "Made by github @sir-lutz"
+    },
+    {
+      "name": "holy",
+      "directions": 1,
+      "copyright": "Made by github @sir-lutz"
     }
   ]
 }

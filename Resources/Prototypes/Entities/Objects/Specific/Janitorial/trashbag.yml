@@ -50,6 +50,10 @@
     heldPrefix: blue
   - type: StorageFillVisualizer
     fillBaseName: blue-icon
+  - type: Tag # Starlight start - used by the janitorial trolley item mapper
+    tags:
+    - TrashBag
+    - TrashBagBlue # Starlight end
 
 - type: entity
   name: spell of all-consuming cleanliness

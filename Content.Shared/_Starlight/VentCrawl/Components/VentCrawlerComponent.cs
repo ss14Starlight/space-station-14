@@ -18,6 +18,11 @@ public sealed partial class VentCrawlerComponent : Component
     public SoundCollectionSpecifier CrawlSound { get; set; } = new("VentClaw", AudioParams.Default.WithVolume(5f));
 
     public float EnterDelay = 2.5f;
+
+    // Starlight Start
+    [DataField]
+    public bool MayCarryItems = true;
+    //Starlight End
 }
 
 [Serializable, NetSerializable]

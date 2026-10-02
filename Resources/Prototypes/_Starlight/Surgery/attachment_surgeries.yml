@@ -7,6 +7,7 @@
   - type: Surgery
     requirement:
     - SurgeryOpenIncision
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepExposeNerves
     - SurgeryStepExposeBloodVessels
@@ -36,6 +37,7 @@
   - type: Surgery
     requirement:
     - SurgeryOpenIncision
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepExposeNerves
     - SurgeryStepExposeBloodVessels
@@ -64,6 +66,7 @@
   - type: Surgery
     requirement:
     - SurgeryOpenIncision
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepExposeNerves
     - SurgeryStepExposeBloodVessels

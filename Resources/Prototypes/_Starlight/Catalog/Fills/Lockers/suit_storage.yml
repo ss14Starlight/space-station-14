@@ -1,3 +1,17 @@
+# Mining
+- type: entity
+  id: SuitStorageMiningSpecialist
+  parent: SuitStorageBase
+  suffix: Mining
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillMiningSpecialistHardsuitSpaceHazard
+  - type: AccessReader
+    access: [["Mining"]]
+
+# Blueshield
 - type: entity
   id: SuitStorageBlueShield
   parent: SuitStorageBase
@@ -26,6 +40,7 @@
   - type: SpawnOnTrigger
     proto: EffectFlashBluespace
 
+# Security
 - type: entity
   id: SuitStorageSecDouble
   parent: SuitStorageSec

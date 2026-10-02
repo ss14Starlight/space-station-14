@@ -6,6 +6,7 @@
   name: wizard-duel-title
   description: wizard-duel-description
   minPlayers: 35
+  voteCooldown: 2 # Starlight
   showInVote: false
   rules:
 #   - DummyNonAntagChance # Starlight

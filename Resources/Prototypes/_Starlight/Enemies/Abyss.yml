@@ -1,6 +1,6 @@
 - type: entity
   name: elder
-  parent: [ SimpleSpaceMobBase, FlyingMobBase, MobCombat ]
+  parent: [ SimpleSpaceMobBase, FlyingMobBase, MobCombat, BaseSlicingRefinable ]
   id: MobElder
   components:
     - type: Sprite
@@ -114,8 +114,8 @@
       - Pacified
       - RadiationProtection
       - Drowsiness
-    - type: Butcherable
-      spawned:
+    - type: ToolRefinable
+      refineResult:
       - id: AbyssCore
         amount: 1
     - type: NPCUseActionOnTarget

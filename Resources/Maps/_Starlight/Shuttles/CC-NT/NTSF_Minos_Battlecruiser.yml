@@ -21648,7 +21648,7 @@ entities:
     - type: Transform
       pos: -10.5,-8.5
       parent: 1
-- proto: WeaponEnergyMagnumGun
+- proto: WeaponEnergyMagnumSeven
   entities:
   - uid: 3135
     components:

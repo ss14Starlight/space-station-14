@@ -1,8 +1,6 @@
 using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Administration.Logs;
-using Content.Server.PDA.Ringer;
-using Content.Server.Revolutionary;
 using Content.Server.Stack;
 using Content.Server.Store.Components;
 using Content.Shared.Actions;
@@ -11,18 +9,19 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Implants.Components;
 using Content.Shared.Mind;
+using Content.Shared.Mindshield.Components;
+using Content.Shared.NPC.Systems;
 using Content.Shared.PDA.Ringer;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
-using Content.Shared.Store.Events;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Prometheus; //Starlight
 using Content.Server._Starlight.Language;
+using Content.Server._Starlight.Statistics;
 using Content.Shared._Starlight.Store.Events;
 using Content.Shared._Starlight.Store.Conditions;
 using Content.Server._Starlight.Revolutionary;
@@ -32,15 +31,8 @@ namespace Content.Server.Store.Systems;
 
 public sealed partial class StoreSystem
 {
-    #region Starlight
-    private static readonly Counter _storePurchasesMetric = Metrics.CreateCounter(
-        "sl_store_purchases",
-        "Everything bounght from a \"store\" which include ling upgrades, traitor uplinks, wizard grimoires",
-        ["store_name", "purchased_item", "discounted"]
-    );
-    #endregion
-
     [Dependency] private IAdminLogManager _admin = default!;
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!; // Starlight
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private ActionContainerSystem _actionContainer = default!;
@@ -51,6 +43,7 @@ public sealed partial class StoreSystem
     [Dependency] private UserInterfaceSystem _ui = default!;
     [Dependency] private RevSupplyRiftSystem _revSupplyRift = default!; // Starlight
     [Dependency] private LanguageSystem _languageSystem = default!; //Starlight
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
 
     private void InitializeUi()
     {
@@ -315,9 +308,23 @@ public sealed partial class StoreSystem
             resolvedName = resolvedName.Substring(0, resolvedName.IndexOf(" ("));
         }
 
+        var logImpact = LogImpact.Low;
+        var logExtraInfo = "";
+        if (component.ExpectedFaction?.Count > 0 && !_npcFaction.IsMemberOfAny(buyer, component.ExpectedFaction))
+        {
+            logImpact = LogImpact.High;
+            logExtraInfo = ", but was not from an expected faction";
+
+            if (HasComp<MindShieldComponent>(buyer))
+            {
+                logImpact = LogImpact.Extreme;
+                logExtraInfo += " while also possessing a mindshield";
+            }
+        }
+
         _admin.Add(LogType.StorePurchase,
-            LogImpact.Low,
-            $"{ToPrettyString(buyer):player} purchased listing \"{resolvedName}\" from {ToPrettyString(uid)}"); // Starlight
+            logImpact,
+            $"{ToPrettyString(buyer):player} purchased listing \"{resolvedName}\" from {ToPrettyString(uid)}{logExtraInfo}."); // Starlight
 
         listing.PurchaseAmount++; //track how many times something has been purchased
         _audio.PlayEntity(component.BuySuccessSound, msg.Actor, uid); //cha-ching!
@@ -368,13 +375,7 @@ public sealed partial class StoreSystem
             }
         }
 
-        #region Starlight statistics
-        _storePurchasesMetric.WithLabels([
-            Loc.GetString(component.Name),
-            listing.ID,
-            listing.IsCostModified.ToString()
-        ]).Inc(1); //we observe *1* purchase of the item.
-        #endregion
+        _roundStatistics.RecordStorePurchase(component.Name.Id, listing.ID, listing.IsCostModified); // Starlight
     }
 
     /// <summary>
@@ -383,7 +384,7 @@ public sealed partial class StoreSystem
     public void UpdateAllUSSPUplinkUIs()
     {
         // Find all store components that are USSP uplinks
-        var query = EntityManager.EntityQueryEnumerator<StoreComponent>();
+        var query = EntityQueryEnumerator<StoreComponent>();
         while (query.MoveNext(out var uid, out var storeComp))
         {
             // Skip if this is not a USSP uplink
@@ -440,7 +441,7 @@ public sealed partial class StoreSystem
         _ui.SetUiState(storeUid, StoreUiKey.Key, state);
 
         // Find all players who might have this uplink open
-        var query = EntityManager.EntityQueryEnumerator<ActorComponent>();
+        var query = EntityQueryEnumerator<ActorComponent>();
         while (query.MoveNext(out var actorUid, out _))
         {
             // Check if this player has the uplink implanted

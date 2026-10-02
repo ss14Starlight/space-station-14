@@ -4,7 +4,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Arcade.Lancer;
 
-[Prototype("lancerEncounter")]
+[Prototype]
 public sealed partial class LancerEncounterPrototype : IPrototype
 {
     [IdDataField]

@@ -43,6 +43,7 @@
   description: shitstation-description
   showInVote: true
   minPlayers: 0
+  voteCooldown: 2
   rules:
     - ShitStationEventScheduler # It's all trash/shit/ion/derelict/minor critter event spawns. Should make the station feel sufficiently shitty.
     - BasicStationEventScheduler

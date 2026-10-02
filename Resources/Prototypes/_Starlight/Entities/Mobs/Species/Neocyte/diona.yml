@@ -15,10 +15,6 @@
     - Machine
     - Sylvan
   - type: Vocal
-    sounds:
-      Male: NeoDionaMSounds
-      Female: NeoDionaFSounds
-      Unsexed: NeoDionaMSounds
   - type: Tag
     tags:
     - CanPilot
@@ -55,7 +51,6 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
   - type: Butcherable
-    butcheringType: Spike
     spawned:
       - id: FoodMeatPlant
         amount: 5
@@ -63,7 +58,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Sap
-        Quantity: 300
+        Quantity: 600
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -83,7 +78,7 @@
           types:
             Poison: -1
             Caustic: -0.5
-            Genetic: -0.05
+            Cellular: -0.05
             Radiation: -0.05
     - reagents: [ PlantBGone ]
       methods: [ Touch ]

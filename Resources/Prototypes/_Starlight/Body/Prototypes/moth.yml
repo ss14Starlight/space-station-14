@@ -1,4 +1,4 @@
-﻿- type: body
+- type: body
   id: Moth
   name: "moth"
   root: torso
@@ -10,7 +10,7 @@
       organs:
         brain: OrganHumanBrain
         eyes: OrganMothEyes # Starlight
-        tongue: OrganHumanTongue
+        tongue: OrganMothTongue
         eye_implant: null
         nose_implant: null # 🌟Starlight🌟
         brain_implant: null # 🌟Starlight🌟

@@ -6,10 +6,10 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._Starfall.Particles;
 
 /// <summary>Draws all live particles for every active emitter each frame.</summary>
-public sealed class ParticleOverlay : Overlay
+public sealed partial class ParticleOverlay : Overlay
 {
-    [Dependency] private readonly IEyeManager _eye = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private IEyeManager _eye = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     private readonly ParticleSystem _system;
     private const float EmitterCullMargin = 5f; // Starlight: margin for culling emitters slightly off screen

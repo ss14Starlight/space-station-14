@@ -11,7 +11,7 @@ namespace Content.Shared._Starlight.Antags.Vampires.Prototypes;
 /// - a system for that component
 /// - a <see cref="VampireClassPrototype"/> entry in YAML
 /// </summary>
-[Prototype("vampireClass")]
+[Prototype]
 public sealed partial class VampireClassPrototype : IPrototype
 {
     [IdDataField]

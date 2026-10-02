@@ -11,7 +11,6 @@ using Content.Client.GameTicking.Managers;
 using Content.Shared._Starlight.CCVar;
 using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
-using Robust.Shared.Utility;
 
 namespace Content.Client._Starlight.GhostTheme;
 

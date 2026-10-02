@@ -237,6 +237,7 @@
       - id: WristwatchGold
       - id: MysteryLighterBox
       - id: ClothingHeadBowlHelmet #Starlight
+      - id: ClothingOuterWireVest #Starlight
 
 - type: entity
   name: Maint Loot Spawner
@@ -308,7 +309,7 @@
       - id: Flare
       - id: Beaker
       - id: ClothingMaskGas
-      - id: ClothingMaskBreath
+      - id: ClothingMaskGasHalf #Starlight
       - id: DoorElectronics
       - id: APCElectronics
       - id: InflatableWallStack5
@@ -436,8 +437,6 @@
       - id: MakeshiftShield
       - id: SwordImprovised
       - id: ImprovisedShield
-      - id: WeaponSniperMakeshift
-        weight: .8
       - id: WeaponShotgunMakeshift
         weight: .8
       - id: WeaponLaserSvalinn # Starlight- The svalinn's 14 dps... I think it's maints loot worthy.

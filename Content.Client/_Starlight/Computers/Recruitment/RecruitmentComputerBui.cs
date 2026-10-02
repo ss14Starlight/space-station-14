@@ -29,7 +29,12 @@ public sealed partial class RecruitmentComputerBui(EntityUid owner, Enum uiKey) 
     [ViewVariables]
     private SLWindow? _window;
 
-    protected override void Open() => UpdateState(State);
+    protected override void Open()
+    {
+        base.Open();
+        UpdateState(State);
+    }
+
     protected override void UpdateState(BoundUserInterfaceState? state)
     {
         TryInitWindow();

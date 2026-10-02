@@ -1,5 +1,5 @@
 - type: entity
-  parent: Crayon
+  parent: [SolutionSmall, Crayon]
   id: CrayonMagic
   name: magic rainbow crayon
   description: A magical crayon. Looks tasty. Mmmm...
@@ -8,6 +8,9 @@
     state: rainbow
   - type: Item
     heldPrefix: magic
+    size: Small
+    shape:
+    - 0,0,1,0
   - type: Crayon
     color: Red
     selectableColor: true
@@ -19,11 +22,11 @@
     - Crayon
     - Recyclable
     - Trash
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 30
-        - ReagentId: MindbreakerToxin
-          Quantity: 20
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 30
+      - ReagentId: MindbreakerToxin
+        Quantity: 20

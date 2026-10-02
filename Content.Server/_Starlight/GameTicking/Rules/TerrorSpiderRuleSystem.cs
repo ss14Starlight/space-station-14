@@ -12,7 +12,6 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Server.Player;
-using Robust.Shared.Audio;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.GameTicking.Rules;

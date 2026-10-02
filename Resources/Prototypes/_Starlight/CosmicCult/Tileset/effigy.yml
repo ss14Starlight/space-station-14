@@ -96,7 +96,7 @@
       - MobCosmicLodestarHostile
     - settings:
         spawnOnSuperCritical: true
-        minAmount: 3
+        minAmount: 4
         maxAmount: 6
         maxRange: 8
       spawns:
@@ -105,7 +105,7 @@
       - MobCosmicLodestarHostile
     - settings:
         spawnOnSuperCritical: true
-        minAmount: 2
+        minAmount: 3
         maxAmount: 4
         maxRange: 6
       spawns:

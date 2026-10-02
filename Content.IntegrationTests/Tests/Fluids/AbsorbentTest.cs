@@ -25,43 +25,43 @@ public sealed class AbsorbentTest : GameTest
 
     [TestPrototypes]
     private const string Prototypes = $@"
-- type: entity
-  name: {UserDummyId}
-  id: {UserDummyId}
+    -   type: entity
+        name: {UserDummyId}
+        id: {UserDummyId}
 
-- type: entity
-  name: {AbsorbentDummyId}
-  id: {AbsorbentDummyId}
-  components:
-  - type: Absorbent
-    useAbsorberSolution: true
-  - type: SolutionContainerManager
-    solutions:
-      absorbed:
-        maxVol: 100
+    -   type: entity
+        name: {AbsorbentDummyId}
+        id: {AbsorbentDummyId}
+        components:
+        -   type: Absorbent
+            useAbsorberSolution: true
+        -   type: Solution
+            id: absorbed
+            solution:
+                maxVol: 100
 
-- type: entity
-  name: {RefillableDummyId}
-  id: {RefillableDummyId}
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      refillable:
-        maxVol: 200
-  - type: RefillableSolution
-    solution: refillable
+    -   type: entity
+        name: {RefillableDummyId}
+        id: {RefillableDummyId}
+        components:
+        -   type: Solution
+            id: refillable
+            solution:
+                maxVol: 200
+        -   type: RefillableSolution
+            solution: refillable
 
-- type: entity
-  name: {SmallRefillableDummyId}
-  id: {SmallRefillableDummyId}
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      refillable:
-        maxVol: 20
-  - type: RefillableSolution
-    solution: refillable
-";
+    -   type: entity
+        name: {SmallRefillableDummyId}
+        id: {SmallRefillableDummyId}
+        components:
+        -   type: Solution
+            id: refillable
+            solution:
+                maxVol: 20
+        -   type: RefillableSolution
+            solution: refillable
+    ";
     public sealed record TestSolutionReagents(FixedPoint2 VolumeOfEvaporable, FixedPoint2 VolumeOfNonEvaporable);
 
     public record TestSolutionCase(

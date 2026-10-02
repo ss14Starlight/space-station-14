@@ -4,11 +4,8 @@ using Content.Shared.Implants;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Store.Components;
-using Robust.Shared.Collections;
-using Robust.Shared.Map.Components;
-using Content.Server.Polymorph.Systems; // Starlight
-using Content.Shared.Zombies; // Starlight
-using Robust.Shared.Player;
+// Starlight
+// Starlight
 using Content.Shared.Implants.Components; // Starlight
 
 namespace Content.Server.Implants;

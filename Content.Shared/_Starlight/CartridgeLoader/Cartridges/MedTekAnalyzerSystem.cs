@@ -9,7 +9,7 @@ namespace Content.Shared._Starlight.CartridgeLoader.Cartridges;
 /// <summary>
 /// Adds the predicted Analyze Patient verb for PDAs with the MedTek cartridge.
 /// </summary>
-public sealed class MedTekAnalyzerSystem : EntitySystem
+public sealed partial class MedTekAnalyzerSystem : EntitySystem
 {
     [Dependency] private SharedInteractionSystem _interactionSystem = default!;
 

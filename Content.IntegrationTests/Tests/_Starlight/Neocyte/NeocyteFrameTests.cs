@@ -77,12 +77,13 @@ public sealed class NeocyteFrameTests : GameTest
     {
         var server = Pair.Server;
         var testMap = await Pair.CreateTestMap();
+        var antagNukeOpsId = "AntagNukeops";
 
         await server.WaitAssertion(() =>
         {
             var profile = CreateProfileWithFrame("NeocyteArmorHeavyBasic");
             var antagLoadout = CreateFrameLoadout("AntagNukeops", "NeocyteArmorMediumMagic");
-            var antagLoadoutPrototype = server.ProtoMan.Index<RoleLoadoutPrototype>("AntagNukeops");
+            var antagLoadoutPrototype = server.ProtoMan.Index<RoleLoadoutPrototype>(antagNukeOpsId);
             var neocyte = server.EntMan.Spawn("MobNeoHuman", testMap.MapCoords);
 
             server.System<NeocyteSystem>()
@@ -150,7 +151,8 @@ public sealed class NeocyteFrameTests : GameTest
     private static HashSet<string> GetConfiguredFrames(IPrototypeManager prototypeManager)
     {
         var frames = new HashSet<string>();
-        var group = prototypeManager.Index<LoadoutGroupPrototype>("NeocyteCybernetics");
+        var neocyteCybernetics = "NeocyteCybernetics";
+        var group = prototypeManager.Index<LoadoutGroupPrototype>(neocyteCybernetics);
 
         foreach (var loadoutId in group.Loadouts)
         {
@@ -158,7 +160,7 @@ public sealed class NeocyteFrameTests : GameTest
             var frame = GetFrameGear(loadout);
 
             if (string.IsNullOrEmpty(frame) &&
-                prototypeManager.Resolve(loadout.StartingGear, out StartingGearPrototype? startingGear))
+                prototypeManager.Resolve(loadout.StartingGear, out StartingGearPrototype startingGear))
             {
                 frame = GetFrameGear(startingGear);
             }

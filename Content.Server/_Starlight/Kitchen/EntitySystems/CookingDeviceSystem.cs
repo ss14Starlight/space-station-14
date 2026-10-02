@@ -6,7 +6,6 @@ using Content.Server.Hands.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Temperature.Systems;
-using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
@@ -81,7 +80,7 @@ namespace Content.Server.Kitchen.EntitySystems
             // Starlight-start: renamed from MicrowaveComponent to CookingDeviceComponent and ActiveMicrowaveComponent to ActiveCookingDeviceComponent
             SubscribeLocalEvent<CookingDeviceComponent, ComponentInit>(OnInit);
             SubscribeLocalEvent<CookingDeviceComponent, MapInitEvent>(OnMapInit);
-            SubscribeLocalEvent<CookingDeviceComponent, SolutionContainerChangedEvent>(OnSolutionChange);
+            SubscribeLocalEvent<CookingDeviceComponent, SolutionChangedEvent>(OnSolutionChange);
             SubscribeLocalEvent<CookingDeviceComponent, EntInsertedIntoContainerMessage>(OnContentUpdate);
             SubscribeLocalEvent<CookingDeviceComponent, EntRemovedFromContainerMessage>(OnContentUpdate);
             SubscribeLocalEvent<CookingDeviceComponent, InteractUsingEvent>(OnInteractUsing, after: new[] { typeof(AnchorableSystem) });
@@ -105,7 +104,8 @@ namespace Content.Server.Kitchen.EntitySystems
             SubscribeLocalEvent<ActiveCookingDeviceComponent, EntRemovedFromContainerMessage>(OnActiveMicrowaveRemove);
 
             SubscribeLocalEvent<ActivelyCookedComponent, OnConstructionTemperatureEvent>(OnConstructionTemp);
-            SubscribeLocalEvent<ActivelyCookedComponent, SolutionRelayEvent<ReactionAttemptEvent>>(OnReactionAttempt);
+            SubscribeLocalEvent<ActivelyCookedComponent, SolutionRelayEvent<ReactionAttemptEvent>>(OnReactionAttemptRelay);
+            SubscribeLocalEvent<ActivelyCookedComponent, ReactionAttemptEvent>(OnReactionAttempt);
             // Starlight-end
 
             SubscribeLocalEvent<FoodRecipeProviderComponent, GetSecretRecipesEvent>(OnGetSecretRecipes);
@@ -162,9 +162,11 @@ namespace Content.Server.Kitchen.EntitySystems
         // They might be reserved for a microwave recipe.
         private void OnConstructionTemp(Entity<ActivelyCookedComponent> ent, ref OnConstructionTemperatureEvent args) => args.Result = HandleResult.False; // Starlight-edit
 
+        private void OnReactionAttemptRelay(Entity<ActivelyCookedComponent> ent, ref SolutionRelayEvent<ReactionAttemptEvent> args) => OnReactionAttempt(ent, ref args.Event);
+
         // Stop reagents from reacting if they are currently reserved for a microwave recipe.
         // For example Egg would cook into EggCooked, causing it to not being removed once we are done microwaving.
-        private void OnReactionAttempt(Entity<ActivelyCookedComponent> ent, ref SolutionRelayEvent<ReactionAttemptEvent> args) // Starlight-edit
+        private void OnReactionAttempt(Entity<ActivelyCookedComponent> ent, ref ReactionAttemptEvent args) // Starlight-edit
         {
             if (!TryComp<ActiveCookingDeviceComponent>(ent.Comp.Microwave, out var activeMicrowaveComp)) // Starlight-edit
                 return;
@@ -180,9 +182,9 @@ namespace Content.Server.Kitchen.EntitySystems
 
                 foreach (var reagent in recipeReagents)
                 {
-                    if (args.Event.Reaction.Reactants.ContainsKey(reagent))
+                    if (args.Reaction.Reactants.ContainsKey(reagent))
                     {
-                        args.Event.Cancelled = true;
+                        args.Cancelled = true;
                         return;
                     }
                 }
@@ -205,9 +207,7 @@ namespace Content.Server.Kitchen.EntitySystems
                 if (TryComp<TemperatureComponent>(entity, out var tempComp))
                     _temperature.ChangeHeat(entity, heatToAdd * component.ObjectHeatMultiplier, false, tempComp);
 
-                if (!TryComp<SolutionContainerManagerComponent>(entity, out var solutions))
-                    continue;
-                foreach (var (_, soln) in _solutionContainer.EnumerateSolutions((entity, solutions)))
+                foreach (var (_, soln) in _solutionContainer.EnumerateSolutions(entity))
                 {
                     var solution = soln.Comp.Solution;
                     if (solution.Temperature > component.TemperatureUpperThreshold)
@@ -377,7 +377,7 @@ namespace Content.Server.Kitchen.EntitySystems
             args.Handled = true;
         }
 
-        private void OnSolutionChange(Entity<CookingDeviceComponent> ent, ref SolutionContainerChangedEvent args) => UpdateUserInterfaceState(ent, ent.Comp); // Starlight-edit
+        private void OnSolutionChange(Entity<CookingDeviceComponent> ent, ref SolutionChangedEvent args) => UpdateUserInterfaceState(ent, ent.Comp); // Starlight-edit
 
         private void OnContentUpdate(EntityUid uid, CookingDeviceComponent component, ContainerModifiedMessage args) // Starlight-edit: ContainerModifiedMessage just can't be used at all with Entity<T>, because it's abstract.
         {
@@ -587,8 +587,6 @@ namespace Content.Server.Kitchen.EntitySystems
             var solidsDict = new Dictionary<string, int>();
             var reagentDict = new Dictionary<string, FixedPoint2>();
             var malfunctioning = false;
-
-            int notTrueTypeCount = 0;
 
             // TODO use lists of Reagent quantities instead of reagent prototype ids.
             foreach (var item in component.Storage.ContainedEntities.ToArray())

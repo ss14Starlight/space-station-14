@@ -4,7 +4,6 @@ using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
-using Content.Shared.Body;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Parallax;
@@ -520,9 +519,7 @@ public sealed partial class ShuttleSystem
                 {
                     foreach (var grid in stationData.Grids)
                     {
-                        if (!TryComp<TransformComponent>(grid, out var gridXform))
-                            continue;
-
+                        var gridXform = Transform(grid);
                         if (gridXform.MapUid is not { } stationMap || !Exists(stationMap))
                             continue;
 

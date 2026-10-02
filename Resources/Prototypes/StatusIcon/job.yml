@@ -452,6 +452,7 @@
     sprite: *icon-rsi
     state: Visitor
   jobName: job-name-visitor
+  isCrewJob: false # Starlight
   tags: # Starlight-edit
   - JobIconCentComm
 
@@ -464,6 +465,7 @@
     sprite: *icon-rsi
     state: Borg
   jobName: job-name-borg
+  isCrewJob: false
   tags: # Starlight-edit - non admins shouldn't be able to give a crew member an borg HUD icon
   - JobIconCentComm
 
@@ -474,6 +476,7 @@
     sprite: *icon-rsi
     state: StationAi
   jobName: job-name-station-ai
+  isCrewJob: false
   tags: # Starlight-edit - non admins shouldn't be able to give a crew member an AI HUD icon
   - JobIconCentComm
 
@@ -486,6 +489,7 @@
     sprite: *icon-rsi
     state: Cluwne
   jobName: job-name-cluwne
+  isCrewJob: false
   tags: # Starlight-edit - non admins shouldn't be able to give a crew member an Antag HUD icon
   - JobIconCentComm
 
@@ -496,6 +500,7 @@
     sprite: *icon-rsi
     state: Ninja
   jobName: job-name-ninja
+  isCrewJob: false
   tags: # Starlight-edit - non admins shouldn't be able to give a crew member an Antag HUD icon
   - JobIconCentComm
 
@@ -506,6 +511,7 @@
     sprite: *icon-rsi
     state: Pirate
   jobName: job-name-pirate
+  isCrewJob: false
   tags: # Starlight-edit - non admins shouldn't be able to give a crew member an Antag HUD icon
   - JobIconCentComm
 
@@ -516,6 +522,7 @@
     sprite: *icon-rsi
     state: Prisoner
   jobName: job-name-prisoner
+  isCrewJob: false
   tags: # Starlight-edit: makes the icon visable on the player accessible ID card computer.
   - JobIconCrew
 
@@ -526,6 +533,7 @@
     sprite: *icon-rsi
     state: Syndicate
   jobName: job-name-syndicate
+  isCrewJob: false
   tags: # Starlight-edit - non admins shouldn't be able to give a crew member an Antag HUD icon
   - JobIconCentComm
   - JobIconSyndicate
@@ -538,6 +546,7 @@
     sprite: *icon-rsi
     state: SyndicateCommander
   jobName: job-name-syndicate-commander
+  isCrewJob: false
   tags: # Starlight-edit - non admins shouldn't be able to give a crew member an Antag HUD icon
   - JobIconCentComm
   - JobIconSyndicate
@@ -550,6 +559,7 @@
     sprite: *icon-rsi
     state: SyndicateCorpsman
   jobName: job-name-syndicate-corpsman
+  isCrewJob: false
   tags: # Starlight-edit - non admins shouldn't be able to give a crew member an Antag HUD icon
   - JobIconCentComm
   - JobIconSyndicate
@@ -561,6 +571,7 @@
     sprite: *icon-rsi
     state: SyndicateOperative
   jobName: job-name-syndicate-operative
+  isCrewJob: false
   tags: # Starlight-edit - non admins shouldn't be able to give a crew member an Antag HUD icon
   - JobIconCentComm
   - JobIconSyndicate
@@ -572,6 +583,7 @@
     sprite: *icon-rsi
     state: Wizard
   jobName: job-name-wizard
+  isCrewJob: false
   tags: # Starlight-edit - non admins shouldn't be able to give a crew member an Antag HUD icon
   - JobIconCentComm
 
@@ -582,6 +594,7 @@
     sprite: *icon-rsi
     state: Zombie
   jobName: job-name-zombie
+  isCrewJob: false
   tags: # Starlight-edit - non admins shouldn't be able to give a crew member an Antag HUD icon
   - JobIconCentComm
 
@@ -726,6 +739,7 @@
     sprite: *icon-rsi
     state: NoId
   jobName: job-name-no-id
+  isCrewJob: false
   tags: # Starlight-edit - should not be player accessible
   - JobIconCentComm
 
@@ -736,5 +750,6 @@
     sprite: *icon-rsi
     state: Unknown
   jobName: job-name-unknown
+  isCrewJob: false
   tags: # Starlight-edit - should not be player accessible
   - JobIconCentComm

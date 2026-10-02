@@ -4,11 +4,10 @@ using Content.Shared._Starlight.Shadekin;
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Teleportation.Components;
 using Content.Shared.Teleportation.Systems;
-using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Shadekin;
 
-public sealed class DarkBreacherSystem : SharedDarkBreacherSystem
+public sealed partial class DarkBreacherSystem : SharedDarkBreacherSystem
 {
     [Dependency] private LinkedEntitySystem _link = default!;
 

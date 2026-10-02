@@ -123,7 +123,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponPistolAPS
+        - id: WeaponPistolStechkinAPS
         - id: MagazinePistol40SP
         - id: MagazinePistol40SP
 

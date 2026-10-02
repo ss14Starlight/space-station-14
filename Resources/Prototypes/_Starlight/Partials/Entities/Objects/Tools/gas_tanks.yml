@@ -1,0 +1,13 @@
+﻿- type: !PartialOnly entity
+  id: EmergencyOxygenTank
+  components:
+  - type: Tag
+    tags:
+    - SecBeltEquip
+
+- type: !PartialOnly entity
+  id: EmergencyNitrogenTank
+  components:
+  - type: Tag
+    tags:
+    - SecBeltEquip
