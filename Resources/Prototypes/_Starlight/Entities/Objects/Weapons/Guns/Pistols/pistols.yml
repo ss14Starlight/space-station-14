@@ -500,7 +500,7 @@
   description: A compact pistol chambered for explosive impact bolts, all the punch of a full rifle at the cost of firerate and ammo capacity. Don't strain your wrist too much.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Pistols/Impact_bolt_pistol.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/impact_bolt_pistol.rsi
     layers:
     - state: base
       map:
