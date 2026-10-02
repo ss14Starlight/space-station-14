@@ -55,6 +55,7 @@ jobs:
         with:
           repository: ${{ env.MAPS_REPO }}
           token: ${{ secrets.MAPS_REPO_TOKEN }}
+          persist-credentials: false
           path: Starlight.Maps
           fetch-depth: 1
 
