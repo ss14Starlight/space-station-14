@@ -11,7 +11,7 @@ public sealed partial class GunSpreadDefectComponent : DefectComponent
     public GunSpreadDefectComponent()
     {
         Prob = 0.7f;
-        DefectLabel = "warped barrel";
+        DefectLabel = "defect-label-warped-barrel";
     }
 
     // Target angle ranges (absolute degrees)

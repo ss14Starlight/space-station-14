@@ -94,9 +94,9 @@
   suffix: Unremoveable
   components:
   - type: Sprite
-    sprite: Changeling/ling_armor.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Armor/changeling.rsi
   - type: Clothing
-    sprite: Changeling/ling_armor.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Armor/changeling.rsi
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -117,7 +117,6 @@
     damageCoefficient: 0.5
   - type: GroupExamine
   - type: Unremoveable
-
 
 - type: entity
   parent: [ClothingOuterArmorBase, BaseSecurityContraband]

@@ -1,7 +1,7 @@
 - type: ghostTheme
   id: Cateor
-  name: Cateor
-  description: a cute cateor.
+  name: ghost-theme-cateor-name
+  description: ghost-theme-cateor-desc
   private: true
   spriteSpecifier:
     sprite:
@@ -15,8 +15,8 @@
 
 - type: ghostTheme
   id: Firewraith
-  name: Firewraith
-  description: a cute firewraith.
+  name: ghost-theme-firewraith-name
+  description: ghost-theme-firewraith-desc
   private: true
   spriteSpecifier:
     sprite:
@@ -31,8 +31,8 @@
 
 - type: ghostTheme
   id: Robot
-  name: Robot
-  description: a funny robot.
+  name: ghost-theme-robot-name
+  description: ghost-theme-robot-desc
   private: true
   spriteSpecifier:
     sprite:
@@ -46,8 +46,8 @@
 
 - type: ghostTheme
   id: pai_fox
-  name: pai fox
-  description: a cyber kitsune
+  name: ghost-theme-pai-fox-name
+  description: ghost-theme-pai-fox-desc
   private: true
   spriteSpecifier:
     sprite:
@@ -61,8 +61,8 @@
 
 - type: ghostTheme
   id: sombrero_penguin
-  name: sombrero penguin
-  description: A penguin, but with sombrero
+  name: ghost-theme-sombrero-penguin-name
+  description: ghost-theme-sombrero-penguin-desc
   private: true
   spriteSpecifier:
     sprite:
@@ -76,8 +76,8 @@
 
 - type: ghostTheme
   id: TessTheEvil
-  name: Tess the Evil
-  description: Why is she smiling like that?
+  name: ghost-theme-tess-the-evil-name
+  description: ghost-theme-tess-the-evil-desc
   private: true
   spriteSpecifier:
     sprite:
@@ -91,8 +91,8 @@
 
 - type: ghostTheme
   id: ghost-kamila
-  name: Avali Ghost
-  description: a ghostly Avali.
+  name: ghost-theme-ghost-kamila-name
+  description: ghost-theme-ghost-kamila-desc
   private: true
   spriteSpecifier:
     sprite:
@@ -106,8 +106,8 @@
 
 - type: ghostTheme
   id: ConfGhost
-  name: conf ghost
-  description: Looks retro.
+  name: ghost-theme-conf-ghost-name
+  description: ghost-theme-conf-ghost-desc
   private: true
   spriteSpecifier:
     sprite:
