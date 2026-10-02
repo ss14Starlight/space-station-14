@@ -101,8 +101,7 @@ public sealed partial class CommandLineArguments
     }
 
     private static void PrintStarlightHelp()
-    {
-        Console.WriteLine(@"Starlight options:
+        => Console.WriteLine(@"Starlight options:
     --viewer
         Writes everything the Starlight map viewer needs: sliced grids, map.json, index.json and parallax.
         Implies --tiles and --parallax. Layout of the output directory:
@@ -126,5 +125,4 @@ public sealed partial class CommandLineArguments
 
 Example:
     Content.MapRenderer --viewer -d Resources/Maps/_Starlight/Stations -d Resources/Maps/_Starlight/Shuttles -o ../Starlight.Maps --base-url https://raw.githubusercontent.com/ss14Starlight/Starlight.Maps/main");
-    }
 }

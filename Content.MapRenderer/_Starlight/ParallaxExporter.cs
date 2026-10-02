@@ -8,7 +8,6 @@ using Nett;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
@@ -21,14 +20,14 @@ public sealed class ParallaxExporter
 {
     public const string DirectoryName = "parallax";
 
-    private static readonly Size GeneratedSize = new(1920, 1080);
+    private static readonly Size _generatedSize = new(1920, 1080);
 
     private readonly string _outputPath;
     private readonly Func<string, string> _url;
 
-    private readonly Dictionary<string, List<ViewerParallaxLayer>> _parallaxes = new();
+    private readonly Dictionary<string, List<ViewerParallaxLayer>> _parallaxes = [];
 
-    private readonly HashSet<string> _written = new();
+    private readonly HashSet<string> _written = [];
 
     public ParallaxExporter(string outputPath, Func<string, string> url)
     {
@@ -127,7 +126,7 @@ public sealed class ParallaxExporter
                 {
                     using var reader = new StreamReader(resMan.ContentFileRead(generated.ParallaxConfigPath));
                     var table = Toml.ReadString(reader.ReadToEnd().Replace(Environment.NewLine, "\n"));
-                    return ParallaxGenerator.GenerateParallax(table, GeneratedSize, sawmill, null);
+                    return ParallaxGenerator.GenerateParallax(table, _generatedSize, sawmill, null);
                 };
                 break;
 
@@ -158,12 +157,10 @@ public sealed class ParallaxExporter
     }
 
     private static string Describe(IParallaxTextureSource source)
-    {
-        return source switch
+        => source switch
         {
             ImageParallaxTextureSource image => image.Path.ToString(),
             GeneratedParallaxTextureSource generated => generated.ParallaxConfigPath.ToString(),
             _ => source.GetType().Name,
         };
-    }
 }

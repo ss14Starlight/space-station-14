@@ -97,10 +97,7 @@ internal sealed partial class Program
         Directory.CreateDirectory(output);
 
         if (arguments.ExportViewerJson && arguments.BaseUrl == null)
-        {
-            Console.WriteLine("Warning: no --base-url given, map.json will hold urls relative to the output directory. " +
-                              "The viewer only resolves them if the output is served from the site root.");
-        }
+            Console.WriteLine("Warning: no --base-url given, map.json will hold urls relative to the output directory. " + "The viewer only resolves them if the output is served from the site root.");
 
         var parallax = arguments.OutputParallax ? new ParallaxExporter(output, Url) : null;
         var usedIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -199,9 +196,7 @@ internal sealed partial class Program
         Console.WriteLine($"It's now safe to manually exit the process (automatic exit in a few moments...)");
 
         string Url(string relative)
-        {
-            return arguments.BaseUrl == null ? relative : $"{arguments.BaseUrl}/{relative}";
-        }
+            => arguments.BaseUrl == null ? relative : $"{arguments.BaseUrl}/{relative}";
     }
 
     private static ViewerGrid ToViewerGrid(RenderedGridImage<Rgba32> grid, string gridId, string url, int tileSize)
@@ -244,7 +239,7 @@ internal sealed partial class Program
         {
             try
             {
-                index = JsonNode.Parse(await File.ReadAllTextAsync(indexPath)) as JsonArray ?? new JsonArray();
+                index = JsonNode.Parse(await File.ReadAllTextAsync(indexPath)) as JsonArray ?? [];
             }
             catch (JsonException e)
             {
@@ -260,7 +255,7 @@ internal sealed partial class Program
 
             if (node == null)
             {
-                node = new JsonObject();
+                node = [];
                 index.Add(node);
             }
 

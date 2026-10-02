@@ -37,8 +37,8 @@ public static class TileSlicer
             var rect = new Rectangle(
                 x * tileSize,
                 y * tileSize,
-                Math.Min(tileSize, image.Width - x * tileSize),
-                Math.Min(tileSize, image.Height - y * tileSize));
+                Math.Min(tileSize, image.Width - (x * tileSize)),
+                Math.Min(tileSize, image.Height - (y * tileSize)));
 
             var tileDirectory = Path.Combine(directory, x.ToString(), y.ToString());
             Directory.CreateDirectory(tileDirectory);

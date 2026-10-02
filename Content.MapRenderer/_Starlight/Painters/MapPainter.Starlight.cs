@@ -17,19 +17,15 @@ public sealed partial class MapPainter
     private bool _loadedFileIsGrid;
 
     private static bool IsGridFile(LoadResult result)
-    {
-        return result.Category switch
+        => result.Category switch
         {
             FileCategory.Grid => true,
             FileCategory.Map => false,
             _ => result.Maps.Count == 0,
         };
-    }
 
     public MapViewerType GetMapType()
-    {
-        return _map is RenderMapFile && _loadedFileIsGrid ? MapViewerType.Shuttle : MapViewerType.Station;
-    }
+        => _map is RenderMapFile && _loadedFileIsGrid ? MapViewerType.Shuttle : MapViewerType.Station;
 
     public string GetViewerId()
     {
@@ -54,10 +50,7 @@ public sealed partial class MapPainter
         var name = string.Empty;
         if (GetMapType() == MapViewerType.Shuttle && _grids.Length == 1)
         {
-            await _pair.Server.WaitPost(() =>
-            {
-                name = _pair.Server.EntMan.GetComponent<MetaDataComponent>(_grids[0].Owner).EntityName;
-            });
+            await _pair.Server.WaitPost(() => name = _pair.Server.EntMan.GetComponent<MetaDataComponent>(_grids[0].Owner).EntityName);
         }
 
         if (string.IsNullOrWhiteSpace(name) || name.Equals("grid", StringComparison.OrdinalIgnoreCase))
