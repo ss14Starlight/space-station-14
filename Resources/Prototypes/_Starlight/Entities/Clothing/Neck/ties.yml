@@ -1,0 +1,14 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckTieBlue
+  name: blue tie
+  description: A lovely blue necktie, perfect for job interviews.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Ties/bluetie.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Ties/bluetie.rsi
+  - type: Item
+    storedSprite:
+      state: storage
+      sprite: _Starlight/Clothing/Neck/Ties/bluetie.rsi
