@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: [ BaseItem, BaseMajorContraband ]
   id: BaseMagazineBoxBoltRifle
   name: impact bolt ammunition box
   abstract: true
