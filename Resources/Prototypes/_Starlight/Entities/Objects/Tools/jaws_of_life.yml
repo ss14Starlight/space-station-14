@@ -31,14 +31,13 @@
     sprite: _Starlight/Objects/Tools/jaws_of_life.rsi
     quickEquip: false
     slots:
-    - Belt
+      - Belt
   - type: ToolTileCompatible
     delay: 0.5
   - type: Tool
     qualities:
-    - Prying
-    useSound:
-      path: /Audio/Items/jaws_pry.ogg
+   - Prying
+    useSound: /Audio/Items/jaws_pry.ogg
   - type: Prying
     force: true
     speedModifier: 1.0
@@ -49,20 +48,18 @@
   - type: MultipleTool
     statusShowBehavior: true
     entries:
-    - behavior:
-      - Prying
-      sprite:
-        sprite: _Starlight/Objects/Tools/jaws_of_life.rsi
-        state: jaws_pry
-      useSound: /Audio/Items/jaws_pry.ogg
-      changeSound: /Audio/Items/change_jaws.ogg
-    - behavior:
-      - Cutting
-      sprite:
-        sprite: _Starlight/Objects/Tools/jaws_of_life.rsi
-        state: jaws_cutter
-      useSound: /Audio/Items/jaws_cut.ogg
-      changeSound: /Audio/Items/change_jaws.ogg
+    - behavior: [ Prying ]
+        sprite:
+          sprite: _Starlight/Objects/Tools/jaws_of_life.rsi
+          state: jaws_pry
+        useSound: /Audio/Items/jaws_pry.ogg
+        changeSound: /Audio/Items/change_jaws.ogg
+      - behavior: [ Cutting ]
+        sprite:
+          sprite: _Starlight/Objects/Tools/jaws_of_life.rsi
+          state: jaws_cutter
+        useSound: /Audio/Items/jaws_cut.ogg
+        changeSound: /Audio/Items/change_jaws.ogg
   - type: MeleeWeapon
     wideAnimationRotation: 90
     damage:
