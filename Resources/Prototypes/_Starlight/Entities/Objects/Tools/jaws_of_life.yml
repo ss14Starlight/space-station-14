@@ -15,9 +15,7 @@
 
 - type: entity
   name: medical jaws of life
-  parent:
-  - BaseItem
-  - BaseMedicalSecurityContraband
+  parent: [ BaseItem, BaseMedicalSecurityContraband ]
   id: JawsOfLifeMed
   description: A set of jaws of life, for pulling the injured out of whatever mess they put themselves in.
   components:
@@ -40,7 +38,7 @@
     qualities:
     - Prying
     useSound:
-      path: ""
+      path: /Audio/Items/jaws_pry.ogg
   - type: Prying
     force: true
     speedModifier: 1.0
