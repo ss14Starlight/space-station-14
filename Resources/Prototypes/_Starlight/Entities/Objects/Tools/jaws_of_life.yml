@@ -36,7 +36,7 @@
     delay: 0.5
   - type: Tool
     qualities:
-   - Prying
+      - Prying
     useSound: /Audio/Items/jaws_pry.ogg
   - type: Prying
     force: true
@@ -48,7 +48,7 @@
   - type: MultipleTool
     statusShowBehavior: true
     entries:
-    - behavior: [ Prying ]
+      - behavior: [ Prying ]
         sprite:
           sprite: _Starlight/Objects/Tools/jaws_of_life.rsi
           state: jaws_pry
