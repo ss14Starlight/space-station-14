@@ -180,12 +180,12 @@
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
   - type: Item
+    shape:
+    - 0,0,1,3
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Melee/tidebreaker.rsi
     slots:
     - suitStorage
-    shape:
-    - 0,0,1,3
   - type: DisarmMalus
   - type: SurgeryTool
   - type: Scalpel
@@ -256,12 +256,12 @@
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
   - type: Item
+    shape:
+    - 0,0,1,3
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Melee/ares.rsi
     slots:
     - suitStorage
-    shape:
-    - 0,0,1,3
   - type: DisarmMalus
     malus: 0.6
   - type: SurgeryTool
