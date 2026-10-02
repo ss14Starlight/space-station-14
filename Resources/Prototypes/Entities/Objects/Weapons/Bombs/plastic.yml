@@ -107,8 +107,7 @@
     state: icon
     layers:
     - state: icon
-      map:
-      - "base"
+      map: ["base"]
   - type: TriggerOnActivate
   - type: TriggerOnSignal
   - type: TriggerOnStuck
@@ -124,11 +123,7 @@
     - trigger
     - stuck
     delay: 5
-    delayOptions:
-    - 5
-    - 10
-    - 15
-    - 20
+    delayOptions: [5, 10, 15, 20]
     initialBeepDelay: 0
     beepSound:
       path: /Audio/Effects/Cargo/buzz_two.ogg
