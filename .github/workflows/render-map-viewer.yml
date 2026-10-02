@@ -30,6 +30,8 @@ env:
 jobs:
   render:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     timeout-minutes: 300
 
     steps:
