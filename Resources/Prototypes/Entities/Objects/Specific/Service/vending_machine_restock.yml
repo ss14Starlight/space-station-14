@@ -293,6 +293,14 @@
     - InterdyneEnterpriseInventory #SL
     - InterdyneCommercialWallInventory #SL
     - InterdyneEnterpriseWallInventory #SL
+    - DeforestInterstellarInventory # SL
+    - DeforestPlanetaryInventory # SL
+    - DeforestInterstellarWallInventory # SL
+    - DeforestPlanetaryWallInventory # SL
+    - GoldNanoMedInventory # SL
+    - GoldNanoMedCivilianWallInventory # SL
+    - GoldNanoMedPlusInventory # SL
+    - GoldNanoMedCivilianInventory # SL
   - type: Sprite
     layers:
     - state: base

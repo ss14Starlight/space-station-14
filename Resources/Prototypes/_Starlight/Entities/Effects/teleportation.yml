@@ -82,12 +82,17 @@
     radius: 2
     energy: 1
     netsync: false
+  - type: TriggerOnSpawn
+  - type: ESSparkOnTrigger
+    count: 8
+    sparkPrototype: MoffEffectSparksBluespace
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Effects/Lightning/lightningbolt.ogg
   - type: Physics
     bodyType: Static
     canCollide: false
+  - type: PortalBlacklist
 
 - type: entity
   id: RedspaceImplantEffect
@@ -106,9 +111,14 @@
     radius: 2
     energy: 1
     netsync: false
+  - type: TriggerOnSpawn
+  - type: ESSparkOnTrigger
+    count: 8
+    sparkPrototype: MoffEffectSparksRedspace
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Effects/Lightning/lightningbolt.ogg
   - type: Physics
     bodyType: Static
     canCollide: false
+  - type: PortalBlacklist

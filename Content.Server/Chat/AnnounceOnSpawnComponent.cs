@@ -1,6 +1,5 @@
 using Content.Server.Chat.Systems;
 using Robust.Shared.Audio;
-using Robust.Shared.Maths;
 
 namespace Content.Server.Chat;
 
@@ -33,4 +32,16 @@ public sealed partial class AnnounceOnSpawnComponent : Component
     /// </summary>
     [DataField]
     public Color? Color;
+
+    #region Starlight
+    /// <summary>
+    /// Whether to announce this globally or only on the map where it's spawned.
+    /// </summary>
+    [DataField] public bool GlobalAnnounce;
+
+    /// <summary>
+    /// Doesn't send if spawned in admin arena. (or any map starting with "ATAM-")
+    /// </summary>
+    [DataField] public bool IgnoreASpace;
+    #endregion
 }

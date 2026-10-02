@@ -1,8 +1,8 @@
-using Content.Server.NPC.Components;
+using Content.Server._Starlight.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Shared.Weapons.Ranged.Systems;
 
-namespace Content.Server.NPC.Systems;
+namespace Content.Server._Starlight.NPC.Systems;
 
 public sealed class NPCPointDefenseSystem : EntitySystem
 {

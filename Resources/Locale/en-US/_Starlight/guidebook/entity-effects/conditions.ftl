@@ -8,3 +8,9 @@ entity-condition-guidebook-blood-reagent-threshold =
                     *[other] the bloodstream has between {NATURALFIXED($min, 2)}u and {NATURALFIXED($max, 2)}u of {$reagent}
                  }
     }
+
+entity-condition-guidebook-has-components =
+    the target { $shouldhave ->
+                    [true] has
+                    *[false] does not have
+               } the component {$name}

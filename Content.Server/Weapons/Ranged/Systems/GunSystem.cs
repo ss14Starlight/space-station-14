@@ -3,7 +3,6 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Weapons.Ranged.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged;
@@ -19,55 +18,21 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 #region Starlight
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Components;
-using Content.Server.Decals;
-using Content.Server.Emp;
-using Content.Server.IgnitionSource;
-using Content.Server.Interaction;
-using Content.Server.Mech.Equipment.Components;
-using Content.Server.Power.EntitySystems;
-using Content.Server.Stunnable.Components;
-using Content.Server.Stunnable;
-using Content.Shared.Atmos.Components;
-using Content.Shared.Body.Components;
-using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Damage.Components;
-using Content.Shared.Decals;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Mech.Components;
-using Content.Shared.Mech.Equipment.Components;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Pinpointer;
-using Content.Shared.Standing;
-using Content.Shared.StatusEffect;
-using Content.Shared.Stunnable;
-using Content.Shared.Weapons.Reflect;
-using Content.Shared._Starlight.Weapon.Components;
-using Content.Shared._Starlight.Weapon;
 using Robust.Server.GameObjects;
-using Robust.Shared.Containers;
-using Robust.Shared.Maths;
-using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 #endregion Starlight
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
 public sealed partial class GunSystem : SharedGunSystem
 {
-    [Dependency] private readonly PricingSystem _pricing = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private PricingSystem _pricing = default!;
+    [Dependency] private SharedMapSystem _map = default!;
 
 #region Starlight
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly IRobustRandom _rand = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private IRobustRandom _rand = default!;
 #endregion Starlight
 
     private const float DamagePitchVariation = 0.05f;
@@ -114,8 +79,8 @@ public sealed partial class GunSystem : SharedGunSystem
         var fromMap = TransformSystem.ToMapCoordinates(fromCoordinates);
         var toMap = TransformSystem.ToMapCoordinates(toCoordinates).Position;
         var mapDirection = toMap - fromMap.Position;
-        var mapAngle = mapDirection.ToAngle();
-        var angle = GetRecoilAngle(Timing.CurTime, gun, mapDirection.ToAngle());
+        var angle = GetRecoilAngle(gun, mapDirection.ToAngle()); // Starlight-edit
+        gun.Comp.LastFire = gun.Comp.NextFire; // Stalright-edit
 
         // If applicable, this ensures the projectile is parented to grid on spawn, instead of the map.
         var fromEnt = MapManager.TryFindGridAt(fromMap, out var gridUid, out _)
@@ -240,8 +205,11 @@ public sealed partial class GunSystem : SharedGunSystem
                 var spreadEvent = new GunGetAmmoSpreadEvent(ammoSpreadComp.Spread);
                 RaiseLocalEvent(gun, ref spreadEvent);
 
-                var angles = LinearSpread(mapAngle - spreadEvent.Spread / 2,
-                    mapAngle + spreadEvent.Spread / 2, ammoSpreadComp.Count);
+                // Starlight-edit: the pattern follows recoil/movement spread and every pellet deviates randomly
+                var shotAngle = mapDirection.ToAngle();
+                var angles = JitteredSpread(shotAngle - (spreadEvent.Spread / 2),
+                    shotAngle + (spreadEvent.Spread / 2), ammoSpreadComp.Count,
+                    ammoSpreadComp.Deviation);
                 // Startlight-edit: start
                 if (isMechShooter)
                 {
@@ -292,7 +260,7 @@ public sealed partial class GunSystem : SharedGunSystem
         // Starlight start - cartridges can hold hitscans
         if (HasComp<HitscanAmmoComponent>(uid))
         {
-            var coordinates = EntityManager.GetComponent<TransformComponent>(uid).Coordinates; // Starlight-edit
+            var coordinates = Comp<TransformComponent>(uid).Coordinates; // Starlight-edit
             var hitscanEv = new HitscanTraceEvent
             {
                 FromCoordinates = coordinates,
@@ -341,40 +309,29 @@ public sealed partial class GunSystem : SharedGunSystem
     }
 
     // 🌟Starlight🌟
-    private Angle[] LinearSpreadWithRandom(Angle start, Angle end, int intervals, float randomSpread)
+    /// <summary>
+    /// Same as <see cref="LinearSpread"/>, but every angle is shifted by up to <paramref name="deviation"/> either way
+    /// so the pattern never repeats. Angles are kept within the cone between <paramref name="start"/> and <paramref name="end"/>.
+    /// </summary>
+    private Angle[] JitteredSpread(Angle start, Angle end, int intervals, Angle deviation)
     {
-        var angles = new Angle[intervals];
-        DebugTools.Assert(intervals > 1);
+        if (intervals <= 1)
+            return [new Angle((start + end) / 2)];
 
+        var angles = LinearSpread(start, end, intervals);
+        var max = (float) deviation.Theta;
         for (var i = 0; i < intervals; i++)
         {
-            var t = (float)i / (intervals - 1);
-            var baseAngle = start + (end - start) * t;
-
-            var randomFactor = _rand.NextFloat() - 0.5f;
-
-            var randomOffset = Angle.FromDegrees(randomFactor * randomSpread);
-
-            angles[i] = baseAngle + randomOffset;
+            var theta = angles[i].Theta + _rand.NextFloat(-max, max);
+            angles[i] = new Angle(Math.Clamp(theta, start.Theta, end.Theta));
         }
 
         return angles;
     }
 
-    private Angle GetRecoilAngle(TimeSpan curTime, GunComponent component, Angle direction)
-    {
-        var timeSinceLastFire = (curTime - component.LastFire).TotalSeconds;
-        var newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - component.AngleDecayModified.Theta * timeSinceLastFire, component.MinAngleModified.Theta, component.MaxAngleModified.Theta);
-        component.CurrentAngle = new Angle(newTheta);
-        component.LastFire = component.NextFire;
-
-        // Convert it so angle can go either side.
-        var random = Random.NextFloat(-0.5f, 0.5f);
-        var spread = component.CurrentAngle.Theta * random;
-        var angle = new Angle(direction.Theta + component.CurrentAngle.Theta * random);
-        DebugTools.Assert(spread <= component.MaxAngleModified.Theta);
-        return angle;
-    }
+    // Starlight-start: Fully rework recoil
+    //private Angle GetRecoilAngle(TimeSpan curTime, Entity<GunComponent> gun, Angle direction)
+    // Starlight-end
 
     protected override void Popup(string message, EntityUid? uid, EntityUid? user) { }
 

@@ -36,7 +36,11 @@ public sealed partial class SlotDefinition
     [DataField("dependsOn")] public string? DependsOn { get; private set; }
 
     [DataField("dependsOnComponents")] public ComponentRegistry? DependsOnComponents { get; private set; }
-
+    #region Starlight
+    // List of slots that this slot depends on (at least one must be occupied), used in place of dependsOn.
+    [DataField("dependsOnAny")]
+    public List<string> DependsOnAny = new();
+    #endregion
     [DataField("displayName", required: true)]
     public string DisplayName { get; private set; } = string.Empty;
 

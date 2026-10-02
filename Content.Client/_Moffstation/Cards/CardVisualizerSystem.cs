@@ -6,9 +6,9 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._Moffstation.Cards;
 
-public sealed class CardVisualizerSystem : ManagedLayerVisualizerSystem<PlayingCardComponent>
+public sealed partial class CardVisualizerSystem : ManagedLayerVisualizerSystem<PlayingCardComponent>
 {
-    [Dependency] private readonly MetaDataSystem _meta = default!;
+    [Dependency] private MetaDataSystem _meta = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -41,8 +41,8 @@ public sealed class CardVisualizerSystem : ManagedLayerVisualizerSystem<PlayingC
     {
         var virtualCard = Spawn(null, args.SpawnAt);
         var virtualMeta = MetaData(virtualCard);
-        _meta.SetEntityName(virtualCard, entity.Comp.ReverseName, virtualMeta, raiseEvents: false);
-        _meta.SetEntityDescription(virtualCard, entity.Comp.ReverseDescription ?? "", virtualMeta);
+        _meta.SetEntityName(virtualCard, PlayingCardComponent.Localize(entity.Comp.ReverseName), virtualMeta, raiseEvents: false); // Starlight edit
+        _meta.SetEntityDescription(virtualCard, PlayingCardComponent.Localize(entity.Comp.ReverseDescription ?? ""), virtualMeta); // Starlight edit
 
         var sprite = new Entity<SpriteComponent?>(virtualCard, AddComp<SpriteComponent>(virtualCard));
         foreach (var layer in entity.Comp.ReverseLayers)

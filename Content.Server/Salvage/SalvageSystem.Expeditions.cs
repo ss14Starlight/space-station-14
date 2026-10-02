@@ -3,7 +3,6 @@ using System.Threading;
 using Content.Server.Salvage.Expeditions;
 using Content.Shared.Procedural;
 using Content.Shared.CCVar;
-using Content.Shared.Examine;
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.CPUJob.JobQueues;

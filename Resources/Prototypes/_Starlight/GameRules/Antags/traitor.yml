@@ -1,0 +1,47 @@
+# Tratitor
+- type: entity
+  abstract: true
+  parent: BaseTraitorRule
+  id: SubTraitorGameRule
+  components:
+  - type: AntagRandomObjectives
+    sets:
+    - groups: SubTraitorObjectiveGroups
+    maxDifficulty: 4 # Less intrusive traitors.
+  - type: DynamicRuleCost
+    cost: 75
+
+# Subtraitor. Used exclusively as a subgamemode in Zombies. They don't get kill/lesson/or dagd objectives.
+- type: entity
+  parent: [ SubTraitorGameRule, BaseRoundstartAntagRule ]
+  id: SubTraitor
+  components:
+  - type: GameRule
+    minPlayers: 5
+    delay:
+      min: 240
+      max: 420
+  - type: AntagSelection
+    lateJoinAdditional: true
+    antags:
+    - !type:LinearAntagCount
+      proto: Traitor
+      playerRatio: 25.2
+      range:
+        min: 1
+        max: 6
+
+# TraitorLess. Used in VampTraitorLing and Dynamic.
+- type: entity
+  parent: Traitor
+  id: TraitorLess
+  components:
+  - type: AntagSelection
+    lateJoinAdditional: true
+    antags:
+    - !type:LinearAntagCount
+      proto: Traitor
+      playerRatio: 20.4
+      range:
+        min: 1
+        max: 12

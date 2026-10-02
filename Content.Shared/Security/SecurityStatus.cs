@@ -17,6 +17,7 @@ public enum SecurityStatus : byte
     None,
     Suspected,
     Wanted,
+    Arrestonsight, // STARLIGHT EDIT
     Hostile,
     Detained,
     Paroled,

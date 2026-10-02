@@ -19,7 +19,7 @@
     zombificationResistanceCoefficient: 0.9
 
 - type: entity
-  parent: [ClothingHandsButcherable, BaseSecurityContraband]
+  parent: [ClothingHandsButcherable, ClothingHandsBaseWarm, BaseSecurityContraband]
   id: ClothingHandsGlovesSecurityRed
   name: red security gloves
   description: Black gloves, but slightly red! The detective will LOVE you if you wear these.
@@ -44,6 +44,24 @@
     sprite: _Starlight/Clothing/Hands/Gloves/securityglovesfingerlessred.rsi
   - type: Fiber
     fiberMaterial: fibers-red-and-black-woven
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesFingerlessBudget
+  name: fingerless budget insulated gloves
+  description: You're not sure what's more insulting, the fact that these are fingerless, or the fact that they're not even real insuls.
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/fingerlessinsuls.rsi
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/fingerlessinsuls.rsi
+  - type: Fiber
+    fiberMaterial: fibers-insulative-frayed
+    fiberColor: fibers-yellow
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 0
 
 - type: entity
   parent: ClothingHandsMittensBase # That's why these exist in real life.
@@ -166,3 +184,25 @@
     sprite: _Starlight/Clothing/Hands/Gloves/elegantmaidgloves.rsi
   - type: Fiber
     fiberColor: fibers-white
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlack
+  id: ThievingGlovesReinforcement
+  suffix: Thieving, Reinforcement, Unremovable
+  components:
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+  - type: Thieving
+    stripTimeReduction: 0 # They don't have any steal time reduction
+    stealthy: true
+  - type: Unremoveable # Don't just take the free gloves from them, actually use them.
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-grey
+
+- type: entity
+  parent: ClothingHandsChameleon
+  id: ClothingHandsGlovesInsulatedChameleon
+  suffix: Chameleon, Insulated
+  components:
+  - type: Insulated

@@ -3,7 +3,7 @@ using Content.Shared.Chemistry.Reagent;
 namespace Content.Shared._Starlight.Medical.Body.Events;
 
 /// <summary>
-/// Event called by <see cref="Server.Body.Systems.MetabolizerSystem"/> to get a list of
+/// Event called by <see cref="Systems.MetabolizerSystem"/> to get a list of
 /// blood like reagents for metabolism to skip.
 /// </summary>
 [ByRefEvent]

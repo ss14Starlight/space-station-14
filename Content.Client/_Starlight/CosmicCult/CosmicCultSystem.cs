@@ -16,9 +16,9 @@ namespace Content.Client._Starlight.CosmicCult;
 
 public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
 {
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     private readonly ResPath _rsiPath = new("/Textures/_Starlight/CosmicCult/Effects/ability_siphonvfx.rsi");
 
@@ -68,6 +68,7 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     #endregion
 
     #region Layer Additions
+
     private void OnCosmicStarMarkAdded(Entity<CosmicStarMarkComponent> uid, ref ComponentStartup args)
     {
         if (_sprite.LayerMapTryGet(uid.Owner, CosmicRevealedKey.Key, out _, false))
@@ -100,10 +101,20 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
 
     #region Layer Removals
     private void OnCosmicStarMarkRemoved(Entity<CosmicStarMarkComponent> uid, ref ComponentShutdown args)
-        => _sprite.RemoveLayer(uid.Owner, CosmicRevealedKey.Key);
+    {
+        if (!TryComp<SpriteComponent>(uid, out var sprite))
+            return;
+
+        _sprite.RemoveLayer(uid.Owner, CosmicRevealedKey.Key);
+    }
 
     private void OnCosmicImpositionRemoved(Entity<CosmicImposingComponent> uid, ref ComponentShutdown args)
-        => _sprite.RemoveLayer(uid.Owner, CosmicImposingKey.Key);
+    {
+        if (!TryComp<SpriteComponent>(uid, out var sprite))
+            return;
+
+        _sprite.RemoveLayer(uid.Owner, CosmicImposingKey.Key);
+    }
     #endregion
 
     #region Icons

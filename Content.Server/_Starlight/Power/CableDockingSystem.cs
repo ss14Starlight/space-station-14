@@ -6,21 +6,21 @@ using Content.Shared.NodeContainer;
 using Content.Shared.Power;
 using Robust.Shared.Map.Components;
 using Content.Server.NodeContainer.EntitySystems;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 
-namespace Content.Server._Starlight.Power.EntitySystems;
+namespace Content.Server._Starlight.Power;
 
 /// <summary>
 /// Allows cables to connect over docks.
 /// </summary>
-public sealed class CableDockingSystem : EntitySystem
+public sealed partial class CableDockingSystem : EntitySystem
 {
     #region Dependencies
 
-    [Dependency] public readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly NodeGroupSystem _nodeGroupSystem = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] public SharedMapSystem _mapSystem = default!;
+    [Dependency] private NodeGroupSystem _nodeGroupSystem = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
 
     private readonly List<CableNode> _dockACables = [];
     private readonly List<CableNode> _dockBCables = [];
@@ -57,11 +57,8 @@ public sealed class CableDockingSystem : EntitySystem
 
     private void OnDocked(DockEvent ev)
     {
-        if (!TryGetDockEntity(ev.DockA, out var dockA) || !TryGetDockEntity(ev.DockB, out var dockB))
-            return;
-
-        GetDockCableNodes(dockA, _dockACables);
-        GetDockCableNodes(dockB, _dockBCables);
+        GetDockCableNodes(ev.DockA, _dockACables);
+        GetDockCableNodes(ev.DockB, _dockBCables);
 
         foreach (var cableA in _dockACables)
         {
@@ -77,11 +74,8 @@ public sealed class CableDockingSystem : EntitySystem
 
     private void OnUndocked(UndockEvent ev)
     {
-        if (!TryGetDockEntity(ev.DockA, out var dockA) || !TryGetDockEntity(ev.DockB, out var dockB))
-            return;
-
-        GetDockCableNodes(dockA, _dockACables);
-        GetDockCableNodes(dockB, _dockBCables);
+        GetDockCableNodes(ev.DockA, _dockACables);
+        GetDockCableNodes(ev.DockB, _dockBCables);
 
         foreach (var cableA in _dockACables)
         {
@@ -96,14 +90,14 @@ public sealed class CableDockingSystem : EntitySystem
 
     #region Cable Query
 
-    public IEnumerable<CableNode> GetDockCableNodes(EntityUid dock)
+    public IEnumerable<CableNode> GetDockCableNodes(Entity<DockingComponent> dock)
     {
         var result = new List<CableNode>();
         GetDockCableNodes(dock, result);
         return result;
     }
 
-    private void GetDockCableNodes(EntityUid dock, List<CableNode> result)
+    private void GetDockCableNodes(Entity<DockingComponent> dock, List<CableNode> result)
     {
         result.Clear();
 
@@ -118,7 +112,7 @@ public sealed class CableDockingSystem : EntitySystem
 
         foreach (var ent in _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, dockTile))
         {
-            if (ent == dock)
+            if (ent == dock.Owner)
                 continue;
 
             if (!TryComp<NodeContainerComponent>(ent, out var nodeContainer))
@@ -190,10 +184,14 @@ public sealed class CableDockingSystem : EntitySystem
             if (ent == node.Owner)
                 continue;
 
-            if (!TryComp<DockingComponent>(ent, out var docking) || docking.DockedWith is not { } otherDock)
+            if (!TryComp<DockingComponent>(ent, out var docking) ||
+                docking.DockedWith is not { } otherDock ||
+                !TryComp(otherDock, out DockingComponent? otherDockComp))
+            {
                 continue;
+            }
 
-            GetDockCableNodes(otherDock, _otherCables);
+            GetDockCableNodes((otherDock, otherDockComp), _otherCables);
 
             foreach (var otherCable in _otherCables)
             {
@@ -257,14 +255,6 @@ public sealed class CableDockingSystem : EntitySystem
         tile = _mapSystem.TileIndicesFor(gridUid, grid, xform.Coordinates);
         return true;
     }
-
-#pragma warning disable CS0618 // Using .Owner for Performance.
-    private static bool TryGetDockEntity(DockingComponent component, out EntityUid uid)
-    {
-        uid = component.Owner;
-        return true;
-    }
-#pragma warning restore CS0618
 
     private void LinkCables(CableNode a, CableNode b)
     {

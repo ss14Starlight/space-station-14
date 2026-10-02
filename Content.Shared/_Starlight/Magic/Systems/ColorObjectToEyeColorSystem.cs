@@ -5,10 +5,10 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Magic.Systems;
 
-public sealed class ColorObjectToEyeColorSystem : EntitySystem
+public sealed partial class ColorObjectToEyeColorSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedPointLightSystem _pointLight = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {

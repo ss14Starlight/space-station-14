@@ -166,6 +166,8 @@
   #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   # region starlight
   - type: Tag
+    tags:
+    - NonLethalMech
   # end region
 
 - type: entity
@@ -184,6 +186,7 @@
     selectedMode: FullAuto
     availableModes:
       - FullAuto
+
 # 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
@@ -191,6 +194,11 @@
     proto: TaserBolt
     fireCost: 40
   - type: Appearance
+ # Starlight start
+  - type: Tag
+    tags:
+    - NonLethalMech
+ # Starlight end
   #- type: AmmoCounter #Starlight - Mechs can't see this anyway
 
 - type: entity
@@ -456,6 +464,8 @@
   #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   # region starlight
   - type: Tag
+    tags:
+    - NonLethalMech
   # end region
 
 - type: entity

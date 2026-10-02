@@ -9,3 +9,7 @@
 - type: accessLevel
   id: Mail
   name: id-card-access-level-mail
+
+- type: accessLevel
+  id: Shuttle
+  name: id-card-access-level-shuttle

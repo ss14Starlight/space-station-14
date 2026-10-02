@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "equipped-OUTERCLOTHING",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-avali",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-reptilian",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-dog",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+      "copyright": "SevenShades"
+    }
+  ]
+}

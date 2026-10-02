@@ -1,6 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Server.Construction;
+using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Content.Server.Decals;
 using Content.Server.GameTicking.Events;
@@ -10,9 +10,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Procedural;
-using Content.Shared.Tag;
-using Robust.Server.GameObjects;
-using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.EntitySerialization;
@@ -28,19 +25,19 @@ namespace Content.Server.Procedural;
 
 public sealed partial class DungeonSystem : SharedDungeonSystem
 {
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
-    [Dependency] private readonly IConsoleHost _console = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
-    [Dependency] private readonly AnchorableSystem _anchorable = default!;
-    [Dependency] private readonly DecalSystem _decals = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly TileSystem _tile = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly MapLoaderSystem _loader = default!;
-    [Dependency] private readonly SharedMapSystem _maps = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private IConfigurationManager _configManager = default!;
+    [Dependency] private IConsoleHost _console = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ITileDefinitionManager _tileDefManager = default!;
+    [Dependency] private AnchorableSystem _anchorable = default!;
+    [Dependency] private DecalSystem _decals = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private TileSystem _tile = default!;
+    [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private MapLoaderSystem _loader = default!;
+    [Dependency] private SharedMapSystem _maps = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private VGRoidSpawnValidationSystem _vgroidValidation = default!; // Starlight
 
     private readonly List<(Vector2i, Tile)> _tiles = new();
@@ -55,6 +52,12 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
 
     private readonly JobQueue _dungeonJobQueue = new(DungeonJobTime);
     private readonly Dictionary<DungeonJob.DungeonJob, CancellationTokenSource> _dungeonJobs = new();
+
+    #region Starlight
+    private readonly List<DungeonJob.DungeonJob> _finishedDungeonJobs = new();
+
+    internal int TrackedDungeonJobCount => _dungeonJobs.Count;
+    #endregion
 
     public static readonly ProtoId<ContentTileDefinition> FallbackTileId = "FloorSteel";
 
@@ -76,17 +79,46 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
     {
         base.Update(frameTime);
         _dungeonJobQueue.Process();
+        CleanupFinishedDungeonJobs(); // Starlight: Remove completed jobs instead of retaining them until round restart.
     }
 
-    private void OnRoundCleanup(RoundRestartCleanupEvent ev)
+    #region Starlight
+    /// <summary>
+    /// Removes finished jobs from tracking and disposes their cancellation token sources.
+    /// Jobs are buffered first because <see cref="_dungeonJobs"/> cannot be modified while it is enumerated.
+    /// </summary>
+    private void CleanupFinishedDungeonJobs()
+    {
+        _finishedDungeonJobs.Clear();
+
+        foreach (var (job, _) in _dungeonJobs)
+        {
+            if (job.Status == JobStatus.Finished)
+                _finishedDungeonJobs.Add(job);
+        }
+
+        foreach (var job in _finishedDungeonJobs)
+        {
+            if (!_dungeonJobs.Remove(job, out var token))
+                continue;
+
+            token.Dispose();
+        }
+    }
+
+    private void CancelAndDisposeDungeonJobs()
     {
         foreach (var token in _dungeonJobs.Values)
         {
             token.Cancel();
+            token.Dispose();
         }
 
         _dungeonJobs.Clear();
     }
+    #endregion
+
+    private void OnRoundCleanup(RoundRestartCleanupEvent ev) => CancelAndDisposeDungeonJobs(); // Starlight
 
     private void OnRoundStart(RoundStartingEvent ev)
     {
@@ -110,12 +142,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
     public override void Shutdown()
     {
         base.Shutdown();
-        foreach (var token in _dungeonJobs.Values)
-        {
-            token.Cancel();
-        }
-
-        _dungeonJobs.Clear();
+        CancelAndDisposeDungeonJobs(); // Starlight
     }
 
     private void PrototypeReload(PrototypesReloadedEventArgs obj)

@@ -1,0 +1,11 @@
+- type: entity
+  id: MobMimicHostile
+  parent: MobMimic
+  suffix: Hostile
+  components:
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound

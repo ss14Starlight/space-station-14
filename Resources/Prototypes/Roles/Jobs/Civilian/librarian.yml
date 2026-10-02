@@ -34,11 +34,13 @@
       - Thaveyan
       - VoxPidgin
       - Sign
+      - ClassicalSign
       - Grumbakul
       - Aielic
       - Classical
       - Darktongue
       - Lagomorphian
+      - Squeakish
       understands:
       - GalacticCommon
       - Scratch
@@ -55,11 +57,13 @@
       - Thaveyan
       - VoxPidgin
       - Sign
+      - ClassicalSign
       - Grumbakul
       - Aielic
       - Classical
       - Darktongue
       - Lagomorphian
+      - Squeakish
   # Starlight end
 
 - type: startingGear

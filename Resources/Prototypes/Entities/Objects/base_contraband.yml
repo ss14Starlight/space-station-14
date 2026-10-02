@@ -34,6 +34,8 @@
   - type: ScanDetectable # Starlight
   - type: Contraband
     severity: Syndicate
+    allowedDepartments: [  ]
+    allowedJobs: [  ]
 
 # minor contraband not departmentally restricted -- improvised weapons etc
 - type: entity

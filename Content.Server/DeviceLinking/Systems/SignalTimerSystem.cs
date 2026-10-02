@@ -3,7 +3,6 @@ using Content.Shared.UserInterface;
 using Content.Shared.Access.Systems;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.MachineLinking;
-using Content.Shared.Screen;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
@@ -11,14 +10,14 @@ using Content.Shared.TextScreen;
 
 namespace Content.Server.DeviceLinking.Systems;
 
-public sealed class SignalTimerSystem : EntitySystem
+public sealed partial class SignalTimerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private DeviceLinkSystem _signalSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
 
     /// <summary>
     /// Per-tick timer cache.

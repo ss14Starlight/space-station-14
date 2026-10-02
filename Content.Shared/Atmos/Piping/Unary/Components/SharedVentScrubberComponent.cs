@@ -36,6 +36,10 @@ namespace Content.Shared.Atmos.Piping.Unary.Components
             Gas.Helium,
             Gas.AntiNoblium,
             // Funkystation End: Funky atmos - /tg/ gases
+            #region Starlight
+            // Starlight gases
+            Gas.ZXA,
+            #endregion
         };
 
         // Presets for 'dumb' air alarm modes

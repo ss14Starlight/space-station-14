@@ -16,7 +16,7 @@ bluespace-harvester-buy = Buy
 # Portal announcement
 bluespace-harvester-portal-warning = WARNING: A bluespace rift has been detected! Hostile entities are emerging from the rift. Bluespace Harvester operations suspended until rift closure.
 
-#Loot Tables
+# Loot Tables
 bluespace-harvester-pool-exotic-hat = Unknown Exotic Hat
 bluespace-harvester-pool-snack = Unknown Snack
 bluespace-harvester-pool-basic-materials = Unknown Basic Materials Stack

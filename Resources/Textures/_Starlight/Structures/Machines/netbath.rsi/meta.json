@@ -4,7 +4,7 @@
     "x": 32,
     "y": 32
   },
-  "copyright": "conf, darkrell",
+  "copyright": "State based copyright",
   "license": "CC-BY-SA-4.0",
   "states": [
     {
@@ -21,7 +21,8 @@
           0.25,
           0.25
         ]
-      ]
+      ],
+      "copyright": "conf, darkrell"
     },
     {
       "name": "overlay",
@@ -37,7 +38,8 @@
           0.25,
           0.25
         ]
-      ]
+      ],
+      "copyright": "conf, darkrell"
     },
     {
       "name": "enabled",
@@ -56,7 +58,8 @@
           0.15,
           0.15
         ]
-      ]
+      ],
+      "copyright": "conf, darkrell"
     }
   ]
 }

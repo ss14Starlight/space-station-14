@@ -1,16 +1,15 @@
 using Content.Shared.Tiles;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Map.Enumerators;
 
 namespace Content.Server.Tiles;
 
-public sealed class RequiresTileSystem : EntitySystem
+public sealed partial class RequiresTileSystem : EntitySystem
 {
     /*
      * Needs to be on server as client can't predict QueueDel.
      */
 
-    [Dependency] private readonly SharedMapSystem _maps = default!;
+    [Dependency] private SharedMapSystem _maps = default!;
 
     private EntityQuery<RequiresTileComponent> _tilesQuery;
 

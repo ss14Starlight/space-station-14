@@ -1,13 +1,11 @@
 using Content.Shared.Eye;
 using Robust.Server.GameObjects;
 using Content.Server.Atmos.Components;
-using Content.Shared.Temperature.Components;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using System.Linq;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
-using Content.Shared._Starlight.NullSpace;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Server.Atmos.EntitySystems;
@@ -21,21 +19,24 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Gravity;
 using Content.Server._Starlight.CosmicCult;
+using Content.Shared._Starlight.NullSpace.Systems;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Shared._Starlight.CosmicCult.Components;
 
 namespace Content.Server._Starlight.NullSpace;
 
 public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 {
-    [Dependency] private readonly SharedStealthSystem _stealth = default!;
-    [Dependency] private readonly EyeSystem _eye = default!;
-    [Dependency] private readonly NpcFactionSystem _factions = default!;
-    [Dependency] private readonly PullingSystem _pulling = default!;
-    [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly NullSpacePhaseSystem _phaseSystem = default!;
-    [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly CosmicCultRuleSystem _cosmicCult = default!;
-    [Dependency] private readonly VisibilitySystem _visibility = default!;
+    [Dependency] private SharedStealthSystem _stealth = default!;
+    [Dependency] private EyeSystem _eye = default!;
+    [Dependency] private NpcFactionSystem _factions = default!;
+    [Dependency] private PullingSystem _pulling = default!;
+    [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private NullSpacePhaseSystem _phaseSystem = default!;
+    [Dependency] private SharedGravitySystem _gravity = default!;
+    [Dependency] private CosmicCultRuleSystem _cosmicCult = default!;
+    [Dependency] private VisibilitySystem _visibility = default!;
 
     public override void Initialize()
     {

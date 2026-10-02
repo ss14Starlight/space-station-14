@@ -1,14 +1,15 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "core taked from Paradise Station , pulse created by Rinary (github) for ss14",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "core"
+      "name": "core",
+      "copyright": "Taken from Paradise Station"
     },
     {
       "name": "pulse",
@@ -22,7 +23,8 @@
           0.2,
           0.2
         ]
-      ]
+      ],
+      "copyright": "Created by Rinary (github) for ss14"
     }
   ]
 }

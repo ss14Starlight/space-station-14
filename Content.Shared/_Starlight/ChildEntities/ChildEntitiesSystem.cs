@@ -1,11 +1,10 @@
-using Content.Shared.Buckle.Components;
 using Robust.Shared.Network;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.ChildEntities;
 
 public sealed partial class ChildEntitiesSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private INetManager _net = default!;
     public override void Initialize()
     {
         base.Initialize();

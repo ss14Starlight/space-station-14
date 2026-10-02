@@ -135,10 +135,78 @@
 
 - type: entity
   parent: SurgeryStepBase
+  id: SurgeryStepCloseIncisionDoll
+  name: Close incision
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: Cautery
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
+    state: cautery
+  - type: SurgeryStepEmoteEffect
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepMendShellDoll
+  name: Mend shell
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: BoneGel
+    remove:
+    - type: SkinRetracted
+    - type: BleedersClamped
+    - type: IncisionOpen
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+  - type: SurgeryStepEmoteEffect
+    emote: Sigh
+  - type: SurgeryClearProgress
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepOpenShell
+  name: Break open the shell
+  components:
+  - type: SurgeryStep
+    duration: 10
+    add:
+    - type: IncisionOpen
+    tools:
+    - type: BoneSetter
+  - type: SurgeryStepBleedEffect
+    damage:
+      types:
+        Slash: 3
+  - type: SurgeryStepEmoteEffect
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: setter
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepClampTendrils
+  name: Remove the tendrils
+  components:
+  - type: SurgeryStep
+    add:
+    - type: BleedersClamped
+    tools:
+    - type: Hemostat
+  - type: SurgeryClampBleedEffect
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: hemostat
+
+- type: entity
+  parent: SurgeryStepBase
   id: SurgeryStepCutAbdominalMuscles
   name: Cut through abdominal muscles
   components:
   - type: SurgeryStep
+    duration: 5
     tools:
     - type: Scalpel
   - type: Sprite

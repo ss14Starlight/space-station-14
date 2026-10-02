@@ -3,12 +3,16 @@
   name: store-category-plushies
 
 - type: storeCategory
+  id: SLToys
+  name: store-category-plushie-toys
+
+- type: storeCategory
   id: SLSpecies
   name: store-category-plushie-species
 
 - type: storeCategory
   id: SLCrew
-  name: Crew
+  name: store-category-plushie-crew
 
 - type: storeCategory
   id: SLChemistry
@@ -23,12 +27,22 @@
   name: store-category-medical-surgery
 
 - type: storeCategory
-  id: SLEnginery
-  name: store-category-enginery-main
+  id: SLAtmospherics
+  name: store-category-engineering-atmos
+  priority: 0
+
+- type: storeCategory
+  id: SLEngineering
+  name: store-category-engineering-main
+  priority: 1
 
 - type: storeCategory
   id: SLClown
   name: store-category-service-clown
+
+- type: storeCategory
+  id: SLMime
+  name: store-category-service-mime
 
 - type: storeCategory
   id: SLSecurity
@@ -36,64 +50,64 @@
 
 - type: storeCategory
   id: SLBrigmedic
-  name: Medical
+  name: store-category-slbrigmedic
 
 - type: storeCategory
   id: SLFashionSkirt
-  name: Luxury dresses
+  name: store-category-slfashion-skirt
 
 - type: storeCategory
   id: SLFashionSuit
-  name: Elegant suits
+  name: store-category-slfashion-suit
 
 - type: storeCategory
   id: SLFashionHead
-  name: Hats & Helmets
+  name: store-category-slfashion-head
 
 - type: storeCategory
   id: SLFashionOther
-  name: Other
+  name: store-category-slfashion-other
 
 # shuttle build uplink
 - type: storeCategory
   id: ShuttleUplinkEquipment
-  name: Space equipment
+  name: store-category-shuttle-uplink-equipment
   priority: 0
 
 - type: storeCategory
   id: ShuttleUplinkResources
-  name: Materials
+  name: store-category-shuttle-uplink-resources
   priority: 3
 
 - type: storeCategory
   id: ShuttleUplinkShipbuilding
-  name: Shuttle utilities
+  name: store-category-shuttle-uplink-shipbuilding
   priority: 4
 
 - type: storeCategory
   id: ShuttleUplinkMedicine
-  name: Medical utilities
+  name: store-category-shuttle-uplink-medicine
   priority: 6
 
 - type: storeCategory
   id: ShuttleUplinkExtra
-  name: Extra
+  name: store-category-shuttle-uplink-extra
   priority: 7
 
 # menacing shuttle build uplink
 - type: storeCategory
   id: MenacingShuttleUplinkEquipment
-  name: Syndicate equipment
+  name: store-category-menacing-shuttle-uplink-equipment
   priority: 1
 
 - type: storeCategory
   id: MenacingShuttleUplinkWeapons
-  name: Weaponry
+  name: store-category-menacing-shuttle-uplink-weapons
   priority: 2
 
 - type: storeCategory
   id: MenacingShuttleUplinkPirate
-  name: Pirate
+  name: store-category-menacing-shuttle-uplink-pirate
   priority: 5
 
 # agent uplink
@@ -105,62 +119,62 @@
 
 - type: storeCategory
   id: SalvageEquipment
-  name: Equipment
+  name: store-category-salvage-equipment
 
 - type: storeCategory
   id: SalvageWeapons
-  name: Weapons
+  name: store-category-salvage-weapons
 
 - type: storeCategory
   id: SalvageConsumeables
-  name: Consumeables
+  name: store-category-salvage-consumeables
 
 - type: storeCategory
   id: SalvageMercenaryEquipment
-  name: Scrapper
+  name: store-category-salvage-mercenary-equipment
 
 - type: storeCategory
   id: SalvageCybernetics
-  name: Cybernetics
+  name: store-category-salvage-cybernetics
 
 # mining
 - type: storeCategory
   id: MiningEquipment
-  name: Equipment
+  name: store-category-mining-equipment
 
 - type: storeCategory
   id: MiningConsumeables
-  name: Consumeables
+  name: store-category-mining-consumeables
 
 # USSP
 
 - type: storeCategory
   id: RevUplinkWeaponry
-  name: Armaments
+  name: store-category-rev-uplink-weaponry
 
 - type: storeCategory
   id: RevUplinkPassive
-  name: GLOBAL
+  name: store-category-rev-uplink-passive
 
 - type: storeCategory
   id: RevUplinkWearables
-  name: Wearables
+  name: store-category-rev-uplink-wearables
 
 - type: storeCategory
   id: RevUplinkImplants
-  name: Implants
+  name: store-category-rev-uplink-implants
 
 - type: storeCategory
   id: RevUplinkShuttle
-  name: Artillery
+  name: store-category-rev-uplink-shuttle
 
 - type: storeCategory
   id: RevUplinkDeception
-  name: Deception
+  name: store-category-rev-uplink-deception
 
 - type: storeCategory
   id: RevUplinkPointless
-  name: Glory
+  name: store-category-rev-uplink-pointless
 
 # Elf Cantrips
 
@@ -177,3 +191,30 @@
 - type: storeCategory
   id: SLSecret
   name: store-category-secret
+
+- type: storeCategory # funkystation start
+  id: UplinkDAGD
+  name: store-category-dagd
+  priority: 11 # funkystation end
+
+- type: storeCategory
+  id: SecondHandItems
+  name: store-second-hand-items
+  priority: 201
+
+# changeling
+
+- type: storeCategory
+  id: ChangelingAbilityCombat
+  name: store-ling-category-combat
+  priority: 0
+
+- type: storeCategory
+  id: ChangelingAbilitySting
+  name: store-ling-category-sting
+  priority: 1
+
+- type: storeCategory
+  id: ChangelingAbilityUtility
+  name: store-ling-category-utility
+  priority: 2

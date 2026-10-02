@@ -1,17 +1,17 @@
 using Content.Server._NullLink.Core;
 using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 
 namespace Content.Server._NullLink;
 
-public sealed class NullLinkPlayerResourcesManager : SharedNullLinkPlayerResourcesManager
+public sealed partial class NullLinkPlayerResourcesManager : SharedNullLinkPlayerResourcesManager
 {
-    [Dependency] private readonly ISharedPlayersRoleManager _sharedPlayers = default!;
-    [Dependency] private readonly IActorRouter _actors = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private ISharedPlayersRoleManager _sharedPlayers = default!;
+    [Dependency] private IActorRouter _actors = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private bool _resourcesEnabled = false;
 

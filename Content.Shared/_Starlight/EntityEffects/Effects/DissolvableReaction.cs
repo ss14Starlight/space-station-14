@@ -1,13 +1,12 @@
-using JetBrains.Annotations;
 using Content.Shared.EntityEffects;
 using Content.Shared.Database;
 using Content.Shared.Tag;
 using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
-using Content.Shared.Starlight.EntityEffects.Components;
-using Content.Shared.Starlight.EntityEffects.EntitySystems;
+using Content.Shared._Starlight.EntityEffects.Components;
+using Content.Shared._Starlight.EntityEffects.EntitySystems;
 
-namespace Content.Shared.Starlight.EntityEffects.Effects;
+namespace Content.Shared._Starlight.EntityEffects.Effects;
 
 /// <summary>
 /// Makes this entity sentient. Allows ghost to take it over if it's not already occupied.
@@ -16,14 +15,16 @@ namespace Content.Shared.Starlight.EntityEffects.Effects;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class DissolvableReactionEntityEffectSystem : EntityEffectSystem<DissolvableComponent, DissolvableReaction>
 {
-    [Dependency] private readonly SharedDissolvableSystem _dissolvable = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly EntityManager _entMan = default!;
+    [Dependency] private SharedDissolvableSystem _dissolvable = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private EntityManager _entMan = default!;
+
+    private static readonly ProtoId<TagPrototype> _unDissolvableTag = "UnDissolvable";
 
     protected override void Effect(Entity<DissolvableComponent> entity, ref EntityEffectEvent<DissolvableReaction> args)
     {
-        if (_tag.HasTag(entity, "UnDissolvable")) // Yeah, this is hardcode but.... Idk
+        if (_tag.HasTag(entity, _unDissolvableTag.Id)) // Yeah, this is hardcode but.... Idk
             return;
 
         entity.Comp.Damage = args.Effect.Damage;

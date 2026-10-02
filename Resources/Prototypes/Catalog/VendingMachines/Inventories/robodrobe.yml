@@ -14,6 +14,8 @@
     ClothingHeadHatBlacksoft: 2 # Starlight
     ClothingHeadsetRobotics: 2
     ClothingOuterWinterRobo: 2
+    ClothingNeckScarfRoboticist: 2 # Starlight
   contrabandInventory: # Starlight
     ToolboxRoboticist: 1 # Starlight
     ClothingMaskRoboticist: 1 # Starlight
+    ToyFigurineRoboticist: 1 # Starlight

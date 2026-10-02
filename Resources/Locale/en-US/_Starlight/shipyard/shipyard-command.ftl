@@ -5,3 +5,4 @@ cmd-purchaseshuttle-failed = Failed to purchase shuttle (no vessel returned).
 cmd-purchaseshuttle-success = Successfully purchased shuttle '{ $path }' for station { $station }.
 cmd-purchaseshuttle-desc = Spawns and docks a specified shuttle from a grid file
 cmd-purchaseshuttle-help = purchaseshuttle <station ID> <gridfile path> [delay]
+shipyard-console-purchase-failed = Failed to prepare the shuttle. Please contact Central Command for assistance.

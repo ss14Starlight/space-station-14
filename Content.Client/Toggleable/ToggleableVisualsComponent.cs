@@ -27,4 +27,26 @@ public sealed partial class ToggleableVisualsComponent : Component
     /// </summary>
     [DataField]
     public Dictionary<string, List<PrototypeLayerData>> ClothingVisuals = new();
+
+    #region Starlight
+
+    /// <summary>
+    /// Additional layers to toggle.
+    /// </summary>
+    /// <remarks>
+    /// Added to avoid needing to alter several dozen prototypes.
+    /// </remarks>
+    [DataField] public List<string> AdditionalLayers = [];
+
+    /// <summary>
+    /// List of layers to ignore when modulating color with appearance data.
+    /// </summary>
+    [DataField] public List<string> ModulateIgnoreLayers = [];
+
+    /// <summary>
+    /// Toggleable visuals for when wielding item.
+    /// </summary>
+    [DataField] public Dictionary<HandLocation, List<PrototypeLayerData>> WieldingVisuals = [];
+
+    #endregion
 }

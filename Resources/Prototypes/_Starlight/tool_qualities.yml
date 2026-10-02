@@ -1,0 +1,6 @@
+- type: tool
+  id: Tearing
+  name: tool-quality-tearing-name
+  toolName: tool-quality-tearing-tool-name
+  spawn: FireAxe
+  icon: { sprite: Objects/Weapons/Melee/fireaxe.rsi, state: icon }

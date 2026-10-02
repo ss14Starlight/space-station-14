@@ -8,5 +8,16 @@ namespace Content.Shared.Decals
     {
         public Dictionary<NetEntity, Dictionary<Vector2i, DecalChunk>> Data = new();
         public Dictionary<NetEntity, HashSet<Vector2i>> RemovedChunks = new();
+
+        public Dictionary<NetEntity, Dictionary<Vector2i, DecalChunkDiff>> Diffs = []; // Starlight
     }
+    // Starlight Start
+    [Serializable, NetSerializable]
+    public sealed class DecalChunkDiff
+    {
+        public Dictionary<uint, Decal> Upserted = [];
+        public HashSet<uint> Removed = [];
+    }
+    // Starlight End
 }
+

@@ -3,10 +3,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Afterlight.Prototypes;
 
-public sealed class ALPrototypeSystem : EntitySystem
+public sealed partial class ALPrototypeSystem : EntitySystem
 {
-    [Dependency] private readonly IComponentFactory _compFactory = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IComponentFactory _compFactory = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public IEnumerable<(EntityPrototype Prototype, T Component)> EnumerateComponents<T>() where T : IComponent, new()
     {

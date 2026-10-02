@@ -17,8 +17,8 @@ namespace Content.Shared.Roles
         [IdDataField]
         public string ID { get; private set; } = default!;
 
-        [DataField(required: true, customTypeSerializer: typeof(PrototypeIdSerializer<PlayTimeTrackerPrototype>))]
-        public string PlayTimeTracker { get; private set; } = string.Empty;
+        [DataField(required: true)]
+        public ProtoId<PlayTimeTrackerPrototype> PlayTimeTracker { get; private set; } = string.Empty;
 
         /// <summary>
         ///     Who is the supervisor for this job.
@@ -91,9 +91,6 @@ namespace Content.Shared.Roles
         [DataField]
         public bool? OverrideConsoleVisibility { get; private set; } = null;
 
-        [DataField]
-        public bool CanBeAntag { get; private set; } = true;
-
         /// <summary>
         ///     STARLIGHT: Whether to bypass EOR pacification.
         /// </summary>
@@ -132,8 +129,8 @@ namespace Content.Shared.Roles
         /// Starting gear will be ignored.
         /// If you want to just add special attributes to a humanoid, use AddComponentSpecial instead.
         /// </summary>
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string? JobEntity = null;
+        [DataField]
+        public EntProtoId? JobEntity = null;
 
         /// <summary>
         /// Entity to use as a preview in the lobby/character editor.

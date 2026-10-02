@@ -5,9 +5,9 @@
     xmlns:gunnery="clr-namespace:Content.Client._Starlight.Weapons.Gunnery"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     x:Class="Content.Client._Starlight.Weapons.Gunnery.GunneryConsoleWindow"
-    Title="Gunnery Console"
-    SetSize="870 680"
-    MinSize="640 500">
+    Title="{Loc 'gunnery-title'}"
+    SetSize="1100 740"
+    MinSize="800 540">
 
     <BoxContainer Orientation="Horizontal">
 
@@ -21,17 +21,65 @@
             HorizontalAlignment="Center"
             Visible="false" />
 
-        <!-- Main radar display -->
-        <gunnery:GunneryRadarControl
-            Name="RadarControl"
+        <!-- Main radar + category filters -->
+        <BoxContainer
+            Orientation="Vertical"
             HorizontalExpand="True"
             VerticalExpand="True"
-            Margin="4" />
+            SeparationOverride="0">
+
+            <gunnery:GunneryRadarControl
+                Name="RadarControl"
+                HorizontalExpand="True"
+                VerticalExpand="True"
+                Margin="4" />
+
+            <!-- Category filter row -->
+            <BoxContainer
+                Orientation="Horizontal"
+                Margin="4,0,4,6"
+                SeparationOverride="4">
+
+                <Label
+                    Text="FILTER:"
+                    FontColorOverride="#888888"
+                    VerticalAlignment="Center"
+                    Margin="0,0,4,0" />
+
+                <CheckBox
+                    Name="FilterEnergy"
+                    Text="{Loc 'gunnery-energy'}"
+                    Pressed="True"
+                    ToolTip="{Loc 'gunnery-energy-tooltip'}" />
+
+                <CheckBox
+                    Name="FilterRocket"
+                    Text="{Loc 'gunnery-rocket'}"
+                    Pressed="True"
+                    ToolTip="{Loc 'gunnery-rocket-tooltip'}" />
+
+                <CheckBox
+                    Name="FilterBallistic"
+                    Text="{Loc 'gunnery-ballistic'}"
+                    Pressed="True"
+                    ToolTip="{Loc 'gunnery-ballistic-tooltip'}" />
+
+                <CheckBox
+                    Name="FilterUnknown"
+                    Text="{Loc 'gunnery-other'}"
+                    Pressed="True"
+                    ToolTip="{Loc 'gunnery-other-tooltip'}" />
+
+            </BoxContainer>
+
+        </BoxContainer>
+
+        <cc:VSeparator />
 
         <!-- Right sidebar: cannon list + status -->
         <BoxContainer
             Orientation="Vertical"
-            MinWidth="170"
+            MinWidth="320"
             Margin="4,4,6,4"
             SeparationOverride="4">
 
@@ -41,33 +89,37 @@
                 FontColorOverride="#FFA040"
                 Margin="0,4,0,2" />
 
+            <!-- Legend -->
+            <BoxContainer Orientation="Horizontal" Margin="2,0,2,2" SeparationOverride="8">
+                <Label Text="■" FontColorOverride="#44FF44" />
+                <Label Text="{Loc 'gunnery-ready'}" FontColorOverride="#888888" />
+                <Label Text="■" FontColorOverride="#FF4444" />
+                <Label Text="{Loc 'gunnery-cooldown'}" FontColorOverride="#888888" />
+                <Label Text="■" FontColorOverride="#FF8800" />
+                <Label Text="{Loc 'gunnery-no-ammo'}" FontColorOverride="#888888" />
+            </BoxContainer>
+
             <PanelContainer VerticalExpand="True">
                 <ScrollContainer VerticalExpand="True">
-                    <ItemList
-                        Name="CannonList"
-                        VerticalExpand="True"
-                        SelectMode="Single" />
+                    <BoxContainer
+                        Name="CannonContainer"
+                        Orientation="Vertical"
+                        SeparationOverride="2" />
                 </ScrollContainer>
             </PanelContainer>
 
             <cc:HSeparator />
 
             <Label
-                Name="StatusLabel"
-                Text="No cannon selected"
-                HorizontalAlignment="Center"
-                FontColorOverride="#AAAAAA"
-                Margin="0,4,0,2" />
-
-            <Label
                 Name="GuidanceLabel"
                 Text=""
                 HorizontalAlignment="Center"
                 FontColorOverride="#44FF44"
-                Margin="0,0,0,4" />
+                Margin="0,4,0,4" />
 
         </BoxContainer>
 
     </BoxContainer>
 
 </controls:FancyWindow>
+

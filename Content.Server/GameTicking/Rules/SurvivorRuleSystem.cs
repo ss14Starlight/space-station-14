@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
@@ -14,15 +15,15 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComponent>
+public sealed partial class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComponent>
 {
-    [Dependency] private readonly RoleSystem _role = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly TransformSystem _xform = default!;
-    [Dependency] private readonly EmergencyShuttleSystem _eShuttle = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private RoleSystem _role = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private TransformSystem _xform = default!;
+    [Dependency] private EmergencyShuttleSystem _eShuttle = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
 
     private static readonly ProtoId<TagPrototype> InvalidForSurvivorAntagTag = "InvalidForSurvivorAntag";
 
@@ -75,7 +76,7 @@ public sealed class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComponent>
         var deadSurvivors = 0;
         var aliveMarooned = 0;
         var aliveOnShuttle = 0;
-        var eShuttle = _eShuttle.GetShuttle();
+        var eShuttle = _eShuttle.GetShuttles();
 
         while (existingSurvivors.MoveNext(out _, out _, out var mindComp))
         {
@@ -94,7 +95,7 @@ public sealed class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComponent>
                 continue;
             }
 
-            if (eShuttle != null && eShuttle.Value.IsValid() && (Transform(eShuttle.Value).MapID == _xform.GetMapCoordinates(survivor).MapId))
+            if (eShuttle.Any(shuttle => shuttle is not null && Transform(shuttle.Value).MapID == Transform(survivor).MapID)) // Starlight edit
             {
                 aliveOnShuttle++;
                 continue;

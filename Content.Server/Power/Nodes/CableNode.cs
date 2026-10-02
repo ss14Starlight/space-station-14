@@ -1,10 +1,10 @@
+using Content.Server._Starlight.Power;
+using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.NodeContainer;
+using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-// Starlight Start: CableDockingSystem
-using System.Collections.Generic;
 using Robust.Shared.Utility;
-// Starlight End: CableDockingSystem
 
 namespace Content.Server.Power.Nodes
 {
@@ -29,6 +29,7 @@ namespace Content.Server.Power.Nodes
 
         public HashSet<CableNode>? GetAlwaysReachable() => _alwaysReachable;
         // Starlight End: CableDockingSystem
+
         public override IEnumerable<Node> GetReachableNodes(
             Entity<TransformComponent> xform,
             EntityQuery<NodeContainerComponent> nodeQuery,
@@ -114,7 +115,7 @@ namespace Content.Server.Power.Nodes
         {
             base.OnAnchorStateChanged(entityManager, anchored);
 
-            var dockCableSystem = entityManager.System<Server._Starlight.Power.EntitySystems.CableDockingSystem>();
+            var dockCableSystem = entityManager.System<CableDockingSystem>();
             if (anchored)
             {
                 dockCableSystem.TryConnectDockedCable(this);

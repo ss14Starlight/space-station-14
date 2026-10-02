@@ -35,6 +35,8 @@
       waste: '#990000'
       distro: '#0055cc'
       # starlight edit start - add new colors for standard pipes
+      buying: '#DAB73AFF' # buying gas from ATS
+      selling: '#3FA43FFF' # selling gas to ATS
       cold: '#087CA7FF'
       hot: '#EF6F6CFF'
       frezon: '#05B2DCFF'

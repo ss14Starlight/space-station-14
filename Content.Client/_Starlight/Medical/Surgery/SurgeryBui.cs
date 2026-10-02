@@ -1,9 +1,8 @@
 using Content.Client.Administration.UI.CustomControls;
 using Content.Client.Hands.Systems;
-using Content.Server.Administration.Systems;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Body.Part;
-using Content.Shared.Starlight.Medical.Surgery;
+using Content.Shared._Starlight.Medical.Surgery;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -12,17 +11,19 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Control;
+using Content.Shared._Starlight.Medical.Surgery.Components;
+using Content.Shared._Starlight;
 
 namespace Content.Client._Starlight.Medical.Surgery;
 // Based on the RMC14 build.
 // https://github.com/RMC-14/RMC-14
 
 [UsedImplicitly]
-public sealed class SurgeryBui : BoundUserInterface
+public sealed partial class SurgeryBui : BoundUserInterface
 {
-    [Dependency] private readonly IEntityManager _entities = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IGameTiming _game = default!;
+    [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IGameTiming _game = default!;
 
     private readonly StarlightEntitySystem _entitySystem;
     private readonly SurgerySystem _system;
@@ -374,6 +375,9 @@ public sealed class SurgeryBui : BoundUserInterface
                             break;
                         case StepInvalidReason.NotEnoughReagent:
                             stepName.AddMarkupOrThrow(" [color=red](Missing Reagent)[/color]");
+                            break;
+                        case StepInvalidReason.MissingLimb:
+                            stepName.AddMarkupOrThrow(" [color=red](Can't attach as limb)[/color]");
                             break;
                     }
                 }

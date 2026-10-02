@@ -17,8 +17,8 @@ namespace Content.Client.Chemistry.UI
     [GenerateTypedNameReferences]
     public sealed partial class ReagentDispenserWindow : FancyWindow
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
         public event Action<ReagentDispenseData>? OnDispenseReagentButtonPressed; // Starlight-edit
         public event Action<ItemStorageLocation>? OnEjectJugButtonPressed;
         public event Action? OnToggleValveButtonPressed; // Starlight-edit: Plumbing valve

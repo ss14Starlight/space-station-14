@@ -4,9 +4,9 @@ using Robust.Shared.Network;
 
 namespace Content.Client._NullLink;
 
-public sealed class NullLinkPlayerResourcesManager : SharedNullLinkPlayerResourcesManager, INullLinkPlayerResourcesManager
+public sealed partial class NullLinkPlayerResourcesManager : SharedNullLinkPlayerResourcesManager, INullLinkPlayerResourcesManager
 {
-    [Dependency] private readonly IClientNetManager _netMgr = default!;
+    [Dependency] private IClientNetManager _netMgr = default!;
 
     private Dictionary<string, double> _playerResources = [];
 

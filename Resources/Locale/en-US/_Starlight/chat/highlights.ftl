@@ -25,7 +25,6 @@ highlights-roboticist = Roboticist, Science, Robo, "Sci", Robotics
 
 # Civilian
 highlights-boxer = Boxer
-highlights-zookeeper = Zookeeper, Zoo
 highlights-performer = Performer
 highlights-assistant = Assistant
 

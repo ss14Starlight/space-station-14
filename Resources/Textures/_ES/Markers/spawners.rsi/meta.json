@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "license": "CC0-1.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "magazine",
+			"copyright": "Made by Flareguy for Ephemeral Space"
+        },
+        {
+            "name": "newspaper",
+			"copyright": "Made by Flareguy for Ephemeral Space"
+        },
+        {
+            "name": "legit",
+			"copyright": "Made by Flareguy for Ephemeral Space"
+        }
+    ]
+}

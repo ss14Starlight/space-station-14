@@ -1,4 +1,3 @@
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Camera;
@@ -6,14 +5,17 @@ using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Rejuvenate;
 using JetBrains.Annotations;
+#region Starlight
+using Content.Shared._Starlight.Medical.Surgery.Components;
+#endregion
 
 namespace Content.Shared.Eye.Blinding.Systems;
 
-public sealed class BlindableSystem : EntitySystem
+public sealed partial class BlindableSystem : EntitySystem
 {
-    [Dependency] private readonly BlurryVisionSystem _blurriness = default!;
-    [Dependency] private readonly EyeClosingSystem _eyelids = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    [Dependency] private BlurryVisionSystem _blurriness = default!;
+    [Dependency] private EyeClosingSystem _eyelids = default!;
+    [Dependency] private SharedBodySystem _bodySystem = default!;
 
     public override void Initialize()
     {
@@ -56,10 +58,11 @@ public sealed class BlindableSystem : EntitySystem
         var old = blindable.Comp.IsBlind;
 
         var forceBlind = false;
-        if(TryComp<BodyComponent>(blindable.Owner, out var body))
+        if (TryComp<BodyComponent>(blindable.Owner, out var body))
         {
             var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((blindable.Owner, body));
-            forceBlind = eyes.Count == 0;
+
+            forceBlind = eyes.Count == 0 && _bodySystem.HasOrganSlot(blindable.Owner, body, "eyes");
         }
 
         // Don't bother raising an event if the eye is too damaged.

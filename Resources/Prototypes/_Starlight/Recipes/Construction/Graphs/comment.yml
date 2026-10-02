@@ -1,0 +1,16 @@
+- type: constructionGraph
+  id: Comment
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: comment
+          steps:
+            - tag: ConstructionComment
+              name: construction-comment-step
+              icon:
+                sprite: Objects/Misc/bureaucracy.rsi
+                state: paper_words
+
+    - node: comment
+      entity: ConstructionCommentMarker

@@ -2,3 +2,10 @@
   id: Command
   name: guide-entry-command
   text: "/ServerInfo/Guidebook/Command.xml"
+  children:
+    - secure-terminal-guide
+
+- type: guideEntry
+  id: secure-terminal-guide
+  name: guide-entry-sl-secure-terminal-guide
+  text: "/ServerInfo/Guidebook/Command/SecureTerminal.xml"

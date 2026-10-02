@@ -17,8 +17,8 @@ namespace Content.Client.Store.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class StoreMenu : DefaultWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private StoreWithdrawWindow? _withdrawWindow;
 
@@ -94,7 +94,7 @@ public sealed partial class StoreMenu : DefaultWindow
         ClearListings();
 
     var useGrid = _clientGridOverride ?? GridMode; // Starlight start
-    ToggleViewButton.Text = useGrid ? "Grid" : "List";
+    ToggleViewButton.Text = Loc.GetString(useGrid ? "store-view-grid" : "store-view-list");
     HoverDivider.Visible = useGrid;
     HoverPreview.Visible = useGrid;
     if (!useGrid)

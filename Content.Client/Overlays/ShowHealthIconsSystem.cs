@@ -12,9 +12,9 @@ namespace Content.Client.Overlays;
 /// <summary>
 /// Shows a healthy icon on mobs.
 /// </summary>
-public sealed class ShowHealthIconsSystem : EquipmentHudSystem<ShowHealthIconsComponent>
+public sealed partial class ShowHealthIconsSystem : EquipmentHudSystem<ShowHealthIconsComponent>
 {
-    [Dependency] private readonly IPrototypeManager _prototypeMan = default!;
+    [Dependency] private IPrototypeManager _prototypeMan = default!;
 
     [ViewVariables]
     public HashSet<string> DamageContainers = new();
@@ -76,8 +76,10 @@ public sealed class ShowHealthIconsSystem : EquipmentHudSystem<ShowHealthIconsCo
         var result = new List<HealthIconPrototype>();
 
         // Here you could check health status, diseases, mind status, etc. and pick a good icon, or multiple depending on whatever.
+        /* Starlight - Respect icon display configuration
         if (damageableComponent?.DamageContainerID == "Biological")
         {
+        */
             if (TryComp<MobStateComponent>(entity, out var state))
             {
                 // Since there is no MobState for a rotting mob, we have to deal with this case first.
@@ -86,7 +88,9 @@ public sealed class ShowHealthIconsSystem : EquipmentHudSystem<ShowHealthIconsCo
                 else if (damageableComponent.HealthIcons.TryGetValue(state.CurrentState, out var value) && _prototypeMan.Resolve(value, out var icon))
                     result.Add(icon);
             }
+        /* Starlight
         }
+        */
 
         return result;
     }

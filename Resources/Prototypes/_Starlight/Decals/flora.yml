@@ -1,0 +1,170 @@
+- type: decal
+  id: WaterReedsBig1
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: &waterReeds _Starlight/Decals/water_reeds.rsi
+    state: big1
+
+- type: decal
+  id: WaterReedsBig2
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: big2
+
+- type: decal
+  id: WaterReedsBig3
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: big3
+
+- type: decal
+  id: WaterReedsBig4
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: big4
+
+- type: decal
+  id: WaterReedsBig5
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: big5
+
+- type: decal
+  id: WaterReedsBig6
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: big6
+
+- type: decal
+  id: WaterReedsBig7
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: big7
+
+- type: decal
+  id: WaterReedsBig8
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: big8
+
+- type: decal
+  id: WaterReedsSmall1
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: small1
+
+- type: decal
+  id: WaterReedsSmall2
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: small2
+
+- type: decal
+  id: WaterReedsSmall3
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: small3
+
+- type: decal
+  id: WaterReedsSmall4
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: small4
+
+- type: decal
+  id: WaterReedsSmall5
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: small5
+
+- type: decal
+  id: WaterReedsSmall6
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: small6
+
+- type: decal
+  id: WaterReedsSmall7
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: small7
+
+- type: decal
+  id: WaterReedsSmall8
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: small8
+
+- type: decal
+  id: WaterReedsSmall9
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: small9
+
+- type: decal
+  id: WaterReedsSmall0
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: small10
+
+- type: decal
+  id: WaterReedsSmall11
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: *waterReeds
+    state: small11

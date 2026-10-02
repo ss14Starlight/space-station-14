@@ -4,7 +4,7 @@ using Content.Server.Speech.Components;
 using Content.Shared.Chat;
 using Content.Shared.Paper;
 using Content.Shared.Speech;
-using Content.Shared.Starlight.TextToSpeech;
+using Content.Shared._Starlight.TextToSpeech;
 using Content.Shared._Starlight.TapeRecorder;
 using Content.Shared._Starlight.TapeRecorder.Components;
 using Content.Shared._Starlight.TapeRecorder.Events;
@@ -14,13 +14,14 @@ using System.Text;
 
 namespace Content.Server._Starlight.TapeRecorder;
 
-public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
+public sealed partial class TapeRecorderSystem : SharedTapeRecorderSystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly PaperSystem _paper = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private PaperSystem _paper = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
 
     public override void Initialize()
     {
@@ -28,6 +29,19 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
 
         SubscribeLocalEvent<TapeRecorderComponent, ListenEvent>(OnListen);
         SubscribeLocalEvent<TapeRecorderComponent, PrintTapeRecorderMessage>(OnPrintMessage);
+        SubscribeLocalEvent<TapeCassetteComponent, MapInitEvent>(OnCassetteMapInit);
+    }
+
+    private void OnCassetteMapInit(Entity<TapeCassetteComponent> ent, ref MapInitEvent args)
+    {
+        foreach (var message in ent.Comp.RecordedData)
+        {
+            if (message.Name is not null && _loc.TryGetString(message.Name, out var name))
+                message.Name = name;
+
+            if (_loc.TryGetString(message.Message, out var text))
+                message.Message = text;
+        }
     }
 
     /// <summary>

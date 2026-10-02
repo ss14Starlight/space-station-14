@@ -1,15 +1,14 @@
-using Content.Shared.Damage.Systems;
+using Content.Shared._Starlight.Weapons.Hitscan.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Stunnable;
-using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Hitscan.Events;
 
-namespace Content.Shared.Weapons.Hitscan.Systems;
+namespace Content.Shared._Starlight.Weapons.Hitscan.Systems;
 
-public sealed class HitscanCrawlerTargetEffectsSystem : EntitySystem
+public sealed partial class HitscanCrawlerTargetEffectsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
-    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
+    [Dependency] private SharedStunSystem _stunSystem = default!;
+    [Dependency] private MovementModStatusSystem _movementMod = default!;
 
     public override void Initialize()
     {

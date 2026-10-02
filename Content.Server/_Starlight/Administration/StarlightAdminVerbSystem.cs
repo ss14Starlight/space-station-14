@@ -13,9 +13,9 @@ namespace Content.Server._Starlight.Administration;
 
 public sealed partial class StarlightAdminVerbSystem : EntitySystem
 {
-    [Dependency] private readonly AntagSelectionSystem _antagSelection = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!;
+    [Dependency] private AntagSelectionSystem _antagSelection = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private AutoDiscordLogSystem _autolog = default!;
 
     public override void Initialize()
         => SubscribeLocalEvent<GetVerbsEvent<Verb>>(GetVerbs);

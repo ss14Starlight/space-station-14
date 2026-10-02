@@ -12,15 +12,15 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Antags.Vampires.Systems;
 
-public sealed class SharedUmbraeSystem : EntitySystem
+public sealed partial class SharedUmbraeSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedStealthSystem _stealth = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedVampireActionUseSystem _vampireActions = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedStealthSystem _stealth = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedVampireActionUseSystem _vampireActions = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

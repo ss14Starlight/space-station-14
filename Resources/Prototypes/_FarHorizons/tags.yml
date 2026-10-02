@@ -1,4 +1,5 @@
 # PLEASE, KEEP THIS FILE ALPHABETIZED
+# Starlight, Neocyte tags moved to _Starlight/Species/Neocyte/tags.yml because they were all renamed.
 
 - type: Tag
   id: GasTurbineBlade
@@ -17,6 +18,9 @@
 
 - type: Tag
   id: OilPack
+
+- type: Tag
+  id: RamChip
 
 - type: Tag
   id: SiliconEmotesFH

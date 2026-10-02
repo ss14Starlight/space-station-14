@@ -1,5 +1,9 @@
 ﻿using System.Linq;
+using Content.Server.Chat.Managers;
 using Content.Shared._NullLink;
+using Content.Shared.CCVar;
+using Robust.Shared.Network;
+using Robust.Shared.Player;
 
 namespace Content.Server._NullLink.PlayerData;
 
@@ -14,10 +18,10 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         _builder = builder;
 
         foreach (var player in _playerById)
-            RebuildTitle(player.Key, player.Value);
+            RebuildTitle(_playerManager.GetSessionById(new NetUserId(player.Key)), player.Value);
     }
 
-    private void RebuildTitle(Guid player, PlayerData playerData)
+    private void RebuildTitle(ICommonSession player, PlayerData playerData)
     {
         if (_builder == null)
             return;
@@ -31,6 +35,8 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
                     continue;
                 if (title.Color != null)
                     result.Add($"[color={title.Color.Value.ToHex()}]{title.Text}[/color]");
+                else if (_netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) && player.Channel.UserData.PatronTier is { } patron && ChatManager.PatronOocColors.TryGetValue(patron, out var patronColor))
+                    result.Add($"[color={patronColor}]{title.Text}[/color]");
                 else
                     result.Add(title.Text);
                 break;

@@ -1,8 +1,8 @@
 using Content.Server.EUI;
-using Content.Shared.Starlight.NewLife;
+using Content.Shared._Starlight.NewLife;
 using Content.Shared.Eui;
 
-namespace Content.Server.Ghost.Roles.UI;
+namespace Content.Server._Starlight.NewLife;
 
 public sealed class NewLifeEui : BaseEui
 {

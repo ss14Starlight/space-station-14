@@ -1,0 +1,34 @@
+# Priority sorts the emotes in the wheel numerically. Emotes without a specified priority are sorted alphabetically after.
+
+# Vocal
+- type: !PartialOnly emote
+  id: CatMeow
+  priority: 14
+
+- type: !PartialOnly emote
+  id: RobotBeep
+  priority: 16
+
+- type: !PartialOnly emote
+  id: MonkeyScreeches
+  priority: 28
+
+- type: !PartialOnly emote
+  id: Yawn
+  priority: 29
+
+- type: !PartialOnly emote
+  id: Sneeze
+  priority: 33
+
+- type: !PartialOnly emote
+  id: Snore
+  priority: 37
+
+- type: !PartialOnly emote
+  id: CatHisses
+  priority: 40
+
+- type: !PartialOnly emote
+  id: Cough
+  priority: 41

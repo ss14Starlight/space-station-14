@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: DrinkShaker
+  components:
+  - type: Item
+    shape:
+    - !Remove 0,0,0,2
+    - 0,0,0,1 #No, 2 tall, leave the poor bartenders something

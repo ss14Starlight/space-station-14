@@ -31,7 +31,7 @@
 
 	Handling hot Reactor Rods can cause serious burns.
 
-	If it is hotter than [color=orange][protodata="CerenkiteReactorFuelRod" comp="ReactorPart" member="GuidebookHotTemp"/]C[/color] you'll need gloves to be able to handle them. At [color=orange][protodata="CerenkiteReactorFuelRod" comp="ReactorPart" member="GuidebookBurnTemp"/]C[/color], not even gloves will protect you.
+	If it is hotter than [color=orange][protodata="CerenkiteReactorFuelRod" comp="ReactorPart" member="HotTemp"/]C[/color] you'll need gloves to be able to handle them. At [color=orange][protodata="CerenkiteReactorFuelRod" comp="ReactorPart" member="BurnTemp"/]C[/color], not even gloves will protect you.
 
 	There are four different types of Reactor Rods that can be manufactured from a variety of [textlink="materials" link="NuclearMaterials"] and placed into the Reactor grid: Fuel Rods, Control Rods, Gas Channels, and Heat Exchangers.
 

@@ -1,5 +1,3 @@
-using Robust.Client.GameObjects;
-
 namespace Content.Client._Starlight.Shadekin;
 
 public sealed partial class ShadekinSystem : EntitySystem

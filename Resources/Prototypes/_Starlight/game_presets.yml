@@ -7,6 +7,7 @@
     - eventdiet
   name: eventlight-title
   description: eventlight-description
+  minPlayers: 5
   showInVote: false
   rules:
     - SpaceTrafficControlEventScheduler
@@ -37,10 +38,12 @@
   alias:
     - shitstation
     - trashstation
+    - shittersafari2
   name: shitstation-title
   description: shitstation-description
   showInVote: true
   minPlayers: 0
+  voteCooldown: 2
   rules:
     - ShitStationEventScheduler # It's all trash/shit/ion/derelict/minor critter event spawns. Should make the station feel sufficiently shitty.
     - BasicStationEventScheduler
@@ -80,6 +83,7 @@
   name: changeling-gamemode-title
   description: changeling-gamemode-description
   showInVote: false
+  minPlayers: 25
   rules:
     - SLChangeling
     - SLChangelingLess
@@ -140,7 +144,7 @@
     - Traitor
     - Revolutionary
     - WizardDuel
-    - Xenoborgs
+    #- Xenoborgs
     - RampingStationEventScheduler
     - SLChangeling
     - SpaceTrafficControlEventScheduler
@@ -149,9 +153,10 @@
     - ShitStationEventScheduler
     - Vampire
     - SiliconLiberation
-    - Brighteye
+    - SubBrighteye
     - ThiefGamerule
-    # - CosmicCult
+    - Devil
+    - CosmicCult
 
 - type: gamePreset
   id: AlmostAllerAtOnce
@@ -170,7 +175,7 @@
     - Revolutionary
     - SubWizard # Well, you did say *Aller* at once.
     - WizardDuel # Well, you did say *Aller* at once.
-    - Xenoborgs
+    #- Xenoborgs
     - BasicStationEventScheduler
     - BasicStationEventScheduler
     - ShitStationEventScheduler
@@ -186,12 +191,13 @@
     - SLChangeling
     - Vampire
     - SiliconLiberation
-    - Brighteye
+    - SubBrighteye
     - ThiefGamerule
     - LoneOpsSpawn
     - RailroadingTerminator
     - RailroadingMinor
-    # - CosmicCult
+    - Devil
+    - CosmicCult
 
 - type: gamePreset
   id: TerrorSpiders
@@ -212,3 +218,20 @@
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
   - RailroadingMinor # 🌟Starlight🌟
+
+- type: gamePreset
+  id: DynamicLP
+  alias:
+  - dynamiclp
+  - multiantaglp
+  - directorlp
+  name: dynamic-title
+  showInVote: false # admin-only for now until we fix some bugs
+  description: dynamic-description
+  minPlayers: 40
+  voteCooldown: 0 # This one actually can roll back to back.
+  rules:
+  - SLDynamicRuleLP
+  - SpaceTrafficControlEventScheduler # No event/meteor schedulers, since we handle that in dynamic too.
+  - BasicRoundstartVariation
+  - RailroadingMinor

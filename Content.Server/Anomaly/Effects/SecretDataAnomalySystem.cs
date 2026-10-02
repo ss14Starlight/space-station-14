@@ -3,9 +3,9 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Anomaly.Effects;
 
-public sealed class SecretDataAnomalySystem : EntitySystem
+public sealed partial class SecretDataAnomalySystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private readonly List<AnomalySecretData> _deita = new();
 
@@ -16,6 +16,11 @@ public sealed class SecretDataAnomalySystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, SecretDataAnomalyComponent anomaly, MapInitEvent args)
     {
+        // Starlight Start
+        if (anomaly.RandomStartSecretMin <= 0 && anomaly.RandomStartSecretMax <= 0)
+            return;
+        // Starlight End
+
         RandomizeSecret(uid,_random.Next(anomaly.RandomStartSecretMin, anomaly.RandomStartSecretMax), anomaly);
     }
 

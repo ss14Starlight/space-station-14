@@ -1,0 +1,33 @@
+# Second-hand (worn/damaged) rifle variants for the Second Hand uplink tab.
+
+# Worn Estoc DMR: seized burst mechanism (semi-auto only), heat-discolored barrel.
+- type: entity
+  parent: WeaponRifleEstoc
+  id: WeaponRifleEstocWorn
+  suffix: Second Hand
+  components:
+  - type: RandomDefects
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 4
+    maxAngleDivider: 2.5
+    angleIncreaseDivider: 1.5
+  - type: GunJamDefect
+    prob: 0.70
+    jamChance: 0.15
+  - type: GunSpreadDefect
+    prob: 0.70
+    minAngleMin: 16
+    minAngleMax: 24
+    maxAngleMin: 34
+    maxAngleMax: 44
+  - type: BackfireDefect
+    prob: 0.10
+    backfireChance: 0.04
+    totalIntensity: 0.6
+    maxIntensity: 0.5

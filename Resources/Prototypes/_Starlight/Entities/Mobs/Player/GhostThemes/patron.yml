@@ -1,7 +1,7 @@
 - type: ghostTheme
   id: angel
-  name: angel
-  description: Watchful guardian.
+  name: ghost-theme-angel-name
+  description: ghost-theme-angel-desc
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/angel.rsi
@@ -18,11 +18,12 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: PatronReq
+  category: Patron
 
 - type: ghostTheme
   id: ClownTheme
-  name: Clown
-  description: Honk from beyond the veil.
+  name: ghost-theme-clown-theme-name
+  description: ghost-theme-clown-theme-desc
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/clown.rsi
@@ -31,11 +32,12 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: PatronReq
+  category: Patron
 
 - type: ghostTheme
   id: FaithlessTheme
-  name: Faithless
-  description: A wandering faithless spirit.
+  name: ghost-theme-faithless-theme-name
+  description: ghost-theme-faithless-theme-desc
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/faithless.rsi
@@ -44,11 +46,12 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: PatronReq
+  category: Patron
 
 - type: ghostTheme
   id: MushroomTheme
-  name: Mushroom
-  description: Soft spores, gentle haunting.
+  name: ghost-theme-mushroom-theme-name
+  description: ghost-theme-mushroom-theme-desc
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/mushroom.rsi
@@ -57,11 +60,12 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: PatronReq
+  category: Patron
 
 - type: ghostTheme
   id: WalkerTheme
-  name: Walker
-  description: Still shambling after death.
+  name: ghost-theme-walker-theme-name
+  description: ghost-theme-walker-theme-desc
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/walker.rsi
@@ -70,11 +74,12 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: PatronReq
+  category: Patron
 
 - type: ghostTheme
   id: ShadowDemon
-  name: Shadow Demon
-  description: Its just observing… right? Right?
+  name: ghost-theme-shadow-demon-name
+  description: ghost-theme-shadow-demon-desc
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/shadow_demon.rsi
@@ -89,11 +94,12 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: PatronReq
+  category: Patron
 
 - type: ghostTheme
   id: WizdenCarp
-  name: Wizden Carp
-  description: Almost magical.
+  name: ghost-theme-wizden-carp-name
+  description: ghost-theme-wizden-carp-desc
   colorizeable: true
   spriteSpecifier:
     sprite:
@@ -103,3 +109,4 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: WizdenPatronReq
+  category: Patron

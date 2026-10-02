@@ -1,0 +1,34 @@
+- type: antagSpecifier
+  parent: DerelictCyborg
+  id: DerelictBorgi
+  spawnerPrototype: SpawnPointGhostDerelictBorgi
+
+- type: antagSpecifier
+  parent: DerelictCyborg
+  id: DerelictPurrfusCyborg
+  spawnerPrototype: SpawnPointGhostDerelictPurrfusCyborg
+
+- type: antagSpecifier
+  parent: DerelictCyborg
+  id: DerelictHeavyXenoborg
+  spawnerPrototype: SpawnPointGhostDerelictHeavyXenoborg
+
+- type: antagSpecifier
+  parent: DerelictCyborg
+  id: DerelictEngiXenoborg
+  spawnerPrototype: SpawnPointGhostDerelictEngiXenoborg
+
+- type: antagSpecifier
+  parent: DerelictCyborg
+  id: DerelictScoutXenoborg
+  spawnerPrototype: SpawnPointGhostDerelictScoutXenoborg
+
+- type: antagSpecifier
+  parent: DerelictCyborg
+  id: DerelictStealthXenoborg
+  spawnerPrototype: SpawnPointGhostDerelictStealthXenoborg
+
+- type: antagSpecifier
+  parent: DerelictCyborg
+  id: DerelictXenoBorgi
+  spawnerPrototype: SpawnPointGhostDerelictXenoBorgi

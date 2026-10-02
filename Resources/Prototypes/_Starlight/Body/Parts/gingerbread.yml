@@ -18,7 +18,7 @@
   parent: [PartGingerbread, BaseTorso]
   components:
   - type: Sprite
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi
     state: "torso_m"
   - type: Extractable
     juiceSolution:
@@ -34,7 +34,7 @@
   parent: [PartGingerbread, BaseHead]
   components:
   - type: Sprite
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi
     state: "head_m"
   - type: Extractable
     juiceSolution:
@@ -50,7 +50,7 @@
   parent: [PartGingerbread, BaseLeftArm]
   components:
   - type: Sprite
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi
     state: "l_arm"
 
 - type: entity
@@ -59,7 +59,7 @@
   parent: [PartGingerbread, BaseRightArm]
   components:
   - type: Sprite
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi
     state: "r_arm"
 
 - type: entity
@@ -68,7 +68,7 @@
   parent: [PartGingerbread, BaseLeftHand]
   components:
   - type: Sprite
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi
     state: "l_hand"
 
 - type: entity
@@ -77,7 +77,7 @@
   parent: [PartGingerbread, BaseRightHand]
   components:
   - type: Sprite
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi
     state: "r_hand"
 
 - type: entity
@@ -86,7 +86,7 @@
   parent: [PartGingerbread, BaseLeftLeg]
   components:
   - type: Sprite
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi
     state: "l_leg"
 
 - type: entity
@@ -95,7 +95,7 @@
   parent: [PartGingerbread, BaseRightLeg]
   components:
   - type: Sprite
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi
     state: "r_leg"
 
 - type: entity
@@ -104,7 +104,7 @@
   parent: [PartGingerbread, BaseLeftFoot]
   components:
   - type: Sprite
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi
     state: "l_foot"
 
 - type: entity
@@ -113,5 +113,5 @@
   parent: [PartGingerbread, BaseRightFoot]
   components:
   - type: Sprite
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi
     state: "r_foot"

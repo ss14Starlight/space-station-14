@@ -10,11 +10,11 @@ namespace Content.Client._Starlight.Antags.Vampires;
 /// Client system that manages the HysteriaVisionOverlay.
 /// Adds/removes the overlay based on whether the local player has HysteriaVisionComponent.
 /// </summary>
-public sealed class HysteriaVisionSystem : EntitySystem
+public sealed partial class HysteriaVisionSystem : EntitySystem
 {
-    [Dependency] private readonly IOverlayManager _overlayManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IOverlayManager _overlayManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private EntityQuery<HysteriaVisionComponent> _hysteriaQuery;
     private HysteriaVisionOverlay? _overlay;

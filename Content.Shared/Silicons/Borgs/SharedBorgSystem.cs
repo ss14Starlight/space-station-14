@@ -35,12 +35,9 @@ using Robust.Shared.Timing;
 using Content.Shared.Radio.Components;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Actions.Components;
-using Content.Shared.Starlight.TextToSpeech;
-// Starlight begin
-using System.Linq;
+using Content.Shared.NameModifier.EntitySystems;
+using Content.Shared._Starlight.TextToSpeech;
 using Content.Shared.Tag;
-using Content.Server.Administration.Systems;
-// Starlight end
 
 namespace Content.Shared.Silicons.Borgs;
 
@@ -49,30 +46,31 @@ namespace Content.Shared.Silicons.Borgs;
 /// </summary>
 public abstract partial class SharedBorgSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedHandheldLightSystem _handheldLight = default!;
-    [Dependency] private readonly SharedAccessSystem _access = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly TagSystem _tag = default!; // Starlight
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedHandheldLightSystem _handheldLight = default!;
+    [Dependency] private SharedAccessSystem _access = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private NameModifierSystem _nameModifier = default!; // Starlight
+    [Dependency] private TagSystem _tag = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -139,6 +137,31 @@ public abstract partial class SharedBorgSystem : EntitySystem
     private void OnMapInit(Entity<BorgChassisComponent> chassis, ref MapInitEvent args)
     {
         _movementSpeedModifier.RefreshMovementSpeedModifiers(chassis.Owner);
+
+        // Starlight-start: If the borg has a brain, synchronize the name of the brain with the chassis.
+        if (chassis.Comp.BrainEntity is { } brain)
+            SynchronizeBrainName(chassis, brain);
+        // Starlight-end
+    }
+
+    // Starlight: function to synchronize the name of the brain with the chassis, and the other way around.
+    private void SynchronizeBrainName(Entity<BorgChassisComponent> chassis, EntityUid brain)
+    {
+        var brainName = _nameModifier.GetBaseName(brain);
+        var chassisName = _nameModifier.GetBaseName(chassis.Owner);
+
+        if (brainName.Equals(chassisName, StringComparison.InvariantCulture))
+            return;
+
+        if (MetaData(brain).EntityPrototype is { } brainPrototype &&
+            brainName.Equals(brainPrototype.Name, StringComparison.InvariantCulture))
+        {
+            _metaData.SetEntityName(brain, chassisName);
+        }
+        else
+        {
+            _metaData.SetEntityName(chassis, brainName);
+        }
     }
 
     private void OnItemSlotInsertAttempt(Entity<BorgChassisComponent> chassis, ref ItemSlotInsertAttemptEvent args)
@@ -183,6 +206,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
             return;
 
         //#region Starlight
+        SynchronizeBrainName(chassis, args.Entity);
         if (TryComp(args.Entity, out BorgBrainComponent? brain) && _mind.TryGetMind(args.Entity, out var mindId, out var mind))
         {
             //re-target the station-AI's shunt target to the chassis insteaf of the brain
@@ -192,6 +216,8 @@ public abstract partial class SharedBorgSystem : EntitySystem
                 )
                 {
                     shuntable.Inhabited = chassis;
+                    shuntable.LastShunt = chassis; // Starlight
+                    Dirty(shunt.Return.Value, shuntable); // Starlight
                     borgShunt.Return = shunt.Return;
                     borgShunt.ReturnAction = _actions.AddAction(chassis, shuntable.UnshuntAction);
                 }
@@ -230,6 +256,8 @@ public abstract partial class SharedBorgSystem : EntitySystem
                 TryComp<StationAIShuntComponent>(chassis, out var borgShunt))
                 {
                     shuntable.Inhabited = args.Entity;
+                    shuntable.LastShunt = args.Entity; // Starlight
+                    Dirty(shunt.Return.Value, shuntable); // Starlight
                     if (TryComp<ActionComponent>(borgShunt.ReturnAction, out var action))
                         _actions.RemoveAction((borgShunt.ReturnAction.Value, action)); //delete the action as we leave the body
                     borgShunt.Return = null;

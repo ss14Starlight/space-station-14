@@ -4,26 +4,10 @@
   name: job-name-ertleader
   description: job-description-ertleader
   playTimeTracker: JobERTLeader
-  # Starlight start
-  requirements:
-  - !type:OverallPlaytimeRequirement
-    time: 96h # Realistically, if you have the CC time, you'll have met this anyways... But, in case that CC time is removed later.
-  - !type:DepartmentTimeRequirement
-    department: CentralCommand
-    time: 10h
-  - !type:DepartmentTimeRequirement
-    department: Command
-    time: 20h
-  - !type:RoleTimeRequirement
-    role: JobSecurityOfficer
-    time: 15h # If theyre not an admin, they NEED to be good in combat. You're the last hope, after all.
-  # Starlight end
   setPreference: false
   startingGear: ERTLeaderGearEVA
   icon: "JobIconERTLeader"
   supervisors: job-supervisors-centcom
-  canBeAntag: false
-  bypassEorPacification: true # Starlight
   accessGroups:
   - AllAccess
   access:
@@ -48,7 +32,7 @@
     back: ClothingBackpackERTLeader
     shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlassesCentComm
+    eyes: ClothingEyesHudMedSec
     neck: Whistle
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTLeader
@@ -73,7 +57,7 @@
     - Handcuffs
     - Handcuffs
     - CrowbarRed
-    - WeaponPistolM1911 # Starlight - swapped from an N1984 to a M1911
+    - WeaponPistolN1984
     - MagazineMagnum
     - EmergencyMedipen
 
@@ -88,22 +72,20 @@
     - HoloprojectorField
     - PhoneInstrument
     - PinpointerNuclear
-    - MagazineRifleSP
-    - MagazineRifleSP
+    - MagazineRifle
+    - MagazineRifle
     - MagazineRifleIncendiary
     - MagazineRifleUranium
     - MedkitCombatFilled # End of first line
     - GrenadeShrapnel
     - EmpGrenade
-    - DoubleEmergencyOxygenTankFilled # Starlight-edit
-    - DoubleEmergencyNitrogenTankFilled # Starlight-edit
-    belt:
     - Truncheon
+    belt:
     - Handcuffs
     - Handcuffs
     - CrowbarRed
-    - WeaponPistolM1911 # Starlight - swapped from an N1984 to a M1911
-#    - MagazineMagnum Starlight-edit
+    - WeaponPistolN1984
+    - MagazineMagnum
     - EmergencyMedipen
 
 - type: chameleonOutfit
@@ -120,18 +102,10 @@
   name: job-name-ertchaplain
   description: job-description-ertchaplain
   playTimeTracker: JobERTChaplain
-  requirements:
-  - !type:OverallPlaytimeRequirement
-    time: 48h # While you technically are a last resort against the "paranormal", there's no threats that actually warrant you having more time than this unless Cluwne Beasts get properly implemented.
-  - !type:RoleTimeRequirement
-    role: JobChaplain
-    time: 5h
   setPreference: false
   startingGear: ERTChaplainGear
   icon: "JobIconERTChaplain"
   supervisors: job-supervisors-centcom
-  canBeAntag: false
-  bypassEorPacification: true # Starlight
   accessGroups:
   - AllAccess
   access:
@@ -160,31 +134,33 @@
     back: ClothingBackpackERTChaplain
     shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlassesCentComm
+    eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTChaplain
     id: ERTChaplainPDA
-    ears: ClothingHeadsetCentCom #Starlight
-    belt: ChainsawSword #Starlight
-    neck: ClothingNeckStoleChaplain #Starlight
-    pocket2: WeaponDisabler #Starlight
+    ears: ClothingHeadsetAltCentCom
+    belt: ClothingBeltMilitaryWebbingERT
+    pocket2: CombatKnife
   storage:
     back:
-    # Starlight - Start
+    - BoxCandle
+    - BodyBagFolded
+    - BodyBagFolded
     - JugWater
-    - JugBlood
+    - JugBlood # End of first row
+    - FoodBakedBunHotX
+    - FoodBakedBunHotX
+    - FoodBakedBunHotX
+    - FoodBakedBunHotX
+    belt:
     - Bible
-    - CosmicCenser
-    - CrowbarRed
     - Lantern
-    - BodyBagFolded
-    - BodyBagFolded
+    - Lantern
+    - Lantern
+    - CrowbarRed
+    - WeaponPistolMk58
+    - MagazinePistol
     - FlippoEngravedLighter
-    - FoodBakedBunHotX
-    - FoodBakedBunHotX
-    - FoodBakedBunHotX
-    - FoodBakedBunHotX
-    # Starlight - End
 
 - type: chameleonOutfit
   id: ERTChaplainChameleonOutfit
@@ -202,18 +178,10 @@
   name: job-name-ertengineer
   description: job-description-ertengineer
   playTimeTracker: JobERTEngineer
-  requirements:
-  - !type:OverallPlaytimeRequirement
-    time: 72h # Starlight. You should know the game's controls if you're going to be building stuff.
-  - !type:RoleTimeRequirement
-    role: JobStationEngineer
-    time: 15h # Starlight. You should know how to construct things with and without the RCD.
   setPreference: false
   startingGear: ERTEngineerGearEVA
   icon: "JobIconERTEngineer"
   supervisors: job-supervisors-centcom
-  canBeAntag: false
-  bypassEorPacification: true # Starlight
   accessGroups:
   - AllAccess
   access:
@@ -242,7 +210,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTEngineer
     id: ERTEngineerPDA
-    ears: ClothingHeadsetCentCom #Starlight
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMilitaryWebbingERT
     pocket2: CombatKnife
   storage:
@@ -266,7 +234,7 @@
     - WelderIndustrialAdvanced
     - Multitool
     - WeaponPistolMk58
-    - MagazinePistolSP
+    - MagazinePistol
     - EmergencyMedipen
 
 - type: startingGear
@@ -277,7 +245,6 @@
   storage:
     back:
     - RCD
-    - RPD # Starlight: RPD
     - GasAnalyzer
     - HolofanProjector
     - MiningDrillDiamond
@@ -304,18 +271,10 @@
   name: job-name-ertsecurity
   description: job-description-ertsecurity
   playTimeTracker: JobERTSecurity
-  requirements:
-  - !type:OverallPlaytimeRequirement
-    time: 72h #Starlight
-  - !type:RoleTimeRequirement
-    role: JobSecurityOfficer
-    time: 15h # Starlight, your whole job here is fighting and following orders.
   setPreference: false
-  startingGear: ERTEngineerGearEVA
+  startingGear: ERTSecurityGearEVA
   icon: "JobIconERTSecurity"
   supervisors: job-supervisors-centcom
-  canBeAntag: false
-  bypassEorPacification: true # Starlight
   accessGroups:
   - AllAccess
   access:
@@ -340,12 +299,12 @@
     back: ClothingBackpackERTSecurity
     shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlassesCentComm
+    eyes: ClothingEyesHudSecurity
     gloves: ClothingHandsGlovesCombat
     neck: SecurityWhistle
     outerClothing: ClothingOuterHardsuitERTSecurity
     id: ERTSecurityPDA
-    ears: ClothingHeadsetCentCom #Starlight
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMilitaryWebbingERT
     pocket2: CombatKnife
     suitstorage: WeaponDisablerSMG
@@ -366,43 +325,33 @@
     - Handcuffs
     - CrowbarRed
     - WeaponPistolMk58
-    - MagazinePistolSP
+    - MagazinePistol
     - EmergencyMedipen
 
 - type: startingGear
   id: ERTSecurityGearArmedRifle
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTSecurity
-    back: ClothingBackpackERTSecurity # SL
     shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlassesCentComm
+    eyes: ClothingEyesHudSecurity
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTSecurity
     id: ERTSecurityPDA
-    ears: ClothingHeadsetCentCom #Starlight
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMilitaryWebbingERT
     pocket2: CombatKnife
-    suitstorage: WeaponRiflePeacemaker # Starlight-edit: Changed from: WeaponRifleLecter
+    suitstorage: WeaponRifleLecter
+  inhand:
+    - WeaponLaserCannon
+    - PortableRecharger
   storage:
-    # SL - Start
-    back:
-    - BoxZiptie
-    - Flash
-    - GrenadeFlashBang
-    - TearGasGrenade
-    - GrenadeStinger
-    - MedkitCombatFilled # End of first line
-    - TelescopicShield
-    - HoloprojectorSecurity
-    - PowerCellHigh
-    # SL - End
     belt:
     - CrowbarRed
     - Zipties
     - MedkitCombatFilled
-    - MagazineRifleSP
-    - MagazineRifleSP
+    - MagazineRifle
+    - MagazineRifle
     - MagazineRifleIncendiary
     - MagazineRifleUranium
     - Zipties
@@ -421,23 +370,21 @@
     - GrenadeBlast
     - GrenadeBlast
     - GrenadeBlast
-    - MagazinePistolSP
-    - MedkitCombatFilled # End of first line
+    - GrenadeFlash
+    - GrenadeFlash # End of first line
     - GrenadeEMP
     - GrenadeEMP
     - GrenadeEMP
-    - GrenadeFlash
-    - GrenadeFlash
-    - GrenadeFlash
-    - MagazinePistolSP
-    belt:
+    - MagazinePistol
     - Truncheon
-    - Handcuffs
+    belt:
     - Handcuffs
     - CrowbarRed
-    - WeaponPistolMk58
-    - MagazinePistolSP
     - EmergencyMedipen
+    - WeaponPistolMk58
+    - MagazinePistol
+    - MagazinePistol
+    - MedkitCombatFilled
 
 - type: startingGear
   parent: ERTSecurityGearEVA
@@ -450,23 +397,22 @@
     - ExGrenade
     - SmokeGrenade
     - EmpGrenade
-    - HoloprojectorSecurity
     - TelescopicShield
-    - TelescopicShield
-    - TelescopicShield
-    - MedkitCombatFilled # End of first line
+    - TelescopicShield # End of first line
+    - MedkitCombatFilled
     - MagazinePistolSubMachineGunTopMounted
     - MagazinePistolSubMachineGunTopMounted
     - MagazinePistolSubMachineGunTopMounted
     - MagazinePistolSubMachineGunTopMounted
-    belt:
     - Truncheon
+    belt:
     - Handcuffs
     - Handcuffs
     - CrowbarRed
     - WeaponPistolMk58
-    - MagazinePistolSP
+    - MagazinePistol
     - EmergencyMedipen
+    - HoloprojectorSecurity
 
 - type: startingGear
   parent: ERTSecurityGearEVA
@@ -474,8 +420,6 @@
   equipment:
     pocket2: WeaponDisabler
     suitstorage: WeaponShotgunEnforcer
-  inhand:
-    - HammerBreachingNT
   storage:
     back:
     - SmokeGrenade
@@ -483,17 +427,16 @@
     - BoxShotgunSlug
     - BoxShotgunIncendiary
     - MedkitCombatFilled # End of first line
-    - SmokeGrenade
     - ExGrenade
     - CableDetStack
     - BoxDetonator
-    belt:
     - Truncheon
+    belt:
     - Handcuffs
     - Handcuffs
     - CrowbarRed
     - WeaponPistolMk58
-    - MagazinePistolSP
+    - MagazinePistol
     - EmergencyMedipen
 
 - type: chameleonOutfit
@@ -510,24 +453,10 @@
   name: job-name-ertmedic
   description: job-description-ertmedic
   playTimeTracker: JobERTMedical
-  requirements:
-  - !type:OverallPlaytimeRequirement
-    time: 72h # Starlight
-  - !type:RoleTimeRequirement
-    role: JobMedicalDoctor
-    time: 10h # Starlight
-  - !type:RoleTimeRequirement
-    role: JobChemist
-    time: 10h #Starlight start
-  - !type:RoleTimeRequirement
-    role: JobSecurityOfficer
-    time: 5h #Starlight, youre a medic but you WILL be fighting at some point, Starlight end
   setPreference: false
   startingGear: ERTMedicalGearEVA
-  icon: "JobIconERTMedical" #Starlight
+  icon: "JobIconERTMedic"
   supervisors: job-supervisors-centcom
-  canBeAntag: false
-  bypassEorPacification: true # Starlight
   accessGroups:
   - AllAccess
   access:
@@ -552,11 +481,11 @@
     back: ClothingBackpackERTMedical
     shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlassesCentComm
+    eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTMedical
     id: ERTMedicPDA
-    ears: ClothingHeadsetCentCom #Starlight
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMilitaryWebbingERT
     pocket2: CombatKnife
   storage:
@@ -578,7 +507,7 @@
     - MedkitCombatFilled
     - CrowbarRed
     - WeaponPistolMk58
-    - MagazinePistolSP
+    - MagazinePistol
     - EmergencyMedipen
 
 - type: startingGear
@@ -599,12 +528,12 @@
     - MedkitCombatFilled
     - ClothingEyesGlassesChemical
     - ChemistryBottleOmnizine
-    belt:
     - Truncheon
+    belt:
     - Zipties
     - CrowbarRed
-    - MagazineRifleSP
-    - MagazineRifleSP
+    - MagazineRifle
+    - MagazineRifle
     - MagazineRifleIncendiary
     - MagazineRifleUranium # End of first line
     - Zipties
@@ -623,18 +552,10 @@
   name: job-name-ertjanitor
   description: job-description-ertjanitor
   playTimeTracker: JobERTJanitor
-  requirements:
-  - !type:OverallPlaytimeRequirement
-    time: 48h # Starlight
-  - !type:RoleTimeRequirement
-    role: JobJanitor
-    time: 5h
   setPreference: false
   startingGear: ERTJanitorGearEVA
   icon: "JobIconERTJanitor"
   supervisors: job-supervisors-centcom
-  canBeAntag: false
-  bypassEorPacification: true # Starlight
   accessGroups:
   - AllAccess
   access:
@@ -663,19 +584,18 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTJanitor
     id: ERTJanitorPDA
-    ears: ClothingHeadsetCentCom #Starlight
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMilitaryWebbingERT
     pocket2: CombatKnife
     suitstorage: WeaponLauncherHydra
   storage:
     back:
-    - TrashBag
     - SoapNT
     - Plunger
     - Screwdriver
-    - AdvMopItem # End of first line
+    - AdvMopItem
     - GrenadeCleanade
-    - GrenadeCleanade
+    - GrenadeCleanade # End of first line
     - GrenadeCleanade
     - GrenadeCleanade
     - GrenadeCleanade
@@ -683,12 +603,14 @@
     belt:
     - MegaSprayBottleSpaceCleaner
     - Holoprojector
-    - LightReplacer
+    - LightReplacerFilled
     - WireBrush
     - CrowbarRed
     - WeaponPistolMk58
-    - MagazinePistolSP
+    - MagazinePistol
     - EmergencyMedipen
+  inhand:
+    - TrashBag
 
 - type: chameleonOutfit
   id: ERTJanitorChameleonOutfit

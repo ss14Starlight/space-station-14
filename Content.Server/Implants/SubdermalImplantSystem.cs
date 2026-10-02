@@ -4,19 +4,16 @@ using Content.Shared.Implants;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Store.Components;
-using Robust.Shared.Collections;
-using Robust.Shared.Map.Components;
-using Content.Server.Polymorph.Systems; // Starlight
-using Content.Shared.Zombies; // Starlight
-using Robust.Shared.Player;
+// Starlight
+// Starlight
 using Content.Shared.Implants.Components; // Starlight
 
 namespace Content.Server.Implants;
 
-public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
+public sealed partial class SubdermalImplantSystem : SharedSubdermalImplantSystem
 {
-    [Dependency] private readonly StoreSystem _store = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private StoreSystem _store = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {

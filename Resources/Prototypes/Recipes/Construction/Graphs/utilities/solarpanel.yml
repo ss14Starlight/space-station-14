@@ -85,6 +85,23 @@
             - tool: Prying
               doAfter: 0.5
 
+        # Starlight Start
+
+        - to: solarpaneluranium
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPGlass1
+              amount: 2
+          conditions:
+            - !type:EntityAnchored
+              anchored: true
+          steps:
+            - material: UraniumGlass
+              amount: 2
+              doAfter: 2
+
+        # Starlight End
+
     - node: solarpaneluranium
       entity: SolarPanelUranium
       edges:
@@ -118,6 +135,36 @@
           steps:
             - tool: Prying
               doAfter: 0.5
+
+        # Starlight Start
+
+        - to: solarpaneluranium
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetGlass1
+              amount: 2
+          conditions:
+            - !type:EntityAnchored
+              anchored: true
+          steps:
+            - material: UraniumGlass
+              amount: 2
+              doAfter: 2
+
+        - to: solarpanelplasma
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetGlass1
+              amount: 2
+          conditions:
+            - !type:EntityAnchored
+              anchored: true
+          steps:
+            - material: PlasmaGlass
+              amount: 2
+              doAfter: 2
+
+        # Starlight End
 
     - node: solarpanel_broken
       entity: SolarPanelBroken

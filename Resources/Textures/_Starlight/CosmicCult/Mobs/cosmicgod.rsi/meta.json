@@ -6,6 +6,7 @@
     },
     "license": "CC-BY-SA-3.0",
     "copyright": "State Based Copyright",
+	"metaAtlas": false,
     "states": [
         {
             "name": "god",

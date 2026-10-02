@@ -29,6 +29,7 @@ public sealed partial class AtmosMonitoringConsoleWindow : FancyWindow
     private int? _focusNetId;
 
     private bool _autoScrollActive = false;
+    public event Action<EntityCoordinates>? MapClicked; // Starlight: go to clicked position for AI
 
     private readonly Color _unfocusedDeviceColor = Color.DimGray;
     private ProtoId<NavMapBlipPrototype> _navMapConsoleProtoId = "NavMapConsole";
@@ -84,6 +85,8 @@ public sealed partial class AtmosMonitoringConsoleWindow : FancyWindow
 
         // Set trackable entity selected action
         NavMap.TrackedEntitySelectedAction += SetTrackedEntityFromNavMap;
+        NavMap.MapClickedAction += OnNavMapClicked; // Starlight: go to clicked position for AI
+        MapClicked += userInterface.SendMapClicked; // Starlight: go to clicked position for AI
 
         // Update nav map
         NavMap.ForceNavMapUpdate();
@@ -105,6 +108,13 @@ public sealed partial class AtmosMonitoringConsoleWindow : FancyWindow
         // Initalize
         UpdateUI(consoleCoords, Array.Empty<AtmosMonitoringConsoleEntry>());
     }
+
+    #region Starlight
+    private void OnNavMapClicked(EntityCoordinates coordinates)
+    {
+        MapClicked?.Invoke(coordinates);
+    }
+    #endregion
 
     #region Toggle handling
 

@@ -273,3 +273,21 @@
   components:
   - type: Battery
     startingCharge: 0
+
+- type: entity
+  name: ultra-capacity power cell
+  description: A rechargeable standardized power cell. This iteration pushes the upper limits of portable power storage, double more capacity than the hyper-capacity cell.
+  id: PowerCellUltra
+  suffix: Full
+  parent: BasePowerCell
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: hyper
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 3600
+    startingCharge: 3600

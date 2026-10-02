@@ -1,10 +1,12 @@
 ﻿- type: entity
-  parent: ToteBase
-  id: BoxMagiCircuitBoards
-  name: law circuit tote
+  parent: BoxStamps
+  id: BoxWardenStamps
+  name: warden's stamp box
   components:
-    - type: EntityTableContainerFill
-      containers:
-        storagebase: !type:AllSelector
-          children:
-            - id: LawCommsComputerCircuitboard # Starlight
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: RubberStampApproved
+        - id: RubberStampDenied
+        - id: RubberStampWarden

@@ -1,0 +1,56 @@
+[mono]
+MedTak After Action Report
+ ┌─────────────────────────────────┐
+ Date and Time: [datetime]
+ Team Lead:     [signature]
+ └─────────────────────────────────┘
+Incident Summary:
+ ┌─────────────────────────────────┐
+ Approximate time of callout:
+ [form]
+ Threats onsite, if any:
+ [form]
+ Actions taken regarding threats:
+ [form]
+ Client:
+   Client status on arrival:
+   [form]
+   Care provided to client:
+   [form]
+   Medic signature:
+   [signature]
+ └─────────────────────────────────┘
+Outcome:
+ ┌─────────────────────────────────┐
+ Client status at time
+ of discharge:
+ [form]
+   Medic signature:
+   [signature]
+ Team status:
+ [form]
+ Damage assessment:
+   Damage to hostile parties:
+   [form]
+   Collateral damage:
+   [form]
+ └─────────────────────────────────┘
+Resource expenditures
+ ┌─────────────────────────────────┐
+ Ammunition:
+ [form]
+ Medical supplies:
+ [form]
+ Other:
+ [form]
+ └─────────────────────────────────┘
+Notes:
+ ┌─────────────────────────────────┐
+ Performance of team members:
+ [form]
+ Recommendations:
+ [form]
+ Other notes:
+ [form]
+ └─────────────────────────────────┘
+[/mono]

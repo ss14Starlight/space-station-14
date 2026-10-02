@@ -32,13 +32,13 @@
   - type: MultipleTool
     statusShowBehavior: true
     entries:
-      - behavior: Prying
+      - behavior: [ Prying ]
         sprite:
           sprite: Objects/Tools/jaws_of_life.rsi
           state: jaws_pry
         useSound: /Audio/Items/jaws_pry.ogg
         changeSound: /Audio/Items/change_jaws.ogg
-      - behavior: Cutting
+      - behavior: [ Cutting ]
         sprite:
           sprite: Objects/Tools/jaws_of_life.rsi
           state: jaws_cutter
@@ -75,10 +75,10 @@
   # 🌟Starlight-end🌟
 
 - type: entity
-  name: Jaws of DEATH #SL
+  name: syndicate jaws of death
   parent: [JawsOfLife, BaseSyndicateContraband]
   id: SyndicateJawsOfLife
-  description: Useful for entering the station or its departments.
+  description: Useful for breaking into secure areas and other nefarious activities.
   components:
   # 🌟Starlight-start🌟
   - type: Tag
@@ -101,13 +101,13 @@
     playSoundOnDoafter: false #SL
   - type: MultipleTool
     entries:
-      - behavior: Prying
+      - behavior: [ Prying ]
         sprite:
           sprite: Objects/Tools/jaws_of_life.rsi
           state: syn_jaws_pry
         useSound: /Audio/Items/jaws_pry.ogg
         changeSound: /Audio/Items/change_jaws.ogg
-      - behavior: Cutting
+      - behavior: [ Cutting ]
         sprite:
           sprite: Objects/Tools/jaws_of_life.rsi
           state: syn_jaws_cutter

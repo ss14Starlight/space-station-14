@@ -20,18 +20,18 @@ using Robust.Shared.Random;
 namespace Content.Server.RatKing
 {
     /// <inheritdoc/>
-    public sealed class RatKingSystem : SharedRatKingSystem
+    public sealed partial class RatKingSystem : SharedRatKingSystem
     {
         private const int RodentiaRexServantThreshold = 30; // Starlight: Achievements
 
-        [Dependency] private readonly AchievementSystem _achievements = default!; // Starlight: Achievements
-        [Dependency] private readonly AtmosphereSystem _atmos = default!;
-        [Dependency] private readonly ChatSystem _chat = default!;
-        [Dependency] private readonly HTNSystem _htn = default!;
-        [Dependency] private readonly HungerSystem _hunger = default!;
-        [Dependency] private readonly NPCSystem _npc = default!;
-        [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly IRobustRandom _random = default!; // Starlight
+        [Dependency] private AchievementSystem _achievements = default!; // Starlight: Achievements
+        [Dependency] private AtmosphereSystem _atmos = default!;
+        [Dependency] private ChatSystem _chat = default!;
+        [Dependency] private HTNSystem _htn = default!;
+        [Dependency] private HungerSystem _hunger = default!;
+        [Dependency] private NPCSystem _npc = default!;
+        [Dependency] private PopupSystem _popup = default!;
+        [Dependency] private IRobustRandom _random = default!; // Starlight
 
         public override void Initialize()
         {

@@ -5,20 +5,16 @@ using Content.Client.Eui;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Eui;
 using JetBrains.Annotations;
-using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
-using Robust.Client.UserInterface.Controls;
 using static Content.Shared.Administration.Logs.AdminLogsEuiMsg;
 
 namespace Content.Client.Administration.UI.Logs;
 
 [UsedImplicitly]
-public sealed class AdminLogsEui : BaseEui
+public sealed partial class AdminLogsEui : BaseEui
 {
-    [Dependency] private readonly IClyde _clyde = default!;
-    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
-    [Dependency] private readonly IFileDialogManager _dialogManager = default!;
-    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private IFileDialogManager _dialogManager = default!;
+    [Dependency] private ILogManager _log = default!;
 
     private const char CsvSeparator = ',';
     private const string CsvQuote = "\"";
@@ -31,38 +27,22 @@ public sealed class AdminLogsEui : BaseEui
     public AdminLogsEui()
     {
         LogsWindow = new AdminLogsWindow();
-        LogsWindow.OnClose += OnCloseWindow;
+        LogsWindow.OnFinalClose += () => SendMessage(new CloseEuiMessage()); // Starlight: popout support
         LogsControl = LogsWindow.Logs;
 
         LogsControl.LogSearch.OnTextEntered += _ => RequestLogs();
         LogsControl.RefreshButton.OnPressed += _ => RequestLogs();
         LogsControl.NextButton.OnPressed += _ => NextLogs();
-        LogsControl.PopOutButton.OnPressed += _ => PopOut();
         LogsControl.ExportLogs.OnPressed += _ => ExportLogs();
 
         _sawmill = _log.GetSawmill("admin.logs.ui");
     }
-
-    private WindowRoot? Root { get; set; }
-
-    private IClydeWindow? ClydeWindow { get; set; }
 
     private AdminLogsWindow? LogsWindow { get; set; }
 
     private AdminLogsControl LogsControl { get; }
 
     private bool FirstState { get; set; } = true;
-
-    private void OnRequestClosed(WindowRequestClosedEventArgs args)
-    {
-        SendMessage(new CloseEuiMessage());
-    }
-
-    private void OnCloseWindow()
-    {
-        if (ClydeWindow == null)
-            SendMessage(new CloseEuiMessage());
-    }
 
     private void RequestLogs()
     {
@@ -154,38 +134,6 @@ public sealed class AdminLogsEui : BaseEui
         }
     }
 
-    private void PopOut()
-    {
-        if (LogsWindow == null)
-        {
-            return;
-        }
-
-        var monitor = _clyde.EnumerateMonitors().First();
-
-        ClydeWindow = _clyde.CreateWindow(new WindowCreateParameters
-        {
-            Maximized = false,
-            Title = Loc.GetString("admin-logs-title"),
-            Monitor = monitor,
-            Width = 1100,
-            Height = 400
-        });
-
-        LogsControl.Orphan();
-        LogsWindow.Dispose();
-        LogsWindow = null;
-
-        ClydeWindow.RequestClosed += OnRequestClosed;
-        ClydeWindow.DisposeOnClose = true;
-
-        Root = _uiManager.CreateWindowRoot(ClydeWindow);
-        Root.AddChild(LogsControl);
-
-        LogsControl.PopOutButton.Disabled = true;
-        LogsControl.PopOutButton.Visible = false;
-    }
-
     public override void HandleState(EuiStateBase state)
     {
         var s = (AdminLogsEuiState) state;
@@ -250,14 +198,8 @@ public sealed class AdminLogsEui : BaseEui
     {
         base.Closed();
 
-        if (ClydeWindow != null)
-        {
-            ClydeWindow.RequestClosed -= OnRequestClosed;
-        }
-
+        LogsWindow?.DisposePopOut(); // Starlight: close the popout if it exists
         LogsControl.Dispose();
         LogsWindow?.Dispose();
-        Root?.Dispose();
-        ClydeWindow?.Dispose();
     }
 }

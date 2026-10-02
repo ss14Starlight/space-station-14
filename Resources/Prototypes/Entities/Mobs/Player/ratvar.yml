@@ -33,6 +33,8 @@
   - type: AnnounceOnSpawn
     message: ratvar-has-risen
     sender: ratvar-has-risen-sender
+    ignoreASpace: true # Starlight
+    globalAnnounce: true # Starlight
     sound:
       path: /Audio/Misc/ratvar_reveal.ogg
     color: "#BE8700"

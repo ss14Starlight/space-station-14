@@ -1,14 +1,25 @@
 {
-  "version": 2,
-  "license": "CC-BY-SA-3.0",
-  "copyright": "Wit Studio - My friend Nokotan, SS13 Sprites, Conflee, ReamNox, Miracula, Puddleboat, Salthew, Gensy, Polaris TODO from Happyrobot33, Fix copyright after RSI Split",
+  "version": 1,
+  "license": "CC0-1.0",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "By CawsForConcern (GitHub)"
+    },
+    {
+      "name": "inhand-left",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
     }
   ]
 }

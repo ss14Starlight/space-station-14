@@ -47,6 +47,9 @@
     startSound:
       path: /Audio/Mecha/sound_mecha_hydraulic.ogg
   - type: SurgeryTool
+  - type: Tag
+    tags:
+    - NonLethalMech
 
 - type: entity
   id: MechEquipmentCamera

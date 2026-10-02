@@ -1,0 +1,41 @@
+# From Moff Station, moved to Starlight since we're changing them a bit.
+# Wizard duelists
+- type: entity
+  parent: [ BaseWizardObjective , BaseFreeObjective ]
+  id: WizardDuelistMeetObjective
+  name: Meet your competition
+  description: Set the terms of engagement for your duel, and use your scroll to teleport to a nearby station. No fighting on Space Wizard Federation grounds!
+  components:
+  - type: Objective
+    icon:
+      sprite: Clothing/Head/Hats/wizardhat.rsi
+      state: icon
+
+- type: entity
+  parent: [ BaseWizardObjective, BaseStealObjective ]
+  id: WizardDuelistMedallionObjective
+  name: Obtain the medallions
+  components:
+  - type: Objective
+    icon:
+      sprite: _Starlight/Objects/Specific/wizcoin.rsi
+      state: omniwizcoin
+  - type: StealCondition
+    verifyMapExistence: false
+    objectiveNoOwnerText: objective-condition-wizard-duelist-medallion-title
+    descriptionMultiplyText: objective-condition-wizard-duelist-multiply-description
+    checkStealAreas: true
+    stealGroup: WizardMedallionCollection
+    minCollectionSize: 3
+    maxCollectionSize: 3
+
+- type: entity
+  parent: [ BaseWizardObjective , BaseSurviveObjective ]
+  id: WizardDuelistDemonstrateObjective
+  name: Display your proficiency and survive to tell the tale
+  description: Show them why you're the master of the arcane! Just make sure you don't get yourself killed in the process.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: fireball

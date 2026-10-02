@@ -44,3 +44,15 @@
     - type: Appearance
     - type: ToggleableVisuals
       spriteLayer: light
+    - type: ContainerContainer
+      containers:
+        book_slot: !type:ContainerSlot {}
+    - type: ItemSlots
+      slots:
+        book_slot:
+          startingItem: BookSecureTerminalManual
+          ejectOnInteract: false
+          insertOnInteract: true
+          whitelist:
+            tags:
+              - Book

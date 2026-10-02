@@ -1,0 +1,13 @@
+[mono]
+Official MedTak Correspondence
+ ┌──────────┐
+ Sender:   [signature]
+ Priority: [/mono][check][mono]Routine
+           [/mono][check][mono]Urgent
+           [/mono][check][mono]Immediate
+ └──────────┘
+ [form]
+ ┌──────────┐
+ Signed:   [signature]
+ └──────────┘
+[/mono]

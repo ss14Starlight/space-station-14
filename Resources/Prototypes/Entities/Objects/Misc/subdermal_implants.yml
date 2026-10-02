@@ -45,7 +45,7 @@
     enabled: false
     radius: 2.5
     softness: 5
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Tag
     tags:
@@ -105,7 +105,8 @@
       - Dead
     - type: RattleOnTrigger
       targetUser: true
-      radioChannel: Security
+      radioChannel:
+      - Security
     #endregion Starlight tracker rattle
 
 #Traitor implants
@@ -249,14 +250,15 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: VoiceMaskImplant
-  name: voice mask implant
-  description: This implant allows you to change your voice at will.
+  name: identity mask implant
+  description: This implant allows you to change your identity at will.
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
     implantAction: ActionChangeVoiceMaskImplant
   - type: VoiceMask
     overrideIdentity: true
+    changeIDName: true
   - type: UserInterface
     interfaces:
       enum.VoiceMaskUIKey.Key:
@@ -383,6 +385,7 @@
       - Dead
     - type: RattleOnTrigger
       targetUser: true
+      radioChannel: [Syndicate] #Starlight, syndicate isn't default rattle channel anymore
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -431,4 +434,4 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RattleOnTrigger
-    radioChannel: CentCom
+    radioChannel: [CentCom] # Starlight: List

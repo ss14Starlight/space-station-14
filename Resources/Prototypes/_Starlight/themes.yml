@@ -1,0 +1,9 @@
+- type: uiTheme
+  id: SLMPurpTheme
+  path: /Textures/_Starlight/Interface/Themes/MPurp/
+  colors:
+    whiteText: "#FFF5EE"
+    _itemstatus_content_margin_right: "#06060604"
+    _itemstatus_content_margin_left: "#06060604"
+    _itemstatus_patch_margin: "#07060505"
+# TODO: whenenever the UI system isn't dogshit, update this to include coloring for the UI.

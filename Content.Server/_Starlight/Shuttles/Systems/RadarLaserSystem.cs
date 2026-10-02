@@ -1,19 +1,19 @@
-using Content.Server.Shuttles.Components;
+using Content.Server._Starlight.Shuttles.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Shuttles.Systems;
+namespace Content.Server._Starlight.Shuttles.Systems;
 
 /// <summary>
 /// Tracks hitscan shuttle gun (e.g. Apollo) laser shots and records their beam data
 /// so that <see cref="RadarConsoleSystem"/> can include them as transient laser lines
 /// in the radar BUI state.
 /// </summary>
-public sealed class RadarLaserSystem : EntitySystem
+public sealed partial class RadarLaserSystem : EntitySystem
 {
-    [Dependency] private readonly TransformSystem _transforms = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private TransformSystem _transforms = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

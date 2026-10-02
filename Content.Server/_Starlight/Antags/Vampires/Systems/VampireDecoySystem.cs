@@ -6,11 +6,11 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
-public sealed class VampireDecoySystem : EntitySystem
+public sealed partial class VampireDecoySystem : EntitySystem
 {
-    [Dependency] private readonly SharedFlashSystem _flash = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private SharedFlashSystem _flash = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {

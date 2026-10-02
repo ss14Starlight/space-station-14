@@ -1,32 +1,39 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Paradise Station 13",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "claws"
+            "name": "claws",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "blood_tendrils"
+            "name": "blood_tendrils",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "blood_barrier"
+            "name": "blood_barrier",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "blood_pool"
+            "name": "blood_pool",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "blood_spikes"
+            "name": "blood_spikes",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "predator_sense"
+            "name": "predator_sense",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "blood_rite"
+            "name": "blood_rite",
+            "copyright": "Taken from Paradise Station 13"
         }
     ]
 }

@@ -1,0 +1,15 @@
+- type: roleLoadout
+  id: JobRadioHost
+  groups:
+  - GroupTankHarness # for Vox
+  - RadioHostJumpsuit
+  - RadioHostOuterClothing
+  - CommonBackpack
+  - CivilianShoes
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - GroupSpeciesBreathTool
+  - RadioHostGlasses

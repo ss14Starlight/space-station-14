@@ -37,8 +37,6 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using static Content.Server.Chat.Systems.ChatSystem;
-
-#region Starlight
 using Content.Server.Medical.SuitSensors;
 using Content.Shared.Follower.Components;
 using Content.Shared.Follower;
@@ -47,45 +45,44 @@ using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Medical.SuitSensors;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Warps;
-using Content.Shared._Starlight.Silicons.Borgs;
-using Robust.Shared.Localization;
-using Robust.Shared.Log;
 using Robust.Shared.Map;
-using System.Collections.Generic;
-#endregion Starlight
+using Content.Shared._Starlight.StationAi;
+using Content.Shared.Tag;
 
 namespace Content.Server.Silicons.StationAi;
 
-public sealed class StationAiSystem : SharedStationAiSystem
+public sealed partial class StationAiSystem : SharedStationAiSystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedTransformSystem _xforms = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly RoleSystem _roles = default!;
-    [Dependency] private readonly ItemSlotsSystem _slots = default!;
-    [Dependency] private readonly GhostSystem _ghost = default!;
-    [Dependency] private readonly ToggleableGhostRoleSystem _ghostrole = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly DestructibleSystem _destructible = default!;
-    [Dependency] private readonly SharedBatterySystem _battery = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedPopupSystem _popups = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly StationJobsSystem _stationJobs = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedTransformSystem _xforms = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private RoleSystem _roles = default!;
+    [Dependency] private ItemSlotsSystem _slots = default!;
+    [Dependency] private GhostSystem _ghost = default!;
+    [Dependency] private ToggleableGhostRoleSystem _ghostrole = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private DestructibleSystem _destructible = default!;
+    [Dependency] private SharedBatterySystem _battery = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private SharedPopupSystem _popups = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private StationJobsSystem _stationJobs = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
     // Starlight Start
-    [Dependency] private readonly IMapManager _map = default!;
-    [Dependency] private readonly SuitSensorSystem _suitSensors = default!;
-    [Dependency] private readonly FollowerSystem _followerSystem = default!;
-    [Dependency] private readonly StationAiVisionSystem _aiVision = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private TagSystem _tags = default!;
+    [Dependency] private SuitSensorSystem _suitSensors = default!;
+    [Dependency] private FollowerSystem _followerSystem = default!;
+    [Dependency] private StationAiVisionSystem _aiVision = default!;
     // Starlight End
 
     private readonly HashSet<Entity<StationAiCoreComponent>> _stationAiCores = new();
 
     // Starlight-start
+    private readonly ProtoId<TagPrototype> _ignoreWarpTag = new("GhostOnlyWarp");
     private readonly Dictionary<EntityUid, EntityUid> _activeFollowTargets = new();
     private readonly List<EntityUid> _followTargetsToRemove = new();
     private readonly ISawmill _warpSawmill = Logger.GetSawmill("stationai.warp");
@@ -116,6 +113,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
         SubscribeLocalEvent<StationAiCoreComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<StationAiCoreComponent, DoAfterAttemptEvent<IntellicardDoAfterEvent>>(OnDoAfterAttempt);
         SubscribeLocalEvent<StationAiCoreComponent, RejuvenateEvent>(OnRejuvenate);
+        SubscribeLocalEvent<GhostAttemptHandleEvent>(OnGhostAttempt); // Starlight
 
         SubscribeLocalEvent<ExpandICChatRecipientsEvent>(OnExpandICChatRecipients);
         SubscribeLocalEvent<StationAiTurretComponent, AmmoShotEvent>(OnAmmoShot);
@@ -125,8 +123,18 @@ public sealed class StationAiSystem : SharedStationAiSystem
         SubscribeNetworkEvent<StationAiWarpToTargetEvent>(OnStationAiWarpToTarget); // Starlight
     }
 
-    // Starlight Start: AI warping
     #region Starlight
+    // The intellicard/AI should immediatly eject the ghost if the command ghost is used to free it for further use.
+    private void OnGhostAttempt(GhostAttemptHandleEvent args)
+    {
+        if (args.Mind.CurrentEntity is not { } entity ||
+            !_container.TryGetContainingContainer(entity, out var container) ||
+            container.ID != StationAiHolderComponent.Container ||
+            !TryComp<StationAiHolderComponent>(container.Owner, out var holder))
+            return;
+
+        _slots.TryEject(container.Owner, holder.Slot, null, out _);
+    }
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -153,7 +161,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
             }
 
             // Check if target is outside AI camera view
-            if (_aiVision.IsOutsideCameraView(target))
+            if (_aiVision.IsOutsideCameraViewCached(target))
             {
                 _followerSystem.StopFollowingEntity(follower, target);
                 _followTargetsToRemove.Add(target);
@@ -180,11 +188,10 @@ public sealed class StationAiSystem : SharedStationAiSystem
             return;
         }
 
-        var aiStation = _station.GetOwningStation(coreEntity.Owner);
         var targets = new List<StationAiWarpTarget>();
 
-        CollectCrewWarpTargets(actor, aiStation, targets);
-        CollectLocationWarpTargets(actor, aiStation, coreEntity.Comp.RemoteEntity, targets);
+        CollectCrewWarpTargets(actor, targets); // Starlight
+        CollectLocationWarpTargets(actor, coreEntity.Comp.RemoteEntity, targets); // Starlight
 
         if (targets.Count == 0)
             _warpSawmill.Debug($"No warp targets available for Station AI {Name(actor)} ({actor}).");
@@ -207,14 +214,20 @@ public sealed class StationAiSystem : SharedStationAiSystem
             return;
         }
 
-        if (!TryWarpEyeToEntity(actor, target))
+        if (!CanAccessGrid((actor, null), Transform(target).GridUid)) // Starlight
+        {
+            _warpSawmill.Debug($"Station AI {Name(actor)} ({actor}) attempted to warp to inaccessible target {Name(target)} ({target}).");
+            return;
+        }
+
+        if (!TryWarpEyeToEntity((actor, null), target)) // Starlight
             _warpSawmill.Debug($"Station AI {Name(actor)} ({actor}) warp to {Name(target)} ({target}) rejected by TryWarpEyeToEntity.");
     }
 
     /// <summary>
     /// Populates the warp target buffer with crew members whose suit sensors are broadcasting coordinates.
     /// </summary>
-    private void CollectCrewWarpTargets(EntityUid actor, EntityUid? aiStation, List<StationAiWarpTarget> buffer)
+    private void CollectCrewWarpTargets(EntityUid actor, List<StationAiWarpTarget> buffer)
     {
         var processed = new HashSet<EntityUid>();
         var enumerator = EntityQueryEnumerator<SuitSensorComponent, TransformComponent>();
@@ -238,15 +251,13 @@ public sealed class StationAiSystem : SharedStationAiSystem
             if (!HasComp<HumanoidAppearanceComponent>(ownerUid))
                 continue;
 
-            if (aiStation is { } station)
-            {
-                var ownerStation = _station.GetOwningStation(ownerUid);
-                if (ownerStation != station)
-                    continue;
-            }
+            // Starlight - start
+            if (!CanAccessGrid((actor, null), Transform(ownerUid).GridUid))
+                continue;
+            // Starlight - end
 
             // Don't show crew members outside of camera view
-            if (_aiVision.IsOutsideCameraView(ownerUid))
+            if (_aiVision.IsOutsideCameraViewCached(ownerUid)) // starlight
                 continue;
 
             var display = string.IsNullOrWhiteSpace(status.Job)
@@ -257,7 +268,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
         }
     }
 
-    private void CollectLocationWarpTargets(EntityUid actor, EntityUid? aiStation, EntityUid? remoteEntity, List<StationAiWarpTarget> buffer)
+    private void CollectLocationWarpTargets(EntityUid actor, EntityUid? remoteEntity, List<StationAiWarpTarget> buffer)
     {
         var query = AllEntityQuery<WarpPointComponent, TransformComponent>();
 
@@ -272,35 +283,41 @@ public sealed class StationAiSystem : SharedStationAiSystem
             if (string.IsNullOrWhiteSpace(warp.Location))
                 continue;
 
-            if (aiStation is { } station)
+            // Starlight Start
+            if (_tags.HasTag(uid, _ignoreWarpTag))
+                continue;
+            // Starlight End
+
+            // Starlight - start
+            if (!CanAccessGrid((actor, null), Transform(uid).GridUid))
             {
-                var warpStation = _station.GetOwningStation(uid);
-                if (warpStation != station)
-                {
-                    _warpSawmill.Debug($"Skipping warp point {Name(uid)} ({uid}) outside AI station {station}.");
-                    continue;
-                }
+                _warpSawmill.Debug($"Skipping warp point {Name(uid)} ({uid}) outside AI grid access list.");
+                continue;
             }
+            // Starlight - end
 
             var name = warp.Location ?? Name(uid);
             buffer.Add(new StationAiWarpTarget(GetNetEntity(uid), name, StationAiWarpTargetType.Location));
         }
     }
 
-    public bool TryWarpEyeToCoordinates(EntityUid user, EntityCoordinates coordinates, bool popupOnFailure = true)
+    /// <summary>Attempts to warp the Station AI eye to coordinates on a grid the AI is allowed to access.</summary>
+    public bool TryWarpEyeToCoordinates(Entity<StationAiHeldComponent?> user, EntityCoordinates coordinates, bool popupOnFailure = true) // Starlight
     {
+        Resolve(user, ref user.Comp, false);
+
         bool Fail()
         {
             if (popupOnFailure)
-                _popups.PopupClient(Loc.GetString("ai-device-not-responding"), user, PopupType.MediumCaution);
+                _popups.PopupClient(Loc.GetString("ai-device-not-responding"), user.Owner, PopupType.MediumCaution); // Starlight
 
             return false;
         }
 
-        if (!HasComp<StationAiHeldComponent>(user))
+        if (user.Comp == null)
             return Fail();
 
-        if (!TryGetCore(user, out var coreEntity) || coreEntity.Comp == null)
+        if (!TryGetCore(user.Owner, out var coreEntity) || coreEntity.Comp == null)
             return Fail();
 
         var coreUid = coreEntity.Owner;
@@ -325,15 +342,10 @@ public sealed class StationAiSystem : SharedStationAiSystem
         if (!_map.TryFindGridAt(mapCoordinates, out var gridUid, out _))
             return Fail();
 
-        var aiStation = _station.GetOwningStation(coreUid);
-
-        if (aiStation != null)
-        {
-            var targetStation = _station.GetOwningStation(gridUid);
-
-            if (targetStation != aiStation)
-                return Fail();
-        }
+        // Starlight - start
+        if (!CanAccessGrid((user, null), gridUid))
+            return Fail();
+        // Starlight - end
 
         var targetCoords = _xforms.ToCoordinates((gridUid, Transform(gridUid)), mapCoordinates);
 
@@ -345,17 +357,20 @@ public sealed class StationAiSystem : SharedStationAiSystem
         return true;
     }
 
-    public bool TryWarpEyeToEntity(EntityUid user, EntityUid target, bool popupOnFailure = true)
+    ///<summary>Attempts to warp the Station AI eye to an entity on a grid the AI is allowed to access.</summary>
+    public bool TryWarpEyeToEntity(Entity<StationAiHeldComponent?> user, EntityUid target, bool popupOnFailure = true)
     {
+        Resolve(user, ref user.Comp, false);
+
         bool Fail()
         {
             if (popupOnFailure)
-                _popups.PopupClient(Loc.GetString("ai-device-not-responding"), user, PopupType.MediumCaution);
+                _popups.PopupClient(Loc.GetString("ai-device-not-responding"), user.Owner, PopupType.MediumCaution);
 
             return false;
         }
 
-        if (!TryGetCore(user, out var coreEntity) || coreEntity.Comp == null)
+        if (!TryGetCore(user.Owner, out var coreEntity) || coreEntity.Comp == null)
             return Fail();
 
         if (!TryComp<StationAiCoreComponent>(coreEntity.Owner, out var core))
@@ -369,9 +384,15 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
         var remoteXform = Transform(remoteEye);
 
+        if (HasComp<StationAiHeldComponent>(user) && !CanAccessGrid((user, null), Transform(target).GridUid))
+        {
+            StopFollowingTarget(remoteEye, target);
+            return Fail();
+        }
+
         if ((TryComp(target, out WarpPointComponent? warp) && warp.Follow) || HasComp<MobStateComponent>(target))
         {
-            var orbit = !HasComp<StationAiHeldComponent>(user);
+            var orbit = user.Comp == null;
             _followerSystem.StartFollowingEntity(remoteEye, target, orbit);
             if (!orbit)
                 _activeFollowTargets[target] = remoteEye;
@@ -392,6 +413,19 @@ public sealed class StationAiSystem : SharedStationAiSystem
         }
 
         return TryWarpEyeToCoordinates(user, Transform(target).Coordinates, popupOnFailure);
+    }
+
+    private void StopFollowingTarget(EntityUid remoteEye, EntityUid target)
+    {
+        if (_activeFollowTargets.TryGetValue(target, out var follower) && follower == remoteEye)
+            _activeFollowTargets.Remove(target);
+
+        if (!HasComp<FollowerComponent>(remoteEye))
+            return;
+
+        var parent = Transform(remoteEye).ParentUid;
+        if (parent == target)
+            _followerSystem.StopFollowingEntity(remoteEye, target);
     }
 
     private void OnSuitSensorModeChanged(Entity<SuitSensorComponent> ent, ref SuitSensorModeChangedEvent args)
@@ -577,7 +611,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
             accent.OverrideChargeLevel = _battery.GetChargeLevel((ent.Owner, battery));
 
         if (TryComp<DamageableComponent>(ent, out var damageable))
-            accent.OverrideTotalDamage = damageable.TotalDamage;
+            accent.OverrideTotalDamage = _damageable.GetTotalDamage((ent, damageable));
 
         if (TryComp<DestructibleComponent>(ent, out var destructible))
             accent.DamageAtMaxCorruption = _destructible.DestroyedAt(ent, destructible);
@@ -624,7 +658,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
         if (!_proto.TryIndex(_damageAlert, out var proto))
             return;
 
-        var damagePercent = damageable.TotalDamage / _destructible.DestroyedAt(ent, destructible);
+        var damagePercent = _damageable.GetTotalDamage((ent, damageable)) / _destructible.DestroyedAt(ent, destructible);
         var damageLevel = Math.Round(damagePercent.Float() * proto.MaxSeverity);
 
         _alerts.ShowAlert(held.Value, _damageAlert, (short)Math.Clamp(damageLevel, 0, proto.MaxSeverity));

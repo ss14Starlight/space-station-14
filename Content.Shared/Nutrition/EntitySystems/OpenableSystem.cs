@@ -1,4 +1,5 @@
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared._Starlight.Chemistry.Components;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -17,10 +18,10 @@ namespace Content.Shared.Nutrition.EntitySystems;
 /// </summary>
 public sealed partial class OpenableSystem : EntitySystem
 {
-    [Dependency] private readonly LockSystem _lock = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private LockSystem _lock = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -128,8 +129,9 @@ public sealed partial class OpenableSystem : EntitySystem
 
     private void OnAttemptShake(Entity<OpenableComponent> entity, ref AttemptShakeEvent args)
     {
-        // Prevent shaking open containers
-        if (entity.Comp.Opened)
+        // Starlight-start: Shaken open bottles spill
+        if (entity.Comp.Opened && !HasComp<ShakeSpillableComponent>(entity.Owner))
+        // Starlight-end
             args.Cancelled = true;
     }
 

@@ -1,4 +1,4 @@
-namespace Content.Server.Implants;
+namespace Content.Server._Starlight.Implants;
 
 /// <summary>
 /// Component for USSP uplink implants that need to be linked to head revolutionaries.

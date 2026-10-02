@@ -1,7 +1,7 @@
-using Content.Shared.Starlight.MHelp;
+using Content.Shared._Starlight.MHelp;
 using Robust.Shared.Network;
 
-namespace Content.Client.UserInterface.Systems.Bwoink;
+namespace Content.Client._Starlight.MHelp;
 
 // please kill all this indirection
 public interface IMHelpUIHandler : IDisposable

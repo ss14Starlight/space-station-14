@@ -12,10 +12,10 @@ namespace Content.Server._Starlight.Plumbing.EntitySystems;
 ///     Handles plumbing input machine behavior: A small tank (with no inlets) that players can pour reagents into.
 /// </summary>
 [UsedImplicitly]
-public sealed class PlumbingInputSystem : EntitySystem
+public sealed partial class PlumbingInputSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     public override void Initialize()
     {

@@ -1,0 +1,10 @@
+job-name-syndicate-captain = Syndicate Captain
+job-name-syndicate-chief-engineer = Syndicate Chief Engineer
+job-name-syndicate-chief-medical-officer = Syndicate Chief Medical Officer
+job-name-syndicate-head-of-personnel = Syndicate Head of Personnel
+job-name-syndicate-head-of-security = Syndicate Head of Security
+job-name-syndicate-iaa = Syndicate Internal Affairs Agent
+job-name-syndicate-magistrate = Syndicate Magistrate
+job-name-syndicate-quartermaster = Syndicate Quartermaster
+job-name-syndicate-research-director = Syndicate Research Director
+job-name-syndicate-redshield = Redshield Officer

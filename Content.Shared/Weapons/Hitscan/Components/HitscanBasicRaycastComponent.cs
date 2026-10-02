@@ -35,11 +35,5 @@ public sealed partial class HitscanBasicRaycastComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<TagPrototype>[] NotArmedCollideWith = ["Wall", "Window", "Airlock", "BulletUnarmedCollide"];
-
-    /// <summary>
-    /// How much attempts we will make for reflect.
-    /// </summary>
-    [DataField]
-    public int Steps = 3;
     #endregion
 }

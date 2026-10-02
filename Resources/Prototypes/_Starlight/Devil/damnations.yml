@@ -1,9 +1,26 @@
+# Devil damnations
+
+## Categories:
+### Constitution - relating to health, body
+### Psyche - relating to mind, ability to do things
+### Materiel - relating to physical things, taking something away or giving something
+
+## Cost:
+### Cost should be balanced such that "Soul" remains the most desirable punishment.
+### Even if your damnation has a fate worse than having your soul taken, you should not go above 10 points,
+### otherwise it becomes the focus of the deals that the devil does.
+### Also keep in mind that if your deal is fatal, the cost should not necessarily be high, because people are
+### likely to chain it on along with Soul anyway if it guaranteed round removes them at some point
+### Devil deals should focus on enhancing existing chaos, deals that create new chaos (i.e. spawn a terminator or minor antag)
+### Should be heavily limited in use, otherwise we just end up with people spawning 12 terminators for shits and giggles.
+
 # CURSES
 
 - type: damnation
   id: Soul
-  name: my soul
-  description: The signator forfeits their soul to you. Upon death, their soul will be sent to the depths of hell, rendering their corpse unrevivable.
+  name: devil-damnation-soul-name
+  category: psyche
+  description: devil-damnation-soul-desc
   cost: -10
   components:
   - type: Unrevivable
@@ -15,8 +32,9 @@
 
 - type: damnation
   id: Pacifism
-  name: give up my will to fight
-  description: The signator gives up their inner fight, becoming unable to bring harm to anything living or inanimate.
+  name: devil-damnation-pacifism-name
+  category: psyche
+  description: devil-damnation-pacifism-desc
   cost: -3
   components:
   - type: Pacified
@@ -24,8 +42,9 @@
 
 - type: damnation
   id: Blindness
-  name: give up my sight
-  description: The signator forfeits their ability to see.
+  name: devil-damnation-blindness-name
+  category: constitution
+  description: devil-damnation-blindness-desc
   cost: -3
   components:
   - type: PermanentBlindness
@@ -33,8 +52,9 @@
 
 - type: damnation
   id: Time
-  name: give up my life
-  description: The signator forfeits their life, leaving them with five minutes left to live.
+  name: devil-damnation-time-name
+  category: constitution
+  description: devil-damnation-time-desc
   cost: -8
   reverseOnRemove: false # prevent cheesing it for points
   components:
@@ -42,8 +62,9 @@
 
 - type: damnation
   id: Credits
-  name: give up my riches
-  description: The signator forfeits 5000 credits.
+  name: devil-damnation-credits-name
+  category: materiel
+  description: devil-damnation-credits-desc
   cost: -5
   actions:
   - !type:DamnationActionDeductCredits
@@ -51,16 +72,18 @@
 
 - type: damnation
   id: Purpose
-  name: lose my purpose
-  description: The signator received a fate worse than death.
+  name: devil-damnation-purpose-name
+  category: psyche
+  description: devil-damnation-purpose-desc
   cost: -6
   components:
   - type: Cluwne
 
 - type: damnation
   id: Humanity
-  name: lose my humanity
-  description: The signator will regress into a more primitive form.
+  name: devil-damnation-humanity-name
+  category: constitution
+  description: devil-damnation-humanity-desc
   cost: -5
   actions:
   - !type:DamnationActionPolymorph
@@ -68,34 +91,51 @@
 
 - type: damnation
   id: Organ
-  name: give up an organ
-  description: The signator loses a random organ. This could be anything from their lungs to a kidney.
+  name: devil-damnation-organ-name
+  category: constitution
+  description: devil-damnation-organ-desc
   cost: -6
   actions:
   - !type:DamnationActionRemoveOrgan
 
 - type: damnation
   id: Terminator
-  name: become a target
-  description: The future is imperceptibly modified, putting the signator square in the sights of a vengeful actor.
+  name: devil-damnation-terminator-name
+  category: materiel
+  description: devil-damnation-terminator-desc
   cost: -4
+  maxUses: 1
   actions:
   - !type:DamnationActionTerminator
 
 - type: damnation
   id: Mute
-  name: lose my voice
-  description: Makes the signator mute
+  name: devil-damnation-mute-name
+  category: constitution
+  description: devil-damnation-mute-desc
   cost: -2
   components:
   - type: Muted
+
+- type: damnation
+  id: Stink
+  name: devil-damnation-stink-name
+  category: constitution
+  description: devil-damnation-stink-desc
+  cost: -1
+  components:
+  - type: IntermittentGasEmitter
+    gasType: Ammonia
+    emitPeriod: 5
+    moles: 5
 
 # REWARDS
 
 - type: damnation
   id: SpaceImmunity
-  name: gain immunity to space
-  description: The signator becomes immune to space, no longer bound by their fear.
+  name: devil-damnation-space-immunity-name
+  category: constitution
+  description: devil-damnation-space-immunity-desc
   cost: 8
   removedComponents:
   - type: Barotrauma
@@ -114,8 +154,9 @@
 
 - type: damnation
   id: AllSeeing
-  name: gain knowledge of my surroundings
-  description: the signator can perceive through walls.
+  name: devil-damnation-all-seeing-name
+  category: psyche
+  description: devil-damnation-all-seeing-desc
   cost: 6
   components:
     - type: ThermalVision
@@ -123,17 +164,20 @@
 
 - type: damnation
   id: Magic
-  name: gain arcane powers
-  description: The signator learns some magical transport spells.
+  name: devil-damnation-magic-name
+  category: materiel
+  description: devil-damnation-magic-desc
   cost: 16
+  maxUses: 2
   components:
     - type: Jaunt
   reverseOnRemove: true
 
 - type: damnation
   id: Health
-  name: gain self rejuvenation
-  description: The signator gains the ability to totally restore their health, once.
+  name: devil-damnation-health-name
+  category: constitution
+  description: devil-damnation-health-desc
   cost: 10
   reverseOnRemove: true
   actions:
@@ -143,8 +187,9 @@
 
 - type: damnation
   id: Power
-  name: gain power over others
-  description: The signator gains a piece of armor and a blade, so that they can rend their will upon the world.
+  name: devil-damnation-power-name
+  category: materiel
+  description: devil-damnation-power-desc
   cost: 6
   actions:
   - !type:DamnationActionSpawnLoot
@@ -152,8 +197,9 @@
 
 - type: damnation
   id: Gun
-  name: receive a great equalizer
-  description: The signator receives a gun. We bought some arms futures and it didn't exactly turn out, need to get this crap off our hands.
+  name: devil-damnation-gun-name
+  category: materiel
+  description: devil-damnation-gun-desc
   cost: 10
   actions:
   - !type:DamnationActionSpawnLoot
@@ -161,16 +207,18 @@
 
 - type: damnation
   id: Electricity
-  name: gain immunity to electricity
-  description: The signator becomes.... insulated
+  name: devil-damnation-electricity-name
+  category: constitution
+  description: devil-damnation-electricity-desc
   cost: 4
   components:
   - type: Insulated
 
 - type: damnation
   id: Noslip
-  name: gain a sure footing
-  description: The signator cannot slip anymore
+  name: devil-damnation-noslip-name
+  category: constitution
+  description: devil-damnation-noslip-desc
   cost: 5
   components:
   - type: NoSlip
@@ -179,8 +227,8 @@
 
 - type: damnation
   id: TestFail
-  name: fail to sign
-  description: The contract will never be able to complete
+  name: devil-damnation-test-fail-name
+  description: devil-damnation-test-fail-desc
   cost: -10
   actions:
   - !type:DamnationActionFail

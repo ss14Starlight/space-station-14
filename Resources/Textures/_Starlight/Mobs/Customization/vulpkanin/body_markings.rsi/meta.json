@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from https://github.com/ParadiseSS13/Paradise edited by Floofers, then additionally edited legs and feet by GnarlyGnoll",
+  "copyright": "Taken from https://github.com/ParadiseSS13/Paradise edited by Floofers, then additionally edited legs and feet by GnarlyGnoll, skunk by hanz5579",
   "size": {"x": 32, "y": 32},
   "states": [
     {
@@ -58,6 +58,10 @@
     },
     {
       "name": "points_crest-legs",
+      "directions": 4
+    },
+    {
+      "name": "skunk",
       "directions": 4
     }
   ]

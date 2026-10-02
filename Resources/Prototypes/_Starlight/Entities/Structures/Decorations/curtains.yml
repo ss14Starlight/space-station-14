@@ -1,0 +1,27 @@
+﻿- type: entity
+  id: WindowBlinds
+  parent: BaseCurtains
+  suffix: Closed
+  description: Contains less than 1% mercury.
+  components:
+  - type: Sprite
+    snapCardinals: true
+    sprite: _Starlight/Structures/Furniture/blinds.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Construction
+    graph: WindowBlinds
+    node: WindowBlinds
+
+- type: entity
+  id: WindowBlindsOpen
+  parent: WindowBlinds
+  suffix: Open
+  components:
+  - type: Door
+    state: Open
+  - type: Occluder
+    enabled: false
+  - type: Physics
+    canCollide: false

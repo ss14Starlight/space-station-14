@@ -2,16 +2,15 @@ using Content.Server.Ghost.Roles.Components;
 using Content.Server.Popups;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Puppet;
-using Content.Server.Speech.Muting;
 using Content.Shared.CombatMode;
 using Content.Shared.Hands;
 using Content.Shared.Speech.Muting;
 
 namespace Content.Server.Puppet
 {
-    public sealed class VentriloquistPuppetSystem : SharedVentriloquistPuppetSystem
+    public sealed partial class VentriloquistPuppetSystem : SharedVentriloquistPuppetSystem
     {
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
 
         public override void Initialize()
         {

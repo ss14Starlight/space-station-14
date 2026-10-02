@@ -1,10 +1,9 @@
-using Content.Server.Bible.Components;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Components.Examine;
-using Content.Shared._Starlight.NullSpace;
+using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Polymorph;
@@ -12,13 +11,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
-public sealed class CosmicLapseSystem : EntitySystem
+public sealed partial class CosmicLapseSystem : EntitySystem
 {
-    [Dependency] private readonly CosmicCultSystem _cult = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly PolymorphSystem _polymorph = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private CosmicCultSystem _cult = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private PolymorphSystem _polymorph = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
 
     private static readonly ProtoId<PolymorphPrototype> _humanLapse = "CosmicLapseMobHuman";
 
@@ -31,7 +30,7 @@ public sealed class CosmicLapseSystem : EntitySystem
 
     private void OnCosmicLapse(Entity<CosmicCultComponent> uid, ref EventCosmicLapse action)
     {
-        if (action.Handled || HasComp<CosmicBlankComponent>(action.Target) || HasComp<CleanseCultComponent>(action.Target) || HasComp<BibleUserComponent>(action.Target))
+        if (action.Handled || HasComp<CosmicBlankComponent>(action.Target))
         {
             _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
             return;

@@ -4,12 +4,12 @@ using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
-using Content.Shared.VentCrawl.Components;
 using Robust.Shared.Player;
 using Content.Shared.NodeContainer;
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.VentCrawl.Components;
 
-namespace Content.Server.VentCrawl;
+namespace Content.Server._Starlight.VentCrawl;
 
 public sealed partial class BeingVentCrawlSystem : EntitySystem
 {

@@ -1,0 +1,17 @@
+- type: antagSpecifier
+  parent: ChangelingRestrictedAntag
+  id: SLChangeling
+  prefRoles: [ Changeling ]
+  briefing:
+    text: changeling-role-greeting
+    color: Red
+    sound: /Audio/Ambience/Antag/changeling_start.ogg
+  allowNonHumans: false
+  tags:
+    - CantBecomeRevolutionary
+  components:
+  - type: ChangelingDevour
+  - type: ChangelingIdentity
+  - type: ChangelingTransform
+  mindRoles:
+  - MindRoleChangeling

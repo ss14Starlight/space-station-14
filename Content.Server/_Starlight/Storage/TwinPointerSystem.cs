@@ -4,10 +4,10 @@ using Robust.Shared.Containers;
 
 namespace Content.Server._Starlight.Storage;
 
-public sealed class TwinPointerSystem : EntitySystem
+public sealed partial class TwinPointerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPinpointerSystem _pinpointerSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private SharedPinpointerSystem _pinpointerSystem = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {

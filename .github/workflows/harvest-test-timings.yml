@@ -1,0 +1,92 @@
+name: Harvest Test Timings
+
+concurrency:
+  group: harvest-test-timings-${{ github.ref }}
+  cancel-in-progress: false
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  tests:
+    name: Build & Test
+    permissions:
+      contents: read
+    uses: ./.github/workflows/build-test-debug.yml
+    with:
+      harvest: true
+
+  harvest:
+    name: Harvest test timings
+    if: always()
+    needs: tests
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Download shard test results
+        uses: actions/download-artifact@v8
+        with:
+          pattern: test-nunit-shard-*
+          path: /tmp/shard-ctrf
+
+      - name: Download shard manifest
+        uses: actions/download-artifact@v8
+        with:
+          name: shard-manifest
+          path: /tmp/shard-manifest
+
+      - name: Merge shard reports into one CTRF
+        uses: ctrf-io/github-test-reporter@v1
+        with:
+          report-path: '/tmp/shard-ctrf/**/shard-*-ctrf-report-*.json'
+          write-ctrf-to-file: /tmp/merged-ctrf.json
+          summary: false
+
+      - name: Promote to timings baseline
+        id: baseline
+        run: |
+          python3 Tools/_Starlight/partition_tests.py harvest \
+            /tmp/merged-ctrf.json Tools/_Starlight/test-timings.ctrf.json \
+            --manifest /tmp/shard-manifest/manifest.json
+
+      - name: Generate Harvest Tests report
+        if: always()
+        continue-on-error: true
+        uses: ctrf-io/github-test-reporter@v1
+        with:
+          title: Harvest Results
+          report-path: /tmp/merged-ctrf.json
+          baseline: '1'
+          baseline-report-path: 'Tools/_Starlight/test-timings.ctrf.json'
+          previous-results-max: 10
+          slowest-report: true
+          tests-changed-report: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run summary
+        if: always()
+        run: |
+          if [ "${{ steps.baseline.outcome }}" = "success" ]; then
+            echo "Download the \`test-timings\` artifact and commit it as \`Tools/_Starlight/test-timings.ctrf.json\`." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "> [!WARNING]" >> "$GITHUB_STEP_SUMMARY"
+            echo "> This run was not clean and complete, so **no baseline was produced**." >> "$GITHUB_STEP_SUMMARY"
+            echo "> See the *Promote to timings baseline* step for the reasons." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload timings baseline
+        if: steps.baseline.outcome == 'success'
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-timings
+          path: Tools/_Starlight/test-timings.ctrf.json
+          retention-days: 14
+          archive: false

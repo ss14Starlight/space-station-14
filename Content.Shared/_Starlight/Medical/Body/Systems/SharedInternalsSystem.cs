@@ -1,4 +1,5 @@
 using Content.Shared.Alert;
+using Content.Shared.ActionBlocker;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Body.Components;
@@ -18,13 +19,14 @@ namespace Content.Shared._Starlight.Medical.Body.Systems;
 /// <summary>
 /// Handles lung breathing with gas tanks for entities.
 /// </summary>
-public abstract class SharedInternalsSystem : EntitySystem
+public abstract partial class SharedInternalsSystem : EntitySystem
 {
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedGasTankSystem _gasTank = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedGasTankSystem _gasTank = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
@@ -79,6 +81,9 @@ public abstract class SharedInternalsSystem : EntitySystem
         ToggleMode mode = ToggleMode.Toggle)
     {
         if (!Resolve(target, ref internals, logMissing: false))
+            return false;
+
+        if (!_actionBlocker.CanConsciouslyPerformAction(user))
             return false;
 
         // Check if a mask is present.

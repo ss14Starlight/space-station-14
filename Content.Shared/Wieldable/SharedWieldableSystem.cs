@@ -9,6 +9,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
+using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
@@ -21,30 +22,34 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable.Components;
+using Content.Shared._Starlight.Weapons.Ranged.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
+using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Wieldable;
 
-public abstract class SharedWieldableSystem : EntitySystem
+public abstract partial class SharedWieldableSystem : EntitySystem
 {
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedGunSystem _gun = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
-    [Dependency] private readonly UseDelaySystem _delay = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedGunSystem _gun = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedItemSystem _item = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
+    [Dependency] private UseDelaySystem _delay = default!;
+    [Dependency] private INetManager _net = default!; // Starlight
+    [Dependency] private GunShieldBraceSystem _shieldBrace = default!; // Starlight
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<WieldableComponent, UseInHandEvent>(OnUseInHand, before: [typeof(SharedGunSystem), typeof(BatteryWeaponFireModesSystem)]); //starlight fix
+        SubscribeLocalEvent<WieldableComponent, UseInHandEvent>(OnUseInHand, before: [typeof(BatteryWeaponFireModesSystem)]); //starlight fix
         SubscribeLocalEvent<WieldableComponent, ItemUnwieldedEvent>(OnItemUnwielded);
         SubscribeLocalEvent<WieldableComponent, GotUnequippedHandEvent>(OnItemLeaveHand);
         SubscribeLocalEvent<WieldableComponent, VirtualItemDeletedEvent>(OnVirtualItemDeleted);
@@ -124,11 +129,23 @@ public abstract class SharedWieldableSystem : EntitySystem
         if (TryComp(bonus, out WieldableComponent? wield) &&
             wield.Wielded)
         {
+            // Starlight-start: Add support for multiplicative bonuses
             args.MinAngle += bonus.Comp.MinAngle;
+            args.MinAngle /= bonus.Comp.MinAngleDivider;
             args.MaxAngle += bonus.Comp.MaxAngle;
+            args.MaxAngle /= bonus.Comp.MaxAngleDivider;
             args.AngleDecay += bonus.Comp.AngleDecay;
+            args.AngleDecay /= bonus.Comp.AngleDecayDivider;
             args.AngleIncrease += bonus.Comp.AngleIncrease;
+            args.AngleIncrease /= bonus.Comp.AngleIncreaseDivider;
+            // Starlight-end
         }
+        // Starlight-start: a shield in the other hand is worth a fraction of a proper two-handed grip.
+        else
+        {
+            _shieldBrace.ApplyBraceBonus(bonus, ref args);
+        }
+        // Starlight-end
     }
 
     private void OnSpeedModifierWielded(EntityUid uid, SpeedModifiedOnWieldComponent component, ItemWieldedEvent args)
@@ -162,6 +179,11 @@ public abstract class SharedWieldableSystem : EntitySystem
 
         if (component.WieldBonusExamineMessage != null)
             args.PushText(Loc.GetString(component.WieldBonusExamineMessage));
+
+        // Starlight-start
+        if (_shieldBrace.TryGetBraceExamineMessage((uid, component)) is { } braceMessage)
+            args.PushText(braceMessage);
+        // Starlight-end
     }
 
     private void AddToggleWieldVerb(EntityUid uid, WieldableComponent component, GetVerbsEvent<InteractionVerb> args)
@@ -213,7 +235,7 @@ public abstract class SharedWieldableSystem : EntitySystem
     private void OnBlockerEquipped(Entity<WieldingBlockerComponent> ent, ref GotEquippedEvent args)
     {
         if (ent.Comp.BlockEquipped)
-            UnwieldAll(args.Equipee, force: true);
+            UnwieldAll(args.EquipTarget, force: true);
     }
 
     private void OnBlockerEquippedHand(Entity<WieldingBlockerComponent> ent, ref GotEquippedHandEvent args)
@@ -421,8 +443,9 @@ public abstract class SharedWieldableSystem : EntitySystem
 
     private void OnVirtualItemDeleted(EntityUid uid, WieldableComponent component, VirtualItemDeletedEvent args)
     {
-        if (args.BlockingEntity == uid)
-            TryUnwield(uid, component, args.User, force: true);
+        if (args.BlockingEntity != uid) return;
+        if (_net.IsClient && IsClientSide(args.VirtualItem)) return;
+        TryUnwield(uid, component, args.User, force: true);
     }
 
     private void OnGetMeleeDamage(EntityUid uid, IncreaseDamageOnWieldComponent component, ref GetMeleeDamageEvent args)
@@ -432,6 +455,11 @@ public abstract class SharedWieldableSystem : EntitySystem
 
         if (!wield.Wielded)
             return;
+
+        // Starlight begin
+        if (component.RespectActiveState && TryComp<ItemToggleComponent>(uid, out var toggle) && !toggle.Activated)
+            return;
+        // Starlight end
 
         args.Damage += component.BonusDamage;
     }

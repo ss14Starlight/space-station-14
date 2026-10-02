@@ -53,16 +53,10 @@
   flavor: carrot
   color: "#FF8820"
   metabolisms:
-    Drink:
-      effects:
-      - !type:SatiateThirst
-        factor: 2
-      - !type:AdjustReagent
-        reagent: Oculine
-        amount: 0.5
-      - !type:AdjustReagent
-        reagent: Nutriment
-        amount: 0.5
+    Digestion:
+      metabolites:
+        Oculine: 1
+        Nutriment: 1
 
 - type: reagent
   id: JuiceGrape
@@ -155,6 +149,16 @@
   physicalDesc: reagent-physical-desc-sweet
   flavor: watermelon
   color: "#EF3520"
+  metabolisms: # Starlight start, diona stuff
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 3
+      - !type:SatiateHunger
+        factor: 1.5 # It really isn't water, but it has water in the name, so.
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plant ] # Starlight end
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/watermelonglass.rsi
     state: icon_empty

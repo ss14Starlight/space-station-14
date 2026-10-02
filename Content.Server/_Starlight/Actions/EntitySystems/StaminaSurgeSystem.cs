@@ -9,13 +9,13 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Actions.EntitySystems;
 
-public sealed class StaminaSurgeSystem : SharedStaminaSurgeSystem
+public sealed partial class StaminaSurgeSystem : SharedStaminaSurgeSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly HungerSystem _hunger = default!;
-    [Dependency] private readonly ThirstSystem _thirst = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private HungerSystem _hunger = default!;
+    [Dependency] private ThirstSystem _thirst = default!;
 
     public override void Initialize()
     {

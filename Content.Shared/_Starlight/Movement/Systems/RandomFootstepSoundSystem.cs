@@ -4,10 +4,10 @@ using Robust.Shared.Random;
 
 namespace Content.Shared._Starlight.Movement.Systems;
 
-public sealed class RandomFootstepSoundSystem : EntitySystem
+public sealed partial class RandomFootstepSoundSystem : EntitySystem
 {
 
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

@@ -1,0 +1,10 @@
+- type: reaction
+  id: BatteryAcid
+  impact: Medium
+  reactants:
+    SulfuricAcid:
+      amount: 1
+    Water:
+      amount: 3
+  products:
+    BatteryAcid: 4

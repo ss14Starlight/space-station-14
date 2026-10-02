@@ -1,6 +1,6 @@
 using Robust.Shared.Configuration;
 
-namespace Content.Shared.Starlight.CCVar;
+namespace Content.Shared._Starlight.CCVar;
 public sealed partial class StarlightCCVars
 {
     /// <summary>
@@ -12,7 +12,6 @@ public sealed partial class StarlightCCVars
 
     public static readonly CVarDef<string> Secret =
         CVarDef.Create("discord.secret", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
-
 
     /// <summary>
     /// Discord Webhooks

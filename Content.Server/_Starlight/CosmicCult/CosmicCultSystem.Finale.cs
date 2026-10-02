@@ -75,7 +75,7 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
         comp.SelectedSong = comp.FinaleMusic;
         uid.Comp.CurrentState = FinaleState.ActiveFinale;
 
-        _corrupting.SetCorruptionTime((uid, corruptingComp), TimeSpan.FromSeconds(1));
+        EntitySystems.CosmicCorruptingSystem.SetCorruptionTime((uid, corruptingComp), TimeSpan.FromSeconds(1));
         _appearance.SetData(uid, MonumentVisuals.FinaleReached, 2);
         _sound.DispatchStationEventMusic(uid, comp.SelectedSong, StationEventMusicType.CosmicCult);
         _chatSystem.DispatchStationAnnouncement(uid,
@@ -92,7 +92,7 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
         if (TryComp<ActivatableUIComponent>(uid, out var uiComp))
             uiComp.Key = MonumentKey.Key; // wow! This is the laziest way to enable a UI ever!
 
-        _monument.Enable((uid, monument));
+        MonumentSystem.Enable((uid, monument));
         comp.FinaleActive = true;
         comp.FinaleAnnounceCheck = true;
 
@@ -120,7 +120,7 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
         uid.Comp.CurrentState = FinaleState.ReadyFinale;
 
         if (TryComp<CosmicCorruptingComponent>(uid, out var corruptingComp))
-            _corrupting.SetCorruptionTime((uid, corruptingComp), TimeSpan.FromSeconds(6));
+            EntitySystems.CosmicCorruptingSystem.SetCorruptionTime((uid, corruptingComp), TimeSpan.FromSeconds(6));
 
         if (TryComp<ActivatableUIComponent>(uid, out var uiComp))
         {
@@ -134,7 +134,7 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
         if (!TryComp<MonumentComponent>(target, out var monument))
             return;
 
-        _monument.Disable((uid, monument));
+        MonumentSystem.Disable((uid, monument));
         comp.FinaleActive = false;
         comp.FinaleAnnounceCheck = false;
 

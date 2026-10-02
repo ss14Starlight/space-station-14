@@ -1,13 +1,16 @@
+using System.Linq;
+using Content.IntegrationTests.Fixtures;
+using Content.IntegrationTests.Utility;
 using Content.Shared.Damage.Components;
 
 namespace Content.IntegrationTests.Tests.Damageable;
 
-public sealed class StaminaComponentTest
+public sealed class StaminaComponentTest : GameTest
 {
     [Test]
     public async Task ValidatePrototypes()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var protos = pair.GetPrototypesWithComponent<StaminaComponent>();
@@ -23,7 +26,5 @@ public sealed class StaminaComponentTest
                 }
             });
         });
-
-        await pair.CleanReturnAsync();
     }
 }

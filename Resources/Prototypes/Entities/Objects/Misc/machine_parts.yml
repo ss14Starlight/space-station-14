@@ -30,6 +30,7 @@
       state: micro_mani
     - type: Stack
       stackType: Manipulator
+      count: 1 # Starlight
     - type: Tag
       tags:
       - MicroManipulatorStockPart

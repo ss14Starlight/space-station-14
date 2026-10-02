@@ -2,7 +2,7 @@ using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
 
-namespace Content.Client._Starlight.Overlay;
+namespace Content.Client._Starlight.Overlay.Overlays;
 
 /*
 Time to mini rant here. this NEEDs to be a abstract because if its not, then
@@ -12,10 +12,10 @@ youve added are different based on their fields. So to get around this,
 we define all the actual BEHAVIOUR here, but then just make it appear as a new
 type by inheriting from this and implementing nothing. Thanks Robust Toolbox team.
 */
-public abstract class BaseVisionOverlay : Robust.Client.Graphics.Overlay
+public abstract partial class BaseVisionOverlay : Robust.Client.Graphics.Overlay
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
 
     public override bool RequestScreenTexture => true;
     public override OverlaySpace Space => OverlaySpace.WorldSpace;

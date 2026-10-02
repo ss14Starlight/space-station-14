@@ -1,17 +1,18 @@
-using Content.Server._Starlight.Objectives.Events;
 using Content.Server.GameTicking;
-using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Objectives.Events;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Railroading.Components.Tasks;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Objectives;
 using Content.Shared.Station;
 using Content.Shared.Station.Components;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.TaskSystems;
 
 public sealed partial class RailroadingDesertionTaskSystem : EntitySystem
 {
-    [Dependency] private readonly RailroadingSystem _railroading = default!;
-    [Dependency] private readonly SharedStationSystem _station = default!;
+    [Dependency] private RailroadingSystem _railroading = default!;
+    [Dependency] private SharedStationSystem _station = default!;
 
     public override void Initialize()
     {
@@ -68,8 +69,8 @@ public sealed partial class RailroadingDesertionTaskSystem : EntitySystem
 
         foreach (var gridUid in data.Grids)
         {
-            if (TryComp<TransformComponent>(gridUid, out var xform))
-                return subjectMap == xform.MapID;
+            if (Exists(gridUid))
+                return subjectMap == Transform(gridUid).MapID;
         }
 
         return false;

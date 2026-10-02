@@ -40,29 +40,11 @@
   - EmergencyElfOxygenMedical # 🌟Starlight🌟
   - EmergencyNonBreatherMedical # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheeseMedical # Starlight
+  - EmergencyOxygenMedicalBlood # Starlight
 
-- type: loadoutGroup # Starlight start
-  id: MedicalGloves
-  name: loadout-group-medical-gloves
-  minLimit: 0
-  loadouts:
-  - LatexGloves
-  - NitrileGloves
-
-- type: loadoutGroup
-  id: MedicalEyewear
-  name: loadout-group-medical-glasses
-  minLimit: 0
-  loadouts:
-  - MedicalHud
-  - MedicalEyePatchHud
-  - Glasses
-  - GlassesJamjar
-  - GlassesJensen
-  - MedicalGlassesPrescription # Starlight end
 
 # Chief Medical Officer
-
 - type: loadoutGroup
   id: ChiefMedicalOfficerHead
   name: loadout-group-chief-medical-officer-head
@@ -117,12 +99,11 @@
   - LaceupShoes # 🌟Starlight🌟
   - LeatherShoes # 🌟Starlight🌟
 
-- type: loadoutGroup
-  id: ChiefMedicalOfficerJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieChiefMedicalOfficer
+#- type: loadoutGroup
+#  id: ChiefMedicalOfficerJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:
 
 # Medical Doctor
 
@@ -177,6 +158,7 @@
   - SeniorPhysicianLabCoat
   - WindbreakerMedical # 🌟Starlight🌟
   - RegularLabCoatLong # DeltaV
+  - CoronerLabCoatLong # Starlight
 
 - type: loadoutGroup
   id: MedicalDoctorPDA
@@ -185,12 +167,11 @@
   - MedicalDoctorPDA
   - SeniorPhysicianPDA
 
-- type: loadoutGroup
-  id: MedicalDoctorJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieMedicalDoctor
+#- type: loadoutGroup
+#  id: MedicalDoctorJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:
 
 # Medical Intern
 
@@ -201,12 +182,11 @@
   - WhiteJumpsuit
   - WhiteJumpskirt
 
-- type: loadoutGroup
-  id: MedicalInternJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieMedicalIntern
+#- type: loadoutGroup
+#  id: MedicalInternJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:
 
 # Chemist
 
@@ -231,6 +211,7 @@
   - SeniorChemistWintercoat # Starlight
   - RegularLabCoatLong # DeltaV
   - ChemistLabCoatLong # DeltaV
+  - SeniorChemistLabCoatLong # Starlight
 
 - type: loadoutGroup
   id: ChemistBackpack
@@ -244,12 +225,11 @@
   - SeniorChemistDuffel # Starlight
   - LeatherSatchel # starlight
 
-- type: loadoutGroup
-  id: ChemistJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieChemist
+#- type: loadoutGroup
+#  id: ChemistJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:
 
 # Paramedic
 
@@ -290,9 +270,8 @@
   - Heels # Starlight
   - HighHeelBoots # Starlight
 
-- type: loadoutGroup
-  id: ParamedicJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieParamedic
+#- type: loadoutGroup
+#  id: ParamedicJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:

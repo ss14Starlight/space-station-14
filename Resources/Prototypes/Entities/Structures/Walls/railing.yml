@@ -28,8 +28,8 @@
 - type: entity
   parent: BaseRailing
   id: Railing
-  name: Railing #SL
-  suffix: Steel #SL
+  name: railing #SL
+  suffix: steel #SL
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
@@ -78,8 +78,8 @@
 - type: entity
   parent: BaseRailing
   id: RailingCorner
-  name: Railing #SL
-  suffix: Steel, Corner #SL
+  name: railing #SL
+  suffix: steel, corner #SL
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
@@ -137,8 +137,8 @@
 - type: entity
   parent: BaseRailing
   id: RailingCornerSmall
-  name: Railing #SL
-  suffix: Steel, Corner Small #SL
+  name: railing #SL
+  suffix: steel, corner small #SL
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
@@ -187,8 +187,8 @@
 - type: entity
   parent: BaseRailing
   id: RailingRound
-  name: Railing #SL
-  suffix: Steel, Round #SL
+  name: railing #SL
+  suffix: steel, round #SL
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Walls/railing.rsi #Starlight

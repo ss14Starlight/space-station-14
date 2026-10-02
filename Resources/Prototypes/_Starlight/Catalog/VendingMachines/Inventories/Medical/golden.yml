@@ -1,0 +1,113 @@
+# Better everything, but less of them.
+- type: vendingMachineInventory
+  id: GoldNanoMedInventory
+  startingInventory:
+    HandheldHealthAnalyzer: 1
+    ClothingBeltMedical: 2
+    ClothingBeltMedicalEMT: 1
+    Gauze: 2
+    GoldBrutePack: 2
+    GoldOintment: 2
+    Bloodpack: 2
+    ChemistryBottleEpinephrine: 2
+    Syringe: 2
+    PillCanisterTricordrazine: 1
+  contrabandInventory:
+    PillCanisterRandom: 1
+    StrangePill: 1
+    WeirdPill: 1
+    PowerCellSmall: 1
+  emaggedInventory:
+    OminousPill: 1
+    GoldenPill: 1
+    PillGold5: 1
+
+# All access version. Should reflect the stock of NanoMedInventory, but less powerful
+- type: vendingMachineInventory
+  id: GoldNanoMedCivilianWallInventory
+  startingInventory:
+    HandheldHealthAnalyzer: 1
+    Gauze: 2
+    Tourniquet: 2
+    GoldBrutePack: 2
+    GoldOintment: 2
+    Bloodpack: 2
+    ChemistryBottleInaprovaline: 2
+    Syringe: 2
+    PillTricordrazine: 5
+  contrabandInventory:
+    PillCanisterRandom: 1
+    StrangePill: 1
+    WeirdPill: 1
+  emaggedInventory:
+    OminousPill: 1
+    GoldenPill: 1
+    PillGold5: 1
+
+# Core medical supply vendor
+- type: vendingMachineInventory
+  id: GoldNanoMedPlusInventory
+  startingInventory:
+    HandheldHealthAnalyzer: 3
+    ClothingBeltMedical: 3
+    ClothingBeltMedicalEMT: 2
+    Gauze: 4
+    GoldBrutePack: 4
+    GoldOintment: 4
+    Bloodpack: 4
+    Tourniquet: 1
+    ChemistryBottleEpinephrine: 2
+    ChemistryBottleBicaridine: 1
+    Syringe: 4
+    JetInjector: 2
+    BoxBottle: 2
+    PillCanisterTricordrazine: 2
+    PillCanisterIron: 1
+    PillCanisterCopper: 1
+    PillCanisterPotassiumIodide: 1
+    SyringeIpecac: 1
+    ClothingEyesHudMedical: 2
+    ClothingEyesEyepatchHudMedical: 2
+    ClothingEyeGlassesMedicalPrescription: 2
+    AutoMenderBruteFilled: 1
+    AutoMenderBurnFilled: 1
+    SpaceMedipen: 1
+  contrabandInventory:
+    PillCanisterRandom: 3
+    PillSpaceDrugs: 3
+    StrangePill: 2
+    WeirdPill: 2
+    FoodGoldenApple: 1
+  emaggedInventory:
+    OminousPill: 2
+    GoldenPill: 2
+    PillGold5: 2
+
+# All access version. Should reflect NanoMedCivilianWallInventory, but with more stock
+- type: vendingMachineInventory
+  id: GoldNanoMedCivilianInventory
+  startingInventory:
+    HandheldHealthAnalyzer: 3
+    Tourniquet: 4
+    Gauze: 2
+    GoldBrutePack: 4
+    GoldOintment: 4
+    Bloodpack: 4
+    ChemistryBottleInaprovaline: 2
+    ChemistryBottleEpinephrine: 2
+    Syringe: 4
+    BoxBottle: 2
+    PillCanisterTricordrazine: 1
+    PillCanisterIron: 1
+    PillCanisterCopper: 1
+    PillCanisterPotassiumIodide: 1
+  contrabandInventory:
+    PillCanisterRandom: 1
+    PillSpaceDrugs: 3
+    StrangePill: 2
+    WeirdPill: 2
+    FoodGoldenApple: 1
+  emaggedInventory:
+    OminousPill: 2
+    GoldenPill: 2
+    PillGold5: 1

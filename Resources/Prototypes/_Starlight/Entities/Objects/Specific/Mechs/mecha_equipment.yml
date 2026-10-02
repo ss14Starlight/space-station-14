@@ -1,0 +1,77 @@
+- type: entity
+  id: DebugMechEquipment
+  abstract: true
+  suffix: DEBUG
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - CombatMech
+    - IndustrialMech
+    - SpecialMech
+    - SmallMech
+
+- type: entity
+  id: CombatMechEquipment
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - CombatMech
+
+- type: entity
+  id: IndustrialMechEquipment
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - IndustrialMech
+
+- type: entity
+  id: SpecialMechEquipment
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - SpecialMech
+
+- type: entity
+  id: SmallMechEquipment
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - SmallMech
+
+- type: entity
+  id: MechEquipmentSovietHorn
+  parent: [ BaseMechEquipment, CombatMechEquipment, BaseSovietContraband ]
+  name: soviet horn
+  description: A glorious mechanicad horn that plays a variety of glorious sounds. Glory to the motherland!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Mechs/equipment.rsi
+    state: mecha_sovieter
+  - type: Item
+    inhandVisuals:
+      left:
+      - sprite: _Starlight/Objects/Specific/Mechs/equipment.rsi
+        state: inhand-left-sovieter
+      right:
+      - sprite: _Starlight/Objects/Specific/Mechs/equipment.rsi
+        state: inhand-right-sovieter
+  - type: MultiHandedItem
+  - type: MechSoundboard
+    sounds:
+    - collection: SovietChoirGlory
+    - collection: TrenchWhistle
+    - collection: SovietWinningGlory
+    - collection: SovietAdvertisementGlory
+  - type: UIFragment
+    ui: !type:MechSoundboardUi
+  - type: UseDelay
+    delay: 30

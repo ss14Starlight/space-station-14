@@ -1,9 +1,8 @@
-﻿using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
+﻿using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Starlight;
+namespace Content.Shared._Starlight.Medical.Limbs;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class BaseLayerIdComponent : Component

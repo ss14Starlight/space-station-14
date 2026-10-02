@@ -1,5 +1,4 @@
 using Content.Shared.Hands;
-using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Ranged.Components;
@@ -12,11 +11,11 @@ namespace Content.Shared._Starlight.Weapons.DualWield;
 /// Handles the dual-wield toggle verb and cleanup when a gun leaves a hand.
 /// The actual alternating-gun logic lives in SharedGunSystem (TryGetGun + OnShootRequest).
 /// </summary>
-public sealed class SharedDualWieldSystem : EntitySystem
+public sealed partial class SharedDualWieldSystem : EntitySystem
 {
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedGunSystem _gun = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedGunSystem _gun = default!;
 
     public override void Initialize()
     {
@@ -31,7 +30,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
     /// </summary>
     private void OnGunRefreshModifiers(Entity<CanDualWieldComponent> gun, ref GunRefreshModifiersEvent args)
     {
-        if (gun.Comp.DualWieldInaccuracyPenalty <= 0f)
+        if (!gun.Comp.Enabled || gun.Comp.DualWieldInaccuracyPenalty <= 0f)
             return;
 
         // The gun lives in a ContainerSlot whose parent is the holder entity
@@ -65,7 +64,8 @@ public sealed class SharedDualWieldSystem : EntitySystem
         else
         {
             // Safety check — both guns must have CanDualWieldComponent
-            if (!HasComp<CanDualWieldComponent>(leftGun) || !HasComp<CanDualWieldComponent>(rightGun))
+            if (!TryComp<CanDualWieldComponent>(leftGun, out var leftCanDual) || !leftCanDual.Enabled
+                || !TryComp<CanDualWieldComponent>(rightGun, out var rightCanDual) || !rightCanDual.Enabled)
             {
                 _popup.PopupClient(Loc.GetString("dual-wield-too-heavy"), user, user);
                 return;

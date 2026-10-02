@@ -1,0 +1,7 @@
+- type: entity
+  parent: Holopad
+  id: HolopadServiceRadioHost
+  suffix: RadioHost
+  components:
+  - type: Label
+    currentLabel: holopad-service-radiohost

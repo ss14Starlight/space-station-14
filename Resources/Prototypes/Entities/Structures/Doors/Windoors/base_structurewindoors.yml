@@ -175,9 +175,16 @@
   - type: StaticPrice
     price: 150
   - type: PryUnpowered
-  - type: Tag #Starlight -- minimum arming distance
+  - type: Tag
     tags:
+      - DoorRemoteWhitelist
+      # This tag is used by door remotes to allow or not a door remote to normally be able to interact with a door
       - BulletUnarmedCollide #Starlight -- Make bullet pre-arming not phase through windoors
+  # ES Start
+  - type: ESSparkOnHit
+    prob: 0.25
+    count: 2
+  # ES End
 
 - type: entity
   id: BaseSecureWindoor
@@ -225,13 +232,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 600
+        damage: 500 #SL
       behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 400
+        damage: 300 #SL
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -252,6 +259,8 @@
     tags:
       - SecureWindoor
       # This tag is used to nagivate the Airlock construction graph. It's needed because the construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
+      - DoorRemoteWhitelist
+      # This tag is used by door remotes to allow or not a door remote to normally be able to interact with a door
       - BulletUnarmedCollide #Starlight -- Make bullet pre-arming not phase through windoors
 
 #Plasma Windoors
@@ -397,6 +406,8 @@
     tags:
       - SecurePlasmaWindoor
       # This tag is used to nagivate the Airlock construction graph. It's needed because the construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
+      - DoorRemoteWhitelist
+      # This tag is used by door remotes to allow or not a door remote to normally be able to interact with a door
 
 
 #Uranium Windoors
@@ -542,3 +553,5 @@
     tags:
       - SecureUraniumWindoor
       # This tag is used to nagivate the Airlock construction graph. It's needed because the construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
+      - DoorRemoteWhitelist
+      # This tag is used by door remotes to allow or not a door remote to normally be able to interact with a door

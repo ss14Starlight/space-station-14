@@ -17,7 +17,7 @@ public sealed partial class SlimeFindEdibleTargetOperator : HTNOperator
      * This doesn't require pathfinding, so slimes can theoretically smell targets through walls.
      */
 
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     private SlimeBrainSystem _slimeBrainSystem = default!;
     private EntityLookupSystem _lookup = default!;

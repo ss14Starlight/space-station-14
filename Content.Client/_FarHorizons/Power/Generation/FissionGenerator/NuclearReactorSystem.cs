@@ -8,13 +8,13 @@ using Robust.Shared.Random;
 
 namespace Content.Client._FarHorizons.Power.Generation.FissionGenerator;
 
-public sealed class NuclearReactorSystem : EntitySystem
+public sealed partial class NuclearReactorSystem : EntitySystem
 {
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
 
     private readonly float _threshold = 1f;
     private float _accumulator = 0;

@@ -6,18 +6,16 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Radiation.Components;
 using Content.Shared.Radiation.Systems;
 using Robust.Server.Audio;
-using Robust.Server.GameObjects;
 using Robust.Server.Player;
-using Robust.Shared.Player;
 
 namespace Content.Server.Radiation.Systems;
 
-public sealed class GeigerSystem : SharedGeigerSystem
+public sealed partial class GeigerSystem : SharedGeigerSystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly RadiationSystem _radiation = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private RadiationSystem _radiation = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     private static readonly float ApproxEqual = 0.01f;
 
@@ -47,7 +45,7 @@ public sealed class GeigerSystem : SharedGeigerSystem
     {
         if (geiger.Comp.AttachedToSuit)
             SetEnabled(geiger, true);
-        SetUser(geiger, args.Equipee);
+        SetUser(geiger, args.EquipTarget);
     }
 
     private void OnEquippedHand(Entity<GeigerComponent> geiger, ref GotEquippedHandEvent args)

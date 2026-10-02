@@ -1,0 +1,234 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                      xmlns:lancer="clr-namespace:Content.Client._Starlight.Arcade.Lancer"
+                      MinSize="860 640"
+                      SetSize="860 640"
+                      Title="{Loc 'lancer-arcade-title'}">
+    <BoxContainer Orientation="Vertical" Margin="6" SeparationOverride="4">
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <Label Name="PhaseLabel" Align="Left" VAlign="Center" HorizontalExpand="True" />
+            <Button Name="ReturnToMenuButton"
+                    Text="{Loc 'lancer-arcade-return-to-menu'}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    MinWidth="90"
+                    Visible="False" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8" VerticalExpand="True">
+        <!-- Column 1: board / phase screens -->
+        <PanelContainer MinWidth="380" MaxWidth="400" VerticalExpand="True">
+            <BoxContainer Name="BoardColumn" Orientation="Vertical" VerticalExpand="True">
+                <PanelContainer Name="IntroPanel" VerticalExpand="True">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="10" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalExpand="True">
+                        <TextureRect TexturePath="/Textures/_Starlight/Arcade/Lancer/powered_by_lancer.png"
+                                     Stretch="KeepAspectCentered"
+                                     HorizontalAlignment="Center"
+                                     MaxSize="320 80" />
+                        <RichTextLabel Text="{Loc 'lancer-arcade-disclaimer'}" HorizontalAlignment="Center" MaxWidth="360" />
+                        <RichTextLabel Text="{Loc 'lancer-arcade-copyright'}" HorizontalAlignment="Center" MaxWidth="360" />
+                        <PanelContainer Name="IntroDiceArea" VerticalExpand="True" MinSize="0 120" />
+                        <Button Name="IntroStartButton" Text="{Loc 'lancer-arcade-start-game'}" HorizontalAlignment="Center" />
+                    </BoxContainer>
+                </PanelContainer>
+                <PanelContainer Name="MissionSelectPanel" Visible="False" VerticalExpand="True">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="8" VerticalExpand="True">
+                        <Label Text="{Loc 'lancer-arcade-mission-select-title'}" Align="Center" HorizontalExpand="True" />
+                        <Label Name="MissionSelectSummaryLabel" HorizontalExpand="True" />
+                        <Label Name="MissionSelectLoadoutLabel" HorizontalExpand="True" />
+                        <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                            <BoxContainer Name="MissionListBox" Orientation="Vertical" SeparationOverride="6" MinWidth="340" />
+                        </ScrollContainer>
+                        <Button Name="CampaignResetButton" Text="{Loc 'lancer-arcade-campaign-reset'}" HorizontalAlignment="Center" />
+                        <Button Name="CampaignResetConfirmButton" Text="{Loc 'lancer-arcade-campaign-reset-confirm'}" Visible="False" HorizontalAlignment="Center" />
+                        <Button Name="CampaignResetCancelButton" Text="{Loc 'lancer-arcade-campaign-reset-cancel'}" Visible="False" HorizontalAlignment="Center" />
+                    </BoxContainer>
+                </PanelContainer>
+                <PanelContainer Name="PreFightPanel" Visible="False" VerticalExpand="True">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="6" VerticalExpand="True">
+                        <Label Name="PreFightFightLabel" Align="Center" HorizontalExpand="True" />
+                        <Label Name="PreFightMissionLabel" />
+                        <ScrollContainer MaxSize="360 120" HScrollEnabled="False">
+                            <RichTextLabel Name="PreFightDescLabel" MaxWidth="340" />
+                        </ScrollContainer>
+                        <RichTextLabel Name="PreFightObjectiveLabel" MaxWidth="360" />
+                        <Label Text="{Loc 'lancer-arcade-prefight-pick-check'}" />
+                        <Button Name="NarrativeCheck0Button" HorizontalExpand="True" />
+                        <Button Name="NarrativeCheck1Button" HorizontalExpand="True" />
+                        <PanelContainer Name="PreFightDiceArea" VerticalExpand="True" MinSize="0 80" />
+                        <Button Name="PreFightDeployButton" Text="{Loc 'lancer-arcade-prefight-deploy'}" HorizontalAlignment="Center" />
+                    </BoxContainer>
+                </PanelContainer>
+                <PanelContainer Name="Scene1Panel" Visible="False" VerticalExpand="True">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="6" VerticalExpand="True">
+                        <ScrollContainer MaxSize="360 180" HScrollEnabled="False">
+                            <RichTextLabel Name="Scene1DescLabel" MaxWidth="340" />
+                        </ScrollContainer>
+                        <PanelContainer Name="Scene1DiceArea" VerticalExpand="True" MinSize="0 180" />
+                        <Label Name="SpotResultLabel" />
+                        <Button Name="RollSpotButton" Text="{Loc 'lancer-arcade-roll-spot'}" />
+                        <Button Name="BeginCombatButton" Text="{Loc 'lancer-arcade-begin-combat'}" />
+                    </BoxContainer>
+                </PanelContainer>
+                <PanelContainer Name="IntermissionPanel" Visible="False" VerticalExpand="True">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="6" VerticalExpand="True">
+                        <Label Text="{Loc 'lancer-arcade-intermission-title'}" Align="Center" HorizontalExpand="True" />
+                        <Label Name="IntermissionFightLabel" />
+                        <Label Name="IntermissionRepairsLabel" />
+                        <Label Name="IntermissionStructureLabel" />
+                        <Label Name="IntermissionHpLabel" />
+                        <Button Name="IntermissionStructureButton" Text="{Loc 'lancer-arcade-intermission-repair-structure'}" HorizontalExpand="True" />
+                        <Button Name="IntermissionReactorButton" Text="{Loc 'lancer-arcade-intermission-repair-reactor'}" HorizontalExpand="True" />
+                        <PanelContainer Name="IntermissionDiceArea" VerticalExpand="True" MinSize="0 80" />
+                        <Button Name="IntermissionContinueButton" Text="{Loc 'lancer-arcade-intermission-continue'}" HorizontalAlignment="Center" />
+                    </BoxContainer>
+                </PanelContainer>
+                <PanelContainer Name="LoadoutSelectPanel" Visible="False" VerticalExpand="True">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="8" VerticalExpand="True">
+                        <Label Name="LoadoutSelectTitleLabel" Align="Center" HorizontalExpand="True" />
+                        <Label Name="LoadoutSelectMissionLabel" Align="Center" HorizontalExpand="True" />
+                        <Label Text="{Loc 'lancer-arcade-loadout-select-prompt'}" />
+                        <Button Name="LoadoutOption0Button" HorizontalExpand="True" />
+                        <Button Name="LoadoutOption1Button" HorizontalExpand="True" />
+                        <PanelContainer Name="LoadoutSelectDiceArea" VerticalExpand="True" MinSize="0 80" />
+                        <Button Name="LoadoutConfirmButton" Text="{Loc 'lancer-arcade-loadout-confirm'}" HorizontalAlignment="Center" />
+                    </BoxContainer>
+                </PanelContainer>
+                <PanelContainer Name="SkillPickPanel" Visible="False" VerticalExpand="True">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="8" VerticalExpand="True">
+                        <Label Name="SkillPickTitleLabel" Align="Center" HorizontalExpand="True" />
+                        <Label Name="SkillPickStatsLabel" Align="Center" HorizontalExpand="True" />
+                        <Label Text="{Loc 'lancer-arcade-skillpick-prompt'}" />
+                        <Button Name="SkillOption0Button" HorizontalExpand="True" />
+                        <Button Name="SkillOption1Button" HorizontalExpand="True" />
+                        <Button Name="SkillOption2Button" HorizontalExpand="True" />
+                        <PanelContainer Name="SkillPickDiceArea" VerticalExpand="True" MinSize="0 80" />
+                        <Button Name="SkillPickConfirmButton" Text="{Loc 'lancer-arcade-skillpick-confirm'}" HorizontalAlignment="Center" />
+                    </BoxContainer>
+                </PanelContainer>
+                <PanelContainer Name="CombatPanel" Visible="False" VerticalExpand="True">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#111114" />
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical" VerticalExpand="True" SeparationOverride="0">
+                        <PanelContainer VerticalExpand="True">
+                            <lancer:LancerBoardControl Name="BoardControl"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Top"
+                                                       Margin="0 8 0 0" />
+                        </PanelContainer>
+                        <PanelContainer Name="HexHoverPanel" HorizontalAlignment="Center" MinSize="380 72" MaxSize="380 72">
+                            <PanelContainer.PanelOverride>
+                                <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" BorderColor="#333338" BorderThickness="1" />
+                            </PanelContainer.PanelOverride>
+                            <ScrollContainer HScrollEnabled="False" VerticalExpand="True">
+                                <RichTextLabel Name="HexHoverLabel"
+                                               Margin="6 4"
+                                               MaxWidth="360"
+                                               Text="{Loc 'lancer-arcade-hex-hover-idle'}" />
+                            </ScrollContainer>
+                        </PanelContainer>
+                    </BoxContainer>
+                </PanelContainer>
+                <PanelContainer Name="EndPanel" Visible="False" VerticalExpand="True">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="6" VerticalExpand="True">
+                        <Label Name="EndLabel" Align="Center" HorizontalExpand="True" />
+                        <PanelContainer Name="EndDiceArea" VerticalExpand="True" MinSize="0 180" />
+                        <Button Name="MissionCompleteContinueButton" Text="{Loc 'lancer-arcade-mission-complete-continue'}" Visible="False" />
+                        <Button Name="RestartButton" Text="{Loc 'lancer-arcade-new-game'}" />
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+            <lancer:LancerDiceOverlayControl Name="DiceOverlay" HorizontalExpand="True" VerticalExpand="True" />
+        </PanelContainer>
+
+        <!-- Columns 2+3: actions, status, and log -->
+        <BoxContainer Orientation="Vertical" MinWidth="420" VerticalExpand="True" SeparationOverride="4">
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8" VerticalExpand="True">
+                <BoxContainer Name="ActionsColumn" Orientation="Vertical" MinWidth="200" SeparationOverride="4">
+                    <Label Text="{Loc 'lancer-arcade-actions'}" />
+                    <RichTextLabel Name="TutorialHintLabel" Visible="False" MaxWidth="200" />
+                    <Label Name="ModeLabel" />
+                    <Label Name="EconomyLabel" />
+                    <BoxContainer Name="WeaponPickBox" Orientation="Vertical" Visible="False" SeparationOverride="4" Margin="0 4 0 0">
+                        <Label Name="WeaponPickLabel" />
+                        <Button Name="PickWeapon0Button" HorizontalExpand="True" />
+                        <Button Name="PickWeapon1Button" HorizontalExpand="True" />
+                        <Button Name="PickWeapon2Button" HorizontalExpand="True" />
+                    </BoxContainer>
+                    <GridContainer Columns="2" Name="ActionGrid" />
+                    <BoxContainer Name="StabilizeBox" Orientation="Vertical" Visible="False" SeparationOverride="4">
+                        <Button Name="StabilizeHeatButton" Text="{Loc 'lancer-arcade-stabilize-heat'}" HorizontalExpand="True" />
+                        <Button Name="StabilizeRepairButton" Text="{Loc 'lancer-arcade-stabilize-repair'}" HorizontalExpand="True" />
+                        <Button Name="StabilizeReloadButton" Text="{Loc 'lancer-arcade-stabilize-reload'}" HorizontalExpand="True" />
+                    </BoxContainer>
+                    <Button Name="EndTurnButton" Text="{Loc 'lancer-arcade-end-turn'}" Margin="0 6 0 0" HorizontalExpand="True" />
+                    <PanelContainer Name="ReactionPanel" Visible="False" Margin="0 6 0 0">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#2A2A35" />
+                        </PanelContainer.PanelOverride>
+                        <BoxContainer Orientation="Vertical" Margin="6" SeparationOverride="4">
+                            <RichTextLabel Name="ReactionLabel" MaxWidth="360" />
+                            <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+                                <Button Name="ReactionAcceptButton" Text="{Loc 'lancer-arcade-reaction-accept'}" />
+                                <Button Name="ReactionDeclineButton" Text="{Loc 'lancer-arcade-reaction-decline'}" />
+                            </BoxContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+                </BoxContainer>
+
+                <BoxContainer Name="StatusColumn" Orientation="Vertical" MinWidth="200" VerticalExpand="True" SeparationOverride="4">
+                    <Label Text="{Loc 'lancer-arcade-mech-status'}" />
+                    <Label Name="HpLabel" />
+                    <Label Name="HeatLabel" />
+                    <Label Name="StructureLabel" />
+                    <Label Name="StressLabel" />
+                    <Label Name="RepairsLabel" />
+                    <Label Name="HexLabel" />
+                    <Label Name="RelayLabel" />
+                    <Label Name="CoreLabel" />
+                    <Label Text="{Loc 'lancer-arcade-weapons'}" Margin="0 6 0 0" />
+                    <Label Name="Weapon0Label" />
+                    <Label Name="Weapon1Label" />
+                    <Label Name="Weapon2Label" />
+                </BoxContainer>
+            </BoxContainer>
+
+            <Label Text="{Loc 'lancer-arcade-log'}" Margin="0 2 0 0" />
+            <PanelContainer MinSize="0 160">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                </PanelContainer.PanelOverride>
+                <ScrollContainer Name="LogScroll" VerticalExpand="True">
+                    <RichTextLabel Name="LogLabel" />
+                </ScrollContainer>
+            </PanelContainer>
+        </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

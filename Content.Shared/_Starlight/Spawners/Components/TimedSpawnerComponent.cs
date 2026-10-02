@@ -65,6 +65,12 @@ public sealed partial class TimedSpawnerComponent : Component, ISerializationHoo
     public bool DespawnWhenDone = false;
 
     /// <summary>
+    /// Determines whether to allow spawning entities in the spawner's container, or if they should always be outside.
+    /// </summary>
+    [DataField]
+    public bool AllowContainerPlacement = false;
+
+    /// <summary>
     /// If changed to any another state, the spawner will only spawn entities if the mob it's attached to is in the specified state.
     /// </summary>
     [DataField]

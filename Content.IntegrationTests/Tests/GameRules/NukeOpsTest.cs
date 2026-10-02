@@ -1,6 +1,7 @@
 #nullable enable
 using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Body.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
@@ -20,7 +21,8 @@ using Content.Shared.NPC.Systems;
 using Content.Shared.NukeOps;
 using Content.Shared.Pinpointer;
 using Content.Shared.Roles.Components;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
@@ -30,10 +32,19 @@ using Robust.Shared.Prototypes;
 namespace Content.IntegrationTests.Tests.GameRules;
 
 [TestFixture]
-public sealed class NukeOpsTest
+public sealed class NukeOpsTest : GameTest
 {
     private static readonly ProtoId<NpcFactionPrototype> SyndicateFaction = "Syndicate";
     private static readonly ProtoId<NpcFactionPrototype> NanotrasenFaction = "NanoTrasen";
+
+    public override PoolSettings PoolSettings => new()
+    {
+        Dirty = true,
+        DummyTicker = false,
+        Connected = true,
+        InLobby = true
+    };
+
 
     /// <summary>
     /// Check that a nuke ops game mode can start without issue. I.e., that the nuke station and such all get loaded.
@@ -41,13 +52,7 @@ public sealed class NukeOpsTest
     [Test]
     public async Task TryStopNukeOpsFromConstantlyFailing()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            Dirty = true,
-            DummyTicker = false,
-            Connected = true,
-            InLobby = true
-        });
+        var pair = Pair;
 
         var server = pair.Server;
         var client = pair.Client;
@@ -59,6 +64,7 @@ public sealed class NukeOpsTest
         var invSys = server.System<InventorySystem>();
         var factionSys = server.System<NpcFactionSystem>();
         var roundEndSys = server.System<RoundEndSystem>();
+        var damageSys = server.System<DamageableSystem>();
 
         server.CfgMan.SetCVar(CCVars.GridFill, true);
         server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
@@ -270,6 +276,5 @@ public sealed class NukeOpsTest
 
         ticker.SetGamePreset((GamePresetPrototype?) null);
         server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, true); // Starlight
-        await pair.CleanReturnAsync();
     }
 }
