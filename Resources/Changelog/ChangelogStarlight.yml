@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Elkridge) Added all departmental mailboxes.
-    type: Add
-  id: 408678
-  time: '2026-09-18T08:32:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6168
-- author: Cvlancer
-  changes:
   - message: (Elkridge) Added an assistant manager to hop line.
     type: Add
   id: 408679
@@ -2799,4 +2792,11 @@ Entries:
   id: 409077
   time: '2026-10-02T18:56:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6436
+- author: CrazyPhantom
+  changes:
+  - message: Fixed decals sometimes being stolen when a grid split.
+    type: Fix
+  id: 409078
+  time: '2026-10-02T18:56:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6425
 Order: -1
