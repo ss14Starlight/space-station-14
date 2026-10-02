@@ -44,6 +44,14 @@ public abstract partial class SharedAtmosphereSystem
     /// </summary>
     protected readonly float[] GasOxidizerMask = new float[Atmospherics.AdjustedNumberOfGases];
 
+    #region STARLIGHT
+    /// <summary>
+    /// Mask used to determine if a gas is a moderator or not.
+    /// <para>Used in the same way as <see cref="GasFuelMask"/>.
+    /// </summary>
+    protected readonly float[] GasModeratorMask = new float[Atmospherics.AdjustedNumberOfGases];
+    #endregion
+
     /// <summary>
     /// Mask used to determine both fuel and oxidizer properties of a gas at the same time.
     /// Primarily used to quickly report the specific moles in a mixture that caused a flammable reaction to occur.
@@ -88,6 +96,10 @@ public abstract partial class SharedAtmosphereSystem
             // Same for oxidizer mask.
             GasOxidizerMask[i] = GasPrototypes[i].IsOxidizer ? 1 : 0;
 
+            #region STARLIGHT
+            GasModeratorMask[i] = GasPrototypes[i].IsModerator ? 1 : 0;
+            #endregion
+
             // OxidiserFuel mask is just fuel and oxidizer combined, because both are required for a reaction to occur.
             GasOxidiserFuelMask[i] = GasFuelMask[i] * GasOxidizerMask[i];
         }
@@ -105,6 +117,7 @@ public abstract partial class SharedAtmosphereSystem
         NumericsHelpers.Multiply(mixture.Moles, GasOxidiserFuelMask, buffer);
     }
 
+    #region STARLIGHT
     /// <summary>
     /// Determines if a <see cref="GasMixture"/> is ignitable or not.
     /// This is a combination of determining if a mixture both has oxidizer and fuel.
@@ -114,10 +127,8 @@ public abstract partial class SharedAtmosphereSystem
     /// considered ignitable, for both oxidizer and fuel.</param>
     /// <returns>True if the <see cref="GasMixture"/> is ignitable, otherwise, false.</returns>
     [PublicAPI]
-    public bool IsMixtureIgnitable(GasMixture mixture, float epsilon = 0.001f)
-    {
-        return IsMixtureFuel(mixture, epsilon) && IsMixtureOxidizer(mixture, epsilon);
-    }
+    public bool IsMixtureIgnitable(GasMixture mixture, float epsilon = 0.001f) => IsMixtureFuel(mixture, epsilon) && IsMixtureOxidizer(mixture, epsilon) && !IsMixtureModerator(mixture);
+    #endregion
 
     /// <summary>
     /// Determines if a <see cref="GasMixture"/> has fuel gases in it or not.

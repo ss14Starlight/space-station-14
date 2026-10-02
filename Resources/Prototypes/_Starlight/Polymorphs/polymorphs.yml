@@ -91,6 +91,17 @@
     revertOnDeath: false
     allowRepeatedMorphs: false
 
+- type: polymorph
+  id: SpaceKoiMorph
+  configuration:
+    entity: MobRedBlackKoi
+    forced: true
+    transferName: true
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+    duration: 20
+
 #Vampire
 - type: polymorph
   id: VampireMouse

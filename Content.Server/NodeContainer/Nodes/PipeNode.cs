@@ -107,7 +107,7 @@ namespace Content.Server.NodeContainer.Nodes
         [DataField("volume")]
         public float Volume { get; set; } = DefaultVolume;
 
-        private const float DefaultVolume = 200f;
+        private const float DefaultVolume = 100f; // Starlight: Was 200f
 
         public override void Initialize(EntityUid owner, IEntityManager entMan)
         {
