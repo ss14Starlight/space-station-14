@@ -98,9 +98,11 @@ public sealed partial class LatchComponent : Component
 
     /// <summary>
     /// How long a wall (or anything else that blocks melee) can sit between the
-    /// latcher and target before the latch breaks. Gives the joint a moment to
-    /// settle after the initial snap. The DoT and Bite Harder are suspended
-    /// while obstructed, so nothing bites through the wall in the meantime.
+    /// latcher and a pinned target before the latch breaks. Gives the joint a
+    /// moment to settle after the initial snap. The DoT and Bite Harder are
+    /// suspended while obstructed, so nothing bites through the wall in the
+    /// meantime. Slowed targets (<see cref="SlowPrototypes"/>) are exempt: they
+    /// can walk the latch back into view, so it sticks and keeps biting.
     /// </summary>
     [DataField]
     public TimeSpan ObstructionBreakDelay = TimeSpan.FromSeconds(0.75);

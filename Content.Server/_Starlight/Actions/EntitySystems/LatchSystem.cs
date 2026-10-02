@@ -609,10 +609,13 @@ public sealed partial class LatchSystem : SharedLatchSystem
                 continue;
             }
 
-            // Pulled round a corner by the joint; the target can't swing back through
+            // Pulled round a corner by the joint; a pinned target can't swing back through
             // the wall, so break the latch if it doesn't clear up quickly. Refund it
             // if the obstruction began right as the latch landed (an unlucky snap).
-            if (!HasLatchLineOfSight(uid, target))
+            // Slowed targets can still walk, so they're expected to fix this themselves:
+            // the latch sticks and keeps biting.
+            var pinned = !TryComp<LatchedComponent>(target, out var latched) || latched.SpeedMultiplier <= 0f;
+            if (pinned && !HasLatchLineOfSight(uid, target))
             {
                 comp.ObstructedSince ??= now;
                 if (now - comp.ObstructedSince.Value >= comp.ObstructionBreakDelay)
