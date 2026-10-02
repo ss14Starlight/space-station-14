@@ -23,3 +23,5 @@ station-radio-server-examine-not-recording = The station server is currently rec
 
 station-radio-server-microphone-on-use = The microphone is { $radioState }.
 # Starlight - End
+
+item-slot-component-slot-name-vinyl = vinyl

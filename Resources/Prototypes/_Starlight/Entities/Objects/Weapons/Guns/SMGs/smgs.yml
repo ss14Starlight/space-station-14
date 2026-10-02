@@ -8,7 +8,7 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistolSubMachineGunRubber
           insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
@@ -17,7 +17,7 @@
             tags:
               - MagazinePistolSubMachineGunSP
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgePistolRubber
           priority: 1
           whitelist:
@@ -104,7 +104,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazinePistolSubMachineGunUzi
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
@@ -114,7 +114,7 @@
             - MagazineSMGUzi
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         startingItem: CartridgePistolSP
         priority: 1
         whitelist:
@@ -174,7 +174,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazinePistolSubMachineGunPPSH
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
@@ -184,7 +184,7 @@
             - MagazineSMGPPSH
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         startingItem: CartridgePistolSP
         priority: 1
         whitelist:
@@ -227,7 +227,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: null
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
@@ -237,7 +237,7 @@
             - MagazineSMGImprovised
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         startingItem: null
         priority: 1
         whitelist:
