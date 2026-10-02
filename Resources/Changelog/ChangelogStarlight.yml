@@ -1,11 +1,4 @@
 Entries:
-- author: Trosling
-  changes:
-  - message: Cyborgification Form which releases non-essential personnel from a recent addendum to paragraph 6 of their employment contract.
-    type: Add
-  id: 408671
-  time: '2026-09-18T00:19:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6206
 - author: Turk1shcat (_plunger)
   changes:
   - message: Ling victims now have an increased rot timer, effectively giving you twice the amount of time before you fully rot.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409070
   time: '2026-10-02T13:39:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6434
+- author: Vincolan
+  changes:
+  - message: Added 3 new announcement sounds.
+    type: Add
+  id: 409071
+  time: '2026-10-02T17:46:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6438
 Order: -1
