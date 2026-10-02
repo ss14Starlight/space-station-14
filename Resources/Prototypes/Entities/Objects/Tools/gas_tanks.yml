@@ -237,7 +237,7 @@
   parent: GasTankRoundBase
   id: AirTank
   name: air tank
-  description: Mixed anyone? It can hold 5 L of gas.
+  description: Mixed, anyone? It can hold 5 L of gas.
   components:
   - type: GasTank
     outputPressure: 101.3
