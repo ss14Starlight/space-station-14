@@ -61,25 +61,3 @@
       moles:
         Nitrogen: 881060603.423867583275 # nitrogen
       temperature: 293.15
-
-- type: entity
-  id: AdmemeAirTankFilled
-  parent: NitrogenTank
-  suffix: Filled, Admeme, DO NOT MAP
-  name: bottomless air tank
-  description: Mixed, anyone? Linked via bluespace to a much, much bigger gas tank. It can hold 2³¹-1 L of gas.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Admeme/Inftanks/generic.rsi
-  - type: Item
-    sprite: _Starlight/Admeme/Inftanks/generic.rsi
-  - type: Clothing
-    sprite: _Starlight/Admeme/Inftanks/generic.rsi
-  - type: GasTank
-    outputPressure: 21.3
-    air:
-      volume: 2147483647
-      moles: # using 79.054:20.946
-        Nitrogen: 696513649.430704265833 # nitrogen
-        Oxygen: 184546953.993163317442 # oxygen
-      temperature: 293.15
