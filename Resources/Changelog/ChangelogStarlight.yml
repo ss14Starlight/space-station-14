@@ -1,18 +1,4 @@
 Entries:
-- author: Xale
-  changes:
-  - message: Eggs that hatch while in a container will now try placing the newborn in the same container.
-    type: Fix
-  id: 408676
-  time: '2026-09-18T08:06:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6166
-- author: Cvlancer
-  changes:
-  - message: (Elkridge) Added a few intercoms around station.
-    type: Add
-  id: 408677
-  time: '2026-09-18T08:32:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6168
 - author: Cvlancer
   changes:
   - message: (Elkridge) Added all departmental mailboxes.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409075
   time: '2026-10-02T18:56:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6437
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: PDA lights once again no longer disable shadekin night vision; this was changed as a result of recent shadekin lighting system optimizations.
+    type: Fix
+  id: 409076
+  time: '2026-10-02T18:56:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6436
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Uranium and bananium ore chunks no longer disable shadekin night vision..
+    type: Tweak
+  id: 409077
+  time: '2026-10-02T18:56:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6436
 Order: -1
