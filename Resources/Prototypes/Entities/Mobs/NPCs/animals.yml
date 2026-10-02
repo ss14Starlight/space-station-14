@@ -1516,6 +1516,7 @@
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
+  - type: CosmicCultConvertible # Starlight: This probably isn't a good idea, but let's do it anyway
   # Starlight-start: Languages
   - type: LanguageKnowledge
     speaks:

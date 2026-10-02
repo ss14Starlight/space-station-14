@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   id: ActionCosmicSiphon
   name: Siphon Entropy
   description: Silently siphon entropy from your target, dealing some damage in the process.
@@ -14,6 +14,7 @@
     whitelist:
       components:
       - HumanoidAppearance
+      - CosmicCultConvertible
     blacklist:
       components:
       - CosmicCult
@@ -38,6 +39,7 @@
     whitelist:
       components:
       - HumanoidAppearance
+      - CosmicCultConvertible
     blacklist:
       components:
       - CosmicCult
@@ -114,6 +116,7 @@
     whitelist:
       components:
       - HumanoidAppearance
+      - CosmicCultConvertible
     blacklist:
       components:
       - BibleUser

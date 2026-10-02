@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server._Starlight.CosmicCult.Components;
+using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Server._Starlight.CosmicCult.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
@@ -62,7 +63,8 @@ public sealed partial class MalignRiftSpawnRule : StationEventSystem<MalignRiftS
             _ticker.EndGameRule(uid); // Cosmic cult's active! Don't actually proceed to the contents of the gamerule!
         else
         {
-            var totalCrew = _playerMan.Sessions.Count(session => session.Status == SessionStatus.InGame && HasComp<HumanoidAppearanceComponent>(session.AttachedEntity));
+            var totalCrew = _playerMan.Sessions.Count(session => session.Status == SessionStatus.InGame && (HasComp<HumanoidAppearanceComponent>(session.AttachedEntity) || HasComp<CosmicCultConvertibleComponent>(session.AttachedEntity)));
+            var sender = Loc.GetString("cosmiccult-announcement-sender");
 
             var mobquery = EntityQueryEnumerator<MobStateComponent>();
             while (mobquery.MoveNext(out var ent, out var _))
