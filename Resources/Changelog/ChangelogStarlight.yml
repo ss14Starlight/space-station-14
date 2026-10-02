@@ -1,20 +1,6 @@
 Entries:
 - author: Citrea
   changes:
-  - message: Returned many reagent storage containers to more reasonable inventory sizes.
-    type: Tweak
-  id: 408668
-  time: '2026-09-17T19:18:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6109
-- author: Citrea
-  changes:
-  - message: Plumbing machines now follow the 240 unit jug standard.
-    type: Tweak
-  id: 408669
-  time: '2026-09-17T19:18:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6109
-- author: Citrea
-  changes:
   - message: Water bottles, flasks and drink cans hold exactly one drink again.
     type: Tweak
   id: 408670
@@ -2799,4 +2785,18 @@ Entries:
   id: 409067
   time: '2026-10-01T13:06:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6335
+- author: Rinary
+  changes:
+  - message: Fixed ban via IP, now you won't kick a lot of players.
+    type: Fix
+  id: 409068
+  time: '2026-10-01T20:39:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6432
+- author: Rinary
+  changes:
+  - message: Fixed ratelimiter now you can freely connect to server without problem.
+    type: Fix
+  id: 409069
+  time: '2026-10-01T20:39:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6432
 Order: -1
