@@ -1,0 +1,83 @@
+# Prototypes/Loadouts/loadout_groups.yml
+- type: !PartialOnly loadoutGroup
+  id: CaptainNeck
+  loadouts:
+  - BlueTieGeneric
+  - ScientistTie
+  - DetectiveTie
+  - SecurityRedNeckTie
+- type: !PartialOnly loadoutGroup
+  id: HoPNeck
+  loadouts:
+  - BlueTieGeneric
+  - ScientistTie
+  - DetectiveTie
+  - SecurityRedNeckTie
+- type: !PartialOnly loadoutGroup
+  id: AssistantNeck
+  loadouts:
+  - BlueTieGeneric
+  - ScientistTie
+  - DetectiveTie
+  - SecurityRedNeckTie
+- type: !PartialOnly loadoutGroup
+  id: IAANeck
+  loadouts:
+  - BlueTieGeneric
+  - ScientistTie
+  - DetectiveTie
+  - SecurityRedNeckTie
+- type: !PartialOnly loadoutGroup
+  id: LawyerNeck
+  loadouts:
+  - BlueTieGeneric
+  - ScientistTie
+  - DetectiveTie
+  - SecurityRedNeckTie
+- type: !PartialOnly loadoutGroup
+  id: ChaplainNeck
+  loadouts:
+  - BlueTieGeneric
+  - ScientistTie
+  - DetectiveTie
+  - SecurityRedNeckTie
+- type: !PartialOnly loadoutGroup
+  id: QuartermasterNeck
+  loadouts:
+  - BlueTieGeneric
+  - ScientistTie
+  - DetectiveTie
+  - SecurityRedNeckTie
+- type: !PartialOnly loadoutGroup
+  id: ChiefEngineerNeck
+  loadouts:
+  - BlueTieGeneric
+  - ScientistTie
+  - DetectiveTie
+  - SecurityRedNeckTie
+- type: !PartialOnly loadoutGroup
+  id: ResearchDirectorNeck
+  loadouts:
+  - BlueTieGeneric
+  - ScientistTie
+  - DetectiveTie
+  - SecurityRedNeckTie
+- type: !PartialOnly loadoutGroup
+  id: ScientistNeck
+  loadouts:
+  - BlueTieGeneric
+  - DetectiveTie
+  - SecurityRedNeckTie
+- type: !PartialOnly loadoutGroup
+  id: HeadofSecurityNeck
+  loadouts:
+  - BlueTieGeneric
+  - ScientistTie
+  - DetectiveTie
+  - SecurityRedNeckTie
+- type: !PartialOnly loadoutGroup
+  id: DetectiveNeck
+  loadouts:
+  - BlueTieGeneric
+  - ScientistTie
+  - SecurityRedNeckTie

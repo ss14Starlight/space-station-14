@@ -1,0 +1,5 @@
+- type: loadout
+  id: BlueTieGeneric
+  equipment:
+    neck: ClothingNeckTieBlue
+  groupBy: "ties"
