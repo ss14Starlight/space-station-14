@@ -23,7 +23,7 @@ public sealed partial class GasInletSiphonComponent : Component
 
     [DataField]
     [GuidebookData]
-    public float MaxPressure = 2 * Atmospherics.MaxOutputPressure;
+    public float MaxPressure = Atmospherics.MaxOutputPressure;
 
     [DataField("outlet")]
     public string OutletName = "pipe";
