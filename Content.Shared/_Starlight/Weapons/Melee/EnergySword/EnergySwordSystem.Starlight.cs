@@ -5,7 +5,7 @@ namespace Content.Shared.Weapons.Melee.EnergySword;
 // Keeps Starlight's character-script blade colour support separate from the upstream sword system.
 public sealed partial class EnergySwordSystem
 {
-    [Dependency] private readonly IViewVariablesManager _vvm = default!;
+    [Dependency] private IViewVariablesManager _vvm = default!;
 
     private void InitializeStarlight()
     {
