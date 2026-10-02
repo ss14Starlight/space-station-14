@@ -1,0 +1,12 @@
+# fake cap gun, the enabled field for CanDualWield is what stops you from dual wielding the fake cap gun, because it does WAY too much damage with tiny spread
+- type: !PartialOnly entity
+  id: RevolverCapGunFake
+  components:
+  - type: CanDualWield
+    enabled: false # genuinely does crazy damage, destroys a whole wall
+
+# cap gun
+- type: !PartialOnly entity
+  id: RevolverCapGun
+  components:
+  - type: CanDualWield

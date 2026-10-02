@@ -13,7 +13,7 @@ public sealed partial class DamageUserDefectComponent : DefectComponent
     public DamageUserDefectComponent()
     {
         Prob = 0.40f;
-        DefectLabel = "missing handle";
+        DefectLabel = "defect-label-missing-handle";
     }
 
     // Damage applied to the wielder on each swing.

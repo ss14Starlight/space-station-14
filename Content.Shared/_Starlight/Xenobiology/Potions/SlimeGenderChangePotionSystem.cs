@@ -27,7 +27,7 @@ public sealed partial class SlimeGenderChangePotionSystem : EntitySystem
                 out var humanoidAppearanceComponent)) return;
         if (!ent.Comp.Gender.HasValue)
         {
-            _sharedPopupSystem.PopupPredicted("Please select a gender first.", args.User, args.User);
+            _sharedPopupSystem.PopupPredicted(Loc.GetString("slime-gender-select-first"), args.User, args.User);
             return;
         }
 
