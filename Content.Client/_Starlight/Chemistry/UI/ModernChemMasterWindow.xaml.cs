@@ -51,14 +51,12 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     private NetEntity? _chemMasterNetEntity;
 
     // Reset stored custom amount on reconnect or new round
-    static ModernChemMasterWindow()
-    {
+    static ModernChemMasterWindow() =>
         IoCManager.Resolve<IBaseClient>().RunLevelChanged += (_, args) =>
         {
             if (args.NewLevel == ClientRunLevel.Initialize)
                 _customPerChemMaster.Clear();
         };
-    }
 
     private readonly Vector2 _modernMinSize; // Window size referenced from MinSize attribute
     private static readonly Vector2 ClassicMinSize = new(666, 670); // We specify the Classic MinSize here since the original value is in an upstream file and it needs to be a bit longer for spacing reasons
