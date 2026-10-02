@@ -220,6 +220,6 @@ public sealed partial class ShowAccessSystem : EntitySystem
         if (group.Name is { } name)
             return Loc.GetString(name);
 
-        return Loc.TryGetString($"access-group-name-{group.ID}", out var localized) ? localized : group.ID;
+        return Loc.TryGetString($"access-group-name-{CaseConversion.PascalToKebab(group.ID)}", out var localized) ? localized : group.ID;
     }
 }
