@@ -32,6 +32,7 @@ public sealed partial class DeployableTurretControllerSystem : SharedDeployableT
         SubscribeLocalEvent<DeployableTurretControllerComponent, BoundUIOpenedEvent>(OnBUIOpened);
         SubscribeLocalEvent<DeployableTurretControllerComponent, DeviceListUpdateEvent>(OnDeviceListUpdate);
         SubscribeLocalEvent<DeployableTurretControllerComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
+        InitializeSync(); // Starlight
     }
 
     private void OnBUIOpened(Entity<DeployableTurretControllerComponent> ent, ref BoundUIOpenedEvent args)
@@ -78,7 +79,7 @@ public sealed partial class DeployableTurretControllerSystem : SharedDeployableT
         }
 
         if (refreshUi)
-            UpdateUIState(ent);
+            UpdateSynchronizedUIStates(ent); // Starlight-edit
     }
 
     private void OnPacketReceived(Entity<DeployableTurretControllerComponent> ent, ref DeviceNetworkPacketEvent args)
@@ -94,7 +95,7 @@ public sealed partial class DeployableTurretControllerSystem : SharedDeployableT
             args.Data.TryGetValue(command, out DeployableTurretState updatedState))
         {
             ent.Comp.LinkedTurrets[args.SenderAddress] = updatedState;
-            UpdateUIState(ent);
+            UpdateSynchronizedUIStates(ent); // Starlight-edit
         }
     }
 
@@ -115,6 +116,8 @@ public sealed partial class DeployableTurretControllerSystem : SharedDeployableT
         _adminLogger.Add(LogType.ItemConfigure, LogImpact.Medium, $"{ToPrettyString(user)} set {ToPrettyString(ent)} to {armamentState}");
 
         _deviceNetwork.QueuePacket(ent, null, payload, device: device);
+
+        SynchronizeArmamentState(ent, armamentState, user); // Starlight
     }
 
     protected override void ChangeExemptAccessLevels(
@@ -143,18 +146,13 @@ public sealed partial class DeployableTurretControllerSystem : SharedDeployableT
         }
 
         _deviceNetwork.QueuePacket(ent, null, payload, device: device);
+
+        SynchronizeAccessExemptions(ent, exemptions, enabled, user); // Starlight
     }
 
     private void UpdateUIState(Entity<DeployableTurretControllerComponent> ent)
     {
-        var turretStates = new Dictionary<string, string>();
-
-        foreach (var (address, state) in ent.Comp.LinkedTurrets)
-        {
-            var stateName = state.ToString().ToLower();
-            var stateDesc = Loc.GetString("turret-controls-window-turret-" + stateName);
-            turretStates.Add(address, stateDesc);
-        }
+        var turretStates = GetSynchronizedTurretStates(ent); // Starlight-edit
 
         var uiState = new DeployableTurretControllerBoundInterfaceState(turretStates);
         _userInterfaceSystem.SetUiState(ent.Owner, DeployableTurretControllerUiKey.Key, uiState);

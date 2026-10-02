@@ -39,6 +39,7 @@
   - type: ActionGrant
     actions:
     - ActionJumpToCore
+    - ActionSurvCameraLights # Starlight: Restored removed surveillance camera lights from upstream
     - ActionAIViewLaws
     - ActionAIShunt # Starlight AI Shunt ability
     - ActionAIReconnectShunt # Starlight AI Shunt reconnect ability

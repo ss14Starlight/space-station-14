@@ -91,7 +91,7 @@
 
 - type: material
   id: NTCredit
-  name: credit
+  name: materials-ntcredit
   unit: materials-unit-credit
   stackEntity: NTCredit
   icon: { sprite: /Textures/_Starlight/Objects/Economy/cash.rsi, state: cash_1 }

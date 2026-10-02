@@ -1,8 +1,9 @@
 ﻿- type: entity
   id: WashingMachine
+  suffix: Laundry # Starlight
   parent: [ BaseMachinePowered, ConstructibleMachine ]
-  name: NanoTrasen Commercial Model-C washing machine # Starlight
-  description: An industrial-grade washing machine designed to clean even the grimiest of uniforms. Keep hands, hard objects and small crewmembers away from drum during cycle.
+  name: washing machine # Starlight
+  description: A NanoTrasen Model-C industrial-grade washing machine, designed to clean even the grimiest of uniforms. Keep hands, hard objects and small crewmembers away from drum during cycle. # Starlight
   placement:
     mode: SnapgridCenter
   components:

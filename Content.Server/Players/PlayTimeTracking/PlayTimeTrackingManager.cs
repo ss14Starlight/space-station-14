@@ -1,10 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq; // NullLink
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Server._NullLink.Core; // NullLink
-using Content.Server._NullLink.Helpers; // NullLink
+using Content.Server._NullLink.Core;
+using Content.Server._NullLink.Helpers;
 using Content.Server.Database;
 using Content.Shared.CCVar;
 using Content.Shared.Players.PlayTimeTracking;
@@ -17,8 +17,8 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Starlight.NullLink; // NullLink
-using PlayTime = Starlight.NullLink.PlayTime; // NullLink
+using Starlight.NullLink;
+using PlayTime = Starlight.NullLink.PlayTime;
 
 namespace Content.Server.Players.PlayTimeTracking;
 
@@ -365,11 +365,10 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
             // Starlight start
             ref var tracked = ref CollectionsMarshal.GetValueRefOrAddDefault(data.TrackerTimes, timer.Tracker, out _);
             tracked += timer.TimeSpent;
-
-            ref var merged = ref CollectionsMarshal.GetValueRefOrAddDefault(data.MergedTrackerTimes, timer.Tracker, out _); //NullLink
-            merged += timer.TimeSpent; //NullLink
             // Starlight end
         }
+
+        RebuildMergedTrackerTimes(session.UserId, data); // NullLink
 
         data.Initialized = true;
 
@@ -377,33 +376,12 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
         QueueSendTimers(session);
     }
 
-    // NullLink start
-    public void EnrichWithNullLink(Dictionary<string, TimeSpan> playtime, Guid userId)
-        => _task.RunOnMainThread(() =>
-    {
-        if (!_player.TryGetSessionById(new NetUserId(userId), out var session))
-            return;
-
-        if (!_playTimeData.TryGetValue(session, out var data))
-            return;
-
-        var merged = new Dictionary<string, TimeSpan>(playtime);
-        foreach (var (tracker, time) in data.TrackerTimes)
-        {
-            if (merged.TryGetValue(tracker, out var nullinked))
-                merged[tracker] = time + nullinked;
-            else
-                merged[tracker] = time;
-        }
-        data.MergedTrackerTimes = merged;
-    });
-    // NullLink end
-
     public void ClientDisconnected(ICommonSession session)
     {
         SaveSession(session);
 
         _playTimeData.Remove(session);
+        _nullLinkPlayTime.Remove(session.UserId); // NullLink
     }
     // Starlight Start: Allow playtime commands to target offline players.
     public async Task<TimeSpan?> TryAddTimeToTrackerByUserName(

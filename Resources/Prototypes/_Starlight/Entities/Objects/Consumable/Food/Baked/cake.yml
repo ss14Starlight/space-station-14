@@ -66,6 +66,7 @@
       tags:
         - Cake
         - ClothMade
+        - CottonCake # Starlight
     - type: Edible
       requiresSpecialDigestion: true
 
@@ -100,6 +101,7 @@
         - Cake
         - Slice
         - ClothMade
+        - CottonCake # Starlight
     - type: Edible
       requiresSpecialDigestion: true
 

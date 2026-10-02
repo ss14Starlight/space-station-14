@@ -171,3 +171,9 @@
   background: /Textures/_Starlight/LobbyScreens/IPCAndMoff.webp
   title: lobby-state-background-ipcandmoff-title
   artist: lobby-state-background-ipcandmoff-artist
+
+- type: lobbyBackground
+  id: TheSix
+  background: /Textures/_Starlight/LobbyScreens/thesix.webp
+  title: lobby-state-background-thesix-title
+  artist: lobby-state-background-thesix-artist

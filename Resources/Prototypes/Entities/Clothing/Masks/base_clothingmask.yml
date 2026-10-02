@@ -23,7 +23,7 @@
       state: maskbloodicon
   - type: SolutionManager
     solutions:
-    - SolutionStainMask # Starlight
+    - SolutionStain
   # Forky - end
 
 - type: entity

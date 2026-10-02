@@ -346,7 +346,7 @@ public sealed partial class FaxSystem : EntitySystem
                         slipReason,
                         slipOrderQuantity,
                         slipAccount,
-                        retainMetadata: false,
+                        retainMetadata: true,
                         metaSender,
                         metaSentAt); // Starlight-end
                     Receive(uid, printout, args.SenderAddress);
@@ -706,8 +706,10 @@ public sealed partial class FaxSystem : EntitySystem
 
         var printout = component.PrintingQueue.Dequeue();
 
-        var entityToSpawn = component.PrintPaperId;
+        var entityToSpawn = printout.PrototypeId;
         // Starlight start
+        if (printout.PrototypeId == default)
+            entityToSpawn = component.PrintPaperId;
         var xform = Transform(uid);
         var coords = _container.TryGetOuterContainer(uid, xform, out var outerContainer)
             ? Transform(outerContainer.Owner).Coordinates
@@ -718,9 +720,9 @@ public sealed partial class FaxSystem : EntitySystem
         if (TryComp<PaperComponent>(printed, out var paper))
         {
             #region Starlight
-            _paperSystem.SetContent((printed, paper), printout.RetainMetadata
-                ? printout.Content
-                : PrependContentMetadata(uid, StripContentMetadata(printout.Content), printout, component));
+            _paperSystem.SetContent((printed, paper), printout.MetaSentAt != null
+                ? PrependContentMetadata(uid, printout.Content, printout, component)
+                : printout.Content);
             #endregion
 
             // Apply stamps
@@ -837,8 +839,8 @@ public sealed partial class FaxSystem : EntitySystem
     {
         const string MetaFormat = """
         [meta][dots bold]Sent: {0} at {1}
-        Rcvd: {3} at {4}[/dots]
-        [/meta]{5}
+        Rcvd: {2} at {3}[/dots]
+        [/meta]{4}
         """;
 
         return string.Format(MetaFormat, payload.MetaSentAt, FormattedMessage.EscapeText(payload.MetaSender ?? ""),
@@ -867,7 +869,7 @@ public sealed partial class FaxSystem : EntitySystem
         if (printout == null)
             return false;
 
-        if (component.SendTimeout > 0) return false;
+        if (component.SendTimeoutRemaining > 0) return false;
 
         if (component.DestinationFaxAddress == null ||
             !component.KnownFaxes.ContainsKey(component.DestinationFaxAddress))

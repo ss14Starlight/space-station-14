@@ -25,26 +25,22 @@ public sealed class GetAirflowDirectionsTest : AtmosTest
     [TestCase(1, 1, AtmosDirection.Invalid)]
     [TestCase(100, 100, AtmosDirection.Invalid)]
     public async Task TestLookup(int x, int y, AtmosDirection expectedDirections)
-    {
-        await Server.WaitPost(delegate
+        => await Server.WaitPost(delegate
         {
             // yea
             var coords = new Vector2i(x, y);
             var directions = SAtmos.GetAirflowDirections(RelevantAtmos, coords);
             Assert.That(directions, Is.EqualTo(expectedDirections));
         });
-    }
 
     /// <summary>
     /// Tests that a grident with no atmosphere will return <see cref="AtmosDirection.Invalid"/>.
     /// </summary>
     [Test]
     public async Task TestLookup_BadEnt()
-    {
-        await Server.WaitPost(delegate
+        => await Server.WaitPost(delegate
         {
             var directions = SAtmos.GetAirflowDirections(EntityUid.Invalid, Vector2i.Zero);
             Assert.That(directions, Is.EqualTo(AtmosDirection.Invalid));
         });
-    }
 }

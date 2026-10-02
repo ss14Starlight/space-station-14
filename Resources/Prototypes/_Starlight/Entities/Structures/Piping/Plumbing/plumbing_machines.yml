@@ -57,7 +57,7 @@
   parent: PlumbingMachineBase
   id: PlumbingTank
   name: plumbing tank
-  description: Stores up to 2000u of reagents. Use tanks to buffer reagents between production stages or just store large amounts of reagents.
+  description: Stores up to 2400u of reagents. Use tanks to buffer reagents between production stages or just store large amounts of reagents.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
@@ -126,14 +126,14 @@
   - type: Solution
     id: tank
     solution:
-      maxVol: 2000
+      maxVol: 2400 # ten jugs' worth
       canReact: false
 
 - type: entity
   parent: PlumbingTank
   id: PlumbingBuffer
   name: plumbing buffer
-  description: Stores up to 200u of reagents. Useful for supplying separate duct networks with its unconnected outlets.
+  description: Stores up to 240u of reagents. Useful for supplying separate duct networks with its unconnected outlets.
   components:
   - type: CollideOnAnchor
     enable: false
@@ -164,7 +164,7 @@
   - type: Solution
     id: tank
     solution:
-      maxVol: 200
+      maxVol: 240 # one jug's worth
       canReact: false
 
 # =============================================================================
@@ -331,7 +331,7 @@
   - type: Solution
     id: output
     solution:
-      maxVol: 100
+      maxVol: 120
       canReact: false
 
 - type: entity
@@ -342,7 +342,7 @@
   - type: Solution
     id: drain
     solution:
-      maxVol: 100
+      maxVol: 120
       canReact: false
 
 - type: entity
@@ -419,7 +419,7 @@
   - type: Solution
     id: output
     solution:
-      maxVol: 100
+      maxVol: 120
       canReact: false
 
 - type: entity
@@ -508,7 +508,7 @@
   - type: Solution
     id: buffer
     solution:
-      maxVol: 100
+      maxVol: 120
       canReact: false  # Reactions triggered manually when targets met
 
 - type: entity
@@ -519,14 +519,14 @@
   - type: Solution
     id: output
     solution:
-      maxVol: 100
+      maxVol: 120
       canReact: false
 
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingSmartDispenser
   name: plumbing smart dispenser
-  description: Pulls in all reagents from its inlets and stores up to 200u of each type. Use a labeled container to auto-dispense a matching reagent, or use a refillable container on it to manually dispense. Requires power.
+  description: Pulls in all reagents from its inlets and stores up to 240u of each type. Use a labeled container to auto-dispense a matching reagent, or use a refillable container on it to manually dispense. Requires power.
   components:
   - type: Transform
     noRot: true
@@ -569,7 +569,7 @@
     transferAmount: 40
   - type: PlumbingSmartDispenser
     solutionName: fridge
-    maxPerReagent: 200
+    maxPerReagent: 240
   - type: SolutionManager
     solutions:
     - SolutionPlumbingSmartDispenserFridge
@@ -627,7 +627,7 @@
   - type: Solution
     id: fridge
     solution:
-      maxVol: 50000
+      maxVol: 60000
       canReact: false
 
 - type: entity
@@ -1082,7 +1082,7 @@
   parent: PlumbingMachineBase
   id: PlumbingDisposal
   name: plumbing disposal
-  description: Pulls reagents from a south inlet into an internal 200u buffer and destroys them.
+  description: Pulls reagents from a south inlet into an internal 240u buffer and destroys them.
   components:
   - type: Sprite
     drawdepth: FloorObjects
@@ -1146,7 +1146,7 @@
   - type: Solution
     id: drainBuffer
     solution:
-      maxVol: 200
+      maxVol: 240
       canReact: false
 
 - type: entity
@@ -1236,4 +1236,4 @@
   - type: Solution
     id: drainBuffer
     solution:
-      maxVol: 400
+      maxVol: 480

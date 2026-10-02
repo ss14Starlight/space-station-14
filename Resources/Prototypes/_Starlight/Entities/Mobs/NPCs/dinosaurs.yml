@@ -196,3 +196,4 @@
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
       despawnWhenDone: true #delete the egg after the compy spawns
+      allowContainerPlacement: true

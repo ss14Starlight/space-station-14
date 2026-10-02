@@ -306,3 +306,75 @@
     damage: 20
   - type: TimedDespawn
     lifetime: 0.25
+
+- type: entity
+  id: BulletKineticSub
+  name: small kinetic bolt
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  description: Not too bad, but you still don't want to get hit by it.
+  components:
+  - type: Reflective
+    reflective:
+      - NonEnergy
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: chronobolt
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 10
+        Structural: 15
+  # Short lifespan
+  - type: TimedDespawn
+    lifetime: 0.275 # roughly 6.5 tiles
+  - type: GatheringProjectile
+
+- type: entity
+  id: BulletKineticChain
+  name: small kinetic bolt
+  parent: BulletKineticSub
+  categories: [ HideSpawnMenu ]
+  description: Not too bad, but you still don't want to get hit by it.
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 10
+        Structural: 10
+  - type: TimedDespawn
+    lifetime: .5
+
+- type: entity
+  id: BulletGrenadeBola
+  name: bola grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Blunt: 0 # Bolas don't do damage
+    soundHit:
+      path: /Audio/Effects/hit_kick.ogg
+  - type: Ensnaring
+    freeTime: 2.0
+    breakoutTime: 3.5 # all bola should generally be fast to remove
+    walkSpeed: 0.5 # makeshift bola shouldn't slow too much
+    sprintSpeed: 0.5
+    staminaDamage: 0 # anything but this is gamebreaking
+    canThrowTrigger: false
+    canImpactTrigger: true
+    ensnareFreedPrototype: BolaWeakened
+    canMoveBreakout: true
+    maxEnsnares: 1

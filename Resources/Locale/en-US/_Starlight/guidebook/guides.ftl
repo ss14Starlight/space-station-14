@@ -91,6 +91,7 @@ guide-entry-sl-security-sop-specialsituations = Special Situations
 guide-entry-sl-security-sop-enemy-of-corporation = Enemies of the Corporation
 guide-entry-sl-security-sop-hostage-situations = Hostage Situations
 guide-entry-sl-security-sop-criminal-status = Criminal Status
+guide-entry-sl-security-ammo-types = Ammo Types
 
 guide-entry-rules-supernatural-entities = Supernatural Entities
 guide-entry-stirstir = Stir Stir
@@ -150,6 +151,17 @@ guide-entry-sl-salvage-sop-intro = Salvage
 guide-entry-sl-salvage-sop-salvagers = Salvage Crew
 
 guide-entry-sl-science-sop-intro = Science
+guide-entry-sl-science-sop-genproc-intro = General Procedures
+guide-entry-sl-science-sop-researchguidelines = Research Guidelines
+guide-entry-sl-science-sop-anomalyresearch = Anomaly Research
+guide-entry-sl-science-sop-artifactresearch = Artifact Research
+guide-entry-sl-science-sop-itemdistribution = Item Distribution
+guide-entry-sl-science-sop-staff-intro = Staff Procedures
+guide-entry-sl-science-sop-researchdirector = Research Director
+guide-entry-sl-science-sop-scientist = Scientist
+guide-entry-sl-science-sop-researchassistant = Research Assistant
+guide-entry-sl-science-sop-roboticist = Roboticist
+guide-entry-sl-science-sop-appendix = Appendix
 
 guide-entry-sl-nano-trasen-employee-sop-intro = NanoTrasen Employee
 guide-entry-sl-nano-trasen-employee-sop-genproc-intro = General Procedures
@@ -167,6 +179,10 @@ guide-entry-sl-service-sop-staff-intro = Staff Procedures
 guide-entry-sl-service-sop-headofpersonnel = Head of Personnel
 guide-entry-sl-service-sop-lawyer = Lawyer
 guide-entry-sl-service-sop-reporter = Reporter
+
+guide-entry-sl-assistant-sop-staff-intro = Assistant
+guide-entry-sl-assistant-sop-assistantmanager = Assistant Manager
+guide-entry-sl-assistant = Assistant
 
 guide-entry-abductors = Abductors
 guide-entry-terror-spiders = Terror Spiders

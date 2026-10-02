@@ -10,17 +10,20 @@
   - type: Gun
     fireRate: 0.3
   - type: GunWieldBonus
-    minAngle: -2
-    maxAngle: -4
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 12
+    maxAngleDivider: 5
+    angleIncreaseDivider: 1
   - type: GunJamDefect
     prob: 0.70
     jamChance: 0.15
   - type: GunSpreadDefect
     prob: 0.70
-    minAngleMin: 1
-    minAngleMax: 6
-    maxAngleMin: 6
-    maxAngleMax: 14
+    minAngleMin: 12
+    minAngleMax: 18
+    maxAngleMin: 25
+    maxAngleMax: 32
   - type: BackfireDefect
     prob: 0.10
     backfireChance: 0.06
@@ -37,17 +40,20 @@
   - type: Gun
     fireRate: 0.5
   - type: GunWieldBonus
-    minAngle: -1
-    maxAngle: -2
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 5
+    maxAngleDivider: 4
+    angleIncreaseDivider: 1
   - type: GunJamDefect
     prob: 0.70
     jamChance: 0.22
   - type: GunSpreadDefect
     prob: 0.70
-    minAngleMin: 0.5
-    minAngleMax: 4
-    maxAngleMin: 4
-    maxAngleMax: 9
+    minAngleMin: 8
+    minAngleMax: 12
+    maxAngleMin: 18
+    maxAngleMax: 24
   - type: BackfireDefect
     prob: 0.10
     backfireChance: 0.06
