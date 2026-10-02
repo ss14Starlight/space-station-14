@@ -1,6 +1,12 @@
 using Content.Server._Starlight.Pollen.Components;
+using Content.Server._Starlight.Scent.Systems;
 using Content.Shared._Starlight.Pollen.Components;
+using Content.Shared._Starlight.Scent.Components;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Mind;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
@@ -9,19 +15,30 @@ using Robust.Shared.Timing;
 using Robust.Shared.Spawners;
 using System.Numerics;
 
-using ServerPollenAdvancedComponent = Content.Server._Starlight.Pollen.Components.PollenAdvancedComponent;
-
 namespace Content.Server._Starlight.Pollen.Systems;
 
 public sealed partial class PollenAdvancedSystem : EntitySystem
 {
+    [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ScentSystem _scent = default!;
     [Dependency] private IGameTiming _timing = default!;
 
     private static readonly EntProtoId _advancedPollenCloud = "PollenAdvancedPollenCloud";
+    private static readonly ProtoId<DamageGroupPrototype> _bruteGroup = "Brute";
+    private static readonly ProtoId<DamageGroupPrototype> _burnGroup = "Burn";
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<PollenSpeedBuffComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshSpeed);
+    }
 
     public override void Update(float frameTime)
     {
@@ -60,7 +77,20 @@ public sealed partial class PollenAdvancedSystem : EntitySystem
             cloud.NextCheck = now + TimeSpan.FromSeconds(1);
             CheckAdvancedPollenInteraction(cloudUid, cloud, cloudXform);
         }
+
+        var speedBuffQuery = EntityQueryEnumerator<PollenSpeedBuffComponent>();
+        while (speedBuffQuery.MoveNext(out var buffUid, out var buff))
+        {
+            if (now < buff.ExpiresAt)
+                continue;
+
+            RemComp<PollenSpeedBuffComponent>(buffUid);
+            _movementSpeed.RefreshMovementSpeedModifiers(buffUid);
+        }
     }
+
+    private void OnRefreshSpeed(EntityUid uid, PollenSpeedBuffComponent component, RefreshMovementSpeedModifiersEvent args)
+        => args.ModifySpeed(component.WalkModifier, component.SprintModifier);
 
     private TimeSpan RollSpawnDelay(PollenAdvancedComponent perk)
     {
@@ -107,17 +137,68 @@ public sealed partial class PollenAdvancedSystem : EntitySystem
 
         if (diona is { } dionaUid && _random.Prob(cloud.DionaChance))
         {
-            // TODO: Advanced Pollen Diona effect.
+            ApplyAdvancedPollenEffect(dionaUid, cloud);
+            QueueDel(cloudUid);
             return;
         }
 
         if (allergic is { } allergicUid && _random.Prob(cloud.AllergicChance))
         {
-            _popup.PopupEntity(Loc.GetString("scent-sneeze-allergic"), allergicUid, allergicUid, PopupType.Small);
+            ForceSneeze(allergicUid);
+            QueueDel(cloudUid);
             return;
         }
 
         if (minded is { } mindedUid && _random.Prob(cloud.MindChance))
+        {
             _popup.PopupEntity(Loc.GetString("pollen-advanced-pollen-mind-message"), mindedUid, mindedUid, PopupType.Small);
+            QueueDel(cloudUid);
+        }
+    }
+
+    private void ApplyAdvancedPollenEffect(EntityUid diona, PollenAdvancedPollenComponent cloud)
+    {
+        // too much spam
+        //_popup.PopupEntity(Loc.GetString("pollen-advanced-pollen-absorbed"), diona, diona, PopupType.Medium);
+
+        switch (_random.Next(3))
+        {
+            case 0:
+                ApplyHealBuff(diona, cloud);
+                _popup.PopupEntity(Loc.GetString("did heal"), diona, diona, PopupType.Small);
+                break;
+            case 1:
+                ApplySpeedBuff(diona, cloud);
+                _popup.PopupEntity(Loc.GetString("did speed"), diona, diona, PopupType.Small);
+                break;
+            default:
+                _popup.PopupEntity(Loc.GetString("pollen-advanced-pollen-mind-message"), diona, diona, PopupType.Small);
+                break;
+        }
+    }
+
+    private void ApplyHealBuff(EntityUid diona, PollenAdvancedPollenComponent cloud)
+    {
+        var heal = new DamageSpecifier(_prototype.Index(_bruteGroup), -cloud.HealBrute);
+        heal += new DamageSpecifier(_prototype.Index(_burnGroup), -cloud.HealBurn);
+        _damageable.TryChangeDamage(diona, heal, ignoreResistances: true);
+    }
+
+    private void ApplySpeedBuff(EntityUid diona, PollenAdvancedPollenComponent cloud)
+    {
+        var buff = EnsureComp<PollenSpeedBuffComponent>(diona);
+        buff.WalkModifier = cloud.SpeedWalkModifier;
+        buff.SprintModifier = cloud.SpeedSprintModifier;
+        buff.ExpiresAt = _timing.CurTime + cloud.SpeedBuffDuration;
+        _movementSpeed.RefreshMovementSpeedModifiers(diona);
+    }
+
+    private void ForceSneeze(EntityUid target)
+    {
+        if (TryComp(target, out SmellerComponent? smeller))
+            _scent.ForceAllergySneeze((target, smeller), smeller.SmokeLockout);
+
+        _popup.PopupEntity(Loc.GetString("scent-sneeze-allergic"), target, target, PopupType.Small);
     }
 }
+
