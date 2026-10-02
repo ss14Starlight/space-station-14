@@ -7,6 +7,9 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/flags/ccflag.rsi
     state: centcomm
+  - type: Construction #Inferus
+    graph: Flags
+    node: CentCommFlag
 
 - type: entity
   parent: BaseFlag
@@ -17,6 +20,9 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/flags/cybersunflag.rsi
     state: cybersun
+  - type: Construction #Inferus
+    graph: Flags
+    node: CybersunFlag
 
 - type: entity
   parent: BaseFlag
@@ -27,6 +33,9 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/flags/interdyneflag.rsi
     state: interdyne
+  - type: Construction #Inferus
+    graph: Flags
+    node: InterdyneFlag
 
 - type: entity
   parent: BaseFlag
@@ -37,6 +46,9 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/flags/interdyneflag.rsi
     state: interdyne_syndicate
+  - type: Construction #Inferus
+    graph: Flags
+    node: InterdyneSyndicateFlag
 
 - type: entity
   parent: BaseFlag
@@ -47,6 +59,9 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/flags/donkflag.rsi
     state: donk
+  - type: Construction #Inferus
+    graph: Flags
+    node: DonkFlag
 
 - type: entity
   parent: BaseFlag
@@ -57,3 +72,6 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/flags/wafflecoflag.rsi
     state: waffleco
+  - type: Construction #Inferus
+    graph: Flags
+    node: WaffleCoFlag
