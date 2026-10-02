@@ -243,6 +243,7 @@
               amount: 2
           steps:
             - tool: Cutting
+              doAfter: 1
 
     - node: IntersexFlag
       entity: IntersexFlag
