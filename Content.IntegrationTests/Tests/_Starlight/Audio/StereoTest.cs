@@ -50,6 +50,9 @@ public sealed class StereoTest : GameTest
             new ResPath("/Audio/_Starlight/CosmicCult/a_new_dawn.ogg"), // Global
             new ResPath("/Audio/_Starlight/CosmicCult/finale.ogg"), // Global
             new ResPath("/Audio/_Starlight/CosmicCult/premonition.ogg"), // Global
+            new ResPath("/Audio/_Starlight/Admeme/horror_annoucement_cult_laugh.ogg"), // Global
+            new ResPath("/Audio/_Starlight/Admeme/horror_annoucement_cult.ogg"), // Global
+            new ResPath("/Audio/_Starlight/Admeme/horror_annoucement_cult_short.ogg"), // Global
         ];
 
     public List<ResPath> IgnoredPaths = [
@@ -65,9 +68,6 @@ public sealed class StereoTest : GameTest
             new ResPath("/Audio/_Starlight/Ambience/Antag/"),
             new ResPath("/Audio/_Starlight/Effects/Radio/"),
             new ResPath("/Audio/_Starlight/Effects/Weather/"),
-            new ResPath("/Audio/_Starlight/Admeme/horror_annoucement_cult_laugh.ogg"),
-            new ResPath("/Audio/_Starlight/Admeme/horror_annoucement_cult.ogg"),
-            new ResPath("/Audio/_Starlight/Admeme/horror_annoucement_cult_short.ogg"),
         ];
 
     [Test]
