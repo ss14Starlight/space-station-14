@@ -395,23 +395,23 @@
     - node: InterdyneSyndicateFlag
       entity: InterdyneSyndicateFlag
       edges:
-        - to: start
+        - to: InterdyneFlag
           completed:
             - !type:GivePrototype
-              prototype: MaterialCloth1
-              amount: 2
+              prototype: SyndicateBusinessCard
+              amount: 1
           steps:
             - tool: Cutting
-              doAfter: 1
+              doAfter: 8
 
     - node: SyndieFlag
       entity: SyndieFlag
       edges:
-        - to: start
+        - to: NTFlag
           completed:
             - !type:GivePrototype
-              prototype: MaterialCloth1
-              amount: 2
+              prototype: SyndicateBusinessCard
+              amount: 1
           steps:
             - tool: Cutting
-              doAfter: 1
+              doAfter: 8
