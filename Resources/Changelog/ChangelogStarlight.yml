@@ -1,11 +1,4 @@
 Entries:
-- author: Turk1shcat (_plunger)
-  changes:
-  - message: Changeling resonant shriek no longer flashes yourself.
-    type: Tweak
-  id: 408675
-  time: '2026-09-18T07:36:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5682
 - author: Xale
   changes:
   - message: Eggs that hatch while in a container will now try placing the newborn in the same container.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409074
   time: '2026-10-02T18:16:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6440
+- author: Drakobird
+  changes:
+  - message: Explosions not working inside walls.
+    type: Fix
+  id: 409075
+  time: '2026-10-02T18:56:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6437
 Order: -1
