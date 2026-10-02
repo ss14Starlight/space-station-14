@@ -20,7 +20,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Starlight\Objects\Weapons\Guns\Ammunition\Magazine\Rifle\impact_bolt_rifle
+    sprite: _Starlight\Objects\Weapons\Guns\Ammunition\Magazine\Rifle\impact_bolt_rifle.rsi
     layers:
     - state: icon
       map:
