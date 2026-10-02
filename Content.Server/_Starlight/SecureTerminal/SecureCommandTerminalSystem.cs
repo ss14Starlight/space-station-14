@@ -103,6 +103,8 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         var stationQuery = EntityQueryEnumerator<SecureCommandTerminalStationComponent>();
         while (stationQuery.MoveNext(out var stationUid, out var stationComp))
         {
+            var needsRefresh = false;
+
             // Remove expired cooldowns
             List<string>? expiredKeys = null;
             foreach (var (key, endTime) in stationComp.Cooldowns)
@@ -114,6 +116,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             {
                 foreach (var k in expiredKeys)
                     stationComp.Cooldowns.Remove(k);
+                needsRefresh = true;
             }
 
             // Fire activating proposals whose timer has elapsed.
@@ -175,6 +178,9 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     (toFire ??= new()).Add(requestId);
             }
 
+            if (presenceChanged)
+                needsRefresh = true;
+
             if (authToLightUp != null)
                 foreach (var consoleUid in authToLightUp)
                     _appearance.SetData(consoleUid, ToggleableVisuals.Enabled, true);
@@ -227,8 +233,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     }
                 }
 
-                UpdateAllConsolesForStation(stationUid);
-                stationComp.NextUIUpdate = now + UIUpdateInterval;
+                needsRefresh = true;
             }
 
             if (toCancel != null)
@@ -243,19 +248,14 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                         HasRescinded(cancelledProposal, cancelProto);
 
                     CancelProposal(stationUid, stationComp, requestId, cancelledProposal,
-                        cancelledProposal.RequesterTerminal, EntityUid.Invalid, false, isRescind: isRescind);
+                        cancelledProposal.RequesterTerminal, EntityUid.Invalid, false, isRescind: isRescind, refreshConsoles: false);
                 }
 
-                stationComp.NextUIUpdate = now + UIUpdateInterval;
-            }
-            else if (presenceChanged)
-            {
-                UpdateAllConsolesForStation(stationUid);
-                stationComp.NextUIUpdate = now + UIUpdateInterval;
+                needsRefresh = true;
             }
 
-            // Rate-limited UI refresh
-            if (now >= stationComp.NextUIUpdate)
+            // Refresh consoles if state changed or rate-limited fallback interval elapsed
+            if (needsRefresh || now >= stationComp.NextUIUpdate)
             {
                 stationComp.NextUIUpdate = now + UIUpdateInterval;
                 UpdateAllConsolesForStation(stationUid);
@@ -725,6 +725,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             _adminLog.Add(LogType.Action, LogImpact.Medium,
                 $"{admin.Name} approved secure terminal proposal: {requestId}");
             CheckAndStartCountdown(stationUid, stationComp, requestId, proto);
+            UpdateAllConsolesForStation(stationUid);
         }
         else
         {
@@ -733,8 +734,6 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         }
 
         CloseAdminApprovalEuis(stationUid, requestId);
-
-        UpdateAllConsolesForStation(stationUid);
     }
 
     /// <summary>
@@ -885,7 +884,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
 
     private void CancelProposal(EntityUid stationUid, SecureCommandTerminalStationComponent stationComp,
         string requestId, SecureTerminalProposalData proposal, EntityUid terminalUid, EntityUid actor, bool admin,
-        bool isRescind = false)
+        bool isRescind = false, bool refreshConsoles = true)
     {
         CloseAdminApprovalEuis(stationUid, requestId);
         stationComp.ActiveProposals.Remove(requestId);
@@ -949,7 +948,8 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     "Command", terminalUid);
         }
 
-        UpdateAllConsolesForStation(stationUid);
+        if (refreshConsoles)
+            UpdateAllConsolesForStation(stationUid);
     }
 
     private void RefundFee(EntityUid requester, SecureCommandTerminalRequestPrototype proto, float fraction = 1f)
