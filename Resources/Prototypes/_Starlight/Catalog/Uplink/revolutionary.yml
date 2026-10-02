@@ -98,12 +98,9 @@
   icon: { sprite: _Starlight/Objects/Weapons/Guns/Pistols/makarov.rsi, state: icon }
   productEntity: WeaponPistolMakarov
   cost:
-    Telebond: 3
+    Telebond: 2
   categories:
   - RevUplinkWeaponry
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 2
 
 - type: listing
   id: SNKVDFinka
@@ -115,9 +112,6 @@
     Telebond: 2
   categories:
   - RevUplinkWeaponry
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 2
 
 - type: listing
   id: SKBMosin
@@ -126,12 +120,9 @@
   icon: { sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi, state: base }
   productEntity: WeaponSniperMosin
   cost:
-    Telebond: 4
+    Telebond: 3
   categories:
   - RevUplinkWeaponry
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 6
 
 - type: listing
   id: SKBToz106
@@ -145,7 +136,7 @@
   - RevUplinkWeaponry
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 4
+    stockLimit: 5
 
 - type: listing
   id: SNKVDAPS
@@ -154,12 +145,12 @@
   productEntity: ClothingBackpackDuffelStechkinAPS
   icon: { sprite: _Starlight/Objects/Weapons/Guns/Pistols/aps.rsi, state: icon }
   cost:
-    Telebond: 15
+    Telebond: 10
   categories:
   - RevUplinkWeaponry
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 1
+    stockLimit: 4
 
 - type: listing
   id: SKBDP28
@@ -168,12 +159,26 @@
   icon: { sprite: _Starlight/Objects/Weapons/Guns/LMGs/DP28.rsi, state: icon }
   productEntity: ClothingBackpackDuffelDP28Bundle
   cost:
+    Telebond: 15
+  categories:
+  - RevUplinkWeaponry
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 3
+
+- type: listing
+  id: AvtomatKalashnikovaMultiKiller
+  name: akms-name
+  description: akms-desc
+  icon: { sprite: Objects/Weapons/Guns/Rifles/ak.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelAKMSBundle
+  cost:
     Telebond: 20
   categories:
   - RevUplinkWeaponry
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 1
+    stockLimit: 2
 
 - type: listing
   id: SKBPPSH
@@ -182,7 +187,7 @@
   icon: { sprite: _Starlight/Objects/Weapons/Guns/SMGs/PPSh59.rsi, state: icon }
   productEntity: ClothingBackpackDuffelPPShBundle
   cost:
-    Telebond: 27
+    Telebond: 30
   categories:
   - RevUplinkWeaponry
   conditions:
@@ -200,9 +205,6 @@
     Telebond: 3
   categories:
   - RevUplinkWearables
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 4
 
 - type: listing
   id: SKBBandolier
@@ -210,12 +212,25 @@
   description: soviet-bandolier-desc
   productEntity: ClothingSovietBandolier
   cost:
-    Telebond: 2
+    Telebond: 1
   categories:
   - RevUplinkWearables
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 3
+    stockLimit: 10
+
+- type: listing
+  id: SKBChestRig
+  name: soviet-chest-rig-name
+  description: soviet-chest-rig-desc
+  productEntity: ClothingBeltSovietMarineWebbing
+  cost:
+    Telebond: 1
+  categories:
+  - RevUplinkWearables
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 10
 
 - type: listing
   id: SKBGasMask
@@ -223,12 +238,9 @@
   description: soviet-gas-mask-desc
   productEntity: ClothingSovietGasMask
   cost:
-    Telebond: 2
+    Telebond: 1
   categories:
   - RevUplinkWearables
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 2
 
 - type: listing
   id: SKBCheapSunglasses
@@ -239,9 +251,19 @@
     Telebond: 5
   categories:
   - RevUplinkWearables
+
+- type: listing
+  id: SKBPlateArmour
+  name: soviet-plate-armour-name
+  description: soviet-plate-armour-desc
+  productEntity: ClothingOuterArmorSovietPlate
+  cost:
+    Telebond: 4
+  categories:
+  - RevUplinkWearables
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 1
+    stockLimit: 10
 
 - type: listing
   id: SSFHardsuit
@@ -263,12 +285,12 @@
   description: soviet-coat-desc
   productEntity: ClothingOuterSovietCoat
   cost:
-    Telebond: 4
+    Telebond: 3
   categories:
   - RevUplinkWearables
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 4
+    stockLimit: 10
 
 # Implants
 
@@ -473,6 +495,19 @@
   name: soviet-propaganda-name
   description: soviet-propaganda-desc
   productEntity: MagazineRevolutionary5
+  cost:
+    Telebond: 0
+  categories:
+  - RevUplinkPointless
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 10
+
+- type: listing
+  id: USSPDeskFlag
+  name: soviet-desk-flag-name
+  description: soviet-desk-flag-desc
+  productEntity: SovietDeskFlag
   cost:
     Telebond: 0
   categories:
