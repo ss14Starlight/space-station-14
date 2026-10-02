@@ -32,6 +32,6 @@ public sealed partial class AccessGroupPrototype : IPrototype
             return Loc.GetString(name);
 
         // Starlight-edit: fallback to a localized name by ID
-        return Loc.TryGetString($"access-group-name-{CaseConversion.PascalToKebab(ID)}", out var localized) ? localized : ID;
+        return IoCManager.Resolve<ILocalizationManager>().TryGetString($"access-group-name-{CaseConversion.PascalToKebab(ID)}", out var localized) ? localized : ID;
     }
 }
