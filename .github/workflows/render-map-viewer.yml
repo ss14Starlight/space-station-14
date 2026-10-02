@@ -75,6 +75,7 @@ jobs:
           DIRECTORIES: ${{ inputs.directories }}
           TYPE: ${{ inputs.type }}
         run: |
+          set -euo pipefail
           args=(--viewer -o "$GITHUB_WORKSPACE/Starlight.Maps" --base-url "$MAPS_BASE_URL")
 
           if [ -z "$MAPS" ] && [ -z "$DIRECTORIES" ]; then

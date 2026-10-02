@@ -142,7 +142,7 @@ internal sealed partial class Program
                     var tiles = TileSlicer.Slice(image, gridDirectory, arguments.TileSize, arguments.Format);
                     Console.WriteLine($"Wrote grid {i} of size {image.Width}x{image.Height} as {tiles} tiles to {gridDirectory}");
 
-                    viewerMap.Grids.Add(ToViewerGrid(renderedGrid, Url($"{MapsDirectory}/{mapId}/{GridsDirectory}/{i}"), arguments.TileSize));
+                    viewerMap.Grids.Add(ToViewerGrid(renderedGrid, i.ToString(), Url($"{MapsDirectory}/{mapId}/{GridsDirectory}/{i}"), arguments.TileSize));
                     i++;
                 }
 
@@ -204,7 +204,7 @@ internal sealed partial class Program
         }
     }
 
-    private static ViewerGrid ToViewerGrid(RenderedGridImage<Rgba32> grid, string url, int tileSize)
+    private static ViewerGrid ToViewerGrid(RenderedGridImage<Rgba32> grid, string gridId, string url, int tileSize)
     {
         var width = grid.Image.Width;
         var height = grid.Image.Height;
@@ -213,7 +213,7 @@ internal sealed partial class Program
 
         return new ViewerGrid
         {
-            GridId = grid.GridUid?.GetHashCode().ToString() ?? string.Empty,
+            GridId = gridId,
             DisplayName = string.IsNullOrWhiteSpace(grid.Name) ? null : grid.Name,
             TileSize = tileSize,
             Offset = new ViewerPoint(bottomLeft.X, -bottomLeft.Y - height),
