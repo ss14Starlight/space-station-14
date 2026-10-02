@@ -1,18 +1,16 @@
 using Content.Shared.Toggleable;
 
+// ReSharper disable once CheckNamespace -- partial extension of upstream EnergySwordSystem; keeps upstream's namespace so the partial class merges.
 namespace Content.Shared.Weapons.Melee.EnergySword;
 
-// Keeps Starlight's character-script blade colour support separate from the upstream sword system.
 public sealed partial class EnergySwordSystem
 {
     [Dependency] private IViewVariablesManager _vvm = default!;
 
-    private void InitializeStarlight()
-    {
-        // Changing the stored colour alone would leave the blade's appearance at its spawn colour.
+    // Changing the stored colour alone would leave the blade's appearance at its spawn colour.
+    private void InitializeStarlight() =>
         _vvm.GetTypeHandler<EnergySwordComponent>()
             .AddPath(nameof(EnergySwordComponent.ActivatedColor), (_, comp) => comp.ActivatedColor, SetActivatedColor);
-    }
 
     public override void Shutdown()
     {
