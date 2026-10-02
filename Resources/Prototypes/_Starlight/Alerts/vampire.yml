@@ -27,15 +27,15 @@
 - type: alert
   id: VampireFed
   icons:
-  - sprite: _Starlight/Vampire/vampire_fed.rsi
+  - sprite: _Starlight/Interface/Alerts/vampire_fed.rsi
     state: vampire_fat
-  - sprite: _Starlight/Vampire/vampire_fed.rsi
+  - sprite: _Starlight/Interface/Alerts/vampire_fed.rsi
     state: vampire_starving
-  - sprite: _Starlight/Vampire/vampire_fed.rsi
+  - sprite: _Starlight/Interface/Alerts/vampire_fed.rsi
     state: vampire_hungry
-  - sprite: _Starlight/Vampire/vampire_fed.rsi
+  - sprite: _Starlight/Interface/Alerts/vampire_fed.rsi
     state: vampire_fed
-  - sprite: _Starlight/Vampire/vampire_fed.rsi
+  - sprite: _Starlight/Interface/Alerts/vampire_fed.rsi
     state: vampire_well_fed
   maxSeverity: 5
   name: alerts-vampire-fed-name
@@ -44,15 +44,15 @@
 - type: alert
   id: VampireBloodSwell
   icons:
-  - sprite: _Starlight/Vampire/hud_icons.rsi
-    state: hudblood_swell
+  - sprite: _Starlight/Interface/Alerts/vampire.rsi
+    state: blood_swell
   name: alerts-vampire-blood-swell-name
   description: alerts-vampire-blood-swell-desc
 
 - type: alert
   id: VampireBloodRush
   icons:
-  - sprite: _Starlight/Vampire/hud_icons.rsi
-    state: hudblood_rush
+  - sprite: _Starlight/Interface/Alerts/vampire.rsi
+    state: blood_rush
   name: alerts-vampire-blood-rush-name
   description: alerts-vampire-blood-rush-desc
