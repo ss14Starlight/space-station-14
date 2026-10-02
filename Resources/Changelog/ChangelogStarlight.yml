@@ -1,11 +1,4 @@
 Entries:
-- author: Citrea
-  changes:
-  - message: Water bottles, flasks and drink cans hold exactly one drink again.
-    type: Tweak
-  id: 408670
-  time: '2026-09-17T19:18:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6109
 - author: Trosling
   changes:
   - message: Cyborgification Form which releases non-essential personnel from a recent addendum to paragraph 6 of their employment contract.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409069
   time: '2026-10-01T20:39:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6432
+- author: Teddiousbear
+  changes:
+  - message: Centcomm Berets/Caps description punctuation.
+    type: Fix
+  id: 409070
+  time: '2026-10-02T13:39:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6434
 Order: -1
