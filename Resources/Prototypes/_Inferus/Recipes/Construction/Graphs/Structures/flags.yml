@@ -125,6 +125,27 @@
             - material: Cloth
               amount: 2
               doAfter: 1
+        - to: NonbinaryFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: GenderqueerFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: GenderfluidFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
 
     - node: CentCommFlag
       entity: CentCommFlag
@@ -162,7 +183,7 @@
         - to: InterdyneSyndicateFlag
           steps:
             - tag: SyndieCard
-              name: syndie_card
+              name: syndie-card
               icon:
                 sprite: Objects/Misc/bureaucracy.rsi
                 state: syndicate_card
@@ -341,7 +362,7 @@
         - to: SyndieFlag
           steps:
             - tag: SyndieCard
-              name: syndie_card
+              name: syndie-card
               icon:
                 sprite: Objects/Misc/bureaucracy.rsi
                 state: syndicate_card
@@ -360,42 +381,6 @@
 
     - node: PirateFlag
       entity: PirateFlag
-      edges:
-        - to: start
-          completed:
-            - !type:GivePrototype
-              prototype: MaterialCloth1
-              amount: 2
-          steps:
-            - tool: Cutting
-              doAfter: 1
-
-    - node: NonbinaryFlag
-      entity: NonbinaryFlag
-      edges:
-        - to: start
-          completed:
-            - !type:GivePrototype
-              prototype: MaterialCloth1
-              amount: 2
-          steps:
-            - tool: Cutting
-              doAfter: 1
-
-    - node: GenderfluidFlag
-      entity: GenderfluidFlag
-      edges:
-        - to: start
-          completed:
-            - !type:GivePrototype
-              prototype: MaterialCloth1
-              amount: 2
-          steps:
-            - tool: Cutting
-              doAfter: 1
-
-    - node: GenderqueerFlag
-      entity: GenderqueerFlag
       edges:
         - to: start
           completed:

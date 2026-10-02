@@ -1,1 +1,1 @@
-syndie_card = a syndicate business card
+syndie-card = a syndicate business card
