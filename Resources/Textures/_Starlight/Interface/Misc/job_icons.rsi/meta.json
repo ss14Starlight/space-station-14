@@ -32,7 +32,8 @@
             "copyright": "TG Station, K-Dynamic, wonderfulnewworld"
         },
         {
-            "name": "Vampire"
+            "name": "Vampire",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
             "name": "Surgeon"
@@ -240,6 +241,10 @@
         {
             "name": "Blackstar",
             "copyright": "Captain icon from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolored to Blackstar colors by @redmushie (github)"
+        },
+        {
+            "name": "Thrall",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
             "name": "MedTakLeader",

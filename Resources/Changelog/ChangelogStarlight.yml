@@ -1,109 +1,4 @@
 Entries:
-- author: Citrea
-  changes:
-  - message: Water bottles, flasks and drink cans hold exactly one drink again.
-    type: Tweak
-  id: 408670
-  time: '2026-09-17T19:18:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6109
-- author: Trosling
-  changes:
-  - message: Cyborgification Form which releases non-essential personnel from a recent addendum to paragraph 6 of their employment contract.
-    type: Add
-  id: 408671
-  time: '2026-09-18T00:19:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6206
-- author: Turk1shcat (_plunger)
-  changes:
-  - message: Ling victims now have an increased rot timer, effectively giving you twice the amount of time before you fully rot.
-    type: Add
-  id: 408672
-  time: '2026-09-18T07:36:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5682
-- author: Turk1shcat (_plunger)
-  changes:
-  - message: Changeling fleshmend now requires you to absorb at least 2 victims to use.
-    type: Tweak
-  id: 408673
-  time: '2026-09-18T07:36:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5682
-- author: Turk1shcat (_plunger)
-  changes:
-  - message: Changeling chameleon skin (invis) now lasts twice as long.
-    type: Tweak
-  id: 408674
-  time: '2026-09-18T07:36:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5682
-- author: Turk1shcat (_plunger)
-  changes:
-  - message: Changeling resonant shriek no longer flashes yourself.
-    type: Tweak
-  id: 408675
-  time: '2026-09-18T07:36:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5682
-- author: Xale
-  changes:
-  - message: Eggs that hatch while in a container will now try placing the newborn in the same container.
-    type: Fix
-  id: 408676
-  time: '2026-09-18T08:06:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6166
-- author: Cvlancer
-  changes:
-  - message: (Elkridge) Added a few intercoms around station.
-    type: Add
-  id: 408677
-  time: '2026-09-18T08:32:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6168
-- author: Cvlancer
-  changes:
-  - message: (Elkridge) Added all departmental mailboxes.
-    type: Add
-  id: 408678
-  time: '2026-09-18T08:32:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6168
-- author: Cvlancer
-  changes:
-  - message: (Elkridge) Added an assistant manager to hop line.
-    type: Add
-  id: 408679
-  time: '2026-09-18T08:32:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6168
-- author: Cvlancer
-  changes:
-  - message: (Elkridge) Added a k9 to security locker room.
-    type: Add
-  id: 408680
-  time: '2026-09-18T08:32:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6168
-- author: Cvlancer
-  changes:
-  - message: (Elkridge) Added a washroom near janitor's closet.
-    type: Add
-  id: 408681
-  time: '2026-09-18T08:32:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6168
-- author: Cvlancer
-  changes:
-  - message: (Elkridge) Changed mail windoor to mail access.
-    type: Tweak
-  id: 408682
-  time: '2026-09-18T08:32:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6168
-- author: Cvlancer
-  changes:
-  - message: (Elkridge) Changed salv room to be a miner break room.
-    type: Tweak
-  id: 408683
-  time: '2026-09-18T08:32:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6168
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Switched Cosmic Cult premonition and finale themes out for higher quality versions.
-    type: Tweak
-  id: 408684
-  time: '2026-09-18T08:55:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6174
 - author: RedSpeeds
   changes:
   - message: Changed syndie baked weapons to inject poison on hit.
@@ -2799,4 +2694,109 @@ Entries:
   id: 409069
   time: '2026-10-01T20:39:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6432
+- author: Teddiousbear
+  changes:
+  - message: Centcomm Berets/Caps description punctuation.
+    type: Fix
+  id: 409070
+  time: '2026-10-02T13:39:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6434
+- author: Vincolan
+  changes:
+  - message: Added 3 new announcement sounds.
+    type: Add
+  id: 409071
+  time: '2026-10-02T17:46:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6438
+- author: Caws
+  changes:
+  - message: The amount of fire stacks incendiary rounds apply is now configurable per-projectile.
+    type: Tweak
+  id: 409072
+  time: '2026-10-02T18:16:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6440
+- author: Caws
+  changes:
+  - message: Incendiary ammo now applies 0.25 fire stacks per projectile instead of 0.35538095 fire stacks.
+    type: Tweak
+  id: 409073
+  time: '2026-10-02T18:16:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6440
+- author: Caws
+  changes:
+  - message: 12 gauge incendiary ammo now applies 1.5 fire stacks if all 12 projectiles hit instead of 4.2645714 fire stacks.
+    type: Tweak
+  id: 409074
+  time: '2026-10-02T18:16:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6440
+- author: Drakobird
+  changes:
+  - message: Explosions not working inside walls.
+    type: Fix
+  id: 409075
+  time: '2026-10-02T18:56:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6437
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: PDA lights once again no longer disable shadekin night vision; this was changed as a result of recent shadekin lighting system optimizations.
+    type: Fix
+  id: 409076
+  time: '2026-10-02T18:56:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6436
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Uranium and bananium ore chunks no longer disable shadekin night vision..
+    type: Tweak
+  id: 409077
+  time: '2026-10-02T18:56:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6436
+- author: CrazyPhantom
+  changes:
+  - message: Fixed decals sometimes being stolen when a grid split.
+    type: Fix
+  id: 409078
+  time: '2026-10-02T18:56:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6425
+- author: Sparlight
+  changes:
+  - message: Pacifists will be able to 'struggle' out of a K9's latch using a new minigame.
+    type: Add
+  id: 409079
+  time: '2026-10-02T19:16:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6382
+- author: Sparlight
+  changes:
+  - message: Removed K9 latch hand-blocking.  You can now use both hands while latched.
+    type: Remove
+  id: 409080
+  time: '2026-10-02T19:16:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6382
+- author: Sparlight
+  changes:
+  - message: Specific mobs (colossus and space dragon) now only slow when latched.
+    type: Tweak
+  id: 409081
+  time: '2026-10-02T19:16:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6382
+- author: Sparlight
+  changes:
+  - message: K9s latched onto floating creatures (carp, space dragons, colossi and similar) become weightless for the duration of the latch.
+    type: Tweak
+  id: 409082
+  time: '2026-10-02T19:16:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6382
+- author: Sparlight
+  changes:
+  - message: The 'Jump' keybind in the Controls settings now has a proper locale string.
+    type: Fix
+  id: 409083
+  time: '2026-10-02T19:16:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6382
+- author: Kasvra
+  changes:
+  - message: Updates Corporate Law's Guidebook entry.
+    type: Tweak
+  id: 409084
+  time: '2026-10-02T19:45:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6429
 Order: -1
