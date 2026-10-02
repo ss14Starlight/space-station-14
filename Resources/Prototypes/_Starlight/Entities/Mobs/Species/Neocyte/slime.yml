@@ -29,7 +29,7 @@
         type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
-      enum.MagicMirrorUiKey.Key: # Starlight
+      enum.MagicMirrorUiKey.Key:
         type: MagicMirrorBoundUserInterface
   - type: InteractionPopup
     interactSuccessSound: /Audio/Voice/Slime/slime_squish.ogg
@@ -134,8 +134,8 @@
   - type: ShowThirstIcons
   - type: SolutionScanner
   - type: Wagging
-  - type: InnateHairChange # starlight
-  - type: MagicMirror # starlight
+  - type: InnateHairChange
+  - type: MagicMirror
 
 - type: entity
   parent: [BaseNeocyteAppearance, BaseSpeciesDummy]

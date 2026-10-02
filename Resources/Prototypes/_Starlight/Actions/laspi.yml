@@ -11,4 +11,3 @@
       useDelay: 0.5
     - type: InstantAction
       event: !type:InnateHairChangeActionEvent
-      
