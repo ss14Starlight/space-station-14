@@ -1,27 +1,6 @@
 Entries:
 - author: Turk1shcat (_plunger)
   changes:
-  - message: Ling victims now have an increased rot timer, effectively giving you twice the amount of time before you fully rot.
-    type: Add
-  id: 408672
-  time: '2026-09-18T07:36:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5682
-- author: Turk1shcat (_plunger)
-  changes:
-  - message: Changeling fleshmend now requires you to absorb at least 2 victims to use.
-    type: Tweak
-  id: 408673
-  time: '2026-09-18T07:36:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5682
-- author: Turk1shcat (_plunger)
-  changes:
-  - message: Changeling chameleon skin (invis) now lasts twice as long.
-    type: Tweak
-  id: 408674
-  time: '2026-09-18T07:36:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5682
-- author: Turk1shcat (_plunger)
-  changes:
   - message: Changeling resonant shriek no longer flashes yourself.
     type: Tweak
   id: 408675
@@ -2799,4 +2778,25 @@ Entries:
   id: 409071
   time: '2026-10-02T17:46:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6438
+- author: Caws
+  changes:
+  - message: The amount of fire stacks incendiary rounds apply is now configurable per-projectile.
+    type: Tweak
+  id: 409072
+  time: '2026-10-02T18:16:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6440
+- author: Caws
+  changes:
+  - message: Incendiary ammo now applies 0.25 fire stacks per projectile instead of 0.35538095 fire stacks.
+    type: Tweak
+  id: 409073
+  time: '2026-10-02T18:16:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6440
+- author: Caws
+  changes:
+  - message: 12 gauge incendiary ammo now applies 1.5 fire stacks if all 12 projectiles hit instead of 4.2645714 fire stacks.
+    type: Tweak
+  id: 409074
+  time: '2026-10-02T18:16:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6440
 Order: -1
