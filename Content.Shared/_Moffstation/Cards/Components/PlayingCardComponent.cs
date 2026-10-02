@@ -60,7 +60,8 @@ public sealed partial class PlayingCardComponent : Component
     // Starlight edit Start
     /// Card texts from YAML may be loc keys, dynamic cards store already localized text.
     [Access(Other = AccessPermissions.ReadExecute)]
-    public static string Localize(string text) => Loc.TryGetString(text, out var localized) ? localized : text;
+    public static string Localize(string text) =>
+        IoCManager.Resolve<ILocalizationManager>().TryGetString(text, out var localized) ? localized : text;
     // Starlight edit End
 
     public static readonly LocId ExamineText = "playing-card-examine";

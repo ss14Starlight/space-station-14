@@ -21,6 +21,7 @@ public sealed partial class TapeRecorderSystem : SharedTapeRecorderSystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private PaperSystem _paper = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
 
     public override void Initialize()
     {
@@ -35,10 +36,10 @@ public sealed partial class TapeRecorderSystem : SharedTapeRecorderSystem
     {
         foreach (var message in ent.Comp.RecordedData)
         {
-            if (message.Name is not null && Loc.TryGetString(message.Name, out var name))
+            if (message.Name is not null && _loc.TryGetString(message.Name, out var name))
                 message.Name = name;
 
-            if (Loc.TryGetString(message.Message, out var text))
+            if (_loc.TryGetString(message.Message, out var text))
                 message.Message = text;
         }
     }

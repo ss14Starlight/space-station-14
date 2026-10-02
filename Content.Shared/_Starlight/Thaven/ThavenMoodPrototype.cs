@@ -47,15 +47,16 @@ public partial class ThavenMood
     public (string, object)[] GetLocArgs()
     {
         IoCManager.Resolve<IPrototypeManager>().TryIndex(ProtoId, out var proto);
-        return MoodVars.Select(v => (v.Key, (object)LocalizeMoodVar(proto, v.Key, v.Value))).ToArray();
+        var loc = IoCManager.Resolve<ILocalizationManager>();
+        return MoodVars.Select(v => (v.Key, (object)LocalizeMoodVar(loc, proto, v.Key, v.Value))).ToArray();
     }
 
-    private static string LocalizeMoodVar(ThavenMoodPrototype? proto, string name, string value)
+    private static string LocalizeMoodVar(ILocalizationManager loc, ThavenMoodPrototype? proto, string name, string value)
     {
         if (proto is null || !proto.MoodVarDatasets.TryGetValue(name, out var dataset))
             return value;
 
-        return Loc.TryGetString($"thaven-mood-var-{ToKebab(dataset.Id)}-{ToKebab(value)}", out var localized)
+        return loc.TryGetString($"thaven-mood-var-{ToKebab(dataset.Id)}-{ToKebab(value)}", out var localized)
             ? localized
             : value;
     }
