@@ -176,7 +176,7 @@
 
 - type: entity
   parent: [GunSafeBaseArmorySL, BaseSecurityContraband]
-  id: GunSafeMelee # To save remapping
+  id: GunSafeMelee
   name: melee safe
   description: Contains a set of heavy melee weapons.
   components:
