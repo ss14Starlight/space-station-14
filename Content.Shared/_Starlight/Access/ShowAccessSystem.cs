@@ -144,7 +144,7 @@ public sealed partial class ShowAccessSystem : EntitySystem
         var localized = LocalizeAndSort(tags);
 
         var msg = new FormattedMessage();
-        msg.AddMarkupOrThrow(Loc.GetString(showAccess.ExamineLocId, ("groups", tags.Count > 0 ? string.Join("\n", localized) : "None")));
+        msg.AddMarkupOrThrow(Loc.GetString(showAccess.ExamineLocId, ("groups", tags.Count > 0 ? string.Join("\n", localized) : Loc.GetString("show-access-examined-none"))));
 
         _examine.AddDetailedExamineVerb(args, showAccess, msg, Loc.GetString("show-access-verb-text"), "/Textures/_Starlight/Interface/VerbIcons/examine-access.png", Loc.GetString("show-access-verb-message"));
     }
@@ -154,7 +154,7 @@ public sealed partial class ShowAccessSystem : EntitySystem
         // Get groups then sort alphabetically to stay organized but also to make sure the order is same on client+server.
         var groups = _proto.EnumeratePrototypes<AccessGroupPrototype>()
             .Where(group => !_blacklistedGroups.Contains(group.ID)).ToList();
-        groups = groups.OrderBy(group => group.Name ?? group.ID).ToList();
+        groups = groups.OrderBy(GetGroupName).ToList();
 
         /*
          * Move command if present to top of list since despite that not being alphabetical order it's arguably the most important.
@@ -175,13 +175,13 @@ public sealed partial class ShowAccessSystem : EntitySystem
         var grouped = new Dictionary<ProtoId<AccessLevelPrototype>, string>();
         foreach (var group in groups)
         {
-            var name = group.Name ?? group.ID;
+            var name = GetGroupName(group);
             foreach (var tag in group.Tags) grouped.TryAdd(tag, name);
         }
 
         // alphabetically sort the actual access tags into their sorted groups.
         var sorted = new Dictionary<string, SortedSet<string>>();
-        const string Ungrouped = "Ungrouped";
+        var Ungrouped = Loc.GetString("show-access-examined-ungrouped");
         foreach (var protoId in protoIds)
         {
             if (!_proto.TryIndex(protoId, out var proto))
@@ -213,5 +213,13 @@ public sealed partial class ShowAccessSystem : EntitySystem
 
         // voilà this code sucks here's your ordered access tags
         return result;
+    }
+
+    private string GetGroupName(AccessGroupPrototype group)
+    {
+        if (group.Name is { } name)
+            return Loc.GetString(name);
+
+        return Loc.TryGetString($"access-group-name-{group.ID}", out var localized) ? localized : group.ID;
     }
 }
