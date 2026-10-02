@@ -161,14 +161,14 @@ namespace Content.Server.Decals
             // Starlight End
 
             // Transfer decals over to the new grid.
-            var enumerator = _mapSystem.GetAllTilesEnumerator(ev.Grid, newGridComp); // Starlight Edit: Comp<MapGridComponent>(ev.Grid) -> newGridComp
+            // var enumerator = _mapSystem.GetAllTilesEnumerator(ev.Grid, Comp<MapGridComponent>(ev.Grid)); // Replaced by foreach below.
 
             var oldChunkCollection = oldComp.ChunkCollection.ChunkCollection;
             var chunkCollection = newComp.ChunkCollection.ChunkCollection;
 
-            while (enumerator.MoveNext(out var tile))
+            foreach (var tile in _mapSystem.GetAllTiles(ev.Grid, newGridComp)) // Starlight Edit: Replaces enumerator and MoveNext loop.
             {
-                var tilePos = (Vector2) tile.Value.GridIndices;
+                var tilePos = (Vector2) tile.GridIndices;
                 var chunkIndices = GetChunkIndices(tilePos);
                 // Starlight Start
                 var oldTilePos = tilePos + tileOffset;
@@ -226,7 +226,6 @@ namespace Content.Server.Decals
                 // Starlight edit End
             }
         }
-
         public override void Shutdown()
         {
             base.Shutdown();
