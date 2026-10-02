@@ -29,7 +29,7 @@ using Content.Shared._Starlight.Temperature.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 
-namespace Content.Server._Starlight.Pollen.Systems;
+namespace Content.Server._Starlight.Pollen;
 
 /// <summary>
 /// Owns the pollen perk shop: grants Dionas the action to open it, and runs

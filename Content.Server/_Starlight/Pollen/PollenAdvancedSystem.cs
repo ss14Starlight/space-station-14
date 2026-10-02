@@ -15,7 +15,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Spawners;
 using System.Numerics;
 
-namespace Content.Server._Starlight.Pollen.Systems;
+namespace Content.Server._Starlight.Pollen;
 
 public sealed partial class PollenAdvancedSystem : EntitySystem
 {

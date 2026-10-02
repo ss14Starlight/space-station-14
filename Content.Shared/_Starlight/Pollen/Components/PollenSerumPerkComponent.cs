@@ -1,7 +1,7 @@
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Starlight.Pollen.Components;
+namespace Content.Shared._Starlight.Pollen.Components;
 
 /// <summary>
 /// Purchased from the pollen shop. While present, PollenShopSystem injects

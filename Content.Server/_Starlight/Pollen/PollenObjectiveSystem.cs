@@ -6,7 +6,7 @@ using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Starlight.Pollen.Systems;
+namespace Content.Server._Starlight.Pollen;
 
 public sealed partial class PollenObjectiveSystem : EntitySystem
 {

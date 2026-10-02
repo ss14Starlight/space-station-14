@@ -14,7 +14,7 @@ using Robust.Shared.Timing;
 using System.Linq;
 using Content.Shared._Starlight.Pollen;
 
-namespace Content.Server._Starlight.Pollen.Systems;
+namespace Content.Server._Starlight.Pollen;
 
 public sealed partial class PollenCollectorSystem : EntitySystem
 {
