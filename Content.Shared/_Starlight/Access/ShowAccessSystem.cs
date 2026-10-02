@@ -199,9 +199,9 @@ public sealed partial class ShowAccessSystem : EntitySystem
         // now just grab all the names of the access tags and shove them into a single string list (and also move ungrouped to the back)
         var result = new List<string>();
         foreach (var group in sorted.Keys
-                     .Where(g => g != ungrouped)
-                     .OrderBy(g => g)
-                     .Append(ungrouped))
+                .Where(g => g != ungrouped)
+                .OrderBy(g => g)
+                .Append(ungrouped))
         {
             if (!sorted.TryGetValue(group, out var accessList) || accessList.Count == 0)
                 continue;
