@@ -95,7 +95,7 @@ public sealed partial class ContainerSpawnPointSystem : EntitySystem
                 continue;
 
             if (container.ContainedEntities.Count > 0)
-                continue; 
+                continue;
 
             var spawnResult = _stationSpawning.SpawnPlayerMob(
                 xform.Coordinates,
