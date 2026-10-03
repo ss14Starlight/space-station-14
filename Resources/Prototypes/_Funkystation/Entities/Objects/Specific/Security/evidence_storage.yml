@@ -38,7 +38,7 @@
   - type: ItemSlots
     slots:
       dropper:
-        name: dropper
+        name: item-slot-component-slot-name-dropper
         whitelist:
           tags:
           - Dropper
@@ -84,7 +84,7 @@
   - type: ItemSlots
     slots:
       dropper:
-        name: dropper
+        name: item-slot-component-slot-name-dropper
         startingItem: Dropper
         whitelist:
           tags:

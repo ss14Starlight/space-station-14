@@ -371,7 +371,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             Message = message,
             Receivers = Filter.Broadcast(),
             SpeakerUid = speaker.HasValue ? GetNetEntity(speaker.Value) : null,
-            AnnouncementSound = announcementSound,
+            AnnouncementSound = playSound ? announcementSound ?? DefaultAnnouncementSound : null, // Starlight: report the sound played (if any) so TTS can wait out the chime.
         });
         // Starlight end
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Global station announcement from {sender}: {message.Text}");// Starlight
@@ -399,7 +399,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         // Starlight start
         RaiseLocalEvent(new AnnouncementSpokeEvent
         {
-            AnnouncementSound = announcementSound,
+            AnnouncementSound = playSound ? announcementSound ?? DefaultAnnouncementSound : null, // Starlight: report the sound played (if any) so TTS can wait out the chime.
             Message = message,
             Receivers = filter
         });
@@ -441,7 +441,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         // Starlight start
         RaiseLocalEvent(new AnnouncementSpokeEvent
         {
-            AnnouncementSound = announcementSound,
+            AnnouncementSound = playDefaultSound ? announcementSound ?? DefaultAnnouncementSound : null, // Starlight: report the sound played (if any) so TTS can wait out the chime.
             Message = message,
             Receivers = filter
         });
@@ -488,16 +488,17 @@ public sealed partial class ChatSystem : SharedChatSystem
         // Custom behavior: For example, change the chat channel or message formatting here if needed
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source, false, true, colorOverride);
 
+        SoundSpecifier? commsConsoleSound = null; // resolve outside so the event below reports the sound actually played.
         if (playSound)
         {
-            var commsConsoleSound = announcementSound ?? new SoundPathSpecifier("/Audio/_Starlight/Announcements/announce2.ogg");
+            commsConsoleSound = announcementSound ?? new SoundPathSpecifier("/Audio/_Starlight/Announcements/announce2.ogg");
             var resolvedSound = _audio.ResolveSound(commsConsoleSound);
             _audio.PlayGlobal(resolvedSound, filter, true, AudioParams.Default.WithVolume(-2f));
         }
 
         RaiseLocalEvent(new AnnouncementSpokeEvent
         {
-            AnnouncementSound = announcementSound,
+            AnnouncementSound = commsConsoleSound,
             Message = message,
             SpeakerUid = speaker.HasValue ? GetNetEntity(speaker.Value) : null,
             Receivers = filter
