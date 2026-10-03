@@ -116,6 +116,122 @@
   - !type:ZXAProductionReaction {}
 
 - type: gasReaction
+  id: ProtoNitratePlasmaReaction
+  priority: 1
+  minimumTemperature: 5
+  minimumRequirements:
+  - 0     # oxygen
+  - 0     # nitrogen
+  - 0     # carbon dioxide
+  - 0     # plasma
+  - 0     # tritium
+  - 0     # vapor
+  - 0     # miasma
+  - 0     # n2o
+  - 0     # frezon
+  - 0     # bz
+  - 0     # healium
+  - 0     # nitrium
+  - 0     # pluox
+  - 0  # hydrogen
+  - 0     # hypernob
+  - .1     # protonitrate
+  - 0     # zauker
+  - 0     # halon
+  - 0     # helium
+  - 0     # antinob
+  - 0  # ulnitranium
+  effects:
+  - !type:ProtoNitratePlasmaReaction {}
+
+- type: gasReaction
+  id: PluoxPlasmaFire
+  priority: 8
+  minimumTemperature: 5
+  minimumRequirements:
+  - 0     # oxygen
+  - 0     # nitrogen
+  - 0     # carbon dioxide
+  - 0.1     # plasma
+  - 0     # tritium
+  - 0     # vapor
+  - 0     # miasma
+  - 0     # n2o
+  - 0     # frezon
+  - 0     # bz
+  - 0     # healium
+  - 0     # nitrium
+  - 0.1     # pluox
+  - 0  # hydrogen
+  - 0     # hypernob
+  - 0     # protonitrate
+  - 0     # zauker
+  - 0     # halon
+  - 0     # helium
+  - 0     # antinob
+  - 0  # ulnitranium
+  effects:
+  - !type:PluoxPlasmaFire {}
+
+- type: gasReaction
+  id: PluoxTritFire
+  priority: 7
+  minimumTemperature: 5
+  minimumRequirements:
+  - 0     # oxygen
+  - 0     # nitrogen
+  - 0     # carbon dioxide
+  - 0     # plasma
+  - 0.1     # tritium
+  - 0     # vapor
+  - 0     # miasma
+  - 0     # n2o
+  - 0     # frezon
+  - 0     # bz
+  - 0     # healium
+  - 0     # nitrium
+  - 0.1     # pluox
+  - 0  # hydrogen
+  - 0     # hypernob
+  - 0     # protonitrate
+  - 0     # zauker
+  - 0     # halon
+  - 0     # helium
+  - 0     # antinob
+  - 0  # ulnitranium
+  effects:
+  - !type:PluoxTritFire {}
+
+- type: gasReaction
+  id: PluoxHydrogenFire
+  priority: 6
+  minimumTemperature: 5
+  minimumRequirements:
+  - 0     # oxygen
+  - 0     # nitrogen
+  - 0     # carbon dioxide
+  - 0     # plasma
+  - 0     # tritium
+  - 0     # vapor
+  - 0     # miasma
+  - 0     # n2o
+  - 0     # frezon
+  - 0     # bz
+  - 0     # healium
+  - 0     # nitrium
+  - 0.1     # pluox
+  - 0.1  # hydrogen
+  - 0     # hypernob
+  - 0     # protonitrate
+  - 0     # zauker
+  - 0     # halon
+  - 0     # helium
+  - 0     # antinob
+  - 0  # ulnitranium
+  effects:
+  - !type:PluoxHydrogenFire {}
+
+- type: gasReaction
   id: AmmoniaProduction
   priority: 10
   minimumTemperature: 590.15
