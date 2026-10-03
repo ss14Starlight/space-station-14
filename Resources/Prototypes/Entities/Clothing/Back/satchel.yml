@@ -175,7 +175,7 @@
       sprite: Clothing/Back/Satchels/salvage.rsi
 
 - type: entity
-  parent: [ BaseContrabandTier4, ClothingBackpackSatchel ]
+  parent: [ BaseContrabandTier4, ClothingBackpackSatchel ] # Blimpuf
   id: ClothingBackpackSatchelNinja
   name: spider clan satchel
   description: A robust satchel for stashing your loot.

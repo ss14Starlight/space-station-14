@@ -318,7 +318,7 @@
 #Starlight Region End
 
 - type: entity
-  parent: [ BaseContrabandTier2, ClothingHandsGlovesColorBlack, BaseEngineeringContraband, BaseSecurityContraband, BaseCommandContraband ] # SL edit: Engi/Sec/Command contra
+  parent: [ BaseContrabandTier2, ClothingHandsGlovesColorBlack, BaseEngineeringContraband, BaseSecurityContraband, BaseCommandContraband ] # Blimpuf edit: Engi/Sec/Command contra
   id: ClothingHandsGlovesCombat
   name: combat gloves
   description: These tactical gloves are fireproof and shock resistant.
@@ -347,7 +347,7 @@
     fiberColor: fibers-black
 
 - type: entity
-  parent: [ BaseContrabandTier2, BaseEngineeringContraband, BaseSecurityContraband, BaseCommandContraband, BaseSalvageContraband, BaseMiningContraband, ClothingHandsGlovesCombat, BaseSlicingRefinable ] # SL edit: Engi/Sec/Command/Salvage/Mining contra
+  parent: [ BaseContrabandTier2, BaseEngineeringContraband, BaseSecurityContraband, BaseCommandContraband, BaseSalvageContraband, BaseMiningContraband, ClothingHandsGlovesCombat, BaseSlicingRefinable ] # Starlight edit: Engi/Sec/Command/Salvage/Mining contra
   id: ClothingHandsMercGlovesCombat
   name: mercenary combat gloves
   description: High-quality combat gloves to protect hands from mechanical damage during combat.
@@ -641,7 +641,7 @@
 
 - type: entity
   name: stun knuckle dusters
-  parent: [ BaseContrabandTier2, ClothingHandsBase, BaseToggleClothing, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier2, ClothingHandsBase, BaseToggleClothing, BaseSecurityContraband ] # Blimpuf
   id: ClothingHandsKnuckleDustersStun
   description: A pair of knuckle dusters combined with the tech of a stun baton. This makes beating tiders a whole lot easier.
   components:

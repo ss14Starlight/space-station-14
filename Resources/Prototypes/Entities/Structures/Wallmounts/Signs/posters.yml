@@ -203,7 +203,7 @@
     state: poster17_contraband
 
 - type: entity
-  parent: [ PosterBase, BaseSovietContraband ]
+  parent: [ PosterBase, BaseSovietContraband ] # Blimpuf
   id: PosterContrabandCommunistState
   name: "Communist State"
   description: "All hail the Communist party!"
@@ -248,7 +248,7 @@
     state: poster22_contraband
 
 - type: entity
-  parent: [ PosterBase, BaseSovietContraband ]
+  parent: [ PosterBase, BaseSovietContraband ] # Blimpuf
   id: PosterContrabandRebelsUnite
   name: "Rebels Unite"
   description: "A poster urging the viewer to rebel against NanoTrasen." # SL

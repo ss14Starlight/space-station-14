@@ -135,7 +135,7 @@
 - type: entity
   id: BibleCommunistManifesto
   name: communist manifesto
-  parent: [ Bible, BaseSovietContraband ]
+  parent: [ Bible, BaseSovietContraband ] # Blimpuf
   description: "Remove the mask of humanity from Capital."
   components:
   - type: Sprite

@@ -123,7 +123,7 @@
     radius: 4
 
 - type: entity
-  parent: [ BaseContrabandTier3, BaseWeaponCrusher, BaseSecurityContraband, BaseCargoContraband ]
+  parent: [ BaseContrabandTier3, BaseWeaponCrusher, BaseSecurityContraband, BaseCargoContraband ] # Blimpuf
   id: WeaponCrusher
   components:
   - type: Tag
@@ -186,7 +186,7 @@
     playSoundOnDoafter: true #SL
 
 - type: entity
-  parent: [ BaseContrabandTier3, BaseKnife, BaseWeaponCrusher, BaseSecurityContraband, BaseCargoContraband ]
+  parent: [ BaseContrabandTier3, BaseKnife, BaseWeaponCrusher, BaseSecurityContraband, BaseCargoContraband ] # Blimpuf
   id: WeaponCrusherDagger
   name: crusher dagger
   description: A scaled down version of a proto-kinetic crusher. Uses kinetic energy to vibrate the blade at high speeds.
@@ -231,7 +231,7 @@
 
 # Like a crusher... but better
 - type: entity
-  parent: [ BaseContrabandTier3, WeaponCrusher, BaseSecurityContraband, BaseCargoContraband ]
+  parent: [ BaseContrabandTier3, WeaponCrusher, BaseSecurityContraband, BaseCargoContraband ] # Blimpuf
   id: WeaponCrusherGlaive
   name: crusher glaive
   description: An early design of the proto-kinetic accelerator, in glaive form.

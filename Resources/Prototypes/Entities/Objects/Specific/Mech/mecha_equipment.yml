@@ -15,7 +15,7 @@
 
 - type: entity
   id: MechEquipmentGrabber
-  parent: [ BaseContrabandTier2, BaseMechEquipment, IndustrialMechEquipment, BaseCargoContraband ]
+  parent: [ BaseContrabandTier2, BaseMechEquipment, IndustrialMechEquipment, BaseCargoContraband ] # Blimpuf
   name: hydraulic clamp
   description: Gives the mech the ability to grab things and drag them around.
   components:
@@ -45,7 +45,7 @@
 
 - type: entity
   id: MechEquipmentGrabberSmall
-  parent: [ BaseContrabandTier2, BaseMechEquipment, BaseCargoContraband ]
+  parent: [ BaseContrabandTier2, BaseMechEquipment, BaseCargoContraband ] # Blimpuf
   name: small hydraulic clamp
   description: Gives the mech the ability to grab things and drag them around.
   components:

@@ -10,7 +10,7 @@
   - type: ScatteringGrenade
 
 - type: entity
-  parent: [ BaseContrabandTier2, FragileGrenadeBase, ScatteringGrenadeBase, TimerGrenadeBase, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier2, FragileGrenadeBase, ScatteringGrenadeBase, TimerGrenadeBase, BaseSecurityContraband ] # Starlight
   id: ClusterBang
   name: clusterbang
   description: Can be used only with flashbangs. Explodes several times.

@@ -178,7 +178,7 @@
   - type: ShowThirstIcons
 
 - type: entity
-  parent: [ ClothingEyesHudBase, ShowSecurityIcons, ShowMedicalIcons, BaseSecurityContraband, BaseCommandContraband ]
+  parent: [ ClothingEyesHudBase, ShowSecurityIcons, ShowMedicalIcons, BaseSecurityContraband, BaseCommandContraband ] # Starlight
   id: ClothingEyesHudMedSec
   name: medsec hud
   description: An eye display that looks like a mixture of medical and security huds.

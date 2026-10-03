@@ -495,7 +495,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/capformaldress.rsi
 
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingUniformSkirtBase ]
+  parent: [ BaseCentcommContraband, ClothingUniformSkirtBase ] # Blimpuf
   id: ClothingUniformJumpskirtCentcomFormalDress
   name: central command formal dress
   description: A dress for special occasions.

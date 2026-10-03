@@ -114,7 +114,7 @@
 # Ripley MK-I
 - type: entity
   id: MechRipley
-  parent: [ BaseContrabandTier2, BaseMech, IndustrialMech, BaseCargoContraband ]
+  parent: [ BaseContrabandTier2, BaseMech, IndustrialMech, BaseCargoContraband ] # Blimpuf
   name: Ripley APLU
   description: Versatile and lightly armored, the Ripley is useful for almost any heavy work scenario. The "APLU" stands for Autonomous Power Loading Unit.
   components:

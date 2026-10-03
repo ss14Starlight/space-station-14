@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingUniformBase ]
+  parent: [ BaseCentcommContraband, ClothingUniformBase ] # Blimpuf
   id: ClothingUniformJumpsuitDeathSquad
   name: death squad uniform
   description: Advanced armored jumpsuit used by special forces in special operations.
@@ -762,7 +762,7 @@
       sprite: Clothing/Uniforms/Jumpsuit/lawyergood.rsi
 
 - type: entity
-  parent: UnsensoredClothingUniformBase # Starlight, major contra -> minor contra
+  parent: UnsensoredClothingUniformBase # Blimpuf, major contra -> minor contra
   id: ClothingUniformJumpsuitPyjamaSyndicateBlack
   name: black syndicate pyjamas
   description: For those long nights in perma.
@@ -773,7 +773,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicateblack.rsi
 
 - type: entity
-  parent: UnsensoredClothingUniformBase # Starlight, major contra -> minor contra
+  parent: UnsensoredClothingUniformBase # Blimpuf, major contra -> minor contra
   id: ClothingUniformJumpsuitPyjamaSyndicatePink
   name: pink syndicate pyjamas
   description: For those long nights in perma.
@@ -784,7 +784,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicatepink.rsi
 
 - type: entity
-  parent: UnsensoredClothingUniformBase # Starlight, major contra -> minor contra
+  parent: UnsensoredClothingUniformBase # Blimpuf, major contra -> minor contra
   id: ClothingUniformJumpsuitPyjamaSyndicateRed
   name: red syndicate pyjamas
   description: For those long nights in perma.
@@ -817,7 +817,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/capformal.rsi
 
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingUniformBase ]
+  parent: [ BaseCentcommContraband, ClothingUniformBase ] # Blimpuf
   id: ClothingUniformJumpsuitCentcomFormal
   name: central command formal suit
   description: A suit for special occasions.

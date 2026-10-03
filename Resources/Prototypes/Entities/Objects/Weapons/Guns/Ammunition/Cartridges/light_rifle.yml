@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ BaseContrabandTier3, BaseCartridge, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseCartridge, BaseSecurityContraband ] # Blimpuf
   id: BaseCartridgeLightRifleSP
   name: cartridge (.30 rifle SP)
   components:
