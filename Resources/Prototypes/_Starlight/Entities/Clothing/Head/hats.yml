@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingHeadBase, BaseCommandContraband]
+  parent: [ClothingHeadBase, BaseNanoTrasenContraband]
   id: ClothingHeadHatCapNtrep
   name: nt representative cap
   description: The cap of justice over command!
@@ -959,7 +959,7 @@
       sprite: _Starlight/Clothing/Head/Hats/red_regalia.rsi
 
 - type: entity
-  parent: [ClothingHeadBase, BaseCommandContraband]
+  parent: [ClothingHeadBase, BaseNanoTrasenContraband]
   id: ClothingHeadHatBeretNCTBlack
   name: nt career trainer's beret
   description: A beret worn by the mentors and trainers of the Career Training Team. This one is black!
@@ -980,7 +980,7 @@
       sprite: _Starlight/Clothing/Head/Hats/beret_nct_green.rsi
 
 - type: entity
-  parent: [ClothingHeadBaseSummer, BaseCommandContraband]
+  parent: [ClothingHeadBaseSummer, BaseNanoTrasenContraband]
   id: ClothingHeadHatDrilltrainer
   name: campaign hat
   description: A wide-brimmed campaign hat with a drill sergeant feel, worn by Career Trainers to project knowledge and guide new employees with classic style.
@@ -1139,7 +1139,7 @@
         - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHeadBase, BaseCommandContraband]
+  parent: [ClothingHeadBase, BaseNanoTrasenContraband]
   id: ClothingHeadHatBeretMagistrate
   name: magistrate's beret
   description: A beret for when a wig really doesn't cut it.
@@ -1156,7 +1156,7 @@
         - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHeadBase, BaseCommandContraband]
+  parent: [ClothingHeadBase, BaseNanoTrasenContraband]
   id: ClothingHeadHatBeretNTR
   name: nanotrasen representative's beret
   description: A decorated beret awarded to the best paperpushers in NT.

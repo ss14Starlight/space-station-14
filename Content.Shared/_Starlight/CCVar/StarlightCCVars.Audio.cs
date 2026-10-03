@@ -5,6 +5,12 @@ namespace Content.Shared._Starlight.CCVar;
 public sealed partial class StarlightCCVars
 {
     /// <summary>
+    /// Self-explanatory
+    /// </summary>
+    public static readonly CVarDef<float> StationRadioVolume =
+        CVarDef.Create("audio.station_radio_volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// Continuous station / maintenance / atmospherics hum (ambientLoop prototypes).
     /// </summary>
     public static readonly CVarDef<float> StationHumVolume =

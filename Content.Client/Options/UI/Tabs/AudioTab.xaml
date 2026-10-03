@@ -19,6 +19,7 @@
                 <BoxContainer Orientation="Vertical" Margin="0 3 0 8">
                     <ui:OptionSlider Name="SliderVolumeAmbientMusic" Title="{Loc 'ui-options-ambient-music-volume'}" />
                     <ui:OptionSlider Name="SliderVolumeLobby" Title="{Loc 'ui-options-lobby-volume'}" />
+                    <ui:OptionSlider Name="SliderMusicRadio" Title="{Loc 'ui-options-radio-music-volume'}"/>
                 </BoxContainer>
 
                 <Label Text="{Loc 'ui-options-environment-label'}"
