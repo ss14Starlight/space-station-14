@@ -61,32 +61,33 @@ public sealed partial class ContainerSpawnPointSystem : EntitySystem
         var query = EntityQueryEnumerator<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>();
         var possibleContainers = new List<Entity<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>>();
 
+        //starlight-start
+        var spawnPriority = -1;
+
         while (query.MoveNext(out var uid, out var spawnPoint, out var container, out var xform))
         {
-            if (args.Station != null && _station.GetOwningStation(uid, xform) != args.Station)
+            if (spawnPoint.SpawnType != SpawnPointType.Unset &&
+                (_gameTicker.RunLevel == GameRunLevel.InRound
+                    ? spawnPoint.SpawnType != SpawnPointType.LateJoin
+                    : spawnPoint.SpawnType != SpawnPointType.Job))
                 continue;
 
-            // If it's unset, then we allow it to be used for both roundstart and midround joins
-            if (spawnPoint.SpawnType == SpawnPointType.Unset)
-            {
-                // make sure we also check the job here for various reasons.
-                if (spawnPoint.Job == null || spawnPoint.Job == args.Job)
-                    possibleContainers.Add((uid, spawnPoint, container, xform));
+            if (!IsJobAllowed(spawnPoint, args.Job))
                 continue;
+
+            var priority = GetSpawnPriority(spawnPoint);
+
+            if (priority > spawnPriority)
+
+            {
+                possibleContainers.Clear();
+                spawnPriority = priority;
             }
 
-            if (_gameTicker.RunLevel == GameRunLevel.InRound && spawnPoint.SpawnType == SpawnPointType.LateJoin)
-            {
+            if (priority == spawnPriority)
                 possibleContainers.Add((uid, spawnPoint, container, xform));
-            }
-
-            if (_gameTicker.RunLevel != GameRunLevel.InRound &&
-                spawnPoint.SpawnType == SpawnPointType.Job &&
-                (args.Job == null || spawnPoint.Job == args.Job))
-            {
-                possibleContainers.Add((uid, spawnPoint, container, xform));
-            }
         }
+        // Starlight-end
 
         if (possibleContainers.Count == 0)
             return;
