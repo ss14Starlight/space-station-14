@@ -1,0 +1,27 @@
+# Head
+- type: loadout
+  id: GunnerySergeantDrillHat
+  equipment:
+    head: ClothingHeadHatSergeantDrillHat
+
+- type: loadout
+  id: GunnerySergeantBeret
+  equipment:
+    head: ClothingHeadHatBeretGunnerySergeant
+
+# Neck
+- type: loadout
+  id: GunnerySergeantCloak
+  equipment:
+    neck: ClothingNeckCloakGunnerySergeant
+
+- type: loadout
+  id: GunnerySergeantMantle
+  equipment:
+    neck: ClothingNeckMantleGunnerySergeant
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobGunnerySergeant
+      time: 108000 #30 hrs

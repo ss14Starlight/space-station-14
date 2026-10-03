@@ -129,6 +129,14 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconGunnerySergeant
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: GunnerySergeant
+  jobName: job-name-gunnerysergeant
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconPerformer
   icon:
     sprite: *starlight-job-icon-rsi
