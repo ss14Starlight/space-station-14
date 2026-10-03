@@ -2,7 +2,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes; // Starlight - Dehardcode Audio Params and Ash Prototype
 
-namespace Content.Shared._Goobstation.StationRadio.Components; // Starlight - _Goob -> _Goobstation
+namespace Content.Shared._Starlight.StationRadio.Components;
 
 /// <summary>
 /// Component that allows a vinyl disk to spawn a game rule when it finishes playing.

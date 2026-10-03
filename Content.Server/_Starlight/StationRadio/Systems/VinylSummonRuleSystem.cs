@@ -1,5 +1,5 @@
-using Content.Shared._Goobstation.StationRadio.Components; // Starlight - _Goob -> _Goobstation
-using Content.Shared._Goobstation.StationRadio.Events; // Starlight - _Goob -> _Goobstation
+using Content.Shared._Starlight.StationRadio.Components;
+using Content.Shared._Starlight.StationRadio.Events;
 using Content.Server.GameTicking;
 using Content.Server.Station.Systems;
 using Content.Shared.Communications;
@@ -15,10 +15,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
 using Content.Server.Chat.Systems;
-using Content.Shared._Goobstation.StationRadio.Systems;
-using Content.Shared._Starlight.StationRadio.Events;
 
-namespace Content.Server._Goobstation.StationRadio; // Starlight - _Goob -> _Goobstation
+namespace Content.Server._Starlight.StationRadio.Systems;
 
 /// <summary>
 /// System that handles spawning game rules when vinyl disks finish playing.
@@ -36,29 +34,21 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
     [Dependency] private ItemSlotsSystem _itemSlots = default!;
     [Dependency] private SharedPopupSystem _popups = default!;
     [Dependency] private ChatSystem _chat = default!;
-    [Dependency] private StationRadioReceiverSystem _stationRadio = default!; // Starlight - Station Radio Check oved to StationRadioReceiverSystem
+    [Dependency] private StationRadioReceiverSystem _stationRadio = default!;
 
     private record struct TrackingData(EntityUid VinylPlayerUid, TimeSpan EndTime);
     private readonly Dictionary<EntityUid, TrackingData> _trackingVinyls = new();
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<VinylPlayerComponent, VinylInsertedEvent>(OnVinylInserted);
-        SubscribeLocalEvent<VinylPlayerComponent, VinylRemovedEvent>(OnVinylRemoved);
-        SubscribeLocalEvent<VinylSummonRuleComponent, VinylFinishedEvent>(OnVinylFinished);//Starlight: Eventify vinyl finishing.
-    }
-
+    [SubscribeLocalEvent]
     private void OnVinylInserted(EntityUid uid, VinylPlayerComponent player, ref VinylInsertedEvent args)
     {
         var playerUid = uid;
         var vinylUid = args.Vinyl;
 
-        void QueueSafeEject() => Timer.Spawn(0, () => EjectVinyl(playerUid, vinylUid)); //starlight edit: one-liner, and moved above the Validation
+        void QueueSafeEject() => Timer.Spawn(0, () => EjectVinyl(playerUid, vinylUid));
 
         // Check if the inserted entity has the summon rule component / A song
-        if (!TryComp<VinylComponent>(vinylUid, out var vinylComp) //starlight edit: Track any vinyl playing.
+        if (!TryComp<VinylComponent>(vinylUid, out var vinylComp)
             || vinylComp.Song == null)
         {
             QueueSafeEject();
@@ -98,13 +88,14 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
         _trackingVinyls[vinylUid] = new TrackingData(playerUid, endTime);
     }
 
+    [SubscribeLocalEvent]
     private void OnVinylRemoved(EntityUid uid, VinylPlayerComponent player, ref VinylRemovedEvent args)
     {
         // Stop tracking if the vinyl is removed
         _trackingVinyls.Remove(args.Vinyl);
     }
 
-    public override void Update(float frameTime)
+    public override void Update(float frameTime) //TODO Pretty sure most of this can be checked once in OnVinylFinished
     {
         base.Update(frameTime);
 
@@ -139,7 +130,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
             }
 
             // Check if vinyl player is still connected to the radio system
-            if (!_stationRadio.TryGetLinkedPoweredServer(data.VinylPlayerUid, out _)) // Starlight - Station Radio Check oved to StationRadioReceiverSystem
+            if (!_stationRadio.TryGetPoweredGridServer(data.VinylPlayerUid, out _))
             {
                 _trackingVinyls.Remove(vinylUid);
                 _popups.PopupPredicted(Loc.GetString("vinyl-popout-no-radio-connection"), data.VinylPlayerUid, null, PopupType.Medium);
@@ -150,10 +141,8 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
             // Check if playback has finished
             if (currentTime >= data.EndTime)
             {
-                #region Starlight lets just... make this a event?
                 var ev = new VinylFinishedEvent(data.VinylPlayerUid);
                 RaiseLocalEvent(vinylUid, ref ev);
-                #endregion
                 _trackingVinyls.Remove(vinylUid);
             }
         }
@@ -175,7 +164,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
             }
     }
 
-    #region Starlight: Eventify Vinyl finishing.
+    [SubscribeLocalEvent]
     private void OnVinylFinished(Entity<VinylSummonRuleComponent> entity, ref VinylFinishedEvent _)
     {
         // Resolve the game rule ID and get the threat prototype if available
@@ -198,14 +187,13 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
             _containers.Remove(entity.Owner, container);
 
         // Play sound effect
-        _audio.PlayPvs(entity.Comp.BurnSound, vinylCoords, entity.Comp.BurnSoundParams);  // Starlight - Dehardcode BurnSoundParams
+        _audio.PlayPvs(entity.Comp.BurnSound, vinylCoords, entity.Comp.BurnSoundParams);
 
         // Spawn ash at the vinyl's location
-        Spawn(entity.Comp.AshPrototype, vinylCoords); // Starlight - Dehardcode ash prototype
+        Spawn(entity.Comp.AshPrototype, vinylCoords);
 
         // Delete the vinyl
         QueueDel(entity);
-        #endregion
     }
 
     private string? ResolveGameRule(string gameRuleIdentifier, out NinjaHackingThreatPrototype? threat)

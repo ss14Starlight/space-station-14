@@ -1,4 +1,4 @@
-namespace Content.Shared._Goobstation.StationRadio.Events; // Starlight - _Goob -> _Goobstation
+namespace Content.Shared._Starlight.StationRadio.Events;
 
 /// <summary>
 /// Raised on a vinyl player when a vinyl is inserted and starts playing.
