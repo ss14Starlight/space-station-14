@@ -42,7 +42,6 @@ MagazinePistol: MagazinePistolSP
 # 2025-09-02
 PosterContrabandRouny: RandomPosterLegit
 SpeedLoaderMagnum: SpeedLoaderMagnumBasic
-WeaponShotgunEnforcerRubber: WeaponShotgunEnforcer
 MagazineBoxMagnum: MagazineBoxMagnumSP
 CartridgeMagnum: CartridgeMagnumSP
 CartridgePistol: CartridgePistolSP
@@ -413,3 +412,6 @@ AirlockNrepLocked: AirlockNTLocked
 AirlockNtrepGlassLocked: AirlockNTGlassLocked
 AirlockMaintNtrepLocked: AirlockMaintNTLocked
 DoorElectronicsNtrep: null
+
+#2026-10-03 - Revert the Enforcer -> Sentiel changes, which only changed one ID
+WeaponShotgunSentielRubber: WeaponShotgunEnforcerRubber
