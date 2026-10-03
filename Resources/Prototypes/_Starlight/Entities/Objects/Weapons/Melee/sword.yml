@@ -244,7 +244,7 @@
   name: ares
   parent: [ BaseSword, BaseSecurityContraband ]
   id: SwordAres
-  description: The combat sword "Ares" is a mono-molecular-edged blade. This highly engineered sword is made for close-quarter combat, befitting the cramped nature of Nanotrasen's stations.
+  description: The combat sword "Ares" is a mono-molecular-edged blade. This highly engineered sword is made for close-quarter combat, befitting the cramped nature of NanoTrasen's stations.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/ares.rsi
