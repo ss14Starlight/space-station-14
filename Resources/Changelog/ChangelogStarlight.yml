@@ -1,18 +1,4 @@
 Entries:
-- author: RedSpeeds
-  changes:
-  - message: Changed syndie baked weapons to inject poison on hit.
-    type: Tweak
-  id: 408685
-  time: '2026-09-18T08:55:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6172
-- author: STARLIGHT TEAM
-  changes:
-  - message: Added new vinyl "Cathode" by Beptol Corporation Acoustics.
-    type: Add
-  id: 408686
-  time: '2026-09-18T09:28:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6177
 - author: Caws
   changes:
   - message: Serpentcrest's population range has been adjusted so that it's a "regular" Alpha map. It had a very narrow pop range before (60 min ~ 150 max), making it rarely show up on both Alpha and Beta.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409084
   time: '2026-10-02T19:45:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6429
+- author: WNP78
+  changes:
+  - message: Fixed new redundant movement system not sending input while the incoming tick data is also lagging.
+    type: Fix
+  id: 409085
+  time: '2026-10-03T06:10:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6451
+- author: WNP78
+  changes:
+  - message: Fixed redundant movement system not sleeping properly (saves small amount of bandwidth).
+    type: Fix
+  id: 409086
+  time: '2026-10-03T06:10:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6451
 Order: -1
