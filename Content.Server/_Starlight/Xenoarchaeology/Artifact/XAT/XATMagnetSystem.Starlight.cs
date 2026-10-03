@@ -10,19 +10,38 @@ public sealed partial class XATMagnetSystem
 {
     private readonly HashSet<Entity<MagnetPickupComponent>> _magnetEntities = new();
 
-    partial void CheckActiveMagnets(Entity<XenoArtifactComponent> artifact, Entity<XATMagnetComponent, XenoArtifactNodeComponent> node)
+    public override void Update(float frameTime)
     {
-        var coords = Transform(artifact.Owner).Coordinates;
+        base.Update(frameTime);
+        CheckActiveMagnets();
+    }
 
-        _magnetEntities.Clear();
-        _lookup.GetEntitiesInRange(coords, node.Comp1.MagbootsRange, _magnetEntities);
-        foreach (var ent in _magnetEntities)
+    // Active magnetic inventories trigger the node too
+    private void CheckActiveMagnets()
+    {
+        var query = EntityQueryEnumerator<XATMagnetComponent, XenoArtifactNodeComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var node))
         {
-            if (!TryComp<ItemToggleComponent>(ent, out var itemToggle) || !itemToggle.Activated)
+            if (node.Attached == null)
                 continue;
 
-            Trigger(artifact, node);
-            break;
+            var artifact = _xenoArtifactQuery.Get(node.Attached.Value);
+
+            if (!CanTrigger(artifact, (uid, node)))
+                continue;
+
+            var coords = Transform(artifact.Owner).Coordinates;
+
+            _magnetEntities.Clear();
+            _lookup.GetEntitiesInRange(coords, comp.MagbootsRange, _magnetEntities);
+            foreach (var ent in _magnetEntities)
+            {
+                if (!TryComp<ItemToggleComponent>(ent, out var itemToggle) || !itemToggle.Activated)
+                    continue;
+
+                Trigger(artifact, (uid, comp, node));
+                break;
+            }
         }
     }
 }
