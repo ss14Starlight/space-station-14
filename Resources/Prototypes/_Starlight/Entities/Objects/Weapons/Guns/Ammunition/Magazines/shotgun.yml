@@ -17,7 +17,7 @@
       - ShellShotgunToz
     capacity: 2
     soundRack:
-      path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
+      path: /Audio/_Starlight/Weapons/Guns/Cock/cycle_bolt.ogg
   - type: Item
     size: Small
     inhandVisuals:
