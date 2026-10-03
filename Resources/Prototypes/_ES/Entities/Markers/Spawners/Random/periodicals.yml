@@ -58,7 +58,6 @@
       - MagazineConspiracy4
       - MagazineConspiracy5
       - MagazineConspiracy6
-      - MagazineCentCommPSO # Starlight Edit
 
 - type: entity
   parent: MarkerBase
@@ -105,7 +104,6 @@
       - MagazineEngineerNews
       - MagazineEngineerNews2
       - MagazineFirearms
-      - MagazineCentCommPSO # Starlight Edit
 
 - type: entity
   parent: MarkerBase
