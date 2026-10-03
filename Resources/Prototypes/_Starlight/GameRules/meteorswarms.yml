@@ -26,10 +26,10 @@
   components:
   - type: GameRule
   - type: BasicStationEventScheduler
-    minimumTimeUntilFirstEvent: 900 # 10 min
+    minimumTimeUntilFirstEvent: 600 # 10 min
     minMaxEventTiming:
       min: 300 # 5 min
-      max: 1200 # 20 min
+      max: 900 # 15 min
     scheduledGameRules: !type:NestedSelector
       tableId: RodStormEventsTable
 
