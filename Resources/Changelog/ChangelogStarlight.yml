@@ -1,13 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: Colossus Mindsink now transfers on gibbing.
-    type: Add
-  id: 408709
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: SirLutz
-  changes:
   - message: Plague doctor reduces zombie infection chance, Hat 5%, Mask 10%, Suit 20%, wearing all gives ~36% infection protection.
     type: Tweak
   id: 408710
@@ -2799,4 +2792,11 @@ Entries:
   id: 409108
   time: '2026-10-03T13:36:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6081
+- author: Rinary
+  changes:
+  - message: Added "prediction"(lag compensation) for shooting.
+    type: Add
+  id: 409109
+  time: '2026-10-03T13:56:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6346
 Order: -1
