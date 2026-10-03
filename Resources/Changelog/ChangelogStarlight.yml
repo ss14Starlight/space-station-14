@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Serpentcrest's minPlayers set to 50 (down from 60).
-    type: Tweak
-  id: 408693
-  time: '2026-09-18T09:54:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6182
-- author: Caws
-  changes:
   - message: Serpentcrest's maxPlayers set to 350 (up from 150).
     type: Tweak
   id: 408694
@@ -2799,4 +2792,11 @@ Entries:
   id: 409092
   time: '2026-10-03T08:24:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6414
+- author: Johnny
+  changes:
+  - message: Changed the contra level of NT staff clothing, it is now legal for them to wear the clothes.
+    type: Tweak
+  id: 409093
+  time: '2026-10-03T08:57:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6450
 Order: -1
