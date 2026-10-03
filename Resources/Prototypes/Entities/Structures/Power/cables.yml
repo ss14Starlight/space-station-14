@@ -43,6 +43,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: SubFloorHide
+    subfloorLayer: LV # Starlight edit - Subfloor layers
   - type: Electrified
     onHandInteract: false
     onInteractUsing: false # wire-cutting handled separately.
@@ -107,6 +108,8 @@
     range: 2
     sound:
       path: /Audio/Ambience/Objects/emf_buzz.ogg
+  - type: SubFloorHide
+    subfloorLayer: HV # Starlight edit - Subfloor layers
 
 - type: entity
   id: CableHVUncuttable
@@ -161,6 +164,8 @@
   - type: CableVisualizer
     statePrefix: mvcable_
     extraLayerPrefix: mvstripes_
+  - type: SubFloorHide
+    subfloorLayer: MV # Starlight edit - Subfloor layers
 
 - type: entity
   id: CableMVUncuttable

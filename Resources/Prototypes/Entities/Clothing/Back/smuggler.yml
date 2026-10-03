@@ -4,6 +4,7 @@
   components:
   - type: Appearance
   - type: SubFloorHide
+    subfloorLayer: Other # Starlight edit - Subfloor layers
   - type: Anchorable
   - type: CollideOnAnchor
   - type: Transform

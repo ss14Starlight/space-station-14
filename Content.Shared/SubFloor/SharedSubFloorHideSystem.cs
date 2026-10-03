@@ -214,6 +214,7 @@ namespace Content.Shared.SubFloor
         protected sealed class ShowSubfloorRequestEvent : EntityEventArgs
         {
             public bool Value;
+            public int Layer; //Starlight
         }
     }
 
@@ -237,4 +238,20 @@ namespace Content.Shared.SubFloor
         FirstLayer, // Starlight
         SecondLayer // Starlight
     }
+
+    #region Starlight
+
+    [Flags, FlagsFor(typeof(VisibilityMask))]
+    public enum SubFloorVisibilityMask : int
+    {
+        None = 0,
+        Pipes = 1 << 0,
+        LV = 1 << 1,
+        MV = 1 << 2,
+        HV = 1 << 3,
+        Disposal = 1 << 4,
+        Other = 1 << 5,
+        All = Pipes | LV | MV | HV | Disposal | Other,
+    }
+    #endregion
 }

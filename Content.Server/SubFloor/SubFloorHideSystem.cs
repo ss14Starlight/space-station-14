@@ -11,7 +11,7 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private SharedEyeSystem _eye = default!;
 
-    private HashSet<ICommonSession> _showFloors = new();
+    private Dictionary<ICommonSession, int> _showFloors = new(); //Starlight edit - Subfloor layers
 
     public override void Initialize()
     {
@@ -38,7 +38,7 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
         if (!TryComp(ev.Entity, out ActorComponent? actor))
             return;
 
-        if (_showFloors.Contains(actor.PlayerSession))
+        if (_showFloors.ContainsKey(actor.PlayerSession))
         {
             ev.VisibilityMask |= (int)VisibilityFlags.Subfloor;
         }
@@ -52,14 +52,30 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
         if (!TryComp(ent, out EyeComponent? eyeComp))
             return;
 
+        //Starlight start - Subfloor layers
         if (ev.Value)
         {
-            _showFloors.Add(args.SenderSession);
+            if (_showFloors.ContainsKey(args.SenderSession))
+            {
+                _showFloors[args.SenderSession] |= ev.Layer;
+            }
+            else
+            {
+                _showFloors[args.SenderSession] = ev.Layer;
+            }
         }
         else
         {
-            _showFloors.Remove(args.SenderSession);
+            if (_showFloors.ContainsKey(args.SenderSession))
+            {
+                _showFloors[args.SenderSession] &= ~ev.Layer;
+                if (!ev.Value && ev.Layer == 0)
+                {
+                    _showFloors.Remove(args.SenderSession);
+                }
+            }
         }
+        //Starlight end - Subfloor layers
 
         _eye.RefreshVisibilityMask((ent.Value, eyeComp));
 

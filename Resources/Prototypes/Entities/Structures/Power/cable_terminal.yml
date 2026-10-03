@@ -33,6 +33,7 @@
       layer: 1
     - type: Appearance
     - type: SubFloorHide
+      subfloorLayer: [MV, HV] # Starlight edit - Subfloor layers
       blockAmbience: false
       blockInteractions: false
     - type: Construction

@@ -93,6 +93,8 @@
         type: ApcBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+      enum.SetupUiKey.Key: #Starlight
+        type: SetupMenuBoundUi #Starlight
   - type: ActivatableUI
     inHandsOnly: false
     key: enum.ApcUiKey.Key
@@ -155,6 +157,7 @@
     guides:
     - VoltageNetworks
     - Power
+  - type: Setup #Starlight edit
 
 # APC under construction
 - type: entity

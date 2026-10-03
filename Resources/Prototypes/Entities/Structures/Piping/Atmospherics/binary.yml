@@ -12,6 +12,7 @@
   #     - Unstackable
   # Carpmosia-end - Atmos stacking
   - type: SubFloorHide
+    subfloorLayer: Pipes # Starlight edit - Subfloor layers
     blockInteractions: false
     blockAmbience: false
   - type: NodeContainer
@@ -51,6 +52,7 @@
   - type: Transform
     noRot: false
   - type: SubFloorHide
+    subfloorLayer: Pipes # Starlight edit - Subfloor layers
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
   - type: Sprite
@@ -135,6 +137,7 @@
     - type: Transform
       noRot: false
     - type: SubFloorHide
+      subfloorLayer: Pipes # Starlight edit - Subfloor layers
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
@@ -216,6 +219,7 @@
   - type: Transform
     noRot: false
   - type: SubFloorHide
+    subfloorLayer: Pipes # Starlight edit - Subfloor layers
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
   - type: Sprite
@@ -282,6 +286,7 @@
     mode: AlignAtmosPipeLayers
   components:
     - type: SubFloorHide
+      subfloorLayer: Pipes # Starlight edit - Subfloor layers
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
@@ -333,6 +338,7 @@
   components:
     # TODO ATMOS: Give unique sprite.
     - type: SubFloorHide
+      subfloorLayer: Pipes # Starlight edit - Subfloor layers
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
@@ -402,6 +408,7 @@
   components:
   - type: StationAiWhitelist
   - type: SubFloorHide
+    subfloorLayer: Pipes # Starlight edit - Subfloor layers
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
   - type: Sprite
@@ -486,6 +493,7 @@
         - Unstackable
     # Carpmosia-end - Atmos stacking
     - type: SubFloorHide
+      subfloorLayer: Pipes # Starlight edit - Subfloor layers
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
@@ -542,6 +550,7 @@
     mode: AlignAtmosPipeLayers # starlight
   components:
     - type: SubFloorHide
+      subfloorLayer: Pipes # Starlight edit - Subfloor layers
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
@@ -729,6 +738,7 @@
     spriteRsiPaths: {}
     numberOfPipeLayers: 1
   - type: SubFloorHide
+    subfloorLayer: Pipes # Starlight edit - Subfloor layers
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
   - type: Appearance
@@ -764,6 +774,7 @@
   suffix: Bend
   components:
     - type: SubFloorHide
+      subfloorLayer: Pipes # Starlight edit - Subfloor layers
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite

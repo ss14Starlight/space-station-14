@@ -58,6 +58,8 @@
         type: AirAlarmBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+      enum.SetupUiKey.Key: #Starlight
+        type: SetupMenuBoundUi #Starlight
   - type: WiresPanel
   - type: Wires
     boardName: wires-board-name-airalarm
@@ -116,6 +118,7 @@
     delay: 2
     fx: EffectRCDDeconstruct2
     rpd: true
+  - type: Setup #Starlight
   # Starlight End: RPD
 
 - type: entity
