@@ -92,7 +92,7 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
         _netManager.Disconnect -= OnDisconnect;
     }
 
-    public override void Update(float frameTime)
+    public void SendPackets()
     {
         if (!_cfg.GetCVar(StarlightCCVars.RedundantMovementEnabled))
         {
