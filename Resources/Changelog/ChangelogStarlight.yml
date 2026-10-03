@@ -1,13 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: MalignStructure damagemodifierset and container so holy damage interacts.
-    type: Add
-  id: 408706
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: SirLutz
-  changes:
   - message: New icons for Metaphysical and Holy for medhud.
     type: Add
   id: 408707
@@ -2799,4 +2792,11 @@ Entries:
   id: 409105
   time: '2026-10-03T13:07:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6460
+- author: joshujo, redmushie
+  changes:
+  - message: Firelocks detect spacing and high temperature properly again.
+    type: Fix
+  id: 409106
+  time: '2026-10-03T13:07:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6459
 Order: -1
