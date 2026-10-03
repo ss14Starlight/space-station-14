@@ -423,8 +423,8 @@ namespace Content.Server.Atmos.EntitySystems
             var curTime = _timing.CurTime;
 
             // TODO: This needs cleanup to take off the crust from TemperatureComponent and shit.
-            var query = EntityQueryEnumerator<FlammableComponent>(); // Starlight-edit
-            while (query.MoveNext(out var uid, out var flammable))
+            var query = EntityQueryEnumerator<FlammableComponent, TransformComponent>();
+            while (query.MoveNext(out var uid, out var flammable, out _))
             {
                 if (curTime < flammable.NextUpdate)
                     continue;
