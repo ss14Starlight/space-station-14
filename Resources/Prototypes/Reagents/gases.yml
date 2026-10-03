@@ -62,7 +62,7 @@
         - !type:MetabolizerTypeCondition
           type: [ Vox ]
         ignoreResistances: true
-        maxScale: 16 # Starlight: Cap damage at ~20 per breath (inhale+exhale) to be sure there is time to respond.
+        maxScale: 28 # Starlight-edit: Cap Vox oxygen breathing damage at ~20 per breath (inhale+exhale) to be sure there is time to respond.
         damage:
           types:
             Poison: 0.7
