@@ -1282,7 +1282,7 @@
         factor: 2
       - !type:SatiateHunger
         factor: -2
-      # Starlight start, use Mixmax instead
+      # Starlight start, use Mixmax instead + no healing in crit
       - !type:HealthChange
         damage:
           mixmax:
@@ -1291,8 +1291,12 @@
             - Burn
             - Brute
             - Airloss
-            - Toxin
             - Genetic
+            types:
+            - Poison
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Alive
       # Starlight end
 
 - type: reagent
@@ -1908,22 +1912,20 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.06
-      - !type:EvenHealthChange
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Dwarf ]
-        damage:
-          Brute: -1
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
+        - !type:MobStateCondition # no healing in crit so that dedicated single damage type meds can still have a niche.
+          mobstate: Alive
         damage:
-          types:
-            Poison: -0.5
-            Heat: -0.33
-            Shock: -0.33
-            Cold: -0.33
+          mixmax:
+            value: -0.75
+            groups:
+            - Burn
+            - Brute
+            types:
+            - Poison
   # Starlight edit end
 
 - type: reagent

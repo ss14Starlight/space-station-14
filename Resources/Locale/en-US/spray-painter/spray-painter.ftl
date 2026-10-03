@@ -1,5 +1,4 @@
 # Components
-spray-painter-ammo-on-examine = It holds {$charges} charges.
 spray-painter-ammo-after-interact-full = The spray painter is full!
 spray-painter-ammo-after-interact-refilled = You refill the spray painter.
 
@@ -33,14 +32,6 @@ spray-painter-angle-rotation-reset = 0°
 spray-painter-angle-rotation-90-add = +90°
 
 spray-painter-selected-color = Selected color:
-spray-painter-color-red = red
-spray-painter-color-yellow = yellow
-spray-painter-color-brown = brown
-spray-painter-color-green = green
-spray-painter-color-cyan = cyan
-spray-painter-color-blue = blue
-spray-painter-color-white = white
-spray-painter-color-black = black
 
 # Categories (tabs)
 spray-painter-tab-category-airlocks = Airlocks
