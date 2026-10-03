@@ -466,7 +466,7 @@
         - LowImpassable
         layer:
         - BulletImpassable
-        - Opaque
+        #- Opaque Starlight-edit removing the Opaque tag so armory sentry turret projectiles pass through
         density: 75
         hard: True
         restitution: 0

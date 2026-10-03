@@ -2,6 +2,22 @@
   id: LockerBase
   parent: ClosetBase
   components:
+  # starlight-start
+  # Overriding lockers to not exist in the machine layer so armory sentry turret projectiles pass through them
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        density: 75
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+        - BulletImpassable
+  # starlight-end
   - type: AccessReader
   - type: Lock
     popupMessage: false # Starlight-edit
