@@ -1,7 +1,7 @@
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._Goobstation.StationRadio.Components; // Starlight - _Goob -> _Goobstation
+namespace Content.Shared._Starlight.StationRadio.Components;
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class VinylComponent : Component
