@@ -498,8 +498,13 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         // exceptional comps check
         // there's no foreach for types i believe so i gotta thug it out yandev style.
-        if (HasComp<HeadRevolutionaryComponent>(uid))
-            EnsureComp<HeadRevolutionaryComponent>(newEnt);
+        // Copy so the conversion blacklist/whitelist carry over.
+        if (TryComp<HeadRevolutionaryComponent>(uid, out var headRevComp))
+        {
+            var headRevCompCopy = _serialization.CreateCopy(headRevComp, notNullableOverride: true);
+            RemComp<HeadRevolutionaryComponent>(newEnt);
+            AddComp(newEnt, headRevCompCopy);
+        }
         if (HasComp<RevolutionaryComponent>(uid))
             EnsureComp<RevolutionaryComponent>(newEnt);
 
