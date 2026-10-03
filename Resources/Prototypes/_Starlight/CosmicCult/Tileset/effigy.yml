@@ -86,8 +86,8 @@
     entries:
     - settings:
         spawnOnPulse: true
-        minAmount: 1
-        maxAmount: 2
+        minAmount: 2
+        maxAmount: 3
         minRange: 3
         maxRange: 4.5
       spawns:
