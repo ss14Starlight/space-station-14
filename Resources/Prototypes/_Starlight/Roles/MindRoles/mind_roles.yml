@@ -188,3 +188,45 @@
     antagPrototype: Terminator
     subtype: role-subtype-terminator
   - type: TerminatorRole
+
+# Cosmic Cult
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleCosmicCult
+  name: Cosmic Cult Role
+  components:
+  - type: MindRole
+    antagPrototype: CosmicAntagCultist
+    subtype: role-subtype-cultist
+    exclusiveAntag: true
+    roleType: TeamAntagonist
+  - type: CosmicCultRole
+  - type: RoleBriefing
+    briefing: cosmiccult-role-short-briefing
+
+- type: entity
+  parent: MindRoleGhostRoleTeamAntagonist
+  id: MindRoleCosmicColossus
+  name: Colossus Role
+  components:
+  - type: MindRole
+    antagPrototype: CosmicAntagColossus
+    roleType: TeamAntagonist
+    subtype: role-subtype-colossus
+    exclusiveAntag: true
+  - type: CosmicColossusRole
+  - type: RoleBriefing
+    briefing: ghost-role-colossus-charactermenu
+
+- type: entity
+  parent: MindRoleGhostRoleTeamAntagonistFlock
+  id: MindRoleCosmicMinion
+  name: Cosmic Minion Role
+  components:
+  - type: MindRole
+    antagPrototype: CosmicAntagMinion
+    roleType: TeamAntagonist
+    subtype: role-subtype-cosmic-minion
+  - type: RoleBriefing
+    briefing: ghost-role-information-cosmic-minion-description

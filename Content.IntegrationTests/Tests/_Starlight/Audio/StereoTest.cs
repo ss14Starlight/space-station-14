@@ -50,6 +50,9 @@ public sealed class StereoTest : GameTest
             new ResPath("/Audio/_Starlight/CosmicCult/a_new_dawn.ogg"), // Global
             new ResPath("/Audio/_Starlight/CosmicCult/finale.ogg"), // Global
             new ResPath("/Audio/_Starlight/CosmicCult/premonition.ogg"), // Global
+            new ResPath("/Audio/_Starlight/Admeme/horror_announcement_cult_laugh.ogg"), // Global
+            new ResPath("/Audio/_Starlight/Admeme/horror_announcement_cult.ogg"), // Global
+            new ResPath("/Audio/_Starlight/Admeme/horror_announcement_cult_short.ogg"), // Global
         ];
 
     public List<ResPath> IgnoredPaths = [
