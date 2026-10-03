@@ -23,16 +23,18 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: Gun
-    minAngle: 6
+    minAngle: 0
     maxAngle: 22
-    angleIncrease: 4
-    angleDecay: 16
+    angleIncrease: 6
+    angleDecay: 20
+    movingMinAngle: 6
   - type: GunWieldBonus
     minAngle: 0
     maxAngle: 0
     minAngleDivider: 1.5
     maxAngleDivider: 1.5
-    angleIncreaseDivider: 1.5
+    angleIncreaseDivider: 2
+    angleDecayDivider: 0.6
 
 - type: !PartialOnly entity
   id: BaseWeaponPowerCellSmall
@@ -41,16 +43,18 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: Gun
-    minAngle: 6
+    minAngle: 0
     maxAngle: 22
-    angleIncrease: 4
-    angleDecay: 16
+    angleIncrease: 6
+    angleDecay: 20
+    movingMinAngle: 6
   - type: GunWieldBonus
     minAngle: 0
     maxAngle: 0
     minAngleDivider: 1.5
     maxAngleDivider: 1.5
-    angleIncreaseDivider: 1.5
+    angleIncreaseDivider: 2
+    angleDecayDivider: 0.6
 
 - type: !PartialOnly entity
   id: WeaponDisablerSMG

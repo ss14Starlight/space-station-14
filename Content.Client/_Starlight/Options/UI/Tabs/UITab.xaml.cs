@@ -77,6 +77,17 @@ public sealed partial class UITab : Control
         Control.AddOptionSlider(StarlightCCVars.RangedSightOffset, RangedSightOffsetSlider, 0, 100);
         Control.AddOptionCheckBox(StarlightCCVars.RangedSightRotation, RangedSightRotationCheckBox);
         Control.AddOptionCheckBox(StarlightCCVars.MeleeSightRotation, MeleeSightRotationCheckBox);
+        Control.AddOptionDropDown(
+            StarlightCCVars.HeldItemShowMode,
+            DropDownHeldItemShowMode,
+            [
+                new OptionDropDownCVar<int>.ValueOption((int) HeldItemShowMode.Always, Loc.GetString("ui-options-held-item-show-always")),
+                new OptionDropDownCVar<int>.ValueOption((int) HeldItemShowMode.CombatModeOnly, Loc.GetString("ui-options-held-item-show-combat")),
+                new OptionDropDownCVar<int>.ValueOption((int) HeldItemShowMode.OutsideCombatModeOnly, Loc.GetString("ui-options-held-item-show-outside-combat")),
+                new OptionDropDownCVar<int>.ValueOption((int) HeldItemShowMode.Never, Loc.GetString("ui-options-held-item-show-never")),
+            ]);
+        Control.AddOptionCheckBox(StarlightCCVars.SightShowBoltIndicator, SightBoltIndicatorCheckBox);
+        Control.AddOptionCheckBox(StarlightCCVars.SightShowJamIndicator, SightJamIndicatorCheckBox);
         Control.AddOptionColorSlider(StarlightCCVars.SightMainColor, SightMainColorSlider);
         Control.AddOptionColorSlider(StarlightCCVars.SightSecondColor, SightSecondColorSlider);
     }

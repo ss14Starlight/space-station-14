@@ -3,46 +3,52 @@
   parent: [ BaseItem, BaseGunWieldable ]
   components:
   - type: Gun
-    minAngle: 6
+    minAngle: 0
     maxAngle: 22
-    angleDecay: 16
-    angleIncrease: 4
+    angleDecay: 20
+    angleIncrease: 6
+    movingMinAngle: 6
   - type: GunWieldBonus
-    angleIncreaseDivider: 1.5
+    angleIncreaseDivider: 2
     minAngleDivider: 1.5
     maxAngleDivider: 1.5
     minAngle: 0
     maxAngle: 0
+    angleDecayDivider: 0.6
 
 - type: !PartialOnly entity
   id: WeaponPistolEchis
   components:
   - type: Gun
-    minAngle: 6
+    minAngle: 0
     maxAngle: 22
-    angleIncrease: 4
-    angleDecay: 16
+    angleIncrease: 6
+    angleDecay: 20
+    movingMinAngle: 6
 
 - type: !PartialOnly entity
   id: WeaponPistolCobra
   components:
   - type: Gun
-    minAngle: 7
+    minAngle: 0
     maxAngle: 24
-    angleIncrease: 5
-    angleDecay: 16
+    angleIncrease: 7
+    angleDecay: 20
+    movingMinAngle: 7
 
 - type: !PartialOnly entity
   id: WeaponPistolN1984
   components:
   - type: Gun
-    minAngle: 7
+    minAngle: 0
     maxAngle: 30
-    angleIncrease: 8
-    angleDecay: 18
+    angleIncrease: 10
+    angleDecay: 22
+    movingMinAngle: 7
   - type: GunWieldBonus
-    angleIncreaseDivider: 1.5
+    angleIncreaseDivider: 2
     minAngleDivider: 1.5
     maxAngleDivider: 1.4
     minAngle: 0
     maxAngle: 0
+    angleDecayDivider: 0.6

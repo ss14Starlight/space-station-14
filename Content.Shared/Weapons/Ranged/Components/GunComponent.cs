@@ -278,6 +278,9 @@ public sealed partial class GunComponent : Component
 
     [DataField]
     public float WalkSpreadModifier = 0.5f;
+
+    [DataField]
+    public Angle MovingMinAngle = Angle.Zero;
     #endregion
 }
 

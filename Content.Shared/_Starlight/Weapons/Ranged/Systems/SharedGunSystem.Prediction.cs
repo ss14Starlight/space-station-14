@@ -47,18 +47,11 @@ public abstract partial class SharedGunSystem
 
         var random = GetShotRandom(gun, SharedRandomExtensions.HashCodeCombine(PelletSalt, ammoIndex));
         var angles = new Angle[spread.Count];
-
-        var max = (float) spread.Deviation.Theta;
+        var sector = (end - start) / spread.Count;
 
         // Every pellet strays up to Deviation either way, but never leaves the spread cone.
         for (var i = 0; i < spread.Count; i++)
-        {
-            var theta = (start + ((end - start) * i / (spread.Count - 1))).Theta;
-#pragma warning disable CS0618
-            theta += random.NextFloat(-max, max);
-#pragma warning restore CS0618
-            angles[i] = new Angle(Math.Clamp(theta, start.Theta, end.Theta));
-        }
+            angles[i] = new Angle(start + (sector * (i + random.NextDouble())));
 
         return angles;
     }
