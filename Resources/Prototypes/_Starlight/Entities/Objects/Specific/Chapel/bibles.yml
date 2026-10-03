@@ -99,17 +99,6 @@
 
 - type: entity
   parent: Bible
-  name: malleus maleficarum
-  description: "The Hammer of Witches by Heinrich Kammer, a definitive guide to persecuting heresy (and also reclusive spinsters.)"
-  id: BibleMalleus
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Specific/Chapel/malleus.rsi
-  - type: Item
-    sprite: _Starlight/Objects/Specific/Chapel/malleus.rsi
-
-- type: entity
-  parent: Bible
   name: orthodox bible
   description: "A slightly worn-out copy of the Septuagint."
   id: BibleOrthodox
@@ -198,7 +187,7 @@
 
 - type: entity
   parent: Bible
-  name: satanic bible
+  name: satanic codex
   description: "What could possibly go wrong?"
   id: BibleSatanic
   components:
