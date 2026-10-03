@@ -120,7 +120,6 @@ public sealed partial class ContainerSpawnPointSystem : EntitySystem
     }
 }
 
-
 /// <summary>
 /// Raised on a container when a player is spawned into it.
 /// </summary>
