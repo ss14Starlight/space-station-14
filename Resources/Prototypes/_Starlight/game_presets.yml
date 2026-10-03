@@ -251,3 +251,21 @@
   - SpaceTrafficControlEventScheduler # No event/meteor schedulers, since we handle that in dynamic too.
   - BasicRoundstartVariation
   - RailroadingMinor
+
+- type: gamePreset
+  id: RodStorm
+  alias:
+  - rod
+  - rodstorm
+  name: rodstorm-title
+  showInVote: false # admin-only for now until we fix some bugs
+  description: rodstorm-description
+  minPlayers: 15
+  rules:
+  - RodStormEventScheduler
+  - MeteorSwarmMildScheduler
+  - RailroadingMinor
+  - BasicStationEventScheduler
+  - BasicRoundstartVariation
+  - SpaceTrafficControlEventScheduler
+  - ThiefGamerule # something other than engineering trouble
