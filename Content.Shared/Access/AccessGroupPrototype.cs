@@ -1,5 +1,6 @@
 using Content.Shared.Access.Components;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Access;
 
@@ -30,6 +31,7 @@ public sealed partial class AccessGroupPrototype : IPrototype
         if (Name is { } name)
             return Loc.GetString(name);
 
-        return ID;
+        // Starlight-edit: fallback to a localized name by ID
+        return IoCManager.Resolve<ILocalizationManager>().TryGetString($"access-group-name-{CaseConversion.PascalToKebab(ID)}", out var localized) ? localized : ID;
     }
 }

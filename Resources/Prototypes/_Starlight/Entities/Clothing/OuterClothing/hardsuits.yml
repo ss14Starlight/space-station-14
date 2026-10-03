@@ -41,7 +41,7 @@
 
 #NTRep Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband]
+  parent: [ClothingOuterHardsuitBase, BaseNanoTrasenContraband]
   id: ClothingOuterHardsuitNtrep
   name: NanoTrasen representative hardsuit
   description: It used to be blue, but too many premium cigars turned it tobacco brown.
