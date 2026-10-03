@@ -67,7 +67,7 @@
 				<!--"Shelf"-->
 				<BoxContainer Name="Shelf" Orientation="Vertical">
 					<Button Name="EjectItem" Text="{Loc comp-nuclear-reactor-ui-eject-button}" />
-					<Label Name="ItemName" Text="empty" ClipText="True"/>
+					<Label Name="ItemName" Text="{Loc 'comp-nuclear-reactor-ui-empty'}" ClipText="True"/>
 				</BoxContainer>
 			</BoxContainer>
 

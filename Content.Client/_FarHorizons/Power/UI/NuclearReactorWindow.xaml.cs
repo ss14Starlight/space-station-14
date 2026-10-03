@@ -53,6 +53,8 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
     private int _targetX = 0;
     private int _targetY = 0;
+    private bool _hasItem;
+    private bool _hasTarget;
 
     public event Action<Vector2i>? ItemActionButtonPressed;
     public event Action? EjectButtonPressed;
@@ -141,7 +143,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
         Shelf.Visible = !_isMonitor;
 
-        ItemName.Text = msg.ItemName ?? Loc.GetString("comp-nuclear-reactor-ui-empty");
+        SetItemName(msg.ItemName);
     }
 
     public void SetEntity(EntityUid reactor, EntityUid? monitor = null)
@@ -347,11 +349,13 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         var vect = new Vector2i(_targetY,  _targetX);
         if(!_data.TryGetValue(vect, out var value))
         {
+            _hasTarget = false;
             TargetName.Text = Loc.GetString("comp-nuclear-reactor-ui-empty");
             TargetTemperatureGrid.Visible = TargetNRadiationGrid.Visible = TargetRadiationGrid.Visible = TargetSpentGrid.Visible = false;
             return;
         }
 
+        _hasTarget = true;
         TargetName.Text = value.PartName;
 
         TargetTemperatureGrid.Visible = value.Temperature > 0;
@@ -369,7 +373,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
     private void UpdateItemAction()
     {
-        if(ItemName.Text == "empty" == (TargetName.Text == "empty"))
+        if(_hasItem == _hasTarget)
         {
             ItemAction.Disabled = true;
             return;
@@ -377,7 +381,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         else
             ItemAction.Disabled = false;
 
-        ItemAction.Text = TargetName.Text != "empty"
+        ItemAction.Text = _hasTarget
             ? Loc.GetString("comp-nuclear-reactor-ui-remove-button")
             : Loc.GetString("comp-nuclear-reactor-ui-insert-button");
     }
@@ -399,7 +403,11 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         YDecrement.Disabled = _targetY <= 0;
     }
 
-    public void SetItemName(string? itemName) => ItemName.Text = itemName ?? "empty";
+    public void SetItemName(string? itemName)
+    {
+        _hasItem = itemName != null;
+        ItemName.Text = itemName ?? Loc.GetString("comp-nuclear-reactor-ui-empty");
+    }
 
     private static string FormatPower(float power) => Loc.GetString("comp-nuclear-reactor-ui-therm-format", ("power", power));
 

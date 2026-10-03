@@ -228,7 +228,7 @@ public abstract partial class SharedSurgerySystem
                 args.Invalid = StepInvalidReason.MissingTool;
 
                 if (reg.Component is ISurgeryToolComponent toolComp)
-                    args.Popup = Loc.GetString("surgery-popup-need-tool", ("tool", toolComp.ToolName));
+                    args.Popup = Loc.GetString("surgery-popup-need-tool", ("tool", Loc.GetString(toolComp.ToolName)));
 
                 return;
             }
@@ -237,7 +237,7 @@ public abstract partial class SharedSurgerySystem
                 args.Invalid = StepInvalidReason.DisabledTool;
 
                 if (reg.Component is ISurgeryToolComponent toolComp)
-                    args.Popup = Loc.GetString("surgery-popup-enable-tool", ("tool", toolComp.ToolName));
+                    args.Popup = Loc.GetString("surgery-popup-enable-tool", ("tool", Loc.GetString(toolComp.ToolName)));
 
                 return;
             }
@@ -250,7 +250,7 @@ public abstract partial class SharedSurgerySystem
             {
                 args.Invalid = StepInvalidReason.NotEnoughReagent;
                 if (reg.Component is ISurgeryToolComponent toolComp)
-                    args.Popup = Loc.GetString("surgery-popup-need-reagent", ("quantity", ent.Comp.ReagentQuantity), ("reagent", ent.Comp.ReagentId), ("tool", toolComp.ToolName));
+                    args.Popup = Loc.GetString("surgery-popup-need-reagent", ("quantity", ent.Comp.ReagentQuantity), ("reagent", ProtoMan.Index(ent.Comp.ReagentId.Value).LocalizedName), ("tool", Loc.GetString(toolComp.ToolName)));
                 return;
             }
 

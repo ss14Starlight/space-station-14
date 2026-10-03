@@ -239,13 +239,13 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
                 }
                 else
                 {
-                    revRift.PlacedBy = "Unknown";
+                    revRift.PlacedBy = null;
                     Log.Info("Revolutionary entity is null, nearby humanoid has no name");
                 }
             }
             else
             {
-                revRift.PlacedBy = "Unknown";
+                revRift.PlacedBy = null;
                 Log.Info("Revolutionary entity is null, no nearby humanoids found");
             }
         }
@@ -598,7 +598,7 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
 
         // Get the nearest beacon location
         var locationString = _navMap.GetNearestBeaconString((rift.Owner, xform));
-        var placedBy = rift.Comp.PlacedBy ?? "Unknown";
+        var placedBy = rift.Comp.PlacedBy ?? Loc.GetString("rev-supply-rift-unknown-placer");
         var message = Loc.GetString("rev-supply-rift-placed", ("location", locationString), ("name", placedBy));
         var sender = Loc.GetString("rev-supply-rift-sender");
 

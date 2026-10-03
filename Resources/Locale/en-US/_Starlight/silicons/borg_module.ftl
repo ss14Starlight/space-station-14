@@ -5,5 +5,5 @@ borg-type-medtak = [color= #660505]MedTak[/color] cyborgs
 
 lawboard-unknown-lawset = Unknown
 lawboard-examine-header = [color=cyan]An electronics board containing the [color=yellow]{ $lawset }[/color] lawset.[/color]
-    [color=orange]Uploaded Laws:[/color]
+    {"["}color=orange]Uploaded Laws:[/color]
 lawboard-examine-law = [color=lime]Law { $number }:[/color] [color=white]{ $law }[/color]
