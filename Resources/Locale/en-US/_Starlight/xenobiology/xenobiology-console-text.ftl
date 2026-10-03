@@ -43,3 +43,8 @@ xenobiology-console-mutation-potion-applied-failed-empty = No mutation potions s
 
 xenobiology-console-stabilizer-potion-applied = Applied a stabilizer potion to {$name}. It now has a mutation chance of {$chance}.
 xenobiology-console-stabilizer-potion-applied-failed-empty = No stabilizer potions stored. Try inserting one.
+
+slime-scanner-info = Name:{"\u0009"}[Bold]{ $name }[/Bold]
+    Nutrition:{"\u0009"}[Bold]{ $nutrition }[/Bold]
+    Mutation Chance:{"\u0009"}[Bold]{ $chance }%[/Bold]
+xenobiology-camera-tagger-connected = Connected camera to the Xenobiology Console network.

@@ -462,7 +462,7 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         if (proposal.VetoSchemes.Count > 0)
         {
             var vetoHeader = new RichTextLabel();
-            vetoHeader.SetMessage(FormattedMessage.FromMarkupOrThrow("[bold]Veto[/bold]"));
+            vetoHeader.SetMessage(FormattedMessage.FromMarkupOrThrow($"[bold]{Loc.GetString("secure-terminal-ui-veto")}[/bold]"));
             AuthorizerListContainer.AddChild(vetoHeader);
             AddSchemeStates(proposal.VetoSchemes);
         }

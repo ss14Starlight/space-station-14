@@ -115,7 +115,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         ReactorTempBar.Value = msg.ReactorTemp;
         _temperatureBar.BackgroundColor = GetColor(Atmospherics.T20C, ReactorTempBar.MaxValue * 0.75, msg.ReactorTemp);
 
-        ReactorRadsValue.Text = msg.ReactorRads <= msg.ReactorRadsMax ? Math.Round(msg.ReactorRads, 1).ToString() : "OVERLOAD";
+        ReactorRadsValue.Text = msg.ReactorRads <= msg.ReactorRadsMax ? Math.Round(msg.ReactorRads, 1).ToString() : Loc.GetString("comp-nuclear-reactor-ui-overload");
         ReactorRadsBar.Value = msg.ReactorRads;
         _radiationBar.BackgroundColor = GetColor(0, ReactorRadsBar.MaxValue * 0.5, msg.ReactorRads);
 
@@ -141,7 +141,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
         Shelf.Visible = !_isMonitor;
 
-        ItemName.Text = msg.ItemName ?? "empty";
+        ItemName.Text = msg.ItemName ?? Loc.GetString("comp-nuclear-reactor-ui-empty");
     }
 
     public void SetEntity(EntityUid reactor, EntityUid? monitor = null)
@@ -249,7 +249,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
                     : Color.Black;
 
                 _reactorButton[vect].ToolTip = exists && (_data[vect].SpentFuel > 0 || _data[vect].Radioactivity > 0 || _data[vect].NeutronRadioactivity > 0)
-                    ? "Fuel Level: " + (int)Math.Round(GetFuelLevel(_data[vect]) * 100) + "%"
+                    ? Loc.GetString("comp-nuclear-reactor-ui-fuel-level", ("level", (int)Math.Round(GetFuelLevel(_data[vect]) * 100)))
                     : "";
             }
         }
@@ -347,7 +347,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         var vect = new Vector2i(_targetY,  _targetX);
         if(!_data.TryGetValue(vect, out var value))
         {
-            TargetName.Text = "empty";
+            TargetName.Text = Loc.GetString("comp-nuclear-reactor-ui-empty");
             TargetTemperatureGrid.Visible = TargetNRadiationGrid.Visible = TargetRadiationGrid.Visible = TargetSpentGrid.Visible = false;
             return;
         }

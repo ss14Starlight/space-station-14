@@ -96,7 +96,7 @@ public sealed partial class NCTTerminalSystem : EntitySystem
                 ("fontSize", speech.FontSize),
                 ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
                 ("channel", $"\\[CentComm\\]"),
-                ("name", $"[icon src=\"JobIconNanotrasenCareerTrainer\" tooltip=\"NCT Dispatch\"] NCT Dispatch"),
+                ("name", $"[icon src=\"JobIconNanotrasenCareerTrainer\" tooltip=\"{Loc.GetString("nctterminal-title")}\"] {Loc.GetString("nctterminal-title")}"),
                 ("message", message));
 
         var query = EntityQueryEnumerator<NCTAgentComponent>();

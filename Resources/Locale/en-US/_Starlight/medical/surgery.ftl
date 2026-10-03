@@ -1,2 +1,24 @@
 surgery-self = You can't perform surgery on yourself!
 surgery-hand-shook = Because of a careless tool, your hand shook. You need to start this step all over again!
+
+surgery-ui-window-title = Surgery
+surgery-ui-window-title-part = Surgery - { $part }
+surgery-ui-window-title-surgery = Surgery - { $part }, { $surgery }
+surgery-ui-parts-button = < Parts
+surgery-ui-surgeries-button = < Surgeries
+surgery-ui-steps-button = < Steps
+surgery-ui-requires = Requires: { $surgery }
+surgery-ui-step-needs-operating-table = (Needs operating table)
+surgery-ui-step-armor = (Remove their armor!)
+surgery-ui-step-missing-tool = (Missing tool)
+surgery-ui-step-disabled-tool = (Disabled Tool)
+surgery-ui-step-too-high = (Item Too High)
+surgery-ui-step-missing-reagent = (Missing Reagent)
+surgery-ui-step-cant-attach = (Can't attach as limb)
+surgery-ui-needs-lying-down = They need to be lying down!
+surgery-step-start-popup = { $surgeon } starts { $step }
+surgery-popup-remove-armor = You need to take off armor from patient to perform this step!
+surgery-popup-need-tool = You need { $tool } to perform this step!
+surgery-popup-enable-tool = You need enable { $tool } to perform this step!
+surgery-popup-need-reagent = You need at least { $quantity }u of { $reagent } in { $tool } to perform this step!
+surgery-popup-cant-attach = You can't attach { $item } as a limb!

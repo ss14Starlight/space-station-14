@@ -26,3 +26,6 @@ staff-help-admin-hint = For reporting issues with another player to an admin
 staff-help-admin = Admin Help
 staff-help-mentor-hint = For asking questions about the game
 staff-help-mentor = Mentor Help
+
+mentor-help-tag-admin = admin
+mentor-help-tag-mentor = mentor
