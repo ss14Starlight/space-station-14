@@ -521,8 +521,9 @@ public sealed partial class ZoneSystem
             topPriority = priority;
         }
 
+        // The corridor zone is a fallback, so plain hallway doors never override a zone the mapper drew.
         if (_majority.Count > 0)
-            return (GetZoneSet(_majority), true);
+            return (GetZoneSet(_majority), _majority.Count > 1 || !_majority.Contains(CorridorZone));
 
         _majority.Clear();
         foreach (var (zone, votes) in _zoneVotes)
