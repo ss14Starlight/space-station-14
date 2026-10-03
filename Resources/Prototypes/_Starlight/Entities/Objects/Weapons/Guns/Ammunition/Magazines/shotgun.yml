@@ -16,8 +16,6 @@
       tags:
       - ShellShotgunToz
     capacity: 2
-    soundRack:
-      path: /Audio/_Starlight/Weapons/Guns/Cock/cycle_bolt.ogg
   - type: Item
     size: Small
     inhandVisuals:
