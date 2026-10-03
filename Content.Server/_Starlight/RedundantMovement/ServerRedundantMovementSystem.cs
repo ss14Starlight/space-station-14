@@ -40,9 +40,9 @@ public sealed partial class ServerRedundantMovementManager : IServerRedundantMov
         if (!_trackers.TryGetValue(session, out var tracker))
             _trackers.Add(session, tracker = new());
 
-        tracker.Ingest(msg.TickData);
+        tracker.Ingest(msg.Sequence, msg.TickData);
 
-        _netManager.ServerSendMessage(new RedundantMovementAckMessage() { Tick = msg.SentTick }, msg.MsgChannel);
+        _netManager.ServerSendMessage(new RedundantMovementAckMessage() { Sequence = msg.Sequence }, msg.MsgChannel);
     }
 
     public void ApplyInput(GameTick tick, SLMoverController mover)
@@ -116,56 +116,81 @@ public sealed partial class ServerRedundantMovementManager : IServerRedundantMov
 
     public sealed class SessionTracker
     {
-        private readonly Queue<TickInputData> _queue = [];
-        private GameTick _mostRecentTick;
+        private readonly SortedDictionary<GameTick, (TickInputData Data, uint Sequence)> _pending = [];
+        private GameTick _lastAppliedTick;
+        private uint _appliedSequence;
+
+        private (uint Sequence, GameTick Tick, PackedMovementButtons Input)? _late;
 
         public MoveButtons MoveState { get; set; }
         public ShuttleButtons ShuttleState { get; set; }
 
-        public void Ingest(List<TickInputData> list)
+        public void Ingest(uint sequence, List<TickInputData> list)
         {
             foreach (var data in list)
             {
-                if (data.Tick > _mostRecentTick)
+                if (data.Tick <= _lastAppliedTick)
                 {
-                    _queue.Enqueue(data);
-                    _mostRecentTick = data.Tick;
+                    ConsiderLate(sequence, data.Tick, data.FinalInput);
+                    continue;
                 }
+
+                if (_pending.TryGetValue(data.Tick, out var existing) && existing.Sequence >= sequence)
+                    continue;
+
+                _pending[data.Tick] = (data, sequence);
             }
         }
 
+        private void ConsiderLate(uint sequence, GameTick tick, PackedMovementButtons input)
+        {
+            // redundant copies of what we already applied carry nothing new
+            if (sequence <= _appliedSequence)
+                return;
+
+            // every message covers the client's whole timeline, so the newest message's latest tick wins
+            if (_late is { } late && (late.Sequence > sequence || late.Sequence == sequence && late.Tick >= tick))
+                return;
+
+            _late = (sequence, tick, input);
+        }
+
         /// <summary>
-        /// Fetches input for <paramref name="tick"/>. Ticks that arrived too late are collapsed into
-        /// <paramref name="lateInput"/> (their final held buttons) instead of being dropped.
+        /// Fetches input for <paramref name="tick"/>. Input for ticks that already ran is collapsed into
+        /// <paramref name="lateInput"/> (the held buttons it ended on) instead of being dropped.
         /// </summary>
         public bool TryFetch(GameTick tick, out PackedMovementButtons? lateInput, out TickInputData? current)
         {
             lateInput = null;
             current = null;
 
-            // check the oldest packet we have
-            while (_queue.TryPeek(out var data))
+            // anything still queued for an earlier tick missed its slot
+            while (_pending.Count > 0)
             {
-                if (data.Tick < tick)
-                {
-                    // too old for its own tick, but still apply where the buttons ended up
-                    _queue.Dequeue();
-                    lateInput = data.FinalInput;
-                }
-                else if (data.Tick == tick)
-                {
-                    // if it's for our tick, remove and return it
-                    _queue.Dequeue();
-                    current = data;
+                using var enumerator = _pending.GetEnumerator();
+                enumerator.MoveNext();
+                var (oldTick, (oldData, oldSequence)) = enumerator.Current;
+                if (oldTick >= tick)
                     break;
-                }
-                else
-                {
-                    // if it's too new, then so are the rest
-                    break;
-                }
+
+                _pending.Remove(oldTick);
+                ConsiderLate(oldSequence, oldTick, oldData.FinalInput);
             }
 
+            if (_late is { } late)
+            {
+                lateInput = late.Input;
+                _appliedSequence = late.Sequence;
+                _late = null;
+            }
+
+            if (_pending.Remove(tick, out var entry))
+            {
+                current = entry.Data;
+                _appliedSequence = Math.Max(_appliedSequence, entry.Sequence);
+            }
+
+            _lastAppliedTick = tick;
             return lateInput != null || current != null;
         }
     }
