@@ -67,7 +67,7 @@
     - state: nano_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseCentcommContraband, BaseCommandContraband ] # Blimpuf
+  parent: [ EncryptionKey, BaseCentcommContraband, BaseCommandContraband, BaseNanoTrasenContraband ] # Starlight/Blimpuf
   id: EncryptionKeyStationMaster
   name: station master encryption key
   description: An encryption key used by station's bosses.
@@ -197,7 +197,7 @@
     - state: robotics_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseSecurityContraband, BaseLawContraband ] # Starlight
+  parent: [ EncryptionKey, BaseSecurityContraband, BaseInternalAffairsContraband ] # Starlight
   id: EncryptionKeySecurity
   name: security encryption key
   description: An encryption key used by security.

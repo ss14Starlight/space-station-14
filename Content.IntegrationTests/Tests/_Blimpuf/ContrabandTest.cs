@@ -9,6 +9,7 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Roles;
 using Content.Shared.Verbs;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -21,8 +22,8 @@ public sealed class ContrabandTest : GameTest
     private const string ClearanceTarget = "ContrabandClearanceTarget";
     private const string ReagentInheritanceChild = "ContrabandReagentInheritanceChild";
     private const string PrescriptionReagent = "ContrabandPrescriptionReagent";
-    private static readonly ProtoId<JobPrototype> ChemistJob = "Chemist";
-    private static readonly ProtoId<JobPrototype> DetectiveJob = "Detective";
+    private static readonly ProtoId<JobPrototype> _chemistJob = "Chemist";
+    private static readonly ProtoId<JobPrototype> _detectiveJob = "Detective";
 
     [TestPrototypes]
     private const string TestPrototypes = """
@@ -184,13 +185,13 @@ public sealed class ContrabandTest : GameTest
     }
 
     // Cover parent-order-sensitive equipment and the department-specific versions of shared items.
-    [TestCase("EncryptionKeyStationMaster", "Tier4", "CentralCommand", true, new[] { "Command", "CentralCommand" }, new string[0])]
+    [TestCase("EncryptionKeyStationMaster", "Tier4", "CentralCommand", true, new[] { "Command", "CentralCommand", "Representatives" }, new string[0])]
     [TestCase("WeaponEnergyShotgun", "Tier3", null, true, new[] { "Command" }, new[] { "Warden" })]
-    [TestCase("ClothingHandsMercGlovesCombat", "Tier2", null, false, new[] { "Engineering", "Security", "Command" }, new[] { "SalvageSpecialist", "SalvageLead", "MiningSpecialist" })]
+    [TestCase("ClothingHandsMercGlovesCombat", "Tier2", null, false, new[] { "Engineering", "Security", "Command", "ITG" }, new[] { "MiningSpecialist" })]
     [TestCase("EncryptionKeySecurity", "Tier1", null, false, new[] { "Security" }, new[] { "IAA" })]
     [TestCase("GreenLightShield", "Tier4", "CentralCommand", true, new[] { "CentralCommand" }, new string[0])]
-    [TestCase("BlueLightShield", "Tier3", "CentralCommand", false, new[] { "Representatives" }, new string[0])]
-    [TestCase("BoxFolderCentComClipboard", "Tier1", null, false, new[] { "Representatives", "CentralCommand" }, new string[0])]
+    [TestCase("BlueLightShield", "Tier3", "NanoTrasen", true, new string[0], new[] { "BlueShield" })]
+    [TestCase("BoxFolderCentComClipboard", "Tier1", "CentralCommand", false, new[] { "CentralCommand" }, new string[0])]
     public async Task EquipmentHasExpectedContrabandPermissions(
         string prototype, string tier, string type, bool detectable, string[] departments, string[] jobs)
     {
@@ -295,17 +296,17 @@ public sealed class ContrabandTest : GameTest
             var departmentUser = CSpawn(null);
             var departmentId = entMan.EnsureComponent<IdCardComponent>(departmentUser);
             departmentId.JobDepartments = ["Security"];
-            departmentId.LocalizedJobTitle = protoMan.Index(ChemistJob).LocalizedName;
+            departmentId.LocalizedJobTitle = protoMan.Index(_chemistJob).LocalizedName;
 
             var jobUser = CSpawn(null);
             var jobId = entMan.EnsureComponent<IdCardComponent>(jobUser);
             jobId.JobDepartments = ["Medical"];
-            jobId.LocalizedJobTitle = protoMan.Index(DetectiveJob).LocalizedName;
+            jobId.LocalizedJobTitle = protoMan.Index(_detectiveJob).LocalizedName;
 
             var mismatchedUser = CSpawn(null);
             var mismatchedId = entMan.EnsureComponent<IdCardComponent>(mismatchedUser);
             mismatchedId.JobDepartments = ["Medical"];
-            mismatchedId.LocalizedJobTitle = protoMan.Index(ChemistJob).LocalizedName;
+            mismatchedId.LocalizedJobTitle = protoMan.Index(_chemistJob).LocalizedName;
 
             AssertClearance(GetContrabandVerb(entMan, noIdUser, target), false);
             AssertClearance(GetContrabandVerb(entMan, departmentUser, target), true);
