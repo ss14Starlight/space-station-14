@@ -3,7 +3,7 @@ using Content.Shared.Roles;
 using Content.Shared.Spawners.Components;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Starlight.Spawners.Components;
+namespace Content.Server.Spawners.Components;
 
 public sealed partial class ContainerSpawnPointComponent
 
