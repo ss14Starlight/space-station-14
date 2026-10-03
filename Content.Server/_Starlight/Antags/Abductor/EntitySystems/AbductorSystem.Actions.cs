@@ -78,6 +78,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     private void OnReturn(AbductorReturnToShipEvent ev)
     {
         // Check if abductor is stunned or cuffed- if so, cancel the return
+
         if (HasComp<StunnedComponent>(ev.Performer))
         {
             _popup.PopupEntity(Loc.GetString("abductor-return-stunned"), ev.Performer, ev.Performer);

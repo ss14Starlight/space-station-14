@@ -9,3 +9,4 @@ abductor-gun-restricted-1 = They try to press the trigger guard, but the finger 
 
 abductor-return-stunned = You cannot return to the ship while stunned!
 abductor-return-cuffed = You cannot return to the ship while cuffed!
+
