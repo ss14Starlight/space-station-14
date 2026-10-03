@@ -40,7 +40,11 @@ public abstract partial class SharedFlatpackSystem : EntitySystem
     [Dependency] protected SharedAppearanceSystem Appearance = default!;
     [Dependency] protected SharedMaterialStorageSystem MaterialStorage = default!;
 
-    private static readonly ProtoId<TagPrototype> _flatpackBlacklistTag = "FlatpackBlacklist"; // Starlight
+    #region Starlight
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private TagSystem _tag = default!;
+    private static readonly ProtoId<TagPrototype> _flatpackBlacklistTag = "FlatpackBlacklist";
+    #endregion
 
     /// <inheritdoc/>
     public override void Initialize()

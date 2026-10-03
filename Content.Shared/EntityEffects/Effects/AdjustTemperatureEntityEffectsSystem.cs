@@ -29,8 +29,8 @@ public sealed partial class AdjustTemperature : EntityEffectBase<AdjustTemperatu
     [DataField]
     public float Amount;
 
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => Loc.GetString("entity-effect-guidebook-adjust-temperature",
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc)
+        => loc.GetString("entity-effect-guidebook-adjust-temperature",
             ("chance", Probability),
             ("deltasign", MathF.Sign(Amount)),
             ("amount", Amount));
