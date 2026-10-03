@@ -130,8 +130,9 @@ public sealed partial class LatchSystem : SharedLatchSystem
         if (!comp.Active || comp.Target is not { } target)
             return false;
 
-        // Can't bite through a wall.
-        if (comp.ObstructedSince != null)
+        // Can't bite a pinned target through a wall. ObstructedSince is only
+        // refreshed once per tick in Update, so recheck sight here as well.
+        if (comp.ObstructedSince != null || (IsPinnedTarget(target) && !HasLatchLineOfSight(uid, target)))
             return false;
 
         // Ratio of the bite's damage that got through armor.
@@ -557,6 +558,15 @@ public sealed partial class LatchSystem : SharedLatchSystem
     }
 
     /// <summary>
+    /// True if the target is held in place rather than slowed. Only pinned
+    /// targets are subject to the latch's line-of-sight rules.
+    /// </summary>
+    private bool IsPinnedTarget(EntityUid target)
+    {
+        return !TryComp<LatchedComponent>(target, out var latched) || latched.SpeedMultiplier <= 0f;
+    }
+
+    /// <summary>
     /// Per-tick upkeep: end conditions, DoT ticks, combat-mode enforcement.
     /// </summary>
     public override void Update(float frameTime)
@@ -614,8 +624,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
             // if the obstruction began right as the latch landed (an unlucky snap).
             // Slowed targets can still walk, so they're expected to fix this themselves:
             // the latch sticks and keeps biting.
-            var pinned = !TryComp<LatchedComponent>(target, out var latched) || latched.SpeedMultiplier <= 0f;
-            if (pinned && !HasLatchLineOfSight(uid, target))
+            if (IsPinnedTarget(target) && !HasLatchLineOfSight(uid, target))
             {
                 comp.ObstructedSince ??= now;
                 if (now - comp.ObstructedSince.Value >= comp.ObstructionBreakDelay)
