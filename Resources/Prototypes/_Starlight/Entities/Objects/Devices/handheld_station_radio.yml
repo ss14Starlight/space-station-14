@@ -1,0 +1,79 @@
+- type: entity
+  name: handheld station radio
+  description: Listen to those sweet tunes, on the go!
+  parent: BaseItem # Can't inherit RadioHandheld because this needs to not inherit the microphone
+  id: RadioHandheldStation
+  components:
+    - type: TelecomExempt
+    - type: Tag
+      tags:
+        - Radio
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/handheld_station_radio.rsi
+      layers:
+        - state: handradio-off
+          map: ["enum.ToggleableVisuals.Layer"]
+        - state: unlit
+          shader: unshaded
+          visible: false
+          map: ["enum.LightLayers.Unshaded"]
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.ToggleableVisuals.Enabled:
+          enum.ToggleableVisuals.Layer:
+            True: { state: handradio-on }
+            False: { state: handradio-off }
+          enum.LightLayers.Unshaded:
+            True: { visible: true }
+            False: { visible: false }
+    - type: Item
+      sprite: _Starlight/Objects/Devices/handheld_station_radio.rsi
+      heldPrefix: handradio
+      size: Tiny
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellSmall
+          blacklist:
+            tags:
+              - MechReactor
+    - type: ToggleCellDraw
+    - type: PowerCellDraw
+      drawRate: 0.2
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+    - type: RadioSpeaker
+      enabled: false
+      channels:
+        - RadioShow
+    - type: Speech
+      speechVerb: Radio
+    - type: ActiveRadio
+      channels:
+        - RadioShow
+    - type: ItemToggle
+    - type: StationRadioReceiver
+      active: false
+      defaultParams: !type:AudioParams
+        maxDistance: 2
+        volume: 1.5
+
+- type: entity
+  name: handheld station radio
+  description: Listen to those sweet tunes, on the go!
+  parent: RadioHandheldStation
+  id: RadioHandheldStationEmpty
+  suffix: empty
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          blacklist:
+            tags:
+              - MechReactor
