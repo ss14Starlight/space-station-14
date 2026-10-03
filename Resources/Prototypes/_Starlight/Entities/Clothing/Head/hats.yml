@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingHeadBase, BaseCommandContraband]
+  parent: [ClothingHeadBase, BaseNanoTrasenContraband]
   id: ClothingHeadHatCapNtrep
   name: nt representative cap
   description: The cap of justice over command!
@@ -980,7 +980,7 @@
       sprite: _Starlight/Clothing/Head/Hats/beret_nct_green.rsi
 
 - type: entity
-  parent: [ClothingHeadBaseSummer, BaseCommandContraband]
+  parent: [ClothingHeadBaseSummer, BaseNanoTrasenContraband]
   id: ClothingHeadHatDrilltrainer
   name: campaign hat
   description: A wide-brimmed campaign hat with a drill sergeant feel, worn by Career Trainers to project knowledge and guide new employees with classic style.
