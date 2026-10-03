@@ -18,6 +18,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Mech.Components;
 using Robust.Server.GameObjects;
+using Robust.Shared.Random;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
