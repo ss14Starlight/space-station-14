@@ -160,12 +160,14 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
 
         GetOrAdd(first, sequence).Changes.Add(change);
 
+        var input = change.HeldButtons;
         for (var t = first; t <= _lastSentTick; t += 1)
         {
             var entry = GetOrAdd(t, sequence);
-            entry.FinalInput = change.HeldButtons;
             if (t != first)
-                entry.Changes.Clear();
+                foreach (var laterChange in entry.Changes)
+                    input = laterChange.HeldButtons;
+            entry.FinalInput = input;
         }
     }
 
