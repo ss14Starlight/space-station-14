@@ -1,7 +1,4 @@
 
-chat-manager-sender-announcement-wrap-message = [font size=14][bold]{$sender} Announcement[/font][font size=12]
-                                                {$message}[/bold][/font]
-
 chat-manager-send-ooc-wrap-message = OOC: [bold]{$playerTitle} [color={$nameColor}]{$playerName}:[/color] [color={$messageColor}]{$message}[/color][/bold]
 
 chat-speech-verb-name-felionoid = Felionoid
