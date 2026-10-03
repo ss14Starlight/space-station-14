@@ -19,10 +19,10 @@
         Piercing: 25
 
 - type: entity
-  name: tactical spear "Athena"
+  name: athena
   parent: [Spear, BaseSecurityContraband]
   id: SpearAthena
-  description: Impressed by a crewmember managing to kill their bodyguard with a spear, a CentCom official commissioned the “Athena” tactical spear for their security forces.
+  description: Impressed by a crewmember managing to kill their bodyguard with a spear, a CentComm official commissioned the “Athena” tactical spear for their security forces.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/athena.rsi

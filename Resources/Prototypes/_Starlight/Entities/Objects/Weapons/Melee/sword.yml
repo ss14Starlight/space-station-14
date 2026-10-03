@@ -175,7 +175,7 @@
     attackRate: 0.75
     damage:
       types:
-        Slash: 30
+        Slash: 20
         Structural: 10
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
@@ -241,7 +241,7 @@
       allowedJobs: [ Chaplain ]
 
 - type: entity
-  name: short sword "Ares"
+  name: ares
   parent: [ BaseSword, BaseSecurityContraband ]
   id: SwordAres
   description: The combat sword "Ares" is a mono-molecular-edged blade. This highly engineered sword is made for close-quarter combat, befitting the cramped nature of Nanotrasen's stations.

@@ -203,23 +203,3 @@
       sprite: _Starlight/Clothing/Shoes/Boots/whiteankleboots.rsi
     - type: Sprite
       sprite: _Starlight/Clothing/Shoes/Boots/whiteankleboots.rsi
-
-- type: entity
-  parent: [ClothingShoesMilitaryBase, BaseSecurityContraband]
-  id: ClothingShoesSpikedBoots
-  name: spiked boots
-  description: Robust combat boots with metal spikes on the bottom to assure a strong grip.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Shoes/Boots/spikedshoes.rsi
-  - type: Clothing
-    equipDelay: 3
-    unequipDelay: 3
-    sprite: _Starlight/Clothing/Shoes/Boots/spikedshoes.rsi
-  - type: NoSlip
-  - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
-  - type: SpeedModifierContactCapClothing
-    maxContactSprintSlowdown: 0.8
-    maxContactWalkSlowdown: 0.8

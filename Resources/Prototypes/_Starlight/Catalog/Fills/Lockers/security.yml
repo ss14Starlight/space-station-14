@@ -190,7 +190,5 @@
           amount: 2
         - id: SwordAres
           amount: 2
-        - id: ClothingShoesSpikedBoots
-          amount: 4
         - id: RiotShield
           amount: 4
