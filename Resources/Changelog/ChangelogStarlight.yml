@@ -1,13 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: Plague doctor reduces zombie infection chance, Hat 5%, Mask 10%, Suit 20%, wearing all gives ~36% infection protection.
-    type: Tweak
-  id: 408710
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: SirLutz
-  changes:
   - message: Cerberus now uses the correct sounds for emotes, and not just the bark for everything.
     type: Add
   id: 408711
@@ -2799,4 +2792,11 @@ Entries:
   id: 409109
   time: '2026-10-03T13:56:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6346
+- author: Rinary
+  changes:
+  - message: Fixed movement lag(now real).
+    type: Fix
+  id: 409110
+  time: '2026-10-03T17:28:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6464
 Order: -1
