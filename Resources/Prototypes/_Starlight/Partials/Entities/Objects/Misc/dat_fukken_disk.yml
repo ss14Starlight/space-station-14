@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: NukeDisk
+  components:
+  - type: Tag
+    tags:
+    - FloppyDisk
+
+- type: !PartialOnly entity
+  id: NukeDiskFake
+  components:
+  - type: Tag
+    tags:
+    - FloppyDisk
