@@ -711,8 +711,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         var toMap = TransformSystem.ToMapCoordinates(toCoordinates).Position;
         var shotDirection = (toMap - fromMap).Normalized();
 
-        const float ImpulseStrength = 25.0f;
-        var impulseVector = shotDirection * ImpulseStrength;
+        const float impulseStrength = 25.0f;
+        var impulseVector = shotDirection * impulseStrength;
         Physics.ApplyLinearImpulse(user, -impulseVector, body: user.Comp);
     }
 

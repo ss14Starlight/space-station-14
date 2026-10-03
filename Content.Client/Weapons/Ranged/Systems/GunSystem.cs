@@ -143,9 +143,11 @@ public sealed partial class GunSystem : SharedGunSystem
     private void OnHitscan(HitscanEvent ev)
     {
         var delay = 0f;
+        // Starlight-start: Prediction
         var first = TryConsumePredictedHitscan(ev) ? 1 : 0;
         for (var i = first; i < ev.Traces.Count; i++)
             delay = FireEffect(ev, delay, ev.Traces[i]);
+        // Starlight-end
     }
 
     private float FireEffect(HitscanEvent visuals, float delay, HitscanTrace trace, PredictedHitscanEffects? predicted = null) // Starlight-edit
@@ -314,8 +316,11 @@ public sealed partial class GunSystem : SharedGunSystem
         var delta = targetWorldRot - _xform.GetWorldRotation(xform);
         _xform.SetLocalRotationNoLerp(ent, xform.LocalRotation + delta, xform);
 
+        // Starlight-start
         if (_sprite.TryGetLayer(spriteEnt, EffectLayers.Unshaded, out var unshaded, false))
             _sprite.LayerSetAutoAnimated(unshaded, false);
+        // Starlight-end
+
         _sprite.LayerSetSprite(spriteEnt, EffectLayers.Unshaded, rsi);
         _sprite.LayerSetRsiState(spriteEnt, EffectLayers.Unshaded, rsi.RsiState);
         if (travel)
@@ -326,7 +331,7 @@ public sealed partial class GunSystem : SharedGunSystem
         else
             _sprite.SetScale(spriteEnt, new Vector2(1f, 0.5f));
 
-        _sprite.LayerSetVisible(spriteEnt, EffectLayers.Unshaded, true);
+        _sprite.LayerSetVisible(spriteEnt, EffectLayers.Unshaded, true); // Starlight-edit
 
         var despawn = Comp<TimedDespawnComponent>(ent);
         despawn.Lifetime = (time / 1000) + 1000;
