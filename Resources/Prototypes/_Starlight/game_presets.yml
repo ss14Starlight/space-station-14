@@ -260,7 +260,7 @@
   name: rodstorm-title
   showInVote: false # admin-only for now until we fix some bugs
   description: rodstorm-description
-  minPlayers: 15
+  minPlayers: 20
   rules:
   - RodStormEventScheduler
   - MeteorSwarmMildScheduler
