@@ -1,6 +1,7 @@
 using Content.Client.Guidebook;
 using Content.Client.Lobby.UI;
 using Content.Client.Players.PlayTimeTracking;
+using Content.Shared._Starlight.Preferences;
 using Content.Shared.CCVar;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
@@ -13,6 +14,7 @@ using Robust.Client.State;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Configuration;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -38,6 +40,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     [Dependency] private JobRequirementsManager _requirements = default!;
     [Dependency] private MarkingManager _markings = default!;
     [UISystemDependency] private readonly GuidebookSystem _guide = default!;
+    [Dependency] private INetManager _net = null!; // Starlight
 
     private CharacterSetupGui? _characterSetup;
     private HumanoidProfileEditor? _profileEditor;
@@ -93,6 +96,8 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         _configurationManager.OnValueChanged(CCVars.GameRoleTimers, _ => RefreshEditors());
 
         _configurationManager.OnValueChanged(CCVars.GameRoleWhitelist, _ => RefreshEditors());
+
+        _net.RegisterNetMessage<MsgOpenPlayerCharacterSetup>(HandleOpenPlayerCharacterSetup);// Starlight
     }
 
     private LobbyCharacterPreviewPanel? GetLobbyPreview()
@@ -181,10 +186,10 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     /// <summary>
     /// Reloads every single character setup control.
     /// </summary>
-    public void ReloadCharacterSetup()
+    public void ReloadCharacterSetup(MsgOpenPlayerCharacterSetup? playerData = null) // Starlight edit
     {
         RefreshLobbyPreview();
-        var (characterGui, profileEditor) = EnsureGui();
+        var (characterGui, profileEditor) = EnsureGui(playerData); // Starlight edit
         characterGui.ReloadCharacterPickers();
         profileEditor.ResetToDefault();
         _jobPriorityEditor?.LoadJobPriorities();
@@ -213,16 +218,19 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     {
         if (_jobPriorityEditor == null)
             return;
-        SaveJobPriorities(_jobPriorityEditor.SelectedJobPriorities);
+        SaveJobPriorities(_jobPriorityEditor.SelectedJobPriorities, _jobPriorityEditor.PlayerDataOverride); // Starlight edit
     }
 
     /// <summary>
     /// Save job priorities locally and on the remote server, reload the character setup gui appropriately
     /// </summary>
     /// <param name="newJobPriorities"></param>
-    private void SaveJobPriorities(Dictionary<ProtoId<JobPrototype>, JobPriority> newJobPriorities)
+    private void SaveJobPriorities(Dictionary<ProtoId<JobPrototype>, JobPriority> newJobPriorities, MsgOpenPlayerCharacterSetup? playerData = null) // Starlight edit
     {
-        _preferencesManager.UpdateJobPriorities(newJobPriorities);
+        // Starlight begin
+        if (playerData is not null) _preferencesManager.UpdateJobPrioritiesForPrefs(newJobPriorities, playerData);
+        else _preferencesManager.UpdateJobPriorities(newJobPriorities);
+        // Starlight end
         OnAnyCharacterOrJobChange?.Invoke();
         _jobPriorityEditor?.LoadJobPriorities();
         var (characterGui, _) = EnsureGui();
@@ -237,10 +245,22 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
             return;
 
         var fixedProfile = EditedProfile.Clone();
-        if(_preferencesManager.Preferences!.TryGetHumanoidInSlot(EditedSlot.Value, out var humanoid))
-            fixedProfile = new HumanoidCharacterProfile(EditedProfile) { Enabled = humanoid.Enabled };
+        // Starlight begin
+        if (_characterSetup?.PlayerDataOverride is not null)
+        {
+            if(_characterSetup.PlayerDataOverride.Preferences.TryGetHumanoidInSlot(EditedSlot.Value, out var humanoid))
+                fixedProfile = new HumanoidCharacterProfile(EditedProfile) { Enabled = humanoid.Enabled };
+            _preferencesManager.UpdateCharacterForPrefs(fixedProfile, _characterSetup.PlayerDataOverride,
+                EditedSlot.Value);
+        }
+        else
+        {
+            if(_preferencesManager.Preferences!.TryGetHumanoidInSlot(EditedSlot.Value, out var humanoid))
+                fixedProfile = new HumanoidCharacterProfile(EditedProfile) { Enabled = humanoid.Enabled };
+            _preferencesManager.UpdateCharacter(fixedProfile, EditedSlot.Value);
+        }
+        // Starlight end
 
-        _preferencesManager.UpdateCharacter(fixedProfile, EditedSlot.Value);
         OnAnyCharacterOrJobChange?.Invoke();
         _profileEditor?.SetProfile(EditedSlot.Value);
         ReloadCharacterSetup();
@@ -265,69 +285,6 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         RefreshLobbyPreview();
     }
-    ///begin starlight
-    /// <summary>
-    /// Opens the character editor in its own window, we reuse the one from the lobby for the sake of simplicity.
-    /// </summary>
-    public void OpenCharacterSetupWindow()
-    {
-        // don't open it more than once.
-        if (_characterSetupWindow is { IsOpen: true } || _characterSetupPoppedOut) // Starlight: also block while popped out
-        {
-            _characterSetupWindow?.MoveToFront(); // Starlight
-            return;
-        }
-
-        var (characterGui, _) = EnsureGui();
-
-        // reload these, the lobby button does this so we do it aswell
-        characterGui.ReloadCharacterPickers();
-        _profileEditor?.ResetToDefault();
-        _jobPriorityEditor?.LoadJobPriorities();
-
-        // detach the gui from it's parent (Most of the time the lobby)
-        characterGui.Orphan();
-
-        var window = new CharacterSetupWindow(characterGui) // Starlight: pass the borrowed gui so it can be popped out
-        {
-            Title = Loc.GetString("ghost-gui-character-editor-button"),
-        };
-        window.MinSize = window.SetSize = new Vector2(1400, 700); // Might need adjusting but felt good to me
-
-        window.Contents.AddChild(characterGui);
-
-        // when the window closes, detach the gui from it so the gui isn't cleaned up with the window.
-        window.OnFinalClose += () =>
-        {
-            // Rescue the borrowed gui from being disposed with the window
-            var lobbyContainer = (_stateManager.CurrentState as LobbyState)?.Lobby?.CharacterSetupState;
-            if (characterGui.Parent != lobbyContainer)
-                characterGui.Orphan();
-
-            _characterSetupWindow = null;
-            _characterSetupPoppedOut = false;
-        };
-
-        // Starlight: once popped out the in-game window is gone, but keep the window ref so
-        // we can still teardown the window.
-        window.OnPopout += () => _characterSetupPoppedOut = true;
-
-        _characterSetupWindow = window;
-        window.OpenCentered();
-    }
-
-    // Starlight: Reworked to PopOutWindow for popout support
-    private sealed class CharacterSetupWindow : PopOutWindow
-    {
-        protected override Control Control { get; } // Starlight: content that moves into the desktop window on popout
-
-        public CharacterSetupWindow(Control content) // Starlight: take the content to pop out
-        {
-            Control = content; // Starlight
-            CloseButton.Visible = false;
-        }
-    }
-    // end starlight
 
     private void OpenSavePanel(Action saveAction)
     {
@@ -355,7 +312,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         _savePanel.OpenCentered();
     }
 
-    private (CharacterSetupGui, HumanoidProfileEditor) EnsureGui()
+    private (CharacterSetupGui, HumanoidProfileEditor) EnsureGui(MsgOpenPlayerCharacterSetup? playerData = null) // Starlight edit
     {
         if (_characterSetup != null && _profileEditor != null)
         {
@@ -387,15 +344,15 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
             _prototypeManager,
             _resourceCache,
             _requirements,
-            _markings);
+            _markings, playerData?.Preferences); // Starlight edit
 
-        _jobPriorityEditor = new JobPriorityEditor(_preferencesManager, _prototypeManager, _requirements);
+        _jobPriorityEditor = new JobPriorityEditor(_preferencesManager, _prototypeManager, _requirements, playerData); // Starlight edit
 
         _jobPriorityEditor.Save += SaveJobPriorities;
 
         _profileEditor.OnOpenGuidebook += _guide.OpenHelp;
 
-        _characterSetup = new CharacterSetupGui(_profileEditor, _jobPriorityEditor);
+        _characterSetup = new CharacterSetupGui(_profileEditor, _jobPriorityEditor, playerData); // Starlight edit
 
         _characterSetup.CloseButton.OnPressed += _ =>
         {
@@ -430,7 +387,10 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         _characterSetup.DeleteCharacter += args =>
         {
-            _preferencesManager.DeleteCharacter(args);
+            // Starlight begin
+            if (playerData is not null) _preferencesManager.DeleteCharacterForPrefs(args, playerData);
+            else _preferencesManager.DeleteCharacter(args);
+            // Starlight end
 
             // Reload everything
             if (EditedSlot == args)
@@ -446,7 +406,11 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         _characterSetup.SetCharacterEnable += args =>
         {
-            _preferencesManager.SetCharacterEnable(args.Item1, args.Item2);
+            // Starlight begin
+            if (playerData is not null)
+                _preferencesManager.SetCharacterEnableForPrefs(args.Item1, playerData, args.Item2);
+            else _preferencesManager.SetCharacterEnable(args.Item1, args.Item2);
+            // Starlight end
             OnAnyCharacterOrJobChange?.Invoke();
             _characterSetup?.ReloadCharacterPickers();
         };

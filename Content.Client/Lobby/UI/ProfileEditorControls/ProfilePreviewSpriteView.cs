@@ -18,6 +18,7 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
     private IPrototypeManager _prototypeManager = default!;
     private ISharedPlayerManager _playerManager = default!;
     private MetaDataSystem _metaDataSystem = default!;
+    private PlayerPreferences? _playerPrefsOverride = null!; // Starlight
 
     /// <summary>
     /// The name of the loaded profile
@@ -54,13 +55,14 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
     /// <param name="playerMan">Passed in dependency</param>
     public void Initialize(IClientPreferencesManager prefMan,
         IPrototypeManager protoMan,
-        ISharedPlayerManager playerMan)
+        ISharedPlayerManager playerMan, PlayerPreferences? playerPrefsOverride = null) // Starlight edit
     {
         _preferencesManager = prefMan;
         _prototypeManager = protoMan;
         _playerManager = playerMan;
         _metaDataSystem = EntMan.System<MetaDataSystem>();
 
+        _playerPrefsOverride = playerPrefsOverride; // Starlight
         Stretch = StretchMode.None; //starlight
     }
 

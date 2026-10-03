@@ -15,7 +15,7 @@ namespace Content.Shared.Preferences
     /// </summary>
     [Serializable]
     [NetSerializable]
-    public sealed class PlayerPreferences
+    public sealed partial class PlayerPreferences // Starlight edit
     {
         private Dictionary<int, HumanoidCharacterProfile> _characters;
 
