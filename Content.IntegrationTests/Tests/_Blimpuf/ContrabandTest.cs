@@ -27,75 +27,75 @@ public sealed class ContrabandTest : GameTest
 
     [TestPrototypes]
     private const string TestPrototypes = """
-        - type: entity
-          id: ContrabandAuthorizationParent
-          parent: BaseRestrictedContraband
-          abstract: true
-          components:
-          - type: Contraband
+        -   type: entity
+            id: ContrabandAuthorizationParent
+            parent: BaseRestrictedContraband
+            abstract: true
+            components:
+            -   type: Contraband
+                contrabandType: Syndicate
+                allowedDepartments: [ Security ]
+                allowedJobs: [ Detective ]
+
+        -   type: entity
+            id: ContrabandAdditionalAuthorizationParent
+            parent: BaseRestrictedContraband
+            abstract: true
+            components:
+            -   type: Contraband
+                allowedDepartments: [ Command ]
+                allowedJobs: [ Warden ]
+
+        -   type: entity
+            id: ContrabandTierParent
+            abstract: true
+            components:
+            -   type: ScanDetectable
+            -   type: Contraband
+                tier: Tier3
+
+        -   type: entity
+            id: ContrabandInheritanceChild
+            parent: [ ContrabandAuthorizationParent, ContrabandAdditionalAuthorizationParent, ContrabandTierParent ]
+            components:
+            -   type: Contraband
+                contrabandType: Magical
+                allowedDepartments: [ Medical ]
+                allowedJobs: [ Chemist ]
+
+        -   type: reagent
+            id: ContrabandReagentInheritanceParent
+            abstract: true
+            name: reagent-name-water
+            desc: reagent-desc-water
+            physicalDesc: reagent-physical-desc-translucent
+            contrabandTier: Tier1
             contrabandType: Syndicate
             allowedDepartments: [ Security ]
             allowedJobs: [ Detective ]
 
-        - type: entity
-          id: ContrabandAdditionalAuthorizationParent
-          parent: BaseRestrictedContraband
-          abstract: true
-          components:
-          - type: Contraband
-            allowedDepartments: [ Command ]
-            allowedJobs: [ Warden ]
-
-        - type: entity
-          id: ContrabandTierParent
-          abstract: true
-          components:
-          - type: ScanDetectable
-          - type: Contraband
-            tier: Tier3
-
-        - type: entity
-          id: ContrabandInheritanceChild
-          parent: [ ContrabandAuthorizationParent, ContrabandAdditionalAuthorizationParent, ContrabandTierParent ]
-          components:
-          - type: Contraband
+        -   type: reagent
+            id: ContrabandReagentInheritanceChild
+            parent: ContrabandReagentInheritanceParent
+            contrabandTier: Tier2
             contrabandType: Magical
             allowedDepartments: [ Medical ]
             allowedJobs: [ Chemist ]
 
-        - type: reagent
-          id: ContrabandReagentInheritanceParent
-          abstract: true
-          name: reagent-name-water
-          desc: reagent-desc-water
-          physicalDesc: reagent-physical-desc-translucent
-          contrabandTier: Tier1
-          contrabandType: Syndicate
-          allowedDepartments: [ Security ]
-          allowedJobs: [ Detective ]
+        -   type: reagent
+            id: ContrabandPrescriptionReagent
+            name: reagent-name-water
+            desc: reagent-desc-water
+            physicalDesc: reagent-physical-desc-translucent
+            contrabandTier: Tier1
+            requiresPrescription: true
 
-        - type: reagent
-          id: ContrabandReagentInheritanceChild
-          parent: ContrabandReagentInheritanceParent
-          contrabandTier: Tier2
-          contrabandType: Magical
-          allowedDepartments: [ Medical ]
-          allowedJobs: [ Chemist ]
-
-        - type: reagent
-          id: ContrabandPrescriptionReagent
-          name: reagent-name-water
-          desc: reagent-desc-water
-          physicalDesc: reagent-physical-desc-translucent
-          contrabandTier: Tier1
-          requiresPrescription: true
-
-        - type: entity
-          id: ContrabandClearanceTarget
-          components:
-          - type: Contraband
-            allowedDepartments: [ Security ]
-            allowedJobs: [ Detective ]
+        -   type: entity
+            id: ContrabandClearanceTarget
+            components:
+            -   type: Contraband
+                allowedDepartments: [ Security ]
+                allowedJobs: [ Detective ]
         """;
 
     [Test]
@@ -131,9 +131,10 @@ public sealed class ContrabandTest : GameTest
                 if (pair.IsTestPrototype(reagent))
                     continue;
 
-                var hasAuthorization = reagent.AllowedDepartments.Count > 0 ||
-                                       reagent.AllowedJobs.Count > 0 ||
-                                       reagent.RequiresPrescription;
+                var hasAuthorization =
+                    reagent.AllowedDepartments.Count > 0 ||
+                    reagent.AllowedJobs.Count > 0 ||
+                    reagent.RequiresPrescription;
                 if (reagent.ContrabandTier is not { } tier)
                 {
                     Assert.That(hasAuthorization || reagent.ContrabandType is not null, Is.False,

@@ -183,7 +183,7 @@ public sealed partial class ContrabandSystem : EntitySystem
         // Examine the actual displayed job title in case someone is not using round start ID.
         var jobTitle = id.Comp.LocalizedJobTitle;
         return !string.IsNullOrEmpty(jobTitle) &&
-               contraband.AllowedJobs.Any(job => _proto.Index(job).LocalizedName == jobTitle);
+            contraband.AllowedJobs.Any(job => _proto.Index(job).LocalizedName == jobTitle);
     }
 
     private static FormattedMessage BuildExamineMessage(

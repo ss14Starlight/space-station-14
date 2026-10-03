@@ -156,7 +156,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         if (entity is not null)
         {
             DebugTools.Assert(TryGetSolution(container, name, out var debugEnt)
-                              && debugEnt.Value.Owner == entity.Value.Owner);
+                && debugEnt.Value.Owner == entity.Value.Owner);
             return true;
         }
 
