@@ -52,6 +52,27 @@ public sealed partial class LatchComponent : Component
     public EntityWhitelist? Whitelist;
 
     /// <summary>
+    /// Targets matching this get the struggle minigame. Checked once at latch
+    /// start. Null means every target gets it. Doesn't affect who can be latched.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? StruggleWhitelist;
+
+    /// <summary>
+    /// Targets whose prototype or any parent, abstract included, is listed here
+    /// are slowed to <see cref="SlowSpeedMultiplier"/> and not knocked down.
+    /// Checked at latch start. Empty pins everyone.
+    /// </summary>
+    /// <remarks>
+    /// Lives on the latcher so every exception is made in one place. Keep it short.
+    /// </remarks>
+    [DataField]
+    public List<EntProtoId> SlowPrototypes = new();
+
+    [DataField]
+    public float SlowSpeedMultiplier = 0.5f;
+
+    /// <summary>
     /// Distance a latch breaks at if exceeded mid-latch. Independent of the
     /// action's own engage range (TargetAction.range on the Latch prototype).
     /// </summary>
@@ -133,6 +154,64 @@ public sealed partial class LatchComponent : Component
     public float StaminaDamagePerBite = 15f;
 
     /// <summary>
+    /// Seconds for the target's struggle cursor to cross the bar once.
+    /// </summary>
+    [DataField]
+    public float StruggleCrossingTime = 1f;
+
+    /// <summary>
+    /// Struggle cursor speed multiplier for a short time after each Bite Harder.
+    /// </summary>
+    [DataField]
+    public float StruggleFrenzySpeedMultiplier = 1.4f;
+
+    [DataField]
+    public TimeSpan StruggleFrenzyDuration = TimeSpan.FromSeconds(1);
+
+    /// <summary>
+    /// Width of the perfect zone, as a fraction of the bar.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float StrugglePerfectWidth = 0.1f;
+
+    /// <summary>
+    /// Width of the good zone on each side of the perfect zone, as a fraction of the bar.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float StruggleGoodWidth = 0.12f;
+
+    /// <summary>
+    /// Taken off both the remaining time and the hard cap, so Bite Harder
+    /// can refill the timer but can't undo struggle progress.
+    /// </summary>
+    [DataField]
+    public TimeSpan StrugglePerfectReduction = TimeSpan.FromSeconds(1.5);
+
+    [DataField]
+    public TimeSpan StruggleGoodReduction = TimeSpan.FromSeconds(0.75);
+
+    /// <summary>
+    /// Time from a press until the next attempt's cursor starts moving.
+    /// Also gives the new zone time to reach the client first.
+    /// </summary>
+    [DataField]
+    public TimeSpan StruggleCooldown = TimeSpan.FromSeconds(0.5);
+
+    /// <summary>
+    /// How much of <see cref="StruggleCooldown"/> shows the press result
+    /// before the next attempt's zone appears.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public TimeSpan StruggleResultDisplay = TimeSpan.FromSeconds(0.25);
+
+    /// <summary>
+    /// Lowest allowed zone centre, so there's always a moment to see the new
+    /// zone before the cursor (which starts at the left edge) reaches it.
+    /// </summary>
+    [DataField]
+    public float StruggleMinZoneCenter = 0.25f;
+
+    /// <summary>
     /// How frequently the latch should apply 'ticks', mostly used
     /// for ticking damage onto the latch target.
     /// </summary>
@@ -169,6 +248,13 @@ public sealed partial class LatchComponent : Component
     /// </summary>
     [ViewVariables, AutoNetworkedField]
     public bool Active;
+
+    /// <summary>
+    /// Latcher is weightless while latched to a floating target (InAir and able
+    /// to move in air), so it floats with them.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public bool LatcherWeightless;
 
     /// <summary>
     /// The entity being targeted by the latch.
