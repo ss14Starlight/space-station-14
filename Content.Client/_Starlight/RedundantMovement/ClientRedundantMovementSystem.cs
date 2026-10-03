@@ -127,7 +127,6 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
 
         if (_sleepPeriodStart.HasValue && _sleepPeriodStart.Value <= _manager.ServerAckTick)
         {
-            ClearState();
             return;
         }
 
