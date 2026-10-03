@@ -1,6 +1,4 @@
-using System.Numerics;
 using Content.Client.Atmos.Components;
-using Content.Client.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
@@ -14,18 +12,27 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Numerics;
+using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
 namespace Content.Client.Atmos.Overlays;
 
-public sealed class GasTileOverlay : Overlay
+/// <summary>
+/// Overlay responsible for rendering visible atmos gasses (like plasma for example) usin.
+/// </summary>
+public sealed partial class GasTileVisibleGasOverlay : Overlay
 {
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
+
     private static readonly ProtoId<ShaderPrototype> UnshadedShader = "unshaded";
 
-    private readonly IEntityManager _entManager;
-    private readonly SharedMapSystem _mapManager;
     private readonly SharedAtmosphereSystem _atmosphereSystem;
     private readonly SharedMapSystem _mapSystem;
     private readonly SharedTransformSystem _xformSys;
+    private readonly SharedGasTileOverlaySystem _gasTileOverlaySystem;
+    private readonly SpriteSystem _spriteSystem;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceEntities | OverlaySpace.WorldSpaceBelowWorld;
     private readonly ShaderInstance _shader;
@@ -38,30 +45,23 @@ public sealed class GasTileOverlay : Overlay
     // TODO combine textures into a single texture atlas.
     private readonly Texture[][] _frames;
 
-    // Fire overlays
-    private const int FireStates = 3;
-    private const string FireRsiPath = "/Textures/Effects/fire.rsi";
-
-    private readonly float[] _fireTimer = new float[FireStates];
-    private readonly float[][] _fireFrameDelays = new float[FireStates][];
-    private readonly int[] _fireFrameCounter = new int[FireStates];
-    private readonly Texture[][] _fireFrames = new Texture[FireStates][];
-
     private readonly int _gasCount;
 
-    public const int GasOverlayZIndex = (int) Shared.DrawDepth.DrawDepth.Effects; // Under ghosts, above mostly everything else
+    public const int GasOverlayZIndex = (int)DrawDepth.Gasses; // Under ghosts and fire, above mostly everything else
 
-    public GasTileOverlay(GasTileOverlaySystem system, IEntityManager entManager, IResourceCache resourceCache, IPrototypeManager protoMan, SpriteSystem spriteSys, SharedTransformSystem xformSys)
+    public GasTileVisibleGasOverlay()
     {
-        _entManager = entManager;
-        _mapManager = entManager.System<SharedMapSystem>();
-        _atmosphereSystem = entManager.System<SharedAtmosphereSystem>();
-        _mapSystem = entManager.System<SharedMapSystem>();
-        _xformSys = xformSys;
-        _shader = protoMan.Index(UnshadedShader).Instance();
+        IoCManager.InjectDependencies(this);
+        _atmosphereSystem = _entManager.System<SharedAtmosphereSystem>();
+        _mapSystem = _entManager.System<SharedMapSystem>();
+        _xformSys = _entManager.System<SharedTransformSystem>();
+        _gasTileOverlaySystem = _entManager.System<SharedGasTileOverlaySystem>();
+        _spriteSystem = _entManager.System<SpriteSystem>();
+
+        _shader = _protoManager.Index(UnshadedShader).Instance();
         ZIndex = GasOverlayZIndex;
 
-        _gasCount = system.VisibleGasId.Length;
+        _gasCount = _gasTileOverlaySystem.VisibleGasId.Length;
         _timer = new float[_gasCount];
         _frameDelays = new float[_gasCount][];
         _frameCounter = new int[_gasCount];
@@ -69,21 +69,22 @@ public sealed class GasTileOverlay : Overlay
 
         for (var i = 0; i < _gasCount; i++)
         {
-            var gasPrototype = _atmosphereSystem.GetGas(system.VisibleGasId[i]);
+            var gasPrototype = _atmosphereSystem.GetGas(_gasTileOverlaySystem.VisibleGasId[i]);
 
             SpriteSpecifier overlay;
 
-            if (!string.IsNullOrEmpty(gasPrototype.GasOverlaySprite) && !string.IsNullOrEmpty(gasPrototype.GasOverlayState))
-                overlay = new SpriteSpecifier.Rsi(new (gasPrototype.GasOverlaySprite), gasPrototype.GasOverlayState);
+            if (!string.IsNullOrEmpty(gasPrototype.GasOverlaySprite) &&
+                !string.IsNullOrEmpty(gasPrototype.GasOverlayState))
+                overlay = new SpriteSpecifier.Rsi(new(gasPrototype.GasOverlaySprite), gasPrototype.GasOverlayState);
             else if (!string.IsNullOrEmpty(gasPrototype.GasOverlayTexture))
-                overlay = new SpriteSpecifier.Texture(new (gasPrototype.GasOverlayTexture));
+                overlay = new SpriteSpecifier.Texture(new(gasPrototype.GasOverlayTexture));
             else
                 continue;
 
             switch (overlay)
             {
                 case SpriteSpecifier.Rsi animated:
-                    var rsi = resourceCache.GetResource<RSIResource>(animated.RsiPath).RSI;
+                    var rsi = _resourceCache.GetResource<RSIResource>(animated.RsiPath).RSI;
                     var stateId = animated.RsiState;
 
                     if (!rsi.TryGetState(stateId, out var state))
@@ -94,24 +95,13 @@ public sealed class GasTileOverlay : Overlay
                     _frameCounter[i] = 0;
                     break;
                 case SpriteSpecifier.Texture texture:
-                    _frames[i] = new[] { spriteSys.Frame0(texture) };
+                    _frames[i] = new[] { _spriteSystem.Frame0(texture) };
                     _frameDelays[i] = Array.Empty<float>();
                     break;
             }
         }
-
-        var fire = resourceCache.GetResource<RSIResource>(FireRsiPath).RSI;
-
-        for (var i = 0; i < FireStates; i++)
-        {
-            if (!fire.TryGetState((i + 1).ToString(), out var state))
-                throw new ArgumentOutOfRangeException($"Fire RSI doesn't have state \"{i}\"!");
-
-            _fireFrames[i] = state.GetFrames(RsiDirection.South);
-            _fireFrameDelays[i] = state.GetDelays();
-            _fireFrameCounter[i] = 0;
-        }
     }
+
     protected override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
@@ -132,21 +122,6 @@ public sealed class GasTileOverlay : Overlay
             _timer[i] -= time;
             _frameCounter[i] = (frameCount + 1) % _frames[i].Length;
         }
-
-        for (var i = 0; i < FireStates; i++)
-        {
-            var delays = _fireFrameDelays[i];
-            if (delays.Length == 0)
-                continue;
-
-            var frameCount = _fireFrameCounter[i];
-            _fireTimer[i] += args.DeltaSeconds;
-            var time = delays[frameCount];
-
-            if (_fireTimer[i] < time) continue;
-            _fireTimer[i] -= time;
-            _fireFrameCounter[i] = (frameCount + 1) % _fireFrames[i].Length;
-        }
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -162,8 +137,6 @@ public sealed class GasTileOverlay : Overlay
             _gasCount,
             _frames,
             _frameCounter,
-            _fireFrames,
-            _fireFrameCounter,
             _shader,
             overlayQuery,
             xformQuery,
@@ -178,15 +151,16 @@ public sealed class GasTileOverlay : Overlay
             return;
 
         // TODO: WorldBounds callback.
-        _mapManager.FindGridsIntersecting(args.MapId, args.WorldAABB, ref gridState,
-            static (EntityUid uid, MapGridComponent grid,
+        _mapSystem.FindGridsIntersecting(args.MapId,
+            args.WorldAABB,
+            ref gridState,
+            static (EntityUid uid,
+                MapGridComponent grid,
                 ref (Box2Rotated WorldBounds,
                     DrawingHandleWorld drawHandle,
                     int gasCount,
                     Texture[][] frames,
                     int[] frameCounter,
-                    Texture[][] fireFrames,
-                    int[] fireFrameCounter,
                     ShaderInstance shader,
                     EntityQuery<GasTileOverlayComponent> overlayQuery,
                     EntityQuery<TransformComponent> xformQuery,
@@ -194,18 +168,18 @@ public sealed class GasTileOverlay : Overlay
             {
                 if (!state.overlayQuery.TryGetComponent(uid, out var comp) ||
                     !state.xformQuery.TryGetComponent(uid, out var gridXform))
-                    {
-                        return true;
-                    }
+                {
+                    return true;
+                }
 
                 var (_, _, worldMatrix, invMatrix) = state.xformSys.GetWorldPositionRotationMatrixWithInv(gridXform);
                 state.drawHandle.SetTransform(worldMatrix);
                 var floatBounds = invMatrix.TransformBox(state.WorldBounds).Enlarged(grid.TileSize);
                 var localBounds = new Box2i(
-                    (int) MathF.Floor(floatBounds.Left),
-                    (int) MathF.Floor(floatBounds.Bottom),
-                    (int) MathF.Ceiling(floatBounds.Right),
-                    (int) MathF.Ceiling(floatBounds.Top));
+                    (int)MathF.Floor(floatBounds.Left),
+                    (int)MathF.Floor(floatBounds.Bottom),
+                    (int)MathF.Ceiling(floatBounds.Right),
+                    (int)MathF.Ceiling(floatBounds.Top));
 
                 // Currently it would be faster to group drawing by gas rather than by chunk, but if the textures are
                 // ever moved to a single atlas, that should no longer be the case. So this is just grouping draw calls
@@ -229,29 +203,12 @@ public sealed class GasTileOverlay : Overlay
                         {
                             var opacity = gas.Opacity[i];
                             if (opacity > 0)
-                                state.drawHandle.DrawTexture(state.frames[i][state.frameCounter[i]], tilePosition, Color.White.WithAlpha(opacity));
+                            {
+                                state.drawHandle.DrawTexture(state.frames[i][state.frameCounter[i]],
+                                    tilePosition,
+                                    Color.White.WithAlpha(opacity));
+                            }
                         }
-                    }
-                }
-
-                // And again for fire, with the unshaded shader
-                state.drawHandle.UseShader(state.shader);
-                foreach (var chunk in comp.Chunks.Values)
-                {
-                    var enumerator = new GasChunkEnumerator(chunk);
-
-                    while (enumerator.MoveNext(out var gas))
-                    {
-                        if (gas.FireState == 0)
-                            continue;
-
-                        var index = chunk.Origin + (enumerator.X, enumerator.Y);
-                        if (!localBounds.Contains(index))
-                            continue;
-
-                        var fireState = gas.FireState - 1;
-                        var texture = state.fireFrames[fireState][state.fireFrameCounter[fireState]];
-                        state.drawHandle.DrawTexture(texture, index);
                     }
                 }
 

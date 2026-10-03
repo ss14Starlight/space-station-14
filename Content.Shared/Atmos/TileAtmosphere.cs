@@ -1,17 +1,15 @@
-using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
-using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
+using Content.Shared.Atmos.EntitySystems;
 
-namespace Content.Server.Atmos;
+namespace Content.Shared.Atmos;
 
 /// <summary>
 /// Internal Atmospherics class that stores data on an atmosphere in a single tile.
-/// You should not be using these directly outside of <see cref="AtmosphereSystem"/>.
-/// Use the public APIs in <see cref="AtmosphereSystem"/> instead.
+/// You should not be using these directly outside of <see cref="SharedAtmosphereSystem"/>.
+/// Use the public APIs in <see cref="SharedAtmosphereSystem"/> instead.
 /// </summary>
-[DataDefinition]
-[Access(typeof(AtmosphereSystem), typeof(GasTileOverlaySystem), typeof(AtmosDebugOverlaySystem))]
-public sealed partial class TileAtmosphere : IGasMixtureHolder
+[Access(typeof(SharedAtmosphereSystem), typeof(SharedGasTileOverlaySystem), typeof(SharedAtmosDebugOverlaySystem))]
+public sealed class TileAtmosphere : IGasMixtureHolder
 {
     /// <summary>
     /// The last cycle this tile's air was archived into <see cref="AirArchived"/>.
@@ -97,7 +95,7 @@ public sealed partial class TileAtmosphere : IGasMixtureHolder
     /// Current <see cref="MonstermosInfo"/> information for this tile.
     /// </summary>
     [ViewVariables]
-    [Access(typeof(AtmosphereSystem), Other = AccessPermissions.ReadExecute)]
+    [Access(typeof(SharedAtmosphereSystem), Other = AccessPermissions.ReadExecute)]
     public MonstermosInfo MonstermosInfo;
 
     /// <summary>
@@ -123,7 +121,7 @@ public sealed partial class TileAtmosphere : IGasMixtureHolder
     /// Grid entity this tile belongs to.
     /// </summary>
     [ViewVariables]
-    [Access(typeof(AtmosphereSystem))]
+    [Access(typeof(SharedAtmosphereSystem))]
     public EntityUid GridIndex;
 
     /// <summary>
@@ -143,7 +141,7 @@ public sealed partial class TileAtmosphere : IGasMixtureHolder
     /// This can be immutable if the tile is spaced.
     /// </summary>
     [ViewVariables]
-    [Access(typeof(AtmosphereSystem), Other = AccessPermissions.ReadExecute)] // FIXME Friends
+    [Access(typeof(SharedAtmosphereSystem), Other = AccessPermissions.ReadExecute)] // FIXME Friends
     public GasMixture? Air;
 
     /// <summary>
@@ -159,7 +157,7 @@ public sealed partial class TileAtmosphere : IGasMixtureHolder
     /// Used to determine when LINDA should dismantle an excited group
     /// or extend its time alive.
     /// </summary>
-    [DataField("lastShare")]
+    [ViewVariables]
     public float LastShare;
 
     /// <summary>
@@ -203,7 +201,7 @@ public sealed partial class TileAtmosphere : IGasMixtureHolder
     /// Cached information about airtight entities on this tile. This gets updated anytime a tile gets invalidated
     /// (i.e., gets added to <see cref="GridAtmosphereComponent.InvalidatedCoords"/>).
     /// </summary>
-    public AtmosphereSystem.AirtightData AirtightData;
+    public AirtightData AirtightData;
 
     /// <summary>
     /// Creates a new TileAtmosphere.
