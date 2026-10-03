@@ -55,7 +55,7 @@ public sealed partial class ServerRedundantMovementManager : IServerRedundantMov
 
         foreach (var (session, tracker) in _trackers)
         {
-            if (!tracker.TryFetch(tick, out var data)) continue;
+            if (!tracker.TryFetch(tick, out var lateInput, out var data)) continue;
             var curMoveState = tracker.MoveState;
             var curShuttleState = tracker.ShuttleState;
             if (!session.AttachedEntity.HasValue) continue;
@@ -97,12 +97,18 @@ public sealed partial class ServerRedundantMovementManager : IServerRedundantMov
                 }
             }
 
-            foreach (var change in data.Changes)
-            {
-                EmitStateChange(change.HeldButtons, change.Subtick);
-            }
+            if (lateInput is { } late)
+                EmitStateChange(late, 0);
 
-            EmitStateChange(data.FinalInput, ushort.MaxValue);
+            if (data is { } current)
+            {
+                foreach (var change in current.Changes)
+                {
+                    EmitStateChange(change.HeldButtons, change.Subtick);
+                }
+
+                EmitStateChange(current.FinalInput, ushort.MaxValue);
+            }
             tracker.MoveState = curMoveState;
             tracker.ShuttleState = curShuttleState;
         }
@@ -128,32 +134,39 @@ public sealed partial class ServerRedundantMovementManager : IServerRedundantMov
             }
         }
 
-        public bool TryFetch(GameTick tick, out TickInputData data)
+        /// <summary>
+        /// Fetches input for <paramref name="tick"/>. Ticks that arrived too late are collapsed into
+        /// <paramref name="lateInput"/> (their final held buttons) instead of being dropped.
+        /// </summary>
+        public bool TryFetch(GameTick tick, out PackedMovementButtons? lateInput, out TickInputData? current)
         {
+            lateInput = null;
+            current = null;
+
             // check the oldest packet we have
-            while (_queue.TryPeek(out data))
+            while (_queue.TryPeek(out var data))
             {
                 if (data.Tick < tick)
                 {
-                    // if it's too old, discard it
+                    // too old for its own tick, but still apply where the buttons ended up
                     _queue.Dequeue();
+                    lateInput = data.FinalInput;
                 }
                 else if (data.Tick == tick)
                 {
                     // if it's for our tick, remove and return it
                     _queue.Dequeue();
-                    return true;
+                    current = data;
+                    break;
                 }
                 else
                 {
                     // if it's too new, then so are the rest
-                    data = default;
-                    return false;
+                    break;
                 }
             }
 
-            data = default;
-            return false;
+            return lateInput != null || current != null;
         }
     }
 }

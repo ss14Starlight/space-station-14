@@ -192,7 +192,13 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
     }
 
     private void OnDisconnect(object? sender, NetDisconnectedArgs e) => ClearState();
-    private void OnConnected(object? sender, NetChannelArgs e) => ClearState();
+    private void OnConnected(object? sender, NetChannelArgs e)
+    {
+        ClearState();
+
+        _lastSentTick = GameTick.Zero;
+        _manager.ServerAckTick = GameTick.Zero;
+    }
 
     private void ClearState()
     {
