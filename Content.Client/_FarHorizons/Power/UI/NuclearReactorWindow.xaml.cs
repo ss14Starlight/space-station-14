@@ -355,8 +355,9 @@ public sealed partial class NuclearReactorWindow : FancyWindow
             return;
         }
 
-        _hasTarget = true;
-        TargetName.Text = value.PartName;
+        // Slots with only neutrons have no part in them
+        _hasTarget = value.PartName != null;
+        TargetName.Text = value.PartName ?? Loc.GetString("comp-nuclear-reactor-ui-empty");
 
         TargetTemperatureGrid.Visible = value.Temperature > 0;
         TargetTemperature.Text = FormatTemperature(value.Temperature);
