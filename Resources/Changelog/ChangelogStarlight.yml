@@ -1,20 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: New icons for Metaphysical and Holy for medhud.
-    type: Add
-  id: 408707
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: SirLutz
-  changes:
-  - message: Malign Parasitic anomaly, now adds the CosmicCult faction to the player, and removes it on loss.
-    type: Add
-  id: 408708
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: SirLutz
-  changes:
   - message: Colossus Mindsink now transfers on gibbing.
     type: Add
   id: 408709
@@ -2799,4 +2785,18 @@ Entries:
   id: 409106
   time: '2026-10-03T13:07:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6459
+- author: Kirb
+  changes:
+  - message: New Setting "Radio music volume" use this to lower or mute audio from station radios.
+    type: Add
+  id: 409107
+  time: '2026-10-03T13:36:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6081
+- author: Kirb
+  changes:
+  - message: Using "increase volume" on station radios will instead increase their range, don't get noise complaints!.
+    type: Tweak
+  id: 409108
+  time: '2026-10-03T13:36:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6081
 Order: -1
