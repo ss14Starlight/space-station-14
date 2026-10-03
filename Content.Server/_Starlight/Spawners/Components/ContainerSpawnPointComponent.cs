@@ -1,3 +1,4 @@
+// ReSharper disable CheckNamespace
 using Content.Server.Spawners.EntitySystems;
 using Content.Shared.Roles;
 using Content.Shared.Spawners.Components;
