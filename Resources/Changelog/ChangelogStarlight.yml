@@ -1,74 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Serpentcrest's maxPlayers set to 350 (up from 150).
-    type: Tweak
-  id: 408694
-  time: '2026-09-18T09:54:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6182
-- author: OJG
-  changes:
-  - message: (Refinery) More specialist armor in the armory.
-    type: Tweak
-  id: 408695
-  time: '2026-09-18T09:54:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6178
-- author: OJG
-  changes:
-  - message: (Refinery) More camera coverage for 1984.
-    type: Tweak
-  id: 408696
-  time: '2026-09-18T09:54:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6178
-- author: OJG
-  changes:
-  - message: (Refinery) AI core is a little more spacious so hopefully the turrets do their job.
-    type: Tweak
-  id: 408697
-  time: '2026-09-18T09:54:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6178
-- author: OJG
-  changes:
-  - message: (Refinery) Removed a few firelocks and replaced a lot of them with transparent glass versions.
-    type: Tweak
-  id: 408698
-  time: '2026-09-18T09:54:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6178
-- author: OJG
-  changes:
-  - message: (Refinery) Doubled the gas miners to make spacing less chronic.
-    type: Tweak
-  id: 408699
-  time: '2026-09-18T09:54:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6178
-- author: OJG
-  changes:
-  - message: (Refinery) Moved all non-public mailboxes to public areas.
-    type: Tweak
-  id: 408700
-  time: '2026-09-18T09:54:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6178
-- author: OJG
-  changes:
-  - message: (Refinery) Added salv medic slot.
-    type: Fix
-  id: 408701
-  time: '2026-09-18T09:54:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6178
-- author: Pickra
-  changes:
-  - message: Pun Pun and Kiki now start with a satchel and a survival kit.
-    type: Tweak
-  id: 408702
-  time: '2026-09-18T10:34:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6179
-- author: Maitake & Citrea
-  changes:
-  - message: Some of the doll chest shells now have masculine variants.
-    type: Add
-  id: 408703
-  time: '2026-09-18T10:34:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6185
 - author: RedSpeeds
   changes:
   - message: Fixed being muted at the time of cloning or transforming.
@@ -2799,4 +2729,74 @@ Entries:
   id: 409093
   time: '2026-10-03T08:57:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6450
+- author: Wizden Team
+  changes:
+  - message: Retextured technology disk to have the color of their discipline and extra marks for each tier. Also increased sell price for higher-tier disks.
+    type: Tweak
+  id: 409094
+  time: '2026-10-03T09:51:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6454
+- author: Wizden Team
+  changes:
+  - message: Fixed guidebook showing the wrong value for the maximum temperature of hellfire heaters.
+    type: Tweak
+  id: 409095
+  time: '2026-10-03T09:51:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6454
+- author: Wizden Team
+  changes:
+  - message: Chat dialogue now appears in curly quotes rather than straight quotes.
+    type: Tweak
+  id: 409096
+  time: '2026-10-03T09:51:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6454
+- author: Wizden Team
+  changes:
+  - message: Changed the hitbox of borg chargers, so they no longer get stuck in doorways.
+    type: Tweak
+  id: 409097
+  time: '2026-10-03T09:51:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6454
+- author: Wizden Team
+  changes:
+  - message: Tricordrazine and Doctor's Delight no longer heal Radiation, and no longer work while crit.
+    type: Tweak
+  id: 409098
+  time: '2026-10-03T09:51:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6454
+- author: Wizden Team
+  changes:
+  - message: The chem guidebook now shows when chemicals adjust body temperature again.
+    type: Fix
+  id: 409099
+  time: '2026-10-03T09:51:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6454
+- author: Wizden Team
+  changes:
+  - message: Mead now acts like Tricordrazine for Dwarves again.
+    type: Fix
+  id: 409100
+  time: '2026-10-03T09:51:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6454
+- author: Wizden Team
+  changes:
+  - message: Fixed the nuke being able to be blocked by any wall.
+    type: Fix
+  id: 409101
+  time: '2026-10-03T09:51:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6454
+- author: Wizden Team
+  changes:
+  - message: Welders no longer perform an extra pass after a repair has completed.
+    type: Fix
+  id: 409102
+  time: '2026-10-03T09:51:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6454
+- author: Wizden Team
+  changes:
+  - message: Flatpacks now use the collision of the flatpacked entity, so they can be opened on tables and aren't blocked by ghosts.
+    type: Fix
+  id: 409103
+  time: '2026-10-03T09:51:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6454
 Order: -1

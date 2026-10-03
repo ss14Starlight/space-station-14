@@ -316,14 +316,17 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 allGroupTags.UnionWith(groupPrototype.Tags);
         }
 
-        if (!newAccessList.TrueForAll(x => allGroupTags.Contains(x)))
+        var oldTags = _access.TryGetTags(targetId)?.ToHashSet() ?? new HashSet<ProtoId<AccessLevelPrototype>>();
+
+        // The UI includes existing tags outside the console's groups (e.g. EmergencyShuttleRepealAll).
+        // These are preserved below, so only reject out-of-group tags that the card does not already have.
+        if (!newAccessList.TrueForAll(x => allGroupTags.Contains(x) || oldTags.Contains(x)))
         // Starlight-edit: End
         {
             _sawmill.Warning($"User {ToPrettyString(uid)} tried to write unknown access tag.");
             return;
         }
 
-        var oldTags = _access.TryGetTags(targetId)?.ToHashSet() ?? new HashSet<ProtoId<AccessLevelPrototype>>(); // Starlight - keep oldTags as a hashset instead of a list
         // Starlight-edit: Start
         var privilegedPerms = _accessReader.FindAccessTags(privilegedId!.Value).ToHashSet();
         // For each group, update the tags for that group with the ones from newAccessList
