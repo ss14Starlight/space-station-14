@@ -1,48 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Serpentcrest's population range has been adjusted so that it's a "regular" Alpha map. It had a very narrow pop range before (60 min ~ 150 max), making it rarely show up on both Alpha and Beta.
-    type: Tweak
-  id: 408687
-  time: '2026-09-18T09:54:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6182
-- author: Caws
-  changes:
-  - message: (Serpentcrest) Second Detective + Locker.
-    type: Add
-  id: 408688
-  time: '2026-09-18T09:54:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6182
-- author: Caws
-  changes:
-  - message: (Serpentcrest) Second Brigmedic + Large locker.
-    type: Add
-  id: 408689
-  time: '2026-09-18T09:54:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6182
-- author: Caws
-  changes:
-  - message: (Serpentcrest) +1 Mining Specialist (for a total of 4).
-    type: Add
-  id: 408690
-  time: '2026-09-18T09:54:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6182
-- author: Caws
-  changes:
-  - message: (Serpentcrest) +1 Salvage Specialist (for a total of 4).
-    type: Add
-  id: 408691
-  time: '2026-09-18T09:54:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6182
-- author: Caws
-  changes:
-  - message: (Serpentcrest) Folded the late-join slots into round start slots like other high-pop maps.
-    type: Tweak
-  id: 408692
-  time: '2026-09-18T09:54:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6182
-- author: Caws
-  changes:
   - message: Serpentcrest's minPlayers set to 50 (down from 60).
     type: Tweak
   id: 408693
@@ -2799,4 +2757,46 @@ Entries:
   id: 409086
   time: '2026-10-03T06:10:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6451
+- author: Wizden Team
+  changes:
+  - message: Wrapped parcels can now fit in mail carts.
+    type: Add
+  id: 409087
+  time: '2026-10-03T08:24:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6414
+- author: Wizden Team
+  changes:
+  - message: Crew manifest names can now appear in ion storm laws.
+    type: Add
+  id: 409088
+  time: '2026-10-03T08:24:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6414
+- author: Wizden Team
+  changes:
+  - message: Certain small cargo products are now delivered in parcel wrap rather than in crates.
+    type: Tweak
+  id: 409089
+  time: '2026-10-03T08:24:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6414
+- author: Wizden Team
+  changes:
+  - message: Healing with a holy book now gives off a holy light.
+    type: Tweak
+  id: 409090
+  time: '2026-10-03T08:24:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6414
+- author: Wizden Team
+  changes:
+  - message: The reagent grinder interactions and user interface are now predicted and should feel much more responsive.
+    type: Tweak
+  id: 409091
+  time: '2026-10-03T08:24:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6414
+- author: Wizden Team
+  changes:
+  - message: Fixed firestarters continuing to start a fire after a flammable gas had been completely removed from a room.
+    type: Fix
+  id: 409092
+  time: '2026-10-03T08:24:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6414
 Order: -1
