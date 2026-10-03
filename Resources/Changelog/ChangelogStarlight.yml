@@ -1,11 +1,4 @@
 Entries:
-- author: RedSpeeds
-  changes:
-  - message: Fixed being muted at the time of cloning or transforming.
-    type: Fix
-  id: 408704
-  time: '2026-09-18T11:06:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6189
 - author: SirLutz
   changes:
   - message: Holydamage now affects Malign Minions, Colossus and malign secret doors, buff to regular and ERT chaplains.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409103
   time: '2026-10-03T09:51:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6454
+- author: Johnny
+  changes:
+  - message: Changed mantis blades to be super duper ultraviolet good (whatever that may mean).
+    type: Tweak
+  id: 409104
+  time: '2026-10-03T10:11:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6456
 Order: -1
