@@ -1283,9 +1283,6 @@
       - !type:SatiateHunger
         factor: -2
       # Starlight start, use Mixmax instead + no healing in crit
-      conditions:
-      - !type:MobStateCondition
-        mobstate: Alive
       - !type:HealthChange
         damage:
           mixmax:
@@ -1297,6 +1294,9 @@
             - Genetic
             types:
             - Poison
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Alive
       # Starlight end
 
 - type: reagent
