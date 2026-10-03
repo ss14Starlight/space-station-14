@@ -231,6 +231,11 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
             #endregion
         }
 
+        // starlight - start
+        EquipBodyPartGear(entity, startingGear);
+        EquipOrganGear(entity, startingGear);
+        // starlight - end
+
         if (raiseEvent)
         {
             var ev = new StartingGearEquippedEvent(entity);
