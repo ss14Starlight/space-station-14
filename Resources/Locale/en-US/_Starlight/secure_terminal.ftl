@@ -11,6 +11,7 @@ secure-terminal-request-button = Request
 secure-terminal-request-button-confirm = Confirm?
 secure-terminal-authorize-button = Authorize
 secure-terminal-deny-button = Deny / Cancel
+secure-terminal-rescind-button = Rescind
 secure-terminal-recall-button = Recall Armory
 secure-terminal-recall-locked = { $minutes ->
     [1] Recall available in 1 minute.
@@ -21,9 +22,10 @@ secure-terminal-already-used = This resource has already been used this round an
 
 secure-terminal-auth-waiting = No active proposal for this request. Required authorization:
 secure-terminal-auth-desc = Current proposal — no response = [color=red]red[/color], agreed = [color=green]green[/color]:
+secure-terminal-awaiting-admin-desc = Fully authorized by local Command. Awaiting Central Command response…
 secure-terminal-awaiting-member = Awaiting {$label}
 secure-terminal-authorized-by-label = Signed by:
-secure-terminal-veto-label = Veto
+secure-terminal-rescind-label = Rescind
 
 secure-terminal-pending-countdown-label = Expires in {$minutes}m {$seconds}s…
 secure-terminal-countdown-label = Activating in {$minutes}m {$seconds}s…
@@ -59,7 +61,7 @@ secure-terminal-proposal-created-reason = {$request} has been requested and is a
 secure-terminal-proposal-denied = {$request} request has been cancelled.
 secure-terminal-proposal-denied-cc = {$request} request has been denied by Central Command.
 secure-terminal-proposal-cancelled-by = Secure Terminal — {$actor} cancelled the {$request} request.
-secure-terminal-proposal-vetoed-by = Secure Terminal — {$request} request was vetoed by: {$vetoers}.
+secure-terminal-proposal-rescinded-by = Secure Terminal — {$request} request was rescinded by: {$rescinders}.
 secure-terminal-radio-proposal = {$request} has been proposed. Please go to the nearest Keycard Authentication Device to authorize or deny.
 secure-terminal-radio-proposal-reason = {$request} has been proposed. Please go to the nearest Keycard Authentication Device to authorize or deny. Reason: {$reason}
 secure-terminal-radio-denied = {$request} request has been cancelled.
@@ -126,27 +128,27 @@ secure-terminal-warops-security-announcement = An Emergency Response Team — Se
 
 secure-terminal-ert-security-name = ERT Security
 secure-terminal-ert-security-desc = Deploys an ERT Security detail.
-secure-terminal-ert-security-announcement = An Emergency Response Team — Security detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+secure-terminal-ert-security-announcement = An Emergency Response Team — Security detail — has been authorized and is en route. Estimated arrival: 5 minutes.
 
 secure-terminal-ert-engineering-name = ERT Engineering
 secure-terminal-ert-engineering-desc = Deploys an ERT Engineering detail to assist with critical station infrastructure.
     Recommended when the station has suffered catastrophic structural, atmospheric, or power failures beyond local repair capacity.
-secure-terminal-ert-engineering-announcement = An Emergency Response Team — Engineering detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+secure-terminal-ert-engineering-announcement = An Emergency Response Team — Engineering detail — has been authorized and is en route. Estimated arrival: 5 minutes.
 
 secure-terminal-ert-medical-name = ERT Medical
 secure-terminal-ert-medical-desc = Deploys an ERT Medical detail for mass casualty triage and emergency surgery.
     Recommended when the station's medical department is overwhelmed, incapacitated, or destroyed.
-secure-terminal-ert-medical-announcement = An Emergency Response Team — Medical detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+secure-terminal-ert-medical-announcement = An Emergency Response Team — Medical detail — has been authorized and is en route. Estimated arrival: 5 minutes.
 
 secure-terminal-ert-janitorial-name = ERT Janitorial
 secure-terminal-ert-janitorial-desc = Deploys an ERT Janitorial detail for hazardous cleanup and station restoration.
     Recommended following large-scale biological, chemical, or environmental contamination requiring rapid decontamination.
-secure-terminal-ert-janitorial-announcement = An Emergency Response Team — Janitorial detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+secure-terminal-ert-janitorial-announcement = An Emergency Response Team — Janitorial detail — has been authorized and is en route. Estimated arrival: 5 minutes.
 
 secure-terminal-ert-chaplain-name = ERT Chaplain
 secure-terminal-ert-chaplain-desc = Deploys an ERT Chaplain for crew morale and last rites support.
     Provides pastoral support and maintains crew morale during prolonged emergencies.
-secure-terminal-ert-chaplain-announcement = An Emergency Response Team — Chaplaincy — has been authorized and is en route. Estimated arrival: 10 minutes.
+secure-terminal-ert-chaplain-announcement = An Emergency Response Team — Chaplaincy — has been authorized and is en route. Estimated arrival: 5 minutes.
 
 secure-terminal-ert-cburn-name = ERT CBURN
 secure-terminal-ert-cburn-desc = Deploys an ERT CBURN detail.
@@ -158,7 +160,7 @@ secure-terminal-code-gamma-desc = Escalates the station to [color=palevioletred]
 secure-terminal-code-gamma-announcement = Attention! Code GAMMA is being put into effect shortly. Martial law will be enforced. All crew report to your nearest head of staff immediately.
 
 secure-terminal-end-gamma-name = End GAMMA Alert
-secure-terminal-end-gamma-desc = Lifts [color=palevioletred]GAMMA[/color] alert and returns the station to Green. Requires GAMMA to have been active for at least 15 minutes.
+secure-terminal-end-gamma-desc = Lifts [color=palevioletred]GAMMA[/color] alert and returns the station to Green. Requires GAMMA to have been active for at least 10 minutes.
 secure-terminal-end-gamma-announcement = Code GAMMA is being lifted. The station is being restored to normal operations. Remain alert and await further instruction from your head of staff.
 
 secure-terminal-code-psi-name = Code PSI
@@ -167,7 +169,7 @@ secure-terminal-code-psi-desc = Escalates the station to [color=mediumpurple]PSI
 secure-terminal-code-psi-announcement = Attention! Command has authorized Code PSI. Non-NanoTrasen silicon units have been identified as an active threat. All crew — report to your nearest head of staff.
 
 secure-terminal-end-psi-name = End PSI Alert
-secure-terminal-end-psi-desc = Lifts [color=mediumpurple]PSI[/color] alert and returns the station to Green. Requires PSI to have been active for at least 15 minutes.
+secure-terminal-end-psi-desc = Lifts [color=mediumpurple]PSI[/color] alert and returns the station to Green. Requires PSI to have been active for at least 10 minutes.
 secure-terminal-end-psi-announcement = Code PSI is being lifted. The identified synthetic threat has been neutralized. The station is returning to normal operations.
 
 secure-terminal-armory-gamma-name = Gamma Armory
@@ -183,7 +185,7 @@ secure-terminal-armory-psi-announcement = The Psi Armory has been authorized and
 secure-terminal-med-pod-name = Emergency Medical Pod
 secure-terminal-med-pod-desc = Dispatches the Emergency Medical Pod — rapid-deployment triage with surgical and revival equipment.
     Use when mass casualties exceed the station's medical capacity.
-secure-terminal-med-pod-announcement = The Emergency Medical Pod has been authorized and is en route. Estimated arrival: 5 minutes.
+secure-terminal-med-pod-announcement = The Emergency Medical Pod has been authorized and is en route. Estimated arrival: 2 minutes.
 
 secure-terminal-itg-salvage-team-name = ITG Salvage Team
 secure-terminal-itg-salvage-team-desc = Contracts the Interstellar Trade Guild's local Salvage team to engage active station threats.
