@@ -351,6 +351,16 @@
   - !type:BuyerAccessCondition
 
 - type: listing
+  id: VendorSalvageWeaponBoltRifle
+  productEntity: WeaponRifleBolt
+  cost:
+    SalvageTicket: 1500
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorSalvageWeaponSPKA
   productEntity: WeaponSPKA
   cost:
@@ -360,6 +370,16 @@
   conditions:
   - !type:BuyerAccessCondition
 
+- type: listing
+  id: VendorSalvageWeaponBoltPistol
+  productEntity: WeaponPistolBolt
+  cost:
+    SalvageTicket: 750
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
+  
 - type: listing
   id: VendorSalvageWeaponRegulator
   productEntity: WeaponRegulator
@@ -379,7 +399,7 @@
   - SalvageWeapons
   conditions:
   - !type:BuyerAccessCondition
-
+    
 #consumables
 - type: listing
   id: VendorSalvageSpeedLoaderSpesoConversion
@@ -496,6 +516,26 @@
   productEntity: BoxFlare
   cost:
     SalvageTicket: 15
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageMagazineBoltRifle
+  productEntity: MagazineBoltRifle
+  cost:
+    SalvageTicket: 250
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageMagazineBoltPistol
+  productEntity: MagazineBoltPistol
+  cost:
+    SalvageTicket: 150
   categories:
   - SalvageConsumeables
   conditions:
@@ -672,5 +712,3 @@
     - SalvageCybernetics
   conditions:
     - !type:BuyerAccessCondition
-
-
