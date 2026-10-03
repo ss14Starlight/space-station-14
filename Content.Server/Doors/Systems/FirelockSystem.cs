@@ -154,8 +154,9 @@ namespace Content.Server.Doors.Systems
 
             // Funky change
             if (!HasComp<GridAtmosphereComponent>(xform.ParentUid) ||
-                !HasComp<MapGridComponent>(xform.ParentUid) ||
-                !HasComp<MapAtmosphereComponent>(xform.MapUid))
+                !HasComp<MapGridComponent>(xform.ParentUid)
+                // || !HasComp<MapAtmosphereComponent>(xform.MapUid) #starlight fix, maps on a grid did not have a MapAtmosphereComponent so this line would always early return leading to the firelock's indicators never working
+                )
             {
                 return (false, false);
             }
