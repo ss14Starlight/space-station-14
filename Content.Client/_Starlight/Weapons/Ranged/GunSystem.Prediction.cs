@@ -87,7 +87,9 @@ public sealed partial class GunSystem
             || from.MapId == MapId.Nullspace)
             return;
 
-        var fromCoordinates = TransformSystem.ToCoordinates(from);
+        var fromCoordinates = MapManager.TryFindGridAt(from, out var gridUid, out _)
+            ? TransformSystem.ToCoordinates(gridUid, from)
+            : TransformSystem.ToCoordinates(from);
         var trace = _hitscan.PredictTrace((shot, raycast), user!.Value, fromCoordinates, direction, pointer, gun.Comp.Target, seed);
         var traces = new List<HitscanTrace>
         {
