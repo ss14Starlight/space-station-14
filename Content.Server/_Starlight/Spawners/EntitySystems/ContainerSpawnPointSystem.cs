@@ -15,9 +15,6 @@ public sealed partial class ContainerSpawnPointSystem
 {
     private bool IsJobAllowed(ContainerSpawnPointComponent spawnPoint, ProtoId<JobPrototype>? job)
     {
-        if (job == null)
-            return false;
-
         if (spawnPoint.Job != null)
             return spawnPoint.Job == job;
 
