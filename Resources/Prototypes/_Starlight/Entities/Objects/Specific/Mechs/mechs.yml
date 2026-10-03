@@ -84,7 +84,7 @@
 # Ripley MK-II
 - type: entity
   id: MechRipley2
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband, BaseContrabandTier2 ] # Blimpuf
+  parent: [ BaseContrabandTier2, BaseMech, IndustrialMech, BaseCargoContraband ] # Blimpuf
   name: Ripley APLU MK-II
   description: The "MK-II" has a pressurized cabin for space operations, and stronger clamps are able to force doors open, but the added weight has slowed it down. # 🌟Starlight-Change
   components:
@@ -151,7 +151,7 @@
 # Paddy
 - type: entity
   id: MechPaddy
-  parent: [ BaseMech, CombatMech, IndustrialMech, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
+  parent: [ BaseContrabandTier3, BaseMech, CombatMech, IndustrialMech, BaseSecurityContraband ] # Blimpuf
   name: Paddy
   description: Autonomous Power Loader Unit Subtype Paddy. A Modified MK-II Ripley design intended for light security use.
   components:
@@ -229,7 +229,7 @@
 # Clarke
 - type: entity
   id: MechClarke
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband, BaseSalvageContraband, BaseContrabandTier2 ] # Blimpuf
+  parent: [ BaseContrabandTier2, BaseMech, IndustrialMech, BaseCargoContraband, BaseSalvageContraband ] # Blimpuf
   name: Clarke
   description: A special-purpose mech for heavy-duty mining operations. Outfitted with treads for stable locomotion in hazardous terrain.
   components:
@@ -286,7 +286,7 @@
 # Gygax
 - type: entity
   id: MechGygax
-  parent: [ BaseMech, CombatMech, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
+  parent: [ BaseContrabandTier3, BaseMech, CombatMech, BaseSecurityContraband ] # Blimpuf
   name: Gygax
   description: While lightly armored, the Gygax has incredible mobility thanks to its ability that lets it smash through walls at high speeds.
   components:
@@ -350,7 +350,7 @@
 # Durand
 - type: entity
   id: MechDurand
-  parent: [ BaseMech, CombatMech, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
+  parent: [ BaseContrabandTier3, BaseMech, CombatMech, BaseSecurityContraband ] # Blimpuf
   name: Durand
   description: A slow but beefy combat exosuit that is extra scary in confined spaces due to its punches. Xenos hate it!
   components:

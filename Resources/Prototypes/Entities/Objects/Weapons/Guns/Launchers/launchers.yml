@@ -81,7 +81,7 @@
     price: 10000
 
 - type: entity
-  parent: [ BaseWeaponLauncher, BaseJanitorContraband, BaseContrabandTier2 ] # Starlight: major -> jani contra; Blimpuf
+  parent: [ BaseContrabandTier2, BaseWeaponLauncher, BaseJanitorContraband ] # Starlight: major -> jani contra
   id: WeaponLauncherHydra
   name: hydra
   description: PLOOP... FSSSSSS...
@@ -128,7 +128,7 @@
     proto: GrenadeFrag
   - type: ScanDetectable # Starlight: major contra (I think this is valid?)
   - type: Contraband
-    tier: Tier3 # Blimpuf
+    severity: Major
 
 - type: entity
   name: RPG-7
@@ -257,9 +257,7 @@
 
 - type: entity
   name: tether gun
-  parent:
-  - BaseItem
-  - PowerCellSlotMediumItem
+  parent: [ BaseItem, PowerCellSlotMediumItem ]
   id: WeaponTetherGun
   description: Manipulates gravity around objects to fling them at high velocities.
   components:
@@ -299,9 +297,7 @@
 
 - type: entity
   name: force gun
-  parent:
-    - BaseItem
-    - PowerCellSlotMediumItem
+  parent: [ BaseItem, PowerCellSlotMediumItem ]
   id: WeaponForceGun
   description: Manipulates gravity around objects to fling them at high velocities.
   components:

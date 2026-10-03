@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingUniformBase ] # Blimpuf
+  parent: [ BaseCentcommContraband, ClothingUniformBase ]
   id: ClothingUniformJumpsuitDeathSquad
   name: death squad uniform
   description: Advanced armored jumpsuit used by special forces in special operations.
@@ -390,7 +390,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/hos_parade.rsi
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandManagerContraband ] # Starlight, Assistant Manager.
+  parent: [ ClothingUniformBase, BaseCommandContraband, BaseAssistantManagerContraband ] # Starlight, Assistant Manager.
   id: ClothingUniformJumpsuitCommandGeneric
   name: command jumpsuit
   description: A generic Command-colored jumpsuit not associated with any particular department.
@@ -762,42 +762,33 @@
       sprite: Clothing/Uniforms/Jumpsuit/lawyergood.rsi
 
 - type: entity
-  parent: UnsensoredClothingUniformBase # Blimpuf
+  parent: UnsensoredClothingUniformBase # Starlight, major contra -> minor contra
   id: ClothingUniformJumpsuitPyjamaSyndicateBlack
   name: black syndicate pyjamas
   description: For those long nights in perma.
   components:
-  - type: Contraband # Blimpuf
-    tier: Tier1
-    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicateblack.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicateblack.rsi
 
 - type: entity
-  parent: UnsensoredClothingUniformBase # Blimpuf
+  parent: UnsensoredClothingUniformBase # Starlight, major contra -> minor contra
   id: ClothingUniformJumpsuitPyjamaSyndicatePink
   name: pink syndicate pyjamas
   description: For those long nights in perma.
   components:
-  - type: Contraband # Blimpuf
-    tier: Tier1
-    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicatepink.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicatepink.rsi
 
 - type: entity
-  parent: UnsensoredClothingUniformBase # Blimpuf
+  parent: UnsensoredClothingUniformBase # Starlight, major contra -> minor contra
   id: ClothingUniformJumpsuitPyjamaSyndicateRed
   name: red syndicate pyjamas
   description: For those long nights in perma.
   components:
-  - type: Contraband # Blimpuf
-    tier: Tier1
-    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicatered.rsi
   - type: Clothing
@@ -826,7 +817,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/capformal.rsi
 
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingUniformBase ] # Blimpuf
+  parent: [ BaseCentcommContraband, ClothingUniformBase ]
   id: ClothingUniformJumpsuitCentcomFormal
   name: central command formal suit
   description: A suit for special occasions.
@@ -853,8 +844,6 @@
   name: operative jumpsuit
   description: Uniform for elite syndicate operatives performing tactical operations in deep space.
   components:
-  - type: Contraband # Blimpuf
-    tier: Tier2
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/operative.rsi
   - type: Clothing
@@ -1166,8 +1155,6 @@
   name: syndicate formal suit
   description: "The syndicate's uniform is made in an elegant style, it's even a pity to do dirty tricks in this."
   components:
-  - type: Contraband # Blimpuf
-    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/syndieformal.rsi
   - type: Clothing

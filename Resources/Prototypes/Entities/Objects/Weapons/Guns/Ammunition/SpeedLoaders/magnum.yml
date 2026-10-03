@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ BaseItem, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
+  parent: [ BaseContrabandTier3, BaseItem, BaseSecurityContraband ]
   id: BaseSpeedLoaderMagnum
   name: "speed loader (.45 magnum)"
   components:

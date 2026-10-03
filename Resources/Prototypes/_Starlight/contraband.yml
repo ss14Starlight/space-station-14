@@ -63,3 +63,11 @@
 - type: contrabandType
   id: CentralCommand
   name: contraband-type-central-command
+
+- type: contrabandType
+  id: NanoTrasen
+  name: contraband-type-nanotrasen
+
+- type: contrabandType
+  id: ETO
+  name: contraband-type-eto

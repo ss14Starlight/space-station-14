@@ -1,6 +1,6 @@
 - type: entity
   name: hybrid taser
-  parent: [ BaseWeaponBatterySmall, BaseSecurityContraband, BaseContrabandTier2 ] # Blimpuf
+  parent: [ BaseContrabandTier2, BaseWeaponBatterySmall, BaseSecurityContraband ] # Blimpuf
   id: WeaponAdvancedTaser
   description: A low-capacity, energy-based stun gun used by security teams to subdue targets at range.
   components:
@@ -55,7 +55,7 @@
 
 - type: entity
   name: energy gun
-  parent: [ BaseWeaponBatterySmall, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
+  parent: [ BaseContrabandTier3, BaseWeaponBatterySmall, BaseSecurityContraband ] # Blimpuf
   id: WeaponEnergyGun
   description: An energy gun capable of switching between lethal and debilitating lasers.
   components:
@@ -95,7 +95,7 @@
 
 - type: entity
   name: miniature energy gun
-  parent: [ BaseWeaponBatterySmall, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
+  parent: [ BaseContrabandTier3, BaseWeaponBatterySmall, BaseSecurityContraband ] # Blimpuf
   id: WeaponMiniEnergyGun
   description: An energy gun capable of switching between lethal and debilitating lasers.
   components:
@@ -168,7 +168,7 @@
 
 - type: entity
   name: dominator
-  parent: [ BaseWeaponBatterySmall, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
+  parent: [ BaseContrabandTier3, BaseWeaponBatterySmall, BaseSecurityContraband ] # Blimpuf
   id: WeaponDominator
   description: A high-tech weapon created by the law enforcement organization Sibyl System, designed specifically to fight crime.
   components:
@@ -231,7 +231,7 @@
 
 - type: entity
   name: X-01 multiphase energy gun
-  parent: [ BaseWeaponBatterySmall, BaseRepresentativesContraband ]
+  parent: [ BaseWeaponBatterySmall, BaseBlueShieldContraband ]
   id: WeaponMultiphaseGun
   description: This is an expensive, modern version of the antique laser pistol, with several unique fire modes.
   components:
@@ -296,7 +296,7 @@
 
 - type: entity
   name: MT-7 Magnum
-  parent: [ BaseWeaponBatterySmall, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
+  parent: [ BaseContrabandTier3, BaseWeaponBatterySmall, BaseSecurityContraband ] # Blimpuf
   id: WeaponEnergyMagnumSeven
   description: This is an expensive, modern recreation of the Mateba revolver, with several unique fire modes. And a slow self recharging battery. However, it has a slower recharge then most battery related weapons.
   components:
@@ -415,7 +415,7 @@
 
 - type: entity
   name: immolator laser gun
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband, BaseSalvageContraband, BaseContrabandTier3] # Blimpuf
+  parent: [ BaseContrabandTier3, BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband, BaseSalvageContraband ] # Blimpuf
   id: WeaponLaserImmolator
   description: An irregular, unstable firearm. It remains warm to the touch long after it has finished firing.
   components:
@@ -442,7 +442,7 @@
     price: 300
 
 - type: entity
-  parent: [BaseWeaponBatterySmall, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
+  parent: [ BaseContrabandTier3, BaseWeaponBatterySmall, BaseSecurityContraband ] # Blimpuf
   id: WeaponDecloner
   name: decloner
   components:
@@ -467,7 +467,7 @@
 
 - type: entity
   name: m1911
-  parent: [BaseWeaponBatterySmall, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
+  parent: [ BaseContrabandTier3, BaseWeaponBatterySmall, BaseSecurityContraband ] # Blimpuf
   id: WeaponPulseM1911
   suffix: Pulse
   description: A compact pulse core in a classic NanoTrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
@@ -512,7 +512,7 @@
 
 - type: entity
   name: pulse pistol
-  parent: [BaseWeaponBatterySmall, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
+  parent: [ BaseContrabandTier3, BaseWeaponBatterySmall, BaseSecurityContraband ] # Blimpuf
   id: WeaponPulsePistol
   description: An extremely compact version of the pulse carabine.
   components:
@@ -565,7 +565,7 @@
 
 - type: entity
   name: PDW-9 taser pistol
-  parent: [ BaseWeaponBatterySmall, BaseSecurityContraband, BaseContrabandTier2 ] # Blimpuf
+  parent: [ BaseContrabandTier2, BaseWeaponBatterySmall, BaseSecurityContraband ] # Blimpuf
   id: WeaponPistolPDW9
   description: A compact pulse core in a classic NanoTrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
   components:
@@ -977,7 +977,7 @@
 
 - type: entity
   name: pulse cannon
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband]
+  parent: [ BaseContrabandTier4, BaseWeaponBattery, BaseGunWieldable, BaseNanoTrasenContraband ]
   id: WeaponPulseCannonNTNC
   description: A weapon meant to blow holes in people with lasers. Like Superman. I like Superman.
   components:

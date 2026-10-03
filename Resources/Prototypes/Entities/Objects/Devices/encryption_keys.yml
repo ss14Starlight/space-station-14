@@ -197,7 +197,7 @@
     - state: robotics_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseSecurityContraband, BaseInternalAffairsContraband, BaseContraband ] # Starlight
+  parent: [ EncryptionKey, BaseSecurityContraband, BaseLawContraband ] # Starlight
   id: EncryptionKeySecurity
   name: security encryption key
   description: An encryption key used by security.

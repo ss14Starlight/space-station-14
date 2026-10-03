@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingOuterArmorBase, BaseRepresentativesContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, ClothingOuterArmorBase, BaseBlueShieldContraband ] # Blimpuf
   id: ClothingOuterArmorBlueShield
   name: blue shield bulletproof vest
   description: Much better than a standard Type 1 security vest. Try not to lose it, you won't get a second replacement.
@@ -119,7 +119,7 @@
   - type: Unremoveable
 
 - type: entity
-  parent: [ClothingOuterArmorBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, ClothingOuterArmorBase, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterArmorPlate
   name: plate carrier
   description: A standard Type II armored vest that provides good protection against bullets and lasers with the help of a plate inserted in the back and front, but not much else.
@@ -141,7 +141,7 @@
       damageCoefficient: 0.85
 
 - type: entity
-  parent: [ClothingOuterArmorBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, ClothingOuterArmorBase, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterArmorStab
   name: stabproof vest
   description: Contrary to it's name, it's just a Type II armored vest that provides good protection against stabs and punches, but not much else.
@@ -165,7 +165,7 @@
       - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingOuterArmorBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, ClothingOuterArmorBase, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterArmorHeatAbsorb
   name: heat absorbent vest
   description: Advanced vest designed to absorb heat rather than reflect it, but still has some reflective properties itself. Not good against bullets or blunt impacts due to the fragile material.
@@ -315,7 +315,7 @@
       reduction: 0.85
 
 - type: entity
-  parent: [BaseSalvageContraband, ClothingOuterVestWeb, BaseContrabandTier2] #web vest so it should have some pockets for ammo; Blimpuf
+  parent: [ BaseContrabandTier2, BaseSalvageContraband, ClothingOuterVestWeb ] #web vest so it should have some pockets for ammo; Blimpuf
   id: ClothingOuterVestWebSalvageMerc
   name: scrapper web vest
   description: A versatile armored vest, popular among salvagers for its protective yet lightweight design.
@@ -464,7 +464,7 @@
 
 # Reporter armor vest
 - type: entity
-  parent: [BaseReporterContraband, ClothingOuterArmorBase, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, BaseReporterContraband, ClothingOuterArmorBase ] # Blimpuf
   id: ClothingOuterPressArmor
   name: press armor
   description: It has 'PRESS' written on it in white. It will help you stay alive while sniffing out ledes!

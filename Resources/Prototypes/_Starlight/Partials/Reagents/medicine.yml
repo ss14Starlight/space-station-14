@@ -76,3 +76,35 @@
           damage:
             types:
               Asphyxiation: -2
+
+- type: !PartialOnly reagent
+  id: Cryptobiolin
+  contrabandTier: Tier1
+
+- type: !PartialOnly reagent
+  id: Ipecac
+  contrabandTier: Tier1
+
+- type: !PartialOnly reagent
+  id: Synaptizine
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Lipozine
+  contrabandTier: Tier1
+
+- type: !PartialOnly reagent
+  id: Ethyloxyephedrine
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Psicodine
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+  requiresPrescription: true
+
+- type: !PartialOnly reagent
+  id: Heparin
+  contrabandTier: Tier1

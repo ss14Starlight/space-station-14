@@ -1,10 +1,7 @@
 - type: entity
   id: BaseETOContraband
+  parent: BaseContrabandTier3
   abstract: true
   components:
   - type: Contraband
-    severity: ETO
-
-- type: contrabandSeverity
-  id: ETO
-  examineText: contraband-examine-text-eto
+    contrabandType: ETO

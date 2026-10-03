@@ -19,7 +19,7 @@
   parent: BasePyrotechnic
   desc: reagent-desc-thermite
   physicalDesc: reagent-physical-desc-grainy
-  contrabandTier: Tier1 # Blimpuf
+  contrabandSeverity: Minor
   flavor: bitter
   color: "#757245"
   boilingPoint: 2977.0 # Aluminum oxide
@@ -55,7 +55,7 @@
   parent: BasePyrotechnic
   desc: reagent-desc-napalm
   physicalDesc: reagent-physical-desc-soapy
-  contrabandTier: Tier2 # Blimpuf
+  contrabandSeverity: Major
   flavor: bitter
   color: "#FA00AF"
   flammability: 4 # Funky change
@@ -86,7 +86,7 @@
   parent: BasePyrotechnic
   desc: reagent-desc-phlogiston
   physicalDesc: reagent-physical-desc-burning
-  contrabandTier: Tier2 # Blimpuf
+  contrabandSeverity: Major
   flavor: bitter
   color: "#D4872A"
   flammability: 5 # Funky change
@@ -118,7 +118,7 @@
   parent: BasePyrotechnic
   desc: reagent-desc-chlorine-trifluoride
   physicalDesc: reagent-physical-desc-blazing
-  contrabandTier: Tier2 # Blimpuf
+  contrabandSeverity: Major
   flavor: bitter
   flammability: 5 # Funky change
   selfOxidizing: true # Funky change

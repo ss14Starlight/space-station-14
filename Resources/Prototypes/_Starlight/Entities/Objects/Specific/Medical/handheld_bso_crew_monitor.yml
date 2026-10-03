@@ -1,6 +1,6 @@
 - type: entity
   name: CommandFriend™ X-02
-  parent: [ PowerCellSlotMediumItem, BaseHandheldComputer, BaseRepresentativesContraband ]
+  parent: [ PowerCellSlotMediumItem, BaseHandheldComputer, BaseBlueShieldContraband ]
   id: HandheldBSOCrewMonitor
   description: Does not monitor the competence levels of command members.
   components:

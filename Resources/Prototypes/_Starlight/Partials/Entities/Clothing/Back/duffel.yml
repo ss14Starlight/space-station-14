@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: ClothingBackpackDuffelSyndicate
+  components:
+  - type: Contraband
+    contrabandType: Syndicate

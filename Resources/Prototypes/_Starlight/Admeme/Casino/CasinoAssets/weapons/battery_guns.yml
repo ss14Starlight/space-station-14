@@ -1,6 +1,6 @@
 ﻿- type: entity
   name: Gamorrah Pulse Pistol
-  parent: [BaseWeaponBatterySmall, BaseCasinoContraband ]
+  parent: [ BaseContrabandTier3, BaseWeaponBatterySmall, BaseCasinoContraband ]
   id: WeaponPulsePistolCasino
   description: Success depends on forethought, dispassionate calculation of probabilities, accounting for every stray variable. Thats why this gun is the Gamorrah Weapon.
   components:

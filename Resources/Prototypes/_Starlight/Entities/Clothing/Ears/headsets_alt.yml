@@ -39,7 +39,7 @@
   - type: HeadsetLoudMode
 
 - type: entity
-  parent: [ClothingHeadsetAlt, BaseRepresentativesContraband]
+  parent: [ ClothingHeadsetAlt, BaseNanoTrasenContraband ]
   id: ClothingHeadsetAltNanoTrasen
   name: NanoTrasen over-ear headset
   components:
@@ -59,7 +59,7 @@
   - type: HeadsetLoudMode
 
 - type: entity
-  parent: [ClothingHeadsetAlt, BaseRepresentativesContraband]
+  parent: [ ClothingHeadsetAlt, BaseNanoTrasenContraband ]
   id: ClothingHeadsetAltRepresentative
   name: NanoTrasen representative over-ear headset
   components:
@@ -80,7 +80,7 @@
   - type: HeadsetLoudMode
 
 - type: entity
-  parent: [ClothingHeadsetAlt, BaseRepresentativesContraband]
+  parent: [ ClothingHeadsetAlt, BaseNanoTrasenContraband ]
   id: ClothingHeadsetAltNCTrainer
   name: NanoTrasen career trainer over-ear headset
   description: This is used by your well-taught corporate training team.
@@ -218,7 +218,7 @@
   - type: HeadsetLoudMode
 
 - type: entity
-  parent: [ ClothingHeadsetAltNanoTrasen, BaseRepresentativesContraband ]
+  parent: [ ClothingHeadsetAltNanoTrasen, BaseNanoTrasenContraband ]
   id: ClothingHeadsetAltNTSF
   name: NTSF over-ear headset
   components:

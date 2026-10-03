@@ -64,7 +64,7 @@
 ## Belts without visualizers
 
 - type: entity
-  parent: [ClothingBeltAmmoProviderBase, BaseSecurityContraband, BaseBartenderContraband]
+  parent: [ ClothingBeltAmmoProviderBase, BaseSecurityContraband, BaseBartenderContraband ]
   id: ClothingBeltBandolier
   name: bandolier
   description: A bandolier for holding shotgun ammunition.
@@ -126,8 +126,6 @@
   name: syndicate shoulder holster
   description: A deep shoulder holster capable of holding many types of ballistics.
   components:
-  - type: Contraband # Blimpuf
-    tier: Tier2
   - type: Sprite
     sprite: Clothing/Belt/syndieholster.rsi
   - type: Clothing
@@ -192,8 +190,6 @@
   name: chest rig
   description: A set of tactical webbing worn by Syndicate boarding parties.
   components:
-  - type: Contraband # Blimpuf
-    tier: Tier4
   - type: Storage #Starlight
     grid:
     - 0,0,1,0 #left
@@ -229,7 +225,7 @@
     sprite: Clothing/Belt/militarywebbingmed.rsi
 
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingBeltMilitaryWebbing ] # Blimpuf
+  parent: [ BaseCentcommContraband, ClothingBeltMilitaryWebbing ]
   id: ClothingBeltMilitaryWebbingERT
   name: ERT chest rig
   description: A set of tactical webbing worn by Emergency Response Team operatives.

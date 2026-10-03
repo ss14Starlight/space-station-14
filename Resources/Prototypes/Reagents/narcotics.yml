@@ -4,7 +4,7 @@
   group: Narcotics
   desc: reagent-desc-desoxyephedrine
   physicalDesc: reagent-physical-desc-translucent
-  contrabandTier: Tier2 # Blimpuf
+  contrabandSeverity: Major # Starlight Minor -> Major
   flavor: bitter
   color: "#FAFAFA"
   boilingPoint: 212.0  # Dexosyephedrine vape when?
@@ -72,7 +72,7 @@
   desc: reagent-desc-ephedrine
   physicalDesc: reagent-physical-desc-powdery
   # Starlight Edits
-  contrabandTier: Tier1 # Blimpuf
+  contrabandSeverity: Minor
   allowedDepartments:
   - Security
   # Starlight End
@@ -133,8 +133,7 @@
   group: Narcotics
   desc: reagent-desc-stimulants
   physicalDesc: reagent-physical-desc-energizing
-  contrabandTier: Tier3 # Blimpuf
-  contrabandType: Syndicate # Blimpuf
+  contrabandSeverity: Syndicate
   flavor: sharp
   color: "#9A040E"
   boilingPoint: 212.0
@@ -224,7 +223,7 @@
   flavorMinimum: 0.05
   color: "#808080"
   physicalDesc: reagent-physical-desc-crystalline
-  contrabandTier: Tier1 # Blimpuf
+  contrabandSeverity: Minor # Starlight None -> Minor
   plantMetabolism:
   - !type:PlantAdjustNutrition
     amount: -5
@@ -257,7 +256,7 @@
   group: Narcotics
   desc: reagent-desc-impedrezene
   physicalDesc: reagent-physical-desc-acrid
-  contrabandTier: Tier1 # Blimpuf
+  contrabandSeverity: Minor
   flavor: bitter
   color: "#215263"
   metabolisms:
@@ -285,7 +284,7 @@
   group: Narcotics
   desc: reagent-desc-space-drugs
   physicalDesc: reagent-physical-desc-syrupy
-  contrabandTier: Tier1 # Blimpuf
+  contrabandSeverity: Minor # Starlight None -> Minor
   flavor: bitter
   color: "#63806e"
   metabolisms:
@@ -319,8 +318,7 @@
   group: Narcotics
   desc: reagent-desc-nocturine
   physicalDesc: reagent-physical-desc-powdery
-  contrabandTier: Tier3 # Blimpuf
-  contrabandType: Syndicate # Blimpuf
+  contrabandSeverity: Syndicate
   color: "#128e80"
   boilingPoint: 444.0
   meltingPoint: 128.0
@@ -344,8 +342,7 @@
   group: Narcotics
   desc: reagent-desc-mute-toxin
   physicalDesc: reagent-physical-desc-syrupy
-  contrabandTier: Tier3 # Blimpuf
-  contrabandType: Syndicate # Blimpuf
+  contrabandSeverity: Syndicate
   color: "#000000"
   boilingPoint: 255.0
   meltingPoint: 36.0
@@ -366,7 +363,7 @@
   group: Narcotics
   desc: reagent-desc-norepinephric-acid
   physicalDesc: reagent-physical-desc-milky
-  contrabandTier: Tier2 # Blimpuf
+  contrabandSeverity: Major # Starlight Minor -> Major
   flavor: salty
   color: "#96a8b5"
   boilingPoint: 255.0
@@ -413,7 +410,7 @@
   group: Narcotics
   desc: reagent-desc-tear-gas
   physicalDesc: reagent-physical-desc-milky
-  contrabandTier: Tier2 # Blimpuf
+  contrabandSeverity: Major # Starlight None -> Major
   allowedDepartments:
   - Security
   flavor: salty
@@ -483,7 +480,7 @@
   desc: reagent-desc-happiness
   physicalDesc: reagent-physical-desc-soothing
   # Starlight Edits
-  contrabandTier: Tier1 # Blimpuf
+  contrabandSeverity: Minor
   allowedJobs:
   - Clown
   # Starlight End

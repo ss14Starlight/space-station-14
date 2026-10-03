@@ -1073,7 +1073,7 @@
     listNumber: false
 
 - type: entity
-  parent: [ IDCardStandard, BaseContrabandTier4 ]
+  parent: [ BaseContrabandTier4, IDCardStandard ]
   id: NinjaIDCard
   name: ninja ID card
   suffix: Ninja

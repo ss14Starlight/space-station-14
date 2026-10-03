@@ -1,7 +1,7 @@
 - type: entity
   name: M492 Smart LMG
   id: WeaponLightMachineGunM492
-  parent: [BaseWeaponLightMachineGun, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
+  parent: [ BaseContrabandTier3, BaseWeaponLightMachineGun, BaseSecurityContraband ] # Blimpuf
   description: A high tech non-traditional LMG built specifically for combating the big threats among us. Uses .30 ammo.
   components:
   - type: Sprite
@@ -58,7 +58,7 @@
 - type: entity
   name: DP-28 LMG
   id: WeaponLightMachineGunDP28
-  parent: [BaseWeaponLightMachineGun, BaseSovietContraband, BaseContrabandTier3] # Blimpuf
+  parent: [ BaseContrabandTier3, BaseWeaponLightMachineGun, BaseSovietContraband ] # Blimpuf
   description: From RA-TA-TA-TA with love. Uses .30 ammo.
   components:
   - type: Sprite

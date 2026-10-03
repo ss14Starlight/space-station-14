@@ -48,7 +48,7 @@
   group: Toxins
   desc: reagent-desc-buzzochloric-bees
   physicalDesc: reagent-physical-desc-buzzy
-  contrabandTier: Tier2 # Blimpuf
+  contrabandSeverity: Major # Starlight Minor -> Major
   flavor: bee
   color: "#FFD35D"
   tileReactions:
@@ -170,7 +170,7 @@
   group: Toxins
   desc: reagent-desc-licoxide
   physicalDesc: reagent-physical-desc-electric
-  contrabandTier: Tier2 # Blimpuf
+  contrabandSeverity: Major # Starlight Minor -> Major
   flavor: shocking
   color: "#FDD023"
   metabolisms:
@@ -200,7 +200,7 @@
     requiredSlipSpeed: 3.5
   desc: reagent-desc-razorium
   physicalDesc: reagent-physical-desc-reflective
-  contrabandTier: Tier2 # Blimpuf
+  contrabandSeverity: Major # Starlight None -> Major
   flavor: sharp
   color: "#e3fffb"
   reactiveEffects:
@@ -251,7 +251,6 @@
     requiredSlipSpeed: 3.5
   desc: reagent-desc-fresium
   physicalDesc: reagent-physical-desc-frosty
-  contrabandTier: Tier1 # Blimpuf
   allowedDepartments:
   - Medical
   flavor: cold
@@ -472,7 +471,7 @@
   physicalDesc: reagent-physical-desc-fluffy
   allowedJobs:                # Starlight
   - Chemist                   # Starlight
-  contrabandTier: Tier2 # Blimpuf
+  contrabandSeverity: Major   # Starlight None -> major
   flavor: dogfood
   color: "#ed9715"
   metabolisms:
@@ -518,7 +517,7 @@
   group: Toxins
   desc: reagent-desc-catessence
   physicalDesc: reagent-physical-desc-milky
-  contrabandTier: Tier1 # Blimpuf
+  contrabandSeverity: Minor   # Starlight None -> minor
   flavor: cannedtuna
   color: "#d8bed8"
   metabolisms:
@@ -580,7 +579,7 @@
   name: reagent-name-canidessence
   group: Toxins
   desc: reagent-desc-canidessence
-  contrabandTier: Tier1 # Blimpuf
+  contrabandSeverity: Minor   # Starlight None -> minor
   physicalDesc: reagent-physical-desc-bubbly
   flavor: dogfood
   color: "#b87333"

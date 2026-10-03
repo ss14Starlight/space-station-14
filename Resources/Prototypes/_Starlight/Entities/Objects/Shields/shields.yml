@@ -472,12 +472,12 @@
         path: "/Audio/Weapons/smash.ogg"
 
 - type: entity
-  name: X-03 green phase shield
+  name: X-03 phase shield
   parent: BaseItem
-  id: BaseGreenLightShield
+  id: BaseLightShield
   abstract: true
   categories: [ DoNotMap ]
-  description: Reverse engineered from a prototype that NT loaned CentComm, the wavelength has been tweaked to the glorious CentComm Green. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
+  description: An experimental hardlight shield that has a micro reactor in place of the syndicate chemical based battery. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
   components:
     - type: ItemToggle
       soundActivate:
@@ -520,7 +520,7 @@
       sprite: _Starlight/Objects/Weapons/Melee/nt_energy_shield.rsi
       heldPrefix: off
     - type: EnergyColor
-      color: "#9dfe9b"
+      color: "#9bcefe"
       hackingLocked: true
       hackingUnlockQuality: Cutting
     - type: UseDelay
@@ -564,7 +564,7 @@
       enabled: false
       radius: 2
       energy: 3
-      color: "#439909"
+      color: "#87CEEB"
       castShadows: false
     - type: PowerCellSlot
       cellSlotId: cell_slot
@@ -607,12 +607,19 @@
       level: HardenedMetal
 
 - type: entity
-  parent: [BaseGreenLightShield, BaseCentcommContraband]
+  parent: [BaseLightShield, BaseCentcommContraband]
   id: GreenLightShield
+  name: X-03 green phase shield
+  description: Reverse engineered from a prototype that NT loaned CentComm, the wavelength has been tweaked to the glorious CentComm Green. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
+  components:
+  - type: PointLight
+    color: "#439909"
+  - type: EnergyColor
+    color: "#9dfe9b"
 
 - type: entity
   name: X-03 phase shield
-  parent: [BaseGreenLightShield, BaseRepresentativesContraband]
+  parent: [ BaseContrabandTier3, BaseLightShield, BaseBlueShieldContraband ]
   id: BlueLightShield
   categories: [ DoNotMap ]
   description: An experimental hardlight shield that has a micro reactor in place of the syndicate chemical based battery. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
@@ -642,4 +649,4 @@
       damageEnergyDraw: 4
     - type: Contraband
       tier: Tier3
-      contrabandType: CentralCommand
+      contrabandType: NanoTrasen

@@ -1,6 +1,6 @@
 # Explosive cable below
 - type: entity
-  parent: [ CableStack, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
+  parent: [ BaseContrabandTier3, CableStack, BaseSecurityContraband ]
   id: CableDetStack
   name: explosive cord
   suffix: Full

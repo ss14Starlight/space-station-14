@@ -93,8 +93,6 @@
   name: blood-red magboots
   description: Reverse-engineered from ERT magboots, they have a heavy magnetic pull, integrated thrusters, and are designed for combat. It can hold 0.75 L of gas. # Starlight
   components:
-  - type: Contraband # Blimpuf
-    tier: Tier4
   - type: Sprite
     sprite: Clothing/Shoes/Boots/magboots-syndicate.rsi
     state: icon

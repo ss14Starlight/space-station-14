@@ -171,7 +171,7 @@
     price: 2000
 
 - type: entity
-  parent: [ ClothingNeckBase, BaseRepresentativesContraband ]
+  parent: [ ClothingNeckBase, BaseBlueShieldContraband ]
   id: ClothingNeckCloakBsoElite
   name: elite blueshield cloak
   description: An elite Blueshield Officer's cloak crafted from the latest composite glowing fabric. No true BSO is afraid of shining in the dark!
@@ -188,7 +188,7 @@
     price: 2000
 
 - type: entity
-  parent: [ ClothingNeckBase, BaseRepresentativesContraband ]
+  parent: [ ClothingNeckBase, BaseBlueShieldContraband ]
   id: ClothingNeckCloakBsoCape
   name: blueshield formal cloak
   description: An incredibly large coat, owned only by the most experienced Blueshield Officers. It's said the sleeves have never been worn.
@@ -200,7 +200,7 @@
       - neck
 
 - type: entity
-  parent: [ ClothingNeckBase, BaseRepresentativesContraband ]
+  parent: [ ClothingNeckBase, BaseBlueShieldContraband ]
   id: ClothingNeckCloakBsoPoncho
   name: blueshield poncho
   description: This type of poncho was the signature garment of a legendary BSO with no name, or so it is said.

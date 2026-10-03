@@ -48,6 +48,7 @@
 
 - type: reagent
   id: DevilJuice
+  contrabandTier: Tier2
   name: reagent-name-devil-juice
   group: Toxins
   desc: reagent-desc-devil-juice

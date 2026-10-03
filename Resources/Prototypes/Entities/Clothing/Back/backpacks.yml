@@ -295,8 +295,6 @@
   name: syndicate backpack
   description:
   components:
-  - type: Contraband # Blimpuf
-    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Back/Backpacks/syndicate.rsi
   - type: ExplosionResistance

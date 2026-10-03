@@ -102,9 +102,6 @@
   components:
   - type: Sprite
     state: poster5_contraband
-  - type: Contraband # Blimpuf
-    tier: Tier1
-    contrabandType: Syndicate
 
 - type: entity
   parent: PosterBase
@@ -206,7 +203,7 @@
     state: poster17_contraband
 
 - type: entity
-  parent: [PosterBase, BaseSovietContraband] # Blimpuf
+  parent: [ PosterBase, BaseSovietContraband ]
   id: PosterContrabandCommunistState
   name: "Communist State"
   description: "All hail the Communist party!"
@@ -251,7 +248,7 @@
     state: poster22_contraband
 
 - type: entity
-  parent: [PosterBase, BaseSovietContraband] # Blimpuf
+  parent: [ PosterBase, BaseSovietContraband ]
   id: PosterContrabandRebelsUnite
   name: "Rebels Unite"
   description: "A poster urging the viewer to rebel against NanoTrasen." # SL
@@ -538,9 +535,6 @@
   components:
   - type: Sprite
     state: poster56_contraband
-  - type: Contraband # Blimpuf
-    tier: Tier1
-    contrabandType: Syndicate
 
 - type: entity
   parent: PosterBase
@@ -550,9 +544,6 @@
   components:
     - type: Sprite
       state: poster57_contraband
-    - type: Contraband # Blimpuf
-      tier: Tier1
-      contrabandType: Syndicate
 
 - type: entity
   parent: PosterBase
@@ -580,9 +571,6 @@
   components:
     - type: Sprite
       state: poster60_contraband
-    - type: Contraband # Blimpuf
-      tier: Tier1
-      contrabandType: Syndicate
 
 - type: entity
   parent: PosterBase

@@ -13,6 +13,8 @@ contraband-type-medtak = MedTak
 contraband-type-casino = Gamorrah Casino
 contraband-type-cosmic = cosmic cult
 contraband-type-central-command = Central Command
+contraband-type-nanotrasen = NanoTrasen
+contraband-type-eto = ETO
 
 contraband-examine-text-tier =
     { $itemType ->

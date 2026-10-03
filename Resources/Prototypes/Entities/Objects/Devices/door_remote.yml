@@ -110,7 +110,7 @@
     - Security
 
 - type: entity
-  parent: [DoorRemoteDefault, BaseSecurityContraband, BaseCommandContraband]
+  parent: [ DoorRemoteDefault, BaseSecurityContraband, BaseCommandContraband ]
   id: DoorRemoteArmory
   name: armory door remote
   components:
@@ -206,7 +206,7 @@
     - Engineering
 
 - type: entity
-  parent: [DoorRemoteCanEletrifyDoors, BaseCommandContraband, BaseContrabandTier3] # Blimpuf
+  parent: [ BaseContrabandTier3, DoorRemoteCanEletrifyDoors, BaseCommandContraband ]
   id: DoorRemoteAll
   name: super door remote
   description: A gadget which can open and bolt doors remotely. This one works even on wooden doors!

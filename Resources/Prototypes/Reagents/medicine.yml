@@ -4,7 +4,6 @@
   group: Medicine
   desc: reagent-desc-cryptobiolin
   physicalDesc: reagent-physical-desc-fizzy
-  contrabandTier: Tier1 # Blimpuf
   allowedDepartments:
   - Medical
   flavor: medicine
@@ -562,7 +561,6 @@
   group: Medicine
   desc: reagent-desc-ipecac
   physicalDesc: reagent-physical-desc-inky
-  contrabandTier: Tier1 # Blimpuf
   allowedDepartments:
   - Medical
   flavor: medicine
@@ -1034,7 +1032,7 @@
   desc: reagent-desc-synaptizine
   physicalDesc: reagent-physical-desc-pungent
   # Starlight Edits
-  contrabandTier: Tier1 # Blimpuf
+  contrabandSeverity: Minor
   allowedDepartments:
   - Security
   # Starlight End
@@ -1136,7 +1134,6 @@
   name: reagent-name-lipozine
   group: Medicine
   desc: reagent-desc-lipozine
-  contrabandTier: Tier1 # Blimpuf
   allowedDepartments:
   - Medical
   physicalDesc: reagent-physical-desc-oily
@@ -1302,7 +1299,7 @@
   desc: reagent-desc-ethyloxyephedrine
   group: Medicine
   physicalDesc: reagent-physical-desc-shiny
-  contrabandTier: Tier1 # Blimpuf
+  contrabandSeverity: Minor # Starlight None -> Minor
   flavor: medicine
   color: "#d5d5e4"
   metabolisms:
@@ -1872,8 +1869,7 @@
   group: Medicine
   desc: reagent-desc-psicodine
   physicalDesc: reagent-physical-desc-shiny
-  contrabandTier: Tier1 # Blimpuf
-  requiresPrescription: true # Blimpuf
+  contrabandSeverity: Minor # Starlight None -> Minor
   flavor: bitter
   color: "#07E79E"
   metabolisms:
@@ -2024,7 +2020,6 @@
   group: Medicine
   desc: reagent-desc-heparin
   physicalDesc: reagent-physical-desc-thin
-  contrabandTier: Tier1 # Blimpuf
   allowedDepartments:
   - Medical
   flavor: medicine

@@ -83,7 +83,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntrepnoble.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseRepresentativesContraband]
+  parent: [ ClothingUniformBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpsuitBlueShield
   name: blueshield suit
   description: The suit of a glorified bodyguard.
@@ -94,7 +94,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/blueshield.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseRepresentativesContraband]
+  parent: [ ClothingUniformBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpsuitEliteBlueShield
   name: elite blueshield suit
   description: The suit of an elite BSO. To reach such a level, you must have protected Command from [REDACTED].
@@ -105,7 +105,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/eliteblueshield.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseRepresentativesContraband]
+  parent: [ ClothingUniformBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpsuitBlueShieldShirt
   name: blueshield officer's shirt
   description: A collared shirt and pants for the blueshield officer who likes to keep it business casual.
@@ -656,7 +656,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/rd_classical.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseRepresentativesContraband]
+  parent: [ ClothingUniformBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpsuitFormalBlueShield
   name: formal blueshield officer suit
   description: A textile jumpsuit, reinforced with thick leather in some areas.

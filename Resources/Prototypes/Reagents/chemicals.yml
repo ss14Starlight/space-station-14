@@ -83,7 +83,6 @@
   desc: reagent-desc-artifexium
   flavor: metallic
   physicalDesc: reagent-physical-desc-crystalline
-  contrabandTier: Tier1 # Blimpuf
   allowedDepartments:
   - Science
   color: "#776291"
@@ -121,7 +120,6 @@
   name: reagent-name-benzene
   desc: reagent-desc-benzene
   physicalDesc: reagent-physical-desc-acidic
-  contrabandTier: Tier1 # Blimpuf
   allowedJobs:
   - Chemist
   color: "#E7EA91"

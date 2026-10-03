@@ -249,7 +249,7 @@
     state: pda-lawyer
 
 - type: entity
-  parent: [ BasePDA, BaseRepresentativesContraband ]
+  parent: [ BasePDA, BaseBlueShieldContraband ]
   id: BlueShieldPDA
   name: blue shield PDA
   description: Comes with a built-in medtek to assess command staff's wounds after you heroically save them.
@@ -604,7 +604,7 @@
       state: pda-commander
 
 - type: entity
-  parent: [ BaseCentcommContraband, BasePDA ] # Blimpuf
+  parent: [ BaseContrabandTier4, BaseNanoTrasenContraband, BasePDA ] # Blimpuf
   id: NTNCBlueShieldPDA
   name: naval officer's PDA
   components:
@@ -666,7 +666,7 @@
         - NanoChatCartridge
 
 - type: entity
-  parent: [ BaseCentcommContraband, BasePDA ] # Blimpuf
+  parent: [ BaseContrabandTier4, BaseNanoTrasenContraband, BasePDA ] # Blimpuf
   id: NTNCCSPDA
   name: nt nc naval officer's PDA
   components:

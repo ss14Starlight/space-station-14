@@ -142,8 +142,6 @@
   name: blood-red over-ear headset
   description: An updated, modular syndicate intercom that fits over the head and takes encryption keys (there are 5 key slots.).
   components:
-  - type: Contraband # Blimpuf
-    tier: Tier2
   - type: Headset
   - type: EncryptionKeyHolder
     keySlots: 5

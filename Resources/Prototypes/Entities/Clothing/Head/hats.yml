@@ -234,7 +234,7 @@
     - CorgiWearable
 
 - type: entity
-  parent: [ClothingHeadBase, BaseCommandManagerContraband] # Starlight
+  parent: [ ClothingHeadBase, BaseCommandContraband, BaseAssistantManagerContraband ] # Starlight
   id: ClothingHeadHatBeretCommand
   name: command beret
   description: A beret with the NanoTrasen logo. It has an aura of authority. # SL
@@ -861,14 +861,11 @@
     sprite: Clothing/Head/Hats/truckershat.rsi
 
 - type: entity
-  parent: ClothingHeadBaseWinter # Starlight/Blimpuf
+  parent: ClothingHeadBaseWinter # Starlight, winter protection + major contra -> minor contra
   id: ClothingHeadPyjamaSyndicateBlack
   name: syndicate black pyjama hat
   description: For keeping that traitor head of yours warm.
   components:
-  - type: Contraband # Blimpuf
-    tier: Tier1
-    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Head/Hats/pyjamasyndicateblack.rsi
   - type: Clothing
@@ -880,14 +877,11 @@
       HeadSide : HEAD
 
 - type: entity
-  parent: ClothingHeadBaseWinter # Starlight/Blimpuf
+  parent: ClothingHeadBaseWinter # Starlight, winter protection + major contra -> minor contra
   id: ClothingHeadPyjamaSyndicatePink
   name: syndicate pink pyjama hat
   description: For keeping that traitor head of yours warm.
   components:
-  - type: Contraband # Blimpuf
-    tier: Tier1
-    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Head/Hats/pyjamasyndicatepink.rsi
   - type: Clothing
@@ -899,14 +893,11 @@
       HeadSide : HEAD
 
 - type: entity
-  parent: ClothingHeadBaseWinter # Starlight/Blimpuf
+  parent: ClothingHeadBaseWinter # Starlight, winter protection + major contra -> minor contra
   id: ClothingHeadPyjamaSyndicateRed
   name: syndicate red pyjama hat
   description: For keeping that traitor head of yours warm.
   components:
-  - type: Contraband # Blimpuf
-    tier: Tier1
-    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Head/Hats/pyjamasyndicatered.rsi
   - type: Clothing
@@ -1115,9 +1106,6 @@
   name: syndicate hat
   description: A souvenir hat from "Syndieland", their production has already been closed.
   components:
-  - type: Contraband # Blimpuf
-    tier: Tier1
-    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Head/Hats/syndiecap.rsi
   - type: Clothing
@@ -1129,10 +1117,6 @@
   name: master at arms hat
   description: Master at arms hat, looks intimidating, I doubt that you will like to communicate with its owner...
   components:
-  - type: ScanDetectable # Blimpuf
-  - type: Contraband # Blimpuf
-    tier: Tier4
-    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Head/Hats/syndiecap_maa.rsi
   - type: Clothing

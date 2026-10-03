@@ -2,7 +2,7 @@
   name: handcuffs
   description: Used to detain criminals and other assholes.
   id: Handcuffs
-  parent: [BaseItem, BaseSecurityContraband, BaseCommandContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, BaseItem, BaseSecurityContraband, BaseCommandContraband ]
   components:
   - type: Item
     size: Small

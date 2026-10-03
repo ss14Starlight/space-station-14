@@ -1,6 +1,6 @@
 #BSO Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseRepresentativesContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, ClothingOuterHardsuitBase, BaseBlueShieldContraband ] # Blimpuf
   id: ClothingOuterHardsuitBlueshield
   name: blue shield hardsuit
   description: A high-tech hardsuit perfect for diving in front of Mr. Pre- Er, Captain.
@@ -361,7 +361,7 @@
 
 # Experimental Security Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, ClothingOuterHardsuitBase, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterHardsuitSecurityExperimental
   name: experimental security hardsuit
   description: A high-tech hardsuit meant to eventually replace the standard security suit, it boasts an ID-Lock and Gun-Lock system. Rumors have it that the first prototype was stolen by the syndicate..

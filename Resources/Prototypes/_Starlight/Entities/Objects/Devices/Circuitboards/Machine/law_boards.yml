@@ -75,7 +75,7 @@
 
 - type: entity
   id: JanimovCircuitBoard
-  parent: [ BaseElectronics, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseElectronics, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Janimov)
   components:
   - type: Sprite

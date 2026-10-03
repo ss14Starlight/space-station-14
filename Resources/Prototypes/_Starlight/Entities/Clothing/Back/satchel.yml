@@ -44,7 +44,7 @@
     sprite: _Starlight/Clothing/Back/Satchels/hop.rsi
 
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseCommandManagerContraband]
+  parent: [ ClothingBackpackSatchel, BaseCommandContraband, BaseAssistantManagerContraband ]
   id: ClothingBackpackSatchelCommandGeneric
   name: command satchel
   description: A satchel in command's distinctive shade of blue.
@@ -53,7 +53,7 @@
     sprite: _Starlight/Clothing/Back/Satchels/command.rsi
 
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseRepresentativesContraband]
+  parent: [ ClothingBackpackSatchel, BaseBlueShieldContraband ]
   id: ClothingBackpackSatchelBlueShield
   name: blueshield officer satchel
   description: Useful for holding everything a speedy Blueshield Officer needs!

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingMaskGas, BaseRepresentativesContraband, BaseContrabandTier2 ]
+  parent: [ BaseContrabandTier2, ClothingMaskGas, BaseBlueShieldContraband ]
   id: ClothingMaskGasBSO
   name: blue swat gas mask
   description: A elite issue Security gas mask. Now in blue!
@@ -27,7 +27,7 @@
         Heat: 0.95
 
 - type: entity
-  parent: [ ClothingMaskGas, BaseSecurityContraband, BaseContrabandTier2 ] # Blimpuf
+  parent: [ BaseContrabandTier2, ClothingMaskGas, BaseSecurityContraband ] # Blimpuf
   id: ClothingMaskGasCorpsman
   name: security bio mask
   description: VERY Expensive medical PPE that provides superior pathological protection.

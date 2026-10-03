@@ -99,7 +99,7 @@
 - type: entity
   name: seismic charge
   description: Concussion based explosive designed to destroy large amounts of rock.
-  parent: [ BaseSalvageContraband, BaseMiningContraband, BasePlasticExplosive, BaseContrabandTier3 ] #Starlight SalvContra; Blimpuf
+  parent: [ BaseContrabandTier3, BaseSalvageContraband, BaseMiningContraband, BasePlasticExplosive ] #Starlight SalvContra
   id: SeismicCharge
   components:
   - type: Sprite

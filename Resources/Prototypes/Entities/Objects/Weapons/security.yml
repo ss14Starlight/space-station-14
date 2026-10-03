@@ -1,8 +1,7 @@
 - type: entity
   name: stun baton
-  parent: BaseItem
-  id: BaseStunbaton
-  abstract: true
+  parent: [ BaseContrabandTier2, BaseStunbaton, BaseSecurityContraband ]
+  id: Stunbaton
   description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
   components:
   - type: Sprite
@@ -138,12 +137,8 @@
     - Antagonists
 
 - type: entity
-  parent: [BaseStunbaton, BaseSecurityContraband, BaseContrabandTier2]
-  id: Stunbaton
-
-- type: entity
   name: truncheon
-  parent: [BaseItem, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, BaseItem, BaseSecurityContraband ]
   id: Truncheon
   description: A rigid, steel-studded baton, meant to harm.
   components:
@@ -180,7 +175,7 @@
 
 - type: entity
   name: flash
-  parent: [BaseItem, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband, BaseRepresentativesContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, BaseItem, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband, BaseNanoTrasenContraband ]
   id: Flash
   description: An ultrabright flashbulb with a trigger, which causes the victim to be dazed and lose their eyesight for a moment. Useless when burnt out.
   components:
@@ -236,7 +231,7 @@
 
 - type: entity
   name: portable flasher
-  parent: [BaseMachine, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, BaseMachine, BaseSecurityContraband ]
   id: PortableFlasher
   description: An ultrabright flashbulb with a proximity trigger, useful for making an area security-only.
   components:

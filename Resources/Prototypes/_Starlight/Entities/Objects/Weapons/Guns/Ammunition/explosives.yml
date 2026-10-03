@@ -201,7 +201,7 @@
   id: GrenadeGaslauncher
   name: gas grenade
   description: Able to choke a room or several of your friends.
-  parent: [ BaseGrenade, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, BaseGrenade, BaseSecurityContraband ] # Blimpuf
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeGas
@@ -222,7 +222,7 @@
   id: GrenadeStingerlauncher
   name: stinger grenade
   description: An unruly crowd's favourite.
-  parent: [ BaseGrenade, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, BaseGrenade, BaseSecurityContraband ] # Blimpuf
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeStinger

@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: BoxFolderCentComClipboardEmpty
+  components:
+  - type: Contraband
+    tier: Tier1
+    contrabandType: CentralCommand
+    allowedDepartments: [ CentralCommand ]

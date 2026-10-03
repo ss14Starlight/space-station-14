@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingHeadset, BaseRepresentativesContraband ]
+  parent: [ ClothingHeadset, BaseNanoTrasenContraband ]
   id: ClothingHeadsetIAA
   name: internal affairs agent headset
   description: A headset for internal affairs agents to hear the captain's last words.
@@ -48,7 +48,7 @@
     sprite: Clothing/Ears/Headsets/service.rsi
 
 - type: entity
-  parent: [ ClothingHeadset, BaseCommandManagerContraband ]
+  parent: [ ClothingHeadset, BaseCommandContraband, BaseAssistantManagerContraband ]
   id: ClothingHeadsetAssistantManager
   name: assistant manager headset
   description: A headset for the least poor among the poor.

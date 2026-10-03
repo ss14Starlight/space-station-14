@@ -967,7 +967,7 @@
     state: pda-security
 
 - type: entity
-  parent: [ BaseCentcommContraband, BaseSecurityPDA ] # Blimpuf
+  parent: [ BaseCentcommContraband, BaseSecurityPDA ]
   id: CentcomPDA
   name: CentComm PDA
   description: Light green sign of walking bureaucracy.
@@ -1223,7 +1223,7 @@
     state: pda-syndi-commander
 
 - type: entity
-  parent: [ BaseCentcommContraband, BaseSecurityPDA ] # Blimpuf
+  parent: [ BaseCentcommContraband, BaseSecurityPDA ]
   id: ERTLeaderPDA
   name: ERT leader PDA # Starlight: capitalization
   suffix: Leader

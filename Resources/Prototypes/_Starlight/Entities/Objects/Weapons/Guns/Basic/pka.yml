@@ -1,7 +1,7 @@
 - type: entity
   name: SPKA
   id: WeaponSPKA
-  parent: [WeaponProtoKineticAcceleratorBase, BaseSalvageContraband]
+  parent: [ BaseContrabandTier2, WeaponProtoKineticAcceleratorBase, BaseSalvageContraband ]
   description: Fires a barrage of low-damage kinetic bolts at a short range.
   components:
   - type: Sprite
@@ -58,7 +58,7 @@
 - type: entity
   name: Regulator
   id: WeaponRegulator
-  parent: [WeaponProtoKineticAcceleratorBase, BaseSalvageContraband]
+  parent: [ BaseContrabandTier2, WeaponProtoKineticAcceleratorBase, BaseSalvageContraband ]
   description: Vulkan Industries competitor to the standard Appraisal tool, better used on more durable products.
   components:
   - type: Sprite
@@ -123,7 +123,7 @@
 - type: entity
   name: Chain Accelerator
   id: WeaponChainAccelerator
-  parent: [WeaponProtoKineticAcceleratorBase, BaseSalvageContraband]
+  parent: [ BaseContrabandTier2, WeaponProtoKineticAcceleratorBase, BaseSalvageContraband ]
   description: Fires a steady stream of low-damage kinetic bolts at a short range.
   components:
   - type: Sprite

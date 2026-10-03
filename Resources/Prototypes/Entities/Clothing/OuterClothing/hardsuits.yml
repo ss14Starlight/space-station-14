@@ -87,7 +87,7 @@
 
 #Spationaut Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCargoSalvageContraband] #starlight
+  parent: [ ClothingOuterHardsuitBase, BaseCargoContraband, BaseSalvageContraband ] #starlight
   id: ClothingOuterHardsuitSpatio
   name: spationaut hardsuit
   description: A lightweight hardsuit designed for industrial EVA in zero gravity.
@@ -124,7 +124,7 @@
 
 #Salvage Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSalvageContraband, BaseMiningContraband] # Starlight
+  parent: [ ClothingOuterHardsuitBase, BaseSalvageContraband, BaseMiningContraband ] # Starlight
   id: ClothingOuterHardsuitSalvage
   name: salvage hardsuit # Starlight - rename for mining hardsuit addition
   description: A special suit that protects against hazardous, low pressure environments. Has reinforced plating for wildlife encounters.
@@ -165,7 +165,7 @@
 
 #Goliath Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCargoSalvageContraband] #starlight
+  parent: [ ClothingOuterHardsuitBase, BaseCargoContraband, BaseSalvageContraband ] #starlight
   id: ClothingOuterHardsuitGoliath
   name: goliath hardsuit
   description: A lightweight hardsuit, adorned with a patchwork of thick, chitinous goliath hide.
@@ -272,7 +272,7 @@
 
 #Security Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, ClothingOuterHardsuitBase, BaseSecurityContraband ]
   id: ClothingOuterHardsuitSecurity
   name: security hardsuit
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
@@ -311,7 +311,7 @@
 
 #Brigmedic Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, ClothingOuterHardsuitBase, BaseSecurityContraband ]
   id: ClothingOuterHardsuitBrigmedic
   name: brigmedic hardsuit
   description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
@@ -356,7 +356,7 @@
 
 #Warden's Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, ClothingOuterHardsuitBase, BaseSecurityContraband ]
   id: ClothingOuterHardsuitWarden
   name: warden's hardsuit
   description: A specialized, heavy riot suit geared to combat low pressure environments.
@@ -681,8 +681,6 @@
   name: blood-red hardsuit
   description: A heavily armored hardsuit designed for work in special operations. Property of Gorlex Marauders.
   components:
-  - type: Contraband # Blimpuf
-    tier: Tier4
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
   - type: Item
@@ -754,8 +752,6 @@
   name: syndicate elite hardsuit
   description: An elite version of the blood-red hardsuit, with improved radiation resistance and fireproofing. Property of Gorlex Marauders.
   components:
-  - type: Contraband # Blimpuf
-    tier: Tier4
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
   - type: Clothing
@@ -807,8 +803,6 @@
   name: syndicate commander hardsuit
   description: A bulked up version of the blood-red hardsuit, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
   components:
-  - type: Contraband # Blimpuf
-    tier: Tier4
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
   - type: Clothing
@@ -854,8 +848,6 @@
   name: cybersun juggernaut suit
   description: A suit made by the cutting edge R&D department at cybersun to be hyper resilient.
   components:
-  - type: Contraband # Blimpuf
-    tier: Tier4
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
   - type: Clothing

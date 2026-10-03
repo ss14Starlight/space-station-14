@@ -340,6 +340,7 @@
 
 - type: reagent
   id: Respirazone
+  contrabandTier: Tier1
   name: reagent-name-respirazone
   group: Medicine
   desc: reagent-desc-respirazone

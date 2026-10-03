@@ -66,7 +66,7 @@
     sprite: _Starlight/Clothing/Back/Duffels/hop.rsi
 
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseCommandManagerContraband]
+  parent: [ ClothingBackpackDuffel, BaseCommandContraband, BaseAssistantManagerContraband ]
   id: ClothingBackpackDuffelCommandGeneric
   name: command duffel bag
   description: A generic Command-colored duffel bag not associated with any particular department.
@@ -75,7 +75,7 @@
     sprite: _Starlight/Clothing/Back/Duffels/command.rsi
 
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseRepresentativesContraband]
+  parent: [ ClothingBackpackDuffel, BaseBlueShieldContraband ]
   id: ClothingBackpackDuffelBlueShield
   name: blueshield duffel bag
   description: The bag for a Blueshield Officer who is ready for any contingency.

@@ -1,6 +1,6 @@
 - type: entity
   name: bola
-  parent: [BaseItem, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, BaseItem, BaseSecurityContraband ]
   id: Bola
   description: Linked together with some spare cuffs and metal.
   components:

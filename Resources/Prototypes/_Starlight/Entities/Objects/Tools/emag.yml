@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseItem, BaseContrabandTier4]
+  parent: [ BaseContrabandTier4, BaseItem ]
   id: EmagFREE
   suffix: ""
   name: FreeMAG
@@ -25,7 +25,7 @@
         - CanAffectLawBoards #TODO Test
 
 - type: entity
-  parent: [BaseItem, BaseContrabandTier4]
+  parent: [ BaseContrabandTier4, BaseItem ]
   id: EmagTeaParty
   suffix: ""
   name: TeaPartyMAG

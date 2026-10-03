@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: ClothingShoesBootsMagSyndie
+  components:
+  - type: Contraband
+    tier: Tier4

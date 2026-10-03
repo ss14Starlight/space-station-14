@@ -3,17 +3,18 @@
   abstract: true
   components:
   - type: Contraband
-    # Blimpuf: classify origin only; equipment supplies its own tier when above Tier1.
-    contrabandType: Soviet # Blimpuf
+    # Equipment supplies its own tier when above Tier1.
+    contrabandType: Soviet
 
 - type: entity
   id: BaseTSFContraband
   abstract: true
   components:
+  - type: ScanDetectable
   - type: Contraband
     allowedDepartments: [ TSF ]
-    tier: Tier3 # Blimpuf
-    contrabandType: TSF # Blimpuf
+    tier: Tier3
+    contrabandType: TSF
 
 # Roboticist
 - type: entity
@@ -38,9 +39,10 @@
   id: BaseAdvancedCyberlimbContraband
   abstract: true
   components:
+  - type: ScanDetectable
   - type: Contraband
-    tier: Tier3 # Blimpuf
-    contrabandType: Cybernetic # Blimpuf
+    tier: Tier3
+    contrabandType: Cybernetic
 
 - type: entity
   id: BaseSalvageContraband
@@ -63,5 +65,47 @@
   parent: BaseRestrictedContraband
   abstract: true
   components:
-    - type: Contraband
-      allowedJobs: [ Reporter ]
+  - type: Contraband
+    allowedJobs: [ Reporter ]
+
+- type: entity
+  id: BaseNanoTrasenContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    contrabandType: NanoTrasen
+    allowedDepartments: [Representatives]
+
+- type: entity
+  id: BaseBlueShieldContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    contrabandType: NanoTrasen
+    allowedJobs: [BlueShield]
+
+- type: entity
+  id: BaseLawContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [Law]
+
+- type: entity
+  id: BaseAssistantManagerContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [AssistantManager]
+
+- type: entity
+  id: BaseLawyerContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [Lawyer]

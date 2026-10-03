@@ -124,7 +124,6 @@
   name: reagent-name-tritium
   desc: reagent-desc-tritium
   physicalDesc: reagent-physical-desc-ionizing
-  contrabandTier: Tier1 # Blimpuf
   allowedDepartments:
   - Engineering
   flavor: bitter
@@ -346,7 +345,6 @@
   name: reagent-name-frezon
   desc: reagent-desc-frezon
   physicalDesc: reagent-physical-desc-gaseous
-  contrabandTier: Tier1 # Blimpuf
   allowedDepartments:
   - Engineering
   allowedJobs:

@@ -12,3 +12,15 @@
     - type: Tag
       tags:
       - SecBeltEquip
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudSyndicate
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudSyndicateAgent
+  components:
+  - type: Contraband
+    tier: Tier4

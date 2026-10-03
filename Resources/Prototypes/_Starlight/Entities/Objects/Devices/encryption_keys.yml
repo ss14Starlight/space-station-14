@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ EncryptionKey, BaseRepresentativesContraband ]
+  parent: [ EncryptionKey, BaseLawContraband ]
   id: EncryptionKeyLaw
   name: law encryption key
   description: An encryption key used by the most meticulous person.
@@ -14,7 +14,7 @@
       - state: nano_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseRepresentativesContraband ]
+  parent: [ EncryptionKey, BaseNanoTrasenContraband ]
   id: EncryptionKeyNanoTrasen
   name: nanotrasen encryption key
   description: An encryption key used by captain's bosses' bosses.
@@ -130,7 +130,7 @@
     stealGroup: EncryptionKeyHybrid
 
 - type: entity
-  parent: [ EncryptionKey, BaseRepresentativesContraband ]
+  parent: [ EncryptionKey, BaseNanoTrasenContraband ]
   id: EncryptionKeyNCTrainer
   name: nanotrasen career trainer encryption key
   description: An encryption key used by your well-taught corporate training team.

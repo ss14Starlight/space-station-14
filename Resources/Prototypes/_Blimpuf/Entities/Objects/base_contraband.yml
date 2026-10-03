@@ -1,7 +1,5 @@
-# Tier and type describe how contraband is classified. Department and job lists describe who may carry it.
-# These are kept separate so an authorization base can be combined with whichever tier an item needs.
+# Additional tier and authorization mixins. Upstream bases are customized by Starlight partials.
 
-# General classification bases for items that do not use departmental authorization.
 - type: entity
   id: BaseContrabandTier4
   abstract: true
@@ -10,50 +8,6 @@
   - type: Contraband
     tier: Tier4
 
-- type: entity
-  id: BaseXenoborgContraband
-  abstract: true
-  components:
-  - type: ScanDetectable
-  - type: Contraband
-    tier: Tier4
-    contrabandType: Cybernetic
-
-- type: entity
-  id: BaseMagicalContraband
-  abstract: true
-  components:
-  - type: ScanDetectable
-  - type: Contraband
-    tier: Tier4
-    contrabandType: Magical
-
-- type: entity
-  id: BaseSyndicateContraband
-  abstract: true
-  components:
-  - type: ScanDetectable
-  - type: Contraband
-    tier: Tier3
-    contrabandType: Syndicate
-
-- type: entity
-  id: BaseMinorContraband
-  abstract: true
-  components:
-  - type: Contraband
-    tier: Tier2
-
-- type: entity
-  id: BaseMajorContraband
-  abstract: true
-  components:
-  - type: ScanDetectable
-  - type: Contraband
-    tier: Tier3
-
-# Tier-only mixins for authorized items. Put these before any parent that supplies a different tier.
-# Tier 3 contraband is also detectable by security scanners.
 - type: entity
   id: BaseContrabandTier2
   abstract: true
@@ -70,105 +24,22 @@
     tier: Tier3
 
 - type: entity
-  id: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    # Use the component's Tier1 default so authorization bases do not override an inherited tier.
-
-# Authorization lists combine across parents. For tier and type, the first parent specifying a value wins.
-# Single-department authorization bases.
-- type: entity
-  id: BaseCentcommContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: ScanDetectable # Blimpuf
-  - type: Contraband
-    tier: Tier4
-    contrabandType: CentralCommand
-    allowedDepartments: [ CentralCommand ]
-
-- type: entity
-  id: BaseCommandContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Command ]
-
-- type: entity
-  id: BaseSecurityContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Security ]
-
-- type: entity
-  id: BaseEngineeringContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Engineering ]
-
-- type: entity
-  id: BaseScienceContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Science ]
-
-- type: entity
-  id: BaseMedicalContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Medical ]
-
-- type: entity
-  id: BaseCivilianContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Civilian ]
-
-- type: entity
-  id: BaseCargoContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Cargo ]
-
-- type: entity
-  id: BaseRepresentativesContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Representatives ]
-
-- type: entity
   id: BaseSiliconContraband
   parent: BaseRestrictedContraband
   abstract: true
   components:
   - type: Contraband
-    allowedDepartments: [ Silicon ]
+    allowedDepartments:
+    - Silicon
 
-# Single-job authorization bases.
 - type: entity
   id: BaseInternalAffairsContraband
   parent: BaseRestrictedContraband
   abstract: true
   components:
   - type: Contraband
-    allowedJobs: [ IAA ]
+    allowedJobs:
+    - IAA
 
 - type: entity
   id: BaseBartenderContraband
@@ -176,15 +47,9 @@
   abstract: true
   components:
   - type: Contraband
-    allowedJobs: [ Bartender ]
+    allowedJobs:
+    - Bartender
 
-- type: entity
-  id: BaseZookeeperContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedJobs: [ Zookeeper ]
 
 - type: entity
   id: BaseWardenContraband
@@ -192,7 +57,8 @@
   abstract: true
   components:
   - type: Contraband
-    allowedJobs: [ Warden ]
+    allowedJobs:
+    - Warden
 
 - type: entity
   id: BaseDetectiveContraband
@@ -200,22 +66,5 @@
   abstract: true
   components:
   - type: Contraband
-    allowedJobs: [ Detective ]
-
-- type: entity
-  id: BaseJanitorContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedJobs: [ Janitor ]
-
-# Contraband used for theft objectives rather than ordinary departmental equipment.
-- type: entity
-  id: BaseGrandTheftContraband
-  abstract: true
-  components:
-  - type: ScanDetectable
-  - type: Contraband
-    tier: Tier3
-    allowedDepartments: [ Command ]
+    allowedJobs:
+    - Detective

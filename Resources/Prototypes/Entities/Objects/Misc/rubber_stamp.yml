@@ -43,7 +43,7 @@
 
 - type: entity
   name: captain's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ]
   id: RubberStampCaptain
   description: A rubber stamp for stamping important documents. 9/10 clowns recommend stealing this. The 10th clown already has. # Starlight
   categories: [ DoNotMap ]
@@ -57,7 +57,7 @@
 
 - type: entity
   name: CentComm rubber stamp
-  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
+  parent: [ BaseCentcommContraband, RubberStampBase ]
   id: RubberStampCentcom
   description: A rubber stamp for stamping important documents. Tell them who's boss! # Starlight
   categories: [ DoNotMap ]
@@ -82,9 +82,6 @@
     stampState: "paper_stamp-chaplain"
   - type: Sprite
     state: stamp-chaplain
-  - type: Contraband # Blimpuf
-    tier: Tier2
-    allowedJobs: [ Chaplain ]
 
 - type: entity
   name: lawyer's rubber stamp
@@ -100,9 +97,6 @@
   - type: Sprite
     sprite: _Starlight/Objects/Misc/stamps.rsi  # Starlight
     state: stamp-lawyer
-  - type: Contraband # Blimpuf
-    tier: Tier2
-    allowedJobs: [ Lawyer ]
 
 - type: entity
   name: clown's rubber stamp
@@ -117,13 +111,10 @@
     stampState: "paper_stamp-clown"
   - type: Sprite
     state: stamp-clown
-  - type: Contraband # Blimpuf
-    tier: Tier2
-    allowedJobs: [ Clown ]
 
 - type: entity
   name: chief engineer's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ]
   id: RubberStampCE
   description: A rubber stamp for stamping important documents. Used to approve the maints bars, the rage cages, and the shittles. # Starlight
   categories: [ DoNotMap ]
@@ -137,7 +128,7 @@
 
 - type: entity
   name: chief medical officer's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ]
   id: RubberStampCMO
   description: A rubber stamp for stamping important documents. For when the doctor is in. # Starlight
   categories: [ DoNotMap ]
@@ -151,7 +142,7 @@
 
 - type: entity
   name: head of personnel's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ]
   id: RubberStampHop
   description: A rubber stamp for stamping important documents. Slightly chewed. # Starlight
   categories: [ DoNotMap ]
@@ -165,7 +156,7 @@
 
 - type: entity
   name: head of security's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ]
   id: RubberStampHos
   description: A rubber stamp for stamping important documents. I love the smell of rubber in the morning. # Starlight
   categories: [ DoNotMap ]
@@ -191,13 +182,10 @@
     sound: null
   - type: Sprite
     state: stamp-mime
-  - type: Contraband # Blimpuf
-    tier: Tier2
-    allowedJobs: [ Mime ]
 
 - type: entity
   name: quartermaster's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ]
   id: RubberStampQm
   description: A rubber stamp for stamping important documents. For when they do fill out a damn form. # Starlight
   categories: [ DoNotMap ]
@@ -211,7 +199,7 @@
 
 - type: entity
   name: research director's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ]
   id: RubberStampRd
   description: A rubber stamp for stamping important documents. Covered in ash and plasma residue. # Starlight
   categories: [ DoNotMap ]
@@ -254,7 +242,7 @@
 
 - type: entity
   name: warden's rubber stamp
-  parent: [RubberStampBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseSecurityContraband ]
   id: RubberStampWarden
   description: A rubber stamp for stamping important documents. Mostly used for approving whatever maints loot the secoffs bring in. # Starlight
   categories: [ DoNotMap ]
@@ -294,7 +282,7 @@
 
 - type: entity
   name: detective's rubber stamp
-  parent: [RubberStampBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseSecurityContraband ]
   id: RubberStampDetective
   description: A rubber stamp for stamping important documents. The stamp talks to itself, too. # Starlight
   categories: [ DoNotMap ]
@@ -319,9 +307,6 @@
     stampState: "paper_stamp-psychologist"
   - type: Sprite
     state: stamp-psychologist
-  - type: Contraband # Blimpuf
-    tier: Tier2
-    allowedJobs: [ Psychologist ]
 
 - type: entity
   name: wizard's rubber stamp

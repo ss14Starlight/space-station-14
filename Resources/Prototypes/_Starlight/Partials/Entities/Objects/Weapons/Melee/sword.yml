@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: EnergyKatana
+  components:
+  - type: Contraband
+    tier: Tier4
+    severity: !Remove

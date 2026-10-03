@@ -1,7 +1,7 @@
 # NT stamps
 - type: entity
   name: magistrate stamp
-  parent: [ RubberStampBase, BaseRepresentativesContraband, BaseContrabandTier2 ] # Blimpuf
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseNanoTrasenContraband ] # Blimpuf
   id: RubberStampMagistrate
   description: A rubber stamp for stamping important documents. Your word is law. This stamp is order.
   suffix: DO NOT MAP
@@ -16,7 +16,7 @@
 
 - type: entity
   name: nt representative's rubber stamp
-  parent: [ RubberStampBase, BaseRepresentativesContraband, BaseContrabandTier2 ] # Blimpuf
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseNanoTrasenContraband ] # Blimpuf
   id: RubberStampNtrep
   description: A rubber stamp for stamping important documents. Heads will roll.
   suffix: DO NOT MAP
@@ -31,7 +31,7 @@
 
 - type: entity
   name: internal affairs agent's rubber stamp
-  parent: [ RubberStampBase, BaseRepresentativesContraband, BaseContrabandTier2 ] # Blimpuf
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseLawContraband ] # Blimpuf
   id: RubberStampIAA
   description: A rubber stamp for stamping important documents. For when you want your fax to CC to have that bit more authority.
   suffix: DO NOT MAP
@@ -46,7 +46,7 @@
 
 - type: entity
   name: blueshield rubber stamp
-  parent: [ RubberStampBase, BaseRepresentativesContraband, BaseContrabandTier2 ] # Blimpuf
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseBlueShieldContraband ] # Blimpuf
   id: RubberStampBSO
   description: A rubber stamp for stamping important documents. While you are stamping a document, the captain is getting his shoes stolen AGAIN.
   suffix: DO NOT MAP
@@ -447,7 +447,7 @@
 # TSF/Solgov stamp
 - type: entity
   name: trans-solar federation rubber stamp
-  parent: [ RubberStampBase, BaseContrabandTier3, BaseTSFContraband ] # Blimpuf
+  parent: [ BaseContrabandTier3, RubberStampBase, BaseTSFContraband ] # Blimpuf
   id: RubberStampTSF
   description: A rubber stamp for stamping important documents. Oh god...
   categories: [ DoNotMap ]
@@ -461,7 +461,7 @@
 
 - type: entity
   name: trans-solar marine corps rubber stamp
-  parent: [ RubberStampBase, BaseContrabandTier3, BaseTSFContraband ] # Blimpuf
+  parent: [ BaseContrabandTier3, RubberStampBase, BaseTSFContraband ] # Blimpuf
   id: RubberStampTSMC
   description: A rubber stamp for stamping important documents. OH GOD OH FUCK...!
   categories: [ DoNotMap ]
@@ -475,7 +475,7 @@
 
 - type: entity
   name: solgov law enforcement rubber stamp
-  parent: [ RubberStampBase, BaseContrabandTier3, BaseTSFContraband ] # Blimpuf
+  parent: [ BaseContrabandTier3, RubberStampBase, BaseTSFContraband ] # Blimpuf
   id: RubberStampSolgovLaw
   description: A rubber stamp for stamping important documents. Oh fuck...
   categories: [ DoNotMap ]
@@ -489,7 +489,7 @@
 
 - type: entity
   name: solgov representative rubber stamp
-  parent: [ RubberStampBase, BaseContrabandTier3, BaseTSFContraband ] # Blimpuf
+  parent: [ BaseContrabandTier3, RubberStampBase, BaseTSFContraband ] # Blimpuf
   id: RubberStampSolgovRep
   description: A rubber stamp for stamping important documents. Reminds people that CC and NT answer to somebody.
   categories: [ DoNotMap ]
@@ -503,7 +503,7 @@
 
 - type: entity
   name: solgov traders rubber stamp
-  parent: [ RubberStampBase, BaseContrabandTier3, BaseTSFContraband ] # Blimpuf
+  parent: [ BaseContrabandTier3, RubberStampBase, BaseTSFContraband ] # Blimpuf
   id: RubberStampSolgovTraders
   description: A rubber stamp for stamping important documents. Where is money to be made, that is.
   categories: [ DoNotMap ]
