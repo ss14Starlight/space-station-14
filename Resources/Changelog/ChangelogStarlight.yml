@@ -1,13 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: Cerberus now uses the correct sounds for emotes, and not just the bark for everything.
-    type: Add
-  id: 408711
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: SirLutz
-  changes:
   - message: Chaplain can now cleanse empowered rifts aswell.
     type: Add
   id: 408712
@@ -2799,4 +2792,11 @@ Entries:
   id: 409110
   time: '2026-10-03T17:28:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6464
+- author: Caws
+  changes:
+  - message: All emotes have punctuation at the end now (just like Upstream's emotes).
+    type: Tweak
+  id: 409111
+  time: '2026-10-03T20:35:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6469
 Order: -1
