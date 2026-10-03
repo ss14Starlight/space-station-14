@@ -6,7 +6,6 @@ namespace Content.Shared.Xenoarchaeology.Artifact.XAT.Components;
 
 public sealed partial class XATCompNearbyComponent
 {
-    // Check based on tag
     [DataField, AutoNetworkedField]
     public ProtoId<TagPrototype>? RequireTag;
 }
