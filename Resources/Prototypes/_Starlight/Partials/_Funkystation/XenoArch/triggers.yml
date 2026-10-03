@@ -1,0 +1,31 @@
+- type: !PartialOnly xenoArchTrigger
+  id: TriggerCitrus
+  components:
+  - !CombineIndex:0 type: XATReactive
+    reagents:
+    - ArnoldPalmer
+    - Radler
+  - type: XATCompNearby
+    requireComponentWithName: Tag
+    requireTag: Citrus
+    radius: 2
+
+- type: !PartialOnly xenoArchTrigger
+  id: TriggerTechnologyDisk
+  components:
+  - !CombineIndex:0 type: XATCompNearby
+    requireComponentWithName: Tag
+    requireTag: FloppyDisk
+    radius: 2
+
+- type: !PartialOnly xenoArchTrigger
+  id: TriggerMilk
+  components:
+  - !CombineIndex:0 type: XATReactive
+    reagents:
+    - Cream
+    - IceCream
+  - type: XATCompNearby
+    requireComponentWithName: Tag
+    requireTag: IceCream
+    radius: 2
