@@ -134,3 +134,19 @@
   components:
   - type: ZoneMarker
     zone: Solars
+
+- type: entity
+  id: ZoneMarkerDetective
+  parent: ZoneMarkerBase
+  name: zone marker (detective)
+  components:
+  - type: ZoneMarker
+    zone: Detective
+
+- type: entity
+  id: ZoneMarkerVirology
+  parent: ZoneMarkerBase
+  name: zone marker (virology)
+  components:
+  - type: ZoneMarker
+    zone: Virology
