@@ -49,13 +49,9 @@ public abstract partial class SharedGunSystem
         var angles = new Angle[spread.Count];
         var sector = (end - start) / spread.Count;
 
-        var max = (float) spread.Deviation.Theta;
-
         // Every pellet strays up to Deviation either way, but never leaves the spread cone.
         for (var i = 0; i < spread.Count; i++)
-        {
             angles[i] = new Angle(start + (sector * (i + random.NextDouble())));
-        }
 
         return angles;
     }
