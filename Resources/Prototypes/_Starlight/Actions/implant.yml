@@ -12,7 +12,7 @@
       itemIconStyle: BigAction
       priority: -20
       icon:
-        sprite: _Starlight/Actions/implants.rsi
+        sprite: _Starlight/Interface/Actions/actions_implants.rsi
         state: gorilla_rampage
 
 - type: entity
@@ -84,6 +84,31 @@
       sprite: Objects/Magic/magicactions.rsi
       state: gib
 
+- type: entity
+  parent: BaseAction
+  id: ActionRetractableItemAdvancedClaws
+  name: Advanced Claws
+  description: Extend or retract your claws!
+  components:
+  - type: Action
+    useDelay: 1
+    raiseOnAction: true
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_implants.rsi
+      state: toggle_claws
+  - type: InstantAction
+    event: !type:OnRetractableItemActionEvent
+  - type: RetractableItemAction
+    spawnedPrototype: AdvancedClaws
+    spawnInHand: false
+    slot: gloves
+    requiredSlots: GLOVES
+    summonSounds:
+      collection: ClawsUnsheathe # Placeholder
+    retractSounds:
+      collection: ClawsSheathe # Placeholder
+    isCybernetic: true
 # Xenoroach Self-Destruct
 - type: entity
   parent: [BaseSuicideAction, BaseImplantAction]

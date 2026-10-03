@@ -413,5 +413,8 @@ AirlockNtrepGlassLocked: AirlockNTGlassLocked
 AirlockMaintNtrepLocked: AirlockMaintNTLocked
 DoorElectronicsNtrep: null
 
+#2026-10-02 - Single poster rename
+PosterlegitLawPoster: PosterLegitLawPoster
+
 #2026-10-03 - Revert the Enforcer -> Sentiel changes, which only changed one ID
 WeaponShotgunSentielRubber: WeaponShotgunEnforcerRubber
