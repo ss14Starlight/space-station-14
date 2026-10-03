@@ -171,7 +171,7 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
     /// </summary>
     private bool IsJammed(EntityUid gun)
         => _entMan.TryGetComponent<GunHeatComponent>(gun, out var heat) && heat.Jammed
-           || _entMan.TryGetComponent<GunJamDefectComponent>(gun, out var defect) && defect.IsJammed;
+        || _entMan.TryGetComponent<GunJamDefectComponent>(gun, out var defect) && defect.IsJammed;
 
     private void DrawStatusIndicators(DrawingHandleScreen screen, SpriteSystem sprites, Vector2 cursor, float uiScale, bool boltOpen, bool jammed)
     {

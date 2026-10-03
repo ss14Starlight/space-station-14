@@ -45,8 +45,8 @@ public sealed partial class NPCHidingWitnessSystem : EntitySystem
 
     private bool IsSeeThrough(EntityUid uid)
         => HasComp<EntityStorageComponent>(uid)
-           || HasComp<FlippableStructureComponent>(uid)
-           || HasComp<ProjectileCoverComponent>(uid);
+        || HasComp<FlippableStructureComponent>(uid)
+        || HasComp<ProjectileCoverComponent>(uid);
 
     private void OnInsertedIntoContainer(Entity<NpcFactionMemberComponent> hider, ref EntGotInsertedIntoContainerMessage args)
     {
@@ -87,9 +87,9 @@ public sealed partial class NPCHidingWitnessSystem : EntitySystem
         }
 
         return TryComp<NpcFactionMemberComponent>(npc, out var faction)
-               && TryComp<NpcFactionMemberComponent>(target, out var targetFaction)
-               && _faction.IsMemberOfAny((target, targetFaction), faction.HostileFactions)
-               && !_faction.IsEntityFriendly((npc, faction), (target, targetFaction));
+            && TryComp<NpcFactionMemberComponent>(target, out var targetFaction)
+            && _faction.IsMemberOfAny((target, targetFaction), faction.HostileFactions)
+            && !_faction.IsEntityFriendly((npc, faction), (target, targetFaction));
     }
 
     private bool TryGetHidingSpot(EntityUid target, out EntityUid storage)
@@ -114,9 +114,9 @@ public sealed partial class NPCHidingWitnessSystem : EntitySystem
         storage = default;
 
         return TryComp<NPCHidingWitnessComponent>(npc, out var witness)
-               && witness.Hidden.TryGetValue(hider, out var known)
-               && TryGetHidingSpot(hider, out storage)
-               && storage == known;
+            && witness.Hidden.TryGetValue(hider, out var known)
+            && TryGetHidingSpot(hider, out storage)
+            && storage == known;
     }
 
     /// <summary>

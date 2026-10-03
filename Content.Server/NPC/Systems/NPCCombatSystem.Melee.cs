@@ -130,15 +130,11 @@ public sealed partial class NPCCombatSystem
         }
         // Starlight-start
         else if (attackTarget != component.Target
-                 && HasComp<HandsComponent>(uid)
-                 && _entityStorage.CanOpen(uid, attackTarget, silent: true))
-        {
+            && HasComp<HandsComponent>(uid)
+            && _entityStorage.CanOpen(uid, attackTarget, silent: true))
             _entityStorage.TryOpenStorage(uid, attackTarget);
-        }
         else
-        {
             _melee.AttemptLightAttack(uid, weaponUid, weapon, attackTarget);
-        }
         // Starlight-end
     }
 }
