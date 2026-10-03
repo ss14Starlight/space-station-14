@@ -1,88 +1,4 @@
 Entries:
-- author: RedSpeeds
-  changes:
-  - message: Fixed being muted at the time of cloning or transforming.
-    type: Fix
-  id: 408704
-  time: '2026-09-18T11:06:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6189
-- author: SirLutz
-  changes:
-  - message: Holydamage now affects Malign Minions, Colossus and malign secret doors, buff to regular and ERT chaplains.
-    type: Add
-  id: 408705
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: SirLutz
-  changes:
-  - message: MalignStructure damagemodifierset and container so holy damage interacts.
-    type: Add
-  id: 408706
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: SirLutz
-  changes:
-  - message: New icons for Metaphysical and Holy for medhud.
-    type: Add
-  id: 408707
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: SirLutz
-  changes:
-  - message: Malign Parasitic anomaly, now adds the CosmicCult faction to the player, and removes it on loss.
-    type: Add
-  id: 408708
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: SirLutz
-  changes:
-  - message: Colossus Mindsink now transfers on gibbing.
-    type: Add
-  id: 408709
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: SirLutz
-  changes:
-  - message: Plague doctor reduces zombie infection chance, Hat 5%, Mask 10%, Suit 20%, wearing all gives ~36% infection protection.
-    type: Tweak
-  id: 408710
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: SirLutz
-  changes:
-  - message: Cerberus now uses the correct sounds for emotes, and not just the bark for everything.
-    type: Add
-  id: 408711
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: SirLutz
-  changes:
-  - message: Chaplain can now cleanse empowered rifts aswell.
-    type: Add
-  id: 408712
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: Caws
-  changes:
-  - message: A reversion to the maximum number of nuclear operatives has been fixed. Alpha can still get a 6-man nukeops team above 84 players, while Beta will, at most, see a 4-man nukeops team at 56 players and Epsilon will, at most, see a 3-man nukeops team.
-    type: Fix
-  id: 408713
-  time: '2026-09-18T11:32:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6195
-- author: OJG
-  changes:
-  - message: Cecil command lizard.
-    type: Add
-  id: 408714
-  time: '2026-09-18T11:32:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6188
-- author: Pickra
-  changes:
-  - message: Added Kiki plush.
-    type: Add
-  id: 408715
-  time: '2026-09-18T12:00:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6198
 - author: Dragometh
   changes:
   - message: The industrial reagent grinder's pipes had their ambrosia clog cleaned and now can move reagents via plumbing again.
@@ -2799,4 +2715,88 @@ Entries:
   id: 409103
   time: '2026-10-03T09:51:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6454
+- author: Johnny
+  changes:
+  - message: Changed mantis blades to be super duper ultraviolet good (whatever that may mean).
+    type: Tweak
+  id: 409104
+  time: '2026-10-03T10:11:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6456
+- author: Scarlet.
+  changes:
+  - message: Added a way for admins to edit colors of energy toggable items such as the energy sword using vvwrite.
+    type: Add
+  id: 409105
+  time: '2026-10-03T13:07:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6460
+- author: joshujo, redmushie
+  changes:
+  - message: Firelocks detect spacing and high temperature properly again.
+    type: Fix
+  id: 409106
+  time: '2026-10-03T13:07:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6459
+- author: Kirb
+  changes:
+  - message: New Setting "Radio music volume" use this to lower or mute audio from station radios.
+    type: Add
+  id: 409107
+  time: '2026-10-03T13:36:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6081
+- author: Kirb
+  changes:
+  - message: Using "increase volume" on station radios will instead increase their range, don't get noise complaints!.
+    type: Tweak
+  id: 409108
+  time: '2026-10-03T13:36:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6081
+- author: Rinary
+  changes:
+  - message: Added "prediction"(lag compensation) for shooting.
+    type: Add
+  id: 409109
+  time: '2026-10-03T13:56:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6346
+- author: Rinary
+  changes:
+  - message: Fixed movement lag(now real).
+    type: Fix
+  id: 409110
+  time: '2026-10-03T17:28:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6464
+- author: Caws
+  changes:
+  - message: All emotes have punctuation at the end now (just like Upstream's emotes).
+    type: Tweak
+  id: 409111
+  time: '2026-10-03T20:35:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6469
+- author: Caws
+  changes:
+  - message: New sounds for cycling pump-action shotguns, used by the Kammerer and Combat Shotgun.
+    type: Add
+  id: 409112
+  time: '2026-10-03T20:35:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6467
+- author: Caws
+  changes:
+  - message: New 'heavy' shotgun gunshots, used by the Combat Shotgun, 'Sentiel' (Enforcer), and Bulldog.
+    type: Add
+  id: 409113
+  time: '2026-10-03T20:35:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6467
+- author: Caws
+  changes:
+  - message: The ZOZ-106 uses the bolt-action cocking sounds.
+    type: Tweak
+  id: 409114
+  time: '2026-10-03T20:35:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6467
+- author: Caws
+  changes:
+  - message: The 'Sentiel' (Enforcer) and Hushpup now use the rifle cocking sound.
+    type: Tweak
+  id: 409115
+  time: '2026-10-03T20:35:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6467
 Order: -1
