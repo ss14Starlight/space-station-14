@@ -1,13 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: Holydamage now affects Malign Minions, Colossus and malign secret doors, buff to regular and ERT chaplains.
-    type: Add
-  id: 408705
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: SirLutz
-  changes:
   - message: MalignStructure damagemodifierset and container so holy damage interacts.
     type: Add
   id: 408706
@@ -2799,4 +2792,11 @@ Entries:
   id: 409104
   time: '2026-10-03T10:11:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6456
+- author: Scarlet.
+  changes:
+  - message: Added a way for admins to edit colors of energy toggable items such as the energy sword using vvwrite.
+    type: Add
+  id: 409105
+  time: '2026-10-03T13:07:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6460
 Order: -1
