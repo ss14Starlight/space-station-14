@@ -9,3 +9,6 @@ trait-extremelightsensitivity-desc = You are extremely more sensitive to light t
 
 trait-nightblind-name = Nightblind
 trait-nightblind-desc = Unlike the rest of your species, you cannot see in the dark.
+
+trait-pollen-allergic-name = Pollen Allergy
+trait-pollen-allergic-desc = You're allergic to pollen.

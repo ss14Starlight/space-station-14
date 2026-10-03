@@ -126,6 +126,25 @@ public abstract partial class SharedScentSystem : EntitySystem
         Actions.SetCooldown(ent.Comp.ToggleActionEntity, lockout);
     }
 
+    public void ForceAllergySneeze(Entity<SmellerComponent> ent, TimeSpan lockout)
+    {
+        if (MobState.IsDead(ent.Owner))
+            return;
+
+        if (TryComp<ActionComponent>(ent.Comp.ToggleActionEntity, out var toggleAction) &&
+            Actions.IsCooldownActive(toggleAction))
+        {
+            Actions.SetCooldown(ent.Comp.ToggleActionEntity, lockout);
+            return;
+        }
+
+        ClearTrackedScent(ent);
+        Audio.PlayPredicted(ent.Comp.SneezeSound, ent.Owner, null);
+
+        SetSniffing(ent, false);
+        Actions.SetCooldown(ent.Comp.ToggleActionEntity, lockout);
+    }
+
     /// <summary>
     /// Starts (or switches) tracking a scent. Grants the sneeze action if not already tracking,
     /// and (re)starts the TrackStatusEffect timer.

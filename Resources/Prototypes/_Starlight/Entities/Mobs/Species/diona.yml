@@ -140,3 +140,12 @@
       0: Alive
       125: Critical
       250: Dead
+  - type: PollenCollector
+  - type: Store
+    name: pollen-shop-title
+    categories:
+    - PollenTreeFloral
+    - PollenTreeBark
+    - PollenTreeMushroom
+    currencyWhitelist:
+    - PollenPoints
