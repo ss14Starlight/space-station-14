@@ -12,12 +12,21 @@ public sealed partial class AmbientLoopPrototype : IPrototype
 {
     [IdDataField] public string ID { get; private set; } = string.Empty;
 
+    /// <summary>
+    /// Priority of this loop. Higher priority loops will override lower priority loops.
+    /// </summary>
     [DataField]
     public int Priority;
 
+    /// <summary>
+    /// The sound to play while the rule is true.
+    /// </summary>
     [DataField(required: true)]
     public SoundSpecifier Sound = default!;
 
+    /// <summary>
+    /// The rule that determines when this loop should be played.
+    /// </summary>
     [DataField(required: true)]
     public ProtoId<RulesPrototype> Rules = string.Empty;
 

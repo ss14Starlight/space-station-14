@@ -13,9 +13,15 @@ public sealed partial class AmbientOneShotPrototype : IPrototype
 {
     [IdDataField] public string ID { get; private set; } = string.Empty;
 
+    /// <summary>
+    /// The sound to play when the rule is true.
+    /// </summary>
     [DataField(required: true)]
     public SoundSpecifier Sound = default!;
 
+    /// <summary>
+    /// The rule that determines when this sound should be played.
+    /// </summary>
     [DataField(required: true)]
     public ProtoId<RulesPrototype> Rules = string.Empty;
 

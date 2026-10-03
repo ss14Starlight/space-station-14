@@ -323,6 +323,7 @@ public sealed partial class AmeControllerSystem : EntitySystem
 
     private void OnPowerChanged(EntityUid uid, AmeControllerComponent comp, ref PowerChangedEvent args)
     {
+        UpdateAmbience(uid, comp); // Starlight
         UpdateUi(uid, comp);
     }
 

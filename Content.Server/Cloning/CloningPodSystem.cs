@@ -227,7 +227,7 @@ public sealed partial class CloningPodSystem : EntitySystem
     {
         cloningPod.Status = status;
         _appearance.SetData(podUid, CloningPodVisuals.Status, cloningPod.Status);
-        UpdateAmbience(podUid, status); // Starlight
+        UpdateAmbience(podUid, cloningPod); // Starlight
     }
 
     public override void Update(float frameTime)

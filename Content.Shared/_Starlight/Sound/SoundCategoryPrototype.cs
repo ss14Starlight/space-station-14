@@ -26,6 +26,9 @@ public sealed partial class SoundCategoryPrototype : IPrototype
 {
     [IdDataField] public string ID { get; private set; } = string.Empty;
 
+    /// <summary>
+    /// The sound category this prototype represents.
+    /// </summary>
     [DataField(required: true)]
     public SoundCategory Category;
 
