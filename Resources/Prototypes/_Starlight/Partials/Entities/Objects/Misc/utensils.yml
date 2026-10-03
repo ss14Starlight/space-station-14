@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: KnifePlastic
+  components:
+  - type: Tool
+    qualities:
+    - Sawing
