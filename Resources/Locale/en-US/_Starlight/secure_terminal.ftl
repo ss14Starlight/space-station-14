@@ -225,3 +225,7 @@ secure-terminal-end-emergency-station-announcement = Access restrictions on all 
 secure-terminal-unlock-escape-pods-name = Unlock escape pods
 secure-terminal-unlock-escape-pods-desc = Escape pods will be unlocked and crew can launch them at will
 secure-terminal-unlock-escape-pods-announcement = Command has authorized escape pods to be used for evacuation
+
+secure-terminal-ui-veto = Veto
+secure-terminal-insufficient-funds = Insufficient funds. Required: { $fee }₡
+secure-terminal-fee-held = Held { $fee }₡ pending authorization.
