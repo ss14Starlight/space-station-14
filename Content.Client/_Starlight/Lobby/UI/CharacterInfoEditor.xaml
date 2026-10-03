@@ -5,25 +5,25 @@
             <BoxContainer
                 Name="Physical" Access="Public"
                 Orientation="Vertical" VerticalExpand="True">
-                <Label Text="Physical Description:"/>
+                <Label Text="{Loc 'character-editor-physical'}"/>
                 <TextEdit Name="PhysicalDescInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
             </BoxContainer>
             <BoxContainer
                 Name="Personality" Access="Public"
                 Orientation="Vertical" VerticalExpand="True">
-                <Label Text="Personality Description:"/>
+                <Label Text="{Loc 'character-editor-personality'}"/>
                 <TextEdit Name="PersonalityDescInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
             </BoxContainer>
             <BoxContainer
                 Name="Exploitable" Access="Public"
                 Orientation="Vertical" VerticalExpand="True">
-                <Label Text="Exploitable Info:"/>
+                <Label Text="{Loc 'character-info-exploitable'}"/>
                 <TextEdit Name="ExploitableInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
             </BoxContainer>
             <BoxContainer
                 Name="Secrets" Access="Public"
                 Orientation="Vertical" VerticalExpand="True">
-                <Label Text="Secrets:"/>
+                <Label Text="{Loc 'character-info-secrets'}"/>
                 <TextEdit Name="SecretsInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
             </BoxContainer>
         </BoxContainer>

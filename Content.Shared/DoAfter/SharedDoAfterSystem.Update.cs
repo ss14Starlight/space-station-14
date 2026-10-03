@@ -19,8 +19,10 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
     [Dependency] private SharedGravitySystem _gravity = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
+#if EXCEPTION_TOLERANCE
     [Dependency] private INetManager _netManager = default!;
     [Dependency] private IRuntimeLog _runtimeLog = default!;
+#endif
 
     private DoAfter[] _doAfters = Array.Empty<DoAfter>();
 
@@ -41,9 +43,11 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
                 Update(uid, active, comp, time, xformQuery, handsQuery);
             }
             // ReSharper disable once RedundantCatchClause
-#pragma warning disable CS0168 // Variable is declared but never used
+#if EXCEPTION_TOLERANCE
             catch (Exception e)
-#pragma warning restore CS0168 // Variable is declared but never used
+#else
+            catch (Exception)
+#endif
             {
 #if EXCEPTION_TOLERANCE
                 // Doafter in question failed to complete..
@@ -81,7 +85,6 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
                 throw; // No tolerance, just rethrow.
 #endif
             }
-
         }
     }
 

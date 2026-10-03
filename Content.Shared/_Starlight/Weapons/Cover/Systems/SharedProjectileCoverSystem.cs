@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._Starlight.Random;
 using Content.Shared._Starlight.Weapons.Cover.Components;
 using Content.Shared.Physics;
 using Content.Shared.Projectiles;
@@ -112,7 +113,12 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
         if (comp.BlockChance >= 1f)
             return true;
 
-        return Roll(shot, cover.Owner, seed) < comp.BlockChance;
+        // A predicted hitscan is a throwaway client entity with its own NetEntity id, so the shot seed
+        // replaces the shot id when given: client and server have to roll the same value.
+        return DeterministicRandom.Prob(
+            comp.BlockChance,
+            seed ?? GetNetEntity(shot).Id,
+            GetNetEntity(cover).Id);
     }
 
     public bool IsShotStopped(EntityUid cover, EntityUid shot, EntityUid? shooter, float? distance = null,
@@ -170,7 +176,7 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
             return false;
 
         var along = Vector2.Dot(offset, shotDirection);
-        var across = MathF.Abs(offset.X * shotDirection.Y - offset.Y * shotDirection.X);
+        var across = MathF.Abs((offset.X * shotDirection.Y) - (offset.Y * shotDirection.X));
 
         return along > 0f && across <= ShelterLineTolerance;
     }
@@ -196,17 +202,5 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
             return false;
 
         return (coverPos.Position - shooterPos.Position).Length() <= comp.PointBlankRange;
-    }
-
-    private float Roll(EntityUid shot, EntityUid cover, int? seed = null)
-    {
-        var hash = (uint) HashCode.Combine(seed ?? GetNetEntity(shot).Id, GetNetEntity(cover).Id);
-        hash ^= hash >> 16;
-        hash *= 0x7feb352d;
-        hash ^= hash >> 15;
-        hash *= 0x846ca68b;
-        hash ^= hash >> 16;
-
-        return hash / (float)uint.MaxValue;
     }
 }

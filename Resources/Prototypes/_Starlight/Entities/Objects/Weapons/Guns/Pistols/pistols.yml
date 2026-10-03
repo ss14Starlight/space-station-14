@@ -22,7 +22,7 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistolSP
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -33,7 +33,7 @@
               - MagazinePistolHighCapacitySP
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgePistolSP
           priority: 1
           whitelist:
@@ -55,7 +55,7 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistolRubber
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -64,7 +64,7 @@
             tags:
               - MagazinePistol
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgePistolRubber
           priority: 1
           whitelist:
@@ -80,7 +80,7 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazineMagnumRubber
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -89,7 +89,7 @@
             tags:
               - MagazineMagnum
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgeMagnumRubber
           priority: 1
           whitelist:
@@ -106,7 +106,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazinePistolHighCapacitySP
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -131,7 +131,7 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistolSPGolden
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -151,7 +151,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazinePistolHighCapacitySPGolden
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -216,7 +216,7 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistol40SP
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -226,7 +226,7 @@
               - MagazinePistolDP
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgePistol40SP
           priority: 1
           whitelist:
@@ -298,7 +298,7 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistol40SP
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -308,7 +308,7 @@
               - MagazinePistolDP
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgePistol40SP
           priority: 1
           whitelist:
@@ -368,14 +368,14 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: null
           whitelist:
             tags:
               - MagazinePistolImprovised
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: null
           priority: 1
           whitelist:

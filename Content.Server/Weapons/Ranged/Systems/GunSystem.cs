@@ -18,6 +18,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Mech.Components;
 using Robust.Server.GameObjects;
+using Robust.Shared.Random;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
@@ -248,11 +249,11 @@ public sealed partial class GunSystem : SharedGunSystem
         // Starlight start - cartridges can hold hitscans
         if (HasComp<HitscanAmmoComponent>(uid))
         {
-            var coordinates = Comp<TransformComponent>(uid).Coordinates; // Starlight-edit
+            var coordinates = Comp<TransformComponent>(uid).Coordinates;
             var hitscanEv = new HitscanTraceEvent
             {
                 FromCoordinates = coordinates,
-                ToCoordinates = coordinates.Offset(mapDirection), // Starlight-edit
+                ToCoordinates = coordinates.Offset(mapDirection),
                 ShotDirection = mapDirection.Normalized(),
                 Gun = gun,
                 Shooter = user,

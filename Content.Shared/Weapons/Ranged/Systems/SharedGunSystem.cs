@@ -723,8 +723,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         var toMap = TransformSystem.ToMapCoordinates(toCoordinates).Position;
         var shotDirection = (toMap - fromMap).Normalized();
 
-        const float ImpulseStrength = 25.0f;
-        var impulseVector = shotDirection * ImpulseStrength;
+        const float impulseStrength = 25.0f;
+        var impulseVector = shotDirection * impulseStrength;
         Physics.ApplyLinearImpulse(user, -impulseVector, body: user.Comp);
     }
 
@@ -840,6 +840,11 @@ public abstract partial class SharedGunSystem : EntitySystem
         // Starlight-start
         public NetEntity? Shooter;
         public NetEntity? Gun;
+
+        /// <summary>
+        /// Seed of the shot this trace belongs to, lets the shooter match it to its predicted trace.
+        /// </summary>
+        public int? PredictionSeed;
         // Starlight-end
     }
 

@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared.Projectiles;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Random;
@@ -14,10 +15,10 @@ public abstract partial class SharedGunSystem
     private const int PelletSalt = -2;
 
     public int GetShotSeed(EntityUid gun, int salt = 0)
-        => HashCode.Combine((int) Timing.CurTick.Value, GetNetEntity(gun).Id, salt);
+        => SharedRandomExtensions.HashCodeCombine((int) Timing.CurTick.Value, GetNetEntity(gun).Id, salt);
 
     public int GetHitscanSeed(EntityUid gun, int ammoIndex, int pelletIndex)
-        => GetShotSeed(gun, HashCode.Combine(ammoIndex, pelletIndex));
+        => GetShotSeed(gun, SharedRandomExtensions.HashCodeCombine(ammoIndex, pelletIndex));
 
     private System.Random GetShotRandom(EntityUid gun, int salt)
         => Random.GetPredictedRandom(Timing, GetShotSeed(gun, salt));
@@ -44,10 +45,13 @@ public abstract partial class SharedGunSystem
         if (spread.Count <= 1)
             return [new Angle((start + end) / 2)];
 
-        var random = GetShotRandom(gun, HashCode.Combine(PelletSalt, ammoIndex));
+        var random = GetShotRandom(gun, SharedRandomExtensions.HashCodeCombine(PelletSalt, ammoIndex));
         var angles = new Angle[spread.Count];
         var sector = (end - start) / spread.Count;
 
+        var max = (float) spread.Deviation.Theta;
+
+        // Every pellet strays up to Deviation either way, but never leaves the spread cone.
         for (var i = 0; i < spread.Count; i++)
         {
             angles[i] = new Angle(start + (sector * (i + random.NextDouble())));

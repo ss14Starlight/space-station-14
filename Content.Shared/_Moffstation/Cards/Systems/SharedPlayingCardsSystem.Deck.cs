@@ -89,7 +89,7 @@ public abstract partial class SharedPlayingCardsSystem
         if (entity.Comp.TopCard is { } topCardLike &&
             GetComponent(topCardLike) is { FaceDown: false } topCard)
         {
-            args.PushMarkup(Loc.GetString(PlayingCardDeckComponent.TopCardExamineLoc, ("card", topCard.ObverseName)));
+            args.PushMarkup(Loc.GetString(PlayingCardDeckComponent.TopCardExamineLoc, ("card", PlayingCardComponent.Localize(topCard.ObverseName)))); // Starlight edit
         }
 
         OnExamined<PlayingCardDeckComponent>(entity, ref args);
