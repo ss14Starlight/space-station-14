@@ -1,6 +1,6 @@
 <Document>
 # Metashields
-A full version of this may be viewed on the Starlight Wiki.
+The metashield can be complex, and is best experienced on the wiki, where formatting options are better.
 
 ## What is the 'Metashield'?
 The [bold]Metashield[/bold] is the system that determines what your character can know at the start of every round, and is used in conjunction with the Continuity Guideline rule. Something that is "shielded" can not be known by your character unless they meet certain criteria. This also means your character can not do things based on "shielded" information.
@@ -49,11 +49,13 @@ Examples:
 
 
 [bold][color=#ff6200]Unconscious Information || [/color][/bold]
-You may not remember any information learned while critical, asleep, dead or ghosted. If any of these happen to you, you forget the last ~5 minutes leading up to the event causing the aforementioned state. Silicon memory is chassis-specific, and destruction of the chassis causes total memory loss of everything experienced in said chassis.
+You may not remember any information learned while critical, asleep, dead or ghosted. If any of these happen to you, you also forget the last ~5 minutes leading up to the event causing the aforementioned state, with the exception of clearly expected cases of sleep. Silicon memory is chassis-specific, and destruction of the chassis causes total memory loss of everything experienced in said chassis.
 
 Examples:
-- You may never remember anything about your death or drugging.
-- You may make conclusions based off the state you're in when you wake up, same as anyone else.
+- You [italic]can never[/italic] remember anything about your death or drugging.
+- You [italic]may[/italic] make conclusions based off the state you're in when you wake up, same as anyone else.
+- You [italic]may[/italic] remember talking with the surgeon before turning on the anaesthesia.
+- You [italic]can not[/italic] remember witnessing acts done by yourself or others when killed/drugged within ~5 minutes of witnessing the act.
 
 
 ## Corporate Secrets
