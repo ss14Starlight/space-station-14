@@ -944,6 +944,9 @@ public sealed partial class ZoneSystem
         if ((flag & SharedNavMapSystem.AirlockMask) != 0)
             flag = ExcludeExemptDoors(ctx, tile, flag);
 
+        if (IsBoundaryTile(ctx.Grid, tile))
+            flag |= SharedNavMapSystem.AirlockMask;
+
         return true;
     }
 
