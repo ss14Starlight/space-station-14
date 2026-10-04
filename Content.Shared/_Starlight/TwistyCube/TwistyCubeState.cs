@@ -1,9 +1,14 @@
 using Robust.Shared.Serialization;
-
 namespace Content.Shared._Starlight.TwistyCube;
-
 [Serializable, NetSerializable, DataRecord]
 public partial record struct TwistyCubeState(
+    // Okay this is implemented pretty weirdly.
+    // Each corner has 3 fields, corresponding to its 3 colors.
+    // Each edge has 2 fields, corresponding to its 2 colors.
+    // The name of the field denotes which side corresponds to which color.
+    // For example, FrontTopLeft has its Side1 on the Front, Side2 on the Top, and Side3 on the Left.
+    // FrontTop has its Side1 on the Front and its Side2 on the Top.
+    // Cube turning is implemented by swizzling and swapping the values of these fields.
     [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeCorner FrontTopLeft,
     [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeCorner FrontTopRight,
     [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeCorner FrontBottomRight,
@@ -61,7 +66,6 @@ public partial record struct TwistyCubeState(
         TwistyCubeColor.Back
     )
     { }
-
     /// <summary>
     /// Performs a given face turn on the state of the cube.
     /// </summary>
@@ -104,12 +108,20 @@ public partial record struct TwistyCubeState(
                 ApplyAction(TwistyCubeAction.LeftCounterClockwise);
                 ApplyAction(TwistyCubeAction.RightClockwise);
                 (Top, Back, Bottom, Front) = (Front, Top, Back, Bottom);
-                (FrontTop, BackTop, BackBottom, FrontBottom) = (FrontBottom.YX(), FrontTop.YX(), BackTop.YX(), FrontBottom.YX());
+                (FrontTop, BackTop, BackBottom, FrontBottom) = (FrontBottom.YX(), FrontTop.YX(), BackTop.YX(), BackBottom.YX());
                 break;
             case TwistyCubeAction.YClockwise:
-                break;              
+                ApplyAction(TwistyCubeAction.TopClockwise);
+                ApplyAction(TwistyCubeAction.BottomCounterClockwise);
+                (Front, Right, Back, Left) = (Right, Back, Left, Front);
+                (FrontLeft, BackLeft, BackRight, FrontRight) = (FrontRight.YX(), FrontLeft.YX(), BackLeft.YX(), BackRight.YX());
+                break;
             case TwistyCubeAction.ZClockwise:
-                break;              
+                ApplyAction(TwistyCubeAction.FrontClockwise);
+                ApplyAction(TwistyCubeAction.BackCounterClockwise);
+                (Top, Right, Bottom, Left) = (Left, Top, Right, Bottom);
+                (TopLeft, TopRight, BottomRight, BottomLeft) = (BottomLeft.YX(), TopLeft.YX(), TopRight.YX(), BottomRight.YX());
+                break;
             case TwistyCubeAction.FrontCounterClockwise:
             case TwistyCubeAction.LeftCounterClockwise:
             case TwistyCubeAction.TopCounterClockwise:
@@ -124,4 +136,53 @@ public partial record struct TwistyCubeState(
             default:  return;
         }
     }
+    public bool Solved =>
+        Front == FrontTop.Side1 &&
+        Front == FrontBottom.Side1 &&
+        Front == FrontLeft.Side1 &&
+        Front == FrontRight.Side1 &&
+        Front == FrontTopLeft.Side1 &&
+        Front == FrontTopRight.Side1 &&
+        Front == FrontBottomRight.Side1 &&
+        Front == FrontBottomLeft.Side1 &&
+        Back == BackTop.Side1 &&
+        Back == BackBottom.Side1 &&
+        Back == BackLeft.Side1 &&
+        Back == BackRight.Side1 &&
+        Back == BackTopLeft.Side1 &&
+        Back == BackTopRight.Side1 &&
+        Back == BackBottomRight.Side1 &&
+        Back == BackBottomLeft.Side1 &&
+        Top == FrontTop.Side2 &&
+        Top == BackTop.Side2 &&
+        Top == TopLeft.Side1 &&
+        Top == TopRight.Side1 &&
+        Top == FrontTopLeft.Side2 &&
+        Top == FrontTopRight.Side2 &&
+        Top == BackTopRight.Side2 &&
+        Top == BackTopLeft.Side2 &&
+        Bottom == FrontBottom.Side2 &&
+        Bottom == BackBottom.Side2 &&
+        Bottom == BottomLeft.Side1 &&
+        Bottom == BottomRight.Side1 &&
+        Bottom == FrontBottomLeft.Side2 &&
+        Bottom == FrontBottomRight.Side2 &&
+        Bottom == BackBottomRight.Side2 &&
+        Bottom == BackBottomLeft.Side2 &&
+        Left == FrontLeft.Side2 &&
+        Left == BackLeft.Side2 &&
+        Left == TopLeft.Side2 &&
+        Left == BottomLeft.Side2 &&
+        Left == FrontTopLeft.Side3 &&
+        Left == FrontBottomLeft.Side3 &&
+        Left == BackTopLeft.Side3 &&
+        Left == BackBottomLeft.Side3 &&
+        Right == FrontRight.Side2 &&
+        Right == BackRight.Side2 &&
+        Right == TopRight.Side2 &&
+        Right == BottomRight.Side2 &&
+        Right == FrontTopRight.Side3 &&
+        Right == FrontBottomRight.Side3 &&
+        Right == BackTopRight.Side3 &&
+        Right == BackBottomRight.Side3;
 }

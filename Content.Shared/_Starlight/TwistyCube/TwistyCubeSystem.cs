@@ -18,9 +18,7 @@ public sealed partial class TwistyCubeSystem: EntitySystem
 
     private void OnExamined(Entity<TwistyCubeComponent> ent, ref ExaminedEvent args)
     {
-        var isSolved = ent.Comp.State == new TwistyCubeState();
-        var solvedText = isSolved ? Loc.GetString("twistycube-solved") : Loc.GetString("twistycube-unsolved");
-
+        var solvedText = ent.Comp.State.Solved ? Loc.GetString("twistycube-solved") : Loc.GetString("twistycube-unsolved");
         args.PushMarkup(solvedText);
     }
 
