@@ -14,5 +14,8 @@
     - Look
     - Sniff
   - type: SocialInteractionReceiver
-    interactionPrototypes:
-    - Pet
+    interactionOverrides: # you can pet the dog
+    - id: Pat
+      interactString: petting-success
+      messagePerceivedByOthers: petting-success-others
+      emoteMessage: petting-emote
