@@ -398,7 +398,7 @@
     stock: 1
 
 - type: listing
-  id: VendorPlushieSeaBunny
+  id: PlushieSeaBunny
   productEntity: PlushieSeaBunny
   cost:
     NTCredit: 20
