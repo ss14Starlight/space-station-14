@@ -6,9 +6,8 @@ using Content.Shared.Prying.Systems;
 namespace Content.Shared._Starlight.Door;
 
 /// <summary>
-/// Mirrors <see cref="SharedDoorSystem"/>'s click-to-open for firelocks, for users
-/// with <see cref="FirelockOpenerComponent"/> that the door system's own handler
-/// skips because they can't do complex interactions.
+/// Handles firelock clicks from <see cref="FirelockOpenerComponent"/> users, which
+/// <see cref="SharedDoorSystem"/> ignores for non-complex users.
 /// </summary>
 public sealed partial class FirelockOpenerSystem : EntitySystem
 {
@@ -24,16 +23,13 @@ public sealed partial class FirelockOpenerSystem : EntitySystem
 
     private void OnActivate(Entity<FirelockComponent> ent, ref ActivateInWorldEvent args)
     {
-        // Complex users are already handled by the door system.
         if (args.Handled || args.Complex || !HasComp<FirelockOpenerComponent>(args.User))
             return;
 
         if (!TryComp<DoorComponent>(ent, out var door) || !door.ClickOpen)
             return;
 
-        // Same as a bare hand: the firelock's own BeforeDoorOpenedEvent refuses
-        // while its warning lights are on, and an unpowered firelock falls back
-        // to a slow hand-pry.
+        // Warning lights block the toggle; the hand-pry only works unpowered.
         if (!_door.TryToggleDoor(ent, door, args.User, predicted: true))
             _prying.TryPry(ent, args.User, out _);
 
