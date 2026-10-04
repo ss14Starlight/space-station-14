@@ -200,7 +200,7 @@
 
 - type: entity
   parent: [ BaseMobCosmicHostile, MobCosmicLodestar ]
-  id: MobCosmicLodestarHostile #ranged unit 20 damage per shot.
+  id: MobCosmicLodestarHostile #ranged unit 20 damage shot.
   components:
   - type: GhostRole
     name: ghost-role-information-cosmic-lodestar-name
