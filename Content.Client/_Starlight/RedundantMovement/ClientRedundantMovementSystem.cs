@@ -92,7 +92,7 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
         _netManager.Disconnect -= OnDisconnect;
     }
 
-    public void SendPackets()
+    public override void Update(float frameTime)
     {
         if (!_cfg.GetCVar(StarlightCCVars.RedundantMovementEnabled))
         {
@@ -127,6 +127,7 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
 
         if (_sleepPeriodStart.HasValue && _sleepPeriodStart.Value <= _manager.ServerAckTick)
         {
+            ClearState();
             return;
         }
 

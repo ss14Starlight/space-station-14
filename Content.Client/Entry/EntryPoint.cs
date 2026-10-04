@@ -268,13 +268,6 @@ namespace Content.Client.Entry
                 {
                     var updateSystem = _entitySystemManager.GetEntitySystem<BuiPreTickUpdateSystem>();
                     updateSystem.RunUpdates();
-
-                    // Starlight
-                    // this runs in here, because using the ent system update causes it to not run (and therefore not send input packets)
-                    // when the game state pipeline has stalled, which turns one problem (incoming state delayed) into an even bigger one
-                    // (by also delaying the outgoing packets)
-                    var redundantSystem = _entitySystemManager.GetEntitySystem<ClientRedundantMovementSystem>();
-                    redundantSystem.SendPackets();
                 }
             }
         }
