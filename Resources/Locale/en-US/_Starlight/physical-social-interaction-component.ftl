@@ -96,6 +96,11 @@ booping-spider-success = You boop {THE($target)} between {POSS-ADJ($target)} man
 booping-spider-success-others = {CAPITALIZE(THE($user))} boops {THE($target)} between {POSS-ADJ($target)} many eyes.
 booping-spider-emote = boops {THE($target)} between {POSS-ADJ($target)} many eyes.
 
+# Boop alt. - Tesla (good luck)
+booping-tesla-success = You unwisely boop {THE($target)} on {POSS-ADJ($target)} electric event horizon.
+booping-tesla-success-others = {CAPITALIZE(THE($user))} unwisely boops {THE($target)} on {POSS-ADJ($target)} electric event horizon.
+booping-tesla-emote = unwisely boops {THE($target)} on {POSS-ADJ($target)} electric event horizon.
+
 # Boop alt. - Generic fallback for creatures with no noses.
 booping-generic-success = You boop {THE($target)} on {POSS-ADJ($target)} face.
 booping-generic-success-others = {CAPITALIZE(THE($user))} boops {THE($target)} on {POSS-ADJ($target)} face.
