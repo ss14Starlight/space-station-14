@@ -48,6 +48,6 @@ public sealed partial class SocialInteractionOverride
     [DataField("emoteMessage")]
     public LocId?EmoteMessage;
 
-    [DataField("emoteMessage")]
+    [DataField("emoteMessageSelf")]
     public LocId? EmoteMessageSelf;
 }
