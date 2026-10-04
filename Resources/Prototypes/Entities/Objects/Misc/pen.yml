@@ -29,7 +29,7 @@
   - type: Fixtures
   - type: ReactionMixer
     mixMessage: "spoon-mixing-success"
-    timeToMix: 0.5
+    timeToMix: 3.0
     reactionTypes:
     - Stir
     fixtures:
