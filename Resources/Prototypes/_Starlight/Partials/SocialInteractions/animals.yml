@@ -6,12 +6,12 @@
     interactionPrototypes:
     - Wave
 
+# Dogs, Corgis, K9s
 - type: !PartialOnly entity
-  id: MobCorgiBase
+  id: MobDogColdResistant
   components:
   - type: SocialInteractionGiver
     interactionPrototypes:
-    - Look
     - Sniff
   - type: SocialInteractionReceiver
     interactionOverrides: # you can pet the dog
