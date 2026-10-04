@@ -1,7 +1,6 @@
 flavor-profile-bland = bland
 flavor-base-abductor-blood = like abductor
 flavor-complex-dragan-special = like purge and triumph
-flavor-base-evil = evil
 flavor-base-wrong = wrong
 flavor-complex-tha-slop = like processed shit
 flavor-complex-struggle = like raw struggle

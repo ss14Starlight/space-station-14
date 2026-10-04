@@ -34,7 +34,7 @@
     castShadows: false #SL lighting optimization
   - type: NavMapBeacon
     color: "#ff0000"
-    text: supply rift
+    defaultText: nav-beacon-supply-rift
     enabled: true
   - type: Damageable
     damageContainer: Inorganic

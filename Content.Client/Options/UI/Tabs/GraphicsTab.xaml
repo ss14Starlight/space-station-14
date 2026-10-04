@@ -32,6 +32,9 @@
                 <CheckBox Name="SparksCheckBox"
                           Text="{Loc 'ui-options-sparks'}"
                           ToolTip="{Loc 'ui-options-sparks-tooltip'}" />
+                <CheckBox Name="HitscanPredictionCheckBox"
+                          Text="{Loc 'ui-options-hitscan-prediction'}"
+                          ToolTip="{Loc 'ui-options-hitscan-prediction-tooltip'}" />
                 <CheckBox Name="ClothingStainsCheckBox" Text="{Loc 'ui-options-show-stains'}" />
                 <!-- Interface -->
                 <Label Text="{Loc 'ui-options-interface-label'}" StyleClasses="LabelKeyText"/>
