@@ -603,7 +603,6 @@
 #RogueDrone
 - type: entity
   id: RogueExofabricator
-  categories: [ DoNotMap ]
   parent: BaseLatheLube
   name: Scrapper Exo Fabricator
   description: A derelict fabricator, its engine still faintly hums.
