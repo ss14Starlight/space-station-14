@@ -1,0 +1,39 @@
+- type: roomReverb
+  id: Default
+  amount: 0.5
+  tiers:
+  - maxTiles: 12
+    preset: SpaceStationCupboard
+  - maxTiles: 40
+    preset: SpaceStationSmallRoom
+  - maxTiles: 120
+    preset: SpaceStationMediumRoom
+  - maxTiles: 350
+    preset: SpaceStationLargeRoom
+  - maxTiles: 100000
+    preset: SpaceStationHall
+
+- type: roomReverb
+  id: Hallway
+  amount: 0.5
+  tiers:
+  - maxTiles: 60
+    preset: SpaceStationShortPassage
+  - maxTiles: 100000
+    preset: SpaceStationLongPassage
+
+- type: roomReverb
+  id: Maintenance
+  amount: 0.6
+  tiers:
+  - maxTiles: 40
+    preset: FactoryShortPassage
+  - maxTiles: 100000
+    preset: FactoryLongPassage
+
+- type: roomReverb
+  id: Chapel
+  amount: 0.7
+  tiers:
+  - maxTiles: 100000
+    preset: Chapel

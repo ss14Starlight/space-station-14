@@ -8,6 +8,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared;
 using Robust.Shared.Configuration;
+using Robust.Shared.Maths;
 
 namespace Content.Client.Options.UI.Tabs;
 
@@ -22,6 +23,16 @@ public sealed partial class AudioTab : Control
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+
+        // Starlight-start: one sub-tab per group of options instead of one long column.
+        AddSection(MusicPage, "ui-options-music-label");
+        AddSection(EnvironmentPage, "ui-options-environment-label");
+        AddSection(WorldPage, "ui-options-world-label");
+        AddSection(VoicesPage, "ui-options-voices-label");
+        AddSection(TtsPage, "ui-options-tts-label");
+        AddSection(OtherPage, "ui-options-other-label");
+        Pages.Orphan();
+        // Starlight-end
 
         var masterVolume = Control.AddOptionPercentSlider(
             CVars.AudioMasterVolume,
@@ -90,6 +101,7 @@ public sealed partial class AudioTab : Control
         // Per-category volumes are gain multipliers defaulting to 1, so the slider starts at 50% with room to boost.
         AddCategorySlider(StarlightCCVars.StationHumVolume, SliderStationHum);
         AddCategorySlider(StarlightCCVars.EnvironmentVolume, SliderEnvironment);
+        AddCategorySlider(StarlightCCVars.ReverbVolume, SliderReverb);
         AddCategorySlider(StarlightCCVars.EffectsVolume, SliderEffects);
         AddCategorySlider(StarlightCCVars.FootstepsVolume, SliderFootsteps);
         AddCategorySlider(StarlightCCVars.HandlingVolume, SliderHandling);
@@ -133,6 +145,13 @@ public sealed partial class AudioTab : Control
         => _audio.SetMasterGain(value); // Starlight-edit: lambda
 
     #region Starlight
+    private void AddSection(Control page, string title)
+    {
+        page.Orphan();
+        page.Margin = new Thickness(4);
+        Sections.AddTab(page, Loc.GetString(title));
+    }
+
     private void AddCategorySlider(CVarDef<float> cvar, OptionSlider slider)
         => Control.AddOptionPercentSlider(cvar, slider, scale: CategoryVolumeMultiplier);
 
