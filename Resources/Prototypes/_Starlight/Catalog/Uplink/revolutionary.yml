@@ -273,7 +273,7 @@
   cost:
     Telebond: 5
   categories:
-  - RevUplinkImplants FakeMindShieldImplanter
+  - RevUplinkImplants
   conditions:
   - !type:StockLimitedListingCondition
     stockLimit: 2
