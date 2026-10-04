@@ -1,13 +1,6 @@
 Entries:
 - author: Conflee
   changes:
-  - message: Xenoborg Heavy now died/breaks at 400 instead of 450- still a lot more than other Xenoborgs, but it should make securing a full kill and removing them from combat more possible if you do manage to down one.
-    type: Tweak
-  id: 408748
-  time: '2026-09-20T18:04:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6225
-- author: Conflee
-  changes:
   - message: Removed Holo Carps from Dragon Rift pools. Having 5-10 Carps attacking you, with 1-2 of them randomly being literally immune to bullets and thus always able to get free hits on you while you are shooting the rest, felt bad to fight and was just kind of lame. Cool idea, but didn't work.
     type: Tweak
   id: 408749
@@ -2799,4 +2792,11 @@ Entries:
   id: 409147
   time: '2026-10-04T13:40:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6399
+- author: STARLIGHT TEAM
+  changes:
+  - message: Artifacts can now shoot you.
+    type: Add
+  id: 409148
+  time: '2026-10-04T14:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6452
 Order: -1
