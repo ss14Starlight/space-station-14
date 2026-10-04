@@ -65,7 +65,6 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
     [Dependency] private IEyeManager _eyeManager = default!;
     [Dependency] private IStateManager _stateManager = default!;
     [Dependency] private IEntityManager _entityManager = default!;
-    private readonly ISawmill _sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("remote-control");
     private readonly EntityMenuUIController _entityMenu;
     private readonly RemoteControlInterface _remoteControl;
     private readonly SharedMapSystem _mapManager;
@@ -310,7 +309,6 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         if (!_entityManager.HasComponent<WorldTargetActionComponent>(action)
             && !_entityManager.HasComponent<EntityTargetActionComponent>(action))
         {
-            _sawmill.Error($"Remote target action {action} has no world or entity target component.");
             SetRemoteTargetAction(null);
             return false;
         }
@@ -335,7 +333,6 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         }
         else
         {
-            _sawmill.Error($"Remote target action {action} lost its target component.");
             SetRemoteTargetAction(null);
             return false;
         }

@@ -6,6 +6,12 @@ using Robust.Shared.Maths;
 namespace Content.Shared._Starlight.Computers.RemoteControl;
 
 [Serializable, NetSerializable]
+public enum RemoteControlUIKey : byte
+{
+    Key,
+}
+
+[Serializable, NetSerializable]
 public sealed class RemoteControlToggleMessage : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]
