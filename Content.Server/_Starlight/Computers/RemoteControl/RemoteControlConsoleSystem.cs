@@ -7,6 +7,7 @@ using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Construction;
 using Content.Shared._Starlight.Computers.RemoteControl;
+using Content.Shared._Afterlight.Silicons.Borgs;
 using Content.Shared.Atmos.Components;
 using Content.Shared.RCD.Components;
 using Content.Shared.RCD.Systems;
@@ -181,12 +182,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
     [SubscribeLocalEvent]
     private void OnRemoteInventoryChanged(RemoteControlInventoryChangedEvent args)
-    {
-        if (!TryFindConsole(args.Actor, out var console, out _))
-            return;
+        => RefreshRemoteConsoleStates(args.Actor);
 
-        RefreshRemoteState(console.Owner, console.Comp, args.Actor);
-    }
     [SubscribeLocalEvent]
     private void OnRemoteControlInteractionCheck(ref RemoteControlInteractionCheckEvent args)
     {
@@ -285,17 +282,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     }
 
     private void RefreshRemoteContainerState(EntityUid containerOwner)
-    {
-        foreach (var console in EntityQuery<RemoteControlConsoleComponent>())
-        {
-            if (console.Controller is null
-                || !TryGetRemoteEntity(console, out var controlledEntity)
-                || controlledEntity != containerOwner)
-                continue;
-
-            RefreshRemoteState(console.Owner, console, controlledEntity);
-        }
-    }
+        => RefreshRemoteConsoleStates(containerOwner);
 
     [SubscribeLocalEvent]
     private void OnRemoteContainerInserted(EntGotInsertedIntoContainerMessage args)
@@ -320,6 +307,10 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnRemoteBorgModuleUninstalled(Entity<BorgModuleComponent> module, ref BorgModuleUninstalledEvent args)
         => _pendingBorgRefreshes.Add(args.ChassisEnt);
+
+    [SubscribeLocalEvent]
+    private void OnRemoteBorgTypeSelected(Entity<BorgSwitchableTypeComponent> borg, ref AfterBorgTypeSelectEvent args)
+        => _pendingBorgRefreshes.Add(borg.Owner);
 
     [SubscribeLocalEvent]
     private void OnRemoteBrainRemoved(Entity<RemoteControlBrainComponent> brain, ref EntGotRemovedFromContainerMessage args)
@@ -353,10 +344,17 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         }
     }
 
-    private void RefreshRemoteBorgModuleState(EntityUid chassis)
+    private void RefreshRemoteConsoleStates(EntityUid remoteEntity)
     {
-        if (TryFindConsole(chassis, out var console, out _))
-            RefreshRemoteState(console.Owner, console.Comp, chassis);
+        foreach (var console in EntityQuery<RemoteControlConsoleComponent>())
+        {
+            if ((console.Users.Count == 0 && console.Controller is null)
+                || !TryGetRemoteEntity(console, out var connectedEntity)
+                || connectedEntity != remoteEntity)
+                continue;
+
+            RefreshRemoteState(console.Owner, console, remoteEntity);
+        }
     }
 
     [SubscribeLocalEvent]
@@ -1125,7 +1123,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         _pendingRemoteUiMirrors.Clear();
 
         foreach (var chassis in _pendingBorgRefreshes)
-            RefreshRemoteBorgModuleState(chassis);
+            RefreshRemoteConsoleStates(chassis);
 
         _pendingBorgRefreshes.Clear();
 

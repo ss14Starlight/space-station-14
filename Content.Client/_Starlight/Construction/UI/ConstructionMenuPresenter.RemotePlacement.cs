@@ -1,6 +1,8 @@
 using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared.Construction.Prototypes;
 
+// ReSharper disable CheckNamespace
+// Partial of the upstream ConstructionMenuPresenter, so it has to share its namespace.
 namespace Content.Client.Construction.UI;
 
 internal sealed partial class ConstructionMenuPresenter

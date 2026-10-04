@@ -1,5 +1,6 @@
 using Content.Shared.Hands.Components;
 
+// ReSharper disable CheckNamespace
 namespace Content.Shared.Hands.EntitySystems;
 
 public abstract partial class SharedHandsSystem

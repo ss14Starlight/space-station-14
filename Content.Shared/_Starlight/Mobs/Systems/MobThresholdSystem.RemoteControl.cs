@@ -2,6 +2,7 @@ using Content.Shared.Alert;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Prototypes;
 
+// ReSharper disable CheckNamespace
 namespace Content.Shared.Mobs.Systems;
 
 public sealed partial class MobThresholdSystem

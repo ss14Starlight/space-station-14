@@ -15,6 +15,7 @@ using Robust.Server.Player;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests._Starlight.RemoteControl;
 
@@ -116,6 +117,104 @@ public sealed class RemoteControlConsoleTest : GameTest
                 SEntMan.DeleteEntity(map);
             }
         });
+    }
+
+    [Test]
+    public async Task BorgTypeChangeRefreshesAllConnectedConsoleStates()
+    {
+        EntityUid? map = null;
+        EntityUid? chassis = null;
+        EntityUid? brain = null;
+        EntityUid controller = default;
+        EntityUid observer = default;
+        EntityUid consoleUid = default;
+        EntityUid observerConsoleUid = default;
+        NetEntity selectTypeAction = default;
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                var mapSystem = Server.System<SharedMapSystem>();
+                var containerSystem = Server.System<SharedContainerSystem>();
+                var ui = Server.System<SharedUserInterfaceSystem>();
+                map = mapSystem.CreateMap(out var mapId);
+                var coordinates = new MapCoordinates(0, 0, mapId);
+                controller = SEntMan.SpawnEntity(null, coordinates);
+                observer = SEntMan.SpawnEntity(null, coordinates);
+                chassis = SEntMan.SpawnEntity("BorgChassisSelectable", coordinates);
+                brain = SEntMan.SpawnEntity("RemoteControlBrain", coordinates);
+                var chassisUid = chassis.Value;
+                var brainUid = brain.Value;
+                var borg = SEntMan.GetComponent<BorgChassisComponent>(chassisUid);
+                Assert.That(containerSystem.Insert(brainUid, borg.BrainContainer), Is.True);
+
+                consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
+                observerConsoleUid = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+                var observerConsole = SEntMan.GetComponent<RemoteControlConsoleComponent>(observerConsoleUid);
+                console.RemoteBrain = brainUid;
+                console.Controller = controller;
+                observerConsole.RemoteBrain = brainUid;
+                observerConsole.Controller = controller;
+
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid,
+                    new BoundUIOpenedEvent(RemoteControlUIKey.Key, consoleUid, controller));
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid,
+                    new BoundUIOpenedEvent(RemoteControlUIKey.Key, consoleUid, observer));
+                SEntMan.EventBus.RaiseLocalEvent(observerConsoleUid,
+                    new BoundUIOpenedEvent(RemoteControlUIKey.Key, observerConsoleUid, observer));
+                observerConsole.Controller = null;
+
+                var switchable = SEntMan.GetComponent<BorgSwitchableTypeComponent>(chassisUid);
+                Assert.That(switchable.SelectTypeAction, Is.Not.Null);
+                selectTypeAction = SEntMan.GetNetEntity(switchable.SelectTypeAction!.Value);
+
+                Assert.That(ui.TryGetUiState<RemoteControlConsoleBuiState>(
+                    consoleUid, RemoteControlUIKey.Key, out var initialState), Is.True);
+                Assert.That(initialState!.Actions, Does.Contain(selectTypeAction));
+                Assert.That(ui.TryGetUiState<RemoteControlConsoleBuiState>(
+                    observerConsoleUid, RemoteControlUIKey.Key, out var observerInitialState), Is.True);
+                Assert.That(observerInitialState!.Actions, Is.EqualTo(initialState.Actions));
+
+                var borgTypes = Server.System<BorgSwitchableTypeSystem>();
+                Assert.That(borgTypes.TrySelectBorgType(
+                    (chassisUid, switchable), new ProtoId<BorgTypePrototype>("generic")), Is.True);
+            });
+
+            await Server.WaitRunTicks(1);
+            await Server.WaitAssertion(() =>
+            {
+                var ui = Server.System<SharedUserInterfaceSystem>();
+                Assert.That(ui.TryGetUiState<RemoteControlConsoleBuiState>(
+                    consoleUid, RemoteControlUIKey.Key, out var state), Is.True);
+                Assert.That(ui.TryGetUiState<RemoteControlConsoleBuiState>(
+                    observerConsoleUid, RemoteControlUIKey.Key, out var observerState), Is.True);
+                Assert.That(state!.Actions, Does.Not.Contain(selectTypeAction));
+                Assert.That(observerState!.Actions, Is.EqualTo(state.Actions));
+                Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid).Users,
+                    Does.Contain(controller));
+                Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid).Users,
+                    Does.Contain(observer));
+                Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(observerConsoleUid).Users,
+                    Does.Contain(observer));
+            });
+        }
+        finally
+        {
+            if (map is { } mapUid)
+            {
+                await Server.WaitPost(() =>
+                {
+                    if (chassis is { } chassisUid
+                        && brain is { } brainUid
+                        && SEntMan.TryGetComponent<BorgChassisComponent>(chassisUid, out var borg))
+                        Server.System<SharedContainerSystem>().Remove(brainUid, borg.BrainContainer);
+
+                    SEntMan.DeleteEntity(mapUid);
+                });
+            }
+        }
     }
 
     [TestCase(false, false)]

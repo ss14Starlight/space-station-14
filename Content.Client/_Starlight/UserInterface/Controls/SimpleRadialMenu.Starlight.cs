@@ -3,6 +3,7 @@ using System.Numerics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Utility;
 
+// ReSharper disable CheckNamespace
 namespace Content.Client.UserInterface.Controls;
 
 public sealed partial class SimpleRadialMenu

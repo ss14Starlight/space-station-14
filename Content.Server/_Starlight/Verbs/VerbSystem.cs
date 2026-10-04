@@ -1,5 +1,6 @@
 using Content.Server._Starlight.Computers.RemoteControl;
 
+// ReSharper disable CheckNamespace
 namespace Content.Server.Verbs;
 
 public sealed partial class VerbSystem

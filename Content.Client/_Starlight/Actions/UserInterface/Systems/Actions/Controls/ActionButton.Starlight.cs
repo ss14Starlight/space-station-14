@@ -1,3 +1,4 @@
+// ReSharper disable CheckNamespace
 // The namespace must match ActionButton for this partial class.
 namespace Content.Client.UserInterface.Systems.Actions.Controls;
 
