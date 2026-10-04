@@ -6,6 +6,7 @@ using Robust.Client.Player;
 using Robust.Client.State;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
+using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -50,7 +51,8 @@ public sealed partial class AmbientOneShotSystem : EntitySystem
 
         if (!_timing.IsFirstTimePredicted
             || _state.CurrentState is not GameplayState
-            || _player.LocalEntity is not { } player)
+            || _player.LocalEntity is not { } player
+            || Transform(player).MapID == MapId.Nullspace)
             return;
 
         var now = _timing.RealTime;

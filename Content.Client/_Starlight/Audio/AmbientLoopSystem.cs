@@ -10,6 +10,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
+using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -98,7 +99,7 @@ public sealed partial class AmbientLoopSystem : EntitySystem
 
     private AmbientLoopPrototype? GetLoop()
     {
-        if (_player.LocalEntity is not { } player)
+        if (_player.LocalEntity is not { } player || Transform(player).MapID == MapId.Nullspace)
             return null;
 
         foreach (var loop in _loops)
