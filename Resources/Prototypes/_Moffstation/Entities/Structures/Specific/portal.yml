@@ -63,7 +63,7 @@
   description: a portal letting loose the worst hell has to offer.
   components:
   - type: WarpPoint
-    location: Hell Portal
+    location: moff-hell-portal-name
   - type: Hellportal
     basicSpawnTable: !type:AllSelector
       children:
