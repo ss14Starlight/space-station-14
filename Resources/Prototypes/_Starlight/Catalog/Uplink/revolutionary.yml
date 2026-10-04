@@ -304,19 +304,6 @@
   - !type:StockLimitedListingCondition
     stockLimit: 2
 
-- type: listing
-  id: SKBStolenFakeShield
-  name: SKB-stolen-shield-name
-  description: SKB-stolen-shield-desc
-  productEntity: FakeMindShieldImplanter
-  cost:
-    Telebond: 30
-  categories:
-  - RevUplinkImplants
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
-
 ### Shuttles Category
 
 - type: listing
