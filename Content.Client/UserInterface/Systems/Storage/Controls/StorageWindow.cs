@@ -545,7 +545,6 @@ public sealed partial class StorageWindow : BaseWindow
 
         var itemSystem = _entity.System<ItemSystem>();
         var storageSystem = _entity.System<StorageSystem>();
-        var handsSystem = _entity.System<HandsSystem>();
 
         foreach (var child in _backgroundGrid.Children)
         {
@@ -566,7 +565,8 @@ public sealed partial class StorageWindow : BaseWindow
             currentEnt = dragging.Entity;
             currentLocation = dragging.Location;
         }
-        else if (handsSystem.GetActiveHandEntity() is { } handEntity &&
+        // Starlight: GetActiveHandEntity => GetActiveStorageHandItem
+        else if (_storageController.GetActiveStorageHandItem() is { } handEntity &&
                  storageSystem.CanInsert(StorageEntity.Value, handEntity, out _, storageComp: storageComponent, ignoreLocation: true))
         {
             currentEnt = handEntity;
@@ -702,24 +702,25 @@ public sealed partial class StorageWindow : BaseWindow
             return;
 
         var storageSystem = _entity.System<StorageSystem>();
-        var handsSystem = _entity.System<HandsSystem>();
+        #region Starlight
+        var handEntity = _storageController.GetActiveStorageHandItem();
+        #endregion
 
         if (args.Function == ContentKeyFunctions.MoveStoredItem && StorageEntity != null)
         {
-            if (handsSystem.GetActiveHandEntity() is { } handEntity &&
-                storageSystem.CanInsert(StorageEntity.Value, handEntity, out _))
+            if (handEntity is { } activeItem && storageSystem.CanInsert(StorageEntity.Value, activeItem, out _))
             {
-                var pos = GetMouseGridPieceLocation((handEntity, null),
+                var pos = GetMouseGridPieceLocation((activeItem, null),
                     new ItemStorageLocation(_storageController.DraggingRotation, Vector2i.Zero));
 
                 var insertLocation = new ItemStorageLocation(_storageController.DraggingRotation, pos);
                 if (storageSystem.ItemFitsInGridLocation(
-                        (handEntity, null),
+                        (activeItem, null),
                         (StorageEntity.Value, null),
                         insertLocation))
                 {
                     _entity.RaisePredictiveEvent(new StorageInsertItemIntoLocationEvent(
-                        _entity.GetNetEntity(handEntity),
+                        _entity.GetNetEntity(activeItem),
                         _entity.GetNetEntity(StorageEntity.Value),
                         insertLocation));
                     _storageController.DraggingRotation = Angle.Zero;

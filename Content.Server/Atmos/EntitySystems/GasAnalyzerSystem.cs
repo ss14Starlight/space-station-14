@@ -223,12 +223,12 @@ public sealed partial class GasAnalyzerSystem : EntitySystem
         // Don't bother sending a UI message with no content, and stop updating I guess?
         if (gasMixList.Count == 0)
             return false;
-
-        _userInterface.ServerSendUiMessage(uid, GasAnalyzerUiKey.Key,
-            new GasAnalyzerUserMessage(gasMixList.ToArray(),
-                component.Target != null ? Name(component.Target.Value) : string.Empty,
-                GetNetEntity(component.Target) ?? NetEntity.Invalid,
-                deviceFlipped));
+        // Starlight
+        var message = new GasAnalyzerUserMessage(gasMixList.ToArray(),
+            component.Target != null ? Name(component.Target.Value) : string.Empty,
+            GetNetEntity(component.Target) ?? NetEntity.Invalid,
+            deviceFlipped);
+        _userInterface.ServerSendUiMessage(uid, GasAnalyzerUiKey.Key, message);
         return true;
     }
 

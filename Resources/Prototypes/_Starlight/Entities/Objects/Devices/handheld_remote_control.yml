@@ -1,0 +1,82 @@
+- type: entity
+  id: HandheldRemoteControl
+  parent: [ PowerCellSlotMediumItem, BaseHandheldComputer ] # Starlight
+  name: handheld remote control
+  description: A tablet computer, able to remote control another connected entity
+  components:
+  - type: Item
+    sprite: Objects/Devices/tablets.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Sprite
+    sprite: Objects/Devices/tablets.rsi
+    state: tabletsol
+    layers:
+    - state: tabletsol
+    - sprite: Objects/Specific/Engineering/handheldengineeringmonitor.rsi
+      state: power
+      shader: unshaded
+      visible: false
+      map: [ "screen" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        screen:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PowerCellDraw
+    drawRate: 1.5
+  - type: ActivatableUI
+    key: enum.RemoteControlUIKey.Key
+    inHandsOnly: true
+    singleUser: true
+  - type: RemoteControlConsole
+  - type: DeviceLinkSource
+    ports:
+    - RemoteControl
+  - type: UserInterface
+    interfaces:
+      enum.RemoteControlUIKey.Key:
+        type: RemoteControlConsoleBoundUserInterface
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  id: HandheldRemoteControlExpedition
+  parent: [ PowerCellSlotSmallItem, BaseHandheldComputer ] # Starlight
+  name: toy remote control
+  description: A compact remote control without a screen, meant for RC toys
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/expeditionhandy.rsi
+    layers:
+    - state: walkietalkie
+    - map: [ "enum.ToggleableVisuals.Layer" ]
+      state: walkietalkie-on
+      visible: false
+  - type: Item
+    sprite: _Starlight/Objects/Devices/expeditionhandy.rsi
+    heldPrefix: walkietalkie
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PowerCellDraw
+    drawRate: 0.5
+  - type: ItemToggle
+    onUse: true
+    onActivate: false
+  - type: RemoteControlConsole
+    enableRemoteView: false
+  - type: DeviceLinkSource
+    ports:
+    - RemoteControl
+  - type: StaticPrice
+    price: 500

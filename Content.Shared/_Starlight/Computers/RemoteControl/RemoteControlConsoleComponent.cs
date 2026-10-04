@@ -15,5 +15,14 @@ public sealed partial class RemoteControlConsoleComponent : Component
     public EntityUid? Controller;
 
     [ViewVariables]
+    public EntityUid? PreviousRelayEntity;
+
+    [ViewVariables]
     public bool BorgActivatedByRemote;
+
+    [DataField]
+    public bool EnableRemoteView = true;
+
+    [DataField]
+    public bool CanForceRemoteControl;
 }

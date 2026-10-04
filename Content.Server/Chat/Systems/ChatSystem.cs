@@ -649,7 +649,8 @@ public sealed partial class ChatSystem : SharedChatSystem
 
             var whisperClearRange = WhisperClearRange;
             var whisperMuffledRange = WhisperMuffledRange;
-            if (TryComp<ChatListenerRangeComponent>(listener, out var rangeComp))
+            var rangeListener = data.RemoteListener ?? listener; // Starlight
+            if (TryComp<ChatListenerRangeComponent>(rangeListener, out var rangeComp))
             {
                 whisperClearRange = rangeComp.WhisperClearRange;
                 whisperMuffledRange = rangeComp.WhisperMuffledRange;
@@ -664,7 +665,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 result = perceivedMessage;
                 wrappedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", name, result, language, obfuscated);
             }
-            else if (_examineSystem.InRangeUnOccluded(source, listener, whisperMuffledRange))
+            else if (_examineSystem.InRangeUnOccluded(data.RemoteSource ?? source, rangeListener, whisperMuffledRange)) // Starlight
             {
                 // Scenario 2: if the listener is too far, they only hear fragments of the message
                 result = ObfuscateMessageReadability(perceivedMessage);
@@ -682,7 +683,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 wrappedMessage = WrapAnonymizedMessage(ChatChannel.Whisper, source, result, unknownName, language, wrappedMessage, obfuscated);
             }
 
-            _chatManager.ChatMessageToOne(ChatChannel.Whisper, result, wrappedMessage, source, rangeCheck == MessageRangeCheckResult.HideChat, session.Channel); // Moffstation - Radio Host, hide chat messages from station radio
+            _chatManager.ChatMessageToOne(ChatChannel.Whisper, result, wrappedMessage, data.RemoteSource ?? source, rangeCheck == MessageRangeCheckResult.HideChat, session.Channel); // Moffstation - Radio Host, hide chat messages from station radio
             // Starlight - End
         }
 
@@ -911,9 +912,9 @@ public sealed partial class ChatSystem : SharedChatSystem
             }
 
             if (ignoreLanguage || _language.CanUnderstand(listener, language.ID))
-                _chatManager.ChatMessageToOne(channel, message, displayWrappedMessage, source, entHideChat, session.Channel, author: author);
+            _chatManager.ChatMessageToOne(channel, message, displayWrappedMessage, data.RemoteSource ?? source, entHideChat, session.Channel, author: author);
             else
-                _chatManager.ChatMessageToOne(channel, obfuscated, displayObfuscatedMessage, source, entHideChat, session.Channel, author: author);
+                _chatManager.ChatMessageToOne(channel, obfuscated, displayObfuscatedMessage, data.RemoteSource ?? source, entHideChat, session.Channel, author: author);
             // Starlight - end
         }
 
@@ -1138,11 +1139,11 @@ public sealed partial class ChatSystem : SharedChatSystem
                 recipients.Add(player, new ICChatRecipientData(-1, true));
         }
 
-        RaiseLocalEvent(new ExpandICChatRecipientsEvent(source, voiceGetRange, recipients));
+        RaiseLocalEvent(new ExpandICChatRecipientsEvent(source, voiceGetRange, recipients, isWhisper)); // Starlight
         return recipients;
     }
 
-    public readonly record struct ICChatRecipientData(float Range, bool Observer, bool? HideChatOverride = null)
+    public readonly record struct ICChatRecipientData(float Range, bool Observer, bool? HideChatOverride = null, EntityUid? RemoteListener = null, EntityUid? RemoteSource = null) // Starlight
     {
     }
 
@@ -1183,7 +1184,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 ///     This event is raised before chat messages are sent out to clients. This enables some systems to send the chat
 ///     messages to otherwise out-of view entities (e.g. for multiple viewports from cameras).
 /// </summary>
-public record ExpandICChatRecipientsEvent(EntityUid Source, float VoiceRange, Dictionary<ICommonSession, ChatSystem.ICChatRecipientData> Recipients)
+public record ExpandICChatRecipientsEvent(EntityUid Source, float VoiceRange, Dictionary<ICommonSession, ChatSystem.ICChatRecipientData> Recipients, bool IsWhisper = false) // Starlight
 {
 }
 

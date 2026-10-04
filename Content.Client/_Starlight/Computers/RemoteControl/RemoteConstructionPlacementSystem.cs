@@ -65,9 +65,9 @@ public sealed partial class RemoteConstructionPlacementSystem : EntitySystem
         _prototype = null;
     }
 
-    public bool TryCommit()
+    public bool TryCommit(EntityUid? target)
     {
-        if (_prototype is null || _ghost is not { } ghost || Deleted(ghost))
+        if (_prototype is null || _ghost is not { } ghost || target != ghost || Deleted(ghost))
             return false;
 
         _ghost = null;

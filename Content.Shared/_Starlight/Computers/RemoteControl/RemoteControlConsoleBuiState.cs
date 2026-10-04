@@ -9,6 +9,7 @@ namespace Content.Shared._Starlight.Computers.RemoteControl;
 public sealed class RemoteControlConsoleBuiState : BoundUserInterfaceState
 {
     public required bool Connected { get; init; }
+    public bool EnableRemoteView { get; init; } = true;
     public NetEntity? RemoteEntity { get; init; }
     public NetEntity? Controller { get; init; }
     public NetEntity[] Actions { get; init; } = System.Array.Empty<NetEntity>();

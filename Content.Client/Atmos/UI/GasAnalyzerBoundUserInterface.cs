@@ -1,3 +1,4 @@
+using Content.Client._Starlight.Computers.RemoteControl;
 using Robust.Client.UserInterface;
 using static Content.Shared.Atmos.Components.GasAnalyzerComponent;
 
@@ -17,6 +18,7 @@ namespace Content.Client.Atmos.UI
             base.Open();
 
             _window = this.CreateWindowCenteredLeft<GasAnalyzerWindow>();
+            EntMan.System<RemoteControlInterface>().TryEmbedWindow(_window); // Starlight
             _window.OnClose += Close;
         }
 

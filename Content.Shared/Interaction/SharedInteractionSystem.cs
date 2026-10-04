@@ -182,11 +182,33 @@ namespace Content.Shared.Interaction
                     return;
                 }
             }
+            // Starlight - start
+            if (!_ui.TryGetInterfaceData(ent.Owner, ev.UiKey, out var interfaceData))
+            {
+                ev.Cancel();
+                return;
+            }
 
-            var range = _ui.GetUiRange(ev.Target, ev.UiKey);
+            var range = interfaceData.InteractionRange;
 
-            // As long as range>0, the UI frame updates should have auto-closed the UI if it is out of range.
-            DebugTools.Assert(range <= 0 || UiRangeCheck(ev.Actor, ev.Target, range));
+            if (range > 0)
+            {
+                // Use the same range overrides as the periodic UI checks, including remote control.
+                var checkRange = new BoundUserInterfaceCheckRangeEvent(
+                    (ev.Target, Transform(ev.Target)),
+                    ev.UiKey,
+                    interfaceData,
+                    (ev.Actor, Transform(ev.Actor)));
+                RaiseLocalEvent(ev.Target, ref checkRange, true);
+
+                if (checkRange.Result != BoundUserInterfaceRangeResult.Pass
+                    && !_ignoreUiRangeQuery.HasComp(ev.Actor))
+                {
+                    ev.Cancel();
+                    return;
+                }
+            }
+            // Starlight - end
 
             if (range <= 0 && !IsAccessible(ev.Actor, ev.Target))
             {

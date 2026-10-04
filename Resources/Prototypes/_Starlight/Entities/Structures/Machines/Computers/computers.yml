@@ -224,8 +224,8 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: RemoteControlConsole
-  name: remote-control-console-name
-  description: remote-control-console-description
+  name: Remote Control Console
+  description: Enables operators to view and control a linked robotic body over virtually any distance, with minimal loss of control precision.
   components:
   - type: Sprite
     layers:

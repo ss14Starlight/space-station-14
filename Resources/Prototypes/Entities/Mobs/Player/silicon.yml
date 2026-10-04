@@ -42,6 +42,7 @@
     - ActionSurvCameraLights # Starlight: Restored removed surveillance camera lights from upstream
     - ActionAIViewLaws
     - ActionAIShunt # Starlight AI Shunt ability
+    - ActionAIRemoteControl # Starlight
     - ActionAIReconnectShunt # Starlight AI Shunt reconnect ability
     - ActionAIWarp # Starlight
   - type: UserInterface
@@ -56,6 +57,8 @@
         type: SiliconLawBoundUserInterface
       enum.CommunicationsConsoleUiKey.Key:
         type: CommunicationsConsoleBoundUserInterface
+      enum.RemoteControlUIKey.Key: # Starlight
+        type: RemoteControlConsoleBoundUserInterface # Starlight
   - type: IntrinsicUI
     uis:
       enum.RadarConsoleUiKey.Key:
@@ -89,6 +92,7 @@
   - type: ShowCrewIcons
   #region Starlight
   - type: StationAIShuntable
+  - type: RemoteControlConsole # Starlight
   #endregion Starlight
   - type: DamagedSiliconAccent
     startPowerCorruptionAtCharIdx: 4

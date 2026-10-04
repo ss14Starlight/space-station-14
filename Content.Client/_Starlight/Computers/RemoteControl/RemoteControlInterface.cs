@@ -5,8 +5,12 @@ using Robust.Shared.Graphics;
 using Robust.Shared.IoC;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
+using Robust.Client.GameObjects;
+using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.CustomControls;
+using Robust.Client.Player;
 using Content.Client.UserInterface.Controls;
+using Content.Client.UserInterface.Systems.Storage.Controls;
 using System.Numerics;
 
 namespace Content.Client._Starlight.Computers.RemoteControl;
@@ -14,18 +18,33 @@ namespace Content.Client._Starlight.Computers.RemoteControl;
 public sealed partial class RemoteControlInterface : EntitySystem
 {
     private RemoteControlConsoleWindow? _window;
+    private IPlayerManager _playerManager = default!;
     private TimeSpan _nextRemoteAlertUpdate;
 
     public EntityUid? ControlledEntity { get; private set; }
     public IEye? ControlledEye { get; private set; }
     public IViewportControl? ControlledViewport { get; private set; }
+    public IViewportControl? RemoteViewport { get; private set; }
+    public IEye? RemoteViewportEye => _window is { Disposed: false } window ? window.RemoteEye : null;
     public MapCoordinates? RemoteMousePosition { get; private set; }
     public event Action<EntityUid?>? ControlledEntityChanged;
     public event Action<EntityUid, bool, RemoteControlInteractionAction>? InteractionRequested;
     public event Action<string>? ItemConstructionRequested;
 
+    public override void Initialize()
+    {
+        base.Initialize();
+        _playerManager = IoCManager.Resolve<IPlayerManager>();
+        SubscribeLocalEvent<RemoteControlInteractionCheckEvent>(OnRemoteControlInteractionCheck);
+    }
+
+    public override void Shutdown() => base.Shutdown();
+
     public void SetStatusWindow(RemoteControlConsoleWindow? window)
-        => _window = window;
+    {
+        _window = window;
+        RemoteViewport = window?.RemoteViewport;
+    }
 
     public override void Update(float frameTime)
     {
@@ -65,9 +84,30 @@ public sealed partial class RemoteControlInterface : EntitySystem
     public bool TryEmbedWindow(EntityUid owner, BaseWindow window)
     {
         if (ControlledEntity != owner
+            || !TryEmbedWindow(window))
+            return false;
+
+        return true;
+    }
+
+    public bool TryEmbedWindow(BaseWindow window)
+    {
+        if (ControlledEntity is null
             || _window is not { Disposed: false } remoteWindow
             || window.Disposed)
             return false;
+
+        if (window is StorageWindow storageWindow)
+        {
+            if (window.Parent != remoteWindow.RemoteStorageContainer)
+            {
+                window.Orphan();
+                remoteWindow.RemoteStorageContainer.AddChild(window);
+            }
+
+            storageWindow.VerticalAlignment = Control.VAlignment.Center;
+            return true;
+        }
 
         if (window.Parent != remoteWindow.RootContainer)
         {
@@ -81,6 +121,12 @@ public sealed partial class RemoteControlInterface : EntitySystem
 
     public void SetRemoteMousePosition(MapCoordinates? position)
         => RemoteMousePosition = position;
+
+    private void OnRemoteControlInteractionCheck(ref RemoteControlInteractionCheckEvent args)
+    {
+        if (_playerManager.LocalEntity == args.Actor && ControlledEntity is { } remoteEntity)
+            args.RemoteEntity = remoteEntity;
+    }
 
     public bool TryRequestItemConstruction(string prototypeName)
     {

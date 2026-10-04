@@ -30,17 +30,24 @@
                                LayoutContainer.AnchorRight="1"
                                LayoutContainer.MarginLeft="-148" LayoutContainer.MarginTop="8"
                                LayoutContainer.MarginRight="-8" />
-        <LayoutContainer Name="InventoryButtons" Access="Public"
-                      Visible="False"
-                       LayoutContainer.AnchorLeft="0" LayoutContainer.AnchorTop="1"
-                       LayoutContainer.AnchorBottom="1"
-                       LayoutContainer.MarginLeft="8" LayoutContainer.MarginTop="-144"
-                       LayoutContainer.MarginBottom="-80" />
+        <BoxContainer Name="RemoteStorageContainer" Access="Public"
+                      LayoutContainer.AnchorLeft="0.2" LayoutContainer.AnchorTop="0.48"
+                      LayoutContainer.AnchorRight="0.8" LayoutContainer.AnchorBottom="0.52"
+                      LayoutContainer.MarginLeft="0" LayoutContainer.MarginTop="0"
+                      LayoutContainer.MarginRight="0" LayoutContainer.MarginBottom="0"
+                      MouseFilter="Ignore" />
         <TextureButton Name="InventoryToggleButton" Access="Public" MinSize="64 64"
                        LayoutContainer.AnchorLeft="0" LayoutContainer.AnchorRight="0"
                        LayoutContainer.AnchorTop="1" LayoutContainer.AnchorBottom="1"
                        LayoutContainer.MarginLeft="8" LayoutContainer.MarginTop="-72"
                        LayoutContainer.MarginRight="-72" LayoutContainer.MarginBottom="-8" />
+        <BoxContainer Name="InventoryButtons" Access="Public" Visible="False"
+                      Orientation="Horizontal" SeparationOverride="5"
+                      LayoutContainer.AnchorLeft="0" LayoutContainer.AnchorRight="0"
+                      LayoutContainer.AnchorTop="1" LayoutContainer.AnchorBottom="1"
+                      LayoutContainer.MarginLeft="8" LayoutContainer.MarginRight="8"
+                      LayoutContainer.MarginTop="-80" LayoutContainer.MarginBottom="-80"
+                      LayoutContainer.GrowVertical="Begin" />
         <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center"
                        LayoutContainer.AnchorLeft="0" LayoutContainer.AnchorRight="1"
                        LayoutContainer.AnchorTop="1" LayoutContainer.AnchorBottom="1"

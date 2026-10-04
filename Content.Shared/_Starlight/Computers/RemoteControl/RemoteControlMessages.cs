@@ -1,30 +1,9 @@
 using Robust.Shared.Serialization;
 using Robust.Shared.Map;
-using Content.Shared.Storage;
 using Content.Shared.Atmos.Components;
 using Robust.Shared.Maths;
 
 namespace Content.Shared._Starlight.Computers.RemoteControl;
-
-[Serializable, NetSerializable]
-public enum RemoteControlStorageAction : byte
-{
-    InteractWithItem,
-    SetItemLocation,
-    TransferItem,
-    InsertItem,
-    SaveItemLocation,
-}
-
-[Serializable, NetSerializable]
-public sealed class RemoteControlStorageMessage : BoundUserInterfaceMessage
-{
-    public required RemoteControlStorageAction Action { get; init; }
-    public required NetEntity Item { get; init; }
-    public required NetEntity Storage { get; init; }
-    public NetEntity? TargetStorage { get; init; }
-    public ItemStorageLocation Location { get; init; }
-}
 
 [Serializable, NetSerializable]
 public sealed class RemoteControlToggleMessage : BoundUserInterfaceMessage;
@@ -35,6 +14,8 @@ public enum RemoteControlInteractionAction : byte
     Interact,
     TryPull,
     MovePulledObject,
+    Shoot,
+    Drop,
 }
 
 [Serializable, NetSerializable]
@@ -70,6 +51,14 @@ public sealed class RemoteControlActionMessage : BoundUserInterfaceMessage
 }
 
 [Serializable, NetSerializable]
+public sealed class RemoteControlTargetActionMessage : BoundUserInterfaceMessage
+{
+    public required NetEntity Action { get; init; }
+    public NetEntity? Target { get; init; }
+    public required NetCoordinates Coordinates { get; init; }
+}
+
+[Serializable, NetSerializable]
 public enum RemoteControlHandAction : byte
 {
     SetActive,
@@ -80,6 +69,7 @@ public enum RemoteControlHandAction : byte
     Drop,
     CycleActive,
     InteractWithHand,
+    CycleActiveReverse,
 }
 
 [Serializable, NetSerializable]

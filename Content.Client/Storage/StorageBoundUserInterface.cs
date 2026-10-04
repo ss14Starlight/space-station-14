@@ -1,8 +1,10 @@
 using System.Numerics;
 using Content.Client.UserInterface.Systems.Storage;
 using Content.Client.UserInterface.Systems.Storage.Controls;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared.Storage;
 using JetBrains.Annotations;
+using Robust.Shared.Log;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 
@@ -12,9 +14,7 @@ namespace Content.Client.Storage;
 public sealed class StorageBoundUserInterface : BoundUserInterface
 {
     private StorageWindow? _window;
-
     public Vector2? Position => _window?.Position;
-
     public StorageBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
@@ -26,6 +26,7 @@ public sealed class StorageBoundUserInterface : BoundUserInterface
         _window = IoCManager.Resolve<IUserInterfaceManager>()
             .GetUIController<StorageUIController>()
             .CreateStorageWindow(this);
+        EntMan.System<RemoteControlInterface>().TryEmbedWindow(_window); // Starlight
 
         if (EntMan.TryGetComponent(Owner, out StorageComponent? storage))
         {

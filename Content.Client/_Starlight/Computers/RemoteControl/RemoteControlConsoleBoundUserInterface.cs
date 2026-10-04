@@ -48,6 +48,7 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
         _window.ToggleControl += ToggleControl;
         _window.RemoteInteractionPressed += RemoteInteractionPressed;
         _window.RemoteActionPressed += RemoteActionPressed;
+        _window.RemoteTargetActionPressed += RemoteTargetActionPressed;
         _window.RemoteHandPressed += RemoteHandPressed;
         _window.RemoteInventoryPressed += RemoteInventoryPressed;
         _window.InitializeViewport();
@@ -59,7 +60,8 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
-        if (state is not RemoteControlConsoleBuiState remoteState || _window == null)
+        if (state is not RemoteControlConsoleBuiState remoteState
+            || _window is not { Disposed: false } window)
             return;
 
         if (remoteState.RemoteEntity is { } entity && EntMan.TryGetEntity(entity, out EntityUid? remoteEntity)
@@ -75,8 +77,8 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
                 _remoteEntity = remoteUid;
             }
 
-            _window.SetRemoteEye((IEye) eye.Eye);
-            _window.SetRemoteEntity(remoteUid);
+            window.SetRemoteEye((IEye) eye.Eye);
+            window.SetRemoteEntity(remoteUid);
         }
         else
         {
@@ -86,19 +88,20 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
                 _remoteEntity = null;
             }
 
-            _window.SetRemoteEye(null);
-            _window.SetRemoteEntity(null);
+            window.SetRemoteEye(null);
+            window.SetRemoteEntity(null);
         }
 
-        _window.SetConnected(remoteState.Connected);
+        window.SetRemoteViewEnabled(remoteState.EnableRemoteView);
+        window.SetConnected(remoteState.Connected);
         var controlling = remoteState.Controller is { } controller
             && EntMan.TryGetEntity(controller, out var controllerEntity)
             && controllerEntity == _playerManager.LocalEntity;
 
-        _window.SetControlState(controlling, remoteState.Controller != null);
+        window.SetControlState(controlling, remoteState.Controller != null);
         _remoteControl.SetControlledEntity(controlling ? _remoteEntity : null,
-            controlling ? _window.RemoteEye : null,
-            controlling ? _window.RemoteViewport : null);
+            controlling ? window.RemoteEye : null,
+            controlling ? window.RemoteViewport : null);
 
         _remoteActionEntities.Clear();
         _remoteActionEntities.AddRange(remoteState.Actions);
@@ -168,6 +171,14 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
     private void RemoteActionPressed(EntityUid action)
         => SendMessage(new RemoteControlActionMessage { Action = EntMan.GetNetEntity(action) });
 
+    private void RemoteTargetActionPressed(EntityUid action, EntityUid? target, NetCoordinates coordinates)
+        => SendMessage(new RemoteControlTargetActionMessage
+        {
+            Action = EntMan.GetNetEntity(action),
+            Target = target is { } targetEntity ? EntMan.GetNetEntity(targetEntity) : null,
+            Coordinates = coordinates,
+        });
+
     private void OnRemoteItemConstruction(string prototypeName)
         => SendMessage(new RemoteControlBuildItemConstructionMessage { PrototypeName = prototypeName });
 
@@ -175,9 +186,11 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
         bool activateInWorld,
         RemoteControlInteractionAction action, AtmosPipeLayer? pipeLayer)
     {
+        var remotePlacement = EntMan.System<RemoteConstructionPlacementSystem>();
         if (!altInteract
             && action == RemoteControlInteractionAction.Interact
-            && EntMan.System<RemoteConstructionPlacementSystem>().TryCommit())
+            && remotePlacement.IsActive
+            && !remotePlacement.TryCommit(target))
             return;
 
         if (!altInteract
@@ -234,6 +247,8 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
 
         if (disposing)
         {
+            var window = _window;
+            _window = null;
             _remoteControl.InteractionRequested -= OnRemoteMenuInteraction;
             _remoteControl.ItemConstructionRequested -= OnRemoteItemConstruction;
             _remoteControl.SetStatusWindow(null);
@@ -241,12 +256,13 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
 
             if (_remoteEntity is { } remoteEntity)
                 _eyeLerpingSystem?.RemoveEye(remoteEntity);
+            _remoteEntity = null;
 
             _remoteQuickConstruction?.Dispose();
             _remoteQuickConstruction = null;
             _remoteQuickConstructionItem = null;
 
-            if (_window is { } window)
+            if (window is not null)
             {
                 window.OnFinalClose -= OnWindowClosed;
                 window.ToggleControl -= ToggleControl;
