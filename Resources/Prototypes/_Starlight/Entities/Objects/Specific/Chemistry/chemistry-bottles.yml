@@ -195,6 +195,20 @@
         Quantity: 30
 
 - type: entity
+  id: ChemistryBottleGlub
+  suffix: Glubotoxin
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-glubotoxin
+  - type: Solution
+    id: drink
+    solution:
+        reagents:
+        - ReagentId: Glubotoxin
+          Quantity: 30
+
+- type: entity
   parent: BaseChemistryBottleFilled
   id: CorgiJuiceChemistryBottle
   suffix: essence of corgi

@@ -3,7 +3,7 @@
   id: CBURNCorpsman
   equipment:
     belt: ClothingBeltMilitaryWebbingERT
-    suitstorage: WeaponLr30
+    suitstorage: WeaponRifleLr30
   storage:
     back:
     - JugGoldenBicaridine

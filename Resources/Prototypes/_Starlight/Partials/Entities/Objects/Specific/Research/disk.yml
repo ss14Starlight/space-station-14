@@ -18,6 +18,12 @@
   - type: Tag
     tags:
     - FloppyDisk
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/disk_pickup.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/disk_drop.ogg
 
 - type: !PartialOnly entity
   id: ResearchDisk5000

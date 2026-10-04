@@ -10,6 +10,7 @@ namespace Content.Server._Starlight.Cargo.TamperSeal;
 public sealed partial class TamperSealSystem : SharedTamperSealSystem
 {
     [Dependency] private DestructibleSystem _destructible = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     public override void Initialize()
     {
@@ -35,7 +36,7 @@ public sealed partial class TamperSealSystem : SharedTamperSealSystem
             return;
         if (!_destructible.TryGetDestroyedAt((uid, null), out var destroyedAt))
             return;
-        if (args.Damageable.TotalDamage < destroyedAt)
+        if (_damageable.GetTotalDamage(uid) < destroyedAt)
             return;
 
         // Trigger destroy behavior (shared code).

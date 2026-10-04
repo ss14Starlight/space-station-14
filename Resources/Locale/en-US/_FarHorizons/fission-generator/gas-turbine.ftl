@@ -1,10 +1,8 @@
 ### Examine
 
 gas-turbine-examine-stator-null = It seems to be missing a stator.
-gas-turbine-examine-stator = It has a stator.
 
 gas-turbine-examine-blade-null = It seems to be missing a turbine blade.
-gas-turbine-examine-blade = It has a turbine blade.
 
 gas-turbine-spinning-0 = The blades are not spinning.
 gas-turbine-spinning-1 = The blades are turning slowly.
@@ -43,9 +41,6 @@ gas-turbine-repair-no-damage = There is no damage to repair on {THE($target)} us
 gas-turbine-unanchor-warning = You cannot unanchor {THE($owner)} while the turbine is spinning!
 gas-turbine-anchor-warning = Invalid anchor position.
 
-gas-turbine-eject-fail-speed = You cannot remove turbine parts while the turbine is spinning!
-gas-turbine-insert-fail-speed = You cannot insert turbine parts while the turbine is spinning!
-
 ### UI
 
 # Shown when using the UI
@@ -75,3 +70,5 @@ gas-turbine-ui-power = { POWERWATTS($power) }
 gas-turbine-ui-locked-message = Controls locked.
 gas-turbine-ui-footer-left = Danger: fast-moving machinery.
 gas-turbine-ui-footer-right = 2.1 REV 1
+
+gas-turbine-ui-title = Gas Turbine

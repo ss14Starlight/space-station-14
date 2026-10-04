@@ -94,45 +94,45 @@
   id: CassetteTapeInterview
   components:
   - type: Label
-    currentLabel: Interview with Garry Smosh
+    currentLabel: tape-interview-label
   - type: TapeCassette
     recordedData:
       - timestamp: 2
-        name: Phil Dervin
-        message: Its 11:43am, present in the room are Phil Dervin, Detective first class, Officer Belview and Grarry Smosh, Suspect of one count of secure tresspass, four counts of assault, two counts of theft and 85 counts of disturbing the peace.
+        name: tape-interview-name-dervin
+        message: tape-interview-message-1
       - timestamp: 6
-        name: Phil Dervin
-        message: Mr Smosh, do you understand the charges you have been accused of?
+        name: tape-interview-name-dervin
+        message: tape-interview-message-2
       - timestamp: 14
-        name: Grarry Smosh
-        message: I don't care what you say, i ain't done anything.
+        name: tape-interview-name-smosh
+        message: tape-interview-message-3
       - timestamp: 18
-        name: Phil Dervin
-        message: Sir, you were caught redhanded in the Captains bedroom. In the middle of an attempt at stealing his whiskey reserve no less.
+        name: tape-interview-name-dervin
+        message: tape-interview-message-4
       - timestamp: 23
-        name: Phil Dervin
-        message: You are lucky he didn't shoot you for that.
+        name: tape-interview-name-dervin
+        message: tape-interview-message-5
       - timestamp: 28
-        name: Grarry Smosh
-        message: I didn't see no signs saying i couldn't be there.
+        name: tape-interview-name-smosh
+        message: tape-interview-message-6
       - timestamp: 34
-        name: Phil Dervin
-        message: The Captains bedroom? I don't think we need a sign telling people to stay out - it's common sense.
+        name: tape-interview-name-dervin
+        message: tape-interview-message-7
       - timestamp: 38
-        name: Phil Dervin
-        message: Anyway that's besides the point, even if it were not off limits there is still the matter of the restricted items we found on your person and the subsequent attempt at evading arrest.
+        name: tape-interview-name-dervin
+        message: tape-interview-message-8
       - timestamp: 42
-        name: Grarry Smosh
-        message: I ain't done nothing.
+        name: tape-interview-name-smosh
+        message: tape-interview-message-9
       - timestamp: 46
-        name: Officer Belview
-        message: You slipped 3 officers, stole a stun baton and beat Ian with it. The HOP was very upset at that last part.
+        name: tape-interview-name-belview
+        message: tape-interview-message-10
       - timestamp: 50
-        name: Grarry Smosh
-        message: Which one of you gave the HOP a disabler?
+        name: tape-interview-name-smosh
+        message: tape-interview-message-11
       - timestamp: 54
-        name: Phil Dervin
-        message: The Warden did, turned out to be a good idea eh?
+        name: tape-interview-name-dervin
+        message: tape-interview-message-12
       - timestamp: 58
-        name: Officer Belview
-        message: I would say so.
+        name: tape-interview-name-belview
+        message: tape-interview-message-13

@@ -48,6 +48,41 @@
             "directions": 4
         },
         {
+            "name": "bushtail",
+            "copyright": "Created by DogeyOT (Discord).",
+            "directions": 4
+        },
+        {
+            "name": "allseeingeyes",
+            "copyright": "Created by DogeyOT (Discord).",
+            "directions": 4
+        },
+        {
+            "name": "allseeingface",
+            "copyright": "Created by DogeyOT (Discord).",
+            "directions": 4
+        },
+        {
+            "name": "thirdeye",
+            "copyright": "Created by DogeyOT (Discord).",
+            "directions": 4
+        },
+        {
+            "name": "peafowltaileyes",
+            "copyright": "Created by DogeyOT (Discord).",
+            "directions": 4
+        },
+        {
+            "name": "peafowltailbase",
+            "copyright": "Created by DogeyOT (Discord).",
+            "directions": 4
+        },
+        {
+            "name": "severedtail",
+            "copyright": "Created by DogeyOT (Discord).",
+            "directions": 4
+        },
+        {
             "name": "leftarm",
 			"copyright": "Taken from https://github.com/vgstation-coders/vgstation13 at 02ff588d59b3c560c685d9ca75e882d32a72d8cb, modified by Bhijn, Errant, Flareguy, and TrixxedHeart.",
             "directions": 4

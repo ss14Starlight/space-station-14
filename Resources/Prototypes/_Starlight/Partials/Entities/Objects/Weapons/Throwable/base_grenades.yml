@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: GrenadeBase
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/grenade_pick_up.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/grenade_drop.ogg

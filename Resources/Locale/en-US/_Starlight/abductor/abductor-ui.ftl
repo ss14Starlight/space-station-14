@@ -1,6 +1,5 @@
 # Teleport tab
 
-
 abductors-ui-teleport = Teleport
 abductors-ui-attract = Attract
 
@@ -50,8 +49,6 @@ abductors-ghost-role-rules = You are a [color=red][bold]Abductor[/bold][/color].
                             You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
                             You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
 
-abductor-round-end-agent-name = abductor
-
 objective-issuer-abductors = [color=#FD0098]Mothership[/color]
 
 objective-condition-abduct-title = Abduct {$count} person.
@@ -60,3 +57,25 @@ objective-condition-abduct-description = (use the Gizmo on a subdued victim, the
 abductor-role-greeting = I am a professional combat scientist of a high-tech race. My task is to abduct humans, conduct experiments on them, and return them intact for the purity of the experiment. It is not in my interest to destroy the station, kill, or assist the crew.
 
 roles-antag-abductor-objective = Kidnap station crew and perform your experiments on them!
+
+abductor-price = { " " }Price: { $price }
+abductor-buy = Buy
+abductor-pad = pad: { $found ->
+        [true] [color=green]connected[/color]
+       *[false] [color=red]not found[/color]
+    }
+abductor-dispencer = dispencer: { $found ->
+        [true] [color=green]connected[/color]
+       *[false] [color=red]not found[/color]
+    }
+abductor-experimentator = experimentator: { $found ->
+        [true] [color=green]connected[/color]
+       *[false] [color=red]not found[/color]
+    }
+abductor-target = target: [color=green]{ $name }[/color]
+abductor-target-none = target: [color=red]NONE[/color]
+abductor-victim = victim: [color=green]{ $name }[/color]
+abductor-victim-none = victim: [color=red]NONE[/color]
+abductor-need-armor = [color=red][font size=16]You need to plug in abductor armor![/font][/color]
+
+abductor-console-balance = Balance: { $balance }

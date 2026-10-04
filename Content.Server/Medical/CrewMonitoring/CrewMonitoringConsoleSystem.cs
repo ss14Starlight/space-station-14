@@ -237,7 +237,7 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
             return;
         }
 
-        if (!_stationAiSystem.TryWarpEyeToCoordinates(actor, coordinates))
+        if (!_stationAiSystem.TryWarpEyeToCoordinates((actor, null), coordinates))
         {
             _sawmill.Debug($"Crew monitor warp request from {Name(actor)} ({actor}) to {coordinates} was rejected.");
         }
