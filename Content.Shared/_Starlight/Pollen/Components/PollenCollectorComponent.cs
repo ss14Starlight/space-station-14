@@ -32,5 +32,5 @@ public sealed partial class PollenCollectorComponent : Component
 
     public TimeSpan NextCollection;
 
-    public bool ObjectiveGranted;
+    public EntityUid? ObjectiveGrantedMind;
 }

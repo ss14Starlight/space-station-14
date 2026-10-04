@@ -485,7 +485,7 @@ public sealed partial class ScentSystem : SharedScentSystem
                 continue;
 
             scent.NextEmitTime = now + RollEmitDelay(scent);
-            
+
             var scentId = PickScent(scent);
             if (scentId == null)
                 continue;
@@ -656,17 +656,18 @@ public sealed partial class ScentSystem : SharedScentSystem
     /// Updated in place when a new marker is spawned.
     /// </param>
     /// <returns>The marker entity now associated with this emitter.</returns>
-    public EntityUid EmitPollenMarker(ref EntityUid? lastMarker, string pollenId, EntityCoordinates coordinates, TimeSpan lifetime)
+    public EntityUid EmitPollenMarker(ref EntityUid? lastMarker, string pollenId, TransformComponent emitterXform, TimeSpan lifetime)
     {
         if (lastMarker is { } tail &&
             TryComp<ScentMarkerComponent>(tail, out var marker) &&
             marker.IsPollen && marker.ScentId == pollenId &&
             TryComp(tail, out TransformComponent? tailXform) &&
-            _transform.InRange(coordinates, tailXform.Coordinates, 0.25f))
+            _transform.InRange(emitterXform.Coordinates, tailXform.Coordinates, 0.25f))
         {
             marker.ExpiresAt = _timing.CurTime + lifetime;
             marker.TotalDuration = lifetime;
             marker.Strength = 1f;
+            marker.ContainedIn = GetAirtightContainer(emitterXform);
             Dirty(tail, marker);
 
             if (TryComp<TimedDespawnComponent>(tail, out var despawn))
@@ -675,13 +676,14 @@ public sealed partial class ScentSystem : SharedScentSystem
             return tail;
         }
 
-        var newMarker = SpawnAtPosition(ScentMarkerPrototype, coordinates);
+        var newMarker = SpawnAtPosition(ScentMarkerPrototype, emitterXform.Coordinates);
         var newMarkerComp = Comp<ScentMarkerComponent>(newMarker);
         newMarkerComp.ScentId = pollenId;
         newMarkerComp.IsPollen = true;
         newMarkerComp.Strength = 1f;
         newMarkerComp.ExpiresAt = _timing.CurTime + lifetime;
         newMarkerComp.TotalDuration = lifetime;
+        newMarkerComp.ContainedIn = GetAirtightContainer(emitterXform);
         Dirty(newMarker, newMarkerComp);
 
         if (TryComp<TimedDespawnComponent>(newMarker, out var newDespawn))

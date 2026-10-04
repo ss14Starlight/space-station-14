@@ -63,7 +63,6 @@ public sealed partial class PollenShopSystem : EntitySystem
     private const string HardenListingId = "PollenTreeBarkT2Harden";
     private static readonly ProtoId<ReagentPrototype> _phytovitalin = "Phytovitalin";
     private const string AdvancedPollenListingId = "PollenTreeFloralT3AdvancedPollen";
-    
 
     private const string AlertPollenListingId = "PollenTreeFloralT1AlertPollen";
 
@@ -183,7 +182,7 @@ public sealed partial class PollenShopSystem : EntitySystem
 
     private void GrantMossFireResist(EntityUid buyer)
         => _statusEffects.TrySetStatusEffectDuration(buyer, _mossFireResistStatusEffect);
-    
+
     // T3
 
 #endregion Floral

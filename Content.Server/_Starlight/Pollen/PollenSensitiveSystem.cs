@@ -19,7 +19,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
 
-namespace Content.Server._Starlight.Pollen;
+namespace Content.Server._Starlight.Pollen.Systems;
 
 public sealed partial class PollenSensitiveSystem : EntitySystem
 {
@@ -170,12 +170,7 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
         if (TryComp(ent.Owner, out SmellerComponent? smeller))
         {
             _scent.ForceAllergySneeze((ent.Owner, smeller), smeller.SmokeLockout);
-
-            _popup.PopupEntity(
-                Loc.GetString("scent-sneeze-allergic"),
-                ent.Owner,
-                ent.Owner,
-                PopupType.Small);
+            _popup.PopupEntity(Loc.GetString("scent-sneeze-allergic"), ent.Owner, ent.Owner, PopupType.Small);
         }
 
         UpdateAllergyEffects(ent);
@@ -218,9 +213,12 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
             var darkenedVision = EnsureComp<DarkenedVisionComponent>(ent.Owner);
             _darkenedVision.UpdateVisionDarkening((ent.Owner, darkenedVision));
         }
-        else if (stack < 2f && HasComp<DarkenedVisionComponent>(ent.Owner))
+        else if (TryComp<DarkenedVisionComponent>(ent.Owner, out var darkenedVision))
         {
-            RemComp<DarkenedVisionComponent>(ent.Owner);
+            _darkenedVision.UpdateVisionDarkening((ent.Owner, darkenedVision));
+
+            if (darkenedVision.Strength <= 0f)
+                RemComp<DarkenedVisionComponent>(ent.Owner);
         }
 
         if (ent.Comp.SevereAllergyActive)

@@ -67,13 +67,13 @@ public sealed partial class PollenObjectiveSystem : EntitySystem
         var query = EntityQueryEnumerator<PollenCollectorComponent>();
         while (query.MoveNext(out var uid, out var collector))
         {
-            if (collector.ObjectiveGranted)
-                continue;
-
             if (!_mind.TryGetMind(uid, out var mindId, out var mind))
                 continue;
 
-            collector.ObjectiveGranted = true;
+            if (collector.ObjectiveGrantedMind == mindId)
+                continue;
+
+            collector.ObjectiveGrantedMind = mindId;
 
             if (_mind.TryFindObjective((mindId, mind), _pollenObjective.Id, out var stale))
                 _mind.TryRemoveObjective(mindId, mind, stale.Value);
