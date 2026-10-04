@@ -89,9 +89,9 @@
   - type: SocialInteractionReceiver
     interactionOverrides: # mothroaches don't have noses
     - id: Boop
-      interactString: booping-generic-success
-      messagePerceivedByOthers: booping-generic-success-others
-      emoteMessage: booping-generic-emote
+      interactString: booping-moth-success
+      messagePerceivedByOthers: booping-moth-success-others
+      emoteMessage: booping-moth-emote
 
 # Parrots, Polly
 - type: !PartialOnly entity
@@ -153,8 +153,8 @@
     interactionPrototypes:
     - Wave # they got arms, kinda
   - type: SocialInteractionReceiver
-    interactionOverrides: # crabs don't have noses
+    interactionOverrides: # crabs don't have noses, but they do have compound eyes
     - id: Boop
-      interactString: booping-generic-success
-      messagePerceivedByOthers: booping-generic-success-others
-      emoteMessage: booping-generic-emote
+      interactString: booping-moth-success
+      messagePerceivedByOthers: booping-moth-success-others
+      emoteMessage: booping-moth-emote

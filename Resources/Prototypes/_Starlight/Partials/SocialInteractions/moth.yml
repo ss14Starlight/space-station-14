@@ -4,6 +4,6 @@
   - type: SocialInteractionReceiver
     interactionOverrides: # moths don't have noses
     - id: Boop
-      interactString: booping-generic-success
-      messagePerceivedByOthers: booping-generic-success-others
-      emoteMessage: booping-generic-emote
+      interactString: booping-moth-success
+      messagePerceivedByOthers: booping-moth-success-others
+      emoteMessage: booping-moth-emote
