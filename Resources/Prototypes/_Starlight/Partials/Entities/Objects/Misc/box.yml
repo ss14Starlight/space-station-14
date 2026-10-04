@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: BoxBase
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/cardboard_pick_up.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/cardboard_drop.ogg
+
