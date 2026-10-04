@@ -69,7 +69,7 @@
   - type: Construction
     graph: DroneRogue
     node: start
-    defaultTarget: rouge_drone_complete
+    defaultTarget: rogue_drone_complete
     containers:
     - part-container
     - cell_slot
