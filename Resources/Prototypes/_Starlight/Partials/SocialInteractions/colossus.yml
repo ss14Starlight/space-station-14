@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: MobCosmicColossusBase
+  components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - Look
+    - Wave
