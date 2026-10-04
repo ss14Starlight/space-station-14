@@ -1,0 +1,23 @@
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitSyndie
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitSyndieElite
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitSyndieCommander
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitJuggernaut
+  components:
+  - type: Contraband
+    tier: Tier4

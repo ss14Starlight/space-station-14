@@ -1,0 +1,14 @@
+- type: !PartialOnly reagent
+  id: PestKiller
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: PlantBGone
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: WeedKiller
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove

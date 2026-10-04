@@ -1,6 +1,6 @@
 - type: entity
   id: StatueStoneCUP
-  parent: BaseStructure
+  parent: [BaseStructure, BaseSovietContraband] # Blimpuf
   name: stone tea statue
   description: A stone statue depicting a tea-drinking revolutionary. It stands as a symbol of unity and shared purpose among comrades.
   components:

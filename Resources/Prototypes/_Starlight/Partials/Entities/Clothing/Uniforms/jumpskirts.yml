@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: ClothingUniformJumpskirtOperative
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: ClothingUniformJumpskirtSyndieFormalDress
+  components:
+  - type: Contraband
+    contrabandType: Syndicate

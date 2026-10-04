@@ -1,0 +1,39 @@
+- type: !PartialOnly entity
+  id: RubberStampChaplain
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedJobs:
+    - Chaplain
+
+- type: !PartialOnly entity
+  id: RubberStampLawyer
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedJobs:
+    - Lawyer
+
+- type: !PartialOnly entity
+  id: RubberStampClown
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedJobs:
+    - Clown
+
+- type: !PartialOnly entity
+  id: RubberStampMime
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedJobs:
+    - Mime
+
+- type: !PartialOnly entity
+  id: RubberStampPsychologist
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedJobs:
+    - Psychologist

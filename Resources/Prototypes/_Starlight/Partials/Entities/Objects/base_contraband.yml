@@ -1,0 +1,71 @@
+- type: !PartialOnly entity
+  id: BaseHighlyIllegalContraband
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    severity: !Remove
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: BaseXenoborgContraband
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    severity: !Remove
+    tier: Tier4
+    contrabandType: Cybernetic
+
+- type: !PartialOnly entity
+  id: BaseMagicalContraband
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    severity: !Remove
+    tier: Tier4
+    contrabandType: Magical
+
+- type: !PartialOnly entity
+  id: BaseSyndicateContraband
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    severity: !Remove
+    tier: Tier3
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: BaseMinorContraband
+  components:
+  - type: Contraband
+    severity: !Remove
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: BaseMajorContraband
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    severity: !Remove
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: BaseRestrictedContraband
+  components:
+  - type: Contraband
+    severity: !Remove
+
+- type: !PartialOnly entity
+  id: BaseCentcommContraband
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+    contrabandType: CentralCommand
+
+- type: !PartialOnly entity
+  id: BaseGrandTheftContraband
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    severity: !Remove
+    tier: Tier3

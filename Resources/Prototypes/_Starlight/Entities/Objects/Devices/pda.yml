@@ -604,7 +604,7 @@
       state: pda-commander
 
 - type: entity
-  parent: BasePDA
+  parent: [ BaseContrabandTier4, BaseNanoTrasenContraband, BasePDA ] # Blimpuf
   id: NTNCBlueShieldPDA
   name: naval officer's PDA
   components:
@@ -634,7 +634,7 @@
       - NanoChatCartridge
 
 - type: entity
-  parent: BasePDA
+  parent: [ BaseCentcommContraband, BasePDA ] # Blimpuf
   categories: [ DoNotMap ]
   id: CentCommGreenShieldPDA
   name: greenshield PDA
@@ -666,7 +666,7 @@
         - NanoChatCartridge
 
 - type: entity
-  parent: BasePDA
+  parent: [ BaseContrabandTier4, BaseNanoTrasenContraband, BasePDA ] # Blimpuf
   id: NTNCCSPDA
   name: nt nc naval officer's PDA
   components:
@@ -948,7 +948,7 @@
   - type: Unremoveable
 
 - type: entity
-  parent: BasePDA
+  parent: [ BaseCentcommContraband, BasePDA ] # Blimpuf
   id: CentCommServiceWorkerPDA
   name: CentComm service worker PDA
   description: The crappy version they give to the people who make their food, mop their floors, and serve their drinks.

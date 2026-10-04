@@ -2,9 +2,7 @@
   id: BaseMedTakContraband
   abstract: true
   components:
+  - type: ScanDetectable
   - type: Contraband
-    severity: MedTak
-
-- type: contrabandSeverity
-  id: MedTak
-  examineText: contraband-examine-text-medtak
+    tier: Tier4 # Blimpuf
+    contrabandType: MedTak # Blimpuf

@@ -2,7 +2,7 @@ using System.Linq;
 using Content.Shared.FixedPoint;
 using System.Text.Json.Serialization;
 using Content.Shared.Chemistry.Reaction;
-using Content.Shared.Contraband;
+using Content.Shared._Blimpuf.Contraband; // Blimpuf
 using Content.Shared.EntityEffects;
 using Content.Shared.Localizations;
 using Content.Shared.Nutrition;
@@ -55,23 +55,40 @@ namespace Content.Shared.Chemistry.Reagent
         [ViewVariables(VVAccess.ReadOnly)]
         public string LocalizedPhysicalDescription => Loc.GetString(PhysicalDescription);
 
+        // Blimpuf start - tiered contraband
         /// <summary>
-        ///     The degree of contraband severity this reagent is considered to have.
-        ///     If AllowedDepartments or AllowedJobs are set, they take precedent and override this value.
+        /// The legal severity tier of this contraband reagent, if any.
         /// </summary>
         [DataField]
-        public ProtoId<ContrabandSeverityPrototype>? ContrabandSeverity = null;
+        public ProtoId<ContrabandTierPrototype>? ContrabandTier;
+
+        /// <summary>
+        /// An optional origin or category, such as Syndicate contraband.
+        /// </summary>
+        [DataField]
+        public ProtoId<ContrabandTypePrototype>? ContrabandType;
+
+        /// <summary>
+        /// Whether patients may possess this reagent with a valid prescription.
+        /// </summary>
+        [DataField]
+        public bool RequiresPrescription;
+        // Blimpuf end
 
         /// <summary>
         ///     Which departments is this reagent restricted to, if any?
+        ///     Child prototype entries are added to inherited entries instead of replacing them.
         /// </summary>
         [DataField]
+        [AlwaysPushInheritance]
         public HashSet<ProtoId<DepartmentPrototype>> AllowedDepartments = new();
 
         /// <summary>
         ///     Which jobs is this reagent restricted to, if any?
+        ///     Child prototype entries are added to inherited entries instead of replacing them.
         /// </summary>
         [DataField]
+        [AlwaysPushInheritance]
         public HashSet<ProtoId<JobPrototype>> AllowedJobs = new();
 
         /// <summary>

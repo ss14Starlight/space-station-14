@@ -5,7 +5,7 @@
 #Basic armor vest for inheritance
 - type: entity
   abstract: true
-  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterArmorBase
   name: armor vest
   description: A standard Type I armored vest that provides decent protection against most types of damage.
@@ -39,7 +39,7 @@
 
 #Standard armor vest, allowed for security and bartenders
 - type: entity
-  parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBase]
+  parent: [ BaseContrabandTier2, BaseSecurityContraband, BaseBartenderContraband, ClothingOuterArmorBase ] # Blimpuf
   id: ClothingOuterArmorBasic
   components:
   - type: Tag
@@ -126,7 +126,7 @@
 
 #Detective's vest
 - type: entity
-  parent: [ClothingOuterArmorBase, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, ClothingOuterArmorBase, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterVestDetective
   name: detective's vest
   description: A hard-boiled private investigator's armored vest.
@@ -154,7 +154,7 @@
   - type: GroupExamine
 
 - type: entity
-  parent: [ClothingOuterArmorBaseCarapace, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, ClothingOuterArmorBaseCarapace, BaseCommandContraband ] # Blimpuf
   id: ClothingOuterArmorCaptainCarapace
   name: captain's carapace
   description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest.
@@ -365,7 +365,7 @@
     - K9Wearable # Starlight
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, ClothingOuterBaseWarm, AllowSuitStorageClothing, BaseSecurityContraband] # Starlight
+  parent: [ BaseContrabandTier2, ClothingOuterBaseLarge, ClothingOuterBaseWarm, AllowSuitStorageClothing, BaseSecurityContraband ] # Starlight
   id: ClothingOuterArmorRiot
   name: riot suit
   description: A suit of semi-flexible polycarbonate body armor with heavy padding to protect against melee attacks. Perfect for fighting delinquents around the station.

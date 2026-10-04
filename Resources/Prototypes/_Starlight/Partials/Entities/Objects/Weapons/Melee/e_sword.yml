@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: EnergyDagger
+  components:
+  - type: ComponentToggler
+    components: !Clear
+    - type: Tool
+      qualities:
+      - Slicing
+    - type: DisarmMalus
+      malus: 0.4
+    - type: Contraband
+      tier: Tier3
+      contrabandType: Syndicate

@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: WeaponLauncherHydraLethal
+  components:
+  - type: Contraband
+    tier: Tier3
+    severity: !Remove

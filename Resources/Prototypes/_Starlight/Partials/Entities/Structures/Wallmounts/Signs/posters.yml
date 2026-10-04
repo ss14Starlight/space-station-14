@@ -1,0 +1,27 @@
+- type: !PartialOnly entity
+  id: PosterContrabandSyndicateRecruitment
+  components:
+  - type: Contraband
+    tier: Tier1
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: PosterContrabandRevolt
+  components:
+  - type: Contraband
+    tier: Tier1
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: PosterContrabandMoth
+  components:
+  - type: Contraband
+    tier: Tier1
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: PosterContrabandEnlistGorlex
+  components:
+  - type: Contraband
+    tier: Tier1
+    contrabandType: Syndicate

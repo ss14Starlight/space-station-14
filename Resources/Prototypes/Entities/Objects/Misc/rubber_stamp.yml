@@ -43,7 +43,7 @@
 
 - type: entity
   name: captain's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampCaptain
   description: A rubber stamp for stamping important documents. 9/10 clowns recommend stealing this. The 10th clown already has. # Starlight
   categories: [ DoNotMap ]
@@ -57,7 +57,7 @@
 
 - type: entity
   name: CentComm rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampCentcom
   description: A rubber stamp for stamping important documents. Tell them who's boss! # Starlight
   categories: [ DoNotMap ]
@@ -114,7 +114,7 @@
 
 - type: entity
   name: chief engineer's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampCE
   description: A rubber stamp for stamping important documents. Used to approve the maints bars, the rage cages, and the shittles. # Starlight
   categories: [ DoNotMap ]
@@ -128,7 +128,7 @@
 
 - type: entity
   name: chief medical officer's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampCMO
   description: A rubber stamp for stamping important documents. For when the doctor is in. # Starlight
   categories: [ DoNotMap ]
@@ -142,7 +142,7 @@
 
 - type: entity
   name: head of personnel's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampHop
   description: A rubber stamp for stamping important documents. Slightly chewed. # Starlight
   categories: [ DoNotMap ]
@@ -156,7 +156,7 @@
 
 - type: entity
   name: head of security's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampHos
   description: A rubber stamp for stamping important documents. I love the smell of rubber in the morning. # Starlight
   categories: [ DoNotMap ]
@@ -185,7 +185,7 @@
 
 - type: entity
   name: quartermaster's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampQm
   description: A rubber stamp for stamping important documents. For when they do fill out a damn form. # Starlight
   categories: [ DoNotMap ]
@@ -199,7 +199,7 @@
 
 - type: entity
   name: research director's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampRd
   description: A rubber stamp for stamping important documents. Covered in ash and plasma residue. # Starlight
   categories: [ DoNotMap ]
@@ -242,7 +242,7 @@
 
 - type: entity
   name: warden's rubber stamp
-  parent: [RubberStampBase, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseSecurityContraband ] # Blimpuf
   id: RubberStampWarden
   description: A rubber stamp for stamping important documents. Mostly used for approving whatever maints loot the secoffs bring in. # Starlight
   categories: [ DoNotMap ]
@@ -282,7 +282,7 @@
 
 - type: entity
   name: detective's rubber stamp
-  parent: [RubberStampBase, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseSecurityContraband ] # Blimpuf
   id: RubberStampDetective
   description: A rubber stamp for stamping important documents. The stamp talks to itself, too. # Starlight
   categories: [ DoNotMap ]

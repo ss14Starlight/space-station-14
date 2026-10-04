@@ -81,7 +81,7 @@
     price: 10000
 
 - type: entity
-  parent: [ BaseWeaponLauncher, BaseJanitorContraband ] # Starlight: major -> jani contra
+  parent: [ BaseContrabandTier2, BaseWeaponLauncher, BaseJanitorContraband ] # Starlight: major -> jani contra
   id: WeaponLauncherHydra
   name: hydra
   description: PLOOP... FSSSSSS...
@@ -257,9 +257,7 @@
 
 - type: entity
   name: tether gun
-  parent:
-  - BaseItem
-  - PowerCellSlotMediumItem
+  parent: [ BaseItem, PowerCellSlotMediumItem ] # Blimpuf
   id: WeaponTetherGun
   description: Manipulates gravity around objects to fling them at high velocities.
   components:
@@ -299,9 +297,7 @@
 
 - type: entity
   name: force gun
-  parent:
-    - BaseItem
-    - PowerCellSlotMediumItem
+  parent: [ BaseItem, PowerCellSlotMediumItem ] # Blimpuf
   id: WeaponForceGun
   description: Manipulates gravity around objects to fling them at high velocities.
   components:

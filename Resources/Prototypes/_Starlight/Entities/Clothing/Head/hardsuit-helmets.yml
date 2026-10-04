@@ -172,6 +172,10 @@
   categories: [ HideSpawnMenu ]
   name: syndicate infiltration hardsuit helmet
   components:
+  - type: ScanDetectable # Blimpuf
+  - type: Contraband # Blimpuf
+    tier: Tier4
+    contrabandType: Syndicate
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
   - type: Clothing
@@ -201,6 +205,8 @@
   name: SSF marine hardsuit helmet
   description: From the soviet dieselpunk world.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Helmets/sovietmarine_helmet.rsi
   - type: Clothing

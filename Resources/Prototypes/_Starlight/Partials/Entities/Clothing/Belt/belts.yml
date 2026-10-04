@@ -6,3 +6,15 @@
         tags:
           - Bola # Starlight
           - HudSecurity
+
+- type: !PartialOnly entity
+  id: ClothingBeltSyndieHolster
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: ClothingBeltMilitaryWebbing
+  components:
+  - type: Contraband
+    tier: Tier4

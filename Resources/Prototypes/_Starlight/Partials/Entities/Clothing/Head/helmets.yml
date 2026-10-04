@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetSwatSyndicate
+  components:
+  - type: Contraband
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetRaid
+  components:
+  - type: Contraband
+    tier: Tier4
