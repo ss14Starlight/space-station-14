@@ -1,25 +1,4 @@
 Entries:
-- author: Citrea
-  changes:
-  - message: Dolls now drop their shell when zombified, making them normally vulnerable to bullets. As all zombies, they are still resistant to bullets, just not invincible.
-    type: Tweak
-  id: 408738
-  time: '2026-09-20T16:42:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6208
-- author: Citrea
-  changes:
-  - message: Pilebunker legs now get disabled when cybernetics are disrupted.
-    type: Fix
-  id: 408739
-  time: '2026-09-20T17:03:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6165
-- author: Swonki, Hanz
-  changes:
-  - message: SPKA, Chain Accelerator, Regulator PKA's.
-    type: Add
-  id: 408740
-  time: '2026-09-20T17:28:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6064
 - author: Swonki, Hanz
   changes:
   - message: ITG Admin content.
@@ -2799,4 +2778,25 @@ Entries:
   id: 409137
   time: '2026-10-04T12:11:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6408
+- author: Conflee
+  changes:
+  - message: 'Added a new pamphlet to the Magazine/Newspaper pools. "CentComm Pamphlet: PSO Cloning Insurance" which describes the PSO Cloning system.'
+    type: Add
+  id: 409138
+  time: '2026-10-04T12:11:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6342
+- author: Conflee
+  changes:
+  - message: Changed the description of the 'Unclonable' Trait to reflect PSO Cloning lore properly. Some people have unique genetic makeup that makes cloning their clones impossible. Like a copy of a copy in a photocopier.
+    type: Tweak
+  id: 409139
+  time: '2026-10-04T12:11:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6342
+- author: Conflee
+  changes:
+  - message: Changed the Introduction section of the New Player page in the Guidebook to give a more useful basic lore introduction to the server, front loading the fact that NanoTrasen and CentComm are two distinct companies, and a brief mention of PSO, early. These are two important lore things unique to Starlight that cause confusion often.
+    type: Tweak
+  id: 409140
+  time: '2026-10-04T12:11:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6342
 Order: -1
