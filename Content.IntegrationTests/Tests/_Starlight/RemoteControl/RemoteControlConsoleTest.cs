@@ -399,14 +399,16 @@ public sealed class RemoteControlConsoleTest : GameTest
         EntityUid scanner = default;
         EntityUid controller = default;
         Enum uiKey = default!;
+        IPlayerManager playerManager = default!;
+        EntityUid? previousAttachedEntity = null;
 
         try
         {
             await Server.WaitAssertion(() =>
             {
-                var session = Server.ResolveDependency<IPlayerManager>().Sessions.Single();
-                Assert.That(session.AttachedEntity, Is.Not.Null);
-                controller = session.AttachedEntity!.Value;
+                playerManager = Server.ResolveDependency<IPlayerManager>();
+                var session = playerManager.Sessions.Single();
+                previousAttachedEntity = session.AttachedEntity;
 
                 map = Server.System<SharedMapSystem>().CreateMap(out var mapId);
                 var coordinates = new MapCoordinates(0, 0, mapId);
@@ -414,6 +416,8 @@ public sealed class RemoteControlConsoleTest : GameTest
                 scanner = SEntMan.SpawnEntity("HandHeldMassScannerBorg", coordinates);
                 var activatable = SEntMan.GetComponent<ActivatableUIComponent>(scanner);
                 uiKey = activatable.Key!;
+                controller = SEntMan.SpawnEntity("MobHuman", coordinates);
+                Assert.That(playerManager.SetAttachedEntity(session, controller), Is.True);
 
                 var consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
                 var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
@@ -424,9 +428,8 @@ public sealed class RemoteControlConsoleTest : GameTest
                 Assert.That(remoteControl.TryGetControllerForRemoteEntity(scanner, out var popupRecipient), Is.True);
                 Assert.That(popupRecipient, Is.EqualTo(controller));
 
-                var ui = Server.System<SharedUserInterfaceSystem>();
                 Server.System<ActivatableUISystem>().SetCurrentSingleUser(scanner, scanner, activatable);
-                ui.OpenUi(scanner, uiKey, scanner);
+                SEntMan.EventBus.RaiseLocalEvent(scanner, new BoundUIOpenedEvent(uiKey, scanner, scanner));
 
                 Assert.That(activatable.CurrentSingleUser, Is.EqualTo(controller));
             });
@@ -442,8 +445,17 @@ public sealed class RemoteControlConsoleTest : GameTest
         }
         finally
         {
-            if (map is { } mapUid)
-                await Server.WaitPost(() => SEntMan.DeleteEntity(mapUid));
+            await Server.WaitPost(() =>
+            {
+                if (playerManager is not null)
+                {
+                    var session = playerManager.Sessions.Single();
+                    playerManager.SetAttachedEntity(session, previousAttachedEntity);
+                }
+
+                if (map is { } mapUid)
+                    SEntMan.DeleteEntity(mapUid);
+            });
         }
     }
 

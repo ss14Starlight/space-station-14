@@ -1,54 +1,48 @@
+using System.Collections.Concurrent;
+using System.Linq;
 using Content.Server.Construction;
-using Content.Server.Chat.Systems;
+using Content.Server.Movement.Systems;
 using Content.Server.Popups;
-using Content.Shared.Chat;
-using Content.Shared.Chat.TypingIndicator;
-using Content.Shared.Item.ItemToggle;
-using Content.Shared.Item.ItemToggle.Components;
-using Content.Shared.Construction;
-using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared._Afterlight.Silicons.Borgs;
-using Content.Shared.Atmos.Components;
-using Content.Shared.RCD.Components;
-using Content.Shared.RCD.Systems;
-using Content.Shared._Starlight.Silicons;
-using Content.Shared._Starlight.Silicons.Borgs;
-using Content.Shared.Actions;
-using Content.Shared.Actions.Components;
-using Content.Shared.Body.Organ;
-using Content.Shared.DeviceLinking;
-using Content.Shared.DeviceLinking.Events;
-using Content.Shared.Examine;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
-using Content.Shared.ActionBlocker;
-using Content.Shared.Bed.Sleep;
 using Content.Shared._DEN.QuickConstruction.Components;
 using Content.Shared._DEN.QuickConstruction.Events;
-using Content.Shared.Interaction;
-using Content.Shared.Interaction.Components;
-using Content.Shared.Interaction.Events;
+using Content.Shared._Starlight.Computers.RemoteControl;
+using Content.Shared._Starlight.Silicons;
+using Content.Shared._Starlight.Silicons.Borgs;
+using Content.Shared.ActionBlocker;
+using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
+using Content.Shared.Atmos.Components;
+using Content.Shared.Bed.Sleep;
+using Content.Shared.Body.Organ;
+using Content.Shared.Chat.TypingIndicator;
+using Content.Shared.CombatMode;
+using Content.Shared.Construction;
+using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Hands;
+using Content.Shared.Interaction;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
-using Content.Shared.Storage;
-using Content.Shared.Storage.EntitySystems;
+using Content.Shared.Item.ItemToggle;
+using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Mobs;
+using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Power;
 using Content.Shared.Power.Components;
 using Content.Shared.PowerCell.Components;
-using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.RCD.Components;
+using Content.Shared.RCD.Systems;
 using Content.Shared.Silicons.Borgs;
-using Content.Shared.Silicons.StationAi; // Starlight
-using Content.Shared.Silicons.Laws.Components;
-using Content.Shared.CombatMode;
+using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Storage;
+using Content.Shared.Storage.EntitySystems;
+using Content.Shared.UserInterface;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.Containers;
-using Content.Server.Movement.Systems;
-using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Server.GameStates;
 using Robust.Server.Player;
@@ -56,46 +50,49 @@ using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
+// Starlight
 
 namespace Content.Server._Starlight.Computers.RemoteControl;
 
 public sealed partial class RemoteControlConsoleSystem : EntitySystem
 {
-    // Dependency fields not read only. Ignore IDE0044.
-    [Dependency] private UserInterfaceSystem _ui = default!;
-    [Dependency] private PopupSystem _popup = default!;
-    [Dependency] private ActivatableUISystem _activatableUi = default!;
-    [Dependency] private SharedMoverController _mover = default!;
-    [Dependency] private ContainerSystem _container = default!;
-    [Dependency] private PvsOverrideSystem _pvsOverride = default!;
-    [Dependency] private SharedViewSubscriberSystem _viewSubscriber = default!;
-    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private IPlayerManager _playerManager = default!;
-    [Dependency] private SharedActionsSystem _actions = default!;
-    [Dependency] private ItemToggleSystem _itemToggle = default!;
-    [Dependency] private AppearanceSystem _appearance = default!;
-    [Dependency] private SharedInteractionSystem _interaction = default!;
-    [Dependency] private SharedHandsSystem _hands = default!;
-    [Dependency] private InventorySystem _inventory = default!;
-    [Dependency] private SharedStorageSystem _storage = default!;
-    [Dependency] private SharedBorgSystem _borg = default!;
-    [Dependency] private PullController _pullController = default!;
-
     private readonly HashSet<EntityUid> _pendingBorgRefreshes = new();
     private readonly HashSet<(EntityUid Console, EntityUid Chassis)> _pendingRemoteBorgActivations = new();
-    private readonly Dictionary<EntityUid, HashSet<EntityUid>> _remoteActionOverrides = new();
     private readonly HashSet<(EntityUid UiEntity, Enum UiKey, EntityUid Controller)> _pendingRemoteUiMirrors = new();
-    private readonly Dictionary<EntityUid, (EntityUid Storage, EntityUid Controller, EntityUid Remote)> _remoteStorageUiActors = new();
-    private readonly ConcurrentDictionary<(EntityUid UiEntity, Enum UiKey, EntityUid Actor), byte> _remoteUiRangeOverrides = new();
+    private readonly Dictionary<EntityUid, HashSet<EntityUid>> _remoteActionOverrides = new();
+
+    private readonly Dictionary<EntityUid, (EntityUid Storage, EntityUid Controller, EntityUid Remote)>
+        _remoteStorageUiActors = new();
+
+    private readonly ConcurrentDictionary<(EntityUid UiEntity, Enum UiKey, EntityUid Actor), byte>
+        _remoteUiRangeOverrides = new();
+
     private readonly ISawmill _sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("remote-control");
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private ActivatableUISystem _activatableUi = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
+    [Dependency] private SharedBorgSystem _borg = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private ItemToggleSystem _itemToggle = default!;
+    [Dependency] private SharedMoverController _mover = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private PullController _pullController = default!;
+    [Dependency] private PvsOverrideSystem _pvsOverride = default!;
+
+    [Dependency] private SharedStorageSystem _storage = default!;
+
+    // Dependency fields not read only. Ignore IDE0044.
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private SharedViewSubscriberSystem _viewSubscriber = default!;
 
     public override void Initialize()
     {
         SubscribeAllEvent<TypingChangedEvent>(OnRemoteControllerTypingChanged);
-        SubscribeLocalEvent<PlayerAttachedEvent>(OnRemoteEntityPlayerAttached);
         Subs.BuiEvents<RemoteControlConsoleComponent>(RemoteControlUIKey.Key,
             subs =>
             {
@@ -112,6 +109,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
         _hands.OnHandSetActive += OnHandSetActive;
     }
+
     [SubscribeLocalEvent]
     private void OnRemotePowerCellInserted(Entity<PowerCellComponent> cell, ref EntGotInsertedIntoContainerMessage args)
     {
@@ -122,6 +120,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         QueueRemoteBorgActivation(args.Container.Owner);
     }
+
     [SubscribeLocalEvent]
     private void OnRemoteBorgBatteryStateChanged(Entity<BatteryComponent> battery, ref BatteryStateChangedEvent args)
     {
@@ -141,21 +140,19 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     {
         chassis = default;
         return _container.TryGetContainingContainer(cell, out var container)
-            && TryComp<PowerCellSlotComponent>(container.Owner, out var slot)
-            && container.ID == slot.CellSlotId
-            && TryComp<BorgChassisComponent>(container.Owner, out _)
-            && (chassis = container.Owner) != default;
+               && TryComp<PowerCellSlotComponent>(container.Owner, out var slot)
+               && container.ID == slot.CellSlotId
+               && TryComp<BorgChassisComponent>(container.Owner, out _)
+               && (chassis = container.Owner) != default;
     }
 
     private void QueueRemoteBorgActivation(EntityUid chassis)
     {
         foreach (var console in EntityQuery<RemoteControlConsoleComponent>())
-        {
             if (console.Controller is not null
                 && TryGetRemoteEntity(console, out var remoteEntity)
                 && remoteEntity == chassis)
                 _pendingRemoteBorgActivations.Add((console.Owner, chassis));
-        }
     }
 
     private void RemovePendingRemoteBorgActivations(EntityUid chassis)
@@ -202,10 +199,12 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             || !toggle.Activated)
             return;
 
-        _itemToggle.TryDeactivate((entity.Owner, toggle), args.User, predicted: false, showPopup: false);
+        _itemToggle.TryDeactivate((entity.Owner, toggle), args.User, false, false);
     }
+
     [SubscribeLocalEvent]
-    private void OnToyRemoteActivateAttempt(Entity<RemoteControlConsoleComponent> entity, ref ItemToggleActivateAttemptEvent args)
+    private void OnToyRemoteActivateAttempt(Entity<RemoteControlConsoleComponent> entity,
+        ref ItemToggleActivateAttemptEvent args)
     {
         if (entity.Comp.EnableRemoteView)
             return;
@@ -222,6 +221,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (!CanRemoteControlTarget(entity.Owner, entity.Comp, remoteEntity, user))
             args.Cancelled = true;
     }
+
     [SubscribeLocalEvent]
     private void OnToyRemoteToggled(Entity<RemoteControlConsoleComponent> entity, ref ItemToggledEvent args)
     {
@@ -236,7 +236,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 return;
 
             entity.Comp.Users.Add(controller);
-            if (!SetController(entity.Owner, entity.Comp, controller, remoteEntity, refreshUi: false))
+            if (!SetController(entity.Owner, entity.Comp, controller, remoteEntity, false))
             {
                 entity.Comp.Users.Remove(controller);
                 DeactivateToyRemote(entity.Owner, entity.Comp);
@@ -249,7 +249,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             || !TryGetRemoteEntity(entity.Comp, out var controlledEntity))
             return;
 
-        SetController(entity.Owner, entity.Comp, null, controlledEntity, refreshUi: false);
+        SetController(entity.Owner, entity.Comp, null, controlledEntity, false);
         entity.Comp.Users.Remove(activeController);
     }
 
@@ -293,11 +293,13 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         => RefreshRemoteContainerState(args.Container.Owner);
 
     [SubscribeLocalEvent]
-    private void OnRemoteBorgModuleSelected(Entity<SelectableBorgModuleComponent> module, ref BorgModuleSelectedEvent args)
+    private void OnRemoteBorgModuleSelected(Entity<SelectableBorgModuleComponent> module,
+        ref BorgModuleSelectedEvent args)
         => _pendingBorgRefreshes.Add(args.Chassis);
 
     [SubscribeLocalEvent]
-    private void OnRemoteBorgModuleUnselected(Entity<SelectableBorgModuleComponent> module, ref BorgModuleUnselectedEvent args)
+    private void OnRemoteBorgModuleUnselected(Entity<SelectableBorgModuleComponent> module,
+        ref BorgModuleUnselectedEvent args)
         => _pendingBorgRefreshes.Add(args.Chassis);
 
     [SubscribeLocalEvent]
@@ -313,7 +315,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         => _pendingBorgRefreshes.Add(borg.Owner);
 
     [SubscribeLocalEvent]
-    private void OnRemoteBrainRemoved(Entity<RemoteControlBrainComponent> brain, ref EntGotRemovedFromContainerMessage args)
+    private void OnRemoteBrainRemoved(Entity<RemoteControlBrainComponent> brain,
+        ref EntGotRemovedFromContainerMessage args)
     {
         if (!TryComp<BorgChassisComponent>(args.Container.Owner, out var chassis)
             || args.Container != chassis.BrainContainer)
@@ -331,13 +334,11 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
             if (!TerminatingOrDeleted(args.Container.Owner))
                 SetRemoteTypingState(args.Container.Owner, TypingIndicatorState.None);
-            CleanupUsers(consoleEntity, args.Container.Owner, clearUsers: false, clearController: false);
+            CleanupUsers(consoleEntity, args.Container.Owner, false, false);
 
             foreach (var user in console.Users)
-            {
                 if (_playerManager.TryGetSessionByEntity(user, out var session))
                     _viewSubscriber.AddViewSubscriber(brain.Owner, session);
-            }
 
             RefreshRemoteState(consoleUid, console, brain.Owner);
             Dirty(consoleEntity);
@@ -364,7 +365,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             return;
 
         if (entity.Comp.RemoteBrain is not null && TryGetRemoteEntity(entity.Comp, out var oldRemoteEntity))
-            CleanupUsers(entity, oldRemoteEntity, clearUsers: false);
+            CleanupUsers(entity, oldRemoteEntity, false);
 
         entity.Comp.RemoteBrain = args.Sink;
         Dirty(entity);
@@ -376,10 +377,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         }
 
         foreach (var user in entity.Comp.Users)
-        {
             if (_playerManager.TryGetSessionByEntity(user, out var session))
                 _viewSubscriber.AddViewSubscriber(remoteEntity, session);
-        }
 
         RefreshRemoteState(entity.Owner, entity.Comp, remoteEntity);
     }
@@ -391,7 +390,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             return;
 
         var user = args.Actor;
-        _sawmill.Debug($"[RemoteControl] server UI open console={uid} actor={user} users={string.Join(',', component.Users)} controller={component.Controller}");
+        _sawmill.Debug(
+            $"[RemoteControl] server UI open console={uid} actor={user} users={string.Join(',', component.Users)} controller={component.Controller}");
 
         component.Users.Add(user);
 
@@ -410,32 +410,41 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (component.Controller is null && _actionBlocker.CanConsciouslyPerformAction(user))
             SetController(uid, component, user, remoteEntity);
 
-        var actionEntities = component.EnableRemoteView ? GetRemoteActionEntities(remoteEntity) : new HashSet<EntityUid>();
-        var quickConstructionItem = component.EnableRemoteView ? GetRemoteQuickConstructionItem(remoteEntity) : (EntityUid?) null;
+        var actionEntities = component.EnableRemoteView
+            ? GetRemoteActionEntities(remoteEntity)
+            : new HashSet<EntityUid>();
+        var quickConstructionItem = component.EnableRemoteView ? GetRemoteQuickConstructionItem(remoteEntity) : null;
 
-        _ui.SetUiState(uid, RemoteControlUIKey.Key, new RemoteControlConsoleBuiState
-        {
-            Connected = true,
-            EnableRemoteView = component.EnableRemoteView,
-            RemoteEntity = GetNetEntity(remoteEntity),
-            Controller = component.Controller is { } controller ? GetNetEntity(controller) : null,
-            Actions = GetRemoteActions(actionEntities),
-            SelectedAction = component.EnableRemoteView ? GetSelectedRemoteAction(remoteEntity) : null,
-            QuickConstructionItem = quickConstructionItem is { } item ? GetNetEntity(item) : null,
-            Hands = component.EnableRemoteView ? GetRemoteHands(remoteEntity) : Array.Empty<RemoteControlHandState>(),
-            Inventory = component.EnableRemoteView ? GetRemoteInventory(remoteEntity) : Array.Empty<RemoteControlInventorySlotState>(),
-        });
+        _ui.SetUiState(uid, RemoteControlUIKey.Key,
+            new RemoteControlConsoleBuiState
+            {
+                Connected = true,
+                EnableRemoteView = component.EnableRemoteView,
+                RemoteEntity = GetNetEntity(remoteEntity),
+                Controller = component.Controller is { } controller ? GetNetEntity(controller) : null,
+                Actions = GetRemoteActions(actionEntities),
+                SelectedAction = component.EnableRemoteView ? GetSelectedRemoteAction(remoteEntity) : null,
+                QuickConstructionItem = quickConstructionItem is { } item ? GetNetEntity(item) : null,
+                Hands =
+                    component.EnableRemoteView
+                        ? GetRemoteHands(remoteEntity)
+                        : Array.Empty<RemoteControlHandState>(),
+                Inventory = component.EnableRemoteView
+                    ? GetRemoteInventory(remoteEntity)
+                    : Array.Empty<RemoteControlInventorySlotState>()
+            });
     }
 
     [SubscribeLocalEvent]
-    private void OnAIRemoteControl(EntityUid uid, StationAIShuntableComponent shuntable, AIRemoteControlActionEvent args)
+    private void OnAIRemoteControl(EntityUid uid, StationAIShuntableComponent shuntable,
+        AIRemoteControlActionEvent args)
     {
         if (args.Handled
             || !_actionBlocker.CanConsciouslyPerformAction(uid)
             || !TryComp<RemoteControlConsoleComponent>(uid, out var console)
             || !TryComp<StationAIShuntComponent>(args.Target, out _)
             || !_playerManager.TryGetSessionByEntity(uid, out var session)
-            || console.Controller is { } controller && controller != uid)
+            || (console.Controller is { } controller && controller != uid))
             return;
 
         var remoteBrain = args.Target;
@@ -456,9 +465,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         {
             console.RemoteBrain = previousBrain;
             if (console.Controller is not null)
-                SetController(uid, console, null, previousRemote, refreshUi: false);
+                SetController(uid, console, null, previousRemote, false);
 
-            CleanupUsers((uid, console), previousRemote, clearUsers: false);
+            CleanupUsers((uid, console), previousRemote, false);
             console.RemoteBrain = remoteBrain;
         }
 
@@ -471,38 +480,39 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (console.Users.Contains(uid))
         {
             if (console.Controller != uid)
-                SetController(uid, console, uid, remoteEntity, refreshUi: false);
+                SetController(uid, console, uid, remoteEntity, false);
 
             RefreshRemoteState(uid, console, remoteEntity);
         }
         else
-        {
             _ui.OpenUi((uid, null), RemoteControlUIKey.Key, session);
-        }
 
         args.Handled = true;
     }
 
     private void SetDisconnectedState(EntityUid consoleUid)
-        => _ui.SetUiState(consoleUid, RemoteControlUIKey.Key, new RemoteControlConsoleBuiState
-        {
-            Connected = false,
-            RemoteEntity = null,
-            Controller = null,
-            Actions = System.Array.Empty<NetEntity>(),
-            SelectedAction = null,
-            Hands = System.Array.Empty<RemoteControlHandState>(),
-            Inventory = System.Array.Empty<RemoteControlInventorySlotState>(),
-        });
+        => _ui.SetUiState(consoleUid, RemoteControlUIKey.Key,
+            new RemoteControlConsoleBuiState
+            {
+                Connected = false,
+                RemoteEntity = null,
+                Controller = null,
+                Actions = Array.Empty<NetEntity>(),
+                SelectedAction = null,
+                Hands = Array.Empty<RemoteControlHandState>(),
+                Inventory = Array.Empty<RemoteControlInventorySlotState>()
+            });
 
-    private void OnToggleControl(EntityUid uid, RemoteControlConsoleComponent component, RemoteControlToggleMessage args)
+    private void OnToggleControl(EntityUid uid, RemoteControlConsoleComponent component,
+        RemoteControlToggleMessage args)
     {
         if (!component.Users.Contains(args.Actor))
             return;
 
         if (component.Controller == args.Actor)
         {
-            SetController(uid, component, null, TryGetRemoteEntity(component, out var controlledRemote) ? controlledRemote : null);
+            SetController(uid, component, null,
+                TryGetRemoteEntity(component, out var controlledRemote) ? controlledRemote : null);
             return;
         }
 
@@ -513,7 +523,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         SetController(uid, component, args.Actor, remoteEntity);
     }
-
+    [SubscribeLocalEvent]
     private void OnRemoteEntityPlayerAttached(PlayerAttachedEvent args)
     {
         foreach (var console in EntityQuery<RemoteControlConsoleComponent>())
@@ -531,10 +541,12 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
     private void OnRemoteAction(EntityUid uid, RemoteControlConsoleComponent component, RemoteControlActionMessage args)
     {
-        _sawmill.Debug($"[RemoteControl UI] Action message received console={uid} actor={args.Actor} controller={component.Controller} action={GetEntity(args.Action)}");
+        _sawmill.Debug(
+            $"[RemoteControl UI] Action message received console={uid} actor={args.Actor} controller={component.Controller} action={GetEntity(args.Action)}");
         if (component.Controller != args.Actor || !TryGetRemoteEntity(component, out var remoteEntity))
         {
-            _sawmill.Debug($"[RemoteControl UI] Action message rejected: controller mismatch or no remote entity console={uid} actor={args.Actor} controller={component.Controller}");
+            _sawmill.Debug(
+                $"[RemoteControl UI] Action message rejected: controller mismatch or no remote entity console={uid} actor={args.Actor} controller={component.Controller}");
             return;
         }
 
@@ -542,38 +554,46 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         var availableActions = GetRemoteActionEntities(remoteEntity);
         if (!availableActions.Contains(action))
         {
-            _sawmill.Debug($"[RemoteControl UI] Action message rejected: action not available action={action} remote={ToPrettyString(remoteEntity)} available={string.Join(',', availableActions)}");
+            _sawmill.Debug(
+                $"[RemoteControl UI] Action message rejected: action not available action={action} remote={ToPrettyString(remoteEntity)} available={string.Join(',', availableActions)}");
             return;
         }
 
         var isBorgTypeAction = TryComp<InstantActionComponent>(action, out var instantAction)
-            && instantAction.Event is BorgToggleSelectTypeEvent;
+                               && instantAction.Event is BorgToggleSelectTypeEvent;
         var hasBorgSwitchableType = TryComp<BorgSwitchableTypeComponent>(remoteEntity, out _);
         var hasControllerSession = _playerManager.TryGetSessionByEntity(args.Actor, out var controllerSession);
-        _sawmill.Debug($"[RemoteControl UI] Action accepted action={ToPrettyString(action)} remote={ToPrettyString(remoteEntity)} borgTypeAction={isBorgTypeAction} hasBorgSwitchableType={hasBorgSwitchableType} hasControllerSession={hasControllerSession}");
+        _sawmill.Debug(
+            $"[RemoteControl UI] Action accepted action={ToPrettyString(action)} remote={ToPrettyString(remoteEntity)} borgTypeAction={isBorgTypeAction} hasBorgSwitchableType={hasBorgSwitchableType} hasControllerSession={hasControllerSession}");
 
         if (isBorgTypeAction && hasBorgSwitchableType && hasControllerSession && controllerSession != null)
         {
             _remoteUiRangeOverrides.TryAdd((remoteEntity, BorgSwitchableTypeUiKey.SelectBorgType, args.Actor), 0);
             _ui.OpenUi((remoteEntity, null), BorgSwitchableTypeUiKey.SelectBorgType, controllerSession!);
-            _sawmill.Debug($"[RemoteControl UI] Borg select UI open requested remote={ToPrettyString(remoteEntity)} actor={ToPrettyString(args.Actor)} isOpen={_ui.IsUiOpen(remoteEntity, BorgSwitchableTypeUiKey.SelectBorgType, args.Actor)}");
+            _sawmill.Debug(
+                $"[RemoteControl UI] Borg select UI open requested remote={ToPrettyString(remoteEntity)} actor={ToPrettyString(args.Actor)} isOpen={_ui.IsUiOpen(remoteEntity, BorgSwitchableTypeUiKey.SelectBorgType, args.Actor)}");
             RefreshRemoteState(uid, component, remoteEntity);
             return;
         }
 
         if (isBorgTypeAction)
-            _sawmill.Debug($"[RemoteControl UI] Borg select UI not opened remote={ToPrettyString(remoteEntity)} hasBorgSwitchableType={hasBorgSwitchableType} hasControllerSession={hasControllerSession}");
+            _sawmill.Debug(
+                $"[RemoteControl UI] Borg select UI not opened remote={ToPrettyString(remoteEntity)} hasBorgSwitchableType={hasBorgSwitchableType} hasControllerSession={hasControllerSession}");
 
         var performed = _actions.TryPerformAction(remoteEntity, action);
-        _sawmill.Debug($"[RemoteControl UI] Action execution result action={ToPrettyString(action)} remote={ToPrettyString(remoteEntity)} performed={performed}");
+        _sawmill.Debug(
+            $"[RemoteControl UI] Action execution result action={ToPrettyString(action)} remote={ToPrettyString(remoteEntity)} performed={performed}");
     }
 
-    private void OnRemoteTargetAction(EntityUid uid, RemoteControlConsoleComponent component, RemoteControlTargetActionMessage args)
+    private void OnRemoteTargetAction(EntityUid uid, RemoteControlConsoleComponent component,
+        RemoteControlTargetActionMessage args)
     {
-        _sawmill.Debug($"[RemoteControl UI] Target action message received console={uid} actor={args.Actor} action={GetEntity(args.Action)}");
+        _sawmill.Debug(
+            $"[RemoteControl UI] Target action message received console={uid} actor={args.Actor} action={GetEntity(args.Action)}");
         if (!TryGetControlledEntity(component, args.Actor, out var remoteEntity))
         {
-            _sawmill.Debug($"[RemoteControl UI] Target action message rejected: controller mismatch or no remote entity console={uid} actor={args.Actor} controller={component.Controller}");
+            _sawmill.Debug(
+                $"[RemoteControl UI] Target action message rejected: controller mismatch or no remote entity console={uid} actor={args.Actor} controller={component.Controller}");
             return;
         }
 
@@ -581,21 +601,24 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (!GetRemoteActionEntities(remoteEntity).Contains(action)
             || !HasComp<TargetActionComponent>(action))
         {
-            _sawmill.Debug($"[RemoteControl UI] Target action message rejected: action not available or not targetable action={action} remote={ToPrettyString(remoteEntity)}");
+            _sawmill.Debug(
+                $"[RemoteControl UI] Target action message rejected: action not available or not targetable action={action} remote={ToPrettyString(remoteEntity)}");
             return;
         }
 
-        var target = args.Target is { } targetNet ? GetEntity(targetNet) : (EntityUid?) null;
+        var target = args.Target is { } targetNet ? GetEntity(targetNet) : (EntityUid?)null;
         var performed = _actions.TryPerformAction(remoteEntity, action, target, args.Coordinates);
-        _sawmill.Debug($"[RemoteControl UI] Target action execution result action={ToPrettyString(action)} remote={ToPrettyString(remoteEntity)} target={target} performed={performed}");
+        _sawmill.Debug(
+            $"[RemoteControl UI] Target action execution result action={ToPrettyString(action)} remote={ToPrettyString(remoteEntity)} target={target} performed={performed}");
     }
 
-    private void OnRemoteInteraction(EntityUid uid, RemoteControlConsoleComponent component, RemoteControlInteractionMessage args)
+    private void OnRemoteInteraction(EntityUid uid, RemoteControlConsoleComponent component,
+        RemoteControlInteractionMessage args)
     {
         if (!TryGetControlledEntity(component, args.Actor, out var remoteEntity))
             return;
 
-        var target = args.Target is { } targetNet ? GetEntity(targetNet) : (EntityUid?) null;
+        var target = args.Target is { } targetNet ? GetEntity(targetNet) : (EntityUid?)null;
 
         if (args.Action == RemoteControlInteractionAction.Drop)
         {
@@ -610,10 +633,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 && shootCombatMode.IsInCombatMode
                 && EntityManager.System<SharedGunSystem>().TryGetGun(remoteEntity, out var gun)
                 && gun.Comp.UseKey != args.AltInteract)
-            {
                 EntityManager.System<SharedGunSystem>().AttemptShoot(remoteEntity, gun,
                     GetCoordinates(args.Coordinates), target);
-            }
 
             RefreshRemoteState(uid, component, remoteEntity);
             return;
@@ -661,7 +682,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             && !HasComp<ActivatableUIComponent>(item)
             && TryComp<HandsComponent>(remoteEntity, out var hands)
             && !_hands.TryGetActiveItem((remoteEntity, hands), out _)
-            && _hands.TryPickupAnyHand(remoteEntity, item, checkActionBlocker: false, handsComp: hands, item: itemComp))
+            && _hands.TryPickupAnyHand(remoteEntity, item, false, handsComp: hands, item: itemComp))
         {
             RefreshRemoteState(uid, component, remoteEntity);
             return;
@@ -673,9 +694,11 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             && combatMode.IsInCombatMode
             && !HasComp<MapGridComponent>(attackTarget)
             && !HasComp<MapComponent>(attackTarget)
-            && EntityManager.System<SharedMeleeWeaponSystem>().TryGetWeapon(remoteEntity, out var weaponUid, out var weapon))
+            && EntityManager.System<SharedMeleeWeaponSystem>()
+                .TryGetWeapon(remoteEntity, out var weaponUid, out var weapon))
         {
-            EntityManager.System<SharedMeleeWeaponSystem>().AttemptLightAttack(remoteEntity, weaponUid, weapon, attackTarget);
+            EntityManager.System<SharedMeleeWeaponSystem>()
+                .AttemptLightAttack(remoteEntity, weaponUid, weapon, attackTarget);
             RefreshRemoteState(uid, component, remoteEntity);
             return;
         }
@@ -728,7 +751,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (!TryGetControlledEntity(component, args.Actor, out var remoteEntity))
             return;
 
-        _sawmill.Debug($"[RemoteControl OnRemoteHand] Borg type action={args.Action.ToString()} remote={ToPrettyString(remoteEntity)}");
+        _sawmill.Debug(
+            $"[RemoteControl OnRemoteHand] Borg type action={args.Action.ToString()} remote={ToPrettyString(remoteEntity)}");
         switch (args.Action)
         {
             case RemoteControlHandAction.SetActive:
@@ -763,7 +787,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         RefreshRemoteState(uid, component, remoteEntity);
     }
 
-    private void OnRemoteInventory(EntityUid uid, RemoteControlConsoleComponent component, RemoteControlInventoryMessage args)
+    private void OnRemoteInventory(EntityUid uid, RemoteControlConsoleComponent component,
+        RemoteControlInventoryMessage args)
     {
         if (!TryGetControlledEntity(component, args.Actor, out var remoteEntity)
             || !TryComp<InventoryComponent>(remoteEntity, out var inventory))
@@ -785,6 +810,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                     if (!wasOpen && _ui.IsUiOpen(storageItem, StorageComponent.StorageUiKey.Key, remoteEntity))
                         TrackRemoteStorageUi(uid, storageItem, args.Actor, remoteEntity);
                 }
+
                 break;
         }
 
@@ -830,19 +856,15 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     public bool TryGetControlledEntity(EntityUid actor, out EntityUid remoteEntity)
     {
         foreach (var console in EntityQuery<RemoteControlConsoleComponent>())
-        {
             if (console.Controller == actor && TryGetRemoteEntity(console, out remoteEntity))
                 return true;
-        }
 
         remoteEntity = default;
         return false;
     }
 
-    public bool TryGetControllerForRemoteEntity(EntityUid remoteEntity, out EntityUid controller)
-    {
-        return TryFindConsole(remoteEntity, out _, out controller);
-    }
+    public bool TryGetControllerForRemoteEntity(EntityUid remoteEntity, out EntityUid controller) =>
+        TryFindConsole(remoteEntity, out _, out controller);
 
     [SubscribeLocalEvent]
     private void OnRemoteBorgTypeAction(BorgToggleSelectTypeEvent args)
@@ -851,7 +873,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             ? controlledEntity
             : args.Performer;
 
-        _sawmill.Debug($"[RemoteControl UI] Borg type action performer={ToPrettyString(args.Performer)} remote={ToPrettyString(remoteEntity)}");
+        _sawmill.Debug(
+            $"[RemoteControl UI] Borg type action performer={ToPrettyString(args.Performer)} remote={ToPrettyString(remoteEntity)}");
         if (TryOpenRemoteUi<BorgSwitchableTypeComponent>(remoteEntity, BorgSwitchableTypeUiKey.SelectBorgType))
             args.Handled = true;
     }
@@ -866,7 +889,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             return false;
         }
 
-        _sawmill.Debug($"[RemoteControl UI] Opening key={uiKey} ui={ToPrettyString(remoteEntity)} controller={ToPrettyString(controller)} uiMap={Transform(remoteEntity).MapID} controllerMap={Transform(controller).MapID}");
+        _sawmill.Debug(
+            $"[RemoteControl UI] Opening key={uiKey} ui={ToPrettyString(remoteEntity)} controller={ToPrettyString(controller)} uiMap={Transform(remoteEntity).MapID} controllerMap={Transform(controller).MapID}");
         _remoteUiRangeOverrides.TryAdd((remoteEntity, uiKey, controller), 0);
         _ui.OpenUi((remoteEntity, null), uiKey, session);
         return true;
@@ -876,7 +900,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private void OnRemoteUiOpened(Entity<UserInterfaceComponent> entity, ref BoundUIOpenedEvent args)
     {
         var hasConsole = TryFindConsole(args.Actor, out var console, out var controller);
-        _sawmill.Debug($"[RemoteControl UI] BUI opened key={args.UiKey} ui={ToPrettyString(entity.Owner)} actor={ToPrettyString(args.Actor)} uiMap={Transform(entity.Owner).MapID} actorMap={Transform(args.Actor).MapID} remoteControl={hasConsole}");
+        _sawmill.Debug(
+            $"[RemoteControl UI] BUI opened key={args.UiKey} ui={ToPrettyString(entity.Owner)} actor={ToPrettyString(args.Actor)} uiMap={Transform(entity.Owner).MapID} actorMap={Transform(args.Actor).MapID} remoteControl={hasConsole}");
 
         if (!hasConsole)
             return;
@@ -894,21 +919,19 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             && activatable.SingleUser
             && activatable.Key?.Equals(args.UiKey) == true
             && activatable.CurrentSingleUser == args.Actor)
-        {
             _activatableUi.SetCurrentSingleUser(entity.Owner, controller, activatable);
-        }
 
         if (!args.UiKey.Equals(StorageComponent.StorageUiKey.Key))
         {
             _remoteUiRangeOverrides.TryAdd((entity.Owner, args.UiKey, args.Actor), 0);
             _remoteUiRangeOverrides.TryAdd((entity.Owner, args.UiKey, controller), 0);
         }
+
         _pendingRemoteUiMirrors.Add((entity.Owner, args.UiKey, controller));
         if (args.UiKey.Equals(StorageComponent.StorageUiKey.Key))
-        {
             TrackRemoteStorageUi(console.Owner, entity.Owner, controller, args.Actor);
-        }
-        _sawmill.Debug($"[RemoteControl UI] Queued mirror key={args.UiKey} ui={ToPrettyString(entity.Owner)} actor={ToPrettyString(args.Actor)} controller={ToPrettyString(controller)} uiMap={Transform(entity.Owner).MapID} controllerMap={Transform(controller).MapID}");
+        _sawmill.Debug(
+            $"[RemoteControl UI] Queued mirror key={args.UiKey} ui={ToPrettyString(entity.Owner)} actor={ToPrettyString(args.Actor)} controller={ToPrettyString(controller)} uiMap={Transform(entity.Owner).MapID} controllerMap={Transform(controller).MapID}");
     }
 
     private void TrackRemoteStorageUi(EntityUid console, EntityUid storage, EntityUid controller, EntityUid remote)
@@ -920,7 +943,6 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         _remoteUiRangeOverrides.TryRemove((entity.Owner, args.UiKey, args.Actor), out _);
 
         if (args.UiKey.Equals(StorageComponent.StorageUiKey.Key))
-        {
             foreach (var (console, storageUi) in _remoteStorageUiActors.ToArray())
             {
                 if (storageUi.Storage != entity.Owner
@@ -932,7 +954,6 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 _remoteUiRangeOverrides.TryRemove((entity.Owner, args.UiKey, storageUi.Controller), out _);
                 _remoteUiRangeOverrides.TryRemove((entity.Owner, args.UiKey, storageUi.Remote), out _);
             }
-        }
 
         if (HasComp<QuickConstructableComponent>(entity.Owner))
             return;
@@ -944,10 +965,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         }
 
         if (TryGetControlledEntity(args.Actor, out var remoteEntity))
-        {
             _ui.CloseUi((entity.Owner, null), args.UiKey, remoteEntity);
-        }
     }
+
     [SubscribeLocalEvent]
     private void OnRemoteUiCheckRange(Entity<UserInterfaceComponent> entity, ref BoundUserInterfaceCheckRangeEvent args)
     {
@@ -959,14 +979,13 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         if (args.Result == BoundUserInterfaceRangeResult.Default
             && TryGetControlledEntity(args.Actor.Owner, out var remoteEntity))
-        {
             args.Result = _interaction.InRangeUnobstructed(remoteEntity, entity.Owner, args.Data.InteractionRange)
                 ? BoundUserInterfaceRangeResult.Pass
                 : BoundUserInterfaceRangeResult.Fail;
-        }
     }
 
-    private bool TryFindConsole(EntityUid remoteEntity, out Entity<RemoteControlConsoleComponent> console, out EntityUid controller)
+    private bool TryFindConsole(EntityUid remoteEntity, out Entity<RemoteControlConsoleComponent> console,
+        out EntityUid controller)
     {
         foreach (var candidate in EntityQuery<RemoteControlConsoleComponent>())
         {
@@ -994,7 +1013,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             return;
 
         if (component.Controller == args.Actor)
-            SetController(uid, component, null, TryGetRemoteEntity(component, out var controlledEntity) ? controlledEntity : null);
+            SetController(uid, component, null,
+                TryGetRemoteEntity(component, out var controlledEntity) ? controlledEntity : null);
 
         if (TryGetRemoteEntity(component, out var remoteEntity)
             && _playerManager.TryGetSessionByEntity(args.Actor, out var session))
@@ -1008,7 +1028,6 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         if (!TryGetBody(component, out var body) || relay.RelayEntity == body)
             RemComp(args.Actor, relay);
-
     }
 
     [SubscribeLocalEvent]
@@ -1019,7 +1038,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         if (TryGetRemoteEntity(entity.Comp, out var remoteEntity))
         {
-            CleanupUsers(entity, remoteEntity, clearUsers: false);
+            CleanupUsers(entity, remoteEntity, false);
             SetRemoteTypingState(remoteEntity, TypingIndicatorState.None);
         }
 
@@ -1035,8 +1054,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     {
         chassis = default;
         return _container.TryGetContainingContainer(brain, out var container)
-            && TryComp<BorgChassisComponent>(container.Owner, out _)
-            && (chassis = container.Owner) != default;
+               && TryComp<BorgChassisComponent>(container.Owner, out _)
+               && (chassis = container.Owner) != default;
     }
 
     private void DeactivateRemoteBorg(RemoteControlConsoleComponent console, EntityUid chassis)
@@ -1054,10 +1073,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (!TryComp<BorgChassisComponent>(chassis, out var chassisComp) || chassisComp.Active)
             return chassisComp?.Active ?? false;
 
-        if (!_borg.TryActivate((chassis, chassisComp), allowRemoteControl: true))
-        {
-            return chassisComp.Active;
-        }
+        if (!_borg.TryActivate((chassis, chassisComp), allowRemoteControl: true)) return chassisComp.Active;
 
         console.BorgActivatedByRemote = true;
         return true;
@@ -1196,7 +1212,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private bool SetController(EntityUid consoleUid, RemoteControlConsoleComponent component, EntityUid? controller,
         EntityUid? remoteEntity, bool refreshUi = true)
     {
-        _sawmill.Debug($"[RemoteControl] server controller console={consoleUid} old={component.Controller} new={controller} remote={remoteEntity}");
+        _sawmill.Debug(
+            $"[RemoteControl] server controller console={consoleUid} old={component.Controller} new={controller} remote={remoteEntity}");
 
         if (controller is { } controlRequester
             && remoteEntity is { } controlledEntity
@@ -1243,8 +1260,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                     continue;
 
                 var controlsSameTarget = remoteEntity is { } requestedTarget
-                    && TryGetRemoteEntity(otherConsole, out var otherTarget)
-                    && otherTarget == requestedTarget;
+                                         && TryGetRemoteEntity(otherConsole, out var otherTarget)
+                                         && otherTarget == requestedTarget;
                 var controlsBySameUser = otherController == requestedController;
                 if (!controlsSameTarget && !controlsBySameUser)
                     continue;
@@ -1256,16 +1273,14 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 }
 
                 if (controlsSameTarget && !controlsBySameUser)
-                {
                     _popup.PopupEntity(
                         Loc.GetString("remote-control-control-taken-over"),
                         otherConsoleUid,
                         otherController);
-                }
 
                 var otherRemoteEntity = TryGetRemoteEntity(otherConsole, out var otherRemote)
                     ? otherRemote
-                    : (EntityUid?) null;
+                    : (EntityUid?)null;
                 SetController(otherConsoleUid, otherConsole, null, otherRemoteEntity);
             }
         }
@@ -1308,9 +1323,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             && disconnectedController != controller
             && remoteEntity is { } remoteUiEntity
             && !TerminatingOrDeleted(remoteUiEntity))
-        {
             CloseRemoteBorgTypeSelectionUi(remoteUiEntity, disconnectedController);
-        }
 
         if (controller is null)
         {
@@ -1340,8 +1353,10 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         _ui.CloseUi(storageUi.Storage, StorageComponent.StorageUiKey.Key, storageUi.Remote);
         _ui.CloseUi(storageUi.Storage, StorageComponent.StorageUiKey.Key, storageUi.Controller);
-        _remoteUiRangeOverrides.TryRemove((storageUi.Storage, StorageComponent.StorageUiKey.Key, storageUi.Remote), out _);
-        _remoteUiRangeOverrides.TryRemove((storageUi.Storage, StorageComponent.StorageUiKey.Key, storageUi.Controller), out _);
+        _remoteUiRangeOverrides.TryRemove((storageUi.Storage, StorageComponent.StorageUiKey.Key, storageUi.Remote),
+            out _);
+        _remoteUiRangeOverrides.TryRemove((storageUi.Storage, StorageComponent.StorageUiKey.Key, storageUi.Controller),
+            out _);
         _pendingRemoteUiMirrors.Remove((storageUi.Storage, StorageComponent.StorageUiKey.Key, storageUi.Controller));
         _remoteStorageUiActors.Remove(consoleUid);
     }
@@ -1374,28 +1389,36 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         _itemToggle.TryDeactivate((consoleUid, toggle), predicted: false, showPopup: false);
     }
 
-    private void RefreshRemoteState(EntityUid consoleUid, RemoteControlConsoleComponent component, EntityUid remoteEntity)
+    private void RefreshRemoteState(EntityUid consoleUid, RemoteControlConsoleComponent component,
+        EntityUid remoteEntity)
     {
         foreach (var user in component.Users)
-        {
             if (_playerManager.TryGetSessionByEntity(user, out var session))
                 AddRemotePvsOverrides(remoteEntity, user, session);
-        }
 
-        var actionEntities = component.EnableRemoteView ? GetRemoteActionEntities(remoteEntity) : new HashSet<EntityUid>();
-        var quickConstructionItem = component.EnableRemoteView ? GetRemoteQuickConstructionItem(remoteEntity) : (EntityUid?) null;
-        _ui.SetUiState(consoleUid, RemoteControlUIKey.Key, new RemoteControlConsoleBuiState
-        {
-            Connected = true,
-            EnableRemoteView = component.EnableRemoteView,
-            RemoteEntity = GetNetEntity(remoteEntity),
-            Controller = component.Controller is { } controllerUser ? GetNetEntity(controllerUser) : null,
-            Actions = GetRemoteActions(actionEntities),
-            QuickConstructionItem = quickConstructionItem is { } item ? GetNetEntity(item) : null,
-            Hands = component.EnableRemoteView ? GetRemoteHands(remoteEntity) : Array.Empty<RemoteControlHandState>(),
-            Inventory = component.EnableRemoteView ? GetRemoteInventory(remoteEntity) : Array.Empty<RemoteControlInventorySlotState>(),
-            SelectedAction = component.EnableRemoteView ? GetSelectedRemoteAction(remoteEntity) : null,
-        });
+        var actionEntities = component.EnableRemoteView
+            ? GetRemoteActionEntities(remoteEntity)
+            : new HashSet<EntityUid>();
+        var quickConstructionItem = component.EnableRemoteView ? GetRemoteQuickConstructionItem(remoteEntity) : null;
+        _ui.SetUiState(consoleUid, RemoteControlUIKey.Key,
+            new RemoteControlConsoleBuiState
+            {
+                Connected = true,
+                EnableRemoteView = component.EnableRemoteView,
+                RemoteEntity = GetNetEntity(remoteEntity),
+                Controller = component.Controller is { } controllerUser ? GetNetEntity(controllerUser) : null,
+                Actions = GetRemoteActions(actionEntities),
+                QuickConstructionItem = quickConstructionItem is { } item ? GetNetEntity(item) : null,
+                Hands =
+                    component.EnableRemoteView
+                        ? GetRemoteHands(remoteEntity)
+                        : Array.Empty<RemoteControlHandState>(),
+                Inventory =
+                    component.EnableRemoteView
+                        ? GetRemoteInventory(remoteEntity)
+                        : Array.Empty<RemoteControlInventorySlotState>(),
+                SelectedAction = component.EnableRemoteView ? GetSelectedRemoteAction(remoteEntity) : null
+            });
     }
 
     private EntityUid? GetRemoteQuickConstructionItem(EntityUid remoteEntity)
@@ -1405,8 +1428,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         var activeItem = _hands.GetActiveItem((remoteEntity, hands));
         return activeItem is { } active
-            && HasComp<QuickConstructableComponent>(active)
-            && _ui.IsUiOpen(active, QuickConstructionUiKey.Key, remoteEntity)
+               && HasComp<QuickConstructableComponent>(active)
+               && _ui.IsUiOpen(active, QuickConstructionUiKey.Key, remoteEntity)
             ? active
             : null;
     }
@@ -1425,7 +1448,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private RemoteControlHandState[] GetRemoteHands(EntityUid remoteEntity)
     {
         if (!TryComp<HandsComponent>(remoteEntity, out var hands))
-            return System.Array.Empty<RemoteControlHandState>();
+            return Array.Empty<RemoteControlHandState>();
 
         var result = new List<RemoteControlHandState>(hands.SortedHands.Count);
         foreach (var hand in hands.SortedHands)
@@ -1437,7 +1460,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 Location = hands.Hands[hand].Location,
                 EmptyRepresentative = hands.Hands[hand].EmptyRepresentative,
                 HeldItem = item is { } held ? GetNetEntity(held) : null,
-                Active = hands.ActiveHandId == hand,
+                Active = hands.ActiveHandId == hand
             });
         }
 
@@ -1447,7 +1470,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private RemoteControlInventorySlotState[] GetRemoteInventory(EntityUid remoteEntity)
     {
         if (!TryComp<InventoryComponent>(remoteEntity, out var inventory))
-            return System.Array.Empty<RemoteControlInventorySlotState>();
+            return Array.Empty<RemoteControlInventorySlotState>();
 
         var result = new List<RemoteControlInventorySlotState>(inventory.Slots.Length);
         foreach (var slot in inventory.Slots)
@@ -1460,7 +1483,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 TextureName = "Slots/" + slot.TextureName,
                 FullTextureName = slot.FullTextureName,
                 Item = item is { } equipped ? GetNetEntity(equipped) : null,
-                HasStorage = item is { } storageItem && HasComp<StorageComponent>(storageItem),
+                HasStorage = item is { } storageItem && HasComp<StorageComponent>(storageItem)
             });
         }
 
@@ -1481,30 +1504,22 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     {
         var result = new HashSet<EntityUid>();
         if (TryComp<ActionsComponent>(remoteEntity, out var actions))
-        {
             foreach (var action in _actions.GetActions(remoteEntity, actions))
                 result.Add(action.Owner);
-        }
 
         if (TryComp<BorgSwitchableTypeComponent>(remoteEntity, out var switchable)
             && switchable.SelectTypeAction is { } selectTypeAction
             && Exists(selectTypeAction))
-        {
             result.Add(selectTypeAction);
-        }
 
         if (!TryComp<BorgChassisComponent>(remoteEntity, out var chassis))
             return result;
 
         foreach (var module in chassis.ModuleContainer.ContainedEntities)
-        {
             if (TryComp<SelectableBorgModuleComponent>(module, out var selectable)
                 && selectable.ModuleSwapActionEntity is { } action
                 && Exists(action))
-            {
                 result.Add(action);
-            }
-        }
 
         return result;
     }
@@ -1528,16 +1543,13 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         }
 
         if (TryComp<BorgChassisComponent>(remoteEntity, out var chassis))
-        {
             foreach (var module in chassis.ModuleContainer.ContainedEntities)
             {
                 _pvsOverride.AddSessionOverride(module, session);
                 actionOverrides.Add(module);
             }
-        }
 
         if (TryComp<HandsComponent>(remoteEntity, out var hands))
-        {
             foreach (var hand in hands.SortedHands)
             {
                 if (!_hands.TryGetHeldItem((remoteEntity, hands), hand, out var held))
@@ -1546,7 +1558,6 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 _pvsOverride.AddSessionOverride(held.Value, session);
                 actionOverrides.Add(held.Value);
             }
-        }
 
         foreach (var action in GetRemoteActionEntities(remoteEntity))
         {
@@ -1560,10 +1571,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         _pvsOverride.RemoveSessionOverride(remoteEntity, session);
 
         if (_remoteActionOverrides.Remove(user, out var actionOverrides))
-        {
             foreach (var action in actionOverrides)
                 _pvsOverride.RemoveSessionOverride(action, session);
-        }
     }
 
     private void RemovePvsOverride(EntityUid remoteEntity, EntityUid user)
@@ -1588,9 +1597,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         }
 
         return _container.TryGetContainingContainer(brain, out var container)
-            && container.ID == "borg_brain"
-            && TryComp<BorgChassisComponent>(container.Owner, out _)
-            && (body = container.Owner) != default;
+               && container.ID == "borg_brain"
+               && TryComp<BorgChassisComponent>(container.Owner, out _)
+               && (body = container.Owner) != default;
     }
 
     private bool TryGetRemoteEntity(RemoteControlConsoleComponent component, out EntityUid remoteEntity)

@@ -36,6 +36,7 @@ public sealed partial class AmbientLoopSystem : EntitySystem
     private EntityUid? _stream;
     private TimeSpan _nextCheck;
     private float _volumeSlider;
+    private bool _stopPending;
 
     public override void Initialize()
     {
@@ -50,8 +51,8 @@ public sealed partial class AmbientLoopSystem : EntitySystem
 
     private void OnPlayerDetached(LocalPlayerDetachedEvent args)
     {
-        Stop(0f);
-        _current = null;
+        _stopPending = true;
+        _nextCheck = TimeSpan.Zero;
     }
 
     public override void Shutdown()
@@ -87,7 +88,18 @@ public sealed partial class AmbientLoopSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        if (!_timing.IsFirstTimePredicted || _timing.RealTime < _nextCheck)
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
+        // AudioSystem.Stop ignores client-side deletes outside the first predicted update.
+        if (_stopPending)
+        {
+            Stop(0f);
+            _current = null;
+            _stopPending = false;
+        }
+
+        if (_timing.RealTime < _nextCheck)
             return;
 
         _nextCheck = _timing.RealTime + CheckInterval;
