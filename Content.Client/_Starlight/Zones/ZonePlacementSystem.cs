@@ -321,9 +321,7 @@ public sealed partial class ZonePlacementSystem : EntitySystem
 
     [SubscribeNetworkEvent]
     private void OnRoomsSync(ZoneRoomsSyncEvent ev)
-    {
-        _rooms[ev.Grid] = new ZoneRoomView(ev.Zones, ev.Chunks, _proto);
-    }
+        => _rooms[ev.Grid] = new ZoneRoomView(ev.Zones, ev.Chunks, _proto);
 
     [SubscribeNetworkEvent]
     private void OnShapesSync(ZoneShapesSyncEvent ev)
@@ -384,7 +382,7 @@ public sealed class ZoneRoomView
             : SharedZoneSystem.NoRegion;
 
     public static Vector2i TileAt(Vector2i origin, int index)
-        => origin * SharedZoneSystem.ChunkSize + new Vector2i(index >> 3, index & (SharedZoneSystem.ChunkSize - 1));
+        => (origin * SharedZoneSystem.ChunkSize) + new Vector2i(index >> 3, index & (SharedZoneSystem.ChunkSize - 1));
 
     private void BuildLayouts()
     {
@@ -434,7 +432,7 @@ public sealed class ZoneRoomLayout(Box2i bounds, int bands)
     private readonly int[] _labelCounts = new int[bands];
 
     public float Diagonal(Vector2 point)
-        => (point.Y - Bounds.Bottom) / Bounds.Height - (point.X - Bounds.Left) / Bounds.Width;
+        => ((point.Y - Bounds.Bottom) / Bounds.Height) - ((point.X - Bounds.Left) / Bounds.Width);
 
     public int BandOf(float diagonal)
         => Math.Clamp((int) MathF.Floor((1f - diagonal) / 2f * Bands), 0, Bands - 1);
@@ -443,7 +441,7 @@ public sealed class ZoneRoomLayout(Box2i bounds, int bands)
     /// Diagonal range covered by a band.
     /// </summary>
     public (float Low, float High) BandRange(int band)
-        => (1f - 2f * (band + 1) / Bands, 1f - 2f * band / Bands);
+        => (1f - ((2f * (band + 1)) / Bands), 1f - ((2f * band) / Bands));
 
     public void AddTile(Vector2i tile)
     {
