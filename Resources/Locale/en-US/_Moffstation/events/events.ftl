@@ -1,1 +1,1 @@
-moff-hell-portal-name = Hell Portal
+ent-HellPortal = Hell Portal

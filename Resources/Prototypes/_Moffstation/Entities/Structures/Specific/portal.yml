@@ -41,20 +41,6 @@
     sound:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
 
-- type: entity
-  parent: BaseHostilePortal
-  id: BaseHostilePortalTriggered
-  abstract: true
-  components:
-  - type: TriggerOnSpawn
-  - type: RepeatingTrigger
-    delay: 30
-  - type: EmitSoundOnTrigger
-    positional: true
-    predicted: true
-    sound:
-      collection: RadiationPulse
-
 # Hellportal
 - type: entity
   parent: BaseHostilePortal

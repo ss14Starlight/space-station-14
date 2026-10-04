@@ -707,7 +707,7 @@
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Bloodsucker, Vox, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte / Moff - add Bloodsucker
+          type: [ Animal, Vox ]
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -717,12 +717,12 @@
         probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Bloodsucker, Vox, Plant, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte / Moff - add Bloodsucker
+          type: [ Animal, Vox, Plant ]
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Bloodsucker, Vox, Plant, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte / Moff - add Bloodsucker
+          type: [ Animal, Vox, Plant ]
           inverted: true
         damage:
           types:
@@ -737,7 +737,7 @@
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte / Moff - add Bloodsucker
+          type: [ Animal ]
         reagent: Protein
         amount: 0.5
       - !type:AdjustReagent
@@ -746,18 +746,6 @@
           type: [ Vox ]
         reagent: Protein
         amount: 0.25
-      # Starlight Start
-      # Cyclorite Metabolism
-      - !type:AdjustReagent
-        conditions:
-        - !type:ReagentCondition
-          reagent: UncookedAnimalProteins
-          min: 0.26
-        - !type:MetabolizerTypeCondition
-          type: [ Cyclorite ]
-        reagent: UncookedAnimalProteins
-        amount: 0.25
-        # Starlight-End
 
 - type: reagent
   id: Allicin

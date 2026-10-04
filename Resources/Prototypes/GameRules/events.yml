@@ -62,19 +62,10 @@
     - id: DragonSpawn
     - id: NinjaSpawn
     - id: ParadoxCloneSpawn
-    - id: ParadoxCrisisSpawn # Starlight
     - id: SleeperAgents
- #   - id: ZombieOutbreak starlight - no more midround zeds
+    - id: ZombieOutbreak
     - id: LoneOpsSpawn
     - id: WizardSpawn
-    - id: AbductorsSpawn # Starlight start
-    #- id: SubXenoborgs
-    #- id: BrighteyeSpawn
-    #- id: TerrorSpidersSpawn
-    - id: RailroadingTerminator
-    - id: ColossusSpawn # Starlight end
-    - id: EeepEvent # imp
-    - id: HellPortalSpawn # Moff
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -450,81 +441,71 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-horde-announcement
     startAudio:
-      path: /Audio/_Starlight/Announcements/attention.ogg
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 20
     minimumPlayers: 15
-    weight: 3.5 # 🌟Starlight🌟 Casualization
+    weight: 5
     duration: 5
     maxDuration: 20
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: 4, 8
       children:
-      # Moffstation - Start - Make mobs smash stuff
-      - id: MobAdultSlimesBlueAngrySmasher
-      - id: MobAdultSlimesGreenAngrySmasher
-      - id: MobAdultSlimesYellowAngrySmasher
-    # Moffstation - End
+      - id: MobAdultSlimesBlueAngry
+      - id: MobAdultSlimesGreenAngry
+      - id: MobAdultSlimesYellowAngry
 
 - type: entity
   id: SnakeSpawnHorde
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-horde-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
+    earliestStart: 20
     minimumPlayers: 15
-    weight: 3.5 # 🌟Starlight🌟 Casualization
+    weight: 5
     duration: 5
     maxDuration: 20
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: 4, 8
       children:
-      # Moffstation - Start - Make mobs smash stuff
-      - id: MobPurpleSnakeSmasher
-      - id: MobSmallPurpleSnakeSmasher
-      - id: MobCobraSpaceSmasher
-    # Moffstation - End
+      - id: MobPurpleSnake
+      - id: MobSmallPurpleSnake
+      - id: MobCobraSpace
 
 - type: entity
   id: SpiderSpawnHorde
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-horde-announcement
     startAudio:
-      path: /Audio/_Starlight/Announcements/attention.ogg
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 20
     minimumPlayers: 15
-    weight: 3.5 # 🌟Starlight🌟 Casualization
+    weight: 5
     duration: 5
     maxDuration: 20
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: 4, 8
       children:
-      # Moffstation - Start - Make mobs smash stuff
-      - id: MobGiantSpiderAngrySmasher
-    # Moffstation - End
+      - id: MobGiantSpiderAngry
 
 - type: entity
   id: SpiderClownSpawnHorde
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-horde-announcement
     startAudio:
-      path: /Audio/_Starlight/Announcements/attention.ogg
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 20
     minimumPlayers: 20
     weight: 1.5
     duration: 5
@@ -533,7 +514,7 @@
     table: !type:GroupSelector
       rolls: 4, 8
       children:
-      - id: MobClownSpiderSmasher # Moffstation - Make mobs smash stuff
+      - id: MobClownSpider
 
 - type: entity
   id: ZombieOutbreak

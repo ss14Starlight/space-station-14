@@ -2,7 +2,7 @@
 # Base Prototypes
 - type: entity
   abstract: true
-  parent: [ MoffBaseMobDemons, SimpleSpaceMobBase, BaseMobDestructible ]
+  parent: SimpleSpaceMobBase
   id: MoffMobDemonNarsieBase
   name: narsian demon
   suffix: Hellportal
@@ -166,10 +166,10 @@
     - DoorBumpOpener
     - Flesh
     - FootstepSound
-  - type: Injurable
-    damageContainer: MoffDemonBiological
   - type: Damageable
     damageModifierSet: MoffDemonFlesh
+  #- type: Injurable # Starlight, no Injurable yet
+    damageContainer: MoffDemonBiological
   - type: AmbientSound
     range: 1
     volume: -10
@@ -267,10 +267,10 @@
         - MobMask
         layer:
         - MobLayer
-  - type: Injurable
-    damageContainer: MoffDemonInorganic
   - type: Damageable
     damageModifierSet: MoffDemonConstruct
+  #- type: Injurable # Starlight, no Injurable yet
+    damageContainer: MoffDemonInorganic
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepBorg

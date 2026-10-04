@@ -70,8 +70,6 @@ rev-headrev-name-user = [color=#5e9cff]{$name}[/color] ([color=gray]{$username}[
     *[other] contractors
 }
 
-}
-
 ## Deconverted window
 
 rev-deconverted-title = Reconverted!

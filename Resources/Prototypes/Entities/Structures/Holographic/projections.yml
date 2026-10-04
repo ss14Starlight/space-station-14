@@ -101,7 +101,7 @@
         fix1:
           shape:
             !type:PhysShapeAabb
-            bounds: "-0.4,-0.4,0.4,0.4" # Moffstation - Changed from +-0.3 to +-0.4 due to smasher mobs having issues with pathfinding
+            bounds: "-0.3,-0.3,0.3,0.3"
           mask:
             - TableMask
           layer:
@@ -112,7 +112,6 @@
       enabled: true
       radius: 3
       color: red
-      castShadows: false #SL lighting optimization
     - type: Climbable
 
 - type: entity
@@ -143,7 +142,6 @@
     enabled: true
     radius: 3
     color: blue
-    castShadows: false #SL lighting optimization
   - type: ContainmentField
     throwForce: 0
   - type: Destructible

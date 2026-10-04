@@ -287,7 +287,6 @@ namespace Content.IntegrationTests.Tests
                 // ES end
                 // Moff start
                 "BluespaceLocker",
-                "SpawnEntityTableOnTrigger", // Portals spawn more stuff on trigger, self-explanatory
                 "Hellportal",
                 // Moff end
             };

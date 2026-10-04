@@ -67,7 +67,7 @@ public sealed partial class NarSieDemonAccentSystem : EntitySystem
     private static void OnAccent(Entity<NarSieDemonAccentComponent> ent, ref AccentGetEvent args)
     {
         var sb = new StringBuilder();
-        foreach (var c in args.Message)
+        foreach (var c in args.Message.Text)
         {
             if (Replacements.TryGetValue(c, out var replacement))
             {
@@ -79,6 +79,6 @@ public sealed partial class NarSieDemonAccentSystem : EntitySystem
             }
         }
 
-        args.Message = sb.ToString();
+        args.Message.Text = sb.ToString();
     }
 }

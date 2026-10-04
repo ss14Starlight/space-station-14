@@ -6,10 +6,10 @@
     endAnnouncement: hell-portal-announcement
     endAudio:
       path: /Audio/Misc/notice1.ogg
-    weight: 3.5 # Starlight
+    weight: 5
     duration: 30
     earliestStart: 20
-    reoccurrenceDelay: 40 # Starlight
+    maxOccurrences: 1
     minimumPlayers: 30
   - type: RandomSpawnRule
     prototype: HellPortal
