@@ -1252,9 +1252,6 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/Items/Toys/toysqueak2.ogg
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: PlushieStingRay
   - type: Clothing
     quickEquip: false
     sprite: _Starlight/Objects/Fun/Plushies/stingray_plushie.rsi
@@ -1298,9 +1295,6 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/Items/Toys/toysqueak2.ogg
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: PlushieSeaPancake
   - type: Clothing
     quickEquip: false
     sprite: _Starlight/Objects/Fun/Plushies/sea_pancake_plushie.rsi
@@ -1344,9 +1338,6 @@
     wideAnimationRotation: 180
     soundHit:
       collection: Whine
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: PlushieSeal
   - type: Clothing
     quickEquip: false
     sprite: _Starlight/Objects/Fun/Plushies/seal_plushie.rsi
@@ -1390,9 +1381,6 @@
     wideAnimationRotation: 180
     soundHit:
       collection: Squishes
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: PlushieDumboOctopus
   - type: Clothing
     quickEquip: false
     sprite: _Starlight/Objects/Fun/Plushies/dumbo_octopus_plushie.rsi
