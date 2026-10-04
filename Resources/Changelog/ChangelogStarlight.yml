@@ -1,25 +1,4 @@
 Entries:
-- author: Swonki, Hanz
-  changes:
-  - message: Salvage APC for mapping.
-    type: Add
-  id: 408743
-  time: '2026-09-20T17:28:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6064
-- author: Swonki, Hanz
-  changes:
-  - message: Salvage bounties give more tickets, very little cash. Tickets can be converted into spesos.
-    type: Tweak
-  id: 408744
-  time: '2026-09-20T17:28:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6064
-- author: Swonki, Hanz
-  changes:
-  - message: light SOP changes, salvage are no longer required to be on the ats during red alert.
-    type: Tweak
-  id: 408745
-  time: '2026-09-20T17:28:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6064
 - author: wonderfulnewworld
   changes:
   - message: Reagent fires and flammable stains should cause a lot less lag now.
@@ -2799,4 +2778,25 @@ Entries:
   id: 409142
   time: '2026-10-04T12:46:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6435
+- author: DogeyOT
+  changes:
+  - message: New vox tails, and eyes.
+    type: Add
+  id: 409143
+  time: '2026-10-04T13:13:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6380
+- author: DogeyOT
+  changes:
+  - message: Cygni standard as a language. Costs 1 language point currently due to being galactic. Does not inherently come with skb or former ussp background. Yet.
+    type: Add
+  id: 409144
+  time: '2026-10-04T13:13:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6380
+- author: DogeyOT
+  changes:
+  - message: Breathing Tube, an invisible breath mask available in trinkets.
+    type: Add
+  id: 409145
+  time: '2026-10-04T13:13:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6380
 Order: -1
