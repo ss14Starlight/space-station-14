@@ -233,17 +233,9 @@ public sealed partial class ScentTrackingSystem : EntitySystem
     // Convert.ToUInt32 is blocked by the client sandbox and kills the client silently on startup.
     private static Color GetScentColor(Entity<ScentMarkerComponent> ent)
     {
-        return GetScentColor(ent.Comp.ScentId, ent.Comp.IsPollen);
-    }
+        var scentId = ent.Comp.ScentId;
 
-    internal static Color GetScentColor(string scentId)
-    {
-        return GetScentColor(scentId, false);
-    }
-
-    private static Color GetScentColor(string scentId, bool isPollen)
-    {
-        if (isPollen)
+        if (ent.Comp.IsPollen)
         {
             uint hash = 2166136261;
 
@@ -253,10 +245,15 @@ public sealed partial class ScentTrackingSystem : EntitySystem
                 hash *= 16777619;
             }
 
-            var hue = (hash % 360) / 360f;
-            return Color.FromHsv(new Vector4(hue, 0.9f, 1f, 1f));
+            var pollenHue = hash % 360 / 360f;
+            return Color.FromHsv(new Vector4(pollenHue, 0.9f, 1f, 1f));
         }
 
+        return GetScentColor(scentId);
+    }
+
+    internal static Color GetScentColor(string scentId)
+    {
         if (scentId.Length < 8)
             return Color.White;
 

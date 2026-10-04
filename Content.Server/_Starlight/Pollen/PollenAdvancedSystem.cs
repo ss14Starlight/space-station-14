@@ -158,21 +158,15 @@ public sealed partial class PollenAdvancedSystem : EntitySystem
 
     private void ApplyAdvancedPollenEffect(EntityUid diona, PollenAdvancedPollenComponent cloud)
     {
-        // too much spam
-        //_popup.PopupEntity(Loc.GetString("pollen-advanced-pollen-absorbed"), diona, diona, PopupType.Medium);
-
         switch (_random.Next(3))
         {
             case 0:
                 ApplyHealBuff(diona, cloud);
-                _popup.PopupEntity(Loc.GetString("did heal"), diona, diona, PopupType.Small);
                 break;
             case 1:
                 ApplySpeedBuff(diona, cloud);
-                _popup.PopupEntity(Loc.GetString("did speed"), diona, diona, PopupType.Small);
                 break;
             default:
-                _popup.PopupEntity(Loc.GetString("pollen-advanced-pollen-mind-message"), diona, diona, PopupType.Small);
                 break;
         }
     }
