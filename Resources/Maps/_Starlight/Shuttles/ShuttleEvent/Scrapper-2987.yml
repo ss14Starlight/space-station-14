@@ -230,18 +230,6 @@ entities:
     - type: Transform
       parent: 1
       pos: -0.5,3.5
-- proto: RandomEngineerCorpseSpawner
-  entities:
-  - uid: 21
-    components:
-    - type: Transform
-      parent: 1
-      pos: 1.5,1.5
-  - uid: 22
-    components:
-    - type: Transform
-      parent: 1
-      pos: -0.5,0.5
 - proto: RogueExofabricator
   entities:
   - uid: 23
