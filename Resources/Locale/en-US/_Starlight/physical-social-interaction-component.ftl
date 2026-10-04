@@ -62,9 +62,9 @@ booping-laspi-success-others = {CAPITALIZE(THE($user))} boops {THE($target)}. {P
 booping-laspi-emote = boops {THE($target)}. {POSS-ADJ($target)} face wibbles.
 
 # Boop alt. - Generic slimes don't have noses
-booping-laspi-success = You boop {THE($target)} where {POSS-ADJ($target)} nose should be, leaving an indent.
-booping-laspi-success-others = {CAPITALIZE(THE($user))} boops {THE($target)} where {POSS-ADJ($target)} nose should be, leaving an indent.
-booping-laspi-emote = boops {THE($target)} where {POSS-ADJ($target)} nose should be, leaving an indent.
+booping-slime-success = You boop {THE($target)} where {POSS-ADJ($target)} nose should be, leaving an indent.
+booping-slime-success-others = {CAPITALIZE(THE($user))} boops {THE($target)} where {POSS-ADJ($target)} nose should be, leaving an indent.
+booping-slime-emote = boops {THE($target)} where {POSS-ADJ($target)} nose should be, leaving an indent.
 
 # Boop alt. - Cyclorites don't have noses
 booping-rocky-success = You boop {THE($target)} on {POSS-ADJ($target)} rocky forehead.
