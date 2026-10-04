@@ -238,7 +238,7 @@
 - type: material
   id: CrushedPhosphorus
   stackEntity: CrushedPhosphorus1
-  name: red phosphorus
+  name: materials-crushed-phosphorus
   unit: materials-unit-piece
   icon: { sprite: _Starlight/Objects/Materials/phosphorus.rsi, state: phosphorus }
   color: "#f5f58c"

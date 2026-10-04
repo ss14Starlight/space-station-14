@@ -13,13 +13,18 @@ chat-manager-admin-ooc-chat-enabled-message = Admin OOC chat has been enabled.
 chat-manager-admin-ooc-chat-disabled-message = Admin OOC chat has been disabled.
 
 chat-manager-max-message-length-exceeded-message = Your message exceeded {$limit} character limit
-chat-manager-no-headset-on-message = You don't have a headset on!
 chat-manager-no-radio-key = No radio key specified!
 chat-manager-no-such-channel = There is no channel with key '{$key}'!
-chat-manager-whisper-headset-on-message = You can't whisper on the radio!
 
 chat-manager-server-wrap-message = [bold]{$message}[/bold]
 chat-manager-sender-announcement = Central Command
+chat-manager-sender-announcement-wrap-message = [font size=14][bold]{$sender} Announcement[/font][font size=12]
+                                                {$message}[/bold][/font]
+chat-manager-entity-say-wrap-message = [BubbleHeader][bold][Name]{$entityName}[/Name][/bold][/BubbleHeader] {$verb}, “[BubbleContent][font="{$fontType}" size={$fontSize}][color={$color}]{$message}[/color][/font][/BubbleContent]”
+chat-manager-entity-say-bold-wrap-message = [BubbleHeader][bold][Name]{$entityName}[/Name][/bold][/BubbleHeader] {$verb}, “[BubbleContent][font="{$fontType}" size={$fontSize}][color={$color}]{$message}[/color][/font][/BubbleContent]”
+
+chat-manager-entity-whisper-wrap-message = [font size=11][italic][BubbleHeader][Name]{$entityName}[/Name][/BubbleHeader] whispers, “[BubbleContent][font="{$fontType}" size=11][color={$color}]{$message}[/color][/font][/BubbleContent]”[/italic][/font]
+chat-manager-entity-whisper-unknown-wrap-message = [font size=11][italic][BubbleHeader]Someone[/BubbleHeader] whispers, “[BubbleContent][font="{$fontType}" size=11][color={$color}]{$message}[/color][/font][/BubbleContent]”[/italic][/font]
 
 # THE() is not used here because the entity and its name can technically be disconnected if a nameOverride is passed...
 chat-manager-entity-me-wrap-message = [italic]{ PROPER($entity) ->
@@ -89,7 +94,6 @@ chat-speech-verb-plant-3 = creaks
 chat-speech-verb-name-robotic = Robotic
 chat-speech-verb-robotic-1 = states
 chat-speech-verb-robotic-2 = beeps
-chat-speech-verb-robotic-3 = boops
 
 chat-speech-verb-name-reptilian = Reptilian
 chat-speech-verb-reptilian-1 = hisses
