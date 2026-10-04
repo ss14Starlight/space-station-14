@@ -19,3 +19,117 @@
       interactString: petting-success
       messagePerceivedByOthers: petting-success-others
       emoteMessage: petting-emote
+
+# Bread dog
+- type: !PartialOnly entity
+  id: MobBreadDog
+  components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - Sniff
+  - type: SocialInteractionReceiver
+    interactionOverrides: # you can pet the dog
+    - id: Pat
+      interactString: petting-success
+      messagePerceivedByOthers: petting-success-others
+      emoteMessage: petting-emote
+
+# Cats, Runtime, Bingus, Floppa
+- type: !PartialOnly entity
+  id: MobCat
+  components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - SniffQuiet
+  - type: SocialInteractionReceiver
+    interactionOverrides: # you can pet the dog
+    - id: Pat
+      interactString: petting-success
+      messagePerceivedByOthers: petting-success-others
+      emoteMessage: petting-emote
+
+# Cake cat (Cak)
+- type: !PartialOnly entity
+  id: MobCatCake
+  components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - SniffQuiet
+  - type: SocialInteractionReceiver
+    interactionOverrides: # you can pet the dog
+    - id: Pat
+      interactString: petting-success
+      messagePerceivedByOthers: petting-success-others
+      emoteMessage: petting-emote
+
+# Rat Kings
+- type: !PartialOnly entity
+  id: MobRatKing
+  components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - Wave
+    - Sniff
+
+# Mice of all kinds
+- type: !PartialOnly entity
+  id: MobMouse
+  components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - SniffQuiet
+
+# Mothroaches, Moproaches, Mobroaches
+- type: !PartialOnly entity
+  id: MobMothroach
+  components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - PalpateAntennae
+  - type: SocialInteractionReceiver
+    interactionOverrides: # mothroaches don't have noses
+    - id: Boop
+      interactString: booping-generic-success
+      messagePerceivedByOthers: booping-generic-success-others
+      emoteMessage: booping-generic-emote = boops
+
+# Parrots
+- type: !PartialOnly entity
+  id: MobParrotBase
+  components:
+  - type: SocialInteractionReceiver
+    interactionOverrides: # birds don't have noses
+    - id: Boop
+      interactString: booping-beak-success
+      messagePerceivedByOthers: booping-beak-success-others
+      emoteMessage: booping-beak-emote
+
+# Chickens
+- type: !PartialOnly entity
+  id: MobChicken
+  components:
+  - type: SocialInteractionReceiver
+    interactionOverrides: # birds don't have noses
+    - id: Boop
+      interactString: booping-beak-success
+      messagePerceivedByOthers: booping-beak-success-others
+      emoteMessage: booping-beak-emote
+
+# Spiders
+- type: !PartialOnly entity
+  id: MobSpiderBase
+  components:
+  - type: SocialInteractionReceiver
+    interactionOverrides: # spiders don't have noses
+    - id: Boop
+      interactString: booping-generic-success
+      messagePerceivedByOthers: booping-generic-success-others
+      emoteMessage: booping-generic-emote = boops
+
+# Kangaroos
+- type: !PartialOnly entity
+  id: MobKangaroo
+  components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - Wave
