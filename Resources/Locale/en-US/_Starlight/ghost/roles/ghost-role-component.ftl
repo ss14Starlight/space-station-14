@@ -150,6 +150,10 @@ ghost-role-information-maintenance-drone-rules = You are bound by these laws bot
                                                  2. You may not harm any being, regardless of intent or circumstance.
                                                  3. Your goals are to build, maintain, repair, improve, and power the station to the best of your abilities. You must never actively work against these goals.
 
+ghost-role-information-roguedrone-name = Scrapper Drone.
+ghost-role-information-rogue-drone-description = Strip the station and local space of materials to make more drones.
+ghost-role-information-rogue-drone-rules = You are bound by your silicon laws.
+
 # Ghost role names, descriptions and rules
 
 ghost-role-information-mob-nyr-mouse-ops-name = red mouse!

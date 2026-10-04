@@ -52,6 +52,7 @@
     - id: KingRatMigration
     - id: RevenantSpawn
     - id: RailroadingTerminator # Starlight
+    - id: ScrapperSpawn # Starlight
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
