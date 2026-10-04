@@ -1,13 +1,6 @@
 Entries:
 - author: STARLIGHT TEAM
   changes:
-  - message: Added Half Masks.
-    type: Add
-  id: 408717
-  time: '2026-09-18T12:33:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6212
-- author: STARLIGHT TEAM
-  changes:
   - message: Changed default vox survival mask to half mask.
     type: Tweak
   id: 408718
@@ -2799,4 +2792,11 @@ Entries:
   id: 409116
   time: '2026-10-04T08:23:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6482
+- author: wonderfulnewworld
+  changes:
+  - message: Language font works again.
+    type: Fix
+  id: 409117
+  time: '2026-10-04T08:24:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6480
 Order: -1
