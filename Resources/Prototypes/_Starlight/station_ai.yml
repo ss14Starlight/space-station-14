@@ -26,26 +26,6 @@
 
 - type: entity
   parent: BaseMentalAction
-  id: ActionAIRemoteControl
-  name: Remote Control
-  description: Remote control an entity, without shunting into it
-  components:
-    - type: Action
-      useDelay: 1
-      icon:
-        sprite: _Starlight/Interface/Actions/actions_shunt.rsi
-        state: icon
-      itemIconStyle: BigAction
-    - type: TargetAction
-    - type: EntityTargetAction
-      canTargetSelf: false
-      whitelist:
-        components:
-          - StationAIShunt
-      event: !type:AIRemoteControlActionEvent
-
-- type: entity
-  parent: BaseMentalAction
   id: ActionAIUnShunt
   name: UnShunt
   description: Disengage from the chassis/interface returning to your core.
