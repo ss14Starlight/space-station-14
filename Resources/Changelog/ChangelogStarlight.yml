@@ -1,11 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Fixed war declaration announcements sometimes being sent twice and playing overlapping music tracks.
-    type: Fix
-  id: 408735
-  time: '2026-09-20T15:16:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6199
 - author: Drakobird, Conf
   changes:
   - message: Revenants can now shoot you.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409134
   time: '2026-10-04T10:52:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6478
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Added a scrollbar to the ghost role rules window so that you don't have to stretch the window to read the rules and press the Request button.
+    type: Tweak
+  id: 409135
+  time: '2026-10-04T11:39:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6458
 Order: -1
