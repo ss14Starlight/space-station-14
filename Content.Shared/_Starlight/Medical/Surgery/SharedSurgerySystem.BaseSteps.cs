@@ -212,7 +212,7 @@ public abstract partial class SharedSurgerySystem
             if (items > 0)
             {
                 args.Invalid = StepInvalidReason.Armor;
-                args.Popup = $"You need to take off armor from patient to perform this step!";
+                args.Popup = Loc.GetString("surgery-popup-remove-armor");
                 return;
             }
         }
@@ -228,7 +228,7 @@ public abstract partial class SharedSurgerySystem
                 args.Invalid = StepInvalidReason.MissingTool;
 
                 if (reg.Component is ISurgeryToolComponent toolComp)
-                    args.Popup = $"You need {toolComp.ToolName} to perform this step!";
+                    args.Popup = Loc.GetString("surgery-popup-need-tool", ("tool", Loc.GetString(toolComp.ToolName)));
 
                 return;
             }
@@ -237,7 +237,7 @@ public abstract partial class SharedSurgerySystem
                 args.Invalid = StepInvalidReason.DisabledTool;
 
                 if (reg.Component is ISurgeryToolComponent toolComp)
-                    args.Popup = $"You need enable {toolComp.ToolName} to perform this step!";
+                    args.Popup = Loc.GetString("surgery-popup-enable-tool", ("tool", Loc.GetString(toolComp.ToolName)));
 
                 return;
             }
@@ -250,7 +250,7 @@ public abstract partial class SharedSurgerySystem
             {
                 args.Invalid = StepInvalidReason.NotEnoughReagent;
                 if (reg.Component is ISurgeryToolComponent toolComp)
-                    args.Popup = $"You need at least {ent.Comp.ReagentQuantity}u of {ent.Comp.ReagentId} in {toolComp.ToolName} to perform this step!";
+                    args.Popup = Loc.GetString("surgery-popup-need-reagent", ("quantity", ent.Comp.ReagentQuantity), ("reagent", ProtoMan.Index(ent.Comp.ReagentId.Value).LocalizedName), ("tool", Loc.GetString(toolComp.ToolName)));
                 return;
             }
 
@@ -267,7 +267,7 @@ public abstract partial class SharedSurgerySystem
             return;
 
         args.Invalid = StepInvalidReason.MissingLimb;
-        args.Popup = $"You can't attach {Name(itemId)} as a limb!";
+        args.Popup = Loc.GetString("surgery-popup-cant-attach", ("item", Name(itemId)));
     }
 
     private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)
@@ -293,7 +293,7 @@ public abstract partial class SharedSurgerySystem
         if (_net.IsServer && TryComp(step, out MetaDataComponent? meta))
         {
             var surgeonName = MetaData(user).EntityName;
-            _popup.PopupEntity($"{surgeonName.ToLower()} starts {meta.EntityName.ToLower()}", part, PopupType.LargeCaution);
+            _popup.PopupEntity(Loc.GetString("surgery-step-start-popup", ("surgeon", surgeonName), ("step", meta.EntityName.ToLower())), part, PopupType.LargeCaution);
         }
 
         var duration = stepComp.Duration;

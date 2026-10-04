@@ -120,6 +120,23 @@
       inverted: true
 
 - type: trait
+  id: CygniStandard
+  name: trait-language-cygnistandard-name
+  description: trait-language-cygnistandard-desc
+  category: LanguageTraits
+  effects:
+    - !type:LanguageEffect
+      languagesSpoken:
+        - CygniStandard
+      languagesUnderstood:
+        - CygniStandard
+  requirements:
+    - !type:TraitsRequirement
+      traits:
+        - Iterator
+      inverted: true
+
+- type: trait
   id: Darktongue
   name: trait-language-darktongue-name
   description: trait-language-darktongue-desc
