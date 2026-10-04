@@ -1,32 +1,4 @@
 Entries:
-- author: SirLutz
-  changes:
-  - message: Removed beginner roles being antag targets.
-    type: Remove
-  id: 408719
-  time: '2026-09-18T12:33:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6217
-- author: SirLutz
-  changes:
-  - message: installed an double check for discount shop, admin tools could discount twice, leading to an instant servercrash.
-    type: Fix
-  id: 408720
-  time: '2026-09-18T12:33:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6217
-- author: ItsCharles
-  changes:
-  - message: Enable Hamster vocal emotes.
-    type: Tweak
-  id: 408721
-  time: '2026-09-18T13:02:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6196
-- author: ItsCharles
-  changes:
-  - message: Add Hamlet vocal emotes.
-    type: Add
-  id: 408722
-  time: '2026-09-18T13:02:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6196
 - author: Pickra
   changes:
   - message: Adjusted Bloodpacks to 5% and Amoxla/Saline to 15%.
@@ -2799,4 +2771,32 @@ Entries:
   id: 409118
   time: '2026-10-04T09:40:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6476
+- author: ItsCharles
+  changes:
+  - message: Grant NCT Job NTPersonnel Access.
+    type: Tweak
+  id: 409119
+  time: '2026-10-04T09:40:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6474
+- author: ItsCharles
+  changes:
+  - message: Allow the NCT Job to show in the ID card console.
+    type: Tweak
+  id: 409120
+  time: '2026-10-04T09:40:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6474
+- author: ItsCharles
+  changes:
+  - message: Give the NCT Debrief access.
+    type: Tweak
+  id: 409121
+  time: '2026-10-04T09:40:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6474
+- author: ItsCharles
+  changes:
+  - message: Give the IAA Debrief access.
+    type: Tweak
+  id: 409122
+  time: '2026-10-04T09:40:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6474
 Order: -1
