@@ -7,3 +7,4 @@
       interactString: booping-plant-success
       messagePerceivedByOthers: booping-plant-success-others
       emoteMessage: booping-plant-emote
+      interactSound: /Audio/Effects/plant_rustle.ogg
