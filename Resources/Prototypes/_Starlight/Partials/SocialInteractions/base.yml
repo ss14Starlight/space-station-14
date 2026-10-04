@@ -7,5 +7,14 @@
     - Look
   - type: SocialInteractionReceiver
     interactionPrototypes:
-    - Pet
     - Boop
+
+# Complex social interactions that 'require' arms to perform.
+- type: !PartialOnly entity
+  id: BaseMobSpecies
+  components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - Look
+    - Wave
+    - Pat

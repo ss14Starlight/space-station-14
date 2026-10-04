@@ -23,6 +23,14 @@
   allowSelfTarget: true
   isPhysical: false
 
+- type: socialInteraction
+  id: Pat
+  verbName: pat-verb
+  interactString: patting-success
+  messagePerceivedByOthers: patting-success-others
+  emoteMessage: patting-emote
+  interactSound: /Audio/Effects/thudswoosh.ogg
+
 # Specific social actions that are only applicable to some entities (e.g. you can pet dogs but not a hamburger).
 - type: socialInteraction
   id: Pet
