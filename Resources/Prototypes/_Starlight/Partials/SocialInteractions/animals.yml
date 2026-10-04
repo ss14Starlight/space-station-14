@@ -93,7 +93,7 @@
       messagePerceivedByOthers: booping-generic-success-others
       emoteMessage: booping-generic-emote = boops
 
-# Parrots
+# Parrots, Polly
 - type: !PartialOnly entity
   id: MobParrotBase
   components:
@@ -115,7 +115,18 @@
       messagePerceivedByOthers: booping-beak-success-others
       emoteMessage: booping-beak-emote
 
-# Spiders
+# Penguins, Flippers
+- type: !PartialOnly entity
+  id: MobPenguin
+  components:
+  - type: SocialInteractionReceiver
+    interactionOverrides: # birds don't have noses
+    - id: Boop
+      interactString: booping-beak-success
+      messagePerceivedByOthers: booping-beak-success-others
+      emoteMessage: booping-beak-emote
+
+# Spiders, Shiva
 - type: !PartialOnly entity
   id: MobSpiderBase
   components:
@@ -126,10 +137,24 @@
       messagePerceivedByOthers: booping-generic-success-others
       emoteMessage: booping-generic-emote = boops
 
-# Kangaroos
+# Kangaroos, Willow
 - type: !PartialOnly entity
   id: MobKangaroo
   components:
   - type: SocialInteractionGiver
     interactionPrototypes:
     - Wave
+
+# Crabs, Tropico
+- type: !PartialOnly entity
+  id: MobCrab
+  components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - Wave # they got arms, kinda
+  - type: SocialInteractionReceiver
+    interactionOverrides: # crabs don't have noses
+    - id: Boop
+      interactString: booping-generic-success
+      messagePerceivedByOthers: booping-generic-success-others
+      emoteMessage: booping-generic-emote = boops
