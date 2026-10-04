@@ -3,7 +3,7 @@
   abstract: true
   save: false
   id: BaseControllable
-  parent: [SocialInteractionGiver, SocialInteractionReceiverComplex] # Starlight
+  parent: [SocialInteractionGiverSimple, SocialInteractionReceiver] # Starlight
   components:
   # Starlight-start
   - type: LanguageSpeaker

@@ -1,7 +1,7 @@
 - type: entity
   name: "item"
   id: BaseItem
-  parent: [SocialInteractionReceiverSimple] # Starlight
+  parent: [SocialInteractionReceiver] # Starlight
   abstract: true
   components:
   - type: Item

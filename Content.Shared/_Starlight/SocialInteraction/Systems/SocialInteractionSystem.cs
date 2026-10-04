@@ -31,13 +31,16 @@ public sealed partial class SocialInteractionSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
-        => SubscribeLocalEvent<SocialInteractionReceiverComponent, GetVerbsEvent<Verb>>(AddSocialInteractionVerbs);
+        => SubscribeLocalEvent<GetVerbsEvent<Verb>>(AddSocialInteractionVerbs);
 
     /// <summary>
     /// Adds the Social Interaction verbs to the right-click context menu.
     /// </summary>
-    private void AddSocialInteractionVerbs(EntityUid uid, SocialInteractionReceiverComponent component, GetVerbsEvent<Verb> args)
+    private void AddSocialInteractionVerbs(GetVerbsEvent<Verb> args)
     {
+        if (!TryComp<SocialInteractionGiverComponent>(args.User, out var giverComp))
+            return;
+
         // ensure the Giver is awake and alive
         if (IsDeadOrIncapacitated(args.User))
             return;
@@ -45,10 +48,17 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         // create a verb subcategory
         var category = new VerbCategory("social-interaction-component-verb", null);
 
-        // enumerate all the physical social interaction prototypes
-        foreach (var protoid in component.InteractionPrototypes)
+        // create a list of interactions
+        var interactions = new List<ProtoId<SocialInteractionPrototype>>(giverComp.InteractionPrototypes);
+
+        // check if the Receiver has specific verbs to add
+        if (TryComp<SocialInteractionReceiverComponent>(args.Target, out var receiverComp))
+            interactions.AddRange(receiverComp.InteractionPrototypes);
+
+        // enumerate all the social interaction prototypes
+        foreach (var protoid in interactions)
         {
-            //resolve the proto itself
+            // resolve the proto itself
             if (!_protoMan.TryIndex<SocialInteractionPrototype>(protoid, out var proto))
                 continue;
 
@@ -60,12 +70,12 @@ public sealed partial class SocialInteractionSystem : EntitySystem
             if (!proto.AllowSelfTarget && args.User == args.Target)
                 continue;
 
-            //make a verb for each one
+            // make a verb for each one
             Verb verb = new()
             {
                 Text = Loc.GetString(proto.VerbName),
                 Category = category,
-                Act = () => InteractionAction(uid, args, proto)
+                Act = () => InteractionAction(args.Target, args, proto)
             };
 
             args.Verbs.Add(verb);
