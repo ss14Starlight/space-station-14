@@ -413,3 +413,6 @@ AirlockNrepLocked: AirlockNTLocked
 AirlockNtrepGlassLocked: AirlockNTGlassLocked
 AirlockMaintNtrepLocked: AirlockMaintNTLocked
 DoorElectronicsNtrep: null
+
+#2026-10-02 - Single poster rename
+PosterlegitLawPoster: PosterLegitLawPoster

@@ -10,7 +10,7 @@ public sealed partial class LoosePowerConnectorDefectComponent : DefectComponent
 {
     public LoosePowerConnectorDefectComponent()
     {
-        DefectLabel = "faulty power connector";
+        DefectLabel = "defect-label-faulty-power-connector";
     }
 
     // Per-swing probability of the weapon powering off.

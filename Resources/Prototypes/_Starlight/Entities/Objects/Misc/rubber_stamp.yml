@@ -7,7 +7,7 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: Magistrate
+    stampedName: stamp-component-stamped-name-rubber-stamp-magistrate
     stampedColor: "#FF5297"
     stampState: "paper_stamp-magistrate"
   - type: Sprite
@@ -22,7 +22,7 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "NanoTrasen Representative"
+    stampedName: stamp-component-stamped-name-rubber-stamp-ntrep
     stampedColor: "#fcc032"
     stampState: "paper_stamp-ntrep"
   - type: Sprite
@@ -52,7 +52,7 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Blueshield Officer"
+    stampedName: stamp-component-stamped-name-rubber-stamp-bso
     stampedColor: "#004281"
     stampState: "paper_stamp-bso"
   - type: Sprite
@@ -116,7 +116,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Central Administration Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-cad
     stampedColor: "#1155CC"
     stampState: "paper_stamp-cap"
   - type: Sprite
@@ -130,7 +130,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Central Cargo Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-ccd
     stampedColor: "#9e794a"
     stampState: "paper_stamp-qm"
   - type: Sprite
@@ -144,7 +144,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Central Engineering Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-ced
     stampedColor: "#e39919"
     stampState: "paper_stamp-ntrep"
   - type: Sprite
@@ -158,7 +158,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Central Intelligence Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-cid
     stampedColor: "#660089"
     stampState: "paper_stamp-rd"
   - type: Sprite
@@ -172,7 +172,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Central Medical Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-cmd
     stampedColor: "#0AAFC3"
     stampState: "paper_stamp-cmo"
   - type: Sprite
@@ -186,7 +186,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Central Research Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-crd
     stampedColor: "#9900FF"
     stampState: "paper_stamp-rd"
   - type: Sprite
@@ -200,7 +200,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Central Domestic Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-cdd
     stampedColor: "#6AA84F"
     stampState: "paper_stamp-centcom"
   - type: Sprite
@@ -214,7 +214,7 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Central Special Operations Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-csod
     stampedColor: "#741B47"
     stampState: "paper_stamp-magistrate"
   - type: Sprite
@@ -229,7 +229,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Central Security Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-csd
     stampedColor: "#cc0000"
     stampState: "paper_stamp-hos"
   - type: Sprite
@@ -277,7 +277,7 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Acknowledged"
+    stampedName: stamp-component-stamped-name-rubber-stamp-acknowledged
     stampedColor: "#79ae00"
     stampState: "paper_stamp-ok"
   - type: Sprite
@@ -292,7 +292,7 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Missing Stamps"
+    stampedName: stamp-component-stamped-name-rubber-stamp-missing-stamps
     stampedColor: "#9b5100"
     stampState: "paper_stamp-deny"
   - type: Sprite
@@ -307,7 +307,7 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Incorrect Stamps"
+    stampedName: stamp-component-stamped-name-rubber-stamp-incorrect-stamps
     stampedColor: "#9b5100"
     stampState: "paper_stamp-deny"
   - type: Sprite
@@ -322,7 +322,7 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Incorrect Form"
+    stampedName: stamp-component-stamped-name-rubber-stamp-incorrect-form
     stampedColor: "#9b3600"
     stampState: "paper_stamp-deny"
   - type: Sprite
@@ -337,7 +337,7 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Incomplete Form"
+    stampedName: stamp-component-stamped-name-rubber-stamp-incomplete-form
     stampedColor: "#9b3600"
     stampState: "paper_stamp-deny"
   - type: Sprite
@@ -352,7 +352,7 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Sent to ATS"
+    stampedName: stamp-component-stamped-name-rubber-stamp-sent-to-ats
     stampedColor: "#b3844b"
     stampState: "paper_stamp-qm"
   - type: Sprite
@@ -367,7 +367,7 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Defer to Command"
+    stampedName: stamp-component-stamped-name-rubber-stamp-defer-to-command
     stampedColor: "#fcc032"
     stampState: "paper_stamp-ntrep"
   - type: Sprite
@@ -382,7 +382,7 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Standby"
+    stampedName: stamp-component-stamped-name-rubber-stamp-standby
     stampedColor: "#e0c300"
     stampState: "paper_stamp-standby"
   - type: Sprite
@@ -431,7 +431,7 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Salvage Lead"
+    stampedName: stamp-component-stamped-name-rubber-stamp-salvage-lead
     stampedColor: "#846433"
     stampState: "paper_stamp-salvagelead"
   - type: Sprite
@@ -447,7 +447,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Trans-Solar Federation"
+    stampedName: stamp-component-stamped-name-rubber-stamp-tsf
     stampedColor: "#22a7ff"
     stampState: "paper_stamp-cap"
   - type: Sprite
@@ -461,7 +461,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Trans-Solar Marine Corps"
+    stampedName: stamp-component-stamped-name-rubber-stamp-tsmc
     stampedColor: "#22a7ff"
     stampState: "paper_stamp-bso"
   - type: Sprite
@@ -475,7 +475,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Solgov Law Enforcement"
+    stampedName: stamp-component-stamped-name-rubber-stamp-solgov-law
     stampedColor: "#22a7ff"
     stampState: "paper_stamp-lawyer"
   - type: Sprite
@@ -489,7 +489,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Solgov Representative"
+    stampedName: stamp-component-stamped-name-rubber-stamp-solgov-rep
     stampedColor: "#22a7ff"
     stampState: "paper_stamp-bso"
   - type: Sprite
@@ -503,7 +503,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Solgov Traders"
+    stampedName: stamp-component-stamped-name-rubber-stamp-solgov-traders
     stampedColor: "#B45F06"
     stampState: "paper_stamp-qm"
   - type: Sprite
@@ -532,7 +532,7 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: Interstellar Trade Guild
+    stampedName: stamp-component-stamped-name-rubber-stamp-itg
     stampedColor: "#b3844b"
     stampState: "paper_stamp-qm"
   - type: Sprite

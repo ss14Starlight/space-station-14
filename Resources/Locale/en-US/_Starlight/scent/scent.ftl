@@ -34,5 +34,4 @@ scent-verb-message = Wash scent, stains, fingerprints, and DNA residue off the o
 
 scent-evidence-scent = scent
 scent-evidence-forensics = fingerprints and other evidence
-scent-evidence-both = scent, fingerprints, and other evidence
 scent-evidence-stains = stains
