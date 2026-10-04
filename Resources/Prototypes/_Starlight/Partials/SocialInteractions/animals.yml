@@ -79,6 +79,14 @@
     interactionPrototypes:
     - SniffQuiet
 
+# Hamsters, Hamlet
+- type: !PartialOnly entity
+  id: MobHamster
+  components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - SniffQuiet
+
 # Mothroaches, Moproaches, Mobroaches
 - type: !PartialOnly entity
   id: MobMothroach
