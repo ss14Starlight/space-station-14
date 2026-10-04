@@ -1,18 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Reagent fires and flammable stains should cause a lot less lag now.
-    type: Tweak
-  id: 408746
-  time: '2026-09-20T17:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6240
-- author: Conflee
-  changes:
-  - message: Dragon health thresholds lowered slightly to compensate for their added armor. They should die slower than pre-armor still if you use the wrong bullet types, but at the same speed as before if you do use the right bullet types.
-    type: Tweak
-  id: 408747
-  time: '2026-09-20T18:04:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6225
 - author: Conflee
   changes:
   - message: Xenoborg Heavy now died/breaks at 400 instead of 450- still a lot more than other Xenoborgs, but it should make securing a full kill and removing them from combat more possible if you do manage to down one.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409145
   time: '2026-10-04T13:13:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6380
+- author: salarua
+  changes:
+  - message: Removed the malleus maleficarum chaplain book.
+    type: Remove
+  id: 409146
+  time: '2026-10-04T13:40:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6399
+- author: salarua
+  changes:
+  - message: Renamed satanic bible to satanic codex.
+    type: Tweak
+  id: 409147
+  time: '2026-10-04T13:40:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6399
 Order: -1
