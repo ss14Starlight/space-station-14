@@ -1,18 +1,4 @@
 Entries:
-- author: Dragometh
-  changes:
-  - message: The industrial reagent grinder's pipes had their ambrosia clog cleaned and now can move reagents via plumbing again.
-    type: Fix
-  id: 408716
-  time: '2026-09-18T12:33:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6219
-- author: STARLIGHT TEAM
-  changes:
-  - message: Added Half Masks.
-    type: Add
-  id: 408717
-  time: '2026-09-18T12:33:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6212
 - author: STARLIGHT TEAM
   changes:
   - message: Changed default vox survival mask to half mask.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409115
   time: '2026-10-03T20:35:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6467
+- author: Rinary
+  changes:
+  - message: Removed "predicted" movement, until it's will be fixed, since it causes lags and we can't fix it fast.
+    type: Remove
+  id: 409116
+  time: '2026-10-04T08:23:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6482
+- author: wonderfulnewworld
+  changes:
+  - message: Language font works again.
+    type: Fix
+  id: 409117
+  time: '2026-10-04T08:24:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6480
 Order: -1
