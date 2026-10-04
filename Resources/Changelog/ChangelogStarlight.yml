@@ -1,13 +1,6 @@
 Entries:
 - author: Swonki, Hanz
   changes:
-  - message: ITG Surplus Crates in Salv Ticket Vendor.
-    type: Add
-  id: 408742
-  time: '2026-09-20T17:28:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6064
-- author: Swonki, Hanz
-  changes:
   - message: Salvage APC for mapping.
     type: Add
   id: 408743
@@ -2799,4 +2792,11 @@ Entries:
   id: 409141
   time: '2026-10-04T12:46:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6483
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added bottomless oxygen and nitrogen tanks, for adbus.
+    type: Add
+  id: 409142
+  time: '2026-10-04T12:46:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6435
 Order: -1
