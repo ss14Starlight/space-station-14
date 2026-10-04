@@ -22,9 +22,11 @@
 
 # AI Core
 - type: !PartialOnly entity
-  id: PlayerStationAiEmpty
+  id: AiHolder
   components:
   - type: SocialInteractionReceiver
+    interactionPrototypes:
+    - Boop
     interactionOverrides: # ai core has a screen
     - id: Boop
       interactString: booping-screen-success
