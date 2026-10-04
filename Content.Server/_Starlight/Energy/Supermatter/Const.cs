@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Atmos;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Audio;
 
 namespace Content.Server._Starlight.Energy.Supermatter;
 
@@ -103,6 +104,11 @@ internal static class Const
     public static string[] AudioCrack = ["/Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg", "/Audio/_Starlight/Effects/supermatter/crystal_crack_2.ogg"];
     public static string[] AudioBurn = ["/Audio/_Starlight/Effects/supermatter/burning_1.ogg", "/Audio/_Starlight/Effects/supermatter/burning_2.ogg", "/Audio/_Starlight/Effects/supermatter/burning_3.ogg"];
     public static string AudioEvaporate = "/Audio/_Starlight/Effects/supermatter/emitter2.ogg";
+
+    public static readonly SoundSpecifier AmbienceCalm = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Objects/supermatter_calm.ogg");
+    public static readonly SoundSpecifier AmbienceDelam = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Objects/supermatter_delam.ogg");
+    public static FixedPoint2 AmbienceDelamDurability = 50f;
+    public static FixedPoint2 AmbienceCalmDurability = 60f;
 }
 public record struct GasProperties(float HeatTransferPerMole, float HeatModifier, float RadiationStability, float RegenerationModifier, float ReactionModifier, float DestabilizationModifier, float GasDamage);
 

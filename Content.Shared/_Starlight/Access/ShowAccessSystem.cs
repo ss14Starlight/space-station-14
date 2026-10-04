@@ -144,7 +144,7 @@ public sealed partial class ShowAccessSystem : EntitySystem
         var localized = LocalizeAndSort(tags);
 
         var msg = new FormattedMessage();
-        msg.AddMarkupOrThrow(Loc.GetString(showAccess.ExamineLocId, ("groups", tags.Count > 0 ? string.Join("\n", localized) : IoCManager.Resolve<ILocalizationManager>().GetString("show-access-examined-none"))));
+        msg.AddMarkupOrThrow(Loc.GetString(showAccess.ExamineLocId, ("groups", tags.Count > 0 ? string.Join("\n", localized) : Loc.GetString("show-access-examined-none"))));
 
         _examine.AddDetailedExamineVerb(args, showAccess, msg, Loc.GetString("show-access-verb-text"), "/Textures/_Starlight/Interface/VerbIcons/examine-access.png", Loc.GetString("show-access-verb-message"));
     }
