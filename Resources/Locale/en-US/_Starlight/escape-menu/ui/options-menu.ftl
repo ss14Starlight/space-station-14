@@ -115,3 +115,20 @@ ui-options-interaction-particles-without-inhand = Except In-hand
 ui-options-interaction-particles-none = None
 ui-options-interaction-particles-tooltip =
     In-hand and inventory particles are only shown for actions performed by your character.
+
+## Audio sections and per-category volumes
+
+ui-options-music-label = Music
+ui-options-environment-label = Environment
+ui-options-world-label = World
+ui-options-voices-label = Voices
+ui-options-sound-toggles-label = Sound options
+ui-options-station-hum-volume = Station hum:
+ui-options-machine-ambience-volume = Machines and devices:
+ui-options-environment-volume = Creaks and hisses:
+ui-options-effects-volume = Sound effects:
+ui-options-footsteps-volume = Footsteps:
+ui-options-handling-volume = Picking up and equipping:
+ui-options-combat-volume = Weapons and combat:
+ui-options-voice-volume = Voices and emotes:
+ui-options-announcement-volume = Announcements and alerts:

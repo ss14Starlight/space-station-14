@@ -1,8 +1,10 @@
+using Content.Client._Starlight.Audio;
 using Content.Shared.Audio;
 using Content.Shared.CCVar;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.Physics;
 using Robust.Shared.Random;
@@ -30,6 +32,7 @@ public sealed partial class AmbientSoundSystem : SharedAmbientSoundSystem
     [Dependency] private IOverlayManager _overlayManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SoundCategorySystem _soundCategory = default!; // Starlight
 
     protected override void QueueUpdate(EntityUid uid, AmbientSoundComponent ambience)
         => _treeSys.QueueTreeUpdate(uid, ambience);
@@ -303,7 +306,9 @@ public sealed partial class AmbientSoundSystem : SharedAmbientSoundSystem
                     .WithPlayOffset(_random.NextFloat(0.0f, 100.0f))
                     .WithMaxDistance(comp.Range);
 
-                var stream = _audio.PlayEntity(comp.Sound, Filter.Local(), uid, false, audioParams);
+                (EntityUid Entity, AudioComponent Component)? stream; // Starlight-start: ambience has its own slider
+                using (_soundCategory.Exempt())
+                    stream = _audio.PlayEntity(comp.Sound, Filter.Local(), uid, false, audioParams); // Starlight-end
                 if (stream == null)
                     continue;
 
