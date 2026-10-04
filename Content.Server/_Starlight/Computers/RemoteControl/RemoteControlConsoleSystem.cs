@@ -97,7 +97,6 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeAllEvent<TypingChangedEvent>(OnRemoteControllerTypingChanged);
-        SubscribeLocalEvent<PlayerAttachedEvent>(OnRemoteEntityPlayerAttached);
         Subs.BuiEvents<RemoteControlConsoleComponent>(RemoteControlUIKey.Key,
             subs =>
             {
@@ -529,6 +528,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         SetController(uid, component, args.Actor, remoteEntity);
     }
 
+    [SubscribeLocalEvent]
     private void OnRemoteEntityPlayerAttached(PlayerAttachedEvent args)
     {
         foreach (var console in EntityQuery<RemoteControlConsoleComponent>())
