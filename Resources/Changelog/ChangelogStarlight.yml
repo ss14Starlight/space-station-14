@@ -1,13 +1,6 @@
 Entries:
 - author: Musiklie
   changes:
-  - message: Reduced the rate certain chems are produced from artifacts to more reasonable levels.
-    type: Tweak
-  id: 408751
-  time: '2026-09-20T18:04:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6218
-- author: Musiklie
-  changes:
   - message: 'Chem foam is now guaranteed to lose a durability (Min: 0 -> 1) but the max loss was reduced by 1 to compromise (Max: 5 ->4).'
     type: Tweak
   id: 408752
@@ -2799,4 +2792,11 @@ Entries:
   id: 409150
   time: '2026-10-04T14:06:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6455
+- author: SevenShades
+  changes:
+  - message: Added variable ammunition for MedTak weapons.
+    type: Add
+  id: 409151
+  time: '2026-10-04T14:45:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6398
 Order: -1
