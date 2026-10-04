@@ -12,10 +12,10 @@ public sealed class TwistyCubeMenu : DefaultWindow
 
     public TwistyCubeMenu()
     {
-        MinSize = SetSize = new Vector2(512, 400);
+        MinSize = SetSize = new Vector2(512, 435);
         Title = Loc.GetString("twistycube-menu-title");
 
-        var grid = new GridContainer { Rows = 2 };
+        var grid = new GridContainer { Rows = 3 };
         var buttonGrid = new GridContainer { Columns = 6 };
 
         var fcwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-front-cw") };
@@ -93,6 +93,10 @@ public sealed class TwistyCubeMenu : DefaultWindow
         grid.AddChild(buttonGrid);
 
         grid.AddChild(_control = new TwistyCubeControl());
+
+        var scrambleButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-scramble") };
+        scrambleButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.Scramble);
+        grid.AddChild(scrambleButton);
 
         ContentsContainer.AddChild(grid);
     }

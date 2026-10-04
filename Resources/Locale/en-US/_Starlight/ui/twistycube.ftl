@@ -19,3 +19,4 @@ twistycube-action-z-cw = z
 twistycube-action-x-ccw = x'
 twistycube-action-y-ccw = y'
 twistycube-action-z-ccw = z'
+twistycube-action-scramble = Scramble

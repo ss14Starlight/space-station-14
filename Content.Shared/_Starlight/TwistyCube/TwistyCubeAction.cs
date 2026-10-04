@@ -24,4 +24,5 @@ public enum TwistyCubeAction
     YCounterClockwise,
     ZClockwise,
     ZCounterClockwise,
+    Scramble
 }
