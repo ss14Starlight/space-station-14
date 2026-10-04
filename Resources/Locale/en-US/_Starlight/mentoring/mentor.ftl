@@ -1,9 +1,5 @@
 mentor-user-title = Mentor Message
 
-[one] is
-*[other] are
-} typing...
-
 mentor-play-sound = sound?
 mentor-send-ping = get pinged for mhelps?
 mentor-close-ticket = close ticket

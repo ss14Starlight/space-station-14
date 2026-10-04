@@ -338,7 +338,7 @@ namespace Content.Shared.Movement.Systems
             PhysicsSystem.TrySetBodyType(entity, BodyType.KinematicController); // Starlight: we use try instead of set because sometimes its not available yet and causes exceptions
         }
 
-        protected virtual void HandleDirChange(EntityUid entity, Direction dir, ushort subTick, bool state) // Starlight
+        private void HandleDirChange(EntityUid entity, Direction dir, ushort subTick, bool state)
         {
             // Relayed movement just uses the same keybinds given we're moving the relayed entity
             // the same as us.
@@ -393,7 +393,7 @@ namespace Content.Shared.Movement.Systems
             entity.Comp.TargetRelativeRotation = Angle.Zero;
         }
 
-        protected virtual void HandleRunChange(EntityUid uid, ushort subTick, bool walking) // Starlight
+        private void HandleRunChange(EntityUid uid, ushort subTick, bool walking)
         {
             MoverQuery.TryGetComponent(uid, out var moverComp);
 
