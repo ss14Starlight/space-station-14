@@ -133,9 +133,9 @@
   - type: SocialInteractionReceiver
     interactionOverrides: # spiders don't have noses
     - id: Boop
-      interactString: booping-generic-success
-      messagePerceivedByOthers: booping-generic-success-others
-      emoteMessage: booping-generic-emote
+      interactString: booping-spider-success
+      messagePerceivedByOthers: booping-spider-success-others
+      emoteMessage: booping-spider-emote
 
 # Kangaroos, Willow
 - type: !PartialOnly entity
