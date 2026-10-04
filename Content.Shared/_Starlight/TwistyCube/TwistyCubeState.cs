@@ -23,7 +23,13 @@ public partial record struct TwistyCubeState(
     [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge BackLeft,
     [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge BackBottom,
     [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge BackRight,
-    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge BackTop
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge BackTop,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeColor Top,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeColor Left,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeColor Front,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeColor Bottom,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeColor Right,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeColor Back
 )
 {
     public TwistyCubeState() : this(
@@ -46,7 +52,13 @@ public partial record struct TwistyCubeState(
         new(TwistyCubeColor.Back, TwistyCubeColor.Left),
         new(TwistyCubeColor.Back, TwistyCubeColor.Bottom),
         new(TwistyCubeColor.Back, TwistyCubeColor.Right),
-        new(TwistyCubeColor.Back, TwistyCubeColor.Top)
+        new(TwistyCubeColor.Back, TwistyCubeColor.Top),
+        TwistyCubeColor.Top,
+        TwistyCubeColor.Left,
+        TwistyCubeColor.Front,
+        TwistyCubeColor.Bottom,
+        TwistyCubeColor.Right,
+        TwistyCubeColor.Back
     )
     { }
 
@@ -88,12 +100,25 @@ public partial record struct TwistyCubeState(
                 (BackTopLeft, BackTopRight, BackBottomRight, BackBottomLeft)
                     = (BackTopRight.XZY(), BackBottomRight.XZY(), BackBottomLeft.XZY(), BackTopLeft.XZY());
                 break;
+            case TwistyCubeAction.XClockwise:
+                ApplyAction(TwistyCubeAction.LeftCounterClockwise);
+                ApplyAction(TwistyCubeAction.RightClockwise);
+                (Top, Back, Bottom, Front) = (Front, Top, Back, Bottom);
+                (FrontTop, BackTop, BackBottom, FrontBottom) = (FrontBottom.YX(), FrontTop.YX(), BackTop.YX(), FrontBottom.YX());
+                break;
+            case TwistyCubeAction.YClockwise:
+                break;              
+            case TwistyCubeAction.ZClockwise:
+                break;              
             case TwistyCubeAction.FrontCounterClockwise:
             case TwistyCubeAction.LeftCounterClockwise:
             case TwistyCubeAction.TopCounterClockwise:
             case TwistyCubeAction.RightCounterClockwise:
             case TwistyCubeAction.BottomCounterClockwise:
             case TwistyCubeAction.BackCounterClockwise:
+            case TwistyCubeAction.XCounterClockwise:
+            case TwistyCubeAction.YCounterClockwise:
+            case TwistyCubeAction.ZCounterClockwise:
                 for (int i = 0; i < 3; i++) ApplyAction(action - 1);
                 break;
             default:  return;
