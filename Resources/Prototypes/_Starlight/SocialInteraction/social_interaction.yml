@@ -1,20 +1,4 @@
-# MUST be added to the InteractionPrototypes list of a SocialInteractionReceiver component to be usable
-- type: socialInteraction
-  id: Pet
-  verbName: pet-verb
-  interactString: petting-success
-  messagePerceivedByOthers: petting-success-others
-  emoteMessage: petting-emote
-  interactSound: /Audio/Effects/thudswoosh.ogg
-
-- type: socialInteraction
-  id: Boop
-  verbName: boop-verb
-  interactString: booping-success
-  messagePerceivedByOthers: booping-success
-  emoteMessage: booping-emote
-  interactSound: /Audio/_Starlight/Effects/yip.ogg
-
+# General social actions that can be peformed on basically anything.
 - type: socialInteraction
   id: Wave
   verbName: wave-verb
@@ -38,3 +22,20 @@
   soundPerceivedByOthers: false
   allowSelfTarget: true
   isPhysical: false
+
+# Specific social actions that are only applicable to some entities (e.g. you can pet dogs but not a hamburger).
+- type: socialInteraction
+  id: Pet
+  verbName: pet-verb
+  interactString: petting-success
+  messagePerceivedByOthers: petting-success-others
+  emoteMessage: petting-emote
+  interactSound: /Audio/Effects/thudswoosh.ogg
+
+- type: socialInteraction
+  id: Boop
+  verbName: boop-verb
+  interactString: booping-success
+  messagePerceivedByOthers: booping-success
+  emoteMessage: booping-emote
+  interactSound: /Audio/_Starlight/Effects/yip.ogg

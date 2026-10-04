@@ -1,0 +1,11 @@
+# Non-complex social interactions for all mobs.
+- type: !PartialOnly entity
+  id: BaseControllable
+  components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - Look
+  - type: SocialInteractionReceiver
+    interactionPrototypes:
+    - Pet
+    - Boop
