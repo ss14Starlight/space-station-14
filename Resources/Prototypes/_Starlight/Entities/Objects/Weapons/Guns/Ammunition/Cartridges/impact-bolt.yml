@@ -28,6 +28,6 @@
   - type: Appearance
   - type: SpentAmmoVisuals
     suffix: false
-    state: Impact Bold
+    state: base
   - type: StaticPrice
     price: 10
