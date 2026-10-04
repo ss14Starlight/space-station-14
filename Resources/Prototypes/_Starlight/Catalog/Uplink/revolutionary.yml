@@ -134,9 +134,6 @@
     Telebond: 4
   categories:
   - RevUplinkWeaponry
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 5
 
 - type: listing
   id: SNKVDAPS
@@ -148,9 +145,6 @@
     Telebond: 10
   categories:
   - RevUplinkWeaponry
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 4
 
 - type: listing
   id: SKBDP28
@@ -162,9 +156,6 @@
     Telebond: 15
   categories:
   - RevUplinkWeaponry
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 3
 
 - type: listing
   id: AvtomatKalashnikovaMultiKiller
@@ -176,9 +167,6 @@
     Telebond: 20
   categories:
   - RevUplinkWeaponry
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 2
 
 - type: listing
   id: SKBPPSH
@@ -215,9 +203,6 @@
     Telebond: 1
   categories:
   - RevUplinkWearables
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 10
 
 - type: listing
   id: SKBChestRig
@@ -228,9 +213,6 @@
     Telebond: 1
   categories:
   - RevUplinkWearables
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 10
 
 - type: listing
   id: SKBGasMask
@@ -248,6 +230,16 @@
   description: glasses-desc
   productEntity: ClothingEyesGlassesSKBGlasses
   cost:
+    Telebond: 1
+  categories:
+  - RevUplinkWearables
+
+- type: listing
+  id: SKBMarineGoggles
+  name: marine-goggles-name
+  description: marine-goggles-desc
+  productEntity: ClothingEyesHudSovietMarine
+  cost:
     Telebond: 5
   categories:
   - RevUplinkWearables
@@ -261,9 +253,6 @@
     Telebond: 4
   categories:
   - RevUplinkWearables
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 10
 
 - type: listing
   id: SSFHardsuit
@@ -288,11 +277,34 @@
     Telebond: 3
   categories:
   - RevUplinkWearables
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 10
 
 # Implants
+
+- type: listing
+  id: SKBRadioImplant
+  name: SKB-implant-radio-name
+  description: SKB-implant-radio-desc
+  productEntity: RadioImplanterUSSP
+  cost:
+    Telebond: 5
+  categories:
+  - RevUplinkImplants
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 2
+
+- type: listing
+  id: SKBRattlerImplant
+  name: SKB-implant-rattler-name
+  description: SKB-implant-rattler-desc
+  productEntity: USSPDeathRattleImplanter
+  cost:
+    Telebond: 5
+  categories:
+  - RevUplinkImplants
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 2
 
 - type: listing
   id: SKBImplanter
@@ -325,7 +337,7 @@
   description: syndicate-soviet-shuttle-bundle-desc
   productEntity: CrateNameSyndicateShuttleBundle
   cost:
-    Telebond: 18
+    Telebond: 15
   categories:
   - RevUplinkShuttle
   conditions:
@@ -343,7 +355,7 @@
   - RevUplinkShuttle
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 5
+    stockLimit: 10
 
 - type: listing
   id: high-power-cage
@@ -356,7 +368,7 @@
   - RevUplinkShuttle
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 1
+    stockLimit: 2
 
 - type: listing
   id: frag-grenade
@@ -369,7 +381,7 @@
   - RevUplinkShuttle
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 4
+    stockLimit: 8
 
 - type: listing
   id: LSE-400c
@@ -432,12 +444,20 @@
   icon: { sprite: _Starlight/Objects/Devices/encryption_keys.rsi, state: soviet_label }
   productEntity: EncryptionKeySoviet
   cost:
-    Telebond: 1
+    Telebond: 2
   categories:
   - RevUplinkDeception
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 30
+
+- type: listing
+  id: USSPVoiceMask
+  name: soviet-voice-mask-name
+  description: soviet-voice-mask-desc
+  icon: { sprite: _Starlight/Objects/Devices/encryption_keys.rsi, state: soviet_label }
+  productEntity: ClothingMaskGasVoiceChameleon
+  cost:
+    Telebond: 5
+  categories:
+  - RevUplinkDeception
 
 # Pointless
 
@@ -546,9 +566,6 @@
     Telebond: 5
   categories:
   - RevUplinkPointless
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 10
 
 - type: listing
   id: USSPVodkizine
@@ -559,6 +576,3 @@
     Telebond: 5
   categories:
   - RevUplinkPointless
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1

@@ -52,6 +52,8 @@ soviet-coat-name = Soviet great coat
 soviet-coat-desc = Offers minor protection from bullets, major protection from fashion.
 glasses-name = cheap sunglasses
 glasses-desc = Retrofitted to show the brainwashing parasite above them.
+marine-goggles-name = Marine Goggles
+marine-goggles-desc = Some tactical goggles that we were loaned, dont lose them!
 soviet-plate-armour-name = soviet plate armour
 soviet-plate-armour-desc = An old Soviet-era flak vest that has been in storage for awhile.
 soviet-hardsuit-name = Marine hardsuit (SSF)
@@ -60,10 +62,16 @@ soviet-hardsuit-desc = Old robust design, still holds up to this day.
 # Implants
 SKB-implanter-name = SKB Demindshielder
 SKB-implanter-desc = An implant specialized in removing brainwashing parasites.
+SKB-implant-rattler-name = SKB Death Rattle
+SKB-implant-rattler-desc = An implant specialized in informing agents of your death.
+SKB-implant-radio-name = SKB Radio Implant
+SKB-implant-radio-desc = An implant specialized in allowing communication between SKB agents.
 
 # Deception
 soviet-encryption-key-name = Soviet encryption key
 soviet-encryption-key-desc = Features exotic woodpeckers. Priyom.
+soviet-voice-mask-name = Voice Mask
+soviet-voice-mask-desc = Gifts from friends who wish for us to talk amongst ourselves.
 
 # Shuttle
 stole-remote-signaller-name = Remote signaller
@@ -83,7 +91,7 @@ stolen-ptk800-desc = Stolen mining weaponry for breaching. Requires link and a s
 lse-1200c-name = LSE-1200c
 lse-1200c-desc = A more advanced laser emplacement weapon. Requires a 'power cage', link and a signaleer.
 stolen-soviet-friendship-name = EXP-320g (NT)
-stolen-soviet-friendship-desc = A small gun emplacement stolen from a NT scout ship, use it wisely.
+stolen-soviet-friendship-desc = A small gun emplacement stolen from an NT-NC scout ship, use it wisely.
 
 # Pointless
 soviet-medals-name = Soviet sets of medals
