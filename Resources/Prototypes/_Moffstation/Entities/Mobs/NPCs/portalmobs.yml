@@ -110,7 +110,7 @@
   parent: MoffMobDemonNarsieBase
   id: MoffMobDemonNarsieFleshBase
   name: runecarved flesh
-  description: A writhing mass of muscle and sinew, etched with blodied scars.
+  description: A writhing mass of muscle and sinew, etched with bloodied scars.
   components:
   - type: Sprite
     drawdepth: Mobs
