@@ -173,10 +173,10 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
         supermatter.Comp.LastSendedDurability = supermatter.Comp.Durability;
 
         if (currentDurability > lastDurability)
-            _radioSystem.SendRadioMessage(supermatter.Owner, $"The crystal is regenerating. Durability: {currentDurability}%", _engi, supermatter.Owner);
+            _radioSystem.SendRadioMessage(supermatter.Owner, Loc.GetString("supermatter-radio-regenerating", ("durability", currentDurability)), _engi, supermatter.Owner);
         else
             _radioSystem.SendRadioMessage(supermatter.Owner,
-                $"Attention! The crystal is destabilizing. Durability: {currentDurability}%", _engi, supermatter.Owner);
+                Loc.GetString("supermatter-radio-destabilizing", ("durability", currentDurability)), _engi, supermatter.Owner);
     }
 
     private void HandleAmbience(Entity<SupermatterComponent> supermatter)

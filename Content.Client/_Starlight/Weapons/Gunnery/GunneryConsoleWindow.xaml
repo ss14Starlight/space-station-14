@@ -41,7 +41,7 @@
                 SeparationOverride="4">
 
                 <Label
-                    Text="FILTER:"
+                    Text="{Loc 'gunnery-filter'}"
                     FontColorOverride="#888888"
                     VerticalAlignment="Center"
                     Margin="0,0,4,0" />
@@ -84,7 +84,7 @@
             SeparationOverride="4">
 
             <Label
-                Text="CANNONS"
+                Text="{Loc 'gunnery-cannons'}"
                 HorizontalAlignment="Center"
                 FontColorOverride="#FFA040"
                 Margin="0,4,0,2" />
