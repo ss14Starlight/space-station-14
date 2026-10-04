@@ -1,7 +1,0 @@
-# Hamlet, Hamsters
-- type: !PartialOnly entity
-  id: MobHamster
-  components:
-  - type: SocialInteractionGiver
-    interactionPrototypes:
-    - SniffQuiet
