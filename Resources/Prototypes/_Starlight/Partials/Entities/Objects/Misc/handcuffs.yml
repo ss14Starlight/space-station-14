@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: ClothingOuterStraightjacket
+  components:
+  - type: Item
+    size: Huge # Discourage people from running around with an inventory of these
+  - type: Handcuff
+    stunBonus: 5 # Make these slightly easier to apply

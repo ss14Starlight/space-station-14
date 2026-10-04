@@ -1,16 +1,7 @@
 guide-entry-sl-rules = Server rules: STARLIGHT
-guide-entry-sl-rule-0 = Rule 0
 guide-entry-sl-rule-1 = Rule 1
 guide-entry-sl-rule-2 = Rule 2
 guide-entry-sl-rule-3 = Rule 3
-guide-entry-sl-rule-4-1 = Rule 4.1
-guide-entry-sl-rule-4-2 = Rule 4.2
-guide-entry-sl-rule-4-3 = Rule 4.3
-guide-entry-sl-rule-4-4 = Rule 4.4
-guide-entry-sl-rule-4-5 = Rule 4.5
-guide-entry-sl-rule-4-6 = Rule 4.6
-guide-entry-sl-rule-4-7 = Rule 4.7
-guide-entry-sl-rule-4-8 = Rule 4.8
 guide-entry-sl-rule-4 = Rule 4
 guide-entry-sl-rule-5 = Rule 5
 guide-entry-sl-rule-6 = Rule 6
@@ -25,12 +16,6 @@ guide-entry-sl-rule-14 = Rule 14
 guide-entry-sl-rule-15 = Rule 15
 guide-entry-sl-rule-16 = Rule 16
 guide-entry-sl-metashield = Metashield
-
-guide-entry-sl-silicon-1 = Sil.Rule 1
-guide-entry-sl-silicon-2 = Sil.Rule 2
-guide-entry-sl-silicon-3 = Sil.Rule 3
-
-guide-entry-sl-clarification-1 = Clarification 1
 
 guide-entry-sl-sop-intro = Standard Operating Procedure
 guide-entry-sl-general-sop-intro = General
@@ -96,8 +81,6 @@ guide-entry-sl-security-ammo-types = Ammo Types
 guide-entry-rules-supernatural-entities = Supernatural Entities
 guide-entry-stirstir = Stir Stir
 
-guide-entry-sl-legal-sop-intro = Legal
-
 guide-entry-sl-engineering-sop-intro = Engineering
 guide-entry-sl-engineering-sop-genproc-intro = General Procedures
 guide-entry-sl-engineering-sop-power-generation = Power Generation
@@ -151,6 +134,17 @@ guide-entry-sl-salvage-sop-intro = Salvage
 guide-entry-sl-salvage-sop-salvagers = Salvage Crew
 
 guide-entry-sl-science-sop-intro = Science
+guide-entry-sl-science-sop-genproc-intro = General Procedures
+guide-entry-sl-science-sop-researchguidelines = Research Guidelines
+guide-entry-sl-science-sop-anomalyresearch = Anomaly Research
+guide-entry-sl-science-sop-artifactresearch = Artifact Research
+guide-entry-sl-science-sop-itemdistribution = Item Distribution
+guide-entry-sl-science-sop-staff-intro = Staff Procedures
+guide-entry-sl-science-sop-researchdirector = Research Director
+guide-entry-sl-science-sop-scientist = Scientist
+guide-entry-sl-science-sop-researchassistant = Research Assistant
+guide-entry-sl-science-sop-roboticist = Roboticist
+guide-entry-sl-science-sop-appendix = Appendix
 
 guide-entry-sl-nano-trasen-employee-sop-intro = NanoTrasen Employee
 guide-entry-sl-nano-trasen-employee-sop-genproc-intro = General Procedures

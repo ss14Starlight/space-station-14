@@ -537,7 +537,7 @@
   - type: Item
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, ClothingOuterBaseWinter, BaseCommandContraband, AllowSuitStorageClothingGasTanks ]
+  parent: [ ClothingOuterStorageBase, ClothingOuterBaseWinter, BaseNanoTrasenContraband, AllowSuitStorageClothingGasTanks ]
   id: ClothingOuterCoatNCT
   name: nt career trainer's jacket
   description: A sharp black coat with beige trim around the cuffs and collar, offering a mix of professionalism and approachability.

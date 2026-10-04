@@ -21,8 +21,7 @@ public sealed partial class SlimeSteroidPotionSystem : EntitySystem
         if (!_entityManager.TryGetComponent<SlimeComponent>(args.Target.Value,
                 out var slimeComponent)) return;
         slimeComponent.SlimeSteroidAmount += 1;
-        var plural = slimeComponent.SlimeSteroidAmount == 1 ? "" : "s";
-        _sharedPopupSystem.PopupPredicted($"{MetaData(args.Target.Value).EntityName} now creates {slimeComponent.SlimeSteroidAmount} extra extract{plural} when processed.", args.User, args.User);
+        _sharedPopupSystem.PopupPredicted(Loc.GetString("slime-potion-steroid-applied", ("target", MetaData(args.Target.Value).EntityName), ("amount", slimeComponent.SlimeSteroidAmount)), args.User, args.User);
         PredictedQueueDel(args.Used);
     }
 }

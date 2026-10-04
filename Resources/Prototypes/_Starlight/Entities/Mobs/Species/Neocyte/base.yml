@@ -70,8 +70,10 @@
     allowSelfRepair: true
     fuelCost: 7.5 # Little cheaper on Neocytes, since they're not fully cybernetic.
     damage:
-      groups:
-        Brute: -24 # 4 for each type with reduction applied
+      types:
+        Blunt: -8 # 4 for each type with reduction applied
+        Piercing: -8
+        Slash: -8
   - type: Hunger
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi

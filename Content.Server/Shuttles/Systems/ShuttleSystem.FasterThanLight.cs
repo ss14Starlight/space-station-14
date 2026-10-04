@@ -1,18 +1,25 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Server.Camera;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
+using Content.Server._Starlight.Station;
+using Content.Shared.Atmos.Components;
+using Content.Shared.Body.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Parallax;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
+using Content.Shared.Station.Components;
 using Content.Shared.StatusEffect;
 using Content.Shared.Timing;
 using Content.Shared.Whitelist;
+using Content.Shared._Starlight.Camera;
 using JetBrains.Annotations;
+using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.Collections;
@@ -21,17 +28,9 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using FTLMapComponent = Content.Shared.Shuttles.Components.FTLMapComponent;
-#region Starlight
-using Content.Server._Starlight.Station;
-using Content.Server.Camera;
-using Content.Shared._Starlight.Camera;
-using Content.Shared.Station.Components;
-using Robust.Server.Player;
-using Content.Shared.Body.Components;
-using Content.Shared.Atmos.Components;
-#endregion
 
 namespace Content.Server.Shuttles.Systems;
 
