@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  name: pen
+  components:
+  - type: ReactionMixer
+   mixMessage: "spoon-mixing-success"
+   timeToMix: 3.0
+   reactionTypes:
+   - Stir
