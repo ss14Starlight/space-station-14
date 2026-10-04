@@ -25,7 +25,6 @@ analysis-console-info-effect-value = [font="Monospace" size=11][color=gray]{ $st
 }[/color][/font]
 analysis-console-info-trigger = [font="Monospace" size=11]Triggers:[/font]
 analysis-console-info-triggered-value = [font="Monospace" size=11][color=gray]{$triggers}[/color][/font]
-}
 
 analysis-console-extract-value = [font="Monospace" size=11][color=orange]Node {$id} (+{$value})[/color][/font]
 analysis-console-extract-none = [font="Monospace" size=11][color=orange] No unlocked nodes have any points left to extract [/color][/font]
