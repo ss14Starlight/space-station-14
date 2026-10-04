@@ -1,4 +1,6 @@
 ui-options-function-open-m-help = Open mentor help
+ui-options-function-jump = Jump
+ui-options-function-latch-struggle = Struggle (while latched)
 ui-escape-connect-discord = Link Discord
 server-info-connect-discord-button = Link Discord
 ui-escape-connect-steam = Link Steam
@@ -17,6 +19,10 @@ ui-options-holes-tooltip = If you're lagging while shooting, uncheck this box,
 ui-options-sparks = Display sparks
 ui-options-sparks-tooltip = If you're lagging while shooting, uncheck this box,
                            and the hitscan won't display sparks when the bullet hits a surface.
+
+ui-options-hitscan-prediction = Predict your own shots
+ui-options-hitscan-prediction-tooltip = Draws your bullets the moment you fire instead of waiting for the server.
+                                        The server still decides what was hit.
 
 ## Accessibility
 

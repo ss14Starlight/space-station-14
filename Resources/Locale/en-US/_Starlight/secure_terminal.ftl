@@ -25,7 +25,6 @@ secure-terminal-awaiting-member = Awaiting {$label}
 secure-terminal-authorized-by-label = Signed by:
 secure-terminal-veto-label = Veto
 
-secure-terminal-pending-countdown-label = Expires in {$minutes}m {$seconds}s…
 secure-terminal-countdown-label = Activating in {$minutes}m {$seconds}s…
 
 secure-terminal-fee-note = Processing fee: {$fee}
@@ -47,8 +46,6 @@ secure-terminal-on-cooldown-note = { $minutes ->
     [1] On cooldown — available in 1 minute.
    *[other] On cooldown — available in {$minutes} minutes.
 }
-secure-terminal-requires-alert-suffix = Need: {$level}
-secure-terminal-requires-war-suffix = Need: War Ops
 
 secure-terminal-reason = Insert request reason:
 
@@ -63,9 +60,6 @@ secure-terminal-proposal-vetoed-by = Secure Terminal — {$request} request was 
 secure-terminal-radio-proposal = {$request} has been proposed. Please go to the nearest Keycard Authentication Device to authorize or deny.
 secure-terminal-radio-proposal-reason = {$request} has been proposed. Please go to the nearest Keycard Authentication Device to authorize or deny. Reason: {$reason}
 secure-terminal-radio-denied = {$request} request has been cancelled.
-secure-terminal-activation-countdown = {$request} has been fully authorized.
-    Activating in {$minutes} minutes.
-    Station salary has been reduced due to the mobilization cost.
 secure-terminal-unknown-job = Unknown
 
 ## Popup messages
@@ -81,7 +75,6 @@ secure-terminal-on-cooldown = This request is on cooldown.
 secure-terminal-already-pending = A proposal for this request is already pending.
 secure-terminal-already-active = Another request is already pending or activating. Wait for it to complete before making a new one.
 secure-terminal-no-active-proposal = No active proposal found for this request.
-secure-terminal-already-authorized = You have already authorized this proposal.
 secure-terminal-already-activated = This terminal already authorized this proposal.
 secure-terminal-auth-note = This terminal is only for authorization.
 secure-terminal-authorized-by = Attention — {$request} request has been authorized. Authorized by: {$signatories}.
@@ -159,7 +152,6 @@ secure-terminal-code-gamma-announcement = Attention! Code GAMMA is being put int
 
 secure-terminal-end-gamma-name = End GAMMA Alert
 secure-terminal-end-gamma-desc = Lifts [color=palevioletred]GAMMA[/color] alert and returns the station to Green. Requires GAMMA to have been active for at least 15 minutes.
-secure-terminal-end-gamma-announcement = Code GAMMA is being lifted. The station is being restored to normal operations. Remain alert and await further instruction from your head of staff.
 
 secure-terminal-code-psi-name = Code PSI
 secure-terminal-code-psi-desc = Escalates the station to [color=mediumpurple]PSI[/color] alert. Hostile synthetic units detected — avoid non-conforming cyborgs and seek command staff.
