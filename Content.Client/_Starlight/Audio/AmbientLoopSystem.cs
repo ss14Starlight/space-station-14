@@ -44,7 +44,14 @@ public sealed partial class AmbientLoopSystem : EntitySystem
         UpdatesOutsidePrediction = true;
         Subs.CVar(_cfg, StarlightCCVars.StationHumVolume, OnVolumeChanged, true);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnProtoReload);
+        SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnPlayerDetached);
         RefreshLoops();
+    }
+
+    private void OnPlayerDetached(LocalPlayerDetachedEvent args)
+    {
+        Stop(0f);
+        _current = null;
     }
 
     public override void Shutdown()
