@@ -65,6 +65,8 @@ SKB-implant-rattler-name = SKB Death Rattle
 SKB-implant-rattler-desc = An implant specialized in informing agents of your death.
 SKB-implant-radio-name = SKB Radio Implant
 SKB-implant-radio-desc = An implant specialized in allowing communication between SKB agents.
+SKB-stolen-shield-name = Stolen Fake Shield
+SKB-stolen-shield-desc = Very rare item to see, we were able to steal it from a passing transport. Use it wisely.
 
 # Deception
 soviet-encryption-key-name = Soviet encryption key
