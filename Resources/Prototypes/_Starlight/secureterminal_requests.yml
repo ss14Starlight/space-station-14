@@ -392,6 +392,7 @@
   parentId: CodeGamma
   name: secure-terminal-end-gamma-name
   description: secure-terminal-end-gamma-desc
+  announcement: secure-terminal-end-gamma-announcement
   announcementColor: "#66ff99"
   proposalAnnouncement: false
   activationDelaySecs: 5
