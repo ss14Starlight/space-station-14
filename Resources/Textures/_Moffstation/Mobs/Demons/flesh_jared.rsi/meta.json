@@ -5,16 +5,19 @@
         "y": 32
     },
     "license": "CC-BY-SA-4.0",
-    "copyright": "Created by EmoGarbage404 (github) for space-station-14, credit to Aleksh#7552 (discord) for original concepts and designs, edited by Nyxilath for Moffstation",
+    "copyright": "State based copyright",
     "states": [
         {
-            "name": "flesh_body"
+            "name": "flesh_body",
+            "copyright": "Created by EmoGarbage404 (github) for space-station-14, credit to Aleksh#7552 (discord) for original concepts and designs, edited by Nyxilath for Moffstation"
         },
         {
-            "name": "dead"
+            "name": "dead",
+            "copyright": "EmoGarbage404, Aleksh, Nyxilath"
         },
         {
-            "name": "runes"
+            "name": "runes",
+            "copyright": "EmoGarbage404, Aleksh, Nyxilath"
         }
     ]
 }
