@@ -139,6 +139,17 @@
         - id: MagazineLightRifleMaxim
 
 - type: entity
+  id: ClothingBackpackDuffelAKMSBundle
+  parent: ClothingBackpackDuffelSSF
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleAk
+        - id: MagazineLightRifleSP
+
+- type: entity
   id: ClothingBackpackDuffelPPShBundle
   parent: ClothingBackpackDuffelSSF
   components:
