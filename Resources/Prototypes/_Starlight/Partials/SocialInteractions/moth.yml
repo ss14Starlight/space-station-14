@@ -1,9 +1,0 @@
-- type: !PartialOnly entity
-  id: BaseMobMoth
-  components:
-  - type: SocialInteractionReceiver
-    interactionOverrides: # moths don't have noses
-    - id: Boop
-      interactString: booping-generic-success
-      messagePerceivedByOthers: booping-generic-success-others
-      emoteMessage: booping-generic-emote
