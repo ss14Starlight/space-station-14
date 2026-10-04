@@ -6,9 +6,15 @@ namespace Content.Shared._Starlight.SocialInteraction.Components;
 public sealed partial class SocialInteractionReceiverComponent : Component
 {
     /// <summary>
-    /// List of all valid physical social interaction prototypes that can be used with this receiver.
-    /// Anything defined in this list will be ADDED to the parents list, if it exists
+    /// List of social interaction prototypes that an entity with the Receiver component add to the Verb list.
+    ///
+    /// The Receiver component is only on the 'targeted' entity of a SocialInteraction, and is to be used
+    /// to define SPECIFIC SocialInteractions that can be 'performed' on this entity.
+    ///
+    /// e.g.
+    /// - If the target has BoopNose  -> "you boop (target) on (their) nose."
+    /// - If the target has BoopSnoot -> "you boop (target) on (their) snoot."
     /// </summary>
     [DataField, AlwaysPushInheritance]
-    public List<ProtoId<SocialInteractionPrototype>> InteractionPrototypes = new();
+    public List<ProtoId<SocialInteractionPrototype>> InteractionPrototypes = [];
 }
