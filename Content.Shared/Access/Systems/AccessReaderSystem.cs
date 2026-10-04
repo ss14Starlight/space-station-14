@@ -324,6 +324,12 @@ public sealed partial class AccessReaderSystem : EntitySystem
         // Starlight-start
         var accessListEv = new GetAccessReaderAccessListsEvent(new List<HashSet<ProtoId<AccessLevelPrototype>>>(reader.Comp.AccessLists));
         RaiseLocalEvent(reader, accessListEv);
+
+        // The reader may live on a contained board (e.g. airlock door electronics) while structure-level
+        // modifiers like AlertLevelAccess sit on the parent. Give that parent a chance to modify too.
+        if (_containerSystem.TryGetContainingContainer((reader.Owner, null, null), out var container))
+            RaiseLocalEvent(container.Owner, accessListEv);
+
         var accessLists = accessListEv.AccessLists;
         // Starlight-end
 

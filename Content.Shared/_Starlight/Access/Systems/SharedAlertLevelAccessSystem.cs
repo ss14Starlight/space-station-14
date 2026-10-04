@@ -20,7 +20,7 @@ public abstract partial class SharedAlertLevelAccessSystem : EntitySystem
         if (ent.Comp.Level == null)
             return;
 
-        using (ev.PushGroup(nameof(SharedAlertLevelAccessSystem)))
+        using (ev.PushGroup(nameof(SharedAlertLevelAccessSystem), 10))
         {
             var level = Loc.GetString($"alert-level-{ent.Comp.Level}");
             var alert = Loc.GetString("alert-level-access-component-alert",
@@ -29,18 +29,19 @@ public abstract partial class SharedAlertLevelAccessSystem : EntitySystem
 
             if (ent.Comp.AddedAccesses.TryGetValue(ent.Comp.Level, out var addedAccesses))
                 FormatExamineAccessList(true, alert, addedAccesses, ref ev);
-
             if (ent.Comp.RemovedAccesses.TryGetValue(ent.Comp.Level, out var removedAccesses))
                 FormatExamineAccessList(false, alert, removedAccesses, ref ev);
-
-            if (addedAccesses == null && removedAccesses == null)
-                ev.PushMarkup(Loc.GetString("alert-level-access-component-on-examine-unchanged", ("alert", alert)));
         }
     }
 
-    private void FormatExamineAccessList(bool granted, string alert, HashSet<ProtoId<AccessLevelPrototype>> accessList,
+    private void FormatExamineAccessList(bool granted, string alert,
+        List<HashSet<ProtoId<AccessLevelPrototype>>> accessLists,
         ref ExaminedEvent ev)
     {
+        // For the examine text, the concept of "access lists" does not exist. The user only sees the individual accesses.
+        // As such, we flatten the access lists into one access list.
+        var accessList = accessLists.SelectMany(set => set).ToHashSet();
+
         var localizedCurrentNames = accessList.Select(access =>
         {
             var name = Loc.GetString("alert-level-access-component-unknown-id");
@@ -74,22 +75,12 @@ public abstract partial class SharedAlertLevelAccessSystem : EntitySystem
 
         // Apply added access lists.
         if (toAdd != null)
-        {
-            foreach (var access in toAdd)
-            {
-                var accessList = new HashSet<ProtoId<AccessLevelPrototype>> { access };
+            foreach (var accessList in toAdd)
                 ev.AccessLists.Add(accessList);
-            }
-        }
 
         // Apply removed access lists.
-        // Drop any access alternative that relies on a removed access. We compare by content
-        // (Contains), since HashSet uses reference equality by default and List.Remove would
-        // never match a freshly-constructed set.
         if (toRemove != null)
-        {
-            foreach (var removedAccess in toRemove)
-                ev.AccessLists.RemoveAll(accessList => accessList.Contains(removedAccess));
-        }
+            foreach (var removedAccessList in toRemove)
+                ev.AccessLists.RemoveAll(accessList => accessList.SetEquals(removedAccessList));
     }
 }

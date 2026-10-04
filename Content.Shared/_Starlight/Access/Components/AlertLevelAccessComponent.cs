@@ -26,14 +26,17 @@ public sealed partial class AlertLevelAccessComponent : Component
     #endregion
     #region Access configuration
 
+    /// <summary>
+    /// Contains access lists that will be added, grouped by alert level.
+    /// </summary>
     [DataField("added"), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public Dictionary<string, HashSet<ProtoId<AccessLevelPrototype>>> AddedAccesses = new();
+    public Dictionary<string, List<HashSet<ProtoId<AccessLevelPrototype>>>> AddedAccesses = new();
 
     /// <summary>
-    /// Contains accesses that are actively removed from access lists.
+    /// Contains access lists that will be removed, grouped by alert level.
     /// </summary>
     [DataField("removed"), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public Dictionary<string, HashSet<ProtoId<AccessLevelPrototype>>> RemovedAccesses = new();
+    public Dictionary<string, List<HashSet<ProtoId<AccessLevelPrototype>>>> RemovedAccesses = new();
 
     #endregion
 }
