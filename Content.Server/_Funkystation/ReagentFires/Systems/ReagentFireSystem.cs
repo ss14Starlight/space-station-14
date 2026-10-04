@@ -1,12 +1,12 @@
 ﻿using Content.Server._Funkystation.Atmos.Events;
 using Content.Server._Funkystation.ReagentFires.Components;
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Decals;
 using Content.Shared._Funkystation.CCVar;
 using Content.Shared._Funkystation.Footprints;
 using Content.Shared._Funkystation.ReagentFires;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Clothing.Components;

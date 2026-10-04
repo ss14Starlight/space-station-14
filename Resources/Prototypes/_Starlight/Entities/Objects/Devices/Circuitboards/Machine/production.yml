@@ -1282,7 +1282,7 @@
     componentRequirements:
       PowerCell:
         amount: 4
-        defaultPrototype: PowerCellHigh
+        defaultPrototype: PowerCellHighPrinted
 
 - type: entity
   id: IceCreamMakerMachineCircuitBoard

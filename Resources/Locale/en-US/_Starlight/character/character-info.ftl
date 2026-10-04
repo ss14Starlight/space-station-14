@@ -11,3 +11,10 @@ character-info-objectives = Overview
 character-info-background = Background
 character-info-background-label = Background:
 character-info-background-none = No background.
+
+character-info-no-background = No background.
+character-info-ic-header = In-Character Info:
+character-info-description = Description:
+character-info-hidden = Hidden Info
+character-info-exploitable = Exploitable Info:
+character-info-secrets = Secrets:

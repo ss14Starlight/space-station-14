@@ -61,8 +61,8 @@
     - type: DepartmentObjective
       title: objective-impersonate-brighteye
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
     - type: PickRandomDepartment
 
 - type: entity
@@ -250,5 +250,5 @@
     - type: RailroadTimerTask
       message: rail-sanctuary-task
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp

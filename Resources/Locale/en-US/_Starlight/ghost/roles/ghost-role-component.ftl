@@ -149,3 +149,12 @@ ghost-role-information-maintenance-drone-rules = You are bound by these laws bot
                                                  1. You may not involve yourself in the matters of another being, even if such matters conflict with Law Two or Law Three, unless the other being is another drone.
                                                  2. You may not harm any being, regardless of intent or circumstance.
                                                  3. Your goals are to build, maintain, repair, improve, and power the station to the best of your abilities. You must never actively work against these goals.
+
+# Ghost role names, descriptions and rules
+
+ghost-role-information-mob-nyr-mouse-ops-name = red mouse!
+ghost-role-information-drone-name = Maintenance Drone
+ghost-role-information-spawn-point-ghost-cluwne-beast-name = Cluwne Beast
+ghost-role-information-mob-nyr-mouse-ops-description = You are mouff leader. Your goal is to steal cheese from heads!
+ghost-role-information-spawn-point-ghost-cluwne-beast-description = Spread laughter and chaos by hitting and turning the crew into cluwnes.
+ghost-role-information-spawn-point-ghost-cluwne-beast-rules = You are an antagonist, transform as many of the crew as you can into cluwnes.
