@@ -483,14 +483,14 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
                     }
 
                     // Show popup to the head revolutionary (private)
-                    _popup.PopupEntity(Loc.GetString("rev-telebond-gained", ("total", finalTelebond.ToString())), ev.User.Value, ev.User.Value, PopupType.Medium);
+                    _popup.PopupEntity(Loc.GetString("ussp-uplink-telebond", ("total", finalTelebond)), ev.User.Value, ev.User.Value, PopupType.Medium);
 
                     // If the uplink is implanted in someone else, show them a popup too
                     if (TryComp<SubdermalImplantComponent>(uplinkUid.Value, out var implant) &&
                         implant.ImplantedEntity != null &&
                         implant.ImplantedEntity.Value != ev.User.Value)
                     {
-                        _popup.PopupEntity(Loc.GetString("rev-telebond-gained-total-for", ("total", finalTelebond.ToString()), ("name", Identity.Name(ev.User.Value, EntityManager))),
+                        _popup.PopupEntity(Loc.GetString("ussp-uplink-telebond-total-for", ("total", finalTelebond), ("name", Identity.Name(ev.User.Value, EntityManager))),
                             implant.ImplantedEntity.Value, implant.ImplantedEntity.Value, PopupType.Large);
                     }
 
@@ -502,7 +502,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
                             revId != ev.User.Value &&
                             (implant == null || implant.ImplantedEntity == null || revId != implant.ImplantedEntity.Value))
                         {
-                            _popup.PopupEntity(Loc.GetString("rev-telebond-gained-for", ("name", Identity.Name(ev.User.Value, EntityManager))),
+                            _popup.PopupEntity(Loc.GetString("ussp-uplink-telebond-for", ("name", Identity.Name(ev.User.Value, EntityManager))),
                                 revId, revId, PopupType.Large);
                         }
                     }
@@ -529,7 +529,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
                                     (TryComp<USSPUplinkOwnerComponent>(revImplant, out var ownerComp) &&
                                      ownerComp.OwnerUid == ev.User.Value))
                                 {
-                                    _popup.PopupEntity(Loc.GetString("rev-telebond-gained-for", ("name", Identity.Name(ev.User.Value, EntityManager))),
+                                    _popup.PopupEntity(Loc.GetString("ussp-uplink-telebond-for", ("name", Identity.Name(ev.User.Value, EntityManager))),
                                         revId, revId, PopupType.Medium);
                                     break;
                                 }
