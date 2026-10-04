@@ -1,11 +1,4 @@
 Entries:
-- author: Drakobird, Conf
-  changes:
-  - message: Moved stuff over to partials.
-    type: Fix
-  id: 408737
-  time: '2026-09-20T15:53:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6149
 - author: Citrea
   changes:
   - message: Dolls now drop their shell when zombified, making them normally vulnerable to bullets. As all zombies, they are still resistant to bullets, just not invincible.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409136
   time: '2026-10-04T12:11:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6340
+- author: anytap
+  changes:
+  - message: Edited the Metashield page in the guidebook to match the wiki.
+    type: Tweak
+  id: 409137
+  time: '2026-10-04T12:11:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6408
 Order: -1
