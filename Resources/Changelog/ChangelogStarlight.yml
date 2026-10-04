@@ -1,11 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: Changed default vox survival mask to half mask.
-    type: Tweak
-  id: 408718
-  time: '2026-09-18T12:33:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6212
 - author: SirLutz
   changes:
   - message: Removed beginner roles being antag targets.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409117
   time: '2026-10-04T08:24:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6480
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: You can now slice cardboard boxes for cardboard, meaning boxcutters can now do their namesake and cut boxes!
+    type: Add
+  id: 409118
+  time: '2026-10-04T09:40:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6476
 Order: -1
