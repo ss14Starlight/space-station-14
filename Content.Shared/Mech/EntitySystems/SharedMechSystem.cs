@@ -141,7 +141,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (!component.MaintenanceMode)
             return;
 
-        _popup.PopupCursor("Turn off maintenance mode first!", args.User, PopupType.MediumCaution); // Starlight: I think we need translation strings?
+        _popup.PopupCursor(Loc.GetString("mech-turn-off-maintenance"), args.User, PopupType.MediumCaution);
         args.Cancel();
     }
 
@@ -157,7 +157,7 @@ public abstract partial class SharedMechSystem : EntitySystem
     private void OnKnockdownAttempt(EntityUid uid, MechPilotComponent component, ref KnockDownAttemptEvent args)
     {
         args.Cancelled = true;
-        _popup.PopupCursor("You can't lie down while piloting a mech.", uid, PopupType.SmallCaution);
+        _popup.PopupCursor(Loc.GetString("mech-cant-lie-down"), uid, PopupType.SmallCaution);
     }
     // Starlight-end
 

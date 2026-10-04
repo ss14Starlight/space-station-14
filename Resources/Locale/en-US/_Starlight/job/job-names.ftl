@@ -25,7 +25,6 @@ JobPerformer = Performer
 JobRoboticist = Roboticist
 JobSalvageLead = Salvage Lead
 JobSurgeon = Surgeon
-JobZookeeper = Zookeeper
 JobCentCommServiceWorker = CentComm Service Worker
 JobCentCommChef = CentComm Chef
 JobCentCommBartender = CentComm Bartender

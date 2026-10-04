@@ -53,9 +53,16 @@ public sealed partial class PlayingCardComponent : Component
     /// The current sprite layers (based on <see cref="FaceDown"/>), or the sprite layers for the given
     /// <paramref name="faceDownOverride"/>.
     [Access(Other = AccessPermissions.ReadExecute)] // Pure function, I don't care if you execute it.
-    public string Name(bool? faceDownOverride = null) => faceDownOverride ?? FaceDown
+    public string Name(bool? faceDownOverride = null) => Localize(faceDownOverride ?? FaceDown // Starlight edit
         ? ReverseName
-        : ObverseName;
+        : ObverseName);
+
+    // Starlight edit Start
+    /// Card texts from YAML may be loc keys, dynamic cards store already localized text.
+    [Access(Other = AccessPermissions.ReadExecute)]
+    public static string Localize(string text) =>
+        IoCManager.Resolve<ILocalizationManager>().TryGetString(text, out var localized) ? localized : text;
+    // Starlight edit End
 
     public static readonly LocId ExamineText = "playing-card-examine";
 

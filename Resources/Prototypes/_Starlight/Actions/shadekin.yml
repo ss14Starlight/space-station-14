@@ -7,7 +7,7 @@
     - type: Action
       useDelay: 1
       icon:
-        sprite: _Starlight/Interface/Actions/shadekin32.rsi
+        sprite: _Starlight/Interface/Actions/actions_shadekin32.rsi
         state: phase_shift
       itemIconStyle: BigItem
     - type: InstantAction
@@ -20,7 +20,7 @@
   components:
     - type: Action
       icon:
-        sprite: _Starlight/Interface/Actions/shadekin.rsi
+        sprite: _Starlight/Interface/Actions/actions_shadekin.rsi
         state: phase
       checkCanInteract: false
       itemIconStyle: NoItem
@@ -53,7 +53,7 @@
     - type: Action
       useDelay: 60
       icon:
-        sprite: _Starlight/Interface/Actions/shadekin32.rsi
+        sprite: _Starlight/Interface/Actions/actions_shadekin32.rsi
         state: darktrap
       itemIconStyle: NoItem
     - type: InstantAction
@@ -68,7 +68,7 @@
     - type: Action
       useDelay: 60
       icon:
-        sprite: _Starlight/Interface/Actions/shadekin.rsi
+        sprite: _Starlight/Interface/Actions/actions_shadekin.rsi
         state: shadeskip
       itemIconStyle: NoItem
     - type: TargetAction
@@ -89,7 +89,7 @@
     - type: Action
       useDelay: 30
       icon:
-        sprite: _Starlight/Interface/Actions/shadekin32.rsi
+        sprite: _Starlight/Interface/Actions/actions_shadekin32.rsi
         state: create_shade
       itemIconStyle: NoItem
     - type: InstantAction

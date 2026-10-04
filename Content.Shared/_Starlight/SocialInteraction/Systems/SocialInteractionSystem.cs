@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Administration.Components;
 using Content.Shared._Starlight.SocialInteraction.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Bed.Sleep;
@@ -81,11 +82,11 @@ public sealed partial class SocialInteractionSystem : EntitySystem
     private bool IsDeadOrIncapacitated(EntityUid user)
     {
         // no social interactions when ghosted, stunned, sleeping, critical or dead
-        if (HasComp<GhostComponent>(user)
+        if ((HasComp<GhostComponent>(user)
             || HasComp<StunnedComponent>(user)
             || HasComp<SleepingComponent>(user)
             || HasComp<RevenantComponent>(user) // revenants are ghosts
-            || _mobStateSystem.IsIncapacitated(user))
+            || _mobStateSystem.IsIncapacitated(user)) && !HasComp<AdminGhostComponent>(user)) // admin ghosts are exempt!
             return true;
 
         return false;

@@ -23,11 +23,10 @@
         amount: 0.2
     Bloodstream:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         damage:
-          groups:
-            Burn: -4
-            Brute: -4
+          Burn: -4
+          Brute: -4
 
 
 - type: reagent

@@ -58,7 +58,7 @@
   - type: ItemSlots
     slots:
       vinyl:
-        name: vinyl
+        name: item-slot-component-slot-name-vinyl
         whitelist:
           components:
           - Vinyl

@@ -6,13 +6,13 @@
             <BoxContainer
                 Name="PersonalNotes" Access="Public"
                 Orientation="Vertical" VerticalExpand="True">
-                <Label Text="Personal Notes:"/>
+                <Label Text="{Loc 'character-info-personal-notes'}"/>
                 <TextEdit Name="PersonalNotesInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
             </BoxContainer>
             <BoxContainer
                 Name="OOCNotes" Access="Public"
                 Orientation="Vertical" VerticalExpand="True" >
-                <Label Text="OOC Notes:"/>
+                <Label Text="{Loc 'character-info-ooc-notes'}"/>
                 <TextEdit Name="OOCNotesInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
             </BoxContainer>
         </BoxContainer>
