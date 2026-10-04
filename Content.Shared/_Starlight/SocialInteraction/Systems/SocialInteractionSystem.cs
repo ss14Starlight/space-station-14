@@ -45,10 +45,8 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         if (IsDeadOrIncapacitated(args.User))
             return;
 
-        // create a verb subcategory
+        // create a verb subcategory and list of interactions
         var category = new VerbCategory("social-interaction-component-verb", null);
-
-        // create a list of interactions
         var interactions = new List<ProtoId<SocialInteractionPrototype>>(giverComp.InteractionPrototypes);
 
         // check if the Receiver has specific verbs to add
@@ -83,6 +81,121 @@ public sealed partial class SocialInteractionSystem : EntitySystem
     }
 
     /// <summary>
+    /// Performs our Social Interaction
+    /// </summary>
+    private void InteractionAction(EntityUid uid, GetVerbsEvent<Verb> args, SocialInteractionPrototype proto)
+    {
+        // ensure the Giver is awake and alive
+        if (IsDeadOrIncapacitated(args.User))
+            return;
+
+        // needed to not play interaction audio multiple times
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
+        // check if interaction needs physical contact
+        if (proto.IsPhysical && !CheckInteractable(args.User, args.Target))
+            return;
+
+        if (!TryComp<SocialInteractionGiverComponent>(args.User, out var giverComp))
+            return;
+
+        var curTime = _timing.CurTime;
+
+        // prevent spamming interactions
+        if (giverComp.LastInteractTime is { } lastInteractTime
+            && curTime < lastInteractTime + proto.InteractDelay)
+            return;
+
+        giverComp.LastInteractTime = curTime;
+
+        // override strings
+        var interaction = new OverrideSocialInteraction
+        {
+            InteractString = proto.InteractString,
+            InteractSound = proto.InteractSound,
+            MessagePerceivedByOthers = proto.MessagePerceivedByOthers,
+            EmoteMessage = proto.EmoteMessage,
+            EmoteMessageSelf = proto.EmoteMessageSelf
+        };
+
+        if (TryComp<SocialInteractionReceiverComponent>(args.Target, out var receiverComp))
+            ApplyInteractionOverride(proto, receiverComp, interaction);
+
+        var selfTarget = args.User == args.Target; // whether or not we're interacting with ourselves
+        var msg = ""; // stores the text to be shown in the popup message
+        SoundSpecifier? sfx = interaction.InteractSound; // stores the filepath of the sound to be played
+
+        if (interaction.InteractString != null)
+            msg = Loc.GetString(interaction.InteractString, ("target", Identity.Entity(args.Target, EntityManager)));
+
+        // pop-up message for the target - skip if self targeted
+        if (!selfTarget && interaction.MessagePerceivedByOthers is { } message)
+        {
+            var msgOthers = Loc.GetString(message,
+                ("user", Identity.Entity(args.User, EntityManager)),
+                ("target", Identity.Entity(args.Target, EntityManager)));
+
+            _popupSystem.PopupEntity(msgOthers, uid, Filter.PvsExcept(args.User, entityManager: EntityManager), true);
+        }
+
+        // emote message for chat
+        if (interaction.EmoteMessage is { } emoteMessage)
+        {
+            // show a different message if we're using the emote on ourselves
+            var emoteTarget = selfTarget
+                ? interaction.EmoteMessageSelf ?? emoteMessage
+                : emoteMessage;
+
+            // resolve localization
+            var emote = Loc.GetString(
+                emoteTarget,
+                ("user", Identity.Entity(args.User, EntityManager)),
+                ("target", Identity.Entity(args.Target, EntityManager)));
+
+            // post emote
+            _chatSystem.TrySendInGameICMessage(args.User, emote, InGameICChatType.Emote, ChatTransmitRange.Normal);
+        }
+
+        // now popup filtered to user - skip if it's self-targeted
+        if (!selfTarget)
+            _popupSystem.PopupClient(msg, uid, args.User);
+
+        if (proto.SoundPerceivedByOthers)
+        {
+            _audio.PlayPredicted(sfx, Transform(args.Target).Coordinates, args.User);
+        }
+        else
+        {
+            _audio.PlayLocal(sfx, args.Target, args.User);
+
+            // don't play sounds twice if you're the target
+            if (args.User != args.Target)
+                _audio.PlayEntity(sfx, Filter.Entities(args.Target), args.Target, false);
+        }
+    }
+
+    /// <summary>
+    /// Used to override interaction strings if an override exists.
+    /// </summary>
+    private void ApplyInteractionOverride(SocialInteractionPrototype proto, SocialInteractionReceiverComponent receiverComp, OverrideSocialInteraction interaction)
+    {
+        foreach (var overrideData in receiverComp.InteractionOverrides)
+        {
+            if (overrideData.ID != proto.ID)
+                continue;
+
+            interaction.InteractString = overrideData.InteractString ?? interaction.InteractString;
+            interaction.InteractSound = overrideData.InteractSound ?? interaction.InteractSound;
+            interaction.MessagePerceivedByOthers = overrideData.MessagePerceivedByOthers ?? interaction.MessagePerceivedByOthers;
+            interaction.EmoteMessage = overrideData.EmoteMessage ?? interaction.EmoteMessage;
+            interaction.EmoteMessageSelf = overrideData.EmoteMessageSelf ?? interaction.EmoteMessageSelf;
+
+            break;
+        }
+    }
+
+    /// <summary>
     /// Used to check if the SocialInteractionGiver is alive and conscious,
     /// as the dead and incapaciated aren't known for being very socialable.
     /// </summary>
@@ -113,88 +226,13 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         return true;
     }
 
-    /// <summary>
-    /// Performs our Social Interaction
-    /// </summary>
-    private void InteractionAction(EntityUid uid, GetVerbsEvent<Verb> args, SocialInteractionPrototype proto)
+    private sealed class OverrideSocialInteraction
     {
-        // ensure the Giver is awake and alive
-        if (IsDeadOrIncapacitated(args.User))
-            return;
-
-        // needed to not play interaction audio multiple times
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
-        // check if interaction needs physical contact
-        if (proto.IsPhysical && !CheckInteractable(args.User, args.Target))
-            return;
-
-        if (!TryComp<SocialInteractionGiverComponent>(args.User, out var giverComp))
-            return;
-
-        var curTime = _timing.CurTime;
-
-        // prevent spamming interactions
-        if (giverComp.LastInteractTime is { } lastInteractTime
-            && curTime < lastInteractTime + proto.InteractDelay)
-            return;
-
-        giverComp.LastInteractTime = curTime;
-
-        var selfTarget = args.User == args.Target; // whether or not we're interacting with ourselves
-        var msg = ""; // stores the text to be shown in the popup message
-        SoundSpecifier? sfx = null; // stores the filepath of the sound to be played
-
-        if (proto.InteractString != null)
-            msg = Loc.GetString(proto.InteractString, ("target", Identity.Entity(args.Target, EntityManager)));
-
-        if (proto.InteractSound != null)
-            sfx = proto.InteractSound;
-
-        // pop-up message for the target - skip if self targeted
-        if (!selfTarget && proto.MessagePerceivedByOthers is { } message)
-        {
-            var msgOthers = Loc.GetString(message,
-                ("user", Identity.Entity(args.User, EntityManager)),
-                ("target", Identity.Entity(args.Target, EntityManager)));
-
-            _popupSystem.PopupEntity(msgOthers, uid, Filter.PvsExcept(args.User, entityManager: EntityManager), true);
-        }
-
-        // emote message for chat
-        if (proto.EmoteMessage is { } emoteMessage)
-        {
-            // show a different message if we're using the emote on ourselves
-            var emoteTarget = selfTarget
-                ? proto.EmoteMessageSelf ?? emoteMessage
-                : emoteMessage;
-
-            // resolve localization
-            var emote = Loc.GetString(
-                emoteTarget,
-                ("user", Identity.Entity(args.User, EntityManager)),
-                ("target", Identity.Entity(args.Target, EntityManager)));
-
-            // post emote
-            _chatSystem.TrySendInGameICMessage(args.User, emote, InGameICChatType.Emote, ChatTransmitRange.Normal);
-        }
-
-        // now popup filtered to user - skip if it's self-targeted
-        if (!selfTarget)
-            _popupSystem.PopupClient(msg, uid, args.User);
-
-        if (proto.SoundPerceivedByOthers)
-        {
-            _audio.PlayPredicted(sfx, Transform(args.Target).Coordinates, args.User);
-        }
-        else
-        {
-            _audio.PlayLocal(sfx, args.Target, args.User);
-
-            // don't play sounds twice if you're the target
-            if (args.User != args.Target)
-                _audio.PlayEntity(sfx, Filter.Entities(args.Target), args.Target, false);
-        }
+        public LocId? InteractString;
+        public SoundSpecifier? InteractSound;
+        public LocId? MessagePerceivedByOthers;
+        public LocId? EmoteMessage;
+        public LocId? EmoteMessageSelf;
     }
 }
+

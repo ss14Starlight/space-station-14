@@ -29,6 +29,12 @@
   id: BaseMobAvali
   abstract: true
   components:
+  - type: SocialInteractionReceiver
+    interactionOverrides: # avali don't have noses
+    - id: Boop
+      interactString: booping-snoot-success
+      messagePerceivedByOthers: booping-snoot-success-others
+      emoteMessage: booping-snoot-emote
     - type: LanguageKnowledge
       speaks:
       - GalacticCommon
