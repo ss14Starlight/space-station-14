@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: BaseMobDiona
+  components:
+  - type: SocialInteractionReceiver
+    interactionOverrides: # diona don't have noses
+    - id: Boop
+      interactString: booping-plant-success
+      messagePerceivedByOthers: booping-plant-success-others
+      emoteMessage: booping-plant-emote
