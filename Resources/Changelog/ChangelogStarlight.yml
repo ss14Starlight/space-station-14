@@ -1,46 +1,4 @@
 Entries:
-- author: Pickra
-  changes:
-  - message: Fixed the Bola audio snap spam on hit. Potentially also solving some lag issues with it too.
-    type: Fix
-  id: 408729
-  time: '2026-09-19T16:43:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6157
-- author: Johnny
-  changes:
-  - message: Added a soviet mech (admeme only currently).
-    type: Add
-  id: 408730
-  time: '2026-09-20T12:55:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6230
-- author: Light
-  changes:
-  - message: Reworked the health analyzer UI.
-    type: Tweak
-  id: 408731
-  time: '2026-09-20T15:16:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6066
-- author: STARLIGHT TEAM
-  changes:
-  - message: Plushies now squish when you hug someone wearing one as clothing.
-    type: Add
-  id: 408732
-  time: '2026-09-20T15:16:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6204
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Fixed announcement chimes playing twice.
-    type: Fix
-  id: 408733
-  time: '2026-09-20T15:16:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6199
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Fixed meteor swarm announcement chimes possibly being extremely delayed depending on the TTS queue.
-    type: Fix
-  id: 408734
-  time: '2026-09-20T15:16:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6199
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: Fixed war declaration announcements sometimes being sent twice and playing overlapping music tracks.
@@ -2799,4 +2757,46 @@ Entries:
   id: 409128
   time: '2026-10-04T10:10:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6479
+- author: Caws
+  changes:
+  - message: Added the 'Pat' Social Interaction. You can pat anything.
+    type: Add
+  id: 409129
+  time: '2026-10-04T10:52:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6478
+- author: Caws
+  changes:
+  - message: Added the 'Sniff' Social Interaction. Dogs and other animals can sniff anything that's nearby.
+    type: Add
+  id: 409130
+  time: '2026-10-04T10:52:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6478
+- author: Caws
+  changes:
+  - message: Added the `Palpate` Social Interaction. Animals with antennae can sniff anything that's nearby with their antennae.
+    type: Add
+  id: 409131
+  time: '2026-10-04T10:52:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6478
+- author: Caws
+  changes:
+  - message: (Social Interactions) Boop is now Lore Accurate (meaning its flavour text now respects whether or not your species has a nose).
+    type: Fix
+  id: 409132
+  time: '2026-10-04T10:52:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6478
+- author: Caws
+  changes:
+  - message: (Social Interactions) You can Look at anything now.
+    type: Fix
+  id: 409133
+  time: '2026-10-04T10:52:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6478
+- author: Caws
+  changes:
+  - message: (Social Interactions) You can Wave at anything now.
+    type: Fix
+  id: 409134
+  time: '2026-10-04T10:52:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6478
 Order: -1
