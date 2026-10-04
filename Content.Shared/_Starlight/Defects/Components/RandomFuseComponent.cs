@@ -7,7 +7,7 @@ public sealed partial class RandomFuseDefectComponent : DefectComponent
 {
     public RandomFuseDefectComponent()
     {
-        DefectLabel = "corroded fuse";
+        DefectLabel = "defect-label-corroded-fuse";
     }
 
     // Minimum fuse delay in seconds (inclusive).

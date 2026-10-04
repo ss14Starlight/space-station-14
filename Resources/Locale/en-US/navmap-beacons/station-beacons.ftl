@@ -9,7 +9,6 @@ station-beacon-hop = HOP
 
 station-beacon-security = Security
 station-beacon-brig = Brig
-station-beacon-brig-med = Brig Med
 station-beacon-warden = Warden
 station-beacon-hos = HOS
 station-beacon-armory = Armory
@@ -99,4 +98,3 @@ station-beacon-escape-pod-SW = Escape Pod SW
 station-beacon-escape-pod-W = Escape Pod W
 station-beacon-escape-pod-NW = Escape Pod NW
 station-beacon-vox = Vox Break Room
-

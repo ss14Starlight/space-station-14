@@ -609,7 +609,6 @@
         Radiation: 0.75
         Caustic: 0.80
 
-
 - type: entity
   parent: [ BaseNanoTrasenContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitNTSFPrimus
@@ -1249,6 +1248,30 @@
     - WhitelistChameleon
     - CorgiWearable
 
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, BaseCosmicCultItem ]
+  id: ClothingHeadHelmetCosmicCult
+  name: entropic headgear
+  description: This headpiece seems to extrude from the hardsuit it's attached to as if the material is one single, contiguous whole.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Clothing/cosmiccult_armor.rsi
+    layers:
+    - state: icon-helmet
+  - type: Clothing
+    sprite: _Starlight/CosmicCult/Clothing/cosmiccult_armor.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.90
+        Heat: 0.90
+
 #Greenshield Officer
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadLightParamsProfessional, ClothingHeadHelmetHardsuitSyndieCommander ] # Starlight
@@ -1283,9 +1306,9 @@
   components:
   - type: Item
   - type: Sprite
-    sprite: Changeling/ling_spacesuit_helmet.rsi
+    sprite: _Starlight/Clothing/Head/Hardsuits/changeling.rsi
   - type: Clothing
-    sprite: Changeling/ling_spacesuit_helmet.rsi
+    sprite: _Starlight/Clothing/Head/Hardsuits/changeling.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.225
     lowPressureMultiplier: 1000

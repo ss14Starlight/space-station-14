@@ -1,5 +1,4 @@
 comp-gas-canister-ui-canister-status = Canister Status
-comp-gas-canister-ui-canister-relabel = Relabel
 comp-gas-canister-ui-canister-pressure = Canister Pressure:
 
 comp-gas-canister-ui-port-status = Port Status:

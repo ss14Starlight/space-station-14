@@ -1077,6 +1077,15 @@ public sealed partial class ChatSystem : SharedChatSystem
         if ((language.Speech.ObfuscationFont ?? false) && (!obfuscated ?? false))
             fonttype = speech.FontId;
 
+        // Apply default styling before the font tag so it does not replace a language's custom font.
+        if (fonttype == "Default")
+        {
+            if (chatType == InGameICChatType.Whisper)
+                fonttype = "DefaultItalic";
+            else if (speech.Bold)
+                fonttype = "DefaultBold";
+        }
+
         return Loc.GetString(wrapId,
             ("color", color),
             ("entityName", namestring),
