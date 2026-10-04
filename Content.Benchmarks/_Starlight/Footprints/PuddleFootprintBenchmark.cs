@@ -15,7 +15,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 
-namespace Content.Benchmarks._Starlight.Fluids;
+namespace Content.Benchmarks._Starlight.Footprints;
 
 /// <summary>
 /// Measures the server-side cost of moving organic mobs through puddles and leaving footprints.
