@@ -158,3 +158,15 @@
       interactString: booping-moth-success
       messagePerceivedByOthers: booping-moth-success-others
       emoteMessage: booping-moth-emote
+
+# Slimes
+- type: !PartialOnly entity
+  id: BaseMobAdultSlimes
+  components:
+  - type: SocialInteractionReceiver
+    interactionOverrides: # slimes don't have noses
+    - id: Boop
+      interactString: booping-slime-success
+      messagePerceivedByOthers: booping-slime-success-others
+      emoteMessage: booping-slime-emote
+      interactSound: /Audio/Voice/Slimes/slime_squish.ogg
