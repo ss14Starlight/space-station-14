@@ -15,6 +15,9 @@ language-ClassicalSign-description = An older, more obscure sign language origin
 language-SolCommon-name = Sol Common
 language-SolCommon-description = An artifical language designed by the Trans-Solar Federation for ease of use and concise communication.
 
+language-CygniStandard-name = Cygni Standard
+language-CygniStandard-description = An artifical language designed to remind speakers of the warsaw pact, with little accuracy. Spoken widely across the USSP, alongside Galactic Common and Sol Common.
+
 language-Marish-name = Marish
 language-Marish-description = Where shadekin have a language rooted in empathy, there are still subtle tones and syllables that are as delicate as the emotions that shadekin normally communicate with.
 

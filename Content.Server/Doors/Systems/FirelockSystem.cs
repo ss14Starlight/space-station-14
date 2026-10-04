@@ -153,13 +153,8 @@ namespace Content.Server.Doors.Systems
                 return (false, false);
             }
 
-            // Funky change
-            if (!HasComp<GridAtmosphereComponent>(xform.ParentUid) ||
-                !HasComp<MapGridComponent>(xform.ParentUid) ||
-                !HasComp<MapAtmosphereComponent>(xform.MapUid))
-            {
+            if (!HasComp<GridAtmosphereComponent>(xform.ParentUid))
                 return (false, false);
-            }
 
             var grid = Comp<MapGridComponent>(xform.ParentUid);
             var pos = _mapping.CoordinatesToTile(xform.ParentUid, grid, xform.Coordinates);
