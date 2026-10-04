@@ -1,0 +1,51 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - Table
+    - TableReinforced
+    - TableGlass
+    - TableCard
+    - TableReinforcedGlass
+    - TablePlasmaGlass
+    - TableBrass
+    - TableWood
+    - TableCarpet
+    - TableStone
+    - TableWeb
+    - TableXeno
+    - TableFancyBlue
+    - TableFancySkyBlue
+    - TableFancyCyan
+    - TableFancyBlack
+    - TableFancyRed
+    - TableFancyPurple
+    - TableFancyPink
+    - TableFancyGreen
+    - TableFancyOrange
+    - TableFancyWhite
+  components:
+  - type: FlippableStructure
+    flippedPrototype: !type:CreateVariants
+      values:
+      - TableFlipped
+      - TableReinforcedFlipped
+      - TableGlassFlipped
+      - TableCardFlipped
+      - TableReinforcedGlassFlipped
+      - TablePlasmaGlassFlipped
+      - TableBrassFlipped
+      - TableWoodFlipped
+      - TableCarpetFlipped
+      - TableStoneFlipped
+      - TableWebFlipped
+      - TableXenoFlipped
+      - TableFancyBlueFlipped
+      - TableFancySkyBlueFlipped
+      - TableFancyCyanFlipped
+      - TableFancyBlackFlipped
+      - TableFancyRedFlipped
+      - TableFancyPurpleFlipped
+      - TableFancyPinkFlipped
+      - TableFancyGreenFlipped
+      - TableFancyOrangeFlipped
+      - TableFancyWhiteFlipped

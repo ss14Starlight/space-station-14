@@ -256,10 +256,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         var spec = new DamageSpecifier(damageGroup, sunlight.GeneticDamagePerInterval);
         _damageableSystem.TryChangeDamage(uid, spec, true);
-
-        if (!TryComp(uid, out DamageableComponent? damageable) ||
-            damageable == null ||
-            !damageable.DamagePerGroup.TryGetValue(_geneticGroupId, out var geneticDamage))
+        if (!_damageableSystem.GetDamagePerGroup(uid).TryGetValue(_geneticGroupId, out var geneticDamage))
         {
             return true;
         }
@@ -313,7 +310,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (max <= 0f)
             return true;
 
-        var current = damageable.TotalDamage.Float();
+        var current = _damageableSystem.GetTotalDamage(uid).Float();
         return current <= max * 0.5f;
     }
 
@@ -345,8 +342,10 @@ public sealed partial class VampireSystem : EntitySystem
         var before = comp.BloodFullness;
         var wasStarving = before <= 0f;
         var changed = false;
+        var alive = !TryComp<MobStateComponent>(uid, out var mobState) ||
+                    mobState.CurrentState != Shared.Mobs.MobState.Dead; // No hunger while dead
 
-        if (before > 0f && _gameTicker.RunLevel < GameRunLevel.PostRound) // No hunger EOR
+        if (before > 0f && alive && _gameTicker.RunLevel < GameRunLevel.PostRound) // No hunger EOR
         {
             comp.StarvationDrunkBloodDrainAccumulator = 0f;
             comp.BloodFullness = MathF.Max(0f, before - (comp.FullnessDecayPerSecond * elapsed));
@@ -737,10 +736,10 @@ public sealed partial class VampireSystem : EntitySystem
             || deadThreshold == null
             || deadThreshold.Value == FixedPoint2.Zero)
         {
-            return 100f - damageable.TotalDamage.Float();
+            return 100f - _damageableSystem.GetTotalDamage(uid).Float();
         }
 
-        return deadThreshold.Value.Float() - damageable.TotalDamage.Float();
+        return deadThreshold.Value.Float() - _damageableSystem.GetTotalDamage(uid).Float();
     }
 
     private void ApplyGroupDamage(EntityUid uid, ProtoId<DamageGroupPrototype> groupId, float amount)

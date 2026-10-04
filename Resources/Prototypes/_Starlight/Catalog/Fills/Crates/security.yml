@@ -12,3 +12,15 @@
           amount: 3
         - id: ClothingHeadHelmetReflective
           amount: 3
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateSecuritySandbags
+  name: sandbag crate
+  description: Thirty sandbags, enough for five barricades.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MaterialSandbag

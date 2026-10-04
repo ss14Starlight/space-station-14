@@ -13,7 +13,7 @@
   - type: Cartridge
     programName: nano-chat-program-name
     icon:
-      sprite: _Starlight/Misc/program_icons.rsi # Starlight Edit: _CD -> _Starlight
+      sprite: _Starlight/Interface/Misc/program_icons.rsi # Starlight Edit: _CD -> _Starlight
       state: nanochat
   - type: ActiveRadio
     channels:
