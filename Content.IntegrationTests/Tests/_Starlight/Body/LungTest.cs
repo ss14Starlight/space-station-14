@@ -1,8 +1,8 @@
 using Content.IntegrationTests.Fixtures;
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Shared.Body.Components;
+using Content.Shared.Atmos.Components;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameObjects;

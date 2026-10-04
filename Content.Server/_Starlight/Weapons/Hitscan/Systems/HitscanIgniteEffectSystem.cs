@@ -24,7 +24,7 @@ public sealed partial class HitscanIgniteEffectSystem : EntitySystem
             return;
 
         if (TryComp<FlammableComponent>(args.Data.HitEntity.Value, out var flammable))
-            _flammableSystem.SetFireStacks(args.Data.HitEntity.Value, flammable.FireStacks + (flammable.MinIgnitionTemperature / hitscan.Comp.Temperature), flammable, true);
+            _flammableSystem.SetFireStacks(args.Data.HitEntity.Value, flammable.FireStacks + hitscan.Comp.FireStacks, flammable, true);
 
         if (Transform(args.Data.HitEntity.Value) is TransformComponent xform && xform.GridUid is { } hitGridUid)
         {

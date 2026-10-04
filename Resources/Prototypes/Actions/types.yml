@@ -113,7 +113,7 @@
     itemIconStyle: BigAction
     priority: -20
     icon:
-      sprite: Actions/Implants/implants.rsi
+      sprite: Interface/Actions/Implants/implants.rsi
       state: explosive
 
 - type: entity
@@ -142,7 +142,7 @@
     itemIconStyle: BigAction
     priority: -20
     icon:
-      sprite: Actions/Implants/implants.rsi
+      sprite: Interface/Actions/Implants/implants.rsi
       state: freedom
 
 - type: entity
@@ -484,7 +484,7 @@
   components:
   - type: Action
     priority: -20
-    icon: { sprite: Actions/Implants/implants.rsi, state: chameleon }
+    icon: { sprite: Interface/Actions/Implants/implants.rsi, state: chameleon }
     itemIconStyle: BigAction
   - type: InstantAction
     event: !type:ChameleonControllerOpenMenuEvent
