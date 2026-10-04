@@ -1,60 +1,4 @@
 Entries:
-- author: Musiklie
-  changes:
-  - message: 'Chem foam is now guaranteed to lose a durability (Min: 0 -> 1) but the max loss was reduced by 1 to compromise (Max: 5 ->4).'
-    type: Tweak
-  id: 408752
-  time: '2026-09-20T18:04:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6218
-- author: Cvlancer
-  changes:
-  - message: (Ming) Added nct classrooms.
-    type: Add
-  id: 408753
-  time: '2026-09-20T18:32:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6223
-- author: Cvlancer
-  changes:
-  - message: (Ming) Added nct teaching vault.
-    type: Add
-  id: 408754
-  time: '2026-09-20T18:32:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6223
-- author: Cvlancer
-  changes:
-  - message: (Ming) Added assistant manager near hop.
-    type: Add
-  id: 408755
-  time: '2026-09-20T18:32:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6223
-- author: Cvlancer
-  changes:
-  - message: (Ming) Added a laundry room near courtroom.
-    type: Add
-  id: 408756
-  time: '2026-09-20T18:32:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6223
-- author: Cvlancer
-  changes:
-  - message: (Ming) Added a washing machine to security, science storage room (xenobiology), sauna, bathroom near engie, morgue.
-    type: Add
-  id: 408757
-  time: '2026-09-20T18:32:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6223
-- author: Cvlancer
-  changes:
-  - message: (Ming) Removed three zookeeper rooms to make way for a massive classroom.
-    type: Remove
-  id: 408758
-  time: '2026-09-20T18:32:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6223
-- author: Cvlancer
-  changes:
-  - message: (Ming) Removed one of the two sec techs from security breakroom.
-    type: Remove
-  id: 408759
-  time: '2026-09-20T18:32:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6223
 - author: SlightlyToastedCheesecake
   changes:
   - message: (Hotel) Added all departamental mailboxes.
@@ -2799,4 +2743,60 @@ Entries:
   id: 409151
   time: '2026-10-04T14:45:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6398
+- author: Rinary
+  changes:
+  - message: Added pickup/drop/equip sounds for various objects(all objects, some have unique).
+    type: Add
+  id: 409152
+  time: '2026-10-04T14:58:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6463
+- author: Rinary
+  changes:
+  - message: Added more default ambience sounds.
+    type: Add
+  id: 409153
+  time: '2026-10-04T14:58:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6463
+- author: Rinary
+  changes:
+  - message: Added "loop"-ed ambience sounds, music which will be played while you staying somewhere(like det office, viro).
+    type: Add
+  id: 409154
+  time: '2026-10-04T14:58:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6463
+- author: Rinary
+  changes:
+  - message: Added "one-shot" ambience sounds, effects which will be played with interval in 1 min while you staying somewhere.
+    type: Add
+  id: 409155
+  time: '2026-10-04T14:58:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6463
+- author: Rinary
+  changes:
+  - message: Added new volume sliders, now volume highly customizable(up to 19 different volume bars).
+    type: Add
+  id: 409156
+  time: '2026-10-04T14:58:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6463
+- author: Rinary
+  changes:
+  - message: Added new ambience sounds for some objects like AME, Computers, Tcomms, Cloning machine, cryopod, suppermatter and others.
+    type: Add
+  id: 409157
+  time: '2026-10-04T14:58:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6463
+- author: Rinary
+  changes:
+  - message: Added multiple-zones support for rooms(required for ambience).
+    type: Add
+  id: 409158
+  time: '2026-10-04T14:58:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6463
+- author: Rinary
+  changes:
+  - message: Fixed vote algorithm for zones system, so now it will pick zones for rooms better(required for ambience).
+    type: Fix
+  id: 409159
+  time: '2026-10-04T14:58:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6463
 Order: -1
