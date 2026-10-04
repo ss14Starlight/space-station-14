@@ -1,13 +1,6 @@
 Entries:
 - author: Pickra
   changes:
-  - message: Adjusted Bloodpacks to 5% and Amoxla/Saline to 15%.
-    type: Tweak
-  id: 408723
-  time: '2026-09-19T16:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6209
-- author: Pickra
-  changes:
   - message: Added NT Personnel access role.
     type: Add
   id: 408724
@@ -2799,4 +2792,11 @@ Entries:
   id: 409122
   time: '2026-10-04T09:40:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6474
+- author: Swonki
+  changes:
+  - message: Missing loadout and Nanochat for salvage medic.
+    type: Fix
+  id: 409123
+  time: '2026-10-04T10:10:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6461
 Order: -1
