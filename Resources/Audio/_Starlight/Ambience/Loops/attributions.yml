@@ -1,8 +1,3 @@
-- files: ["atmos_hum.ogg"]
-  license: "CC-BY-SA-3.0"
-  copyright: "Taken from Paradise Station (ambiatm1.ogg), trimmed and crossfaded into a seamless loop"
-  source: "https://github.com/ParadiseSS13/Paradise/tree/master/sound/ambience"
-
 - files: ["maint_hum.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Derived from shipambience.ogg (/tg/station, originally CEV Eris): pitched down, low-passed and crossfaded into a seamless loop"

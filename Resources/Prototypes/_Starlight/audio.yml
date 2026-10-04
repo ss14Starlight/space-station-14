@@ -29,7 +29,6 @@
   rules: InNukiePlanetMap
   priority: 1
 
-
 - type: soundCollection
   id: AmbienceTheDark
   files:
@@ -70,15 +69,6 @@
     - !type:OnGridRule
 
 # Continuous background loops, played under the ambient music. Only the highest priority match plays.
-- type: ambientLoop
-  id: AtmosphericsHum
-  sound:
-    path: /Audio/_Starlight/Ambience/Loops/atmos_hum.ogg
-    params:
-      volume: -6
-  rules: InAtmosphericsZoneOnStation
-  priority: 3
-
 - type: ambientLoop
   id: MaintenanceHum
   sound:
@@ -181,15 +171,6 @@
     - !type:InZoneRule
       zones:
         - Maintenance
-
-- type: rules
-  id: InAtmosphericsZoneOnStation
-  rules:
-    - !type:OnMapGridRule
-      inverted: true
-    - !type:InZoneRule
-      zones:
-        - Atmospherics
 
 - type: rules
   id: InAtmosphericsZone
