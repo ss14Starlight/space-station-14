@@ -83,6 +83,18 @@
     hideOnToggle: true
 
 - type: entity
+  parent: [ClothingMaskBase]
+  id: ClothingMaskBreathTube
+  name: breath tube
+  description: A thin nose tube that connects to internals. Not very comfortable and falls out often, but good if you want people to see your pretty face.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Mask/breathtube.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Mask/breathtube.rsi
+  - type: BreathMask
+
+- type: entity
   parent: [ClothingMaskGas, BaseSovietContraband]
   id: ClothingSovietGasMask
   name: GP-32 gas mask
