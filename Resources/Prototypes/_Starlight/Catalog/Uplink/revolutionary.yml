@@ -2,6 +2,8 @@
 
 - type: listing
   id: SKBSmallFlashConversion
+  name: ussp-flash-name
+  description: ussp-flash-desc
   productEntity: SciFlash
   cost:
     Conversion: 5
@@ -94,7 +96,7 @@
   cost:
     Telebond: 3
   categories:
-  - RevUplinkConversionRewards
+  - RevUplinkWeaponry
 
 - type: listing
   id: SKBMosin
@@ -580,8 +582,8 @@
   categories:
   - RevUplinkWar
   conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 10
+  - !type:StockLimitedListingCondition
+    stockLimit: 10
   - !type:BuyBeforeCondition
     whitelist:
       - RevSupplyRiftListing
@@ -596,8 +598,8 @@
   categories:
   - RevUplinkWar
   conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 10
+  - !type:StockLimitedListingCondition
+    stockLimit: 10
   - !type:BuyBeforeCondition
     whitelist:
       - RevSupplyRiftListing
@@ -610,8 +612,8 @@
   categories:
   - RevUplinkWar
   conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
+  - !type:StockLimitedListingCondition
+    stockLimit: 1
   - !type:BuyBeforeCondition
     whitelist:
       - RevSupplyRiftListing

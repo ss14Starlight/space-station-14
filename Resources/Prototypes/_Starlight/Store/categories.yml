@@ -153,7 +153,7 @@
   name: store-category-ussp-armaments
 
 - type: storeCategory
-  id: RevUplinkPassive
+  id: RevUplinkConversionRewards
   name: store-category-ussp-global
 
 - type: storeCategory
@@ -173,7 +173,7 @@
   name: store-category-ussp-deception
 
 - type: storeCategory
-  id: RevUplinkConversionRewards
+  id: RevUplinkPointless
   name: store-category-dagd
 
 - type: storeCategory
