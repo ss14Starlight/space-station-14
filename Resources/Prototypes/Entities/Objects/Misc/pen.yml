@@ -27,6 +27,11 @@
   - type: UseDelay
     delay: 1.5
   - type: Fixtures
+  - type: ReactionMixer
+    mixMessage: "spoon-mixing-success"
+    timeToMix: 0.5
+    reactionTypes:
+    - Stir
     fixtures:
       fix1:
         shape: !type:PolygonShape
