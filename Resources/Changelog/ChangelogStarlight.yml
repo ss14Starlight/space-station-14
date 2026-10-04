@@ -1,53 +1,4 @@
 Entries:
-- author: SirLutz
-  changes:
-  - message: Cerberus now uses the correct sounds for emotes, and not just the bark for everything.
-    type: Add
-  id: 408711
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: SirLutz
-  changes:
-  - message: Chaplain can now cleanse empowered rifts aswell.
-    type: Add
-  id: 408712
-  time: '2026-09-18T11:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6020
-- author: Caws
-  changes:
-  - message: A reversion to the maximum number of nuclear operatives has been fixed. Alpha can still get a 6-man nukeops team above 84 players, while Beta will, at most, see a 4-man nukeops team at 56 players and Epsilon will, at most, see a 3-man nukeops team.
-    type: Fix
-  id: 408713
-  time: '2026-09-18T11:32:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6195
-- author: OJG
-  changes:
-  - message: Cecil command lizard.
-    type: Add
-  id: 408714
-  time: '2026-09-18T11:32:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6188
-- author: Pickra
-  changes:
-  - message: Added Kiki plush.
-    type: Add
-  id: 408715
-  time: '2026-09-18T12:00:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6198
-- author: Dragometh
-  changes:
-  - message: The industrial reagent grinder's pipes had their ambrosia clog cleaned and now can move reagents via plumbing again.
-    type: Fix
-  id: 408716
-  time: '2026-09-18T12:33:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6219
-- author: STARLIGHT TEAM
-  changes:
-  - message: Added Half Masks.
-    type: Add
-  id: 408717
-  time: '2026-09-18T12:33:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6212
 - author: STARLIGHT TEAM
   changes:
   - message: Changed default vox survival mask to half mask.
@@ -2799,4 +2750,53 @@ Entries:
   id: 409110
   time: '2026-10-03T17:28:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6464
+- author: Caws
+  changes:
+  - message: All emotes have punctuation at the end now (just like Upstream's emotes).
+    type: Tweak
+  id: 409111
+  time: '2026-10-03T20:35:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6469
+- author: Caws
+  changes:
+  - message: New sounds for cycling pump-action shotguns, used by the Kammerer and Combat Shotgun.
+    type: Add
+  id: 409112
+  time: '2026-10-03T20:35:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6467
+- author: Caws
+  changes:
+  - message: New 'heavy' shotgun gunshots, used by the Combat Shotgun, 'Sentiel' (Enforcer), and Bulldog.
+    type: Add
+  id: 409113
+  time: '2026-10-03T20:35:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6467
+- author: Caws
+  changes:
+  - message: The ZOZ-106 uses the bolt-action cocking sounds.
+    type: Tweak
+  id: 409114
+  time: '2026-10-03T20:35:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6467
+- author: Caws
+  changes:
+  - message: The 'Sentiel' (Enforcer) and Hushpup now use the rifle cocking sound.
+    type: Tweak
+  id: 409115
+  time: '2026-10-03T20:35:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6467
+- author: Rinary
+  changes:
+  - message: Removed "predicted" movement, until it's will be fixed, since it causes lags and we can't fix it fast.
+    type: Remove
+  id: 409116
+  time: '2026-10-04T08:23:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6482
+- author: wonderfulnewworld
+  changes:
+  - message: Language font works again.
+    type: Fix
+  id: 409117
+  time: '2026-10-04T08:24:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6480
 Order: -1

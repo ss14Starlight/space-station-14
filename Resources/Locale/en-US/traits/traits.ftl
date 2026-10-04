@@ -54,7 +54,6 @@ trait-french-desc = Your accent seems to have a certain «je ne sais quoi».
 trait-spanish-name = Spanish accent
 trait-spanish-desc = Hola señor, donde esta la biblioteca.
 
-trait-scottish-name = Scottish accent
 trait-scottish-desc = Ye're speaking like ae proper Scot!
 
 trait-painnumbness-name = Numb
