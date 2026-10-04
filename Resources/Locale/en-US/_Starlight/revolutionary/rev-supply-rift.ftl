@@ -113,3 +113,6 @@ zapo-name = Zaporozhian sich bundle
 zapo-desc = Cossacks- have gone to space, and have earned respect within the union.
 vodkizine-name = vodkizine bottle
 vodkizine-desc = The best cure for and cause of a hangover.
+
+rev-supply-rift-listing-charging = Supply rift (Charging: { $charge }% - Placed by comrade { $name } { $location })
+rev-supply-rift-unknown-placer = Unknown
