@@ -38,7 +38,7 @@
   id: Boop
   verbName: boop-verb
   interactString: booping-success
-  messagePerceivedByOthers: booping-success
+  messagePerceivedByOthers: booping-success-others
   emoteMessage: booping-emote
   interactSound: /Audio/_Starlight/Effects/yip.ogg
 

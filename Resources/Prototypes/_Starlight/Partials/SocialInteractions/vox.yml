@@ -1,5 +1,5 @@
 - type: !PartialOnly entity
-  id: BaseMobNeocyte
+  id: BaseMobVox
   components:
   - type: SocialInteractionReceiver
     interactionOverrides: # voxes don't have noses

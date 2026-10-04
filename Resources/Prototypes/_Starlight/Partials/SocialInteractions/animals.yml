@@ -91,7 +91,7 @@
     - id: Boop
       interactString: booping-generic-success
       messagePerceivedByOthers: booping-generic-success-others
-      emoteMessage: booping-generic-emote = boops
+      emoteMessage: booping-generic-emote
 
 # Parrots, Polly
 - type: !PartialOnly entity
@@ -135,7 +135,7 @@
     - id: Boop
       interactString: booping-generic-success
       messagePerceivedByOthers: booping-generic-success-others
-      emoteMessage: booping-generic-emote = boops
+      emoteMessage: booping-generic-emote
 
 # Kangaroos, Willow
 - type: !PartialOnly entity
@@ -157,4 +157,4 @@
     - id: Boop
       interactString: booping-generic-success
       messagePerceivedByOthers: booping-generic-success-others
-      emoteMessage: booping-generic-emote = boops
+      emoteMessage: booping-generic-emote
