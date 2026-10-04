@@ -5,3 +5,9 @@
     interactionPrototypes:
     - Look
     - Wave
+  - type: SocialInteractionReceiver
+    interactionOverrides: # no nose
+    - id: Boop
+      interactString: booping-borg-success
+      messagePerceivedByOthers: booping-borg-success-others
+      emoteMessage: booping-borg-emote
