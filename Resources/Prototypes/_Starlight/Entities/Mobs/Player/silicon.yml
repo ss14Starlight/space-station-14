@@ -239,7 +239,7 @@
     laws: Drone
   - type: GhostRole
     makeSentient: true
-    name: Maintenance Drone
+    name: ghost-role-information-drone-name
     description: ghost-role-information-maintenance-drone-description
     rules: ghost-role-information-maintenance-drone-rules
     job: Borg # 10 Hour overall requirement

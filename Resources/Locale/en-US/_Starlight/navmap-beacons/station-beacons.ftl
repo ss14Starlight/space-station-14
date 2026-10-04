@@ -24,3 +24,5 @@ station-beacon-laundromat = Laundromat
 station-beacon-radio-host = Radio Studio
 station-beacon-brigmedic = Brigmedic
 station-beacon-ats = Automated Trade Station
+
+nav-beacon-supply-rift = supply rift

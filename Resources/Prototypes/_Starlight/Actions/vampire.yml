@@ -11,10 +11,10 @@
       itemIconStyle: NoItem
       priority: 1
       icon:
-        sprite: _Starlight/Vampire/actions_vampire.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: fangs_retracted
       iconOn:
-        sprite: _Starlight/Vampire/actions_vampire.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: fangs_extended
     - type: InstantAction
       event: !type:VampireToggleFangsActionEvent {}
@@ -33,7 +33,7 @@
       itemIconStyle: NoItem
       priority: 2
       icon:
-        sprite: _Starlight/Vampire/actions_vampire.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: glare
     - type: InstantAction
       event: !type:VampireGlareActionEvent
@@ -54,7 +54,7 @@
       itemIconStyle: NoItem
       priority: 25
       icon:
-        sprite: _Starlight/Vampire/actions_vampire.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: sleep_icon
     - type: TargetAction
       range: 2
@@ -83,7 +83,7 @@
       checkCanInteract: false
       checkConsciousness: false
       icon:
-        sprite: _Starlight/Vampire/actions_vampire.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: rejuvinate
     - type: InstantAction
       event: !type:VampireRejuvenateIActionEvent {}
@@ -104,7 +104,7 @@
       checkCanInteract: false
       checkConsciousness: false
       icon:
-        sprite: _Starlight/Vampire/actions_vampire.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: rejuvinate
     - type: InstantAction
       event: !type:VampireRejuvenateIIActionEvent
@@ -134,7 +134,7 @@
       itemIconStyle: NoItem
       priority: 5
       icon:
-        sprite: _Starlight/Vampire/actions_vampire.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: select_class
     - type: InstantAction
       event: !type:VampireClassSelectActionEvent {}
@@ -155,7 +155,7 @@
       itemIconStyle: NoItem
       priority: 10
       icon:
-        sprite: _Starlight/Vampire/Haemomancer.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: claws
     - type: InstantAction
       event: !type:VampireHemomancerClawsActionEvent {}
@@ -175,7 +175,7 @@
       itemIconStyle: NoItem
       priority: 13
       icon:
-        sprite: _Starlight/Vampire/Haemomancer.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: blood_pool
     - type: InstantAction
       event: !type:VampireSanguinePoolActionEvent {}
@@ -195,7 +195,7 @@
       itemIconStyle: NoItem
       priority: 11
       icon:
-        sprite: _Starlight/Vampire/Haemomancer.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: blood_tendrils
     - type: TargetAction
       checkCanAccess: false
@@ -218,7 +218,7 @@
       itemIconStyle: NoItem
       priority: 12
       icon:
-        sprite: _Starlight/Vampire/Haemomancer.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: blood_barrier
     - type: TargetAction
       checkCanAccess: false
@@ -242,7 +242,7 @@
       itemIconStyle: NoItem
       priority: 14
       icon:
-        sprite: _Starlight/Vampire/Haemomancer.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: predator_sense
     - type: InstantAction
       event: !type:VampireLocateMindActionEvent {}
@@ -262,7 +262,7 @@
       itemIconStyle: NoItem
       priority: 13
       icon:
-        sprite: _Starlight/Vampire/Haemomancer.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: blood_spikes
     - type: InstantAction
       event: !type:VampireBloodEruptionActionEvent
@@ -287,7 +287,7 @@
       itemIconStyle: NoItem
       priority: 14
       icon:
-        sprite: _Starlight/Vampire/Haemomancer.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: blood_rite
     - type: InstantAction
       event: !type:VampireBloodBringersRiteActionEvent
@@ -319,7 +319,7 @@
       itemIconStyle: NoItem
       priority: 15
       icon:
-        sprite: _Starlight/Vampire/umbrae.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: cloak_of_darkness
     - type: InstantAction
       event: !type:VampireCloakOfDarknessActionEvent {}
@@ -339,7 +339,7 @@
       itemIconStyle: NoItem
       priority: 16
       icon:
-        sprite: _Starlight/Vampire/umbrae.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: shadow_snare
     - type: TargetAction
       checkCanAccess: false
@@ -363,7 +363,7 @@
       itemIconStyle: NoItem
       priority: 20
       icon:
-        sprite: _Starlight/Vampire/umbrae.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: shadow_anchor
     - type: InstantAction
       event: !type:VampireShadowAnchorActionEvent {}
@@ -383,7 +383,7 @@
       itemIconStyle: NoItem
       priority: 21
       icon:
-        sprite: _Starlight/Vampire/umbrae.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: shadow_boxing
     - type: TargetAction
       interactOnMiss: false
@@ -418,7 +418,7 @@
       itemIconStyle: NoItem
       priority: 17
       icon:
-        sprite: _Starlight/Vampire/umbrae.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: dark_passage
     - type: TargetAction
       range: 15
@@ -442,7 +442,7 @@
       itemIconStyle: NoItem
       priority: 18
       icon:
-        sprite: _Starlight/Vampire/umbrae.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: extinguish
     - type: InstantAction
       event: !type:VampireExtinguishActionEvent {}
@@ -462,7 +462,7 @@
       itemIconStyle: NoItem
       priority: 19
       icon:
-        sprite: _Starlight/Vampire/umbrae.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: eternal_darkness
     - type: InstantAction
       event: !type:VampireEternalDarknessActionEvent
@@ -491,7 +491,7 @@
       itemIconStyle: NoItem
       priority: 25
       icon:
-        sprite: _Starlight/Vampire/Dantalion.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: enthrall
     - type: TargetAction
       range: 2
@@ -520,7 +520,7 @@
       itemIconStyle: NoItem
       priority: 26
       icon:
-        sprite: _Starlight/Vampire/Dantalion.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: pacify
     - type: TargetAction
       range: 7
@@ -549,7 +549,7 @@
       itemIconStyle: NoItem
       priority: 27
       icon:
-        sprite: _Starlight/Vampire/Dantalion.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: subspace_swap
     - type: TargetAction
       range: 7
@@ -565,7 +565,7 @@
         slowMultiplier: 0.4
         hysteriaDuration: 15
         hysteriaDisguiseSprites:
-        - path: /_Starlight/Vampire/Effects.rsi
+        - path: /_Starlight/Effects/vampire.rsi
           state: schizo
           size: 1.5, 1.5
         - path: /Mobs/Animals/bear.rsi
@@ -587,7 +587,7 @@
       itemIconStyle: NoItem
       priority: 28
       icon:
-        sprite: _Starlight/Vampire/Dantalion.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: decoy
     - type: InstantAction
       event: !type:VampireDecoyActionEvent
@@ -609,7 +609,7 @@
       itemIconStyle: NoItem
       priority: 29
       icon:
-        sprite: _Starlight/Vampire/Dantalion.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: thralls_up
     - type: InstantAction
       event: !type:VampireRallyThrallsActionEvent
@@ -629,7 +629,7 @@
       itemIconStyle: NoItem
       priority: 30
       icon:
-        sprite: _Starlight/Vampire/Dantalion.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: blood_bond
     - type: InstantAction
       event: !type:VampireBloodBondActionEvent
@@ -653,7 +653,7 @@
       itemIconStyle: NoItem
       priority: 31
       icon:
-        sprite: _Starlight/Vampire/Dantalion.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: hysteria
     - type: InstantAction
       event: !type:VampireMassHysteriaActionEvent
@@ -661,7 +661,7 @@
         flashDuration: 3
         hysteriaDuration: 30
         hysteriaDisguiseSprites:
-        - path: /_Starlight/Vampire/Effects.rsi
+        - path: /_Starlight/Effects/vampire.rsi
           state: schizo
           size: 1.5, 1.5
         - path: /Mobs/Animals/bear.rsi
@@ -686,7 +686,7 @@
       itemIconStyle: NoItem
       priority: 40
       icon:
-        sprite: _Starlight/Vampire/Gargantua.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: blood_swell
     - type: InstantAction
       event: !type:VampireBloodSwellActionEvent
@@ -720,7 +720,7 @@
       itemIconStyle: NoItem
       priority: 41
       icon:
-        sprite: _Starlight/Vampire/Gargantua.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: blood_rush
     - type: InstantAction
       event: !type:VampireBloodRushActionEvent
@@ -742,7 +742,7 @@
       itemIconStyle: NoItem
       priority: 42
       icon:
-        sprite: _Starlight/Vampire/Gargantua.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: seismic_stomp
     - type: InstantAction
       event: !type:VampireSeismicStompActionEvent
@@ -762,7 +762,7 @@
       itemIconStyle: NoItem
       priority: 43
       icon:
-        sprite: _Starlight/Vampire/Gargantua.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: overwhelming_force
     - type: InstantAction
       event: !type:VampireOverwhelmingForceActionEvent {}
@@ -782,7 +782,7 @@
       itemIconStyle: NoItem
       priority: 44
       icon:
-        sprite: _Starlight/Vampire/Gargantua.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: demonic_grasp
     - type: TargetAction
       checkCanAccess: false
@@ -811,7 +811,7 @@
       itemIconStyle: NoItem
       priority: 45
       icon:
-        sprite: _Starlight/Vampire/Gargantua.rsi
+        sprite: _Starlight/Interface/Actions/actions_vampire.rsi
         state: charge
     - type: TargetAction
       checkCanAccess: false

@@ -62,7 +62,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: Magazine120mmGrenadeBlast
         priority: 2
         whitelist:
@@ -127,7 +127,7 @@
   - type: ItemSlots
     slots:
       cell_slot:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: PowerCageHigh
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
@@ -219,7 +219,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: Magazine60mmRocket
         priority: 2
         whitelist:
@@ -481,7 +481,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: Magazine50mmRocket
         priority: 2
         whitelist:
@@ -644,7 +644,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazineDravon75mmHE
         priority: 2
         whitelist:
@@ -729,7 +729,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazineAK570_90mmHE
         priority: 2
         whitelist:
@@ -974,7 +974,7 @@
   - type: ItemSlots
     slots:
       cell_slot:
-        name: Power Cage
+        name: item-slot-component-slot-name-power-cage
         startingItem: PowerCageOmega
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg

@@ -1,6 +1,6 @@
-﻿using Content.Server._Starlight.Medical.Body.Systems;
-using Content.Server.Atmos.EntitySystems;
+using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Medical.Components;
+using Content.Shared.Atmos;
 using Content.Shared.Medical.Cryogenics;
 
 namespace Content.Server.Medical
