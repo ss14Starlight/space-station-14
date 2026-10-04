@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: BookBase
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/book_pickup.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/book_drop.ogg
+

@@ -23,7 +23,7 @@ public sealed partial class ZoneSystem
         var centre = ChunkOrigin(ev.Centre);
 
         var chunks = new List<ZoneRoomChunk>();
-        var zones = new Dictionary<ushort, ProtoId<ZonePrototype>>();
+        var zones = new Dictionary<ushort, List<ProtoId<ZonePrototype>>>();
 
         for (var x = -RoomViewChunkRadius; x <= RoomViewChunkRadius; x++)
         for (var y = -RoomViewChunkRadius; y <= RoomViewChunkRadius; y++)
@@ -48,10 +48,10 @@ public sealed partial class ZoneSystem
                 any = true;
 
                 if (zones.ContainsKey(room) ||
-                    GetZone(comp.Regions[room].Zone) is not { } zone)
+                    GetZones(comp.Regions[room].Zone) is not { Count: > 0 } roomZones)
                     continue;
 
-                zones[room] = zone;
+                zones[room] = new List<ProtoId<ZonePrototype>>(roomZones);
             }
 
             if (any)

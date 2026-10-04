@@ -17,6 +17,13 @@ public sealed partial class ScentTraceComponent : Component
     // How long an entry lingers before naturally expiring, in seconds.
     [DataField]
     public float TraceLifetime = 300f;
+
+    /// <summary>
+    /// Fraction of TraceLifetime a Partial perceiver judges freshness against instead of the
+    /// real value, so they read a trace as stale well before it actually expires.
+    /// </summary>
+    [DataField]
+    public float PartialFreshnessFraction = 0.4f;
 }
 
 [DataDefinition]
