@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: IDCardStandard
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/id_card_pickup1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/id_card_drop1.ogg
+
