@@ -1,13 +1,6 @@
 Entries:
 - author: Drakobird, Conf
   changes:
-  - message: Revenants can now shoot you.
-    type: Add
-  id: 408736
-  time: '2026-09-20T15:53:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6149
-- author: Drakobird, Conf
-  changes:
   - message: Moved stuff over to partials.
     type: Fix
   id: 408737
@@ -2799,4 +2792,11 @@ Entries:
   id: 409135
   time: '2026-10-04T11:39:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6458
+- author: Xale
+  changes:
+  - message: Examine ID now works for IDs and PDAs in the belt slot.
+    type: Tweak
+  id: 409136
+  time: '2026-10-04T12:11:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6340
 Order: -1
