@@ -1,34 +1,6 @@
 Entries:
 - author: Pickra
   changes:
-  - message: Added NT Personnel access role.
-    type: Add
-  id: 408724
-  time: '2026-09-19T16:43:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6161
-- author: Pickra
-  changes:
-  - message: Added NT branded airlocks.
-    type: Add
-  id: 408725
-  time: '2026-09-19T16:43:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6161
-- author: Pickra
-  changes:
-  - message: Applied the new NT Personnel access role to any spaces general NT should be able to access.
-    type: Tweak
-  id: 408726
-  time: '2026-09-19T16:43:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6161
-- author: Pickra
-  changes:
-  - message: Added Peacekeeper Bola Grenade to compliment the bola adjustments.
-    type: Add
-  id: 408727
-  time: '2026-09-19T16:43:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6157
-- author: Pickra
-  changes:
   - message: Bolas are now small and fit in pockets and security belts.
     type: Tweak
   id: 408728
@@ -2799,4 +2771,32 @@ Entries:
   id: 409123
   time: '2026-10-04T10:10:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6461
+- author: SirLutz
+  changes:
+  - message: Malign Custodian does not deal slashdamage anymore, deals 10 blunt now instead of 5 blunt and 5 slash.
+    type: Tweak
+  id: 409124
+  time: '2026-10-04T10:10:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6475
+- author: SirLutz
+  changes:
+  - message: Malign Parasite anom, decreased maximum minion spawns 5->4.
+    type: Tweak
+  id: 409125
+  time: '2026-10-04T10:10:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6475
+- author: SirLutz
+  changes:
+  - message: 'Effigy Supercrit minion amount spawns: Min. 4->3, Max: 6 -> 5.'
+    type: Tweak
+  id: 409126
+  time: '2026-10-04T10:10:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6475
+- author: SirLutz
+  changes:
+  - message: Lowered the APE removal time of empowered Rifts from 60 seconds to 12 seconds.
+    type: Tweak
+  id: 409127
+  time: '2026-10-04T10:10:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6475
 Order: -1
