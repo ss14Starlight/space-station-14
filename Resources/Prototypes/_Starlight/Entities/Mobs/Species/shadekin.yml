@@ -5,6 +5,12 @@
   id: BaseMobShadekin
   abstract: true
   components:
+  - type: SocialInteractionReceiver
+    interactionOverrides: # shadekin don't have noses (they don't breathe!)
+    - id: Boop
+      interactString: booping-snoot-success
+      messagePerceivedByOthers: booping-snoot-success-others
+      emoteMessage: booping-snoot-emote
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
