@@ -10,23 +10,17 @@ public sealed class RedundantMovementAckMessage : NetMessage
 {
     public override MsgGroups MsgGroup => MsgGroups.Entity;
 
-    public uint Sequence { get; set; }
+    public GameTick Tick { get; set; }
 
-    public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer) => buffer.Write(Sequence);
+    public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer) => buffer.Write(Tick);
 
-    public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer) => Sequence = buffer.ReadUInt32();
+    public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer) => Tick = buffer.ReadGameTick();
 }
 
 public sealed class RedundantMovementMessage : NetMessage
 {
     /// <summary>The tick that the message was sent on</summary>
     public GameTick SentTick { get; set; }
-
-    /// <summary>
-    /// Increases with every message. Tick data from a higher sequence replaces data for the same tick from a lower one,
-    /// since the client may rewrite ticks it already sent when its predicted tick moves backwards.
-    /// </summary>
-    public uint Sequence { get; set; }
 
     /// <summary>The input data for a number of ticks, with the last being <see cref="SentTick"/>.</summary>
     public List<TickInputData> TickData { get; set; } = [];
@@ -36,7 +30,6 @@ public sealed class RedundantMovementMessage : NetMessage
     public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
     {
         SentTick = buffer.ReadGameTick();
-        Sequence = buffer.ReadUInt32();
         int count = buffer.ReadByte();
         TickData.EnsureCapacity(count);
         for (int i = 0; i < count; i++)
@@ -56,7 +49,6 @@ public sealed class RedundantMovementMessage : NetMessage
     public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
     {
         buffer.Write(SentTick);
-        buffer.Write(Sequence);
 
         // count is a byte, so only send up to 255
         int numTicks = int.Clamp(TickData.Count, 0, byte.MaxValue);
@@ -80,7 +72,7 @@ public sealed class RedundantMovementMessage : NetMessage
         }
     }
 
-    public override string ToString() => $"RMove: tick {SentTick} seq {Sequence} sending {TickData.Count} ticks of redundancy";
+    public override string ToString() => $"RMove: tick {SentTick} sending {TickData.Count} ticks of redundancy";
 }
 
 public record struct InputChange(ushort Subtick, PackedMovementButtons HeldButtons);

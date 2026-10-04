@@ -40,9 +40,9 @@ public sealed partial class ServerRedundantMovementManager : IServerRedundantMov
         if (!_trackers.TryGetValue(session, out var tracker))
             _trackers.Add(session, tracker = new());
 
-        tracker.Ingest(msg.Sequence, msg.TickData);
+        tracker.Ingest(msg.TickData);
 
-        _netManager.ServerSendMessage(new RedundantMovementAckMessage() { Sequence = msg.Sequence }, msg.MsgChannel);
+        _netManager.ServerSendMessage(new RedundantMovementAckMessage() { Tick = msg.SentTick }, msg.MsgChannel);
     }
 
     public void ApplyInput(GameTick tick, SLMoverController mover)
@@ -55,7 +55,7 @@ public sealed partial class ServerRedundantMovementManager : IServerRedundantMov
 
         foreach (var (session, tracker) in _trackers)
         {
-            if (!tracker.TryFetch(tick, out var lateInput, out var data)) continue;
+            if (!tracker.TryFetch(tick, out var data)) continue;
             var curMoveState = tracker.MoveState;
             var curShuttleState = tracker.ShuttleState;
             if (!session.AttachedEntity.HasValue) continue;
@@ -97,18 +97,12 @@ public sealed partial class ServerRedundantMovementManager : IServerRedundantMov
                 }
             }
 
-            if (lateInput is { } late)
-                EmitStateChange(late, 0);
-
-            if (data is { } current)
+            foreach (var change in data.Changes)
             {
-                foreach (var change in current.Changes)
-                {
-                    EmitStateChange(change.HeldButtons, change.Subtick);
-                }
-
-                EmitStateChange(current.FinalInput, ushort.MaxValue);
+                EmitStateChange(change.HeldButtons, change.Subtick);
             }
+
+            EmitStateChange(data.FinalInput, ushort.MaxValue);
             tracker.MoveState = curMoveState;
             tracker.ShuttleState = curShuttleState;
         }
@@ -116,82 +110,50 @@ public sealed partial class ServerRedundantMovementManager : IServerRedundantMov
 
     public sealed class SessionTracker
     {
-        private readonly SortedDictionary<GameTick, (TickInputData Data, uint Sequence)> _pending = [];
-        private GameTick _lastAppliedTick;
-        private uint _appliedSequence;
-
-        private (uint Sequence, GameTick Tick, PackedMovementButtons Input)? _late;
+        private readonly Queue<TickInputData> _queue = [];
+        private GameTick _mostRecentTick;
 
         public MoveButtons MoveState { get; set; }
         public ShuttleButtons ShuttleState { get; set; }
 
-        public void Ingest(uint sequence, List<TickInputData> list)
+        public void Ingest(List<TickInputData> list)
         {
             foreach (var data in list)
             {
-                if (data.Tick <= _lastAppliedTick)
+                if (data.Tick > _mostRecentTick)
                 {
-                    ConsiderLate(sequence, data.Tick, data.FinalInput);
-                    continue;
+                    _queue.Enqueue(data);
+                    _mostRecentTick = data.Tick;
                 }
-
-                if (_pending.TryGetValue(data.Tick, out var existing) && existing.Sequence >= sequence)
-                    continue;
-
-                _pending[data.Tick] = (data, sequence);
             }
         }
 
-        private void ConsiderLate(uint sequence, GameTick tick, PackedMovementButtons input)
+        public bool TryFetch(GameTick tick, out TickInputData data)
         {
-            // redundant copies of what we already applied carry nothing new
-            if (sequence <= _appliedSequence)
-                return;
-
-            // every message covers the client's whole timeline, so the newest message's latest tick wins
-            if (_late is { } late && (late.Sequence > sequence || late.Sequence == sequence && late.Tick >= tick))
-                return;
-
-            _late = (sequence, tick, input);
-        }
-
-        /// <summary>
-        /// Fetches input for <paramref name="tick"/>. Input for ticks that already ran is collapsed into
-        /// <paramref name="lateInput"/> (the held buttons it ended on) instead of being dropped.
-        /// </summary>
-        public bool TryFetch(GameTick tick, out PackedMovementButtons? lateInput, out TickInputData? current)
-        {
-            lateInput = null;
-            current = null;
-
-            // anything still queued for an earlier tick missed its slot
-            while (_pending.Count > 0)
+            // check the oldest packet we have
+            while (_queue.TryPeek(out data))
             {
-                using var enumerator = _pending.GetEnumerator();
-                enumerator.MoveNext();
-                var (oldTick, (oldData, oldSequence)) = enumerator.Current;
-                if (oldTick >= tick)
-                    break;
-
-                _pending.Remove(oldTick);
-                ConsiderLate(oldSequence, oldTick, oldData.FinalInput);
+                if (data.Tick < tick)
+                {
+                    // if it's too old, discard it
+                    _queue.Dequeue();
+                }
+                else if (data.Tick == tick)
+                {
+                    // if it's for our tick, remove and return it
+                    _queue.Dequeue();
+                    return true;
+                }
+                else
+                {
+                    // if it's too new, then so are the rest
+                    data = default;
+                    return false;
+                }
             }
 
-            if (_late is { } late)
-            {
-                lateInput = late.Input;
-                _appliedSequence = late.Sequence;
-                _late = null;
-            }
-
-            if (_pending.Remove(tick, out var entry))
-            {
-                current = entry.Data;
-                _appliedSequence = Math.Max(_appliedSequence, entry.Sequence);
-            }
-
-            _lastAppliedTick = tick;
-            return lateInput != null || current != null;
+            data = default;
+            return false;
         }
     }
 }

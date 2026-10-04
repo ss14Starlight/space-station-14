@@ -5,9 +5,9 @@ namespace Content.Client._Starlight.RedundantMovement;
 
 public interface IClientRedundantMovementManager
 {
-    uint ServerAckSequence { get; set; }
+    GameTick ServerAckTick { get; set; }
 
     void Initialize();
 
-    void SendTickData(GameTick tick, uint sequence, IEnumerable<TickInputData> data);
+    void SendTickData(GameTick tick, IEnumerable<TickInputData> data);
 }
