@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseNanoTrasenContraband ]
   id: ClothingUniformJumpskirtNtrep
   name: nt representative skirt
   description: That skirt that is better not to see.
@@ -10,7 +10,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntrep.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseNanoTrasenContraband ]
   id: ClothingUniformJumpskirtNtrepTurtleneck
   name: nt representative's turtleneck jumpskirt
   description: For a more casual look while on the job.
@@ -1004,7 +1004,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommspecialopsformalwear.rsi
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseNanoTrasenContraband ]
   id: MagistrateUniformSkirt
   name: magistrate's jumpskirt
   components:
@@ -1025,7 +1025,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/senior_paramedic.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseNanoTrasenContraband ]
   id: ClothingUniformJumpskirtNCT
   name: nt career trainer's skirt
   description: A neatly pressed olive green shirt paired with a sleek black skirt, worn by those committed to mentoring the next generation.

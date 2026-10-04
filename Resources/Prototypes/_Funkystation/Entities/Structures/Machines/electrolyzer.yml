@@ -29,7 +29,7 @@
   - type: ItemSlots
     slots:
       fuel:
-        name: fuel slot
+        name: item-slot-component-slot-name-fuel
         insertOnInteract: false
         ejectOnInteract: false
         whitelist:

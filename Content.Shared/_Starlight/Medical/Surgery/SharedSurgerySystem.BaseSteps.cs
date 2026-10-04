@@ -64,7 +64,7 @@ public abstract partial class SharedSurgerySystem
         if (!_random.Prob(args.SuccessRate))
         {
             if (_net.IsClient) return;
-            _popup.PopupEntity("Because of a careless tool, your hand shook. You need to start this step all over again!", args.User, PopupType.SmallCaution);
+            _popup.PopupEntity(Loc.GetString("surgery-hand-shook"), args.User, PopupType.SmallCaution);
             return;
         }
 
