@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 1,
   "license": "CC-BY-SA-3.0",
   "copyright": "State based copyright",
   "size": {
@@ -26,6 +26,7 @@
       "name": "inhand-right",
       "copyright": "Created by BriocheBear",
       "directions": 4
+
     },
     {
       "name": "equipped-HELMET",
