@@ -24,3 +24,11 @@ store-category-cantrips-standard = Standard Cantrips
 # Uplinks
 store-category-cybernetics = Cybernetics
 store-category-dagd = Glory
+
+store-category-ussp-shuttle = Shuttles
+store-category-ussp-armaments = Armaments
+store-category-ussp-global = Conversion Reward
+store-category-ussp-implants = Implants
+store-category-ussp-deception = Deception
+store-category-ussp-wearables = Wearables
+store-category-ussp-war = War

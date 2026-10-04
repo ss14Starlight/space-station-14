@@ -125,6 +125,7 @@
   components:
   - type: Implanter
     implant: RadioImplantUSSP
+    dissolveOnUse: true
   - type: Item
     sprite: _Starlight/Objects/Specific/USSP/SKB_implanter.rsi
     heldPrefix: implanter

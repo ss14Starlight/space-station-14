@@ -292,7 +292,7 @@
 - type: entity
   parent: DeathRattleImplant
   id: DeathRattleImplantUSSP
-  name: USSP death rattle implant
+  name: USSP death rattler
   description: This implant will inform the USSP radio channel should the user fall into critical condition or die.
   categories: [ HideSpawnMenu ]
   components:

@@ -1,30 +1,15 @@
-### Total Conversion category
+### Conversion Rewards Category
 
 - type: listing
-  id: SKBCheapSunglassesConversion
-  name: glasses-name
-  description: glasses-desc
-  productEntity: ClothingEyesGlassesSKBGlasses
+  id: SKBSmallFlashConversion
+  productEntity: SciFlash
   cost:
-    Conversion: 10
+    Conversion: 5
   categories:
-  - RevUplinkPassive
+  - RevUplinkConversionRewards
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 1
-
-- type: listing
-  id: SKBImplanterConversion
-  name: SKB-implanter-name
-  description: SKB-implanter-desc
-  productEntity: USSPUplinkImplanterEmpty
-  cost:
-    Conversion: 13
-  categories:
-  - RevUplinkPassive
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
+    stockLimit: 2
 
 - type: listing
   id: USSPSovietKeyConversion
@@ -33,63 +18,51 @@
   icon: { sprite: _Starlight/Objects/Devices/encryption_keys.rsi, state: soviet_label }
   productEntity: EncryptionKeySoviet
   cost:
+    Conversion: 10
+  categories:
+  - RevUplinkConversionRewards
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 5
+
+- type: listing
+  id: SKBImplanterConversion
+  name: SKB-implanter-name
+  description: SKB-implanter-desc
+  productEntity: USSPUplinkImplanterEmpty
+  cost:
     Conversion: 15
   categories:
-  - RevUplinkPassive
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 2
-
-- type: listing
-  id: SKBBanner
-  name: banner-name
-  description: banner-desc
-  productEntity: RevolutionaryHeldBanner
-  cost:
-    Conversion: 14
-  categories:
-  - RevUplinkPassive
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 4
-
-- type: listing
-  id: UplinkCommiemovCircuitBoard
-  name: lawboard-name
-  description: lawboard-desc
-  productEntity: CommiemovCircuitBoard
-  cost:
-    Conversion: 18
-  categories:
-  - RevUplinkPassive
+  - RevUplinkConversionRewards
   conditions:
   - !type:StockLimitedListingCondition
     stockLimit: 1
 
-# 500 crates
 - type: listing
-  id: RevSupplyRiftListing
-  productEntity: RevSupplyRift
+  id: UplinkCommiemovCircuitBoardConversion
+  name: lawboard-name
+  description: lawboard-desc
+  productEntity: CommiemovCircuitBoard
   cost:
     Conversion: 20
   categories:
-  - RevUplinkPassive
+  - RevUplinkConversionRewards
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 1
 
-### Telebonds category
-# Weapons, some modern some discontinued like the PPSH
-# The AKMS is candidate of discontinued weapons, but it's just a better DP28 right now.
-# - type: listing
-#   id: SKBAKMSweapon
-#   name: akms-weapon-name
-#   description: akms-weapon-desc
-#   productEntity: WeaponRifleAk
-#   cost:
-#     Telebond: 7
-#   categories:
-#   - RevUplinkWeaponry
-#   conditions:
-#   - !type:StockLimitedListingCondition
-#     stockLimit: 2
+- type: listing
+  id: UplinkEmagCommieConversion
+  productEntity: EmagCommie
+  cost:
+    Conversion: 30
+  categories:
+  - RevUplinkConversionRewards
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 1
+
+### Armaments Category
 
 - type: listing
   id: SKBMakarov
@@ -112,6 +85,16 @@
     Telebond: 2
   categories:
   - RevUplinkWeaponry
+
+- type: listing
+  id: SKBBanner
+  name: banner-name
+  description: banner-desc
+  productEntity: RevolutionaryHeldBanner
+  cost:
+    Telebond: 3
+  categories:
+  - RevUplinkConversionRewards
 
 - type: listing
   id: SKBMosin
@@ -182,7 +165,7 @@
   - !type:StockLimitedListingCondition
     stockLimit: 1
 
-# Wearables
+### Wearables Category
 - type: listing
   id: SKBSovietEVABundle
   name: soviet-eva-name
@@ -261,7 +244,7 @@
   productEntity: ClothingBackpackDuffelMarineHardsuitBundle
   icon: { sprite: _Starlight/Clothing/OuterClothing/Hardsuits/sovietmarine.rsi, state: icon }
   cost:
-    Telebond: 29
+    Telebond: 30
   categories:
   - RevUplinkWearables
   conditions:
@@ -278,7 +261,7 @@
   categories:
   - RevUplinkWearables
 
-# Implants
+### Implants Category
 
 - type: listing
   id: SKBRadioImplant
@@ -319,7 +302,7 @@
   - !type:StockLimitedListingCondition
     stockLimit: 2
 
-# Shuttle
+### Shuttles Category
 
 - type: listing
   id: StolenRemoteSignaller
@@ -435,7 +418,7 @@
   - !type:StockLimitedListingCondition
     stockLimit: 1
 
-# Deception
+### Deception Category
 
 - type: listing
   id: USSPSovietKey
@@ -452,14 +435,13 @@
   id: USSPVoiceMask
   name: soviet-voice-mask-name
   description: soviet-voice-mask-desc
-  icon: { sprite: _Starlight/Objects/Devices/encryption_keys.rsi, state: soviet_label }
   productEntity: ClothingMaskGasVoiceChameleon
   cost:
     Telebond: 5
   categories:
   - RevUplinkDeception
 
-# Pointless
+### Glory Category (Pointless)
 
 - type: listing
   id: USSPMedals
@@ -576,3 +558,60 @@
     Telebond: 5
   categories:
   - RevUplinkPointless
+
+### War Category
+
+- type: listing
+  id: RevSupplyRiftListing
+  productEntity: RevSupplyRift
+  cost:
+    Conversion: 30
+  categories:
+  - RevUplinkWar
+
+- type: listing
+  id: SKBMosinWarListing
+  name: mosin-name
+  description: mosin-desc
+  icon: { sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi, state: base }
+  productEntity: WeaponSniperMosin
+  cost:
+    Conversion: 0
+  categories:
+  - RevUplinkWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 10
+  - !type:BuyBeforeCondition
+    whitelist:
+      - RevSupplyRiftListing
+
+- type: listing
+  id: SKBPlateArmourWarListing
+  name: soviet-plate-armour-name
+  description: soviet-plate-armour-desc
+  productEntity: ClothingOuterArmorSovietPlate
+  cost:
+    Conversion: 0
+  categories:
+  - RevUplinkWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 10
+  - !type:BuyBeforeCondition
+    whitelist:
+      - RevSupplyRiftListing
+
+- type: listing
+  id: RevolutionaryWarMechListing
+  productEntity: MechPobedaFilled
+  cost:
+    Conversion: 60
+  categories:
+  - RevUplinkWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - RevSupplyRiftListing
