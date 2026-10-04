@@ -87,9 +87,9 @@ booping-beak-success-others = {CAPITALIZE(THE($user))} boops {THE($target)} on {
 booping-beak-emote = boops {THE($target)} on {POSS-ADJ($target)} beak.
 
 # Boop alt. - Diona and plants don't have noses
-booping-plant-success = You reach past {MAKEPLURAL(THE($target))} branches to boop {GENDER($target)} on {POSS-ADJ($target)} bark.
-booping-plant-success-others = {CAPITALIZE(THE($user))} reaches past {MAKEPLURAL(THE($target))} branches to boop {GENDER($target)} on {POSS-ADJ($target)} bark.
-booping-plant-emote = reaches past {MAKEPLURAL(THE($target))} branches to boop {GENDER($target)} on {POSS-ADJ($target)} bark.
+booping-plant-success = You reach past {THE($target)}'s branches to boop {OBJECT($target)} on {POSS-ADJ($target)} bark.
+booping-plant-success-others = {CAPITALIZE(THE($user))} reaches past {THE($target)}'s branches to boop {OBJECT($target)} on {POSS-ADJ($target)} bark.
+booping-plant-emote = reaches past {THE($target)}'s branches to boop {OBJECT($target)} on {POSS-ADJ($target)} bark.
 
 # Boop alt. - Arachnids and spiders don't have noses
 booping-spider-success = You boop {THE($target)} between {POSS-ADJ($target)} many eyes.
