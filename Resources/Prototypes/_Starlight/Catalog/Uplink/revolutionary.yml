@@ -582,8 +582,8 @@
   categories:
   - RevUplinkWar
   conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 10
+  - !type:ListingLimitedStockCondition
+    stock: 10
   - !type:BuyBeforeCondition
     whitelist:
       - RevSupplyRiftListing
@@ -598,8 +598,8 @@
   categories:
   - RevUplinkWar
   conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 10
+  - !type:ListingLimitedStockCondition
+    stock: 10
   - !type:BuyBeforeCondition
     whitelist:
       - RevSupplyRiftListing
@@ -612,8 +612,8 @@
   categories:
   - RevUplinkWar
   conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
+  - !type:ListingLimitedStockCondition
+    stock: 1
   - !type:BuyBeforeCondition
     whitelist:
       - RevSupplyRiftListing
