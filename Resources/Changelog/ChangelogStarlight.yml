@@ -1,13 +1,6 @@
 Entries:
 - author: Swonki, Hanz
   changes:
-  - message: ITG Admin content.
-    type: Add
-  id: 408741
-  time: '2026-09-20T17:28:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6064
-- author: Swonki, Hanz
-  changes:
   - message: ITG Surplus Crates in Salv Ticket Vendor.
     type: Add
   id: 408742
@@ -2799,4 +2792,11 @@ Entries:
   id: 409140
   time: '2026-10-04T12:11:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6342
+- author: Johnny
+  changes:
+  - message: Removed the fake shield from revolutionary uplink.
+    type: Remove
+  id: 409141
+  time: '2026-10-04T12:46:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6483
 Order: -1
