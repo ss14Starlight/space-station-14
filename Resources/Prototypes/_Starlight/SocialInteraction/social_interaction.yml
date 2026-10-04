@@ -55,8 +55,13 @@
 # Sniffing (with sound)
 - type: socialInteraction
   id: Sniff
-  parent: SniffQuiet
+  verbName: sniff-verb
+  interactString: sniffing-success
+  messagePerceivedByOthers: sniffing-success-others
+  emoteMessage: sniffing-emote
+  emoteMessageSelf: sniffing-emote-self
   interactSound: /Audio/_Starlight/Scent/dog_sniff.ogg
+  allowSelfTarget: true
 
 # Palpate (sniffing, but with insect antennae)
 - type: socialInteraction
