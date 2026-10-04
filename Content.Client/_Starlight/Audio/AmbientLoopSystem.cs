@@ -34,6 +34,7 @@ public sealed partial class AmbientLoopSystem : EntitySystem
     private List<AmbientLoopPrototype> _loops = new();
     private AmbientLoopPrototype? _current;
     private EntityUid? _stream;
+    private readonly HashSet<EntityUid> _fadingOut = new();
     private TimeSpan _nextCheck;
     private float _volumeSlider;
 
@@ -50,6 +51,11 @@ public sealed partial class AmbientLoopSystem : EntitySystem
 
     private void OnPlayerDetached(LocalPlayerDetachedEvent args)
     {
+        // Streams sit in nullspace, so nothing else cleans them up; also kill loops that are still fading out.
+        foreach (var stream in _fadingOut)
+            DeleteStream(stream);
+
+        _fadingOut.Clear();
         Stop(0f);
         _current = null;
     }
@@ -135,11 +141,28 @@ public sealed partial class AmbientLoopSystem : EntitySystem
 
     private void Stop(float fadeTime)
     {
-        if (fadeTime > 0f)
-            _contentAudio.FadeOut(_stream, duration: fadeTime);
+        _fadingOut.RemoveWhere(s => !Exists(s));
+
+        if (_stream is { } stream && fadeTime > 0f)
+        {
+            _contentAudio.FadeOut(stream, duration: fadeTime);
+            _fadingOut.Add(stream);
+        }
         else
-            _audio.Stop(_stream);
+        {
+            DeleteStream(_stream);
+        }
 
         _stream = null;
+    }
+
+    /// <summary>
+    /// <see cref="SharedAudioSystem.Stop"/> silently does nothing outside first-time prediction
+    /// (e.g. while a game state is applied and the local player gets detached), which leaked the stream.
+    /// </summary>
+    private void DeleteStream(EntityUid? stream)
+    {
+        if (stream is { } uid && Exists(uid) && IsClientSide(uid))
+            QueueDel(uid);
     }
 }
