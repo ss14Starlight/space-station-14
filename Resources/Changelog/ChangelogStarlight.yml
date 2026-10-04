@@ -1,18 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Removed Holo Carps from Dragon Rift pools. Having 5-10 Carps attacking you, with 1-2 of them randomly being literally immune to bullets and thus always able to get free hits on you while you are shooting the rest, felt bad to fight and was just kind of lame. Cool idea, but didn't work.
-    type: Tweak
-  id: 408749
-  time: '2026-09-20T18:04:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6225
-- author: Musiklie
-  changes:
-  - message: Reduced the amount of chems that artifacts produced to a more reasonable level.
-    type: Tweak
-  id: 408750
-  time: '2026-09-20T18:04:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6218
 - author: Musiklie
   changes:
   - message: Reduced the rate certain chems are produced from artifacts to more reasonable levels.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409148
   time: '2026-10-04T14:06:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6452
+- author: Swonki
+  changes:
+  - message: Priority Cryo Spawning Locations.
+    type: Add
+  id: 409149
+  time: '2026-10-04T14:06:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6455
+- author: Swonki
+  changes:
+  - message: ITG & Command Cryosleep spawn prototypes for mapping.
+    type: Add
+  id: 409150
+  time: '2026-10-04T14:06:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6455
 Order: -1
