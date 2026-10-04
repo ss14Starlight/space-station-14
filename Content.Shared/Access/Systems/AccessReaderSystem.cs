@@ -272,7 +272,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
             return true;
 
         if (reader.ContainerAccessProvider == null)
-            return IsAllowedInternal(access, stationKeys, reader);
+            return IsAllowedInternal(access, stationKeys, (target, reader)); // Starlight
 
         if (!_containerSystem.TryGetContainer(target, reader.ContainerAccessProvider, out var container))
             return false;
@@ -294,9 +294,9 @@ public sealed partial class AccessReaderSystem : EntitySystem
         return false;
     }
 
-    private bool IsAllowedInternal(ICollection<ProtoId<AccessLevelPrototype>> access, ICollection<StationRecordKey> stationKeys, AccessReaderComponent reader)
+    private bool IsAllowedInternal(ICollection<ProtoId<AccessLevelPrototype>> access, ICollection<StationRecordKey> stationKeys, Entity<AccessReaderComponent> reader)
     {
-        return !reader.Enabled
+        return !reader.Comp.Enabled // Starlight-edit
                || AreAccessTagsAllowed(access, reader)
                || AreStationRecordKeysAllowed(stationKeys, reader);
     }
@@ -306,9 +306,12 @@ public sealed partial class AccessReaderSystem : EntitySystem
     /// </summary>
     /// <param name="accessTags">A list of access tags.</param>
     /// <param name="reader">The access reader to check against.</param>
-    public bool AreAccessTagsAllowed(ICollection<ProtoId<AccessLevelPrototype>> accessTags, AccessReaderComponent reader)
+    public bool AreAccessTagsAllowed(ICollection<ProtoId<AccessLevelPrototype>> accessTags, Entity<AccessReaderComponent> reader)
     {
-        if (reader.DenyTags.Overlaps(accessTags))
+        // Starlight-start
+        var denyTagEv = new GetAccessReaderDenyTagsEvent(new HashSet<ProtoId<AccessLevelPrototype>>(reader.Comp.DenyTags));
+        RaiseLocalEvent(denyTagEv);
+        if (denyTagEv.DenyTags.Overlaps(accessTags)) // Starlight-end
         {
             // Sec owned by cargo.
 
@@ -318,10 +321,16 @@ public sealed partial class AccessReaderSystem : EntitySystem
             return false;
         }
 
-        if (reader.AccessLists.Count == 0)
+        // Starlight-start
+        var accessListEv = new GetAccessReaderAccessListsEvent(new List<HashSet<ProtoId<AccessLevelPrototype>>>(reader.Comp.AccessLists));
+        RaiseLocalEvent(reader, accessListEv);
+        var accessLists = accessListEv.AccessLists;
+        // Starlight-end
+
+        if (accessLists.Count == 0) // Starlight-edit
             return true;
 
-        foreach (var set in reader.AccessLists)
+        foreach (var set in accessLists) // Starlight-edit
         {
             if (set.IsSubsetOf(accessTags))
                 return true;

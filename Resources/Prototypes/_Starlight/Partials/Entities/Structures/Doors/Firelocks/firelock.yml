@@ -1,0 +1,10 @@
+
+- type: !PartialOnly entity
+  id: BaseFirelock
+  components:
+    - type: AlertLevelAccess
+      added:
+        red: ["Security"]
+        gamma: ["Security"]
+      removed:
+        epsilon: ["Engineering", "Paramedic", "Command"]

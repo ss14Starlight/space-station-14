@@ -944,7 +944,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     if (proto.AllowedAccesses is null || proto.AllowedAccesses.Count() <= 0)
                         _airlock.SetEmergencyAccess((ent, airlockcomp), proto.AccessEnabled);
                     else
-                        if (_access.GetMainAccessReader(ent, out var accessEnt) && _access.AreAccessTagsAllowed(proto.AllowedAccesses, accessEnt.Value.Comp))
+                        if (_access.GetMainAccessReader(ent, out var accessEnt) && _access.AreAccessTagsAllowed(proto.AllowedAccesses, accessEnt.Value)) // Starlight-edit
                             _airlock.SetEmergencyAccess((ent, airlockcomp), proto.AccessEnabled);
                 }
                 break;
