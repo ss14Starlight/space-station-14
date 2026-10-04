@@ -1,13 +1,6 @@
 Entries:
 - author: Pickra
   changes:
-  - message: Bolas are now small and fit in pockets and security belts.
-    type: Tweak
-  id: 408728
-  time: '2026-09-19T16:43:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6157
-- author: Pickra
-  changes:
   - message: Fixed the Bola audio snap spam on hit. Potentially also solving some lag issues with it too.
     type: Fix
   id: 408729
@@ -2799,4 +2792,11 @@ Entries:
   id: 409127
   time: '2026-10-04T10:10:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6475
+- author: Johnny
+  changes:
+  - message: Massive overhaul to the head revolutionaries uplink. Adding new categories, changing current prices, and allowing differing paths that a head revolutionary can take.
+    type: Add
+  id: 409128
+  time: '2026-10-04T10:10:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6479
 Order: -1
