@@ -31,10 +31,7 @@ public sealed partial class SocialInteractionSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
-    {
-        //subscribe to inspect events on the physical social interaction receiver component
-        SubscribeLocalEvent<SocialInteractionReceiverComponent, GetVerbsEvent<Verb>>(AddSocialInteractionVerbs);
-    }
+        => SubscribeLocalEvent<SocialInteractionReceiverComponent, GetVerbsEvent<Verb>>(AddSocialInteractionVerbs);
 
     /// <summary>
     /// Adds the Social Interaction verbs to the right-click context menu.
@@ -45,10 +42,10 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         if (IsDeadOrIncapacitated(args.User))
             return;
 
-        //create a verb subcategory
+        // create a verb subcategory
         var category = new VerbCategory("social-interaction-component-verb", null);
 
-        //enumerate all the physical social interaction prototypes
+        // enumerate all the physical social interaction prototypes
         foreach (var protoid in component.InteractionPrototypes)
         {
             //resolve the proto itself
@@ -136,8 +133,8 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         giverComp.LastInteractTime = curTime;
 
         var selfTarget = args.User == args.Target; // whether or not we're interacting with ourselves
-        var msg = ""; // Stores the text to be shown in the popup message
-        SoundSpecifier? sfx = null; // Stores the filepath of the sound to be played
+        var msg = ""; // stores the text to be shown in the popup message
+        SoundSpecifier? sfx = null; // stores the filepath of the sound to be played
 
         if (proto.InteractString != null)
             msg = Loc.GetString(proto.InteractString, ("target", Identity.Entity(args.Target, EntityManager)));
