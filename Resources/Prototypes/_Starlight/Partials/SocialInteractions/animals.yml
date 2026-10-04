@@ -1,9 +1,9 @@
+# Monkeys, Kobolds, Scurrets
 - type: !PartialOnly entity
   id: MobBaseAncestor
   components:
   - type: SocialInteractionGiver
     interactionPrototypes:
-    - Look
     - Wave
 
 - type: !PartialOnly entity
