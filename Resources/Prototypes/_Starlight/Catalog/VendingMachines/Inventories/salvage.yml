@@ -10,7 +10,7 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorMiningBinoculars
+  id: VendorSalvageBinoculars
   productEntity: Binoculars
   cost:
     SalvageTicket: 75
