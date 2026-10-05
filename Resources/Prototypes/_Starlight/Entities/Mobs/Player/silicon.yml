@@ -227,8 +227,10 @@
   - type: LanguageKnowledge
     speaks:
       - Machine
+      - Dronemind
     understands:
       - Machine
+      - Dronemind
   - type: Drone
   - type: IgnoreHumanoids
   - type: NameIdentifier

@@ -157,3 +157,10 @@
   color: "#8f6741"
   longRange: true
   autoTranslate: Xenomind
+
+- type: radioChannel
+  id: DroneRadio
+  name: language-Dronemind-name
+  frequency: 77786
+  color: "#50864c"
+  longRange: true

@@ -159,3 +159,7 @@ language-Squeakish-description = The language of the Rodentia, made up of a seri
 
 language-Penguin-name = Penguin
 language-Penguin-description = Squawk!
+
+
+language-Dronemind-name = Drone Hivemind
+language-Dronemind-description = A special encrypted radio channel made specifically for drones.
