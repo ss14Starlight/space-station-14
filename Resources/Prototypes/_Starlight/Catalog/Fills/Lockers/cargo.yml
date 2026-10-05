@@ -8,6 +8,7 @@
     - id: ClothingNeckMantleDecoratedSalvager
     - id: ITGTrackerImplanter
     - id: SalvageTechFabFlatpack
+    - id: Multitool
 
 - type: entityTable
   id: FillSalvageLeadHardsuitSpatio
