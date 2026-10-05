@@ -1,13 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: Alternate auth schemes, for example captain and HoS or any 3 of command.
-    type: Add
-  id: 408784
-  time: '2026-09-21T13:50:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6207
-- author: Floximo
-  changes:
   - message: Administrative functions for testing salary.
     type: Add
   id: 408785
@@ -2799,4 +2792,11 @@ Entries:
   id: 409183
   time: '2026-10-05T08:52:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6503
+- author: Caws
+  changes:
+  - message: Debrief access removed from NCT.
+    type: Remove
+  id: 409184
+  time: '2026-10-05T08:52:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6500
 Order: -1
