@@ -1,0 +1,10 @@
+- type: !PartialOnly loadoutGroup
+  id: Trinkets
+  loadouts:
+    - TwistyCube
+
+- type: loadout
+  id: TwistyCube
+  storage:
+    back:
+      - TwistyCube
