@@ -1085,7 +1085,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        foreach (var (uiEntity, uiKey, controller) in _pendingRemoteUiMirrors)
+        var pendingMirrors = _pendingRemoteUiMirrors.ToArray();
+        _pendingRemoteUiMirrors.Clear();
+        foreach (var (uiEntity, uiKey, controller) in pendingMirrors)
         {
             if (!_playerManager.TryGetSessionByEntity(controller, out _))
                 continue;
@@ -1095,8 +1097,6 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             if (TryComp<UserInterfaceComponent>(uiEntity, out var uiComponent))
                 Dirty(uiEntity, uiComponent);
         }
-
-        _pendingRemoteUiMirrors.Clear();
 
         foreach (var chassis in _pendingBorgRefreshes)
             RefreshRemoteConsoleStates(chassis);
