@@ -25,7 +25,6 @@
   id: PollenSporeCloudEmitter
   name: spore cloud
   description: An invisible pollen spore emitter.
-  noSpawn: true
   components:
   - type: SmokeOnTrigger
     duration: 30
@@ -44,7 +43,6 @@
   id: PollenAdvancedPollenCloud
   name: floral wisp
   description: A cluster of potent pollen drifting on the air.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Starlight/Interface/Actions/actions_diona.rsi # TODO: real cloud sprite/animation

@@ -150,7 +150,7 @@
   id: PollenTreeMushroomT3SporeCloud
   name: pollen-mushroom-t3-name
   description: pollen-mushroom-t3-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: mush_spore_bomb }
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: mush_spore_cloud }
   productAction: ActionSporeCloud
   applyToMob: true
   cost:

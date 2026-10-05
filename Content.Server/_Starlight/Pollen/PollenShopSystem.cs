@@ -195,7 +195,7 @@ public sealed partial class PollenShopSystem : EntitySystem
             return;
 
         var damage = new DamageSpecifier();
-        damage.DamageDict.Add("Slash", 25);
+        damage.DamageDict.Add("Slash", 20);
         _damageable.TryChangeDamage(ent.Owner, damage, ignoreResistances: true);
 
         var wood = Spawn(_woodPlankStack10, Transform(ent.Owner).Coordinates);
