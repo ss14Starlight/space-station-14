@@ -6,7 +6,7 @@ namespace Content.Shared._Starlight.Laspi;
 
 public sealed partial class SharedInnateHairChangeSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
 
     [SubscribeLocalEvent]
     private void OnMapInit(Entity<InnateHairChangeComponent> ent, ref MapInitEvent args)
