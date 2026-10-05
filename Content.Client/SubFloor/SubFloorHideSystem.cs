@@ -76,7 +76,7 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
             showVentPipe = ShowVentPipe;
         }
 
-        var revealed = !covered || scannerRevealed || showVentPipe || _showLayers.HasFlag((SubFloorVisibilityMask)component.SubfloorLayer); //Starlight edit - Subfloor layers
+        var revealed = !covered || scannerRevealed || showVentPipe || (_showLayers & (SubFloorVisibilityMask)component.SubfloorLayer) != 0; //Starlight edit - Subfloor layers
 
         // set visibility & color of each layer
         foreach (var layer in args.Sprite.AllLayers)
@@ -100,7 +100,7 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
 
         _sprite.SetVisible((uid, args.Sprite), hasVisibleLayer || revealed);
 
-        if (_showLayers.HasFlag((SubFloorVisibilityMask)component.SubfloorLayer))
+        if ((_showLayers & (SubFloorVisibilityMask)component.SubfloorLayer) != 0)
         {
             // Allows sandbox mode to make wires visible over other stuff.
             component.OriginalDrawDepth ??= args.Sprite.DrawDepth;
