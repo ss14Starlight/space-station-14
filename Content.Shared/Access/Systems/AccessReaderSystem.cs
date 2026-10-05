@@ -21,6 +21,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared._Starlight.Access;
+using Content.Shared._Starlight.Access.Systems;
 
 namespace Content.Shared.Access.Systems;
 
