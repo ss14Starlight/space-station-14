@@ -32,15 +32,8 @@ public sealed partial class LatchUIController : UIController
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IInputManager _input = default!;
 
-    /// <summary>
-    /// Gap in tiles between a body's origin and the panel's nearest edge.
-    /// </summary>
     private const float BodyClearance = 0.75f;
 
-    /// <summary>
-    /// Room in tiles needed above before the panel moves back up from below.
-    /// Prevents flickering at the top of the viewport.
-    /// </summary>
     private const float FlipBackHysteresis = 1.0f;
 
     // Bar shake on Bite Harder. Small, since K9s can bite every 0.75s.
@@ -332,9 +325,6 @@ public sealed partial class LatchUIController : UIController
         PlaceControl(xform, partner, eyeMap);
     }
 
-    /// <summary>
-    /// Places the panel above both bodies, or below them if there's no room above.
-    /// </summary>
     private void PlaceControl(TransformComponent xform, EntityUid? partner, MapId eyeMap)
     {
         if (_control is null || _transform is null)
