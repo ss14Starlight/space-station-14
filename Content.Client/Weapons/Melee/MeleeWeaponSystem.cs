@@ -238,7 +238,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     /// <summary>
     /// Plays recoil animation for targets.
     /// </summary>
-    private void DoHitRecoilEffect(List<EntityUid> targets, EntityUid? user)
+    private void DoHitRecoilEffect(HashSet<EntityUid> targets, EntityUid? user)
     {
         foreach (var target in targets)
         {
