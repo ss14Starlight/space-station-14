@@ -1,11 +1,4 @@
 Entries:
-- author: SlightlyToastedCheesecake
-  changes:
-  - message: (Hotel) Reworked the mining break room to include the old salvage room.
-    type: Add
-  id: 408762
-  time: '2026-09-20T19:05:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6227
 - author: Caws
   changes:
   - message: "New emote: \"blinks\". Available for all species via the emote wheel under the 'General' category, or by manually typing `@blinks` / `@blinked`."
@@ -2799,4 +2792,11 @@ Entries:
   id: 409161
   time: '2026-10-04T22:26:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6499
+- author: RedSpeeds
+  changes:
+  - message: Fixed a exploit related to wideswings.
+    type: Fix
+  id: 409162
+  time: '2026-10-05T01:15:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6504
 Order: -1
