@@ -635,18 +635,15 @@
         - StarlightCargoToolsStatic
         - PartsStatic
         - CablesStatic
-        - PaperworkStatic
-        - CargoStatic
         - MaterialsStatic
-        - PowerCellsStatic
         - StarlightContainersStatic
         - StarlightSalvageTicketStatic
+        - StarlightSalvageEquipmentStatic
       dynamicPacks:
+        - Mining
+        - Equipment
         - StarlightAutolatheLootable
         - StarlightProtolatheLootable
-        - Mining
-        - SalvageSecurityWeapons # It's just the pkas + firing pin
-        - Equipment
         - StarlightCargoDynamic
     - type: EmagLatheRecipes
       emagStaticPacks:
