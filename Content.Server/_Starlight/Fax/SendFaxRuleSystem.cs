@@ -1,22 +1,17 @@
 using System.Linq;
+using Content.Server.Fax;
 using Content.Server.GameTicking.Rules;
 using Content.Shared._Starlight.Fax;
 using Content.Shared.Fax.Components;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Fax;
+namespace Content.Server._Starlight.Fax;
 
 public sealed partial class SendFaxRuleSystem : GameRuleSystem<SendFaxRuleComponent>
 {
     [Dependency] private FaxSystem _fax = null!;
     [Dependency] private IGameTiming _timing = null!;
-
-    protected override void Added(EntityUid uid, SendFaxRuleComponent component, GameRuleComponent gameRule,
-        GameRuleAddedEvent args)
-    {
-
-    }
 
     protected override void Started(EntityUid uid, SendFaxRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
