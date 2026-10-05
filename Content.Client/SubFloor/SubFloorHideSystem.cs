@@ -47,6 +47,11 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
     {
         // Vismask resets so need to reset this.
         _showLayers = SubFloorVisibilityMask.None;
+        var req = new ShowSubfloorRequestEvent()
+        {
+            Value = false,
+        };
+        RaiseNetworkEvent(req);
     }
 
     private void OnRequestReceived(ShowSubfloorRequestEvent ev)
@@ -71,8 +76,7 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
             showVentPipe = ShowVentPipe;
         }
 
-        var revealed = !covered || scannerRevealed || showVentPipe ||
-                       _showLayers.HasFlag((SubFloorVisibilityMask)component.SubfloorLayer); //Starlight edit - Subfloor layers
+        var revealed = !covered || scannerRevealed || showVentPipe || _showLayers.HasFlag((SubFloorVisibilityMask)component.SubfloorLayer); //Starlight edit - Subfloor layers
 
         // set visibility & color of each layer
         foreach (var layer in args.Sprite.AllLayers)
@@ -96,7 +100,7 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
 
         _sprite.SetVisible((uid, args.Sprite), hasVisibleLayer || revealed);
 
-        if (_showLayers != SubFloorVisibilityMask.None)
+        if (_showLayers.HasFlag((SubFloorVisibilityMask)component.SubfloorLayer))
         {
             // Allows sandbox mode to make wires visible over other stuff.
             component.OriginalDrawDepth ??= args.Sprite.DrawDepth;
@@ -131,15 +135,25 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
 
     public void ToggleLayer(SubFloorVisibilityMask mask)
     {
-        if (mask == SubFloorVisibilityMask.None)
-            return;
-
-        _showLayers ^= mask;
+        if (mask != SubFloorVisibilityMask.None) _showLayers ^= mask;
 
         var ev = new ShowSubfloorRequestEvent
         {
             Value = (_showLayers & mask) != 0,
-            Layer = (int)mask
+        };
+        RaiseNetworkEvent(ev);
+    }
+
+    public void SetLayer(SubFloorVisibilityMask mask, bool visible)
+    {
+        if (visible)
+            _showLayers = mask;
+        else
+            _showLayers = ~mask;
+
+        var ev = new ShowSubfloorRequestEvent
+        {
+            Value = visible,
         };
         RaiseNetworkEvent(ev);
     }

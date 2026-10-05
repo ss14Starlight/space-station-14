@@ -214,7 +214,6 @@ namespace Content.Shared.SubFloor
         protected sealed class ShowSubfloorRequestEvent : EntityEventArgs
         {
             public bool Value;
-            public int Layer; //Starlight
         }
     }
 

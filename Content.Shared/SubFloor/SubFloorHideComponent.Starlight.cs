@@ -10,6 +10,9 @@ public sealed partial class SubFloorHideComponent
     [DataField]
     public bool AllowAnchoringUnderCover { get; set; }
 
+    /// <summary>
+    ///     This determines what subfloor layers this entity is visible on.
+    /// </summary>
     [DataField(customTypeSerializer:typeof(FlagSerializer<VisibilityMask>))]
     public int SubfloorLayer { get; set; }
 }

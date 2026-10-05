@@ -20,7 +20,7 @@ public abstract class SharedSetupSystem : EntitySystem
 
         if (component.NameSet) return;
 
-        AlternativeVerb verb = new() { Text = "Setup", Act = () => OpenSetupInterface(uid, args.User, component) };
+        AlternativeVerb verb = new() { Text = Loc.GetString("setup-verb-text"), Act = () => OpenSetupInterface(uid, args.User, component) };
         args.Verbs.Add(verb);
     }
 

@@ -9,8 +9,6 @@ public sealed class SetupMenuBoundUi(EntityUid owner, Enum uiKey) : BoundUserInt
 {
     [ViewVariables] private SetupMenu? _menu;
 
-
-
     protected override void Open()
     {
         base.Open();
