@@ -1,20 +1,6 @@
 Entries:
 - author: Kirb
   changes:
-  - message: Expies melee attack rate halved.
-    type: Tweak
-  id: 408796
-  time: '2026-09-22T00:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6275
-- author: Kirb
-  changes:
-  - message: Fixed health huds not working with soft crit.
-    type: Fix
-  id: 408797
-  time: '2026-09-22T00:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6275
-- author: Kirb
-  changes:
   - message: Expies eyes actually glow at round start.
     type: Fix
   id: 408798
@@ -2799,4 +2785,18 @@ Entries:
   id: 409195
   time: '2026-10-05T14:19:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6350
+- author: BriocheBear
+  changes:
+  - message: Added 5 new sea critter plushies to the game, available in the hug dispenser.
+    type: Add
+  id: 409196
+  time: '2026-10-05T14:19:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6486
+- author: BriocheBear
+  changes:
+  - message: Resprited the sea bunny plushie.
+    type: Tweak
+  id: 409197
+  time: '2026-10-05T14:19:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6486
 Order: -1
