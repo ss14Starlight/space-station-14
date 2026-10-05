@@ -87,7 +87,8 @@ public abstract partial class SharedNavMapSystem : EntitySystem
     public void AddOrUpdateNavMapRegion(EntityUid uid, NavMapComponent component, NetEntity regionOwner, NavMapRegionProperties regionProperties)
     {
         // Check if a new region has been added or an existing one has been altered
-        var isDirty = !component.RegionProperties.TryGetValue(regionOwner, out var oldProperties) || oldProperties != regionProperties;
+        // Starlight: compare seeds by content, record equality compares the HashSet by reference and always dirtied the whole nav map.
+        var isDirty = !component.RegionProperties.TryGetValue(regionOwner, out var oldProperties) || !RegionPropertiesEqual(oldProperties, regionProperties);
 
         if (isDirty)
         {
@@ -97,6 +98,18 @@ public abstract partial class SharedNavMapSystem : EntitySystem
                 Dirty(uid, component);
         }
     }
+
+    // Starlight-start
+    private static bool RegionPropertiesEqual(NavMapRegionProperties a, NavMapRegionProperties b)
+    {
+        return a.Owner == b.Owner
+            && Equals(a.UiKey, b.UiKey)
+            && a.Color == b.Color
+            && a.MaxArea == b.MaxArea
+            && a.MaxRadius == b.MaxRadius
+            && (ReferenceEquals(a.Seeds, b.Seeds) || a.Seeds.SetEquals(b.Seeds));
+    }
+    // Starlight-end
 
     public void RemoveNavMapRegion(EntityUid uid, NavMapComponent component, NetEntity regionOwner)
     {
