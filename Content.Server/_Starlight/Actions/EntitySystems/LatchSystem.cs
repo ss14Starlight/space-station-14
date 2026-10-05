@@ -82,9 +82,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
     /// Grants the latch action on component add.
     /// </summary>
     private void OnLatchStartup(EntityUid uid, LatchComponent comp, ComponentStartup ev)
-    {
-        _action.AddAction(uid, ref comp.ActionEntity, comp.Action);
-    }
+        => _action.AddAction(uid, ref comp.ActionEntity, comp.Action);
 
     /// <summary>
     /// Cleans up actions; ends an active latch if the component is removed early.
@@ -269,9 +267,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
     /// <inheritdoc/>
     protected override void BreakLatch(Entity<LatchComponent> latcher)
-    {
-        EndLatch(latcher.Owner, latcher.Comp);
-    }
+        => EndLatch(latcher.Owner, latcher.Comp);
 
     /// <summary>
     /// True if the target floats: InAir and able to move in air, like carp,
@@ -562,9 +558,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
     /// targets are subject to the latch's line-of-sight rules.
     /// </summary>
     private bool IsPinnedTarget(EntityUid target)
-    {
-        return !TryComp<LatchedComponent>(target, out var latched) || latched.SpeedMultiplier <= 0f;
-    }
+        => !TryComp<LatchedComponent>(target, out var latched) || latched.SpeedMultiplier <= 0f;
 
     /// <summary>
     /// Per-tick upkeep: end conditions, DoT ticks, combat-mode enforcement.
