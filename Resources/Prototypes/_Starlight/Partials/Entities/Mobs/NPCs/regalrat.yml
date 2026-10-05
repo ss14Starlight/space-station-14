@@ -1,8 +1,7 @@
-# Dragons got arms.
 - type: !PartialOnly entity
-  id: BaseMobDragon
+  id: MobRatKing
   components:
   - type: SocialInteractionGiver
     interactionPrototypes:
-    - Look
     - Wave
+    - Sniff

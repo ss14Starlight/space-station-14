@@ -1,4 +1,3 @@
-# Cyborgs
 - type: !PartialOnly entity
   id: BaseBorgChassisNotIonStormable
   components:
@@ -9,24 +8,12 @@
       messagePerceivedByOthers: booping-borg-success-others
       emoteMessage: booping-borg-emote
 
-# Supplybot and Science buildable robots
 - type: !PartialOnly entity
-  id: MobSiliconBase
+  id: BaseBorgChassisNotIonStormable
   components:
   - type: SocialInteractionReceiver
-    interactionOverrides: # silicons don't have noses
+    interactionOverrides: # cyborgs don't have noses
     - id: Boop
       interactString: booping-borg-success
       messagePerceivedByOthers: booping-borg-success-others
       emoteMessage: booping-borg-emote
-
-# AI Core
-- type: !PartialOnly entity
-  id: PlayerStationAiEmpty
-  components:
-  - type: SocialInteractionReceiver
-    interactionOverrides: # ai core has a screen
-    - id: Boop
-      interactString: booping-screen-success
-      messagePerceivedByOthers: booping-screen-success-others
-      emoteMessage: booping-screen-emote
