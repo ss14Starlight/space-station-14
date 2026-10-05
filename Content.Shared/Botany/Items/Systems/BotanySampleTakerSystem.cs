@@ -73,7 +73,7 @@ public sealed partial class BotanySampleTakerSystem : EntitySystem
         _botany.SpawnSeedPacket(plantData, protoId, ent.Owner, Transform(args.User).Coordinates, args.User, healthOverride);
 
         var name = Loc.GetString(plantData.Name);
-        _popup.PopupPredictedCursor(Loc.GetString("plant-sample-component-take-sample-popup", ("seedName", name)), args.User);
+        _popup.PopupPredictedCursor(Loc.GetString("plant-sample-component-take-sample-popup", ("seedName", name)), args.User); // Starlight: Predicted for popups
 
         if (random.Prob(args.Sample.Comp.SampleProbability))
             EnsureComp<PlantTraitSampledComponent>(ent.Owner);
