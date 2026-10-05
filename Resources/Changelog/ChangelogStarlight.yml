@@ -1,13 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: In addition to penalties, bonuses to salaries are now possible.
-    type: Add
-  id: 408786
-  time: '2026-09-21T13:50:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6207
-- author: Floximo
-  changes:
   - message: Admin-Popup for secure terminal request confirmation.
     type: Add
   id: 408787
@@ -2799,4 +2792,11 @@ Entries:
   id: 409185
   time: '2026-10-05T09:47:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6484
+- author: Yosif
+  changes:
+  - message: Cinnaflare and SpearMint now works.
+    type: Fix
+  id: 409186
+  time: '2026-10-05T10:09:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6516
 Order: -1
