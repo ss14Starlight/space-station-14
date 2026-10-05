@@ -1,7 +1,6 @@
 flavor-profile-bland = bland
 flavor-base-abductor-blood = like abductor
 flavor-complex-dragan-special = like purge and triumph
-flavor-base-evil = evil
 flavor-base-wrong = wrong
 flavor-complex-tha-slop = like processed shit
 flavor-complex-struggle = like raw struggle
@@ -45,6 +44,7 @@ flavor-complex-hew-ice-cream = like blueberry and a feeling to hew
 flavor-complex-fluffy-boy-ice-cream = like vanilla, lime, and a gentle kindness
 flavor-complex-leader-ice-cream = like vanilla, blueberry, and a crunchy sword cookie
 flavor-complex-tesla-ice-cream = like vanilla and your hairs raising up
+flavor-complex-glubotoxin = like sea salt and fresh fish
 flavor-complex-banana-ice-cream = like banana and ice cream
 flavor-complex-clown-ice-cream = like mischief, cherry, and banana
 flavor-complex-coconut-ice-cream = like coconut and smooth ice cream
@@ -60,6 +60,7 @@ flavor-complex-tiramisu-ice-cream = like chocolate, espresso, and cinnamon
 flavor-complex-uranium-ice-cream = like sickening green candy apple
 flavor-complex-vox-ice-cream = like crisp mint and faint aftertaste of welding fluid
 flavor-base-cinnamon = cinnamony
+flavor-complex-sawian-blood = like science, and a lack of ethics
 
 # Milks
 flavor-complex-chocolate-milk = like chocolate milk

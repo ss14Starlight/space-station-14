@@ -9,8 +9,14 @@ language-GalacticCommon-description = The common galactic tongue, engineered for
 language-Sign-name = Galactic Sign Language
 language-Sign-description = A sign language commonly used for those who are deaf or mute. Especially popular with spacers, due to practicality in airless environments.
 
+language-ClassicalSign-name = Classical Sign Language
+language-ClassicalSign-description = An older, more obscure sign language originating from Terra. It is completely distinct from Galactic Sign Language.
+
 language-SolCommon-name = Sol Common
 language-SolCommon-description = An artifical language designed by the Trans-Solar Federation for ease of use and concise communication.
+
+language-CygniStandard-name = Cygni Standard
+language-CygniStandard-description = An artifical language designed to remind speakers of the warsaw pact, with little accuracy. Spoken widely across the USSP, alongside Galactic Common and Sol Common.
 
 language-Marish-name = Marish
 language-Marish-description = Where shadekin have a language rooted in empathy, there are still subtle tones and syllables that are as delicate as the emotions that shadekin normally communicate with.
@@ -150,3 +156,6 @@ language-Xenomind-description = Various minds of xenos and terrors.
 
 language-Squeakish-name = Squeakish
 language-Squeakish-description = The language of the Rodentia, made up of a series of chirps and squeaks.
+
+language-Penguin-name = Penguin
+language-Penguin-description = Squawk!

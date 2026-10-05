@@ -5,3 +5,10 @@
       damageContainers:
         - Biological
         - Hybrid
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudMedSec
+  components:
+    - type: Tag
+      tags:
+      - SecBeltEquip

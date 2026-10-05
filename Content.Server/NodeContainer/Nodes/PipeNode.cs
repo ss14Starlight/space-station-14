@@ -3,6 +3,7 @@ using Content.Server.NodeContainer.NodeGroups;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.NodeContainer;
+using Content.Shared.NodeContainer.NodeGroups;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Atmos; // Starlight
@@ -107,7 +108,7 @@ namespace Content.Server.NodeContainer.Nodes
         [DataField("volume")]
         public float Volume { get; set; } = DefaultVolume;
 
-        private const float DefaultVolume = 200f;
+        private const float DefaultVolume = 100f; // Starlight: Was 200f
 
         public override void Initialize(EntityUid owner, IEntityManager entMan)
         {

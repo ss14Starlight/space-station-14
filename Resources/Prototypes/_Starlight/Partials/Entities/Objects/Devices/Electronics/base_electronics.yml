@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: BaseElectronics
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/component_pickup.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/component_drop.ogg
+

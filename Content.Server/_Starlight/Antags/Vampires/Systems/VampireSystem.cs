@@ -32,7 +32,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
-using Prometheus;
+using Content.Server._Starlight.Statistics;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Server._Starlight.Objectives.Components;
@@ -42,14 +42,8 @@ namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
 public sealed partial class VampireSystem : EntitySystem
 {
-    # region Starlight data collection
-    private static readonly Counter _vampireClasses = Metrics.CreateCounter(
-        "Vampire_Classes",
-        "Numbers of vampire classes chosen by players",
-        ["class"]
-    );
-    #endregion
     [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!;
     [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private BloodstreamSystem _blood = default!;
     [Dependency] private IPrototypeManager _proto = default!;
@@ -262,10 +256,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         var spec = new DamageSpecifier(damageGroup, sunlight.GeneticDamagePerInterval);
         _damageableSystem.TryChangeDamage(uid, spec, true);
-
-        if (!TryComp(uid, out DamageableComponent? damageable) ||
-            damageable == null ||
-            !damageable.DamagePerGroup.TryGetValue(_geneticGroupId, out var geneticDamage))
+        if (!_damageableSystem.GetDamagePerGroup(uid).TryGetValue(_geneticGroupId, out var geneticDamage))
         {
             return true;
         }
@@ -319,7 +310,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (max <= 0f)
             return true;
 
-        var current = damageable.TotalDamage.Float();
+        var current = _damageableSystem.GetTotalDamage(uid).Float();
         return current <= max * 0.5f;
     }
 
@@ -351,8 +342,10 @@ public sealed partial class VampireSystem : EntitySystem
         var before = comp.BloodFullness;
         var wasStarving = before <= 0f;
         var changed = false;
+        var alive = !TryComp<MobStateComponent>(uid, out var mobState) ||
+                    mobState.CurrentState != Shared.Mobs.MobState.Dead; // No hunger while dead
 
-        if (before > 0f && _gameTicker.RunLevel < GameRunLevel.PostRound) // No hunger EOR
+        if (before > 0f && alive && _gameTicker.RunLevel < GameRunLevel.PostRound) // No hunger EOR
         {
             comp.StarvationDrunkBloodDrainAccumulator = 0f;
             comp.BloodFullness = MathF.Max(0f, before - (comp.FullnessDecayPerSecond * elapsed));
@@ -743,10 +736,10 @@ public sealed partial class VampireSystem : EntitySystem
             || deadThreshold == null
             || deadThreshold.Value == FixedPoint2.Zero)
         {
-            return 100f - damageable.TotalDamage.Float();
+            return 100f - _damageableSystem.GetTotalDamage(uid).Float();
         }
 
-        return deadThreshold.Value.Float() - damageable.TotalDamage.Float();
+        return deadThreshold.Value.Float() - _damageableSystem.GetTotalDamage(uid).Float();
     }
 
     private void ApplyGroupDamage(EntityUid uid, ProtoId<DamageGroupPrototype> groupId, float amount)
@@ -787,7 +780,7 @@ public sealed partial class VampireSystem : EntitySystem
         EnsureComp<NightVisionComponent>(uid);
 
         comp.ChosenClassId = classProto.ID;
-        _vampireClasses.WithLabels(classProto.ID).Inc();
+        _roundStatistics.RecordAntagChoice("Vampire", "class", classProto.ID);
 
         var classSelectAction = comp.ClassSelectActionId;
         if (comp.ActionEntities.TryGetValue(classSelectAction, out var actionEntity))

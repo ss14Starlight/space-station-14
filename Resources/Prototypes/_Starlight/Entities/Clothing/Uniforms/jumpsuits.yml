@@ -27,7 +27,7 @@
   - type: VentCrawlClothing
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseNanoTrasenContraband]
   id: MagistrateUniformSuit
   name: magistrate's jumpsuit
   components:
@@ -37,7 +37,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate.rsi
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseNanoTrasenContraband]
   id: ClothingUniformJumpsuitNtrep
   name: nt representative suit
   description: That suit that is better not to see.
@@ -48,7 +48,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntrep.rsi
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseNanoTrasenContraband]
   id: ClothingUniformJumpsuitNtrepFormal
   name: nt representative formal suit
   description: That suit that is better not to see.
@@ -59,7 +59,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntrepformal.rsi
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseNanoTrasenContraband]
   id: ClothingUniformJumpsuitNtrepTurtleNeck
   name: nt representative's turtleneck jumpsuit
   description: For a more casual look while on the job.
@@ -70,7 +70,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntrepturtleneck.rsi
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseNanoTrasenContraband]
   id: ClothingUniformJumpsuitNtrepNoble
   name: nt representative's noble jumpsuit
   description: A more classical and elegant style of clothing, designed to emulate the fashion of old earth nobility.
@@ -1031,7 +1031,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/tsfelite.rsi
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseNanoTrasenContraband ]
   id: ClothingUniformJumpsuitNCT
   name: nt career trainer's uniform
   description: A neatly pressed olive green shirt paired with black jeans, worn by those dedicated to shaping the future of the workforce.
@@ -1186,6 +1186,17 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommbartender.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommbartender.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitITGFormal
+  name: ITG formal suit
+  description: A refined suit worn by delegates of the guild.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/itgformal.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/itgformal.rsi
 
 - type: entity
   parent: ClothingUniformBase

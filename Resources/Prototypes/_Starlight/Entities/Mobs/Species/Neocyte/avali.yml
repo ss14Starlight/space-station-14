@@ -93,8 +93,9 @@
         types:
           Heat: 2
           Cold: 2
-        groups:
-          Brute: 6
+          Blunt: 2
+          Slash: 2
+          Piercing: 2
       bleedHealPerUpdate: 1.0
       critHealingModifier: 0.5
       stasisDamageReduction: 0.7

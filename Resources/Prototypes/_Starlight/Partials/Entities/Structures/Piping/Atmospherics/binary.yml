@@ -15,3 +15,20 @@
     - type: SandboxCopyOverride
       override: !type:CreateVariants
         values: *protos
+
+# PR #6362 - Reduced pipe volume
+# Valves explicity specify volume so we have to override.
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+      - SignalControlledValve
+      - GasValve
+  components:
+    - type: NodeContainer
+      nodes:
+        inlet:
+          !type:PipeNode
+          volume: 50 # Was 100L
+        outlet:
+          !type:PipeNode
+          volume: 50 # Was 100L

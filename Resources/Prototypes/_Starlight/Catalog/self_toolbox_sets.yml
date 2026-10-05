@@ -1,23 +1,24 @@
 - type: thiefBackpackSet
   id: SaboteurSELF
-  name: The Saboteur
+  name: thief-backpack-category-saboteur-self-name
   description: self-backpack-category-saboteur-description
   sprite:
     sprite: Objects/Tools/jaws_of_life.rsi
     state: syn_jaws_pry
   content:
   - SyndicateJawsOfLife
-  - WelderIndustrialAdvanced
-  - PowerDrill
+  - WelderExperimental
+  - Omnitool
   - Multitool
-  - ClothingHandsGlovesInsulatedChameleon
-  - RadioJammer
+  - C4
+  - C4
   - FreedomImplanter
-  - ClothingEyesGlassesMeson
+  - EmpImplanter
+  - WeaponPistolDeagle
 
 - type: thiefBackpackSet
   id: PressSELF
-  name: The Press
+  name: thief-backpack-category-press-self-name
   description: self-backpack-category-press-description
   sprite:
     sprite: _Moffstation/Objects/Tools/handheld_camera.rsi
@@ -28,10 +29,18 @@
   - MicrophoneInstrument
   - VoiceMaskImplanter
   - ScramImplanter
+  - BoxStampsFake
+  - CyberPen
+  - BoxTapeRecorder
+  - ClothingHeadHatFedoraPress
+  - ClothingMultipleHeadphonesReporter
+  - HoloReporterPin
+  - ClothingOuterPressArmor
+  - ClothingUniformJumpsuitReporter
 
 - type: thiefBackpackSet
   id: SpySELF
-  name: The Spy
+  name: thief-backpack-category-spy-self-name
   description: self-backpack-category-spy-description
   sprite:
     sprite: Objects/Devices/camera_bug.rsi
@@ -39,5 +48,6 @@
   content:
   - StorageImplanter
   - ChameleonProjector
-  - WeaponPistolStechkin
+  - WeaponEnergyCrossbowWorn
   - CameraBug
+  - RadioJammer

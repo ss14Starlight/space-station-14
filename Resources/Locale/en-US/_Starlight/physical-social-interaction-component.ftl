@@ -7,7 +7,6 @@ petting-emote = pets {THE($target)} on {POSS-ADJ($target)} head.
 
 boop-verb = Boop
 booping-success = You boop { THE($target) } on {POSS-ADJ($target)} nose.
-booping-success-others = { CAPITALIZE(THE($user)) } boops {THE($target)} on {POSS-ADJ($target)} nose.
 booping-emote = boops {THE($target)} on {POSS-ADJ($target)} nose.
 
 wave-verb = Wave
