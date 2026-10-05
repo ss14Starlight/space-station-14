@@ -399,7 +399,7 @@
   - SalvageWeapons
   conditions:
   - !type:BuyerAccessCondition
-    
+
 #consumables
 - type: listing
   id: VendorSalvageSpeedLoaderSpesoConversion
