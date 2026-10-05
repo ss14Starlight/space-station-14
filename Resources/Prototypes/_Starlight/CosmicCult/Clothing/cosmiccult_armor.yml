@@ -6,7 +6,7 @@
   parent: [ ClothingOuterHardsuitBase, BaseCosmicCultItem ] # Starlight Edit: Contraband
   id: ClothingOuterHardsuitCosmicCult
   name: entropic armor
-  description: An unsettling hardsuit, numbing to the touch. It pulses with a glow that makes you feel like you've forgotten something..
+  description: An unsettling hardsuit, numbing to the touch. It pulses with a glow that makes you feel like you've forgotten something...
   components:
   - type: CosmicEquipment
   - type: Sprite
@@ -39,8 +39,8 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
-    #- MonkeyWearable # WIP: Need sprites/displacements
-    #- ScurretWearable # WIP: Need sprites/displacements
+    - MonkeyWearable
+    - ScurretWearable
 #Shoulder mounted flashlight
   - type: ToggleableVisuals # Starlight Edit
     spriteLayer: light
@@ -102,10 +102,10 @@
     - state: icon-helmet
   - type: Clothing
     sprite: _Starlight/CosmicCult/Clothing/cosmiccult_armor.rsi
-  # - type: Tag
-  #   tags:
-  #   - MonkeyWearable # WIP: Need sprites/displacements
-  #   - ScurretWearable # WIP: Need sprites/displacements
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - ScurretWearable
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
