@@ -314,8 +314,8 @@
 - type: entity
   id: RandomHumanoidSpawnerNTSFQuartus
   name: NTSF Quartus Operative
-  description: Used to guard dangerous and anomalous assets in containment.
-  suffix: Anomaly
+  description: Used to guard dangerous and sometimes anomalous assets in containment.
+  suffix: Guardians
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi

@@ -149,30 +149,26 @@
   parent: BaseNanoTrasenSpecialForcesGear
   equipment:
     outerClothing: ClothingOuterHardsuitNTSFQuartus
-    pocket1: AccessOveriderUnlimited
+    pocket1: WeaponEnergyMagnumSeven
     pocket2: EnergyShield
     neck: ClothingNeckCapeNTSF4
   storage:
     back:
-    - RCDExperimental
-    - HoloprojectorField
+    - BluespaceCrystal
     - MedkitCombatFilled
-    - MedkitCombatFilled
-    - ClothingEyesGlassesNullSpace
-    - PowerCellMicroreactor
     - WeaponTetherGun
-    - WeaponGauntletGorilla
-    - WeaponPistolCHIMPUpgraded
-    - AnomalyScanner
-    - BluespaceCrystal1
+    - RCDExperimental
+    - MaterialSandbag
+    - MaterialSandbag
+    - HoloprojectorField
+    - PowerCellMicroreactor
+    - WeaponPulseCarbine
 
 - type: startingGear
   id: NanoTrasenSpecialForcesQuintusGear
   parent: BaseNanoTrasenSpecialForcesGear
   equipment:
     outerClothing: ClothingOuterHardsuitNTSFQuintus
-    pocket1: AccessOveriderUnlimited
-    pocket2: EnergyShieldUnbreakable
     neck: ClothingNeckCapeNTSF5
   storage:
     back:
@@ -183,16 +179,15 @@
     - C4
     - ClusterGrenade
     - SingularityGrenade
-    - GrenadeShrapnel
     - GrenadeIncendiary
-    - SmokeGrenade
     - WhiteholeGrenade
+    - WeaponPulseCarbine
     belt:
     - WeaponEnergyMagnum
     - LightRifleHeavyMagazineFMJ
     - LightRifleHeavyMagazineFMJ
     - LightRifleHeavyMagazineUranium
-    - LightRifleHeavyMagazineAP
+    - LightRifleHeavyMagazineIncendiary
     - MedkitCombatFilled
     - MedkitCombatFilled
     - CombatMedipen
@@ -222,28 +217,28 @@
     - MagazineMagnum
     - MagazineMagnum
     - WeaponPistolN1984
+    - WeaponPulseCarbine
 
 - type: startingGear
   id: NanoTrasenSpecialForcesSeptimusGear
   parent: BaseNanoTrasenSpecialForcesGear
   equipment:
     outerClothing: ClothingOuterHardsuitNTSFSeptimus
-    pocket1: AccessOveriderUnlimited
-    pocket2: WeaponPulsePistol
     neck: ClothingNeckCapeNTSF7
   storage:
     back:
-    - PortableRecharger
+    - WeaponEnergyShotgun
+    - WeaponPulseCarbine
     - MedkitCombatFilled
     - MedkitCombatFilled
+    - GrenadeIncendiary
+    - GrenadeIncendiary
     - GrenadeIncendiary
     - GrenadeIncendiary
     - SingularityGrenade
-    - ToxicGasGrenade
-    - MagazineMagnum
-    - WeaponPistolDeagle
-    - ChemistryBottleAmbuzolPlus
-    - Syringe
+    - SingularityGrenade
+    - SingularityGrenade
+    - SingularityGrenade
 
 - type: startingGear
   id: NanoTrasenSpecialForcesOctaviusGear
@@ -253,15 +248,13 @@
     pocket1: AccessOveriderUnlimited
     pocket2: EnergyShield
     neck: ClothingNeckCapeNTSF8
+    suitstorage: WeaponAdmemeX09Headsman
   storage:
     back:
     - MedkitCombatFilled
     - MedkitCombatFilled
     - PortableRecharger
-    - ToxicGasGrenade
-    - ToxicGasGrenade
-    - ToxicGasGrenade
-    - ToxicGasGrenade
+    - WeaponPulseCarbine
     - ClusterGrenade
     - GrenadeIncendiary
     - GrenadeShrapnel
@@ -269,7 +262,7 @@
     belt:
     - WeaponPistolN1984Nonlethal
     - MagazineMagnumRubber
-    - Handcuffs
+    - ToolDebug
     - Handcuffs
     - MindShieldImplanter
     - MindShieldImplanter
@@ -292,13 +285,15 @@
     back:
     - MedkitCombatFilled
     - MedkitCombatFilled
-    - BoxLethalshot
-    - BoxShotgunUranium
+    - WeaponPulseCarbine
+    - CleanerGrenade
     - CleanerGrenade
     - SmokeGrenade
+    - SmokeGrenade
+    - SoapOmega
+    - Ecronizer
     - PowerCellAntiqueProto
     - PowerCellAntiqueProto
-    - MagazinePistol40AP
-    - MagazinePistol40AP
-    - WeaponPistolStechkinAPS
-    - WeaponShotgunHushpup
+    - ChameleonProjectorNoBattery
+    - WeaponEnergyCrossbow
+    - TrashBag
