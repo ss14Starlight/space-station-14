@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Fixed missing attributions for Lagomorph emote icons.
-    type: Fix
-  id: 408764
-  time: '2026-09-20T19:46:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6235
-- author: Caws
-  changes:
   - message: The new NT Airlock sprites will now display properly.
     type: Fix
   id: 408765
@@ -2799,4 +2792,11 @@ Entries:
   id: 409163
   time: '2026-10-05T05:24:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6351
+- author: Sparlight
+  changes:
+  - message: K9s and most other ordinary animal ghost roles can now open firelocks.
+    type: Add
+  id: 409164
+  time: '2026-10-05T05:53:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6498
 Order: -1
