@@ -4,6 +4,7 @@ using Content.Shared.Prototypes;
 using Content.Shared.Roles.Components;
 using Robust.Shared.Prototypes;
 
+// ReSharper disable CheckNamespace
 namespace Content.Shared.Roles;
 
 public abstract partial class SharedRoleSystem
