@@ -1487,6 +1487,7 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+
   id: ScrapperExoFabricatorMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: Scrapper fabricator machine board
