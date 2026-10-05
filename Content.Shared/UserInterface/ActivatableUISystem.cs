@@ -65,6 +65,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
         args.Handled = _uiSystem.TryToggleUi(uid, args.Key, args.Performer);
     }
 
+
     private void GetActivationVerb(EntityUid uid, ActivatableUIComponent component, GetVerbsEvent<ActivationVerb> args)
     {
         if (component.VerbOnly || !ShouldAddVerb(uid, component, args))
@@ -217,19 +218,13 @@ public sealed partial class ActivatableUISystem : EntitySystem
         if (aui.InHandsOnly)
         {
             if (!TryComp(user, out HandsComponent? hands))
-            {
                 return false;
-            }
 
             if (!_hands.IsHolding((user, hands), uiEntity, out var hand))
-            {
                 return false;
-            }
 
             if (aui.RequireActiveHand && hands.ActiveHandId != hand)
-            {
                 return false;
-            }
         }
 
         if (aui.AdminOnly && !_adminManager.IsAdmin(user))
