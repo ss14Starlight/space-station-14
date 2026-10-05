@@ -46,7 +46,6 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
     private void OnPlayerDetached(LocalPlayerDetachedEvent ev)
     {
         // Vismask resets so need to reset this.
-        _showLayers = SubFloorVisibilityMask.None;
         // Starlight-start
         _showLayers = SubFloorVisibilityMask.None;
         var req = new ShowSubfloorRequestEvent()
@@ -54,7 +53,6 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
             Value = false,
         };
         RaiseNetworkEvent(req);
-        // Starlight-end
         // Starlight-end
     }
 
