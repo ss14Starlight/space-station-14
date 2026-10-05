@@ -447,9 +447,13 @@ public sealed partial class ShadekinSystem : EntitySystem
 
             // First update gets a random offset, so shadekin spawned on the same tick (round start) don't all do
             // their light lookups and raycasts on the same tick every second.
-            component.NextUpdate = component.NextUpdate == TimeSpan.Zero
-                ? curTime + component.UpdateCooldown * _random.NextDouble()
-                : curTime + component.UpdateCooldown;
+            if (component.NextUpdate == TimeSpan.Zero)
+            {
+                component.NextUpdate = curTime + component.UpdateCooldown * _random.NextDouble();
+                continue;
+            }
+
+            component.NextUpdate = curTime + component.UpdateCooldown;
 
             var lightExposure = 0f;
 
