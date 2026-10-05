@@ -119,9 +119,22 @@ public sealed partial class PullController : VirtualController
         return MovePulledObject(player, coords);
     }
 
+    #region Starlight
+    /// <summary>
+    ///     Moves the currently pulled entity toward the requested coordinates.
+    /// </summary>
+    /// <param name="player">The entity pulling the object.</param>
+    /// <param name="coords">The requested destination for the pulled entity.</param>
+    /// <returns>Whether the pointer input command was handled.</returns>
+    /// <remarks>
+    ///     The normal pointer command and remote-control calls share this method and its throw-cooldown check.
+    /// </remarks>
     public bool MovePulledObject(EntityUid player, EntityCoordinates coords)
     {
         if (!_pullerQuery.TryComp(player, out var pullerComp))
+            return false;
+
+        if (_timing.CurTime < pullerComp.NextThrow)
             return false;
 
         var pulled = pullerComp.Pulling;
@@ -167,6 +180,7 @@ public sealed partial class PullController : VirtualController
         moving.MovingTo = coords;
         return false;
     }
+    #endregion
 
     private void OnPullerMove(EntityUid uid, ActivePullerComponent component, ref MoveEvent args)
     {

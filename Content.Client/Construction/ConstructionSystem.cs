@@ -286,6 +286,16 @@ namespace Content.Client.Construction
         }
 
         // Starlight start
+        /// <summary>
+        ///     Attempts to create a construction ghost for the specified user.
+        /// </summary>
+        /// <param name="prototype">The construction prototype for the ghost.</param>
+        /// <param name="loc">The location where the ghost should be created.</param>
+        /// <param name="dir">The direction the ghost should face.</param>
+        /// <param name="user">The entity whose range and construction conditions are validated.</param>
+        /// <param name="ghost">The created ghost, or <see langword="null"/> if creation failed.</param>
+        /// <param name="showPopup">Whether to show a popup explaining a failed construction condition.</param>
+        /// <returns>True if a construction ghost was created; otherwise, false.</returns>
         public bool TrySpawnGhost(
             ConstructionPrototype prototype,
             EntityCoordinates loc,

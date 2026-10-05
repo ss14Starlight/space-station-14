@@ -32,6 +32,12 @@ public sealed partial class QuickConstructionBoundUserInterface : BoundUserInter
     }
 
     #region Starlight
+    /// <summary>
+    ///     Opens the quick-construction menu through the remote-control interface.
+    /// </summary>
+    /// <remarks>
+    ///     If the remote interface cannot host the menu, it opens at the local mouse position instead.
+    /// </remarks>
     public void OpenRemote()
     {
         base.Open();

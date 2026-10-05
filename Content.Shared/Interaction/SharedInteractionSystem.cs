@@ -306,7 +306,15 @@ namespace Content.Shared.Interaction
             return false;
         }
 
-        // Starlight: RemoteControl uses the same pull validation with the controlled entity as puller.
+        #region Starlight
+        /// <summary>
+        ///     Attempts to toggle pulling <paramref name="uid"/> with <paramref name="user"/>.
+        /// </summary>
+        /// <param name="user">The entity initiating the pull.</param>
+        /// <param name="uid">The entity to pull.</param>
+        /// <remarks>
+        ///     Pulling is skipped for self-pulls, deleted targets, and targets outside unobstructed interaction range.
+        /// </remarks>
         public void TryPullObject(EntityUid user, EntityUid uid)
         {
             if (user == uid || Deleted(uid) || !InRangeUnobstructed(user, uid, popup: true))
@@ -314,6 +322,7 @@ namespace Content.Shared.Interaction
 
             _pullSystem.TogglePull(uid, user);
         }
+        #endregion
 
         /// <summary>
         ///     Handles the event were a client uses an item in their inventory or in their hands, either by

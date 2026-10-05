@@ -89,7 +89,10 @@ namespace Content.Client.Examine
 
             // Starlight start
             if (_remoteControl.ControlledEntity == null && _examiningEntity != player)
+            {
+                CloseTooltip();
                 return;
+            }
 
             if (!CanExamine(_examiningEntity, _examinedEntity))
                 CloseTooltip();
