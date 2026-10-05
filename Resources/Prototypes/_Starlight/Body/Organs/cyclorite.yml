@@ -20,7 +20,6 @@
     tags:
       - Meat
 
-
 - type: entity
   id: OrganCycloriteBrain
   parent: [BaseOrganBrain, BaseCycloriteOrgan]
@@ -65,16 +64,6 @@
       Unsexed: MaleCyclorite
   - type: Sprite
     state: tongue
-
-- type: entity
-  id: OrganCycloriteEars
-  parent: [BaseCycloriteOrgan, BaseOrganEars]
-  name: cyclorite ears
-  suffix: Cyclorite
-  description: "There are three parts to the ear: inner, middle and outer. Only one of these parts should normally be visible."
-  components:
-  - type: Sprite
-    state: ears
 
 - type: entity
   id: OrganCycloriteLungs

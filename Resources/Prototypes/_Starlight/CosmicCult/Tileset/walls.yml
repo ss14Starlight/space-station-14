@@ -26,32 +26,6 @@
     base: cult
 
 - type: entity
-  parent: WallCosmicCult
-  id: WallCosmicCultTrimmed
-  name: malign wall
-  suffix: Trimmed
-  components:
-  - type: Icon
-    sprite: _Starlight/CosmicCult/Tileset/cosmicwall.rsi
-    state: full
-  - type: Sprite
-    sprite: _Starlight/CosmicCult/Tileset/cosmicwall.rsi
-    layers:
-      - state: full
-      - map: [ "enum.EdgeLayer.South" ]
-        state: trim_south
-      - map: [ "enum.EdgeLayer.East" ]
-        state: trim_east
-      - map: [ "enum.EdgeLayer.North" ]
-        state: trim_north
-      - map: [ "enum.EdgeLayer.West" ]
-        state: trim_west
-  - type: IconSmooth
-    key: cultwalls
-    base: cult
-  - type: SmoothEdge
-
-- type: entity
   id: WindowCosmicCult
   name: malign pane
   description: An odd-looking window. Something about it unnerves you.

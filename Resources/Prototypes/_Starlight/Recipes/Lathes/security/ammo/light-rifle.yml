@@ -123,13 +123,6 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineDMRPractice
-  result: MagazineDMRPractice
-  materials:
-    Steel: 175
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
   id: MagazineDMRUranium
   result: MagazineDMRUranium
   materials:
