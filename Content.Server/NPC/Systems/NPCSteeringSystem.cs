@@ -100,8 +100,9 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
 
     private int _activeSteeringCount;
 
-    // Starlight: reused every tick instead of allocating a fresh array.
+    #region Starlight
     private readonly List<(EntityUid, NPCSteeringComponent, InputMoverComponent, TransformComponent)> _steeringNpcs = new();
+    #endregion
 
     public override void Initialize()
     {
