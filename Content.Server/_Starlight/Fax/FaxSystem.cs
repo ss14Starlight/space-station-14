@@ -39,7 +39,7 @@ public sealed partial class FaxSystem
         return parsed.RemoveLeading(["meta"]).ToMarkup();
     }
 
-    private string PrependContentMetadata(EntityUid uid, string content, FaxPrintout payload, FaxMachineComponent comp)
+    private string PrependContentMetadata(string content, FaxPrintout payload, FaxMachineComponent comp)
     {
         const string MetaFormat = """
         [meta][dots bold]Sent: {0} at {1}

@@ -708,7 +708,7 @@ public sealed partial class FaxSystem : EntitySystem
         {
             #region Starlight
             _paperSystem.SetContent((printed, paper), printout is { MetaSentAt: not null, IncludeMetadata: true }
-                ? PrependContentMetadata(uid, printout.Content, printout, component)
+                ? PrependContentMetadata(printout.Content, printout, component)
                 : printout.Content);
             #endregion
 
