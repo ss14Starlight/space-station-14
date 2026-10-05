@@ -299,6 +299,23 @@
     occursDuringRoundEnd: false
   - type: MalignRiftSpawnRule
 
+# Scrapper
+- type: entity
+  parent: BaseGameRule
+  id: ScrapperSpawn
+  components:
+  - type: StationEvent
+    earliestStart: 15
+    weight: 3
+    minimumPlayers: 10
+    duration: null
+    occursDuringRoundEnd: false
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/Scrapper-2987.yml
+  - type: DynamicRuleCost
+    cost: 100
+
 - type: entity
   id: SyndicateCrateOpsPrompt
   parent: BaseGameRule

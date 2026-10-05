@@ -1,8 +1,6 @@
 # you shouldn't be creating new hints for every effect/trigger
 # try and reuse them so that a hint isn't a dead giveaway. -emo
 
-artifact-effect-hint-displacement = Metaphysical displacement
-
 # the triggers should be more obvious than the effects
 # gives people an idea of what to do: don't be too specific (i.e. no "welders")
 
