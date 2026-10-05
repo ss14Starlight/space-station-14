@@ -12,6 +12,7 @@ namespace Content.Server._Starlight.Access.Systems;
 public sealed partial class AlertLevelAccessSystem : SharedAlertLevelAccessSystem
 {
     [Dependency] private StationSystem _station = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
 
     /// <summary>
     /// On map init, find alert level of grid.
@@ -27,15 +28,13 @@ public sealed partial class AlertLevelAccessSystem : SharedAlertLevelAccessSyste
     /// <summary>
     /// When unanchored, unsets alert level. When anchored, finds alert level from grid.
     /// </summary>
-    /// <param name="ent"></param>
-    /// <param name="ev"></param>
     [SubscribeLocalEvent]
     private void OnAnchorStateChanged(Entity<AlertLevelAccessComponent> ent, ref AnchorStateChangedEvent ev)
     {
         // If entity was unanchored, unset level.
         if (!ev.Anchored)
         {
-            UpdateAlertLevel(ent);
+            UpdateAlertLevel(ent, null, null);
             return;
         }
 
@@ -46,25 +45,62 @@ public sealed partial class AlertLevelAccessSystem : SharedAlertLevelAccessSyste
     }
 
     /// <summary>
-    /// Update the "current alert level" field on the <see cref="AlertLevelAccessComponent"/>s that are shared with clients.
+    /// When station changes alert level, finds all grids, updates relevant entities on each grid with the new alert.
     /// </summary>
     [SubscribeLocalEvent]
     private void OnAlertLevelChange(AlertLevelChangedEvent ev)
     {
+        // Station needs to be a station (duh) and needs to have an alert level before we can do anything.
+        if (!TryComp<StationDataComponent>(ev.Station, out var station) ||
+            !TryComp<AlertLevelComponent>(ev.Station, out var alert))
+            return;
+
+        var level = alert.CurrentLevel; // No, this line isn't redundant. Type inference gets mad otherwise.
+        var color = GetAlertColor(alert);
+
+        // Update the entities on all affected station grids.
+        foreach (var grid in station.Grids)
+            UpdateEntitiesOnGrid(grid, level, color);
+    }
+
+    /// <summary>
+    /// When a grid becomes member of a station, we fill in the alert level and color on all relevant entities on said grid.
+    /// </summary>
+    [SubscribeLocalEvent]
+    private void OnStationGridAddedEvent(Entity<AlertLevelAccessComponent> ent, ref StationGridAddedEvent ev)
+    {
+        // If we can't determine alert level then there's no point.
         if (!TryComp<AlertLevelComponent>(ev.Station, out var alert))
             return;
 
-        var query = EntityQueryEnumerator<AlertLevelAccessComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var alertLevelAccess, out var xform))
+        var level = alert.CurrentLevel; // No, this line isn't redundant. Type inference gets mad otherwise.
+        var color = GetAlertColor(alert);
+        UpdateEntitiesOnGrid(ev.GridId, level, color);
+    }
+
+    /// <summary>
+    /// When a grid stops being a member of a station, we wipe all level tracking state on entities on said grid.
+    /// </summary>
+    [SubscribeLocalEvent]
+    private void OnStationGridRemovedEvent(Entity<AlertLevelAccessComponent> ent, ref StationGridRemovedEvent ev)
+        => UpdateEntitiesOnGrid(ev.GridId, null, null);
+
+    /// <summary>
+    /// Finds all entities with <see cref="AlertLevelAccessComponent"/> on the grid and updates them with the
+    /// given level and color.
+    /// </summary>
+    private void UpdateEntitiesOnGrid(EntityUid grid, string? level, Color? color)
+    {
+        var children = new HashSet<Entity<AlertLevelAccessComponent>>();
+        _lookup.GetChildEntities(grid, children);
+
+        foreach (var child in children)
         {
+            var xform = Transform(child);
             if (!xform.Anchored)
                 continue;
-            if (CompOrNull<StationMemberComponent>(xform.GridUid)?.Station != ev.Station)
-                continue;
 
-            // Grab the alert color.
-            var color = GetAlertColor(ev.Station, ref alert);
-            UpdateAlertLevel((uid, alertLevelAccess), alert?.CurrentLevel, color);
+            UpdateAlertLevel(child, level, color);
         }
     }
 
@@ -93,15 +129,15 @@ public sealed partial class AlertLevelAccessSystem : SharedAlertLevelAccessSyste
         // Find the Station the grid belongs to and said station's alert level comp.
         var station = FindStation(ent, ref xform);
         if (!station.HasValue ||
-            !TryComp<AlertLevelComponent>(station.Value, out var alerts))
+            !TryComp<AlertLevelComponent>(station.Value, out var alert))
             return (null, null);
 
         // Grab the alert color.
-        var color = GetAlertColor(station.Value, ref alerts);
-        return (alerts?.CurrentLevel, color);
+        var color = GetAlertColor(alert);
+        return (alert.CurrentLevel, color);
     }
 
-    private void UpdateAlertLevel(Entity<AlertLevelAccessComponent> ent, string? level = null, Color? levelColor = null)
+    private void UpdateAlertLevel(Entity<AlertLevelAccessComponent> ent, string? level, Color? levelColor)
     {
         // Unchanged alert level, don't write or dirty.
         if (ent.Comp.Level == level)
@@ -114,10 +150,9 @@ public sealed partial class AlertLevelAccessSystem : SharedAlertLevelAccessSyste
             nameof(AlertLevelAccessComponent.Level), nameof(AlertLevelAccessComponent.LevelColor));
     }
 
-    private Color GetAlertColor(EntityUid station, ref AlertLevelComponent? alerts)
+    private Color GetAlertColor(AlertLevelComponent alerts)
     {
-        if (!Resolve(station, ref alerts) ||
-            alerts.AlertLevels == null ||
+        if (alerts.AlertLevels == null ||
             !alerts.AlertLevels.Levels.TryGetValue(alerts.CurrentLevel, out var details))
             return Color.White;
 
