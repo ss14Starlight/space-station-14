@@ -20,7 +20,7 @@
     componentRequirements:
       PowerCell:
         amount: 1
-        defaultPrototype: PowerCellMedium
+        defaultPrototype: PowerCellMediumPrinted
         examineName: construction-insert-info-examine-name-power-cell
 
 - type: entity

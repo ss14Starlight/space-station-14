@@ -267,6 +267,20 @@
       - ReagentId: Dermaline
         Quantity: 480
 
+- type: entity
+  parent: Jug
+  suffix: holywater
+  id: JugHolywater
+  components:
+  - type: Label
+    currentLabel: reagent-name-holywater
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Holywater
+        Quantity: 240
+
 # Large cryo chemical beakers
 - type: entity
   suffix: cryoxadone

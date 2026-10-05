@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: TelecomServer
+  components:
+  - type: AmbientSound
+    sound:
+      path: /Audio/_Starlight/Ambience/Objects/tcomms_hum.ogg

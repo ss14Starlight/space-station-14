@@ -15,6 +15,8 @@ zone-kitchen = Kitchen
 zone-chapel = Chapel
 zone-dormitory = Dormitory
 zone-solars = Solars
+zone-detective = Detective
+zone-virology = Virology
 
 zone-placer-window-title = Zone painter
 zone-placer-window-hint = Pick a zone, then drag a rectangle over the station.
