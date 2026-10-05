@@ -240,7 +240,10 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
         base.Update(frameTime);
 
         if (!_enabled)
+        {
+            _steeringNpcs.Clear();
             return;
+        }
 
         // Not every mob has the modifier component so do it as a separate query.
         // Starlight-start: reuse a list and steer serially; Parallel.For was capped to one thread anyway.

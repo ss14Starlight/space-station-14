@@ -106,11 +106,11 @@ public sealed partial class ShadekinSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnDamageChanged(Entity<ShadekinComponent> ent, ref BeforeDamageChangedEvent args)
+    private void OnDamageChanged(Entity<ShadekinComponent> _, ref BeforeDamageChangedEvent args)
         => args.Damage.DamageDict["Asphyxiation"] = 0;
 
     [SubscribeLocalEvent]
-    private void OnShutdown(Entity<ShadekinComponent> ent, ref ComponentShutdown args)
+    private void OnShutdown(Entity<ShadekinComponent> ent, ref ComponentShutdown _)
     {
         if (_timing.ApplyingState)
             return;
@@ -449,7 +449,7 @@ public sealed partial class ShadekinSystem : EntitySystem
             // their light lookups and raycasts on the same tick every second.
             if (component.NextUpdate == TimeSpan.Zero)
             {
-                component.NextUpdate = curTime + component.UpdateCooldown * _random.NextDouble();
+                component.NextUpdate = curTime + (component.UpdateCooldown * _random.NextDouble());
                 continue;
             }
 

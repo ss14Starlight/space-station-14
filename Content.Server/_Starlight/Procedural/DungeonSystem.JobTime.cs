@@ -7,13 +7,11 @@ namespace Content.Server.Procedural;
 public sealed partial class DungeonSystem
 {
     private void InitializeJobTime()
-    {
-        Subs.CVar(_configManager, StarlightCCVars.DungeonJobTime, value =>
+        => Subs.CVar(_configManager, StarlightCCVars.DungeonJobTime, value =>
         {
             DungeonJobTime = value;
             _dungeonJobQueue.Budget = value;
         }, true);
-    }
 
     private sealed class TimedJobQueue : JobQueue
     {

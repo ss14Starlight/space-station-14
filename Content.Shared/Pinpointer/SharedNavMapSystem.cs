@@ -42,9 +42,7 @@ public abstract partial class SharedNavMapSystem : EntitySystem
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int GetTileIndex(Vector2i relativeTile)
-    {
-        return relativeTile.X * ChunkSize + relativeTile.Y;
-    }
+        => relativeTile.X * ChunkSize + relativeTile.Y; // Starlight-edit: Lambda
 
     /// <summary>
     /// Inverse of <see cref="GetTileIndex"/>
@@ -93,9 +91,9 @@ public abstract partial class SharedNavMapSystem : EntitySystem
         if (isDirty)
         {
             // Starlight-start
-            component.RegionProperties[regionOwner] = regionProperties with 
+            component.RegionProperties[regionOwner] = regionProperties with
             {
-                Seeds = new HashSet<Vector2i>(regionProperties.Seeds),
+                Seeds = [.. regionProperties.Seeds],
             };
             // Starlight-end
 
@@ -106,14 +104,12 @@ public abstract partial class SharedNavMapSystem : EntitySystem
 
     // Starlight-start
     private static bool RegionPropertiesEqual(NavMapRegionProperties a, NavMapRegionProperties b)
-    {
-        return a.Owner == b.Owner
+        => a.Owner == b.Owner
             && Equals(a.UiKey, b.UiKey)
             && a.Color == b.Color
             && a.MaxArea == b.MaxArea
             && a.MaxRadius == b.MaxRadius
             && (ReferenceEquals(a.Seeds, b.Seeds) || a.Seeds.SetEquals(b.Seeds));
-    }
     // Starlight-end
 
     public void RemoveNavMapRegion(EntityUid uid, NavMapComponent component, NetEntity regionOwner)
