@@ -95,12 +95,14 @@ public abstract partial class SharedHandsSystem : EntitySystem
         if (session?.AttachedEntity is not { } attachedEntity)
             return;
 
+        // Starlight start
         var handsEntity = attachedEntity;
         if (TryComp<InteractionRelayComponent>(attachedEntity, out var relay)
             && relay.RelayEntity is { } relayEntity)
         {
             handsEntity = relayEntity;
         }
+        // Starlight end
 
         if (!TryComp(handsEntity, out HandsComponent? component))
             return;

@@ -124,9 +124,10 @@ namespace Content.Shared.Friction
                      * as a check for brains and such which have input mover purely for ghosting behavior.
                      * Starlight: Kinematic input movers are valid too, e.g. admin ghosts.
                      */
-                    DebugTools.Assert(body.BodyType == BodyType.Kinematic
-                                      || !_moverQuery.HasComp(uid)
-                                      || _blockMoverQuery.HasComp(uid),
+                    DebugTools.Assert(
+                        body.BodyType == BodyType.Kinematic
+                            || !_moverQuery.HasComp(uid)
+                            || _blockMoverQuery.HasComp(uid),
                         $"Input mover: {ToPrettyString(uid)} in TileFrictionController is not the correct BodyType, BodyType found: {body.BodyType}, expected: Kinematic or KinematicController.");
                     continue;
                 }

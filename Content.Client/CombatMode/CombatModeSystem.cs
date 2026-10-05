@@ -70,8 +70,10 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
 
     public bool IsInCombatMode()
     {
+        // Starlight-start
         if (_remoteControl.ControlledEntity is { } remote)
             return IsInCombatMode(remote);
+        // Starlight-end
 
         var entity = _playerManager.LocalEntity;
 

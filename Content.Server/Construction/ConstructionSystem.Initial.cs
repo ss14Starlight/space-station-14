@@ -438,6 +438,13 @@ namespace Content.Server.Construction
             await TryStartStructureConstruction(ev, user, args.SenderSession);
         }
 
+        /// <summary>
+        ///     Starts the requested structure construction for the given user.
+        /// </summary>
+        /// <param name="ev">The structure-construction request.</param>
+        /// <param name="user">The entity performing the construction.</param>
+        /// <param name="session">The requesting session used to track progress and send acknowledgements.</param>
+        /// <returns>A task representing the asynchronous construction operation.</returns>
         public async Task TryStartStructureConstruction(
             TryStartStructureConstructionMessage ev,
             EntityUid user,
@@ -446,14 +453,14 @@ namespace Content.Server.Construction
             if (!PrototypeManager.TryIndex(ev.PrototypeName, out ConstructionPrototype? constructionPrototype))
             {
                 Log.Error($"Tried to start construction of invalid recipe '{ev.PrototypeName}'!");
-                RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack), session);
+                RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack), session); // Starlight
                 return;
             }
 
             if (!PrototypeManager.TryIndex(constructionPrototype.Graph, out ConstructionGraphPrototype? constructionGraph))
             {
                 Log.Error($"Invalid construction graph '{constructionPrototype.Graph}' in recipe '{ev.PrototypeName}'!");
-                RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack), session);
+                RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack), session); // Starlight
                 return;
             }
 
@@ -472,7 +479,7 @@ namespace Content.Server.Construction
             var startNode = constructionGraph.Nodes[constructionPrototype.StartNode];
             var targetNode = constructionGraph.Nodes[constructionPrototype.TargetNode];
             var pathFind = constructionGraph.Path(startNode.Name, targetNode.Name);
-            if (_beingBuilt.TryGetValue(session, out var set))
+            if (_beingBuilt.TryGetValue(session, out var set)) // Starlight
             {
                 if (!set.Add(ev.Ack))
                 {
@@ -483,7 +490,7 @@ namespace Content.Server.Construction
             else
             {
                 var newSet = new HashSet<int> {ev.Ack};
-                _beingBuilt[session] = newSet;
+                _beingBuilt[session] = newSet; // Starlight
             }
 
             var location = GetCoordinates(ev.Location);
@@ -502,7 +509,7 @@ namespace Content.Server.Construction
                 }
             }
 
-            void Cleanup() => _beingBuilt[session].Remove(ev.Ack);
+            void Cleanup() => _beingBuilt[session].Remove(ev.Ack); // Starlight
 
             if (!_actionBlocker.CanInteract(user, null)
                 || !TryComp(user, out HandsComponent? hands) || _handsSystem.GetActiveItem((user, hands)) == null)
@@ -574,7 +581,7 @@ namespace Content.Server.Construction
                 return;
             }
 
-            RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack, GetNetEntity(structure)), session);
+            RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack, GetNetEntity(structure)), session); // Starlight
             _adminLogger.Add(LogType.Construction, LogImpact.Low, $"{ToPrettyString(user):player} has turned a {ev.PrototypeName} construction ghost into {ToPrettyString(structure)} at {Transform(structure).Coordinates}");
             Cleanup();
         }

@@ -702,9 +702,8 @@ public sealed partial class StorageWindow : BaseWindow
             return;
 
         var storageSystem = _entity.System<StorageSystem>();
-        #region Starlight
+        // Starlight: use the active hand item for storage insertion.
         var handEntity = _storageController.GetActiveStorageHandItem();
-        #endregion
 
         if (args.Function == ContentKeyFunctions.MoveStoredItem && StorageEntity != null)
         {

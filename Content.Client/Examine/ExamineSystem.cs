@@ -33,16 +33,20 @@ namespace Content.Client.Examine
         [Dependency] private IEyeManager _eyeManager = default!;
         [Dependency] private VerbSystem _verbSystem = default!;
         [Dependency] private SpriteSystem _sprite = default!;
-        private RemoteControlInterface _remoteControl = default!;
 
         private List<Verb> _verbList = new();
 
         public const string StyleClassEntityTooltip = "entity-tooltip";
 
         private EntityUid _examinedEntity;
+
+        #region Starlight
+        private RemoteControlInterface _remoteControl = default!;
         private EntityUid _examiningEntity;
-        private Popup? _examineTooltipOpen;
         private UIRoot? _examineTooltipRoot;
+        #endregion
+
+        private Popup? _examineTooltipOpen;
         private ScreenCoordinates _popupPos;
         private CancellationTokenSource? _requestCancelTokenSource;
         private int _idCounter;
@@ -50,7 +54,7 @@ namespace Content.Client.Examine
         public override void Initialize()
         {
             base.Initialize();
-            _remoteControl = EntityManager.System<RemoteControlInterface>();
+            _remoteControl = EntityManager.System<RemoteControlInterface>(); // Starlight
 
             UpdatesOutsidePrediction = true;
 
@@ -83,15 +87,13 @@ namespace Content.Client.Examine
             if (_examineTooltipOpen is not {Visible: true}) return;
             if (!_examinedEntity.Valid || _playerManager.LocalEntity is not { } player) return;
 
-            if (_examineTooltipRoot is not null)
-                return;
-
+            // Starlight start
             if (_remoteControl.ControlledEntity == null && _examiningEntity != player)
                 return;
 
-            var examiner = _remoteControl.ControlledEntity ?? player;
-            if (!CanExamine(examiner, _examinedEntity))
+            if (!CanExamine(_examiningEntity, _examinedEntity))
                 CloseTooltip();
+            // Starlight end
         }
 
         public override void Shutdown()
@@ -108,6 +110,7 @@ namespace Content.Client.Examine
             if (examinerComp.SkipChecks)
                 return true;
 
+            // Starlight start
             if (examinerComp.CheckInRangeUnOccluded
                 && _remoteControl.ControlledEntity != examiner)
             {
@@ -116,6 +119,7 @@ namespace Content.Client.Examine
                 if (!b.Contains(target.Position))
                     return false;
             }
+            // Starlight end
 
             return base.CanExamine(examiner, target, predicate, examined, examinerComp);
         }
@@ -201,8 +205,10 @@ namespace Content.Client.Examine
 
             // cache entity for Update function
             _examinedEntity = target;
+            // Starlight start
             _examiningEntity = examiner ?? player;
             _examineTooltipRoot = uiRoot;
+            // Starlight end
 
             const float minWidth = 300;
 
@@ -311,7 +317,7 @@ namespace Content.Client.Examine
                 break;
             }
 
-            var verbUser = _remoteControl.ControlledEntity ?? player;
+            var verbUser = _remoteControl.ControlledEntity ?? player; // Starlight
             var totalVerbs = _verbSystem.GetLocalVerbs(target, verbUser, typeof(ExamineVerb));
 
             // We still need client-exclusive verbs even when the server sends its data in so if that's the case

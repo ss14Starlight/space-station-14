@@ -143,10 +143,10 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     {
         chassis = default;
         return _container.TryGetContainingContainer(cell, out var container)
-               && TryComp<PowerCellSlotComponent>(container.Owner, out var slot)
-               && container.ID == slot.CellSlotId
-               && TryComp<BorgChassisComponent>(container.Owner, out _)
-               && (chassis = container.Owner) != default;
+                && TryComp<PowerCellSlotComponent>(container.Owner, out var slot)
+                && container.ID == slot.CellSlotId
+                && TryComp<BorgChassisComponent>(container.Owner, out _)
+                && (chassis = container.Owner) != default;
     }
 
     private void QueueRemoteBorgActivation(EntityUid chassis)
@@ -552,7 +552,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             return;
 
         var isBorgTypeAction = TryComp<InstantActionComponent>(action, out var instantAction)
-                               && instantAction.Event is BorgToggleSelectTypeEvent;
+                                && instantAction.Event is BorgToggleSelectTypeEvent;
         var hasBorgSwitchableType = TryComp<BorgSwitchableTypeComponent>(remoteEntity, out _);
         var hasControllerSession = _playerManager.TryGetSessionByEntity(args.Actor, out var controllerSession);
 
@@ -1011,8 +1011,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     {
         chassis = default;
         return _container.TryGetContainingContainer(brain, out var container)
-               && TryComp<BorgChassisComponent>(container.Owner, out _)
-               && (chassis = container.Owner) != default;
+                && TryComp<BorgChassisComponent>(container.Owner, out _)
+                && (chassis = container.Owner) != default;
     }
 
     private void DeactivateRemoteBorg(RemoteControlConsoleComponent console, EntityUid chassis)
@@ -1214,8 +1214,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                     continue;
 
                 var controlsSameTarget = remoteEntity is { } requestedTarget
-                                         && TryGetRemoteEntity(otherConsole, out var otherTarget)
-                                         && otherTarget == requestedTarget;
+                                        && TryGetRemoteEntity(otherConsole, out var otherTarget)
+                                        && otherTarget == requestedTarget;
                 var controlsBySameUser = otherController == requestedController;
                 if (!controlsSameTarget && !controlsBySameUser)
                     continue;
@@ -1382,8 +1382,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         var activeItem = _hands.GetActiveItem((remoteEntity, hands));
         return activeItem is { } active
-               && HasComp<QuickConstructableComponent>(active)
-               && _ui.IsUiOpen(active, QuickConstructionUiKey.Key, remoteEntity)
+                && HasComp<QuickConstructableComponent>(active)
+                && _ui.IsUiOpen(active, QuickConstructionUiKey.Key, remoteEntity)
             ? active
             : null;
     }
@@ -1551,9 +1551,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         }
 
         return _container.TryGetContainingContainer(brain, out var container)
-               && container.ID == "borg_brain"
-               && TryComp<BorgChassisComponent>(container.Owner, out _)
-               && (body = container.Owner) != default;
+                && container.ID == "borg_brain"
+                && TryComp<BorgChassisComponent>(container.Owner, out _)
+                && (body = container.Owner) != default;
     }
 
     private bool TryGetRemoteEntity(RemoteControlConsoleComponent component, out EntityUid remoteEntity)

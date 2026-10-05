@@ -46,7 +46,6 @@ public sealed partial class MouseRotatorSystem : SharedMouseRotatorSystem
             return;
 
         var xform = Transform(rotationEntity);
-        // Starlight-end
 
         // Get mouse loc and convert to angle based on player location
         var coords = _input.MouseScreenPosition;
@@ -55,6 +54,7 @@ public sealed partial class MouseRotatorSystem : SharedMouseRotatorSystem
             mapPos = _remoteControl.RemoteMousePosition;
         else
             mapPos = _eye.PixelToMap(coords);
+        // Starlight-end
 
         if (mapPos is not { } remoteMapPosition)
             return;

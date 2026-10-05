@@ -30,7 +30,10 @@ namespace Content.Client.Verbs.UI
     {
         [Dependency] private IPlayerManager _playerManager = default!;
         [Dependency] private ContextMenuUIController _context = default!;
+
+        #region Starlight
         [UISystemDependency] private RemoteControlInterface _remoteControl = default!;
+        #endregion
 
         [UISystemDependency] private readonly CombatModeSystem _combatMode = default!;
         [UISystemDependency] private readonly VerbSystem _verbSystem = default!;
@@ -102,6 +105,8 @@ namespace Content.Client.Verbs.UI
         public void OpenVerbMenu(NetEntity target, bool force = false, ContextMenuPopup? popup=null)
         {
             DebugTools.Assert(target.IsValid());
+
+            // Starlight start
             var user = _remoteControl.ControlledEntity ?? _playerManager.LocalEntity;
             if (user is not {Valid: true} userEntity)
                 return;
@@ -116,6 +121,7 @@ namespace Content.Client.Verbs.UI
 
             CurrentTarget = target;
             CurrentVerbs = _verbSystem.GetVerbs(target, userEntity, Verb.VerbTypes, out ExtraCategories, force);
+            // Starlight end
             OpenMenu = menu;
 
             // Fill in client-side verbs.

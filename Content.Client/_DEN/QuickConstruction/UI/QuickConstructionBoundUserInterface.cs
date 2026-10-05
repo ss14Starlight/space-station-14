@@ -27,9 +27,11 @@ public sealed partial class QuickConstructionBoundUserInterface : BoundUserInter
     protected override void Open()
     {
         base.Open();
+        // Starlight: Keep regular opens on the local menu path.
         OpenMenu(remote: false);
     }
 
+    #region Starlight
     public void OpenRemote()
     {
         base.Open();
@@ -55,6 +57,7 @@ public sealed partial class QuickConstructionBoundUserInterface : BoundUserInter
         _menu.Track(Owner);
         _menu.OpenOverMouseScreenPosition();
     }
+    #endregion
 
     // Starlight Edit Start
     private IEnumerable<RadialMenuOptionBase> ConvertToButtons(

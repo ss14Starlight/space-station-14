@@ -1,7 +1,7 @@
 ﻿// Afterlight
 using Content.Shared._Afterlight.Silicons.Borgs; // Afterlight
 using Content.Shared.Silicons.Borgs.Components; // Afterlight
-using Content.Client._Starlight.Computers.RemoteControl; // Starlight
+using Content.Client._Starlight.Computers.RemoteControl;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 

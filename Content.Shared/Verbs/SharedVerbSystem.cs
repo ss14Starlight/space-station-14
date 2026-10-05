@@ -13,8 +13,20 @@ namespace Content.Shared.Verbs
         [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
         [Dependency] protected SharedContainerSystem ContainerSystem = default!;
 
+        #region Starlight
+        /// <summary>
+        ///     Resolves the entity to use as the user for verbs requested by a session.
+        /// </summary>
+        /// <param name="attachedEntity">The entity attached to the requesting session.</param>
+        /// <returns>
+        ///     The entity to use for verb checks and execution, or <see langword="null"/> to reject the request.
+        /// </returns>
+        /// <remarks>
+        ///     The default implementation returns <paramref name="attachedEntity"/>.
+        /// </remarks>
         protected virtual EntityUid? ResolveVerbUser(EntityUid attachedEntity)
             => attachedEntity;
+        #endregion
 
         public override void Initialize()
         {

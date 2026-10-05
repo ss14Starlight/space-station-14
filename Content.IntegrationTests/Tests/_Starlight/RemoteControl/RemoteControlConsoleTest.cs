@@ -24,20 +24,20 @@ public sealed class RemoteControlConsoleTest : GameTest
 {
     [TestPrototypes]
     private const string Prototypes = @"
-- type: entity
-  id: RemoteControlRangeTestUi
-  components:
-  - type: UserInterface
-    interfaces:
-      enum.BorgSwitchableTypeUiKey.SelectBorgType:
-        type: BorgSelectTypeUserInterface
-        interactionRange: 2
-- type: entity
-  id: RemoteControlForceTestConsole
-  parent: RemoteControlConsole
-  components:
-  - type: RemoteControlConsole
-    canForceRemoteControl: true
+-   type: entity
+    id: RemoteControlRangeTestUi
+    components:
+    -   type: UserInterface
+        interfaces:
+            enum.BorgSwitchableTypeUiKey.SelectBorgType:
+                type: BorgSelectTypeUserInterface
+                interactionRange: 2
+-   type: entity
+    id: RemoteControlForceTestConsole
+    parent: RemoteControlConsole
+    components:
+    -   type: RemoteControlConsole
+        canForceRemoteControl: true
 ";
 
     [TestCase(false, 1, true)]
