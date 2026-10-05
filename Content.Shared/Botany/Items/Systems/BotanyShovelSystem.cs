@@ -53,13 +53,13 @@ public sealed partial class BotanyShovelSystem : EntitySystem
 
         if (!_plantTray.TryGetPlant(ent.AsNullable(), out var plantUid))
         {
-            _popup.PopupPredictedCursor(
+            _popup.PopupPredictedCursor( // Starlight: Predicted for popups
                 Loc.GetString("plant-shovel-component-no-plant-popup", ("name", ent.Owner)),
                 args.User);
             return;
         }
 
-        _popup.PopupPredictedCursor(
+        _popup.PopupPredictedCursor( // Starlight: Predicted for popups
             Loc.GetString("plant-shovel-component-remove-plant-popup", ("name", ent.Owner)),
             args.User,
             PopupType.Medium);
