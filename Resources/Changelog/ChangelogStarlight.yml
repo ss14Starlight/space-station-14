@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: "New emote: \"blinks\". Available for all species via the emote wheel under the 'General' category, or by manually typing `@blinks` / `@blinked`."
-    type: Add
-  id: 408763
-  time: '2026-09-20T19:46:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6235
-- author: Caws
-  changes:
   - message: Fixed missing attributions for Lagomorph emote icons.
     type: Fix
   id: 408764
@@ -2799,4 +2792,11 @@ Entries:
   id: 409162
   time: '2026-10-05T01:15:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6504
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: The ChemMaster now maintains the custom unit input when the UI is closed and opened.
+    type: Tweak
+  id: 409163
+  time: '2026-10-05T05:24:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6351
 Order: -1
