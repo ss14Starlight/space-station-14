@@ -57,9 +57,9 @@ booping-moth-success-others = {CAPITALIZE(THE($user))} boops {THE($target)} betw
 booping-moth-emote = boops {THE($target)} between {POSS-ADJ($target)} compound eyes.
 
 # Boop alt. - Laspi are squishy
-booping-laspi-success = You boop {THE($target)}. {POSS-ADJ($target)} face wibbles.
-booping-laspi-success-others = {CAPITALIZE(THE($user))} boops {THE($target)}. {POSS-ADJ($target)} face wibbles.
-booping-laspi-emote = boops {THE($target)}. {POSS-ADJ($target)} face wibbles.
+booping-laspi-success = You boop {THE($target)}. {CAPITALIZE(POSS-ADJ($target))} face wibbles.
+booping-laspi-success-others = {CAPITALIZE(THE($user))} boops {THE($target)}. {CAPITALIZE(POSS-ADJ($target))} face wibbles.
+booping-laspi-emote = boops {THE($target)}. {CAPITALIZE(POSS-ADJ($target))} face wibbles.
 
 # Boop alt. - Generic slimes don't have noses
 booping-slime-success = You boop {THE($target)} where {POSS-ADJ($target)} nose should be, leaving an indent.
