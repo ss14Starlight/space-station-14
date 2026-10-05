@@ -10,7 +10,7 @@
     - !type:RolesRequirement
       proto: ExtRolesReq
   setPreference: false
-  startingGear: NanoTrasenSpecialForcesGear
+  startingGear: BaseNanoTrasenSpecialForcesGear
   icon: JobIconNanoTrasenSpecialForces
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-nanotrasen
@@ -21,7 +21,7 @@
   - CentralCommand
 
 - type: startingGear
-  id: NanoTrasenSpecialForcesGear
+  id: BaseNanoTrasenSpecialForcesGear
   equipment:
     jumpsuit: ClothingUniformNTNCFatigues
     back: ClothingBackpackDeathSquad
@@ -33,40 +33,29 @@
     shoes: ClothingShoesBootsMagERT
     id: NTSFPDA
     pocket1: AccessOveriderUnlimited
-    pocket2: EnergyShield
-    belt: PrototypeVibrobladeSheathFilled
+    pocket2: CCEmagUnlimited
+    belt: ClothingBeltMilitaryWebbingERT
     neck: ClothingNeckCapeNTSF1
-    suitstorage: WeaponPulseCarbine
+    suitstorage: PortableRecharger
   storage:
     back:
-    - WeaponPulsePistol
     - WeaponRevolverMatebaAP
+    - CombatMedipen
     - SpeedLoaderMagnumAP
     - SpeedLoaderMagnumAP
-    - BoxFlashbang
-    - ToolDebug # spanish army knife
-    - WelderExperimental
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - JugPunctTranex
     - Hypospray
-    - DeathAcidifierImplanter # crew will try to steal their amazing hardsuits
-    - FreedomImplanter
+    - ToolDebug
+    - WeaponPulseCarbine
 
 - type: startingGear
   id: NanoTrasenSpecialForcesPrimusGear
+  parent: BaseNanoTrasenSpecialForcesGear
   equipment:
-    jumpsuit: ClothingUniformNTNCFatigues
-    back: ClothingBackpackDeathSquad
-    mask: ClothingMaskGasDeathSquad
-    eyes: ClothingEyesGlassesNanotrasen
-    ears: ClothingHeadsetAltNTSF
-    gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitNTSFPrimus
-    shoes: ClothingShoesBootsMagERT
-    id: NTSFPDA
-    pocket1: AccessOveriderUnlimited
-    pocket2: WeaponPistolPDW9
-    belt: PrototypeVibrobladeSheathFilled
     neck: ClothingNeckCapeNTSF1
-    suitstorage: WeaponPulseCarbine
   storage:
     back:
     - WeaponRiflePeacemaker
@@ -86,24 +75,27 @@
     - SmokeGrenade
     - ToxicGasGrenade
     - ExGrenade
+    belt:
+    - WeaponEnergyMagnum
+    - DefibrillatorCompact
+    - BodyBagLockableFolded
+    - HoloprojectorSecurity
+    - ToolDebug
+    - SmokeGrenade
+    - ExGrenade
+    - EmpGrenade
+    - CombatMedipen
+    - PyraAutoInjector
+    - PunctAutoInjector
 
 - type: startingGear
   id: NanoTrasenSpecialForcesSecondusGear
+  parent: BaseNanoTrasenSpecialForcesGear
   equipment:
-    jumpsuit: ClothingUniformNTNCFatigues
-    back: ClothingBackpackDeathSquad
-    mask: ClothingMaskGasDeathSquad
-    eyes: ClothingEyesGlassesNanotrasen
-    ears: ClothingHeadsetAltNTSF
-    gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitNTSFSecundus
-    shoes: ClothingShoesBootsMagERT
-    id: NTSFPDA
     pocket1: AccessOveriderUnlimited
     pocket2: EnergyShield
-    belt: WeaponEnergyMagnumSeven
     neck: ClothingNeckCapeNTSF2
-    suitstorage: WeaponPulseCarbine
   storage:
     back:
     - WeaponRiflePitbull
@@ -126,21 +118,12 @@
 
 - type: startingGear
   id: NanoTrasenSpecialForcesTertiusGear
+  parent: BaseNanoTrasenSpecialForcesGear
   equipment:
-    jumpsuit: ClothingUniformNTNCFatigues
-    back: ClothingBackpackDeathSquad
-    mask: ClothingMaskGasDeathSquad
-    eyes: ClothingEyesGlassesNanotrasen
-    ears: ClothingHeadsetAltNTSF
-    gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitNTSFTertius
-    shoes: ClothingShoesBootsMagERT
-    id: NTSFPDA
     pocket1: AccessOveriderUnlimited
     pocket2: CCEmagUnlimited
-    belt: ClothingBeltMilitaryWebbingERT
     neck: ClothingNeckCapeNTSF3
-    suitstorage: WeaponPulseCarbine
   storage:
     back:
     - RCDExperimental
@@ -164,21 +147,12 @@
 
 - type: startingGear
   id: NanoTrasenSpecialForcesQuartusGear
+  parent: BaseNanoTrasenSpecialForcesGear
   equipment:
-    jumpsuit: ClothingUniformNTNCFatigues
-    back: ClothingBackpackDeathSquad
-    mask: ClothingMaskGasDeathSquad
-    eyes: ClothingEyesGlassesNanotrasen
-    ears: ClothingHeadsetAltNTSF
-    gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitNTSFQuartus
-    shoes: ClothingShoesBootsMagERT
-    id: NTSFPDA
     pocket1: AccessOveriderUnlimited
     pocket2: EnergyShield
-    belt: PrototypeVibrobladeSheathFilled
     neck: ClothingNeckCapeNTSF4
-    suitstorage: WeaponPulseCarbine
   storage:
     back:
     - RCDExperimental
@@ -195,21 +169,12 @@
 
 - type: startingGear
   id: NanoTrasenSpecialForcesQuintusGear
+  parent: BaseNanoTrasenSpecialForcesGear
   equipment:
-    jumpsuit: ClothingUniformNTNCFatigues
-    back: ClothingBackpackDeathSquad
-    mask: ClothingMaskGasDeathSquad
-    eyes: ClothingEyesGlassesNanotrasen
-    ears: ClothingHeadsetAltNTSF
-    gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitNTSFQuintus
-    shoes: ClothingShoesBootsMagERT
-    id: NTSFPDA
     pocket1: AccessOveriderUnlimited
     pocket2: EnergyShieldUnbreakable
-    belt: ClothingBeltMilitaryWebbingERT
     neck: ClothingNeckCapeNTSF5
-    suitstorage: WeaponPulseCarbine
   storage:
     back:
     - WeaponLightMachineGunM492
@@ -237,21 +202,12 @@
 
 - type: startingGear
   id: NanoTrasenSpecialForcesSextusGear
+  parent: BaseNanoTrasenSpecialForcesGear
   equipment:
-    jumpsuit: ClothingUniformNTNCFatigues
-    back: ClothingBackpackDeathSquad
-    mask: ClothingMaskGasDeathSquad
-    eyes: ClothingEyesGlassesNanotrasen
-    ears: ClothingHeadsetAltNTSF
-    gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitNTSFSextus
-    shoes: ClothingShoesBootsMagERT
-    id: NTSFPDA
     pocket1: AccessOveriderUnlimited
     pocket2: WizardsGrimoireNTSF
-    belt: PrototypeVibrobladeSheathFilled
     neck: ClothingNeckCapeNTSF6
-    suitstorage: WeaponPulseCarbine
   storage:
     back:
     - MedkitCombatFilled
@@ -270,21 +226,12 @@
 
 - type: startingGear
   id: NanoTrasenSpecialForcesSeptimusGear
+  parent: BaseNanoTrasenSpecialForcesGear
   equipment:
-    jumpsuit: ClothingUniformNTNCFatigues
-    back: ClothingBackpackDeathSquad
-    mask: ClothingMaskGasDeathSquad
-    eyes: ClothingEyesGlassesNanotrasen
-    ears: ClothingHeadsetAltNTSF
-    gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitNTSFSeptimus
-    shoes: ClothingShoesBootsMagERT
-    id: NTSFPDA
     pocket1: AccessOveriderUnlimited
     pocket2: WeaponPulsePistol
-    belt: PrototypeVibrobladeSheathFilled
     neck: ClothingNeckCapeNTSF7
-    suitstorage: WeaponPulseCarbine
   storage:
     back:
     - PortableRecharger
@@ -301,21 +248,12 @@
 
 - type: startingGear
   id: NanoTrasenSpecialForcesOctaviusGear
+  parent: BaseNanoTrasenSpecialForcesGear
   equipment:
-    jumpsuit: ClothingUniformNTNCFatigues
-    back: ClothingBackpackDeathSquad
-    mask: ClothingMaskGasDeathSquad
-    eyes: ClothingEyesGlassesNanotrasen
-    ears: ClothingHeadsetAltNTSF
-    gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitNTSFOctavius
-    shoes: ClothingShoesBootsMagERT
-    id: NTSFPDA
     pocket1: AccessOveriderUnlimited
     pocket2: EnergyShield
-    belt: ClothingBeltMilitaryWebbingERT
     neck: ClothingNeckCapeNTSF8
-    suitstorage: WeaponPulseCarbine
   storage:
     back:
     - MedkitCombatFilled
@@ -345,21 +283,12 @@
 
 - type: startingGear
   id: NanoTrasenSpecialForcesNonusGear
+  parent: BaseNanoTrasenSpecialForcesGear
   equipment:
-    jumpsuit: ClothingUniformNTNCFatigues
-    back: ClothingBackpackDeathSquad
-    mask: ClothingMaskGasDeathSquad
-    eyes: ClothingEyesGlassesNanotrasen
-    ears: ClothingHeadsetAltNTSF
-    gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitNTSFNonus
-    shoes: ClothingShoesBootsMagERT
-    id: NTSFPDA
     pocket1: AccessOveriderUnlimited
     pocket2: RadioJammer
-    belt: PrototypeVibrobladeSheathFilled
     neck: ClothingNeckCapeNTSF9
-    suitstorage: WeaponPulseCarbine
   storage:
     back:
     - MedkitCombatFilled
