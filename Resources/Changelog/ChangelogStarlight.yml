@@ -1,25 +1,4 @@
 Entries:
-- author: Kirb
-  changes:
-  - message: Expies eyes actually glow at round start.
-    type: Fix
-  id: 408798
-  time: '2026-09-22T00:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6275
-- author: Kirb
-  changes:
-  - message: soft crit no longer drops your items.
-    type: Tweak
-  id: 408799
-  time: '2026-09-22T00:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6275
-- author: Kirb
-  changes:
-  - message: you can no longer fall down twice in soft crit.
-    type: Fix
-  id: 408800
-  time: '2026-09-22T00:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6275
 - author: RedSpeeds
   changes:
   - message: Nerfed Syndie baked goods a bit.
@@ -2799,4 +2778,25 @@ Entries:
   id: 409197
   time: '2026-10-05T14:19:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6486
+- author: baltdev
+  changes:
+  - message: Added full-cube turns to the Twisty Cube.
+    type: Tweak
+  id: 409198
+  time: '2026-10-05T14:19:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6490
+- author: baltdev
+  changes:
+  - message: Adds the Twisty Cube as a round-start trinket.
+    type: Tweak
+  id: 409199
+  time: '2026-10-05T14:19:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6490
+- author: baltdev
+  changes:
+  - message: Adds a scramble button to the Twisty Cube.
+    type: Tweak
+  id: 409200
+  time: '2026-10-05T14:19:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6490
 Order: -1
