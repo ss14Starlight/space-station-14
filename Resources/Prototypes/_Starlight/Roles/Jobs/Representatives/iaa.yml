@@ -28,7 +28,7 @@
   - GenpopLeave
 # - Command # IAAs are not members of Command.
 # - NTPersonnel # IAA are NT personnel but this gives access to some Command spaces.
-  - Debrief
+#  - Debrief # IAA are not members of command, nor are privy to corporate secrets, nor are usually needed in debrief.
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
