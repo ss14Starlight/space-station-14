@@ -379,7 +379,7 @@
   - SalvageWeapons
   conditions:
   - !type:BuyerAccessCondition
-  
+
 - type: listing
   id: VendorSalvageWeaponRegulator
   productEntity: WeaponRegulator
