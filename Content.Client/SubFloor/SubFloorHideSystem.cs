@@ -47,11 +47,13 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
     {
         // Vismask resets so need to reset this.
         _showLayers = SubFloorVisibilityMask.None;
+        // Starlight-start
         var req = new ShowSubfloorRequestEvent()
         {
             Value = false,
         };
         RaiseNetworkEvent(req);
+        // Starlight-end
     }
 
     private void OnRequestReceived(ShowSubfloorRequestEvent ev)
@@ -68,7 +70,7 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
         _appearance.TryGetData<bool>(uid, SubFloorVisuals.Covered, out var covered, args.Component);
         _appearance.TryGetData<bool>(uid, SubFloorVisuals.ScannerRevealed, out var scannerRevealed, args.Component);
 
-        scannerRevealed &= _showLayers == SubFloorVisibilityMask.None; // no transparency for show-subfloor mode.
+        scannerRevealed &= _showLayers == SubFloorVisibilityMask.None; // Starlight-edit
 
         var showVentPipe = false;
         if (HasComp<PipeAppearanceComponent>(uid))
@@ -130,33 +132,4 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
             _appearance.QueueUpdate(uid, appearance);
         }
     }
-
-    #region Starlight
-
-    public void ToggleLayer(SubFloorVisibilityMask mask)
-    {
-        if (mask != SubFloorVisibilityMask.None) _showLayers ^= mask;
-
-        var ev = new ShowSubfloorRequestEvent
-        {
-            Value = (_showLayers & mask) != 0,
-        };
-        RaiseNetworkEvent(ev);
-    }
-
-    public void SetLayer(SubFloorVisibilityMask mask, bool visible)
-    {
-        if (visible)
-            _showLayers = mask;
-        else
-            _showLayers = ~mask;
-
-        var ev = new ShowSubfloorRequestEvent
-        {
-            Value = visible,
-        };
-        RaiseNetworkEvent(ev);
-    }
-
-    #endregion
 }

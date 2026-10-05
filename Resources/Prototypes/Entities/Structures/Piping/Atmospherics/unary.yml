@@ -10,7 +10,6 @@
       tags:
         - Unstackable
     - type: SubFloorHide
-      subfloorLayer: Pipes # Starlight edit - Subfloor layers
       blockInteractions: false
       blockAmbience: false
     - type: NodeContainer
@@ -45,7 +44,6 @@
         - GasVent
         - Unstackable
     - type: SubFloorHide
-      subfloorLayer: Pipes # Starlight edit - Subfloor layers
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
@@ -111,7 +109,6 @@
     - type: VentCrawlEntry
     # Starlight end
     - type: SubFloorHide
-      subfloorLayer: Pipes # Starlight edit - Subfloor layers
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
@@ -168,7 +165,6 @@
         - GasScrubber
         - Unstackable
     - type: SubFloorHide
-      subfloorLayer: Pipes # Starlight edit - Subfloor layers
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
@@ -262,7 +258,6 @@
       graph: GasUnary
       node: outletinjector
     - type: SubFloorHide
-      subfloorLayer: Pipes # Starlight edit - Subfloor layers
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
       - enum.LightLayers.Unshaded
