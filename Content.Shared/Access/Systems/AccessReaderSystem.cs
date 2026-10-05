@@ -302,8 +302,8 @@ public sealed partial class AccessReaderSystem : EntitySystem
     private bool IsAllowedInternal(ICollection<ProtoId<AccessLevelPrototype>> access,
         ICollection<StationRecordKey> stationKeys, Entity<AccessReaderComponent> reader) // Starlight-edit
         => !reader.Comp.Enabled // Starlight-edit
-             || AreAccessTagsAllowed(access, reader)
-             || AreStationRecordKeysAllowed(stationKeys, reader);
+            || AreAccessTagsAllowed(access, reader)
+            || AreStationRecordKeysAllowed(stationKeys, reader);
 
     /// <summary>
     /// Compares the given tags with the readers access list to see if it is allowed.
