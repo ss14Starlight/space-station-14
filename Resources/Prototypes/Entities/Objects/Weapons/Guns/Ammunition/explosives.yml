@@ -203,19 +203,6 @@
 
 - type: entity
   parent: BaseCannonBall
-  id: CannonBallGrapeshot
-  name: grapeshot
-  suffix: Pirate
-  components:
-  - type: CartridgeAmmo
-    proto: PelletGrapeshotSpread
-    deleteOnSpawn: true
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    state: grapeshot
-
-- type: entity
-  parent: BaseCannonBall
   id: CannonBallGlassshot
   name: glassshot
   suffix: Pirate

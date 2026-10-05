@@ -1,4 +1,3 @@
-
 - type: entity
   name: telecrystal
   parent: [BaseItem, BaseSyndicateContraband]
@@ -81,15 +80,6 @@
 - type: entity
   parent: [BaseUplinkRadio, StorePresetUplink]
   id: BaseUplinkRadioPreset
-
-- type: entity
-  parent: BaseUplinkRadioPreset
-  id: BaseUplinkRadio20TC
-  suffix: 20 TC
-  components:
-  - type: Store
-    balance:
-      Telecrystal: 20
 
 - type: entity
   parent: BaseUplinkRadioPreset

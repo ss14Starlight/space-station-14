@@ -910,17 +910,6 @@
     id: TSFIdCardSpecOps
 
 - type: entity
-  parent: BasePDA
-  id: BlackstarPDA
-  name: Blackstar PDA
-  description: Why isn't it black?
-  components:
-    - type: Pda
-      id: BlackstarIDCard
-    - type: PdaBorderColor
-      borderColor: "#717059"
-
-- type: entity
   parent: ClownPDA
   id: CluwneBeastPDA
   name: cluwne PDA

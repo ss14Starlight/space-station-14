@@ -34,16 +34,6 @@
   - type: Contraband
     allowedJobs: [ AtmosphericTechnician ]
 
-#Advanced Cyberlimbs
-- type: entity
-  id: BaseAdvancedCyberlimbContraband
-  abstract: true
-  components:
-  - type: ScanDetectable
-  - type: Contraband
-    tier: Tier3
-    contrabandType: Cybernetic
-
 - type: entity
   id: BaseSalvageContraband
   parent: BaseRestrictedContraband
