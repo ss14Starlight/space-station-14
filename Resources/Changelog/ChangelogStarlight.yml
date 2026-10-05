@@ -1,74 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: Interface bugs related to secure terminal.
-    type: Fix
-  id: 408791
-  time: '2026-09-21T13:50:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6207
-- author: ItsCharles
-  changes:
-  - message: Added ability to shake bottles and flasks, and this action is the same effect as shaking in a shaker.
-    type: Add
-  id: 408792
-  time: '2026-09-21T14:28:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6229
-- author: Kirb
-  changes:
-  - message: Expie zoomies in soft crit (various speed related bugs fixed).
-    type: Remove
-  id: 408793
-  time: '2026-09-22T00:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6275
-- author: Kirb
-  changes:
-  - message: Expies can no longer speak or use radio while in soft crit, they can still whisper and emote.
-    type: Tweak
-  id: 408794
-  time: '2026-09-22T00:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6275
-- author: Kirb
-  changes:
-  - message: Expie crit and death sounds range is now shorter.
-    type: Tweak
-  id: 408795
-  time: '2026-09-22T00:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6275
-- author: Kirb
-  changes:
-  - message: Expies melee attack rate halved.
-    type: Tweak
-  id: 408796
-  time: '2026-09-22T00:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6275
-- author: Kirb
-  changes:
-  - message: Fixed health huds not working with soft crit.
-    type: Fix
-  id: 408797
-  time: '2026-09-22T00:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6275
-- author: Kirb
-  changes:
-  - message: Expies eyes actually glow at round start.
-    type: Fix
-  id: 408798
-  time: '2026-09-22T00:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6275
-- author: Kirb
-  changes:
-  - message: soft crit no longer drops your items.
-    type: Tweak
-  id: 408799
-  time: '2026-09-22T00:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6275
-- author: Kirb
-  changes:
-  - message: you can no longer fall down twice in soft crit.
-    type: Fix
-  id: 408800
-  time: '2026-09-22T00:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6275
 - author: RedSpeeds
   changes:
   - message: Nerfed Syndie baked goods a bit.
@@ -2799,4 +2729,74 @@ Entries:
   id: 409190
   time: '2026-10-05T13:11:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5942
+- author: Romero/Littlemen (thanks to Rocksfall too)
+  changes:
+  - message: '"Ares" Short sword.'
+    type: Add
+  id: 409191
+  time: '2026-10-05T13:52:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6444
+- author: Romero/Littlemen (thanks to Rocksfall too)
+  changes:
+  - message: '"Athena" Tactical Spear.'
+    type: Add
+  id: 409192
+  time: '2026-10-05T13:52:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6444
+- author: Romero/Littlemen (thanks to Rocksfall too)
+  changes:
+  - message: A safe for security armory containing the weapons, cargo can also buy those.
+    type: Add
+  id: 409193
+  time: '2026-10-05T13:52:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6444
+- author: Swonki
+  changes:
+  - message: Scrapper Drones. The not as helpful cousins of standard drones.
+    type: Add
+  id: 409194
+  time: '2026-10-05T13:52:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6487
+- author: walksanatora
+  changes:
+  - message: admin logs now display the verb name again.
+    type: Fix
+  id: 409195
+  time: '2026-10-05T14:19:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6350
+- author: BriocheBear
+  changes:
+  - message: Added 5 new sea critter plushies to the game, available in the hug dispenser.
+    type: Add
+  id: 409196
+  time: '2026-10-05T14:19:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6486
+- author: BriocheBear
+  changes:
+  - message: Resprited the sea bunny plushie.
+    type: Tweak
+  id: 409197
+  time: '2026-10-05T14:19:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6486
+- author: baltdev
+  changes:
+  - message: Added full-cube turns to the Twisty Cube.
+    type: Tweak
+  id: 409198
+  time: '2026-10-05T14:19:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6490
+- author: baltdev
+  changes:
+  - message: Adds the Twisty Cube as a round-start trinket.
+    type: Tweak
+  id: 409199
+  time: '2026-10-05T14:19:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6490
+- author: baltdev
+  changes:
+  - message: Adds a scramble button to the Twisty Cube.
+    type: Tweak
+  id: 409200
+  time: '2026-10-05T14:19:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6490
 Order: -1
