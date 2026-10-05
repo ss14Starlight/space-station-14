@@ -30,12 +30,10 @@ public sealed partial class SocialInteractionSystem : EntitySystem
     [Dependency] private MobStateSystem _mobStateSystem = default!;
     [Dependency] private IGameTiming _timing = default!;
 
-    public override void Initialize()
-        => SubscribeLocalEvent<GetVerbsEvent<Verb>>(AddSocialInteractionVerbs);
-
     /// <summary>
     /// Adds the Social Interaction verbs to the right-click context menu.
     /// </summary>
+    [SubscribeLocalEvent]
     private void AddSocialInteractionVerbs(GetVerbsEvent<Verb> args)
     {
         if (!TryComp<SocialInteractionGiverComponent>(args.User, out var giverComp))
