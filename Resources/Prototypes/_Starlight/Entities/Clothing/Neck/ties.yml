@@ -12,3 +12,18 @@
     storedSprite:
       state: storage
       sprite: _Starlight/Clothing/Neck/Ties/bluetie.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckTieBrown
+  name: brown tie
+  description: Colored cargo brown, this tie shows off your professionalism and skill at moving crates.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Ties/browntie.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Ties/browntie.rsi
+  - type: Item
+    storedSprite:
+      state: storage
+      sprite: _Starlight/Clothing/Neck/Ties/browntie.rsi

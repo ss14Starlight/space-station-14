@@ -3,3 +3,9 @@
   equipment:
     neck: ClothingNeckTieBlue
   groupBy: "ties"
+
+- type: loadout
+  id: BrownTieGeneric
+  equipment:
+    neck: ClothingNeckTieBrown
+  groupBy: "ties"

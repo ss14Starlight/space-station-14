@@ -3,6 +3,7 @@
   id: CaptainNeck
   loadouts:
   - BlueTieGeneric
+  - BrownTieGeneric
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -10,6 +11,7 @@
   id: HoPNeck
   loadouts:
   - BlueTieGeneric
+  - BrownTieGeneric
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -17,6 +19,7 @@
   id: AssistantNeck
   loadouts:
   - BlueTieGeneric
+  - BrownTieGeneric
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -24,6 +27,7 @@
   id: IAANeck
   loadouts:
   - BlueTieGeneric
+  - BrownTieGeneric
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -31,6 +35,7 @@
   id: LawyerNeck
   loadouts:
   - BlueTieGeneric
+  - BrownTieGeneric
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -38,6 +43,7 @@
   id: ChaplainNeck
   loadouts:
   - BlueTieGeneric
+  - BrownTieGeneric
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -45,6 +51,7 @@
   id: QuartermasterNeck
   loadouts:
   - BlueTieGeneric
+  - BrownTieGeneric
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -52,6 +59,7 @@
   id: ChiefEngineerNeck
   loadouts:
   - BlueTieGeneric
+  - BrownTieGeneric
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -59,6 +67,7 @@
   id: ResearchDirectorNeck
   loadouts:
   - BlueTieGeneric
+  - BrownTieGeneric
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -66,12 +75,14 @@
   id: ScientistNeck
   loadouts:
   - BlueTieGeneric
+  - BrownTieGeneric
   - DetectiveTie
   - SecurityRedNeckTie
 - type: !PartialOnly loadoutGroup
   id: HeadofSecurityNeck
   loadouts:
   - BlueTieGeneric
+  - BrownTieGeneric
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -79,5 +90,6 @@
   id: DetectiveNeck
   loadouts:
   - BlueTieGeneric
+  - BrownTieGeneric
   - ScientistTie
   - SecurityRedNeckTie
