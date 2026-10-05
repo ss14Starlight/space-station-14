@@ -1,3 +1,5 @@
+# Additional tie colors for Starlight
+
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckTieBlue
