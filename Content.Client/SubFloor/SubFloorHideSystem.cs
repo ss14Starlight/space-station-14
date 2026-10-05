@@ -48,11 +48,13 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
         // Vismask resets so need to reset this.
         _showLayers = SubFloorVisibilityMask.None;
         // Starlight-start
+        _showLayers = SubFloorVisibilityMask.None;
         var req = new ShowSubfloorRequestEvent()
         {
             Value = false,
         };
         RaiseNetworkEvent(req);
+        // Starlight-end
         // Starlight-end
     }
 
