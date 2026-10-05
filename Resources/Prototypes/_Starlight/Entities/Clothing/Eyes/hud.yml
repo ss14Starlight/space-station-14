@@ -44,11 +44,6 @@
         - HudMedical
 
 - type: entity
-  parent: [ClothingEyesEyepatchHudBlueShield, ClothingHeadEyeBaseFlipped]
-  id: ClothingEyesEyepatchHudBlueShieldFlipped
-  name: blue shield hud eyepatch
-
-- type: entity
   parent: [BaseCommandManagerContraband, ClothingEyesHudCommand]
   id: ClothingEyesEyepatchHudAssistantManager
   name: assistant manager hud eyepatch
@@ -104,11 +99,6 @@
         - WhitelistChameleon
         - HudMedical
         - HudSecurity
-
-- type: entity
-  parent: [ClothingEyesEyepatchHudBrigmedic, ClothingHeadEyeBaseFlipped]
-  id: ClothingEyesEyepatchHudBrigmedicFlipped
-  name: brigmedic hud eyepatch
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
@@ -170,11 +160,6 @@
         - PetWearable
         - WhitelistChameleon
         - HudMedical
-
-- type: entity
-  parent: [ClothingEyesEyepatchHudChemical, ClothingHeadEyeBaseFlipped]
-  id: ClothingEyesEyepatchHudChemicalFlipped
-  name: chemical hud eyepatch
 
 - type: entity
   parent: ClothingEyesBase

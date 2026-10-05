@@ -635,6 +635,12 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (session.AttachedEntity is not { Valid: true } listener) // Starlight-edit: Languages
                 continue;
 
+            // Starlight Start: Ignore humanoid speech.
+            if (HasComp<IgnoreHumanoidsComponent>(listener) &&
+                HasComp<HumanoidAppearanceComponent>(source))
+                continue;
+            // Starlight End
+
             // Moffstation - Start - Radio Host, hide chat messages from station radio
             var rangeCheck = MessageRangeCheck(session, data, range);
             if (rangeCheck == MessageRangeCheckResult.Disallowed)
@@ -675,11 +681,6 @@ public sealed partial class ChatSystem : SharedChatSystem
                 // Scenario 3: If listener is too far and has no line of sight, they can't identify the whisperer's identity
                 result = ObfuscateMessageReadability(perceivedMessage);
                 wrappedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-unknown-wrap-message", string.Empty, result, language, obfuscated);
-            }
-            if (HasComp<IgnoreHumanoidsComponent>(listener) && HasComp<HumanoidAppearanceComponent>(source))
-            {
-                var unknownName = Loc.GetString("ignore-humanoids-unknown-name");
-                wrappedMessage = WrapAnonymizedMessage(ChatChannel.Whisper, source, result, unknownName, language, wrappedMessage, obfuscated);
             }
 
             _chatManager.ChatMessageToOne(ChatChannel.Whisper, result, wrappedMessage, source, rangeCheck == MessageRangeCheckResult.HideChat, session.Channel); // Moffstation - Radio Host, hide chat messages from station radio
@@ -897,20 +898,16 @@ public sealed partial class ChatSystem : SharedChatSystem
             // Starlight - start
             if (session.AttachedEntity is not { Valid: true } playerEntity)
                 continue;
-            EntityUid listener = session.AttachedEntity.Value;
+            if (channel == ChatChannel.Local &&
+                HasComp<IgnoreHumanoidsComponent>(playerEntity) &&
+                HasComp<HumanoidAppearanceComponent>(source))
+                continue;
 
             // If the channel does not support languages, or the entity can understand the message, send the original message, otherwise send the obfuscated version
             var displayWrappedMessage = wrappedMessage;
             var displayObfuscatedMessage = obfuscatedWrappedMessage;
 
-            if (HasComp<IgnoreHumanoidsComponent>(listener) && HasComp<HumanoidAppearanceComponent>(source))
-            {
-                var unknownName = Loc.GetString("ignore-humanoids-unknown-name");
-                displayWrappedMessage = WrapAnonymizedMessage(channel, source, message, unknownName, language, wrappedMessage, false);
-                displayObfuscatedMessage = WrapAnonymizedMessage(channel, source, obfuscated, unknownName, language, obfuscatedWrappedMessage, true);
-            }
-
-            if (ignoreLanguage || _language.CanUnderstand(listener, language.ID))
+            if (ignoreLanguage || _language.CanUnderstand(playerEntity, language.ID))
                 _chatManager.ChatMessageToOne(channel, message, displayWrappedMessage, source, entHideChat, session.Channel, author: author);
             else
                 _chatManager.ChatMessageToOne(channel, obfuscated, displayObfuscatedMessage, source, entHideChat, session.Channel, author: author);
