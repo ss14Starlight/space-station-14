@@ -27,3 +27,18 @@
     storedSprite:
       state: storage
       sprite: _Starlight/Clothing/Neck/Ties/browntie.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckLGBTie
+  name: LGBTie
+  description: Why do we have to wear these fabulous ties?
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Ties/LGBTie.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Ties/LGBTie.rsi
+  - type: Item
+    storedSprite:
+      state: storage
+      sprite: _Starlight/Clothing/Neck/Ties/LGBTie.rsi

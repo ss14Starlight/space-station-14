@@ -4,6 +4,7 @@
   loadouts:
   - BlueTieGeneric
   - BrownTieGeneric
+  - LGBTieLoadout
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -12,6 +13,7 @@
   loadouts:
   - BlueTieGeneric
   - BrownTieGeneric
+  - LGBTieLoadout
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -20,6 +22,7 @@
   loadouts:
   - BlueTieGeneric
   - BrownTieGeneric
+  - LGBTieLoadout
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -28,6 +31,7 @@
   loadouts:
   - BlueTieGeneric
   - BrownTieGeneric
+  - LGBTieLoadout
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -36,6 +40,7 @@
   loadouts:
   - BlueTieGeneric
   - BrownTieGeneric
+  - LGBTieLoadout
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -44,6 +49,7 @@
   loadouts:
   - BlueTieGeneric
   - BrownTieGeneric
+  - LGBTieLoadout
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -52,6 +58,7 @@
   loadouts:
   - BlueTieGeneric
   - BrownTieGeneric
+  - LGBTieLoadout
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -60,6 +67,7 @@
   loadouts:
   - BlueTieGeneric
   - BrownTieGeneric
+  - LGBTieLoadout
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -68,6 +76,7 @@
   loadouts:
   - BlueTieGeneric
   - BrownTieGeneric
+  - LGBTieLoadout
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -76,6 +85,7 @@
   loadouts:
   - BlueTieGeneric
   - BrownTieGeneric
+  - LGBTieLoadout
   - DetectiveTie
   - SecurityRedNeckTie
 - type: !PartialOnly loadoutGroup
@@ -83,6 +93,7 @@
   loadouts:
   - BlueTieGeneric
   - BrownTieGeneric
+  - LGBTieLoadout
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
@@ -91,5 +102,6 @@
   loadouts:
   - BlueTieGeneric
   - BrownTieGeneric
+  - LGBTieLoadout
   - ScientistTie
   - SecurityRedNeckTie
