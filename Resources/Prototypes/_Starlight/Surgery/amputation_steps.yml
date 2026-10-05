@@ -37,19 +37,6 @@
 
 - type: entity
   parent: SurgeryStepBase
-  id: SurgeryStepLigateVessels
-  name: Ligate Vessels
-  components:
-    - type: SurgeryStep
-      duration: 3
-      tools:
-        - type: Hemostat
-    - type: Sprite
-      sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
-      state: hemostat
-
-- type: entity
-  parent: SurgeryStepBase
   id: SurgeryStepSawSkull
   name: Saw Skull
   components:
@@ -95,7 +82,6 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
-
 
 - type: entity
   parent: SurgeryStepSawSkull

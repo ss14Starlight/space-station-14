@@ -61,7 +61,7 @@
     slots:
     - cell_slot
   - type: PowerCellDraw
-    drawRate: 0.6
+    drawRate: 0.3
   - type: BatteryDrainer
     drainEfficiency: 0.005
     drainTime: 0.8
@@ -126,6 +126,17 @@
     doAfterDelay: 1
     fuelCost: 0.5
   - type: ProtectedFromStepTriggers
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
   - type: Sprite
     noRot: true
     drawdepth: SmallMobs
@@ -165,17 +176,19 @@
     - SiliconEmotes
     - Unimplantable
     - Drone
+    - EmagImmune
   - type: GenericVisualizer
     visuals:
       enum.DroneVisuals.Status:
         base:
           Off: { state: shell }
           On: { state: drone }
-  # - type: HandheldLight
-  #   toggleOnInteract: false
-  #   wattage: 0.2
-  #   blinkingBehaviourId: blinking
-  #   radiatingBehaviourId: radiating
+  - type: HandheldLight
+    toggleOnInteract: false
+    wattage: 0.2
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: ItemTogglePointLight
   - type: ToggleableVisuals
     spriteLayer: light
   - type: LightBehaviour
@@ -226,6 +239,8 @@
       - Engineering
       - Research
       - Robotics
+      - External
+      - Atmospherics
   - type: AccessReader
     access: [["Command"], ["Robotics"]]
   - type: LockingWhitelist
@@ -241,7 +256,7 @@
     name: ghost-role-information-drone-name
     description: ghost-role-information-maintenance-drone-description
     rules: ghost-role-information-maintenance-drone-rules
-    job: Borg # 10 Hour overall requirement
+    job: Drone # 10 hours of cyborg playtime
   - type: GhostTakeoverAvailable
   - type: ActionGrant
     actions:
@@ -285,12 +300,56 @@
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: CanEscapeInventory
-  - type: UnpoweredFlashlight
   - type: Loadout
     prototypes:
       - StartingGearDrone
-  - type: PAI
   - type: GlitchOnEMP
+
+#Scrapper
+- type: entity
+  name: Scrapper drone
+  id: DroneRogue
+  parent: Drone
+  components:
+  - type: ItemSlots
+  - type: Construction
+    graph: DroneRogue
+    node: rogue_drone_complete
+    containers:
+    - part-container
+    - cell_slot
+  - type: Sprite
+    noRot: true
+    drawdepth: SmallMobs
+    layers:
+      - state: shell
+        sprite: _Starlight/Mobs/Silicon/Bots/scrapperdrone.rsi #replace with derelict sprit
+        map: ["base"]
+  - type: SiliconLawProvider
+    laws: RogueDrone
+  - type: GhostRole
+    makeSentient: false
+    name: ghost-role-information-roguedrone-name
+    description: ghost-role-information-rogue-drone-description
+    rules: ghost-role-information-rogue-drone-rules
+    job: Borg # 10 Hour overall requirement
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+  - type: RadarConsole
+  - type: !Remove AccessReader
+  - type: !Remove Access
+  - type: !Remove StationAIShunt
+  - type: !Remove PowerCellDraw
+  - type: !Remove GlitchOnEMP
+  - type: !Remove Pacified
 
 # Borgs
 
@@ -320,21 +379,6 @@
         blacklist:
           tags:
           - MechReactor
-
-- type: entity
-  id: PlayerBorgSyndicateStealthGhostRole
-  parent: PlayerBorgSyndicateStealthBattery
-  suffix: Ghost role
-  components:
-    - type: GhostRole
-      name: ghost-role-information-syndicate-cyborg-name
-      description: ghost-role-information-syndicate-cyborg-description
-      rules: ghost-role-information-silicon-rules
-      mindRoles: [MindRoleGhostRoleSiliconAntagonist]
-      important: true # SL
-      raffle:
-        settings: default
-    - type: GhostTakeoverAvailable
 
 - type: entity
   id: PlayerBorgChassis
@@ -386,21 +430,6 @@
         blacklist:
           tags:
           - MechReactor
-
-- type: entity
-  id: PlayerBorgSyndicateMedicalGhostRole
-  parent: PlayerBorgSyndicateMedicalBattery
-  suffix: Ghost role
-  components:
-    - type: GhostRole
-      name: ghost-role-information-syndicate-cyborg-medical-name
-      description: ghost-role-information-syndicate-cyborg-description
-      rules: ghost-role-information-silicon-rules
-      mindRoles: [MindRoleGhostRoleSiliconAntagonist]
-      important: true
-      raffle:
-        settings: default
-    - type: GhostTakeoverAvailable
 
 # region derelict
 
@@ -626,47 +655,6 @@
 
 # region TSF
 
-- type: entity
-  id: PlayerBorgChassisTSFBattery
-  parent: BorgChassisTSF
-  suffix: Battery, Module
-  components:
-  - type: ContainerFill
-    containers:
-      borg_brain:
-        - PositronicBrain
-  - type: DefaultBorgModules
-    modules:
-      - BorgModulePrying
-      - BorgModuleTool
-      - BorgModuleFireExtinguisher
-      - BorgModuleTSF
-      - BorgModuleTSFCombat
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
-        blacklist:
-          tags:
-          - MechReactor
-
-- type: entity
-  parent: PlayerBorgChassisTSFBattery
-  id: PlayerBorgChassisTSFGhostRole
-  suffix: Ghost role
-  components:
-  - type: GhostRole
-    name: ghost-role-information-tsf-borg-name
-    description: ghost-role-information-tsf-borg-desc
-    rules: ghost-role-information-silicon-rules
-    important: true # SL
-    raffle:
-      settings: default
-    reregister: false
-    job: Borg
-  - type: GhostTakeoverAvailable
-
 # AI
 
 - type: entity
@@ -707,24 +695,3 @@
     container: station_ai_mind_slot
 
 # region NTNC
-- type: entity
-  id: PlayerBorgHAWBattery
-  parent: NTNCBorgChassisHAW
-  suffix: Battery, module
-  components:
-  - type: ContainerFill
-    containers:
-      borg_brain:
-        - PositronicBrain
-      borg_module:
-        - BorgModulePrying
-        - BorgModuleAdvancedTool
-        - CentcommAccessBreakerModule
-        - CentcommLaserModule
-        - CentcommBulwarkModule
-        - CentcommModuleSpaceMovement
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMicroreactor

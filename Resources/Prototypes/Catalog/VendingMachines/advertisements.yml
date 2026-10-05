@@ -1,10 +1,4 @@
 - type: localizedDataset
-  id: AmmoVendAds
-  values:
-    prefix: advertisement-ammo-
-    count: 10
-
-- type: localizedDataset
   id: AtmosDrobeAds
   values:
     prefix: advertisement-atmosdrobe-

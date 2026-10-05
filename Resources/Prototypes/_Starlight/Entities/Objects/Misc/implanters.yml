@@ -179,14 +179,6 @@
     - type: Implanter
       implant: BluespaceImplant
 
-- type: entity
-  id: RedspaceImplanter
-  name: redspace implanter
-  parent: BaseImplantOnlyImplanterSyndi
-  components:
-    - type: Implanter
-      implant: RedspaceImplant
-
 # Gear Acidifier
 - type: entity
   id: GearAcidifierImplanter
@@ -197,13 +189,6 @@
     implant: GearAcidifierImplant
 
 #SELF
-- type: entity
-  id: BluespaceStorageImplanter
-  name: bluespace storage implanter
-  parent: BaseImplantOnlyImplanterSyndi
-  components:
-  - type: Implanter
-    implant: BluespaceStorageImplant
 # Traitor Mind control
 - type: entity
   id: MindControlImplanter
