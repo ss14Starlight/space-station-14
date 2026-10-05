@@ -413,9 +413,9 @@ public sealed class RemoteControlConsoleTest : GameTest
         }
     }
 
-    [TestCase(false, false)]
-    [TestCase(true, true)]
-    public async Task PlayerControlledEntityCanOnlyBeRemoteControlledWhenForced(bool canForce, bool expectedControl)
+    [TestCase(false)]
+    [TestCase(true)]
+    public async Task PlayerControlledEntityCannotBeRemoteControlled(bool canForce)
     {
         await Server.WaitAssertion(() =>
         {
@@ -442,7 +442,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 SEntMan.EventBus.RaiseLocalEvent(consoleUid,
                     new BoundUIOpenedEvent(RemoteControlUIKey.Key, consoleUid, controller));
 
-                Assert.That(console.Controller, Is.EqualTo(expectedControl ? controller : (EntityUid?) null));
+                Assert.That(console.Controller, Is.Null);
             }
             finally
             {
@@ -452,13 +452,14 @@ public sealed class RemoteControlConsoleTest : GameTest
         });
     }
 
-    [TestCase(false, false)]
-    [TestCase(true, true)]
-    public async Task PlayerTakingOverRemoteEntityEndsControlUnlessForced(bool canForce, bool expectedToRemainInControl)
+    [TestCase(false)]
+    [TestCase(true)]
+    public async Task PlayerTakingOverRemoteEntityAlwaysEndsRemoteControl(bool canForce)
     {
         await Server.WaitAssertion(() =>
         {
             var mapSystem = Server.System<SharedMapSystem>();
+            var remoteControl = Server.System<RemoteControlConsoleSystem>();
             var playerManager = Server.ResolveDependency<IPlayerManager>();
             var session = playerManager.Sessions.Single();
             var previousAttachedEntity = session.AttachedEntity;
@@ -467,21 +468,29 @@ public sealed class RemoteControlConsoleTest : GameTest
             try
             {
                 var coordinates = new MapCoordinates(0, 0, mapId);
-                var remoteEntity = SEntMan.SpawnEntity("RemoteControlRangeTestUi", coordinates);
+                var containerSystem = Server.System<SharedContainerSystem>();
+                var remoteEntity = SEntMan.SpawnEntity("BorgChassisGeneric", coordinates);
+                var borg = SEntMan.GetComponent<BorgChassisComponent>(remoteEntity);
+                var brain = SEntMan.SpawnEntity("RemoteControlBrain", coordinates);
+                Assert.That(containerSystem.Insert(brain, borg.BrainContainer), Is.True);
                 var consoleUid = SEntMan.SpawnEntity(
                     canForce ? "RemoteControlForceTestConsole" : "RemoteControlConsole",
                     coordinates);
                 var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
                 Assert.That(console.CanForceRemoteControl, Is.EqualTo(canForce));
-                console.RemoteBrain = remoteEntity;
+                console.RemoteBrain = brain;
 
                 var controller = SEntMan.SpawnEntity(null, coordinates);
-                SetTestController(console, controller);
-                console.Users.Add(controller);
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid,
+                    new BoundUIOpenedEvent(RemoteControlUIKey.Key, consoleUid, controller));
+                Assert.That(console.Controller, Is.EqualTo(controller));
+                Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(controller).RelayEntity,
+                    Is.EqualTo(remoteEntity));
 
                 Assert.That(playerManager.SetAttachedEntity(session, remoteEntity), Is.True);
-                Assert.That(console.Controller,
-                    Is.EqualTo(expectedToRemainInControl ? controller : (EntityUid?) null));
+                Assert.That(console.Controller, Is.Null);
+                Assert.That(SEntMan.HasComponent<RelayInputMoverComponent>(controller), Is.False);
+                Assert.That(remoteControl.TryGetControlledEntity(controller, out _), Is.False);
             }
             finally
             {

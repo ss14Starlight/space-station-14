@@ -23,6 +23,9 @@ public sealed partial class RemoteControlConsoleComponent : Component
     [DataField]
     public bool EnableRemoteView = true;
 
+    /// <summary>
+    /// Allows taking control from another remote console, but not from a player directly possessing the target.
+    /// </summary>
     [DataField]
     public bool CanForceRemoteControl;
 }

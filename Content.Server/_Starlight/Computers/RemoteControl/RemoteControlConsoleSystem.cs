@@ -222,7 +222,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             return;
         }
 
-        if (!CanRemoteControlTarget(entity.Owner, entity.Comp, remoteEntity, user))
+        if (!CanRemoteControlTarget(entity.Owner, remoteEntity, user))
             args.Cancelled = true;
     }
 
@@ -532,8 +532,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     {
         foreach (var console in EntityQuery<RemoteControlConsoleComponent>())
         {
-            if (console.CanForceRemoteControl
-                || console.Controller is not { } controller
+            if (console.Controller is not { } controller
                 || !TryGetRemoteEntity(console, out var remoteEntity)
                 || remoteEntity != args.Entity)
                 continue;
@@ -1203,7 +1202,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     {
         if (controller is { } controlRequester
             && remoteEntity is { } controlledEntity
-            && !CanRemoteControlTarget(consoleUid, component, controlledEntity, controlRequester))
+            && !CanRemoteControlTarget(consoleUid, controlledEntity, controlRequester))
         {
             if (refreshUi)
                 RefreshRemoteState(consoleUid, component, controlledEntity);
@@ -1375,10 +1374,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         _remoteUiRangeOverrides.TryRemove((remoteEntity, uiKey, controller), out _);
     }
 
-    private bool CanRemoteControlTarget(EntityUid consoleUid, RemoteControlConsoleComponent component,
-        EntityUid remoteEntity, EntityUid controller)
+    private bool CanRemoteControlTarget(EntityUid consoleUid, EntityUid remoteEntity, EntityUid controller)
     {
-        if (component.CanForceRemoteControl || !HasComp<ActorComponent>(remoteEntity))
+        if (!HasComp<ActorComponent>(remoteEntity))
             return true;
 
         _popup.PopupEntity(Loc.GetString("remote-control-target-player-controlled"), consoleUid, controller);
