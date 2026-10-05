@@ -306,6 +306,52 @@
       - StartingGearDrone
   - type: GlitchOnEMP
 
+#Scrapper
+- type: entity
+  name: Scrapper drone
+  id: DroneRogue
+  parent: Drone
+  components:
+  - type: ItemSlots
+  - type: Construction
+    graph: DroneRogue
+    node: rogue_drone_complete
+    containers:
+    - part-container
+    - cell_slot
+  - type: Sprite
+    noRot: true
+    drawdepth: SmallMobs
+    layers:
+      - state: shell
+        sprite: _Starlight/Mobs/Silicon/Bots/scrapperdrone.rsi #replace with derelict sprit
+        map: ["base"]
+  - type: SiliconLawProvider
+    laws: RogueDrone
+  - type: GhostRole
+    makeSentient: false
+    name: ghost-role-information-roguedrone-name
+    description: ghost-role-information-rogue-drone-description
+    rules: ghost-role-information-rogue-drone-rules
+    job: Borg # 10 Hour overall requirement
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+  - type: RadarConsole
+  - type: !Remove AccessReader
+  - type: !Remove Access
+  - type: !Remove StationAIShunt
+  - type: !Remove PowerCellDraw
+  - type: !Remove GlitchOnEMP
+  - type: !Remove Pacified
+
 # Borgs
 
 # region syndicate
