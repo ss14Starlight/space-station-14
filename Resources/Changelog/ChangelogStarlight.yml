@@ -1,13 +1,6 @@
 Entries:
 - author: Kirb
   changes:
-  - message: Expies can no longer speak or use radio while in soft crit, they can still whisper and emote.
-    type: Tweak
-  id: 408794
-  time: '2026-09-22T00:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6275
-- author: Kirb
-  changes:
   - message: Expie crit and death sounds range is now shorter.
     type: Tweak
   id: 408795
@@ -2799,4 +2792,11 @@ Entries:
   id: 409193
   time: '2026-10-05T13:52:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6444
+- author: Swonki
+  changes:
+  - message: Scrapper Drones. The not as helpful cousins of standard drones.
+    type: Add
+  id: 409194
+  time: '2026-10-05T13:52:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6487
 Order: -1
