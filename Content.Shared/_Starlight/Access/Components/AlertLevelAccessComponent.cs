@@ -12,7 +12,7 @@ public sealed partial class AlertLevelAccessComponent : Component
     #region State
 
     /// <summary>
-    /// The alert level color. Cleared when unanchored or not on a station-affiliated grid.
+    /// The alert level. Cleared when unanchored or not on a station-affiliated grid.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public string? Level;
