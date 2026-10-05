@@ -49,7 +49,7 @@ public sealed partial class BodyScannerComponent : Component
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
 public sealed partial class BoneGelComponent : Component, ISurgeryToolComponent
 {
-    public string ToolName => "bone gel";
+    public LocId ToolName => "surgery-tool-name-bone-gel";
 
     //FarHorizons Start
     public string ToolType => "BoneGel";
@@ -71,7 +71,7 @@ public sealed partial class BoneGelComponent : Component, ISurgeryToolComponent
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
 public sealed partial class BoneSawComponent : Component, ISurgeryToolComponent
 {
-    public string ToolName => "a bone saw";
+    public LocId ToolName => "surgery-tool-name-bone-saw";
 
     //FarHorizons Start
     public string ToolType => "BoneSaw";
@@ -93,7 +93,7 @@ public sealed partial class BoneSawComponent : Component, ISurgeryToolComponent
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
 public sealed partial class BoneSetterComponent : Component, ISurgeryToolComponent
 {
-    public string ToolName => "a bone setter";
+    public LocId ToolName => "surgery-tool-name-bone-setter";
 
     //FarHorizons Start
     public string ToolType => "BoneSetter";
@@ -115,7 +115,7 @@ public sealed partial class BoneSetterComponent : Component, ISurgeryToolCompone
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
 public sealed partial class CauteryComponent : Component, ISurgeryToolComponent
 {
-    public string ToolName => "a cautery";
+    public LocId ToolName => "surgery-tool-name-cautery";
 
     //FarHorizons Start
     public string ToolType => "Cautery";
@@ -137,7 +137,7 @@ public sealed partial class CauteryComponent : Component, ISurgeryToolComponent
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
 public sealed partial class HemostatComponent : Component, ISurgeryToolComponent
 {
-    public string ToolName => "a hemostat";
+    public LocId ToolName => "surgery-tool-name-hemostat";
 
     //FarHorizons Start
     public string ToolType => "Hemostat";
@@ -159,7 +159,7 @@ public sealed partial class HemostatComponent : Component, ISurgeryToolComponent
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
 public sealed partial class RetractorComponent : Component, ISurgeryToolComponent
 {
-    public string ToolName => "a retractor";
+    public LocId ToolName => "surgery-tool-name-retractor";
 
     //FarHorizons Start
     public string ToolType => "Retractor";
@@ -181,7 +181,7 @@ public sealed partial class RetractorComponent : Component, ISurgeryToolComponen
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
 public sealed partial class ScalpelComponent : Component, ISurgeryToolComponent
 {
-    public string ToolName => "a scalpel";
+    public LocId ToolName => "surgery-tool-name-scalpel";
 
     //FarHorizons Start
     public string ToolType => "Scalpel";
@@ -203,7 +203,7 @@ public sealed partial class ScalpelComponent : Component, ISurgeryToolComponent
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
 public sealed partial class SurgicalDrillComponent : Component, ISurgeryToolComponent
 {
-    public string ToolName => "a surgical drill";
+    public LocId ToolName => "surgery-tool-name-surgical-drill";
 
     //FarHorizons Start
     public string ToolType => "SurgicalDrill";
@@ -225,7 +225,7 @@ public sealed partial class SurgicalDrillComponent : Component, ISurgeryToolComp
     [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
     public sealed partial class CrowbarSurgeryComponent : Component, ISurgeryToolComponent
     {
-        public string ToolName => "a crowbar";
+        public LocId ToolName => "surgery-tool-name-crowbar";
         public string ToolType => "CrowbarSurgery";
 
         [DataField]
@@ -244,7 +244,7 @@ public sealed partial class SurgicalDrillComponent : Component, ISurgeryToolComp
     [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
     public sealed partial class MultitoolSurgeryComponent : Component, ISurgeryToolComponent
     {
-        public string ToolName => "a multitool";
+        public LocId ToolName => "surgery-tool-name-multitool";
         public string ToolType => "MultitoolSurgery";
 
         [DataField]
@@ -263,7 +263,7 @@ public sealed partial class SurgicalDrillComponent : Component, ISurgeryToolComp
     [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
     public sealed partial class ScrewdriverSurgeryComponent : Component, ISurgeryToolComponent
     {
-        public string ToolName => "a screwdriver";
+        public LocId ToolName => "surgery-tool-name-screwdriver";
         public string ToolType => "ScrewdriverSurgery";
 
         [DataField]
@@ -282,7 +282,7 @@ public sealed partial class SurgicalDrillComponent : Component, ISurgeryToolComp
     [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
     public sealed partial class WelderSurgeryComponent : Component, ISurgeryToolComponent
     {
-        public string ToolName => "a welder";
+        public LocId ToolName => "surgery-tool-name-welder";
         public string ToolType => "WelderSurgery";
 
         [DataField]
@@ -301,7 +301,7 @@ public sealed partial class SurgicalDrillComponent : Component, ISurgeryToolComp
     [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
     public sealed partial class WirecutterSurgeryComponent : Component, ISurgeryToolComponent
     {
-        public string ToolName => "a wirecutter";
+        public LocId ToolName => "surgery-tool-name-wirecutter";
         public string ToolType => "WirecutterSurgery";
 
         [DataField]
@@ -320,7 +320,7 @@ public sealed partial class SurgicalDrillComponent : Component, ISurgeryToolComp
     [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
     public sealed partial class WrenchSurgeryComponent : Component, ISurgeryToolComponent
     {
-        public string ToolName => "a wrench";
+        public LocId ToolName => "surgery-tool-name-wrench";
         public string ToolType => "WrenchSurgery";
 
         [DataField]

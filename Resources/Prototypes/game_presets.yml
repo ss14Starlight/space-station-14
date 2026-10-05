@@ -113,6 +113,7 @@
   showInVote: true # 🌟Starlight🌟
   description: extended-description
   minPlayers: 0 # Starlight
+  voteCooldown: 0 # Starlight
   rules:
   - BasicStationEventScheduler
   - MeteorSwarmScheduler

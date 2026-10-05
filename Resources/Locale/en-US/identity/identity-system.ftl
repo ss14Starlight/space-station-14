@@ -1,6 +1,4 @@
-﻿identity-unknown-name = ???
-
-identity-age-young = young
+﻿identity-age-young = young
 identity-age-middle-aged = middle-aged
 identity-age-old = old
 

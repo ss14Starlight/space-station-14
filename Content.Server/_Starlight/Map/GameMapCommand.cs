@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Numerics;
-using Content.Server._Starlight.Commands;
-using Content.Server._Starlight.Toolshed;
+using Content.Shared._Starlight.Commands;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Robust.Server.GameObjects;

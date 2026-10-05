@@ -28,7 +28,6 @@ loadout-group-musician-head = Musician head
 # Command
 
 loadout-group-nanotrasenrepresentative-head = NanoTrasen representative head
-loadout-group-nanotrasenrepresentative-outerclothing = NanoTrasen representative outer clothing
 loadout-group-nanotrasenrepresentative-jumpsuit = NanoTrasen representative jumpsuit
 loadout-group-nanotrasenrepresentative-eyewear = NanoTrasen representative eyewear
 loadout-group-nanotrasenrepresentative-shoes = NanoTrasen representative shoes
@@ -67,7 +66,6 @@ loadout-group-dutyofficer-belt = Duty officer belt
 loadout-group-k9-variant = K9 coat
 loadout-group-k9-outerclothing = K9 armor
 loadout-group-k9-eyes = K9 eyewear
-loadout-group-k9-suitstorage = K9 oxygen tank
 
 loadout-group-detective-lethal = Detective lethal sidearm
 
@@ -124,11 +122,9 @@ loadout-group-janitor-neck = Janitor neck
 
 loadout-group-serviceworker-head = Service worker head
 loadout-group-serviceworker-jumpsuit = Service worker jumpsuit
-loadout-group-serviceworker-outerclothing = Service worker outer clothing
 
 loadout-group-performer-head = Performer head
 loadout-group-performer-jumpsuit = Performer jumpsuit
-loadout-group-performer-outerclothing = Performer outer clothing
 
 loadout-group-lawyer-shoes = Lawyer shoes
 

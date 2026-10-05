@@ -941,3 +941,8 @@
     - TowelColorGold
   groupBy: "towels"
 
+- type: loadout
+  id: ClothingMaskBreathTube
+  equipment:
+    mask: ClothingMaskBreathTube
+

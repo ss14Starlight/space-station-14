@@ -1,0 +1,11 @@
+apiVersion: 1
+
+providers:
+  - name: Starlight
+    orgId: 1
+    folder: Starlight
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /var/lib/grafana/dashboards

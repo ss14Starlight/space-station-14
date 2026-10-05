@@ -3,11 +3,11 @@ using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Server.Containers;
 using Content.Server.StationRecords.Systems;
-using Content.Shared.Access.Components;
-using static Content.Shared.Access.Components.IdCardConsoleComponent;
-using Content.Shared.Access.Systems;
 using Content.Shared.Access;
+using Content.Shared.Access.Components;
+using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
+using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Construction;
 using Content.Shared.Containers.ItemSlots;
@@ -20,15 +20,18 @@ using Content.Shared.StatusIcon;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
+using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using static Content.Shared.Access.Components.IdCardConsoleComponent;
 
 namespace Content.Server.Access.Systems;
 
 [UsedImplicitly]
 public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
 {
+    [Dependency] private IConfigurationManager _cfgManager = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private StationRecordsSystem _record = default!;
     [Dependency] private UserInterfaceSystem _userInterface = default!;
@@ -263,6 +266,16 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if (component.TargetIdSlot.Item is not { Valid: true } targetId || !PrivilegedIdIsAuthorized(uid, component, out var privilegedId))
             return;
 
+        // Limit name and job title lengths
+        var maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
+        var maxIdJobLength = _cfgManager.GetCVar(CCVars.MaxIdJobLength);
+
+        if (newFullName.Length > maxNameLength)
+            newFullName = newFullName[..maxNameLength];
+
+        if (newJobTitle.Length > maxIdJobLength)
+            newJobTitle = newJobTitle[..maxIdJobLength];
+
         _idCard.TryChangeFullName(targetId, newFullName, player: player);
         _idCard.TryChangeJobTitle(targetId, newJobTitle, player: player);
 
@@ -303,14 +316,17 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 allGroupTags.UnionWith(groupPrototype.Tags);
         }
 
-        if (!newAccessList.TrueForAll(x => allGroupTags.Contains(x)))
+        var oldTags = _access.TryGetTags(targetId)?.ToHashSet() ?? new HashSet<ProtoId<AccessLevelPrototype>>();
+
+        // The UI includes existing tags outside the console's groups (e.g. EmergencyShuttleRepealAll).
+        // These are preserved below, so only reject out-of-group tags that the card does not already have.
+        if (!newAccessList.TrueForAll(x => allGroupTags.Contains(x) || oldTags.Contains(x)))
         // Starlight-edit: End
         {
             _sawmill.Warning($"User {ToPrettyString(uid)} tried to write unknown access tag.");
             return;
         }
 
-        var oldTags = _access.TryGetTags(targetId)?.ToHashSet() ?? new HashSet<ProtoId<AccessLevelPrototype>>(); // Starlight - keep oldTags as a hashset instead of a list
         // Starlight-edit: Start
         var privilegedPerms = _accessReader.FindAccessTags(privilegedId!.Value).ToHashSet();
         // For each group, update the tags for that group with the ones from newAccessList

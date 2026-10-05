@@ -47,3 +47,13 @@
       whitelist:
         components:
           - SurplusBundle
+
+- type: listing
+  id: UplinkPlushieLinari
+  name: uplink-plushie-linari-name
+  description: uplink-plushie-linari-desc
+  productEntity: PlushieLinari
+  cost:
+    Telecrystal: 1
+  categories:
+    - UplinkPointless

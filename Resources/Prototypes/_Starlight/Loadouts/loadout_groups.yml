@@ -54,6 +54,14 @@
   - ScarfPrideRainbow
   - ScarfPrideTrans
   - ScarfPrideLongBacon
+  - ScarfSolidRed
+  - ScarfSolidBlue
+  - ScarfSolidGreen
+  - ScarfSolidBlack
+  - ScarfSolidBrown
+  - ScarfSolidLightBlue
+  - ScarfSolidOrange
+  - ScarfSolidPurple
 
 - type: loadoutGroup
   id: Pins
@@ -275,6 +283,7 @@
   - NanoTrasenRepresentativeTophat
   - NanoTrasenRepresentativeEliteTophat
   - NanoTrasenRepresentativeCap
+  - NanoTrasenRepresentativeBeret
 
 - type: loadoutGroup
   id: NanoTrasenRepresentativeNeck
@@ -327,6 +336,7 @@
   minLimit: 0
   loadouts:
   - MagistrateHeadPwig
+  - MagistrateHeadBeret
 
 - type: loadoutGroup
   id: MagistrateEyewear

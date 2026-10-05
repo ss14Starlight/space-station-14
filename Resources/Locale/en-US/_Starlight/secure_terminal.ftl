@@ -19,15 +19,16 @@ secure-terminal-recall-locked = { $minutes ->
 secure-terminal-used-note = This armory has been permanently activated or recalled this round and cannot be deployed again.
 secure-terminal-already-used = This resource has already been used this round and cannot be requested again.
 
-secure-terminal-auth-waiting = No active proposal for this request.
+secure-terminal-auth-waiting = No active proposal for this request. Required authorization:
 secure-terminal-auth-desc = Current proposal — no response = [color=red]red[/color], agreed = [color=green]green[/color]:
 secure-terminal-awaiting-member = Awaiting {$label}
+secure-terminal-authorized-by-label = Signed by:
+secure-terminal-veto-label = Veto
 
-secure-terminal-pending-countdown-label = Expires in {$minutes}m {$seconds}s…
 secure-terminal-countdown-label = Activating in {$minutes}m {$seconds}s…
 
 secure-terminal-fee-note = Processing fee: {$fee}
-secure-terminal-salary-note = Station salary reduced by {$penalty}% due to mobilization cost.
+secure-terminal-salary-note = Changes to salaries:
 secure-terminal-delay-note = { $minutes ->
     [1] ETA: 1 minute after authorization.
    *[other] ETA: {$minutes} minutes after authorization.
@@ -45,8 +46,6 @@ secure-terminal-on-cooldown-note = { $minutes ->
     [1] On cooldown — available in 1 minute.
    *[other] On cooldown — available in {$minutes} minutes.
 }
-secure-terminal-requires-alert-suffix = Need: {$level}
-secure-terminal-requires-war-suffix = Need: War Ops
 
 secure-terminal-reason = Insert request reason:
 
@@ -56,12 +55,11 @@ secure-terminal-proposal-created = {$request} has been requested and is awaiting
 secure-terminal-proposal-created-reason = {$request} has been requested and is awaiting co-authorization. Reason: {$reason}
 secure-terminal-proposal-denied = {$request} request has been cancelled.
 secure-terminal-proposal-denied-cc = {$request} request has been denied by Central Command.
+secure-terminal-proposal-cancelled-by = Secure Terminal — {$actor} cancelled the {$request} request.
+secure-terminal-proposal-vetoed-by = Secure Terminal — {$request} request was vetoed by: {$vetoers}.
 secure-terminal-radio-proposal = {$request} has been proposed. Please go to the nearest Keycard Authentication Device to authorize or deny.
 secure-terminal-radio-proposal-reason = {$request} has been proposed. Please go to the nearest Keycard Authentication Device to authorize or deny. Reason: {$reason}
 secure-terminal-radio-denied = {$request} request has been cancelled.
-secure-terminal-activation-countdown = {$request} has been fully authorized.
-    Activating in {$minutes} minutes.
-    Station salary has been reduced due to the mobilization cost.
 secure-terminal-unknown-job = Unknown
 
 ## Popup messages
@@ -77,7 +75,6 @@ secure-terminal-on-cooldown = This request is on cooldown.
 secure-terminal-already-pending = A proposal for this request is already pending.
 secure-terminal-already-active = Another request is already pending or activating. Wait for it to complete before making a new one.
 secure-terminal-no-active-proposal = No active proposal found for this request.
-secure-terminal-already-authorized = You have already authorized this proposal.
 secure-terminal-already-activated = This terminal already authorized this proposal.
 secure-terminal-auth-note = This terminal is only for authorization.
 secure-terminal-authorized-by = Attention — {$request} request has been authorized. Authorized by: {$signatories}.
@@ -85,9 +82,35 @@ secure-terminal-armory-recalled = {$request} recall order issued. Armory deploym
 secure-terminal-awaiting-admin = Attention — {$request} request has been sent. Awaiting authorization by Central Command.
 secure-terminal-admin = Requesting Admin Approval for: {$request}
                         Reason: {$reason}
-                        Use the AGhost to Approve/Deny the request.
+                        Use the popup or AGhost (communication interface) to Approve/Deny.
+                        Closing the popup will NOT deny the request.
+secure-terminal-admin-approval-title = Secure Terminal Admin Approval
+secure-terminal-admin-approval-request = Request: {$request}
+secure-terminal-admin-approval-description = Action: {$description}
+secure-terminal-admin-approval-reason = Reason: {$reason}
+secure-terminal-admin-approval-authorized-by = Signed by:
+secure-terminal-admin-approval-approve = Approve
+secure-terminal-admin-approval-deny = Deny
+secure-terminal-authorized-by-central-command = Central Command has countersigned this request.
+secure-terminal-authorized-by-central-command-deferred = Central Command has deferred to station command authority.
 
 ## Request names & descriptions
+
+secure-terminal-ai-leadership-name = AI Leadership
+secure-terminal-captain-and-ntrep-name = Captain and NanoTrasen Representative
+secure-terminal-captain-name = Captain
+secure-terminal-captain-or-ntrep-name = Captain or NanoTrasen Representative
+secure-terminal-chief-medical-officer-name = Chief Medical Officer
+secure-terminal-civilian-leadership-name = Civilian Leadership
+secure-terminal-command-name = Command
+secure-terminal-engineering-leadership-name = Engineering Leadership
+secure-terminal-head-of-security-name = Head of Security
+secure-terminal-med-and-science-leadership-name = Medical and Science Leadership
+secure-terminal-medical-leadership-name = Medical Leadership
+secure-terminal-research-director-name = Research Director
+secure-terminal-security-and-command-name = Security and Command
+secure-terminal-security-leadership-name = Security Leadership
+secure-terminal-security-name = Security
 
 secure-terminal-warops-security-name = Nuclear Response Team
 secure-terminal-warops-security-desc = Deploys an ERT Security detail specialized for War Ops. Only available during War Ops.
@@ -129,7 +152,6 @@ secure-terminal-code-gamma-announcement = Attention! Code GAMMA is being put int
 
 secure-terminal-end-gamma-name = End GAMMA Alert
 secure-terminal-end-gamma-desc = Lifts [color=palevioletred]GAMMA[/color] alert and returns the station to Green. Requires GAMMA to have been active for at least 15 minutes.
-secure-terminal-end-gamma-announcement = Code GAMMA is being lifted. The station is being restored to normal operations. Remain alert and await further instruction from your head of staff.
 
 secure-terminal-code-psi-name = Code PSI
 secure-terminal-code-psi-desc = Escalates the station to [color=mediumpurple]PSI[/color] alert. Hostile synthetic units detected — avoid non-conforming cyborgs and seek command staff.
@@ -171,7 +193,7 @@ secure-terminal-nukerequest-desc = Request the nuclear self-destruct codes.
                                    Transmission does not guarantee a response.
 
 secure-terminal-code-violet-name = Code Violet
-secure-terminal-code-violet-desc = Escalates the station to [color=Violet]Violet[/color] alert.
+secure-terminal-code-violet-desc = Declares [color=Violet]Violet[/color] alert in response to a confirmed station-wide outbreak.
 
 secure-terminal-end-violet-name = End Violet Alert
 secure-terminal-end-violet-desc = Lifts [color=Violet]Violet[/color] alert and returns the station to Green. Requires Violet to have been active for at least 10 minutes.
@@ -191,3 +213,11 @@ secure-terminal-emergency-station-announcement = Access restrictions on all stat
 secure-terminal-end-emergency-station-name = Deactivate Station-Wide Emergency Access
 secure-terminal-end-emergency-station-desc = Deactivate Station-Wide Emergency Access.
 secure-terminal-end-emergency-station-announcement = Access restrictions on all station airlocks have been re-added. Seek station AI or a colleague's assistance if you are stuck.
+
+secure-terminal-unlock-escape-pods-name = Unlock escape pods
+secure-terminal-unlock-escape-pods-desc = Escape pods will be unlocked and crew can launch them at will
+secure-terminal-unlock-escape-pods-announcement = Command has authorized escape pods to be used for evacuation
+
+secure-terminal-ui-veto = Veto
+secure-terminal-insufficient-funds = Insufficient funds. Required: { $fee }₡
+secure-terminal-fee-held = Held { $fee }₡ pending authorization.

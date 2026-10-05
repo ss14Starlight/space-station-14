@@ -28,4 +28,11 @@ public sealed partial class ZonePrototype : IPrototype
     /// </summary>
     [DataField]
     public List<EntProtoId> Doors = [];
+
+    /// <summary>
+    /// Marks the zone rooms become when their doors disagree and there are enough of them to be a
+    /// corridor. Only one zone may have this set.
+    /// </summary>
+    [DataField]
+    public bool Corridor;
 }

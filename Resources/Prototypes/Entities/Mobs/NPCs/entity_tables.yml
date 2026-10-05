@@ -11,8 +11,11 @@
       - id: MobMouse2
       - id: MobMouseCancer
         weight: 0.05
+      - id: MobMouseBurnt # Starlight
+        weight: 0.05 # Starlight
     - !type:GroupSelector
       children:
       - id: MobSnail
       - id: MobSnailSpeed
       - id: MobSnailMoth
+      - id: MobSnouse # Starlight

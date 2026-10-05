@@ -42,6 +42,10 @@ public sealed partial class ZoneSystem
     private readonly HashSet<Vector2i> _raceSetA = [];
     private readonly HashSet<Vector2i> _raceSetB = [];
 
+    private readonly Dictionary<ushort, int> _votes = [];
+    private readonly Dictionary<ushort, int> _zoneVotes = [];
+    private readonly HashSet<ushort> _majority = [];
+
     private static int BlockMask(AtmosDirection dir)
         => ((int) dir << (int) NavMapChunkType.Wall) | ((int) dir << (int) NavMapChunkType.Airlock);
 
@@ -370,7 +374,7 @@ public sealed partial class ZoneSystem
             return NoRegion;
         }
 
-        var naming = new ZoneNaming();
+        var naming = StartNaming();
 
         foreach (var tile in _floodTiles)
         {
@@ -384,15 +388,10 @@ public sealed partial class ZoneSystem
         var entry = new ZoneRegion
         {
             Used = true,
-            HintZone = naming.Hint,
-            HintTileCount = naming.HintTiles,
-            MarkerZone = naming.Marker,
-            MarkerPriority = naming.MarkerPriority,
-            MarkerConflict = naming.MarkerConflict,
             TileCount = _floodTiles.Count,
         };
 
-        ResolveZone(ref entry);
+        ApplyNaming(ref entry, naming);
         comp.Regions[region] = entry;
 
         return region;
@@ -411,7 +410,7 @@ public sealed partial class ZoneSystem
             return;
         }
 
-        var naming = new ZoneNaming();
+        var naming = StartNaming();
 
         foreach (var tile in _floodTiles)
         {
@@ -422,23 +421,22 @@ public sealed partial class ZoneSystem
         }
 
         ref var entry = ref comp.Regions[region];
-        entry.HintZone = naming.Hint;
-        entry.HintTileCount = naming.HintTiles;
-        entry.MarkerZone = naming.Marker;
-        entry.MarkerPriority = naming.MarkerPriority;
-        entry.MarkerConflict = naming.MarkerConflict;
         entry.TileCount = _floodTiles.Count;
-
-        ResolveZone(ref entry);
+        ApplyNaming(ref entry, naming);
     }
 
     private struct ZoneNaming
     {
         public ushort Hint;
         public int HintTiles;
-        public ushort Marker;
         public short MarkerPriority;
-        public bool MarkerConflict;
+        public int MarkerTiles;
+    }
+
+    private ZoneNaming StartNaming()
+    {
+        _votes.Clear();
+        return new ZoneNaming { MarkerPriority = short.MinValue };
     }
 
     private void Accumulate(ref ZoneNaming naming, ZoneChunk chunk, int index)
@@ -458,16 +456,86 @@ public sealed partial class ZoneSystem
         if (marker == NoZone)
             return;
 
+        naming.MarkerTiles++;
+
         var priority = chunk.MarkerPriorities[index];
 
-        if (naming.Marker == NoZone || priority > naming.MarkerPriority)
+        if (priority < naming.MarkerPriority)
+            return;
+
+        if (priority > naming.MarkerPriority)
         {
-            naming.Marker = marker;
+            _votes.Clear();
             naming.MarkerPriority = priority;
-            naming.MarkerConflict = false;
         }
-        else if (priority == naming.MarkerPriority && marker != naming.Marker)
-            naming.MarkerConflict = true;
+
+        _votes[marker] = _votes.GetValueOrDefault(marker) + 1;
+    }
+
+    private void ApplyNaming(ref ZoneRegion entry, in ZoneNaming naming)
+    {
+        entry.HintZone = naming.Hint;
+        entry.HintTileCount = naming.HintTiles;
+        entry.MarkerTiles = naming.MarkerTiles;
+        entry.MarkerStale = false;
+
+        (entry.MarkerZone, entry.MarkerStrong) = CountVotes();
+        entry.MarkerPriority = entry.MarkerZone == NoZone ? (short) 0 : naming.MarkerPriority;
+
+        ResolveZone(ref entry);
+    }
+
+    private (ushort Zone, bool Strong) CountVotes()
+    {
+        var total = 0;
+        _zoneVotes.Clear();
+
+        foreach (var (zone, votes) in _votes)
+        {
+            total += votes;
+
+            foreach (var member in GetZones(zone))
+            {
+                var id = GetZoneId(member);
+                _zoneVotes[id] = _zoneVotes.GetValueOrDefault(id) + votes;
+            }
+        }
+
+        if (total == 0)
+            return (NoZone, false);
+
+        _majority.Clear();
+        var topVotes = 0;
+        var topPriority = int.MinValue;
+
+        foreach (var (zone, votes) in _zoneVotes)
+        {
+            if (votes * 2 > total)
+                _majority.Add(zone);
+
+            var priority = ZonePriority(zone);
+            if (votes < topVotes || (votes == topVotes && priority < topPriority))
+                continue;
+
+            topVotes = votes;
+            topPriority = priority;
+        }
+
+        // The corridor zone is a fallback, so plain hallway doors never override a zone the mapper drew.
+        if (_majority.Count > 0)
+            return (GetZoneSet(_majority), _majority.Count > 1 || !_majority.Contains(CorridorZone));
+
+        _majority.Clear();
+        foreach (var (zone, votes) in _zoneVotes)
+        {
+            if (votes == topVotes && ZonePriority(zone) == topPriority)
+                _majority.Add(zone);
+        }
+
+        if (_majority.Count > 1 && total >= _corridorDoorCount && CorridorZone != NoZone)
+            return (CorridorZone, false);
+
+        return (GetZoneSet(_majority), false);
     }
 
     #endregion
@@ -531,6 +599,14 @@ public sealed partial class ZoneSystem
         else
             chunk.Regions[index] = region;
 
+        ref var joined = ref comp.Regions[region];
+
+        if (joined.MarkerStale)
+        {
+            joined.MarkerStale = false;
+            QueueRename(comp, region, tile);
+        }
+
         _seedBuffer.Clear();
         _seedBuffer.Add(tile);
 
@@ -556,22 +632,21 @@ public sealed partial class ZoneSystem
         ref var entry = ref comp.Regions[region];
         entry.TileCount++;
 
-        var naming = new ZoneNaming
+        var hint = chunk.Hints[index];
+
+        if (hint == entry.HintZone)
+            entry.HintTileCount++;
+        else if (CompareZones(hint, entry.HintZone) > 0)
         {
-            Hint = entry.HintZone,
-            HintTiles = entry.HintTileCount,
-            Marker = entry.MarkerZone,
-            MarkerPriority = entry.MarkerPriority,
-            MarkerConflict = entry.MarkerConflict,
-        };
+            entry.HintZone = hint;
+            entry.HintTileCount = 1;
+        }
 
-        Accumulate(ref naming, chunk, index);
-
-        entry.HintZone = naming.Hint;
-        entry.HintTileCount = naming.HintTiles;
-        entry.MarkerZone = naming.Marker;
-        entry.MarkerPriority = naming.MarkerPriority;
-        entry.MarkerConflict = naming.MarkerConflict;
+        if (chunk.Markers[index] != NoZone)
+        {
+            entry.MarkerTiles++;
+            entry.MarkerStale = true;
+        }
 
         ResolveZone(ref entry);
     }
@@ -599,6 +674,9 @@ public sealed partial class ZoneSystem
             entry.HintTileCount--;
 
         var lostMarker = chunk.Markers[index] != NoZone;
+
+        if (lostMarker)
+            entry.MarkerTiles--;
 
         if (entry.TileCount <= 0)
         {
@@ -785,9 +863,9 @@ public sealed partial class ZoneSystem
             return;
         }
 
-        var naming = new ZoneNaming();
+        var naming = StartNaming();
         var lostHintTiles = 0;
-        var lostMarker = false;
+        var lostMarkerTiles = 0;
         var oldHint = old == NoRegion ? NoZone : comp.Regions[old].HintZone;
 
         foreach (var tile in tiles)
@@ -801,7 +879,7 @@ public sealed partial class ZoneSystem
                 lostHintTiles++;
 
             if (chunk.Markers[index] != NoZone)
-                lostMarker = true;
+                lostMarkerTiles++;
 
             Accumulate(ref naming, chunk, index);
         }
@@ -809,15 +887,10 @@ public sealed partial class ZoneSystem
         var fresh = new ZoneRegion
         {
             Used = true,
-            HintZone = naming.Hint,
-            HintTileCount = naming.HintTiles,
-            MarkerZone = naming.Marker,
-            MarkerPriority = naming.MarkerPriority,
-            MarkerConflict = naming.MarkerConflict,
             TileCount = tiles.Count,
         };
 
-        ResolveZone(ref fresh);
+        ApplyNaming(ref fresh, naming);
         comp.Regions[region] = fresh;
 
         if (old == NoRegion)
@@ -826,10 +899,11 @@ public sealed partial class ZoneSystem
         ref var entry = ref comp.Regions[old];
         entry.TileCount -= tiles.Count;
         entry.HintTileCount -= lostHintTiles;
+        entry.MarkerTiles -= lostMarkerTiles;
 
         if (entry.TileCount <= 0)
             TryFreeRegion(comp, old);
-        else if (lostMarker || (entry.HintZone != NoZone && entry.HintTileCount <= 0))
+        else if (lostMarkerTiles > 0 || (entry.HintZone != NoZone && entry.HintTileCount <= 0))
             QueueRename(comp, old, FindTileIn(comp, old, tiles));
     }
 
@@ -869,6 +943,9 @@ public sealed partial class ZoneSystem
 
         if ((flag & SharedNavMapSystem.AirlockMask) != 0)
             flag = ExcludeExemptDoors(ctx, tile, flag);
+
+        if (IsBoundaryTile(ctx.Grid, tile))
+            flag |= SharedNavMapSystem.AirlockMask;
 
         return true;
     }

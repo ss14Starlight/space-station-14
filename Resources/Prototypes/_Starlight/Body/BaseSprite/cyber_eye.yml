@@ -21,3 +21,15 @@
   baseSprite:
     sprite: _Starlight/Mobs/Species/Cyberlimbs/resomiparts.rsi
     state: eyes_thermal
+
+- type: humanoidBaseSprite
+  id: ExperimentCyberEyesNightVision
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/expieparts.rsi
+    state: eyes_night
+
+- type: humanoidBaseSprite
+  id: ExperimentCyberEyesThermalVision
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/expieparts.rsi
+    state: eyes_thermal

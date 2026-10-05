@@ -1,0 +1,31 @@
+## Rubber stamp names
+
+stamp-component-stamped-name-rubber-stamp-base-fake = Fake
+stamp-component-stamped-name-rubber-stamp-magistrate = Magistrate
+stamp-component-stamped-name-rubber-stamp-ntrep = NanoTrasen Representative
+stamp-component-stamped-name-rubber-stamp-bso = Blueshield Officer
+stamp-component-stamped-name-rubber-stamp-cad = Central Administration Division
+stamp-component-stamped-name-rubber-stamp-ccd = Central Cargo Division
+stamp-component-stamped-name-rubber-stamp-ced = Central Engineering Division
+stamp-component-stamped-name-rubber-stamp-cid = Central Intelligence Division
+stamp-component-stamped-name-rubber-stamp-cmd = Central Medical Division
+stamp-component-stamped-name-rubber-stamp-crd = Central Research Division
+stamp-component-stamped-name-rubber-stamp-cdd = Central Domestic Division
+stamp-component-stamped-name-rubber-stamp-csod = Central Special Operations Division
+stamp-component-stamped-name-rubber-stamp-csd = Central Security Division
+stamp-component-stamped-name-rubber-stamp-acknowledged = Acknowledged
+stamp-component-stamped-name-rubber-stamp-missing-stamps = Missing Stamps
+stamp-component-stamped-name-rubber-stamp-incorrect-stamps = Incorrect Stamps
+stamp-component-stamped-name-rubber-stamp-incorrect-form = Incorrect Form
+stamp-component-stamped-name-rubber-stamp-incomplete-form = Incomplete Form
+stamp-component-stamped-name-rubber-stamp-sent-to-ats = Sent to ATS
+stamp-component-stamped-name-rubber-stamp-defer-to-command = Defer to Command
+stamp-component-stamped-name-rubber-stamp-standby = Standby
+stamp-component-stamped-name-rubber-stamp-salvage-lead = Salvage Lead
+stamp-component-stamped-name-rubber-stamp-tsf = Trans-Solar Federation
+stamp-component-stamped-name-rubber-stamp-tsmc = Trans-Solar Marine Corps
+stamp-component-stamped-name-rubber-stamp-solgov-law = Solgov Law Enforcement
+stamp-component-stamped-name-rubber-stamp-solgov-rep = Solgov Representative
+stamp-component-stamped-name-rubber-stamp-solgov-traders = Solgov Traders
+stamp-component-stamped-name-rubber-stamp-itg = Interstellar Trade Guild
+stamp-component-stamped-name-rubber-stamp-med-tak = MedTak

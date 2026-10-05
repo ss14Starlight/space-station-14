@@ -65,7 +65,14 @@ public sealed partial class SharedTimedSpawnerSystem : EntitySystem
         for (var i = 0; i < number; i++)
         {
             var entity = random.Pick(component.Prototypes);
-            PredictedSpawnAtPosition(entity, coordinates);
+            if (component.AllowContainerPlacement)
+            {
+                PredictedSpawnNextToOrDrop(entity, uid);
+            }
+            else
+            {
+                PredictedSpawnAtPosition(entity, coordinates);
+            }
         }
 
         if (component.DespawnWhenDone)

@@ -128,6 +128,7 @@
   - PillCanisterPsicodine
   - ClothingDogTags
   - PersonalAI
+  - ClothingMaskBreathTube
   - GoldenPersonalAI # Starlight end
   - AACTablet # DeltaV
 
@@ -409,6 +410,16 @@
   - WinterBoots
   - Heels # 🌟Starlight🌟
 
+# Starlight-start
+- type: loadoutGroup
+  id: AssistantJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - Soap
+  - RubberStampAssistant
+# Starlight-end
+
 - type: loadoutGroup
   id: BartenderHead
   name: loadout-group-bartender-head
@@ -606,7 +617,6 @@
   - BibleEdda
   - BibleKoans
   - BibleLiberChaotica
-  - BibleMalleus
   - BibleOrthodox
   - BiblePrincipiaDiscordia
   - BibleHadith
@@ -1247,6 +1257,7 @@
   minLimit: 0
   loadouts:
   - ResearchDirectorBeret
+  - ResearchDirectorBeretRD # Starlight
 
 - type: loadoutGroup
   id: ResearchDirectorNeck
