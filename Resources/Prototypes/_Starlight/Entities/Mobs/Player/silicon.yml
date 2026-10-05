@@ -228,6 +228,8 @@
       - Engineering
       - Research
       - Robotics
+      - External
+      - Atmospherics
   - type: AccessReader
     access: [["Command"], ["Robotics"]]
   - type: LockingWhitelist
