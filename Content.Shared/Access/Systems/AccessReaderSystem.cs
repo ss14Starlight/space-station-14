@@ -294,7 +294,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
         return false;
     }
 
-    private bool IsAllowedInternal(ICollection<ProtoId<AccessLevelPrototype>> access, ICollection<StationRecordKey> stationKeys, Entity<AccessReaderComponent> reader)
+    private bool IsAllowedInternal(ICollection<ProtoId<AccessLevelPrototype>> access, ICollection<StationRecordKey> stationKeys, Entity<AccessReaderComponent> reader) // Starlight-edit
     {
         return !reader.Comp.Enabled // Starlight-edit
                || AreAccessTagsAllowed(access, reader)
@@ -306,7 +306,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
     /// </summary>
     /// <param name="accessTags">A list of access tags.</param>
     /// <param name="reader">The access reader to check against.</param>
-    public bool AreAccessTagsAllowed(ICollection<ProtoId<AccessLevelPrototype>> accessTags, Entity<AccessReaderComponent> reader)
+    public bool AreAccessTagsAllowed(ICollection<ProtoId<AccessLevelPrototype>> accessTags, Entity<AccessReaderComponent> reader) // Starlight-edit
     {
         // Starlight-start
         var denyTagEv = new GetAccessReaderDenyTagsEvent(new HashSet<ProtoId<AccessLevelPrototype>>(reader.Comp.DenyTags));

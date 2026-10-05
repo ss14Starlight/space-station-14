@@ -57,6 +57,8 @@ public sealed partial class AlertLevelAccessSystem : SharedAlertLevelAccessSyste
         var query = EntityQueryEnumerator<AlertLevelAccessComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var alertLevelAccess, out var xform))
         {
+            if (!xform.Anchored)
+                continue;
             if (CompOrNull<StationMemberComponent>(xform.GridUid)?.Station != ev.Station)
                 continue;
 
