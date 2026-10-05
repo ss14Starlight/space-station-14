@@ -355,12 +355,12 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         {
             if (_playerResources.TryGetResource(actor, "credits", out var balance) && balance < proto.Fee)
             {
-                _popup.PopupCursor($"Insufficient funds. Required: {proto.Fee}\u20a1", actor, PopupType.Medium);
+                _popup.PopupCursor(Loc.GetString("secure-terminal-insufficient-funds", ("fee", proto.Fee)), actor, PopupType.Medium);
                 return;
             }
 
             _playerResources.TryUpdateResource(actor, "credits", -proto.Fee);
-            _popup.PopupCursor($"Held {proto.Fee}\u20a1 pending authorization.", actor, PopupType.Medium);
+            _popup.PopupCursor(Loc.GetString("secure-terminal-fee-held", ("fee", proto.Fee)), actor, PopupType.Medium);
         }
 
         // Create the proposal

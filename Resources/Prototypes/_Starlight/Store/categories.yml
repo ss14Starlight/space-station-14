@@ -150,31 +150,35 @@
 
 - type: storeCategory
   id: RevUplinkWeaponry
-  name: store-category-rev-uplink-weaponry
+  name: store-category-ussp-armaments
 
 - type: storeCategory
-  id: RevUplinkPassive
-  name: store-category-rev-uplink-passive
+  id: RevUplinkConversionRewards
+  name: store-category-ussp-global
 
 - type: storeCategory
   id: RevUplinkWearables
-  name: store-category-rev-uplink-wearables
+  name: store-category-ussp-wearables
 
 - type: storeCategory
   id: RevUplinkImplants
-  name: store-category-rev-uplink-implants
+  name: store-category-ussp-implants
 
 - type: storeCategory
   id: RevUplinkShuttle
-  name: store-category-rev-uplink-shuttle
+  name: store-category-ussp-shuttle
 
 - type: storeCategory
   id: RevUplinkDeception
-  name: store-category-rev-uplink-deception
+  name: store-category-ussp-deception
 
 - type: storeCategory
   id: RevUplinkPointless
-  name: store-category-rev-uplink-pointless
+  name: store-category-dagd
+
+- type: storeCategory
+  id: RevUplinkWar
+  name: store-category-ussp-war
 
 # Elf Cantrips
 

@@ -76,7 +76,7 @@ public sealed partial class AdminVerbSystem : EntitySystem
                     _chat.SendAdminAnnouncementMessage(player, $"Added NoObjectiveTarget component to the entity! ({args.Target})");
                 },
                 Impact = LogImpact.Low,
-                Message = "Prevents this entity from being targeted by other player's objectives. Will also prevent paraclones of this player.",
+                Message = Loc.GetString("admin-trick-prevent-objective-targeting-description"),
                 Priority = (int)TricksVerbPriorities.BlockObjectiveTargeting
             };
             if (HasComp<ActorComponent>(args.Target)) args.Verbs.Add(preventObjectiveTargeting);

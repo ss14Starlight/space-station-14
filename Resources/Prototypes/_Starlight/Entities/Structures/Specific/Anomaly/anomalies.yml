@@ -590,7 +590,7 @@
     particleInteractions:
     - interactionKey: NullspaceStabilizer
       effect: EndAnomaly
-      delay: 60
+      delay: 12
       distanceThreshold: 10
       spawnCore: false
       visualEffect: CleanseEffectVFX
