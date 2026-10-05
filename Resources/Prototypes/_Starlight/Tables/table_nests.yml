@@ -21,14 +21,3 @@
     - id: MobMouse1
     - id: MobMouse2
 
-- type: entityTable
-  id: BeeBoxTable
-  table: !type:GroupSelector
-    children:
-    - id: MobBee
-    - id: MobAngryBee
-    - id: MobBee
-    - id: MobBee
-    - id: MobBee
-    - id: Honeycomb
-    - id: Honeycomb
