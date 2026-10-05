@@ -1,13 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: Administrative functions for testing salary.
-    type: Add
-  id: 408785
-  time: '2026-09-21T13:50:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6207
-- author: Floximo
-  changes:
   - message: In addition to penalties, bonuses to salaries are now possible.
     type: Add
   id: 408786
@@ -2799,4 +2792,11 @@ Entries:
   id: 409184
   time: '2026-10-05T08:52:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6500
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: A message now shows when a zombie attacks a body immune to infection, indicating they can't be infected.
+    type: Add
+  id: 409185
+  time: '2026-10-05T09:47:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6484
 Order: -1
