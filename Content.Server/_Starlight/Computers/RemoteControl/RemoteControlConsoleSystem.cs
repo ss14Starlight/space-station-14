@@ -261,6 +261,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     {
         _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
         _hands.OnHandSetActive -= OnHandSetActive;
+        base.Shutdown();
     }
 
     private void OnHandSetActive(Entity<HandsComponent>? entity)

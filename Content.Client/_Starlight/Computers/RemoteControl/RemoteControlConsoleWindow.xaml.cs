@@ -97,7 +97,10 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
     private EntityUid? _targetingAction;
     private EntityUid? _selectedAction;
     public event Action? ToggleControl;
-    public event Action<NetCoordinates, EntityUid?, bool, bool, RemoteControlInteractionAction, AtmosPipeLayer?>? RemoteInteractionPressed;
+
+    public event Action<NetCoordinates, EntityUid?, bool, bool, RemoteControlInteractionAction, AtmosPipeLayer?>?
+        RemoteInteractionPressed;
+
     public event Action<EntityUid>? RemoteActionPressed;
     public event Action<EntityUid, EntityUid?, NetCoordinates>? RemoteTargetActionPressed;
     public event Action<string, RemoteControlHandAction>? RemoteHandPressed;
@@ -157,9 +160,14 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         RegisterCommandBinds();
     }
 
+    private bool IsInRemoteView(ScreenCoordinates coords) => RemoteView.Window is { } window
+                                                             && coords.Window == window.Id
+                                                             && RemoteView.GlobalPixelRect.Contains(
+                                                                 (Vector2i)coords.Position);
+
     private bool HandleRemoteExamine(in PointerInputCmdHandler.PointerInputCmdArgs args)
     {
-        if (!RemoteView.GlobalRect.Contains(args.ScreenCoordinates.Position))
+        if (!IsInRemoteView(args.ScreenCoordinates))
             return false;
 
         var mapPosition = RemoteView.PixelToMap(args.ScreenCoordinates.Position);
@@ -215,7 +223,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
     private bool HandleRemoteContextMenu(in PointerInputCmdHandler.PointerInputCmdArgs args)
     {
-        if (args.State != BoundKeyState.Down || !RemoteView.GlobalRect.Contains(args.ScreenCoordinates.Position))
+        if (args.State != BoundKeyState.Down || !IsInRemoteView(args.ScreenCoordinates))
             return false;
 
         if (_targetingAction != null)
@@ -256,7 +264,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
     {
         if (!IoCManager.Resolve<IGameTiming>().IsFirstTimePredicted
             || args.State != BoundKeyState.Down
-            || !RemoteView.GlobalRect.Contains(args.ScreenCoordinates.Position))
+            || !IsInRemoteView(args.ScreenCoordinates))
             return false;
 
         var mapPosition = RemoteView.PixelToMap(args.ScreenCoordinates.Position);
@@ -268,9 +276,9 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         var pipeLayer = _placementLayer;
 
         var coordinates = _mapManager.MapExists(mapPosition.MapId)
-            && _mapManager.TryFindGridAt(mapPosition, out var grid, out _)
+                          && _mapManager.TryFindGridAt(mapPosition, out var grid, out _)
             ? _mapManager.MapToGrid(grid, mapPosition)
-            : new EntityCoordinates((EntityUid) mapEntity, mapPosition.Position);
+            : new EntityCoordinates((EntityUid)mapEntity, mapPosition.Position);
 
         if (!altInteract
             && !activateInWorld
@@ -327,7 +335,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         else if (_entityManager.TryGetComponent<EntityTargetActionComponent>(action, out var entityAction))
         {
             foundTarget = target is { } targetEntity
-                && _actionsSystem.ValidateEntityTarget(user, targetEntity, (action, entityAction));
+                          && _actionsSystem.ValidateEntityTarget(user, targetEntity, (action, entityAction));
             if (foundTarget)
                 validTarget = target;
         }
@@ -440,13 +448,13 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
             return;
 
         cursor.Visible = _targetingAction != null
-            && _controlling
-            && _remoteMouseInViewport
-            && cursor.Texture != null;
+                         && _controlling
+                         && _remoteMouseInViewport
+                         && cursor.Texture != null;
         if (cursor.Visible)
         {
-            var localMousePosition = (_remoteMouseScreenPosition - (Vector2) _remoteSpeechBubbleRoot.GlobalPixelPosition)
-                / _remoteSpeechBubbleRoot.UIScale;
+            var localMousePosition = (_remoteMouseScreenPosition - (Vector2)_remoteSpeechBubbleRoot.GlobalPixelPosition)
+                                     / _remoteSpeechBubbleRoot.UIScale;
             LayoutContainer.SetPosition(cursor, localMousePosition - cursor.Size / 2);
         }
     }
@@ -498,6 +506,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
             ClearRemoteSpeechBubbles();
             SetRemoteTargetAction(null);
         }
+
         ControlButton.Pressed = controlling;
         ControlButton.Disabled = occupied && !controlling;
         UpdateRemoteViewVisibility(_remoteEntity != null);
@@ -565,44 +574,42 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         if (message.Channel == ChatChannel.Emotes)
         {
             var content = message.WrappedMessage;
-            var label = new RichTextLabel
-            {
-                MaxWidth = SpeechBubble.SpeechMaxWidth,
-                Margin = new Thickness(4),
-            };
+            var label = new RichTextLabel { MaxWidth = SpeechBubble.SpeechMaxWidth, Margin = new Thickness(4), };
             label.SetMessage(FormattedMessage.FromMarkupOrThrow(content));
             return new PanelContainer
             {
                 StyleClasses = { "speechBox", style },
                 Children = { label },
-                ModulateSelfOverride = Color.White.WithAlpha(_configurationManager.GetCVar(CCVars.SpeechBubbleBackgroundOpacity)),
+                ModulateSelfOverride =
+                    Color.White.WithAlpha(_configurationManager.GetCVar(CCVars.SpeechBubbleBackgroundOpacity)),
             };
         }
 
         if (!_configurationManager.GetCVar(CCVars.ChatEnableFancyBubbles))
         {
             var headerLabel = new RichTextLabel();
-            headerLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(SharedChatSystem.GetStringInsideTag(message, "BubbleHeader")));
-            var content = new RichTextLabel
-            {
-                MaxWidth = SpeechBubble.SpeechMaxWidth,
-                Margin = new Thickness(4),
-            };
-            content.SetMessage(FormattedMessage.FromMarkupOrThrow(SharedChatSystem.GetStringInsideTag(message, "BubbleContent")));
+            headerLabel.SetMessage(
+                FormattedMessage.FromMarkupOrThrow(SharedChatSystem.GetStringInsideTag(message, "BubbleHeader")));
+            var content = new RichTextLabel { MaxWidth = SpeechBubble.SpeechMaxWidth, Margin = new Thickness(4), };
+            content.SetMessage(
+                FormattedMessage.FromMarkupOrThrow(SharedChatSystem.GetStringInsideTag(message, "BubbleContent")));
             return new PanelContainer
             {
                 StyleClasses = { "speechBox", style },
                 Children = { headerLabel, content },
-                ModulateSelfOverride = Color.White.WithAlpha(_configurationManager.GetCVar(CCVars.SpeechBubbleBackgroundOpacity)),
+                ModulateSelfOverride =
+                    Color.White.WithAlpha(_configurationManager.GetCVar(CCVars.SpeechBubbleBackgroundOpacity)),
             };
         }
 
         var header = new RichTextLabel
         {
-            ModulateSelfOverride = Color.White.WithAlpha(_configurationManager.GetCVar(CCVars.SpeechBubbleSpeakerOpacity)),
+            ModulateSelfOverride =
+                Color.White.WithAlpha(_configurationManager.GetCVar(CCVars.SpeechBubbleSpeakerOpacity)),
             Margin = new Thickness(1, 1, 1, 1),
         };
-        header.SetMessage(FormattedMessage.FromMarkupOrThrow(SharedChatSystem.GetStringInsideTag(message, "BubbleHeader")));
+        header.SetMessage(
+            FormattedMessage.FromMarkupOrThrow(SharedChatSystem.GetStringInsideTag(message, "BubbleHeader")));
 
         var bubbleContent = new RichTextLabel
         {
@@ -611,13 +618,15 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
             StyleClasses = { "bubbleContent" },
             ModulateSelfOverride = Color.White.WithAlpha(_configurationManager.GetCVar(CCVars.SpeechBubbleTextOpacity)),
         };
-        bubbleContent.SetMessage(FormattedMessage.FromMarkupOrThrow(SharedChatSystem.GetStringInsideTag(message, "BubbleContent")));
+        bubbleContent.SetMessage(
+            FormattedMessage.FromMarkupOrThrow(SharedChatSystem.GetStringInsideTag(message, "BubbleContent")));
 
         var contentPanel = new PanelContainer
         {
             StyleClasses = { "speechBox", style },
             Children = { bubbleContent },
-            ModulateSelfOverride = Color.White.WithAlpha(_configurationManager.GetCVar(CCVars.SpeechBubbleBackgroundOpacity)),
+            ModulateSelfOverride =
+                Color.White.WithAlpha(_configurationManager.GetCVar(CCVars.SpeechBubbleBackgroundOpacity)),
             HorizontalAlignment = HAlignment.Center,
             VerticalAlignment = VAlignment.Bottom,
             Margin = new Thickness(4, 14, 4, 2),
@@ -657,15 +666,16 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
             var position = RemoteView.WorldToScreen(worldPos) - RemoteView.GlobalPixelPosition;
             bubble.Measure(Vector2Helpers.Infinity);
-            LayoutContainer.SetPosition(bubble, (position / UIScale) - new Vector2(bubble.DesiredSize.X / 2, bubble.DesiredSize.Y));
+            LayoutContainer.SetPosition(bubble,
+                (position / UIScale) - new Vector2(bubble.DesiredSize.X / 2, bubble.DesiredSize.Y));
             _remoteSpeechBubbles[i] = (entity, bubble, timeLeft);
         }
     }
 
     private void UpdateRemoteViewVisibility(bool connected)
         => RemoteView.Visible = connected && _remoteViewEnabled
-            && _playerManager.LocalEntity is { } player
-            && _actionBlocker.CanConsciouslyPerformAction(player);
+                                          && _playerManager.LocalEntity is { } player
+                                          && _actionBlocker.CanConsciouslyPerformAction(player);
 
     public void SetRemoteViewEnabled(bool enabled)
     {
@@ -719,12 +729,10 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
         foreach (var action in actionList)
         {
-            var button = new ActionButton(IoCManager.Resolve<IEntityManager>())
-            {
-                MinSize = new Vector2(64, 64),
-            };
+            var button = new ActionButton(IoCManager.Resolve<IEntityManager>()) { MinSize = new Vector2(64, 64), };
             button.UpdateData(action, _actionsSystem);
-            button.SetRemoteSelected(button.Action?.Owner == _selectedAction || button.Action?.Owner == _targetingAction);
+            button.SetRemoteSelected(
+                button.Action?.Owner == _selectedAction || button.Action?.Owner == _targetingAction);
             button.ActionUnpressed += OnRemoteActionUnpressed;
             ActionButtons.AddChild(button);
         }
@@ -787,7 +795,8 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
     private void RefreshActionButtonSelection()
     {
         foreach (var button in ActionButtons.Children.OfType<ActionButton>())
-            button.SetRemoteSelected(button.Action?.Owner == _selectedAction || button.Action?.Owner == _targetingAction);
+            button.SetRemoteSelected(
+                button.Action?.Owner == _selectedAction || button.Action?.Owner == _targetingAction);
     }
 
     public void SetHands(IEnumerable<RemoteControlHandState> hands)
@@ -796,9 +805,9 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         var activeHand = hands.FirstOrDefault(hand => hand.Active);
         _activeHandHasItem = activeHand?.HeldItem != null;
         var activeEntity = activeHand?.HeldItem is { } activeItem
-            && _entityManager.TryGetEntity(activeItem, out var resolvedEntity)
+                           && _entityManager.TryGetEntity(activeItem, out var resolvedEntity)
             ? resolvedEntity
-            : (EntityUid?) null;
+            : (EntityUid?)null;
         _activeDeviceStatusPanel.Update(activeEntity, hand: null);
 
         foreach (var hand in hands)
@@ -887,13 +896,11 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
             if (!_inventorySlotButtons.TryGetValue(slot.Name, out var slotButton))
             {
-                slotButton = new SlotButton
-                {
-                    StorageTexturePath = "Slots/back",
-                    SlotName = slot.Name,
-                };
-                slotButton.Pressed += (_, _) => RemoteInventoryPressed?.Invoke(slot.Name, RemoteControlInventoryAction.UseSlot);
-                slotButton.StoragePressed += (_, _) => RemoteInventoryPressed?.Invoke(slot.Name, RemoteControlInventoryAction.OpenStorage);
+                slotButton = new SlotButton { StorageTexturePath = "Slots/back", SlotName = slot.Name, };
+                slotButton.Pressed += (_, _) =>
+                    RemoteInventoryPressed?.Invoke(slot.Name, RemoteControlInventoryAction.UseSlot);
+                slotButton.StoragePressed += (_, _) =>
+                    RemoteInventoryPressed?.Invoke(slot.Name, RemoteControlInventoryAction.OpenStorage);
                 _inventorySlotButtons.Add(slot.Name, slotButton);
                 InventoryButtons.AddChild(slotButton);
             }
@@ -909,11 +916,11 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
     private void OnViewportResized()
     {
-        var width = Math.Max(RemoteView.PixelWidth, (int) Math.Floor(RemoteView.MinWidth));
-        var height = Math.Max(RemoteView.PixelHeight, (int) Math.Floor(RemoteView.MinHeight));
-        var viewSize = (Vector2) RemoteView.ViewportSize;
+        var width = Math.Max(RemoteView.PixelWidth, (int)Math.Floor(RemoteView.MinWidth));
+        var height = Math.Max(RemoteView.PixelHeight, (int)Math.Floor(RemoteView.MinHeight));
+        var viewSize = (Vector2)RemoteView.ViewportSize;
         var scale = Math.Min(width / viewSize.X, height / viewSize.Y);
-        RemoteView.FixedStretchSize = (Vector2i) (viewSize * scale);
+        RemoteView.FixedStretchSize = (Vector2i)(viewSize * scale);
     }
 
     protected override void Dispose(bool disposing)
@@ -926,6 +933,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
         base.Dispose(disposing);
     }
+
     private void RegisterCommandBinds()
     {
         if (_commandBindsRegistered)
@@ -979,7 +987,8 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         RemoteControlConsoleWindow window,
         RemoteControlHandAction action) : InputCmdHandler
     {
-        public override bool HandleCmdMessage(IEntityManager entManager, ICommonSession? session, IFullInputCmdMessage message)
+        public override bool HandleCmdMessage(IEntityManager entManager, ICommonSession? session,
+            IFullInputCmdMessage message)
         {
             if (message.State != BoundKeyState.Down)
                 return window._remoteControl.ControlledEntity is not null && window.RemoteView.Visible;
