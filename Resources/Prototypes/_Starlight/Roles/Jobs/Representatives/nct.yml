@@ -32,7 +32,7 @@
     - Medical
     - IAA
     - NTPersonnel
-    - Debrief
+  # - Debrief # We don't need this many people in Debrief.
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]

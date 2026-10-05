@@ -2,12 +2,10 @@ uplink-contortionist-jumpsuit-name = Contortionist's Jumpsuit
 uplink-contortionist-jumpsuit-desc = It looks like an atmos jumpsuit, but it really is. This jumpsuit allows the agent to slip through the vents.
 uplink-marriage-axe-name = Marriage axe
 uplink-marriage-axe-desc = A charming subtle instrument of chaos—perfect for when diplomacy fails. Screams like a banshee, cuts like a demon, and turns people into regrettable memories. Handle with enthusiasm.
-uplink-mini-energy-crossbow-desc = Fires low-damage kinetic bolts at a short range.
 uplink-minotaur-name = Minotaur bundle
 uplink-minotaur-desc = Lean and mean: Contains smooth, powerful, highly illegal Shotgun, a 5 12g buckshot drums.
 uplink-deagle-name = Desert Eagle
 uplink-deagle-desc = A robust magnum handgun.
-uplink-stechkin-desc = A small, easily concealable 10mm handgun. Has a threaded barrel for suppressors.
 
 uplink-stechkin-bundle-name = Solid Operative Bundle
 uplink-stechkin-bundle-desc = A mysterious cardboard box containing a slew of equipment for only the most solid of operatives.
@@ -58,8 +56,6 @@ uplink-uzi-magazine-desc = Submachine gun magazine with 32 cartridges. Compatibl
 
 uplink-breaching-magazine-name = Shotgun Magazine (12 gauge breaching)
 uplink-breaching-magazine-desc = A magazine loaded with breaching shells, for breaking down airlocks, windows and walls. Less effective on people.
-
-uplink-syndicate-borgi-desc = A basic syndicate borgi.
 
 uplink-syndicate-borgi-kitted-name = Kitted Syndicate Borgi
 uplink-syndicate-borgi-kitted-desc = A syndicate borgi, outfitted with an L6 module, operative module and E-sword module.
