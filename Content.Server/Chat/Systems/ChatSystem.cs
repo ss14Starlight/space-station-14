@@ -908,7 +908,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             var displayWrappedMessage = wrappedMessage;
             var displayObfuscatedMessage = obfuscatedWrappedMessage;
 
-            if (HasComp<IgnoreHumanoidsComponent>(listener) && HasComp<HumanoidAppearanceComponent>(source))
+            if (HasComp<IgnoreHumanoidsComponent>(playerEntity) && HasComp<HumanoidAppearanceComponent>(source))
             {
                 var unknownName = Loc.GetString("ignore-humanoids-unknown-name");
                 displayWrappedMessage = WrapAnonymizedMessage(channel, source, message, unknownName, language, wrappedMessage, false);
