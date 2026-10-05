@@ -1,25 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: Interface bugs related to secure terminal.
-    type: Fix
-  id: 408791
-  time: '2026-09-21T13:50:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6207
-- author: ItsCharles
-  changes:
-  - message: Added ability to shake bottles and flasks, and this action is the same effect as shaking in a shaker.
-    type: Add
-  id: 408792
-  time: '2026-09-21T14:28:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6229
-- author: Kirb
-  changes:
-  - message: Expie zoomies in soft crit (various speed related bugs fixed).
-    type: Remove
-  id: 408793
-  time: '2026-09-22T00:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6275
 - author: Kirb
   changes:
   - message: Expies can no longer speak or use radio while in soft crit, they can still whisper and emote.
@@ -2799,4 +2778,25 @@ Entries:
   id: 409190
   time: '2026-10-05T13:11:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5942
+- author: Romero/Littlemen (thanks to Rocksfall too)
+  changes:
+  - message: '"Ares" Short sword.'
+    type: Add
+  id: 409191
+  time: '2026-10-05T13:52:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6444
+- author: Romero/Littlemen (thanks to Rocksfall too)
+  changes:
+  - message: '"Athena" Tactical Spear.'
+    type: Add
+  id: 409192
+  time: '2026-10-05T13:52:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6444
+- author: Romero/Littlemen (thanks to Rocksfall too)
+  changes:
+  - message: A safe for security armory containing the weapons, cargo can also buy those.
+    type: Add
+  id: 409193
+  time: '2026-10-05T13:52:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6444
 Order: -1
