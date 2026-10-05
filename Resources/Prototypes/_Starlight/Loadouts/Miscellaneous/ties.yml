@@ -1,9 +1,6 @@
 # Ties
 - type: loadout
   id: SecurityRedNeckTie
-  effects:
-    - !type:GroupLoadoutEffect
-        proto: NoviceOfficer
   equipment:
     neck: ClothingNeckTieRed
 
