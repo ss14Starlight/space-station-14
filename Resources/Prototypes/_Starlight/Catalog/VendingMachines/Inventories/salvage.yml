@@ -15,7 +15,7 @@
   cost:
     SalvageTicket: 75
   categories:
-    - MiningEquipment
+    - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 3
