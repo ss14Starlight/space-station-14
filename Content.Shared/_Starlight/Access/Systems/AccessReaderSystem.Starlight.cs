@@ -8,5 +8,3 @@ public record GetAccessReaderDenyTagsEvent(
 
 public record GetAccessReaderAccessListsEvent(
     List<HashSet<ProtoId<AccessLevelPrototype>>> AccessLists);
-
-
