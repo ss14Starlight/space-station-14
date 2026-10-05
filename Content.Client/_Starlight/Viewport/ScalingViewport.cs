@@ -14,7 +14,7 @@ public sealed partial class ScalingViewport
         base.MouseMove(args);
         OnViewportMouseMove?.Invoke(args.GlobalPixelPosition.Position);
     }
-
+    [Obsolete]
     protected override void Dispose(bool disposing)
     {
         if (disposing)

@@ -31,6 +31,7 @@ using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Power;
 using Content.Shared.Power.Components;
@@ -620,7 +621,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         if (args.Action == RemoteControlInteractionAction.MovePulledObject)
         {
-            _pullController.MovePulledObject(remoteEntity, GetCoordinates(args.Coordinates));
+            _pullController.MovePulledObject(
+                new Entity<PullerComponent?>(remoteEntity, null), GetCoordinates(args.Coordinates));
             RefreshRemoteState(uid, component, remoteEntity);
             return;
         }
@@ -652,7 +654,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             && !HasComp<ActivatableUIComponent>(item)
             && TryComp<HandsComponent>(remoteEntity, out var hands)
             && !_hands.TryGetActiveItem((remoteEntity, hands), out _)
-            && _hands.TryPickupAnyHand(remoteEntity, item, false, handsComp: hands, item: itemComp))
+            && _interaction.InRangeAndAccessible(remoteEntity, item)
+            && _hands.TryPickupAnyHand(remoteEntity, item, handsComp: hands, item: itemComp))
         {
             RefreshRemoteState(uid, component, remoteEntity);
             return;
@@ -811,7 +814,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         if (held is { } heldEntity)
             _inventory.TryEquip(remoteEntity, heldEntity, slot, predicted: true, inventory: inventory,
-                force: true, checkDoafter: true, triggerHandContact: true);
+                checkDoafter: true, triggerHandContact: true);
     }
 
     private bool TryGetControlledEntity(RemoteControlConsoleComponent component, EntityUid actor,
@@ -935,10 +938,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             args.Result = BoundUserInterfaceRangeResult.Pass;
 
         if (args.Result == BoundUserInterfaceRangeResult.Default
-            && TryGetControlledEntity(args.Actor.Owner, out var remoteEntity))
-            args.Result = _interaction.InRangeUnobstructed(remoteEntity, entity.Owner, args.Data.InteractionRange)
-                ? BoundUserInterfaceRangeResult.Pass
-                : BoundUserInterfaceRangeResult.Fail;
+            && TryGetControlledEntity(args.Actor.Owner, out var remoteEntity)
+            && _interaction.InRangeUnobstructed(remoteEntity, entity.Owner, args.Data.InteractionRange))
+            args.Result = BoundUserInterfaceRangeResult.Pass;
     }
 
     private bool TryFindConsole(EntityUid remoteEntity, out Entity<RemoteControlConsoleComponent> console,

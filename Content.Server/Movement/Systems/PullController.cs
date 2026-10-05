@@ -116,23 +116,26 @@ public sealed partial class PullController : VirtualController
             return false;
         }
 
-        return MovePulledObject(player, coords);
+        return MovePulledObject(new Entity<PullerComponent?>(player, null), coords); // Starlight: because the rabbit wants it like that
     }
 
     #region Starlight
     /// <summary>
     ///     Moves the currently pulled entity toward the requested coordinates.
     /// </summary>
-    /// <param name="player">The entity pulling the object.</param>
+    /// <param name="puller">The entity pulling the object.</param>
     /// <param name="coords">The requested destination for the pulled entity.</param>
     /// <returns>Whether the pointer input command was handled.</returns>
     /// <remarks>
     ///     The normal pointer command and remote-control calls share this method and its throw-cooldown check.
     /// </remarks>
-    public bool MovePulledObject(EntityUid player, EntityCoordinates coords)
+    public bool MovePulledObject(Entity<PullerComponent?> puller, EntityCoordinates coords)
     {
-        if (!_pullerQuery.TryComp(player, out var pullerComp))
+        if (!Resolve(puller, ref puller.Comp))
             return false;
+
+        var pullerUid = puller.Owner;
+        var pullerComp = puller.Comp;
 
         if (_timing.CurTime < pullerComp.NextThrow)
             return false;
@@ -148,15 +151,15 @@ public sealed partial class PullController : VirtualController
         if (!_pullableQuery.TryComp(pulled, out var pullable))
             return false;
 
-        if (_container.IsEntityInContainer(player))
+        if (_container.IsEntityInContainer(pullerUid))
             return false;
 
         pullerComp.NextThrow = _timing.CurTime + pullerComp.ThrowCooldown;
 
         // Cap the distance
         var range = 2f;
-        var fromUserCoords = _transformSystem.WithEntityId(coords, player);
-        var userCoords = new EntityCoordinates(player, Vector2.Zero);
+        var fromUserCoords = _transformSystem.WithEntityId(coords, pullerUid);
+        var userCoords = new EntityCoordinates(pullerUid, Vector2.Zero);
 
         if (!_transformSystem.InRange(coords, userCoords, range))
         {
@@ -165,14 +168,14 @@ public sealed partial class PullController : VirtualController
             // TODO: Joint API not ass
             // with that being said I think throwing is the way to go but.
             if (pullable.PullJointId != null &&
-                TryComp(player, out JointComponent? joint) &&
+                TryComp(pullerUid, out JointComponent? joint) &&
                 joint.GetJoints.TryGetValue(pullable.PullJointId, out var pullJoint) &&
                 pullJoint is DistanceJoint distance)
             {
                 range = MathF.Max(0.01f, distance.MaxLength - 0.01f);
             }
 
-            fromUserCoords = new EntityCoordinates(player, direction.Normalized() * (range - 0.01f));
+            fromUserCoords = new EntityCoordinates(pullerUid, direction.Normalized() * (range - 0.01f));
             coords = _transformSystem.WithEntityId(fromUserCoords, coords.EntityId);
         }
 

@@ -275,7 +275,6 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
                 window.SetConnected(false);
                 window.SetControlState(false, false);
                 window.DisposePopOut();
-                window.Dispose();
             }
         }
     }

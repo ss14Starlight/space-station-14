@@ -15,7 +15,7 @@ public abstract partial class SharedBorgSystem
     /// - Having a player mind attached
     /// - The borg is alive (not crit or dead).
     /// </summary>
-    public bool CanActivate(Entity<BorgChassisComponent> chassis, bool allowRemoteControl = false)
+    public bool CanActivate(Entity<BorgChassisComponent> chassis, bool allowRemoteControl = false) // Starlight
     {
         if (HasComp<BorgLockdownComponent>(chassis)) // Starlight
             return false; // Starlight

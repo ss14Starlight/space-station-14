@@ -28,7 +28,7 @@
   parent: BaseMentalAction
   id: ActionAIRemoteControl
   name: Remote Control
-  description: Remote control an entity, without shunting into it
+  description: Remotely control a shuntable chassis or interface without shunting into it.
   components:
     - type: Action
       useDelay: 1

@@ -5,6 +5,10 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Silicons.Borgs;
 using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Inventory;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Power.Components;
@@ -69,6 +73,125 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var key = BorgSwitchableTypeUiKey.SelectBorgType;
                 Assert.DoesNotThrow(() => ui.OpenUi(target, key, user));
                 Assert.That(ui.IsUiOpen(target, key, user), Is.EqualTo(expectedOpen));
+            }
+            finally
+            {
+                SEntMan.DeleteEntity(map);
+            }
+        });
+    }
+
+    [TestCase(1, false, false, true)]
+    [TestCase(10, false, false, false)]
+    [TestCase(1, true, false, false)]
+    [TestCase(1, false, true, false)]
+    public async Task RemotePickupEnforcesRangeAccessAndPickupBlockers(
+        int distance, bool remoteBodyDead, bool targetHeldByOther, bool expectedPickup)
+    {
+        var testMap = await Pair.CreateTestMap();
+
+        await Server.WaitAssertion(() =>
+        {
+            var remoteEntity = SEntMan.SpawnEntity("MobHuman", testMap.GridCoords);
+            var itemCoordinates = new EntityCoordinates(testMap.Grid.Owner, distance, 0);
+            var item = SEntMan.SpawnEntity("Wrench", itemCoordinates);
+            var hands = Server.System<SharedHandsSystem>();
+            EntityUid? holder = null;
+
+            if (targetHeldByOther)
+            {
+                holder = SEntMan.SpawnEntity("MobHuman", itemCoordinates);
+                Assert.That(hands.TryPickupAnyHand(holder.Value, item), Is.True);
+            }
+
+            if (remoteBodyDead)
+                Server.System<MobStateSystem>().ChangeMobState(remoteEntity, MobState.Dead);
+
+            var controllerCoordinates = new EntityCoordinates(testMap.Grid.Owner, 100, 0);
+            var controller = SEntMan.SpawnEntity(null, controllerCoordinates);
+            var consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", controllerCoordinates);
+            var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+            console.RemoteBrain = remoteEntity;
+            console.Controller = controller;
+            console.Users.Add(controller);
+
+            SEntMan.EventBus.RaiseLocalEvent(consoleUid, new RemoteControlInteractionMessage
+            {
+                Actor = controller,
+                Entity = SEntMan.GetNetEntity(consoleUid),
+                UiKey = RemoteControlUIKey.Key,
+                Coordinates = SEntMan.GetNetCoordinates(SEntMan.GetComponent<TransformComponent>(item).Coordinates),
+                Target = SEntMan.GetNetEntity(item),
+            });
+
+            Assert.That(hands.EnumerateHeld(remoteEntity).Contains(item), Is.EqualTo(expectedPickup));
+            if (holder is { } holderEntity)
+                Assert.That(hands.EnumerateHeld(holderEntity).Contains(item), Is.EqualTo(!expectedPickup));
+        });
+    }
+
+    [TestCase("Wrench", false)]
+    [TestCase("ClothingEyesGlasses", true)]
+    public async Task RemoteEquipValidatesSlotCompatibility(string itemPrototype, bool expectedEquip)
+    {
+        var testMap = await Pair.CreateTestMap();
+
+        await Server.WaitAssertion(() =>
+        {
+            var remoteEntity = SEntMan.SpawnEntity("MobHuman", testMap.GridCoords);
+            var item = SEntMan.SpawnEntity(itemPrototype, testMap.GridCoords);
+            var hands = Server.System<SharedHandsSystem>();
+            Assert.That(hands.TryPickupAnyHand(remoteEntity, item), Is.True);
+
+            var controller = SEntMan.SpawnEntity(null, testMap.GridCoords);
+            var consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", testMap.GridCoords);
+            var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+            console.RemoteBrain = remoteEntity;
+            console.Controller = controller;
+            console.Users.Add(controller);
+
+            SEntMan.EventBus.RaiseLocalEvent(consoleUid, new RemoteControlInventoryMessage
+            {
+                Actor = controller,
+                Entity = SEntMan.GetNetEntity(consoleUid),
+                UiKey = RemoteControlUIKey.Key,
+                Slot = "eyes",
+                Action = RemoteControlInventoryAction.UseSlot,
+            });
+
+            var inventory = Server.System<InventorySystem>();
+            var equipped = inventory.TryGetSlotEntity(remoteEntity, "eyes", out var equippedItem);
+            Assert.That(equipped, Is.EqualTo(expectedEquip));
+            if (expectedEquip)
+                Assert.That(equippedItem, Is.EqualTo(item));
+
+            Assert.That(hands.EnumerateHeld(remoteEntity).Contains(item), Is.EqualTo(!expectedEquip));
+        });
+    }
+
+    [Test]
+    public async Task OutOfRangeRemoteUiUsesLocalRangeCheck()
+    {
+        await Server.WaitAssertion(() =>
+        {
+            var mapSystem = Server.System<SharedMapSystem>();
+            var ui = Server.System<SharedUserInterfaceSystem>();
+            var map = mapSystem.CreateMap(out var mapId);
+
+            try
+            {
+                var coordinates = new MapCoordinates(0, 0, mapId);
+                var target = SEntMan.SpawnEntity("RemoteControlRangeTestUi", coordinates);
+                var user = SEntMan.SpawnEntity(null, coordinates);
+                var remoteEntity = SEntMan.SpawnEntity(null, new MapCoordinates(10, 0, mapId));
+                var consoleUid = SEntMan.SpawnEntity(null, coordinates);
+                var console = SEntMan.AddComponent<RemoteControlConsoleComponent>(consoleUid);
+                console.RemoteBrain = remoteEntity;
+                console.Controller = user;
+
+                var key = BorgSwitchableTypeUiKey.SelectBorgType;
+                ui.OpenUi(target, key, user);
+                Assert.That(ui.IsUiOpen(target, key, user), Is.True);
             }
             finally
             {

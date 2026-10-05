@@ -113,8 +113,8 @@ public sealed partial class RemoteConstructionPlacementSystem : EntitySystem
         var rawLocal = _transformSystem.ToCoordinates(grid, mouse).Position;
         var tileSize = gridComponent.TileSize;
         var snapped = new Vector2(
-            (float) (MathF.Round(rawLocal.X / tileSize - 0.5f, MidpointRounding.AwayFromZero) + 0.5f) * tileSize,
-            (float) (MathF.Round(rawLocal.Y / tileSize - 0.5f, MidpointRounding.AwayFromZero) + 0.5f) * tileSize);
+            (float) (MathF.Round((rawLocal.X / tileSize) - 0.5f, MidpointRounding.AwayFromZero) + 0.5f) * tileSize,
+            (float) (MathF.Round((rawLocal.Y / tileSize) - 0.5f, MidpointRounding.AwayFromZero) + 0.5f) * tileSize);
 
         var location = new EntityCoordinates(grid, snapped);
         if (prototype.PlacementMode != "AlignAtmosPipeLayers"

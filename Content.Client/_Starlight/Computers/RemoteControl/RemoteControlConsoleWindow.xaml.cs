@@ -919,7 +919,10 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
     protected override void Dispose(bool disposing)
     {
         if (disposing)
+        {
+            _chatController.MessageAdded -= OnChatMessageAdded;
             UnregisterCommandBinds();
+        }
 
         base.Dispose(disposing);
     }

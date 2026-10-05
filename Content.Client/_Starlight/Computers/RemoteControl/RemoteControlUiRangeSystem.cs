@@ -19,11 +19,12 @@ public sealed partial class RemoteControlUiRangeSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnCheckRange(ref BoundUserInterfaceCheckRangeEvent args)
     {
-        if (_remoteControl.ControlledEntity is not { } remoteEntity || args.UiKey is RemoteControlUIKey)
+        if (args.Result != BoundUserInterfaceRangeResult.Default
+            || _remoteControl.ControlledEntity is not { } remoteEntity
+            || args.UiKey is RemoteControlUIKey)
             return;
 
-        args.Result = _interaction.InRangeUnobstructed(remoteEntity, args.Target, args.Data.InteractionRange)
-            ? BoundUserInterfaceRangeResult.Pass
-            : BoundUserInterfaceRangeResult.Fail;
+        if (_interaction.InRangeUnobstructed(remoteEntity, args.Target, args.Data.InteractionRange))
+            args.Result = BoundUserInterfaceRangeResult.Pass;
     }
 }
