@@ -28,7 +28,7 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
     /// <summary>
     /// Delay the departure of emergency shuttles by a specified number of seconds.
     /// </summary>
-    [CommandImplementation("delayemergencyshuttledeparture")]
+    [CommandImplementation("delayshuttledeparture")]
     public void DelayEmergencyShuttleDeparture(IInvocationContext ctx, float seconds,
         [Optional] [DefaultParameterValue(false)] bool sendAnnouncement,
         [Optional] [DefaultParameterValue("")] string additionalText)
@@ -54,7 +54,7 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
     /// <summary>
     /// Delay the arrival of the emergency shuttle to station by a specified number of seconds.
     /// </summary>
-    [CommandImplementation("delayemergencyshuttlearrival")]
+    [CommandImplementation("delayshuttlearrival")]
     public void DelayEmergencyShuttleArrival(IInvocationContext ctx, float seconds,
         [Optional] [DefaultParameterValue(false)] bool sendAnnouncement,
         [Optional] [DefaultParameterValue("")] string additionalText)
@@ -83,7 +83,7 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
     /// Instantly dock the emergency shuttle.
     /// </summary>
     [AdminCommand(AdminFlags.Fun)]
-    [CommandImplementation("dockemergencyshuttle")]
+    [CommandImplementation("dockshuttle")]
     public void DockEmergencyShuttle(IInvocationContext ctx)
     {
         _eShuttle ??= GetSys<EmergencyShuttleSystem>();
@@ -100,7 +100,7 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
     /// <summary>
     /// Call the emergency shuttle with an optional arrival time.
     /// </summary>
-    [CommandImplementation("callemergencyshuttle")]
+    [CommandImplementation("callshuttle")]
     public void CallEmergencyShuttle(IInvocationContext ctx, [Optional] [DefaultParameterValue(0f)] float seconds)
     {
         _round ??= GetSys<RoundEndSystem>();
@@ -111,7 +111,7 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
     /// <summary>
     /// Recall the emergency shuttle.
     /// </summary>
-    [CommandImplementation("recallemergencyshuttle")]
+    [CommandImplementation("recallshuttle")]
     public void RecallEmergencyShuttle(IInvocationContext ctx)
     {
         _round ??= GetSys<RoundEndSystem>();
@@ -121,7 +121,7 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
     /// <summary>
     /// Early launches the emergency shuttle.
     /// </summary>
-    [CommandImplementation("launchemergencyshuttle")]
+    [CommandImplementation("launchshuttle")]
     public void LaunchEmergencyShuttle(IInvocationContext ctx)
     {
         _eShuttle ??= GetSys<EmergencyShuttleSystem>();
@@ -132,7 +132,7 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
     /// <summary>
     /// Allow or disallow calling the emergency shuttle. Note that this persists between rounds.
     /// </summary>
-    [CommandImplementation("allowemergencyshuttlecalls")]
+    [CommandImplementation("allowshuttlecalls")]
     public void AllowEmergencyShuttleCalls(IInvocationContext ctx, bool state,
         [Optional] [DefaultParameterValue(false)] bool announce, [Optional] [DefaultParameterValue("")] string message,
         [Optional] [DefaultParameterValue("")] string sender, [Optional] [DefaultParameterValue("")] string color,
