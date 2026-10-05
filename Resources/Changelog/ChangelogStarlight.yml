@@ -1,13 +1,6 @@
 Entries:
 - author: Kirb
   changes:
-  - message: Expie crit and death sounds range is now shorter.
-    type: Tweak
-  id: 408795
-  time: '2026-09-22T00:25:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6275
-- author: Kirb
-  changes:
   - message: Expies melee attack rate halved.
     type: Tweak
   id: 408796
@@ -2799,4 +2792,11 @@ Entries:
   id: 409194
   time: '2026-10-05T13:52:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6487
+- author: walksanatora
+  changes:
+  - message: admin logs now display the verb name again.
+    type: Fix
+  id: 409195
+  time: '2026-10-05T14:19:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6350
 Order: -1
