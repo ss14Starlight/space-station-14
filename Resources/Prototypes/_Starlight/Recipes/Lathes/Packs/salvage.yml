@@ -26,12 +26,12 @@
 - type: latheRecipePack
   id: StarlightSalvageToolsStatic
   recipes:
-   - Wirecutter
+    - Wirecutter
     - Screwdriver
-   - Welder
-   - Wrench
-   - CrowbarGreen
-   - Multitool
+    - Welder
+    - Wrench
+    - CrowbarGreen
+    - Multitool
     - FlashlightLantern
-   - HandheldGPSBasic
+    - HandheldGPSBasic
     - HandheldStationMap

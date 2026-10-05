@@ -406,7 +406,7 @@
   categories:
   - SalvageBlueprints
   conditions:
-  - !type:BuyerAccessCondition
+  - !type:ListingLimitedStockCondition
      stock: 1
   - !type:BuyerAccessCondition
 
@@ -418,7 +418,7 @@
   categories:
   - SalvageBlueprints
   conditions:
-  - !type:BuyerAccessCondition
+  - !type:ListingLimitedStockCondition
      stock: 1
   - !type:BuyerAccessCondition
 
@@ -430,7 +430,7 @@
   categories:
   - SalvageBlueprints
   conditions:
-  - !type:BuyerAccessCondition
+   - !type:ListingLimitedStockCondition
      stock: 1
   - !type:BuyerAccessCondition
 
@@ -442,7 +442,7 @@
   categories:
   - SalvageBlueprints
   conditions:
-  - !type:BuyerAccessCondition
+  - !type:ListingLimitedStockCondition
      stock: 1
   - !type:BuyerAccessCondition
 
