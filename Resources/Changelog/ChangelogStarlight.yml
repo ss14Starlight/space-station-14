@@ -1,13 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: Timer for secure terminals.
-    type: Remove
-  id: 408788
-  time: '2026-09-21T13:50:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6207
-- author: Floximo
-  changes:
   - message: Activation delays and fees as well as salary modifiers for requests.
     type: Tweak
   id: 408789
@@ -2799,4 +2792,11 @@ Entries:
   id: 409187
   time: '2026-10-05T10:32:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6515
+- author: XeroTec/Meepmerp
+  changes:
+  - message: admin/mentor mouse NPC aggression.
+    type: Fix
+  id: 409188
+  time: '2026-10-05T13:11:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6344
 Order: -1
