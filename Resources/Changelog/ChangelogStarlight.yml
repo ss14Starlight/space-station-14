@@ -1,46 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: "New emote: \"blinks\". Available for all species via the emote wheel under the 'General' category, or by manually typing `@blinks` / `@blinked`."
-    type: Add
-  id: 408763
-  time: '2026-09-20T19:46:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6235
-- author: Caws
-  changes:
-  - message: Fixed missing attributions for Lagomorph emote icons.
-    type: Fix
-  id: 408764
-  time: '2026-09-20T19:46:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6235
-- author: Caws
-  changes:
-  - message: The new NT Airlock sprites will now display properly.
-    type: Fix
-  id: 408765
-  time: '2026-09-20T19:46:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6236
-- author: LowFatBananaMilk
-  changes:
-  - message: Fixed raw eggs in recipes not working.
-    type: Fix
-  id: 408766
-  time: '2026-09-20T20:17:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6244
-- author: Caws
-  changes:
-  - message: The NanoMed Security is now "Brigmedic" & "Medical" access, changed from "Security" & "Medical" access.
-    type: Tweak
-  id: 408767
-  time: '2026-09-20T20:17:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6243
-- author: Teddiousbear, TherealStarVerse.
-  changes:
-  - message: In-Hand Sprites for Enforcer.
-    type: Add
-  id: 408768
-  time: '2026-09-20T20:52:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6241
 - author: Johnny
   changes:
   - message: Changed Ninja call threat values.
@@ -2799,4 +2757,46 @@ Entries:
   id: 409162
   time: '2026-10-05T01:15:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6504
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: The ChemMaster now maintains the custom unit input when the UI is closed and opened.
+    type: Tweak
+  id: 409163
+  time: '2026-10-05T05:24:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6351
+- author: Sparlight
+  changes:
+  - message: K9s and most other ordinary animal ghost roles can now open firelocks.
+    type: Add
+  id: 409164
+  time: '2026-10-05T05:53:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6498
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added sugar cubes, 5u "pills" of pure sugar that can stack up to 10.
+    type: Add
+  id: 409165
+  time: '2026-10-05T06:14:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6439
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added a bunch of pride flags.
+    type: Add
+  id: 409166
+  time: '2026-10-05T06:14:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6439
+- author: STARLIGHT TEAM
+  changes:
+  - message: Made all wall-mounted flags craftable.
+    type: Add
+  id: 409167
+  time: '2026-10-05T06:14:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6439
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added an aspace radio for admins to mess with you with.
+    type: Add
+  id: 409168
+  time: '2026-10-05T06:14:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6439
 Order: -1
