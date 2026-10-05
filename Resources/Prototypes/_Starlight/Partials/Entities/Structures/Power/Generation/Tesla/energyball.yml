@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: TeslaEnergyBall
+  components:
+  - type: SocialInteractionReceiver
+    interactionPrototypes:
+    - Boop
+    interactionOverrides: # good luck
+    - id: Boop
+      interactString: booping-tesla-success
+      messagePerceivedByOthers: booping-tesla-success-others
+      emoteMessage: booping-tesla-emote

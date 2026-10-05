@@ -1,0 +1,6 @@
+- type: entity
+  id: BaseETOContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: ETO

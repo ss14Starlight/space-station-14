@@ -16,21 +16,23 @@
     back:
     - WizardWarTablet
 
-- type: startingGear
-  id: WizardRedGear
-  parent: WizardBlueGear
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorRed
-    head: ClothingHeadHatRedwizard
-    outerClothing: ClothingOuterWizardRed
+# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
+# - type: startingGear
+#   id: WizardRedGear
+#   parent: WizardBlueGear
+#   equipment:
+#     jumpsuit: ClothingUniformJumpsuitColorRed
+#     head: ClothingHeadHatRedwizard
+#     outerClothing: ClothingOuterWizardRed
 
-- type: startingGear
-  id: WizardPurpleGear # Starlight, violet -> Purple
-  parent: WizardBlueGear
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorPurple
-    head: ClothingHeadHatPurplewizard # Starlight, violet -> Purple
-    outerClothing: ClothingOuterWizardPurple # Starlight, violet -> Purple
+# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
+# - type: startingGear
+#   id: WizardPurpleGear # Starlight, violet -> Purple
+#   parent: WizardBlueGear
+#   equipment:
+#     jumpsuit: ClothingUniformJumpsuitColorPurple
+#     head: ClothingHeadHatPurplewizard # Starlight, violet -> Purple
+#     outerClothing: ClothingOuterWizardPurple # Starlight, violet -> Purple
 
 - type: chameleonOutfit
   id: WizardChameleonOutfit

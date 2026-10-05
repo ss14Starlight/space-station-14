@@ -25,7 +25,6 @@ injector-component-target-is-empty-message = {CAPITALIZE(THE($target))} is empty
 injector-component-target-is-empty-message-self = You are empty!
 injector-component-cannot-toggle-draw-message = Too full to draw!
 injector-component-cannot-toggle-inject-message = Nothing to inject!
-injector-component-cannot-toggle-dynamic-message = Can't toggle dynamic!
 injector-component-empty-message = {CAPITALIZE(THE($injector))} is empty!
 injector-component-blocked-user = Protective gear blocked your injection!
 injector-component-blocked-other = {CAPITALIZE(THE(POSS-ADJ($target)))} armor blocked {THE($user)}'s injection!

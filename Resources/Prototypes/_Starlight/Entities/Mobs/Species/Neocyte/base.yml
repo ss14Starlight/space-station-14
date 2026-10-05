@@ -7,6 +7,12 @@
   - type: Neocyte
     frameLoadoutGroup: NeocyteCybernetics
     frameSlot: outerClothing2
+  - type: SocialInteractionReceiver
+    interactionOverrides:
+    - id: Boop
+      interactString: booping-borg-success
+      messagePerceivedByOthers: booping-borg-success-others
+      emoteMessage: booping-borg-emote
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
