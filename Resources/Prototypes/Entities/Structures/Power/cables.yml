@@ -107,7 +107,6 @@
     range: 2
     sound:
       path: /Audio/Ambience/Objects/emf_buzz.ogg
-  - type: SubFloorHide
 
 - type: entity
   id: CableHVUncuttable
@@ -162,7 +161,6 @@
   - type: CableVisualizer
     statePrefix: mvcable_
     extraLayerPrefix: mvstripes_
-  - type: SubFloorHide
 
 - type: entity
   id: CableMVUncuttable
