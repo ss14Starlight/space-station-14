@@ -30,6 +30,21 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: ClothingNeckTieGreen
+  name: green tie
+  description: A bright lime green tie in the colors of the service department. Very snazzy.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Ties/greentie.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Ties/greentie.rsi
+  - type: Item
+    storedSprite:
+      state: storage
+      sprite: _Starlight/Clothing/Neck/Ties/greentie.rsi
+
+- type: entity
+  parent: ClothingNeckBase
   id: ClothingNeckLGBTie
   name: LGBTie
   description: Why do we have to wear these fabulous ties?
