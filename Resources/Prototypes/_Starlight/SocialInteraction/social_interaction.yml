@@ -1,20 +1,4 @@
-# MUST be added to the InteractionPrototypes list of a SocialInteractionReceiver component to be usable
-- type: socialInteraction
-  id: Pet
-  verbName: pet-verb
-  interactString: petting-success
-  messagePerceivedByOthers: petting-success-others
-  emoteMessage: petting-emote
-  interactSound: /Audio/Effects/thudswoosh.ogg
-
-- type: socialInteraction
-  id: Boop
-  verbName: boop-verb
-  interactString: booping-success
-  messagePerceivedByOthers: booping-success
-  emoteMessage: booping-emote
-  interactSound: /Audio/_Starlight/Effects/yip.ogg
-
+# Waving
 - type: socialInteraction
   id: Wave
   verbName: wave-verb
@@ -27,6 +11,7 @@
   allowSelfTarget: true
   isPhysical: false
 
+# Looking
 - type: socialInteraction
   id: Look
   verbName: look-verb
@@ -38,3 +23,53 @@
   soundPerceivedByOthers: false
   allowSelfTarget: true
   isPhysical: false
+
+# Patting (dogs / should use interactionOverrides for petting)
+- type: socialInteraction
+  id: Pat
+  verbName: pat-verb
+  interactString: patting-success
+  messagePerceivedByOthers: patting-success-others
+  emoteMessage: patting-emote
+  interactSound: /Audio/Effects/thudswoosh.ogg
+
+# Booping (stuff without a nose should use interactionOverrides)
+- type: socialInteraction
+  id: Boop
+  verbName: boop-verb
+  interactString: booping-success
+  messagePerceivedByOthers: booping-success-others
+  emoteMessage: booping-emote
+  interactSound: /Audio/_Starlight/Effects/yip.ogg
+
+# Sniffing (silently, as small creatures are known to do)
+- type: socialInteraction
+  id: SniffQuiet
+  verbName: sniff-verb
+  interactString: sniffing-success
+  messagePerceivedByOthers: sniffing-success-others
+  emoteMessage: sniffing-emote
+  emoteMessageSelf: sniffing-emote-self
+  allowSelfTarget: true
+
+# Sniffing (with sound)
+- type: socialInteraction
+  id: Sniff
+  verbName: sniff-verb
+  interactString: sniffing-success
+  messagePerceivedByOthers: sniffing-success-others
+  emoteMessage: sniffing-emote
+  emoteMessageSelf: sniffing-emote-self
+  interactSound: /Audio/_Starlight/Scent/dog_sniff.ogg
+  allowSelfTarget: true
+
+# Palpate (sniffing, but with insect antennae)
+- type: socialInteraction
+  id: PalpateAntennae
+  verbName: palpate-antennae-verb
+  interactString: palpate-antennae-success
+  messagePerceivedByOthers: palpate-antennae-success-others
+  emoteMessage: palpate-antennae-emote
+  emoteMessageSelf: palpate-antennae-emote-self
+  interactSound: /Audio/Voice/Arachnid/arachnid_click.ogg
+  allowSelfTarget: true

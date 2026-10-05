@@ -1,6 +1,5 @@
 - type: entity
   id: BaseWallmount
-  parent: [SocialInteractionReceiverSimple] # Starlight
   abstract: true
   placement:
     mode: SnapgridCenter
