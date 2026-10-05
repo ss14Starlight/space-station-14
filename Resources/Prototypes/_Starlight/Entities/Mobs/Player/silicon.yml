@@ -173,11 +173,12 @@
         base:
           Off: { state: shell }
           On: { state: drone }
-  # - type: HandheldLight
-  #   toggleOnInteract: false
-  #   wattage: 0.2
-  #   blinkingBehaviourId: blinking
-  #   radiatingBehaviourId: radiating
+  - type: HandheldLight
+    toggleOnInteract: false
+    wattage: 0.2
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: ItemTogglePointLight
   - type: ToggleableVisuals
     spriteLayer: light
   - type: LightBehaviour
@@ -289,7 +290,6 @@
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: CanEscapeInventory
-  - type: UnpoweredFlashlight
   - type: Loadout
     prototypes:
       - StartingGearDrone
