@@ -1488,6 +1488,7 @@
           amount: 2
           defaultPrototype: Beaker
 
+- type: entity
   id: ScrapperExoFabricatorMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: Scrapper fabricator machine board
