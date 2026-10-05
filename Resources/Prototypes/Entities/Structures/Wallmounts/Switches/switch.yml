@@ -102,12 +102,6 @@
           collection: MetalBreak
           params:
             volume: -8
-#Starlight start
-    - type: Setup
-    - type: UserInterface
-      enum.SetupUiKey.Key:
-        type: SetupMenuBoundUi
-#Starlight stop
 
 - type: entity
   parent: BaseWallmountMetallic

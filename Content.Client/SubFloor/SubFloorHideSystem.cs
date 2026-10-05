@@ -102,7 +102,7 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
 
         _sprite.SetVisible((uid, args.Sprite), hasVisibleLayer || revealed);
 
-        if ((_showLayers & (SubFloorVisibilityMask)component.SubfloorLayer) != 0)
+        if ((_showLayers & (SubFloorVisibilityMask)component.SubfloorLayer) != 0) //Starlight-edit
         {
             // Allows sandbox mode to make wires visible over other stuff.
             component.OriginalDrawDepth ??= args.Sprite.DrawDepth;

@@ -41,7 +41,7 @@
   - type: Clickable
   - type: InteractionOutline
   - type: SubFloorHide
-    subfloorLayer: Pipes # Starlight edit - Subfloor layers
+    subfloorLayer: Pipes
   - type: CollideOnAnchor
   - type: Anchorable
   - type: Pullable

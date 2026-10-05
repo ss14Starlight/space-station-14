@@ -63,8 +63,6 @@
     interfaces:
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
-      enum.SetupUiKey.Key: # Starlight
-        type: SetupMenuBoundUi # Starlight
   - type: WiresPanel
   - type: Wires
     boardName: wires-board-name-firealarm
@@ -109,7 +107,6 @@
               params:
                 volume: -4
   - type: StationAiWhitelist
-  - type: Setup #Starlight-edit-
 
 - type: entity
   parent: BaseWallmountMetallic

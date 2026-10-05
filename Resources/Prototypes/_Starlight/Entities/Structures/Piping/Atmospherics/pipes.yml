@@ -168,7 +168,7 @@
         Quaternary: GasPipeTankTallAlt3
         Quinary: GasPipeTankTallAlt4
     - type: SubFloorHide
-      subfloorLayer: Pipes # Starlight edit - Subfloor layers
+      subfloorLayer: Pipes
       blockInteractions: false
       blockAmbience: false
       visibleLayers:
