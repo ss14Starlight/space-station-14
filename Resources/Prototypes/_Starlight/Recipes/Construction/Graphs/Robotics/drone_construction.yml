@@ -15,6 +15,9 @@
         amount: 1
         doAfter: 1
         store: part-container
+      - tag: ProximitySensor
+        name: construction-graph-tag-proximity-sensor
+        store: part-container
       - tag: PowerCell
         name: construction-graph-tag-power-cell
         store: cell_slot

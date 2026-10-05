@@ -283,7 +283,7 @@ namespace Content.Client.Communications.UI
             var isDisabledByServer = !CanCall || !ShuttleCallsAllowed;
             if ((isDisabledByServer && !RecallCountdownEnd.HasValue) || (inbound && recallPastTurningPoint))
             {
-                EmergencyShuttleButton.Text = $"{baseCallText} (disabled)";
+                EmergencyShuttleButton.Text = Loc.GetString("comms-console-menu-shuttle-button-disabled", ("text", baseCallText));
                 EmergencyShuttleButton.Disabled = true;
 
                 if (inbound && actualShuttleEnd.HasValue)

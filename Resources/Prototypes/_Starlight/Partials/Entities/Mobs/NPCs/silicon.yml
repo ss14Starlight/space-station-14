@@ -1,0 +1,24 @@
+- type: !PartialOnly entity
+  id: MobFireBot
+  components:
+  - type: FirelockOpener
+
+- type: !PartialOnly entity
+  id: MobCleanBot
+  components:
+  - type: FirelockOpener
+
+- type: !PartialOnly entity
+  id: MobMedibot
+  components:
+  - type: FirelockOpener
+
+- type: !PartialOnly entity
+  id: MobHonkBot
+  components:
+  - type: FirelockOpener
+
+- type: !PartialOnly entity
+  id: MobMimeBot
+  components:
+  - type: FirelockOpener
