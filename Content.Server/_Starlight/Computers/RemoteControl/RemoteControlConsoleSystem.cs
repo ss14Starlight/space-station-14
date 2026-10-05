@@ -827,9 +827,28 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
     public bool TryGetControlledEntity(EntityUid actor, out EntityUid remoteEntity)
     {
-        foreach (var console in EntityQuery<RemoteControlConsoleComponent>())
-            if (console.Controller == actor && TryGetRemoteEntity(console, out remoteEntity))
+        if (TryComp<RemoteControlControllerComponent>(actor, out var controller))
+            return TryGetControlledEntity(actor, controller, out remoteEntity);
+
+        remoteEntity = default;
+        return false;
+    }
+
+    internal bool TryGetControlledEntity(EntityUid actor, RemoteControlControllerComponent controller,
+        out EntityUid remoteEntity)
+    {
+        if (controller.Owner == actor)
+        {
+            foreach (var consoleUid in controller.Consoles)
+            {
+                if (!TryComp<RemoteControlConsoleComponent>(consoleUid, out var console)
+                    || console.Controller != actor
+                    || !TryGetRemoteEntity(console, out remoteEntity))
+                    continue;
+
                 return true;
+            }
+        }
 
         remoteEntity = default;
         return false;
@@ -935,11 +954,17 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (args.UiKey is RemoteControlUIKey)
             return;
 
-        if (_remoteUiRangeOverrides.ContainsKey((entity.Owner, args.UiKey, args.Actor.Owner)))
+        var hasRangeOverride = _remoteUiRangeOverrides.ContainsKey((entity.Owner, args.UiKey, args.Actor.Owner));
+        var hasControlledEntity = TryGetControlledEntity(args.Actor.Owner, out var remoteEntity);
+
+        if (hasRangeOverride
+            && (args.Data.InteractionRange <= 0
+                || !hasControlledEntity
+                || _interaction.InRangeUnobstructed(remoteEntity, entity.Owner, args.Data.InteractionRange)))
             args.Result = BoundUserInterfaceRangeResult.Pass;
 
         if (args.Result == BoundUserInterfaceRangeResult.Default
-            && TryGetControlledEntity(args.Actor.Owner, out var remoteEntity)
+            && hasControlledEntity
             && _interaction.InRangeUnobstructed(remoteEntity, entity.Owner, args.Data.InteractionRange))
             args.Result = BoundUserInterfaceRangeResult.Pass;
     }
@@ -1131,7 +1156,10 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private void OnConsoleShutdown(Entity<RemoteControlConsoleComponent> entity, ref ComponentShutdown args)
     {
         if (!TryGetRemoteEntity(entity.Comp, out var remoteEntity))
+        {
+            UpdateControllerIndex(entity.Owner, entity.Comp.Controller, null);
             return;
+        }
 
         CleanupUsers(entity, remoteEntity);
     }
@@ -1143,6 +1171,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         DeactivateRemoteBorg(entity.Comp, remoteEntity);
         if (clearController)
         {
+            UpdateControllerIndex(entity.Owner, entity.Comp.Controller, null);
             entity.Comp.Controller = null;
             _pendingRemoteBorgActivations.RemoveWhere(pending => pending.Console == entity.Owner);
             DeactivateToyRemote(entity.Owner, entity.Comp);
@@ -1275,6 +1304,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         var controllerBeforeUpdate = component.Controller;
         component.Controller = controller;
+        UpdateControllerIndex(consoleUid, controllerBeforeUpdate, controller);
 
         if (controllerBeforeUpdate is { } disconnectedController
             && disconnectedController != controller
@@ -1300,6 +1330,25 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             RefreshRemoteState(consoleUid, component, refreshEntity);
 
         return true;
+    }
+
+    private void UpdateControllerIndex(EntityUid consoleUid, EntityUid? previousController, EntityUid? controller)
+    {
+        if (previousController is { } previous && previous != controller)
+            RemoveControllerIndex(consoleUid, previous);
+
+        if (controller is { } current)
+            EnsureComp<RemoteControlControllerComponent>(current).Consoles.Add(consoleUid);
+    }
+
+    private void RemoveControllerIndex(EntityUid consoleUid, EntityUid controller)
+    {
+        if (!TryComp<RemoteControlControllerComponent>(controller, out var mapping))
+            return;
+
+        mapping.Consoles.Remove(consoleUid);
+        if (mapping.Consoles.Count == 0)
+            RemComp(controller, mapping);
     }
 
     private void CloseMirroredStorageUis(EntityUid consoleUid, EntityUid controller)

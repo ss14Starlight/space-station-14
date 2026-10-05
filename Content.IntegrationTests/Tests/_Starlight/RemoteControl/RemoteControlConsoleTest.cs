@@ -3,6 +3,7 @@ using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Computers.RemoteControl;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Silicons.Borgs;
+using Content.Shared._Afterlight.Silicons.Borgs;
 using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.EntitySystems;
@@ -19,6 +20,7 @@ using Robust.Server.Player;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests._Starlight.RemoteControl;
@@ -66,7 +68,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                     var consoleUid = SEntMan.SpawnEntity(null, new MapCoordinates(100, 0, mapId));
                     var console = SEntMan.AddComponent<RemoteControlConsoleComponent>(consoleUid);
                     console.RemoteBrain = remote;
-                    console.Controller = user;
+                    SetTestController(console, user);
                     console.Users.Add(user);
                 }
 
@@ -79,6 +81,77 @@ public sealed class RemoteControlConsoleTest : GameTest
                 SEntMan.DeleteEntity(map);
             }
         });
+
+        if (controlling && expectedOpen)
+            await AssertMirroredUiMessageRejected();
+    }
+
+    private async Task AssertMirroredUiMessageRejected()
+    {
+        EntityUid? map = null;
+        EntityUid target = default;
+        EntityUid user = default;
+        EntityUid remote = default;
+        ICommonSession session = null;
+        EntityUid? previousAttachedEntity = null;
+        var key = BorgSwitchableTypeUiKey.SelectBorgType;
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                map = Server.System<SharedMapSystem>().CreateMap(out var mapId);
+                target = SEntMan.SpawnEntity("RemoteControlRangeTestUi", new MapCoordinates(0, 0, mapId));
+                remote = SEntMan.SpawnEntity(null, new MapCoordinates(1, 0, mapId));
+                user = SEntMan.SpawnEntity(null, new MapCoordinates(100, 0, mapId));
+                var consoleUid = SEntMan.SpawnEntity(null, new MapCoordinates(100, 0, mapId));
+                var console = SEntMan.AddComponent<RemoteControlConsoleComponent>(consoleUid);
+                console.RemoteBrain = remote;
+                SetTestController(console, user);
+                console.Users.Add(user);
+
+                var playerManager = Server.ResolveDependency<IPlayerManager>();
+                session = playerManager.Sessions.Single();
+                previousAttachedEntity = session.AttachedEntity;
+                Assert.That(playerManager.SetAttachedEntity(session, user), Is.True);
+                SEntMan.AddComponent<BorgSwitchableTypeComponent>(target);
+
+                var ui = Server.System<SharedUserInterfaceSystem>();
+                Assert.DoesNotThrow(() => ui.OpenUi(target, key, remote));
+                Assert.That(ui.IsUiOpen(target, key, remote), Is.True);
+            });
+
+            await Server.WaitRunTicks(1);
+            await Server.WaitAssertion(() =>
+            {
+                var ui = Server.System<SharedUserInterfaceSystem>();
+                Assert.That(ui.IsUiOpen(target, key, user), Is.True);
+                Server.System<SharedTransformSystem>().SetCoordinates(remote, new EntityCoordinates(map!.Value, 10, 0));
+
+                var message = new BorgSelectSubtypeMessage(new ProtoId<BorgTypePrototype>("generic"), null)
+                {
+                    Actor = user,
+                };
+                ui.RaiseUiMessage(target, key, message);
+
+                Assert.That(SEntMan.GetComponent<BorgSwitchableTypeComponent>(target).SelectedBorgType,
+                    Is.Null, "Out-of-range remote UI messages should be rejected.");
+            });
+        }
+        finally
+        {
+            await Server.WaitPost(() =>
+            {
+                if (session is not null)
+                {
+                    var playerManager = Server.ResolveDependency<IPlayerManager>();
+                    playerManager.SetAttachedEntity(session, previousAttachedEntity);
+                }
+
+                if (map is { } mapUid && !SEntMan.Deleted(mapUid))
+                    SEntMan.DeleteEntity(mapUid);
+            });
+        }
     }
 
     [TestCase(1, false, false, true)]
@@ -112,7 +185,7 @@ public sealed class RemoteControlConsoleTest : GameTest
             var consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", controllerCoordinates);
             var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
             console.RemoteBrain = remoteEntity;
-            console.Controller = controller;
+            SetTestController(console, controller);
             console.Users.Add(controller);
 
             SEntMan.EventBus.RaiseLocalEvent(consoleUid, new RemoteControlInteractionMessage
@@ -147,7 +220,7 @@ public sealed class RemoteControlConsoleTest : GameTest
             var consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", testMap.GridCoords);
             var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
             console.RemoteBrain = remoteEntity;
-            console.Controller = controller;
+            SetTestController(console, controller);
             console.Users.Add(controller);
 
             SEntMan.EventBus.RaiseLocalEvent(consoleUid, new RemoteControlInventoryMessage
@@ -187,7 +260,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var consoleUid = SEntMan.SpawnEntity(null, coordinates);
                 var console = SEntMan.AddComponent<RemoteControlConsoleComponent>(consoleUid);
                 console.RemoteBrain = remoteEntity;
-                console.Controller = user;
+                SetTestController(console, user);
 
                 var key = BorgSwitchableTypeUiKey.SelectBorgType;
                 ui.OpenUi(target, key, user);
@@ -217,7 +290,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
                 var user = SEntMan.SpawnEntity(null, coordinates);
                 console.RemoteBrain = remoteEntity;
-                console.Controller = user;
+                SetTestController(console, user);
                 console.Users.Add(user);
 
                 var selectTypeKey = BorgSwitchableTypeUiKey.SelectBorgType;
@@ -231,7 +304,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 Assert.That(ui.IsUiOpen(remoteEntity, selectTypeKey, user), Is.False);
 
                 console.Users.Add(user);
-                console.Controller = user;
+                SetTestController(console, user);
                 ui.OpenUi(remoteEntity, selectTypeKey, user);
                 Assert.That(ui.IsUiOpen(remoteEntity, selectTypeKey, user), Is.True);
             }
@@ -277,9 +350,9 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
                 var observerConsole = SEntMan.GetComponent<RemoteControlConsoleComponent>(observerConsoleUid);
                 console.RemoteBrain = brainUid;
-                console.Controller = controller;
+                SetTestController(console, controller);
                 observerConsole.RemoteBrain = brainUid;
-                observerConsole.Controller = controller;
+                SetTestController(observerConsole, controller);
 
                 SEntMan.EventBus.RaiseLocalEvent(consoleUid,
                     new BoundUIOpenedEvent(RemoteControlUIKey.Key, consoleUid, controller));
@@ -287,7 +360,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                     new BoundUIOpenedEvent(RemoteControlUIKey.Key, consoleUid, observer));
                 SEntMan.EventBus.RaiseLocalEvent(observerConsoleUid,
                     new BoundUIOpenedEvent(RemoteControlUIKey.Key, observerConsoleUid, observer));
-                observerConsole.Controller = null;
+                SetTestController(observerConsole, null);
 
                 var switchable = SEntMan.GetComponent<BorgSwitchableTypeComponent>(chassisUid);
                 Assert.That(switchable.SelectTypeAction, Is.Not.Null);
@@ -403,7 +476,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 console.RemoteBrain = remoteEntity;
 
                 var controller = SEntMan.SpawnEntity(null, coordinates);
-                console.Controller = controller;
+                SetTestController(console, controller);
                 console.Users.Add(controller);
 
                 Assert.That(playerManager.SetAttachedEntity(session, remoteEntity), Is.True);
@@ -426,6 +499,7 @@ public sealed class RemoteControlConsoleTest : GameTest
         {
             var mapSystem = Server.System<SharedMapSystem>();
             var ui = Server.System<SharedUserInterfaceSystem>();
+            var remoteControl = Server.System<RemoteControlConsoleSystem>();
             var map = mapSystem.CreateMap(out var mapId);
 
             try
@@ -436,7 +510,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var currentConsole = SEntMan.GetComponent<RemoteControlConsoleComponent>(currentConsoleUid);
                 var currentController = SEntMan.SpawnEntity(null, coordinates);
                 currentConsole.RemoteBrain = remoteEntity;
-                currentConsole.Controller = currentController;
+                SetTestController(currentConsole, currentController);
                 currentConsole.Users.Add(currentController);
 
                 var takeoverConsoleUid = SEntMan.SpawnEntity(
@@ -454,6 +528,15 @@ public sealed class RemoteControlConsoleTest : GameTest
                     Is.EqualTo(expectedToTakeOver ? (EntityUid?) null : currentController));
                 Assert.That(takeoverConsole.Controller,
                     Is.EqualTo(expectedToTakeOver ? takeoverController : (EntityUid?) null));
+                Assert.That(remoteControl.TryGetControlledEntity(currentController, out var currentRemote),
+                    Is.EqualTo(!expectedToTakeOver));
+                if (!expectedToTakeOver)
+                    Assert.That(currentRemote, Is.EqualTo(remoteEntity));
+
+                Assert.That(remoteControl.TryGetControlledEntity(takeoverController, out var takeoverRemote),
+                    Is.EqualTo(expectedToTakeOver));
+                if (expectedToTakeOver)
+                    Assert.That(takeoverRemote, Is.EqualTo(remoteEntity));
             }
             finally
             {
@@ -484,7 +567,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var currentConsole = SEntMan.GetComponent<RemoteControlConsoleComponent>(currentConsoleUid);
                 var currentController = SEntMan.SpawnEntity(null, coordinates);
                 currentConsole.RemoteBrain = brain;
-                currentConsole.Controller = currentController;
+                SetTestController(currentConsole, currentController);
                 currentConsole.Users.Add(currentController);
                 currentConsole.BorgActivatedByRemote = true;
 
@@ -545,7 +628,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
                 var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
                 console.RemoteBrain = scanner;
-                console.Controller = controller;
+                SetTestController(console, controller);
 
                 var remoteControl = Server.System<RemoteControlConsoleSystem>();
                 Assert.That(remoteControl.TryGetControllerForRemoteEntity(scanner, out var popupRecipient), Is.True);
@@ -617,7 +700,7 @@ public sealed class RemoteControlConsoleTest : GameTest
 
                 if (controlling)
                 {
-                    console.Controller = user;
+                    SetTestController(console, user);
                     console.PreviousRelayEntity = previousRelay ? originalRelay : null;
                     mover.SetRelay(user, chassis);
                 }
@@ -688,7 +771,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
                 console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
                 console.RemoteBrain = brain;
-                console.Controller = controller;
+                SetTestController(console, controller);
 
                 cellUid = SEntMan.SpawnEntity("PowerCellSmall", coordinates);
                 battery = SEntMan.GetComponent<BatteryComponent>(cellUid);
@@ -726,5 +809,25 @@ public sealed class RemoteControlConsoleTest : GameTest
             if (map is { } mapUid)
                 await Server.WaitPost(() => SEntMan.DeleteEntity(mapUid));
         }
+    }
+
+    private void SetTestController(RemoteControlConsoleComponent console, EntityUid? controller)
+    {
+        if (console.Controller is { } previous
+            && SEntMan.TryGetComponent<RemoteControlControllerComponent>(previous, out var previousMapping))
+        {
+            previousMapping.Consoles.Remove(console.Owner);
+            if (previousMapping.Consoles.Count == 0)
+                SEntMan.RemoveComponent<RemoteControlControllerComponent>(previous);
+        }
+
+        console.Controller = controller;
+        if (controller is not { } current)
+            return;
+
+        if (SEntMan.TryGetComponent<RemoteControlControllerComponent>(current, out var mapping))
+            mapping.Consoles.Add(console.Owner);
+        else
+            SEntMan.AddComponent<RemoteControlControllerComponent>(current).Consoles.Add(console.Owner);
     }
 }

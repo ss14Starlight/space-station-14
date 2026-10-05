@@ -161,9 +161,9 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
     }
 
     private bool IsInRemoteView(ScreenCoordinates coords) => RemoteView.Window is { } window
-                                                             && coords.Window == window.Id
-                                                             && RemoteView.GlobalPixelRect.Contains(
-                                                                 (Vector2i)coords.Position);
+        && coords.Window == window.Id
+        && RemoteView.GlobalPixelRect.Contains(
+            (Vector2i)coords.Position);
 
     private bool HandleRemoteExamine(in PointerInputCmdHandler.PointerInputCmdArgs args)
     {
@@ -276,7 +276,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         var pipeLayer = _placementLayer;
 
         var coordinates = _mapManager.MapExists(mapPosition.MapId)
-                          && _mapManager.TryFindGridAt(mapPosition, out var grid, out _)
+            && _mapManager.TryFindGridAt(mapPosition, out var grid, out _)
             ? _mapManager.MapToGrid(grid, mapPosition)
             : new EntityCoordinates((EntityUid)mapEntity, mapPosition.Position);
 
@@ -335,7 +335,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         else if (_entityManager.TryGetComponent<EntityTargetActionComponent>(action, out var entityAction))
         {
             foundTarget = target is { } targetEntity
-                          && _actionsSystem.ValidateEntityTarget(user, targetEntity, (action, entityAction));
+                && _actionsSystem.ValidateEntityTarget(user, targetEntity, (action, entityAction));
             if (foundTarget)
                 validTarget = target;
         }
@@ -448,13 +448,13 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
             return;
 
         cursor.Visible = _targetingAction != null
-                         && _controlling
-                         && _remoteMouseInViewport
-                         && cursor.Texture != null;
+            && _controlling
+            && _remoteMouseInViewport
+            && cursor.Texture != null;
         if (cursor.Visible)
         {
             var localMousePosition = (_remoteMouseScreenPosition - (Vector2)_remoteSpeechBubbleRoot.GlobalPixelPosition)
-                                     / _remoteSpeechBubbleRoot.UIScale;
+                / _remoteSpeechBubbleRoot.UIScale;
             LayoutContainer.SetPosition(cursor, localMousePosition - cursor.Size / 2);
         }
     }
@@ -674,8 +674,8 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
     private void UpdateRemoteViewVisibility(bool connected)
         => RemoteView.Visible = connected && _remoteViewEnabled
-                                          && _playerManager.LocalEntity is { } player
-                                          && _actionBlocker.CanConsciouslyPerformAction(player);
+            && _playerManager.LocalEntity is { } player
+            && _actionBlocker.CanConsciouslyPerformAction(player);
 
     public void SetRemoteViewEnabled(bool enabled)
     {
@@ -805,7 +805,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         var activeHand = hands.FirstOrDefault(hand => hand.Active);
         _activeHandHasItem = activeHand?.HeldItem != null;
         var activeEntity = activeHand?.HeldItem is { } activeItem
-                           && _entityManager.TryGetEntity(activeItem, out var resolvedEntity)
+            && _entityManager.TryGetEntity(activeItem, out var resolvedEntity)
             ? resolvedEntity
             : (EntityUid?)null;
         _activeDeviceStatusPanel.Update(activeEntity, hand: null);

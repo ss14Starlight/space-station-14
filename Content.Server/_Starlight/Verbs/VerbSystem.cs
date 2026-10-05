@@ -8,7 +8,11 @@ public sealed partial class VerbSystem
     [Dependency] private RemoteControlConsoleSystem _remoteControl = default!;
 
     protected override EntityUid? ResolveVerbUser(EntityUid attachedEntity)
-        => _remoteControl.TryGetControlledEntity(attachedEntity, out var remoteEntity)
-            ? remoteEntity
-            : attachedEntity;
+    {
+        if (!TryComp<RemoteControlControllerComponent>(attachedEntity, out var controller)
+            || !_remoteControl.TryGetControlledEntity(attachedEntity, controller, out var remoteEntity))
+            return attachedEntity;
+
+        return remoteEntity;
+    }
 }

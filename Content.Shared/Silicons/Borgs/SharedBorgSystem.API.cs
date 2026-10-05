@@ -15,6 +15,7 @@ public abstract partial class SharedBorgSystem
     /// - Having a player mind attached
     /// - The borg is alive (not crit or dead).
     /// </summary>
+    /// <param name="allowRemoteControl">Whether to bypass the requirement for an attached player mind.</param>
     public bool CanActivate(Entity<BorgChassisComponent> chassis, bool allowRemoteControl = false) // Starlight
     {
         if (HasComp<BorgLockdownComponent>(chassis)) // Starlight
@@ -25,7 +26,7 @@ public abstract partial class SharedBorgSystem
 
         // TODO: Replace this with something else, only the client's own mind is networked to them,
         // so this will always be false for the minds of other clients.
-        if (!allowRemoteControl && !_mind.TryGetMind(chassis.Owner, out _, out _))
+        if (!allowRemoteControl && !_mind.TryGetMind(chassis.Owner, out _, out _)) // Starlight
             return false;
 
         if (_mobState.IsIncapacitated(chassis.Owner))
@@ -38,12 +39,13 @@ public abstract partial class SharedBorgSystem
     /// Activates the borg if the conditions are met.
     /// Returns true if the borg was activated.
     /// </summary>
-    public bool TryActivate(Entity<BorgChassisComponent> chassis, EntityUid? user = null, bool allowRemoteControl = false)
+    /// <param name="allowRemoteControl">Whether to bypass the requirement for an attached player mind.</param>
+    public bool TryActivate(Entity<BorgChassisComponent> chassis, EntityUid? user = null, bool allowRemoteControl = false) // Starlight
     {
         if (chassis.Comp.Active)
             return false; // Already active.
 
-        if (!CanActivate(chassis, allowRemoteControl))
+        if (!CanActivate(chassis, allowRemoteControl)) // Starlight
             return false;
 
         SetActive(chassis, true, user);
