@@ -92,7 +92,12 @@ public abstract partial class SharedNavMapSystem : EntitySystem
 
         if (isDirty)
         {
-            component.RegionProperties[regionOwner] = regionProperties;
+            // Starlight-start
+            component.RegionProperties[regionOwner] = regionProperties with 
+            {
+                Seeds = new HashSet<Vector2i>(regionProperties.Seeds),
+            };
+            // Starlight-end
 
             if (_net.IsServer)
                 Dirty(uid, component);
