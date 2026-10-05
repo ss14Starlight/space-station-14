@@ -127,6 +127,17 @@
     doAfterDelay: 1
     fuelCost: 0.5
   - type: ProtectedFromStepTriggers
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
   - type: Sprite
     noRot: true
     drawdepth: SmallMobs
