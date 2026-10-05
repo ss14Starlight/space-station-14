@@ -166,6 +166,7 @@
     - SiliconEmotes
     - Unimplantable
     - Drone
+    - EmagImmune
   - type: GenericVisualizer
     visuals:
       enum.DroneVisuals.Status:
