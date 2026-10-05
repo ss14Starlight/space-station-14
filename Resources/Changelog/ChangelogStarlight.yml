@@ -1,13 +1,6 @@
 Entries:
 - author: DocMoth
   changes:
-  - message: Expi hunger has been lowered from 7x! to 3x.
-    type: Tweak
-  id: 408807
-  time: '2026-09-22T15:36:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6280
-- author: DocMoth
-  changes:
   - message: Expi speed now drops from 125% while free of clothes to 95% when fully clothed.
     type: Tweak
   id: 408808
@@ -2799,4 +2792,11 @@ Entries:
   id: 409206
   time: '2026-10-05T16:29:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6492
+- author: STARLIGHT TEAM
+  changes:
+  - message: Lowered the Plasteel requirement for making Makeshift IDs in a tider anvil from 3.5 to 2.
+    type: Tweak
+  id: 409207
+  time: '2026-10-05T16:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6388
 Order: -1
