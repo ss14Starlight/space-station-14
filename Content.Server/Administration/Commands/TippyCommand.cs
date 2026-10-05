@@ -25,11 +25,11 @@ public sealed partial class TippyCommand : LocalizedEntityCommands
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        #region Starlight
+        // Starlight-start
         if (_autoLog == null)
             if (_entSysMan.TryGetEntitySystem(out AutoDiscordLogSystem? _sys))
                 _autoLog = _sys;
-        #endregion
+        // Starlight-end
 
         if (args.Length < 2)
         {
