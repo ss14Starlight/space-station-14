@@ -1,13 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: Admin-Popup for secure terminal request confirmation.
-    type: Add
-  id: 408787
-  time: '2026-09-21T13:50:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6207
-- author: Floximo
-  changes:
   - message: Timer for secure terminals.
     type: Remove
   id: 408788
@@ -2799,4 +2792,11 @@ Entries:
   id: 409186
   time: '2026-10-05T10:09:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6516
+- author: Yosif
+  changes:
+  - message: Popups when you touching botany stuff now doesnt create lot of popups.
+    type: Fix
+  id: 409187
+  time: '2026-10-05T10:32:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6515
 Order: -1
