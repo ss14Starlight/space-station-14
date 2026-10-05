@@ -20,9 +20,8 @@ public sealed partial class AlertLevelAccessSystem : SharedAlertLevelAccessSyste
     [SubscribeLocalEvent]
     private void OnMapInit(Entity<AlertLevelAccessComponent> ent, ref MapInitEvent ev)
     {
-        var xform = Transform(ent);
-        var (level, color) = FindAlertLevel(ent, ref xform);
-        UpdateAlertLevel(ent, level, color);
+        var (level, color) = FindAlertLevel(ent, Transform(ent));
+        UpdateEntityAlertLevel(ent, level, color);
     }
 
     /// <summary>
@@ -34,14 +33,12 @@ public sealed partial class AlertLevelAccessSystem : SharedAlertLevelAccessSyste
         // If entity was unanchored, unset level.
         if (!ev.Anchored)
         {
-            UpdateAlertLevel(ent, null, null);
+            UpdateEntityAlertLevel(ent, null, null);
             return;
         }
 
-        // Otherwise actually try finding the alert level of the grid.
-        var xform = Transform(ent);
-        var (level, color) = FindAlertLevel(ent, ref xform);
-        UpdateAlertLevel(ent, level, color);
+        var (level, color) = FindAlertLevel(ent, Transform(ent));
+        UpdateEntityAlertLevel(ent, level, color);
     }
 
     /// <summary>
@@ -67,7 +64,7 @@ public sealed partial class AlertLevelAccessSystem : SharedAlertLevelAccessSyste
     /// When a grid becomes member of a station, we fill in the alert level and color on all relevant entities on said grid.
     /// </summary>
     [SubscribeLocalEvent]
-    private void OnStationGridAddedEvent(Entity<AlertLevelAccessComponent> ent, ref StationGridAddedEvent ev)
+    private void OnStationGridAddedEvent(StationGridAddedEvent ev)
     {
         // If we can't determine alert level then there's no point.
         if (!TryComp<AlertLevelComponent>(ev.Station, out var alert))
@@ -82,7 +79,7 @@ public sealed partial class AlertLevelAccessSystem : SharedAlertLevelAccessSyste
     /// When a grid stops being a member of a station, we wipe all level tracking state on entities on said grid.
     /// </summary>
     [SubscribeLocalEvent]
-    private void OnStationGridRemovedEvent(Entity<AlertLevelAccessComponent> ent, ref StationGridRemovedEvent ev)
+    private void OnStationGridRemovedEvent(StationGridRemovedEvent ev)
         => UpdateEntitiesOnGrid(ev.GridId, null, null);
 
     /// <summary>
@@ -100,7 +97,7 @@ public sealed partial class AlertLevelAccessSystem : SharedAlertLevelAccessSyste
             if (!xform.Anchored)
                 continue;
 
-            UpdateAlertLevel(child, level, color);
+            UpdateEntityAlertLevel(child, level, color);
         }
     }
 
@@ -117,7 +114,10 @@ public sealed partial class AlertLevelAccessSystem : SharedAlertLevelAccessSyste
         return _station.GetOwningStation(uid);
     }
 
-    private (string?, Color?) FindAlertLevel(Entity<AlertLevelAccessComponent> ent, ref TransformComponent? xform)
+    /// <summary>
+    /// Work from a single entity upwards to find the relevant alert level and color, if any.
+    /// </summary>
+    private (string?, Color?) FindAlertLevel(Entity<AlertLevelAccessComponent> ent, TransformComponent? xform)
     {
         if (!Resolve(ent, ref xform))
             return (null, null);
@@ -137,7 +137,7 @@ public sealed partial class AlertLevelAccessSystem : SharedAlertLevelAccessSyste
         return (alert.CurrentLevel, color);
     }
 
-    private void UpdateAlertLevel(Entity<AlertLevelAccessComponent> ent, string? level, Color? levelColor)
+    private void UpdateEntityAlertLevel(Entity<AlertLevelAccessComponent> ent, string? level, Color? levelColor)
     {
         // Unchanged alert level, don't write or dirty.
         if (ent.Comp.Level == level)
