@@ -6,25 +6,13 @@ using Content.Shared.MagicMirror;
 
 namespace Content.Server._Starlight.Laspi;
 
-/// <summary>
-///  System that handles the InnateHairChangeComponent, which allows an entity to change their hair/facial hair using the magic mirror UI.
-/// This is primarily used only on the Laspi and neo-Laspi species, but there's nothing stopping you from adding it to other species if you wanna be a hair wizard or something. :3
-/// </summary>
-public sealed class InnateHairChangeSystem : EntitySystem
+public sealed partial class InnateHairChangeSystem : EntitySystem
 {
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
-    public override void Initialize()
-    {
-        SubscribeLocalEvent<InnateHairChangeComponent, InnateHairChangeActionEvent>(OnHairAction);
-    }
-
-    /// <summary>
-    /// Handles the innate hair change action event, opens the magic mirror UI for you to change your hair/facial hair. Some of this code is duplicated from SharedMagicMirrorSystem.UpdateInterface() because I don't want to touch that file in this PR at all.
-    /// </summary>
+    [SubscribeLocalEvent]
     private void OnHairAction(Entity<InnateHairChangeComponent> ent, ref InnateHairChangeActionEvent args)
     {
-        // NOTE: Handled silently which may not be desired.
         if (args.Handled)
             return;
 
@@ -46,11 +34,11 @@ public sealed class InnateHairChangeSystem : EntitySystem
             humanoid.MarkingSet.PointsLeft(MarkingCategories.FacialHair) + facialHair.Count);
 
         mirror.Target = ent.Owner;
-        Dirty(ent.Owner, mirror); // Dirty, filthy entity. B)
+        Dirty(ent.Owner, mirror);
 
         _ui.SetUiState(ent.Owner, MagicMirrorUiKey.Key, state);
         _ui.TryOpenUi(ent.Owner, MagicMirrorUiKey.Key, ent.Owner);
 
-        args.Handled = true; // Action handled, don't let other systems mess with my perfect UI. >:(
+        args.Handled = true;
     }
 }
