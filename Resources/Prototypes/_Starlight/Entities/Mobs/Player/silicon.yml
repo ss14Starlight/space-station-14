@@ -293,7 +293,6 @@
   - type: Loadout
     prototypes:
       - StartingGearDrone
-  - type: PAI
   - type: GlitchOnEMP
 
 # Borgs
