@@ -49,6 +49,18 @@
     - Hypospray
     - ToolDebug
     - WeaponPulseCarbine
+    belt:
+    - WeaponEnergyMagnum
+    - DefibrillatorCompact
+    - BodyBagLockableFolded
+    - HoloprojectorSecurity
+    - ToolDebug
+    - SmokeGrenade
+    - ExGrenade
+    - EmpGrenade
+    - CombatMedipen
+    - PyraAutoInjector
+    - PunctAutoInjector
 
 - type: startingGear
   id: NanoTrasenSpecialForcesPrimusGear
@@ -69,80 +81,67 @@
     - PunctAutoInjector
     - MedkitCombatFilled
     - MedkitCombatFilled
-    - DefibrillatorCompact
-    - HoloprojectorSecurity
-    - ToolDebug
-    - SmokeGrenade
-    - ToxicGasGrenade
-    - ExGrenade
-    belt:
-    - WeaponEnergyMagnum
-    - DefibrillatorCompact
-    - BodyBagLockableFolded
-    - HoloprojectorSecurity
-    - ToolDebug
-    - SmokeGrenade
-    - ExGrenade
-    - EmpGrenade
-    - CombatMedipen
-    - PyraAutoInjector
-    - PunctAutoInjector
+    - MaterialSandbag
 
 - type: startingGear
   id: NanoTrasenSpecialForcesSecondusGear
   parent: BaseNanoTrasenSpecialForcesGear
   equipment:
     outerClothing: ClothingOuterHardsuitNTSFSecundus
-    pocket1: AccessOveriderUnlimited
-    pocket2: EnergyShield
+    pocket1: EnergySword
+    pocket2: EnergyShieldUnbreakable
     neck: ClothingNeckCapeNTSF2
   storage:
     back:
-    - WeaponRiflePitbull
-    - MagazineMagnumRifleSP
-    - MagazineMagnumRifleSP
-    - MagazineMagnumRifleSP
-    - MagazineMagnumRifleSP
-    - MedkitCombatFilled
-    - MedkitCombatFilled
-    - CombatMedipen
-    - CombatMedipen
-    - CombatMedipen
-    - PunctAutoInjector
+    - WeaponSubMachineGunEnergy
+    - WeaponPulseCarbine
+    - ClusterGrenade
+    - ClusterGrenade
+    - EmpGrenade
+    - SingularityGrenade
+    - GrenadeShrapnel
+    - GrenadeIncendiary
+    - WhiteholeGrenade
+    - TearGasGrenade
+    - MaterialSandbag
+    belt:
+    - WeaponEnergyMagnum
     - HoloprojectorField
     - PowerCellMicroreactor
-    - ClusterGrenade
-    - SmokeGrenade
-    - GrenadeShrapnel
-    - SingularityGrenade
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - BurnAutoInjector
+    - PyraAutoInjector
+    - CombatMedipen
+    - CombatMedipen
+    - BruteAutoInjector
+    - PunctAutoInjector
+    - CombatMedipen
 
 - type: startingGear
   id: NanoTrasenSpecialForcesTertiusGear
   parent: BaseNanoTrasenSpecialForcesGear
   equipment:
     outerClothing: ClothingOuterHardsuitNTSFTertius
-    pocket1: AccessOveriderUnlimited
-    pocket2: CCEmagUnlimited
     neck: ClothingNeckCapeNTSF3
   storage:
     back:
-    - RCDExperimental
-    - HoloprojectorEngineering
-    - ClothingHeadHatCone
+    - WeaponPulseCarbine
     - ClothingHeadHatCone
     - InflatableDoorStack
     - InflatableWallStack
     - InflatableWallStack
-    - PortableRecharger
+    - WeaponForceGun
+    - WeaponTetherGun
     belt:
     - WeaponRevolverInspector
     - SpeedLoaderMagnumFMJ
     - SpeedLoaderMagnumFMJ
-    - JawsOfLife
-    - PowerDrill
+    - RCDExperimental
+    - HoloprojectorEngineering
     - WelderExperimental
     - Multitool
-    - GasAnalyzer
+    - ToolDebug
     - WeaponGrapplingGun
 
 - type: startingGear
