@@ -1,14 +1,14 @@
-﻿using Content.Shared._Starlight.Washing;
+﻿using Content.Shared._Starlight.Lube;
+using Content.Shared._Starlight.Washing;
 using Content.Shared.Glue;
 using Content.Shared.Lube;
 using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 
 namespace Content.Server._Starlight.Washing;
 
-/// <summary>
-/// System for using washing fixtures for self-cleaning.
-/// </summary>
+/// <inheritdoc/>
 public sealed partial class WashingFixtureSystem : SharedWashingFixtureSystem
 {
     [Dependency] private SharedCreamPieSystem _creamPie = default!;

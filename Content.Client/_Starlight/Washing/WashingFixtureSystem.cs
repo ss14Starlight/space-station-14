@@ -2,7 +2,5 @@
 
 namespace Content.Client._Starlight.Washing;
 
-/// <summary>
-/// System for using washing fixtures for self-cleaning.
-/// </summary>
+/// <inheritdoc/>
 public sealed partial class WashingFixtureSystem : SharedWashingFixtureSystem;
