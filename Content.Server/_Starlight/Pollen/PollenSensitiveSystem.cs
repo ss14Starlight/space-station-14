@@ -19,7 +19,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
 
-namespace Content.Server._Starlight.Pollen.Systems;
+namespace Content.Server._Starlight.Pollen; // this somehow also didnt get updated
 
 public sealed partial class PollenSensitiveSystem : EntitySystem
 {

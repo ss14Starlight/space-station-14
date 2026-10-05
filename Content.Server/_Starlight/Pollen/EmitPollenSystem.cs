@@ -7,7 +7,7 @@ using Robust.Shared.Timing;
 using Content.Server._Starlight.Scent.Systems;
 using Content.Shared.Botany.Items.Components;
 
-namespace Content.Server._Starlight.Pollen.Systems;
+namespace Content.Server._Starlight.Pollen; //this is somehow not updated
 
 public sealed partial class EmitPollenSystem : EntitySystem
 {
