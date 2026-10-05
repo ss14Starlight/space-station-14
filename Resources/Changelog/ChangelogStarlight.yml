@@ -1,20 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: Activation delays and fees as well as salary modifiers for requests.
-    type: Tweak
-  id: 408789
-  time: '2026-09-21T13:50:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6207
-- author: Floximo
-  changes:
-  - message: NTR can now (co)authorize many request, with a similar power to the captain.
-    type: Tweak
-  id: 408790
-  time: '2026-09-21T13:50:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6207
-- author: Floximo
-  changes:
   - message: Interface bugs related to secure terminal.
     type: Fix
   id: 408791
@@ -2799,4 +2785,18 @@ Entries:
   id: 409188
   time: '2026-10-05T13:11:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6344
+- author: OJG
+  changes:
+  - message: The supermatter now releases plasma alongside its existing gas products.
+    type: Tweak
+  id: 409189
+  time: '2026-10-05T13:11:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5942
+- author: OJG
+  changes:
+  - message: Changes to the gas modifiers of the SM that make exotic gasses more potent.
+    type: Tweak
+  id: 409190
+  time: '2026-10-05T13:11:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5942
 Order: -1
