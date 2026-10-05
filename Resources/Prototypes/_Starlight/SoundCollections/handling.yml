@@ -1,0 +1,69 @@
+- type: soundCollection
+  id: ClothPickup
+  files:
+    - /Audio/_Starlight/Items/Handling/cloth_pickup1.ogg
+    - /Audio/_Starlight/Items/Handling/cloth_pickup2.ogg
+    - /Audio/_Starlight/Items/Handling/cloth_pickup3.ogg
+    - /Audio/_Starlight/Items/Handling/cloth_pickup4.ogg
+
+- type: soundCollection
+  id: ClothDrop
+  files:
+    - /Audio/_Starlight/Items/Handling/cloth_drop1.ogg
+    - /Audio/_Starlight/Items/Handling/cloth_drop2.ogg
+    - /Audio/_Starlight/Items/Handling/cloth_drop3.ogg
+    - /Audio/_Starlight/Items/Handling/cloth_drop4.ogg
+
+- type: soundCollection
+  id: HeadsetPickup
+  files:
+    - /Audio/_Starlight/Items/Handling/headset_pickup1.ogg
+    - /Audio/_Starlight/Items/Handling/headset_pickup2.ogg
+    - /Audio/_Starlight/Items/Handling/headset_pickup3.ogg
+
+- type: soundCollection
+  id: HeadsetEquip
+  files:
+    - /Audio/_Starlight/Items/Equip/headset_equip1.ogg
+    - /Audio/_Starlight/Items/Equip/headset_equip2.ogg
+
+# Default for any item without a more specific pickup sound.
+- type: soundCollection
+  id: GenericPickup
+  files:
+    - /Audio/_Starlight/Items/Handling/plastic_pick_up.ogg
+    - /Audio/_Starlight/Items/Handling/component_pickup.ogg
+    - /Audio/_Starlight/Items/Handling/disk_pickup.ogg
+
+- type: soundCollection
+  id: LiquidSlosh
+  files:
+    - /Audio/_Starlight/Items/Handling/default_liquid_slosh1.ogg
+    - /Audio/_Starlight/Items/Handling/default_liquid_slosh2.ogg
+    - /Audio/_Starlight/Items/Handling/default_liquid_slosh3.ogg
+    - /Audio/_Starlight/Items/Handling/default_liquid_slosh4.ogg
+
+- type: soundCollection
+  id: PlasticBottleSlosh
+  files:
+    - /Audio/_Starlight/Items/Handling/plastic_bottle_liquid_slosh1.ogg
+    - /Audio/_Starlight/Items/Handling/plastic_bottle_liquid_slosh2.ogg
+
+- type: soundCollection
+  id: NeedlePickup
+  files:
+    - /Audio/_Starlight/Items/Handling/needle_pickup1.ogg
+    - /Audio/_Starlight/Items/Handling/needle_pickup2.ogg
+
+- type: soundCollection
+  id: NeedleDrop
+  files:
+    - /Audio/_Starlight/Items/Handling/needle_drop1.ogg
+    - /Audio/_Starlight/Items/Handling/needle_drop2.ogg
+
+- type: soundCollection
+  id: MeshPickup
+  files:
+    - /Audio/_Starlight/Items/Handling/regen_mesh_pickup1.ogg
+    - /Audio/_Starlight/Items/Handling/regen_mesh_pickup2.ogg
+    - /Audio/_Starlight/Items/Handling/regen_mesh_pickup3.ogg

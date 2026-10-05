@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "magazine-inhand-left",
+	  "copyright": "Made by Conflee for Starlight",
+      "directions": 4
+    },
+	{
+      "name": "magazine-inhand-right",
+	  "copyright": "Made by Conflee for Starlight",
+      "directions": 4
+    },
+    {
+      "name": "centcomm",
+	  "copyright": "Made by Conflee for Starlight"
+    }
+  ]
+}

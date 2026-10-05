@@ -62,6 +62,7 @@ public abstract partial class SharedEntityHeaterSystem : EntitySystem
         // doesn't actually change the setting since that would be annoying
         var setting = args.Powered ? ent.Comp.Setting : EntityHeaterSetting.Off;
         _appearance.SetData(ent, EntityHeaterVisuals.Setting, setting);
+        UpdateAmbience(ent, args.Powered); // Starlight
     }
 
     protected virtual void ChangeSetting(Entity<EntityHeaterComponent> ent, EntityHeaterSetting setting, EntityUid? user = null)
@@ -75,6 +76,8 @@ public abstract partial class SharedEntityHeaterSystem : EntitySystem
         // Only show the glowing heating element layer if there's power
         if (_receiver.IsPowered(ent.Owner))
             _appearance.SetData(ent, EntityHeaterVisuals.Setting, setting);
+
+        UpdateAmbience(ent, _receiver.IsPowered(ent.Owner)); // Starlight
     }
 
     protected float SettingPower(EntityHeaterSetting setting, float max)

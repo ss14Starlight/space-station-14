@@ -65,8 +65,6 @@ SKB-implant-rattler-name = SKB Death Rattle
 SKB-implant-rattler-desc = An implant specialized in informing agents of your death.
 SKB-implant-radio-name = SKB Radio Implant
 SKB-implant-radio-desc = An implant specialized in allowing communication between SKB agents.
-SKB-stolen-shield-name = Stolen Fake Shield
-SKB-stolen-shield-desc = Very rare item to see, we were able to steal it from a passing transport. Use it wisely.
 
 # Deception
 soviet-encryption-key-name = Soviet encryption key
@@ -113,3 +111,6 @@ zapo-name = Zaporozhian sich bundle
 zapo-desc = Cossacks- have gone to space, and have earned respect within the union.
 vodkizine-name = vodkizine bottle
 vodkizine-desc = The best cure for and cause of a hangover.
+
+rev-supply-rift-listing-charging = Supply rift (Charging: { $charge }% - Placed by comrade { $name } { $location })
+rev-supply-rift-unknown-placer = Unknown

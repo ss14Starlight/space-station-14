@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: NukeDisk
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/disk_pickup.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/disk_drop.ogg
+
