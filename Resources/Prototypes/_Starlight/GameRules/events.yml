@@ -298,3 +298,23 @@
     duration: 20
     occursDuringRoundEnd: false
   - type: MalignRiftSpawnRule
+
+- type: entity
+  id: SyndicateCrateOpsPrompt
+  parent: BaseGameRule
+  components:
+    - type: SendFaxRule
+      enqueueFaxes: true
+      faxes:
+        - faxPrototype: CrateOpsForDummies
+          paperData:
+            sentBy: Syndicate High Command
+          addresses:
+            - ERR*?*%!
+        - faxPrototype: CrateOpsCargoInvoice
+          paperData:
+            sentBy: Syndicate High Command
+            includeMeta: false
+          addresses:
+            - ERR*?*%!
+          delay: 8

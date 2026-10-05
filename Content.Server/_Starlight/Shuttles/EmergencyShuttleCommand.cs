@@ -14,9 +14,9 @@ using Robust.Shared.Toolshed;
 
 namespace Content.Server._Starlight.Shuttles;
 
-[ToolshedCommand]
+[ToolshedCommand(Name = "eshuttle")]
 [AdminCommand(AdminFlags.Round)]
-public sealed partial class ShuttleCommand : ToolshedCommand
+public sealed partial class EmergencyShuttleCommand : ToolshedCommand
 {
     [Dependency] private IAdminLogManager _log = null!;
 
@@ -116,6 +116,16 @@ public sealed partial class ShuttleCommand : ToolshedCommand
     {
         _round ??= GetSys<RoundEndSystem>();
         _round.CancelRoundEndCountdown(ctx.Session?.AttachedEntity, forceRecall: true);
+    }
+
+    /// <summary>
+    /// Early launches the emergency shuttle.
+    /// </summary>
+    [CommandImplementation("launchemergencyshuttle")]
+    public void LaunchEmergencyShuttle(IInvocationContext ctx)
+    {
+        _eShuttle ??= GetSys<EmergencyShuttleSystem>();
+        _eShuttle.EarlyLaunch(ctx.Session);
     }
 
     // TODO: Improve this once nullable type parsers exist
