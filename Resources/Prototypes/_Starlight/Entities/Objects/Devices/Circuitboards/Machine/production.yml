@@ -1487,3 +1487,17 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+  id: ScrapperExoFabricatorMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Scrapper fabricator machine board
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: RogueExofabricator
+    stackRequirements:
+      Manipulator: 4
+      Glass: 5
+  - type: GuideHelp
+    guides:
+    - Robotics

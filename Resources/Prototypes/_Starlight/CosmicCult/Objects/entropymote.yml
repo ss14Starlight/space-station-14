@@ -52,29 +52,11 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: MaterialCosmicCultEntropy
-  id: MaterialCosmicCultEntropy2
-  suffix: Two
-  components:
-  - type: Stack
-    count: 2
-
-- type: entity
-  categories: [ HideSpawnMenu ]
-  parent: MaterialCosmicCultEntropy
   id: MaterialCosmicCultEntropy3
   suffix: Three
   components:
   - type: Stack
     count: 3
-
-- type: entity
-  categories: [ HideSpawnMenu ]
-  parent: MaterialCosmicCultEntropy
-  id: MaterialCosmicCultEntropy4
-  suffix: Four
-  components:
-  - type: Stack
-    count: 4
 
 - type: entity
   categories: [ HideSpawnMenu ]

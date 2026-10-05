@@ -109,9 +109,10 @@ public abstract partial class SharedStationRecordsSystem : EntitySystem
     /// </summary>
     /// <param name="ent">The EntityId of the station from which you want to get the record.</param>
     /// <param name="entry">The resulting entry.</param>
+    /// <param name="seedEntity">Starlight: extra entity mixed into the seed, so several picks in one tick don't all return the same record.</param>
     /// <typeparam name="T">Type to get from the record set.</typeparam>
     /// <returns>True if a record was obtained. False otherwise.</returns>
-    public bool TryGetRandomRecord<T>(Entity<StationRecordsComponent?> ent, [NotNullWhen(true)] out T? entry)
+    public bool TryGetRandomRecord<T>(Entity<StationRecordsComponent?> ent, [NotNullWhen(true)] out T? entry, EntityUid? seedEntity = null) // Starlight-edit
     {
         entry = default;
 
@@ -121,7 +122,7 @@ public abstract partial class SharedStationRecordsSystem : EntitySystem
         if (ent.Comp.Records.Keys.Count == 0)
             return false;
 
-        var random = SharedRandomExtensions.PredictedRandom(Timing, GetNetEntity(ent.Owner));
+        var random = SharedRandomExtensions.PredictedRandom(Timing, GetNetEntity(ent.Owner), GetNetEntity(seedEntity)); // Starlight-edit
         var key = random.Pick(ent.Comp.Records.Keys);
 
         return ent.Comp.Records.TryGetRecordEntry(key, out entry);

@@ -663,3 +663,27 @@
     - type: EmptyOnMachineDeconstruct
       containers:
         - blueprint
+#RogueDrone
+- type: entity
+  id: RogueExofabricator
+  parent: BaseLatheLube
+  name: Scrapper Exo Fabricator
+  description: A derelict fabricator, its engine still faintly hums.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/exosuit_fabricator.rsi
+    layers:
+    - state: fab-idle
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: fab-load
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: fab-o
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: ScrapperExoFabricatorMachineCircuitboard
+  - type: Lathe
+    idleState: fab-idle
+    runningState: fab-active
+    staticPacks:
+    - RoboticsRogueStatic
+  - type: !Remove StationAiWhitelist
