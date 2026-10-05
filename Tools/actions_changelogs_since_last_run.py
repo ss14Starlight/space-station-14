@@ -24,8 +24,9 @@ DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 DISCORD_CHANGELOG_ROLE_ID = int(os.environ.get("DISCORD_CHANGELOG_ROLE_ID", "1308143973684088883"))
 
 CHANGELOG_FILE = "Resources/Changelog/ChangelogStarlight.yml"
-# Must match the job name in .github/workflows/publish.yml
+# Must match the changelog job name in .github/workflows/publish.yml and publish-testing.yml
 CHANGELOG_JOB_NAME = "Publish Changelogs"
+MAX_RUN_PAGES = 10
 TYPES_TO_EMOJI = {"Fix": "🐛", "Add": "🆕", "Remove": "❌", "Tweak": "⚒️"}
 ChangelogEntry = dict[str, Any]
 
@@ -37,8 +38,9 @@ EMBED_FIELD_VALUE_LIMIT = 1024
 
 def main():
     if not DISCORD_WEBHOOK_URL:
-        print("No webhook URL; skipping send")
-        return
+        # Fail the job: a successful changelog job is what later runs treat as "already sent".
+        print("No webhook URL; cannot send changelogs", file=sys.stderr)
+        sys.exit(1)
 
     if DEBUG:
         last_changelog_stream = DEBUG_CHANGELOG_FILE_OLD.read_text()
@@ -73,20 +75,25 @@ def get_most_recent_workflow(
     a run whose build failed or was cancelled (concurrency cancel-in-progress) has still sent its changelogs.
     """
     current = get_current_run(sess, github_repository, github_run)
-    # No "created"/"status" filters: those go through the search backend, which does not guarantee
-    # ordering or freshness and could make us skip the latest run and resend everything since an older one.
-    resp = sess.get(
-        f"{current['workflow_url']}/runs",
-        params={"branch": current["head_branch"], "per_page": 100},
-    )
-    resp.raise_for_status()
-    runs = resp.json().get("workflow_runs", [])
-    runs = [r for r in runs if r["id"] != current["id"] and r["created_at"] <= current["created_at"]]
-    runs.sort(key=lambda r: r["created_at"], reverse=True)
 
-    for run in runs:
-        if changelog_job_succeeded(sess, run):
-            return run
+    for page in range(1, MAX_RUN_PAGES + 1):
+        # No query filters (branch, status, created, ...): GitHub serves those from its search index,
+        # which can return a stale or partial list and make us pick a months-old run as the base.
+        # The unfiltered list is newest first, so filter on our side.
+        resp = sess.get(f"{current['workflow_url']}/runs", params={"per_page": 100, "page": page})
+        resp.raise_for_status()
+        runs = resp.json().get("workflow_runs", [])
+        if not runs:
+            break
+
+        for run in runs:
+            if run["id"] == current["id"] or run["head_branch"] != current["head_branch"]:
+                continue
+            if run["created_at"] > current["created_at"]:
+                continue
+            if changelog_job_succeeded(sess, run):
+                return run
+
     raise RuntimeError("No previous run with a successful changelog job found")
 
 
@@ -138,15 +145,13 @@ def get_last_changelog_by_sha(
 
 
 def diff_changelog(old: dict[str, Any], cur: dict[str, Any]) -> Iterable[ChangelogEntry]:
-    old_ids = [e["id"] for e in old.get("Entries", [])]
+    # Compare by membership: ids are PR-number based, so a later-merged older PR gets a lower id.
+    old_ids = {e["id"] for e in old.get("Entries", [])}
     if not old_ids:
         # Never dump the whole changelog because the previous one could not be read.
         raise RuntimeError("Previous changelog has no entries; refusing to resend everything")
 
-    # Ids only ever grow, so anything at or below the last sent id was already posted
-    # (even if it was trimmed from one file and not the other).
-    last_sent_id = max(old_ids)
-    return (e for e in cur.get("Entries", []) if e["id"] > last_sent_id)
+    return (e for e in cur.get("Entries", []) if e["id"] not in old_ids)
 
 
 def group_entries_by_pr(entries: Iterable[ChangelogEntry]) -> dict[str, list[ChangelogEntry]]:
@@ -251,8 +256,9 @@ def post_with_retries(payload: dict[str, Any]):
         except requests.exceptions.RequestException as e:
             attempt += 1
             if attempt > 5:
+                # Fail the job so the next run does not treat these entries as sent.
                 print(f"Failed after retries: {e}", file=sys.stderr)
-                return
+                sys.exit(1)
             backoff = 2 ** attempt
             print(f"Request failed ({e}), backing off {backoff}s and retrying")
             time.sleep(backoff)
