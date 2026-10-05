@@ -1069,6 +1069,9 @@
       head:
         - state: equipped-HELMET
           offset: "0, 0.09"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieSeaBunny
 
 - type: entity
   parent: BaseShadekinPlushie
@@ -1261,6 +1264,9 @@
       head:
         - state: equipped-HELMET
           offset: "0, 0.055"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieStingRay
 
 - type: entity
   parent: BasePlushie
@@ -1304,6 +1310,9 @@
       head:
         - state: equipped-HELMET
           offset: "0, 0.055"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieSeaPancake
 
 - type: entity
   parent: BasePlushie
@@ -1347,6 +1356,9 @@
       head:
         - state: equipped-HELMET
           offset: "0, 0.13"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieSeal
 
 - type: entity
   parent: BasePlushie
@@ -1390,6 +1402,9 @@
       head:
         - state: equipped-HELMET
           offset: "0, 0.13"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieDumboOctopus
 
 - type: entity
   parent: BasePlushie
@@ -1432,3 +1447,6 @@
       head:
         - state: equipped-HELMET
           offset: "0, 0.1"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieSeaSheep
