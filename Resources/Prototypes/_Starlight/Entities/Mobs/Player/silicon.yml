@@ -61,7 +61,7 @@
     slots:
     - cell_slot
   - type: PowerCellDraw
-    drawRate: 0.6
+    drawRate: 0.3
   - type: BatteryDrainer
     drainEfficiency: 0.005
     drainTime: 0.8
