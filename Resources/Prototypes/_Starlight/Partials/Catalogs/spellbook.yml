@@ -1,5 +1,0 @@
-# Event
-- type: !PartialOnly listing
-  id: SpellbookEventSummonGhosts
-  cost:
-    WizCoin: 2

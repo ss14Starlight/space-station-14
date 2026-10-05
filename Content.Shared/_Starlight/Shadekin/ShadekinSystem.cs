@@ -96,6 +96,8 @@ public sealed partial class ShadekinSystem : EntitySystem
     private readonly List<Entity<SharedPointLightComponent, TransformComponent>> _lightsInRange = new();
     private readonly HashSet<EntityUid> _theDarkMaps = new();
 
+    private bool _hadTheDarkMaps;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -104,11 +106,11 @@ public sealed partial class ShadekinSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnDamageChanged(Entity<ShadekinComponent> ent, ref BeforeDamageChangedEvent args)
+    private void OnDamageChanged(Entity<ShadekinComponent> _, ref BeforeDamageChangedEvent args)
         => args.Damage.DamageDict["Asphyxiation"] = 0;
 
     [SubscribeLocalEvent]
-    private void OnShutdown(Entity<ShadekinComponent> ent, ref ComponentShutdown args)
+    private void OnShutdown(Entity<ShadekinComponent> ent, ref ComponentShutdown _)
     {
         if (_timing.ApplyingState)
             return;
@@ -443,6 +445,14 @@ public sealed partial class ShadekinSystem : EntitySystem
             if (curTime < component.NextUpdate)
                 continue;
 
+            // First update gets a random offset, so shadekin spawned on the same tick (round start) don't all do
+            // their light lookups and raycasts on the same tick every second.
+            if (component.NextUpdate == TimeSpan.Zero)
+            {
+                component.NextUpdate = curTime + (component.UpdateCooldown * _random.NextDouble());
+                continue;
+            }
+
             component.NextUpdate = curTime + component.UpdateCooldown;
 
             var lightExposure = 0f;
@@ -486,6 +496,12 @@ public sealed partial class ShadekinSystem : EntitySystem
             if (_tag.HasTag(mapUid, _theDarkTag))
                 _theDarkMaps.Add(mapUid);
         }
+
+        // Nobody can be in the Dark or still have its status, skip going over every mob.
+        var hadTheDarkMaps = _hadTheDarkMaps;
+        _hadTheDarkMaps = _theDarkMaps.Count > 0;
+        if (!_hadTheDarkMaps && !hadTheDarkMaps)
+            return;
 
         var mobQuery = EntityQueryEnumerator<MobStateComponent, TransformComponent>();
         while (mobQuery.MoveNext(out var uid, out _, out var xform))
