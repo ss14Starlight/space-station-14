@@ -1,6 +1,6 @@
 ﻿using Robust.Shared.Audio;
 
-namespace Content.Server._Starlight.Washing;
+namespace Content.Shared._Starlight.Washing;
 
 /// <summary>
 /// This component indicates that an object can be used for washing.

@@ -22,6 +22,9 @@
     <Folder Include="_Starlight\Spells\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="_Starlight\Washing\WashingFixtureComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="_Starlight\Weapon\Components\GunComponent.cs">
       <SubType>Component</SubType>
     </Compile>

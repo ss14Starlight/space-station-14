@@ -1,71 +1,31 @@
-﻿using Content.Server._Starlight.Nutrition.EntitySystems;
-using Content.Server.DoAfter;
-using Content.Server.Popups;
-using Content.Shared._Starlight.Lube;
+﻿using Content.Shared._Starlight.Lube;
 using Content.Shared._Starlight.Washing;
 using Content.Shared.DoAfter;
 using Content.Shared.Glue;
 using Content.Shared.Lube;
 using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
-using Content.Shared.Verbs;
-using Robust.Server.Audio;
-using Robust.Shared.Utility;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Starlight.Washing;
 
 /// <summary>
 /// System for using washing fixtures for self-cleaning.
 /// </summary>
-public sealed partial class WashingFixtureSystem : EntitySystem
+public sealed partial class WashingFixtureSystem : SharedWashingFixtureSystem
 {
-    [Dependency] private AudioSystem _audioSystem = default!;
-    [Dependency] private DoAfterSystem _doAfterSystem = default!;
-    [Dependency] private PopupSystem _popupSystem = default!;
-    [Dependency] private CreamPieSystem _creamPie = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private SharedCreamPieSystem _creamPie = default!;
     [Dependency] private GlueSystem _glueSystem = default!;
     [Dependency] private SharedLubedSystem _lubedSystem = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<WashingFixtureComponent, GetVerbsEvent<AlternativeVerb>>(OnVerb);
-        SubscribeLocalEvent<WashingFixtureComponent, WashingDoAfterEvent>(OnWashingDoAfter);
-    }
-
-    /// <summary>
-    /// Checks if the interacting user can wash, and adds the interaction verb if they do.
-    /// </summary>
-    private void OnVerb(Entity<WashingFixtureComponent> entity, ref GetVerbsEvent<AlternativeVerb> args)
-    {
-        if (!args.CanInteract || !args.CanAccess || !args.CanComplexInteract)
-            return;
-
-        // These need to be set outside for the anonymous method!
-        var user = args.User;
-        var target = args.Target;
-
-        bool isDirty = (TryComp<CreamPiedComponent>(user, out var creamPiedComp) && creamPiedComp.CreamPied)
-            || HasComp<LubedComponent>(user)
-            || HasComp<GluedComponent>(user);
-
-        var verb = new AlternativeVerb()
-        {
-            Act = () => TryStartCleaning(entity, user, target),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/bubbles.svg.192dpi.png")),
-            Text = Loc.GetString("washing-verb-text"),
-            Message = Loc.GetString(isDirty ? "washing-verb-message" : "washing-verb-message-disabled"),
-            Disabled = !isDirty,
-        };
-
-        args.Verbs.Add(verb);
-    }
 
     /// <summary>
     /// Starts a DoAfter for the washing action.
     /// </summary>
-    private void TryStartCleaning(Entity<WashingFixtureComponent> washingFixtureComp, EntityUid user, EntityUid target)
+    protected override void TryStartCleaning(Entity<WashingFixtureComponent> washingFixtureComp, EntityUid user, EntityUid target)
     {
         if (!TryComp<WashingFixtureComponent>(target, out var washingComp))
         {
@@ -99,6 +59,7 @@ public sealed partial class WashingFixtureSystem : EntitySystem
     /// <summary>
     /// Handles cleaning the user entity.
     /// </summary>
+    [SubscribeLocalEvent]
     private void OnWashingDoAfter(Entity<WashingFixtureComponent> ent, ref WashingDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled || args.Target == null)
