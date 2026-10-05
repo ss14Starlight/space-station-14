@@ -9,10 +9,7 @@ namespace Content.Shared._Starlight.UserInterface.Setup;
 public abstract class SharedSetupSystem : EntitySystem
 {
     /// <inheritdoc/>
-    public override void Initialize()
-    {
-        SubscribeLocalEvent<SetupableComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
-    }
+    public override void Initialize() => SubscribeLocalEvent<SetupableComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
 
     private void OnGetVerbs(EntityUid uid, SetupableComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
@@ -23,7 +20,6 @@ public abstract class SharedSetupSystem : EntitySystem
         AlternativeVerb verb = new() { Text = Loc.GetString("setup-verb-text"), Act = () => OpenSetupInterface(uid, args.User, component) };
         args.Verbs.Add(verb);
     }
-
 
     protected virtual void OpenSetupInterface(EntityUid entOwner, EntityUid argsUser, SetupableComponent entComp) {}
 }
