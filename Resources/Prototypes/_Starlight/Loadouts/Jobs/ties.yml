@@ -17,6 +17,12 @@
   groupBy: "ties"
 
 - type: loadout
+  id: GreyTieGeneric
+  equipment:
+    neck: ClothingNeckTieGrey
+  groupBy: "ties"
+
+- type: loadout
   id: LGBTieLoadout
   equipment:
     neck: ClothingNeckLGBTie
