@@ -34,12 +34,14 @@ public sealed partial class MouseRotatorSystem : SharedMouseRotatorSystem
         // Starlight-start: use the controlled entity and its viewport while remotely controlling.
         var rotationEntity = player.Value;
         IEye eye = _eye.CurrentEye;
+        var useRemoteRotator = false;
         if (_remoteControl.ControlledEntity is { } controlled
             && _remoteControl.ControlledEye is { } controlledEye
             && TryComp<MouseRotatorComponent>(controlled, out var remoteRotator))
         {
             rotationEntity = controlled;
             eye = controlledEye;
+            useRemoteRotator = true;
         }
 
         if (!TryComp<MouseRotatorComponent>(rotationEntity, out var rotator))
@@ -50,7 +52,7 @@ public sealed partial class MouseRotatorSystem : SharedMouseRotatorSystem
         // Get mouse loc and convert to angle based on player location
         var coords = _input.MouseScreenPosition;
         MapCoordinates? mapPos;
-        if (_remoteControl.ControlledEntity is not null)
+        if (useRemoteRotator)
             mapPos = _remoteControl.RemoteMousePosition;
         else
             mapPos = _eye.PixelToMap(coords);
