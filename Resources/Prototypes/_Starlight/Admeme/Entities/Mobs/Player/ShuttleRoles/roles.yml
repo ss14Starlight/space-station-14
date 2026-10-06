@@ -1,0 +1,61 @@
+- type: entity
+  id: RandomHumanoidVisitorLawyerCentcom
+  name: visiting centcom lawyer ghost role
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: lawyer
+    - type: RandomHumanoidSpawner
+      settings: VisitorLawyerCentcom
+
+- type: entity
+  id: RandomHumanoidVisitorMusicianFancy
+  name: visiting fancy musician ghost role
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: musician
+    - type: RandomHumanoidSpawner
+      settings: VisitorMusicianFancy
+
+- type: entity
+  id: RandomHumanoidVisitorMusicianRelaxed
+  name: visiting relaxed musician ghost role
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: musician
+    - type: RandomHumanoidSpawner
+      settings: VisitorMusicianRelaxed
+
+- type: entity
+  id: RandomHumanoidPirateScooner
+  name: pirate crewman ghost role
+  suffix: scooner
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner-red
+    - type: RandomHumanoidSpawner
+      settings: PirateScooner
+
+- type: entity
+  id: RandomHumanoidPirateCaptainScooner
+  name: pirate captain ghost role
+  suffix: scooner
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner-red
+    - type: RandomHumanoidSpawner
+      settings: PirateCaptainScooner
+
+- type: entity
+  id: RandomHumanoidVisitorBlackmarketeer
+  name: visiting blackmarketeer ghost role
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner-yellow
+    - type: RandomHumanoidSpawner
+      settings: VisitorBlackmarketeer

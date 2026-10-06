@@ -1,0 +1,9 @@
+- type: entity
+  parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostRoleFreeAgentSkeleton
+  name: Ghost Role (Skeleton)
+  components:
+  - type: MindRole
+    roleType: FreeAgent
+    sortWeight: 0
+    fallbackPlayTimeTracker: GhostSkeleton
