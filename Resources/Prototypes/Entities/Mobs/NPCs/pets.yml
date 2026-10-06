@@ -353,7 +353,7 @@
 
 - type: entity
   name: Bingus
-  parent: [SimpleMobBase, StripableInventoryBase, BaseSlicingRefinable]
+  parent: MobCat # Starlight - Why did only this cat not have MobCat as a parent?
   id: MobBingus
   description: Bingus my beloved...
   components:

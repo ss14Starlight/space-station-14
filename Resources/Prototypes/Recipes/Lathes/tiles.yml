@@ -449,11 +449,6 @@
 
 - type: latheRecipe
   parent: BaseFauxTileRecipe
-  id: FauxTileAstroAsteroidSandBorderless
-  result: FloorTileItemAstroAsteroidSandBorderless
-
-- type: latheRecipe
-  parent: BaseFauxTileRecipe
   id: FauxTileDesertAstroSand
   result: FloorTileItemDesertAstroSand
 
