@@ -1,18 +1,4 @@
 Entries:
-- author: DocMoth
-  changes:
-  - message: Expi metabolism.
-    type: Fix
-  id: 408810
-  time: '2026-09-22T15:36:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6280
-- author: STARLIGHT TEAM
-  changes:
-  - message: added more precise information of sawians stats in the guidebook.
-    type: Add
-  id: 408811
-  time: '2026-09-22T15:57:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6282
 - author: Rinary
   changes:
   - message: Fixed issues with playtime items on characters when using NullLink's playtime.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409209
   time: '2026-10-06T07:45:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6521
+- author: redmushie
+  changes:
+  - message: Paramedics can now open powered Firelocks freely.
+    type: Add
+  id: 409210
+  time: '2026-10-06T08:12:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6491
+- author: redmushie
+  changes:
+  - message: Security can now open powered Firelocks during Red, Gamma, Delta and Psi alerts.
+    type: Add
+  id: 409211
+  time: '2026-10-06T08:12:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6491
 Order: -1
