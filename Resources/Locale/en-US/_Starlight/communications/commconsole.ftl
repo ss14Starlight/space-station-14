@@ -7,3 +7,5 @@ comms-console-announcement-title-sci = Science
 comms-console-announcement-title-sec = Security
 comms-console-announcement-title-srv = Service
 comms-console-announcement-title-sup = Cargo
+
+comms-console-menu-shuttle-button-disabled = { $text } (disabled)

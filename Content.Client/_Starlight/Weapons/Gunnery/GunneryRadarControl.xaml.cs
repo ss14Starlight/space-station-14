@@ -381,11 +381,11 @@ public sealed partial class GunneryRadarControl : BaseShuttleControl
         // ── Guidance indicator ─────────────────────────────────────────────
         if (_trackedGuidedProjectile != null)
         {
-            const string GuidanceText = "GUIDANCE ACTIVE — hold LMB to steer";
-            var dim = handle.GetDimensions(Font, GuidanceText, 1f);
+            var guidanceText = Loc.GetString("gunnery-guidance-hint");
+            var dim = handle.GetDimensions(Font, guidanceText, 1f);
             handle.DrawString(Font,
                 new Vector2((PixelWidth / 2f) - (dim.X / 2f), PixelHeight - dim.Y - 8f),
-                GuidanceText, Color.LimeGreen);
+                guidanceText, Color.LimeGreen);
         }
     }
 

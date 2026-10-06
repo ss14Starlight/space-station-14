@@ -83,6 +83,18 @@
     hideOnToggle: true
 
 - type: entity
+  parent: [ClothingMaskBase]
+  id: ClothingMaskBreathTube
+  name: breath tube
+  description: A thin nose tube that connects to internals. Not very comfortable and falls out often, but good if you want people to see your pretty face.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Mask/breathtube.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Mask/breathtube.rsi
+  - type: BreathMask
+
+- type: entity
   parent: [ClothingMaskGas, BaseSovietContraband]
   id: ClothingSovietGasMask
   name: GP-32 gas mask
@@ -135,39 +147,6 @@
       coefficients:
         Blunt: 0.90
 
-- type: entity
-  parent: ClothingMaskGas
-  id: ClothingSquidOneMask
-  name: circle dangerous mask
-  description: SEE MY EYE?
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Mask/squid_one.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Mask/squid_one.rsi
-
-- type: entity
-  parent: ClothingMaskGas
-  id: ClothingSquidTwoMask
-  name: square dangerous mask
-  description: Glory to square!
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Mask/squid_two.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Mask/squid_two.rsi
-
-- type: entity
-  parent: ClothingMaskGas
-  id: ClothingSquidThreeMask
-  name: triangle dangerous mask
-  description: On top. Like always.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Mask/squid_three.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Mask/squid_three.rsi
-
 # Fashion-O-Mat-Start
 - type: entity
   parent: ClothingMaskBase
@@ -202,17 +181,6 @@
     sprite: _Starlight/Clothing/Mask/cargo.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Mask/cargo.rsi
-
-- type: entity
-  parent: ClothingMaskGeneralBorg
-  id: ClothingMaskMedicBorg
-  name: protogen medic mask
-  description: Look me in the face while i cut you.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Mask/medic.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Mask/medic.rsi
 
 - type: entity
   parent: ClothingMaskGeneralBorg

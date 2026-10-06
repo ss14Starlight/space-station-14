@@ -151,7 +151,6 @@ lancer-narrative-spot-ambush-label = Spot the Ambush (d20 + 2)
 lancer-narrative-spot-ambush-desc = +1 ACC on your first attack if successful.
 lancer-narrative-sweep-ridge-label = Sweep the Ridge (d20 + 1)
 lancer-narrative-sweep-ridge-desc = +1 HEX charge this fight if successful. Can exceed your normal limit.
-lancer-narrative-interrogate-desc = Gain +1 REPAIR if successful.
 lancer-narrative-push-advance-label = Push Advance (d20 + 1)
 lancer-narrative-push-advance-desc = +2 MOVE on your first turn if successful.
 lancer-narrative-sensor-sweep-label = Sensor Sweep (d20 + 2)
@@ -378,3 +377,6 @@ lancer-arcade-roll-divine-save = Divine Punishment save ({$unit})
 lancer-arcade-log-divine-empty = Divine Punishment — no targets in range.
 lancer-arcade-log-divine-save = {$unit} saves vs Divine Punishment for {$damage}.
 lancer-arcade-log-divine-fail = {$unit} fails save vs Divine Punishment for {$damage}.
+
+lancer-dice-damage = Damage: { $sum }
+lancer-dice-damage-sum = Damage: { $dice } = { $sum }

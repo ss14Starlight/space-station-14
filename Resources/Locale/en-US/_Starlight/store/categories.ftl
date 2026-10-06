@@ -25,8 +25,15 @@ store-category-cantrips-standard = Standard Cantrips
 store-category-cybernetics = Cybernetics
 store-category-dagd = Glory
 
-# Store category names
+store-category-ussp-shuttle = Shuttles
+store-category-ussp-armaments = Armaments
+store-category-ussp-global = Conversion Reward
+store-category-ussp-implants = Implants
+store-category-ussp-deception = Deception
+store-category-ussp-wearables = Wearables
+store-category-ussp-war = War
 
+# Store category names
 store-category-slbrigmedic = Medical
 store-category-slfashion-skirt = Luxury dresses
 store-category-slfashion-suit = Elegant suits
@@ -47,10 +54,3 @@ store-category-salvage-mercenary-equipment = Scrapper
 store-category-salvage-cybernetics = Cybernetics
 store-category-mining-equipment = Equipment
 store-category-mining-consumeables = Consumeables
-store-category-rev-uplink-weaponry = Armaments
-store-category-rev-uplink-passive = GLOBAL
-store-category-rev-uplink-wearables = Wearables
-store-category-rev-uplink-implants = Implants
-store-category-rev-uplink-shuttle = Artillery
-store-category-rev-uplink-deception = Deception
-store-category-rev-uplink-pointless = Glory
