@@ -27,22 +27,21 @@
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/athena.rsi
   - type: MeleeWeapon
-    attackRate: 2
+    attackRate: 1.5
     wideAnimationRotation: -135
     damage:
       types:
-        Piercing: 5
+        Piercing: 6
         Slash: 6
   - type: DamageOtherOnHit
     damage:
       types:
         Piercing: 15
-        Slash: 15
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Piercing: 3
-        Slash: 3
+        Piercing: 2
+        Slash: 2
         Structural: 10 #Unable to damage some structure otherwise
   - type: DamageOnLand
     damage:
