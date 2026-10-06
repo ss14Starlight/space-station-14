@@ -121,28 +121,6 @@
       nameFormat: name-format-standard
 
 - type: entity
-  name: NT-NC Consortium Blueshield
-  suffix: Basic
-  id: RandomHumanoidNTNCConsortiumBlueshieldSpawnerBasic
-  components:
-    - type: Sprite
-      sprite: _Starlight/Markers/jobs.rsi
-      state: obs
-    - type: RandomHumanoidSpawner
-      settings: NTNCConsortiumBlueshieldBasic
-
-- type: entity
-  name: NT-NC Consortium Blueshield
-  suffix: Hardsuit
-  id: RandomHumanoidNTNCConsortiumBlueshieldSpawnerEVA
-  components:
-    - type: Sprite
-      sprite: _Starlight/Markers/jobs.rsi
-      state: obs
-    - type: RandomHumanoidSpawner
-      settings: NTNCConsortiumBlueshieldEVA
-
-- type: entity
   id: RandomHumanoidSpawnerSSFMarine
   name: SSF Marine Soldier
   suffix: Admeme
