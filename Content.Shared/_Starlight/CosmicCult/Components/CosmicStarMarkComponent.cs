@@ -11,7 +11,7 @@ namespace Content.Shared._Starlight.CosmicCult.Components;
 public sealed partial class CosmicStarMarkComponent : Component
 {
     [DataField]
-    public SpriteSpecifier Sprite = new SpriteSpecifier.Rsi(new("/Textures/_Starlight/Effects/CosmicCult/cultrevealed.rsi"), "vfx");
+    public SpriteSpecifier Sprite = new SpriteSpecifier.Rsi(new("/Textures/_Starlight/CosmicCult/Effects/cultrevealed.rsi"), "vfx");
 }
 
 [Serializable, NetSerializable]

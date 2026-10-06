@@ -32,6 +32,12 @@
     allowedJobs: [ AtmosphericTechnician ]
 
 #Advanced Cyberlimbs
+- type: entity
+  id: BaseAdvancedCyberlimbContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: AdvancedCyberlimbs
 
 - type: entity
   id: BaseSalvageContraband
@@ -40,6 +46,14 @@
   components:
   - type: Contraband
     allowedDepartments: [ ITG ]
+
+- type: entity
+  id: BaseMiningContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [ MiningSpecialist ]
 
 - type: entity
   id: BaseSalvageMiningContraband
@@ -76,6 +90,13 @@
     allowedDepartments: [ Engineering, ITG ]
 
 # This might look really stupid but it's sadly necessary as conflicting base contra groups tend to be mutually exclusive...
+- type: entity
+  id: BaseEngineeringSecuritySalvageContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Engineering, Security, ITG ]
 
 # it got worse
 - type: entity
@@ -102,6 +123,23 @@
   components:
   - type: Contraband
     allowedDepartments: [ Representatives ]
+
+- type: entity
+  id: BaseJanitorSecurityContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [ Janitor ]
+    allowedDepartments: [ Security ]
+
+- type: entity
+  id: BaseEngineeringSecurityContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+    - type: Contraband
+      allowedDepartments: [ Engineering, Security ]
 
 - type: entity
   id: BaseEngineeringSecurityCommandContraband

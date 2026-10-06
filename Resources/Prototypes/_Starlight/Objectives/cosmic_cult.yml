@@ -30,7 +30,7 @@
   components:
   - type: Objective
     icon:
-      sprite: _Starlight/Interface/CosmicCult/objectives.rsi
+      sprite: _Starlight/CosmicCult/Icons/objectives.rsi
       state: infection
   - type: NumberObjective
     min: 7
@@ -45,7 +45,7 @@
   components:
   - type: Objective
     icon:
-      sprite: _Starlight/Interface/CosmicCult/objectives.rsi
+      sprite: _Starlight/CosmicCult/Icons/objectives.rsi
       state: infection
   - type: NumberObjective
     min: 1
@@ -60,7 +60,7 @@
   components:
   - type: Objective
     icon:
-      sprite: _Starlight/Interface/CosmicCult/objectives.rsi
+      sprite: _Starlight/CosmicCult/Icons/objectives.rsi
       state: siphon
   - type: NumberObjective
     min: 70
@@ -75,7 +75,7 @@
   components:
   - type: Objective
     icon:
-      sprite: _Starlight/Interface/CosmicCult/objectives.rsi
+      sprite: _Starlight/CosmicCult/Icons/objectives.rsi
       state: upgrade
   - type: NumberObjective
     min: 3
@@ -90,7 +90,7 @@
   components:
   - type: Objective
     icon:
-      sprite: _Starlight/Interface/CosmicCult/objectives.rsi
+      sprite: _Starlight/CosmicCult/Icons/objectives.rsi
       state: summon
   - type: NumberObjective
     min: 1
@@ -109,7 +109,7 @@
   components:
   - type: Objective
     icon:
-      sprite: _Starlight/Interface/CosmicCult/objectives.rsi
+      sprite: _Starlight/CosmicCult/Icons/objectives.rsi
       state: colossus
 
 - type: entity
@@ -120,7 +120,7 @@
   components:
   - type: Objective
     icon:
-      sprite: _Starlight/Interface/CosmicCult/objectives.rsi
+      sprite: _Starlight/CosmicCult/Icons/objectives.rsi
       state: effigy
   - type: CosmicEffigyCondition
 
@@ -132,7 +132,7 @@
   components:
   - type: Objective
     icon:
-     sprite: _Starlight/Structures/CosmicCult/altar.rsi
+     sprite: _Starlight/CosmicCult/Tileset/altar.rsi
      state: cosmic
   - type: NumberObjective
     min: 5

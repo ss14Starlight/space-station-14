@@ -976,22 +976,22 @@
     netsync: false
   - type: EmitSoundOnUse
     sound:
-      path: /Audio/_Starlight/Effects/Supermatter/crystal_crack_1.ogg
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
       params:
         volume: -5
     handle: false
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/_Starlight/Effects/Supermatter/crystal_crack_1.ogg
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
   - type: EmitSoundOnTrigger
     sound:
-      path: /Audio/_Starlight/Effects/Supermatter/crystal_crack_1.ogg
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
   - type: EmitSoundOnActivate
     sound:
-      path: /Audio/_Starlight/Effects/Supermatter/crystal_crack_1.ogg
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
   - type: EmitSoundOnCollide
     sound:
-      path: /Audio/_Starlight/Effects/Supermatter/crystal_crack_1.ogg
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
 
 
 - type: entity
@@ -1010,22 +1010,22 @@
     netsync: false
   - type: EmitSoundOnUse
     sound:
-      path: /Audio/_Starlight/Effects/Supermatter/crystal_crack_1.ogg
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
       params:
         volume: -5
     handle: false
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/_Starlight/Effects/Supermatter/crystal_crack_1.ogg
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
   - type: EmitSoundOnTrigger
     sound:
-      path: /Audio/_Starlight/Effects/Supermatter/crystal_crack_1.ogg
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
   - type: EmitSoundOnActivate
     sound:
-      path: /Audio/_Starlight/Effects/Supermatter/crystal_crack_1.ogg
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
   - type: EmitSoundOnCollide
     sound:
-      path: /Audio/_Starlight/Effects/Supermatter/crystal_crack_1.ogg
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
 
 - type: entity
   parent: BasePlushie

@@ -72,24 +72,23 @@
     pocket2: EnergySword
 
 # Nanotrasen Paramilitary Unit Gear
-# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
-# - type: startingGear
-#   id: NanotrasenParamilitaryGear
-#   equipment:
-#     jumpsuit: ClothingUniformJumpsuitSec
-#     back: ClothingBackpackSecurity
-#     shoes: ClothingShoesBootsCombatFilled
-#     eyes: ClothingEyesGlassesSecurity
-#     head: ClothingHeadHelmetSwat
-#     mask: ClothingMaskGasSwat
-#     outerClothing: ClothingOuterArmorBasicSlim
-#     ears: ClothingHeadsetSecurity
-#     gloves: ClothingHandsGlovesCombat
-#   storage:
-#     back:
-#     - BoxSurvivalSecurity
-#     - Flash
-#     - MagazinePistolSP
+- type: startingGear
+  id: NanotrasenParamilitaryGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSec
+    back: ClothingBackpackSecurity
+    shoes: ClothingShoesBootsCombatFilled
+    eyes: ClothingEyesGlassesSecurity
+    head: ClothingHeadHelmetSwat
+    mask: ClothingMaskGasSwat
+    outerClothing: ClothingOuterArmorBasicSlim
+    ears: ClothingHeadsetSecurity
+    gloves: ClothingHandsGlovesCombat
+  storage:
+    back:
+    - BoxSurvivalSecurity
+    - Flash
+    - MagazinePistolSP
 
 - type: startingGear
   id: BoxingKangarooGear
@@ -159,25 +158,23 @@
     - RubberStampDenied #starlight end
 
 #Gladiator with spear
-# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
-# - type: startingGear
-#   id: GladiatorGear
-#   equipment:
-#     jumpsuit: ClothingUniformJumpsuitGladiator
-#     back: SpearBone
-#     head: ClothingHeadHatGladiator
-#     shoes: ClothingShoesCult
+- type: startingGear
+  id: GladiatorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitGladiator
+    back: SpearBone
+    head: ClothingHeadHatGladiator
+    shoes: ClothingShoesCult
 
 #Ash Walker
-# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
-# - type: startingGear
-#   id: AshWalker
-#   equipment:
-#     jumpsuit: ClothingUniformJumpsuitGladiator
-#     outerClothing: ClothingOuterArmorBone
-#     back: SpearBone
-#     head: ClothingHeadHelmetBone
-#     shoes: ClothingShoesCult
+- type: startingGear
+  id: AshWalker
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitGladiator
+    outerClothing: ClothingOuterArmorBone
+    back: SpearBone
+    head: ClothingHeadHelmetBone
+    shoes: ClothingShoesCult
 
 #Banana Clown
 - type: startingGear

@@ -7,6 +7,7 @@ anomaly-vessel-component-assigned = This vessel is currently assigned to an anom
 anomaly-particles-delta = Delta particles
 anomaly-particles-epsilon = Epsilon particles
 anomaly-particles-zeta = Zeta particles
+anomaly-particles-omega = Omega particles
 anomaly-particles-sigma = Sigma particles
 
 anomaly-scanner-component-scan-complete = Scan complete!

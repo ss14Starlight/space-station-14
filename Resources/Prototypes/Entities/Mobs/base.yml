@@ -49,42 +49,42 @@
       LHand:
         sizeMaps:
           32:
-            sprite: _Starlight/Mobs/Customization/CustomLimb/displacement.rsi
+            sprite: _Starlight/CustomLimb/displacement.rsi
             state: l_hand
       RHand:
         sizeMaps:
           32:
-            sprite: _Starlight/Mobs/Customization/CustomLimb/displacement.rsi
+            sprite: _Starlight/CustomLimb/displacement.rsi
             state: r_hand
       LLeg:
         sizeMaps:
           32:
-            sprite: _Starlight/Mobs/Customization/CustomLimb/displacement.rsi
+            sprite: _Starlight/CustomLimb/displacement.rsi
             state: l_leg
       RLeg:
         sizeMaps:
           32:
-            sprite: _Starlight/Mobs/Customization/CustomLimb/displacement.rsi
+            sprite: _Starlight/CustomLimb/displacement.rsi
             state: r_leg
       LFoot:
         sizeMaps:
           32:
-            sprite: _Starlight/Mobs/Customization/CustomLimb/displacement.rsi
+            sprite: _Starlight/CustomLimb/displacement.rsi
             state: l_foot
       RFoot:
         sizeMaps:
           32:
-            sprite: _Starlight/Mobs/Customization/CustomLimb/displacement.rsi
+            sprite: _Starlight/CustomLimb/displacement.rsi
             state: r_foot
       LArm:
         sizeMaps:
           32:
-            sprite: _Starlight/Mobs/Customization/CustomLimb/displacement.rsi
+            sprite: _Starlight/CustomLimb/displacement.rsi
             state: l_arm
       RArm:
         sizeMaps:
           32:
-            sprite: _Starlight/Mobs/Customization/CustomLimb/displacement.rsi
+            sprite: _Starlight/CustomLimb/displacement.rsi
             state: r_arm
 
 

@@ -281,10 +281,10 @@ public sealed partial class VampireSanguinePoolActionEvent : InstantActionEvent
     public ProtoId<PolymorphPrototype> PolymorphPrototype = "VampireSanguinePoolPolymorph";
 
     [DataField]
-    public SoundSpecifier EnterSound = new SoundPathSpecifier("/Audio/_Starlight/Effects/Vampire/enter_blood.ogg");
+    public SoundSpecifier EnterSound = new SoundPathSpecifier("/Audio/_Starlight/Effects/vampire/enter_blood.ogg");
 
     [DataField]
-    public SoundSpecifier ExitSound = new SoundPathSpecifier("/Audio/_Starlight/Effects/Vampire/exit_blood.ogg");
+    public SoundSpecifier ExitSound = new SoundPathSpecifier("/Audio/_Starlight/Effects/vampire/exit_blood.ogg");
 
     [DataField]
     public TimeSpan BloodDripInterval = TimeSpan.FromSeconds(1);
@@ -297,7 +297,7 @@ public sealed partial class VampireSanguinePoolActionEvent : InstantActionEvent
 public sealed partial class VampireBloodEruptionActionEvent : InstantActionEvent
 {
     [DataField]
-    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_Starlight/Effects/Vampire/blooderruption.ogg");
+    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_Starlight/Effects/vampire/blooderruption.ogg");
 
     [DataField]
     public float Range = 10f;
@@ -641,7 +641,7 @@ public sealed partial class VampireMassHysteriaActionEvent : InstantActionEvent
     public List<HysteriaDisguiseSprite> HysteriaDisguiseSprites = new();
 
     [DataField]
-    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_Starlight/Effects/Vampire/sound_hallucinations_im_here1.ogg");
+    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_Starlight/Effects/vampire/sound_hallucinations_im_here1.ogg");
 }
 
 #endregion
@@ -741,7 +741,7 @@ public sealed partial class VampireDemonicGraspActionEvent : WorldTargetActionEv
     public float ProjectileSpeed = 15f;
 
     [DataField]
-    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_Starlight/Effects/Vampire/exit_blood.ogg");
+    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_Starlight/Effects/vampire/exit_blood.ogg");
 
     [DataField]
     public TimeSpan TileInterval = TimeSpan.FromMilliseconds(50);

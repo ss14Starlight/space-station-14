@@ -62,6 +62,38 @@
 
 ## Dynamic recipes
 
+- type: latheRecipePack
+  id: SecurityEquipment
+  recipes:
+  - ClothingBackpackElectropack
+  - HoloprojectorSecurity
+  - PortableRecharger
+  - PowerCageHigh
+  - PowerCageMedium
+  - PowerCageSmall
+  - TelescopicShield
+  - ClothingBackpackHarmpack
+
+- type: latheRecipePack
+  id: SecurityBoards
+  recipes:
+  - ShuttleGunDusterCircuitboard
+  - ShuttleGunFriendshipCircuitboard
+  - ShuttleGunPerforatorCircuitboard
+  - ShuttleGunSvalinnMachineGunCircuitboard
+
+- type: latheRecipePack
+  parent:
+  - ScienceExplosives # sec gets everything for modular grenade making that sci does
+  id: SecurityExplosives
+  recipes:
+  - CableDetStack1
+  - EmptyDetonator
+  - ExplosivePayload
+  - GrenadeBlast
+  - GrenadeEMP
+  - MagazineGrenadeEmpty
+
 # Shared between secfab and emagged protolathe
 # - type: latheRecipePack
   # id: SecurityAmmo
@@ -90,6 +122,17 @@
   # - MagazineShotgunIncendiary
   # - SpeedLoaderMagnumIncendiary
   # - SpeedLoaderMagnumUranium
+
+- type: latheRecipePack
+  id: SecurityWeapons
+  recipes:
+  - Truncheon
+  - WeaponAdvancedLaser
+  - WeaponLaserCannon
+  - WeaponLaserCarbine
+  - WeaponXrayCannon
+  - WeaponTemperatureGun
+  - FiringPinLaser # Starlight
 
 - type: latheRecipePack
   id: SecurityDisablers
