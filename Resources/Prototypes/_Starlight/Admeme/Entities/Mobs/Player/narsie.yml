@@ -10,7 +10,6 @@
     understands:
     - Darktongue
   - type: UniversalLanguageSpeaker
-  # end starlight
   - type: Sprite
     sprite: _Starlight/Admeme/Mobs/Demons/narsie.rsi
     drawdepth: Ghosts
