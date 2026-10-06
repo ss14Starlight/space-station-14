@@ -1,13 +1,6 @@
 Entries:
 - author: DocMoth
   changes:
-  - message: Expi head and inhand displacements improved.
-    type: Tweak
-  id: 408809
-  time: '2026-09-22T15:36:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6280
-- author: DocMoth
-  changes:
   - message: Expi metabolism.
     type: Fix
   id: 408810
@@ -2799,4 +2792,11 @@ Entries:
   id: 409208
   time: '2026-10-06T05:48:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6532
+- author: Moonomaly
+  changes:
+  - message: Pens can now stir drinks and chemicals.
+    type: Tweak
+  id: 409209
+  time: '2026-10-06T07:45:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6521
 Order: -1
