@@ -86,11 +86,32 @@ public sealed partial class LatchComponent : Component
     public float DriftBreakTolerance = 0.5f;
 
     /// <summary>
-    /// Cap on the physics joint's max length. Matches baseline unarmed melee
-    /// range (1.5), not DriftBreakRange, so the target can always punch back.
+    /// Cap on the physics joint's max length, measured center-to-center.
+    /// Must stay below 1 + the latcher's fixture radius (1.35 for K9) so the
+    /// latcher always sits inside 1-tile AoEs the target can fire off (e.g.
+    /// vampire Glare), letting antag abilities break the latch regardless of
+    /// how far away it was started. Melee range is measured fixture
+    /// edge-to-edge, so the target can still punch back.
     /// </summary>
     [DataField]
-    public float MaxJointLength = 1.5f;
+    public float MaxJointLength = 1.2f;
+
+    /// <summary>
+    /// How long a wall (or anything else that blocks melee) can sit between the
+    /// latcher and a pinned target before the latch breaks. Gives the joint a
+    /// moment to settle after the initial snap. The DoT and Bite Harder are
+    /// suspended while obstructed, so nothing bites through the wall in the
+    /// meantime. Slowed targets (<see cref="SlowPrototypes"/>) are exempt: they
+    /// can walk the latch back into view, so it sticks and keeps biting.
+    /// </summary>
+    [DataField]
+    public TimeSpan ObstructionBreakDelay = TimeSpan.FromSeconds(0.75);
+
+    /// <summary>
+    /// When the current obstruction began, or null if the two have line of sight.
+    /// </summary>
+    [ViewVariables]
+    public TimeSpan? ObstructedSince;
 
     /// <summary>
     /// How far north the latcher can start and still count as behind the status
