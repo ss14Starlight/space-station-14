@@ -3,5 +3,6 @@
   abstract: true
   components:
     - type: Contraband
-      severity: Casino
+      tier: Tier1
+      contrabandType: Casino
       allowedDepartments: [ Casino ]
