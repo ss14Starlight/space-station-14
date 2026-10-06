@@ -144,7 +144,7 @@
 
 - type: entity
   name: molotov's cocktail
-  parent: [ DrinkBaseMaterialGlass, BaseMajorContraband, GrenadeBase, SolutionNormal]
+  parent: [ DrinkBaseMaterialGlass, BaseMajorContraband, BaseItem, SolutionNormal]
   id: Molotov
   components:
   - type: Sprite
