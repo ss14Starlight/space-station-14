@@ -285,17 +285,6 @@
 
 - type: entity
   parent: ReagentEggBase
-  id: ReagentEggMustard
-  suffix: Mustard
-  components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Mustard
-        Quantity: 10
-
-- type: entity
-  parent: ReagentEggBase
   id: ReagentEggChloralHydrate
   suffix: ChloralHydrate
   components:

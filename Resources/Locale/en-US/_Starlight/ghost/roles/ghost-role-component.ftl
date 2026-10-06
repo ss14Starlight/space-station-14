@@ -46,7 +46,6 @@ ghost-role-information-tsf-aligned-rules = You are [color={role-type-tsf-aligned
                                              You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
                                              You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
 
-
 ghost-role-information-ntsf-name = NTSF Operative
 ghost-role-information-ntsf-description = You are a NanoTrasen Special Forces Operative. Perform your assigned task.
 ghost-role-information-ntsf-primus = NTSF Primus Operative
@@ -77,8 +76,6 @@ ghost-role-information-tsf-specops-name = Solar Federation SpecOps
 ghost-role-information-tsf-Phantom-name = Solar Federation Phantom Marine
 ghost-role-information-tsf-MARSOC-name = Solar Federation MARSOC Marine
 ghost-role-information-tsf-crew-name = Solar Federation Crewmember
-ghost-role-information-tsf-borg-name = Solgov Cyborg
-ghost-role-information-tsf-borg-desc = Your a Solgov Cyborg. Perform your assigned task.
 ghost-role-information-tsf-marine-desc = You are a Solar Federation Marine. Perform your assigned task.
 
 ghost-role-information-tsf-officer-name = Solgov Patrol Officer
@@ -140,15 +137,18 @@ ghost-role-information-icesculpture-rules = Ensure your summoner survives, defen
 ghost-role-information-sentient-sharkminnow-name = Sentient Sharkminnow
 ghost-role-information-sentient-sharkminnow-description = Guard the dragon's rift and obey the Space Dragon. Protect the rift from anyone who would seek to destroy it!
 
-ghost-role-information-sentient-holocarp-name = Sentient Holocarp
-ghost-role-information-sentient-holocarp-description = Aid the Space Dragon and obey its commands. Help the dragon flood the station with carps and overwhelm its enemies!
-
-
 ghost-role-information-maintenance-drone-description = Maintain the station. Ignore other beings except drones.
 ghost-role-information-maintenance-drone-rules = You are bound by these laws both in-game and out-of-character:
                                                  1. You may not involve yourself in the matters of another being, even if such matters conflict with Law Two or Law Three, unless the other being is another drone.
                                                  2. You may not harm any being, regardless of intent or circumstance.
                                                  3. Your goals are to build, maintain, repair, improve, and power the station to the best of your abilities. You must never actively work against these goals.
+
+ghost-role-information-roguedrone-name = Scrapper Drone
+ghost-role-information-rogue-drone-description = Strip the station and local space of materials to make more drones.
+ghost-role-information-rogue-drone-rules = You are bound by these laws both in-game and out-of-character:
+                                                 1. You may not involve yourself in the matters of another being unless the other being is a scrapper drone.
+                                                 2. You may avoid harm or damage to the fabricator and scrapper drones.
+                                                 3. You must maintain, repair, improve, and produce more scrapper drones.
 
 # Ghost role names, descriptions and rules
 

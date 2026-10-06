@@ -17,5 +17,12 @@ public enum TwistyCubeAction
     BottomClockwise,
     BottomCounterClockwise,
     BackClockwise,
-    BackCounterClockwise
+    BackCounterClockwise,
+    XClockwise,
+    XCounterClockwise,
+    YClockwise,
+    YCounterClockwise,
+    ZClockwise,
+    ZCounterClockwise,
+    Scramble
 }
