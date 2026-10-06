@@ -1,13 +1,6 @@
 Entries:
 - author: DocMoth
   changes:
-  - message: Expi speed now drops from 125% while free of clothes to 95% when fully clothed.
-    type: Tweak
-  id: 408808
-  time: '2026-09-22T15:36:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6280
-- author: DocMoth
-  changes:
   - message: Expi head and inhand displacements improved.
     type: Tweak
   id: 408809
@@ -2799,4 +2792,11 @@ Entries:
   id: 409207
   time: '2026-10-05T16:50:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6388
+- author: VictoriaActual
+  changes:
+  - message: Fixed laspi storage.
+    type: Fix
+  id: 409208
+  time: '2026-10-06T05:48:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6532
 Order: -1
