@@ -1,5 +1,20 @@
 - type: entity
   parent: DrinkGlass
+  id: DrinkDraganSpecialGlass
+  suffix: dragan special
+  components:
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: DraganSpecial
+        Quantity: 30
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Drinks/dragan_special.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
   id: DrinkTheHighlanderGlass
   suffix: The Highlander
   components:

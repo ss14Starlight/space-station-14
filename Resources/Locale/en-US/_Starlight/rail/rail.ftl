@@ -7,6 +7,7 @@ card-selection-timer = Choose within {$seconds}s or you will be locked out for t
 
 character-info-cards-button = View cards
 
+
 railroading-card-examined = ┌Active card:
     ├[color={$IconColor}][font="Icon"]{$Icon}[/font][/color] [color={$Color}]{$Title}[/color]
     └[color={$Color}]{$Desc}[/color]
@@ -83,6 +84,8 @@ rr-bluecuracao-desc = It’s blue. Like the ocean. Or a bad mood. But it tastes 
 rr-cognac = Cognac
 rr-cognac-desc = Is it still called "sophisticated" if I drink it in a hoodie? Asking for a friend.
 
+rr-deadrum = Dead Rum
+
 rr-gin = Gin
 rr-gin-desc = I’m not sure if it’s gin from a bottle. Although? Maybe I should try drinking it, and it will appear and I can make three wishes?
 
@@ -91,6 +94,12 @@ rr-coffeeliqueur-desc = Coffee? Good. Alcohol? Good. Together? Probably illegal 
 
 rr-melonliquor = Melon Liquor
 rr-melonliquor-desc = It’s green, it’s sweet, and suspiciously cheerful. Like a party in Shrek’s minibar.
+
+rr-ntcahors = Neotheology Cahors Whine
+rr-ntcahors-desc = Holy wine for unholy hangovers.
+
+rr-poisonwine = Poison Wine
+rr-poisonwine-desc = The taste is killer. Literally.
 
 rr-rum = Rum
 rr-rum-desc = For pirates, poets, and people who confuse the two.
@@ -275,6 +284,9 @@ rr-monkeybusiness-desc = Banana, mischief, and questionable life choices.
 rr-moonshine = Moonshine
 rr-moonshine-desc = Homemade lightning in a jar.
 
+rr-neurotoxin = Neurotoxin
+rr-neurotoxin-desc = For when you want your drink to fight back.
+
 rr-painkiller = Painkiller
 rr-painkiller-desc = Coconut, rum, and blissful denial.
 
@@ -350,6 +362,9 @@ rr-vodkaredbool-desc = Wings plus vodka — aerodynamic disaster.
 rr-xenobasher = Xeno Basher
 rr-xenobasher-desc = Packs more punch than its name suggests. And its name suggests a lot.
 
+rr-irishbool = Irish Bool
+rr-irishbool-desc = Energy, cream, and chaos in one glass.
+
 rr-budgetinsulsdrink = Budget Insuls
 rr-budgetinsulsdrink-desc = Tastes cheap, works fast.
 
@@ -379,6 +394,9 @@ rr-mayojito-desc = Mint, lime, rum… and mayo? Whose idea was this?
 
 rr-deathintheafternoon = Death In The Afternoon
 rr-deathintheafternoon-desc = Absinthe and champagne — Hemingway’s approved exit strategy.
+
+rr-empress75 = Empress 75
+rr-empress75-desc = Regal, floral, and quietly intoxicating.
 
 rr-espressomartini = Espresso Martini
 rr-espressomartini-desc = For nights that need caffeine and bad ideas.
@@ -426,6 +444,12 @@ rr-brighteye-impersonate-desc = Lets learn about the lightwalkers, lets take the
 
 rr-brighteye-lights = See no evil
 rr-brighteye-lights-desc = There is many lights in this place... We must break them to spread the darkness.
+
+rr-brighteye-backup = Backup
+rr-brighteye-backup-desc = We will need help for our next move...
+
+rr-brighteye-darkstation = Dark Station
+rr-brighteye-darkstation-desc = Let the dark consume the station and all the lightwalkers with it.
 
 rr-brighteye-steal-secureknowledge = Hear no evil
 rr-brighteye-steal-secureknowledge-desc = This is a threat... We must remove that information from the lightwalkers hands.

@@ -116,16 +116,16 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     private TimeSpan _voteDelay = default!;
     private TimeSpan _voteTimer = default!;
 
-    private readonly SoundSpecifier _briefingSound = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Antag/CosmicCult/antag_cosmic_briefing.ogg");
-    private readonly SoundSpecifier _deconvertSound = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Antag/CosmicCult/antag_cosmic_deconvert.ogg");
-    private readonly SoundSpecifier _tier3Sound = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Antag/CosmicCult/tier3.ogg");
-    private readonly SoundSpecifier _tier2Sound = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Antag/CosmicCult/tier2.ogg");
-    private readonly SoundSpecifier _monumentAlert = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Antag/CosmicCult/tier_up.ogg");
+    private readonly SoundSpecifier _briefingSound = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/antag_cosmic_briefing.ogg");
+    private readonly SoundSpecifier _deconvertSound = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/antag_cosmic_deconvert.ogg");
+    private readonly SoundSpecifier _tier3Sound = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/tier3.ogg");
+    private readonly SoundSpecifier _tier2Sound = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/tier2.ogg");
+    private readonly SoundSpecifier _monumentAlert = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/tier_up.ogg");
     private static readonly ProtoId<NpcFactionPrototype> NanoTrasenFaction = "NanoTrasen";
     private static readonly ProtoId<NpcFactionPrototype> CosmicCultFaction = "CosmicCult";
 
     private readonly SoundSpecifier _victoryMusic =
-        new SoundPathSpecifier("/Audio/_Starlight/Ambience/Antag/CosmicCult/caustic_shift.ogg");
+        new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/caustic_shift.ogg");
 
     private readonly ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
 

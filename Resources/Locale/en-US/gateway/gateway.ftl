@@ -6,3 +6,4 @@ gateway-window-portal-unlock = Next unlock
 gateway-window-locked = Locked
 
 gateway-access-denied = Access denied!
+gateway-close-portal = Close Portal

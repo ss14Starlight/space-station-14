@@ -160,11 +160,11 @@ public sealed partial class CosmicCultComponent : Component
     [DataField] public EntProtoId GlareVFX = "CosmicGlareAbilityVFX";
     [DataField] public EntProtoId AbsorbVFX = "CosmicGenericVFX";
     [DataField] public EntProtoId ImpositionVFX = "CosmicImpositionAbilityVFX";
-    [DataField] public SoundSpecifier BlankSFX = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/ability_blank.ogg");
-    [DataField] public SoundSpecifier IngressSFX = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/ability_ingress.ogg");
-    [DataField] public SoundSpecifier GlareSFX = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/ability_glare.ogg");
-    [DataField] public SoundSpecifier NovaCastSFX = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/ability_nova_cast.ogg");
-    [DataField] public SoundSpecifier ImpositionSFX = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/ability_imposition.ogg");
+    [DataField] public SoundSpecifier BlankSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/ability_blank.ogg");
+    [DataField] public SoundSpecifier IngressSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/ability_ingress.ogg");
+    [DataField] public SoundSpecifier GlareSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/ability_glare.ogg");
+    [DataField] public SoundSpecifier NovaCastSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/ability_nova_cast.ogg");
+    [DataField] public SoundSpecifier ImpositionSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/ability_imposition.ogg");
     #endregion
 }
 

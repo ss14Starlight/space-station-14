@@ -17,3 +17,7 @@ particle-accelerator-control-menu-draw-value = [font="Monospace"]{$watts}/{$last
 particle-accelerator-control-menu-draw-not-available = [font="Monospace"][color=gray]N/A[/color][/font]
 particle-accelerator-control-menu-flavor-left = Please keep the clown away from this console!
 particle-accelerator-control-menu-flavor-right = v 1.6
+
+particle-accelerator-radio-message-on = PA power has been switched on.
+particle-accelerator-radio-message-off = PA power has been switched off.
+particle-accelerator-radio-message-num = PA strength has been set to level {$level}.
