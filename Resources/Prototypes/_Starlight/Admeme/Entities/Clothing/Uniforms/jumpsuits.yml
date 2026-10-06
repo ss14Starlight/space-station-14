@@ -207,3 +207,14 @@
       sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpsuit/centcommformaldressCSOD.rsi
     - type: Clothing
       sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpsuit/centcommformaldressCSOD.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitITGFormal
+  name: ITG formal suit
+  description: A refined suit worn by delegates of the guild.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpsuit/itgsuit.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpsuit/itgsuit.rsi
