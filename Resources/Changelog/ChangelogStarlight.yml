@@ -1,25 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Fixed issues with playtime items on characters when using NullLink's playtime.
-    type: Fix
-  id: 408812
-  time: '2026-09-22T16:19:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6283
-- author: neomoth
-  changes:
-  - message: The MalignRiftSpawn event is now less obvious that it isn't actually from coscult.
-    type: Tweak
-  id: 408813
-  time: '2026-09-22T17:30:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6192
-- author: Floximo
-  changes:
-  - message: Flickering at alert level changes was fixed.
-    type: Fix
-  id: 408814
-  time: '2026-09-22T20:39:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6297
 - author: CrazyPhantom
   changes:
   - message: DRONES!! We are so back.
@@ -2799,4 +2778,25 @@ Entries:
   id: 409211
   time: '2026-10-06T08:12:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6491
+- author: RedSpeeds
+  changes:
+  - message: Added Togglable subfloor layers.
+    type: Add
+  id: 409212
+  time: '2026-10-06T08:33:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6442
+- author: RedSpeeds
+  changes:
+  - message: Prevent doors from being toggled in mapping mode.
+    type: Add
+  id: 409213
+  time: '2026-10-06T08:33:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6442
+- author: RedSpeeds
+  changes:
+  - message: Setup component on certain electronics for mapping.
+    type: Add
+  id: 409214
+  time: '2026-10-06T08:33:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6442
 Order: -1
