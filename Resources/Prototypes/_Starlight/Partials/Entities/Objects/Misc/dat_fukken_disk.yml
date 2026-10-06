@@ -1,7 +1,6 @@
 - type: !PartialOnly entity
   id: NukeDisk
   components:
-  - type: FloppyDisk
   - type: Tag
     tags:
     - FloppyDisk
