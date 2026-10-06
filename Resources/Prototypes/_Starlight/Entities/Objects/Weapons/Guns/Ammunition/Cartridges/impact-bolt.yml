@@ -26,8 +26,5 @@
     maxTileBreak: 0
     canCreateVacuum: false
   - type: Appearance
-  - type: SpentAmmoVisuals
-    suffix: false
-    state: base
   - type: StaticPrice
     price: 10

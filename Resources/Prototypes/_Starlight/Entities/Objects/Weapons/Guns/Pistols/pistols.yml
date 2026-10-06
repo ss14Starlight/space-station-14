@@ -474,6 +474,8 @@
   - type: Item
     storedOffset: 0,-2
   - type: Gun
+    minAngle: 2
+    maxAngle: 4
     fireRate: 1.8
     selectedMode: SemiAuto
     availableModes:
