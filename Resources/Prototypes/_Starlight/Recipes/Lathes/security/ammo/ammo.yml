@@ -84,6 +84,7 @@
     Plastic: 100
     Silver: 100
 
+# BOLT WEAPONS
 - type: latheRecipe
   id: MagazineBoltRifleEmpty
   result: MagazineBoltRifleEmpty
@@ -139,4 +140,3 @@
     Steel: 1040
     Plasma: 420
     Silver: 210
-
