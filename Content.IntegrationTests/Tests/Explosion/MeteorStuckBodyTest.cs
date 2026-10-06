@@ -123,8 +123,8 @@ public sealed class MeteorStuckBodyTest : GameTest
             && late.MaxIslandDynamics <= IslandDynamicCeiling;
 
         var report = FormatReport(before, early, late, ActivityObservationSeconds, cascade, nothingMoving, ruledOut)
-                     + "\n"
-                     + FormatActivityReport(activity, observationFrames, tickRate);
+            + "\n"
+            + FormatActivityReport(activity, observationFrames, tickRate);
         TestContext.Progress.WriteLine(report);
         Assert.That(ruledOut, Is.True, report);
     }
@@ -283,9 +283,9 @@ public sealed class MeteorStuckBodyTest : GameTest
             && late.MaxIslandDynamics <= IslandDynamicCeiling;
 
         var report = "Glass under meteor rock. "
-                     + FormatReport(landed, early, late, ActivityObservationSeconds, cascade, nothingMoving, ruledOut)
-                     + "\n"
-                     + FormatActivityReport(activity, observationFrames, tickRate);
+            + FormatReport(landed, early, late, ActivityObservationSeconds, cascade, nothingMoving, ruledOut)
+            + "\n"
+            + FormatActivityReport(activity, observationFrames, tickRate);
         TestContext.Progress.WriteLine(report);
         Assert.That(ruledOut, Is.True, report);
     }
@@ -538,9 +538,9 @@ public sealed class MeteorStuckBodyTest : GameTest
     {
         var observationSeconds = observationFrames / tickRate;
         return $"Activity through {observationFrames} frames ({observationFrames / (float) tickRate:F1}s), " +
-               $"sampled every {ActivitySampleIntervalFrames} frames:\n" +
-               FormatCohortActivity(activity, Cohort.Embedded, observationSeconds, tickRate) + "\n" +
-               FormatCohortActivity(activity, Cohort.Blast, observationSeconds, tickRate);
+            $"sampled every {ActivitySampleIntervalFrames} frames:\n" +
+            FormatCohortActivity(activity, Cohort.Embedded, observationSeconds, tickRate) + "\n" +
+            FormatCohortActivity(activity, Cohort.Blast, observationSeconds, tickRate);
     }
 
     private static string FormatCohortActivity(
@@ -599,11 +599,11 @@ public sealed class MeteorStuckBodyTest : GameTest
         }
 
         return $"{cohort}: probes {probes}, awake at impact {awakeAtImpact}, never awake {neverAwake}, " +
-               $"asleep at {observationSeconds}s after activity {asleepAtEnd}, still awake at {observationSeconds}s {awakeAtEnd}, deleted {deleted}; " +
-               $"last-awake samples {FormatFrameSummary(lastAwakeFrames, tickRate)}; " +
-               $"obstacle contacts {obstaclesTouched}, still overlapping at {observationSeconds}s {stillOverlappingObstacle}, " +
-               $"last-contact samples {FormatFrameSummary(lastObstacleContactFrames, tickRate)}; " +
-               $"awake probe velocities at end {FormatAwakeProbeVelocities(activity, cohort)}";
+            $"asleep at {observationSeconds}s after activity {asleepAtEnd}, still awake at {observationSeconds}s {awakeAtEnd}, deleted {deleted}; " +
+            $"last-awake samples {FormatFrameSummary(lastAwakeFrames, tickRate)}; " +
+            $"obstacle contacts {obstaclesTouched}, still overlapping at {observationSeconds}s {stillOverlappingObstacle}, " +
+            $"last-contact samples {FormatFrameSummary(lastObstacleContactFrames, tickRate)}; " +
+            $"awake probe velocities at end {FormatAwakeProbeVelocities(activity, cohort)}";
     }
 
     private static string FormatAwakeProbeVelocities(
@@ -634,7 +634,7 @@ public sealed class MeteorStuckBodyTest : GameTest
         var percentile90 = frames[(int) Math.Ceiling(frames.Count * 0.9) - 1];
         var maximum = frames[^1];
         return $"p50/p90/max {median}/{percentile90}/{maximum}f " +
-               $"({median / (float) tickRate:F1}/{percentile90 / (float) tickRate:F1}/{maximum / (float) tickRate:F1}s)";
+            $"({median / (float) tickRate:F1}/{percentile90 / (float) tickRate:F1}/{maximum / (float) tickRate:F1}s)";
     }
 
     private static bool OverlapsWall(SharedPhysicsSystem physics, EntityUid uid, HashSet<EntityUid> walls)
@@ -770,10 +770,10 @@ public sealed class MeteorStuckBodyTest : GameTest
         public override string ToString()
         {
             return $"alive {Alive} deleted {Deleted} anchored {AnchoredProbes}; " +
-                   $"embedded alive/awake/in-air/stuck {EmbeddedAlive}/{EmbeddedAwake}/{EmbeddedInAir}/{EmbeddedAwakeOverlappingWall}; " +
-                   $"blast alive/awake/in-air/stuck {BlastAlive}/{BlastAwake}/{BlastInAir}/{BlastAwakeOverlappingWall}; " +
-                   $"far alive/awake/in-air/near/moved {OutsideAlive}/{OutsideAwake}/{OutsideInAir}/{OutsideAwakeNearSpawn}/{OutsideAwakeMoved}; " +
-                   $"island {MaxIslandDynamics}";
+                $"embedded alive/awake/in-air/stuck {EmbeddedAlive}/{EmbeddedAwake}/{EmbeddedInAir}/{EmbeddedAwakeOverlappingWall}; " +
+                $"blast alive/awake/in-air/stuck {BlastAlive}/{BlastAwake}/{BlastInAir}/{BlastAwakeOverlappingWall}; " +
+                $"far alive/awake/in-air/near/moved {OutsideAlive}/{OutsideAwake}/{OutsideInAir}/{OutsideAwakeNearSpawn}/{OutsideAwakeMoved}; " +
+                $"island {MaxIslandDynamics}";
         }
     }
 }
