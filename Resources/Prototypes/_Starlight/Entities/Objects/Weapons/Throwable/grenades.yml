@@ -141,3 +141,46 @@
   - type: DeleteOnTrigger
     keysIn:
     - timer
+
+- type: entity
+  name: molotov's cocktail
+  parent: [ DrinkBaseMaterialGlass, BaseMajorContraband, GrenadeBase, SolutionNormal]
+  id: Molotov
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Grenades/halon_gas.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Tag
+    tags:
+    - HandGrenade
+  - type: Destructible
+    thresholds:
+    - trigger: # Fragile
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          BrokenBottle:
+            min: 1
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 120
