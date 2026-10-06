@@ -7,3 +7,5 @@ cmd-allowshuttlecalls-help =
     - [sender]: Optional. Sender text for the announcement. Defaults to "Central Command".
     - [color]: Optional. Hex color (e.g. #FFD700) for the announcement text. Defaults to gold (#FFD700).
     - [sound]: Optional. Sound file (path). Uses no sound if blank.
+
+cmd-allowshuttlecalls-arg-color = Optional color hex (e.g. #FFD700) for the announcement text. Defaults to gold (#FFD700).

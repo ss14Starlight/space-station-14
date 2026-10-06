@@ -9,6 +9,15 @@
 
 - type: entity
   parent: GroundCannabis
+  id: GroundCannabis5
+  suffix: 5
+  components:
+  - type: Stack
+    stackType: GroundCannabis
+    count: 5
+
+- type: entity
+  parent: GroundCannabis
   id: GroundCannabis10
   suffix: 10
   components:

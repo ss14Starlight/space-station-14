@@ -112,6 +112,15 @@
     price: 20
 
 - type: entity
+  id: OintmentAdvanced1
+  parent: RegenerativeMesh
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: RegenerativeMesh
+    count: 1
+
+- type: entity
   name: bruise pack
   description: A therapeutic gel pack and bandages designed to treat blunt-force trauma.
   parent: BaseHealingItem
@@ -201,6 +210,15 @@
     count: 10
   - type: StackPrice
     price: 20
+
+- type: entity
+  id: BrutepackAdvanced1
+  parent: MedicatedSuture
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: MedicatedSuture
+    count: 1
 
 - type: entity
   name: blood pack
@@ -737,6 +755,17 @@
         amount: 3
 
 - type: entity
+  name: romerol pill
+  parent: Pill
+  id: PillRomerol
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Romerol
+        Quantity: 20
+
+- type: entity
   name: ambuzol pill
   parent: Pill
   id: PillAmbuzol
@@ -987,6 +1016,19 @@
     solution:
       reagents:
       - ReagentId: Romerol
+        Quantity: 15
+
+- type: entity
+  suffix: hyperzine
+  parent: PrefilledSyringe
+  id: SyringeStimulants
+  components:
+  - type: Label
+    currentLabel: reagent-name-stimulants
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Stimulants
         Quantity: 15
 
 # Entity Tables

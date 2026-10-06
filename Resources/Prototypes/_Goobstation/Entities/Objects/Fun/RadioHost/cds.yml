@@ -157,6 +157,7 @@
     song:
       path: /Audio/_Goobstation/RadioStation/CDs/misc/Ninja.ogg
 
+
 # Syndicate Contraband CDs
 - type: entity
   parent: [ BaseCDDisc, BaseSyndicateContraband ]
@@ -195,6 +196,21 @@
   - type: Vinyl
     song:
       path: /Audio/_Goobstation/RadioStation/CDs/misc/numbers.ogg # This is the long version of numbers and takes 275 seconds to summon a threat.
+  - type: VinylSummonRule
+    gameRule: NumberStationThreats
+
+- type: entity
+  parent: [ BaseCDDisc, BaseSyndicateContraband ]
+  id: CDNumbersQuickAdmin
+  suffix: ADMEME
+  name: "CD: Nmbrz"
+  description: A sped up CD that will quickly contact a nearby threat from off station.
+  components:
+  - type: Sprite
+    state: synd-cd
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/misc/numbersAdmin.ogg # Super sped up version of numbers which will summon a threat in about 15 seconds.
   - type: VinylSummonRule
     gameRule: NumberStationThreats
 

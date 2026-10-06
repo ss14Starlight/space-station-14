@@ -75,6 +75,43 @@
 
 - type: entity
   parent: BaseNest
+  id: NestBeeBox
+  name: bee box
+  description: You probably shouldnt anger them.
+  components:
+  - type: Pinata
+    hitTable: !type:NestedSelector
+      tableId: BeeBoxTable
+    gibTable: !type:NestedSelector
+      tableId: BeeBoxTable
+      rolls: !type:RangeNumberSelector
+        range: 3, 5
+  - type: Destructible # Same as parent, but spawns BrokenBottle instead of ShardGlass
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 2
+            max: 3
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    sprite: _Starlight/Structures/Specific/Nests/bee_box.rsi
+    state: bee_box
+
+- type: entity
+  parent: BaseNest
   id: NestSnake
   name: snake nest
   description: Smells like sulfur and rotten meat.

@@ -38,3 +38,10 @@
           Spent: {visible: false}
   - type: ChangelingCloner
 
+- type: entity
+  parent: DnaInjectorUnlimited
+  id: DnaInjector
+  suffix: Admeme, single use
+  components:
+  - type: ChangelingCloner
+    reusable: false

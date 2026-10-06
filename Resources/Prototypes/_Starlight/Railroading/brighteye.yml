@@ -177,6 +177,28 @@
 
 # Dark Station Path
 
+- type: entity
+  id: RRCardBrighteyeBackup
+  parent: BrighteyeCondition
+  categories: [HideSpawnMenu]
+  components:
+    - type: RailroadCard
+      title: rr-brighteye-backup
+      icon: 
+      color: "#fd3f3f"
+      description: rr-brighteye-backup-desc
+
+- type: entity
+  id: RRCardBrighteyeDarkStation
+  parent: BrighteyeCondition
+  categories: [HideSpawnMenu]
+  components:
+    - type: RailroadCard
+      title: rr-brighteye-darkstation
+      icon: 
+      color: "#fd3f3f"
+      description: rr-brighteye-darkstation-desc
+
 # Friendly
 
 - type: entity

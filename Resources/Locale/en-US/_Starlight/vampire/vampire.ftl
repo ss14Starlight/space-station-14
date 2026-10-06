@@ -44,6 +44,9 @@ objective-condition-drain-description = Drink {$count} units of blood from crew 
 
 objective-vampire-thrall-obey-master-title = Obey your master, {$targetName}.
 
+# Class selection action
+action-vampire-class-select-desc = Choose your vampire subclass
+
 # Round end statistics
 roundend-prepend-vampire-drained-low = The vampires barely fed this shift, draining only {$blood} units of blood.
 roundend-prepend-vampire-drained-medium = The vampires had a decent meal, draining {$blood} units of blood.

@@ -68,6 +68,16 @@
     state: tongue
 
 - type: entity
+  id: OrganIPCEars
+  parent: [BaseIPCOrganUnGibbable, BaseOrganEars]
+  name: robotic ears
+  suffix: IPC
+  description: "Process audio at the same quality of station-side cyborgs"
+  components:
+  - type: Sprite
+    state: ears
+
+- type: entity
   id: OrganIPCHeart
   parent: [BaseIPCOrganUnGibbable, BaseOrganHeart]
   name: micro pump

@@ -260,6 +260,25 @@
         tree04: ""
 
 - type: entity
+  parent: BaseTreeSnow
+  id: FloraSnowTreeSL
+  name: snowy tree
+  components:
+  - type: Sprite
+    layers:
+    - state: tree01
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        tree01: ""
+        tree02: ""
+        tree03: ""
+        tree04: ""
+        tree05: ""
+        tree06: ""
+
+- type: entity
   parent: BaseTreeConifer
   id: FloraTreeConiferMediumSL
   name: medium conifer tree
