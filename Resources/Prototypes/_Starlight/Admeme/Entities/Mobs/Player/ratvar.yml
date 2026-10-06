@@ -34,7 +34,7 @@
     message: ratvar-has-risen
     sender: ratvar-has-risen-sender
     ignoreASpace: true
-    globalAnnounce: true # Starlight
+    globalAnnounce: true
     sound:
       path: /Audio/Misc/ratvar_reveal.ogg
     color: "#BE8700"
