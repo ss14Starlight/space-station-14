@@ -444,7 +444,7 @@
   - type: Transform
     anchored: true
   - type: Sprite
-    sprite: _Starlight/Structures/CosmicCult/malignrift.rsi
+    sprite: _Starlight/CosmicCult/Tileset/malignrift.rsi
     drawdepth: Mobs
     snapCardinals: true
     offset: 0,0.27
@@ -461,7 +461,7 @@
     randomBehaviorOnMapInit: false
     supercriticalDuration: 0
     supercriticalSound:
-      path: /Audio/_Starlight/Effects/CosmicCult/effigy_pulse.ogg
+      path: /Audio/_Starlight/CosmicCult/effigy_pulse.ogg
     supercriticalSoundAtAnimationStart: null
     corePrototype: null
     coreInertPrototype: null
@@ -551,7 +551,7 @@
         layer:
         - FlyingMobLayer
   - type: Sprite
-    sprite: _Starlight/Structures/CosmicCult/malignrift.rsi
+    sprite: _Starlight/CosmicCult/Tileset/malignrift.rsi
     drawdepth: Mobs
     snapCardinals: true
     offset: 0,0.27

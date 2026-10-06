@@ -579,7 +579,7 @@
   description: "An advertisement for Interdyne Pharmaceutics' GeneClean clinics. 'Become the master of your own body!'"
   components:
     - type: Sprite # Starlight start
-      sprite: _Starlight/Structures/Wallmounts/Posters/interdyne.rsi #  To match the flippo
+      sprite: _Starlight/Structures/Wallmounts/posters/interdyne.rsi #  To match the flippo
       state: interdyne # Starlight end
 
 - type: entity

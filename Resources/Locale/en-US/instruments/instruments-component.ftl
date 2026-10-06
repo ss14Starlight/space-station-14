@@ -23,12 +23,19 @@ instruments-component-menu-files-track-playtime-seconds-minutes-hours = {$curren
 instruments-component-menu-files-file-remove-disabled-info = Stop playback and select an item to remove it.
 instruments-component-menu-files-add-button = Add
 instruments-component-menu-files-remove-button = Remove
+instruments-component-menu-files-rename-button = Rename
+instruments-component-menu-files-rename-dialog-title = Rename file
+instruments-component-menu-files-rename-dialog-prompt = New name
 instruments-component-menu-files-filter = Filter...
 instruments-component-menu-files-error = Operation failed due to an unexpected error.
 instruments-component-menu-input-notice-label = Connect a MIDI device to your PC
                                                 and play some music.
 instruments-component-band-title-label = Bands
 instruments-component-band-refresh = Refresh
+instruments-component-channels-menu = MIDI Channel Selection
+instruments-component-channels-all-button = On
+instruments-component-channels-clear-button = Off
+instruments-component-channels-all-channels-label = All Channels
 instruments-component-channels-percussion-channel-name = [Percussion]
 instruments-component-channels-name-display-selector-label = Display Name
 instruments-component-channels-name-display-selector-track-button = Track
@@ -40,6 +47,7 @@ instruments-component-midi-file-collection-open-dir-button = Open Folder
 instruments-component-midi-file-collection-reload-button = Reload Collection
 instruments-component-midi-file-collection-delete-all-button = Clear Collection
 instruments-component-menu-midi-min-volume-slider-label = MIDI Input Min Volume
+
 
 # SwappableInstrumentComponent
 swappable-instrument-component-style-set = Style set to "{$style}"

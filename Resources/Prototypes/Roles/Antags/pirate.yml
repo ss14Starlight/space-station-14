@@ -9,14 +9,13 @@
     belt: ClothingBeltUtility
     pocket1: AppraisalTool
 
-# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
-# - type: startingGear
-#   id: PirateCaptainGear
-#   parent: PirateGear
-#   equipment:
-#     head: ClothingHeadHatPirate
-#     pocket2: EnergyCutlass
-#     outerClothing: ClothingOuterCoatPirate
+- type: startingGear
+  id: PirateCaptainGear
+  parent: PirateGear
+  equipment:
+    head: ClothingHeadHatPirate
+    pocket2: EnergyCutlass
+    outerClothing: ClothingOuterCoatPirate
 
 - type: startingGear
   id: PirateFirstmateGear

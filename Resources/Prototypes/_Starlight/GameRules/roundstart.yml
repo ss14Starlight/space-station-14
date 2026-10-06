@@ -248,6 +248,15 @@
     - id: Thief
       prob: 1
 
+- type: entity
+  parent: BaseGameRule
+  id: SiliconLiberationGamerule
+  components:
+  - type: SubGamemodes
+    rules:
+    - id: SiliconLiberation
+      prob: 1
+
 # Space traffic stuff, like visitors
 - type: entityTable
   id: SpaceTrafficControlTable

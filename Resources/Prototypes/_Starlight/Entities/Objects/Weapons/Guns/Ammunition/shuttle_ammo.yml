@@ -30,7 +30,7 @@
     proto: BulletCharon280mmSlug
     deleteOnSpawn: true
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/ArtilleryAmmo/charon_ammo.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Artillery Ammo/charon_ammo.rsi
     layers:
     - state: railgun_slug
       map: ["enum.AmmoVisualLayers.Base"]
@@ -57,7 +57,7 @@
     proto: BulletCharon280mmSubnuclear
     deleteOnSpawn: true
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/ArtilleryAmmo/charon_ammo.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Artillery Ammo/charon_ammo.rsi
     layers:
     - state: subnuclear
       map: ["enum.AmmoVisualLayers.Base"]

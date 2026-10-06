@@ -5,9 +5,9 @@
   markingCategory: Tail
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: vulp_tail
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: vulp_tail_inner
   emotes:
     - emotePrototype: Yip
@@ -67,9 +67,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: vulp_ear
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: vulp_ear_inner
 
 - type: marking
@@ -79,9 +79,9 @@
   markingCategory: Tail
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: wolf_tail
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: wolf_tail_inner
   emotes:
     - emotePrototype: Yip
@@ -142,9 +142,9 @@
   staticId: FopsTail
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: tail_fox_waggin
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: tail_fox_inner_waggin
   emotes:
     - emotePrototype: Yip
@@ -205,9 +205,9 @@
   staticId: PuppyTail
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: tail_wolf_waggin
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: tail_wolf_inner_waggin
   emotes:
     - emotePrototype: Yip
@@ -267,9 +267,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: vulp
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: vulp-inner
 
 - type: marking
@@ -278,9 +278,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: vulp
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: vulp-fade
 
 - type: marking
@@ -289,9 +289,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: vulp
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: vulp-sharp
 
 - type: marking
@@ -300,9 +300,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: wolf
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: wolf-inner
 
 - type: marking
@@ -311,9 +311,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: fennec
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: fennec-inner
 
 - type: marking
@@ -322,7 +322,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: fox
 
 - type: marking
@@ -331,7 +331,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: shock
 
 # Tail Markings
@@ -342,9 +342,9 @@
   waggingId: FoxlikeTailWag
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp-fade
   emotes:
     - emotePrototype: Yip
@@ -405,9 +405,9 @@
   markingCategory: Tail
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp-tip
   emotes:
     - emotePrototype: Yip
@@ -468,9 +468,9 @@
   markingCategory: Tail
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp_wag
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp_wag-tip #fade
   emotes:
     - emotePrototype: Yip
@@ -531,9 +531,9 @@
   staticId: FoxlikeTailTip
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp_wag
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp_wag-tip
   emotes:
     - emotePrototype: Yip
@@ -593,9 +593,9 @@
   markingCategory: Tail
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp_alt
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp_alt-fade
   emotes:
     - emotePrototype: Yip
@@ -655,9 +655,9 @@
   markingCategory: Tail
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp_alt
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp_alt-tip
   emotes:
     - emotePrototype: Yip
@@ -717,9 +717,9 @@
   markingCategory: Tail
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: long
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: long-tip
   emotes:
     - emotePrototype: Yip
@@ -780,9 +780,9 @@
   markingCategory: Tail
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox-fade
   emotes:
     - emotePrototype: Yip
@@ -843,9 +843,9 @@
   markingCategory: Tail
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox-tip
   emotes:
     - emotePrototype: Yip
@@ -906,9 +906,9 @@
   staticId: FoxlikeTailFox
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox_wag
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox_wag-fade
   emotes:
     - emotePrototype: Yip
@@ -969,9 +969,9 @@
   staticId: FoxlikeTailFoxTip
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox_wag
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox_wag-tip
   emotes:
     - emotePrototype: Yip
@@ -1032,7 +1032,7 @@
   waggingId: FoxlikeTailBushyWag
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: bushfluff
   emotes:
     - emotePrototype: Yip
@@ -1093,7 +1093,7 @@
   staticId: FoxlikeTailBushy
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: bushfluff_wag
   emotes:
     - emotePrototype: Yip
@@ -1153,7 +1153,7 @@
   markingCategory: Tail
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox2
   emotes:
     - emotePrototype: Yip
@@ -1213,9 +1213,9 @@
   markingCategory: Tail
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox3
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox3-tip
   emotes:
     - emotePrototype: Yip
@@ -1275,7 +1275,7 @@
   markingCategory: Tail
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fennec
   emotes:
     - emotePrototype: Yip
@@ -1335,7 +1335,7 @@
   markingCategory: Tail
   speciesRestriction: [Human, NeoHuman, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fluffy
   emotes:
     - emotePrototype: Yip

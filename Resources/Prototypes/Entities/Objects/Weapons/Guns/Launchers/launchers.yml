@@ -472,24 +472,22 @@
             True: { visible: true }
             False: { visible: false }
 
-# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
-# - type: entity
-#   name: meteor launcher
-#   parent: WeaponLauncherMultipleRocket
-#   id: WeaponLauncherAdmemeMeteorLarge
-#   suffix: Admeme
-#   description: It fires large meteors.
-#   components:
-#   - type: BallisticAmmoProvider
-#     proto: MeteorMedium
+- type: entity
+  name: meteor launcher
+  parent: WeaponLauncherMultipleRocket
+  id: WeaponLauncherAdmemeMeteorLarge
+  suffix: Admeme
+  description: It fires large meteors.
+  components:
+  - type: BallisticAmmoProvider
+    proto: MeteorMedium
 
-# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
-# - type: entity
-#   name: immovable rod launcher
-#   parent: WeaponLauncherAdmemeMeteorLarge
-#   id: WeaponLauncherAdmemeImmovableRodSlow
-#   suffix: Admeme
-#   description: It fires slow immovable rods.
-#   components:
-#   - type: BallisticAmmoProvider
-#     proto: ImmovableRodSlow
+- type: entity
+  name: immovable rod launcher
+  parent: WeaponLauncherAdmemeMeteorLarge
+  id: WeaponLauncherAdmemeImmovableRodSlow
+  suffix: Admeme
+  description: It fires slow immovable rods.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImmovableRodSlow

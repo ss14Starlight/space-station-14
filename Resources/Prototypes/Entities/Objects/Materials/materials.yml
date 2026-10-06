@@ -560,6 +560,14 @@
 
 - type: entity
   parent: MaterialWebSilk
+  id: MaterialWebSilk25
+  suffix: 25
+  components:
+  - type: Stack
+    count: 25
+
+- type: entity
+  parent: MaterialWebSilk
   id: MaterialWebSilk1
   suffix: 1
   components:

@@ -223,6 +223,17 @@
     state: yellow
 # Tastes like donut, tropical sweetness.
 
+- type: entity
+  parent: FoodDonutBase
+  id: FoodDonut
+  name: matcha donut
+  description: The L-theanine in this donut is relaxing, yet not euphoric. Goes great with a cup of tea.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - tea
+  - type: Sprite
+    state: olive
 # Tastes like donut, matcha.
 
 - type: entity
@@ -335,6 +346,14 @@
     state: jelly-yellow
 # Tastes like jelly-donut, tropical sweetness.
 
+- type: entity
+  parent: FoodDonutFruitBase
+  id: FoodDonutJelly
+  name: matcha jelly-donut
+  description: The L-theanine in this jelly-donut is relaxing, yet not euphoric. Goes great with a cup of tea.
+  components:
+  - type: Sprite
+    state: jelly-olive
 # Tastes like jelly-donut, matcha.
 
 - type: entity
