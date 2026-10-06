@@ -157,8 +157,8 @@ language-Xenomind-description = Various minds of xenos and terrors.
 language-Squeakish-name = Squeakish
 language-Squeakish-description = The language of the Rodentia, made up of a series of chirps and squeaks.
 
-language-Spore-name = Spores
-language-Spore-description = Communication over fungal spores.
-
 language-Penguin-name = Penguin
 language-Penguin-description = Squawk!
+
+language-Spore-name = Spores
+language-Spore-description = Communication over fungal spores.
