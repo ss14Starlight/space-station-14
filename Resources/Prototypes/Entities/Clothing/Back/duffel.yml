@@ -205,6 +205,14 @@
     equippedPrefix: ammo
 
 - type: entity
+  parent: ClothingBackpackDuffelSyndicateAmmo
+  id: ClothingBackpackDuffelSyndicateAmmoBundle
+  abstract: true
+  components:
+    - type: Tag
+      tags: [] # ignore "WhitelistChameleon" tag
+
+- type: entity
   parent: ClothingBackpackDuffelSyndicate
   id: ClothingBackpackDuffelSyndicateMedical
   components:

@@ -15,6 +15,7 @@ device-frequency-prototype-name-xenoborg = Xenoborg
 device-frequency-prototype-name-mothership = Mothership
 
 ## camera frequencies
+device-frequency-prototype-name-surveillance-camera-test = Subnet Test
 device-frequency-prototype-name-surveillance-camera-engineering = Engineering Cameras
 device-frequency-prototype-name-surveillance-camera-security = Security Cameras
 device-frequency-prototype-name-surveillance-camera-science = Science Cameras

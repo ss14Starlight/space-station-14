@@ -20,9 +20,9 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SpriteSystem _sprite = default!;
 
-    private readonly ResPath _rsiPath = new("/Textures/_Starlight/Effects/CosmicCult/ability_siphonvfx.rsi");
+    private readonly ResPath _rsiPath = new("/Textures/_Starlight/CosmicCult/Effects/ability_siphonvfx.rsi");
 
-    private readonly SoundSpecifier _siphonSFX = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/ability_siphon.ogg");
+    private readonly SoundSpecifier _siphonSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/ability_siphon.ogg");
 
     public override void Initialize()
     {

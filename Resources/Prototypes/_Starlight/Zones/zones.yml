@@ -220,3 +220,31 @@
   doors: # Also listed under Medical, so virology is in both.
   - AirlockVirology
   - AirlockVirologyGlass
+
+- type: rules
+  id: InMaintenanceZone
+  rules:
+  - !type:InZoneRule
+    zones:
+    - Maintenance
+
+- type: rules
+  id: InDepartmentZone
+  rules:
+  - !type:InZoneRule
+    zones:
+    - Command
+    - Security
+    - Medical
+    - Engineering
+    - Science
+    - Cargo
+    - Service
+    - Atmospherics
+    - Bar
+    - Kitchen
+    - Chapel
+    - Dormitory
+    - Solars
+    - Detective
+    - Virology

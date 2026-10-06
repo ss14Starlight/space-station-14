@@ -173,6 +173,24 @@
       ballistic-ammo: !type:Container
 
 - type: entity
+  id: MagazinePistolSubMachineGunTopMountedFMJ
+  name: WT550 magazine (.35 FMJ auto top-mounted)
+  parent: [ MagazinePistolSubMachineGunTopMounted ]
+  description: Unconventional 30-round top feeding magazine for the WT550 SMG. Intended to hold general-purpose kinetic ammunition. This one is loaded with FMJ.
+  components:
+    - type: BallisticAmmoProvider
+      proto: CartridgePistolFMJ # Starlight
+
+- type: entity
+  id: MagazinePistolSubMachineGunTopMountedHP
+  name: WT550 magazine (.35 HP auto top-mounted)
+  parent: [ MagazinePistolSubMachineGunTopMounted ]
+  description: Unconventional 30-round top feeding magazine for the WT550 SMG. Intended to hold general-purpose kinetic ammunition. This one is loaded with HP.
+  components:
+    - type: BallisticAmmoProvider
+      proto: CartridgePistolHP # Starlight
+
+- type: entity
   id: MagazinePistolSubMachineGunTopMountedEmpty
   name: WT550 magazine (.35 auto top-mounted any)
   parent: MagazinePistolSubMachineGunTopMounted
@@ -188,6 +206,27 @@
   name: pistol magazine (.35 auto any)
   suffix: empty
   parent: MagazinePistolSP
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: MagazinePistolEmptyGolden
+  name: golden pistol magazine (.35 auto any)
+  suffix: empty
+  parent: MagazinePistolSPGolden
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -470,6 +509,48 @@
 ##########################################################
 
 - type: entity
+  id: MagazinePistolHighCapacityEmpty
+  name: extended pistol magazine (.35 auto any)
+  suffix: empty
+  parent: BaseMagazinePistolHighCapacity
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: MagazinePistolHighCapacityEmptyGolden
+  name: golden extended pistol magazine (.35 auto any)
+  suffix: empty
+  parent: BaseMagazinePistolHighCapacityGolden
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
   id: MagazinePistolHighCapacitySP
   name: extended pistol magazine (.35 auto SP)
   parent: BaseMagazinePistolHighCapacity
@@ -518,6 +599,30 @@
         color: "#575EF5"
 
 - type: entity
+  id: MagazinePistolHighCapacityHP
+  name: extended pistol magazine (.35 auto HP)
+  parent: BaseMagazinePistolHighCapacity
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolHP
+  - type: Sprite
+    layers:
+    - state: red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#F5514C"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#F5514C"
+
+- type: entity
   id: MagazinePistolHighCapacityFMJ
   name: extended pistol magazine (.35 auto FMJ)
   parent: BaseMagazinePistolHighCapacity
@@ -540,6 +645,30 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#080706"
+
+- type: entity
+  id: MagazinePistolHighCapacityAP
+  name: extended pistol magazine (.35 auto AP)
+  parent: BaseMagazinePistolHighCapacity
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolAP
+  - type: Sprite
+    layers:
+    - state: ap
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#72E374"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#72E374"
 
 - type: entity
   id: MagazinePistolHighCapacityPractice
@@ -589,6 +718,54 @@
       - state: inhand-right-stripe
         color: "#28E7DC"
 
+- type: entity
+  id: MagazinePistolHighCapacityIncendiary
+  name: extended pistol magazine (.35 auto incendiary)
+  parent: BaseMagazinePistolHighCapacity
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolIncendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#E7EEEE"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#E7EEEE"
+
+- type: entity
+  id: MagazinePistolHighCapacityUranium
+  name: extended pistol magazine (.35 auto uranium)
+  parent: BaseMagazinePistolHighCapacity
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolUranium
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#40F57A"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#40F57A"
+
 ##########################################################
 
 - type: entity
@@ -611,6 +788,7 @@
       - state: inhand-left-mag
       right:
       - state: inhand-right-mag
+
 
 - type: entity
   id: MagazinePistolSubMachineGunSP
@@ -808,6 +986,8 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#E7EEEE"
+
+
 
 - type: entity
   id: MagazinePistolSubMachineGunRubber

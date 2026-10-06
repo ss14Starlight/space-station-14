@@ -306,4 +306,17 @@
     useCharge: 0
   - type: ToggleCellDraw
 
+- type: entity
+  parent: SpectralLocator
+  id: SpectralLocatorEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
         #Starlight End

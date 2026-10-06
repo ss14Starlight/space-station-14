@@ -572,6 +572,15 @@
      - ClothMade
 
 - type: entity
+  name: raw pastry base
+  parent: FoodBakingBase
+  id: FoodDoughPastryBaseRaw # Unused
+  description: Must be cooked before use.
+  components:
+  - type: Sprite
+    state: dough-pastry
+
+- type: entity
   name: pastry base
   parent: FoodBakingBase
   id: FoodDoughPastryBase # Unused

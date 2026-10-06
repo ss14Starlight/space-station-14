@@ -63,6 +63,22 @@
   - type: Stack
     count: 1
 
+- type: entity
+  parent: Telebond
+  id: Telebond5
+  suffix: 5 TB
+  components:
+  - type: Stack
+    count: 5
+
+- type: entity
+  parent: Telebond
+  id: Telebond10
+  suffix: 10 TB
+  components:
+  - type: Stack
+    count: 10
+
 # Uplinks
 - type: entity
   parent: [BaseUplinkRadio, StorePresetUSSP, BaseSovietContraband]

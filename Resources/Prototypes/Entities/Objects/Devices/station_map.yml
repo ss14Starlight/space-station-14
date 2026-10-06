@@ -60,6 +60,14 @@
 
 - type: entity
   parent: HandheldStationMap
+  id: HandheldStationMapStatic
+  suffix: Handheld, Works Off-Station
+  components:
+  - type: StationMap
+    initializeWithStation: true
+
+- type: entity
+  parent: HandheldStationMap
   id: HandheldStationMapNukeops
   name: target station map
   suffix: Handheld, NukeOps

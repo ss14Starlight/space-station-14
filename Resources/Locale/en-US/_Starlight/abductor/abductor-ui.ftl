@@ -1,5 +1,6 @@
 # Teleport tab
 
+
 abductors-ui-teleport = Teleport
 abductors-ui-attract = Attract
 
@@ -48,6 +49,8 @@ abductors-ghost-role-rules = You are a [color=red][bold]Abductor[/bold][/color].
                             You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
                             You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
                             You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
+
+abductor-round-end-agent-name = abductor
 
 objective-issuer-abductors = [color=#FD0098]Mothership[/color]
 

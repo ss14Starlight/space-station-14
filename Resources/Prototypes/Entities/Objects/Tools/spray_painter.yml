@@ -56,6 +56,14 @@
 
 - type: entity
   parent: SprayPainter
+  id: SprayPainterRecharging
+  suffix: Admeme
+  components:
+  - type: AutoRecharge
+    rechargeDuration: 1
+
+- type: entity
+  parent: SprayPainter
   name: experimental spray painter
   description: An experimental recharging spray painter that can infinitely replicate compressed paint.
   id: SprayPainterBorg
