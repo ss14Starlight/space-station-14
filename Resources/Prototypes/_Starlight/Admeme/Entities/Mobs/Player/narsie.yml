@@ -42,7 +42,7 @@
     message: narsie-has-risen
     sender: narsie-has-risen-sender
     ignoreASpace: true
-    globalAnnounce: true # Starlight
+    globalAnnounce: true
     sound:
       path: /Audio/Misc/narsie_rises.ogg
     color: red
