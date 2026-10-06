@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: Rack
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          # Wider bounds let smasher mobs find a path through the rack.
+          bounds: "-0.4,-0.4,0.4,0.4"
