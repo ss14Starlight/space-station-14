@@ -1,0 +1,8 @@
+# Keep this port's event frequency without modifying the Moff prototype.
+- type: !PartialOnly entity
+  id: HellPortalSpawn
+  components:
+  - type: StationEvent
+    weight: 3.5
+    maxOccurrences: !Remove
+    reoccurrenceDelay: 40
