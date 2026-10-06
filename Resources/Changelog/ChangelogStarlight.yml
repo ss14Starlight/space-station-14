@@ -1,18 +1,4 @@
 Entries:
-- author: Dragometh
-  changes:
-  - message: Condensers now have plumbing outlets.
-    type: Add
-  id: 408823
-  time: '2026-09-23T10:08:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6233
-- author: StygianEagle
-  changes:
-  - message: Added the Syndicate Mindshield for admeming.
-    type: Add
-  id: 408824
-  time: '2026-09-23T10:29:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6256
 - author: Mack
   changes:
   - message: Fix borgs sometimes not getting the cosmetic chassis they want.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409222
   time: '2026-10-06T09:45:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6266
+- author: wonderfulnewworld, murphyneko, DuckManZach, Nyxilath
+  changes:
+  - message: Added the hell portal!
+    type: Add
+  id: 409223
+  time: '2026-10-06T10:22:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6477
+- author: wonderfulnewworld, murphyneko, DuckManZach, Nyxilath
+  changes:
+  - message: Vent critters can now pry open doors and vault/smash climbable stuff.
+    type: Tweak
+  id: 409224
+  time: '2026-10-06T10:22:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6477
 Order: -1
