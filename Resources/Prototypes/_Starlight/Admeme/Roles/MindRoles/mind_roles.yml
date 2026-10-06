@@ -1,7 +1,7 @@
 - type: entity
   parent: MindRoleGhostRoleNeutral
   id: MindRoleGhostRoleFreeAgentSkeleton
-  name: Ghost Role (Skeleton)
+  name: Ghost Role (Skeleton Free Agent)
   components:
   - type: MindRole
     roleType: FreeAgent
