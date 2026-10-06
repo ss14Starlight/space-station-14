@@ -1,18 +1,4 @@
 Entries:
-- author: Demented
-  changes:
-  - message: Improvised Grappling Hook.
-    type: Add
-  id: 408821
-  time: '2026-09-23T09:21:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6184
-- author: Hitlinemoss, Xale
-  changes:
-  - message: Unknown shuttles and most antagonist ghostroles no longer spawn while the evac shuttle is inbound, docked, or in transit.
-    type: Tweak
-  id: 408822
-  time: '2026-09-23T09:47:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6232
 - author: Dragometh
   changes:
   - message: Condensers now have plumbing outlets.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409220
   time: '2026-10-06T09:45:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6517
+- author: BriocheBear
+  changes:
+  - message: Added 5 outfits, 4 jackets, 8 hats, 4 accessories, and 5 bags to the clothing vends around the station. Fashionistas rejoice!
+    type: Add
+  id: 409221
+  time: '2026-10-06T09:45:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6266
+- author: BriocheBear
+  changes:
+  - message: Added the star backpack + satchel to the bag category under loadouts - unlockable as a reward for having too many hours on the server.
+    type: Add
+  id: 409222
+  time: '2026-10-06T09:45:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6266
 Order: -1
