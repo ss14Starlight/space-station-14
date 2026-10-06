@@ -73,11 +73,6 @@ evolutionmenu-sting-mute-desc =
     May be used while under the effects of Lesser Form.
     Costs 35 chemicals.
 
-evolutionmenu-sting-transform-desc =
-    Inject some of your genome into an organic target, forcing their body to shapeshift into whoever you've chosen using the Cycle DNA ability.
-    May be used while under the effects of Lesser Form.
-    Costs 75 chemicals.
-
 evolutionmenu-sting-armblade-name = Fake Arm Blade Sting
 evolutionmenu-sting-armblade-desc =
     Inject some of your genome into an organic target, forcing their arm to shapeshift into a dull armblade.

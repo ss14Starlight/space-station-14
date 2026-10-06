@@ -1,0 +1,8 @@
+- type: startingGear
+  id: GearNyrMouseOps
+  equipment:
+    outerClothingpin: ClothingOuterHardsuitSyndieMouseOps
+    earspin: ClothingHeadsetAltSyndicateUnremovable
+    idmouse: SyndiOperativeIDCard
+    glovespin: ClothingHandsGlovesCombatmous
+    backpin: ClothingBackpackDuffelSyndicateAmmoMouse

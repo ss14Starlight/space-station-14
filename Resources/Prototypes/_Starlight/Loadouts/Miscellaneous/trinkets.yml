@@ -946,3 +946,9 @@
   equipment:
     mask: ClothingMaskBreathTube
 
+
+- type: loadout
+  id: TwistyCube
+  storage:
+    back:
+      - TwistyCube
