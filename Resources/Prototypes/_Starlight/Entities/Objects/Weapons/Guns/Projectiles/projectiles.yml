@@ -47,51 +47,6 @@
     lifetime: 10
 
 - type: entity
-  name: taser bolt
-  id: BulletAdvTaser
-  parent: BaseBulletStarlight
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: FlyBySound
-    sound:
-      collection: EnergyMiss
-      params:
-        volume: 5
-  - type: Sprite
-    noRot: true
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    color: "#ffff33"
-    layers:
-    - state: spark
-      shader: unshaded
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.15,-0.45,0.15,0.15"
-        hard: false
-        mask:
-        - Impassable
-        - BulletImpassable
-      fly-by: *flybyfixture
-  - type: Ammo
-  - type: Projectile
-    damage:
-      types:
-        Heat: 5
-    soundHit:
-      path: "/Audio/Weapons/Guns/Hits/taser_hit.ogg"
-    forceSound: true
-  - type: TimedDespawn
-    lifetime: 0.2
-  - type: StaminaDamageOnCollide
-    damage: 33
-  - type: StunOnCollide
-    knockdownAmount: 0.5
-
-- type: entity
   id: BaseBulletRubber
   parent: BaseBulletStarlight
   categories: [ HideSpawnMenu ]
@@ -108,7 +63,6 @@
       path: /Audio/Weapons/Guns/Hits/snap.ogg
   - type: StaminaDamageOnCollide
     damage: 12 # 9 hits to stun sounds reasonable
-
 
 - type: entity
   name : laser bolt
@@ -216,6 +170,140 @@
           - ReagentId: SyndicateSpaceCleaner
             Quantity: 15
 
+# Cosmic Cult
+
+- type: entity
+  id: ProjectileCosmicNova
+  name: Astral Nova
+  description: Uh oh.
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#42a4ae"
+    radius: 2.0
+    energy: 5.0
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Projectile
+    impactEffect: CosmicNovaImpactVfx
+    forceSound: true
+    soundHit:
+      path: /Audio/_Starlight/Effects/CosmicCult/ability_nova_impact.ogg
+      params:
+        variation: 0.1
+        volume: +14
+  - type: CosmicAstralNova
+  - type: Sprite
+    sprite: _Starlight/Effects/CosmicCult/ability_novavfx.rsi
+    layers:
+    - state: vfx
+      shader: unshaded
+  - type: GravityWell
+    maxRange: 4
+    baseRadialAcceleration: 12.5
+    baseTangentialAcceleration: 4
+    gravPulsePeriod: 0.05
+  - type: SingularityDistortion
+    intensity: +20
+    falloffPower: 1.5
+  - type: AmbientSound
+    enabled: true
+    volume: 0
+    range: 10
+    sound:
+      path: /Audio/_Starlight/Effects/CosmicCult/ability_nova_ambient.ogg
+  - type: CosmicCorrupting
+    corruptionSpeed: 0.4
+    useVFX: false
+    mobile: true
+
+- type: entity
+  id: ProjectileCosmic
+  name: Malign Bolt
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  description: Ouch.
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: Sprite
+    noRot: false
+    sprite: _Starlight/Effects/CosmicCult/weaponprojectiles.rsi
+    layers:
+      - state: razor
+        shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectCosmic
+    damage:
+      types:
+        Cold: 12
+        Structural: 5
+        Blunt: 3
+    soundHit:
+      path: /Audio/_Starlight/Weapons/CosmicCult/projectile_razor_hit.ogg
+      params:
+        variation: 0.08
+  - type: Ammo
+    muzzleFlash: null
+  # Short lifespan
+  - type: TimedDespawn
+    lifetime: 0.6
+  - type: SingularityDistortion
+    intensity: +5
+    falloffPower: 1.5
+  - type: PointLight
+    color: "#42a4ae"
+    radius: 1.5
+    energy: 6
+    castShadows: false
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        interpolate: Linear
+        minDuration: 0.58
+        maxDuration: 0.59
+        startValue: 0.1
+        endValue: 6
+        property: Energy
+        enabled: true
+        reverseWhenFinished: true
+
+- type: entity
+  id: BulletImpactEffectCosmic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.66
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: _Starlight/Effects/CosmicCult/weaponarcs.rsi
+      state: arc_cosmic
+  - type: EffectVisuals
+  - type: PointLight
+    color: "#9f5ee9"
+    radius: 1.5
+    energy: 6
+    castShadows: false
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        interpolate: Linear
+        minDuration: 0.64
+        maxDuration: 0.65
+        startValue: 0.1
+        endValue: 6
+        property: Energy
+        enabled: true
+        reverseWhenFinished: true
+  - type: Tag
+    tags:
+      - HideContextMenu
+
 - type: entity
   parent: BaseBullet
   id: CosmicLambdaParticle
@@ -228,7 +316,7 @@
     radius: 2.0
     energy: 7.0
   - type: Sprite
-    sprite: _Starlight/CosmicCult/Effects/lambda_projectilevfx.rsi
+    sprite: _Starlight/Effects/CosmicCult/lambda_projectilevfx.rsi
     layers:
       - state: razor
         shader: unshaded
@@ -288,7 +376,6 @@
   - type: SpawnOnTrigger
     proto: Grenade20mmGas
   - type: DeleteOnTrigger
-
 
 - type: entity # Lesser lethal for Peacekeeper
   parent: BaseBullet
@@ -378,3 +465,4 @@
     ensnareFreedPrototype: BolaWeakened
     canMoveBreakout: true
     maxEnsnares: 1
+

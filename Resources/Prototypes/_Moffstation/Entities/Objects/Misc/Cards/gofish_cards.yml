@@ -71,9 +71,9 @@
     reverseLayers:
     - state: singlecard_down_gofish
       sprite: _Moffstation/Objects/Misc/Cards/card_gofish.rsi
-    name: Go Fish! Rules Card
-    reverseName: playing card
-    description: This is the rules card! You may read it to get a better understanding of the rules.
+    name: gofish-card-rules-name
+    reverseName: gofish-card-rules-name-reverse
+    description: gofish-card-rules-desc
 
 - type: playingCardSuit
   id: GoFishBlue

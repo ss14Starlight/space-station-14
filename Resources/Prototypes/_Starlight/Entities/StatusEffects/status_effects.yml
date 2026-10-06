@@ -1,0 +1,15 @@
+- type: statusEffect
+  id: PoliteLanguage
+
+- type: statusEffect
+  id: Doomed
+  alert: Doomed
+
+# Cosmic Cult
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: EntropicDegen
+  name: entropic degeneration
+  components:
+  - type: CosmicEntropyDebuffStatusEffect

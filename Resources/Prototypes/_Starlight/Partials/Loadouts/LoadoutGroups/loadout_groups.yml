@@ -1,0 +1,71 @@
+- type: !PartialOnly loadoutGroup
+  id: CaptainBackpack
+  loadouts:
+  - StarBackpack
+  - StarSatchel
+
+- type: !PartialOnly loadoutGroup
+  id: HoPBackpack
+  loadouts:
+  - StarBackpack
+  - StarSatchel
+
+- type: !PartialOnly loadoutGroup
+  id: CommonBackpack
+  loadouts:
+  - StarBackpack
+  - StarSatchel
+
+- type: !PartialOnly loadoutGroup
+  id: BotanistBackpack
+  loadouts:
+  - StarBackpack
+  - StarSatchel
+
+- type: !PartialOnly loadoutGroup
+  id: ClownBackpack
+  loadouts:
+  - StarBackpack
+  - StarSatchel
+
+- type: !PartialOnly loadoutGroup
+  id: MimeBackpack
+  loadouts:
+  - StarBackpack
+  - StarSatchel
+
+- type: !PartialOnly loadoutGroup
+  id: CargoTechnicianBackpack
+  loadouts:
+  - StarBackpack
+  - StarSatchel
+
+- type: !PartialOnly loadoutGroup
+  id: SalvageSpecialistBackpack
+  loadouts:
+  - StarBackpack
+  - StarSatchel
+
+- type: !PartialOnly loadoutGroup
+  id: StationEngineerBackpack
+  loadouts:
+  - StarBackpack
+  - StarSatchel
+
+- type: !PartialOnly loadoutGroup
+  id: AtmosphericTechnicianBackpack
+  loadouts:
+  - StarBackpack
+  - StarSatchel
+
+- type: !PartialOnly loadoutGroup
+  id: ScientistBackpack
+  loadouts:
+  - StarBackpack
+  - StarSatchel
+
+- type: !PartialOnly loadoutGroup
+  id: SecurityBackpack
+  loadouts:
+  - StarBackpack
+  - StarSatchel

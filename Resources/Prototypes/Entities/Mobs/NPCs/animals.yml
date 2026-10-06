@@ -203,7 +203,6 @@
         Quantity: 0.1
   - type: ZombieImmune
 
-
 - type: entity
   name: chicken
   parent: [SimpleMobBase, BaseSlicingRefinable]
@@ -477,38 +476,6 @@
         Piercing: 0
 
 - type: entity
-  name: glockroach
-  parent: [MobCockroach, BaseSlicingRefinable]
-  suffix: Admeme
-  id: MobGlockroach
-  description: This station is just crawling with bu- OH GOD THAT COCKROACH HAS A GUN!!!
-  components:
-  - type: Sprite
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: glockroach
-  - type: Gun
-    fireRate: 2
-    useKey: false
-    selectedMode: SemiAuto
-    availableModes:
-      - SemiAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
-  - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRifle
-    capacity: 500
-  - type: CombatMode
-  - type: HTN
-    rootTask:
-      task: GlockroachCompound
-  - type: NpcFactionMember
-    factions:
-    - SimpleHostile
-  - type: ToolRefinable
-    refineResult:
-    - id: FoodMeatSlime
-
-- type: entity
   name: mothroach
   parent: [ MobCockroach, BaseSlicingRefinable ]
   id: MobMothroach
@@ -694,7 +661,6 @@
           32:
             sprite: Mobs/Animals/mothroach/displacement.rsi
             state: neck
-
 
 # Note that the mallard duck is actually a male drake mallard, with the brown duck being the female variant of the same species, however ss14 lacks sex specific textures
 # The white duck is more akin to a pekin or call duck.
@@ -1715,7 +1681,6 @@
   id: Monkey
 # Starlight - End
 
-
 - type: entity
   name: monkey
   id: MobBaseSyndicateMonkey
@@ -1992,15 +1957,6 @@
   suffix: NukeOps
   components:
   - type: NukeOperative
-
-- type: entity
-  name: guidebook monkey
-  parent: MobMonkey
-  categories: [ HideSpawnMenu ]
-  id: MobGuidebookMonkey
-  description: A hopefully helpful monkey whose only purpose in life is for you to click on. Does this count as having a monkey give you a tutorial?
-  components:
-    - type: GuidebookControlsTest
 
 - type: entity
   name: mouse
@@ -3108,27 +3064,6 @@
     - VimPilot
   - type: Puller
     needsHands: false
-
-- type: entity
-  name: possum
-  parent: MobPossum
-  suffix: Old sprite
-  id: MobPossumOld
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: Mobs/Animals/possum_old.rsi
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: possum_old
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: possum_old
-      Critical:
-        Base: possum_dead_old
-      Dead:
-        Base: possum_dead_old
 
 - type: entity
   name: raccoon

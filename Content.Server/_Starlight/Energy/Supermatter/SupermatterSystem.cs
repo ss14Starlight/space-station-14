@@ -1,11 +1,13 @@
 using System.Linq;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Audio;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Lightning;
 using Content.Server.Radio.EntitySystems;
 using Content.Server._Starlight.Achievement;
 using Content.Server.Station.Systems;
 using Content.Shared.Atmos;
+using Content.Shared.Audio;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
@@ -34,6 +36,7 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private AmbientSoundSystem _ambient = default!;
     [Dependency] private LightningSystem _lightning = default!;
     [Dependency] private RadioSystem _radioSystem = default!;
     [Dependency] private StationSystem _station = default!;
@@ -141,6 +144,7 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
         HandleRadiation(supermatter);
         HandleLighting(supermatter);
         HandleDestruction(supermatter);
+        HandleAmbience(supermatter);
         NotifyCascad(supermatter);
         Cascad(supermatter);
     }
@@ -169,17 +173,24 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
         supermatter.Comp.LastSendedDurability = supermatter.Comp.Durability;
 
         if (currentDurability > lastDurability)
-            _radioSystem.SendRadioMessage(supermatter.Owner, $"The crystal is regenerating. Durability: {currentDurability}%", _engi, supermatter.Owner);
+            _radioSystem.SendRadioMessage(supermatter.Owner, Loc.GetString("supermatter-radio-regenerating", ("durability", currentDurability)), _engi, supermatter.Owner);
         else
             _radioSystem.SendRadioMessage(supermatter.Owner,
-                $"Attention! The crystal is destabilizing. Durability: {currentDurability}%", _engi, supermatter.Owner);
-        // else switch (currentDurability)
-        //     {
-        //         case > 75: _radioSystem.SendRadioMessage(supermatter.Owner, $"Attention! The crystal is destabilizing. Durability: {currentDurability}%", _engi, supermatter.Owner); break;
-        //         case > 50: _chat.DispatchServerAnnouncement($"Attention! The crystal is destabilizing. Durability: {currentDurability}%", Color.Yellow); break;
-        //         case > 25: _chat.DispatchServerAnnouncement($"Critical state of the crystal! Durability: {currentDurability}%", Color.OrangeRed); break;
-        //         default: _chat.DispatchServerAnnouncement($"Crystal destruction is inevitable. Current durability: {currentDurability}%", Color.Red); break;
-        //     }
+                Loc.GetString("supermatter-radio-destabilizing", ("durability", currentDurability)), _engi, supermatter.Owner);
+    }
+
+    private void HandleAmbience(Entity<SupermatterComponent> supermatter)
+    {
+        _ambient.SetAmbience(supermatter.Owner, true);
+
+        if (!TryComp<AmbientSoundComponent>(supermatter.Owner, out var ambience))
+            return;
+
+        var delamming = ambience.Sound == Const.AmbienceDelam;
+        if (!delamming && supermatter.Comp.Durability < Const.AmbienceDelamDurability)
+            _ambient.SetSound(supermatter.Owner, Const.AmbienceDelam, ambience);
+        else if (delamming && supermatter.Comp.Durability > Const.AmbienceCalmDurability)
+            _ambient.SetSound(supermatter.Owner, Const.AmbienceCalm, ambience);
     }
 
     private void HandleDestruction(Entity<SupermatterComponent> supermatter)
@@ -258,9 +269,9 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
 
         var ReactionMod = supermatter.Comp.ReactionModifier.Float();//make gases that risk higher reactifify also make more gas/also produce less for "safer" gases
 
-        gas.AdjustMoles((int)Gas.Tritium, breakDelta.Float()/2* ReactionMod);
-
-        gas.AdjustMoles((int)Gas.Oxygen, breakDelta.Float()*4* ReactionMod);
+        gas.AdjustMoles((int)Gas.Tritium, breakDelta.Float() / 2 * ReactionMod);
+        gas.AdjustMoles((int)Gas.Plasma, breakDelta.Float() * ReactionMod);
+        gas.AdjustMoles((int)Gas.Oxygen, breakDelta.Float() * 4 * ReactionMod);
     }
 
     private static void ProcessHeat(Entity<SupermatterComponent> supermatter, GasMixture gas, float heatTransfer, float heatModifier)

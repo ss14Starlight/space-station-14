@@ -1,20 +1,4 @@
 - type: polymorph
-  id: AdmemeForcedJohnToe
-  configuration:
-    entity: MobJohnToe
-    forced: true
-    inventory: Transfer
-    allowRepeatedMorphs: true
-    transferName: false
-    transferDamage: true
-    revertOnCrit: false
-    revertOnDeath: false
-    polymorphSound: !type:SoundPathSpecifier
-      path: /Audio/Magic/forcewall.ogg
-    exitPolymorphSound: !type:SoundPathSpecifier
-      path: /Audio/Magic/forcewall.ogg
-
-- type: polymorph
   id: VampireSanguinePoolPolymorph
   configuration:
     entity: MobVampireSanguinePool
@@ -26,9 +10,9 @@
     revertOnDeath: true
     effectProto: null
     polymorphSound: !type:SoundPathSpecifier
-      path: /Audio/_Starlight/Effects/vampire/enter_blood.ogg
+      path: /Audio/_Starlight/Effects/Vampire/enter_blood.ogg
     exitPolymorphSound: !type:SoundPathSpecifier
-      path: /Audio/_Starlight/Effects/vampire/exit_blood.ogg
+      path: /Audio/_Starlight/Effects/Vampire/exit_blood.ogg
 
 - type: polymorph
   id: AdminMouse
@@ -70,15 +54,163 @@
     duration: 5
 
 - type: polymorph
-  id: ForcedCluwneBeast
+  id: RampagingGorilla
   configuration:
-    entity: MobCluwneBeast
+    entity: MobGorillaRampaging
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: false
+    inventory: Drop
+    transferDamage: false
+    revertOnDeath: true
+    revertOnCrit: false
+    polymorphSound: /Audio/_Starlight/Voice/gorilla.ogg
+
+# Cosmic Cult
+
+- type: polymorph
+  id: CosmicLapseMobHuman
+  configuration:
+    entity: CosmicPolymorphEntHuman
     forced: true
     inventory: None
-    revertOnDeath: true
-    revertOnCrit: true
     transferName: false
-    transferDamage: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/Effects/CosmicCult/ability_lapse.ogg
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseStructure
+  abstract: true
+  id: CosmicPolymorphEnt
+  name: "???"
+  description: Trapped in a lapse between here and there.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Effects/CosmicCult/ability_lapsepolymorph.rsi
+    layers:
+      - state: humanoid
+        shader: unshaded
+    drawdepth: SmallMobs
+    noRot: true
+  - type: PointLight
+    radius: 1.25
+    energy: 12
+    color: "#42a4ae"
+    castShadows: false
+  - type: CosmicLapse
+  - type: CosmicCultExamine
+    cultistText: cosmic-examine-text-abilitylapse
+  - type: LightBehaviour
+    behaviours:
+     - !type:FadeBehaviour
+       interpolate: Linear
+       minDuration: 1.75
+       maxDuration: 1.75
+       startValue: 0.5
+       endValue: 12
+       property: Energy
+       enabled: true
+       isLooped: true
+       reverseWhenFinished: true
+  - type: SpriteFade
+  - type: Speech
+    enabled: False
+  - type: Transform
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.1,0.2,0.375"
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntHuman
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntArachnid
+  components:
+  - type: Sprite
+    sprite: _Starlight/Effects/CosmicCult/ability_lapsepolymorph.rsi
+    layers:
+      - state: spider
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntDiona
+  components:
+  - type: Sprite
+    sprite: _Starlight/Effects/CosmicCult/ability_lapsepolymorph.rsi
+    layers:
+      - state: diona
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntMoth
+  components:
+  - type: Sprite
+    sprite: _Starlight/Effects/CosmicCult/ability_lapsepolymorph.rsi
+    layers:
+      - state: moth
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntVox
+  components:
+  - type: Sprite
+    sprite: _Starlight/Effects/CosmicCult/ability_lapsepolymorph.rsi
+    layers:
+      - state: vox
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntSnail
+  components:
+  - type: Sprite
+    sprite: _Starlight/Effects/CosmicCult/ability_lapsepolymorph.rsi
+    layers:
+      - state: snail
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntDecapoid
+  components:
+  - type: Sprite
+    sprite: _Starlight/Effects/CosmicCult/ability_lapsepolymorph.rsi
+    layers:
+      - state: crab
+        shader: unshaded
+
+- type: polymorph
+  id: IrreversibleMonkey
+  configuration:
+    entity: MobMonkey
+    forced: true
+    inventory: Drop
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: false
 
 - type: polymorph
   id: PermanentCorgiMorph
@@ -91,17 +223,16 @@
     revertOnDeath: false
     allowRepeatedMorphs: false
 
-#Vampire
 - type: polymorph
-  id: VampireMouse
+  id: SpaceKoiMorph
   configuration:
-    entity: MobMouse
+    entity: MobRedBlackKoi
+    forced: true
+    transferName: true
+    inventory: None
     revertOnDeath: true
     revertOnCrit: true
+    duration: 20
 
-- type: polymorph
-  id: VampireBat
-  configuration:
-    entity: MobBat
-    revertOnDeath: true
-    revertOnCrit: true
+#Vampire
+

@@ -1,25 +1,4 @@
 - type: entity
-  id: USSPUplinkImplant
-  name: USSP uplink implant
-  description: A subdermal implant containing the USSP uplink radio.
-  parent: [ BaseSubdermalImplant, StorePresetUSSP ]
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: SubdermalImplant
-      implantAction: ActionOpenSKBUplinkImplant
-      whitelist:
-        components:
-          - Hands
-    - type: Store
-      balance:
-        Telebond: 0
-    - type: UserInterface
-      interfaces:
-        enum.StoreUiKey.Key:
-          type: StoreBoundUserInterface
-    - type: USSPUplinkImplant
-
-- type: entity
   parent: BaseSubdermalImplant
   id: MagillitisSerumImplant
   name: magillitis serum implant
@@ -141,30 +120,6 @@
     - GearAcidifier
 
 #SELF
-- type: entity
-  parent: BaseSubdermalImplant
-  id: BluespaceStorageImplant
-  name: bluespace storage implant
-  description: This implant grants hidden storage within a person's body using bluespace technology.
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: StorageImplant
-    - type: SubdermalImplant
-      implantAction: ActionOpenStorageImplant
-      whitelist:
-        components:
-        - Hands # no use giving a mouse a storage implant, but a monkey is another story...
-    - type: Storage
-      grid:
-      - 0,0,4,3
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          ents: [ ]
-    - type: UserInterface
-      interfaces:
-        enum.StorageUiKey.Key:
-          type: StorageBoundUserInterface
 
 # death acidifier for terminator phase 1, only manual activation (no death trigger to avoid phase 2 transformation issues)
 - type: entity
@@ -287,3 +242,48 @@
       targetUser: true
       radioChannel:
       - Expedition
+
+# USSP Implants
+- type: entity
+  id: USSPUplinkImplant
+  name: USSP uplink implant
+  description: A subdermal implant containing the USSP uplink radio.
+  parent: [ BaseSubdermalImplant, StorePresetUSSP ]
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionOpenSKBUplinkImplant
+      whitelist:
+        components:
+          - Hands
+    - type: Store
+      balance:
+        Telebond: 0
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+    - type: USSPUplinkImplant
+
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantUSSP
+  name: USSP death rattler
+  description: This implant will inform the USSP radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RattleOnTrigger
+    radioChannel:
+    - Soviet
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantUSSP
+  name: USSP radio implant
+  description: This implant will allow you to listen and talk in the USSP radio channel without a headset.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - Soviet

@@ -19,3 +19,25 @@
     sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpskirt/ntnc_officer.rsi
   - type: Clothing
     sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpskirt/ntnc_officer.rsi
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpskirtCentcommAdminFormalWear
+  name: central command administrative division formal wear
+  description: A dress for special occasions.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommadminformalwear.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommadminformalwear.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtFormalITG
+  name: ITG Formal Jumpskirt
+  description: A refined purple skirt worn by delegates of the guild.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpskirt/itgdress.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpskirt/itgdress.rsi

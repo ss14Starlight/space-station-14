@@ -1,12 +1,12 @@
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ClothingNeckBase, BaseNanoTrasenContraband]
   id: ClothingNeckCapeNTSF1
   name: NanoTrasen special forces cape
   suffix: One. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSF_Capes/one.rsi
+    sprite: _Starlight/Clothing/Neck/NTSFCapes/one.rsi
   - type: PointLight
     radius: 2
     energy: 1
@@ -38,14 +38,14 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ClothingNeckBase, BaseNanoTrasenContraband]
   id: ClothingNeckCapeNTSF2
   name: NanoTrasen special forces cape
   suffix: Two. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSF_Capes/two.rsi
+    sprite: _Starlight/Clothing/Neck/NTSFCapes/two.rsi
   - type: PointLight
     radius: 2
     energy: 1
@@ -77,14 +77,14 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ClothingNeckBase, BaseNanoTrasenContraband]
   id: ClothingNeckCapeNTSF3
   name: NanoTrasen special forces cape
   suffix: Three. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSF_Capes/three.rsi
+    sprite: _Starlight/Clothing/Neck/NTSFCapes/three.rsi
   - type: PointLight
     radius: 2
     energy: 1
@@ -116,14 +116,14 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ClothingNeckBase, BaseNanoTrasenContraband]
   id: ClothingNeckCapeNTSF4
   name: NanoTrasen special forces cape
   suffix: Four. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSF_Capes/four.rsi
+    sprite: _Starlight/Clothing/Neck/NTSFCapes/four.rsi
   - type: PointLight
     radius: 2
     energy: 1
@@ -155,14 +155,14 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ClothingNeckBase, BaseNanoTrasenContraband]
   id: ClothingNeckCapeNTSF5
   name: NanoTrasen special forces cape
   suffix: Five. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSF_Capes/five.rsi
+    sprite: _Starlight/Clothing/Neck/NTSFCapes/five.rsi
   - type: PointLight
     radius: 2
     energy: 1
@@ -194,14 +194,14 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ClothingNeckBase, BaseNanoTrasenContraband]
   id: ClothingNeckCapeNTSF6
   name: NanoTrasen special forces cape
   suffix: Six. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSF_Capes/six.rsi
+    sprite: _Starlight/Clothing/Neck/NTSFCapes/six.rsi
   - type: PointLight
     radius: 2
     energy: 1
@@ -233,14 +233,14 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ClothingNeckBase, BaseNanoTrasenContraband]
   id: ClothingNeckCapeNTSF7
   name: NanoTrasen special forces cape
   suffix: Seven. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSF_Capes/seven.rsi
+    sprite: _Starlight/Clothing/Neck/NTSFCapes/seven.rsi
   - type: PointLight
     radius: 2
     energy: 1
@@ -272,14 +272,14 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ClothingNeckBase, BaseNanoTrasenContraband]
   id: ClothingNeckCapeNTSF8
   name: NanoTrasen special forces cape
   suffix: Eight. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSF_Capes/eight.rsi
+    sprite: _Starlight/Clothing/Neck/NTSFCapes/eight.rsi
   - type: PointLight
     radius: 2
     energy: 1
@@ -311,53 +311,14 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ClothingNeckBase, BaseNanoTrasenContraband]
   id: ClothingNeckCapeNTSF9
   name: NanoTrasen special forces cape
   suffix: Nine. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSF_Capes/nine.rsi
-  - type: PointLight
-    radius: 2
-    energy: 1
-    color: "#5eaad6"
-  - type: StaticPrice
-    price: 10000
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMedium
-        whitelist:
-          tags:
-            - PowerCell
-            - PowerCellSmall
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-  - type: EnergyDomeGenerator
-    damageEnergyDraw: 8
-    domePrototype: EnergyDomeSmallCap
-  - type: PowerCellDraw
-    enabled: false
-    drawRate: 2
-    useCharge: 0
-  - type: UseDelay
-    delay: 10.0
-
-- type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
-  id: ClothingNeckCapeNTSFLead
-  name: NanoTrasen special forces cape
-  suffix: NT. Do Not Map
-  description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSF_Capes/nt.rsi
+    sprite: _Starlight/Clothing/Neck/NTSFCapes/nine.rsi
   - type: PointLight
     radius: 2
     energy: 1

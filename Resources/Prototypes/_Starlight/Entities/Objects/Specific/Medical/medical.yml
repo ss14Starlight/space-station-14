@@ -105,15 +105,6 @@
     - Medkit
 
 - type: entity
-  parent: OilPack
-  id: OilPack5
-  suffix: 5
-  components:
-    - type: Stack
-      stackType: OilPack
-      count: 5
-
-- type: entity
   name: robotic treatment kit
   description: "Used to treat robotic patients, such as Cyborgs and IPCs."
   parent: BaseStorageItem

@@ -27,16 +27,6 @@
 ####
 
 - type: entity
-  id: PracticeBulletTrace
-  parent: BulletTrace
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Blunt: 2
-
-- type: entity
   id: AntiMaterielBulletTrace
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
@@ -648,7 +638,6 @@
 
 ### light rifle
 
-
 - type: entity
   id: BulletLightRifleTraceSP
   parent: BulletTrace
@@ -1025,23 +1014,6 @@
         state: slug
 
 - type: entity
-  id: PelletShotgunFlareTrace
-  parent: BulletTrace
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Piercing: 28
-  - type: HitscanPierce
-    chance: 0.08
-  - type: HitscanBasicVisuals
-    bullet:
-      sprite:
-        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-        state: slug
-
-- type: entity
   id: PelletShotgunTrace
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
@@ -1071,33 +1043,6 @@
     spread: 15
 
 - type: entity
-  id: PelletShotgunBirdshotTrace
-  parent: BulletTrace
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Piercing: 0.9
-  - type: HitscanPierce
-    chance: 0
-  - type: HitscanBasicVisuals
-    bullet:
-      sprite:
-        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-        state: buckshot
-
-- type: entity
-  id: PelletShotgunBirdshotSpreadTrace
-  parent: PelletShotgunBirdshotTrace
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: ProjectileSpread
-    proto: PelletShotgunBirdshotTrace
-    count: 18
-    spread: 25
-
-- type: entity
   id: PelletShotgunIncendiaryTrace
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
@@ -1110,6 +1055,7 @@
   - type: HitscanPierce
     chance: 0.02
   - type: HitscanIgniteEffect
+    fireStacks: 0.125 # half the typical number, as our shotguns fire 12 pellets instead of 6 like upstream
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1331,28 +1277,6 @@
       state: impact_blue
 
 - type: entity
-  id: DeleteBeam
-  name: erasing beam
-  parent: BasicHitscanNoBeam
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Heat: 10
-        Blunt: 40
-  - type: HitscanBasicVisuals
-    muzzleFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: muzzle_blue
-    travelFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: beam_blue
-    impactFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: impact_blue
-
-- type: entity
   id: DisablerBoltPractice
   name: disabler bolt practice
   parent: BasicHitscanNoBeam
@@ -1405,27 +1329,6 @@
   - type: HitscanBasicRaycast
     maxDistance: 5
     collisionMask: BulletImpassable
-  - type: HitscanBasicVisuals
-    bullet:
-      sprite:
-        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-        state: spark
-      color: "#ffff33"
-
-- type: entity
-  id: TaserBoltExtreme
-  name: taser bolt
-  parent: EnergyTrace
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Heat: 0
-  - type: HitscanStaminaDamage
-    staminaDamage: 100
-    #knockdownAmount: 0.5
-    # maxLength: 5
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1508,22 +1411,6 @@
       sprite:
         sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
         state: sniperlaser
-
-- type: entity
-  id: ProjectilePolyboltJohnToe
-  parent: ProjectilePolyboltBase
-  name: john toe polybolt
-  description: Nooo, I don't wanna be john toe!
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: PolymorphOnTrigger
-    polymorph: AdmemeForcedJohnToe
-  - type: TriggerOnCollide
-    fixtureID: projectile
-  - type: WhitelistTriggerCondition
-    userWhitelist:
-      components:
-      - Body
 
 - type: entity
   id: PointDefenseBeam
@@ -1738,7 +1625,6 @@
         sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
         state: impact_blue
 
-
 # Scylla Laser Bolt - Devastatingly concentrated energy bolt
 - type: entity
   id: ScyllaWideLaser
@@ -1814,35 +1700,6 @@
     requireInSpace: true
 
 # Beam Emitter
-- type: entity
-  id: LaserBeamEmitter
-  parent: BulletTrace
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Heat: 20000
-  - type: HitscanPierce
-    chance: 1.00
-    deviation: 0.00
-    pierceLevel: Rock
-  - type: HitscanBasicRaycast
-    collisionMask: BulletImpassable # its a laser, but like, uh, window dont survive
-    maxDistance: 100
-  - type: HitscanReflect
-    maxReflections: 20
-    reflectiveType: None
-  - type: HitscanBasicVisuals
-    muzzleFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: muzzle_beam_heavy2
-    travelFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: beam_heavy2
-    impactFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: impact_beam_heavy2
 
 - type: entity
   parent: BasicHitscanNoBeam

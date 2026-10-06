@@ -1,0 +1,8 @@
+- type: soundCollection
+  id: FootstepCosmic
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/CosmicCult/step1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/CosmicCult/step2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/CosmicCult/step3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/CosmicCult/step4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/CosmicCult/step5.ogg

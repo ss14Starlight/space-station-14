@@ -19,6 +19,8 @@
         tableId: DerelictBorgEventTable
       - id: IonStormPlus
 
+# Cosmic Cult
+
 - type: entity
   id: DynamicRampingEventScheduler # Dynamic Survival!?
   parent: BaseGameRule
@@ -246,15 +248,6 @@
     - id: Thief
       prob: 1
 
-- type: entity
-  parent: BaseGameRule
-  id: SiliconLiberationGamerule
-  components:
-  - type: SubGamemodes
-    rules:
-    - id: SiliconLiberation
-      prob: 1
-
 # Space traffic stuff, like visitors
 - type: entityTable
   id: SpaceTrafficControlTable
@@ -266,3 +259,36 @@
         tableId: UnknownShuttlesFreelanceTable
       - !type:NestedSelector
         tableId: UnknownShuttlesHostileTable
+
+- type: entity
+  parent: BaseRoundstartAntagRule
+  id: CosmicCult
+  components:
+  - type: CosmicCultRule
+  - type: GameRule
+    minPlayers: 20
+    delay:
+      min: 240
+      max: 420
+  - type: AntagObjectives
+    objectives:
+    - CosmicFinalityObjective
+    - CosmicMonumentObjective
+    - CosmicConversionObjective
+    - CosmicEntropyObjective
+    - CosmicChaplainObjective
+  - type: AntagSelection
+    lateJoinAdditional: true
+    antags:
+    - !type:LinearAntagCount
+      proto: CosmicAntagCultist
+      playerRatio: 10
+      range:
+        min: 2
+        max: 6
+  - type: DynamicRuleCost
+    cost: 200
+  - type: DynamicRuleCooldown
+    cooldown: 1
+    presets:
+    - CosmicCult

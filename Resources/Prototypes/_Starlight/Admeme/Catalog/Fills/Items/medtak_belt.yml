@@ -1,0 +1,72 @@
+#MedTak
+- type: entity
+  id: ClothingBeltMedTakFilledHeavy
+  parent: ClothingBeltMedTak
+  suffix: Filled, Security, Heavy
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SyndicateJawsOfLifeStealth
+        - id: MagazineVariableBoxHeavy
+          amount: 4
+        - id: MagazinePistol40SP
+        - id: Tourniquet
+        - id: MedkitCombatMedTakFilled
+        - id: WeaponMedTakPistol
+
+- type: entity
+  id: ClothingBeltMedTakFilledRifle
+  parent: ClothingBeltMedTak
+  suffix: Filled, Security, Rifle
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SyndicateJawsOfLifeStealth
+        - id: MagazineVariableMedium
+          amount: 4
+        - id: MagazinePistol40SP
+        - id: Tourniquet
+        - id: MedkitCombatMedTakFilled
+        - id: WeaponMedTakPistol
+
+- type: entity
+  id: ClothingBeltMedTakFilledMedic
+  parent: ClothingBeltMedTak
+  suffix: Filled, Medic
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SyndicateJawsOfLifeStealth
+        - id: BottleCaseMedTakFilled
+        - id: MedTakHypo
+        - id: MedicatedSuture
+          amount: 2
+        - id: RegenerativeMesh
+        - id: MagazinePistol40SP
+          amount: 2
+        - id: WeaponMedTakPistol
+
+- type: entity
+  id: ClothingBeltMedTakFilledPilot
+  parent: ClothingBeltMedTak
+  suffix: Filled, Pilot
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SyndicateJawsOfLifeStealth
+        - id: PowerDrill
+        - id: WelderExperimental
+        - id: Multitool
+        - id: MagazinePistol40SP
+          amount: 2
+        - id: Tourniquet
+        - id: MedkitCombatMedTakFilled
+        - id: WeaponMedTakPistol

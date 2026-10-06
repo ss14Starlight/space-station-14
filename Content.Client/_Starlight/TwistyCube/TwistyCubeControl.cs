@@ -49,7 +49,7 @@ public sealed partial class TwistyCubeControl : Control
 
         DrawPart(handle, "fl-1", CubeState.FrontLeft.Side1);
         DrawPart(handle, "fl-2", CubeState.FrontLeft.Side2);
-        DrawPart(handle, "f", TwistyCubeColor.Front);
+        DrawPart(handle, "f", CubeState.Front);
         DrawPart(handle, "fr-1", CubeState.FrontRight.Side1);
         DrawPart(handle, "fr-2", CubeState.FrontRight.Side2);
 
@@ -64,16 +64,16 @@ public sealed partial class TwistyCubeControl : Control
 
         DrawPart(handle, "tl-1", CubeState.TopLeft.Side1);
         DrawPart(handle, "tl-2", CubeState.TopLeft.Side2);
-        DrawPart(handle, "t", TwistyCubeColor.Top);
+        DrawPart(handle, "t", CubeState.Top);
         DrawPart(handle, "tr-1", CubeState.TopRight.Side1);
         DrawPart(handle, "tr-2", CubeState.TopRight.Side2);
 
-        DrawPart(handle, "l", TwistyCubeColor.Left);
-        DrawPart(handle, "r", TwistyCubeColor.Right);
+        DrawPart(handle, "l", CubeState.Left);
+        DrawPart(handle, "r", CubeState.Right);
 
         DrawPart(handle, "bl-1", CubeState.BottomLeft.Side1);
         DrawPart(handle, "bl-2", CubeState.BottomLeft.Side2);
-        DrawPart(handle, "b", TwistyCubeColor.Bottom);
+        DrawPart(handle, "b", CubeState.Bottom);
         DrawPart(handle, "br-1", CubeState.BottomRight.Side1);
         DrawPart(handle, "br-2", CubeState.BottomRight.Side2);
 
@@ -88,7 +88,7 @@ public sealed partial class TwistyCubeControl : Control
 
         DrawPart(handle, "kl-1", CubeState.BackLeft.Side1);
         DrawPart(handle, "kl-2", CubeState.BackLeft.Side2);
-        DrawPart(handle, "k", TwistyCubeColor.Back);
+        DrawPart(handle, "k", CubeState.Back);
         DrawPart(handle, "kr-1", CubeState.BackRight.Side1);
         DrawPart(handle, "kr-2", CubeState.BackRight.Side2);
 

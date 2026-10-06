@@ -2,7 +2,6 @@ using Content.Shared._Starlight.Scent.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared._Starlight.Scent.Components;
 
@@ -19,6 +18,19 @@ public sealed partial class SmellerComponent : Component
     // If set, scent-vision only shows markers matching this ScentId.
     [DataField, AutoNetworkedField]
     public string? TrackedScentId;
+
+    /// <summary>
+    /// Status effect granted while a tracked scent is active; drives the tracking alert and
+    /// clears itself after <see cref="TrackDuration"/>.
+    /// </summary>
+    [DataField]
+    public EntProtoId TrackStatusEffect = "StatusEffectTrackingScent";
+
+    /// <summary>
+    /// How long SetTrackedScent lasts before ClearTrackedScent fires automatically.
+    /// </summary>
+    [DataField]
+    public TimeSpan TrackDuration = TimeSpan.FromMinutes(5);
 
     [DataField("toggleAction")]
     public EntProtoId ToggleAction = "ActionToggleSniff";
@@ -53,10 +65,10 @@ public sealed partial class SmellerComponent : Component
 
     [DataField]
     public SoundSpecifier SneezeSound =
-        new SoundPathSpecifier("/Audio/_Starlight/Scent/dog_sneeze.ogg", AudioParams.Default.WithVolume(-4));
+        new SoundPathSpecifier("/Audio/_Starlight/Effects/Scent/dog_sneeze.ogg", AudioParams.Default.WithVolume(-4));
 
     [DataField]
-    public SoundSpecifier SniffSound = new SoundPathSpecifier("/Audio/_Starlight/Scent/dog_sniff.ogg");
+    public SoundSpecifier SniffSound = new SoundPathSpecifier("/Audio/_Starlight/Effects/Scent/dog_sniff.ogg");
 
     [DataField]
     public TimeSpan SniffDelay = TimeSpan.FromSeconds(1.5);

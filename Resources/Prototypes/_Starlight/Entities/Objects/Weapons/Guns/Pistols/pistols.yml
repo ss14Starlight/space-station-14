@@ -21,7 +21,7 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistolSP
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -32,7 +32,7 @@
               - MagazinePistolHighCapacitySP
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgePistolSP
           priority: 1
           whitelist:
@@ -54,7 +54,7 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistolRubber
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -63,7 +63,7 @@
             tags:
               - MagazinePistol
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgePistolRubber
           priority: 1
           whitelist:
@@ -79,7 +79,7 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazineMagnumRubber
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -88,7 +88,7 @@
             tags:
               - MagazineMagnum
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgeMagnumRubber
           priority: 1
           whitelist:
@@ -105,7 +105,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazinePistolHighCapacitySP
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -115,7 +115,6 @@
             - MagazinePistol
             - MagazinePistolHighCapacitySP
         whitelistFailPopup: gun-magazine-whitelist-fail
-
 
 - type: entity
   name: golden mk 58
@@ -130,7 +129,7 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistolSPGolden
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -150,7 +149,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazinePistolHighCapacitySPGolden
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -214,7 +213,7 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistol40SP
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -224,7 +223,7 @@
               - MagazinePistolDP
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgePistol40SP
           priority: 1
           whitelist:
@@ -295,7 +294,7 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistol40SP
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -305,7 +304,7 @@
               - MagazinePistolDP
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgePistol40SP
           priority: 1
           whitelist:
@@ -364,58 +363,20 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: null
           whitelist:
             tags:
               - MagazinePistolImprovised
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: null
           priority: 1
           whitelist:
             tags:
               - CartridgePistol
               - CartridgePistolImprovised
-
-- type: entity
-  name: TSF-Model17
-  parent: [BaseTSFContraband, BaseWeaponPistol]
-  id: WeaponPistolTSFBorg
-  description: A cyborg-mounted weapon system based on the Model 17 pistol. Creates ammunition on the fly from an internal fabricator, which slowly self-charges.
-  suffix: Cyborg
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Pistols/tsf_model17.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-0
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/Pistols/tsf_model17.rsi
-  - type: Item
-    storedOffset: 0,-2
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
-    fireRate: 5
-    selectedMode: SemiAuto
-    availableModes:
-      - SemiAuto
-      - FullAuto
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - CartridgePistol
-    capacity: 10
-    proto: CartridgePistolSP
-    cycleable: false # No synthesizing ammo.
-  - type: BallisticAmmoSelfRefiller
-    autoRefillRate: 4s
-    affectedByEmp: true
-  - type: AmmoCounter
 
 - type: entity
   name: cold case
