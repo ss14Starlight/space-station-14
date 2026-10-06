@@ -347,7 +347,7 @@
   - type: RadarConsole
   - type: !Append Tag
     tags:
-    -CanPilot
+    - CanPilot
   - type: !Remove AccessReader
   - type: !Remove Access
   - type: !Remove StationAIShunt
