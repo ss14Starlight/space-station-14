@@ -1,6 +1,0 @@
-- type: securityIcon
-  parent: MindShieldIcon
-  id: MedTakMindShieldIcon
-  icon:
-    sprite: /Textures/_Starlight/Admeme/MedTak/Interface/job_icons.rsi
-    state: MedTak_Mindshield
