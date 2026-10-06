@@ -6,7 +6,7 @@
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSFCapes/one.rsi
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/one.rsi
   - type: PointLight
     radius: 2
     energy: 1
@@ -45,7 +45,7 @@
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSFCapes/two.rsi
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/two.rsi
   - type: PointLight
     radius: 2
     energy: 1
@@ -84,7 +84,7 @@
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSFCapes/three.rsi
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/three.rsi
   - type: PointLight
     radius: 2
     energy: 1
@@ -123,7 +123,7 @@
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSFCapes/four.rsi
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/four.rsi
   - type: PointLight
     radius: 2
     energy: 1
@@ -162,7 +162,7 @@
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSFCapes/five.rsi
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/five.rsi
   - type: PointLight
     radius: 2
     energy: 1
@@ -201,7 +201,7 @@
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSFCapes/six.rsi
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/six.rsi
   - type: PointLight
     radius: 2
     energy: 1
@@ -240,7 +240,7 @@
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSFCapes/seven.rsi
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/seven.rsi
   - type: PointLight
     radius: 2
     energy: 1
@@ -279,7 +279,7 @@
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSFCapes/eight.rsi
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/eight.rsi
   - type: PointLight
     radius: 2
     energy: 1
@@ -318,7 +318,7 @@
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/NTSFCapes/nine.rsi
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/nine.rsi
   - type: PointLight
     radius: 2
     energy: 1

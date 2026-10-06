@@ -189,13 +189,13 @@
     impactEffect: CosmicNovaImpactVfx
     forceSound: true
     soundHit:
-      path: /Audio/_Starlight/Effects/CosmicCult/ability_nova_impact.ogg
+      path: /Audio/_Starlight/CosmicCult/ability_nova_impact.ogg
       params:
         variation: 0.1
         volume: +14
   - type: CosmicAstralNova
   - type: Sprite
-    sprite: _Starlight/Effects/CosmicCult/ability_novavfx.rsi
+    sprite: _Starlight/CosmicCult/Effects/ability_novavfx.rsi
     layers:
     - state: vfx
       shader: unshaded
@@ -212,7 +212,7 @@
     volume: 0
     range: 10
     sound:
-      path: /Audio/_Starlight/Effects/CosmicCult/ability_nova_ambient.ogg
+      path: /Audio/_Starlight/CosmicCult/ability_nova_ambient.ogg
   - type: CosmicCorrupting
     corruptionSpeed: 0.4
     useVFX: false
@@ -230,7 +230,7 @@
     - Energy
   - type: Sprite
     noRot: false
-    sprite: _Starlight/Effects/CosmicCult/weaponprojectiles.rsi
+    sprite: _Starlight/CosmicCult/Effects/weaponprojectiles.rsi
     layers:
       - state: razor
         shader: unshaded
@@ -242,7 +242,7 @@
         Structural: 5
         Blunt: 3
     soundHit:
-      path: /Audio/_Starlight/Weapons/CosmicCult/projectile_razor_hit.ogg
+      path: /Audio/_Starlight/CosmicCult/projectile_razor_hit.ogg
       params:
         variation: 0.08
   - type: Ammo
@@ -281,7 +281,7 @@
     layers:
     - shader: unshaded
       map: ["enum.EffectLayers.Unshaded"]
-      sprite: _Starlight/Effects/CosmicCult/weaponarcs.rsi
+      sprite: _Starlight/CosmicCult/Effects/weaponarcs.rsi
       state: arc_cosmic
   - type: EffectVisuals
   - type: PointLight
@@ -316,7 +316,7 @@
     radius: 2.0
     energy: 7.0
   - type: Sprite
-    sprite: _Starlight/Effects/CosmicCult/lambda_projectilevfx.rsi
+    sprite: _Starlight/CosmicCult/Effects/lambda_projectilevfx.rsi
     layers:
       - state: razor
         shader: unshaded
