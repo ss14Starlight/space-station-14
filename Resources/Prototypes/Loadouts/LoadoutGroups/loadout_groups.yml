@@ -283,7 +283,7 @@
   - HoPSatchel # Starlight
   - HoPDuffel # Starlight
   - HoPBackpackIan
-  - LeatherSatchel # Starlight
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: HoPOuterClothing
@@ -367,7 +367,7 @@
   loadouts:
   - AssistantGloves
   - AssistantMittens # Starlight
-  - GreyGloves # starlight
+  - GreyGloves #starlight
 
 - type: loadoutGroup
   id: CommonBackpack

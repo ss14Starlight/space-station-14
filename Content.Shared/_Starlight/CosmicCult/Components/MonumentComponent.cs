@@ -16,7 +16,7 @@ public sealed partial class MonumentComponent : Component
     /// The sound effect played when entropy is infused into The Monument.
     /// </summary>
     [DataField]
-    public SoundSpecifier InfusionSFX = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/insert_entropy.ogg");
+    public SoundSpecifier InfusionSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/insert_entropy.ogg");
 
     /// <summary>
     /// the list of glyphs that this monument is allowed to scribe

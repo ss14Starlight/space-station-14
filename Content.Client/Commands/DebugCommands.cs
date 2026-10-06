@@ -1,10 +1,6 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Content.Client.Markers;
 using Content.Client.Popups;
 using Content.Client.SubFloor;
-using Content.Shared.SubFloor;
 using Robust.Shared.Console;
 
 namespace Content.Client.Commands;
@@ -26,26 +22,11 @@ internal sealed partial class ShowSubFloor : LocalizedEntityCommands
     [Dependency] private SubFloorHideSystem _subfloorSystem = default!;
 
     public override string Command => "showsubfloor";
-    //Starlight start - Subfloor layers
+
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if (args.Length == 0) return;
-
-        foreach (var layer in args)
-        {
-            if (Enum.TryParse<SubFloorVisibilityMask>(layer, out var mask))
-            {
-                _subfloorSystem.ToggleLayer(mask);
-            }
-        }
+        _subfloorSystem.ShowAll ^= true;
     }
-
-    public override ValueTask<CompletionResult> GetCompletionAsync(IConsoleShell shell, string[] args, string argStr,
-        CancellationToken cancel) =>
-        ValueTask.FromResult(CompletionResult.FromHintOptions(
-            Enum.GetNames<SubFloorVisibilityMask>(),
-            "<layer>"));
-    //Starlight end - Subfloor layers
 }
 
 internal sealed partial class NotifyCommand : LocalizedEntityCommands

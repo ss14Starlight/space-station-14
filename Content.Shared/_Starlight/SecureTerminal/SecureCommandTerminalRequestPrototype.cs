@@ -96,9 +96,9 @@ public sealed partial class SecureCommandTerminalRequestPrototype : IPrototype
     [DataField(required: true)]
     public List<SecureTerminalAuthScheme> AuthSchemes = new();
 
-    /// <summary>Alternative rescind schemes that can cancel the request during its activation delay.</summary>
+    /// <summary>Alternative veto schemes that can cancel the request during its activation delay.</summary>
     [DataField]
-    public List<SecureTerminalAuthScheme> RescindSchemes = new();
+    public List<SecureTerminalAuthScheme> VetoSchemes = new();
 
     // ── Conditions ────────────────────────────────────────────────────────────
     /// <summary>If true, the request will require a reason, this reason will be logged and if RequiresAdminApproval, will be fully showed to admins.</summary>

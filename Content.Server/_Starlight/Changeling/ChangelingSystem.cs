@@ -56,7 +56,6 @@ using Content.Server.GameTicking;
 using Content.Shared.Body.Components;
 // Starlight edit end
 using Content.Server._Starlight.Medical.Body.Systems;
-using Content.Shared._Starlight.Actions.EntitySystems;
 using Content.Shared._Starlight.Changeling;
 using Content.Server._Starlight.Objectives.Components;
 
@@ -99,7 +98,6 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private PullingSystem _pull = default!;
     [Dependency] private SharedCuffableSystem _cuffs = default!;
     [Dependency] private SharedPuddleSystem _puddle = default!;
-    [Dependency] private SharedLatchSystem _latch = default!;
     [Dependency] private SharedJitteringSystem _jitter = default!;
     [Dependency] private NpcFactionSystem _factionSystem = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;

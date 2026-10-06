@@ -706,10 +706,10 @@ public sealed partial class FaxSystem : EntitySystem
 
         var printout = component.PrintingQueue.Dequeue();
 
+        var entityToSpawn = printout.PrototypeId;
         // Starlight start
-        var entityToSpawn = string.IsNullOrEmpty(printout.PrototypeId)
-            ? component.PrintPaperId
-            : printout.PrototypeId;
+        if (printout.PrototypeId == default)
+            entityToSpawn = component.PrintPaperId;
         var xform = Transform(uid);
         var coords = _container.TryGetOuterContainer(uid, xform, out var outerContainer)
             ? Transform(outerContainer.Owner).Coordinates

@@ -701,14 +701,13 @@
   physicalDesc: reagent-physical-desc-clumpy
   flavor: bitter
   color: "#FFFFE5"
-  # Starlight/Moff: Keep these edits inline until indexed reagent partials validate.
   metabolisms:
     Bloodstream:
       effects:
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight/FH/Moff
+          type: [ Animal, Vox, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -718,12 +717,12 @@
         probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight/FH/Moff
+          type: [ Animal, Vox, Plant, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight/FH/Moff
+          type: [ Animal, Vox, Plant, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte
           inverted: true
         damage:
           types:
@@ -738,7 +737,7 @@
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight/FH/Moff
+          type: [ Animal, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte
         reagent: Protein
         amount: 0.5
       - !type:AdjustReagent
@@ -747,7 +746,8 @@
           type: [ Vox ]
         reagent: Protein
         amount: 0.25
-      # Starlight-Start: Cyclorite Metabolism
+      # Starlight Start
+      # Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
         - !type:ReagentCondition
@@ -757,7 +757,7 @@
           type: [ Cyclorite ]
         reagent: UncookedAnimalProteins
         amount: 0.25
-      # Starlight-End
+        # Starlight-End
 
 - type: reagent
   id: Allicin

@@ -203,19 +203,13 @@ public abstract partial class SharedDoorSystem : EntitySystem
     #region Interactions
     protected void OnActivate(EntityUid uid, DoorComponent door, ActivateInWorldEvent args)
     {
-        //Starlight-start
-        if (LifeStage(uid) < EntityLifeStage.MapInitialized)
-        {
-            args.Handled = true;
-            return;
-        }
-        args.InteractionParticle &= door.ShowInteractionParticles; // don't show SECRET doors
+        args.InteractionParticle &= door.ShowInteractionParticles; // Starlight, don't show SECRET doors
 
-        // Enable entities with prying capabilities on themselves to open doors
+        // Starlight edit start: Enable entities with prying capabilities on themselves to open doors
         var pryingCapable = args.Complex || HasComp<PryingComponent>(args.User);
         if (args.Handled || !pryingCapable || !door.ClickOpen)
             return;
-        // Starlight-end
+        // Starlight edit end
 
         if (!TryToggleDoor(uid, door, args.User, predicted: true))
             _pryingSystem.TryPry(uid, args.User, out _);

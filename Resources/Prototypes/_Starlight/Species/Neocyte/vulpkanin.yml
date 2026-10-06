@@ -126,25 +126,25 @@
 - type: humanoidBaseSprite
   id: MobNeoVulpkaninTorso
   baseSprite:
-    sprite: _Starlight/Mobs/Species/ProtoVulp/parts.rsi
+    sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobNeoVulpkaninTorsoMale
   baseSprite:
-    sprite: _Starlight/Mobs/Species/ProtoVulp/parts.rsi
+    sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobNeoVulpkaninTorsoFemale
   baseSprite:
-    sprite: _Starlight/Mobs/Species/ProtoVulp/parts.rsi # Let's give them a proper torso
+    sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi # Let's give them a proper torso
     state: torso_f
 
 - type: humanoidBaseSprite
   id: MobNeoVulpkaninLLeg
   baseSprite:
-    sprite: _Starlight/Mobs/Species/ProtoVulp/parts.rsi
+    sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi
     state: l_leg
 
 - type: humanoidBaseSprite
@@ -168,7 +168,7 @@
 - type: humanoidBaseSprite
   id: MobNeoVulpkaninRLeg
   baseSprite:
-    sprite: _Starlight/Mobs/Species/ProtoVulp/parts.rsi # New legs. They're not actually used right now, but the framework's there for someone to finish the displacement map later.
+    sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi # New legs. They're not actually used right now, but the framework's there for someone to finish the displacement map later.
     state: r_leg
 
 - type: humanoidBaseSprite

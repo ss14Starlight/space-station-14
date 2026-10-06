@@ -63,10 +63,18 @@
     - id: DragonSpawn
     - id: NinjaSpawn
     - id: ParadoxCloneSpawn
+    - id: ParadoxCrisisSpawn # Starlight
     - id: SleeperAgents
-    - id: ZombieOutbreak
+ #   - id: ZombieOutbreak starlight - no more midround zeds
     - id: LoneOpsSpawn
     - id: WizardSpawn
+    - id: AbductorsSpawn # Starlight start
+    #- id: SubXenoborgs
+    #- id: BrighteyeSpawn
+    #- id: TerrorSpidersSpawn
+    - id: RailroadingTerminator
+    - id: ColossusSpawn # Starlight end
+    - id: EeepEvent # imp
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -442,12 +450,13 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-horde-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
-    earliestStart: 20
+      path: /Audio/_Starlight/Announcements/attention.ogg
+    earliestStart: 40 # 🌟Starlight🌟 Casualization
     minimumPlayers: 15
-    weight: 5
+    weight: 3.5 # 🌟Starlight🌟 Casualization
     duration: 5
     maxDuration: 20
   - type: VentHordeRule
@@ -463,12 +472,13 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-horde-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 20
+    earliestStart: 40 # 🌟Starlight🌟 Casualization
     minimumPlayers: 15
-    weight: 5
+    weight: 3.5 # 🌟Starlight🌟 Casualization
     duration: 5
     maxDuration: 20
   - type: VentHordeRule
@@ -484,12 +494,13 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-horde-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
-    earliestStart: 20
+      path: /Audio/_Starlight/Announcements/attention.ogg
+    earliestStart: 40 # 🌟Starlight🌟 Casualization
     minimumPlayers: 15
-    weight: 5
+    weight: 3.5 # 🌟Starlight🌟 Casualization
     duration: 5
     maxDuration: 20
   - type: VentHordeRule
@@ -503,10 +514,11 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-horde-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
-    earliestStart: 20
+      path: /Audio/_Starlight/Announcements/attention.ogg
+    earliestStart: 40 # 🌟Starlight🌟 Casualization
     minimumPlayers: 20
     weight: 1.5
     duration: 5

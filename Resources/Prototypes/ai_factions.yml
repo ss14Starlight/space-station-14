@@ -10,24 +10,48 @@
   - AllHostile
   - Wizard
   - Xenoborg
+  #Starlight start
+  - Changeling
+  - DungeonSoviet
+  - DungeonSyndicate
+  - Gorilla
+  - NanoTrasenSilicon
+  - Abductor
+  - Abyss
+  - SyndicateSilicon
+  - Vampire
+  - Pirate # starlight
+  - CosmicCult # starlight
+  #Starlight end
 
 - type: npcFaction
   id: NanoTrasen
   hostile:
   - SimpleHostile
   - Syndicate
+  - SyndicateSilicon # starlight
+  - DungeonSyndicate
+  - DungeonSoviet
   - Xeno
   - Zombie
   - Revolutionary
-  - Dragon
+  - Abyss
+  - Vampire
+  - Changeling
   - AllHostile
   - Wizard
   - Xenoborg
+  - Dragon
+  - Gorilla
+  - Abductor # starlight
+  - Pirate # starlight
+  - CosmicCult # starlight
 
 - type: npcFaction
   id: Mouse
   hostile:
   - PetsNT
+  - Abyss
   - AllHostile
   - Wizard
 
@@ -43,23 +67,40 @@
   - SimpleHostile
   - Zombie
   - Xeno
+  - Abyss
   - AllHostile
+  - Wizard
   - Dragon
+  - HonkHostile
+  - Gorilla
+  - Abductor # starlight
+  - CosmicCult # starlight
 
 - type: npcFaction
   id: SimpleHostile
   hostile:
   - NanoTrasen
+  - NanoTrasenSilicon # starlight
   - Syndicate
+  - SyndicateSilicon # starlight
+  - DungeonSyndicate
+  - DungeonSoviet
   - Passive
   - PetsNT
   - Zombie
   - Revolutionary
-  - Dragon
-  - Xeno
+  - Abyss
+  - Vampire
+  - Changeling
   - AllHostile
   - Wizard
   - Xenoborg
+  - Dragon
+  - Xeno
+  - Gorilla
+  - Abductor # starlight
+  - Pirate # starlight
+  - CosmicCult # starlight
 
 - type: npcFaction
   id: SimpleNeutral
@@ -68,59 +109,93 @@
   id: Syndicate
   hostile:
   - NanoTrasen
+  - NanoTrasenSilicon # starlight
   - SimpleHostile
   - Xeno
   - PetsNT
   - Zombie
-  - Dragon
+  - DungeonSyndicate
+  - DungeonSoviet
+  - Abyss
+  - Vampire
+  - Changeling
   - AllHostile
   - Wizard
   - Xenoborg
+  - Dragon
+  - Gorilla
+  - Abductor # starlight
+  - Pirate # starlight
 
 - type: npcFaction
   id: Xeno
   hostile:
   - NanoTrasen
+  - NanoTrasenSilicon # starlight
   - Syndicate
+  - SyndicateSilicon # starlight
+  - DungeonSyndicate
+  - DungeonSoviet
   - Passive
   - PetsNT
   - Zombie
   - Revolutionary
+  - Abyss
+  - Vampire
+  - Changeling
   - AllHostile
   - Wizard
   - Dragon
-  - Xenoborg
+  # - Xenoborg # Starlight
+  - Gorilla
+  - Pirate # starlight
+  - CosmicCult # starlight
 
 - type: npcFaction
   id: Zombie
-  hostile:
+  hostile: # starlight, no silicon roles here as IT HAS NO MEAT, THEREFORE IS NOT FOOD.
   - NanoTrasen
   - SimpleNeutral
   - SimpleHostile
   - Syndicate
+  - DungeonSyndicate
+  - DungeonSoviet
   - Passive
   - PetsNT
   - Revolutionary
+  - Abyss
+  - Vampire
+  - Changeling
   - AllHostile
   - Wizard
   - Dragon
-  - Xenoborg
+  - Gorilla
+  - Abductor # starlight
+  - Pirate # starlight
 
 - type: npcFaction
   id: Revolutionary
   hostile:
   - NanoTrasen
+  - NanoTrasenSilicon # starlight
   - Zombie
   - SimpleHostile
   - Dragon
+  - DungeonSyndicate
+  - DungeonSoviet
+  - Abyss
+  - Vampire
+  - Changeling
   - AllHostile
-  - Wizard
-  - Xenoborg
+  - Gorilla
+  - Abductor # starlight
+  - Pirate # starlight
 
 - type: npcFaction
   id: AllHostile
   hostile:
   - NanoTrasen
+  - NanoTrasenSilicon # starlight
   - Dragon
   - Mouse
   - Passive
@@ -128,16 +203,26 @@
   - SimpleHostile
   - SimpleNeutral
   - Syndicate
+  - SyndicateSilicon # starlight
   - Xeno
   - Zombie
   - Revolutionary
+  - HonkNeutral
+  - HonkHostile
+  - Vampire
+  - Changeling
   - Wizard
   - Xenoborg
+  - Gorilla
+  - Abductor # starlight
+  - Pirate # starlight
+  - CosmicCult # starlight
 
 - type: npcFaction
   id: Wizard
   hostile:
   - NanoTrasen
+  - NanoTrasenSilicon # starlight
   - Dragon
   - Mouse
   - Passive
@@ -145,24 +230,34 @@
   - SimpleHostile
   - SimpleNeutral
   - Syndicate
+  - SyndicateSilicon # starlight
   - Xeno
   - Zombie
   - Revolutionary
   - AllHostile
   - Xenoborg
+  - Gorilla
+  - Abductor # starlight
+  - Pirate # starlight
 
 - type: npcFaction
   id: Xenoborg
   hostile:
-  # they have brains
+    # they have brains
   - NanoTrasen
   - Syndicate
+  - DungeonSyndicate
+  - DungeonSoviet
   - Zombie
   - Revolutionary
   - Wizard
-
-  - Xeno # rivalry
-
-  # cause they are hostile to them
+    # rivalry
+  # - Xeno # Starlight
+  - NanoTrasenSilicon # starlight
+  - SyndicateSilicon # starlight
+    # cause they are hostile to them
   - SimpleHostile
   - AllHostile
+  - Abductor # starlight
+  - Gorilla # starlight
+  - Pirate # starlight

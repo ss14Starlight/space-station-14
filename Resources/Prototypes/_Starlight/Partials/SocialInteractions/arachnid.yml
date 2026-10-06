@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: BaseMobArachnid
+  components:
+  - type: SocialInteractionReceiver
+    interactionOverrides: # arachnids don't have noses
+    - id: Boop
+      interactString: booping-spider-success
+      messagePerceivedByOthers: booping-spider-success-others
+      emoteMessage: booping-spider-emote

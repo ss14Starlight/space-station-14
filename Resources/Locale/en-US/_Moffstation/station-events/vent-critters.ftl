@@ -1,1 +1,0 @@
-hell-portal-announcement = Attention. Erebesian telemetrics indicate the manifestation of an extradimensional portal somewhere within the hull of the station. Report unexplained fires or the odor of sulphur.

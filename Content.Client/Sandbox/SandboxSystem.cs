@@ -149,7 +149,10 @@ namespace Content.Client.Sandbox
             _consoleHost.ExecuteCommand("toggleshadows");
         }
 
-        public void ToggleSubFloor() => _consoleHost.ExecuteCommand("showsubfloor All"); //Starlight edit - Subfloor layers
+        public void ToggleSubFloor()
+        {
+            _consoleHost.ExecuteCommand("showsubfloor");
+        }
 
         public void ShowMarkers()
         {

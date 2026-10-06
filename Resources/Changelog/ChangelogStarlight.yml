@@ -1,4 +1,193 @@
 Entries:
+- author: DocMoth
+  changes:
+  - message: Expi speed now drops from 125% while free of clothes to 95% when fully clothed.
+    type: Tweak
+  id: 408808
+  time: '2026-09-22T15:36:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6280
+- author: DocMoth
+  changes:
+  - message: Expi head and inhand displacements improved.
+    type: Tweak
+  id: 408809
+  time: '2026-09-22T15:36:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6280
+- author: DocMoth
+  changes:
+  - message: Expi metabolism.
+    type: Fix
+  id: 408810
+  time: '2026-09-22T15:36:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6280
+- author: STARLIGHT TEAM
+  changes:
+  - message: added more precise information of sawians stats in the guidebook.
+    type: Add
+  id: 408811
+  time: '2026-09-22T15:57:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6282
+- author: Rinary
+  changes:
+  - message: Fixed issues with playtime items on characters when using NullLink's playtime.
+    type: Fix
+  id: 408812
+  time: '2026-09-22T16:19:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6283
+- author: neomoth
+  changes:
+  - message: The MalignRiftSpawn event is now less obvious that it isn't actually from coscult.
+    type: Tweak
+  id: 408813
+  time: '2026-09-22T17:30:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6192
+- author: Floximo
+  changes:
+  - message: Flickering at alert level changes was fixed.
+    type: Fix
+  id: 408814
+  time: '2026-09-22T20:39:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6297
+- author: CrazyPhantom
+  changes:
+  - message: DRONES!! We are so back.
+    type: Add
+  id: 408815
+  time: '2026-09-23T02:39:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6046
+- author: Hot Mic
+  changes:
+  - message: Added new APC Prototype. A variant that is off by default; mappers rejoice!
+    type: Add
+  id: 408816
+  time: '2026-09-23T02:58:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6299
+- author: ItsCharles
+  changes:
+  - message: Fix assistant job trinkets not working with assistant playtime.
+    type: Fix
+  id: 408817
+  time: '2026-09-23T03:18:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6305
+- author: Pickra
+  changes:
+  - message: Added generic Service airlock.
+    type: Add
+  id: 408818
+  time: '2026-09-23T05:09:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6263
+- author: Pickra
+  changes:
+  - message: Added a series of departmental maintenance airlocks to make navigation easier.
+    type: Add
+  id: 408819
+  time: '2026-09-23T05:09:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6263
+- author: Pickra
+  changes:
+  - message: Starlight-specific airlocks now use their appropriate parent airlocks.
+    type: Tweak
+  id: 408820
+  time: '2026-09-23T05:09:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6263
+- author: Demented
+  changes:
+  - message: Improvised Grappling Hook.
+    type: Add
+  id: 408821
+  time: '2026-09-23T09:21:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6184
+- author: Hitlinemoss, Xale
+  changes:
+  - message: Unknown shuttles and most antagonist ghostroles no longer spawn while the evac shuttle is inbound, docked, or in transit.
+    type: Tweak
+  id: 408822
+  time: '2026-09-23T09:47:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6232
+- author: Dragometh
+  changes:
+  - message: Condensers now have plumbing outlets.
+    type: Add
+  id: 408823
+  time: '2026-09-23T10:08:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6233
+- author: StygianEagle
+  changes:
+  - message: Added the Syndicate Mindshield for admeming.
+    type: Add
+  id: 408824
+  time: '2026-09-23T10:29:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6256
+- author: Mack
+  changes:
+  - message: Fix borgs sometimes not getting the cosmetic chassis they want.
+    type: Fix
+  id: 408825
+  time: '2026-09-23T10:29:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6249
+- author: Mack
+  changes:
+  - message: Fix issue with Station AI slot being available, with no station AI container to enter.
+    type: Fix
+  id: 408826
+  time: '2026-09-23T10:29:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6249
+- author: Caws
+  changes:
+  - message: The Detective's forensic gloves are now immune to being stained.
+    type: Tweak
+  id: 408827
+  time: '2026-09-23T10:29:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6261
+- author: DreadfulTaco
+  changes:
+  - message: Tweaked .40SP armor pen to match other SP ammo types.
+    type: Tweak
+  id: 408828
+  time: '2026-09-23T10:59:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6265
+- author: Swonki
+  changes:
+  - message: New Salvager Spawns on ATS so team size can be raised for highpop.
+    type: Add
+  id: 408829
+  time: '2026-09-23T10:59:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6268
+- author: Swonki
+  changes:
+  - message: ATS is no longer a protected grid, repairs and aesthetic changes should now be easier.
+    type: Tweak
+  id: 408830
+  time: '2026-09-23T10:59:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6268
+- author: Swonki
+  changes:
+  - message: ATS Medvend no longer needs credits.
+    type: Tweak
+  id: 408831
+  time: '2026-09-23T10:59:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6268
+- author: Swonki
+  changes:
+  - message: ATS windoor now salvager only.
+    type: Fix
+  id: 408832
+  time: '2026-09-23T10:59:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6268
+- author: Swonki
+  changes:
+  - message: hour requirements for QM and Salv lead, QM now needs miner hours instead of salvage hours.
+    type: Tweak
+  id: 408833
+  time: '2026-09-23T10:59:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6267
+- author: Swonki
+  changes:
+  - message: admin alert for ITG Fax.
+    type: Add
+  id: 408834
+  time: '2026-09-23T11:21:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6272
 - author: Caws
   changes:
   - message: IAA doors now use the new NT door sprite.
@@ -2610,193 +2799,4 @@ Entries:
   id: 409207
   time: '2026-10-05T16:50:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6388
-- author: VictoriaActual
-  changes:
-  - message: Fixed laspi storage.
-    type: Fix
-  id: 409208
-  time: '2026-10-06T05:48:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6532
-- author: Moonomaly
-  changes:
-  - message: Pens can now stir drinks and chemicals.
-    type: Tweak
-  id: 409209
-  time: '2026-10-06T07:45:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6521
-- author: redmushie
-  changes:
-  - message: Paramedics can now open powered Firelocks freely.
-    type: Add
-  id: 409210
-  time: '2026-10-06T08:12:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6491
-- author: redmushie
-  changes:
-  - message: Security can now open powered Firelocks during Red, Gamma, Delta and Psi alerts.
-    type: Add
-  id: 409211
-  time: '2026-10-06T08:12:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6491
-- author: RedSpeeds
-  changes:
-  - message: Added Togglable subfloor layers.
-    type: Add
-  id: 409212
-  time: '2026-10-06T08:33:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6442
-- author: RedSpeeds
-  changes:
-  - message: Prevent doors from being toggled in mapping mode.
-    type: Add
-  id: 409213
-  time: '2026-10-06T08:33:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6442
-- author: RedSpeeds
-  changes:
-  - message: Setup component on certain electronics for mapping.
-    type: Add
-  id: 409214
-  time: '2026-10-06T08:33:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6442
-- author: Sparlight
-  changes:
-  - message: Biodegrade and Rejuvenate now break K9 latches.
-    type: Add
-  id: 409215
-  time: '2026-10-06T08:59:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6433
-- author: Sparlight
-  changes:
-  - message: Overwhelming Force prevents K9 latches.
-    type: Add
-  id: 409216
-  time: '2026-10-06T08:59:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6433
-- author: Sparlight
-  changes:
-  - message: Vampire glare now works on K9s properly.
-    type: Fix
-  id: 409217
-  time: '2026-10-06T08:59:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6433
-- author: Sparlight
-  changes:
-  - message: K9s now disengage a latch if a latch was initiated at a weird angle that would ordinarily prevent a counter-attack.
-    type: Fix
-  id: 409218
-  time: '2026-10-06T08:59:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6433
-- author: Swonki
-  changes:
-  - message: Moved ITG formal uniform to admeme.
-    type: Tweak
-  id: 409219
-  time: '2026-10-06T09:23:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6527
-- author: Johnny
-  changes:
-  - message: Changed NTSF loadouts based off feedback and use cases.
-    type: Tweak
-  id: 409220
-  time: '2026-10-06T09:45:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6517
-- author: BriocheBear
-  changes:
-  - message: Added 5 outfits, 4 jackets, 8 hats, 4 accessories, and 5 bags to the clothing vends around the station. Fashionistas rejoice!
-    type: Add
-  id: 409221
-  time: '2026-10-06T09:45:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6266
-- author: BriocheBear
-  changes:
-  - message: Added the star backpack + satchel to the bag category under loadouts - unlockable as a reward for having too many hours on the server.
-    type: Add
-  id: 409222
-  time: '2026-10-06T09:45:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6266
-- author: wonderfulnewworld, murphyneko, DuckManZach, Nyxilath
-  changes:
-  - message: Added the hell portal!
-    type: Add
-  id: 409223
-  time: '2026-10-06T10:22:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6477
-- author: wonderfulnewworld, murphyneko, DuckManZach, Nyxilath
-  changes:
-  - message: Vent critters can now pry open doors and vault/smash climbable stuff.
-    type: Tweak
-  id: 409224
-  time: '2026-10-06T10:22:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6477
-- author: Tjmaxmillion
-  changes:
-  - message: Fixed the terminal veto system so in-transit ERT dispatches can now be properly rescinded from consoles.
-    type: Fix
-  id: 409225
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Tjmaxmillion
-  changes:
-  - message: Fixed Secure Command Terminal sub-action buttons sound-spamming, failing to register clicks, or becoming disabled during active proposals (which blocked crew from viewing, authorizing, or cancelling them).
-    type: Fix
-  id: 409226
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Tjmaxmillion
-  changes:
-  - message: NukeCodes request works now.
-    type: Fix
-  id: 409227
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Tjmaxmillion
-  changes:
-  - message: Ending secure terminal alert levels works now.
-    type: Fix
-  id: 409228
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Tjmaxmillion
-  changes:
-  - message: Renamed "Veto" to "Rescind" and restricted it exclusively to ERTs; removed redundant veto schemes from non-ERT requests that either have dedicated recall/cancel functions or activate immediately.
-    type: Tweak
-  id: 409229
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Tjmaxmillion
-  changes:
-  - message: 'Improved terminal UI: nested "Dismiss ITG" under ITG Salvage Team, added sub-action back buttons, propagated pending indicators to parent requests, added an "Awaiting CC" state for admin reviews.'
-    type: Tweak
-  id: 409230
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Tjmaxmillion
-  changes:
-  - message: 'Request balancing: synchronized Code Gamma and Code Psi active minimums to 10 minutes (matching Code Violet), aligned ERT arrival announcements with travel times, and added a 2-minute recall cooldown to the Emergency Medical Pod.'
-    type: Tweak
-  id: 409231
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Tjmaxmillion
-  changes:
-  - message: 'Updated Secure Terminal Guidebook and SOP: documented the console presence requirement, ERT rescind mechanics, Unlock Escape Pods, ITG teams, arrival timers, and updated auth schemes with NTR/Command alternates.'
-    type: Add
-  id: 409232
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Tjmaxmillion
-  changes:
-  - message: 'Undocumented change from PR #6207 walking away from an authentication window cancels the request if the requestor or removes your co-auth if a co-authorizer.'
-    type: Add
-  id: 409233
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Johnny
-  changes:
-  - message: 'Did the best thing ever :godo: .'
-    type: Tweak
-  id: 409234
-  time: '2026-10-06T11:07:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6533
 Order: -1

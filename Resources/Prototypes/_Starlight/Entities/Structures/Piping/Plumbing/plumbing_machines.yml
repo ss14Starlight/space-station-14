@@ -15,7 +15,6 @@
   - type: PlumbingConnectorAppearance
     offset: 0.09375
   - type: SubFloorHide
-    subfloorLayer: Pipes
     blockInteractions: false
     blockAmbience: false
     visibleLayers:
@@ -549,7 +548,6 @@
   - type: CollideOnAnchor
     enable: true
   - type: SubFloorHide
-    subfloorLayer: Pipes
     blockInteractions: false
     blockAmbience: false
     allowAnchoringUnderCover: true

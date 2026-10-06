@@ -21,7 +21,6 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared._Starlight.Access;
-using Content.Shared._Starlight.Access.Systems;
 
 namespace Content.Shared.Access.Systems;
 
@@ -61,8 +60,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
 
         mainAccessReader.Value.Comp.AccessListsOriginal ??= new(mainAccessReader.Value.Comp.AccessLists);
 
-        var accessHasBeenModified = mainAccessReader.Value.Comp.AccessLists.Count !=
-                                    mainAccessReader.Value.Comp.AccessListsOriginal.Count;
+        var accessHasBeenModified = mainAccessReader.Value.Comp.AccessLists.Count != mainAccessReader.Value.Comp.AccessListsOriginal.Count;
 
         if (!accessHasBeenModified)
         {
@@ -79,8 +77,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
         var examiner = args.Examiner;
         var canSeeAccessModification = accessHasBeenModified &&
                                        (HasComp<ShowAccessReaderSettingsComponent>(examiner) ||
-                                        _inventorySystem.TryGetInventoryEntity<ShowAccessReaderSettingsComponent>(
-                                            examiner, out _));
+                                        _inventorySystem.TryGetInventoryEntity<ShowAccessReaderSettingsComponent>(examiner, out _));
 
         if (canSeeAccessModification)
         {
@@ -102,8 +99,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
             return;
 
         var originalAccessesFormatted = ContentLocalizationManager.FormatListToOr(localizedOriginalNames);
-        var originalSettingsMessage = Loc.GetString(mainAccessReader.Value.Comp.ExaminationText,
-            ("access", originalAccessesFormatted));
+        var originalSettingsMessage = Loc.GetString(mainAccessReader.Value.Comp.ExaminationText, ("access", originalAccessesFormatted));
         args.PushMarkup(originalSettingsMessage);
     }
 
@@ -170,8 +166,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
         Dirty(uid, reader);
     }
 
-    private void OnConfigurationAttempt(Entity<AccessReaderComponent> ent,
-        ref AccessReaderConfigurationAttemptEvent args)
+    private void OnConfigurationAttempt(Entity<AccessReaderComponent> ent, ref AccessReaderConfigurationAttemptEvent args)
     {
         // The first time that the access list of the reader is modified,
         // make a copy of the original settings
@@ -277,7 +272,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
             return true;
 
         if (reader.ContainerAccessProvider == null)
-            return IsAllowedInternal(access, stationKeys, (target, reader)); // Starlight
+            return IsAllowedInternal(access, stationKeys, reader);
 
         if (!_containerSystem.TryGetContainer(target, reader.ContainerAccessProvider, out var container))
             return false;
@@ -299,25 +294,21 @@ public sealed partial class AccessReaderSystem : EntitySystem
         return false;
     }
 
-    private bool IsAllowedInternal(ICollection<ProtoId<AccessLevelPrototype>> access,
-        ICollection<StationRecordKey> stationKeys, Entity<AccessReaderComponent> reader) // Starlight-edit
-        => !reader.Comp.Enabled // Starlight-edit
-            || AreAccessTagsAllowed(access, reader)
-            || AreStationRecordKeysAllowed(stationKeys, reader);
+    private bool IsAllowedInternal(ICollection<ProtoId<AccessLevelPrototype>> access, ICollection<StationRecordKey> stationKeys, AccessReaderComponent reader)
+    {
+        return !reader.Enabled
+               || AreAccessTagsAllowed(access, reader)
+               || AreStationRecordKeysAllowed(stationKeys, reader);
+    }
 
     /// <summary>
     /// Compares the given tags with the readers access list to see if it is allowed.
     /// </summary>
     /// <param name="accessTags">A list of access tags.</param>
     /// <param name="reader">The access reader to check against.</param>
-    public bool AreAccessTagsAllowed(ICollection<ProtoId<AccessLevelPrototype>> accessTags,
-        Entity<AccessReaderComponent> reader) // Starlight-edit
+    public bool AreAccessTagsAllowed(ICollection<ProtoId<AccessLevelPrototype>> accessTags, AccessReaderComponent reader)
     {
-        // Starlight-start
-        var denyTagEv =
-            new GetAccessReaderDenyTagsEvent(new HashSet<ProtoId<AccessLevelPrototype>>(reader.Comp.DenyTags));
-        RaiseLocalEvent(denyTagEv);
-        if (denyTagEv.DenyTags.Overlaps(accessTags)) // Starlight-end
+        if (reader.DenyTags.Overlaps(accessTags))
         {
             // Sec owned by cargo.
 
@@ -327,24 +318,10 @@ public sealed partial class AccessReaderSystem : EntitySystem
             return false;
         }
 
-        // Starlight-start
-        var accessListEv =
-            new GetAccessReaderAccessListsEvent(
-                new List<HashSet<ProtoId<AccessLevelPrototype>>>(reader.Comp.AccessLists));
-        RaiseLocalEvent(reader, accessListEv);
-
-        // The reader may live on a contained board (e.g. airlock door electronics) while structure-level
-        // modifiers like AlertLevelAccess sit on the parent. Give that parent a chance to modify too.
-        if (_containerSystem.TryGetContainingContainer((reader.Owner, null, null), out var container))
-            RaiseLocalEvent(container.Owner, accessListEv);
-
-        var accessLists = accessListEv.AccessLists;
-        // Starlight-end
-
-        if (accessLists.Count == 0) // Starlight-edit
+        if (reader.AccessLists.Count == 0)
             return true;
 
-        foreach (var set in accessLists) // Starlight-edit
+        foreach (var set in reader.AccessLists)
         {
             if (set.IsSubsetOf(accessTags))
                 return true;
@@ -377,14 +354,16 @@ public sealed partial class AccessReaderSystem : EntitySystem
     {
         FindAccessItemsInventory(uid, out var items);
 
-        var ev = new GetAdditionalAccessEvent { Entities = items };
+        var ev = new GetAdditionalAccessEvent
+        {
+            Entities = items
+        };
         RaiseLocalEvent(uid, ref ev);
 
         foreach (var item in new ValueList<EntityUid>(items))
         {
             items.UnionWith(FindPotentialAccessItems(item));
         }
-
         items.Add(uid);
         return items;
     }
@@ -415,8 +394,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
     /// <param name="uid">The entity that is being searched.</param>
     /// <param name="recordKeys">A collection of the station record keys that were found.</param>
     /// <param name="items">All of the items to search for access. If none are passed in, <see cref="FindPotentialAccessItems"/> will be used.</param>
-    public bool FindStationRecordKeys(EntityUid uid, out ICollection<StationRecordKey> recordKeys,
-        HashSet<EntityUid>? items = null)
+    public bool FindStationRecordKeys(EntityUid uid, out ICollection<StationRecordKey> recordKeys, HashSet<EntityUid>? items = null)
     {
         recordKeys = new HashSet<StationRecordKey>();
 
@@ -445,7 +423,6 @@ public sealed partial class AccessReaderSystem : EntitySystem
             // no tags, no problem
             return;
         }
-
         if (tags != null)
         {
             // existing tags, so copy to make sure we own them
@@ -454,7 +431,6 @@ public sealed partial class AccessReaderSystem : EntitySystem
                 tags = new(tags);
                 owned = true;
             }
-
             // then merge
             tags.UnionWith(targetTags);
         }
@@ -602,8 +578,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
     /// <param name="ent">The access reader entity to which the access permission is being added.</param>
     /// <param name="access">The access permission being added.</param>
     /// <param name="dirty">If true, the component will be  marked as changed afterward.</param>
-    private void AddAccess(Entity<AccessReaderComponent> ent, HashSet<ProtoId<AccessLevelPrototype>> access,
-        bool dirty = true)
+    private void AddAccess(Entity<AccessReaderComponent> ent, HashSet<ProtoId<AccessLevelPrototype>> access, bool dirty = true)
     {
         ent.Comp.AccessLists.Add(access);
 
@@ -634,8 +609,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
     /// </summary>
     /// <param name="ent">The access reader entity from which the access permissions are being removed.</param>
     /// <param name="accesses">The list of access permissions being removed.</param>
-    public void TryRemoveAccesses(Entity<AccessReaderComponent> ent,
-        List<HashSet<ProtoId<AccessLevelPrototype>>> accesses)
+    public void TryRemoveAccesses(Entity<AccessReaderComponent> ent, List<HashSet<ProtoId<AccessLevelPrototype>>> accesses)
     {
         if (CanConfigureAccessReader(ent))
         {
@@ -648,8 +622,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
     /// </summary>
     /// <param name="ent">The access reader entity from which the access permissions are being removed.</param>
     /// <param name="accesses">The list of access permissions being removed.</param>
-    private void RemoveAccesses(Entity<AccessReaderComponent> ent,
-        List<HashSet<ProtoId<AccessLevelPrototype>>> accesses)
+    private void RemoveAccesses(Entity<AccessReaderComponent> ent, List<HashSet<ProtoId<AccessLevelPrototype>>> accesses)
     {
         foreach (var access in accesses)
         {
@@ -701,8 +674,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
     /// <param name="ent">The access reader entity from which the access permission is being removed.</param>
     /// <param name="access">The access permission being removed.</param>
     /// <param name="dirty">If true, the component will be marked as changed afterward.</param>
-    private void RemoveAccess(Entity<AccessReaderComponent> ent, HashSet<ProtoId<AccessLevelPrototype>> access,
-        bool dirty = true)
+    private void RemoveAccess(Entity<AccessReaderComponent> ent, HashSet<ProtoId<AccessLevelPrototype>> access, bool dirty = true)
     {
         for (int i = ent.Comp.AccessLists.Count - 1; i >= 0; i--)
         {
@@ -729,8 +701,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
     }
 
     /// <inheritdoc cref = "RemoveAccess"/>
-    private void RemoveAccess(Entity<AccessReaderComponent> ent, ProtoId<AccessLevelPrototype> access,
-        bool dirty = true)
+    private void RemoveAccess(Entity<AccessReaderComponent> ent, ProtoId<AccessLevelPrototype> access, bool dirty = true)
     {
         RemoveAccess(ent, new HashSet<ProtoId<AccessLevelPrototype>>() { access }, dirty);
     }
@@ -888,9 +859,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
         {
             items.Add(idUid.Value);
         }
-
-        if (_inventorySystem.TryGetSlotEntity(uid, "belt",
-                out var beltUid)) // Starlight edit: PDAs can be in belt slots
+        if (_inventorySystem.TryGetSlotEntity(uid, "belt", out var beltUid)) // Starlight edit: PDAs can be in belt slots
             items.Add(beltUid.Value);
 
         return items.Any();
@@ -970,8 +939,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
     /// </summary>
     /// <param name="ent">The reader to log the access on</param>
     /// <param name="name">The name to log as</param>
-    public void LogAccess(Entity<AccessReaderComponent> ent, string name, TimeSpan? accessTime = null,
-        bool force = false)
+    public void LogAccess(Entity<AccessReaderComponent> ent, string name, TimeSpan? accessTime = null, bool force = false)
     {
         if (!force)
         {

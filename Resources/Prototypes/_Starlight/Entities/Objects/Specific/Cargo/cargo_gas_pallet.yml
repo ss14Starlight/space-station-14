@@ -8,7 +8,6 @@
     flags:
     - Anchorable
   - type: SubFloorHide
-    subfloorLayer: Pipes
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
   - type: CargoGasPallet

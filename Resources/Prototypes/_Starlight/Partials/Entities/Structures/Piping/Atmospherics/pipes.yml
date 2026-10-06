@@ -34,11 +34,3 @@
         north2:
           !type:PipeNode
           volume: 25 # Was 50L
-
-# Subfloor layers
-- type: !PartialOnly entity
-  id: GasPipeSansLayers
-  components:
-    - type: SubFloorHide
-      subfloorLayer: Pipes
-

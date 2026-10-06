@@ -30,14 +30,3 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommadminformalwear.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommadminformalwear.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtFormalITG
-  name: ITG Formal Jumpskirt
-  description: A refined purple skirt worn by delegates of the guild.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpskirt/itgdress.rsi
-  - type: Clothing
-    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpskirt/itgdress.rsi

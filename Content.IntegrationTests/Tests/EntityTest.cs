@@ -285,18 +285,8 @@ namespace Content.IntegrationTests.Tests
                 "ESTimedDespawn",
                 "ESSparkOnTrigger",
                 // ES end
-                // Moff start
-                "BluespaceLocker",
-                "Hellportal",
-                // Moff end
+                "BluespaceLocker", // Moff Station
             };
-
-            #region Starlight
-            var excludedPrototypes = new HashSet<string>
-            {
-                "MoffDemonWraithJaunt", // Leaves a detached jaunt visual that intentionally outlives the entity.
-            };
-            #endregion
 
             Assert.That(server.CfgMan.GetCVar(CVars.NetPVS), Is.False);
 
@@ -304,7 +294,6 @@ namespace Content.IntegrationTests.Tests
                 .EnumeratePrototypes<EntityPrototype>()
                 .Where(p => !p.Abstract)
                 .Where(p => !pair.IsTestPrototype(p))
-                .Where(p => !excludedPrototypes.Contains(p.ID)) // Starlight
                 .Where(p => !excluded.Any(p.Components.ContainsKey))
                 .Where(p => p.Categories.All(x => x.ID != SpawnerCategory))
                 .Select(p => p.ID)

@@ -1,6 +1,0 @@
-- type: !PartialOnly npcFaction
-  id: MoffNarsianDemon
-  hostile:
-  - CosmicCult
-  - Revolutionary
-  - SyndicateSilicon

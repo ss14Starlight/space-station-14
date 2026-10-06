@@ -23,7 +23,7 @@
     transferName: false
     transferDamage: true
     duration: 12
-    polymorphSound: /Audio/_Starlight/Effects/CosmicCult/ability_lapse.ogg
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
 
 - type: polymorph
   id: CosmicLapseMobDiona
@@ -34,7 +34,7 @@
     transferName: false
     transferDamage: true
     duration: 12
-    polymorphSound: /Audio/_Starlight/Effects/CosmicCult/ability_lapse.ogg
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
 
 - type: polymorph
   id: CosmicLapseMobMoth
@@ -45,7 +45,7 @@
     transferName: false
     transferDamage: true
     duration: 12
-    polymorphSound: /Audio/_Starlight/Effects/CosmicCult/ability_lapse.ogg
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
 
 - type: polymorph
   id: CosmicLapseMobVox
@@ -56,7 +56,7 @@
     transferName: false
     transferDamage: true
     duration: 12
-    polymorphSound: /Audio/_Starlight/Effects/CosmicCult/ability_lapse.ogg
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
 
 - type: polymorph
   id: CosmicLapseMobSnail
@@ -67,7 +67,7 @@
     transferName: false
     transferDamage: true
     duration: 12
-    polymorphSound: /Audio/_Starlight/Effects/CosmicCult/ability_lapse.ogg
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
 
 - type: polymorph
   id: CosmicLapseMobDecapoid
@@ -78,7 +78,7 @@
     transferName: false
     transferDamage: true
     duration: 12
-    polymorphSound: /Audio/_Starlight/Effects/CosmicCult/ability_lapse.ogg
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
 
 - type: polymorph
   id: ForcedCluwneBeast
