@@ -804,6 +804,8 @@
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
   - type: ClothesNightVision
+  - type: ShowNullSpace
+    showShader: false
   - type: FireProtection
     reduction: 0.2
   - type: Pierceable
