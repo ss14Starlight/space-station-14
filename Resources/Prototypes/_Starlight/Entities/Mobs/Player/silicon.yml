@@ -345,6 +345,9 @@
       enum.RadarConsoleUiKey.Key:
         toggleAction: ActionAGhostShowRadar
   - type: RadarConsole
+  - type: !Append Tag
+    tags:
+    -CanPilot
   - type: !Remove AccessReader
   - type: !Remove Access
   - type: !Remove StationAIShunt
