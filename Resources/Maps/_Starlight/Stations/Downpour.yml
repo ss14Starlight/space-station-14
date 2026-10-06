@@ -203023,8 +203023,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 6263
-      configurators:
-      - invalid
   - uid: 6540
     components:
     - type: Transform
@@ -203034,8 +203032,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 6263
-      configurators:
-      - invalid
   - uid: 7391
     components:
     - type: Transform
