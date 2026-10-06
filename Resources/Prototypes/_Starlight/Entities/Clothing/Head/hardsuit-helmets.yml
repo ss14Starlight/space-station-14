@@ -1232,6 +1232,10 @@
     - state: icon-helmet
   - type: Clothing
     sprite: _Starlight/Clothing/Head/CosmicCult/cosmiccult_armor.rsi
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - ScurretWearable
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
