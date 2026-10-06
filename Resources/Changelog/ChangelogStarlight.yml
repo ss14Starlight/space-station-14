@@ -1,32 +1,4 @@
 Entries:
-- author: CrazyPhantom
-  changes:
-  - message: DRONES!! We are so back.
-    type: Add
-  id: 408815
-  time: '2026-09-23T02:39:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6046
-- author: Hot Mic
-  changes:
-  - message: Added new APC Prototype. A variant that is off by default; mappers rejoice!
-    type: Add
-  id: 408816
-  time: '2026-09-23T02:58:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6299
-- author: ItsCharles
-  changes:
-  - message: Fix assistant job trinkets not working with assistant playtime.
-    type: Fix
-  id: 408817
-  time: '2026-09-23T03:18:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6305
-- author: Pickra
-  changes:
-  - message: Added generic Service airlock.
-    type: Add
-  id: 408818
-  time: '2026-09-23T05:09:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6263
 - author: Pickra
   changes:
   - message: Added a series of departmental maintenance airlocks to make navigation easier.
@@ -2799,4 +2771,32 @@ Entries:
   id: 409214
   time: '2026-10-06T08:33:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6442
+- author: Sparlight
+  changes:
+  - message: Biodegrade and Rejuvenate now break K9 latches.
+    type: Add
+  id: 409215
+  time: '2026-10-06T08:59:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6433
+- author: Sparlight
+  changes:
+  - message: Overwhelming Force prevents K9 latches.
+    type: Add
+  id: 409216
+  time: '2026-10-06T08:59:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6433
+- author: Sparlight
+  changes:
+  - message: Vampire glare now works on K9s properly.
+    type: Fix
+  id: 409217
+  time: '2026-10-06T08:59:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6433
+- author: Sparlight
+  changes:
+  - message: K9s now disengage a latch if a latch was initiated at a weird angle that would ordinarily prevent a counter-attack.
+    type: Fix
+  id: 409218
+  time: '2026-10-06T08:59:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6433
 Order: -1
