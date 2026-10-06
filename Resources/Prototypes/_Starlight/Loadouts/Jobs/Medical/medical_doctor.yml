@@ -39,16 +39,6 @@
     - !type:GroupLoadoutEffect
       proto: SeniorPhysician
 
-- type: loadout
-  id: BlackLabCoatLong
-  equipment:
-    outerClothing: ClothingOuterCoatLabBlackLong
-
-- type: loadout
-  id: VirologistLabCoatLong
-  equipment:
-    outerClothing: ClothingOuterCoatLabVirologyLong
-
 # Gloves
 - type: loadout
   id: NitrileGloves

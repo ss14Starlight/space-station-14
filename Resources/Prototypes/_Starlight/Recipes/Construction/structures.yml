@@ -334,3 +334,63 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  id: BarricadeSteel
+  graph: BarricadeCover
+  startNode: start
+  targetNode: steel
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BarricadeWood
+  graph: BarricadeCover
+  startNode: start
+  targetNode: wood
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BarricadeGlass
+  graph: BarricadeCover
+  startNode: start
+  targetNode: glass
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BarricadeSandbags
+  graph: BarricadeSandbags
+  startNode: start
+  targetNode: sandbags
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: MaterialSandbag
+  graph: MaterialSandbag
+  startNode: start
+  targetNode: sandbag
+  category: construction-category-materials
+  objectType: Item

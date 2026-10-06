@@ -236,8 +236,7 @@ public sealed partial class USSPUplinkSystem : EntitySystem
                 var telebonds = storeAfterSync.Balance.GetValueOrDefault("Telebond", FixedPoint2.Zero);
                 var conversions = storeAfterSync.Balance.GetValueOrDefault("Conversion", FixedPoint2.Zero);
 
-                var convertedMessage = convertedCount > 0 ? $" (+{convertedCount} from previous conversions)" : "";
-                _popup.PopupEntity(Loc.GetString($"Implanted! Current Telebonds: {telebonds}{convertedMessage}, Conversions: {conversions}"),
+                _popup.PopupEntity(Loc.GetString("ussp-uplink-implanted", ("telebonds", telebonds), ("converted", convertedCount), ("conversions", conversions)),
                     args.Implanted, args.Implanted, PopupType.Medium);
             }
 
@@ -250,7 +249,7 @@ public sealed partial class USSPUplinkSystem : EntitySystem
                 uplinkOwnerComp.OwnerUid = args.Implanted;
 
                 // Notify the original owner that their uplink has been claimed by another head revolutionary
-                _popup.PopupEntity(Loc.GetString($"Your uplink has been claimed by {Identity.Name(args.Implanted, EntityManager)}"),
+                _popup.PopupEntity(Loc.GetString("ussp-uplink-claimed", ("name", Identity.Name(args.Implanted, EntityManager))),
                     originalOwner.Value, originalOwner.Value, PopupType.Medium);
             }
         }
@@ -439,7 +438,7 @@ public sealed partial class USSPUplinkSystem : EntitySystem
             // If we have an original owner, notify them that their uplink has been implanted in someone else
             if (originalOwner != null && originalOwner.Value != args.Implanted)
             {
-                _popup.PopupEntity(Loc.GetString($"Your uplink has been implanted in {Identity.Name(args.Implanted, EntityManager)}"),
+                _popup.PopupEntity(Loc.GetString("ussp-uplink-implanted-in", ("name", Identity.Name(args.Implanted, EntityManager))),
                     originalOwner.Value, originalOwner.Value, PopupType.Medium);
 
                 // Call the RevolutionaryRuleSystem to synchronize all uplinks owned by this head revolutionary
@@ -462,7 +461,7 @@ public sealed partial class USSPUplinkSystem : EntitySystem
                         var finalConversions = finalStore.Balance.GetValueOrDefault("Conversion", FixedPoint2.Zero);
 
                         // Show an additional popup with the updated values
-                        _popup.PopupEntity(Loc.GetString($"Uplink synchronized! Current Telebonds: {finalTelebonds}, Conversions: {finalConversions}"),
+                        _popup.PopupEntity(Loc.GetString("ussp-uplink-synchronized", ("telebonds", finalTelebonds), ("conversions", finalConversions)),
                             args.Implanted, args.Implanted, PopupType.Medium);
                     }
                 }
@@ -577,7 +576,7 @@ public sealed partial class USSPUplinkSystem : EntitySystem
                 conversionValue = store.Balance.GetValueOrDefault("Conversion", FixedPoint2.New(1));
             }
 
-            _popup.PopupEntity(Loc.GetString($"+1 Conversion (Total: {conversionValue})"), headRevOwner, headRevOwner, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("ussp-uplink-conversion", ("total", conversionValue)), headRevOwner, headRevOwner, PopupType.Medium);
         }
 
         // Also show popup to all revolutionaries with implants

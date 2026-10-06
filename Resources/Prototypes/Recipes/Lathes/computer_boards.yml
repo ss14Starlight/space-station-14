@@ -9,13 +9,6 @@
 
 - type: latheRecipe
   abstract: true
-  id: BaseMedicalComputerRecipeCategory
-  categories:
-  - Computers
-  - Medical
-
-- type: latheRecipe
-  abstract: true
   id: BaseResearchComputerRecipeCategory
   categories:
   - Computers

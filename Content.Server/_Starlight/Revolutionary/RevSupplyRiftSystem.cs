@@ -239,13 +239,13 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
                 }
                 else
                 {
-                    revRift.PlacedBy = "Unknown";
+                    revRift.PlacedBy = null;
                     Log.Info("Revolutionary entity is null, nearby humanoid has no name");
                 }
             }
             else
             {
-                revRift.PlacedBy = "Unknown";
+                revRift.PlacedBy = null;
                 Log.Info("Revolutionary entity is null, no nearby humanoids found");
             }
         }
@@ -409,7 +409,7 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
 
                     // Update the description with the charging status and location
                     // Don't use color tags as they're not properly handled in the UI
-                    var chargingText = $"Supply rift (Charging: {revRift.ChargePercentage}% - Placed by comrade {revRift.PlacedBy ?? "Unknown"} {locationString})";
+                    var chargingText = Loc.GetString("rev-supply-rift-listing-charging", ("charge", revRift.ChargePercentage), ("name", revRift.PlacedBy ?? Loc.GetString("rev-supply-rift-unknown-placer")), ("location", locationString));
 
                     listing.Description = chargingText;
 
@@ -598,7 +598,7 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
 
         // Get the nearest beacon location
         var locationString = _navMap.GetNearestBeaconString((rift.Owner, xform));
-        var placedBy = rift.Comp.PlacedBy ?? "Unknown";
+        var placedBy = rift.Comp.PlacedBy ?? Loc.GetString("rev-supply-rift-unknown-placer");
         var message = Loc.GetString("rev-supply-rift-placed", ("location", locationString), ("name", placedBy));
         var sender = Loc.GetString("rev-supply-rift-sender");
 

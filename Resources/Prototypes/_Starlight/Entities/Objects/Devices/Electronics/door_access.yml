@@ -1,11 +1,11 @@
 # NT Representative
 - type: entity
   parent: DoorElectronics
-  id: DoorElectronicsNtrep
-  suffix: Ntrep, Locked
+  id: DoorElectronicsNT
+  suffix: Nanotrasen, Locked
   components:
   - type: AccessReader
-    access: [["Ntrep"], ["BlueShield"]]
+    access: [["NTPersonnel"]]
 
 # Robotics
 - type: entity
@@ -17,13 +17,6 @@
     access: [["Robotics"]]
 
 # Freelance
-- type: entity
-  parent: DoorElectronics
-  id: DoorElectronicsFreelance
-  suffix: Freelance, Locked
-  components:
-  - type: AccessReader
-    access: [["Freelance"]]
 
 # Surgery
 - type: entity
@@ -87,7 +80,6 @@
   components:
   - type: AccessReader
     access: [["Security"], ["IAA"], ["Lawyer"]]
-
 
 # Attorney
 - type: entity

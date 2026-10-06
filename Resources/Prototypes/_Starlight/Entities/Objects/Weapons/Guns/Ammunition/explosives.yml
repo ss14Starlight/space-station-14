@@ -89,20 +89,6 @@
   - type: StaticPrice
     price: 800
 
-- type: entity
-  parent: Magazine120mmGrenadeBlast
-  id: Magazine120mmGrenadeBlastEmpty
-  name: 120mm blast grenade magazine (empty)
-  suffix: empty
-  components:
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    whitelist:
-      tags:
-        - Grenade120mm
-    capacity: 20
-
-
 # 60mm Rocket Ammunition
 
 # Override of the base 60mm rocket projectile with radar blip.
@@ -181,20 +167,9 @@
   - type: StaticPrice
     price: 600
 
-- type: entity
-  parent: Magazine60mmRocket
-  id: Magazine60mmRocketEmpty
-  name: 60mm rocket magazine (empty)
-  suffix: empty
-  components:
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    whitelist:
-      tags:
-        - Cartridge60mmRocket
-    capacity: 30
+# PEACEKEEPER AMMO
 
-- type: entity # Starlight Grenades for the Peacekeeper
+- type: entity
   id: GrenadeGaslauncher
   name: gas grenade
   description: Able to choke a room or several of your friends.
@@ -215,7 +190,7 @@
     tags:
     - GrenadeLessLethal
 
-- type: entity # Starlight Grenades for the sec Peacekeeper
+- type: entity
   id: GrenadeStingerlauncher
   name: stinger grenade
   description: An unruly crowd's favourite.
@@ -231,6 +206,27 @@
   - type: Appearance
   - type: SpentAmmoVisuals
     state: blast
+    suffix: false
+  - type: Tag
+    tags:
+    - GrenadeLessLethal
+
+- type: entity
+  id: GrenadeBola
+  name: bola grenade
+  description:
+  parent: [BaseGrenade, BaseSecurityContraband]
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeBola
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: bola
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: bola
     suffix: false
   - type: Tag
     tags:

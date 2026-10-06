@@ -8,6 +8,7 @@ using Content.Shared._NullLink;
 using Content.Shared.Chat;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Mind;
 using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -18,6 +19,7 @@ using Content.Server._Starlight.SecureTerminal;
 using Content.Shared._Starlight.Economy;
 
 namespace Content.Server._Starlight.Economy;
+
 public sealed partial class SalarySystem : SharedSalarySystem
 {
     [Dependency] private IEntityManager _entityManager = default!;
@@ -75,22 +77,7 @@ public sealed partial class SalarySystem : SharedSalarySystem
                 if (_time.CurTime - lastTime > TimeSpan.FromMinutes(15)
                     && _mind.TryGetMind(query.Current.Session.UserId, out var mind))
                 {
-
-                    var roles = _roles.MindGetAllRoleInfo((mind.Value.Owner, mind.Value.Comp));
-                    foreach (var role in roles)
-                    {
-                        if (_salaries.Jobs.TryGetValue(role.Prototype, out var salary)
-                            && _playerResources.TryGetResource(query.Current.Session, "credits", out var balance))
-                        {
-                            var amount = CalculateSalaryWithBonuses(salary, query.Current.Session);
-                            var sender = _salaries.Sender.GetValueOrDefault(role.Prototype, "NanoTrasen");
-
-                            _playerResources.TryUpdateResource(query.Current.Session, "credits", amount);
-                            var message = Loc.GetString("economy-chat-salary-message", ("amount", amount), ("sender", sender));
-                            var wrappedMessage = Loc.GetString("economy-chat-salary-wrapped-message", ("amount", amount), ("sender", sender), ("senderColor", "#2384CE"));
-                            _chat.ChatMessageToOne(ChatChannel.Notifications, message, wrappedMessage, default, false, query.Current.Session.Channel, Color.FromHex("#57A3F7"));
-                        }
-                    }
+                    PaySalary(query.Current.Session, (mind.Value.Owner, mind.Value.Comp));
 
                     _lastSalary[query.Current.Session] = _time.CurTime;
                 }
@@ -98,29 +85,65 @@ public sealed partial class SalarySystem : SharedSalarySystem
         }
     }
 
-    private int CalculateSalaryWithBonuses(int baseSalary, ICommonSession session)
+    private int CalculateSalaryWithBonuses(int baseSalary, ICommonSession session, string source)
     {
         var bonusMultiplier = _defaultBonusMultiplier;
 
-        if (!_nullLinkRoles.TryGetPlayerData(session.UserId, out var playerData))
-            return baseSalary;
+        if (_nullLinkRoles.TryGetPlayerData(session.UserId, out var playerData))
+        {
 
-        foreach (var bonus in _prototypes.EnumeratePrototypes<SalaryRoleBonusPrototype>())
-            if(bonus.Roles.Any(playerData.Roles.Contains))
-                bonusMultiplier += bonus.Multiplayer;
+            foreach (var bonus in _prototypes.EnumeratePrototypes<SalaryRoleBonusPrototype>())
+                if (bonus.Roles.Any(playerData.Roles.Contains))
+                    bonusMultiplier += bonus.Multiplayer;
+        }
 
-        var stationPenalty = GetStationSalaryPenalty();
-        return (int)Math.Ceiling(baseSalary * bonusMultiplier * (1f - stationPenalty));
+        var sourceModifier = GetStationSalaryModifier("Everyone") + GetStationSalaryModifier(source);
+        var multiplier = Math.Max(0.2f, 1f + sourceModifier); // Minimum income is 20% of the base salary
+        bonusMultiplier = Math.Max(0f, bonusMultiplier); // Bonus has to be positive
+        return (int)Math.Ceiling(baseSalary * bonusMultiplier * multiplier);
     }
 
-    // TODO: Add a way to support multistation? or we do this global? (maybe global as they might be on same map and so benefit)
-    private float GetStationSalaryPenalty()
+    private float GetStationSalaryModifier(string source)
     {
-        var maxPenalty = 0f;
+        var modifier = 0f;
         var query = _entityManager.EntityQueryEnumerator<SecureCommandTerminalStationComponent>();
         while (query.MoveNext(out _, out var comp))
-            maxPenalty = Math.Max(maxPenalty, comp.SalaryPenalty);
-        return maxPenalty;
+            modifier += comp.SalaryModifiers.GetValueOrDefault(source);
+
+        return modifier;
+    }
+
+    internal int PaySalary(ICommonSession session)
+    {
+        if (!_mind.TryGetMind(session.UserId, out var mind))
+            return 0;
+
+        return PaySalary(session, (mind.Value.Owner, mind.Value.Comp));
+    }
+
+    private int PaySalary(ICommonSession session, Entity<MindComponent?> mind)
+    {
+        if (!_playerResources.TryGetResource(session, "credits", out _))
+            return 0;
+
+        var total = 0;
+        var roles = _roles.MindGetAllRoleInfo(mind);
+        foreach (var role in roles)
+        {
+            if (!_salaries.Jobs.TryGetValue(role.Prototype, out var salary))
+                continue;
+
+            var sender = _salaries.Sender.GetValueOrDefault(role.Prototype, "NanoTrasen");
+            var amount = CalculateSalaryWithBonuses(salary, session, sender);
+            _playerResources.TryUpdateResource(session, "credits", amount);
+
+            var message = Loc.GetString("economy-chat-salary-message", ("amount", amount), ("sender", sender));
+            var wrappedMessage = Loc.GetString("economy-chat-salary-wrapped-message", ("amount", amount), ("sender", sender), ("senderColor", "#2384CE"));
+            _chat.ChatMessageToOne(ChatChannel.Notifications, message, wrappedMessage, default, false, session.Channel, Color.FromHex("#57A3F7"));
+            total += amount;
+        }
+
+        return total;
     }
 
     internal void Donate(ICommonSession session, int amount)

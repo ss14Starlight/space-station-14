@@ -457,7 +457,7 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
-    access: [["Medical"], ["Security"]]
+    access: [["Brigmedic"], ["Medical"]]
 
 # Syndicate stuff for Serpentcrest and any other uses
 - type: entity

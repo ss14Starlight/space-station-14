@@ -44,7 +44,7 @@
   - type: ItemSlots
     slots:
       pai_slot:
-        name: Personal AI Device
+        name: item-slot-component-slot-name-personal-ai
         ejectOnInteract: true
         whitelist:
           components:

@@ -202,7 +202,7 @@
       listNumber: false
 
 - type: entity
-  parent: [ IDCardStandard, BaseCargoContraband ]
+  parent: [ IDCardStandard, BaseSalvageContraband ]
   id: SalvageLeadIDCard
   name: salvage lead ID card
   components:
@@ -406,34 +406,6 @@
         - sprite: *starlight-icon-rsi
           offset: *icon-offset
           state: Commander
-    - type: Access
-      tags:
-        - Maintenance
-        - SyndicateAgent
-        - NuclearOperative
-    - type: AgentIDCard
-    - type: ActivatableUI
-      key: enum.AgentIDCardUiKey.Key
-      inHandsOnly: true
-    - type: UserInterface
-      interfaces:
-        enum.AgentIDCardUiKey.Key:
-          type: AgentIDCardBoundUserInterface
-    - type: NanoChatCard
-      listNumber: false
-
-- type: entity
-  parent: [ IDCardStandard, BaseSyndicateContraband ]
-  id: SyndicateAgentIDCard
-  name: syndicate agent ID card
-  components:
-    - type: Sprite
-      sprite: _Starlight/Objects/Misc/id_cards.rsi
-      layers:
-        - state: syndi
-        - sprite: *starlight-icon-rsi
-          offset: *icon-offset
-          state: SyndicateAgent
     - type: Access
       tags:
         - Maintenance
@@ -1063,7 +1035,7 @@
     listNumber: false
 
 - type: entity
-  parent: [ IDCardStandard, BaseCargoContraband ]
+  parent: [ IDCardStandard, BaseSalvageContraband ]
   id: SalvageMedicIDCard
   name: salvage medic ID card
   components:

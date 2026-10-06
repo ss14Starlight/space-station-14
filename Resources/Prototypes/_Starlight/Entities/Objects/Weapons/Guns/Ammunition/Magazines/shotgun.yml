@@ -16,8 +16,6 @@
       tags:
       - ShellShotgunToz
     capacity: 2
-    soundRack:
-      path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
   - type: Item
     size: Small
     inhandVisuals:

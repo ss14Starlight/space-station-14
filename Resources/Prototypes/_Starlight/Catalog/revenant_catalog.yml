@@ -10,3 +10,16 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: RevenantMisfire
+  name: revenant-misfire-name
+  description: revenant-misfire-desc
+  productAction: ActionRevenantMisfire
+  cost:
+    StolenEssence: 20
+  categories:
+  - RevenantAbilities
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

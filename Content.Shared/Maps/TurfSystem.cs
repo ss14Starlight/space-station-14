@@ -123,7 +123,8 @@ public sealed partial class TurfSystem : EntitySystem
         CollisionGroup mask,
         MapGridComponent? grid = null,
         TransformComponent? gridXform = null,
-        float minIntersectionArea = 0.1f)
+        float minIntersectionArea = 0.1f,
+        Predicate<EntityUid>? ignored = null) // Starlight
     {
         if (!Resolve(gridUid, ref grid, ref gridXform))
             return false;
@@ -145,6 +146,9 @@ public sealed partial class TurfSystem : EntitySystem
         foreach (var ent in _entityLookup.GetEntitiesIntersecting(gridUid, worldBox, LookupFlags.Dynamic | LookupFlags.Static))
         {
             if (!fixtureQuery.TryGetComponent(ent, out var fixtures))
+                continue;
+
+            if (ignored != null && ignored(ent)) // Starlight
                 continue;
 
             // get grid local coordinates

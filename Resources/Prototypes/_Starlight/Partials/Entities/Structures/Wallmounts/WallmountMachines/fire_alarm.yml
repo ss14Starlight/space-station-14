@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: FireAlarm
+  components:
+  - type: Setup
+  - type: UserInterface
+    interfaces:
+      enum.SetupUiKey.Key:
+        type: SetupMenuBoundUi

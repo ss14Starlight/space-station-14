@@ -1,0 +1,29 @@
+- files: ["ambieng1.ogg", "ambiexp.ogg", "ambigen2.ogg", "ambimaint.ogg", "ambimalf.ogg", "ambispace.ogg", "ambispace3.ogg", "signal.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Paradise Station"
+  source: "https://github.com/ParadiseSS13/Paradise/tree/master/sound/ambience"
+
+- files: ["ambidet1.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "\"Fast Talking\" by Kevin MacLeod (incompetech.com), cropped for /tg/station; taken from Paradise Station"
+  source: "https://github.com/tgstation/tgstation/blob/master/sound/ambience/security/attribution.txt"
+
+- files: ["ambidet2.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "\"Night on the Docks, Piano\" by Kevin MacLeod (incompetech.com), cropped with a fade-in for /tg/station; taken from Paradise Station"
+  source: "https://github.com/tgstation/tgstation/blob/master/sound/ambience/security/attribution.txt"
+
+- files: ["ambimaint8.ogg", "ambimaint9.ogg", "ambimaint10.ogg", "ambimaint11.ogg", "ambimaint12.ogg", "ambiviro.ogg", "ambiviro1.ogg", "ambiviro2.ogg", "ambispace5.ogg", "ambispace6.ogg", "ambifailure.ogg", "ambivapor1.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from /tg/station"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/ambience"
+
+- files: ["ambimaint6.ogg", "ambimaint7.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Created by Capsandi for /tg/station"
+  source: "https://github.com/tgstation/tgstation/blob/master/sound/ambience/maintenance/attribution.txt"
+
+- files: ["ambispace4.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "\"Sipping Bird\" by Capsandi, for /tg/station"
+  source: "https://github.com/tgstation/tgstation/blob/master/sound/ambience/maintenance/attribution.txt"

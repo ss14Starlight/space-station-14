@@ -56,7 +56,7 @@
     effectsTable: !type:GroupSelector
       children:
       - !type:NestedSelector
-        tableId: XenoArtifactEffectsDefaultTable
+        tableId: SLXenoArtifactEffectsDefaultTable # Starlight, new table with Funky's effects + ours
         weight: 54
       - !type:NestedSelector
         tableId: XenoArtifactEffectsHandheldOnlyTable

@@ -1,6 +1,4 @@
 nulllink-hub-header = Servers
-nulllink-hub-hide = Hide
-nulllink-hub-show = Show
 
 nulllink-hub-no-servers = No servers online
 nulllink-hub-status-unknown = Unknown
@@ -10,7 +8,6 @@ nulllink-hub-connected = Connected
 
 nulllink-hub-online = {$online} online
 
-nulllink-hub-bunker = BUNKER
 nulllink-hub-bunker-age-any = any account age
 nulllink-hub-bunker-age = {$minutes} min account age
 nulllink-hub-bunker-playtime-any = any playtime

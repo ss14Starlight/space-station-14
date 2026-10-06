@@ -8,8 +8,6 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs.Components;
-using Content.Shared.Silicons.Laws;
-using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
@@ -24,7 +22,6 @@ public sealed partial class StationAIShuntSystem : EntitySystem
     [Dependency] private SharedMindSystem _mindSystem = default!;
     [Dependency] private SharedActionsSystem _actionSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private SharedSiliconLawSystem _siliconLaw = default!;
     [Dependency] private FollowerSystem _follower = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private INetManager _net = default!;
@@ -97,6 +94,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
             }
             brainShunt.Return = uid;
             brainShunt.ReturnAction = _actionSystem.AddAction(brain.Value, shuntable.UnshuntAction.Id);
+            Dirty(brain.Value, brainShunt);
         }
         if (shunt.Return != null)
         {
@@ -110,15 +108,6 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         shuntable.Inhabited = target;
         shuntable.LastShunt = target;
         Dirty(uid, shuntable);
-
-        if (TryComp<SiliconLawProviderComponent>(uid, out var coreLaws))
-        {
-            var getLaws = new GetSiliconLawsEvent(target);
-            RaiseLocalEvent(target, ref getLaws);
-            shunt.OldLawset = getLaws.Laws;
-
-            _siliconLaw.SetLawset(target, coreLaws.Lawset);
-        }
 
         EnsureComp<UncryoableComponent>(uid);
 
@@ -169,6 +158,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
             _actionSystem.RemoveAction(new Entity<ActionComponent?>(brainActionUid.Value, brainAct));
             brainShunt.Return = null; //cause we are returning now
             brainShunt.ReturnAction = null;
+            Dirty(brain.Value, brainShunt);
         }
 
         _actionSystem.RemoveAction(new Entity<ActionComponent?>(shuntActionUid.Value, act));
@@ -194,10 +184,9 @@ public sealed partial class StationAIShuntSystem : EntitySystem
             }
         }
 
-        _siliconLaw.SetLawset(uid, shunt.OldLawset);
-
         shunt.ReturnAction = null;
         shunt.Return = null;
+        Dirty(uid, shunt);
         shuntable.Inhabited = null;
     }
     #endregion

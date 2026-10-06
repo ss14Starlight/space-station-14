@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Actions.Events;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 using Content.Shared.Actions.Events;
@@ -37,6 +38,7 @@ public sealed partial class SharedGargantuaSystem : EntitySystem
         SubscribeLocalEvent<GargantuaComponent, PullAttemptEvent>(OnOverwhelmingForcePullAttempt);
         SubscribeLocalEvent<GargantuaComponent, DisarmAttemptEvent>(OnOverwhelmingForceDisarmAttempt);
         SubscribeLocalEvent<GargantuaComponent, AttemptMobTargetCollideEvent>(OnOverwhelmingForceMobPushAttempt);
+        SubscribeLocalEvent<GargantuaComponent, LatchAttemptEvent>(OnOverwhelmingForceLatchAttempt);
         SubscribeLocalEvent<GargantuaComponent, UserBeforePryEvent>(OnOverwhelmingForceBeforePry);
 
         SubscribeLocalEvent<ActiveBloodSwellComponent, GetMeleeDamageEvent>(OnBloodSwellMeleeDamage);
@@ -226,6 +228,18 @@ public sealed partial class SharedGargantuaSystem : EntitySystem
             return;
 
         args.Cancelled = true;
+    }
+
+    /// <summary>
+    /// Overwhelming Force makes the vampire impossible to latch onto, same as pulls and shoves.
+    /// </summary>
+    private void OnOverwhelmingForceLatchAttempt(EntityUid uid, GargantuaComponent component, ref LatchAttemptEvent args)
+    {
+        if (!component.OverwhelmingForceActive)
+            return;
+
+        args.Cancelled = true;
+        _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-latch-blocked"), uid, args.Latcher, PopupType.MediumCaution);
     }
 
     private void OnOverwhelmingForceBeforePry(EntityUid uid, GargantuaComponent component, ref UserBeforePryEvent args)

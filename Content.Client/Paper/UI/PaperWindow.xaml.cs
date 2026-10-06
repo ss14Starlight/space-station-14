@@ -594,9 +594,9 @@ namespace Content.Client.Paper.UI
             var vbox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(10) };
             var hbox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal };
 
-            var blankBtn = new Button { Text = "☐ Blank", MinWidth = 80 };
-            var checkBtn = new Button { Text = "✔ Check", MinWidth = 80 };
-            var crossBtn = new Button { Text = "✖ Cross", MinWidth = 80 };
+            var blankBtn = new Button { Text = Loc.GetString("paper-check-blank-button"), MinWidth = 80 };
+            var checkBtn = new Button { Text = Loc.GetString("paper-check-check-button"), MinWidth = 80 };
+            var crossBtn = new Button { Text = Loc.GetString("paper-check-cross-button"), MinWidth = 80 };
 
             blankBtn.OnPressed += _ => {
                 var newText = ReplaceNthCheckTag(_currentRawText, checkIndex, "☐");

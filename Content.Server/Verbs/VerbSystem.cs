@@ -35,7 +35,7 @@ namespace Content.Server.Verbs
                 return;
             }
 
-            if (player.AttachedEntity is not {} attached)
+            if (player.AttachedEntity is not { } attached)
             {
                 Log.Warning($"{nameof(HandleVerbRequest)} called by player {player} with no attached entity.");
                 return;
@@ -109,12 +109,12 @@ namespace Content.Server.Verbs
             if (holding == null)
             {
                 _adminLogger.Add(LogType.Verb, verb.Impact,
-                        $"{ToPrettyString(user):user} {executionText} the [{verbText:verb}] verb targeting {ToPrettyString(target):target}");
+                        $"{ToPrettyString(user):user} {executionText} the [{verbText:verb}\\] verb targeting {ToPrettyString(target):target}"); //Starlight: escape brackets so admin logs work while remaining pretty
             }
             else
             {
                 _adminLogger.Add(LogType.Verb, verb.Impact,
-                       $"{ToPrettyString(user):user} {executionText} the [{verbText:verb}] verb targeting {ToPrettyString(target):target} while holding {ToPrettyString(holding.Value):held}");
+                        $"{ToPrettyString(user):user} {executionText} the [{verbText:verb}\\] verb targeting {ToPrettyString(target):target} while holding {ToPrettyString(holding.Value):held}"); //Starlight: escape brackets so admin logs work while remaining pretty
             }
         }
     }

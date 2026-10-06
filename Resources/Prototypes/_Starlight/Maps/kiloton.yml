@@ -66,6 +66,7 @@
             CargoTechnician: [ 6, 6 ]
             MailTech: [ 1, 2 ]
             #civilian
+            AssistantManager: [ 2, 2 ]
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]

@@ -1,10 +1,10 @@
+using Content.Server._Starlight.Power;
+using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.NodeContainer;
+using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-// Starlight Start: CableDockingSystem
 using Robust.Shared.Utility;
-using Content.Server._Starlight.Power;
-// Starlight End: CableDockingSystem
 
 namespace Content.Server.Power.Nodes
 {
@@ -29,6 +29,7 @@ namespace Content.Server.Power.Nodes
 
         public HashSet<CableNode>? GetAlwaysReachable() => _alwaysReachable;
         // Starlight End: CableDockingSystem
+
         public override IEnumerable<Node> GetReachableNodes(
             Entity<TransformComponent> xform,
             EntityQuery<NodeContainerComponent> nodeQuery,

@@ -1,0 +1,26 @@
+- type: constructionGraph
+  id: GrappleGunImprovised
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: ImprovisedGrappleGun
+      steps:
+      - tag: ModularBarrel
+        icon:
+          sprite: _Starlight/Objects/Misc/modular_barrel.rsi
+          state: icon
+        name: crafting-menu-name-MB
+      - tag: ModularReceiver
+        icon:
+          sprite: Objects/Misc/modular_receiver.rsi
+          state: icon
+        name: construction-graph-tag-modular-receiver
+      - material: Cloth
+        amount: 5
+        doAfter: 10
+      - material: Steel
+        amount: 5
+        doAfter: 10
+  - node: ImprovisedGrappleGun
+    entity: WeaponGrapplingHook

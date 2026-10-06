@@ -28,16 +28,6 @@
   - ClothingEyesGlassesChemical
 
 - type: latheRecipePack
-  id: SurgeryStatic
-  recipes:
-  - Scalpel
-  - Retractor
-  - Cautery
-  - Drill
-  - Saw
-  - Hemostat
-
-- type: latheRecipePack
   id: MedicalStatic
   recipes:
   - Implanter
@@ -86,6 +76,7 @@
   - ChemMasterMachineCircuitboard
   - CondenserMachineCircuitBoard
   - HotplateMachineCircuitboard
+  - ChemApprenticeMachineCircuitboard #SL
 
 ## Dynamic
 

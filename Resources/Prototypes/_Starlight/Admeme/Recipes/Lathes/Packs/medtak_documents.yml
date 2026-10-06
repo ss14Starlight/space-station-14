@@ -1,0 +1,12 @@
+#region Pack
+- type: latheRecipePack
+  id: MedTakDocs
+  recipes:
+  # Communications
+  - PrintedDocumentMedTakCorrespondenceRecipe
+  # Statements
+  - PrintedDocumentMedTakContractRecipe
+  - PrintedDocumentMedTakInvoiceRecipe
+  - PrintedDocumentMedTakBlank
+  # Reports
+  - PrintedDocumentMedTakReportRecipe

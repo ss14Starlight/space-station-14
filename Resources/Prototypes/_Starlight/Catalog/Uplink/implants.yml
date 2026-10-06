@@ -2,7 +2,7 @@
   id: UplinkNukeOpMagillitisSerumImplant
   name: uplink-magillitis-serum-implanter-name
   description: uplink-magillitis-serum-implanter-desc
-  icon: { sprite: _Starlight/Actions/implants.rsi, state: gorilla_rampage }
+  icon: { sprite: _Starlight/Interface/Actions/actions_implants.rsi, state: gorilla_rampage }
   productEntity: MagillitisSerumImplanter
   discountCategory: usualDiscounts
   discountDownTo:

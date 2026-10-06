@@ -147,3 +147,7 @@ stack-abyssium-bar = {$amount ->
     [1] abyssium bar
     *[other] abyssium bars
 }
+stack-sandbag = {$amount ->
+    [1] sandbag
+    *[other] sandbags
+}

@@ -143,11 +143,12 @@
     - CameraBug
 
 #Syndicate Operative Outfit - Basic
-- type: startingGear
-  id: SyndicateOperativeGearBasic
-  parent: SyndicateOperativeGearExtremelyBasic
-  equipment:
-    ears: ClothingHeadsetAltSyndicate
-    gloves: ClothingHandsGlovesCombat
-    pocket1: BaseUplinkRadio40TC
-    id: SyndiPDA
+# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
+# - type: startingGear
+#   id: SyndicateOperativeGearBasic
+#   parent: SyndicateOperativeGearExtremelyBasic
+#   equipment:
+#     ears: ClothingHeadsetAltSyndicate
+#     gloves: ClothingHandsGlovesCombat
+#     pocket1: BaseUplinkRadio40TC
+#     id: SyndiPDA

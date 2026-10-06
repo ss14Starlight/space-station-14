@@ -11,7 +11,7 @@
       sprite: _Starlight/Objects/Specific/Hydroponics/organtree.rsi
       state: produce
     - type: Produce
-      seedId: organTree
+      plantId: OrganTreePlants
     - type: ToolRefinable
       refineResult:
         - id: EffectOrganTree
@@ -60,7 +60,7 @@
     - type: Item
       heldPrefix: produce
     - type: Produce
-      seedId: evilApple
+      plantId: EvilApplePlants
     - type: Tag
       tags:
         - Fruit
@@ -85,7 +85,7 @@
     - type: Item
       heldPrefix: produce
     - type: Produce
-      seedId: resinfera
+      plantId: ResinferaPlants
     - type: Tag
       tags:
         - Fruit
@@ -115,7 +115,7 @@
     - type: Item
       heldPrefix: produce
     - type: Produce
-      seedId: mint
+      plantId: MintPlants
     - type: Tag
       tags:
         - Vegetable
@@ -129,7 +129,7 @@
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/spearmint.rsi
   - type: Produce
-    seedId: spearMint
+    plantId: SpearMintPlants
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
@@ -160,7 +160,7 @@
     - type: Item
       heldPrefix: produce
     - type: Produce
-      seedId: cinnamon
+      plantId: CinnamonPlants
     - type: Tag
       tags:
         - Vegetable
@@ -202,4 +202,4 @@
     - type: Item
       heldPrefix: unlit
     - type: Produce
-      seedId: cinnaflare
+      plantId: CinnaflarePlants

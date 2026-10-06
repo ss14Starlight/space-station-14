@@ -13,9 +13,22 @@ public sealed partial class TempAffectingAnomalySystem : EntitySystem
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private TransformSystem _xform = default!;
 
+    #region Starlight
+    private float _updateAccumulator;
+    private const float UpdateInterval = 0.25f;
+    #endregion
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        #region Starlight
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < UpdateInterval)
+            return;
+
+        _updateAccumulator -= UpdateInterval;
+        #endregion
 
         var query = EntityQueryEnumerator<TempAffectingAnomalyComponent, AnomalyComponent, TransformComponent>();
         while (query.MoveNext(out var ent, out var comp, out var anom, out var xform))
@@ -27,7 +40,7 @@ public sealed partial class TempAffectingAnomalySystem : EntitySystem
 
             if (mixture is { })
             {
-                mixture.Temperature += comp.TempChangePerSecond * anom.Severity * frameTime;
+                mixture.Temperature += comp.TempChangePerSecond * anom.Severity * UpdateInterval; // Starlight-edit: was frameTime
             }
 
             if (grid != null && anom.Severity > comp.AnomalyHotSpotThreshold)

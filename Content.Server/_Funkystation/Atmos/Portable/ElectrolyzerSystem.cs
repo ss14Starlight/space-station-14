@@ -3,9 +3,9 @@ using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Atmos.Piping.Components;
 using Content.Server.Popups;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared._Funkystation.Atmos.Visuals;
 using Content.Shared.Interaction;
 using Content.Shared.Containers.ItemSlots;
@@ -200,7 +200,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         if (initH2O > 0.05f)
         {
             var temperatureEfficiency = Math.Min(mixture.Temperature / 1123.15f, 1f); ///Starlight: For some reason combustibles have variable oxy consumption? This keeps it balanced.
-            var h2oMax = (2f * charge / (electrolyzer.Efficiency * fuelMultiplier)) / (Atmospherics.FireHydrogenEnergyReleased / heatScale); ///Starlight: Current joules divided by the joules required to electrolyze.
+            var h2oMax = 2f * charge / (electrolyzer.Efficiency * fuelMultiplier) / (Atmospherics.FireHydrogenEnergyReleased / heatScale); ///Starlight: Current joules divided by the joules required to electrolyze.
             var h2oRate = Math.Min(Math.Min(rate, h2oMax), initH2O / 2f); ///Starlight: Check if rate is bigger than actual capacity, than if those are bigger than ingredients available.
 
             var h2oRemoved = h2oRate * 2f;
@@ -211,7 +211,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             mixture.AdjustMoles(Gas.Oxygen, oxyProduced);
             mixture.AdjustMoles(Gas.Hydrogen, hydrogenProduced);
 
-            H2OLoad = (int) ((Atmospherics.FireHydrogenEnergyReleased / heatScale) * hydrogenProduced); ///Starlight: Load is determined by the energy made by re-igniting the hydrogen. Efficiency of device prevents free power.
+            H2OLoad = (int) (Atmospherics.FireHydrogenEnergyReleased / heatScale * hydrogenProduced); ///Starlight: Load is determined by the energy made by re-igniting the hydrogen. Efficiency of device prevents free power.
         }
 
         if (initHyperNob > 0.01f && temperature < 150f)
@@ -235,7 +235,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
             var newHeatCapacity = _atmosphereSystem.GetHeatCapacity(mixture, true);
             if (newHeatCapacity > Atmospherics.MinimumHeatCapacity)
-                mixture.Temperature = Math.Max((mixture.Temperature * oldHeatCapacity + energyReleased) / newHeatCapacity, Atmospherics.TCMB);
+                mixture.Temperature = Math.Max(((mixture.Temperature * oldHeatCapacity) + energyReleased) / newHeatCapacity, Atmospherics.TCMB);
 
             BZLoad = (int) (BZRate); ///Starlight: Low energy consumption since overall its actually making more energy in thermal power.
         }

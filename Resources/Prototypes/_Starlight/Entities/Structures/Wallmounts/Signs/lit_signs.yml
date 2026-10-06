@@ -2,7 +2,7 @@
   id: BarSignLights
   parent: [ BaseWallmountGlass, BaseWallmountMachine, Poweredlight ]
   name: bar sign
-  suffix: light
+  suffix: On
   components:
   - type: AmbientSound #SL
     volume: -7 #SL
@@ -61,10 +61,19 @@
       burned: base
 
 - type: entity
+  id: BarSignLightsOff
+  parent: [ BarSignLights ]
+  suffix: Off
+  components:
+  - type: PoweredLight
+    on: false
+
+# 'clinic' sign
+- type: entity
   id: ClinicSignLights
   parent: [ BarSignLights ]
   name: clinic sign
-  suffix: light
+  suffix: On
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/clinic.rsi
@@ -78,10 +87,19 @@
     state: base
 
 - type: entity
+  id: ClinicSignLightsOff
+  parent: [ ClinicSignLights ]
+  suffix: Off
+  components:
+  - type: PoweredLight
+    on: false
+
+# 'on air' sign
+- type: entity
   id: OnAirSignLights
   parent: [ BarSignLights ]
   name: on air sign
-  suffix: light
+  suffix: On
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/on_air.rsi
@@ -95,10 +113,19 @@
     state: base
 
 - type: entity
+  id: OnAirSignLightsOff
+  parent: [ OnAirSignLights ]
+  suffix: Off
+  components:
+  - type: PoweredLight
+    on: false
+
+# 'open' sign
+- type: entity
   id: OpenSignLights
   parent: [ BarSignLights ]
   name: open sign
-  suffix: light
+  suffix: On
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/open.rsi
@@ -112,10 +139,19 @@
     state: base
 
 - type: entity
+  id: OpenSignLightsOff
+  parent: [ OpenSignLights ]
+  suffix: Off
+  components:
+  - type: PoweredLight
+    on: false
+
+# 'open' sign (bar version)
+- type: entity
   id: OpenBarSignLights
   parent: [ BarSignLights ]
   name: open bar sign
-  suffix: light
+  suffix: On
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/open_bar.rsi
@@ -127,3 +163,11 @@
       state: glow
       shader: unshaded
     state: base
+
+- type: entity
+  id: OpenBarSignLightsOff
+  parent: [ OpenBarSignLights ]
+  suffix: Off
+  components:
+  - type: PoweredLight
+    on: false

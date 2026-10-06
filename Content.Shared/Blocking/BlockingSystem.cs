@@ -17,10 +17,8 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Utility;
-
-#region Starlight
 using Content.Shared.Item.ItemToggle.Components;
-#endregion
+using Content.Shared._Starlight.Weapons.Ranged.Systems;
 
 namespace Content.Shared.Blocking;
 
@@ -36,6 +34,7 @@ public sealed partial class BlockingSystem : EntitySystem
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private ExamineSystemShared _examine = default!;
     [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private GunShieldBraceSystem _shieldBrace = default!; // Starlight
 
     public override void Initialize()
     {
@@ -66,6 +65,8 @@ public sealed partial class BlockingSystem : EntitySystem
         component.User = args.User;
         Dirty(uid, component);
 
+        _shieldBrace.RefreshHeldGuns(args.User); // Starlight
+
         //To make sure that this bodytype doesn't get set as anything but the original
         if (TryComp<PhysicsComponent>(args.User, out var physicsComponent) && physicsComponent.BodyType != BodyType.Static && !HasComp<BlockingUserComponent>(args.User))
         {
@@ -78,6 +79,8 @@ public sealed partial class BlockingSystem : EntitySystem
     private void OnUnequip(EntityUid uid, BlockingComponent component, GotUnequippedHandEvent args)
     {
         StopBlockingHelper(uid, component, args.User);
+
+        _shieldBrace.RefreshHeldGuns(args.User); // Starlight
     }
 
     private void OnDrop(EntityUid uid, BlockingComponent component, DroppedEvent args)

@@ -36,6 +36,9 @@ trait-frontal-lisp-desc = You thpeak with a lithp.
 trait-socialanxiety-name = Stutter
 trait-socialanxiety-desc = You speak with a stutter.
 
+trait-southern-name = Southern drawl
+trait-southern-desc = You have a different way of speakin'.
+
 trait-snoring-name = Snoring
 trait-snoring-desc = You will snore while sleeping.
 

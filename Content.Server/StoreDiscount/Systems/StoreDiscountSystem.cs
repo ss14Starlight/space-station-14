@@ -63,6 +63,10 @@ public sealed partial class StoreDiscountSystem : EntitySystem
         }
 
         var discountComponent = EnsureComp<StoreDiscountComponent>(ev.Store);
+
+        if (discountComponent.Discounts.Count > 0) // Starlight prevents multiple rolls via admin antag, which lead to an servercrash.
+            return;
+
         var discounts = InitializeDiscounts(ev.Listings);
         ApplyDiscounts(ev.Listings, discounts);
         discountComponent.Discounts = discounts;

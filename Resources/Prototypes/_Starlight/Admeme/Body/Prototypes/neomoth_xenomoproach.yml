@@ -1,0 +1,16 @@
+- type: body
+  id: Xenomoproach
+  name: "xenomoproach"
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+      connections:
+        - righthand
+        - lefthand
+      organs:
+        stomach: OrganMothStomach
+    lefthand:
+      part: LeftHandAnimal
+    righthand:
+      part: RightHandAnimal

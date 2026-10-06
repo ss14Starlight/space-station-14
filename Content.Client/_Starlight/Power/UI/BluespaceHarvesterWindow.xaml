@@ -27,11 +27,11 @@
                 </BoxContainer>
 
                 <BoxContainer Orientation="Horizontal" SeparationOverride="4" Margin="0 4 0 4">
-                    <Button Name="DesiredMinButton" Text="MIN" StyleClasses="OpenRight" MinWidth="42" />
+                    <Button Name="DesiredMinButton" Text="{Loc 'bluespace-harvester-min'}" StyleClasses="OpenRight" MinWidth="42" />
                     <Button Name="DesiredDecrementButton" Text="-" StyleClasses="OpenBoth" MinWidth="32" />
                     <Slider Name="DesiredLevelSlider" HorizontalExpand="True" Margin="4 0 4 0" MouseFilter="Ignore" />
                     <Button Name="DesiredIncrementButton" Text="+" StyleClasses="OpenBoth" MinWidth="32" />
-                    <Button Name="DesiredMaxButton" Text="MAX" StyleClasses="OpenLeft" MinWidth="42" />
+                    <Button Name="DesiredMaxButton" Text="{Loc 'bluespace-harvester-max'}" StyleClasses="OpenLeft" MinWidth="42" />
                 </BoxContainer>
 
                 <cc:HSeparator Color="#3a3a5a" Margin="0 2 0 2"/>

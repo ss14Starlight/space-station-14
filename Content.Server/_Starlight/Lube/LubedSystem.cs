@@ -1,46 +1,26 @@
+﻿using Content.Shared._Starlight.Lube;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Item;
 using Content.Shared.Lube;
-using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Throwing;
 using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Lube;
 
-public sealed partial class LubedSystem : EntitySystem
+public sealed partial class LubedSystem : SharedLubedSystem
 {
     [Dependency] private ThrowingSystem _throwing = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private NameModifierSystem _nameMod = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<LubedComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<LubedComponent, BeforeGettingEquippedHandEvent>(OnHandPickUp);
-        SubscribeLocalEvent<LubedComponent, RefreshNameModifiersEvent>(OnRefreshNameModifiers);
-    }
-
-    // Starlight Start
-    /// <summary>
-    /// Removes the lubed condition from the target.
-    /// </summary>
-    public void RemoveLubed(EntityUid uid)
-    {
-        if (RemComp<LubedComponent>(uid))
-            _nameMod.RefreshNameModifiers(uid);
-    }
-    // Starlight End
-
-    private void OnInit(EntityUid uid, LubedComponent component, ComponentInit args)
-    {
-        _nameMod.RefreshNameModifiers(uid);
     }
 
     /// <remarks>
@@ -75,10 +55,5 @@ public sealed partial class LubedSystem : EntitySystem
             args.User,
             args.User,
             PopupType.MediumCaution);
-    }
-
-    private void OnRefreshNameModifiers(Entity<LubedComponent> entity, ref RefreshNameModifiersEvent args)
-    {
-        args.AddModifier("lubed-name-prefix");
     }
 }

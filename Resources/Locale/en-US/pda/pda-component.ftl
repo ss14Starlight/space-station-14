@@ -1,4 +1,3 @@
-
 ### UI
 
 # For the PDA screen
@@ -35,10 +34,6 @@ comp-pda-ui-station-alert-level-instructions = Instructions: [color=white]{ $ins
 comp-pda-ui-start-time = Shift duration: [color=white]{ $time }[/color]
 
 comp-pda-ui-station-time = Date and Time: [color=white]{ $time }, { $date }[/color]
-
-comp-pda-ui-eject-id-button = Eject ID
-
-comp-pda-ui-eject-pen-button = Eject Pen
 
 comp-pda-ui-ringtone-button = Ringtone
 

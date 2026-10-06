@@ -298,6 +298,11 @@ namespace Content.Client.IconSmoothing
                 case IconSmoothingMode.Diagonal:
                     CalculateNewSpriteDiagonal(gridEntity, smooth, spriteEnt, xform, smoothQuery);
                     break;
+                // Starlight-start
+                case IconSmoothingMode.Linear:
+                    CalculateNewSpriteLinear(gridEntity, smooth, spriteEnt, xform, smoothQuery);
+                    break;
+                // Starlight-end
                 default:
                     throw new ArgumentOutOfRangeException();
             }

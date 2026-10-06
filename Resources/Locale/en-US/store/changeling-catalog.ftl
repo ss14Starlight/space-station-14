@@ -1,4 +1,3 @@
-
 # combat
 
 evolutionmenu-combat-armblade-name = Arm Blade
@@ -74,12 +73,6 @@ evolutionmenu-sting-mute-desc =
     May be used while under the effects of Lesser Form.
     Costs 35 chemicals.
 
-evolutionmenu-sting-transform-name = Transformation Sting
-evolutionmenu-sting-transform-desc =
-    Inject some of your genome into an organic target, forcing their body to shapeshift into whoever you've chosen using the Cycle DNA ability.
-    May be used while under the effects of Lesser Form.
-    Costs 75 chemicals.
-
 evolutionmenu-sting-armblade-name = Fake Arm Blade Sting
 evolutionmenu-sting-armblade-desc =
     Inject some of your genome into an organic target, forcing their arm to shapeshift into a dull armblade.
@@ -117,8 +110,10 @@ evolutionmenu-utility-stims-desc =
     Costs 20 chemicals.
 
 evolutionmenu-utility-fleshmend-name = Fleshmend
+# Starlight edit: Added warning about requiring two absorbtions
 evolutionmenu-utility-fleshmend-desc =
     Rapidly heal yourself of all bruises and burns.
+    WARNING: Requires you to absorb at least 2 organics to use the ability.
     Costs 35 chemicals.
 
 # Starlight - monkey form is permanent (until transform is fixed, at least)

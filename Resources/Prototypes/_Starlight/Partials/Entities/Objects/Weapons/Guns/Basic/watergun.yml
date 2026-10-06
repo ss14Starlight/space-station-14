@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  abstract: true
+  parent: [SolutionGun, SolutionSmall, BaseItem] # 12 shots
+  id: WeaponWaterGunBase
+  components:
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 30

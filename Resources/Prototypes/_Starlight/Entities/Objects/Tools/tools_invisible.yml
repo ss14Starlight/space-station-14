@@ -4,9 +4,6 @@
   id: WirecuttersInvisible
   description: The perfect piece of invisible equipment to snip those nasty wires of that invisible door! Insulation not included.
   components:
-  - type: Tag
-    tags:
-    - PlantSampleTaker
   - type: Sprite
     sprite: /Textures/_Starlight/Objects/Tools/Invisible/wirecutters_invisible.rsi
     state: cutters
@@ -16,6 +13,7 @@
       types:
         Piercing: 0
     attackRate: 2
+  - type: BotanySampleTaker
   - type: Tool
     qualities:
     - Cutting

@@ -1,0 +1,7 @@
+- type: !PartialOnly startingGear
+  id: MobMonkeyGear
+  equipment:
+    back: ClothingBackpackSatchel
+  storage:
+    back:
+    - BoxSurvival

@@ -25,9 +25,11 @@ public sealed partial class SpreaderSystem : EntitySystem
     [Dependency] private TagSystem _tag = default!;
     [Dependency] private TurfSystem _turf = default!;
 
+    #region Starlight
     [Dependency] private EntityQuery<EdgeSpreaderComponent> _edgeSpreaderQuery = default!;
     [Dependency] private EntityQuery<AirtightComponent> _airtightQuery = default!;
     [Dependency] private EntityQuery<DockingComponent> _dockingQuery = default!;
+    #endregion
 
     /// <summary>
     /// Cached maximum number of updates per spreader prototype. This is applied per-grid.
@@ -39,8 +41,6 @@ public sealed partial class SpreaderSystem : EntitySystem
     /// </summary>
     // TODO PERFORMANCE Assign each prototype to an index and convert dictionary to array
     private readonly Dictionary<EntityUid, Dictionary<string, int>> _gridUpdates = [];
-
-
 
     public const float SpreadCooldownSeconds = 1;
 
@@ -123,7 +123,7 @@ public sealed partial class SpreaderSystem : EntitySystem
         foreach (var (uid, comp) in spreaders)
         {
             // Get xform first, as entity may have been deleted due to interactions triggered by other spreaders.
-            if (!TryComp(uid, out TransformComponent? xform))
+            if (!TryComp(uid, out TransformComponent? xform)) // Starlight
                 continue;
 
             if (xform.GridUid == null)
@@ -135,7 +135,7 @@ public sealed partial class SpreaderSystem : EntitySystem
             if (!_gridUpdates.TryGetValue(xform.GridUid.Value, out var groupUpdates))
                 continue;
 
-            if (!_edgeSpreaderQuery.TryGetComponent(uid, out var spreader))
+            if (!_edgeSpreaderQuery.TryGetComponent(uid, out var spreader)) // Starlight
             {
                 RemComp(uid, comp);
                 continue;
@@ -193,28 +193,22 @@ public sealed partial class SpreaderSystem : EntitySystem
         var neighborTiles = new ValueList<(EntityUid entity, MapGridComponent grid, Vector2i Indices, AtmosDirection OtherDir, AtmosDirection OurDir)>();
 
         // Check if anything on our own tile blocking that direction.
-        var ourEnts = _map.GetAnchoredEntities(comp.GridUid.Value, grid, tile);
+        var ourEnts = _map.GetAnchoredEntities(comp.GridUid.Value, grid, tile); // Starlight
 
         while (ourEnts.MoveNext(out var ent))
         {
             // Spread via docks in a special-case.
-            if (_dockingQuery.TryGetComponent(ent, out var dock) &&
+            if (_dockingQuery.TryGetComponent(ent, out var dock) && // Starlight
                 dock.Docked &&
-                TryComp(ent, out TransformComponent? xform) &&
-                TryComp(dock.DockedWith, out TransformComponent? dockedXform) &&
+                TryComp(ent, out TransformComponent? xform) && // Starlight
+                TryComp(dock.DockedWith, out TransformComponent? dockedXform) && // Starlight
                 TryComp<MapGridComponent>(dockedXform.GridUid, out var dockedGrid))
             {
-                neighborTiles.Add((
-                    dockedXform.GridUid.Value, dockedGrid,
-                    _map.CoordinatesToTile(dockedXform.GridUid.Value,
-                        dockedGrid,
-                        dockedXform.Coordinates),
-                    xform.LocalRotation.ToAtmosDirection(),
-                    dockedXform.LocalRotation.ToAtmosDirection()));
+                neighborTiles.Add((dockedXform.GridUid.Value, dockedGrid, _map.CoordinatesToTile(dockedXform.GridUid.Value, dockedGrid, dockedXform.Coordinates), xform.LocalRotation.ToAtmosDirection(), dockedXform.LocalRotation.ToAtmosDirection()));
             }
 
             // If we're on a blocked tile work out which directions we can go.
-            if (!_airtightQuery.TryGetComponent(ent, out var airtight) || !airtight.AirBlocked ||
+            if (!_airtightQuery.TryGetComponent(ent, out var airtight) || !airtight.AirBlocked || // Starlight
                 _tag.HasTag(ent.Value, IgnoredTag))
             {
                 continue;
@@ -234,7 +228,7 @@ public sealed partial class SpreaderSystem : EntitySystem
         // Add the normal neighbors.
         for (var i = 0; i < 4; i++)
         {
-            var atmosDir = (AtmosDirection)(1 << i);
+            var atmosDir = (AtmosDirection) (1 << i);
             var neighborPos = tile.Offset(atmosDir);
             neighborTiles.Add((comp.GridUid.Value, grid, neighborPos, atmosDir, i.ToOppositeDir()));
         }
@@ -251,12 +245,12 @@ public sealed partial class SpreaderSystem : EntitySystem
             if (spreaderPrototype.PreventSpreadOnSpaced && _turf.IsSpace(tileRef))
                 continue;
 
-            var directionEnumerator = _map.GetAnchoredEntities(neighborEnt, neighborGrid, neighborPos);
+            var directionEnumerator = _map.GetAnchoredEntities(neighborEnt, neighborGrid, neighborPos); // Starlight
             var occupied = false;
 
             while (directionEnumerator.MoveNext(out var ent))
             {
-                if (!_airtightQuery.TryGetComponent(ent, out var airtight) || !airtight.AirBlocked || _tag.HasTag(ent.Value, IgnoredTag))
+                if (!_airtightQuery.TryGetComponent(ent, out var airtight) || !airtight.AirBlocked || _tag.HasTag(ent.Value, IgnoredTag)) // Starlight
                 {
                     continue;
                 }
@@ -272,11 +266,11 @@ public sealed partial class SpreaderSystem : EntitySystem
                 continue;
 
             var oldCount = occupiedTiles.Count;
-            directionEnumerator = _map.GetAnchoredEntities(neighborEnt, neighborGrid, neighborPos);
+            directionEnumerator = _map.GetAnchoredEntities(neighborEnt, neighborGrid, neighborPos); // Starlight
 
             while (directionEnumerator.MoveNext(out var ent))
             {
-                if (!_edgeSpreaderQuery.TryGetComponent(ent, out var spreader))
+                if (!_edgeSpreaderQuery.TryGetComponent(ent, out var spreader)) // Starlight
                     continue;
 
                 if (spreader.Id != prototype)
@@ -319,7 +313,7 @@ public sealed partial class SpreaderSystem : EntitySystem
         }
 
         // Reactivate spreaders on the same tile
-        var anchored = _map.GetAnchoredEntities(gridUid, gridComp, tile);
+        var anchored = _map.GetAnchoredEntities(gridUid, gridComp, tile); // Starlight
         while (anchored.MoveNext(out var entity))
         {
             // Don't re-activate the terminating entity
@@ -328,7 +322,7 @@ public sealed partial class SpreaderSystem : EntitySystem
             DebugTools.Assert(Transform(entity.Value).Anchored);
 
             // Activate any edge spreaders that are non-terminating
-            if (_edgeSpreaderQuery.HasComponent(entity) && !TerminatingOrDeleted(entity))
+            if (_edgeSpreaderQuery.HasComponent(entity) && !TerminatingOrDeleted(entity)) // Starlight
                 EnsureComp<ActiveEdgeSpreaderComponent>(entity.Value);
         }
 
@@ -337,14 +331,14 @@ public sealed partial class SpreaderSystem : EntitySystem
         {
             var direction = (AtmosDirection) (1 << i);
             var adjacentTile = tile.Offset(direction.ToDirection()); // Starlight-edit
-            anchored = _map.GetAnchoredEntities(gridUid, gridComp, adjacentTile);
+            anchored = _map.GetAnchoredEntities(gridUid, gridComp, adjacentTile); // Starlight
 
             while (anchored.MoveNext(out var entity))
             {
                 DebugTools.Assert(Transform(entity.Value).Anchored);
 
                 // Activate any edge spreaders that are non-terminating
-                if (_edgeSpreaderQuery.HasComponent(entity) && !TerminatingOrDeleted(entity))
+                if (_edgeSpreaderQuery.HasComponent(entity) && !TerminatingOrDeleted(entity)) // Starlight
                     EnsureComp<ActiveEdgeSpreaderComponent>(entity.Value);
             }
         }

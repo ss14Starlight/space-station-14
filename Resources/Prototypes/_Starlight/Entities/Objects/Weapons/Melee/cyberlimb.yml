@@ -74,14 +74,15 @@
     autoAttack: false
     damage:
       types:
-        Slash: 12
-        Structural: 20
+        Slash: 16
     soundHit:
       path: /Audio/Weapons/block_metal1.ogg
     soundNoDamage:
       path: /Audio/Weapons/punchmiss.ogg
     soundSwing:
       path: /Audio/Weapons/punchmiss.ogg
+  - type: Reflect
+    reflectProb: 0.15
   - type: Item
   - type: Tool
     qualities:

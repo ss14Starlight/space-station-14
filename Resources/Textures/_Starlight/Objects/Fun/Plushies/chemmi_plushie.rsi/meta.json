@@ -1,0 +1,32 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "State based copyright",
+    "size":
+    {
+        "x": 32,
+        "y": 32
+    },
+    "states":
+    [
+        {
+            "name": "icon",
+            "copyright": "Character and sprites created by Huaqas (GitHub/Discord)"
+        },
+        {
+            "name": "inhand-left",
+            "copyright": "Character and sprites created by Huaqas (GitHub/Discord)",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "copyright": "Character and sprites created by Huaqas (GitHub/Discord)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-HELMET",
+            "copyright": "Character and sprites created by Huaqas (GitHub/Discord)",
+            "directions": 4
+        }
+    ]
+}

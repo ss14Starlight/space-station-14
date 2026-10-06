@@ -106,7 +106,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
         if (user == args.Target)
         {
-            _popup.PopupEntity("You can't perform surgery on yourself!", user, user);
+            _popup.PopupEntity(Loc.GetString("surgery-self"), user, user);
             return;
         }
 

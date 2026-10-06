@@ -11,7 +11,7 @@ public sealed partial class GunBurstVarianceDefectComponent : DefectComponent
     public GunBurstVarianceDefectComponent()
     {
         Prob = 0.6f;
-        DefectLabel = "erratic trigger group";
+        DefectLabel = "defect-label-erratic-trigger-group";
     }
 
     // Minimum shots per burst (inclusive).

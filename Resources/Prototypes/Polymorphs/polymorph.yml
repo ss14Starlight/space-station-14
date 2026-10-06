@@ -46,8 +46,8 @@
     inventory: Drop
     transferName: true
     transferDamage: true
-    revertOnCrit: false
-    revertOnDeath: false
+    revertOnCrit: true # Starlight, don't get RR'd by becoming skeleton
+    revertOnDeath: true # Starlight
     polymorphSound: !type:SoundPathSpecifier
       path: /Audio/Magic/forcewall.ogg
     exitPolymorphSound: !type:SoundPathSpecifier
@@ -99,23 +99,25 @@
       path: /Audio/Magic/forcewall.ogg
 
 # this is a test for transferring some visual appearance stuff
-- type: polymorph
-  id: TestHumanMorph
-  configuration:
-    entity: MobHuman
-    transferName: true
-    transferHumanoidAppearance: true
-    inventory: Transfer
+# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
+# - type: polymorph
+#   id: TestHumanMorph
+#   configuration:
+#     entity: MobHuman
+#     transferName: true
+#     transferHumanoidAppearance: true
+#     inventory: Transfer
 
-- type: polymorph
-  id: AMIVMorph
-  configuration:
-    entity: MobMonkey
-    forced: true
-    inventory: Transfer
-    transferName: true
-    revertOnCrit: false
-    revertOnDeath: false
+# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
+# - type: polymorph
+#   id: AMIVMorph
+#   configuration:
+#     entity: MobMonkey
+#     forced: true
+#     inventory: Transfer
+#     transferName: true
+#     revertOnCrit: false
+#     revertOnDeath: false
 
 - type: polymorph
   id: BreadMorph
@@ -163,17 +165,18 @@
     revertOnDeath: true
     duration: 20
 
-- type: polymorph
-  id: ArtifactCluwne
-  configuration:
-    entity: MobCluwne
-    forced: true
-    transferName: true
-    transferHumanoidAppearance: true
-    inventory: None
-    revertOnDeath: true
-    revertOnCrit: true
-    duration: 30
+# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
+# - type: polymorph
+#   id: ArtifactCluwne
+#   configuration:
+#     entity: MobCluwne
+#     forced: true
+#     transferName: true
+#     transferHumanoidAppearance: true
+#     inventory: None
+#     revertOnDeath: true
+#     revertOnCrit: true
+#     duration: 30
 
 - type: polymorph
   id: ArtifactLizard

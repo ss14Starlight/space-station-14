@@ -190,7 +190,7 @@ namespace Content.Server.Ghost
             if (!_minds.TryGetMind(uid, out var mindId, out var mind) || mind.IsVisitingEntity)
                 return;
 
-            if (component.MustBeDead && (_mobState.IsAlive(uid) || _mobState.IsCritical(uid)))
+            if (component.MustBeDead && (!_mobState.IsDead(uid))) // Starlight edit.... it was IsAlive || IsCritical... the IsDead function is right there!! >_>
                 return;
 
             OnGhostAttempt(mindId, component.CanReturn, mind: mind);
@@ -575,7 +575,7 @@ namespace Content.Server.Ghost
                 canReturnGlobal &&
                 TryComp(playerEntity, out MobStateComponent? mobState))
             {
-                if (_mobState.IsCritical(playerEntity.Value, mobState))
+                if (_mobState.IsCritical(playerEntity.Value, mobState) || _mobState.IsSoftCritical(playerEntity.Value, mobState)) // Starlight edit softcrit
                 {
                     canReturn = true;
 
@@ -590,7 +590,7 @@ namespace Content.Server.Ghost
                         && TryComp<MobThresholdsComponent>(playerEntity, out var thresholds))
                     {
                         var playerDeadThreshold = _mobThresholdSystem.GetThresholdForState(playerEntity.Value, MobState.Dead, thresholds);
-                        dealtDamage = playerDeadThreshold - damageable.TotalDamage;
+                        dealtDamage = playerDeadThreshold - _damageable.GetTotalDamage((playerEntity.Value, damageable));
                     }
 
                     // Starlight - Start

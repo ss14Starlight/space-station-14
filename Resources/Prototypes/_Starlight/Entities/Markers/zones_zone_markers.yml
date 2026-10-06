@@ -1,0 +1,192 @@
+- type: entity
+  id: ZoneMarkerBase
+  parent: MarkerBase
+  abstract: true
+  suffix: Zone
+  components:
+  - type: ZoneMarker
+    priority: 10
+  - type: Sprite
+    sprite: _Starlight/Markers/zone.rsi
+    layers:
+    - state: zone
+
+- type: entity
+  id: ZoneMarkerHallway
+  parent: ZoneMarkerBase
+  name: zone marker (hallway)
+  components:
+  - type: ZoneMarker
+    zone: Hallway
+  - type: Sprite
+    color: "#7A7A7A"
+
+- type: entity
+  id: ZoneMarkerMaintenance
+  parent: ZoneMarkerBase
+  name: zone marker (maintenance)
+  components:
+  - type: ZoneMarker
+    zone: Maintenance
+  - type: Sprite
+    color: "#5B4A2E"
+
+- type: entity
+  id: ZoneMarkerCommand
+  parent: ZoneMarkerBase
+  name: zone marker (command)
+  components:
+  - type: ZoneMarker
+    zone: Command
+  - type: Sprite
+    color: "#3F51B5"
+
+- type: entity
+  id: ZoneMarkerSecurity
+  parent: ZoneMarkerBase
+  name: zone marker (security)
+  components:
+  - type: ZoneMarker
+    zone: Security
+  - type: Sprite
+    color: "#A33030"
+
+- type: entity
+  id: ZoneMarkerMedical
+  parent: ZoneMarkerBase
+  name: zone marker (medical)
+  components:
+  - type: ZoneMarker
+    zone: Medical
+  - type: Sprite
+    color: "#4DB6AC"
+
+- type: entity
+  id: ZoneMarkerEngineering
+  parent: ZoneMarkerBase
+  name: zone marker (engineering)
+  components:
+  - type: ZoneMarker
+    zone: Engineering
+  - type: Sprite
+    color: "#C9A227"
+
+- type: entity
+  id: ZoneMarkerScience
+  parent: ZoneMarkerBase
+  name: zone marker (science)
+  components:
+  - type: ZoneMarker
+    zone: Science
+  - type: Sprite
+    color: "#8E44AD"
+
+- type: entity
+  id: ZoneMarkerCargo
+  parent: ZoneMarkerBase
+  name: zone marker (cargo)
+  components:
+  - type: ZoneMarker
+    zone: Cargo
+  - type: Sprite
+    color: "#B07219"
+
+- type: entity
+  id: ZoneMarkerService
+  parent: ZoneMarkerBase
+  name: zone marker (service)
+  components:
+  - type: ZoneMarker
+    zone: Service
+  - type: Sprite
+    color: "#5C9E31"
+
+- type: entity
+  id: ZoneMarkerArrivals
+  parent: ZoneMarkerBase
+  name: zone marker (arrivals)
+  components:
+  - type: ZoneMarker
+    zone: Arrivals
+  - type: Sprite
+    color: "#4F7A8C"
+
+- type: entity
+  id: ZoneMarkerAtmospherics
+  parent: ZoneMarkerBase
+  name: zone marker (atmospherics)
+  components:
+  - type: ZoneMarker
+    zone: Atmospherics
+  - type: Sprite
+    color: "#B85C38"
+
+- type: entity
+  id: ZoneMarkerBar
+  parent: ZoneMarkerBase
+  name: zone marker (bar)
+  components:
+  - type: ZoneMarker
+    zone: Bar
+  - type: Sprite
+    color: "#7D4B2A"
+
+- type: entity
+  id: ZoneMarkerKitchen
+  parent: ZoneMarkerBase
+  name: zone marker (kitchen)
+  components:
+  - type: ZoneMarker
+    zone: Kitchen
+  - type: Sprite
+    color: "#C4713A"
+
+- type: entity
+  id: ZoneMarkerChapel
+  parent: ZoneMarkerBase
+  name: zone marker (chapel)
+  components:
+  - type: ZoneMarker
+    zone: Chapel
+  - type: Sprite
+    color: "#9E9E9E"
+
+- type: entity
+  id: ZoneMarkerDormitory
+  parent: ZoneMarkerBase
+  name: zone marker (dormitory)
+  components:
+  - type: ZoneMarker
+    zone: Dormitory
+  - type: Sprite
+    color: "#6D8B74"
+
+- type: entity
+  id: ZoneMarkerSolars
+  parent: ZoneMarkerBase
+  name: zone marker (solars)
+  components:
+  - type: ZoneMarker
+    zone: Solars
+  - type: Sprite
+    color: "#2E4A62"
+
+- type: entity
+  id: ZoneMarkerDetective
+  parent: ZoneMarkerBase
+  name: zone marker (detective)
+  components:
+  - type: ZoneMarker
+    zone: Detective
+  - type: Sprite
+    color: "#6B5B45"
+
+- type: entity
+  id: ZoneMarkerVirology
+  parent: ZoneMarkerBase
+  name: zone marker (virology)
+  components:
+  - type: ZoneMarker
+    zone: Virology
+  - type: Sprite
+    color: "#7CB342"

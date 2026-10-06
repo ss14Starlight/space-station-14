@@ -28,7 +28,6 @@
     - type: WeaponArcVisuals
       fadeOut: false
 
-
 # Uses TimedDespawn instead of EffectVisuals because auto animation is easier but doesn't raise an animation complete event.
 
 - type: entity
@@ -46,7 +45,6 @@
   components:
     - type: WeaponArcVisuals
       animation: Slash
-
 
 - type: entity
   id: WeaponArcBite
@@ -104,26 +102,3 @@
     - type: TimedDespawn
       lifetime: 0.499
 
-- type: entity
-  id: WeaponArcKick
-  parent: WeaponArcStatic
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: WeaponArcVisuals
-      fadeOut: false
-    - type: Sprite
-      state: kick
-    - type: TimedDespawn
-      lifetime: 0.299
-
-- type: entity
-  id: WeaponArcSmash
-  parent: WeaponArcStatic
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: WeaponArcVisuals
-      fadeOut: false
-    - type: Sprite
-      state: smash
-    - type: TimedDespawn
-      lifetime: 0.299

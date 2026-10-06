@@ -29,7 +29,7 @@ public sealed partial class XenobiologyConsoleCameraTaggerSystem : EntitySystem
         if (!_entityManager.TryGetComponent<ActorComponent>(args.User, out var actorComponent)) return;
 
         var channel = actorComponent.PlayerSession.Channel;
-        var message = "Connected camera to the Xenobiology Console network.";
+        var message = Loc.GetString("xenobiology-camera-tagger-connected");
         _chatManager.ChatMessageToOne(ChatChannel.Local, message, message, EntityUid.Invalid, false, channel);
         Dirty(args.Target.Value, stationAiVisionComponent);
     }

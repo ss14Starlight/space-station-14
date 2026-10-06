@@ -21,4 +21,10 @@ public sealed partial class CloudEmotePrototype : IPrototype
 
     [DataField(required: true)]
     public SpriteSpecifier Icon { get; private set; } = default!;
+
+    /// <summary>
+    ///     Sorts emotes by priority, from low to high. If not specified, sorts alphabetically.
+    /// </summary>
+    [DataField]
+    public int Priority = int.MaxValue;
 }

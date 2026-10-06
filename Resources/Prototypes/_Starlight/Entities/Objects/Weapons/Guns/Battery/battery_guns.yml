@@ -346,7 +346,42 @@
     autoRechargePauseTime: 44
 
 - type: entity
-  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband ]
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband, BaseCentcommContraband ]
+  id: WeaponIonCarbine
+  name: ion carbine
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/ion_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    size: Normal
+    shape:
+    - 0, 0, 3, 1
+  - type: BatterySelfRecharger
+    autoRechargeRate: 40 #100sec+60Sec Pause
+    autoRechargePauseTime: 60
+  - type: BatteryAmmoProvider
+    proto: EmpPulse
+    fireCost: 250
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: EmpImmune
+  - type: GunWieldBonus
+    maxAngle: -10
+    minAngle: -10
+  - type: Gun
+    fireRate: 0.6
+
+- type: entity
+  parent: WeaponIonCarbine
   id: WeaponIonRifle
   name: ion rifle
   components:
@@ -365,57 +400,16 @@
     slots:
     - suitStorage
     - Back
-  - type: Gun
-    fireRate: 0.6
-  - type: BatterySelfRecharger
-    autoRechargeRate: 40 #100sec+60Sec Pause
-    autoRechargePauseTime: 60
-  - type: BatteryAmmoProvider
-    proto: EmpPulse
-    fireCost: 250
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
   - type: Appearance
   - type: EmpImmune
-  - type: GunRequiresWield
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 8
     pvsIncrease: 0.3
-
-- type: entity
-  parent: [BaseWeaponBattery, BaseSecurityContraband ]
-  id: WeaponIonCarbine
-  name: ion carbine
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Battery/ion_carbine.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: Item
-    size: Normal
-    shape:
-    - 0, 0, 3, 1
-  - type: Gun
-    fireRate: 0.6
-  - type: BatterySelfRecharger
-    autoRechargeRate: 40 #100sec+60Sec Pause
-    autoRechargePauseTime: 60
-  - type: BatteryAmmoProvider
-    proto: EmpPulse
-    fireCost: 250
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
-  - type: Appearance
-  - type: EmpImmune
 
 - type: entity
   name: immolator laser gun
@@ -570,7 +564,7 @@
 - type: entity
   name: PDW-9 taser pistol
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
-  id: WeaponPDW9
+  id: WeaponPistolPDW9
   description: A compact pulse core in a classic NanoTrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
   components:
   - type: Appearance
@@ -647,7 +641,7 @@
 
 - type: entity
   parent: [ BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband ]
-  id: WeaponEnergySniper
+  id: WeaponSniperEnergy
   name: LWAP
   components:
   - type: Sprite
@@ -665,16 +659,25 @@
     slots:
     - Back
   - type: Gun
+    minAngle: 12
+    maxAngle: 22
     fireRate: 0.5
+    angleIncrease: 6
+    angleDecay: 8
   - type: BatteryAmmoProvider
     proto: SniperBolt
     fireCost: 100
+  - type: GunWieldBonus
+    angleIncreaseDivider: 1
+    minAngleDivider: 12
+    maxAngleDivider: 7
+    minAngle: 0
+    maxAngle: 0
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
   - type: Appearance
-  - type: GunRequiresWield
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 5
@@ -814,79 +817,9 @@
     supportedPins: [ AdvancedLaser ]
 
 - type: entity
-  name: ANNIHILATOR
-  parent: [ WeaponPulseCarbine, BaseMajorContraband ]
-  id: WeaponANNIHILATOR
-  description: A weapon that is almost as infamous as its users.
-  components:
-  - type: Appearance
-  - type: Gun
-    selectedMode: Burst
-    fireRate: 3
-    shotsPerBurst: 5
-    availableModes:
-      - Burst
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: MagazineVisuals
-    magState: destroy
-    steps: 5
-    zeroVisible: true
-  - type: BatteryAmmoProvider
-    proto: DestroyBeam
-    fireCost: 100
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: DestroyBeam
-      fireCost: 100
-      magState: destroy
-      visualState: destroy
-  - type: Battery
-    maxCharge: 2000
-    startingCharge: 2000
-  - type: BatterySelfRecharger
-    autoRechargeRate: 500
-  - type: ContainerContainer
-    containers:
-      firing_pin: !type:Container
-  - type: ContainerFill
-    containers:
-      firing_pin:
-      - FiringPinAdvancedLaser
-  - type: FiringPinHolder
-    supportedPins: [ AdvancedLaser ]
-
-- type: entity
-  parent: BaseWeaponBatterySmall
-  id: WeaponToecloner
-  name: toecloner
-  suffix: Admeme
-  components:
-    - type: Sprite
-      sprite: _Starlight/Objects/Weapons/Guns/Battery/decloner.rsi
-      layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: normal
-        shader: unshaded
-      - state: mag-unshaded-4
-        map: ["enum.GunVisualLayers.MagUnshaded"]
-        shader: unshaded
-    - type: BatteryAmmoProvider
-      proto: ProjectilePolyboltJohnToe
-      fireCost: 200
-    - type: BatterySelfRecharger
-      autoRechargeRate: 40 #every 5 seconds another becomes toe.
-    - type: MagazineVisuals
-      magState: mag
-      steps: 5
-      zeroVisible: true
-    - type: Appearance
-
-- type: entity
   name: proto-5x energy gun
-  parent: [BaseWeaponBattery, BaseGrandTheftContraband]
-  id: WeaponEnergySMG
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGrandTheftContraband]
+  id: WeaponSubMachineGunEnergy
   description: A one-of-a-kind prototype energy sub-machine gun. It offers high energy firepower and a powerful self recharge.
   components:
   - type: CanDualWield
@@ -916,6 +849,10 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
       params:
          volume: -2
+    minAngle: 10
+    maxAngle: 28
+    angleIncrease: 2
+    angleDecay: 14
   - type: BatteryAmmoProvider
     proto: BulletEnergySMGLaser
     fireCost: 50
@@ -957,120 +894,16 @@
       - FiringPinAdvancedLaser
   - type: FiringPinHolder
     supportedPins: [ AdvancedLaser ]
-
-- type: entity
-  name: pulse cannon
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband]
-  id: WeaponPulseCannonNTNC
-  description: A weapon meant to blow holes in people with lasers. Like Superman. I like Superman.
-  components:
-  - type: Appearance
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Battery/ntnc_pulse.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-  - type: Lock
-  - type: AccessReader
-    access: [[ "CentralCommand" ]]
-  - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/Battery/ntnc_pulse.rsi
-  - type: Item
-    size: Large
-  - type: Gun
-    selectedMode: SemiAuto
-    fireRate: 1.5
-    availableModes:
-      - SemiAuto
-      - FullAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: BatteryAmmoProvider
-    proto: DeleteBeam
-    fireCost: 10
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: TaserBoltExtreme
-      fireCost: 10
-      #magState: stun
-    - proto: DeleteBeam
-      fireCost: 10
-      #magState: delete
-  - type: Battery
-    maxCharge: 500
-    startingCharge: 500
-  - type: BatterySelfRecharger
-    autoRechargeRate: 50
-    autoRechargePauseTime: 10
-  - type: ContainerContainer
-    containers:
-      firing_pin: !type:Container
-  - type: ContainerFill
-    containers:
-      firing_pin:
-      - FiringPinLaser
-  - type: FiringPinHolder
-    supportedPins: [ Laser ]
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 2
+    maxAngleDivider: 2
+    angleIncreaseDivider: 2
+  - type: GunHeat
+    heatPerShot: 1000
 
 # NTNC
-- type: entity
-  name: cyborg pulse carbine
-  parent: [ BaseCentcommContraband, WeaponAdvancedLaser ]
-  id: CentcommCyborgLaser
-  description: A pulse carbine modified for use by cyborgs.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_carbine.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: stun
-      map: ["enum.FireModesLayers.FireMode"]
-    - state: stun-unshaded-0
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_carbine.rsi
-  - type: Gun
-    selectedMode: SemiAuto
-    fireRate: 3
-    availableModes:
-      - SemiAuto
-      - FullAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: Appearance
-  - type: BatteryAmmoProvider
-    proto: TaserBolt
-    fireCost: 100
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: TaserBolt
-      fireCost: 100
-      magState: stun
-      visualState: stun
-    - proto: RedLaserBeam
-      fireCost: 50
-      magState: kill
-      visualState: kill
-    - proto: DestroyBeam
-      fireCost: 300
-      magState: destroy
-      visualState: destroy
-  - type: MagazineVisuals
-    magState: stun
-    steps: 5
-    zeroVisible: true
-  - type: GunFireModeSounds
-    sounds:
-      2:
-        path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: Battery
-    maxCharge: 3000
-    startingCharge: 3000
-  - type: BatterySelfRecharger
-    autoRechargeRate: 100
-    autoRechargePauseTime: 5
 
 # Xenoborgs
 - type: entity
@@ -1078,6 +911,13 @@
   id: WeaponLaserCannonXenoborgCold
   name: xenoborg bitterfrost cannon
   components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/xenoborg_laser_gun.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-unshaded-4
+      map: [ "enum.GunVisualLayers.MagUnshaded" ]
   - type: BatteryAmmoProvider
     proto: FreezeRay
     fireCost: 125
@@ -1156,7 +996,6 @@
     - type: BatterySelfRecharger
       autoRechargeRate: 150 # much faster charging...
       autoRechargePauseTime: 10 # but 10 second delay beteen shooting and it starting to recharge
-
 
 - type: entity
   name: Frozen Tome

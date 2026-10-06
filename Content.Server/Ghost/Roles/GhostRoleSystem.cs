@@ -39,6 +39,7 @@ using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Content.Server.Chat.Managers;
 using Content.Shared.Chat;
+using Content.Server._Starlight.Statistics;
 
 namespace Content.Server.Ghost.Roles;
 
@@ -61,6 +62,7 @@ public sealed partial class GhostRoleSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private AudioSystem _audio = default!; // SL
     [Dependency] private IChatManager _chat = default!; // SL
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!; // Starlight
 
     private uint _nextRoleIdentifier;
     private bool _needsUpdateGhostRoleCount = true;
@@ -644,6 +646,8 @@ public sealed partial class GhostRoleSystem : EntitySystem
         _mindSystem.TransferTo(newMind, mob);
 
         _roleSystem.MindAddRoles(newMind.Owner, role.MindRoles, newMind.Comp);
+
+        _roundStatistics.RecordGhostRoleTaken((roleUid, role)); // Starlight
     }
 
     /// <summary>
@@ -793,6 +797,7 @@ public sealed partial class GhostRoleSystem : EntitySystem
     private void OnRoleStartup(Entity<GhostRoleComponent> ent, ref ComponentStartup args)
     {
         RegisterGhostRole(ent);
+        _roundStatistics.RecordGhostRoleOffered(ent); // Starlight
     }
 
     private void OnRoleShutdown(Entity<GhostRoleComponent> role, ref ComponentShutdown args)

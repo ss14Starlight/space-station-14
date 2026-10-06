@@ -11,7 +11,7 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: WeaponEnergySniper
+        - id: WeaponSniperEnergy
           amount: 2
 
 - type: entity
@@ -173,3 +173,22 @@
           amount: 1
         - id: ClothingShoesBootsMagSec
           amount: 1
+
+- type: entity
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband]
+  id: GunSafeMelee
+  name: melee safe
+  description: Contains a set of heavy melee weapons.
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: melee_gunsafe_doors
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SpearAthena
+          amount: 2
+        - id: SwordAres
+          amount: 2
+        - id: RiotShield
+          amount: 4

@@ -134,7 +134,7 @@ public sealed partial class StockLimitedListingCondition : ListingCondition
             // Format the name with the stock count in X/Y format
             if (outOfStock)
             {
-                listing.Name = $"{baseName} (Out of Stock)";
+                listing.Name = Loc.GetString("store-listing-out-of-stock", ("name", baseName));
             }
             else
             {
@@ -151,7 +151,7 @@ public sealed partial class StockLimitedListingCondition : ListingCondition
             // Format the description with the last purchaser
             if (!string.IsNullOrEmpty(lastPurchaser))
             {
-                listing.Description = $"{baseDesc} Last purchased by: {lastPurchaser}";
+                listing.Description = Loc.GetString("store-listing-last-purchased", ("desc", baseDesc), ("name", lastPurchaser));
             }
         }
     }

@@ -60,25 +60,6 @@
     stepOn: true
 
 - type: entity
-  id: LandMineKickUnarmed
-  name: kick mine
-  parent: BaseLandMine
-  components:
-  - type: GhostKickOnTrigger
-    targetUser: true
-  - type: DeleteOnTrigger
-
-- type: entity
-  id: LandMineKick
-  suffix: armed
-  parent: LandMineKickUnarmed
-  components:
-  - type: ItemToggle
-    activated: true
-    onActivate: false
-  - type: Armable
-
-- type: entity
   name: modular mine
   description: This bad boy could be packing any number of dangers. Or a bike horn.
   parent: BaseLandMine

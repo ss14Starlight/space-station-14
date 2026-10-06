@@ -43,6 +43,7 @@
     - Water
     - SpaceCleaner
     - SyndicateSpaceCleaner
+    - Bleach
 
 - type: entity
   parent: [SolutionSpray, SolutionVeryLarge]
@@ -81,6 +82,7 @@
     - Water
     - SpaceCleaner
     - SyndicateSpaceCleaner
+    - Bleach
   - type: SolutionRegeneration
     generated:
       reagents:

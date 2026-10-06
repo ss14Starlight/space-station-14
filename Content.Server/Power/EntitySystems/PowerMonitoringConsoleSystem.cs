@@ -79,7 +79,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
             return;
         }
 
-        _stationAiSystem.TryWarpEyeToCoordinates(actor, coordinates);
+        _stationAiSystem.TryWarpEyeToCoordinates((actor, null), coordinates);
     }
     #endregion
 

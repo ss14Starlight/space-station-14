@@ -1,0 +1,4 @@
+- type: !PartialOnly vendingMachineInventory
+  id: GoodCleanFunInventory
+  startingInventory:
+    TwistyCube: 8

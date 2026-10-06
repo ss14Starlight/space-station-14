@@ -50,10 +50,3 @@
   - type: StaticPrice
     price: 5000
 
-- type: entity
-  parent: WeaponTileGun
-  id: WeaponTileGunEmpty
-  suffix: empty
-  components:
-  - type: BallisticAmmoProvider
-    proto: null

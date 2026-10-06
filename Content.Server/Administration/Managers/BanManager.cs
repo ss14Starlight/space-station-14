@@ -123,8 +123,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         var netChannel = player.Channel;
         ImmutableArray<byte>? hwId = netChannel.UserData.HWId.Length == 0 ? null : netChannel.UserData.HWId;
         var modernHwids = netChannel.UserData.ModernHWIds;
-        var addr = _connectionManager.GetResolvedAddress(player.UserId)
-                   ?? netChannel.RemoteEndPoint.Address; // Starlight: prefer resolved IP
+        var addr = _connectionManager.GetPlayerAddress(player); // Starlight: resolved IP, never the SNAT address
         var roleBans = await _db.GetServerRoleBansAsync(addr, player.UserId, hwId, modernHwids, false);
 
         var userRoleBans = new List<ServerRoleBanDef>();
@@ -285,8 +284,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         var playerInfo = new BanMatcher.PlayerInfo
         {
             UserId = player.UserId,
-            Address = _connectionManager.GetResolvedAddress(player.UserId)
-                      ?? player.Channel.RemoteEndPoint.Address, // Starlight: prefer resolved IP
+            Address = _connectionManager.GetPlayerAddress(player), // Starlight: resolved IP, never the SNAT address
             HWId = player.Channel.UserData.HWId,
             ModernHWIds = player.Channel.UserData.ModernHWIds,
             // It's possible for the player to not have cached data loading yet due to coincidental timing.

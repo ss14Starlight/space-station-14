@@ -1,0 +1,30 @@
+- type: !PartialOnly entity
+  id: FlaskBase
+  components:
+  - type: ShakeSpillable
+    solutionName: drink
+  - type: ReactionMixer
+    mixerType: None
+    reactionTypes:
+    - Shake
+
+- type: !PartialOnly entity
+  id: FlaskBase
+  components:
+  - type: Solution
+    solution:
+      maxVol: 30 # Return half liter flasks
+
+- type: !PartialOnly entity
+  id: DrinkFlaskOld
+  components:
+  - type: Solution
+    solution:
+      maxVol: 30 # Return half liter flasks
+
+- type: !PartialOnly entity
+  id: DrinkMREFlask
+  components:
+  - type: Solution
+    solution:
+      maxVol: 60 # MRE bottles were always at the small beaker standard

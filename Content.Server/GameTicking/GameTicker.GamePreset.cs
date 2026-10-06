@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Content.Server._Starlight.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.Maps;
 using Content.Shared.CCVar;
@@ -217,6 +218,7 @@ public sealed partial class GameTicker
             return false;
 
         CurrentPreset = Preset;
+        RaiseLocalEvent(new DynamicRuleCooldownRoundInitializingEvent(Preset)); // Starlight
         #region Starlight
         /*foreach (var rule in Preset.Rules)
         {

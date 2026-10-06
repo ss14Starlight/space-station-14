@@ -1,4 +1,3 @@
-shuttle-pilot-start = Piloting ship
 shuttle-pilot-end = Stopped piloting
 
 shuttle-console-in-ftl = Currently in FTL
@@ -44,9 +43,6 @@ shuttle-console-map-beacons = Show beacons
 shuttle-console-no-signal = No signal
 
 shuttle-console-map-objects = Sector objects
-
-# DOCK
-shuttle-console-docked = Docked objects
 
 shuttle-console-view = View
 shuttle-console-undock = Undock

@@ -444,7 +444,7 @@
   - type: Transform
     anchored: true
   - type: Sprite
-    sprite: _Starlight/CosmicCult/Tileset/malignrift.rsi
+    sprite: _Starlight/Structures/CosmicCult/malignrift.rsi
     drawdepth: Mobs
     snapCardinals: true
     offset: 0,0.27
@@ -461,7 +461,7 @@
     randomBehaviorOnMapInit: false
     supercriticalDuration: 0
     supercriticalSound:
-      path: /Audio/_Starlight/CosmicCult/effigy_pulse.ogg
+      path: /Audio/_Starlight/Effects/CosmicCult/effigy_pulse.ogg
     supercriticalSoundAtAnimationStart: null
     corePrototype: null
     coreInertPrototype: null
@@ -496,6 +496,7 @@
   - type: CosmicCultExamine
     cultistText: cosmic-examine-text-forthecult
   - type: CosmicMalignRift
+  - type: CosmicRiftPurge
   - type: CosmicCorrupting
     corruptionMaxTicks: 6
     corruptionSpeed: 8
@@ -550,7 +551,7 @@
         layer:
         - FlyingMobLayer
   - type: Sprite
-    sprite: _Starlight/CosmicCult/Tileset/malignrift.rsi
+    sprite: _Starlight/Structures/CosmicCult/malignrift.rsi
     drawdepth: Mobs
     snapCardinals: true
     offset: 0,0.27
@@ -589,7 +590,7 @@
     particleInteractions:
     - interactionKey: NullspaceStabilizer
       effect: EndAnomaly
-      delay: 60
+      delay: 12
       distanceThreshold: 10
       spawnCore: false
       visualEffect: CleanseEffectVFX
@@ -609,6 +610,7 @@
     color: "#6A4CFF"
   - type: CosmicCultExamine
     cultistText: cosmic-examine-text-forthecult
+  - type: CosmicRiftPurge
   - type: CosmicMalignEmpoweredRift
     coolingCoefficient: 0.2
   - type: CosmicCorrupting

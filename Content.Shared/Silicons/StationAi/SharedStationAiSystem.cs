@@ -35,8 +35,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-
-#region Starlight
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared._Starlight.TextToSpeech;
@@ -46,7 +44,6 @@ using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.DeviceLinking;
 using Content.Shared._Starlight;
 using Content.Shared.NameModifier.EntitySystems;
-#endregion Starlight
 
 namespace Content.Shared.Silicons.StationAi;
 
@@ -195,7 +192,6 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
         args.Accessible = true;
     }
-
     private void OnAiMenu(Entity<StationAiOverlayComponent> ent, ref MenuVisibilityEvent args)
     {
         args.Visibility &= ~MenuVisibility.NoFov;
@@ -212,11 +208,12 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         //// Similar to the inrange check but more optimised so server doesn't die.
         var targetXform = Transform(args.Target);
 
-        // No cross-grid
-        if (targetXform.GridUid != args.Actor.Comp.GridUid)
+        // Starlight - start
+        if (!CanAccessGrid((args.Actor, null), targetXform.GridUid)) // Starlight
         {
             return;
         }
+        // Starlight - end
         //
         //if (!_broadphaseQuery.TryComp(targetXform.GridUid, out var broadphase) || !_gridQuery.TryComp(targetXform.GridUid, out var grid))
         //{
@@ -250,8 +247,15 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
         var targetXform = Transform(target);
 
-        // No cross-grid
-        if (targetXform.GridUid != Transform(args.User).GridUid && !ent.Comp.AllowCrossGrid)
+        // Starlight the AI can access remote grids in some situation
+        if (HasComp<StationAiHeldComponent>(args.User))
+        {
+            // Starlight - start
+            if (!CanAccessGrid((args.User, null), targetXform.GridUid))
+                return;
+            // Starlight - end
+        }
+        else if (targetXform.GridUid != Transform(args.User).GridUid && !ent.Comp.AllowCrossGrid)
         {
             return;
         }

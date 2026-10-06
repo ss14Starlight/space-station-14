@@ -1,0 +1,419 @@
+- type: constructionGraph
+  id: Flags
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: CentCommFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: CybersunFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: InterdyneFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: DonkFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: WaffleCoFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: IntersexFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: TransFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: DisabilityFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: AceFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: AroFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: BiFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: MoachFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: LesbianFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: BlankFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: NTFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: LGBTQFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: PirateFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: NonbinaryFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: GenderqueerFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: GenderfluidFlag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+
+    - node: CentCommFlag
+      entity: CentCommFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: CybersunFlag
+      entity: CybersunFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: InterdyneFlag
+      entity: InterdyneFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+        - to: InterdyneSyndicateFlag
+          steps:
+            - tag: SyndieCard
+              store: cardcontainer
+              name: syndie-card
+              icon:
+                sprite: Objects/Misc/bureaucracy.rsi
+                state: syndicate_card
+              doAfter: 5
+    - node: DonkFlag
+      entity: DonkFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: NonbinaryFlag
+      entity: NonbinaryFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: GenderfluidFlag
+      entity: GenderfluidFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: GenderqueerFlag
+      entity: GenderqueerFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+
+    - node: WaffleCoFlag
+      entity: WaffleCoFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+
+    - node: IntersexFlag
+      entity: IntersexFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: TransFlag
+      entity: TransFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+
+    - node: DisabilityFlag
+      entity: DisabilityFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: AceFlag
+      entity: AceFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+
+    - node: AroFlag
+      entity: AroFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: BiFlag
+      entity: BiFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+
+    - node: MoachFlag
+      entity: MoachFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+
+    - node: LesbianFlag
+      entity: LesbianFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: BlankFlag
+      entity: BlankFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+
+    - node: NTFlag
+      entity: NTFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+        - to: SyndieFlag
+          steps:
+            - tag: SyndieCard
+              store: cardcontainer
+              name: syndie-card
+              icon:
+                sprite: Objects/Misc/bureaucracy.rsi
+                state: syndicate_card
+              doAfter: 5
+    - node: LGBTQFlag
+      entity: LGBTQFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+
+    - node: PirateFlag
+      entity: PirateFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+
+    - node: InterdyneSyndicateFlag
+      entity: InterdyneSyndicateFlag
+      edges:
+        - to: InterdyneFlag
+          completed:
+            - !type:EmptyAllContainers
+              pickup: false
+              emptyAtUser: true
+          steps:
+            - tool: Cutting
+              doAfter: 8
+
+    - node: SyndieFlag
+      entity: SyndieFlag
+      edges:
+        - to: NTFlag
+          completed:
+            - !type:EmptyAllContainers
+              pickup: false
+              emptyAtUser: true
+          steps:
+            - tool: Cutting
+              doAfter: 8

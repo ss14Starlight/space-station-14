@@ -1,21 +1,3 @@
--create-3rd-person =
-    { $chance ->
-        [1] Creates
-        *[other] create
-    }
-
--cause-3rd-person =
-    { $chance ->
-        [1] Causes
-        *[other] cause
-    }
-
--satiate-3rd-person =
-    { $chance ->
-        [1] Satiates
-        *[other] satiate
-    }
-
 entity-effect-guidebook-spawn-entity =
     { $chance ->
         [1] Creates
@@ -518,6 +500,34 @@ entity-effect-guidebook-plant-seeds-remove =
         [1] Removes the
         *[other] remove the
     } seeds of the plant
+
+entity-effect-guidebook-plant-change-trait =
+    { $chance ->
+        [1] { $change ->
+            [Add] adds {$trait} to
+            [Remove] removes {$trait} from
+            [Toggle] toggles {$trait} on
+            *[other] changes {$trait} on
+        }
+        *[other] { $change ->
+            [Add] add {$trait} to
+            [Remove] remove {$trait} from
+            [Toggle] toggle {$trait} on
+            *[other] change {$trait} on
+        }
+    } the plant
+
+entity-effect-guidebook-plant-mutate-exude-gasses =
+    { $chance ->
+        [1] Mutates
+        *[other] mutate
+    } the plant to exude gases between {$minValue} and {$maxValue} moles
+
+entity-effect-guidebook-plant-mutate-consume-gasses =
+    { $chance ->
+        [1] Mutates
+        *[other] mutate
+    } the plant to consume gases between {$minValue} and {$maxValue} moles
 
 entity-effect-guidebook-plant-mutate-chemicals =
     { $chance ->

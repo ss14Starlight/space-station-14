@@ -258,7 +258,7 @@
                     <PanelContainer.PanelOverride>
                         <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
                     </PanelContainer.PanelOverride>
-                    <ScrollContainer HorizontalExpand="True" MinSize="0 200">
+                    <ScrollContainer HorizontalExpand="True" HScrollEnabled="False" MinSize="0 200">
                         <BoxContainer Name="InputContainerInfoClassic" Orientation="Vertical" Margin="4" HorizontalExpand="True">
                             <Label Text="{Loc 'chem-master-window-no-container-loaded-text'}" />
                         </BoxContainer>
@@ -284,7 +284,7 @@
                     <PanelContainer.PanelOverride>
                         <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
                     </PanelContainer.PanelOverride>
-                    <ScrollContainer HorizontalExpand="True" MinSize="0 200">
+                    <ScrollContainer HorizontalExpand="True" HScrollEnabled="False" MinSize="0 200">
                         <BoxContainer Name="BufferInfoClassic" Orientation="Vertical" Margin="4" HorizontalExpand="True">
                             <Label Text="{Loc 'chem-master-window-buffer-empty-text'}" />
                         </BoxContainer>
@@ -304,7 +304,7 @@
                         <PanelContainer.PanelOverride>
                             <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
                         </PanelContainer.PanelOverride>
-                        <ScrollContainer HorizontalExpand="True">
+                        <ScrollContainer HorizontalExpand="True" HScrollEnabled="False">
                             <BoxContainer Name="OutputInputContainerInfoClassic" Orientation="Vertical" Margin="4" HorizontalExpand="True">
                                 <Label Text="{Loc 'chem-master-window-no-input-container-loaded-text'}" />
                             </BoxContainer>
@@ -314,7 +314,7 @@
                         <PanelContainer.PanelOverride>
                             <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
                         </PanelContainer.PanelOverride>
-                        <ScrollContainer HorizontalExpand="True">
+                        <ScrollContainer HorizontalExpand="True" HScrollEnabled="False">
                             <BoxContainer Name="OutputContainerInfoClassic" Orientation="Vertical" Margin="4" HorizontalExpand="True">
                                 <Label Text="{Loc 'chem-master-window-no-output-container-loaded-text'}" />
                             </BoxContainer>

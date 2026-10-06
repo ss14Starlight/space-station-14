@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetBase
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/helmet_pickup1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/helmet_drop1.ogg
+  - type: Clothing
+    equipSound:
+      path: /Audio/_Starlight/Items/Equip/helmet_equip1.ogg
+

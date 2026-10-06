@@ -22,7 +22,6 @@
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
 
-
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepRemoveInnerScrews
@@ -146,18 +145,6 @@
   - type: Sprite
     sprite: Objects/Tools/wirecutters.rsi
     state: cutters-map
-
-- type: entity
-  parent: SurgeryStepBase
-  id: SurgeryStepUnboltNuts
-  name: Unbolt Nuts
-  components:
-  - type: SurgeryStep
-    tools:
-    - type: WrenchSurgery
-  - type: Sprite
-    sprite: Objects/Tools/wrench.rsi
-    state: icon
 
 - type: entity
   parent: SurgeryStepBase

@@ -1,0 +1,17 @@
+- type: !PartialOnly entity
+  id: HolosignSecurity
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          # Wider bounds let smasher mobs find a path through the barrier.
+          bounds: "-0.4,-0.4,0.4,0.4"
+  - type: PointLight
+    castShadows: false
+
+- type: !PartialOnly entity
+  id: HolosignForcefield
+  components:
+  - type: PointLight
+    castShadows: false

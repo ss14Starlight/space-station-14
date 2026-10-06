@@ -81,22 +81,23 @@
     - id: SiliconLiberation #Starlight
       prob: 0.20 #Starlight
 
-- type: entity
-  parent: BaseGameRule
-  id: SubGamemodesRuleNoWizardNoXenoborg
-  components:
-  - type: SubGamemodes
-    rules:
-    - id: Thief
-      prob: 0.70 # Starlight start. Most likely
-    - id: SLChangeling # Lings
-      prob: 0.15
-    - id: VampireLess # Reworked
-      prob: 0.15
-    #- id: SubBrighteye
-    #  prob: 0.05
-    - id: SiliconLiberation
-      prob: 0.2 #Starlight end
+# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
+# - type: entity
+#   parent: BaseGameRule
+#   id: SubGamemodesRuleNoWizardNoXenoborg
+#   components:
+#   - type: SubGamemodes
+#     rules:
+#     - id: Thief
+#       prob: 0.70 # Starlight start. Most likely
+#     - id: SLChangeling # Lings
+#       prob: 0.15
+#     - id: VampireLess # Reworked
+#       prob: 0.15
+#     #- id: SubBrighteye
+#     #  prob: 0.05
+#     - id: SiliconLiberation
+#       prob: 0.2 #Starlight end
 
 - type: entity
   parent: BaseGameRule
@@ -131,13 +132,14 @@
   - type: RespawnTracker
     respawnDelay: 5
 
-- type: entity
-  id: InactivityTimeRestart
-  parent: BaseGameRule
-  components:
-  - type: InactivityRule
-    inactivityMaxTime: 600
-    roundEndDelay: 10
+# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
+# - type: entity
+#   id: InactivityTimeRestart
+#   parent: BaseGameRule
+#   components:
+#   - type: InactivityRule
+#     inactivityMaxTime: 600
+#     roundEndDelay: 10
 
 - type: entity
   id: MaxTimeRestart
@@ -195,12 +197,12 @@
       proto: NukeopsMedic
     - !type:LinearAntagCount
       proto: NukeopsOperative
+      playerRatio: 14 # Starlight - 3-man team on Epsilon, 4-man team on Beta max, 6-man team on ALpha max.
       range:
         min: 1
         max: 4 # Starlight
   - type: DynamicRuleCost
     cost: 200
-    cooldown: 1 # Starlight
 
 # Starlight start
 # Such a small entry, not worth putting in its own file
@@ -210,7 +212,6 @@
   components:
   - type: DynamicRuleCost
     cost: 300
-    cooldown: 1
 # Starlight end
 
 - type: entity
@@ -311,7 +312,6 @@
         max: 3
   - type: DynamicRuleCost
     cost: 200
-    cooldown: 1 # Starlight
 
 - type: entity
   id: Sandbox
@@ -377,7 +377,6 @@
         max: 6
   - type: DynamicRuleCost
     cost: 200
-    cooldown: 1 # Starlight
 
 - type: entity
   abstract: true

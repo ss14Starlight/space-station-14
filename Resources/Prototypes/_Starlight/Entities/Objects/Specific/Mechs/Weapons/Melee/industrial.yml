@@ -19,9 +19,10 @@
       path: "/Audio/Items/drill_hit.ogg"
     attackRate: 3.5
     damage:
-      groups:
-        Brute: 4
       types:
+        Blunt: 1.33
+        Piercing: 1.33
+        Slash: 1.33
         Structural: 40 # ~10 seconds for solid wall / ~21 secods for reinforced wall
 
 - type: entity
@@ -45,7 +46,8 @@
       path: "/Audio/Items/drill_hit.ogg"
     attackRate: 4
     damage:
-      groups:
-        Brute: 6
       types:
+        Blunt: 2
+        Piercing: 2
+        Slash: 2
         Structural: 60 # ~3 seconds for solid wall / 9 seconds for reinforced wall

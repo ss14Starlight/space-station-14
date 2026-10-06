@@ -24,7 +24,7 @@ public sealed partial class StainableComponent : Component
     // Moff end
 
     [DataField]
-    public float WringDoAfterDuration = 10f; // Starlight, 15s is too long.
+    public float WringDoAfterDuration = 5f; // Starlight
 
     [DataField]
     public Dictionary<string, List<PrototypeLayerData>> ClothingVisuals = new();

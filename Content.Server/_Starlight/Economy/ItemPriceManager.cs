@@ -62,7 +62,7 @@ public sealed partial class ItemPriceManager : EntitySystem
             if (!categories.TryGetValue(priceComp.PriceCategory, out var range))
                 continue;
 
-            var price = _random.Next(range.Min, range.Max + 1);
+            var price = _random.Next((int)range.Min, (int)range.Max + 1);
             _prototypePrices[proto.ID] = price;
         }
     }
@@ -83,7 +83,7 @@ public sealed partial class ItemPriceManager : EntitySystem
             return null;
         }
 
-        var newPrice = _random.Next(minMax.Min, minMax.Max + 1);
+        var newPrice = _random.Next((int)minMax.Min, (int)minMax.Max + 1);
         _prototypePrices[prototypeId] = newPrice;
         return newPrice;
     }

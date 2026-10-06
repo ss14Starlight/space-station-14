@@ -1,0 +1,78 @@
+- type: !PartialOnly reagent
+  id: Epinephrine
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:ReduceSleepiness
+        time: 2
+
+- type: !PartialOnly reagent
+  id: Ethyloxyephedrine
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:ReduceSleepiness
+        time: 1.5
+
+- type: !PartialOnly reagent
+  id: Diphenylmethylamine
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:ReduceSleepiness
+        time: 2
+
+- type: !PartialOnly reagent
+  id: Saline
+  metabolisms:
+    Bloodstream:
+      effects:
+        - !type:SatiateThirst  # Thirst effect changed from Drink to Medicine
+           factor: 6
+        - !type:ModifyBloodLevel
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Avali, Resomi ]
+            inverted: true
+          amount: 3 # This doesn't replace but adds to what's found in the original prototype.
+        - !type:AdjustReagent
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Cyclorite ]
+          reagent: Saline
+          amount: -0.5
+
+- type: !PartialOnly reagent
+  id: Epinephrine
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        conditions:
+          # Soft Crit should also work
+          - !type:MobStateCondition
+            mobstate: SoftCritical
+          - !type:ReagentCondition
+            reagent: Epinephrine
+            max: 20
+        damage:
+          types:
+            Asphyxiation: -3
+            Poison: -0.5
+          groups:
+            Brute: -0.5
+            Burn: -0.5
+
+- type: !PartialOnly reagent
+  id: Inaprovaline
+  metabolisms:
+    Bloodstream:
+      effects:
+        - !type:HealthChange
+          conditions:
+            # Soft Crit should also work
+            - !type:MobStateCondition
+              mobstate: SoftCritical
+          damage:
+            types:
+              Asphyxiation: -2

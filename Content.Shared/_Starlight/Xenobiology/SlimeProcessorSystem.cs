@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Jittering;
 using Content.Shared.Power;
@@ -151,6 +152,7 @@ public sealed partial class CollectingSlimeProcessorSystem : EntitySystem
     [Dependency] private EntityLookupSystem _entityLookupSystem = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     public override void Update(float frameTime)
     {
@@ -171,8 +173,7 @@ public sealed partial class CollectingSlimeProcessorSystem : EntitySystem
             foreach (var entity in _entityLookupSystem.GetEntitiesInRange<SlimeComponent>(Transform(uid).Coordinates, 1F))
             {
                 if (_container.IsEntityOrParentInContainer(entity.Owner)) continue;
-                if (!_entityManager.TryGetComponent(entity, out DamageableComponent? damageableComponent)) continue;
-                if (damageableComponent.TotalDamage >= 200)
+                if (_damageable.GetTotalDamage(entity.Owner) >= 200)
                 {
                     _container.Insert(entity.Owner, slimeProcessorComponent.SlimeContainer);
                     collectingSlimeProcessorComponent.SlimeAcquireMoment = _gameTiming.CurTime + slimeProcessorComponent.SlimeAcquireCooldown;

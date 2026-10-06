@@ -30,6 +30,11 @@
             "name": "equipped-OUTERCLOTHING-rodentia",
             "directions": 4,
             "copyright": "Made by Huaqas (GitHub)."
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-experiment",
+            "copyright": "Modified state by DocMoth",
+            "directions": 4
         }
     ]
 }

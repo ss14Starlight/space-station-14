@@ -1,0 +1,50 @@
+- type: !PartialOnly randomHumanoidSettings
+  id: VisitorLibrarian
+  components:
+    - type: AdditionalLanguageKnowledge
+      speaks:
+      - GalacticCommon
+      - Scratch
+      - SolCommon
+      - Bubblish
+      - Canilunzt
+      - Chittin
+      - Draconic
+      - Marish
+      - Moffic
+      - Nekomimetic
+      - Sylvan
+      - Terrum
+      - Thaveyan
+      - VoxPidgin
+      - Sign
+      - ClassicalSign
+      - Grumbakul
+      - Aielic
+      - Classical
+      - Darktongue
+      - Lagomorphian
+      - Squeakish
+      understands:
+      - GalacticCommon
+      - Scratch
+      - SolCommon
+      - Bubblish
+      - Canilunzt
+      - Chittin
+      - Draconic
+      - Marish
+      - Moffic
+      - Nekomimetic
+      - Sylvan
+      - Terrum
+      - Thaveyan
+      - VoxPidgin
+      - Sign
+      - ClassicalSign
+      - Grumbakul
+      - Aielic
+      - Classical
+      - Darktongue
+      - Lagomorphian
+      - Squeakish

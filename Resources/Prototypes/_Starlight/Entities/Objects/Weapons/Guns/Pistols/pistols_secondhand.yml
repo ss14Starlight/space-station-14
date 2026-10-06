@@ -15,10 +15,10 @@
     jamChance: 0.12
   - type: GunSpreadDefect
     prob: 0.70
-    minAngleMin: 5
-    minAngleMax: 18
-    maxAngleMin: 18
-    maxAngleMax: 28
+    minAngleMin: 8
+    minAngleMax: 14
+    maxAngleMin: 24
+    maxAngleMax: 30
   - type: BackfireDefect
     prob: 0.10
     backfireChance: 0.04
@@ -40,10 +40,10 @@
     jamChance: 0.15
   - type: GunSpreadDefect
     prob: 0.70
-    minAngleMin: 5
-    minAngleMax: 18
-    maxAngleMin: 18
-    maxAngleMax: 28
+    minAngleMin: 8
+    minAngleMax: 14
+    maxAngleMin: 24
+    maxAngleMax: 30
   - type: BackfireDefect
     prob: 0.10
     backfireChance: 0.04

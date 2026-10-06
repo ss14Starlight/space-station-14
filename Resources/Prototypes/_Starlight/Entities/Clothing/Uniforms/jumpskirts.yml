@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseNanoTrasenContraband ]
   id: ClothingUniformJumpskirtNtrep
   name: nt representative skirt
   description: That skirt that is better not to see.
@@ -10,7 +10,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntrep.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseNanoTrasenContraband ]
   id: ClothingUniformJumpskirtNtrepTurtleneck
   name: nt representative's turtleneck jumpskirt
   description: For a more casual look while on the job.
@@ -52,7 +52,6 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshieldskirt.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshieldskirt.rsi
-
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -730,28 +729,6 @@
 
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCentcommContraband ]
-  id: ClothingUniformJumpskirtCentcommDomesticFormalWear
-  name: central command domestic division formal wear
-  description: A dress for special occasions.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommdomesticformalwear.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommdomesticformalwear.rsi
-
-- type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCentcommContraband ]
-  id: ClothingUniformJumpskirtCentcommAdminFormalWear
-  name: central command administrative division formal wear
-  description: A dress for special occasions.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommadminformalwear.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommadminformalwear.rsi
-
-- type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCentcommContraband ]
   id: ClothingUniformJumpskirtCentcommCargoFormalWear
   name: central command cargo division formal wear
   description: A dress for special occasions.
@@ -828,7 +805,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommspecialopsformalwear.rsi
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseNanoTrasenContraband ]
   id: MagistrateUniformSkirt
   name: magistrate's jumpskirt
   components:
@@ -849,7 +826,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/senior_paramedic.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseNanoTrasenContraband ]
   id: ClothingUniformJumpskirtNCT
   name: nt career trainer's skirt
   description: A neatly pressed olive green shirt paired with a sleek black skirt, worn by those committed to mentoring the next generation.
@@ -889,13 +866,3 @@
         color: "#639137"
       - state: trinkets-equipped-INNERCLOTHING
 
-- type: entity
-  parent: ClothingUniformBase
-  id: ClothingUniformJumpskirtSalvageMedic
-  name: salvage medic's jumpskirt
-  description: It's a snappy jumpskirt with a sturdy set of overalls. It's very bloody.
-  components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/salvagemedic.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/salvagemedic.rsi

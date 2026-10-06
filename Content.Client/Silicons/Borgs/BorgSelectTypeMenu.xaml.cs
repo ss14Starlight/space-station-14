@@ -32,8 +32,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
 
     private BorgTypePrototype? _selectedBorgType;
 
-    public event Action<ProtoId<BorgTypePrototype>>? ConfirmedBorgType;
-    public event Action<EntityPrototype?>? ConfirmBorgSubtype; // Starlight event - borg subtypes
+    public event Action<ProtoId<BorgTypePrototype>, EntityPrototype?>? ConfirmedBorgType; // Starlight - carries the subtype
 
     private static readonly List<ProtoId<GuideEntryPrototype>> GuidebookEntries = new() { "Cyborgs", "Robotics" };
 
@@ -112,7 +111,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
         if (_selectedBorgType != null)
         {
             ChassisSpriteSelection.Update(_selectedBorgType);
-            ConfirmTypeButton.Disabled = ChassisSpriteSelection.SubtypePrototype == null;
+            ConfirmTypeButton.Disabled = !ChassisSpriteSelection.HasSelection; // Starlight
         }
         // Afterlight end
 
@@ -126,8 +125,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
         if (_selectedBorgType == null)
             return;
 
-        ConfirmBorgSubtype?.Invoke(ChassisSpriteSelection.SubtypePrototype); // Afterlight
-        ConfirmedBorgType?.Invoke(_selectedBorgType);
+        ConfirmedBorgType?.Invoke(_selectedBorgType, ChassisSpriteSelection.SubtypePrototype); // Afterlight
     }
 
     private static string PrototypeName(BorgTypePrototype prototype)

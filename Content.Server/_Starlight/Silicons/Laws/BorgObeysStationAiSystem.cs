@@ -1,4 +1,5 @@
 using Content.Server.Silicons.Laws;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared._Starlight.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Robust.Shared.Prototypes;
@@ -28,6 +29,10 @@ public sealed partial class BorgObeysStationAiSystem : EntitySystem
 
         // Emags, the FreeMAG and ion storms all mark the silicon subverted, and all of them take this law away.
         if (TryComp<SiliconLawProviderComponent>(borg, out var provider) && provider.Subverted)
+            return;
+
+        // A station AI shunted into this chassis is the authority the law points at, so it does not apply.
+        if (TryComp<StationAIShuntComponent>(borg, out var shunt) && shunt.Return != null)
             return;
 
         if (!_prototypes.TryIndex(borg.Comp.Law, out var law))

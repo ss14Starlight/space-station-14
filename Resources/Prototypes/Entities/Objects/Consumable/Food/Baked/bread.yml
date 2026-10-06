@@ -141,6 +141,7 @@
     tags:
     - ClothMade
     - Bread
+    - CottonBread # Starlight
   - type: Solution
     solution:
       reagents:
@@ -169,6 +170,7 @@
     - ClothMade
     - Bread
     - Slice
+    - CottonBread # Starlight
   - type: Solution
     solution:
       reagents:
@@ -968,8 +970,8 @@
       path: /Audio/Animals/dog_bark1.ogg
     hidden: true
     damage:
-      groups:
-        Brute: 1
+      types:
+        Blunt: 1
 
 - type: entity
   parent: [SolutionVeryTiny, FoodBreadSliceBase]

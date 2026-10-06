@@ -1,0 +1,7 @@
+- type: startingGear
+  id: PirateCaptainGear
+  parent: PirateGear
+  equipment:
+    head: ClothingHeadHatPirate
+    pocket2: EnergyCutlass
+    outerClothing: ClothingOuterCoatPirate

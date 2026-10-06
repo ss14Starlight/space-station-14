@@ -64,7 +64,7 @@ public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem
             return;
         }
 
-        _stationAiSystem.TryWarpEyeToCoordinates(actor, coordinates);
+        _stationAiSystem.TryWarpEyeToCoordinates((actor, null), coordinates);
     }
     #endregion
 

@@ -137,10 +137,8 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -3
-    maxAngle: -16
   - type: Gun
-    minAngle: 4
+    minAngle: 3
     maxAngle: 18
     fireRate: 2.3
     selectedMode: SemiAuto
@@ -150,3 +148,5 @@
       path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
       params:
         volume: 2.25
+    angleIncrease: 8
+    angleDecay: 16

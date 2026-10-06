@@ -8,6 +8,7 @@
     weight: 3
     minimumPlayers: 10
     duration: null
+    occursDuringRoundEnd: false
   - type: RuleGrids
   - type: LoadMapRule
     gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/abductor_shuttle.yml

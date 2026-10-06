@@ -44,11 +44,6 @@
         - HudMedical
 
 - type: entity
-  parent: [ClothingEyesEyepatchHudBlueShield, ClothingHeadEyeBaseFlipped]
-  id: ClothingEyesEyepatchHudBlueShieldFlipped
-  name: blue shield hud eyepatch
-
-- type: entity
   parent: [BaseCommandManagerContraband, ClothingEyesHudCommand]
   id: ClothingEyesEyepatchHudAssistantManager
   name: assistant manager hud eyepatch
@@ -62,7 +57,6 @@
     tags:
     - PetWearable
     - WhitelistChameleon
-    - HudSecurity
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
@@ -85,6 +79,7 @@
       tags:
         - HamsterWearable
         - WhitelistChameleon
+        - HudSecurity
     - type: IdentityBlocker
       coverage: EYES
 
@@ -103,11 +98,7 @@
         - PetWearable
         - WhitelistChameleon
         - HudMedical
-
-- type: entity
-  parent: [ClothingEyesEyepatchHudBrigmedic, ClothingHeadEyeBaseFlipped]
-  id: ClothingEyesEyepatchHudBrigmedicFlipped
-  name: brigmedic hud eyepatch
+        - HudSecurity
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
@@ -133,6 +124,7 @@
       tags:
         - HamsterWearable
         - WhitelistChameleon
+        - SecBeltEquip
     - type: IdentityBlocker
       coverage: EYES
 
@@ -168,11 +160,6 @@
         - PetWearable
         - WhitelistChameleon
         - HudMedical
-
-- type: entity
-  parent: [ClothingEyesEyepatchHudChemical, ClothingHeadEyeBaseFlipped]
-  id: ClothingEyesEyepatchHudChemicalFlipped
-  name: chemical hud eyepatch
 
 - type: entity
   parent: ClothingEyesBase
@@ -219,7 +206,7 @@
       protectionTime: 5
 
 - type: entity
-  parent: [ClothingEyesBase, BaseCommandContraband]
+  parent: [ClothingEyesBase, BaseNanoTrasenContraband]
   id: ClothingEyesNTRMonocle
   name: NanoTrasen representative monocle
   description: A fancy monocle that also functions as a HUD to make sure no functionality is lost for style.

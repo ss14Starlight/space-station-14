@@ -1,29 +1,31 @@
 #Cult outfit startingGear definitions.
-- type: startingGear
-  id: CultLeaderGear
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorBlack
-    back: ClothingBackpack
-    head: ClothingHeadHelmetCult
-    neck: BedsheetCult
-    outerClothing: ClothingOuterArmorCult
-    shoes: ClothingShoesCult
-    id: AssistantPDA
-    ears: ClothingHeadsetService
-  storage:
-    back:
-    - BoxSurvival
+# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
+# - type: startingGear
+#   id: CultLeaderGear
+#   equipment:
+#     jumpsuit: ClothingUniformJumpsuitColorBlack
+#     back: ClothingBackpack
+#     head: ClothingHeadHelmetCult
+#     neck: BedsheetCult
+#     outerClothing: ClothingOuterArmorCult
+#     shoes: ClothingShoesCult
+#     id: AssistantPDA
+#     ears: ClothingHeadsetService
+#   storage:
+#     back:
+#     - BoxSurvival
 
-- type: startingGear
-  id: CultistGear
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorBlack
-    back: ClothingBackpack
-    head: ClothingHeadHatHoodCulthood
-    outerClothing: ClothingOuterRobesCult
-    shoes: ClothingShoesColorRed
-    id: AssistantPDA
-    ears: ClothingHeadsetService
-  storage:
-    back:
-    - BoxSurvival
+# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
+# - type: startingGear
+#   id: CultistGear
+#   equipment:
+#     jumpsuit: ClothingUniformJumpsuitColorBlack
+#     back: ClothingBackpack
+#     head: ClothingHeadHatHoodCulthood
+#     outerClothing: ClothingOuterRobesCult
+#     shoes: ClothingShoesColorRed
+#     id: AssistantPDA
+#     ears: ClothingHeadsetService
+#   storage:
+#     back:
+#     - BoxSurvival

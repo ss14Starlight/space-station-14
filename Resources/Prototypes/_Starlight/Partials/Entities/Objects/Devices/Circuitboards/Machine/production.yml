@@ -1,0 +1,23 @@
+- type: !PartialOnly entity
+  id: SMESMachineCircuitboard
+  components:
+    - type: MachineBoard
+      componentRequirements:
+        PowerCell:
+          defaultPrototype: PowerCellSmallPrinted
+
+- type: !PartialOnly entity
+  id: SMESAdvancedMachineCircuitboard
+  components:
+  - type: MachineBoard
+    componentRequirements:
+      PowerCell:
+        defaultPrototype: PowerCellMediumPrinted
+
+- type: !PartialOnly entity
+  id: SubstationMachineCircuitboard
+  components:
+    - type: MachineBoard
+      componentRequirements:
+        PowerCell:
+          defaultPrototype: PowerCellSmallPrinted

@@ -98,3 +98,42 @@
   equipment:
     neck: ClothingNeckScarfStripedLesbianLong
 
+- type: loadout
+  id: ScarfSolidRed
+  equipment:
+    neck: ClothingNeckScarfSolidRed
+
+- type: loadout
+  id: ScarfSolidGreen
+  equipment:
+    neck: ClothingNeckScarfSolidGreen
+
+- type: loadout
+  id: ScarfSolidBlue
+  equipment:
+    neck: ClothingNeckScarfSolidBlue
+
+- type: loadout
+  id: ScarfSolidBlack
+  equipment:
+    neck: ClothingNeckScarfSolidBlack
+
+- type: loadout
+  id: ScarfSolidBrown
+  equipment:
+    neck: ClothingNeckScarfSolidBrown
+
+- type: loadout
+  id: ScarfSolidLightBlue
+  equipment:
+    neck: ClothingNeckScarfSolidLightBlue
+
+- type: loadout
+  id: ScarfSolidOrange
+  equipment:
+    neck: ClothingNeckScarfSolidOrange
+
+- type: loadout
+  id: ScarfSolidPurple
+  equipment:
+    neck: ClothingNeckScarfSolidPurple

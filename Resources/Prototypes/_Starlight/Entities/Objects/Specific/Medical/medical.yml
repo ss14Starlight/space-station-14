@@ -26,8 +26,6 @@
       Alive:
         reagent: Omnizine
         quantity: 10
-        minDamage: 49
-        maxDamage: 120
       Critical:
         reagent: Omnizine
         quantity: 10
@@ -105,15 +103,6 @@
   - type: Tag
     tags:
     - Medkit
-
-- type: entity
-  parent: OilPack
-  id: OilPack5
-  suffix: 5
-  components:
-    - type: Stack
-      stackType: OilPack
-      count: 5
 
 - type: entity
   name: robotic treatment kit

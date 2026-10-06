@@ -13,13 +13,17 @@ public sealed partial class DamnationPrototype : IPrototype
     /// Name of the damnation
     /// </summary>
     [DataField("name")]
-    public string Name = "DAMNATION!!!!";
+    private LocId _name = "DAMNATION!!!!";
+
+    public string Name => Loc.GetString(_name);
 
     /// <summary>
     /// Description of the curse
     /// </summary>
     [DataField("description")]
-    public string Description = "THY END IS NOW!!!!";
+    private LocId _description = "THY END IS NOW!!!!";
+
+    public string Description => Loc.GetString(_description);
 
     /// <summary>
     /// Cost of the damnation. Negative are punishments, Positive are benefits.

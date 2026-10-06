@@ -53,6 +53,7 @@
   color: fffaf0
   reagent: Hydrogen
   pricePerMole: 0
+  isFuel: true
 
 - type: gas
   id: HyperNoblium
@@ -65,6 +66,7 @@
   color: 33cccc
   reagent: Hyper-Noblium
   pricePerMole: 5
+  isModerator: true
 
 - type: gas
   id: ProtoNitrate

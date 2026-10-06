@@ -1,11 +1,14 @@
 using Content.Shared.Alert;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.Humanoid.Markings;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Actions.Components;
 
 /// <summary>
-/// Component that allows an entity to enter and exit stasis.
+/// Component that allows an entity to have a shell
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ShellComponent : Component
@@ -27,4 +30,19 @@ public sealed partial class ShellComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<AlertPrototype> ShellAlert = "DollShellIntegrity";
+
+    [ViewVariables]
+    public List<Marking> OriginalMarkings = [];
+
+    [DataField]
+    public ProtoId<DamageGroupPrototype> DestroyedBy = "Brute";
+
+    [DataField]
+    public float Stability = 1f;
+
+    [DataField]
+    public float Hardness = 15f;
+
+    [DataField]
+    public SoundSpecifier? ShellBreakSound = new SoundPathSpecifier("/Audio/Effects/metal_glass_break1.ogg", new AudioParams(1f, 2f, 5f, 1, 1, false, 0f, 2f));
 }

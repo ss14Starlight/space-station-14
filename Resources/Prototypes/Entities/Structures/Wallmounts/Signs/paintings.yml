@@ -144,11 +144,12 @@
 - type: entity
   parent: PaintingBase
   id: PaintingSleepingGypsy
-  name: The Sleeping Nomad #SL Edit g to nomad
-  description: This painting depicts a nomad sleeping among their belongings in the desert. A lion stands behind them. #Sl edit g to nomad
+  name: A Lady Playing the Tanpura #SL Edit
+  description: This painting depicts a nayika, a figure personifying the ideal of feminine beauty as conceptualized in Indian devotional poetry. India, 1735 Earth. #SL Edit
   components:
   - type: Sprite
-    state: painting15
+    sprite: _Starlight/Structures/Wallmounts/paintings.rsi # SL Edit
+    state: a_lady_playing_the_tanpura #SL Edit
 
 - type: entity
   parent: PaintingBase

@@ -1,0 +1,27 @@
+- type: entity
+  name: Aspace radio [ADMEME]
+  description: A radio with which admins mess with you.
+  parent: [RadioHandheld]
+  id: RadioHandheldAdmeme
+  components:
+    - type: TelecomExempt
+    - type: RadioMicrophone
+      broadcastChannel: Aspace
+      listenRange: 1
+    - type: RadioSpeaker
+      channels:
+        - Aspace
+    - type: Speech
+      speechVerb: Robotic
+    - type: Sprite
+      sprite: _Inferus/Objects/Devices/admemehandy.rsi
+      layers:
+        - state: walkietalkie
+        - state: walkietalkie-on
+      state: walkietalkie
+    - type: Item
+      sprite: _Inferus/Objects/Devices/admemehandy.rsi
+      heldPrefix: walkietalkie
+    - type: Tag
+      tags:
+        - Radio

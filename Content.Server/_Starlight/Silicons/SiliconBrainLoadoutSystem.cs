@@ -18,6 +18,8 @@ public sealed partial class SiliconBrainLoadoutSystem : EntitySystem
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private IComponentFactory _compFactory = default!;
 
+    private static readonly EntProtoId FallbackBrain = "OrganHumanBrain";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -72,7 +74,7 @@ public sealed partial class SiliconBrainLoadoutSystem : EntitySystem
         {
             foreach (var (_, slot) in body.Slots)
             {
-                if (slot.Organs.TryGetValue("brain", out var organProto))
+                if (slot.Organs.TryGetValue("brain", out var organProto) && organProto != null)
                 {
                     brainProto = organProto;
                     // Check if brain has BorgBrain component
@@ -84,7 +86,10 @@ public sealed partial class SiliconBrainLoadoutSystem : EntitySystem
         }
 
         if (brainProto == null)
-            return;
+        {
+            brainProto = FallbackBrain;
+            useMMI = true;
+        }
 
         // Spawn and insert brain
         if (useMMI)

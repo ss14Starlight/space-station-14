@@ -1,0 +1,23 @@
+# Ruin maps used as flood-fill sources for WreckSwarm ruin chunks.
+# Keep the list small (~5); more maps slow round-start costmap builds.
+# Prefer station-like maps; avoid asteroid/xeno-wall heavy layouts.
+
+- type: ruinMap
+  id: RuinBagel
+  mapPath: /Maps/_Starlight/Stations/Bagel.yml
+
+- type: ruinMap
+  id: RuinBox
+  mapPath: /Maps/_Starlight/Stations/Box.yml
+
+- type: ruinMap
+  id: RuinPacked
+  mapPath: /Maps/_Starlight/Stations/Packed.yml
+
+- type: ruinMap
+  id: RuinFland
+  mapPath: /Maps/_Starlight/Stations/Fland.yml
+
+- type: ruinMap
+  id: RuinCog
+  mapPath: /Maps/_Starlight/Stations/Cog.yml

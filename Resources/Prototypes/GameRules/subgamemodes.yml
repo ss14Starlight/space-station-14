@@ -68,5 +68,4 @@
       proto: Xenoborg
       count: 4
   - type: DynamicRuleCost
-    cost: 150
-    cooldown: 1 # Starlight end
+    cost: 150 # Starlight end

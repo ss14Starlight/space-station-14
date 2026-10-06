@@ -1,0 +1,18 @@
+#melee
+#shotgun
+#pistol
+#rifle
+
+#grenade
+
+#laser
+#boss
+#defense
+- type: entity
+  parent: [BaseWeaponTurret, BaseSyndicateContraband]
+  id: WeaponTurretDungeonSyndicate
+  suffix: DungeonSyndicate
+  components:
+    - type: NpcFactionMember
+      factions:
+        - DungeonSyndicate

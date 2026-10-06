@@ -1124,8 +1124,8 @@
       path: /Audio/Animals/cat_hiss.ogg
     hidden: true
     damage:
-      groups:
-        Brute: 1
+      types:
+        Blunt: 1
 
 # Suppermatter
 # I can't figure out where to put this. It kind of acts like a cake I guess?
@@ -1199,36 +1199,6 @@
     heldPrefix: suppermatter-shard
 
 - type: entity
-  name: cotton cake
-  parent: [FoodCakeBase, BaseSlicingRefinableFood]
-  id: FoodCakeCotton
-  description: A cake with a fiber frosting and a wad of cotton on top.
-  components:
-  - type: Sprite
-    state: cotton
-  - type: ToolRefinable
-    refineResult:
-    - id: FoodCakeCottonSlice
-      amount: 8
-  - type: Tag
-    tags:
-    - Cake
-    - ClothMade
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 60
-      - ReagentId: Vitamin
-        Quantity: 10
-      - ReagentId: Sugar
-        Quantity: 10
-      - ReagentId: Fiber
-        Quantity: 10
-  - type: Item
-    heldPrefix: cotton
-
-- type: entity
   name: slice of cotton cake
   parent: FoodCakeSliceBase
   id: FoodCakeCottonSlice
@@ -1241,6 +1211,7 @@
     - Cake
     - ClothMade
     - Slice
+    - CottonCake # Starlight
   - type: Solution
     solution:
       reagents:

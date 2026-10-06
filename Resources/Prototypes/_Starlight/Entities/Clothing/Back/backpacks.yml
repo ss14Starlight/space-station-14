@@ -106,3 +106,21 @@
     - type: Storage
       grid:
       - 0,0,1,15 #its a part of the joke of the inventory being sword shaped and inconvient.
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackStar
+  name: star backpack # Alternative Clothing Catalog
+  description: A star-shaped ita backpack, for the cutie patooties among us.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Back/Backpacks/star.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackKitty
+  name: kitty backpack # Alternative Clothing Catalog
+  description: A cat-shaped ita backpack, for the cutie patooties among us.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Back/Backpacks/kitty.rsi

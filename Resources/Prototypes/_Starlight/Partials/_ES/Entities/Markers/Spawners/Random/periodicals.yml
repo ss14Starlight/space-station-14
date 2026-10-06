@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: ESSpawnerRandomPeriodicals
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - MagazineCentCommPSO
+
+- type: !PartialOnly entity
+  id: ESSpawnerRandomPeriodicalsLegit
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - MagazineCentCommPSO

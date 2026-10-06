@@ -1,4 +1,5 @@
 using Content.Shared.Wieldable;
+using Content.Shared._Starlight.Weapons.Ranged.Systems;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Weapons.Ranged.Components;
@@ -6,7 +7,7 @@ namespace Content.Shared.Weapons.Ranged.Components;
 /// <summary>
 /// Applies an accuracy bonus upon wielding.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(SharedWieldableSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(SharedWieldableSystem), typeof(GunShieldBraceSystem))] // Starlight-edit: GunShieldBraceSystem
 public sealed partial class GunWieldBonusComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite), DataField("minAngle"), AutoNetworkedField]
@@ -36,4 +37,24 @@ public sealed partial class GunWieldBonusComponent : Component
 
     [DataField]
     public LocId? WieldBonusExamineMessage = "gunwieldbonus-component-examine";
+
+    #region Starlight
+    [DataField, AutoNetworkedField]
+    public float MinAngleDivider = 1f;
+
+    [DataField, AutoNetworkedField]
+    public float MaxAngleDivider = 1f;
+
+    [DataField, AutoNetworkedField]
+    public float AngleDecayDivider = 1f;
+
+    [DataField, AutoNetworkedField]
+    public float AngleIncreaseDivider = 1f;
+
+    [DataField, AutoNetworkedField]
+    public float ShieldBraceMultiplier = 0.5f;
+
+    [DataField]
+    public LocId? ShieldBraceExamineMessage = "gunwieldbonus-component-examine-shield-brace";
+    #endregion
 }

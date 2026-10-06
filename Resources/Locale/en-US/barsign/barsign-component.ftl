@@ -109,4 +109,3 @@ barsign-prototype-name-empbarsign = glitchy bar sign
 barsign-prototype-description-empbarsign = Something has gone very wrong.
 
 ## SignOff
-barsign-prototype-description-sign-off = This sign doesn't seem to be on.

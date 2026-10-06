@@ -7,6 +7,7 @@
   - Defusal
   - CriminalRecords
   - StirStir #SL Edit
+  - AmmoTypes #SL Edit
 
 - type: guideEntry
   id: Forensics
@@ -22,4 +23,3 @@
   id: CriminalRecords
   name: guide-entry-criminal-records
   text: "/ServerInfo/Guidebook/Security/CriminalRecords.xml"
-

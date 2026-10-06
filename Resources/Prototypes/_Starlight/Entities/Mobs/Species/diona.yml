@@ -73,7 +73,7 @@
           types:
             Poison: -1
             Caustic: -0.5
-            Genetic: -0.05
+            Cellular: -0.05
             Radiation: -0.05
     - reagents: [ PlantBGone ]
       methods: [ Touch ]
@@ -140,3 +140,12 @@
       0: Alive
       125: Critical
       250: Dead
+  - type: SocialInteractionReceiver
+    interactionOverrides: # diona don't have noses
+    - id: Pat
+      interactSound: /Audio/Effects/plant_rustle.ogg
+    - id: Boop
+      interactString: booping-plant-success
+      messagePerceivedByOthers: booping-plant-success-others
+      emoteMessage: booping-plant-emote
+      interactSound: /Audio/Effects/plant_rustle.ogg

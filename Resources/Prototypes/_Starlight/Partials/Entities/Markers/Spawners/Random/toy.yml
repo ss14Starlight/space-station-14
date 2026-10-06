@@ -1,0 +1,5 @@
+- type: !ParitalOnly entityTable
+  id: AllMiscToysTable
+  table:
+    children:
+      - id: TwistyCube

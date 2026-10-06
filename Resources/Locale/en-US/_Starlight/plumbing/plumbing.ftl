@@ -21,7 +21,6 @@ plumbing-reactor-add = Add
 plumbing-reactor-targets = Reaction Recipe
 plumbing-reactor-clear = Clear All
 plumbing-reactor-remove-selected = Remove Selected
-plumbing-reactor-output = Output Contents
 plumbing-reactor-invalid-reagent = Unknown reagent: {$reagent}
 
 # Filter UI
@@ -44,13 +43,8 @@ plumbing-synthesizer-status = Status:
 plumbing-synthesizer-enabled = Enabled
 plumbing-synthesizer-disabled = Disabled
 plumbing-synthesizer-battery = Battery:
-plumbing-synthesizer-power = Power:
-plumbing-synthesizer-power-on = Connected
-plumbing-synthesizer-power-off = No Power
 plumbing-synthesizer-select-reagent = Select Reagent
 plumbing-synthesizer-none = None
-plumbing-synthesizer-buffer = Buffer Contents
-plumbing-synthesizer-buffer-empty = Empty
 
 # Plunger drain
 plumbing-drain-success = Drained {$amount}u onto the floor.

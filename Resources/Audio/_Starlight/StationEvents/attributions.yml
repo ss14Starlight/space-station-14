@@ -27,3 +27,8 @@
   license: "CC-BY-NC-3.0"
   copyright: "Created by Bobik6003"
   source: "https://github.com/A-Guy173/Music/tree/main"
+
+- files: ["damper_ii.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "Beptol Corporation Acoustics"
+  source: "https://pastebin.com/5wk5SNM0"

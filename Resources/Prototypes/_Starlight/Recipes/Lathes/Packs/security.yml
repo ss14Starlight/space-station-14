@@ -1,29 +1,6 @@
 ## Static recipes
 
-- type: latheRecipePack
-  id: StarlightSecurityEquipmentStatic
-  recipes:
-  - ClothingEyesHudSecurity
-  - ForensicPad
-  - Handcuffs
-  - TargetClown
-  - TargetHuman
-  - TargetSyndicate
-  - Zipties
-
 # Practice ammo/mags and practice weapons
-- type: latheRecipePack
-  id: StarlightSecurityPracticeStatic
-  recipes:
-  - BoxShotgunPractice
-  - MagazineBoxLightRiflePractice
-  - MagazineBoxMagnumPractice
-  - MagazineBoxPistolPractice
-  - MagazineBoxCaselessRiflePractice
-  - MagazineBoxRiflePractice
-  - WeaponDisablerPractice
-  - WeaponLaserCarbinePractice
-  - MagazineDMRPractice
 
 - type: latheRecipePack
   id: StarlightSecurityAmmoEmagStatic
@@ -122,6 +99,7 @@
   - BoxPeacekeeperStinger
   - BoxPeacekeeperFlash
   - BoxPeacekeeperBaton
+#  - BoxPeacekeeperBola
 ####################################################
 
 - type: latheRecipePack
@@ -244,7 +222,6 @@
   - CartridgePistolRubber
 # Rifle
   - CartridgeRifleRubber
-####################################################
 
 - type: latheRecipePack
   id: StarlightSecurityWeapons
@@ -279,11 +256,6 @@
   - WeaponMechCombatImmolationGun
   - WeaponMechCombatSolarisLaser
   - WeaponMechCombatFiredartLaser
-
-- type: latheRecipePack
-  id: StarlightSecurityMechsSystems
-  recipes:
-  - MechEquipmentSecGrabber
 
 - type: latheRecipePack
   id: StarlightSecurityMechs

@@ -1,0 +1,9 @@
+﻿- type: !PartialOnly entity
+  id: WeaponCroissant
+  components:
+    - type: MeleeChemicalInjector
+      transferAmount: 2
+      solution: food
+    - type: SolutionInjectOnEmbed
+      transferAmount: 3
+      solution: food

@@ -1,0 +1,4 @@
+- type: !PartialOnly startingGear
+  id: CBURNGear
+  equipment:
+    pocket2: WeaponPistolPDW9

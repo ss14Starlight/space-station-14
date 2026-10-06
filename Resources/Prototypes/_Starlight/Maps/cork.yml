@@ -77,7 +77,7 @@
             #K9: [ 1, 1 ]
 
             # Civilian
-            #AssistantManager: [ 1, 1 ]
+            AssistantManager: [ 1, 1 ]
             Assistant: [ -1, -1 ]
 
             # Silicon

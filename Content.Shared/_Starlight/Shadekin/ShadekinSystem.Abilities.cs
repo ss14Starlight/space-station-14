@@ -12,20 +12,9 @@ namespace Content.Shared._Starlight.Shadekin;
 
 public sealed partial class ShadekinSystem
 {
-    public void InitializeAbilities()
-    {
-        SubscribeLocalEvent<BrighteyeComponent, BrighteyePortalActionEvent>(OnPortalAction);
-        SubscribeLocalEvent<BrighteyeComponent, BrighteyePhaseActionEvent>(OnPhaseAction);
-        SubscribeLocalEvent<BrighteyeComponent, BrighteyeDarkTrapActionEvent>(OnDarkTrapAction);
-        SubscribeLocalEvent<BrighteyeComponent, BrighteyeCreateShadeActionEvent>(OnCreateShadeAction);
-        SubscribeLocalEvent<BrighteyeComponent, BrighteyeShadeSkipActionEvent>(OnShadeskipAction);
-        SubscribeLocalEvent<BrighteyeComponent, PhaseDoAfterEvent>(OnPhaseDoAfter);
-
-        SubscribeLocalEvent<DarkTrapComponent, TriggerEvent>(DarkTrapOnTrigger);
-    }
-
     #region  Shadeskip
 
+    [SubscribeLocalEvent]
     private void OnShadeskipAction(Entity<BrighteyeComponent> ent, ref BrighteyeShadeSkipActionEvent args)
     {
         var cost = ent.Comp.ShadeSkipCost;
@@ -60,6 +49,7 @@ public sealed partial class ShadekinSystem
 
     #region Create Shade
 
+    [SubscribeLocalEvent]
     private void OnCreateShadeAction(Entity<BrighteyeComponent> ent, ref BrighteyeCreateShadeActionEvent args)
     {
         if (!OnAttemptEnergyUse(ent, ent.Comp, ent.Comp.CreateShadeCost))
@@ -75,6 +65,7 @@ public sealed partial class ShadekinSystem
 
     #region DarkTrap
 
+    [SubscribeLocalEvent]
     private void OnDarkTrapAction(Entity<BrighteyeComponent> ent, ref BrighteyeDarkTrapActionEvent args)
     {
         if (HasComp<NullSpaceComponent>(ent))
@@ -98,12 +89,13 @@ public sealed partial class ShadekinSystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void DarkTrapOnTrigger(Entity<DarkTrapComponent> ent, ref TriggerEvent args)
     {
         if (args.User is null)
             return;
 
-        var darknet = EntityManager.PredictedSpawn(ent.Comp.DarkNet);
+        var darknet = PredictedSpawn(ent.Comp.DarkNet);
         if (TryComp<EnsnaringComponent>(darknet, out var ensnaringComp) && _ensnareable.TryEnsnare(args.User.Value, darknet, ensnaringComp))
         {
             _popup.PopupPredicted(Loc.GetString("shadekinTrap-trigger", ("user", args.User.Value)), args.User.Value, args.User.Value, PopupType.LargeCaution);
@@ -126,6 +118,7 @@ public sealed partial class ShadekinSystem
     #endregion
     #region Portal
 
+    [SubscribeLocalEvent]
     private void OnPortalAction(Entity<BrighteyeComponent> ent, ref BrighteyePortalActionEvent args)
     {
         if (HasComp<NullSpaceComponent>(ent)) // No making portals while in nullspace!
@@ -178,6 +171,7 @@ public sealed partial class ShadekinSystem
     #endregion
     #region  Phase
 
+    [SubscribeLocalEvent]
     private void OnPhaseAction(Entity<BrighteyeComponent> ent, ref BrighteyePhaseActionEvent args)
     {
         var cost = ent.Comp.PhaseCost;
@@ -223,6 +217,7 @@ public sealed partial class ShadekinSystem
         args.Handled = true;
     }
 
+    [SubscribeLocalEvent]
     private void OnPhaseDoAfter(Entity<BrighteyeComponent> ent, ref PhaseDoAfterEvent args)
     {
         if (!args.Args.Target.HasValue || args.Handled || args.Cancelled)

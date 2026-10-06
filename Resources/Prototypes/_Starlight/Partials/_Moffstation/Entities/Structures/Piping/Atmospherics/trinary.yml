@@ -1,0 +1,6 @@
+# Subfloor layers
+- type: !PartialOnly entity
+  id: GasMolarMixer
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes

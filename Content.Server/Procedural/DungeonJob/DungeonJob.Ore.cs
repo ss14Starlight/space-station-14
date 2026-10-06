@@ -17,13 +17,14 @@ public sealed partial class DungeonJob
         OreDunGen gen,
         List<Dungeon> dungeons,
         HashSet<Vector2i> reservedTiles,
-        Random random)
+        IRobustRandom random)
     {
         foreach (var dungeon in dungeons)
         {
             var emptyTiles = false;
             var replaceEntities = new Dictionary<Vector2i, EntityUid>();
             var availableTiles = new List<Vector2i>();
+            var availableTileSet = new HashSet<Vector2i>(); // Starlight: Avoids near infinite looping
 
             foreach (var node in dungeon.AllTiles)
             {
@@ -69,6 +70,7 @@ public sealed partial class DungeonJob
 
                 // Add it to valid nodes.
                 availableTiles.Add(node);
+                availableTileSet.Add(node); // Starlight
 
                 await SuspendDungeon();
 
@@ -116,6 +118,7 @@ public sealed partial class DungeonJob
                 while (groupSize > 0 && availableTiles.Count > 0)
                 {
                     var startNode = random.PickAndTake(availableTiles);
+                    availableTileSet.Remove(startNode); // Starlight
                     frontier.Clear();
                     frontier.Add(startNode);
 
@@ -127,6 +130,7 @@ public sealed partial class DungeonJob
                         var node = frontier[frontierIndex];
                         frontier.RemoveSwap(frontierIndex);
                         availableTiles.Remove(node);
+                        availableTileSet.Remove(node); // Starlight
 
                         // Add neighbors if they're valid, worst case we add no more and pick another random seed tile.
                         for (var x = -1; x <= 1; x++)
@@ -135,7 +139,7 @@ public sealed partial class DungeonJob
                             {
                                 var neighbor = new Vector2i(node.X + x, node.Y + y);
 
-                                if (frontier.Contains(neighbor) || !availableTiles.Contains(neighbor))
+                                if (frontier.Contains(neighbor) || !availableTileSet.Contains(neighbor)) // Starlight
                                     continue;
 
                                 frontier.Add(neighbor);
@@ -170,7 +174,7 @@ public sealed partial class DungeonJob
                     }
                 }
 
-            // Starlight edit Start: Stop warning when we run out of valid tiles
+                // Starlight edit Start: Stop warning when we run out of valid tiles
                 if (groupSize > 0)
                 {
                     partiallyFilledGroups++;

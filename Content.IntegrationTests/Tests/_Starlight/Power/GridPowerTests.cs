@@ -79,6 +79,7 @@ public sealed class GridPowerTests : GameTest
 
         // Shipyard
         new("/Maps/_Starlight/Shuttles/Shipyard/barge.yml"),
+        new("/Maps/_Starlight/Shuttles/Shipyard/Bellows.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/breaker.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/Bumblebee.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/Comet.yml"),

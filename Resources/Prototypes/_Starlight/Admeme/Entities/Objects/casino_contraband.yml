@@ -1,0 +1,7 @@
+- type: entity
+  id: BaseCasinoContraband
+  abstract: true
+  components:
+    - type: Contraband
+      severity: Casino
+      allowedDepartments: [ Casino ]

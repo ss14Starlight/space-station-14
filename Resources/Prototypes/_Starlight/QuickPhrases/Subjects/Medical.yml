@@ -94,3 +94,8 @@
   id: ChemUnstableMutagenPhrase
   parent: BaseMedicinePhrase
   text: reagent-name-unstable-mutagen
+
+- type: quickPhrase
+  id: ChemCharcoalPhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-charcoal

@@ -21,3 +21,12 @@
   targetNode: glasses
   category: construction-category-clothing
   objectType: Item
+
+- type: construction
+  id: ClothingOuterWireVest
+  name: construction-recipe-vest-wire
+  graph: WireHarness
+  startNode: start
+  targetNode: WireVest
+  category: construction-category-clothing
+  objectType: Item

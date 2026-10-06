@@ -6,9 +6,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
-#region Starlight
 using Content.Shared._Starlight.StationAi;
-#endregion
 
 namespace Content.Shared.Silicons.StationAi;
 
@@ -188,10 +186,11 @@ public abstract partial class SharedStationAiSystem
             return;
         }
 
-        // Starlight Start
-        if (_vision.IsOutsideCameraViewCached(args.Target))
+        // Starlight - start
+        if (!CanAccessGrid((args.User, null), Transform(args.Target).GridUid) ||
+            _vision.IsOutsideCameraViewCached(args.Target))
             return;
-        // Starlight End
+        // Starlight - end
         var user = args.User;
 
         var target = args.Target;

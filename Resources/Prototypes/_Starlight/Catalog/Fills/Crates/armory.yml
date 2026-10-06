@@ -10,7 +10,7 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: WeaponLr30
+        - id: WeaponRifleLr30
           amount: 2
         - id: MagazineBatteryLr30
           amount: 2
@@ -63,3 +63,16 @@
         - id: ClothingMaskBreath
         - id: NitrousOxideTankFilled
         - id: NitrousOxideTankFilled
+
+- type: entity
+  id: CrateArmoryMelee
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  name: armory melee weapon crate
+  description: A crate with a tactical spear and a short sword.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SpearAthena
+        - id: SwordAres

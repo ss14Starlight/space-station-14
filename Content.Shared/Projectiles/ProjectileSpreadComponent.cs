@@ -29,4 +29,13 @@ public sealed partial class ProjectileSpreadComponent : Component
     /// </summary>
     [DataField]
     public int Count = 1;
+
+    #region Starlight
+    /// <summary>
+    /// How far each projectile may randomly stray either way from its place in the spread, so the pattern is never the same.
+    /// Projectiles never leave the <see cref="Spread"/> cone.
+    /// </summary>
+    [DataField]
+    public Angle Deviation = Angle.FromDegrees(2);
+    #endregion
 }

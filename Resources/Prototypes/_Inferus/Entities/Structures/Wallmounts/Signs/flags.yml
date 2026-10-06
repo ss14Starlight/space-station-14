@@ -1,0 +1,139 @@
+- type: entity
+  parent: BaseFlag
+  id: BaseFlagInferus
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _Inferus/Structures/Wallmounts/flags.rsi
+
+- type: entity
+  parent: BaseFlagInferus
+  id: MoachFlag
+  name: mothroach flag
+  description: A flag depicting a mothroach. Look, she's even taking a little bite out of the fabric!
+  components:
+    - type: Sprite
+      state: moach_flag
+    - type: Construction
+      graph: Flags
+      node: MoachFlag
+
+- type: entity
+  parent: BaseFlagInferus
+  id: IntersexFlag
+  name: intersex flag
+  description: The sex inbetween… There is a sex inbetween.
+  components:
+    - type: Sprite
+      state: intersex_flag
+    - type: Construction
+      graph: Flags
+      node: IntersexFlag
+
+- type: entity
+  parent: BaseFlagInferus
+  id: TransFlag
+  name: trans flag
+  description: Trans rights! And lefts. And wrongs.
+  components:
+    - type: Sprite
+      state: trans_flag
+    - type: Construction
+      graph: Flags
+      node: TransFlag
+
+- type: entity
+  parent: BaseFlagInferus
+  id: DisabilityFlag
+  name: disability flag
+  description: Not all disabilities are visible. No, that doesn't mean *you're* invisible.
+  components:
+    - type: Sprite
+      state: disability_flag
+    - type: Construction
+      graph: Flags
+      node: DisabilityFlag
+
+- type: entity
+  parent: BaseFlagInferus
+  id: AceFlag
+  name: asexual flag
+  description: Got no fucks to give.
+  components:
+    - type: Sprite
+      state: ace_flag
+    - type: Construction
+      graph: Flags
+      node: AceFlag
+
+- type: entity
+  parent: BaseFlagInferus
+  id: AroFlag
+  name: aromantic flag
+  description: Ooo, you lighting a candle or someth- oh, wait, there's an N.
+  components:
+    - type: Sprite
+      state: aro_flag
+    - type: Construction
+      graph: Flags
+      node: AroFlag
+
+- type: entity
+  parent: BaseFlagInferus
+  id: BiFlag
+  name: bisexual flag
+  description: You know what'd be nice? A bicycle ride to the grocery store.
+  components:
+    - type: Sprite
+      state: bi_flag
+    - type: Construction
+      graph: Flags
+      node: BiFlag
+
+- type: entity
+  parent: BaseFlagInferus
+  id: LesbianFlag
+  name: lesbian flag
+  description: Wolowolowolowolowolowolowolowolowolo…
+  components:
+    - type: Sprite
+      state: lesbian_flag
+    - type: Construction
+      graph: Flags
+      node: LesbianFlag
+
+- type: entity
+  parent: BaseFlagInferus
+  id: NonbinaryFlag
+  name: nonbinary flag
+  description: Silicons hate them! …Not really, bigotry is banned on NT stations.
+  components:
+    - type: Sprite
+      state: enby_flag
+    - type: Construction
+      graph: Flags
+      node: NonbinaryFlag
+
+- type: entity
+  parent: BaseFlagInferus
+  id: GenderfluidFlag
+  name: genderfluid flag
+  description: Don't let it wash down the drain.
+  components:
+    - type: Sprite
+      state: genderfluid_flag
+    - type: Construction
+      graph: Flags
+      node: GenderfluidFlag
+
+- type: entity
+  parent: BaseFlagInferus
+  id: GenderqueerFlag
+  name: genderqueer flag
+  description: We get a little silly with it.
+  components:
+    - type: Sprite
+      state: genderqueer_flag
+    - type: Construction
+      graph: Flags
+      node: GenderqueerFlag

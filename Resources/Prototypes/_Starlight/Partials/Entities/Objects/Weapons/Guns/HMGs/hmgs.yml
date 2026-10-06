@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: BaseWeaponHeavyMachineGun
+  components:
+  - type: GunHeat
+    heatPerShot: 375

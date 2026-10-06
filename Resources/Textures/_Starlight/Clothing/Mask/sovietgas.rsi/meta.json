@@ -33,6 +33,11 @@
     {
       "name": "equipped-MASK-vox",
       "directions": 4
-    }
+    },
+    {
+      "name": "equipped-MASK-experiment",
+      "copyright": "Modified state by DocMoth",
+      "directions": 4
+	  }
   ]
 }

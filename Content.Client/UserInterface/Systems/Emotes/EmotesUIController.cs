@@ -136,6 +136,7 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
 
     private IEnumerable<RadialMenuOptionBase> ConvertToButtons(IEnumerable<EmotePrototype> emotePrototypes)
     {
+        emotePrototypes = SortEmotePrototypes(emotePrototypes); // Starlight: wheel ordering, see EmotesUIController.Starlight.cs
         var whitelistSystem = EntitySystemManager.GetEntitySystem<EntityWhitelistSystem>();
         var player = _playerManager.LocalSession?.AttachedEntity;
 
@@ -172,7 +173,7 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
         }
 
         // Starlight - Start
-        var cloudprototypes = _prototypeManager.EnumeratePrototypes<CloudEmotePrototype>();
+        var cloudprototypes = SortCloudEmotePrototypes(_prototypeManager.EnumeratePrototypes<CloudEmotePrototype>());
         foreach (var emote in cloudprototypes)
         {
             if (!emotesByCategory.TryGetValue(EmoteCategory.Cloud, out var list))

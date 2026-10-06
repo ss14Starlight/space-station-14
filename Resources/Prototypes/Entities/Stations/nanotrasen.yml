@@ -44,13 +44,3 @@
   components:
     - type: Transform
 
-- type: entity
-  id: StandardStationArena
-  parent:
-  - BaseStation
-  - BaseStationJobsSpawning
-  - BaseStationRecords
-  - BaseStationNanotrasen
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: Transform

@@ -121,7 +121,7 @@ public sealed partial class DevourSystem : EntitySystem
 
         //Specific ammount of damage to apply to kill the target
         var deathThreshold = _thresholdSystem.GetThresholdForState(target, MobState.Dead);
-        var targetDamage = _damageSystem.GetDamage((target, damageable));
+        var targetDamage = _damageSystem.GetAllDamage((target, damageable));
         var targetDamageTotal = targetDamage.GetTotal();
         var requiredDamage = deathThreshold - targetDamageTotal;
 

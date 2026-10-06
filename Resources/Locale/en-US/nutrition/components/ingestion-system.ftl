@@ -1,5 +1,4 @@
-﻿
-### Interaction Messages
+﻿### Interaction Messages
 
 # System
 
@@ -36,7 +35,6 @@ edible-nom-other = Nom.
 edible-slurp = Slurp. {$flavors}{ -edible-satiated(satiated: $satiated, verb: "drink") }
 edible-slurp-other = Slurp.
 edible-swallow = You swallow { THE($food) }.{ -edible-satiated(satiated: $satiated, verb: "swallow") }
-edible-gulp = Gulp. {$flavors}
 edible-gulp-other = Gulp.
 
 edible-has-used-storage = You cannot {$verb} { THE($food) } with an item stored inside.

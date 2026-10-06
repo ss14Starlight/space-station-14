@@ -16,13 +16,16 @@
       params:
         volume: -3
     damage:
-      groups:
-        Brute: 6
+      types:
+        Blunt: 2
+        Piercing: 2
+        Slash: 2
   - type: IncreaseDamageOnWield
     damage:
-      groups:
-        Brute: 12
       types:
+        Blunt: 4
+        Piercing: 4
+        Slash: 4
         Structural: 50
   - type: Item
     size: Normal

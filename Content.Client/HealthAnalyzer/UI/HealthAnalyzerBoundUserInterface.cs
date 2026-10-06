@@ -9,7 +9,7 @@ namespace Content.Client.HealthAnalyzer.UI
     {
         [ViewVariables]
         private HealthAnalyzerWindow? _window;
-
+        private HealthAnalyzerScannedUserMessage? _pendingMessage; // Starlight-edit: data that arrived before the window existed
         public HealthAnalyzerBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
         }
@@ -20,11 +20,18 @@ namespace Content.Client.HealthAnalyzer.UI
 
             _window = this.CreateWindow<HealthAnalyzerWindow>();
             // Starlight-start: Printable health reports.
-            _window.SetPrintReportVisible(true);
             _window.PrintReportPressed += OnPrintReportPressed;
             // Starlight-end
 
             _window.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
+
+            // Starlight-start: Show data that arrived before the window existed.
+            if (_pendingMessage != null)
+            {
+                _window.Populate(_pendingMessage);
+                _pendingMessage = null;
+            }
+            // Starlight-end
         }
 
         // Starlight-start: Printable health reports.
@@ -36,12 +43,16 @@ namespace Content.Client.HealthAnalyzer.UI
 
         protected override void ReceiveMessage(BoundUserInterfaceMessage message)
         {
-            if (_window == null)
-                return;
-
+            // Starlight-start: Show data that arrived before the window existed.
             if (message is not HealthAnalyzerScannedUserMessage cast)
                 return;
 
+            if (_window == null)
+            {
+                _pendingMessage = cast;
+                return;
+            }
+            // Starlight-end
             _window.Populate(cast);
         }
     }

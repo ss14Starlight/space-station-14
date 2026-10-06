@@ -23,6 +23,7 @@ using System.Linq;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Clothing.Components;
+using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared._Starlight.Flash.Components;
 
 namespace Content.Shared.Flash;
@@ -42,6 +43,7 @@ public abstract partial class SharedFlashSystem : EntitySystem
     [Dependency] private StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private UseDelaySystem _useDelay = default!;
+    [Dependency] private IRobustRandom _rand = default!;
 
     private EntityQuery<StatusEffectsComponent> _statusEffectsQuery;
     private EntityQuery<DamagedByFlashingComponent> _damagedByFlashingQuery;
@@ -222,7 +224,17 @@ public abstract partial class SharedFlashSystem : EntitySystem
     /// <param name="displayPopup">Whether or not to show a popup to the target player.</param>
     /// <param name="probability">Chance to be flashed. Rolled separately for each target in range.</param>
     /// <param name="sound">Additional sound to play at the source.</param>
-    public void FlashArea(EntityUid source, EntityUid? user, float range, TimeSpan flashDuration, float slowTo = 0.8f, bool displayPopup = false, float probability = 1f, SoundSpecifier? sound = null)
+    /// <param name="ignoreEntities">Entities to ignore when flashing.</param> (STARLIGHT EDIT)
+    public void FlashArea(
+        EntityUid source,
+        EntityUid? user,
+        float range,
+        TimeSpan flashDuration,
+        float slowTo = 0.8f,
+        bool displayPopup = false,
+        float probability = 1f,
+        SoundSpecifier? sound = null,
+        List<EntityUid>? ignoreEntities = null)
     {
         var transform = Transform(source);
         var mapPosition = _transform.GetMapCoordinates(transform);
@@ -231,7 +243,15 @@ public abstract partial class SharedFlashSystem : EntitySystem
         _entityLookup.GetEntitiesInRange(transform.Coordinates, range, _entSet);
         foreach (var entity in _entSet)
         {
-            if (!SharedRandomExtensions.PredictedProb(_timing, probability, GetNetEntity(entity)))
+            // starlight start - functionality to ignore certain entities when flashing
+            if (ignoreEntities != null)
+            {
+                if (ignoreEntities.Contains(entity))
+                    continue;
+            }
+
+            var seed = GetNetEntity(entity).Id;
+            if (!_rand.ProbPredicted(_timing, probability, seed))
                 continue;
 
             // Is the entity affected by the flash either through status effects or by taking damage?

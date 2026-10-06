@@ -9,7 +9,7 @@
     raiseOnAction: true
     itemIconStyle: BigAction
     icon:
-      sprite: Interface/Actions/changeling.rsi
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi # Starlight-edit
       state: armblade
   - type: InstantAction
     event: !type:OnRetractableItemActionEvent

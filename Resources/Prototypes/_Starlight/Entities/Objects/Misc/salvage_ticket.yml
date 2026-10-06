@@ -59,7 +59,7 @@
 
 - type: material
   id: SalvageTicket
-  name: ticket
+  name: materials-salvage-ticket
   unit: materials-unit-credit
   stackEntity: SalvageTicket
   icon: { sprite: /Textures/_Starlight/Objects/Economy/salvage_ticket.rsi, state: icon }
@@ -81,43 +81,11 @@
 
 - type: entity
   parent: SalvageTicket
-  id: SalvageTicket10
-  suffix: 10
-  components:
-  - type: Stack
-    count: 10
-
-- type: entity
-  parent: SalvageTicket
-  id: SalvageTicket15
-  suffix: 15
-  components:
-  - type: Stack
-    count: 15
-
-- type: entity
-  parent: SalvageTicket
-  id: SalvageTicket20
-  suffix: 20
-  components:
-  - type: Stack
-    count: 20
-
-- type: entity
-  parent: SalvageTicket
   id: SalvageTicket25
   suffix: 25
   components:
   - type: Stack
     count: 25
-
-- type: entity
-  parent: SalvageTicket
-  id: SalvageTicket30
-  suffix: 30
-  components:
-  - type: Stack
-    count: 30
 
 - type: entity
   parent: SalvageTicket

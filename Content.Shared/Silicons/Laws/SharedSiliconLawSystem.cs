@@ -114,15 +114,6 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
             }
         }
     }
-
-    #region Starlight
-    public void SetLawset(EntityUid entity, SiliconLawset? laws)
-    {
-        if (!TryComp<SiliconLawProviderComponent>(entity, out var provider))
-            return;
-        provider.Lawset = laws;
-    }
-    #endregion
 }
 
 [ByRefEvent]

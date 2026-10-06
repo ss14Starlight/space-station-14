@@ -39,6 +39,7 @@
   - type: Speech
     speechVerb: Moth
     speechSounds: UnisexMoth # Starlight: Add talk sounds
+    allowedEmotes: ['Flap']
   - type: TypingIndicator
     proto: moth
   - type: Butcherable
@@ -134,3 +135,9 @@
         sprite: "Effects/creampie.rsi"
         state: "creampie_moth"
         visible: false
+  - type: SocialInteractionReceiver
+    interactionOverrides: # moths don't have noses
+    - id: Boop
+      interactString: booping-moth-success
+      messagePerceivedByOthers: booping-moth-success-others
+      emoteMessage: booping-moth-emote

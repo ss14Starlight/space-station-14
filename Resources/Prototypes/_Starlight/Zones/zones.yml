@@ -1,0 +1,222 @@
+- type: zone
+  id: Hallway
+  name: zone-hallway
+  color: "#7A7A7A"
+  priority: 0
+  corridor: true
+  doors:
+  - AirlockGlass
+  - Airlock
+
+- type: zone
+  id: Maintenance
+  name: zone-maintenance
+  color: "#5B4A2E"
+  priority: 10
+  doors:
+  - AirlockMaint
+  - AirlockMaintGlass
+  - AirlockHatchMaintenance
+  - AirlockMaintRoboticsLocked
+  - AirlockMaintMedLocked
+  - AirlockMaintJanitorLocked
+  - AirlockMaintAtmoLocked
+  - AirlockMaintMiningCargoLocked
+
+- type: zone
+  id: Command
+  name: zone-command
+  color: "#3F51B5"
+  priority: 20
+  doors:
+  - AirlockCommand
+  - AirlockCommandGlass
+  - AirlockCentralCommand
+  - AirlockCentralCommandGlass
+  - HighSecCommandLocked
+  - TurnstileCommand
+  - HighSecCaptainLocked
+  - HighSecCentralCommandLocked
+
+- type: zone
+  id: Nanotrasen
+  name: zone-nanotrasen
+  color: "#dfe4ed"
+  priority: 20
+  doors:
+  - AirlockNT
+  - AirlockNTGlass
+
+- type: zone
+  id: Security
+  name: zone-security
+  color: "#A33030"
+  priority: 20
+  doors:
+  - AirlockSecurity
+  - AirlockSecurityGlass
+  - AirlockHeadOfSecurityLocked
+  - AirlockHeadOfSecurityGlassLocked
+  - AirlockBrigmed
+  - AirlockBrigmedGlass
+  - HighSecArmoryLocked
+  - TurnstileGenpopEnter
+  - TurnstileGenpopLeave
+  - TurnstileSecurity
+  - TurnstileArmory
+  - WindoorSecurityLocked
+
+- type: zone
+  id: Medical
+  name: zone-medical
+  color: "#4DB6AC"
+  priority: 20
+  doors:
+  - AirlockMedical
+  - AirlockChiefMedicalOfficerLocked
+  - AirlockChiefMedicalOfficerGlassLocked
+  - AirlockMedicalGlass
+  - AirlockVirology
+  - AirlockVirologyGlass
+  - AirlockChemistry
+  - AirlockChemistryGlass
+  - AirlockSurgery
+  - AirlockSurgeryGlass
+  - AirlockParamedic
+  - AirlockParamedicGlass
+
+- type: zone
+  id: Engineering
+  name: zone-engineering
+  color: "#C9A227"
+  priority: 20
+  doors:
+  - AirlockEngineering
+  - AirlockEngineeringGlass
+  - AirlockChiefEngineerLocked
+  - AirlockChiefEngineerGlassLocked
+  - AirlockExternalGlassEngineeringLocked
+  - WindoorSecureEngineeringLocked
+
+- type: zone
+  id: Science
+  name: zone-science
+  color: "#8E44AD"
+  priority: 20
+  doors:
+  - AirlockScience
+  - AirlockScienceGlass
+  - AirlockResearchDirectorLocked
+  - AirlockResearchDirectorGlassLocked
+  - AirlockRobotics
+  - AirlockRoboticsGlass
+  - PlasmaWindoorSecureScienceLocked
+  - WindoorSecureScienceLocked
+
+- type: zone
+  id: Cargo
+  name: zone-cargo
+  color: "#B07219"
+  priority: 20
+  doors:
+  - AirlockCargo
+  - AirlockCargoGlass
+  - AirlockQuartermasterLocked
+  - AirlockQuartermasterGlassLocked
+  - AirlockSalvage
+  - AirlockSalvageGlass
+  - AirlockMining
+  - AirlockMiningGlass
+  - AirlockMail
+  - AirlockMailGlass
+  - HighSecSalvageLocked
+  - AirlockExternalGlassCargoLocked
+
+- type: zone
+  id: Service
+  name: zone-service
+  color: "#5C9E31"
+  priority: 20
+  doors:
+  - AirlockHydroponics
+  - AirlockHydroponicsGlass
+  - AirlockHeadOfPersonnelLocked
+  - AirlockHeadOfPersonnelGlassLocked
+  - AirlockBarLocked
+  - AirlockKitchenLocked
+  - AirlockBarKitchenLocked
+  - AirlockJanitorLocked
+  - AirlockServiceGlassLocked
+  - AirlockServiceLocked
+
+- type: zone
+  id: Arrivals
+  name: zone-arrivals
+  color: "#4F7A8C"
+  priority: 20
+
+- type: zone
+  id: Atmospherics
+  name: zone-atmospherics
+  color: "#B85C38"
+  priority: 30
+  doors:
+  - AirlockAtmospherics
+  - AirlockAtmosphericsGlass
+  - AirlockExternalGlassAtmosphericsLocked
+
+- type: zone
+  id: Bar
+  name: zone-bar
+  color: "#7D4B2A"
+  priority: 30
+  doors:
+  - AirlockBarLocked
+  - AirlockBarKitchenLocked
+
+- type: zone
+  id: Kitchen
+  name: zone-kitchen
+  color: "#C4713A"
+  priority: 30
+  doors:
+  - AirlockKitchenLocked
+  - AirlockBarKitchenLocked
+
+- type: zone
+  id: Chapel
+  name: zone-chapel
+  color: "#9E9E9E"
+  priority: 30
+  doors:
+  - AirlockChapelLocked
+
+- type: zone
+  id: Dormitory
+  name: zone-dormitory
+  color: "#6D8B74"
+  priority: 30
+
+- type: zone
+  id: Solars
+  name: zone-solars
+  color: "#2E4A62"
+  priority: 30
+
+- type: zone
+  id: Detective
+  name: zone-detective
+  color: "#6B5B45"
+  priority: 30
+  doors: # Inherits Security from AirlockSecurity.
+  - AirlockDetectiveLocked
+  - AirlockDetectiveGlassLocked
+
+- type: zone
+  id: Virology
+  name: zone-virology
+  color: "#7CB342"
+  priority: 30
+  doors: # Also listed under Medical, so virology is in both.
+  - AirlockVirology
+  - AirlockVirologyGlass

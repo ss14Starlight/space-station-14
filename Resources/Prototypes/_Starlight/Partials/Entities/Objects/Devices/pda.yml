@@ -1,0 +1,5 @@
+# PDA glow is dim enough that it shouldn't affect night vision, but we don't want to change the energy
+- type: !PartialOnly entity
+  id: BasePDA
+  components:
+  - type: DarkLight

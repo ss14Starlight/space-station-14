@@ -1,0 +1,19 @@
+﻿- type: polymorph
+  id: MoffDemonWraithJaunt
+  configuration:
+    entity: MoffDemonWraithJaunt
+    transferName: true
+    inventory: None
+    forced: true
+    revertOnDeath: true
+    revertOnCrit: true
+    allowRepeatedMorphs: false
+    polymorphSound:
+      path: /Audio/Magic/ethereal_enter.ogg
+      params:
+        volume: -6
+    exitPolymorphSound:
+      path: /Audio/Magic/ethereal_exit.ogg
+      params:
+        volume: -6
+    duration: 3
