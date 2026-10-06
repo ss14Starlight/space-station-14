@@ -69,7 +69,3 @@
   loadouts:
   - StarBackpack
   - StarSatchel
-
-  id: Trinkets
-  loadouts:
-    - TwistyCube
