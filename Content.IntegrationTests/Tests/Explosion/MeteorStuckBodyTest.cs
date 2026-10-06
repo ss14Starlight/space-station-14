@@ -687,6 +687,9 @@ public sealed class MeteorStuckBodyTest : GameTest
                         continue;
 
                     var other = contact.EntityA == uid ? contact.EntityB : contact.EntityA;
+                    if (!entMan.TryGetComponent<PhysicsComponent>(other, out var otherBody)
+                        || otherBody.BodyType != BodyType.Dynamic)
+                        continue;
                     if (seen.Add(other))
                         stack.Push(other);
                 }
