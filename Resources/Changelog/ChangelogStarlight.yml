@@ -1,13 +1,6 @@
 Entries:
 - author: Pickra
   changes:
-  - message: Added a series of departmental maintenance airlocks to make navigation easier.
-    type: Add
-  id: 408819
-  time: '2026-09-23T05:09:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6263
-- author: Pickra
-  changes:
   - message: Starlight-specific airlocks now use their appropriate parent airlocks.
     type: Tweak
   id: 408820
@@ -2799,4 +2792,11 @@ Entries:
   id: 409218
   time: '2026-10-06T08:59:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6433
+- author: Swonki
+  changes:
+  - message: Moved ITG formal uniform to admeme.
+    type: Tweak
+  id: 409219
+  time: '2026-10-06T09:23:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6527
 Order: -1
