@@ -627,9 +627,7 @@
     - type: OreSiloClient
     - type: Lathe
       idleState: icon
-      runningState: building
-      unlitIdleState: unlit
-      unlitRunningState: unlit-building
+      runningState: icon
       staticPacks:
         # Static stuff that Salvage could reasonable use
         - StarlightCargoToolsStatic
