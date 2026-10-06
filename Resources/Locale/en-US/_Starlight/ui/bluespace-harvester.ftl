@@ -1,5 +1,6 @@
 bluespace-harvester-window-title = Bluespace Harvester
 bluespace-harvester-input-management = Input Management
+bluespace-harvester-input = Input
 bluespace-harvester-input-level = Input level:
 bluespace-harvester-desired-level = Desired level:
 bluespace-harvester-current-power-use = Current power use:

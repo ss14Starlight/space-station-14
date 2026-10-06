@@ -130,6 +130,7 @@ stack-micro-manipulator = modular machine part
 stack-pancake = pancake
 stack-blueberry-pancake = blueberry pancake
 stack-chocolate-chip-pancake = chocolate chip pancake
+stack-pizza-box = pizza box
 stack-dark-tile = dark tile
 stack-dark-steel-diagonal-mini-tile = dark steel diagonal mini tile
 stack-dark-steel-diagonal-tile = dark steel diagonal tile

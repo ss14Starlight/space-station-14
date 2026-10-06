@@ -11,6 +11,7 @@ comp-gas-tank-examine-open-valve = Gas release valve is [color=red]open[/color].
 comp-gas-tank-examine-closed-valve = Gas release valve is [color=green]closed[/color].
 
 ## ControlVerb
+control-verb-open-control-panel-text = Open Control Panel
 
 ## UI
 gas-tank-window-internals-toggle-button = Toggle
