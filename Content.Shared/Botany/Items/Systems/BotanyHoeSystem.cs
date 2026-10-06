@@ -53,11 +53,11 @@ public sealed partial class BotanyHoeSystem : EntitySystem
 
         if (ent.Comp.WeedLevel <= 0)
         {
-            _popup.PopupPredictedCursor(Loc.GetString("plant-hoe-component-no-weeds-popup"), args.User); // Starlight: Predicted for popups
+            _popup.PopupCursor(Loc.GetString("plant-hoe-component-no-weeds-popup"), args.User);
             return;
         }
 
-        _popup.PopupPredictedCursor( // Starlight: Predicted for popups
+        _popup.PopupCursor(
             Loc.GetString("plant-hoe-component-already-seeded-popup",
                 ("name", ent.Owner)),
             args.User,
