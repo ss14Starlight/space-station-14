@@ -21,11 +21,11 @@ public sealed partial class CosmicColossusComponent : Component
 
     [AutoPausedField, DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan DeathTimer = default!;
-    [DataField] public SoundSpecifier ReawakenSfx = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/colossus_spawn.ogg");
-    [DataField] public SoundSpecifier DeathSfx = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/colossus_death.ogg");
-    [DataField] public SoundSpecifier IngressSfx = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/ability_ingress.ogg");
+    [DataField] public SoundSpecifier ReawakenSfx = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/colossus_spawn.ogg");
+    [DataField] public SoundSpecifier DeathSfx = new SoundPathSpecifier("/Audio/_Starlight/Voice/CosmicCult/colossus_death.ogg");
+    [DataField] public SoundSpecifier IngressSfx = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/ability_ingress.ogg");
     [DataField] public SoundSpecifier DoAfterSfx = new SoundPathSpecifier("/Audio/Machines/airlock_creaking.ogg");
-    [DataField] public SoundSpecifier ScreamSfx = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/colossus_scream.ogg");
+    [DataField] public SoundSpecifier ScreamSfx = new SoundPathSpecifier("/Audio/_Starlight/Voice/CosmicCult/colossus_scream.ogg");
     [DataField] public EntProtoId CultVfx = "CosmicGenericVFX";
     [DataField] public EntProtoId CultBigVfx = "CosmicGlareAbilityVFX";
     [DataField] public EntProtoId Attack1Vfx = "CosmicColossusAttack1Vfx";
