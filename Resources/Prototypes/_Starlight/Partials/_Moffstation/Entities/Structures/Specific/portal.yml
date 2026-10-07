@@ -1,4 +1,13 @@
 - type: !PartialOnly entity
+  id: BaseHostilePortal
+  components:
+  - type: Destructible
+    thresholds:
+    - !CombineIndex:0
+      trigger: !type:DamageTrigger
+        damage: 666 # Hell
+
+- type: !PartialOnly entity
   id: HellPortal
   components:
   - type: WarpPoint
