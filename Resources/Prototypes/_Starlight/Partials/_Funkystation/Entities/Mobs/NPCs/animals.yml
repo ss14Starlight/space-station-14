@@ -30,17 +30,16 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Critical
-      100: Dead
+      50: Dead
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 50
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          collection: gib #TODO: better sfx for our demons
+          collection: gib
       - !type:SpawnEntitiesBehavior
         spawn:
           MoffDemonicEssence:
