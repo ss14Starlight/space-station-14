@@ -41,6 +41,28 @@
 
 ## NTCC Blueshield
 
+- type: entity
+  name: NT-NC Consortium Blueshield
+  suffix: Basic
+  id: RandomHumanoidNTNCConsortiumBlueshieldSpawnerBasic
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: obs
+    - type: RandomHumanoidSpawner
+      settings: NTNCConsortiumBlueshieldBasic
+
+- type: entity
+  name: NT-NC Consortium Blueshield
+  suffix: Hardsuit
+  id: RandomHumanoidNTNCConsortiumBlueshieldSpawnerEVA
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: obs
+    - type: RandomHumanoidSpawner
+      settings: NTNCConsortiumBlueshieldEVA
+
 - type: randomHumanoidSettings
   id: NTNCConsortiumBlueshieldBasic
   parent: EventHumanoidNTNC
@@ -86,6 +108,21 @@
       nameFormat: name-format-ert
 
 # USSP
+- type: entity
+  id: RandomHumanoidSpawnerSSFMarine
+  name: SSF Marine Soldier
+  suffix: Admeme
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/sovietmarine.rsi
+      state: icon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesSovietMarinesFirst
+        - NamesSovietMarinesLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: SSFMarine
 
 - type: randomHumanoidSettings
   id: SSFMarine
@@ -145,13 +182,30 @@
         - MindRoleGhostCorporateAligned
       job: NanoTrasenSpecialForces
     - type: Loadout
-      prototypes: [NanoTrasenSpecialForcesGear]
+      prototypes: [BaseNanoTrasenSpecialForcesGear]
       roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFPrimus
+  name: NTSF Primus Operative
+  description: Used as the primary strike team for any and all operations.
+  suffix: AllPurpose
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: primusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFPrimusoperative
 
 - type: randomHumanoidSettings
   id: NTSFPrimusoperative
@@ -176,6 +230,23 @@
         - NamesMilitaryLast
       nameFormat: name-format-ert
 
+- type: entity
+  id: RandomHumanoidSpawnerNTSFSecundus
+  name: NTSF Secundus Operative
+  description: Used as general backup in situations where other NTSF teams have fallen.
+  suffix: Backup
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: secundusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFSecundusoperative
+
 - type: randomHumanoidSettings
   id: NTSFSecundusoperative
   parent: EventHumanoidNTNC
@@ -198,6 +269,23 @@
         - NamesMilitaryFirstLeader
         - NamesMilitaryLast
       nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFTertius
+  name: NTSF Tertius Operative
+  description: Used to conduct repossession operations to recover lost assets.
+  suffix: Repossession
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: tertiusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFTertiusoperative
 
 - type: randomHumanoidSettings
   id: NTSFTertiusoperative
@@ -223,6 +311,23 @@
         - NamesMilitaryLast
       nameFormat: name-format-ert
 
+- type: entity
+  id: RandomHumanoidSpawnerNTSFQuartus
+  name: NTSF Quartus Operative
+  description: Used to guard dangerous and anomalous assets in containment.
+  suffix: Anomaly
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: quartusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFQuartusoperative
+
 - type: randomHumanoidSettings
   id: NTSFQuartusoperative
   parent: EventHumanoidNTNC
@@ -246,6 +351,23 @@
         - NamesMilitaryLast
       nameFormat: name-format-ert
 
+- type: entity
+  id: RandomHumanoidSpawnerNTSFQuintus
+  name: NTSF Quintus Operative
+  description: Used to conduct raids and eliminate enemy targets.
+  suffix: Raiders
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: quintusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFQuintusoperative
+
 - type: randomHumanoidSettings
   id: NTSFQuintusoperative
   parent: EventHumanoidNTNC
@@ -268,6 +390,23 @@
         - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFSextus
+  name: NTSF Sextus Operative
+  description: Used to kill anomalies, gods, cults, and other phenomena that is deemed magical.
+  suffix: Occult
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: sextusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFSextusoperative
 
 - type: randomHumanoidSettings
   id: NTSFSextusoperative
@@ -296,6 +435,23 @@
         - NamesMilitaryLast
       nameFormat: name-format-ert
 
+- type: entity
+  id: RandomHumanoidSpawnerNTSFSeptimus
+  name: NTSF Septimus Operative
+  description: Used to kill zombies, xenos, and all forms of pests and monsters.
+  suffix: PestControl
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: septimusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFSeptimusoperative
+
 - type: randomHumanoidSettings
   id: NTSFSeptimusoperative
   parent: EventHumanoidNTNC
@@ -320,6 +476,23 @@
         - NamesMilitaryLast
       nameFormat: name-format-ert
 
+- type: entity
+  id: RandomHumanoidSpawnerNTSFOctavius
+  name: NTSF Octavius Operative
+  description: Used to bust unions and kill communist scum.
+  suffix: UnionBusters
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: octaviusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFOctaviusoperative
+
 - type: randomHumanoidSettings
   id: NTSFOctaviusoperative
   parent: EventHumanoidNTNC
@@ -342,6 +515,23 @@
         - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFNonus
+  name: NTSF Nonus Operative
+  description: Used to conduct assassinations and stealth operations.
+  suffix: Assassination
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: nonusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFNonusoperative
 
 - type: randomHumanoidSettings
   id: NTSFNonusoperative
@@ -410,6 +600,102 @@
     - type: ThermalVision
 
 # TSF
+- type: entity
+  id: RandomHumanoidSpawnerTSFOfficer
+  name: SolGov Patrol Officer
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: TSFOfficer
+    - type: RandomHumanoidSpawner
+      settings: SolgovOfficer
+
+- type: entity
+  id: RandomHumanoidSpawnerTSFOfficerSheriff
+  name: SolGov Patrol Officer
+  suffix: Sheriff
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: TSFOfficer
+    - type: RandomHumanoidSpawner
+      settings: SolgovOfficerSheriff
+
+- type: entity
+  id: RandomHumanoidSpawnerTSFOfficerRiot
+  name: SolGov Patrol Officer
+  suffix: Riot
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: TSFOfficer
+    - type: RandomHumanoidSpawner
+      settings: SolgovOfficerRiot
+
+- type: entity
+  id: RandomHumanoidSpawnerTSFMarine
+  name: Solar Federation Marine
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: TSF
+    - type: RandomHumanoidSpawner
+      settings: TSFMarine
+
+- type: entity
+  parent: RandomHumanoidSpawnerTSFMarine
+  id: RandomHumanoidSpawnerTSFMarineCrew
+  suffix: Crewmember
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: TSFCrew
+    - type: RandomHumanoidSpawner
+      settings: TSFCrew
+
+- type: entity
+  parent: RandomHumanoidSpawnerTSFMarine
+  id: RandomHumanoidSpawnerTSFMarineCorpsman
+  suffix: Corpsman
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: TSF
+    - type: RandomHumanoidSpawner
+      settings: TSFMarineCorpsman
+
+- type: entity
+  parent: RandomHumanoidSpawnerTSFMarine
+  id: RandomHumanoidSpawnerTSFMarineLeader
+  suffix: Leader
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: TSF
+    - type: RandomHumanoidSpawner
+      settings: TSFMarineLeader
+
+- type: entity
+  parent: RandomHumanoidSpawnerTSFMarine
+  id: RandomHumanoidSpawnerTSFPhantom
+  suffix: Phantom
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: Phantom
+    - type: RandomHumanoidSpawner
+      settings: TSFMarinePhantom
+
+- type: entity
+  parent: RandomHumanoidSpawnerTSFMarine
+  id: RandomHumanoidSpawnerTSFMARSOC
+  suffix: MARSOC
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: MARSOC
+    - type: RandomHumanoidSpawner
+      settings: TSFMarineMARSOC
 
 - type: randomHumanoidSettings
   id: SolgovOfficer
@@ -618,6 +904,28 @@
 # CentComm
 ## Greenshield Officer
 
+- type: entity
+  name: Greenshield Officer
+  suffix: Basic
+  id: RandomHumanoidCCGreenshieldSpawnerBasic
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: GSO
+    - type: RandomHumanoidSpawner
+      settings: CCGreenshieldBasic
+
+- type: entity
+  name: Greenshield Officer
+  suffix: EVA
+  id: RandomHumanoidCCGreenshieldSpawnerEVA
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: GSO
+    - type: RandomHumanoidSpawner
+      settings: CCGreenshieldEVA
+
 - type: randomHumanoidSettings
   id: CCGreenshieldBasic
   speciesBlacklist:
@@ -670,6 +978,17 @@
 
 ## CBURN
 
+- type: entity
+  id: RandomHumanoidSpawnerCBURNCorpsman
+  name: CBURN Corpsman
+  suffix: ERTRole
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: cburn
+    - type: RandomHumanoidSpawner
+      settings: CBURNCorpsman
+
 - type: randomHumanoidSettings
   id: CBURNCorpsman
   parent: EventHumanoidCentcomm
@@ -694,6 +1013,16 @@
 
 ## CentComm
 
+- type: entity
+  id: RandomHumanoidCCServiceWorker
+  name: CentComm service worker ghost role
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: serviceworker
+    - type: RandomHumanoidSpawner
+      settings: CCServiceWorker
+
 - type: randomHumanoidSettings
   id: CCServiceWorker
   parent: VisitorCivilian
@@ -706,6 +1035,16 @@
       roleLoadout: [ RoleSurvivalStandard ]
     - type: AntagImmune
     - type: NoObjectiveTarget
+
+- type: entity
+  id: RandomHumanoidCCChef
+  name: CentComm chef ghost role
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: chef
+    - type: RandomHumanoidSpawner
+      settings: CCChef
 
 - type: randomHumanoidSettings
   id: CCChef
@@ -720,6 +1059,16 @@
     - type: AntagImmune
     - type: NoObjectiveTarget
 
+- type: entity
+  id: RandomHumanoidCCBartender
+  name: CentComm bartender ghost role
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: bartender
+    - type: RandomHumanoidSpawner
+      settings: CCBartender
+
 - type: randomHumanoidSettings
   id: CCBartender
   parent: VisitorCivilian
@@ -732,6 +1081,16 @@
       roleLoadout: [ RoleSurvivalStandard ]
     - type: AntagImmune
     - type: NoObjectiveTarget
+
+- type: entity
+  id: RandomHumanoidCCJanitor
+  name: CentComm janitor ghost role
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: janitor
+    - type: RandomHumanoidSpawner
+      settings: CCJanitor
 
 - type: randomHumanoidSettings
   id: CCJanitor

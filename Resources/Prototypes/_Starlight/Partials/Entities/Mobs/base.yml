@@ -1,9 +1,0 @@
-- type: !PartialOnly entity
-  id: BaseControllable
-  components:
-  - type: SocialInteractionGiver
-    interactionPrototypes:
-    - Look
-  - type: SocialInteractionReceiver
-    interactionPrototypes:
-    - Boop

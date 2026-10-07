@@ -1,0 +1,166 @@
+- type: entity
+  id: CosmicDeconversionJail
+  parent: ConstructibleMachine
+  name: containment oubliette
+  description: An advanced mobile containment cell. When powered, its interior space is actively caustic towards anomalous influences.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: DeconversionOubliette
+  - type: ApcPowerReceiver
+    powered: true
+    powerLoad: 750
+  - type: ExtensionCableReceiver
+  - type: LightningTarget
+    priority: 1
+  - type: DoAfter
+  - type: InteractionOutline
+  - type: Pullable
+  - type: Anchorable
+    delay: 0.75
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    noRot: true
+    anchored: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.3,0.5,0.5"
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/CosmicCult/Tileset/containmentjail.rsi
+    offset: 0, 0.25
+    noRot: true
+    layers:
+    - state: storage-base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: storage-door-closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: unshaded-idle
+      shader: unshaded
+      visible: false
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: unshaded-active
+      shader: unshaded
+      visible: false
+      map: ["enum.OublietteVisualLayers.UnshadedLayer"]
+    - state: vfx-active
+      visible: false
+      map: ["enum.OublietteVisualLayers.BaseLayer"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+      enum.OublietteVisuals.Contents:
+        enum.OublietteVisualLayers.UnshadedLayer:
+          Idle: {visible: false}
+          Active: {visible: true}
+          Cooldown: {visible: false}
+        enum.OublietteVisualLayers.BaseLayer:
+          Idle: {visible: false}
+          Active: {visible: true, state: vfx-active}
+          Cooldown: {visible: true, state: vfx-cooldown}
+  - type: EntityStorageVisuals
+    stateBaseClosed: storage-base
+    stateDoorOpen: storage-door-open
+    stateDoorClosed: storage-door-closed
+  - type: EntityStorage
+    isCollidableWhenOpen: true
+    showContents: false
+    capacity: 1
+    enteringOffset: 0, -0.5
+    enteringRange: 0.16
+    closeSound:
+      path: /Audio/Items/deconstruct.ogg
+    openSound:
+      path: /Audio/Items/deconstruct.ogg
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 5
+    intensitySlope: 10
+    totalIntensity: 30
+    canCreateVacuum: false
+    deleteAfterExplosion: false
+    repeatable: true
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+    worn: false
+  - type: AmbientSound
+    enabled: false
+    volume: -2
+    range: 9
+    sound:
+      path: /Audio/_Starlight/CosmicCult/oubliette-loop.ogg
+  - type: Machine
+    board: OublietteCircuitBoard
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_parts
+    - machine_board
+    - entity_storage
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      machine_parts: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      entity_storage: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: OublietteCircuitBoard
+  name: containment oubliette machine board
+  description: A machine printed circuit board for a containment oubliette.
+  components:
+    - type: Sprite
+      state: science
+    - type: MachineBoard
+      prototype: CosmicDeconversionJail
+      stackRequirements:
+        CableHV: 5
+        Steel: 5
+        Manipulator: 2
+        Plasma: 1
+        Glass: 1
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: OublietteCircuitBoard
+  result: OublietteCircuitBoard

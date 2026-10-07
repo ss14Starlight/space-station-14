@@ -7,6 +7,7 @@ plant-component-plant-old-adjective = [color=red]old and wilting[/color]
 plant-component-plant-unhealthy-adjective = [color=red]unhealthy[/color]
 plant-component-dead-plant-matter-message = It's full of [color=red]dead plant matter[/color].
 
+plant-component-light-improper-warning = The [color=yellow]improper light level alert[/color] is blinking.
 plant-component-heat-improper-warning = The [color=orange]improper temperature level alert[/color] is blinking.
 plant-component-pressure-improper-warning = The [color=lightblue]improper environment pressure alert[/color] is blinking.
 plant-component-gas-missing-warning = The [color=cyan]improper gas environment alert[/color] is blinking.

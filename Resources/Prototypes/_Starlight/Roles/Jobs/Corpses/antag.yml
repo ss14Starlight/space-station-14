@@ -7,6 +7,15 @@
     pocket2: Telecrystal1
 
 - type: startingGear
+  id: NukieCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsCombat
+    outerClothing: ClothingOuterHardsuitSyndie
+    pocket1: WeaponPistolViper
+    pocket2: Telecrystal1
+
+- type: startingGear
   id: SovietCorpseGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitSovietFatigues

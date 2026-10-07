@@ -20,6 +20,19 @@
     guardianProto: MobHoloClownGuardian
 
 - type: entity
+  name: magical lamp
+  id: MagicalLamp
+  parent: BaseItem
+  description: The wizard federation had to cut costs after the jinn merchandise scandal somehow.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/Lights/lamp.rsi
+    layers:
+      - state: lamp
+  - type: GuardianCreator
+    guardianProto: MobIfritGuardian
+
+- type: entity
   name: holoparasite box
   parent: [BoxCardboard, BaseSyndicateContraband]
   id: BoxHoloparasite

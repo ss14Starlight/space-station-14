@@ -112,6 +112,27 @@
     tags:
     - ClarkeTreads
 
+- type: entity
+  id: ClarkeChassis
+  parent: BaseClarkePart
+  name: clarke chassis
+  description: An in-progress construction of the Clarke mech.
+  components:
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      battery-container: !type:Container
+      gas-tank-container: !type:Container
+  - type: MechAssemblyVisuals
+    statePrefix: clarke
+  - type: Sprite
+    noRot: true
+    state: clarke0
+  - type: Construction
+    graph: Clarke
+    node: start
+    defaultTarget: clarke
+
 # Durand
 
 - type: entity
@@ -243,6 +264,27 @@
     tags:
     - DurandRArm
 
+- type: entity
+  id: DurandChassis
+  parent: BaseDurandPart
+  name: durand chassis
+  description: An in-progress construction of the Durand mech.
+  components:
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      battery-container: !type:Container
+      gas-tank-container: !type:Container
+  - type: MechAssemblyVisuals
+    statePrefix: durand
+  - type: Sprite
+    noRot: true
+    state: durand0
+  - type: Construction
+    graph: Durand
+    node: start
+    defaultTarget: durand
+
 # Gygax
 
 - type: entity
@@ -373,6 +415,27 @@
   - type: Tag
     tags:
     - GygaxRArm
+
+- type: entity
+  id: GygaxChassis
+  parent: BaseGygaxPart
+  name: gygax chassis
+  description: An in-progress construction of the Gygax mech.
+  components:
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      battery-container: !type:Container
+      gas-tank-container: !type:Container
+  - type: MechAssemblyVisuals
+    statePrefix: gygax
+  - type: Sprite
+    noRot: true
+    state: gygax0
+  - type: Construction
+    graph: Gygax
+    node: start
+    defaultTarget: gygax
 
 # Ripley MK-II
 

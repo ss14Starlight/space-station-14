@@ -149,6 +149,15 @@
   - FancyPen
 
 - type: loadoutGroup
+  id: CCPens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - PenCentcom
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
   id: AssistantGlasses
   name: loadout-group-assistant-glasses
   minLimit: 0
@@ -184,6 +193,8 @@
   - CommonSatchel
   - CommonDuffel
   - LeatherSatchel
+  - StarBackpack
+  - StarSatchel
 
 - type: loadoutGroup
   id: RoboticistJumpsuit
@@ -235,6 +246,8 @@
   - RoboticistSatchel
   - RoboticistDuffel
   - LeatherSatchel
+  - StarBackpack
+  - StarSatchel
 
 - type: loadoutGroup
   id: RoboticistNeck
@@ -352,6 +365,7 @@
   loadouts:
   - MagistrateWhiteGloves
   - MagistrateBlackGloves
+  - MagistratePaperworkGloves
 
 - type: loadoutGroup
   id: BlueShieldHead
@@ -370,6 +384,8 @@
   - BlueShieldSatchel
   - BlueShieldDuffel
   - LeatherSatchel
+  - StarBackpack
+  - StarSatchel
 
 - type: loadoutGroup
   id: BlueShieldJumpsuit
@@ -626,6 +642,8 @@
   - SeniorCourierDuffel
   - MailTechnicianTrunkSenior
   - LeatherSatchel
+  - StarBackpack
+  - StarSatchel
 
 - type: loadoutGroup
   id: MailTechnicianOuterClothing
@@ -1218,6 +1236,8 @@
   - CorpsmanSatchel
   - CorpsmanDuffel
   - LeatherSatchel
+  - StarBackpack
+  - StarSatchel
 
 - type: loadoutGroup
   id: BrigmedicOuterClothing
@@ -1249,3 +1269,13 @@
   - BrigmedicRig
   - BrigmedicBelt
   - CorpsmanBelt
+
+# for paperwork related roles, Magi, IAA, and NTR
+- type: loadoutGroup
+  id: PaperworkGloves
+  name: loadout-group-gloves-paperwork
+  defaultSelected: 1
+  loadouts:
+  - MagistrateWhiteGloves
+  - MagistrateBlackGloves
+  - HopGloves

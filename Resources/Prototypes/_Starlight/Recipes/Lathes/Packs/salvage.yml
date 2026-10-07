@@ -1,0 +1,22 @@
+- type: latheRecipePack
+  id: StarlightSalvageEquipmentStatic
+  recipes:
+    - AppraisalTool
+    - Pickaxe
+    - MaterialDurathread
+    - PowerCellMedium
+    - OreBag
+    - WeaponGrapplingGun
+
+- type: latheRecipePack
+  id: StarlightSalvageToolsStatic
+  recipes:
+    - Wirecutter
+    - Screwdriver
+    - Welder
+    - Wrench
+    - CrowbarGreen
+    - Multitool
+    - FlashlightLantern
+    - HandheldGPSBasic
+    - HandheldStationMap

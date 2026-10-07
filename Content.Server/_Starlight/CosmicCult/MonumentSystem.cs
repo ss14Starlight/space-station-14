@@ -225,7 +225,7 @@ public sealed partial class MonumentSystem : SharedMonumentSystem
             {
                 Text = Loc.GetString("verb-infuse-entropy"),
                 Message = Loc.GetString("verb-infuse-entropy-description"),
-                Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/CosmicCult/objectives.rsi"),"siphon"),
+                Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/CosmicCult/Icons/objectives.rsi"),"siphon"),
                 Act = () => AddEntropy(uid, (who, cultComp))
             };
             args.Verbs.Add(infuse);

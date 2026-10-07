@@ -40,6 +40,7 @@ flavor-base-creamy = creamy
 flavor-base-fizzy = fizzy
 flavor-base-shocking = shocking
 flavor-base-cheap = cheap
+flavor-base-piquant = piquant
 flavor-base-sharp = sharp
 flavor-base-syrupy = syrupy
 flavor-base-spaceshroom = mysterious
@@ -65,6 +66,7 @@ flavor-complex-honey = like honey
 flavor-complex-ketchunaise = like tomatoes and mayonnaise
 flavor-complex-mayonnaise = like mayonnaise
 flavor-complex-mustard = like mustard
+
 
 # Food-specific flavors.
 
@@ -113,6 +115,7 @@ flavor-complex-tomato = like tomatoes
 flavor-complex-corn = like corn
 flavor-complex-banana = like bananas
 flavor-complex-apple = like apples
+flavor-complex-cotton = like cottons
 flavor-complex-bungo = like tropical sweetness
 flavor-complex-raisins = like dried grapes
 flavor-complex-orange = like oranges
@@ -347,3 +350,4 @@ flavor-complex-punishment = like punishment
 flavor-complex-artifact-glue = like crushed artifacts
 flavor-weh = like weh
 flavor-hew = like hew
+flavor-dogfood = like dog food
