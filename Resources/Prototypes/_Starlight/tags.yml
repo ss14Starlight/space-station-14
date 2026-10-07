@@ -15,6 +15,12 @@
   id: AdminSpawnedPlayer # Signifies that this player entity was spawned via the "Spawn here" admin verb.
 
 - type: Tag
+  id: AnimalCube
+
+- type: Tag
+  id: AnimalCubeBox
+
+- type: Tag
   id: AnomalyCoreShadow
 
 - type: Tag
@@ -667,11 +673,13 @@
   id: RomerolDisasterSurvivorTraitBackground
 
 - type: Tag
-  id: ReflectiveArmorHelmet
+  id:
+    ReflectiveArmorHelmet
     # Tag for reflective helmet, used for set bonus detection by ReflectiveSetBonusSystem
 
 - type: Tag
-  id: ReflectiveArmorVest
+  id:
+    ReflectiveArmorVest
     # Tag for reflective vest, used for set bonus detection by ReflectiveSetBonusSystem
 
 - type: Tag
@@ -808,6 +816,9 @@
 
 - type: Tag
   id: Wizard
+
+- type: Tag
+  id: WrappedCube
 
 - type: Tag
   id: RawXenoMeat #BountySalvageRawXenoMeat

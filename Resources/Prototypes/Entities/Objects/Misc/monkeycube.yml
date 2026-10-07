@@ -12,6 +12,9 @@
   - type: Sprite
     sprite: Objects/Misc/monkeycube.rsi
     state: box
+  - type: Tag
+    tags:
+      - AnimalCubeBox #Starlight
 
 - type: entity
   parent: BaseItem
@@ -26,6 +29,10 @@
       path: /Audio/Effects/unwrap.ogg
   - type: Sprite
     sprite: Objects/Misc/monkeycube.rsi
+  - type: Tag
+    tags:
+      - WrappedCube #Starlight
+
 
 - type: entity
   parent: BaseWrappedCube

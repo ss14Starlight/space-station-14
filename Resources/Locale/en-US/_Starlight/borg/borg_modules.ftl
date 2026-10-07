@@ -19,3 +19,5 @@ borg-slot-pkaupgrade-empty = PKA Upgrades
 borg-slot-goliath-empty = Goliath Plates
 borg-slot-rollerbeds-empty = Body Bags and RollerBeds
 borg-slot-music-media-empty = Vinyls and CDs
+borg-slot-meat-empty = Meat
+borg-slot-animbox-empty = Rehydratable Cubes and Boxes
