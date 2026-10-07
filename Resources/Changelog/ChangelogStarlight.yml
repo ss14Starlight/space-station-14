@@ -1,25 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Fixed TTS audio from announcements overlapping the announcement's chime.
-    type: Fix
-  id: 408841
-  time: '2026-09-24T10:30:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6296
-- author: Johnny
-  changes:
-  - message: (Reach) Added a confirmed roundstart cigarette machine.
-    type: Add
-  id: 408842
-  time: '2026-09-24T10:30:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6307
-- author: Johnny
-  changes:
-  - message: (Reach) Added some more mailboxes.
-    type: Add
-  id: 408843
-  time: '2026-09-24T10:30:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6307
 - author: Johnny
   changes:
   - message: (Reach) Some point defense turrets not being powered.
@@ -2799,4 +2778,25 @@ Entries:
   id: 409240
   time: '2026-10-07T10:26:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6553
+- author: Swonki
+  changes:
+  - message: Scrappers can pilot their shittle now.
+    type: Tweak
+  id: 409241
+  time: '2026-10-07T11:07:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6541
+- author: Swonki
+  changes:
+  - message: Scrappers can no longer slide under doors and girders.
+    type: Tweak
+  id: 409242
+  time: '2026-10-07T11:07:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6541
+- author: Swonki
+  changes:
+  - message: Scrappers now must avoid harm to themselves and their fabricator.
+    type: Tweak
+  id: 409243
+  time: '2026-10-07T11:07:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6541
 Order: -1
