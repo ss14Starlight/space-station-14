@@ -1,6 +1,6 @@
 - type: !PartialOnly entity
   id: BaseWeaponRevolver
-  parent: [ BaseItem, BaseGunWieldable ]
+  abstract: true
   components:
   - type: Gun
     minAngle: 4
@@ -13,3 +13,67 @@
     maxAngleDivider: 1.5
     minAngle: 0
     maxAngle: 0
+  - type: RevolverAmmoProvider
+    proto: CartridgeMagnumSP
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 27
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    damage:
+      types:
+        Blunt: 6
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: AltFireMelee
+
+- type: !PartialOnly entity
+  name: deckard # capitalization
+  id: WeaponRevolverDeckard
+  description: A beautifully machined, custom-built revolver. Used when there is no time for the Voight-Kampff test. Loads 6 rounds of .45 magnum.
+  components:
+  - type: Gun
+    fireRate: 2.5
+  - type: RevolverAmmoProvider
+    capacity: 6 # bigger chamber
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+
+- type: !PartialOnly entity
+  name: inspector # capitalization
+  id: WeaponRevolverInspector
+  components:
+  - type: Gun
+    fireRate: 2.225
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-inanimate
+    weight: 0.01
+
+- type: !PartialOnly entity
+  name: mateba # capitalization
+  id: WeaponRevolverMateba
+  description: A modern revolver used by NanoTrasen’s elite, near mythical ‘Death Squad’ task force. Its unique trigger action and barrel placement enable a high fire rate with minimal muzzle flip. Many have looked down this barrel, but few have lived to tell of it. Loads 6 rounds of .45 magnum.
+
+- type: !PartialOnly entity
+  name: python # capitalization
+  id: WeaponRevolverPython
+  description: A powerful double-action revolver manufactured by the Syndicate. Loud and flashy, perfect for any agent looking to make a statement. Loads 6 rounds of .45 magnum. Can be double-shot burst fired to really bring the pain.
+  components:
+  - type: Gun
+    availableModes:
+    - SemiAuto
+    - Burst
+    shotsPerBurst: 2
+    burstCooldown: 0.65
+    burstFireRate: 5
+
+- type: !PartialOnly entity
+  id: WeaponRevolverPirate
+  components:
+  - type: Gun
+    fireRate: 1.2 # it's pretty bad... this is just a small buff.

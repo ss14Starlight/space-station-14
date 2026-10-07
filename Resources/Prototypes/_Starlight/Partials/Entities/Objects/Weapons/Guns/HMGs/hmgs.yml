@@ -3,3 +3,22 @@
   components:
   - type: GunHeat
     heatPerShot: 375
+  - type: RestrictByUserTag
+    doestContain:
+    - Abductor
+    messages:
+    - abductor-gun-restricted-1
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: 0.5
+        staminaMultiplier: 100
+      Rodentia:
+        knockback: 0.01
+        staminaMultiplier: 110
+      Resomi:
+        knockback: 0.01
+        staminaMultiplier: 110
+      Felionoid:
+        knockback: 0.005 # half of what resomi take
+        staminaMultiplier: 110

@@ -10,33 +10,6 @@
     - Abductor
     messages:
     - abductor-gun-restricted-1
-  - type: KnockbackByUserTag # Starlight
-    doestContain:
-      Skating:
-        knockback: 0.5
-        staminaMultiplier: 100
-      Rodentia:
-        knockback: 0.02
-        staminaMultiplier: 110
-      Resomi:
-        knockback: 0.02
-        staminaMultiplier: 110
-      Felionoid:
-        knockback: 0.01 #half of what resomi take
-        staminaMultiplier: 110
-    # starlight start
-  - type: MeleeWeapon
-    wideAnimationRotation: 90
-    damage:
-      types:
-        Blunt: 8
-    angle: 0
-    animation: WeaponArcThrust
-    soundHit:
-      collection: MetalThud
-  - type: MeleeRequiresWield
-  - type: AltFireMelee
-    # starlight end
   - type: Sprite
   - type: Item
     size: Huge
@@ -91,19 +64,10 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-      firing_pin: !type:Container # Starlight
   - type: StaticPrice
     price: 500
   - type: UseDelay
     delay: 1
-  # starlight start
-  - type: ContainerFill
-    containers:
-      firing_pin:
-      - FiringPin
-  - type: FiringPinHolder
-    supportedPins: [ Rifle ]
-  # starlight end
 
 - type: entity
   name: L6 SAW
@@ -112,7 +76,7 @@
   description: Developed by Waffle Corp, the L6 Squad Automatic Weapon is a deadly light machine gun often used by the Gorlex Marauders. Although bulky and cumbersome, its heavy barrel and high ammo capacity make it perfect for suppressing combatants with a hail of bullets. Feeds from .30 ammo belts.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi # Starlight-edit
+    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -125,49 +89,12 @@
   - type: Appearance
   - type: StaticPrice
     price: 10000
-  # Starlight-start
-  - type: Item
-    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi
-  - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi
-    quickEquip: false
-  - type: ChamberMagazineAmmoProvider
-    soundRack:
-      path: /Audio/Weapons/Guns/Cock/m41_cock.ogg
-    soundBoltClosed:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
-    soundBoltOpened:
-      path: /Audio/Weapons/Guns/Cock/shotgun_open.ogg
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineLightRifleBoxSP
-        insertSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        ejectSound: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
-        whitelist:
-          tags:
-            - MagazineLightRifleBox
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeLightRifleSP
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeLightRifle
-  - type: HeldSpeedModifier
-  - type: Gun
-    soundGunshot:
-      path: /Audio/_Starlight/Weapons/Guns/Gunshots/l6.ogg
-      params:
-        volume: -5
-  # Starlight-end
 
 - type: entity
   name: L6C ROW
   id: WeaponLightMachineGunL6C
-  parent: [BaseItem, BaseSyndicateContraband] # starlight
-  description: An L6 SAW, modified for use by cyborgs. # starlight, our L6 takes ammo
+  parent: BaseItem
+  description: A L6 SAW for use by cyborgs. Creates .30 rifle ammo on the fly from an internal ammo fabricator, which slowly self-charges.
   components:
     - type: Gun
       minAngle: 4
@@ -189,40 +116,19 @@
           map: [ "enum.GunVisualLayers.Base" ]
         - state: mag-3
           map: [ "enum.GunVisualLayers.Mag" ]
-    # region starlight - L6C takes ammo
-    - type: ChamberMagazineAmmoProvider
-      soundRack:
-        path: /Audio/Weapons/Guns/Cock/lmg_cock.ogg
-    - type: ItemSlots
-      slots:
-        gun_magazine:
-          name: Magazine
-          startingItem: MagazineLightRifleBoxSP
-          insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-          ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-          priority: 2
-          whitelist:
-            tags:
-              - MagazineLightRifleBox
-        gun_chamber:
-          name: Chamber
-          startingItem: CartridgeLightRifleSP
-          priority: 1
-          whitelist:
-            tags:
-              - CartridgeLightRifle
+    - type: Item
+      size: Huge
     - type: ContainerContainer
       containers:
-        gun_magazine: !type:ContainerSlot
-        gun_chamber: !type:ContainerSlot
-    #- type: BallisticAmmoProvider
-    #  whitelist:
-    #    tags:
-    #    - CartridgeLightRifle
-    #  capacity: 100
-    #  proto: CartridgeLightRifleSP
-    #  cycleable: false # No synthesizing ammo for your syndicate masters.
-    #- type: BallisticAmmoSelfRefiller # Starlight - disable automatic ammo synthesis
-    #  fireCost: 100
-    #  affectedByEmp: true
+        ballistic-ammo: !type:Container
+    - type: BallisticAmmoProvider
+      whitelist:
+        tags:
+        - CartridgeLightRifle
+      capacity: 100
+      proto: CartridgeLightRifle
+      cycleable: false # No synthesizing ammo for your syndicate masters.
+    - type: BallisticAmmoSelfRefiller
+      autoRefillRate: 4s
+      affectedByEmp: true
     - type: AmmoCounter

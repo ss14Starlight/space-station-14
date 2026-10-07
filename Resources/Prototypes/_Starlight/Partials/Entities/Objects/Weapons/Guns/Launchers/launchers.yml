@@ -1,0 +1,84 @@
+- type: !PartialOnly entity
+  id: BaseWeaponLauncher
+  components:
+  - type: RestrictByUserTag
+    doestContain:
+    - Abductor
+    messages:
+    - abductor-gun-restricted-1
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: 5
+        staminaMultiplier: 20
+      Rodentia:
+        knockback: 10
+        staminaMultiplier: 18
+      Resomi:
+        knockback: 10
+        staminaMultiplier: 18
+      Felionoid:
+        knockback: 5 # half of what resomi take
+        staminaMultiplier: 18
+
+- type: !PartialOnly entity
+  parent: [ BaseWeaponLauncher, BaseJanitorContraband ] # major -> jani contra
+  id: WeaponLauncherHydra
+  components:
+  - type: ContainerContainer
+    containers:
+      revolver-ammo: !type:Container
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - Cleanade # Starlight change: make it use cleanades instead of frags
+
+- type: !PartialOnly entity
+  id: WeaponLauncherHydraLethal
+  name: modified hydra # SL edit: give it a proper name
+  suffix: Security # starlight: differentiate
+  components:
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - Grenade
+    proto: GrenadeFrag
+  - type: ScanDetectable # Starlight: major contra (I think this is valid?)
+  - type: Contraband
+    severity: Major
+
+- type: !PartialOnly entity
+  name: RPG-7
+  parent: [ BaseWeaponLauncher, BaseMajorContraband]
+  id: WeaponLauncherRocket
+  description: A modified ancient rocket-propelled grenade launcher.
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: -2.5
+        staminaMultiplier: 10
+      Rodentia:
+        knockback: -10
+        staminaMultiplier: 20
+      Resomi:
+        knockback: -5
+        staminaMultiplier: 20
+      Felionoid:
+        knockback: -2.5 # half of what resomi take
+        staminaMultiplier: 20
+
+- type: !PartialOnly entity
+  id: WeaponLauncherMultipleRocket
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 10
+        staminaMultiplier: 18
+      Rodentia:
+        knockback: 10
+        staminaMultiplier: 18
+      Felionoid:
+        knockback: 5 # half of what resomi take
+        staminaMultiplier: 18

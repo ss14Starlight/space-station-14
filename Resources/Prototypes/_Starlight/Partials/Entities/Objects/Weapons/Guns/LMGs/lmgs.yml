@@ -10,12 +10,126 @@
     minAngleDivider: 8
     maxAngleDivider: 3.2
     angleIncreaseDivider: 4
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: 0.5
+        staminaMultiplier: 100
+      Rodentia:
+        knockback: 0.02
+        staminaMultiplier: 110
+      Resomi:
+        knockback: 0.02
+        staminaMultiplier: 110
+      Felionoid:
+        knockback: 0.01 #half of what resomi take
+        staminaMultiplier: 110
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    damage:
+      types:
+        Blunt: 8
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: MeleeRequiresWield
+  - type: AltFireMelee
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container # Starlight
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPin
+  - type: FiringPinHolder
+    supportedPins: [ Rifle ]
+
+- type: entity
+  name: L6 SAW
+  id: WeaponLightMachineGunL6
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi
+    quickEquip: false
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/m41_cock.ogg
+    soundBoltClosed:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+    soundBoltOpened:
+      path: /Audio/Weapons/Guns/Cock/shotgun_open.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleBoxSP
+        insertSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        ejectSound: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
+        whitelist:
+          tags:
+            - MagazineLightRifleBox
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+  - type: HeldSpeedModifier
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/l6.ogg
+      params:
+        volume: -5
 
 - type: !PartialOnly entity
   id: WeaponLightMachineGunL6C
+  parent: [BaseItem, BaseSyndicateContraband] # its syndicate contra, duh
+  description: An L6 SAW, modified for use by cyborgs. # ours takes L6 takes ammo
   components:
-  - type: Gun
-    minAngle: 3
-    maxAngle: 14
-    angleIncrease: 1
-    angleDecay: 14
+    - type: Gun
+      minAngle: 3
+      maxAngle: 14
+      angleIncrease: 1
+      angleDecay: 14
+      fireRate: 8
+    - type: ChamberMagazineAmmoProvider
+      soundRack:
+        path: /Audio/Weapons/Guns/Cock/lmg_cock.ogg
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: MagazineLightRifleBoxSP
+          insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+          ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+          priority: 2
+          whitelist:
+            tags:
+              - MagazineLightRifleBox
+        gun_chamber:
+          name: Chamber
+          startingItem: CartridgeLightRifleSP
+          priority: 1
+          whitelist:
+            tags:
+              - CartridgeLightRifle
+    - type: ContainerContainer
+      containers:
+        gun_magazine: !type:ContainerSlot
+        gun_chamber: !type:ContainerSlot
+    - type: !Remove BallisticAmmoProvider # we no want free ammo
+      whitelist:
+        tags:
+        - CartridgeLightRifle
+      capacity: 100
+      proto: CartridgeLightRifleSP
+      cycleable: false # No synthesizing ammo for your syndicate masters.
+    - type: !Remove BallisticAmmoSelfRefiller # disables automatic ammo synthesis
+      fireCost: 100
+      affectedByEmp: true

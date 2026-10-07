@@ -13,6 +13,65 @@
     maxAngleDivider: 1.5
     minAngle: 0
     maxAngle: 0
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 30
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacitySP
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinPistol
+  - type: FiringPinHolder
+    supportedPins: [ Pistol, GunUpgrade ]
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    damage:
+      types:
+        Blunt: 6
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: AltFireMelee
+  - type: ForceQuickDraw #All pistols can now be smart equipped from pockets instead of removing their magazines! Rejoice!
+
+- type: !PartialOnly entity
+  id: WeaponPistolViper
+  description: A common handgun illegally modified by the Syndicate. The Viper sports a selector switch between semi-auto, "rock and roll", and "spray and pray". The standard sidearm for any soldier who fights under the three serpents. Feeds from .35 pistol magazines.
+  components:
+  - type: Gun
+    fireRate: 6
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+      - FullAuto
+      - Burst
+    shotsPerBurst: 4
+    burstCooldown: 0.35
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistolHighCapacitySP
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacitySP
+        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container # starlight
 
 - type: !PartialOnly entity
   id: WeaponPistolEchis
@@ -31,9 +90,19 @@
     maxAngle: 24
     angleIncrease: 5
     angleDecay: 16
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container # starlight
 
 - type: !PartialOnly entity
+  name: mk 58
+  id: WeaponPistolMk58
+  description: Designed by NanoTrasen’s Small Arms Division, the Mk58 is a conventional semi-automatic pistol with a simple recoil-operated action and excellent reliability. The standard sidearm of NanoTrasen’s station security and emergency response teams. Feeds from .35 pistol magazines.
+
+- type: !PartialOnly entity
+  name: N1984
   id: WeaponPistolN1984
+  description: An exceptionally powerful ‘hand cannon’ designed as part of NanoTrasen's BFG initiative. Chambered in .45, the lord’s caliber, it is generally considered too unwieldy for standard use but has become something of a status symbol among NanoTrasen officials. Feeds from .45 pistol magazines.
   components:
   - type: Gun
     minAngle: 7

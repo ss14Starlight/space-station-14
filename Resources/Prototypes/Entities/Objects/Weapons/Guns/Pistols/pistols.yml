@@ -25,8 +25,6 @@
   - type: Tag
     tags:
     - Sidearm
-  - type: CanDualWield # 🌟Starlight🌟
-    dualWieldInaccuracyPenalty: 30
   - type: Clothing
     sprite: Objects/Weapons/Guns/Pistols/viper.rsi
     quickEquip: false
@@ -55,7 +53,6 @@
         whitelist:
           tags:
             - MagazinePistol
-            - MagazinePistolHighCapacitySP # Starlight, dude, this typo meant no guns could actually use high capacity ammo
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
@@ -67,7 +64,6 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-      firing_pin: !type:Container # Starlight
       ballistic-ammo: !type:Container
   - type: AmmoCounter
   - type: MagazineVisuals
@@ -77,55 +73,27 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
-  # starlight start
-  - type: ContainerFill
-    containers:
-      firing_pin:
-      - FiringPinPistol
-  - type: FiringPinHolder
-    supportedPins: [ Pistol, GunUpgrade ]
-  - type: MeleeWeapon
-    wideAnimationRotation: 0
-    damage:
-      types:
-        Blunt: 6
-    angle: 0
-    animation: WeaponArcThrust
-    soundHit:
-      collection: MetalThud
-  - type: AltFireMelee
-  - type: ForceQuickDraw #All pistols can now be smart equipped from pockets instead of removing their magazines! Rejoice!
-  # starlight end
 
 - type: entity
   name: viper
   parent: [BaseWeaponPistol, BaseSyndicateContraband]
   id: WeaponPistolViper
-  description: A common handgun illegally modified by the Syndicate. The Viper sports a selector switch between semi-auto, "rock and roll", and "spray and pray". The standard sidearm for any soldier who fights under the three serpents. Feeds from .35 pistol magazines. # Starlight
+  description: A common handgun illegally modified by the Syndicate. The Viper sports a selector switch between semi-auto and ‘rock and roll’. The standard sidearm for any soldier who fights under the three serpents. Feeds from .35 pistol magazines.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Pistols/viper.rsi
-  - type: Gun # Starlight start
-    fireRate: 6
-    selectedMode: SemiAuto
-    availableModes:
-      - SemiAuto
-      - FullAuto
-      - Burst
-    shotsPerBurst: 4
-    burstCooldown: 0.35 # Starlight end
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolHighCapacitySP # Starlight, starts with the high capacity now
+        startingItem: MagazinePistolHighCapacitySP
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
         whitelist:
           tags:
             - MagazinePistol
-            - MagazinePistolHighCapacitySP # Starlight, they couldn't actually use this before because Capacity without SP *doesn't exist as a tag*
+            - MagazinePistolHighCapacitySP
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
@@ -137,7 +105,6 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-      firing_pin: !type:Container # starlight
   - type: StaticPrice
     price: 1000
 
@@ -224,7 +191,6 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-      firing_pin: !type:Container # starlight
   - type: StaticPrice
     price: 1500
 
@@ -232,7 +198,7 @@
   name: mk 58
   parent: [BaseWeaponPistol, BaseSecuritySalvageContraband]
   id: WeaponPistolMk58
-  description: Designed by NanoTrasen’s Small Arms Division, the Mk58 is a conventional semi-automatic pistol with a simple recoil-operated action and excellent reliability. The standard sidearm of NanoTrasen’s station security and emergency response teams. Feeds from .35 pistol magazines. # SL
+  description: Designed by Nanotrasen’s Small Arms Division, the Mk58 is a conventional semi-automatic pistol with a simple recoil-operated action and excellent reliability. The standard sidearm of Nanotrasen’s station security and emergency response teams. Feeds from .35 pistol magazines.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
@@ -258,7 +224,7 @@
   name: N1984
   parent: [BaseWeaponPistol, BaseSecurityContraband]
   id: WeaponPistolN1984
-  description: An exceptionally powerful ‘hand cannon’ designed as part of NanoTrasen's BFG initiative. Chambered in .45, the lord’s caliber, it is generally considered too unwieldy for standard use but has become something of a status symbol among NanoTrasen officials. Feeds from .45 pistol magazines. # SL
+  description: An exceptionally powerful ‘hand cannon’ designed as part of Nanotrasen's BFG initiative. Chambered in .45, the lord’s caliber, it is generally considered too unwieldy for standard use but has become something of a status symbol among Nanotrasen officials. Feeds from .45 pistol magazines.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Pistols/N1984.rsi

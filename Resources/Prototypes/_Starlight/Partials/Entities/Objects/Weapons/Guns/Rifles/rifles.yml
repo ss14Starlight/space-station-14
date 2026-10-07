@@ -1,14 +1,80 @@
 - type: !PartialOnly entity
+  name: BaseWeaponRifle
+  parent: [ BaseItem, BaseGunWieldable ]
   id: BaseWeaponRifle
+  description: A rooty tooty point and shooty.
+  abstract: true
   components:
   - type: GunHeat
     heatPerShot: 750
+  - type: RestrictByUserTag
+    doestContain:
+    - Abductor
+    messages:
+    - abductor-gun-restricted-1
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: 1.0
+        staminaMultiplier: 100
+      Rodentia:
+        knockback: 0.1
+        staminaMultiplier: 20
+      Resomi:
+        knockback: 0.1
+        staminaMultiplier: 20
+      Felionoid:
+        knockback: 0.05 #half of what resomi take
+        staminaMultiplier: 20
+  - type: AmmoCounter
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleSP
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot ""
+      gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPin
+  - type: FiringPinHolder
+    supportedPins: [ Rifle, GunUpgrade ]
+
+
+- type: !PartialOnly entity
+  id: WeaponRifleAk
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleSP
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot ""
+      gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container # starlight
 
 - type: !PartialOnly entity
   id: WeaponRifleLecter
+  description: "Popular gas-operated combat rifle used heavily by NanoTrasen and SolGov. Operating in semi or fully automatic, its accuracy, stopping power, and reliability make it excel in all manner of environments.\nFeeds from .20 rifle magazines." # SL
   components:
   - type: Gun
     fireRate: 6
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifleSP
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot ""
+      gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container
 
 - type: !PartialOnly entity
   id: WeaponRifleEstoc
@@ -25,3 +91,17 @@
     maxAngleDivider: 3.75
     minAngle: 0
     maxAngle: 0
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifleSP
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.80 #SL 75% -> 80% speed
+    sprintModifier: 0.80 #SL 75% -> 80% speed
+  - type: EyeCursorOffset
+    maxOffset: 2.5 #SL 2 -> 2.5
+    pvsIncrease: 0.25 #SL 0.2 -> 0.25
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container # starlight

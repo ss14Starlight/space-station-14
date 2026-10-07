@@ -5,11 +5,6 @@
   description: A rooty tooty point and shooty.
   abstract: true
   components:
-  - type: RestrictByUserTag
-    doestContain:
-    - Abductor
-    messages:
-    - abductor-gun-restricted-1
   - type: Sprite
   - type: Item
     size: Large
@@ -22,21 +17,6 @@
     - Back
     - suitStorage
   - type: AmmoCounter
-  # starlight start
-  - type: CanDualWield # 🌟Starlight🌟
-    dualWieldInaccuracyPenalty: 68
-  - type: MeleeWeapon
-    wideAnimationRotation: 90
-    damage:
-      types:
-        Blunt: 7
-    angle: 0
-    animation: WeaponArcThrust
-    soundHit:
-      collection: MetalThud
-  - type: MeleeRequiresWield
-  - type: AltFireMelee
-    # starlight end
   - type: Gun
     minAngle: 2
     maxAngle: 16
@@ -58,13 +38,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolSubMachineGunSP
+        startingItem: MagazinePistolSubMachineGun
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazinePistolSubMachineGunSP
+            - MagazinePistolSubMachineGun
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
@@ -76,17 +56,8 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-      firing_pin: !type:Container # starlight
   - type: StaticPrice
     price: 500
-  # starlight start
-  - type: ContainerFill
-    containers:
-      firing_pin:
-      - FiringPinPistol
-  - type: FiringPinHolder
-    supportedPins: [ Pistol, GunUpgrade ]
-  # starlight end
 
 - type: entity
   name: Atreides
@@ -130,10 +101,12 @@
     unwieldOnUse: false
   - type: GunWieldBonus
     minAngle: -19
-    maxAngle: -16
+    maxAngle: -12
   - type: Gun
     minAngle: 21
     maxAngle: 32
+    angleIncrease: 1.25
+    angleDecay: 20
     shotsPerBurst: 5
     availableModes:
     - Burst
@@ -164,12 +137,9 @@
     angleDecay: 16
     fireRate: 8
     burstFireRate: 8
-    shotsPerBurst: 5 # Starlight
     selectedMode: Burst
     availableModes:
     - Burst
-    - FullAuto # Starlight
-    - SemiAuto # Starlight
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
   - type: Sprite
@@ -179,12 +149,6 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-5
       map: ["enum.GunVisualLayers.Mag"]
-  #region starlight: Ammo visuals for the C-20
-  - type: MagazineVisuals
-    magState: mag
-    steps: 6
-    zeroVisible: true
-  #end region
   - type: Item
     size: Huge
   - type: ContainerContainer
@@ -195,7 +159,7 @@
       tags:
       - CartridgePistol
     capacity: 30
-    proto: CartridgePistolSP #Starlight Ammo
+    proto: CartridgePistol
     cycleable: false # No synthesizing ammo for your syndicate masters.
   - type: BallisticAmmoSelfRefiller
     autoRefillRate: 4s
@@ -206,7 +170,7 @@
   name: Drozd
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
   id: WeaponSubMachineGunDrozd
-  description: A modern SMG manufactured by NanoTrasen’s Small Arms Division. It features an exceptional rate of fire in burst mode, useful for holding defensive angles or engaging hostiles at longer ranges. Feeds from .35 SMG magazines. # SL
+  description: A modern SMG manufactured by Nanotrasen’s Small Arms Division. It features an exceptional rate of fire in burst mode, useful for holding defensive angles or engaging hostiles at longer ranges. Feeds from .35 SMG magazines.
   components:
     - type: Sprite
       sprite: Objects/Weapons/Guns/SMGs/drozd.rsi
@@ -221,10 +185,12 @@
       unwieldOnUse: false
     - type: GunWieldBonus
       minAngle: -19
-      maxAngle: -16
+      maxAngle: -14
     - type: Gun
       minAngle: 21
       maxAngle: 32
+      angleIncrease: 1.5
+      angleDecay: 16
       fireRate: 6
       burstFireRate: 18
       soundGunshot:
@@ -240,13 +206,13 @@
       slots:
         gun_magazine:
           name: Magazine
-          startingItem: MagazinePistolSubMachineGunSP
+          startingItem: MagazinePistolSubMachineGun
           insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
           priority: 2
           whitelist:
             tags:
-              - MagazinePistolSubMachineGunSP
+              - MagazinePistolSubMachineGun
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
           name: Chamber
@@ -262,9 +228,9 @@
 
 - type: entity
   name: WT550
-  parent: [BaseWeaponSubMachineGun, BaseSecurityContraband] # Starlight
+  parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
   id: WeaponSubMachineGunWt550
-  description: A truly unique firearm, the WT550 was designed by NanoTrasen's Small Arms Division as a compact submachine gun fully controllable with one hand. It contains an exotic internal recoil buffer and feeds from special top-mounted .35 magazines. # SL
+  description: A truly unique firearm, the WT550 was designed by Nanotrasen's Small Arms Division as a compact submachine gun fully controllable with one hand. It contains an exotic internal recoil buffer and feeds from special top-mounted .35 magazines.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
@@ -286,9 +252,9 @@
   - type: Gun
     fireRate: 5.5
     minAngle: 1
-    maxAngle: 6
+    maxAngle: 16
     angleIncrease: 1.5
-    angleDecay: 6
+    angleDecay: 12
     selectedMode: FullAuto
     shotsPerBurst: 5
     burstCooldown: 0.2
@@ -323,13 +289,15 @@
 
 - type: entity
   name: brown briefcase
-  parent: BaseWeaponSubMachineGun
+  parent: [BaseWeaponSubMachineGun]
   id: WeaponSubMachineGunBriefcase
   description: Useful for carrying items in your hands.
   suffix: Gun
   components:
   - type: Item
     size: Ginormous
+    shape:
+    - 0,0,4,3
     inhandVisuals:
       left:
         - sprite: Objects/Storage/Briefcases/briefcase_brown.rsi
