@@ -10,6 +10,7 @@ using Robust.Client.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.Audio.Effects;
+using Robust.Shared.Audio.Sources;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -34,26 +35,33 @@ public sealed partial class RoomReverbSystem : EntitySystem
 
     private const float MinDiffusion = 0.9f;
 
-    private static readonly TimeSpan DoorwayHold = TimeSpan.FromSeconds(1);
+    private const float MaxReflectionGain = 1f;
+
+    private static readonly TimeSpan _doorwayHold = TimeSpan.FromSeconds(1);
 
     private const int SoftRadius = 4;
     private const float SeatSoftness = 0.04f;
     private const float TableSoftness = 0.02f;
     private const float MaxSoftness = 0.6f;
-    private static readonly TimeSpan SoftnessInterval = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan _softnessInterval = TimeSpan.FromSeconds(1);
 
     private TimeSpan _lastInRoom;
     private TimeSpan _nextSoftness;
     private float _softness;
-    private readonly Dictionary<int, bool> _softTiles = new();
-    private readonly HashSet<Entity<StrapComponent>> _seats = new();
-    private readonly HashSet<string> _dryFiles = new();
-    private readonly HashSet<Entity<ClimbableComponent>> _tables = new();
+    private readonly Dictionary<int, bool> _softTiles = [];
+    private readonly HashSet<Entity<StrapComponent>> _seats = [];
+    private readonly HashSet<string> _dryFiles = [];
+    private readonly HashSet<Entity<ClimbableComponent>> _tables = [];
 
     private float _volume = 1f;
 
     private EntityUid? _auxiliary;
     private EntityUid? _effect;
+
+    private const int ChurnLimit = 200;
+    private static readonly TimeSpan _churnInterval = TimeSpan.FromSeconds(5);
+    private TimeSpan _nextChurnReport;
+    private int _applyCalls;
     private ReverbSettings? _current;
 
     public ReverbSettings? Forced;
@@ -68,10 +76,10 @@ public sealed partial class RoomReverbSystem : EntitySystem
         UpdatesOutsidePrediction = true;
         Subs.CVar(_cfg, StarlightCCVars.ReverbVolume, value => _volume = value, true);
         SubscribeLocalEvent<LocalPlayerDetachedEvent>(_ => Clear());
-        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnProtoReload);
         RebuildDryFiles();
     }
 
+    [SubscribeLocalEvent]
     private void OnProtoReload(PrototypesReloadedEventArgs args)
     {
         if (args.WasModified<SpeechSoundsPrototype>() || args.WasModified<SoundCollectionPrototype>())
@@ -111,18 +119,18 @@ public sealed partial class RoomReverbSystem : EntitySystem
     {
         base.Shutdown();
         Clear();
+        Delete(_auxiliary, _effect);
+        _auxiliary = null;
+        _effect = null;
     }
 
-    public override void Update(float frameTime)
+    public override void FrameUpdate(float frameTime)
     {
-        base.Update(frameTime);
-
-        if (!_timing.IsFirstTimePredicted)
-            return;
+        base.FrameUpdate(frameTime);
 
         if (_timing.RealTime >= _nextSoftness)
         {
-            _nextSoftness = _timing.RealTime + SoftnessInterval;
+            _nextSoftness = _timing.RealTime + _softnessInterval;
             _softness = GetSoftness();
         }
 
@@ -130,8 +138,10 @@ public sealed partial class RoomReverbSystem : EntitySystem
 
         if (wanted != null)
             _lastInRoom = _timing.RealTime;
-        else if (_current != null && IsBetweenRooms() && _timing.RealTime < _lastInRoom + DoorwayHold)
+        else if (_current != null && IsBetweenRooms() && _timing.RealTime < _lastInRoom + _doorwayHold)
             wanted = _current;
+
+        ReportChurn();
 
         if (wanted == null)
         {
@@ -139,23 +149,43 @@ public sealed partial class RoomReverbSystem : EntitySystem
             return;
         }
 
-        if (wanted != _current || !Exists(_auxiliary) || !Exists(_effect))
-            Rebuild(wanted.Value);
+        if (!EnsureSlot())
+            return;
 
+        if (wanted != _current)
+            Apply(wanted.Value);
+
+        if (!TryComp(_auxiliary, out AudioAuxiliaryComponent? slot))
+            return;
+
+        // Straight onto the OpenAL source, never through AudioComponent.Auxiliary: that field is networked, and
+        // touching it on a server sound made the engine re-apply the sound's state, seeking it to client time.
+        // Client time runs ahead, so cries lost their start and short sounds (claps, salute) stopped outright.
+        // Re-sent every frame, which is free for OpenAL and survives the engine resetting the send.
         var attached = 0;
         var query = AllEntityQuery<AudioComponent>();
-        while (query.MoveNext(out var uid, out var audio))
+        while (query.MoveNext(out var audio))
         {
-            if (audio.Global || _dryFiles.Contains(audio.FileName))
+            if (audio.Global || audio.Auxiliary != null || _dryFiles.Contains(audio.FileName))
                 continue;
 
-            if (audio.Auxiliary != _auxiliary)
-                _audio.SetAuxiliary(uid, audio, _auxiliary);
-
+            ((IAudioSource) audio).SetAuxiliary(slot.Auxiliary);
             attached++;
         }
 
         AttachedSources = attached;
+    }
+
+    private void ReportChurn()
+    {
+        if (_timing.RealTime < _nextChurnReport)
+            return;
+
+        if (_applyCalls > ChurnLimit)
+            Log.Warning($"Room reverb churn: {_applyCalls} preset changes in the last {_churnInterval.TotalSeconds} s");
+
+        _applyCalls = 0;
+        _nextChurnReport = _timing.RealTime + _churnInterval;
     }
 
     private bool IsBetweenRooms()
@@ -242,51 +272,56 @@ public sealed partial class RoomReverbSystem : EntitySystem
         return soft;
     }
 
-    private void Rebuild(ReverbSettings settings)
+    // One slot and effect for the whole session, a room change only rewrites the effect's parameters.
+    // Recreating them meant moving every playing sound to a new slot.
+    private bool EnsureSlot()
     {
-        if (!_proto.TryIndex<AudioPresetPrototype>(settings.Preset, out var preset))
-            return;
+        if (Exists(_auxiliary) && Exists(_effect))
+            return true;
 
-        var oldAuxiliary = _auxiliary;
-        var oldEffect = _effect;
+        Delete(_auxiliary, _effect);
 
         var effect = _audio.CreateEffect();
         var auxiliary = _audio.CreateAuxiliary();
-        _audio.SetEffectPreset(effect.Entity, effect.Component, Scale(preset, settings));
-        _audio.SetEffect(auxiliary.Entity, auxiliary.Component, effect.Entity);
-
-        _auxiliary = auxiliary.Entity;
         _effect = effect.Entity;
-        _current = settings;
+        _auxiliary = auxiliary.Entity;
+        _current = null;
+        return true;
+    }
 
-        // Sounds still on the old slot move over in the same update, before it goes away.
-        Detach(oldAuxiliary, _auxiliary);
-        Delete(oldAuxiliary, oldEffect);
+    private void Apply(ReverbSettings settings)
+    {
+        if (!_proto.TryIndex<AudioPresetPrototype>(settings.Preset, out var preset) ||
+            !TryComp(_effect, out AudioEffectComponent? effect) ||
+            !TryComp(_auxiliary, out AudioAuxiliaryComponent? auxiliary))
+            return;
+
+        _audio.SetEffectPreset(_effect.Value, effect, Scale(preset, settings));
+
+        // EFX copies the effect into the slot on assignment, so assign again after changing it.
+        _audio.SetEffect(_auxiliary.Value, auxiliary, _effect.Value);
+        _current = settings;
+        _applyCalls++;
     }
 
     private void Clear()
     {
-        if (_auxiliary == null && _effect == null)
+        if (_current == null)
             return;
 
-        Detach(_auxiliary, null);
-        Delete(_auxiliary, _effect);
-        _auxiliary = null;
-        _effect = null;
+        Detach();
         _current = null;
         AttachedSources = 0;
     }
 
-    private void Detach(EntityUid? from, EntityUid? to)
+    private void Detach()
     {
-        if (from == null)
-            return;
-
         var query = AllEntityQuery<AudioComponent>();
-        while (query.MoveNext(out var uid, out var audio))
+        while (query.MoveNext(out var audio))
         {
-            if (audio.Auxiliary == from)
-                _audio.SetAuxiliary(uid, audio, to);
+            // Leave sounds that use a slot of their own through the component alone.
+            if (audio.Auxiliary == null)
+                ((IAudioSource) audio).SetAuxiliary(null);
         }
     }
 
@@ -309,10 +344,10 @@ public sealed partial class RoomReverbSystem : EntitySystem
         DecayTime = Math.Clamp(preset.DecayTime * settings.DecayScale, 0.1f, 20f),
         DecayHFRatio = preset.DecayHFRatio,
         DecayLFRatio = preset.DecayLFRatio,
-        ReflectionsGain = preset.ReflectionsGain,
+        ReflectionsGain = MathF.Min(preset.ReflectionsGain, MaxReflectionGain),
         ReflectionsDelay = Math.Clamp(preset.ReflectionsDelay * settings.DelayScale, 0f, 0.3f),
         ReflectionsPan = preset.ReflectionsPan,
-        LateReverbGain = preset.LateReverbGain,
+        LateReverbGain = MathF.Min(preset.LateReverbGain, MaxReflectionGain),
         LateReverbDelay = Math.Clamp(preset.LateReverbDelay * settings.DelayScale, 0f, 0.1f),
         LateReverbPan = preset.LateReverbPan,
         EchoTime = preset.EchoTime,
