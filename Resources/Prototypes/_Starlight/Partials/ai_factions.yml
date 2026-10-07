@@ -168,3 +168,18 @@
   id: SyndicateSilicon
   hostile:
   - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: NanoTrasenSilicon
+  hostile:
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: DungeonSoviet
+  hostile:
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: Passive
+  hostile:
+  - MoffNarsianDemon
