@@ -1,67 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Novo Lobster) The NanoMed in Medbay is now a randomized medical vending machine spawner again.
-    type: Tweak
-  id: 408859
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) The air alarms at Science's artifact testing now start unlocked.
-    type: Tweak
-  id: 408860
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Updated the Mining Bay to be more comfy.
-    type: Tweak
-  id: 408861
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed missing tile under the Detective's west door.
-    type: Fix
-  id: 408862
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Cargo's front intercom is no longer unpowered.
-    type: Fix
-  id: 408863
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Removed some firelocks I put on the east side of Engineering for some reason that would always go off at the start of a round.
-    type: Fix
-  id: 408864
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Science's left-most artifact chamber is now linked with its analysis pad at roundstart.
-    type: Fix
-  id: 408865
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) The conveyors on the Cargo Shuttle now actually work.
-    type: Fix
-  id: 408866
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) NCT Office.
-    type: Remove
-  id: 408867
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
 - author: Swonki
   changes:
   - message: SPKA and Regulator recharge rates and accuracy.
@@ -2799,4 +2736,67 @@ Entries:
   id: 409258
   time: '2026-10-07T16:38:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6377
+- author: wonderfulnewworld
+  changes:
+  - message: The hellportal now manifests the underworld into the real world (makes flesh tiles).
+    type: Add
+  id: 409259
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: wonderfulnewworld
+  changes:
+  - message: The hellportal now counts as an anomaly, the same way the malign rift counts as one. (Although you can also still just beat it up if you want. It does have more health now, though.).
+    type: Add
+  id: 409260
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: wonderfulnewworld
+  changes:
+  - message: When prying flesh tiles, you get random meat now.
+    type: Tweak
+  id: 409261
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: wonderfulnewworld
+  changes:
+  - message: The hellportal will now spawn mobs proportional to player count. (49 at beta max pop).
+    type: Tweak
+  id: 409262
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: wonderfulnewworld
+  changes:
+  - message: Each hellportal will now have its own mob spawn limit, instead of having one shared across all of them.
+    type: Tweak
+  id: 409263
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: wonderfulnewworld
+  changes:
+  - message: Health HUDs/medical cyborgs can now see the health of organic hellportal mobs, Diagnostic HUDs/Engineering cyborgs can now see the health of inorganic hellportal mobs.
+    type: Tweak
+  id: 409264
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: wonderfulnewworld
+  changes:
+  - message: Hellportal mobs now speak darktongue, and no longer stutter.
+    type: Tweak
+  id: 409265
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: wonderfulnewworld
+  changes:
+  - message: The hellportal will no longer spawn on occupied tiles.
+    type: Fix
+  id: 409266
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: wonderfulnewworld
+  changes:
+  - message: Cyborgs, Syndicate soldiers, specifically derelict xenoborgs, comrades, and Pun Pun are now hostile to the spawn of the underworld.
+    type: Fix
+  id: 409267
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
 Order: -1
