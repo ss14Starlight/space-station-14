@@ -1,18 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: IAA doors now use the new NT door sprite.
-    type: Tweak
-  id: 408835
-  time: '2026-09-24T09:30:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6237
-- author: qbrx
-  changes:
-  - message: Health analyzers now show patient data instantly instead of sometimes opening blank.
-    type: Tweak
-  id: 408836
-  time: '2026-09-24T09:55:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6323
 - author: R3v3l4t1on
   changes:
   - message: Thanks to increased funding, Refinery's small reactor has been replaced with the larger variant.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409234
   time: '2026-10-06T11:07:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6533
+- author: TaserTheFox
+  changes:
+  - message: Librarians now speak and understand Felyiac and Cygni Standard.
+    type: Add
+  id: 409235
+  time: '2026-10-07T09:04:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6548
+- author: TaserTheFox
+  changes:
+  - message: The same languages to the AAC tablet.
+    type: Add
+  id: 409236
+  time: '2026-10-07T09:04:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6548
 Order: -1
