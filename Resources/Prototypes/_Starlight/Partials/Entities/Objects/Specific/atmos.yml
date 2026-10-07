@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: GasAnalyzer
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/gas_analyzer_pickup.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/gas_analyzer_drop.ogg

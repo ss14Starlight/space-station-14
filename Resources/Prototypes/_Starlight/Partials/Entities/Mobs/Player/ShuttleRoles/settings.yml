@@ -3,48 +3,52 @@
   components:
     - type: AdditionalLanguageKnowledge
       speaks:
-      - GalacticCommon
-      - Scratch
-      - SolCommon
+      - Aielic
       - Bubblish
       - Canilunzt
       - Chittin
+      - Classical
+      - ClassicalSign
+      - CygniStandard
+      - Darktongue
       - Draconic
+      - Felyaic
+      - GalacticCommon
+      - Grumbakul
+      - Lagomorphian
       - Marish
       - Moffic
       - Nekomimetic
+      - Scratch
+      - Sign
+      - SolCommon
+      - Squeakish
       - Sylvan
       - Terrum
       - Thaveyan
       - VoxPidgin
-      - Sign
-      - ClassicalSign
-      - Grumbakul
-      - Aielic
-      - Classical
-      - Darktongue
-      - Lagomorphian
-      - Squeakish
       understands:
-      - GalacticCommon
-      - Scratch
-      - SolCommon
+      - Aielic
       - Bubblish
       - Canilunzt
       - Chittin
+      - Classical
+      - ClassicalSign
+      - CygniStandard
+      - Darktongue
       - Draconic
+      - Felyaic
+      - GalacticCommon
+      - Grumbakul
+      - Lagomorphian
       - Marish
       - Moffic
       - Nekomimetic
+      - Scratch
+      - Sign
+      - SolCommon
+      - Squeakish
       - Sylvan
       - Terrum
       - Thaveyan
       - VoxPidgin
-      - Sign
-      - ClassicalSign
-      - Grumbakul
-      - Aielic
-      - Classical
-      - Darktongue
-      - Lagomorphian
-      - Squeakish
