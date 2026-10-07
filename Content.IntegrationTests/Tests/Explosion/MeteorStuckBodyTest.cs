@@ -661,8 +661,6 @@ public sealed class MeteorStuckBodyTest : GameTest
         {
             if (!entMan.EntityExists(probe.Entity) || seen.Contains(probe.Entity))
                 continue;
-            if (!entMan.GetComponent<PhysicsComponent>(probe.Entity).Awake)
-                continue;
 
             seen.Add(probe.Entity);
             var dynamics = 0;
