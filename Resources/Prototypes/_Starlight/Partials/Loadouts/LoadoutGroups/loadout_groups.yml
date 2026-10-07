@@ -8,8 +8,6 @@
   - GreyTieGeneric
   - LGBTieLoadout
   - ScientistTie
-  - DetectiveTie
-  - SecurityRedNeckTie
 
 - type: !PartialOnly loadoutGroup
   id: HoPNeck
@@ -32,8 +30,6 @@
   - GreyTieGeneric
   - LGBTieLoadout
   - ScientistTie
-  - DetectiveTie
-  - SecurityRedNeckTie
 
 - type: !PartialOnly loadoutGroup
   id: IAANeck
@@ -44,8 +40,6 @@
   - GreyTieGeneric
   - LGBTieLoadout
   - ScientistTie
-  - DetectiveTie
-  - SecurityRedNeckTie
 
 - type: !PartialOnly loadoutGroup
   id: LawyerNeck
@@ -56,8 +50,6 @@
   - GreyTieGeneric
   - LGBTieLoadout
   - ScientistTie
-  - DetectiveTie
-  - SecurityRedNeckTie
 
 - type: !PartialOnly loadoutGroup
   id: ChaplainNeck
@@ -68,8 +60,6 @@
   - GreyTieGeneric
   - LGBTieLoadout
   - ScientistTie
-  - DetectiveTie
-  - SecurityRedNeckTie
 
 - type: !PartialOnly loadoutGroup
   id: QuartermasterNeck
@@ -80,8 +70,6 @@
   - GreyTieGeneric
   - LGBTieLoadout
   - ScientistTie
-  - DetectiveTie
-  - SecurityRedNeckTie
 
 - type: !PartialOnly loadoutGroup
   id: ChiefEngineerNeck
@@ -92,8 +80,6 @@
   - GreyTieGeneric
   - LGBTieLoadout
   - ScientistTie
-  - DetectiveTie
-  - SecurityRedNeckTie
 
 - type: !PartialOnly loadoutGroup
   id: ResearchDirectorNeck
@@ -104,8 +90,6 @@
   - GreyTieGeneric
   - LGBTieLoadout
   - ScientistTie
-  - DetectiveTie
-  - SecurityRedNeckTie
 
 - type: !PartialOnly loadoutGroup
   id: ScientistNeck
@@ -115,8 +99,6 @@
   - GreenTieGeneric
   - GreyTieGeneric
   - LGBTieLoadout
-  - DetectiveTie
-  - SecurityRedNeckTie
 
 - type: !PartialOnly loadoutGroup
   id: HeadofSecurityNeck
@@ -149,8 +131,6 @@
   - GreenTieGeneric
   - GreyTieGeneric
   - LGBTieLoadout
-  - DetectiveTie
-  - SecurityRedNeckTie
 
 - type: !PartialOnly loadoutGroup
   id: NanoTrasenRepresentativeNeck
@@ -161,8 +141,6 @@
   - GreyTieGeneric
   - LGBTieLoadout
   - ScientistTie
-  - DetectiveTie
-  - SecurityRedNeckTie
 
 - type: !PartialOnly loadoutGroup
   id: MagistrateNeck
@@ -173,8 +151,6 @@
   - GreyTieGeneric
   - LGBTieLoadout
   - ScientistTie
-  - DetectiveTie
-  - SecurityRedNeckTie
 
 - type: !PartialOnly loadoutGroup
   id: BlueShieldNeck
@@ -185,8 +161,6 @@
   - GreyTieGeneric
   - LGBTieLoadout
   - ScientistTie
-  - DetectiveTie
-  - SecurityRedNeckTie
 
 - type: !PartialOnly loadoutGroup
   id: SalvageLeadNeck
@@ -197,8 +171,6 @@
   - GreyTieGeneric
   - LGBTieLoadout
   - ScientistTie
-  - DetectiveTie
-  - SecurityRedNeckTie
 
 - type: !PartialOnly loadoutGroup
   id: JanitorNeck
@@ -209,8 +181,6 @@
   - GreyTieGeneric
   - LGBTieLoadout
   - ScientistTie
-  - DetectiveTie
-  - SecurityRedNeckTie
 
 - type: !PartialOnly loadoutGroup
   id: WardenNeck

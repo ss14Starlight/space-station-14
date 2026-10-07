@@ -67,7 +67,6 @@
   id: JobSecurityOfficer
   groups:
     - TiesGroup
-    - !Remove SecurityTie
 
 - type: !PartialOnly roleLoadout
   id: JobSecurityCadet
@@ -88,13 +87,11 @@
   id: JobBrigmedic
   groups:
     - TiesGroup
-    - !Remove SecurityTie
 
 - type: !PartialOnly roleLoadout
   id: JobDutyOfficer
   groups:
     - TiesGroup
-    - !Remove SecurityTie
 
 - type: !PartialOnly roleLoadout
   id: JobAssistantManager
