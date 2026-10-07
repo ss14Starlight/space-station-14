@@ -1,39 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: IAA doors now use the new NT door sprite.
-    type: Tweak
-  id: 408835
-  time: '2026-09-24T09:30:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6237
-- author: qbrx
-  changes:
-  - message: Health analyzers now show patient data instantly instead of sometimes opening blank.
-    type: Tweak
-  id: 408836
-  time: '2026-09-24T09:55:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6323
-- author: R3v3l4t1on
-  changes:
-  - message: Thanks to increased funding, Refinery's small reactor has been replaced with the larger variant.
-    type: Tweak
-  id: 408837
-  time: '2026-09-24T09:55:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6290
-- author: Dragometh
-  changes:
-  - message: Anomaly infections are now killed off when the host cryo sleeps.
-    type: Fix
-  id: 408838
-  time: '2026-09-24T09:55:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6252
-- author: Xale
-  changes:
-  - message: Neocytes will no longer make up 50% of humanoid ghostrole spawns.
-    type: Fix
-  id: 408839
-  time: '2026-09-24T10:30:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6295
 - author: Xale
   changes:
   - message: Neocyte variants such as Neo-Human will no longer be included in randomisation for humanoid ghostrole spawns.
@@ -2799,4 +2764,39 @@ Entries:
   id: 409234
   time: '2026-10-06T11:07:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6533
+- author: TaserTheFox
+  changes:
+  - message: Librarians now speak and understand Felyiac and Cygni Standard.
+    type: Add
+  id: 409235
+  time: '2026-10-07T09:04:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6548
+- author: TaserTheFox
+  changes:
+  - message: The same languages to the AAC tablet.
+    type: Add
+  id: 409236
+  time: '2026-10-07T09:04:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6548
+- author: Caws
+  changes:
+  - message: Placing Vox atmosphere air vents and Vox atmosphere air scrubbers works again. This was bugged in a way where regular air vents and air scrubbers would be placed instead of the Vox variants.
+    type: Fix
+  id: 409237
+  time: '2026-10-07T09:42:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6545
+- author: Caws
+  changes:
+  - message: Vox atmosphere dual-port air vents (we don't use dual-port air vents).
+    type: Remove
+  id: 409238
+  time: '2026-10-07T09:42:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6545
+- author: Yosif
+  changes:
+  - message: Plant Trays now correctly updates.
+    type: Fix
+  id: 409239
+  time: '2026-10-07T09:58:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6552
 Order: -1

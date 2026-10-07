@@ -36,14 +36,12 @@ public sealed partial class SeedExtractorSystem : EntitySystem
 
         if (_botany.TryGetPlantComponent<PlantTraitSeedlessComponent>(snapshot, produce.PlantProtoId, out _))
         {
-            _popup.PopupPredictedCursor(Loc.GetString("seed-extractor-component-no-seeds", ("name", args.Used)), // Starlight: Predicted for popups
-                args.User,
+            _popup.PopupCursor(Loc.GetString("seed-extractor-component-no-seeds", ("name", args.Used)), // Starlight: If you see here error after upstreaming, revert this commit
                 PopupType.SmallCaution);
             return;
         }
 
-        _popup.PopupPredictedCursor(Loc.GetString("seed-extractor-component-interact-message", ("name", args.Used)), // Starlight: Predicted for popups
-            args.User);
+        _popup.PopupCursor(Loc.GetString("seed-extractor-component-interact-message", ("name", args.Used))); // Starlight: If you see here error after upstreaming, revert this commit
 
         PredictedQueueDel(args.Used);
         args.Handled = true;
