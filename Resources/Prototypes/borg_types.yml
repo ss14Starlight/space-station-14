@@ -208,9 +208,13 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
+    - Hybrid # Starlight, doesn't work with partials
+    - MoffDemonBiological # Starlight, doesn't work with partials
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+    - Hybrid # Starlight, doesn't work with partials
+    - MoffDemonBiological # Starlight, doesn't work with partials
   - type: Access # Starlight BEGIN
     groups:
       - CyborgAllAccess
