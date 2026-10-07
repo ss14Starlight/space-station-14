@@ -29,3 +29,17 @@
   equipment:
     neck: ClothingNeckLGBTie
   groupBy: "ties"
+
+- type: loadoutGroup
+  id: TiesGroup
+  name: loadout-group-ties
+  minLimit: 0
+  loadouts:
+    - BlueTieGeneric
+    - BrownTieGeneric
+    - GreenTieGeneric
+    - GreyTieGeneric
+    - LGBTieLoadout
+    - ScientistTie
+    - DetectiveTie
+    - SecurityRedNeckTie
