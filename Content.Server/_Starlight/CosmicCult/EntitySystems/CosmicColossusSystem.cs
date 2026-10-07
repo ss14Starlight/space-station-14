@@ -194,7 +194,7 @@ public sealed partial class CosmicColossusSystem : EntitySystem
         if (!_threshold.TryGetThresholdForState(ent, MobState.Dead, out var maxHealth))
             return;
 
-        var damagePercentage = (float) damageable.TotalDamage / (float) maxHealth.Value;
+        var damagePercentage = (_damage.GetTotalDamage((ent.Owner, damageable)) / maxHealth.Value).Float();
 
         var health = damagePercentage switch
         {
@@ -205,6 +205,8 @@ public sealed partial class CosmicColossusSystem : EntitySystem
         };
 
         _appearance.SetData(ent, ColossusVisuals.Health, health);
+    }
+
     private void OnGibbed(Entity<CosmicColossusComponent> ent, ref GibbedBeforeDeletionEvent args)
     {
         var mindSink = Spawn("CosmicCultMindSink", Transform(ent).Coordinates);
