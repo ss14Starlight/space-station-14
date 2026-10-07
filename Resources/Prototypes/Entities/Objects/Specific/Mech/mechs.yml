@@ -260,6 +260,18 @@
     baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
     baseSprintSpeed: 3.7
 
+- type: entity
+  parent: MechHamtr
+  id: MechHamtrBattery
+  suffix: Battery, Air
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - MechReactorHigh #Starlight - MechReactors
+      mech-gas-tank-slot:
+      - MechAirTankFilled
+
 # Vim!!!!!!!
 
 - type: entity
@@ -318,3 +330,14 @@
   # TOOD: buzz / chime actions
   # TODO: builtin flashlight
 
+- type: entity
+  parent: MechVim
+  id: MechVimBattery
+  suffix: Battery, Air
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - MechReactorHigh #Starlight - MechReactors
+      mech-gas-tank-slot:
+      - MechAirTankFilled

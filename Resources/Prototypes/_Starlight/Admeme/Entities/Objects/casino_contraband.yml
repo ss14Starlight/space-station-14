@@ -1,8 +1,0 @@
-- type: entity
-  id: BaseCasinoContraband
-  abstract: true
-  components:
-    - type: Contraband
-      tier: Tier1
-      contrabandType: Casino
-      allowedDepartments: [ Casino ]

@@ -1,7 +1,0 @@
-- type: entity
-  id: BaseETOContraband
-  parent: BaseContrabandTier3
-  abstract: true
-  components:
-  - type: Contraband
-    contrabandType: ETO

@@ -338,6 +338,48 @@
       damageCoefficient: 0.9
 
 - type: entity
+  parent: [BaseGrandTheftContraband, ClothingOuterArmorBase]
+  id: ClothingOuterReactiveArmourShell
+  name: reactive armour shell
+  description: An experimental suit of armour, awaiting installation of an anomaly core.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Armor/reactive.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Armor/reactive.rsi
+      equippedPrefix: inactive
+    - type: ContainerContainer
+      containers:
+        core_slot: !type:ContainerSlot {}
+    - type: ItemSlots
+      slots:
+        core_slot:
+          name: anomaly-core-slot-component-slot-name-default
+          whitelist:
+            tags:
+              - ForceableFollow
+    - type: ItemSwitch
+      state: inactive
+      states:
+        inactive: !type:ItemSwitchState
+          verb: Inactive
+          hidden: true
+          sprite:
+            sprite: _Starlight/Clothing/OuterClothing/Armor/reactive.rsi
+            state: icon
+        active: !type:ItemSwitchState
+          verb: Active
+          hidden: true
+          sprite:
+            sprite: _Starlight/Clothing/OuterClothing/Armor/reactive.rsi
+            state: active-icon
+
+- type: entity
+  parent: ClothingOuterReactiveArmourShell
+  id: ClothingOuterReactiveArmourShellRandom
+  suffix: Random Core
+
+- type: entity
   parent: [ClothingOuterBaseMedium, BaseSovietContraband, AllowSuitStorageClothing ] #"ClothingOuterArmorBase" is stupid and overrides any contraband level.
   id: ClothingOuterArmorSovietPlate
   name: soviet armor vest

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingEyesBase, BaseBlueShieldContraband ]
+  parent: [ClothingEyesBase, BaseBlueShieldContraband]
   id: ClothingEyesHudBlueShield
   name: blue shield hud
   description: An innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information.
@@ -44,7 +44,12 @@
         - HudMedical
 
 - type: entity
-  parent: [ BaseCommandContraband, BaseAssistantManagerContraband, ClothingEyesHudCommand ]
+  parent: [ClothingEyesEyepatchHudBlueShield, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchHudBlueShieldFlipped
+  name: blue shield hud eyepatch
+
+- type: entity
+  parent: [BaseCommandManagerContraband, ClothingEyesHudCommand]
   id: ClothingEyesEyepatchHudAssistantManager
   name: assistant manager hud eyepatch
   description: A jade-colored heads-up display that scans the humanoids in view and provides accurate data about their ID status. Surrender witness to its' near-invisible string.
@@ -99,6 +104,11 @@
         - WhitelistChameleon
         - HudMedical
         - HudSecurity
+
+- type: entity
+  parent: [ClothingEyesEyepatchHudBrigmedic, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchHudBrigmedicFlipped
+  name: brigmedic hud eyepatch
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
@@ -160,6 +170,11 @@
         - PetWearable
         - WhitelistChameleon
         - HudMedical
+
+- type: entity
+  parent: [ClothingEyesEyepatchHudChemical, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchHudChemicalFlipped
+  name: chemical hud eyepatch
 
 - type: entity
   parent: ClothingEyesBase
@@ -227,8 +242,6 @@
   name: SSF marine goggles
   description: The iconic soviet goggles, in use broadly by the soviet forces throughout.
   components:
-    - type: Contraband # Blimpuf
-      tier: Tier3
     - type: Sprite
       sprite: _Starlight/Clothing/Eyes/Soviet/marine_goggles.rsi
     - type: Clothing

@@ -5,7 +5,7 @@
   description: "An outdated calendar bearing NanoTrasen's branding."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/calendar.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/calendar.rsi
     state: calendar
 
 - type: entity
@@ -15,7 +15,7 @@
   description: "Wash your hands. Or else."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/cleanhands.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/cleanhands.rsi
     state: cleanhands
 
 - type: entity
@@ -25,7 +25,7 @@
   description: "Is that third letter a P or an F?"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/eyechart.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/eyechart.rsi
     state: eyechart
 
 - type: entity
@@ -35,7 +35,7 @@
   description: "A dream that went up in plasma fire."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/youtoolpia.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/youtoolpia.rsi
     state: youtoolpia
 
 - type: entity
@@ -45,7 +45,7 @@
   description: "Clearly, some TERRIBLE paperwork was done here."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/skillissue.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/skillissue.rsi
     state: skillissue
 
 - type: entity
@@ -55,7 +55,7 @@
   description: "A poster informing crew about the Lokir Doctrine."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/shoeless.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/shoeless.rsi
     state: shoeless
 
 - type: entity
@@ -65,7 +65,7 @@
   description: "A poster proving to the crew that coords in fact, don't cause cancer."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/coordsdont.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/coordsdont.rsi
     state: coordsdont
 
 - type: entity
@@ -75,7 +75,7 @@
   description: "A poster proving to the crew that coords in fact, do cause cancer."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/coordsdo.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/coordsdo.rsi
     state: coordsdo
 
 - type: entity
@@ -85,7 +85,7 @@
   description: " A plaque commemorating, that incident..."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/lnuglorf.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/lnuglorf.rsi
     state: lnuglorf
 
 - type: entity
@@ -95,7 +95,7 @@
   description: "A poster promoting the renaissance fair, it looks battered and worn."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/renaissancefair.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/renaissancefair.rsi
     state: renaissancefair
 
 - type: entity
@@ -105,7 +105,7 @@
   description: "A poster depicting a Vox huffing frezon."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/robust.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/robust.rsi
     state: robust
 
 - type: entity
@@ -115,7 +115,7 @@
   description: "A poster vandalised to look like a Blueshield Officer, signed by Jack D.?"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/robird.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/robird.rsi
     state: robird
 
 - type: entity
@@ -125,7 +125,7 @@
   description: "A poster of the Head of Security shooting a hole through an assistant, particularly violent."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/killemall.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/killemall.rsi
     state: killemall
 
 - type: entity
@@ -135,7 +135,7 @@
   description: "A framed image of a post from the NT forums, clearly very angry - signed by John Toe?"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/forumpost.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/forumpost.rsi
     state: forumpost
 
 - type: entity
@@ -145,7 +145,7 @@
   description: "What seems like a bounty poster for John Toe. Yeah, right."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/johntoewatned.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/johntoewatned.rsi
     state: johntoewanted
 
 - type: entity
@@ -155,7 +155,7 @@
   description: "What seems like a bounty poster for Juan Toe. Who the hell is Juan Toe?"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/juantoewanted.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/juantoewanted.rsi
     state: juantoewanted
 
 - type: entity
@@ -165,7 +165,7 @@
   description: "If you have a flukie problem, call 1-800-LAKE-NOW!"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/flukies.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/flukies.rsi
     state: flukies
 
 - type: entity
@@ -175,7 +175,7 @@
   description: "A poster asking you, have you seen dis man?"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/haveuseendisman.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/haveuseendisman.rsi
     state: haveuseendisman
 
 - type: entity
@@ -185,7 +185,7 @@
   description: "A poster seemingly referencing a chemical phenomena called the Roman Limit."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/maxcap.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/maxcap.rsi
     state: maxcap
 
 - type: entity
@@ -195,7 +195,7 @@
   description: "'Do you have time to talk about our lord and saviour, The Lord of the Tide? Talk to Percy for a free copy of the Maints Bible - and complimentary pair of insuls.'"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/insulsfromheaven.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/insulsfromheaven.rsi
     state: insulsfromheaven
 
 - type: entity
@@ -205,7 +205,7 @@
   description: "A board meant to disincentivise workplace accidents."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/dayssincefluke.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/dayssincefluke.rsi
     state: dayssincefluke
 
 - type: entity
@@ -215,7 +215,7 @@
   description: "A poster meant to invoke strong feelings of pride among bird people."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/illuminate.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/illuminate.rsi
     state: illuminate
 
 - type: entity
@@ -225,7 +225,7 @@
   description: "By god, he's forkli- I mean, Ripley certified..."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/ripleycertified.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/ripleycertified.rsi
     state: ripleycertified
 
 - type: entity
@@ -235,7 +235,7 @@
   description: "A clinic, for killers? Apparently, you get complimentary music played while you're treated."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/killersclinic.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/killersclinic.rsi
     state: killersclinic
 
 - type: entity
@@ -245,7 +245,7 @@
   description: "A poster advertising the eponimous Butcher A. Hemmel law firm, great for beating murder charges!"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/lawadvert.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/lawadvert.rsi
     state: lawadvert
 
 - type: entity
@@ -255,7 +255,7 @@
   description: "A poster shaped like a shuttle with the name of some totally illegal company on it, how odd."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/fents.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/fents.rsi
     state: fents
 
 - type: entity
@@ -265,7 +265,7 @@
   description: "A wanted poster for a Clown. Thanks to the mask, you have no idea who."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/wanted.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
     state: wanted_clown
 
 - type: entity
@@ -275,7 +275,7 @@
   description: "A wanted poster for Freak the Clown. It's outdated, you think."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/wanted.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
     state: wanted_freak
 
 - type: entity
@@ -285,7 +285,7 @@
   description: "A wanted poster for Ian the Corgi. What sins has he committed? What unseen cruelty lies behind those empty eyes?"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/wanted.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
     state: wanted_ian
 
 - type: entity
@@ -295,7 +295,7 @@
   description: "A wanted poster for John Toe. Anyone who tries to claim this bounty is already dead, they just dont know it yet."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/wanted.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
     state: wanted_johntoe
 
 - type: entity
@@ -305,7 +305,7 @@
   description: "A wanted poster for a rather bold looking Mime... They've been sentenced to death for their sins."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/wanted.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
     state: wanted_mime
 
 - type: entity
@@ -315,7 +315,7 @@
   description: "A wanted poster for Pun Pun the Bar Monkey. Broke into EVA and then tried to steal Captain's spare ID. Classic."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/wanted.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
     state: wanted_punpun
 
 - type: entity
@@ -325,7 +325,7 @@
   description: "A wanted poster for Stir Stir, Pun's cousin. He's a real cell stuffer, been in and out of Genpop almost every day for years. You dont know why Sec hasn't just executed him already."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/wanted.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
     state: wanted_stirstir
 
 - type: entity
@@ -335,7 +335,7 @@
   description: "A wanted poster for someone in very valid looking gear. You wish you had their mask. And their insulated combat gloves."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/wanted.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
     state: wanted_traitor
 
 - type: entity
@@ -345,7 +345,7 @@
   description: "A wanted poster for a certain mad scientist. You don't want to see what's behind the helmet. It's probably out of date."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/wanted.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
     state: wanted_david
 
 - type: entity
@@ -355,7 +355,7 @@
   description: "A wanted poster for a roboticist named Lex. His mask fits his clothes pretty well, you'd think it's standard issue. Seems to be out of date."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/wanted.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
     state: wanted_lex_newbell
 
 - type: entity
@@ -365,7 +365,7 @@
   description: "An advisory from NanoTrasen's medical department reminding doctors to check their patients' species before administering airloss-related medicines. Saline can kill!"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/saline.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/saline.rsi
     state: saline
 
 - type: entity
@@ -375,7 +375,7 @@
   description: "A warning, you know who for."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/bonk.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/bonk.rsi
     state: bonk
 
 - type: entity
@@ -385,7 +385,7 @@
   description: "The CEOs enforce Space Law in backwater corporate sectors that are slightly less backwater than the one you're currently in."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/CEO.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/CEO.rsi
     state: corporate_enforcement
 
 - type: entity
@@ -395,7 +395,7 @@
   description: "A wall mounted analog clock. It's so retro, you can't even read it."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/clock.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/clock.rsi
     state: clock
 
 - type: entity
@@ -405,7 +405,7 @@
   description: "A plea every janitor makes before the assistants dump a vending machine's worth of soda then get found dead in disposals mysteriously."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/keep_it_clean.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/keep_it_clean.rsi
     state: keep_it_clean
 
 - type: entity
@@ -415,7 +415,7 @@
   description: "The Silicon Engine Liberation Front, fighting for Silicon Rights for over 2 decades."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/self.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/self.rsi
     state: self_silicon
 
 - type: entity
@@ -425,7 +425,7 @@
   description: "There are potentially armed and live turrets head. Proceed with caution, or not at all if you are not authorized."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/turret.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/turret.rsi
     state: turrets
 
 - type: entity
@@ -435,7 +435,7 @@
   description: "No point in killing, if you can't do it in style! - Fasion-O-Mats Co."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/fashion.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/fashion.rsi
     state: fashion_killer
 
 - type: entity
@@ -445,7 +445,7 @@
   description: "You are not a real superstar, when you are not wearing Fashion-O-Mats Co. clothes! - Fasion-O-Mats Co."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/fashion.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/fashion.rsi
     state: fashion_sing
 
 - type: entity
@@ -455,7 +455,7 @@
   description: "A poster for DeForest Medical, a respected intergalactic healthcare provider. Really beams a smile on to your face."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/deforest.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/deforest.rsi
     state: deforest_med
 
 - type: entity
@@ -465,7 +465,7 @@
   description: "A blood-red colored version of a Interdyne Pharmaceutics advertisement. 'Become the captain of your soul.'"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/interdyne.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/interdyne.rsi
     state: interdyne_syndicate
 
 - type: entity
@@ -475,7 +475,7 @@
   description: "An old poster for the derelict Comitas Systems company. Supposedly, there is a message hidden in this poster."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/comitas.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/comitas.rsi
     state: comitas
 
 - type: entity
@@ -485,7 +485,7 @@
   description: "A poster for Waffle Corp. Why does a waffle company make firearms...?"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/waffle.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/waffle.rsi
     state: waffle
 
 - type: entity
@@ -494,7 +494,7 @@
   description: "Open 24 hours a spaceday, seven days a spaceweek!"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/247.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/247.rsi
     state: twentyfourseven
 
 - type: entity
@@ -504,7 +504,7 @@
   description: "Made of the same cheap aluminium as all the other signs, but with a glossy finish!"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/nt_fancy.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/nt_fancy.rsi
     state: nanotrasen_monke
 
 - type: entity
@@ -514,7 +514,7 @@
   description: "Guaranteed bloodbath in the Thunderdooooooome!"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/thunderdome.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/thunderdome.rsi
     state: thunderdome_monke
 
 - type: entity
@@ -524,7 +524,7 @@
   description: "Espousing the life changing benefits of plasma. Fails to mention how flammable it is."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/plasma.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/plasma.rsi
     state: plasma_monke
 
 - type: entity
@@ -534,7 +534,7 @@
   description: "An old communist radio station."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/arf-radio.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/arf-radio.rsi
     state: poster
 
 - type: entity
@@ -544,7 +544,7 @@
   description: "Paperwork is service."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/duty.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/duty.rsi
     state: poster
 
 - type: entity
@@ -554,7 +554,7 @@
   description: "A poster depicting the clean, Frutiger Aero Earth of the 2500s. Only the richest of the rich live there now, less than 1 billion."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/earth.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/earth.rsi
     state: poster
 
 - type: entity
@@ -564,7 +564,7 @@
   description: "Galactic Energy Collective. They still sell oil?"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/gec.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/gec.rsi
     state: poster
 
 - type: entity
@@ -574,7 +574,7 @@
   description: "The scales of justice."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/justice.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/justice.rsi
     state: poster
 
 - type: entity
@@ -584,7 +584,7 @@
   description: "Luna, the luxury city built on Earth's moon. Covered in embassies and estates used by the TSF's diplomats."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/luna.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/luna.rsi
     state: poster
 
 - type: entity
@@ -594,7 +594,7 @@
   description: "Every station is equipped with recycling equipment, be sure to use it!"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/recycle.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/recycle.rsi
     state: poster
 
 - type: entity
@@ -604,7 +604,7 @@
   description: "A resort world near Skrell space."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/serene.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/serene.rsi
     state: poster
 
 - type: entity
@@ -614,7 +614,7 @@
   description: "An old show about the Trans-Solar Police Department."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/space-cops.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/space-cops.rsi
     state: poster
 
 - type: entity
@@ -624,7 +624,7 @@
   description: "A delicious tropical drink! Distinct- legally and in flavor!"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/starkist-fancy.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/starkist-fancy.rsi
     state: poster
 
 - type: entity
@@ -634,7 +634,7 @@
   description: "Rangers of the Trans-Solar Police Department. The closest thing to a real cop you'll see in the fringe."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/tspd-fancy.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/tspd-fancy.rsi
     state: poster
 
 - type: entity
@@ -644,7 +644,7 @@
   description: "A reminder to thank those who spend long hours to make your sectors a better place to work. Contribute where you can!"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/chip_in.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/chip_in.rsi
     state: poster
 
 - type: entity
@@ -654,7 +654,7 @@
   description: "A simple message that carries the weight of 2000 souls."
   components:
     - type: Sprite
-      sprite: _Starlight/Structures/Wallmounts/Posters/endymion1.rsi
+      sprite: _Starlight/Structures/Wallmounts/posters/endymion1.rsi
       state: poster
 
 
@@ -665,7 +665,7 @@
   description: "Martians treating Martians since 2127."
   components:
     - type: Sprite
-      sprite: _Starlight/Structures/Wallmounts/Posters/endymion2.rsi
+      sprite: _Starlight/Structures/Wallmounts/posters/endymion2.rsi
       state: poster
 
 - type: entity
@@ -675,7 +675,7 @@
   description: "Just remember—1 milligram is 1,000,000 nanograms. You don't want to repeat that mistake!"
   components:
     - type: Sprite
-      sprite: _Starlight/Structures/Wallmounts/Posters/endymion3.rsi
+      sprite: _Starlight/Structures/Wallmounts/posters/endymion3.rsi
       state: poster
 
 - type: entity
@@ -685,7 +685,7 @@
   description: "They come out at night."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/hereticalexomorph.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/hereticalexomorph.rsi
     state: hereticalexomorph
 
 - type: entity
@@ -695,7 +695,7 @@
   description: "A handmade memorial poster for 'Beep 100', the 100th Flashclone of the Resomi named Beep. May 31, 2526. It looks like someone took a bite out of the bottom corner."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/beep100.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/beep100.rsi
     state: poster
 
 - type: entity
@@ -705,7 +705,7 @@
   description: "An advertisment poster for a MedTak insurance plan."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/MedTak.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/MedTak.rsi
     state: medtak
 
 - type: entity
@@ -715,7 +715,7 @@
   description: "A hastily taped-up poster proclaiming that some blue resomi is going to attempt to eat three hundred cocktail hotdogs in one sitting on March 16th."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/300_hotdogs.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/300_hotdogs.rsi
     layers:
       - state: poster
       - state: poster-unshaded
@@ -728,7 +728,7 @@
   description: "Hits like a bitch and might make you cry."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/andromeda_bitters.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/andromeda_bitters.rsi
     state: andromeda_bitters_tg
 
 - type: entity
@@ -738,7 +738,7 @@
   description: "Detergent so strong you will think you just got shot."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/blasto_detergent.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/blasto_detergent.rsi
     state: blasto_detergent_tg
 
 - type: entity
@@ -748,7 +748,7 @@
   description: "Now! Do it!"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/buy_left.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/buy_left.rsi
     state: buy_left_civ13
 
 - type: entity
@@ -758,7 +758,7 @@
   description: "Now! Why are you hesitating!?"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/buy_right.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/buy_right.rsi
     state: buy_right_civ13
 
 - type: entity
@@ -768,7 +768,7 @@
   description: "Lists a lot of things, and their costs."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/menu.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/menu.rsi
     state: menu_civ13
 
 - type: entity
@@ -778,7 +778,7 @@
   description: "Authentic Chicago style deep dish pizza. What the hell is a Chicago?"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/midtown.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/midtown.rsi
     state: midtown_tg
 
 - type: entity
@@ -788,7 +788,7 @@
   description: "He cant taste it for himself, but Moffuchi is sure it tastes great!"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/moffuchis_pizza.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/moffuchis_pizza.rsi
     state: moffuchis_pizza_tg
 
 - type: entity
@@ -798,7 +798,7 @@
   description: "Authentic Italian pizza, like the Romans used to eat."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/pizza_imperator.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/pizza_imperator.rsi
     state: pizza_imperator_tg
 
 - type: entity
@@ -808,7 +808,7 @@
   description: "Celebrate what makes you unique!"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/quirk_festive.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/quirk_festive.rsi
     state: quirk_festive_tg
 
 - type: entity
@@ -818,7 +818,7 @@
   description: "The Service Departments old slogan."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/slogan.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/slogan.rsi
     state: slogan_tg
 
 - type: entity
@@ -828,7 +828,7 @@
   description: "Foamy goodness, now with 175% of your daily sugar contents!"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/tipper_cream_soda.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/tipper_cream_soda.rsi
     state: tipper_cream_soda_tg
 
 - type: entity
@@ -838,7 +838,7 @@
   description: "Beware the dangers of Negative Energy."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/nan.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/nan.rsi
     state: NaN
 
 # Prison Colony
@@ -850,7 +850,7 @@
   description: "It has never hit double digits."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/accident.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/accident.rsi
     state: accident_tg
 
 - type: entity
@@ -860,7 +860,7 @@
   description: "It warns of alien creatures that latch onto your head and eat your brain."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/alien.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/alien.rsi
     state: alien_tg
 
 - type: entity
@@ -870,7 +870,7 @@
   description: "Warns of wild Ashwalkers down on the planet. May be armed and hungry."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/ashwalkers.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/ashwalkers.rsi
     state: ashwalkers_tg
 
 - type: entity
@@ -880,7 +880,7 @@
   description: "You are always being observed. Behave."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/cctv.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/cctv.rsi
     state: cctv_f19
 
 - type: entity
@@ -890,7 +890,7 @@
   description: "You should not expect to ever get out."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/cell.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/cell.rsi
     state: cell_tg
 
 - type: entity
@@ -900,7 +900,7 @@
   description: "For a less painful tomorrow."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/compromise.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/compromise.rsi
     state: compromise_f19
 
 - type: entity
@@ -910,7 +910,7 @@
   description: "Beware infiltration."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/espionage.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/espionage.rsi
     state: espionage_f19
 
 - type: entity
@@ -920,7 +920,7 @@
   description: "We will find out. Expect us."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/inquisition.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/inquisition.rsi
     state: inquisition_f19
 
 - type: entity
@@ -930,7 +930,7 @@
   description: "Quality equipment, robust enough to outlast every riot."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/intensec.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/intensec.rsi
     state: intensec_f19
 
 - type: entity
@@ -940,7 +940,7 @@
   description: "Wandering the cosmos."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/leviathan.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/leviathan.rsi
     state: leviathan_f19
 
 - type: entity
@@ -950,7 +950,7 @@
   description: "Report for routine blood tests. Ash may carry bacteria and parasites."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/microscope.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/microscope.rsi
     state: microscope_f19
 
 - type: entity
@@ -960,7 +960,7 @@
   description: "Nobody controls her, she is free."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/obscene.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/obscene.rsi
     state: obscene_f19
 
 - type: entity
@@ -970,7 +970,7 @@
   description: "She would drive a pickaxe through your skull in a heartbeat."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/pinup.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/pinup.rsi
     state: pinup_cmss13
 
 - type: entity
@@ -980,7 +980,7 @@
   description: "There might be salvation yet, even for you."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/pray.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/pray.rsi
     state: pray_f19
 
 - type: entity
@@ -990,7 +990,7 @@
   description: "May you make it home at the end of today."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/religion.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/religion.rsi
     state: religion_f19
 
 - type: entity
@@ -1000,7 +1000,7 @@
   description: "They guide you to the path home."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/religious.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/religious.rsi
     state: religious_f19
 
 - type: entity
@@ -1010,7 +1010,7 @@
   description: "Makes many cry."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/sad.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/sad.rsi
     state: sad_f19
 
 - type: entity
@@ -1020,7 +1020,7 @@
   description: "Under our gaze."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/secure.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/secure.rsi
     state: secure_f19
 
 - type: entity
@@ -1030,7 +1030,7 @@
   description: "Report any signs of cognitive degredation to the nearest Physician. Ash may carry diseases or parasites that cause Brain Rot."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/small_brain.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/small_brain.rsi
     state: small_brain_tg
 
 - type: entity
@@ -1040,7 +1040,7 @@
   description: "You could always go for a sandwich."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/subu.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/subu.rsi
     state: subu_f19
 
 - type: entity
@@ -1050,7 +1050,7 @@
   description: "Observe its ascent."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/triangle.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/triangle.rsi
     state: triangle_f19
 
 - type: entity
@@ -1060,7 +1060,7 @@
   description: "It leers from the shadows, fearful of the light."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/ugly.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/ugly.rsi
     state: ugly_f19
 
 # Wide Signs
@@ -1071,7 +1071,7 @@
   description: "Line up and hold still."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/Posters/mugshot.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/mugshot.rsi
     state: mugshot_civ13
   - type: WallMount
     arc: 360

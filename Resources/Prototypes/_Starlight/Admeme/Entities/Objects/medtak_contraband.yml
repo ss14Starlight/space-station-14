@@ -1,8 +1,0 @@
-- type: entity
-  id: BaseMedTakContraband
-  abstract: true
-  components:
-  - type: ScanDetectable
-  - type: Contraband
-    tier: Tier4 # Blimpuf
-    contrabandType: MedTak # Blimpuf

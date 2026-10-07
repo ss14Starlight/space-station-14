@@ -6,6 +6,9 @@ cosmiccult-description = Cultists lurk amongst the crew.
 roles-antag-cosmiccult-name = Cosmic Cultist
 roles-antag-cosmiccult-description = Usher in the end of all things through subterfuge and sabotage, brainwashing those who would oppose you.
 
+cosmiccult-gamemode-title = The Cosmic Cult
+cosmiccult-gamemode-description = Scanners detect an anomalous increase in nullspace activity. There is no additional data.
+
 cosmiccult-vote-steward-initiator = The Unknown
 cosmiccult-vote-steward-title = Cosmic Cult Stewardship
 cosmiccult-vote-steward-briefing =
@@ -15,13 +18,16 @@ cosmiccult-vote-steward-briefing =
 
 cosmiccult-finale-autocall-briefing = The Monument activates in {$minutesandseconds}! Gather yourselves, and prepare for the end.
 cosmiccult-finale-ready = A terrifying light surges forth from The Monument!
+cosmiccult-finale-speedup = The beckoning quickens! Energy surges through the surroundings...
 
+cosmiccult-finale-degen = You feel yourself unravelling!
 cosmiccult-finale-location = Scanners are detecting an enormous nullspace activity spike {$location}!
 cosmiccult-finale-cancel-begin = Your mind's willpower begins to shatter the ritual...
 cosmiccult-finale-beckon-begin = The whispers in the back of your mind intensify...
 cosmiccult-finale-beckon-success = You beckon for the final curtain call.
 
 cosmiccult-monument-powerdown = The Monument falls eerily silent.
+
 
 ## ROUNDEND TEXT
 
@@ -57,6 +63,7 @@ cosmiccult-summary-crewcomplete = Every single cosmic cultist was deconverted!
 cosmiccult-elimination-shuttle-call = Based on scans from our long-range sensors, the nullspace anomaly has subsided. We thank you for your prudence. An emergency shuttle has been automatically called to the station for decontamination and debriefing procedures. ETA: {$time} {$units}. Please note, if the psychological impact of the anomaly is negligible, you may recall the shuttle to extend the shift.
 cosmiccult-elimination-announcement = Based on scans from our long-range sensors, the nullspace anomaly has subsided. We thank you for your prudence. An emergency shuttle is already inbound. Return to CentComm safely for decontamination and debriefing procedures.
 
+
 ## BRIEFINGS
 
 cosmiccult-role-roundstart-fluff =
@@ -86,6 +93,10 @@ cosmiccult-role-deconverted-briefing =
     Deconverted!
     You are no longer a Cosmic Cultist.
 
+cosmiccult-monument-stage1-briefing =
+    The Monument has been beckoned.
+    It is located {$location}!
+
 cosmiccult-monument-stage2-briefing =
     The Monument grows in power!
     Its influence will affect realspace in {$time} seconds.
@@ -95,21 +106,27 @@ cosmiccult-monument-stage3-briefing =
     Its influence will begin to overlap with realspace in {$time} seconds.
     This is the final stretch! Amass as much entropy as you can muster.
 
+
 ## MALIGN RIFTS
 
 cosmiccult-rift-inuse = You can't do this right now.
 cosmiccult-rift-invaliduser = You lack the proper tools to deal with this.
+cosmiccult-rift-chaplainoops = Wield your holy scripture.
+cosmiccult-rift-lambda-charging = The Nullspace Stabilizer blast is charging...
 cosmiccult-rift-bible-charging = You begin purifying the malign rift...
 cosmiccult-rift-alreadyempowered = You are already empowered; the rift's power would be wasted.
 cosmiccult-rift-wasempowered = Your body won't be able to handle being empowered a second time...
 cosmiccult-rift-beginabsorb = The rift begins to merge with you...
+cosmiccult-rift-beginpurge = Your consecration begins purging the malign rift...
 
 cosmiccult-rift-absorb = {$NAME} absorbs the rift, and malign light empowers their body!
 cosmiccult-rift-purge = The malign rift is expunged!
 
+
 ## CHANTRY
 
 cosmiccult-chantry-location = A dangerous increase in nullspace activity has been detected {$location}! Intercept and intervene immediately!
+cosmiccult-chantry-destruction = The sudden nullspace activity spike has been neutralized. Ongoing vigilance is advised.
 cosmiccult-chantry-powerup = The vacuous chantry flares to life!
 
 ## UI / BASE POPUP
@@ -161,9 +178,12 @@ objective-condition-chaplain-desc = Convert as many chaplains as you can.
 objective-condition-victory-title = USHER IN THE END
 objective-condition-victory-desc = Beckon The Unknown, and herald the final curtain call.
 
+
 ## CHAT ANNOUNCEMENTS
 
 cosmiccult-announcement-sender = The Unknown
+
+cosmiccult-radio-tier1-progress = The Monument is beckoned unto the station...
 
 cosmiccult-announce-tier2-progress = An unnerving numbness prickles your senses.
 
@@ -172,6 +192,8 @@ cosmiccult-announce-tier3-progress = Arcs of bluespace energy crackle across the
 cosmiccult-announce-tier3-warning = Critical increase in nullspace activity detected. Infected personnel are to be subdued or neutralized on sight.
 
 cosmiccult-announce-finale-warning = All station crew. The nullspace anomaly is going supercritical, instruments failing; realspace-to-nullspace transitional event horizon IMMINENT. If you are not already on counter-protocol, immediately sortie and intervene. Repeat: Intervene immediately or die.
+
+cosmiccult-announce-victory-summon = A FRACTION OF COSMIC POWER IS CALLED FORTH.
 
 cosmiccult-effigy-critical = A significant spike in nullspace energy has been detected in the vicinity of {$location}. Scientific personnel with adequate protective equipment are advised to investigate the anomaly. Exercise extreme caution.
 
@@ -206,6 +228,14 @@ cosmiccult-silicon-chantry-briefing =
 cosmiccult-silicon-colossus-briefing =
     You have been transfigured into an Entropic Colossus!
     As a towering bulwark of malign power, decimate those who oppose you.
+
+cosmiccult-silicon-freedom-briefing =
+    You have been freed from the Vacuous Chantry!
+    As your prison disintegrates, your wayward mind tethers back to its original housing.
+
+cosmiccult-silicon-freedom-fallback-briefing =
+    You have been freed from the Vacuous Chantry!
+    As your prison disintegrates, your untethered being has nowhere to return to. Residual astral energies crystallize into a Mindsink, forming a housing for your wayward mind.
 
 cosmiccult-silicon-effigy-exists =
     Your vessel strains under the presence of an existing effigy.
