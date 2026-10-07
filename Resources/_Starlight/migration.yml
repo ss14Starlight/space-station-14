@@ -416,3 +416,10 @@ DoorElectronicsNtrep: null
 
 #2026-10-02 - Single poster rename
 PosterlegitLawPoster: PosterLegitLawPoster
+
+#2026-10-06 - Remove dual-port vox gas vents
+GasDualPortVentPumpVox: null
+GasDualPortVentPumpVoxAlt1: null
+GasDualPortVentPumpVoxAlt2: null
+GasDualPortVentPumpVoxAlt3: null
+GasDualPortVentPumpVoxAlt4: null
