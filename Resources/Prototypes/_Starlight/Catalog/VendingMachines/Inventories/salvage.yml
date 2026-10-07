@@ -402,7 +402,7 @@
   id: VendorSalvageGBlueprintBasicAmmo
   productEntity: BlueprintBasicAmmo
   cost:
-    SalvageTicket: 1000
+    SalvageTicket: 800
   categories:
   - SalvageBlueprints
   conditions:
@@ -414,7 +414,7 @@
   id: VendorSalvageGBlueprintBasicMedical
   productEntity: BlueprintBasicMedical
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 200
   categories:
   - SalvageBlueprints
   conditions:
@@ -426,7 +426,7 @@
   id: VendorSalvageGBlueprintFulton
   productEntity: BlueprintFulton
   cost:
-    SalvageTicket: 500
+    SalvageTicket: 400
   categories:
   - SalvageBlueprints
   conditions:

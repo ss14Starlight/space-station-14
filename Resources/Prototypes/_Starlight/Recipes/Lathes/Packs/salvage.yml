@@ -1,19 +1,4 @@
 - type: latheRecipePack
-  id: StarlightSalvageTicketStatic
-  recipes:
-    - SalvageTicketSteel
-    - SalvageTicketGlass
-    - SalvageTicketCloth
-    - SalvageTicketPlastic
-    - SalvageTicketPlasSteel
-    - SalvageTicketPlasma
-    - SalvageTicketUranium
-    - SalvageTicketSilver
-    - SalvageTicketGold
-    - SalvageTicketDiamond
-    - SalvageTicketBluespaceCrystal
-
-- type: latheRecipePack
   id: StarlightSalvageEquipmentStatic
   recipes:
     - AppraisalTool

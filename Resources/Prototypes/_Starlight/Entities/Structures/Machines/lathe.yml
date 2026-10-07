@@ -635,7 +635,6 @@
         - CablesStatic
         - MaterialsStatic
         - StarlightContainersStatic
-        - StarlightSalvageTicketStatic
         - StarlightSalvageEquipmentStatic
       dynamicPacks:
         - Mining
