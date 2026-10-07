@@ -62,12 +62,13 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
         if (_station.GetStationInMap(Transform(ent).MapID) is not { } stationId)
             return;
 
-        if (!_records.TryGetRandomRecord<GeneralStationRecord>(stationId, out var entry) || ent.Comp.SystemDeliverySpawn) // Starlight-edit
+        if (!_records.TryGetRandomRecord<GeneralStationRecord>(stationId, out var entry, ent.Owner) || ent.Comp.SystemDeliverySpawn) // Starlight-edit
             return;
 
         ent.Comp.RecipientName = entry.Name;
         ent.Comp.RecipientJobTitle = entry.JobTitle;
         ent.Comp.RecipientStation = stationId;
+        ent.Comp.RecipientJobId = entry.JobPrototype; // Starlight-edit
 
         _appearance.SetData(ent, DeliveryVisuals.JobIcon, entry.JobIcon);
 

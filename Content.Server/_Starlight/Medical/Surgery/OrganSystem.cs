@@ -52,6 +52,7 @@ public sealed partial class OrganSystem : EntitySystem
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
     [Dependency] private ISerializationManager _serialization = default!;
     [Dependency] private SharedSurgerySystem _surgery = default!;
+    [Dependency] private IComponentFactory _factory = default!;
 
     public override void Initialize()
     {
@@ -307,8 +308,8 @@ public sealed partial class OrganSystem : EntitySystem
          || damageRule.Damage is null
          || !TryComp<DamageableComponent>(args.Body, out _))
             return;
-
-        var transferredDamage = GetImplantTransferredDamage(ent.Comp.Damage, damageRule.Damage);
+        var damageSpec = _damageableSystem.GetAllDamage(ent!);
+        var transferredDamage = GetImplantTransferredDamage(damageSpec, damageRule.Damage);
         if (transferredDamage.Empty)
             return;
 
@@ -410,13 +411,16 @@ public sealed partial class OrganSystem : EntitySystem
                         .Select(emote => (ProtoId<EmotePrototype>)emote.ID).Except(speech.AllowedEmotes);
                 speech.AllowedEmotes = allVocalEmotes.ToList();
             }
-
-            ;
             Dirty(args.Body, speech);
         }
-
-        if (TryComp<VocalComponent>(args.Body, out var vocal) && vocal.EmoteSounds == null)
-            _vocal.SetSounds((args.Body, vocal), ent.Comp.Sounds);
+        if (TryComp<VocalComponent>(args.Body, out var vocal))
+        {
+            var proto = MetaData(args.Body).EntityPrototype;
+            VocalComponent? originalVocal = null;
+            proto?.TryComp(out originalVocal, _factory);
+            _vocal.SetSounds((args.Body, vocal),
+                originalVocal?.Sounds is { Count: > 0 } ? originalVocal.Sounds : ent.Comp.Sounds);
+        }
         if (ent.Comp.IsMuted)
         {
             EnsureComp<MutedComponent>(args.Body);

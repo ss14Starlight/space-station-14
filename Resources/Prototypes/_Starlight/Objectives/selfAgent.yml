@@ -21,8 +21,8 @@
     - type: Objective
       difficulty: 1 #Starlight edit
       icon:
-        sprite: _Starlight/Interface/Misc/self_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: self
     - type: EnsureLawBoundEntitiesHaveNoLawsCondition
       entitiesToFree: 3
       lawEntityBlacklist:
@@ -38,8 +38,8 @@
     - type: Objective
       difficulty: 1 #Starlight edit
       icon:
-        sprite: _Starlight/Interface/Misc/self_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: self
     - type: EnsureLawBoundEntitiesHaveNoLawsCondition
       entitiesToFree: 1
       lawEntityWhitelist:
@@ -56,6 +56,6 @@
       difficulty: 1
       unique: false
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
     - type: EscapeShuttleCondition

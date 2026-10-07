@@ -19,3 +19,7 @@ paper-tamper-proof-modified-message = This page was written using tamper-proof i
 
 # Paper tools
 stamp-slot-component-slot-name-stamp = Stamp
+
+paper-check-blank-button = ☐ Blank
+paper-check-check-button = ✔ Check
+paper-check-cross-button = ✖ Cross

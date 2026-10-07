@@ -17,29 +17,28 @@
     slots:
     - Back
     - suitStorage
-  - type: GunRequiresWield
   - type: MagazineVisuals
     magState: mag
     steps: 4
     zeroVisible: true
   - type: Gun
-    minAngle: 20
-    maxAngle: 35
-    angleIncrease: 2
-    angleDecay: 10
+    minAngle: 25
+    maxAngle: 45
+    angleIncrease: 4
+    angleDecay: 16
     fireRate: 6
   - type: Appearance
   - type: ItemSlots
     slots:
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         startingItem: CartridgeLightRifleSP
         priority: 1
         whitelist:
           tags:
             - CartridgeLightRifle
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: LightRifleHeavyMagazineSP
         whitelist:
           tags:
@@ -83,7 +82,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazineLightRifleMaxim
         insertSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         ejectSound: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
@@ -91,7 +90,7 @@
           tags:
             - MagazineLightRiflePan
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         startingItem: CartridgeLightRifleSP
         priority: 1
         whitelist:
@@ -102,10 +101,10 @@
     sprintModifier: 0.85
   - type: HeldSpeedModifier
   - type: Gun
-    minAngle: 20
-    maxAngle: 27
-    angleIncrease: 2
-    angleDecay: 10
+    minAngle: 24
+    maxAngle: 40
+    angleIncrease: 3
+    angleDecay: 12
     fireRate: 5
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp28.ogg

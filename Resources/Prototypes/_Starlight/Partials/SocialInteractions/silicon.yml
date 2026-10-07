@@ -1,0 +1,34 @@
+# Cyborgs
+- type: !PartialOnly entity
+  id: BaseBorgChassisNotIonStormable
+  components:
+  - type: SocialInteractionReceiver
+    interactionOverrides: # cyborgs don't have noses
+    - id: Boop
+      interactString: booping-borg-success
+      messagePerceivedByOthers: booping-borg-success-others
+      emoteMessage: booping-borg-emote
+
+# Supplybot and Science buildable robots
+- type: !PartialOnly entity
+  id: MobSiliconBase
+  components:
+  - type: SocialInteractionReceiver
+    interactionOverrides: # silicons don't have noses
+    - id: Boop
+      interactString: booping-borg-success
+      messagePerceivedByOthers: booping-borg-success-others
+      emoteMessage: booping-borg-emote
+
+# AI Core
+- type: !PartialOnly entity
+  id: AiHolder
+  components:
+  - type: SocialInteractionReceiver
+    interactionPrototypes:
+    - Boop
+    interactionOverrides: # ai core has a screen
+    - id: Boop
+      interactString: booping-screen-success
+      messagePerceivedByOthers: booping-screen-success-others
+      emoteMessage: booping-screen-emote

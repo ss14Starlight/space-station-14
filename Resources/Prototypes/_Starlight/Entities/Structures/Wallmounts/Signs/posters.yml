@@ -240,7 +240,7 @@
 
 - type: entity
   parent: PosterBase
-  id: PosterlegitLawPoster
+  id: PosterLegitLawPoster
   name: "Legal Advice Advert"
   description: "A poster advertising the eponimous Butcher A. Hemmel law firm, great for beating murder charges!"
   components:

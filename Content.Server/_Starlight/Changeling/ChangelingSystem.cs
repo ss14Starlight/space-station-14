@@ -56,6 +56,7 @@ using Content.Server.GameTicking;
 using Content.Shared.Body.Components;
 // Starlight edit end
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Actions.EntitySystems;
 using Content.Shared._Starlight.Changeling;
 using Content.Server._Starlight.Objectives.Components;
 
@@ -98,6 +99,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private PullingSystem _pull = default!;
     [Dependency] private SharedCuffableSystem _cuffs = default!;
     [Dependency] private SharedPuddleSystem _puddle = default!;
+    [Dependency] private SharedLatchSystem _latch = default!;
     [Dependency] private SharedJitteringSystem _jitter = default!;
     [Dependency] private NpcFactionSystem _factionSystem = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;
@@ -609,8 +611,8 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         if (!args.DamageIncreased)
             return;
-
-        target.Damage.ClampMax(200); // we never die. UNLESS??
+        var damageSpec = _damage.GetAllDamage(ent.Owner);
+        damageSpec.ClampMax(200); // we never die. UNLESS??
     }
 
     private void OnComponentRemove(Entity<ChangelingComponent> ent, ref ComponentRemove args) => RemoveAllChangelingEquipment(ent, ent.Comp);
