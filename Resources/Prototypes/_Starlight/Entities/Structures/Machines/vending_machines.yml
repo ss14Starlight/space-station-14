@@ -252,6 +252,8 @@
     - SalvageConsumeables
     - SalvageMercenaryEquipment
     - SalvageCybernetics
+    - SalvageBlueprints
+    - SalvageSurplus
     - SLSecret
     currencyWhitelist:
     - SalvageTicket

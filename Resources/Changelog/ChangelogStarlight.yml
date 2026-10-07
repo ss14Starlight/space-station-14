@@ -1,123 +1,4 @@
 Entries:
-- author: Xale
-  changes:
-  - message: Neocyte variants such as Neo-Human will no longer be included in randomisation for humanoid ghostrole spawns.
-    type: Remove
-  id: 408840
-  time: '2026-09-24T10:30:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6295
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Fixed TTS audio from announcements overlapping the announcement's chime.
-    type: Fix
-  id: 408841
-  time: '2026-09-24T10:30:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6296
-- author: Johnny
-  changes:
-  - message: (Reach) Added a confirmed roundstart cigarette machine.
-    type: Add
-  id: 408842
-  time: '2026-09-24T10:30:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6307
-- author: Johnny
-  changes:
-  - message: (Reach) Added some more mailboxes.
-    type: Add
-  id: 408843
-  time: '2026-09-24T10:30:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6307
-- author: Johnny
-  changes:
-  - message: (Reach) Some point defense turrets not being powered.
-    type: Fix
-  id: 408844
-  time: '2026-09-24T10:30:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6307
-- author: XeroTec/Meepmerp
-  changes:
-  - message: Security gas masks, glasses/huds, emergency tanks, and crisis buttons fit in belt/carrier.
-    type: Add
-  id: 408845
-  time: '2026-09-24T11:01:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6301
-- author: qbrx
-  changes:
-  - message: Fixed abductor's welding tool.
-    type: Fix
-  id: 408846
-  time: '2026-09-24T11:27:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6287
-- author: qbrx
-  changes:
-  - message: Added inhand sprites for abductor's welding tool.
-    type: Add
-  id: 408847
-  time: '2026-09-24T11:27:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6287
-- author: Caws
-  changes:
-  - message: (Novo Lobster) K9s.
-    type: Add
-  id: 408848
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Laundromat.
-    type: Add
-  id: 408849
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Mailboxes.
-    type: Add
-  id: 408850
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Buckets have been added to the Janitor Closet and two Cleaning Closets.
-    type: Add
-  id: 408851
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added Surgeon lockers to Surgery.
-    type: Add
-  id: 408852
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added a security records computer to Genpop porcessing.
-    type: Add
-  id: 408853
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added a scrubber to the intermediate room between Botany and Botany's 'Gas Room'.
-    type: Add
-  id: 408854
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added a non-IPC surgery area to Robotics.
-    type: Add
-  id: 408855
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Washing machines in SEC locker room.
-    type: Add
-  id: 408856
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
 - author: Caws
   changes:
   - message: (Novo Lobster) Washing machine in MED locker room.
@@ -2799,4 +2680,123 @@ Entries:
   id: 409239
   time: '2026-10-07T09:58:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6552
+- author: Yosif
+  changes:
+  - message: Interact with tray/plant now is connected (ported from wizards).
+    type: Tweak
+  id: 409240
+  time: '2026-10-07T10:26:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6553
+- author: Swonki
+  changes:
+  - message: Scrappers can pilot their shittle now.
+    type: Tweak
+  id: 409241
+  time: '2026-10-07T11:07:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6541
+- author: Swonki
+  changes:
+  - message: Scrappers can no longer slide under doors and girders.
+    type: Tweak
+  id: 409242
+  time: '2026-10-07T11:07:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6541
+- author: Swonki
+  changes:
+  - message: Scrappers now must avoid harm to themselves and their fabricator.
+    type: Tweak
+  id: 409243
+  time: '2026-10-07T11:07:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6541
+- author: kirb
+  changes:
+  - message: Station radio volume fix.
+    type: Fix
+  id: 409244
+  time: '2026-10-07T11:33:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6537
+- author: ItsCharles
+  changes:
+  - message: Adds paperwork-related gloves to NTR and IAA loadouts.
+    type: Add
+  id: 409245
+  time: '2026-10-07T11:33:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6543
+- author: Sparlight
+  changes:
+  - message: Fixed an issue where K9s with mindshields could still be rev converted.
+    type: Fix
+  id: 409246
+  time: '2026-10-07T12:27:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6356
+- author: Teddiousbear
+  changes:
+  - message: Salvage Techfab (Included in SL Locker).
+    type: Add
+  id: 409247
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: Teddiousbear
+  changes:
+  - message: New Blueprints to Salvage Ticket Vendor.
+    type: Add
+  id: 409248
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: Teddiousbear
+  changes:
+  - message: Added Common  to Exped Radio Key.
+    type: Tweak
+  id: 409249
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: Teddiousbear
+  changes:
+  - message: Increased Salvage Magboots Available to Purchase.
+    type: Tweak
+  id: 409250
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: Teddiousbear
+  changes:
+  - message: Adjusted Bluespace Crystal odds in Surplus Crate.
+    type: Tweak
+  id: 409251
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: Teddiousbear
+  changes:
+  - message: Removed duplicate items in salvage ticket vendor for techfab.
+    type: Tweak
+  id: 409252
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: SirLutz
+  changes:
+  - message: Preparation for an Colossus update.
+    type: Add
+  id: 409253
+  time: '2026-10-07T12:27:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6153
+- author: Johnny
+  changes:
+  - message: Changed the soviet horn, its GLORIOUS now.
+    type: Tweak
+  id: 409254
+  time: '2026-10-07T14:45:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6551
+- author: neomoth
+  changes:
+  - message: Crateopsmaxxing. I will not elaborate further.
+    type: Add
+  id: 409255
+  time: '2026-10-07T16:08:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6513
+- author: neomoth
+  changes:
+  - message: When the automatic shuttle call is suppressed by shuttle calls being disabled, it will now use the shortened timer when it restarts instead of the normal length timer.
+    type: Tweak
+  id: 409256
+  time: '2026-10-07T16:08:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6513
 Order: -1

@@ -1,33 +1,13 @@
 #equipment
 - type: listing
-  id: VendorSalvageSurplusMedical
-  productEntity: CrateITGMedicalSurplus
+  id: VendorSalvageGClothingMaskGasExplorer
+  productEntity: ClothingMaskGasExplorer
   cost:
-    SalvageTicket: 400
+    SalvageTicket: 100
   categories:
-    - SalvageEquipment
+  - SalvageEquipment
   conditions:
-    - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageSurplusShotgun
-  productEntity: CrateITGShotgunSurplus
-  cost:
-    SalvageTicket: 600
-  categories:
-    - SalvageEquipment
-  conditions:
-    - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageSurplus
-  productEntity: CrateITGSurplus
-  cost:
-    SalvageTicket: 400
-  categories:
-    - SalvageEquipment
-  conditions:
-    - !type:BuyerAccessCondition
+  - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvageBinoculars
@@ -37,31 +17,7 @@
   categories:
     - SalvageEquipment
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 3
     - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageGrapplingGun
-  productEntity: WeaponGrapplingGun
-  cost:
-    SalvageTicket: 40
-  categories:
-  - SalvageEquipment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageGClothingMaskGasExplorer
-  productEntity: ClothingMaskGasExplorer
-  cost:
-    SalvageTicket: 100
-  categories:
-  - SalvageEquipment
-  conditions:
-  - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvageMechClarke
@@ -208,7 +164,7 @@
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 2
+      stock: 5
     - !type:BuyerAccessCondition
 
 - type: listing
@@ -234,18 +190,8 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageOreBag
-  productEntity: OreBag
-  cost:
-    SalvageTicket: 25
-  categories:
-    - SalvageEquipment
-  conditions:
-    - !type:BuyerAccessCondition
-
-- type: listing
   id: VendorSalvageSalvageEncryptionKey
-  productEntity: EncryptionKeySalvage
+  productEntity: EncryptionKeyExpedition
   cost:
     SalvageTicket: 100
   categories:
@@ -402,60 +348,10 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageSpeedLoaderShotgunEmpty
-  productEntity: SpeedLoaderShotgunEmpty
-  cost:
-    SalvageTicket: 100
-  categories:
-  - SalvageConsumeables
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageBoxLethalshot
-  productEntity: BoxLethalshot
-  cost:
-    SalvageTicket: 200
-  categories:
-  - SalvageConsumeables
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageSpeedLoaderMagnumSP
-  productEntity: SpeedLoaderMagnumSP
-  cost:
-    SalvageTicket: 75
-  categories:
-  - SalvageConsumeables
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageMagazineMK58
-  productEntity: MagazinePistolSP
-  cost:
-    SalvageTicket: 75
-  categories:
-  - SalvageConsumeables
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
   id: VendorSalvageMagazineMiniSyringe
   productEntity: MiniSyringe
   cost:
     SalvageTicket: 25
-  categories:
-  - SalvageConsumeables
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageMagazineBatteryLr30
-  productEntity: MagazineBatteryLr30
-  cost:
-    SalvageTicket: 100
   categories:
   - SalvageConsumeables
   conditions:
@@ -500,6 +396,87 @@
   - SalvageConsumeables
   conditions:
   - !type:BuyerAccessCondition
+
+#Blueprints
+- type: listing
+  id: VendorSalvageGBlueprintBasicAmmo
+  productEntity: BlueprintBasicAmmo
+  cost:
+    SalvageTicket: 800
+  categories:
+  - SalvageBlueprints
+  conditions:
+  - !type:ListingLimitedStockCondition
+     stock: 1
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageGBlueprintBasicMedical
+  productEntity: BlueprintBasicMedical
+  cost:
+    SalvageTicket: 200
+  categories:
+  - SalvageBlueprints
+  conditions:
+  - !type:ListingLimitedStockCondition
+     stock: 1
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageGBlueprintFulton
+  productEntity: BlueprintFulton
+  cost:
+    SalvageTicket: 400
+  categories:
+  - SalvageBlueprints
+  conditions:
+   - !type:ListingLimitedStockCondition
+     stock: 1
+   - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageGBlueprintDoubleEmergencyTank
+  productEntity: BlueprintDoubleEmergencyTank
+  cost:
+    SalvageTicket: 300
+  categories:
+  - SalvageBlueprints
+  conditions:
+  - !type:ListingLimitedStockCondition
+     stock: 1
+  - !type:BuyerAccessCondition
+
+#Surplus
+- type: listing
+  id: VendorSalvageSurplusMedical
+  productEntity: CrateITGMedicalSurplus
+  cost:
+    SalvageTicket: 400
+  categories:
+    - SalvageSurplus
+  conditions:
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSurplusShotgun
+  productEntity: CrateITGShotgunSurplus
+  cost:
+    SalvageTicket: 600
+  categories:
+    - SalvageSurplus
+  conditions:
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSurplusCrate
+  productEntity: CrateITGSurplus
+  cost:
+    SalvageTicket: 400
+  categories:
+    - SalvageSurplus
+  conditions:
+    - !type:BuyerAccessCondition
+
 
 #Merc Stuff
 - type: listing
