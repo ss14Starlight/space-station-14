@@ -6,7 +6,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 #region Starlight
 using Content.Shared._Starlight.Mind.Events;
-using Content.Shared.Ghost;
 using Content.Shared.NPC;
 #endregion
 
