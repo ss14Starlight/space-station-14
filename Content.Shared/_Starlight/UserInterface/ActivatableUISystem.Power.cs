@@ -23,7 +23,12 @@ public sealed partial class ActivatableUISystem
         }
 
         if (_cell.HasActivatableCharge(ent.Owner) && _cell.HasDrawCharge(ent.Owner))
+        {
+            if (TryComp<ActivatableUIComponent>(ent, out var ui) && ui.Key is { } openKey &&
+                _uiSystem.IsUiOpen(ent.Owner, openKey))
+                _toggle.TryActivate(ent.Owner);
             return;
+        }
 
         if (TryComp<ActivatableUIComponent>(ent, out var activatable) && activatable.Key is { } key)
             _uiSystem.CloseUi(ent.Owner, key);
