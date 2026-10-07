@@ -1,10 +1,9 @@
 - type: !PartialOnly entity
-  id: DrinkGlass
+  id: DrinkBaseMaterialGlass
   components:
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/_Starlight/Items/Handling/drinkglass_pickup.ogg
+      path: /Audio/_Starlight/Items/Handling/glass_drop.ogg
   - type: EmitSoundOnLand
     sound:
       path: /Audio/_Starlight/Items/Handling/drinkglass_drop.ogg
-
