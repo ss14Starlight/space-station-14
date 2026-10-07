@@ -1159,7 +1159,6 @@
     - Biological
     - Hybrid # Neocytes
     - MoffDemonBiological
-    - MoffDemonInorganic
   - type: ShowHealthIcons
   - type: FlashImmunity
     blocksSpecialVision: false
@@ -1203,7 +1202,6 @@
     - Biological
     - Hybrid # Neocytes
     - MoffDemonBiological
-    - MoffDemonInorganic
   - type: ShowHealthIcons
   - type: FlashImmunity
     blocksSpecialVision: false

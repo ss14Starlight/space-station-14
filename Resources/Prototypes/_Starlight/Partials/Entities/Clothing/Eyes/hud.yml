@@ -7,7 +7,6 @@
         - Biological
         - Hybrid
         - MoffDemonBiological
-        - MoffDemonInorganic
     - type: ShowHealthIcons
       damageContainers:
         - Biological
@@ -57,5 +56,4 @@
     - Biological
     - Hybrid
     - MoffDemonBiological
-    - MoffDemonInorganic
   - type: SolutionScanner

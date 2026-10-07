@@ -17,7 +17,6 @@
         - IPC
         - Hybrid
         - MoffDemonBiological
-        - MoffDemonInorganic
     - type: ShowHealthIcons
       damageContainers:
         - Biological
@@ -81,7 +80,6 @@
       damageContainers:
       - Biological
       - MoffDemonBiological
-      - MoffDemonInorganic
     - type: SolutionScanner
     - type: Construction
       graph: GlassesSecHUD
@@ -133,7 +131,6 @@
         - Biological
         - Hybrid # Neocytes
         - MoffDemonBiological
-        - MoffDemonInorganic
     - type: SolutionScanner
     - type: Construction
       graph: GlassesSecHUD
@@ -219,7 +216,6 @@
         - Biological
         - Hybrid
         - MoffDemonBiological
-        - MoffDemonInorganic
     - type: ShowHealthIcons
       damageContainers:
         - Biological

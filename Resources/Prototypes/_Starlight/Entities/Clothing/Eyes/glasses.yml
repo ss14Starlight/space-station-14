@@ -17,7 +17,6 @@
       - Biological
       - Hybrid # Neocytes
       - MoffDemonBiological
-      - MoffDemonInorganic
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -49,7 +48,6 @@
       - Biological
       - Hybrid # Neocytes
       - MoffDemonBiological
-      - MoffDemonInorganic
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -142,7 +140,6 @@
     - IPC
     - Hybrid
     - MoffDemonBiological
-    - MoffDemonInorganic
   - type: ShowHealthIcons
     damageContainers:
     - Biological
@@ -238,7 +235,6 @@
       - Biological
       - Hybrid # Neocytes
       - MoffDemonBiological
-      - MoffDemonInorganic
   - type: Tag
     tags:
     - WhitelistChameleon

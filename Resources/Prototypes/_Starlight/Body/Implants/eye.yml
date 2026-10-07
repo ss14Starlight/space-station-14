@@ -58,7 +58,6 @@
       - Biological
       - Hybrid # Neocytes
       - MoffDemonBiological
-      - MoffDemonInorganic
     - type: ShowHealthIcons
       damageContainers:
         - Biological
@@ -105,7 +104,6 @@
       - Biological
       - Hybrid # Neocytes
       - MoffDemonBiological
-      - MoffDemonInorganic
     - type: ShowHealthIcons
       damageContainers:
         - Biological

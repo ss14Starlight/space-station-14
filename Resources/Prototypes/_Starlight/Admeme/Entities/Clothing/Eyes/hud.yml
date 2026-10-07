@@ -16,7 +16,6 @@
         - Biological
         - Hybrid
         - MoffDemonBiological
-        - MoffDemonInorganic
     - type: ShowHealthIcons
       damageContainers:
         - Biological
