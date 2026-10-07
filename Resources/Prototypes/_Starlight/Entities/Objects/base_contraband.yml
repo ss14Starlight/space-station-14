@@ -3,15 +3,18 @@
   abstract: true
   components:
   - type: Contraband
-    severity: Soviet
+    # Equipment supplies its own tier when above Tier1.
+    contrabandType: Soviet
 
 - type: entity
   id: BaseTSFContraband
   abstract: true
   components:
+  - type: ScanDetectable
   - type: Contraband
     allowedDepartments: [ TSF ]
-    severity: TSF
+    tier: Tier3
+    contrabandType: TSF
 
 # Roboticist
 - type: entity
@@ -31,14 +34,6 @@
   - type: Contraband
     allowedJobs: [ AtmosphericTechnician ]
 
-#Advanced Cyberlimbs
-- type: entity
-  id: BaseAdvancedCyberlimbContraband
-  abstract: true
-  components:
-  - type: Contraband
-    severity: AdvancedCyberlimbs
-
 - type: entity
   id: BaseSalvageContraband
   parent: BaseRestrictedContraband
@@ -56,65 +51,12 @@
     allowedJobs: [ MiningSpecialist ]
 
 - type: entity
-  id: BaseSalvageMiningContraband
+  id: BaseReporterContraband
   parent: BaseRestrictedContraband
   abstract: true
   components:
   - type: Contraband
-    allowedDepartments: [ ITG ]
-    allowedJobs: [ MiningSpecialist ]
-
-- type: entity
-  id: BaseSecuritySalvageContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Security, ITG ]
-
-- type: entity
-  id: BaseSecuritySalvageMiningContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Security, ITG ]
-    allowedJobs: [ MiningSpecialist ]
-
-- type: entity
-  id: BaseEngineeringSalvageContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Engineering, ITG ]
-
-# This might look really stupid but it's sadly necessary as conflicting base contra groups tend to be mutually exclusive...
-- type: entity
-  id: BaseEngineeringSecuritySalvageContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Engineering, Security, ITG ]
-
-# it got worse
-- type: entity
-  id: BaseEngineeringSecurityCommandSalvageMiningContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Engineering, Security, Command, ITG ]
-    allowedJobs: [ MiningSpecialist ]
-
-- type: entity
-  id: BaseLawContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Law ]
+    allowedJobs: [ Reporter ]
 
 - type: entity
   id: BaseNanoTrasenContraband
@@ -122,68 +64,8 @@
   abstract: true
   components:
   - type: Contraband
-    allowedDepartments: [ Representatives ]
-
-- type: entity
-  id: BaseJanitorSecurityContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedJobs: [ Janitor ]
-    allowedDepartments: [ Security ]
-
-- type: entity
-  id: BaseEngineeringSecurityContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-    - type: Contraband
-      allowedDepartments: [ Engineering, Security ]
-
-- type: entity
-  id: BaseEngineeringSecurityCommandContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-    - type: Contraband
-      allowedDepartments: [ Engineering, Security, Command ]
-
-- type: entity
-  id: BaseReporterContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-    - type: Contraband
-      allowedJobs: [ Reporter ]
-
-- type: entity
-  id: BaseCommandManagerContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Command ]
-    allowedJobs: [ AssistantManager ]
-
-# for ~objective items not held by command
-- type: entity
-  id: BaseWardenGrandTheftContraband
-  abstract: true
-  components:
-  - type: Contraband
-    severity: GrandTheft
-    allowedDepartments: [ Command ]
-    allowedJobs: [ Warden ]
-
-- type: entity
-  id: BaseDetectiveGrandTheftContraband
-  abstract: true
-  components:
-  - type: Contraband
-    severity: GrandTheft
-    allowedDepartments: [ Command ]
-    allowedJobs: [ Detective ]
+    contrabandType: NanoTrasen
+    allowedDepartments: [Representatives]
 
 - type: entity
   id: BaseBlueShieldContraband
@@ -191,28 +73,55 @@
   abstract: true
   components:
   - type: Contraband
-    allowedJobs: [ BlueShield ]
+    contrabandType: NanoTrasen
+    allowedJobs: [BlueShield]
 
 - type: entity
-  id: BaseMedicalSecurityContraband
+  id: BaseLawContraband
   parent: BaseRestrictedContraband
   abstract: true
   components:
   - type: Contraband
-    allowedDepartments: [ Medical, Security ]
+    allowedDepartments: [Law]
 
 - type: entity
-  id: BaseSecurityScienceCommandNanoTrasenContraband
+  id: BaseAssistantManagerContraband
   parent: BaseRestrictedContraband
   abstract: true
   components:
   - type: Contraband
-    allowedDepartments: [ Security, Science, Command, Representatives ]
+    allowedJobs: [AssistantManager]
 
 - type: entity
-  id: BaseCargoSalvageContraband
+  id: BaseLawyerContraband
   parent: BaseRestrictedContraband
   abstract: true
   components:
   - type: Contraband
-    allowedDepartments: [ ITG, Cargo ]
+    allowedJobs: [Lawyer]
+
+- type: entity
+  id: BaseCasinoContraband
+  abstract: true
+  components:
+    - type: Contraband
+      tier: Tier1
+      contrabandType: Casino
+      allowedDepartments: [ Casino ]
+
+- type: entity
+  id: BaseETOContraband
+  parent: BaseContrabandTier3
+  abstract: true
+  components:
+  - type: Contraband
+    contrabandType: ETO
+
+- type: entity
+  id: BaseMedTakContraband
+  abstract: true
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4 # Blimpuf
+    contrabandType: MedTak # Blimpuf

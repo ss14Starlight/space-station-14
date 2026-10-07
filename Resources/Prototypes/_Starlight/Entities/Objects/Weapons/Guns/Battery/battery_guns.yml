@@ -977,7 +977,7 @@
 
 - type: entity
   name: pulse cannon
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband]
+  parent: [ BaseContrabandTier4, BaseWeaponBattery, BaseGunWieldable, BaseNanoTrasenContraband ]
   id: WeaponPulseCannonNTNC
   description: A weapon meant to blow holes in people with lasers. Like Superman. I like Superman.
   components:

@@ -128,7 +128,7 @@
 - type: entity
   id: SpeedLoaderShotgunBirdshot
   name: 12 gauge birdshot speedloader
-  parent: [ BaseSpeedLoaderShotgun, BaseSecuritySalvageContraband ]
+  parent: [ BaseContrabandTier3, BaseSpeedLoaderShotgun, BaseSecurityContraband, BaseSalvageContraband ] # Blimpuf
   components:
   - type: BallisticAmmoProvider
     proto: ShellShotgunBirdshot

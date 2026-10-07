@@ -250,7 +250,7 @@
     price: 500 # 1000 for 2
 
 - type: entity
-  parent: [ EncryptionKey, BaseSiliconScienceContraband ]
+  parent: [ EncryptionKey, BaseScienceContraband, BaseSiliconContraband ] # Blimpuf
   id: EncryptionKeyBinary
   name: binary translator key
   description: An encryption key that translates binary signals used by silicons.

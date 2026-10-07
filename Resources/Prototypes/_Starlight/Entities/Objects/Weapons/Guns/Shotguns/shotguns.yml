@@ -153,7 +153,7 @@
 
 - type: entity
   name: "Tkach GA-6 'Fang'"
-  parent: [BaseWeaponShotgunAny, BaseSecuritySalvageContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgunAny, BaseSecurityContraband, BaseSalvageContraband ] # Blimpuf
   id: WeaponRevolverGA6Fang
   description: A heavier follow-up to the GA 12 line, featuring a six-shell cylinder and a hook spike for when shells run dry. Rare, and unpleasant to be on the wrong end of.
   components:

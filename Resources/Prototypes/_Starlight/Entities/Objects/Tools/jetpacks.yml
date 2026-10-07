@@ -141,7 +141,7 @@
 
 # NTNC borg
 - type: entity
-  parent: [ JetpackBlack, BaseCentcommContraband ]
+  parent: [ BaseCentcommContraband, JetpackBlack ] # Blimpuf
   id: JetpackCyborgCentcomm
   name: CentComm jetpack
   suffix: Cyborg, Infinite

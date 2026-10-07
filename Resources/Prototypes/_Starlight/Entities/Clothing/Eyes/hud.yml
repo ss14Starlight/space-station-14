@@ -49,7 +49,7 @@
   name: blue shield hud eyepatch
 
 - type: entity
-  parent: [BaseCommandManagerContraband, ClothingEyesHudCommand]
+  parent: [ BaseCommandContraband, BaseAssistantManagerContraband, ClothingEyesHudCommand ]
   id: ClothingEyesEyepatchHudAssistantManager
   name: assistant manager hud eyepatch
   description: A jade-colored heads-up display that scans the humanoids in view and provides accurate data about their ID status. Surrender witness to its' near-invisible string.
@@ -242,6 +242,8 @@
   name: SSF marine goggles
   description: The iconic soviet goggles, in use broadly by the soviet forces throughout.
   components:
+    - type: Contraband
+      tier: Tier3
     - type: Sprite
       sprite: _Starlight/Clothing/Eyes/Soviet/marine_goggles.rsi
     - type: Clothing

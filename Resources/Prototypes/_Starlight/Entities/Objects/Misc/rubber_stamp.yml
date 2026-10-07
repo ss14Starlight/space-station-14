@@ -503,7 +503,7 @@
 
 - type: entity
   name: solgov traders rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseContrabandTier3, RubberStampBase, BaseTSFContraband ] # Blimpuf
   id: RubberStampSolgovTraders
   description: A rubber stamp for stamping important documents. Where is money to be made, that is.
   categories: [ DoNotMap ]

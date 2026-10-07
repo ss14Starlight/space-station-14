@@ -57,6 +57,8 @@
   name: wooden cryptographic sequencer
   description: A cheap all-in-one hacking solution. Friend of any soviet. The iconic EMAG.
   components:
+  - type: Contraband
+    tier: Tier3
   - type: Emag
     lawset: CommiemovLawset
     owningFaction: Revolutionary
