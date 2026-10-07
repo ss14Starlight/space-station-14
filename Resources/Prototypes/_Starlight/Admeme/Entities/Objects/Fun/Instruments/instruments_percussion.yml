@@ -1,8 +1,0 @@
-- type: entity
-  parent: SuperSynthesizerInstrument
-  id: SuperSynthesizerInstrumentAdmeme
-  name: super synthesizer
-  suffix: Admeme
-  components:
-  - type: Instrument
-    respectMidiLimits: false

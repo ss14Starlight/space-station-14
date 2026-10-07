@@ -52,6 +52,7 @@
     CaptainTabletStealObjective: 0.75 # #Starlight Unique Target
     # Starlight end
 
+
 - type: weightedRandom
   id: TraitorObjectiveGroupKill
   weights:
@@ -74,6 +75,11 @@
     RandomTraitorProgressObjective: 1
 
 #Thief groups
+- type: weightedRandom
+  id: ThiefObjectiveGroups
+  weights:
+    ThiefObjectiveGroupCollection: 1
+    ThiefObjectiveGroupItem: 1
 
 - type: weightedRandom
   id: ThiefBigObjectiveGroups

@@ -155,6 +155,22 @@
     allowedDepartments: [ Security, Science, Command ]
 
 - type: entity
+  id: BaseSecurityEngineeringContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Security, Engineering ]
+
+- type: entity
+  id: BaseSiliconScienceContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Science, Silicon ]
+
+- type: entity
   id: BaseSecurityCargoContraband
   parent: BaseRestrictedContraband
   abstract: true
@@ -179,6 +195,14 @@
   - type: Contraband
     allowedDepartments: [ Security ]
     allowedJobs: [ Bartender ]
+
+- type: entity
+  id: BaseSecurityLawContraband # Starlight
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Security, Law ] # Starlight
 
 - type: entity
   id: BaseJanitorContraband
