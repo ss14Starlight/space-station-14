@@ -220,6 +220,9 @@ public sealed partial class CryoTeleportationSystem : EntitySystem
         return null;
     }
 
+    /// <summary>
+    /// Checks if the target is wearing a cursed mask, which forces their mind out of the body.
+    /// </summary>
     private bool IsHeldByCursedMask(EntityUid uid)
     {
         if (!_inventory.TryGetSlotEntity(uid, "mask", out var mask)
