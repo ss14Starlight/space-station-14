@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: AdminObserver
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - MoffDemonBiological
+    - MoffDemonInorganic

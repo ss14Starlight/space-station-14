@@ -1,0 +1,81 @@
+# Hellportal demons use custom damage containers.
+- type: !PartialOnly entity
+  id: ShowMedicalIcons
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - MoffDemonBiological
+    - MoffDemonInorganic
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudSyndicateAgent
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - MoffDemonBiological
+    - MoffDemonInorganic
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudMultiversal
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - MoffDemonBiological
+    - MoffDemonInorganic
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudOmni
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - MoffDemonBiological
+    - MoffDemonInorganic
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudBlueShield
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - MoffDemonBiological
+    - MoffDemonInorganic
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudBrigmedic
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - MoffDemonBiological
+    - MoffDemonInorganic
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudCorpsman
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - MoffDemonBiological
+    - MoffDemonInorganic
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudCentComm
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - MoffDemonBiological
+    - MoffDemonInorganic
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudNTNC
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - MoffDemonBiological
+    - MoffDemonInorganic
+
+- type: !PartialOnly entity
+  id: ClothingEyesVisorMedTak
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - MoffDemonBiological
+    - MoffDemonInorganic

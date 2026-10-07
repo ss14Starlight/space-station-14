@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: MoffDemonWraithJaunt
+  components:
+  - type: LanguageSpeaker
+    currentLanguage: Darktongue
+  - type: LanguageKnowledge
+    speaks:
+    - Darktongue
+    understands:
+    - GalacticCommon
+    - Darktongue

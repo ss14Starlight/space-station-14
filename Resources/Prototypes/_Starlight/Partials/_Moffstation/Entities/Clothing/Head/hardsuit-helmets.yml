@@ -1,0 +1,15 @@
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitTSFMARSOC
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - MoffDemonBiological
+    - MoffDemonInorganic
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitTSFPhantom
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - MoffDemonBiological
+    - MoffDemonInorganic

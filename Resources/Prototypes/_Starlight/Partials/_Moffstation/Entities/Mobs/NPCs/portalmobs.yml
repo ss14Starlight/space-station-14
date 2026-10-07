@@ -4,6 +4,15 @@
   components:
   - type: Body
     prototype: Bloodsucker
+  - !Remove type: NarSieDemonAccent
+  - type: LanguageSpeaker
+    currentLanguage: Darktongue
+  - type: LanguageKnowledge
+    speaks:
+    - Darktongue
+    understands:
+    - GalacticCommon
+    - Darktongue
 
 - type: !PartialOnly entity
   id: MoffMobDemonNarsieFleshBase

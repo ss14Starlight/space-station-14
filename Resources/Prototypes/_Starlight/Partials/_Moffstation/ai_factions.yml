@@ -2,5 +2,8 @@
   id: MoffNarsianDemon
   hostile:
   - CosmicCult
+  - DungeonSoviet
+  - NanoTrasenSilicon
+  - Passive
   - Revolutionary
   - SyndicateSilicon
