@@ -1,0 +1,17 @@
+- type: entity
+  parent: [ ClothingHeadsetAlt, BaseMedTakContraband ]
+  id: ClothingHeadsetAltMedTak
+  name: MedTak operator headset
+  description: A headset used by MedTak operators.
+  components:
+    - type: Headset
+    - type: ContainerFill
+      containers:
+        key_slots:
+          - EncryptionKeyMedTak
+          - EncryptionKeyCommon
+          - EncryptionKeyMedical
+    - type: Sprite
+      sprite: _Starlight/Admeme/MedTak/Clothing/Ears/Headsets/medtak.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/MedTak/Clothing/Ears/Headsets/medtak.rsi

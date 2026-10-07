@@ -413,3 +413,36 @@
     maxCharge: 1400
     startingCharge: 0
 
+- type: entity
+  id: PowerCageMediumEmpty
+  parent: PowerCageMedium
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Objects/Power/power_cages.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: small
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+      visible: false
+  - type: Battery
+    startingCharge: 0
+
+- type: entity
+  id: PowerCageHighEmpty
+  parent: PowerCageHigh
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Objects/Power/power_cages.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: small
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+      visible: false
+  - type: Battery
+    startingCharge: 0

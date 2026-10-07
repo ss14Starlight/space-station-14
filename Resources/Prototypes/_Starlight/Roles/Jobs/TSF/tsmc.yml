@@ -224,3 +224,28 @@
       - MagazinePistolAP
       - MagazinePistolAP
 
+- type: startingGear
+  id: TSFGeneralGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTSFElite
+    back: ClothingBackpackRadioTSF
+    shoes: ClothingShoesBootsCombatFilled
+    neck: ClothingDogTags
+    gloves: ClothingHandsGlovesCombat
+    belt: ClothingBeltTSFMarineWebbing
+    head: ClothingHeadHatBeretTSFElite
+    outerClothing: ClothingOuterVestRetroOfficer
+    id: TSFIdCard
+    ears: ClothingHudTSF
+    pocket1: WeaponShotgunGA12
+    pocket2: TSFMindShieldImplanter
+  storage:
+    back:
+      - CrowbarRed
+      - MedkitCombatFilled
+    belt:
+      - SpeedLoaderMagnumBasic
+      - BoxLethalshot
+      - BoxLethalshot
+  inhand:
+    - DeathRattleImplanterTSF

@@ -28,6 +28,6 @@ public sealed partial class EventCosmicColossusEffigy : InstantActionEvent;
 // MISC ACTIONS
 public sealed partial class EventCosmicAnomalyIngress : EntityTargetActionEvent
 {
-    public SoundSpecifier IngressSFX = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/ability_ingress.ogg");
+    public SoundSpecifier IngressSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/ability_ingress.ogg");
     public EntProtoId GenericVFX = "CosmicGenericVFX";
 }

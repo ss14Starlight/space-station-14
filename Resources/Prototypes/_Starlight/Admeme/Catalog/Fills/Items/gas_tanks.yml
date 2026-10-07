@@ -28,11 +28,11 @@
   description: A cylindrical gas tank for oxygen, linked via bluespace to a much, much bigger gas tank. It can hold 2³¹-1 L of gas.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Objects/Tanks/oxygen.rsi
+    sprite: _Starlight/Admeme/Inftanks/oxygen.rsi
   - type: Item
-    sprite: _Starlight/Admeme/Objects/Tanks/oxygen.rsi
+    sprite: _Starlight/Admeme/Inftanks/oxygen.rsi
   - type: Clothing
-    sprite: _Starlight/Admeme/Objects/Tanks/oxygen.rsi
+    sprite: _Starlight/Admeme/Inftanks/oxygen.rsi
   - type: GasTank
     outputPressure: 21.3
     air:
@@ -49,11 +49,11 @@
   description: A cylindrical gas tank for nitrogen, linked via bluespace to a much, much bigger gas tank. It can hold 2³¹-1 L of gas.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Objects/Tanks/red.rsi
+    sprite: _Starlight/Admeme/Inftanks/red.rsi
   - type: Item
-    sprite: _Starlight/Admeme/Objects/Tanks/red.rsi
+    sprite: _Starlight/Admeme/Inftanks/red.rsi
   - type: Clothing
-    sprite: _Starlight/Admeme/Objects/Tanks/red.rsi
+    sprite: _Starlight/Admeme/Inftanks/red.rsi
   - type: GasTank
     outputPressure: 21.3
     air:

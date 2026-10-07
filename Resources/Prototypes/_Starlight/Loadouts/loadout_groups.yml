@@ -149,6 +149,15 @@
   - FancyPen
 
 - type: loadoutGroup
+  id: CCPens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - PenCentcom
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
   id: AssistantGlasses
   name: loadout-group-assistant-glasses
   minLimit: 0
@@ -184,6 +193,8 @@
   - CommonSatchel
   - CommonDuffel
   - LeatherSatchel
+  - StarBackpack
+  - StarSatchel
 
 - type: loadoutGroup
   id: RoboticistJumpsuit
@@ -235,6 +246,8 @@
   - RoboticistSatchel
   - RoboticistDuffel
   - LeatherSatchel
+  - StarBackpack
+  - StarSatchel
 
 - type: loadoutGroup
   id: RoboticistNeck
@@ -370,6 +383,8 @@
   - BlueShieldSatchel
   - BlueShieldDuffel
   - LeatherSatchel
+  - StarBackpack
+  - StarSatchel
 
 - type: loadoutGroup
   id: BlueShieldJumpsuit
@@ -626,6 +641,8 @@
   - SeniorCourierDuffel
   - MailTechnicianTrunkSenior
   - LeatherSatchel
+  - StarBackpack
+  - StarSatchel
 
 - type: loadoutGroup
   id: MailTechnicianOuterClothing
@@ -1218,6 +1235,8 @@
   - CorpsmanSatchel
   - CorpsmanDuffel
   - LeatherSatchel
+  - StarBackpack
+  - StarSatchel
 
 - type: loadoutGroup
   id: BrigmedicOuterClothing

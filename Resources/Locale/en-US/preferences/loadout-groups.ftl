@@ -1,3 +1,6 @@
+# Errors
+loadout-group-species-restriction = This item is not available for your current species.
+
 # Miscellaneous
 loadout-group-trinkets = Trinkets
 loadout-group-jobtrinkets = Job trinkets
@@ -43,6 +46,7 @@ loadout-group-assistant-neck = Assistant neck
 loadout-group-bartender-head = Bartender head
 loadout-group-bartender-jumpsuit = Bartender jumpsuit
 loadout-group-bartender-outerclothing = Bartender outer clothing
+loadout-group-bartender-shaker = Bartender shaker
 
 loadout-group-chef-head = Chef head
 loadout-group-chef-mask = Chef mask
@@ -65,6 +69,7 @@ loadout-group-janitor-head = Janitor head
 loadout-group-janitor-jumpsuit = Janitor jumpsuit
 loadout-group-janitor-gloves = Janitor gloves
 loadout-group-janitor-outerclothing = Janitor outer clothing
+loadout-group-janitor-plunger = Janitor plunger
 
 loadout-group-botanist-head = Botanist head
 loadout-group-botanist-jumpsuit = Botanist jumpsuit
@@ -142,6 +147,8 @@ loadout-group-scientist-gloves = Scientist gloves
 loadout-group-scientist-shoes = Scientist shoes
 loadout-group-scientist-id = Scientist ID
 
+loadout-group-research-assistant-jumpsuit = Research Assistant jumpsuit
+
 # Security
 loadout-group-head-of-security-head = Head of Security head
 loadout-group-head-of-security-jumpsuit = Head of Security jumpsuit
@@ -159,6 +166,7 @@ loadout-group-security-belt = Security Belt
 loadout-group-security-outerclothing = Security outer clothing
 loadout-group-security-shoes = Security shoes
 loadout-group-security-id = Security ID
+loadout-group-security-weapon = Security Weapon
 loadout-group-security-eyewear = Security eyewear
 
 loadout-group-brigmedic-head = Brigmedic head
@@ -174,6 +182,7 @@ loadout-group-detective-jumpsuit = Detective jumpsuit
 loadout-group-detective-outerclothing = Detective outer clothing
 
 loadout-group-security-cadet-jumpsuit = Security cadet jumpsuit
+loadout-group-security-star = Security Star
 
 # Medical
 loadout-group-medical-mask = Medical mask

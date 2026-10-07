@@ -73,6 +73,23 @@
     price: 2000
 
 - type: entity
+  parent: [ ClothingNeckBase, BaseCommandContraband ]
+  id: ClothingCloakCmoElite
+  name: elite chief medical officer's cloak
+  description: An elite chief medical officer's cloak made from the latest composite glowing fabric. Not recommended for breaking cancer diagnoses to patients.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Cloaks/cmo_elite.rsi
+  - type: StealTarget
+    stealGroup: HeadCloak
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#52B4E9"
+  - type: StaticPrice
+    price: 2000
+
+- type: entity
   parent:  [ClothingNeckBase, BaseCommandContraband ]
   id: ClothingNeckCloakHosElite
   name: elite head of security's cloak
@@ -189,7 +206,7 @@
   description: This type of poncho was the signature garment of a legendary BSO with no name, or so it is said.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/Cloaks/bso_poncho.rsi
+    sprite: _Starlight/Clothing/Neck/Cloaks/bso_poncho
   - type: Clothing
     slots:
       - neck
@@ -204,6 +221,28 @@
     sprite: _Starlight/Clothing/Neck/Mantles/oldmantle.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Neck/Mantles/oldmantle.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCentcommContraband]
+  id: ClothingNeckCloakCEDMantle
+  name: centeral engineering division mantle
+  description: Supermatters, Teslas and TEGs all tremble in fear from anyone wearing this mantle.
+  components:
+  - type: Sprite
+    sprite:  _Starlight/Clothing/Neck/Cloaks/CED_mantle.rsi
+  - type: Clothing
+    sprite:  _Starlight/Clothing/Neck/Cloaks/CED_mantle.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCentcommContraband]
+  id: ClothingNeckCloakCCponcho
+  name: central command poncho
+  description: a stylish poncho for a CC offical that prefers field-work to pushing papers.
+  components:
+  - type: Sprite
+    sprite:  _Starlight/Clothing/Neck/Cloaks/CC_poncho.rsi
+  - type: Clothing
+    sprite:  _Starlight/Clothing/Neck/Cloaks/CC_poncho.rsi
 
 # Fashion-O-Mat-Start, not obtainable any other way, unless mapped
 # All CC/Synd stuff in Fashion-O-Mat is replica
@@ -296,6 +335,7 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Neck/Cloaks/belpero.rsi
 # Fashion-O-Mat-End
+
 
 # ## USSP
 
@@ -544,6 +584,26 @@
     # tags:
     # - ClothMade
     # - WhitelistChameleon
+- type: entity
+  parent: [ClothingNeckMantleRD, BaseCentcommContraband]
+  id: ClothingNeckCloakCRDMantle
+  name: central researching division mantle
+  description: Rumors say that anomalies stabilize on their own and artifacts start behaving the moment this mantle shows up in the lab.
+  components:
+  - type: Sprite
+    sprite:  _Starlight/Clothing/Neck/Cloaks/CRD_mantle.rsi
+  - type: Clothing
+    sprite:  _Starlight/Clothing/Neck/Cloaks/CRD_mantle.rsi
+- type: entity
+  parent: [ClothingNeckMantleCMO, BaseCentcommContraband]
+  id: ClothingNeckCloakCMDMantle
+  name: central medical division mantle
+  description: No ailment or wound can hide from the gaze of the one draped in this mantle.
+  components:
+  - type: Sprite
+    sprite:  _Starlight/Clothing/Neck/Cloaks/CMD_mantle.rsi
+  - type: Clothing
+    sprite:  _Starlight/Clothing/Neck/Cloaks/CMD_mantle.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -576,3 +636,24 @@
   - type: Clothing
     sprite:  _Starlight/Clothing/Neck/Cloaks/warden.rsi
 
+- type: entity
+  parent: [ClothingNeckMantleCMO, BaseCentcommContraband]
+  id: ClothingNeckCloakCMDShawl
+  name: central medical division shawl
+  description:  A shawl with a shoulder epaulette fitting of a member of the central medical division who wants to stay warm yet professional.
+  components:
+    - type: Sprite
+      sprite:  _Starlight/Clothing/Neck/Cloaks/CMD_shawl.rsi
+    - type: Clothing
+      sprite:  _Starlight/Clothing/Neck/Cloaks/CMD_shawl.rsi
+
+- type: entity
+  parent: [ClothingNeckMantleCMO, BaseCentcommContraband]
+  id: ClothingNeckCloakCCShawl
+  name: central command shawl
+  description:  A shawl with a shoulder epaulette fitting of a member of central command following complaints from a CID Minister of Intelligence that wanted the medical symbol removed from it as an excuse to wear it without being apart of CMD.
+  components:
+    - type: Sprite
+      sprite:  _Starlight/Clothing/Neck/Cloaks/CC_shawl.rsi
+    - type: Clothing
+      sprite:  _Starlight/Clothing/Neck/Cloaks/CC_shawl.rsi

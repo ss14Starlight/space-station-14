@@ -1,0 +1,42 @@
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseMedTakContraband ]
+  id: ClothingHeadHelmetHardsuitMedTak
+  categories: [ HideSpawnMenu ]
+  name: MedTak operator helmet
+  description: An armoured helmet worn by MedTak operators.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Clothing/Head/Hardsuits/standard_helmet.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/MedTak/Clothing/Head/Hardsuits/standard_helmet.rsi
+  - type: HandheldLight
+    wattage: 0.2
+  - type: PointLight
+    color: "#d55858"
+    radius: 5
+    energy: 3
+  - type: Pierceable
+    level: HardenedMetal
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+      - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitMedTak
+  id: ClothingHeadHelmetHardsuitMedTakPilot
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Clothing/Head/Hardsuits/pilot_helmet.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/MedTak/Clothing/Head/Hardsuits/pilot_helmet.rsi

@@ -195,6 +195,36 @@
 
 - type: entity
   parent: Jug
+  suffix: ambuzol
+  id: JugAmbuzol
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-ambuzol
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Ambuzol
+        Quantity: 240
+
+- type: entity
+  parent: Jug
+  suffix: ambuzol plus
+  id: JugAmbuzolPlus
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-ambuzol-plus
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: AmbuzolPlus
+        Quantity: 240
+
+- type: entity
+  parent: Jug
   suffix: amoxla
   id: JugAmoxla
   categories: [ HideSpawnMenu ]
@@ -320,6 +350,20 @@
     solution:
       reagents:
       - ReagentId: Chronexaline
+        Quantity: 120
+
+- type: entity
+  suffix: aloxadone
+  parent: LargeBeaker
+  id: AloxadoneBeakerLarge
+  components:
+  - type: Label
+    currentLabel: reagent-name-aloxadone
+  - type: Solution
+    id: beaker
+    solution:
+      reagents:
+      - ReagentId: Aloxadone
         Quantity: 120
 
 - type: entity

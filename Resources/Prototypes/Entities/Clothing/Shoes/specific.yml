@@ -141,6 +141,17 @@
 
 - type: entity
   parent: ClothingShoesBaseButcherable
+  id: ClothingShoesSwat
+  name: swat shoes
+  description: When you want to turn up the heat.
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Specific/swat.rsi
+  - type: Clothing
+    sprite: Clothing/Shoes/Specific/swat.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
   id: ClothingShoesWizard
   name: wizard shoes
   description: A pair of magic shoes.

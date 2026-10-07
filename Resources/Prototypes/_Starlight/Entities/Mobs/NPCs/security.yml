@@ -1,0 +1,35 @@
+- type: entity
+  name: cadet
+  parent: MobSovietComrade
+  id: MobSecurityCadet
+  description: You've randomly been randomly selected for a random search
+  categories: [ Spawner ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - PetsNT # lol
+    addFriendlyFactions:
+    - Mouse
+  - type: Loadout
+    prototypes:
+    - SecurityCadetNpcGear
+
+- type: entity
+  name: cadet
+  parent: MobSecurityCadet
+  id: MobSecurityCadetHostile
+  suffix: hostile
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+
+- type: startingGear
+  id: SecurityCadetNpcGear
+  equipment:
+    head: ClothingHeadHelmetDredd
+    jumpsuit: ClothingUniformJumpsuitSec
+    shoes: ClothingShoesBootsJackFilled
+    outerClothing: ClothingOuterArmorStab
+  inhand:
+  - Stunbaton

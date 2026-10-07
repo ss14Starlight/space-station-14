@@ -3,6 +3,7 @@ chat-radio-nanotrasen = NanoTrasen
 chat-radio-soviet = Soviet
 chat-radio-expedition = Expedition
 chat-radio-tsf = Trans-Solar
+chat-radio-tsf-borg = Solgov Cyborg
 chat-radio-blackstar = Blackstar
 chat-radio-merchant = Merchant
 chat-radio-winds = Winds of Magic

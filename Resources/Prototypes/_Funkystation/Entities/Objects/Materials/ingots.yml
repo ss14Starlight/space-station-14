@@ -36,6 +36,18 @@
 
 - type: entity
   parent: MetalHydrogen
+  id: MetalHydrogen10
+  name: metal hydrogen
+  suffix: 10
+  components:
+  - type: Sprite
+    state: hydrogen
+  - type: Stack
+    stackType: MetalHydrogen
+    count: 10
+
+- type: entity
+  parent: MetalHydrogen
   id: MetalHydrogen1
   name: metal hydrogen
   suffix: Single

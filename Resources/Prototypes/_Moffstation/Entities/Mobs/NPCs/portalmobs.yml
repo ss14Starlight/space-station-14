@@ -1,0 +1,521 @@
+## Nar'Sie demons
+# Base Prototypes
+- type: entity
+  abstract: true
+  parent: SimpleSpaceMobBase
+  id: MoffMobDemonNarsieBase
+  name: narsian demon
+  suffix: Hellportal
+  description: A runecarved fiend of blood and shadow.
+  components:
+  - type: HellportalMob
+  - type: NpcFactionMember
+    factions:
+    - MoffNarsianDemon
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib #TODO: better sfx for our demons
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MoffDemonicEssence:
+            min: 0
+            max: 1
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Acidifier:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      80: 0.7
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 8
+        Structural: 10
+  - type: Hands
+  - type: ComplexInteraction
+  - type: Speech
+    speechVerb: Ghost
+    speechSounds: Arachnid
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: MovementAlwaysTouching
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.25
+    baseSprintSpeed: 2.25
+  - type: Vocalizer
+    hideChat: true
+  - type: DatasetVocalizer
+    dataset: MoffNarSiePrayers
+  - type: NarSieDemonAccent
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound #TODO: Make custom HTN
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 100
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 185
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+
+- type: entity
+  abstract: true
+  parent: MoffMobDemonNarsieBase
+  id: MoffMobDemonNarsieFleshBase
+  name: runecarved flesh
+  description: A writhing mass of muscle and sinew, etched with bloodied scars.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Moffstation/Mobs/Demons/flesh_lover.rsi # lover gets default because it's my favorite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: flesh_body
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: runes
+      shader: unshaded
+      color: "#aa1c34"
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: flesh_body
+        BaseUnshaded: runes
+      Dead:
+        Base: dead
+        BaseUnshaded: null
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib #TODO: better sfx for our demons
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MoffDemonicEssence:
+            min: 0
+            max: 1
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Acidifier:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0.625
+    baseSprintSpeed: 1.125
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - Flesh
+    - FootstepSound
+  - type: Damageable
+    damageModifierSet: MoffDemonFlesh
+  #- type: Injurable # Starlight, no Injurable yet
+    damageContainer: MoffDemonBiological
+  - type: AmbientSound
+    range: 1
+    volume: -10
+    sound:
+      path: /Audio/Ambience/anomaly_scary.ogg
+
+- type: entity
+  abstract: true
+  parent: MoffMobDemonNarsieFleshBase
+  id: MoffMobDemonNarsieFleshFlyingBase
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib #TODO: better sfx for our demons
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MoffDemonicEssence:
+            min: 0
+            max: 1
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Acidifier:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.25
+    baseSprintSpeed: 2.25
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 135
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - Flesh
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 6
+        Structural: 10
+
+- type: entity
+  abstract: true
+  parent: MoffMobDemonNarsieBase
+  id: MoffMobDemonNarsieConstructBase
+  description: A construct of shadow and blood, animated through runic inscriptions of prayers long forgotten.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Moffstation/Mobs/Demons/shade.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: construct_body
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: glow_red
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: construct_body
+        BaseUnshaded: glow_red
+      Dead:
+        Base: construct_body
+        BaseUnshaded: null
+  - type: Speech
+    speechSounds: SyndieBorg
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 370
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Damageable
+    damageModifierSet: MoffDemonConstruct
+  #- type: Injurable # Starlight, no Injurable yet
+    damageContainer: MoffDemonInorganic
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepBorg
+  - type: AmbientSound
+    range: 5
+    volume: -7
+    sound:
+      path: /Audio/_Moffstation/Effects/narsie_construct_drone.ogg
+
+- type: entity
+  abstract: true
+  parent: MoffMobDemonNarsieConstructBase
+  id: MoffMobDemonNarsieConstructFlyingBase
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 185
+        restitution: 0.0
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHoverBorg
+      params:
+        volume: -4
+
+# Fleshlings
+- type: entityTable
+  id: MoffHellportalFleshlingsTable
+  table: !type:GroupSelector
+    children:
+    - id: MoffMobDemonNarsieFleshClamp
+    - id: MoffMobDemonNarsieFleshGolem
+    - id: MoffMobDemonNarsieFleshJared
+    - id: MoffMobDemonNarsieFleshLover
+
+- type: entity
+  parent: MoffMobDemonNarsieFleshFlyingBase
+  id: MoffMobDemonNarsieFleshClamp
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Mobs/Demons/flesh_clamp.rsi
+
+- type: entity
+  parent: MoffMobDemonNarsieFleshBase
+  id: MoffMobDemonNarsieFleshGolem
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Mobs/Demons/flesh_golem.rsi
+
+- type: entity
+  parent: MoffMobDemonNarsieFleshBase
+  id: MoffMobDemonNarsieFleshJared
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Mobs/Demons/flesh_jared.rsi
+
+- type: entity
+  parent: MoffMobDemonNarsieFleshFlyingBase
+  id: MoffMobDemonNarsieFleshLover
+
+# Narsian constructs
+- type: entityTable
+  id: MoffHellportalNarsianConstructsTable
+  table: !type:GroupSelector
+    children:
+    - id: MoffMobDemonNarsieArtificer
+    - id: MoffMobDemonNarsieHarvester
+    - id: MoffMobDemonNarsieJuggernaut
+    - id: MoffMobDemonNarsieShade
+    - id: MoffMobDemonNarsieWraith
+
+- type: entity
+  parent: MoffMobDemonNarsieConstructBase
+  id: MoffMobDemonNarsieArtificer
+  name: narsian artificer
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Mobs/Demons/artificer.rsi
+  - type: Insulated # Worker
+  - type: MeleeWeapon
+    soundHit:
+      collection: sparks
+    animation: MoffEffectSparksNarsie
+    damage:
+      types:
+        Shock: 5
+        Structural: 45
+
+- type: entity
+  parent: MoffMobDemonNarsieConstructBase
+  id: MoffMobDemonNarsieHarvester
+  name: narsian harvester
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Mobs/Demons/harvester.rsi
+  - type: Puller
+    needsHands: false
+  - type: GrapplingGun
+    ropeBreakPoint: 150000 # Demonic chain
+    ropeSprite:
+      sprite: _Moffstation/Mobs/Demons/harvester.rsi
+      state: rope
+  - type: Gun
+    soundGunshot: /Audio/Weapons/utilityknifeopen.ogg
+    fireRate: 0.1
+    soundEmpty: /Audio/_Moffstation/Surgery/retractor1.ogg
+  - type: BasicEntityAmmoProvider
+    ammoTable:
+      id: MoffDemonicChainHook
+    capacity: 1
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 19
+        Structural: 10
+  - type: HTN
+    rootTask:
+      task: MoffNarsieHarvesterCompound
+    blackboard: # Based on Basilisk, may need tuning
+      VisionRadius: !type:Single
+        7
+      AggroVisionRadius: !type:Single
+        12
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+
+- type: entity
+  parent: MoffMobDemonNarsieConstructBase
+  id: MoffMobDemonNarsieJuggernaut
+  name: narsian juggernaut
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Mobs/Demons/juggernaut.rsi
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 1
+  - type: MeleeWeapon
+    soundHit:
+      collection: FootstepThud # Yes I know it's not a footstep, but it sounds nice
+    animation: WeaponArcClaw
+    attackRate: 0.5
+    damage:
+      types:
+        Blunt: 33
+        Structural: 45
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib #TODO: better sfx for our demons
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MoffDemonicEssence:
+            min: 0
+            max: 1
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Acidifier:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      120: 0.7
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0.625
+    baseSprintSpeed: 1.125
+  - type: Damageable
+    damageModifierSet: MoffNarSieJuggernaut
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        volume: -6
+
+- type: entity
+  parent: MoffMobDemonNarsieConstructFlyingBase
+  id: MoffMobDemonNarsieShade
+  name: narsian shade
+  components:
+  - type: Gun
+    fireRate: 0.25
+    projectileSpeed: 10.0
+    selectedMode: SemiAuto
+    showExamineText: false
+    availableModes: [ SemiAuto ]
+    soundGunshot:
+      collection: blood
+  - type: BasicEntityAmmoProvider
+    ammoTable:
+      id: MoffBloodBolt
+    capacity: 1
+    count: 1
+  - type: RechargeBasicEntityAmmo
+    showExamineText: false
+    rechargeCooldown: 0
+    rechargeSound: null
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+
+
+- type: entity
+  parent: MoffMobDemonNarsieConstructFlyingBase
+  id: MoffMobDemonNarsieWraith
+  name: narsian wraith
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Mobs/Demons/wraith.rsi
+  - type: NPCUseActionOnTarget
+    actionId: MoffActionPolymorphWraithJaunt
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.875
+    baseSprintSpeed: 3.375
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    attackRate: 1.5
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 16
+        Structural: 5

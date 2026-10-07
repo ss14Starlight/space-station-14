@@ -972,6 +972,20 @@
     listNumber: false
 
 - type: entity
+  name: assistant ID card
+  parent: AgentIDCard
+  id: NukieAgentIDCard
+  suffix: Nukie
+  components:
+  - type: Access
+    tags:
+    - Maintenance
+    - SyndicateAgent
+    - NuclearOperative
+  - type: NanoChatCard # CD
+    listNumber: false
+
+- type: entity
   parent: [ IDCardStandard, BaseSyndicateContraband ]
   id: SyndicateIDCard
   name: syndicate ID card

@@ -27,5 +27,6 @@ cd-character-records-viewer-setwanted-placeholder = Reason
 
 cd-character-records-viewer-security-permanent-label = Permanent Records
 cd-character-records-viewer-security-current-shift-label = Current Shift Log
+cd-character-records-viewer-security-current-shift-empty = No current shift entries.
 
 ui-admin-records-console-title = Admin records console

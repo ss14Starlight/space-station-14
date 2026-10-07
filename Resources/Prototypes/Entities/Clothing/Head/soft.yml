@@ -74,6 +74,18 @@
     - WhitelistChameleon
 
 - type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCargosoft]
+  id: ClothingHeadHatCargosoftFlipped
+  name: cargo cap
+  components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
   parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatQMsoft
   name: quartermaster's cap
@@ -83,6 +95,11 @@
     sprite: Clothing/Head/Soft/qmsoft.rsi
   - type: Clothing
     sprite: Clothing/Head/Soft/qmsoft.rsi
+
+- type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatQMsoft]
+  id: ClothingHeadHatQMsoftFlipped
+  name: quartermaster's cap
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlippable, BaseCommandManagerContraband] # Starlight
@@ -96,6 +113,11 @@
     sprite: Clothing/Head/Soft/commandsoft.rsi
 
 - type: entity
+  parent: [ ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCommandSoft ]
+  id: ClothingHeadHatCommandSoftFlipped
+  name: command cap
+
+- type: entity
   parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatCorpsoft
   name: corporate cap
@@ -107,6 +129,11 @@
     sprite: Clothing/Head/Soft/corpsoft.rsi
 
 - type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCorpsoft]
+  id: ClothingHeadHatCorpsoftFlipped
+  name: corporate cap
+
+- type: entity
   parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatGreensoft
   name: green cap
@@ -116,6 +143,11 @@
     sprite: Clothing/Head/Soft/greensoft.rsi
   - type: Clothing
     sprite: Clothing/Head/Soft/greensoft.rsi
+
+- type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatGreensoft]
+  id: ClothingHeadHatGreensoftFlipped
+  name: green cap
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -143,6 +175,11 @@
     sprite: Clothing/Head/Soft/greysoft.rsi
   - type: Clothing
     sprite: Clothing/Head/Soft/greysoft.rsi
+
+- type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatGreysoft]
+  id: ClothingHeadHatGreysoftFlipped
+  name: grey cap
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -263,6 +300,11 @@
     sprite: Clothing/Head/Soft/bizarresoft.rsi
   - type: Clothing
     sprite: Clothing/Head/Soft/bizarresoft.rsi
+
+- type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatBizarreSoft]
+  id: ClothingHeadHatBizarreSoftFlipped
+  name: troublemaker's cap
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
