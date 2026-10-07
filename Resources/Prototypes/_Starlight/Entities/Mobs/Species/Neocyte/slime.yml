@@ -29,6 +29,8 @@
         type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
+      enum.MagicMirrorUiKey.Key:
+        type: MagicMirrorBoundUserInterface
   - type: InteractionPopup
     interactSuccessSound: /Audio/Voice/Slime/slime_squish.ogg
   - type: Icon
@@ -61,12 +63,12 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 65
     damage:
       types:
         Heat: -0.14
-      groups:
-        Brute: -0.14
+        Blunt: -0.05
+        Piercing: -0.05
+        Slash: -0.05
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -132,6 +134,8 @@
   - type: ShowThirstIcons
   - type: SolutionScanner
   - type: Wagging
+  - type: InnateHairChange
+  - type: MagicMirror
 
 - type: entity
   parent: [BaseNeocyteAppearance, BaseSpeciesDummy]

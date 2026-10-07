@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: BaseComputer
+  components:
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -21
+    range: 2
+    sound:
+      path: /Audio/_Starlight/Ambience/Objects/computer_hum.ogg

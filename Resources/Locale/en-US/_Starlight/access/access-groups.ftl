@@ -1,0 +1,23 @@
+show-access-examined-none = None
+show-access-examined-ungrouped = Ungrouped
+
+access-group-name-all-access = All Access
+access-group-name-armory = Armory
+access-group-name-cargo = Cargo
+access-group-name-central-command = Central Command
+access-group-name-command = Command
+access-group-name-cyborg-all-access = Cyborg All Access
+access-group-name-engineering = Engineering
+access-group-name-general = General
+access-group-name-itg = ITG
+access-group-name-law = Law
+access-group-name-medical = Medical
+access-group-name-misc = Misc
+access-group-name-nano-trasen = NanoTrasen
+access-group-name-pirate = Pirate
+access-group-name-research = Research
+access-group-name-security = Security
+access-group-name-service = Service
+access-group-name-silicon = Silicon
+access-group-name-syndicate = Syndicate
+access-group-name-xenoborg = Xenoborg

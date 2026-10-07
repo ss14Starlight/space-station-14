@@ -1,0 +1,7 @@
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: OreBag
+  result: OreBag
+  materials:
+    Steel: 200
+    Cloth: 100

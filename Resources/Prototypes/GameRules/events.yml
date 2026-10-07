@@ -18,11 +18,11 @@
     - id: MouseMigration
     - id: PowerGridCheck
     - id: RandomSentience
-    - id: SlimesSpawn
+    - id: SlimesSpawnHorde
     - id: SolarFlare
-    - id: SnakeSpawn
-    - id: SpiderClownSpawn
-    - id: SpiderSpawn
+    - id: SnakeSpawnHorde
+    - id: SpiderClownSpawnHorde
+    - id: SpiderSpawnHorde
     - id: VentClog
     # Starlight Start
     - id: PsychicScreach
@@ -52,6 +52,7 @@
     - id: KingRatMigration
     - id: RevenantSpawn
     - id: RailroadingTerminator # Starlight
+    - id: ScrapperSpawn # Starlight
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -62,18 +63,10 @@
     - id: DragonSpawn
     - id: NinjaSpawn
     - id: ParadoxCloneSpawn
-    - id: ParadoxCrisisSpawn # Starlight
     - id: SleeperAgents
- #   - id: ZombieOutbreak starlight - no more midround zeds
+    - id: ZombieOutbreak
     - id: LoneOpsSpawn
     - id: WizardSpawn
-    - id: AbductorsSpawn # Starlight start
-    #- id: SubXenoborgs
-    #- id: BrighteyeSpawn
-    #- id: TerrorSpidersSpawn
-    - id: RailroadingTerminator
-    - id: ColossusSpawn # Starlight end
-    - id: EeepEvent # imp
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -442,85 +435,87 @@
     duration: 60
   - type: VentClogRule
 
-- type: entity
-  id: SlimesSpawn
-  parent: BaseStationEventShortDelay
-  components:
-  - type: StationEvent
-    globalAnnouncement: false # Starlight
-    startAnnouncement: station-event-vent-creatures-start-announcement
-    startAudio:
-      path: /Audio/_Starlight/Announcements/attention.ogg
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
-    minimumPlayers: 15
-    weight: 3.5 # 🌟Starlight🌟 Casualization
-    duration: 60
-  - type: VentCrittersRule
-    entries:
-    - id: MobAdultSlimesBlueAngry
-      prob: 0.02
-    - id: MobAdultSlimesGreenAngry
-      prob: 0.02
-    - id: MobAdultSlimesYellowAngry
-      prob: 0.02
+# Critters
 
 - type: entity
-  id: SnakeSpawn
+  id: SlimesSpawnHorde
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
-    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAnnouncement: station-event-vent-creatures-start-horde-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
+    earliestStart: 20
     minimumPlayers: 15
-    weight: 3.5 # 🌟Starlight🌟 Casualization
-    duration: 60
-  - type: VentCrittersRule
-    entries:
-    - id: MobPurpleSnake
-      prob: 0.02
-    - id: MobSmallPurpleSnake
-      prob: 0.02
-    - id: MobCobraSpace
-      prob: 0.02
+    weight: 5
+    duration: 5
+    maxDuration: 20
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      rolls: 4, 8
+      children:
+      - id: MobAdultSlimesBlueAngry
+      - id: MobAdultSlimesGreenAngry
+      - id: MobAdultSlimesYellowAngry
 
 - type: entity
-  id: SpiderSpawn
+  id: SnakeSpawnHorde
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
-    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAnnouncement: station-event-vent-creatures-start-horde-announcement
     startAudio:
-      path: /Audio/_Starlight/Announcements/attention.ogg
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 20
     minimumPlayers: 15
-    weight: 3.5 # 🌟Starlight🌟 Casualization
-    duration: 60
-  - type: VentCrittersRule
-    entries:
-    - id: MobGiantSpiderAngry
-      prob: 0.05
+    weight: 5
+    duration: 5
+    maxDuration: 20
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      rolls: 4, 8
+      children:
+      - id: MobPurpleSnake
+      - id: MobSmallPurpleSnake
+      - id: MobCobraSpace
 
 - type: entity
-  id: SpiderClownSpawn
+  id: SpiderSpawnHorde
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
-    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAnnouncement: station-event-vent-creatures-start-horde-announcement
     startAudio:
-      path: /Audio/_Starlight/Announcements/attention.ogg
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 20
+    minimumPlayers: 15
+    weight: 5
+    duration: 5
+    maxDuration: 20
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      rolls: 4, 8
+      children:
+      - id: MobGiantSpiderAngry
+
+- type: entity
+  id: SpiderClownSpawnHorde
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-horde-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 20
     minimumPlayers: 20
     weight: 1.5
-    duration: 60
-  - type: VentCrittersRule
-    entries:
-    - id: MobClownSpider
-      prob: 0.05
+    duration: 5
+    maxDuration: 20
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      rolls: 4, 8
+      children:
+      - id: MobClownSpider
 
 - type: entity
   id: ZombieOutbreak

@@ -371,7 +371,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             Message = message,
             Receivers = Filter.Broadcast(),
             SpeakerUid = speaker.HasValue ? GetNetEntity(speaker.Value) : null,
-            AnnouncementSound = announcementSound,
+            AnnouncementSound = playSound ? announcementSound ?? DefaultAnnouncementSound : null, // Starlight: report the sound played (if any) so TTS can wait out the chime.
         });
         // Starlight end
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Global station announcement from {sender}: {message.Text}");// Starlight
@@ -399,7 +399,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         // Starlight start
         RaiseLocalEvent(new AnnouncementSpokeEvent
         {
-            AnnouncementSound = announcementSound,
+            AnnouncementSound = playSound ? announcementSound ?? DefaultAnnouncementSound : null, // Starlight: report the sound played (if any) so TTS can wait out the chime.
             Message = message,
             Receivers = filter
         });
@@ -441,7 +441,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         // Starlight start
         RaiseLocalEvent(new AnnouncementSpokeEvent
         {
-            AnnouncementSound = announcementSound,
+            AnnouncementSound = playDefaultSound ? announcementSound ?? DefaultAnnouncementSound : null, // Starlight: report the sound played (if any) so TTS can wait out the chime.
             Message = message,
             Receivers = filter
         });
@@ -488,16 +488,17 @@ public sealed partial class ChatSystem : SharedChatSystem
         // Custom behavior: For example, change the chat channel or message formatting here if needed
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source, false, true, colorOverride);
 
+        SoundSpecifier? commsConsoleSound = null; // resolve outside so the event below reports the sound actually played.
         if (playSound)
         {
-            var commsConsoleSound = announcementSound ?? new SoundPathSpecifier("/Audio/_Starlight/Announcements/announce2.ogg");
+            commsConsoleSound = announcementSound ?? new SoundPathSpecifier("/Audio/_Starlight/Announcements/announce2.ogg");
             var resolvedSound = _audio.ResolveSound(commsConsoleSound);
             _audio.PlayGlobal(resolvedSound, filter, true, AudioParams.Default.WithVolume(-2f));
         }
 
         RaiseLocalEvent(new AnnouncementSpokeEvent
         {
-            AnnouncementSound = announcementSound,
+            AnnouncementSound = commsConsoleSound,
             Message = message,
             SpeakerUid = speaker.HasValue ? GetNetEntity(speaker.Value) : null,
             Receivers = filter
@@ -634,6 +635,12 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (session.AttachedEntity is not { Valid: true } listener) // Starlight-edit: Languages
                 continue;
 
+            // Starlight Start: Ignore humanoid speech.
+            if (HasComp<IgnoreHumanoidsComponent>(listener) &&
+                HasComp<HumanoidAppearanceComponent>(source))
+                continue;
+            // Starlight End
+
             // Moffstation - Start - Radio Host, hide chat messages from station radio
             var rangeCheck = MessageRangeCheck(session, data, range);
             if (rangeCheck == MessageRangeCheckResult.Disallowed)
@@ -674,11 +681,6 @@ public sealed partial class ChatSystem : SharedChatSystem
                 // Scenario 3: If listener is too far and has no line of sight, they can't identify the whisperer's identity
                 result = ObfuscateMessageReadability(perceivedMessage);
                 wrappedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-unknown-wrap-message", string.Empty, result, language, obfuscated);
-            }
-            if (HasComp<IgnoreHumanoidsComponent>(listener) && HasComp<HumanoidAppearanceComponent>(source))
-            {
-                var unknownName = Loc.GetString("ignore-humanoids-unknown-name");
-                wrappedMessage = WrapAnonymizedMessage(ChatChannel.Whisper, source, result, unknownName, language, wrappedMessage, obfuscated);
             }
 
             _chatManager.ChatMessageToOne(ChatChannel.Whisper, result, wrappedMessage, source, rangeCheck == MessageRangeCheckResult.HideChat, session.Channel); // Moffstation - Radio Host, hide chat messages from station radio
@@ -896,20 +898,16 @@ public sealed partial class ChatSystem : SharedChatSystem
             // Starlight - start
             if (session.AttachedEntity is not { Valid: true } playerEntity)
                 continue;
-            EntityUid listener = session.AttachedEntity.Value;
+            if (channel == ChatChannel.Local &&
+                HasComp<IgnoreHumanoidsComponent>(playerEntity) &&
+                HasComp<HumanoidAppearanceComponent>(source))
+                continue;
 
             // If the channel does not support languages, or the entity can understand the message, send the original message, otherwise send the obfuscated version
             var displayWrappedMessage = wrappedMessage;
             var displayObfuscatedMessage = obfuscatedWrappedMessage;
 
-            if (HasComp<IgnoreHumanoidsComponent>(listener) && HasComp<HumanoidAppearanceComponent>(source))
-            {
-                var unknownName = Loc.GetString("ignore-humanoids-unknown-name");
-                displayWrappedMessage = WrapAnonymizedMessage(channel, source, message, unknownName, language, wrappedMessage, false);
-                displayObfuscatedMessage = WrapAnonymizedMessage(channel, source, obfuscated, unknownName, language, obfuscatedWrappedMessage, true);
-            }
-
-            if (ignoreLanguage || _language.CanUnderstand(listener, language.ID))
+            if (ignoreLanguage || _language.CanUnderstand(playerEntity, language.ID))
                 _chatManager.ChatMessageToOne(channel, message, displayWrappedMessage, source, entHideChat, session.Channel, author: author);
             else
                 _chatManager.ChatMessageToOne(channel, obfuscated, displayObfuscatedMessage, source, entHideChat, session.Channel, author: author);
@@ -1074,6 +1072,15 @@ public sealed partial class ChatSystem : SharedChatSystem
         var fonttype = language.Speech.FontId ?? speech.FontId;
         if ((language.Speech.ObfuscationFont ?? false) && (!obfuscated ?? false))
             fonttype = speech.FontId;
+
+        // Apply default styling before the font tag so it does not replace a language's custom font.
+        if (fonttype == "Default")
+        {
+            if (chatType == InGameICChatType.Whisper)
+                fonttype = "DefaultItalic";
+            else if (speech.Bold)
+                fonttype = "DefaultBold";
+        }
 
         return Loc.GetString(wrapId,
             ("color", color),

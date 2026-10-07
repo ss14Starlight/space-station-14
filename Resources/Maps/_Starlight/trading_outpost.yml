@@ -8226,7 +8226,7 @@ entities:
     - type: Transform
       parent: 1
       pos: 25.5,-5.5
-- proto: CryogenicSleepUnit
+- proto: CryogenicSleepUnitSpawnerLateJoinITG
   entities:
   - uid: 1244
     components:

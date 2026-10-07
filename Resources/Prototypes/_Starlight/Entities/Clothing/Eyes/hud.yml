@@ -16,6 +16,7 @@
         - Biological
         - IPC
         - Hybrid
+        - MoffDemonBiological
     - type: ShowHealthIcons
       damageContainers:
         - Biological
@@ -62,7 +63,6 @@
     tags:
     - PetWearable
     - WhitelistChameleon
-    - HudSecurity
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
@@ -77,6 +77,10 @@
     - type: EyeProtection
       protectionTime: 5
     - type: ShowHealthBars
+      damageContainers:
+      - Biological
+      - Hybrid
+      - MoffDemonBiological
     - type: SolutionScanner
     - type: Construction
       graph: GlassesSecHUD
@@ -85,6 +89,7 @@
       tags:
         - HamsterWearable
         - WhitelistChameleon
+        - HudSecurity
     - type: IdentityBlocker
       coverage: EYES
 
@@ -103,6 +108,7 @@
         - PetWearable
         - WhitelistChameleon
         - HudMedical
+        - HudSecurity
 
 - type: entity
   parent: [ClothingEyesEyepatchHudBrigmedic, ClothingHeadEyeBaseFlipped]
@@ -125,6 +131,7 @@
       damageContainers:
         - Biological
         - Hybrid # Neocytes
+        - MoffDemonBiological
     - type: SolutionScanner
     - type: Construction
       graph: GlassesSecHUD
@@ -133,6 +140,7 @@
       tags:
         - HamsterWearable
         - WhitelistChameleon
+        - SecBeltEquip
     - type: IdentityBlocker
       coverage: EYES
 
@@ -208,6 +216,7 @@
       damageContainers:
         - Biological
         - Hybrid
+        - MoffDemonBiological
     - type: ShowHealthIcons
       damageContainers:
         - Biological
@@ -219,7 +228,7 @@
       protectionTime: 5
 
 - type: entity
-  parent: [ClothingEyesBase, BaseCommandContraband]
+  parent: [ClothingEyesBase, BaseNanoTrasenContraband]
   id: ClothingEyesNTRMonocle
   name: NanoTrasen representative monocle
   description: A fancy monocle that also functions as a HUD to make sure no functionality is lost for style.
