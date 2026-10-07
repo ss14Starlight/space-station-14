@@ -52,7 +52,7 @@ public sealed partial class MindExamineSystem : EntitySystem
             MindState.Dead => $"[color=red]{Loc.GetString("comp-mind-examined-dead", ("ent", ent.Owner))}[/color]",
             MindState.Catatonic => $"[color=mediumpurple]{Loc.GetString("comp-mind-examined-catatonic", ("ent", ent.Owner))}[/color]",
             MindState.SSD => $"[color=yellow]{Loc.GetString("comp-mind-examined-ssd", ("ent", ent.Owner))}[/color]",
-            MindState.Npc => $"[color=yellow]{Loc.GetString("comp-mind-examined-npc-controlled", ("ent", ent.Owner))}[/color]",
+            MindState.Npc => $"[color=darkorange]{Loc.GetString("comp-mind-examined-npc-controlled", ("ent", ent.Owner))}[/color]",
             _ => null,
         };
 
