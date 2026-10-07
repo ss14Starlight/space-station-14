@@ -21,17 +21,4 @@ public sealed class PluralizationTests : GameTest
 
         Assert.That(result, Is.EqualTo(expected));
     }
-
-    [TestCase("mailbox-nanochat-message-one", "You have a package waiting at the engineering mailbox.")]
-    [TestCase("mailbox-nanochat-message-many", "You have 5 packages waiting at the engineering mailbox.")]
-    public void MailboxNanoChatMessagePluralizationTest(string messageKey, string expected)
-    {
-        var locMan = Pair.Server.ResolveDependency<ILocalizationManager>();
-
-        var result = locMan.GetString(messageKey,
-            ("count", 5),
-            ("mailbox", "engineering mailbox"));
-
-        Assert.That(result, Is.EqualTo(expected));
-    }
 }

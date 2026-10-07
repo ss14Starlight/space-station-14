@@ -1,6 +1,6 @@
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
-using Content.Server._CD.CartridgeLoader.Cartridges;
+using Content.Server._CD.CartridgeLoader.Cartridges; // Starlight
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Systems;
 using Content.Shared._Starlight.Cargo.Mailboxes;
@@ -33,7 +33,7 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private IPrototypeManager _protoMan = default!;
-    [Dependency] private NanoChatCartridgeSystem _nanoChat = default!;
+    [Dependency] private NanoChatCartridgeSystem _nanoChat = default!; // Starlight: queues notices after accepted mailbox deposits.
 
     /// <summary>
     /// Default reason to use if the penalization is triggered
@@ -53,11 +53,11 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
     private void OnInsertedInContainer(Entity<DeliveryComponent> ent, ref EntGotInsertedIntoContainerMessage args)
     {
         var containerEntity = args.Container.Owner;
-        if (!HasComp<MailBoxComponent>(containerEntity))
+        if (!HasComp<MailBoxComponent>(containerEntity)) // Leave insertions into ordinary containers unchanged.
             return;
 
         GrantSpesoReward(ent!);
-        _nanoChat.QueueMailboxDeposit(ent.Comp.RecipientName, Name(containerEntity));
+        _nanoChat.QueueMailboxDeposit(ent.Comp.RecipientName, Name(containerEntity)); // Queue recipient and localized mailbox type for batching.
     }
     //Starlight-edit end
 
