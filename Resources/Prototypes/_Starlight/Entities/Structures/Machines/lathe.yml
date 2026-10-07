@@ -599,3 +599,89 @@
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
+
+# Salvage
+- type: entity
+  id: SalvageTechFab
+  parent: BaseLatheLube
+  name: salvage techfab
+  description: Prints equipment for use by the ITG's salvage team.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Machines/techfab.rsi
+      layers:
+        - state: icon
+          map: ["enum.LatheVisualLayers.IsRunning"]
+        - state: salvage
+        - state: unlit
+          shader: unshaded
+          map: ["enum.PowerDeviceVisualLayers.Powered"]
+        - state: inserting
+          map: ["enum.MaterialStorageVisualLayers.Inserting"]
+        - state: panel
+          map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - type: Machine
+      board: SalvageTechFabCircuitboard
+    - type: MaterialStorage
+      whitelist: *StandardMaterialWhitelist
+    - type: OreSiloClient
+    - type: Lathe
+      idleState: icon
+      runningState: icon
+      staticPacks:
+        # Static stuff that Salvage could reasonable use
+        - StarlightCargoToolsStatic
+        - PartsStatic
+        - CablesStatic
+        - MaterialsStatic
+        - StarlightContainersStatic
+        - StarlightSalvageEquipmentStatic
+      dynamicPacks:
+        - Mining
+        - Equipment
+        - StarlightAutolatheLootable
+        - StarlightProtolatheLootable
+        - StarlightCargoDynamic
+    - type: EmagLatheRecipes
+      emagStaticPacks:
+        - StarlightSecurityEmagWeaponsStatic
+        - StarlightSecurityAmmoStatic
+        - StarlightSyndicateAmmoStatic
+        - SyndicateAmmoStatic
+    - type: BlueprintReceiver
+      whitelist:
+        tags:
+          - BlueprintAutolathe
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+        machine_parts: !type:Container
+        blueprint: !type:Container
+    - type: EmptyOnMachineDeconstruct
+      containers:
+        - blueprint
+
+#RogueDrone
+- type: entity
+  id: RogueExofabricator
+  parent: BaseLatheLube
+  name: Scrapper Exo Fabricator
+  description: A derelict fabricator, its engine still faintly hums.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/exosuit_fabricator.rsi
+    layers:
+    - state: fab-idle
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: fab-load
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: fab-o
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: ScrapperExoFabricatorMachineCircuitboard
+  - type: Lathe
+    idleState: fab-idle
+    runningState: fab-active
+    staticPacks:
+    - RoboticsRogueStatic
+  - type: !Remove StationAiWhitelist

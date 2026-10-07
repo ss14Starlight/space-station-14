@@ -83,3 +83,6 @@ ban-panel-expiry-error = err
 server-ban-string = {$admin} created a {$severity} severity server ban that expires {$expires} for [{$name}, {$ip}, {$hwid}], with reason: {$reason}
 server-ban-string-no-pii = {$admin} created a {$severity} severity server ban that expires {$expires} for {$name} with reason: {$reason}
 server-ban-string-never = never
+
+# Kick on ban
+ban-kick-reason = You have been banned

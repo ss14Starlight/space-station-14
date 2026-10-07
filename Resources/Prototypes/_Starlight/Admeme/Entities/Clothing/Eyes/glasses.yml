@@ -16,6 +16,7 @@
     damageContainers:
     - Biological
     - Hybrid # Neocytes
+    - MoffDemonBiological
   - type: ShowHealthIcons
     damageContainers:
     - Biological

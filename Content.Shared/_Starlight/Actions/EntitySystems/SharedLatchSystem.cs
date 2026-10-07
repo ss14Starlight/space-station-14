@@ -1,6 +1,7 @@
 using Content.Shared._Starlight.Actions.Components;
 using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Gravity;
+using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Pulling.Events;
@@ -15,6 +16,8 @@ public abstract partial class SharedLatchSystem : EntitySystem
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] private SharedJointSystem _joints = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -34,6 +37,10 @@ public abstract partial class SharedLatchSystem : EntitySystem
         SubscribeLocalEvent<LatchActionEvent>(OnLatchAction);
     }
 
+    /// <summary>
+    /// Validates a latch attempt (whitelist, existing latches, and anything
+    /// cancelling <see cref="LatchAttemptEvent"/>), then starts the latch.
+    /// </summary>
     private void OnLatchAction(LatchActionEvent ev)
     {
         if (ev.Handled)
@@ -50,9 +57,65 @@ public abstract partial class SharedLatchSystem : EntitySystem
         if (!_whitelist.IsWhitelistPassOrNull(comp.Whitelist, target))
             return;
 
+        var attempt = new LatchAttemptEvent(uid, target);
+        RaiseLocalEvent(target, ref attempt);
+        if (attempt.Cancelled)
+            return;
+
         CreateLatchJoint(uid, comp, target);
         StartLatch(uid, comp, target);
         ev.Handled = true;
+    }
+
+    /// <summary>
+    /// Frees <paramref name="target"/> from whatever is latched onto it. For
+    /// target-side escape abilities (e.g. Rejuvenate, Biodegrade).
+    /// </summary>
+    /// <returns>True if an active latch was found and ended.</returns>
+    public bool TryBreakLatch(Entity<LatchedComponent?> target)
+    {
+        if (!Resolve(target, ref target.Comp, false)
+            || !TryComp<LatchComponent>(target.Comp.Latcher, out var latcherComp)
+            || !latcherComp.Active
+            || latcherComp.Target != target.Owner)
+        {
+            return false;
+        }
+
+        BreakLatch((target.Comp.Latcher, latcherComp));
+        return true;
+    }
+
+    /// <summary>
+    /// Forces <paramref name="latcher"/> to let go of its current target. For
+    /// abilities that act on the latcher rather than the target.
+    /// </summary>
+    /// <returns>True if an active latch was found and ended.</returns>
+    public bool TryReleaseLatch(Entity<LatchComponent?> latcher)
+    {
+        if (!Resolve(latcher, ref latcher.Comp, false) || !latcher.Comp.Active)
+            return false;
+
+        BreakLatch((latcher.Owner, latcher.Comp));
+        return true;
+    }
+
+    /// <summary>
+    /// Authoritative latch teardown. Overridden serverside.
+    /// </summary>
+    protected virtual void BreakLatch(Entity<LatchComponent> latcher)
+    {
+    }
+
+    /// <summary>
+    /// Center-to-center raycast with the same mask melee uses, so "obstructed"
+    /// here means exactly what stops the target from hitting back.
+    /// </summary>
+    protected bool HasLatchLineOfSight(EntityUid latcher, EntityUid target)
+    {
+        var from = _transform.GetMapCoordinates(latcher);
+        var to = _transform.GetMapCoordinates(target);
+        return _interaction.InRangeUnobstructed(from, to, range: 0f, predicate: e => e == latcher || e == target);
     }
 
     /// <summary>

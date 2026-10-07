@@ -98,7 +98,7 @@
     name: seeds-mint-name
     packetPrototype: MintSeeds
     productPrototypes: [ FoodMintLeaf ]
-    mutationPrototypes: [ SpearMint ]
+    mutationPrototypes: [ SpearMintPlants ]
   - type: Plant
     lifespan: 25
     growthStages: 5
@@ -149,7 +149,7 @@
     name: seeds-cinnamon-name
     packetPrototype: CinnamonSeeds
     productPrototypes: [ FoodCinnamonStick ]
-    mutationPrototypes: [ CinnaflareStick ]
+    mutationPrototypes: [ CinnaflarePlants ]
   - type: Plant
     lifespan: 25
     growthStages: 5
