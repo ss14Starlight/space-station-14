@@ -10,6 +10,7 @@
       containers:
         cell_slot: !type:ContainerSlot {}
     - type: ItemSlots
+      suppressStartingItemsOnConstructionChange: true
       slots:
         cell_slot:
           name: power-cell-slot-component-slot-name-default
@@ -22,6 +23,7 @@
       useCharge: 10
     - type: PowerCellSlot
       cellSlotId: cell_slot
+      requiresOpenPanelToEject: true
     - type: Charger
       slotId: cell_slot
       chargeRate: 10

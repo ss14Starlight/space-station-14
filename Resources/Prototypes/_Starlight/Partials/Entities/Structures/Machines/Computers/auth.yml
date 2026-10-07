@@ -22,10 +22,16 @@
       useCharge: 5
     - type: PowerCellSlot
       cellSlotId: cell_slot
+      requiresOpenPanelToEject: true
     - type: Charger
       slotId: cell_slot
       chargeRate: 5
       passiveDraw: 5
+    - type: WiresPanel
+    - type: Construction # This is important. it prevents deconstruction
+      graph: KeycardAuth
+      node: auth
+      deconstructionTarget: null
     - type: Sprite
       layers:
         - map: ["keycardBatteryLight"]
