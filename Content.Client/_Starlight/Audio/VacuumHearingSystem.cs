@@ -43,6 +43,10 @@ public sealed partial class VacuumHearingSystem : EntitySystem
 
     private const float SourceMatchRange = 0.05f;
 
+    private const float SourceClearance = 0.75f;
+
+    private const float OwnBodyRange = 0.3f;
+
     private float _maxRayLength;
     private List<MapCoordinates> _openSources = new();
     private List<MapCoordinates> _openSourcesNext = new();
@@ -138,9 +142,9 @@ public sealed partial class VacuumHearingSystem : EntitySystem
         // The engine's default occlusion, strengthened: how much solid stuff lies between source and listener.
         var occlusion = 0f;
 
-        if (distance > 0.1f)
+        if (distance > ContactRange)
         {
-            var rayLength = MathF.Min(distance, _maxRayLength);
+            var rayLength = MathF.Min(distance - SourceClearance, _maxRayLength);
             var ray = new CollisionRay(listener.Position, delta / distance, _audio.OcclusionCollisionMask);
             occlusion = _physics.IntersectRayPenetration(listener.MapId, ray, rayLength, ignoredEnt)
                 * WallOcclusionMultiplier;
@@ -151,11 +155,11 @@ public sealed partial class VacuumHearingSystem : EntitySystem
 
         var helmet = HelmetOcclusionValue;
 
-        if (ignoredEnt is { } parent && _ownParents.Contains(parent))
+        if (distance < OwnBodyRange || (ignoredEnt is { } parent && _ownParents.Contains(parent)))
         {
             muffle *= OwnMuffle;
 
-            if (parent == _wornHelmet)
+            if (ignoredEnt != null && ignoredEnt == _wornHelmet)
                 helmet = 0f;
         }
         else

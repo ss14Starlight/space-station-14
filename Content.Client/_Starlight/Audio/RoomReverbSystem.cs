@@ -32,6 +32,8 @@ public sealed partial class RoomReverbSystem : EntitySystem
 
     private const float MinPressure = 30f;
 
+    private const float MinDiffusion = 0.9f;
+
     private static readonly TimeSpan DoorwayHold = TimeSpan.FromSeconds(1);
 
     private const int SoftRadius = 4;
@@ -300,7 +302,7 @@ public sealed partial class RoomReverbSystem : EntitySystem
     private static ReverbProperties Scale(AudioPresetPrototype preset, ReverbSettings settings) => new()
     {
         Density = preset.Density,
-        Diffusion = preset.Diffusion,
+        Diffusion = MathF.Max(preset.Diffusion, MinDiffusion),
         Gain = preset.Gain * settings.Amount,
         GainHF = preset.GainHF,
         GainLF = preset.GainLF,
@@ -314,7 +316,7 @@ public sealed partial class RoomReverbSystem : EntitySystem
         LateReverbDelay = Math.Clamp(preset.LateReverbDelay * settings.DelayScale, 0f, 0.1f),
         LateReverbPan = preset.LateReverbPan,
         EchoTime = preset.EchoTime,
-        EchoDepth = preset.EchoDepth,
+        EchoDepth = 0f,
         ModulationTime = preset.ModulationTime,
         ModulationDepth = preset.ModulationDepth,
         AirAbsorptionGainHF = preset.AirAbsorptionGainHF,
