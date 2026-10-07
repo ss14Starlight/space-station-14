@@ -1,13 +1,6 @@
 Entries:
 - author: Xale
   changes:
-  - message: Neocytes will no longer make up 50% of humanoid ghostrole spawns.
-    type: Fix
-  id: 408839
-  time: '2026-09-24T10:30:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6295
-- author: Xale
-  changes:
   - message: Neocyte variants such as Neo-Human will no longer be included in randomisation for humanoid ghostrole spawns.
     type: Remove
   id: 408840
@@ -2799,4 +2792,11 @@ Entries:
   id: 409238
   time: '2026-10-07T09:42:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6545
+- author: Yosif
+  changes:
+  - message: Plant Trays now correctly updates.
+    type: Fix
+  id: 409239
+  time: '2026-10-07T09:58:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6552
 Order: -1
