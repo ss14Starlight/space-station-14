@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/5a73e8f825ff279e82949b9329783a9e3070e2da, edited by Flareguy for Space Station 14 | In hand sprites sprited by PuroSlavKing (Github) for Space Station 14. Storage by TiniestShark (Github). Colored brown-ish by VictoriaActual (Github).",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
@@ -9,21 +9,31 @@
     "states": [
         {
             "name": "equipped-NECK",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Taken from TG Station at commit https://github.com/tgstation/tgstation/commit/5a73e8f825ff279e82949b9329783a9e3070e2da, edited by Flareguy for Space Station 14, Colored blue by VictoriaActual (GitHub)"
         },
         {
-            "name": "icon"
+            "name": "equipped-Neck-hamster",
+            "directions": 4,
+            "copyright": "RamZ, VictoriaActual (Github)"
         },
         {
-            "name": "storage"
+            "name": "icon",
+             "copyright": "TG Station, Flareguy, VictoriaActual (Github)"
+        },
+        {
+            "name": "storage",
+            "copyright": "TG Station, TiniestShark (Github), VictoriaActual (Github)"
         },
         {
             "name": "inhand-left",
-            "directions": 4
+            "directions": 4,
+            "copyright": "PuroSlavKing (Github), VictoriaActual (Github)"
         },
         {
             "name": "inhand-right",
-            "directions": 4
+            "directions": 4,
+            "copyright": "PuroSlavKing, VictoriaActual (Github)"
         }
     ]
 }
