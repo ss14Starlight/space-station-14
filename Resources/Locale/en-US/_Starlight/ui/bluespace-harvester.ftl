@@ -1,5 +1,6 @@
 bluespace-harvester-window-title = Bluespace Harvester
 bluespace-harvester-input-management = Input Management
+bluespace-harvester-input = Input
 bluespace-harvester-input-level = Input level:
 bluespace-harvester-desired-level = Desired level:
 bluespace-harvester-current-power-use = Current power use:
@@ -26,3 +27,6 @@ bluespace-harvester-pool-power-cell = Unknown Power Cell
 bluespace-harvester-pool-artifact = Unknown artifact
 bluespace-harvester-pool-rare-seeds = Unknown Rare Seeds
 bluespace-harvester-pool-circuit-board = Unknown Circuit Board
+
+bluespace-harvester-min = MIN
+bluespace-harvester-max = MAX

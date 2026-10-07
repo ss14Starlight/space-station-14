@@ -1,5 +1,6 @@
 # Teleport tab
 
+
 abductors-ui-teleport = Teleport
 abductors-ui-attract = Attract
 
@@ -49,6 +50,8 @@ abductors-ghost-role-rules = You are a [color=red][bold]Abductor[/bold][/color].
                             You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
                             You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
 
+abductor-round-end-agent-name = abductor
+
 objective-issuer-abductors = [color=#FD0098]Mothership[/color]
 
 objective-condition-abduct-title = Abduct {$count} person.
@@ -77,3 +80,5 @@ abductor-target-none = target: [color=red]NONE[/color]
 abductor-victim = victim: [color=green]{ $name }[/color]
 abductor-victim-none = victim: [color=red]NONE[/color]
 abductor-need-armor = [color=red][font size=16]You need to plug in abductor armor![/font][/color]
+
+abductor-console-balance = Balance: { $balance }

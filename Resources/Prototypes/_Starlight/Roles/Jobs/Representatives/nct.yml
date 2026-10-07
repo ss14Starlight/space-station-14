@@ -32,7 +32,11 @@
     - Medical
     - IAA
     - NTPersonnel
+<<<<<<< HEAD
     - Debrief
+=======
+  # - Debrief # We don't need this many people in Debrief.
+>>>>>>> 97739a669d1a943ffe5581b91b9a38fb209b8495
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]

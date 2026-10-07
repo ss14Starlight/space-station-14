@@ -45,3 +45,79 @@
   components:
   - type: StationEvent
     occursDuringRoundEnd: false
+
+- type: !PartialOnly entityTable
+  id: ModerateAntagEventsTable
+  table:
+    children: !Clear
+    - id: DragonSpawn
+    - id: NinjaSpawn
+    - id: ParadoxCloneSpawn
+    - id: ParadoxCrisisSpawn
+    - id: SleeperAgents
+    - id: LoneOpsSpawn
+    - id: WizardSpawn
+    - id: AbductorsSpawn
+    - id: RailroadingTerminator
+    - id: ColossusSpawn
+    - id: EeepEvent
+    - id: HellPortalSpawn
+    - !type:NestedSelector
+      tableId: DerelictBorgEventTable
+
+- type: !PartialOnly entity
+  id: SlimesSpawnHorde
+  components:
+  - type: StationEvent
+    globalAnnouncement: false
+    earliestStart: 40
+    startAudio:
+      path: /Audio/_Starlight/Announcements/attention.ogg
+    weight: 3.5
+  - type: VentHordeRule
+    table:
+      children:
+      - !CombineIndex:0 id: MobAdultSlimesBlueAngrySmasher
+      - !CombineIndex:1 id: MobAdultSlimesGreenAngrySmasher
+      - !CombineIndex:2 id: MobAdultSlimesYellowAngrySmasher
+
+- type: !PartialOnly entity
+  id: SnakeSpawnHorde
+  components:
+  - type: StationEvent
+    globalAnnouncement: false
+    earliestStart: 40
+    weight: 3.5
+  - type: VentHordeRule
+    table:
+      children:
+      - !CombineIndex:0 id: MobPurpleSnakeSmasher
+      - !CombineIndex:1 id: MobSmallPurpleSnakeSmasher
+      - !CombineIndex:2 id: MobCobraSpaceSmasher
+
+- type: !PartialOnly entity
+  id: SpiderSpawnHorde
+  components:
+  - type: StationEvent
+    globalAnnouncement: false
+    earliestStart: 40
+    startAudio:
+      path: /Audio/_Starlight/Announcements/attention.ogg
+    weight: 3.5
+  - type: VentHordeRule
+    table:
+      children:
+      - !CombineIndex:0 id: MobGiantSpiderAngrySmasher
+
+- type: !PartialOnly entity
+  id: SpiderClownSpawnHorde
+  components:
+  - type: StationEvent
+    globalAnnouncement: false
+    earliestStart: 40
+    startAudio:
+      path: /Audio/_Starlight/Announcements/attention.ogg
+  - type: VentHordeRule
+    table:
+      children:
+      - !CombineIndex:0 id: MobClownSpiderSmasher

@@ -36,6 +36,9 @@ trait-language-scratch-desc = You know how to speak and understand Avali Scratch
 trait-language-solcommon-name = Sol Common
 trait-language-solcommon-desc = You picked up knowledge on Sol Common, Old Earth's current primary language developed by the Trans-Solar Federation.
 
+trait-language-cygnistandard-name = Cygni standard
+trait-language-cygnistandard-desc = You learned the language of the USSP, either through residence, or some other means. Maybe don't carry flashes on you.
+
 trait-language-sylvan-name = Sylvan
 trait-language-sylvan-desc = You understand Sylvan, spoken by Dionae and plants alike. Most people would probably call you crazy if you said you could talk to plants.
 

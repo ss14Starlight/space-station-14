@@ -12,10 +12,10 @@ public sealed class TwistyCubeMenu : DefaultWindow
 
     public TwistyCubeMenu()
     {
-        MinSize = SetSize = new Vector2(512, 400);
+        MinSize = SetSize = new Vector2(512, 435);
         Title = Loc.GetString("twistycube-menu-title");
 
-        var grid = new GridContainer { Rows = 2 };
+        var grid = new GridContainer { Rows = 3 };
         var buttonGrid = new GridContainer { Columns = 6 };
 
         var fcwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-front-cw") };
@@ -66,9 +66,37 @@ public sealed class TwistyCubeMenu : DefaultWindow
         bccwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.BottomCounterClockwise);
         buttonGrid.AddChild(bccwButton);
 
+        var xcwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-x-cw") };
+        xcwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.XClockwise);
+        buttonGrid.AddChild(xcwButton);
+
+        var xccwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-x-ccw") };
+        xccwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.XCounterClockwise);
+        buttonGrid.AddChild(xccwButton);
+
+        var ycwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-y-cw") };
+        ycwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.YClockwise);
+        buttonGrid.AddChild(ycwButton);
+
+        var yccwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-y-ccw") };
+        yccwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.YCounterClockwise);
+        buttonGrid.AddChild(yccwButton);
+
+        var zcwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-z-cw") };
+        zcwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.ZClockwise);
+        buttonGrid.AddChild(zcwButton);
+
+        var zccwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-z-ccw") };
+        zccwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.ZCounterClockwise);
+        buttonGrid.AddChild(zccwButton);
+
         grid.AddChild(buttonGrid);
 
         grid.AddChild(_control = new TwistyCubeControl());
+
+        var scrambleButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-scramble") };
+        scrambleButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.Scramble);
+        grid.AddChild(scrambleButton);
 
         ContentsContainer.AddChild(grid);
     }

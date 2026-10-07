@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: DrinkBase
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: LiquidSlosh
