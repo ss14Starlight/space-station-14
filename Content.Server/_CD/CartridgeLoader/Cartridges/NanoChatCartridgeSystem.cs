@@ -16,6 +16,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Abilities.Mime;
 using Content.Server.Popups;
 using Content.Shared.Alert;
+using Content.Shared.Ghost;
 
 namespace Content.Server._CD.CartridgeLoader.Cartridges;
 
@@ -27,10 +28,31 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedNanoChatSystem _nanoChat = default!;
     [Dependency] private StationSystem _station = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
 
     // Messages in notifications get cut off after this point
     // no point in storing it on the comp
     private const int NotificationMaxLength = 64;
+    private const uint MailServiceNumber = 0;
+    private static readonly TimeSpan MailBatchWindow = TimeSpan.FromSeconds(5);
+    private TimeSpan _nextMailboxFlush = TimeSpan.MaxValue;
+
+    private sealed class PendingMailboxMessage
+    {
+        public readonly string RecipientName;
+        public readonly string MailboxName;
+        public int Count = 1;
+        public readonly TimeSpan FlushAt;
+
+        public PendingMailboxMessage(string recipientName, string mailboxName, TimeSpan flushAt)
+        {
+            RecipientName = recipientName;
+            MailboxName = mailboxName;
+            FlushAt = flushAt;
+        }
+    }
+
+    private readonly Dictionary<(string RecipientName, string MailboxName), PendingMailboxMessage> _pendingMailboxMessages = new();
 
     #region Starlight
 
@@ -45,6 +67,8 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        FlushMailboxMessages();
 
         // Update card references for any cartridges that need it
         var query = EntityQueryEnumerator<NanoChatCartridgeComponent, CartridgeComponent>();
@@ -71,6 +95,82 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
         }
 
         UpdateUnreadAlerts();
+    }
+
+    /// <summary>
+    ///     Queues a mailbox deposit for a batched NanoChat notification.
+    /// </summary>
+    public void QueueMailboxDeposit(string? recipientName, string mailboxName)
+    {
+        if (string.IsNullOrWhiteSpace(recipientName))
+            return;
+
+        var key = (recipientName, mailboxName);
+        if (_pendingMailboxMessages.TryGetValue(key, out var pending))
+        {
+            pending.Count++;
+            return;
+        }
+
+        var flushAt = _timing.CurTime + MailBatchWindow;
+        _pendingMailboxMessages.Add(key, new PendingMailboxMessage(recipientName, mailboxName, flushAt));
+        if (flushAt < _nextMailboxFlush)
+            _nextMailboxFlush = flushAt;
+    }
+
+    private void FlushMailboxMessages()
+    {
+        if (_pendingMailboxMessages.Count == 0 || _timing.CurTime < _nextMailboxFlush)
+            return;
+
+        var dueMessages = _pendingMailboxMessages
+            .Where(entry => entry.Value.FlushAt <= _timing.CurTime)
+            .ToArray();
+
+        foreach (var (key, pending) in dueMessages)
+        {
+            _pendingMailboxMessages.Remove(key);
+            DeliverMailboxMessage(pending);
+        }
+
+        _nextMailboxFlush = TimeSpan.MaxValue;
+        foreach (var pending in _pendingMailboxMessages.Values)
+        {
+            if (pending.FlushAt < _nextMailboxFlush)
+                _nextMailboxFlush = pending.FlushAt;
+        }
+    }
+
+    private void DeliverMailboxMessage(PendingMailboxMessage pending)
+    {
+        var query = EntityQueryEnumerator<NanoChatCardComponent, IdCardComponent>();
+        while (query.MoveNext(out var cardUid, out var card, out var idCard))
+        {
+            if (card.Number == null || !string.Equals(idCard.FullName, pending.RecipientName, StringComparison.Ordinal))
+                continue;
+
+            if (_nanoChat.GetPdaHolder((cardUid, card)) is not { } holder ||
+                !_playerManager.TryGetSessionByEntity(holder, out var session) ||
+                session.Status != SessionStatus.InGame ||
+                session.AttachedEntity is not { } attached ||
+                attached != holder ||
+                HasComp<GhostComponent>(attached))
+                continue;
+
+            var sender = new NanoChatRecipient(MailServiceNumber, Loc.GetString("mailbox-nanochat-sender"));
+            _nanoChat.SetRecipient((cardUid, card), MailServiceNumber, sender);
+
+            var message = new NanoChatMessage(
+                _timing.CurTime,
+                Loc.GetString("mailbox-nanochat-message",
+                    ("count", pending.Count),
+                    ("mailbox", pending.MailboxName)),
+                MailServiceNumber);
+
+            _nanoChat.AddMessage((cardUid, card), MailServiceNumber, message);
+            var messageEvent = new NanoChatMessageReceivedEvent(cardUid, message, MailServiceNumber);
+            RaiseLocalEvent(ref messageEvent);
+        }
     }
 
     #region Starlight
