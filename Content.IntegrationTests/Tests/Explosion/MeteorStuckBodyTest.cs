@@ -770,13 +770,11 @@ public sealed class MeteorStuckBodyTest : GameTest
         public int OutsideAwakeMoved;
         public int MaxIslandDynamics;
 
-        public override string ToString()
-        {
-            return $"alive {Alive} deleted {Deleted} anchored {AnchoredProbes}; " +
-                $"embedded alive/awake/in-air/stuck {EmbeddedAlive}/{EmbeddedAwake}/{EmbeddedInAir}/{EmbeddedAwakeOverlappingWall}; " +
-                $"blast alive/awake/in-air/stuck {BlastAlive}/{BlastAwake}/{BlastInAir}/{BlastAwakeOverlappingWall}; " +
-                $"far alive/awake/in-air/near/moved {OutsideAlive}/{OutsideAwake}/{OutsideInAir}/{OutsideAwakeNearSpawn}/{OutsideAwakeMoved}; " +
-                $"island {MaxIslandDynamics}";
-        }
+        public override string ToString() =>
+                return $"alive {Alive} deleted {Deleted} anchored {AnchoredProbes}; " +
+                    $"embedded alive/awake/in-air/stuck {EmbeddedAlive}/{EmbeddedAwake}/{EmbeddedInAir}/{EmbeddedAwakeOverlappingWall}; " +
+                    $"blast alive/awake/in-air/stuck {BlastAlive}/{BlastAwake}/{BlastInAir}/{BlastAwakeOverlappingWall}; " +
+                    $"far alive/awake/in-air/near/moved {OutsideAlive}/{OutsideAwake}/{OutsideInAir}/{OutsideAwakeNearSpawn}/{OutsideAwakeMoved}; " +
+                    $"island {MaxIslandDynamics}";
     }
 }
