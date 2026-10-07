@@ -20,10 +20,14 @@
 - type: !PartialOnly borgType
   id: medical
   addComponents:
-  - !CombineIndex:1 type: ShowHealthBars
+  - type: !Remove ShowHealthBars
+  - type: ShowHealthBars
     damageContainers:
+    - Biological
     - Hybrid
     - MoffDemonBiological
-  - !CombineIndex:2 type: ShowHealthIcons
+  - type: !Remove ShowHealthIcons
+  - type: ShowHealthIcons
     damageContainers:
+    - Biological
     - Hybrid
