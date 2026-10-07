@@ -20,6 +20,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Content.Shared.Station.Components;
+using Content.Shared.Clothing.Components;
 
 namespace Content.Server._Starlight.CryoTeleportation;
 
