@@ -1,0 +1,72 @@
+- type: !PartialOnly entity
+  id: MobGooseNarsie
+  components:
+  - type: HellportalMob
+  - type: NpcFactionMember
+    factions:
+    - !Remove SimpleHostile
+    - MoffNarsianDemon
+  - type: Tag
+    tags:
+    - StutterImmune
+  - type: LanguageSpeaker
+    currentLanguage: Darktongue
+  - type: LanguageKnowledge
+    speaks:
+    - Darktongue
+    understands:
+    - GalacticCommon
+    - Darktongue
+  - type: Vocalizer
+    hideChat: true
+  - type: DatasetVocalizer
+    dataset: MoffNarSiePrayers
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 6
+        Structural: 15
+        Heat: 6
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Critical
+      100: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib #TODO: better sfx for our demons
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MoffDemonicEssence:
+            min: 0
+            max: 1
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Acidifier:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Body
+    prototype: Bloodsucker
+  - type: Damageable
+    damageModifierSet: MoffDemonFlesh
+    damageContainer: MoffDemonBiological
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound #TODO: Make custom HTN
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
