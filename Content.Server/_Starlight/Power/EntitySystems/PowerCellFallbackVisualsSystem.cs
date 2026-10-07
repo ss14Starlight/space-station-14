@@ -95,8 +95,8 @@ public sealed partial class PowerCellFallbackVisualsSystem : EntitySystem
                 state = PowerCellFallbackVisualState.OnBatteryInUse;
             }
             else if (hasCharge &&
-                     _powerCell.HasActivatableCharge(uid) &&
-                     _powerCell.HasDrawCharge(uid))
+                    _powerCell.HasActivatableCharge(uid) &&
+                    _powerCell.HasDrawCharge(uid))
             {
                 state = PowerCellFallbackVisualState.OnBatteryIdle;
             }

@@ -8,6 +8,6 @@ public sealed partial class ActivatableUIRequiresPowerSystem
     private partial bool HasPowerCellFallback(EntityUid uid, ActivatableUIRequiresPowerComponent component)
     {
         return component.AllowPowerCellFallback &&
-               HasComp<ActivatableUIRequiresPowerCellComponent>(uid);
+                HasComp<ActivatableUIRequiresPowerCellComponent>(uid);
     }
 }
