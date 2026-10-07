@@ -20,7 +20,7 @@
 
 - type: entity
   name: athena
-  parent: [Spear, BaseSecurityContraband]
+  parent: Spear
   id: SpearAthena
   description: Impressed by a crewmember managing to kill their bodyguard with a spear, a CentComm official commissioned the “Athena” tactical spear for their security forces.
   components:
@@ -51,3 +51,5 @@
     malus: 0.6
   - type: StaticPrice
     price: 1000
+  - type: Contraband
+    allowedDepartments: [ Security ]
