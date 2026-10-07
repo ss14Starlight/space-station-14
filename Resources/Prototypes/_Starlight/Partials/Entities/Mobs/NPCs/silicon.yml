@@ -22,23 +22,3 @@
   id: MobMimeBot
   components:
   - type: FirelockOpener
-
-- type: !PartialOnly entity
-  id: MobSiliconBase
-  components:
-  - type: SocialInteractionReceiver
-    interactionOverrides: # silicons don't have noses
-    - id: Boop
-      interactString: booping-borg-success
-      messagePerceivedByOthers: booping-borg-success-others
-      emoteMessage: booping-borg-emote
-
-- type: !PartialOnly entity
-  id: MobSiliconBase
-  components:
-  - type: SocialInteractionReceiver
-    interactionOverrides: # silicons don't have noses
-    - id: Boop
-      interactString: booping-borg-success
-      messagePerceivedByOthers: booping-borg-success-others
-      emoteMessage: booping-borg-emote

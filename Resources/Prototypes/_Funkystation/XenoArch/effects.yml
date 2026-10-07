@@ -949,6 +949,42 @@
 
 # Gas Spawners
 
+- type: entity
+  id: XenoArtifactEffectCreationGasHealium
+  parent: BaseXenoArtifactEffect
+  description: Expels a mystery gas
+  components:
+  - type: XAECreateGas
+    gases:
+      Healium: 300
+
+- type: entity
+  id: XenoArtifactEffectCreationGasHydrogen
+  parent: BaseXenoArtifactEffect
+  description: Expels a mystery gas
+  components:
+  - type: XAECreateGas
+    gases:
+      Hydrogen: 300
+
+- type: entity
+  id: XenoArtifactEffectCreationGasHalon
+  parent: BaseXenoArtifactEffect
+  description: Expels a mystery gas
+  components:
+  - type: XAECreateGas
+    gases:
+      Halon: 300
+
+- type: entity
+  id: XenoArtifactEffectCreationGasHelium
+  parent: BaseXenoArtifactEffect
+  description: Expels a mystery gas
+  components:
+  - type: XAECreateGas
+    gases:
+      Helium: 300
+
 # Food Reagent Spawners
 
 - type: entity
@@ -1130,6 +1166,96 @@
       canReact: false
     possibleChemicals:
     - OilOlive
+
+- type: entity
+  id: XenoArtifactVodkaPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - Vodka
+
+- type: entity
+  id: XenoArtifactFourteenLokoPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - FourteenLoko
+
+- type: entity
+  id: XenoArtifactVitaminPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - Vitamin
+
+- type: entity
+  id: XenoArtifactOilPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - Oil
+
+- type: entity
+  id: XenoArtifactHistaminePuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - Histamine
+
+- type: entity
+  id: XenoArtifactMindbreakerToxinPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - MindbreakerToxin
 
 # Polymophs
 

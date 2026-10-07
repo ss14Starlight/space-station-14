@@ -1,0 +1,110 @@
+- type: entity
+  parent: [BaseETOContraband, ClothingSovietBelt]
+  id: ClothingBeltETOCombatTech
+  name: ETO combat technician belt
+  description: A useful belt to carry all of the CT's gear, including some ammo if need be.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/clothing/etobelt.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/ETO/clothing/etobelt.rsi
+
+- type: entity
+  parent: ClothingBeltETOCombatTech
+  id: ClothingBeltETOCombatTechFilled
+  suffix: Filled, ETO
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PowerDrill
+        - id: JawsOfLife
+        - id: WelderExperimental
+        - id: Multitool
+
+- type: entity
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseETOContraband]
+  id: ClothingBeltETOBelt
+  name: ETO operator belt
+  description: A belt designed for ETO operatives to carry equipment in the field.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/clothing/etobelt.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/ETO/clothing/etobelt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitETOOperative
+  name: ETO operative jumpsuit
+  description: A jumpsuit built for Freedom Fighters.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/clothing/jumpsuit/etocombat.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/ETO/clothing/jumpsuit/etocombat.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitETOLead
+  name: ETO team leader jumpsuit
+  description: A jumpsuit built for those who lead the fight.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/clothing/jumpsuit/etolead.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/ETO/clothing/jumpsuit/etolead.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitETOMedical
+  name: ETO corpsman jumpsuit
+  description: A jumpsuit built for those who keep the freedom fighters alive.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/clothing/jumpsuit/etomedical.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/ETO/clothing/jumpsuit/etomedical.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitETOCombatTech
+  name: ETO combat technician jumpsuit
+  description: A jumpsuit built for those who build the foundation of the future.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/clothing/jumpsuit/etoct.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/ETO/clothing/jumpsuit/etoct.rsi
+
+- type: entity
+  parent: [ClothingHeadBase, BaseETOContraband]
+  id: ClothingHeadHatBeretETOLead
+  name: ETO leader beret
+  description: A beret best fit for leaders.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/ETO/clothing/etoleadberet.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/ETO/clothing/etoleadberet.rsi
+
+- type: entity
+  parent: [ClothingHeadBase, BaseETOContraband]
+  id: ClothingHeadHatETOCorpsmanHat
+  name: ETO corpsman hat
+  description: A wide brimmed hat for the Corpsman, not very protective, but definitely fashionable.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/ETO/clothing/etocorpsmanhat.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/ETO/clothing/etocorpsmanhat.rsi
+
+- type: entity
+  parent: [BaseETOContraband, ClothingBackpackERTLeader]
+  id: ClothingBackpackETO
+  name: ETO operative rucksack
+  description: A modified backpack with extra hooks and pockets to hold all the things an operative needs.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/ETO/clothing/etobackpack.rsi

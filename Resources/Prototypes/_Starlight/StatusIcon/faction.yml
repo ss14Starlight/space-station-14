@@ -45,7 +45,7 @@
       - CosmicAstralBody
       - ShowAntagIcons
   icon:
-    sprite: /Textures/_Starlight/Interface/CosmicCult/antag_icons.rsi
+    sprite: /Textures/_Starlight/CosmicCult/Icons/antag_icons.rsi
     state: CosmicCult
 
 - type: factionIcon
@@ -60,7 +60,7 @@
       - CosmicAstralBody
       - ShowAntagIcons
   icon:
-    sprite: /Textures/_Starlight/Interface/CosmicCult/antag_icons.rsi
+    sprite: /Textures/_Starlight/CosmicCult/Icons/antag_icons.rsi
     state: CosmicCultLead
 
 - type: factionIcon

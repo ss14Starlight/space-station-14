@@ -1,6 +1,0 @@
-- type: stack
-  id: Entropy
-  name: stack-entropy
-  icon: { sprite: _Starlight/Objects/Materials/CosmicCult/entropymote.rsi, state: mote }
-  spawn: MaterialCosmicCultEntropy1
-  maxCount: 6

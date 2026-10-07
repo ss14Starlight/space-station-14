@@ -135,7 +135,7 @@ public sealed partial class CosmicCultRuleComponent : Component
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan? ExtraRiftTimer;
 
-    [DataField] public SoundSpecifier WarpSFX = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/ability_blank.ogg");
+    [DataField] public SoundSpecifier WarpSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/ability_blank.ogg");
 
     [DataField] public EntProtoId WarpVFX = "CosmicBlankAbilityVFX";
 }

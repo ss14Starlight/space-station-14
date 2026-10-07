@@ -6,15 +6,20 @@
   components:
   - type: SolutionSpiker
     sourceSolution: food
+    ignoreEmpty: true
+  - type: Edible
   - type: Extractable
     grindableSolutionName: food
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Sugar
-          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: Sugar
+        Quantity: 5
   - type: Sprite
     sprite: _Inferus/Objects/Misc/sugarcubes.rsi
     state: sugarcubes1
@@ -50,11 +55,27 @@
 
 - type: entity
   parent: SugarCube
+  id: SugarCube3
+  suffix: 3
+  components:
+  - type: Stack
+    count: 3
+
+- type: entity
+  parent: SugarCube
   id: SugarCube6
   suffix: 6
   components:
   - type: Stack
     count: 6
+
+- type: entity
+  parent: SugarCube
+  id: SugarCube10
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10
 
 - type: stack
   parent: BaseSmallStack

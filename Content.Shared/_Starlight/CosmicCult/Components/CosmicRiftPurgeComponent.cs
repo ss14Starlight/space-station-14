@@ -22,7 +22,7 @@ public sealed partial class CosmicRiftPurgeComponent : Component
     public EntProtoId PurgeVFX = "CleanseEffectVFX";
 
     [DataField]
-    public SoundSpecifier PurgeSFX = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/effigy_pulse.ogg");
+    public SoundSpecifier PurgeSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/effigy_pulse.ogg");
 
     [DataField]
     public SoundSpecifier BeamSFX = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg");

@@ -38,6 +38,7 @@ air-alarm-ui-window-tab-vents = Vents
 air-alarm-ui-window-tab-scrubbers = Scrubbers
 air-alarm-ui-window-tab-sensors = Sensors
 
+air-alarm-ui-gases = {$gas}: {$amount} mol ({$percentage}%)
 air-alarm-ui-gases-indicator = {$gas}: [color={$color}]{$amount} mol ({$percentage}%)[/color]
 
 air-alarm-ui-mode-filtering = Filtering
@@ -45,6 +46,7 @@ air-alarm-ui-mode-wide-filtering = Filtering (wide)
 air-alarm-ui-mode-fill = Fill
 air-alarm-ui-mode-panic = Panic
 air-alarm-ui-mode-none = None
+
 
 air-alarm-ui-pump-direction-siphoning = Siphoning
 air-alarm-ui-pump-direction-scrubbing = Scrubbing
@@ -64,6 +66,7 @@ air-alarm-ui-widget-gas-filters = Gas Filters
 air-alarm-ui-widget-enable = Enabled
 air-alarm-ui-widget-copy = Copy settings to similar devices
 air-alarm-ui-widget-copy-tooltip = Copies the settings of this device to all devices in this air alarm tab.
+air-alarm-ui-widget-ignore = Ignore
 air-alarm-ui-atmos-net-device-label = Address: {$address}
 
 ### Vent pumps
@@ -84,6 +87,7 @@ air-alarm-ui-scrubber-deselect-all-gases-label = Deselect all
 ### Thresholds
 
 air-alarm-ui-sensor-gases = Gases
+air-alarm-ui-sensor-thresholds = Thresholds
 air-alarm-ui-thresholds-pressure-title = Thresholds (kPa)
 air-alarm-ui-thresholds-temperature-title = Thresholds (K)
 air-alarm-ui-thresholds-gas-title = Thresholds (%)
