@@ -192,6 +192,11 @@ public sealed partial class SharedStructureFlipSystem : EntitySystem
         var flipped = EnsureComp<FlippedStructureComponent>(ent);
         flipped.UprightPrototype = null;
 
+        // The sprite and the fallback hitbox turn the same way, so the hitbox lies where the structure is drawn.
+        var tilt = GetTiltAwayFrom(ent, pivot);
+        if (fallTowards)
+            tilt = -tilt;
+
         if (TryComp<FixturesComponent>(ent, out var fixtures))
         {
             foreach (var (id, fixture) in fixtures.Fixtures)
@@ -207,7 +212,7 @@ public sealed partial class SharedStructureFlipSystem : EntitySystem
                 {
                     var upright = poly.Vertices;
                     flipped.SavedShapes[id] = [.. upright];
-                    _physics.SetVertices(ent, id, fixture, poly, GetFlippedVertices(ent.Comp, upright), fixtures);
+                    _physics.SetVertices(ent, id, fixture, poly, GetFlippedVertices(ent.Comp, upright, tilt), fixtures);
                 }
             }
         }
@@ -234,8 +239,7 @@ public sealed partial class SharedStructureFlipSystem : EntitySystem
 
         Dirty(ent, flipped);
 
-        var tilt = GetTiltAwayFrom(ent, pivot);
-        _appearance.SetData(ent, FlippedStructureVisuals.Tilt, fallTowards ? -tilt : tilt);
+        _appearance.SetData(ent, FlippedStructureVisuals.Tilt, tilt);
 
         if (predictedBy != null)
             _audio.PlayPredicted(_flipSound, ent, predictedBy);
@@ -276,14 +280,14 @@ public sealed partial class SharedStructureFlipSystem : EntitySystem
         RemComp<FlippedStructureComponent>(ent);
     }
 
-    private static Vector2[] GetFlippedVertices(FlippableStructureComponent comp, Vector2[] upright)
+    private static Vector2[] GetFlippedVertices(FlippableStructureComponent comp, Vector2[] upright, Angle tilt)
     {
         if (comp.FlippedBounds is { } bounds)
             return [bounds.BottomLeft, bounds.BottomRight, bounds.TopRight, bounds.TopLeft];
 
         var turned = new Vector2[upright.Length];
         for (var i = 0; i < upright.Length; i++)
-            turned[i] = new Vector2(-upright[i].Y, upright[i].X);
+            turned[i] = tilt.RotateVec(upright[i]);
 
         return turned;
     }

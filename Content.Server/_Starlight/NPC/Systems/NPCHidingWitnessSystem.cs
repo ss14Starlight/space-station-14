@@ -41,6 +41,7 @@ public sealed partial class NPCHidingWitnessSystem : EntitySystem
         _seeThrough = IsSeeThrough;
 
         SubscribeLocalEvent<NpcFactionMemberComponent, EntGotInsertedIntoContainerMessage>(OnInsertedIntoContainer);
+        SubscribeLocalEvent<NpcFactionMemberComponent, EntGotRemovedFromContainerMessage>(OnRemovedFromContainer);
     }
 
     private bool IsSeeThrough(EntityUid uid)
@@ -72,6 +73,24 @@ public sealed partial class NPCHidingWitnessSystem : EntitySystem
                 continue;
 
             EnsureComp<NPCHidingWitnessComponent>(npc).Hidden[hider] = storage;
+        }
+    }
+
+    private void OnRemovedFromContainer(Entity<NpcFactionMemberComponent> hider, ref EntGotRemovedFromContainerMessage args)
+    {
+        var storage = args.Container.Owner;
+        if (!HasComp<EntityStorageComponent>(storage))
+            return;
+
+        var query = EntityQueryEnumerator<NPCHidingWitnessComponent>();
+        while (query.MoveNext(out var npc, out var witness))
+        {
+            if (!witness.Hidden.TryGetValue(hider, out var known) || known != storage)
+                continue;
+
+            witness.Hidden.Remove(hider);
+            if (witness.Hidden.Count == 0)
+                RemCompDeferred<NPCHidingWitnessComponent>(npc);
         }
     }
 

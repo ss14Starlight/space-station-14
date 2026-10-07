@@ -139,21 +139,32 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
     /// </summary>
     public bool TryGetShelter(EntityUid target, Vector2 shotDirection, out EntityUid shelter)
     {
-        shelter = default;
+        foreach (var cover in GetShelters(target, shotDirection))
+        {
+            shelter = cover;
+            return true;
+        }
 
+        shelter = default;
+        return false;
+    }
+
+    /// <summary>
+    /// Every cover a lying target hides behind from a shot flying in <paramref name="shotDirection"/>.
+    /// Callers that have the shot itself still have to check it with <see cref="IsShotStopped(EntityUid, EntityUid, EntityUid?, float?, EntityUid?, Vector2?, int?)"/>.
+    /// </summary>
+    public IEnumerable<EntityUid> GetShelters(EntityUid target, Vector2 shotDirection)
+    {
         if (!_standing.IsDown(target))
-            return false;
+            yield break;
 
         foreach (var cover in _lookup.GetEntitiesInRange<ProjectileCoverComponent>(Transform(target).Coordinates, ShelterSearchRange))
         {
             if (cover.Owner == target || !CanShelter(cover.Comp) || !IsSheltering(cover, target, shotDirection))
                 continue;
 
-            shelter = cover.Owner;
-            return true;
+            yield return cover.Owner;
         }
-
-        return false;
     }
 
     private static bool CanShelter(ProjectileCoverComponent comp)

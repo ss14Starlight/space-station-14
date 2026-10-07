@@ -591,14 +591,21 @@ public abstract partial class SharedGunSystem : EntitySystem
     }
 
     /// <summary>
-    /// Advances <see cref="GunComponent.CurrentAngle"/> for a shot fired now and returns it.
+    /// Fires a shot now: returns the spread this shot uses, then adds the shot's own recoil to
+    /// <see cref="GunComponent.CurrentAngle"/> for the shots after it.
     /// Must only be called when the gun actually fires.
     /// </summary>
     public Angle UpdateCurrentAngle(Entity<GunComponent> gun, TimeSpan? curTime = null)
     {
-        gun.Comp.CurrentAngle = new Angle(GetNextShotTheta(gun.Comp, curTime ?? Timing.CurTime));
+        var shot = GetNextShotTheta(gun.Comp, curTime ?? Timing.CurTime);
+
+        gun.Comp.CurrentAngle = new Angle(MathHelper.Clamp(
+            shot + gun.Comp.AngleIncreaseModified.Theta,
+            gun.Comp.MinAngleModified.Theta,
+            gun.Comp.MaxAngleModified.Theta));
         DirtyField(gun.AsNullable(), nameof(GunComponent.CurrentAngle));
-        return gun.Comp.CurrentAngle;
+
+        return new Angle(shot);
     }
 
     private static double GetNextShotTheta(GunComponent comp, TimeSpan curTime)
@@ -607,7 +614,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         // Recoil only starts decaying once the gun could fire again.
         var timeSinceLastFire = Math.Max(0, (curTime - comp.LastFire).TotalSeconds);
         return MathHelper.Clamp(
-            comp.CurrentAngle.Theta + comp.AngleIncreaseModified.Theta - (comp.AngleDecayModified.Theta * timeSinceLastFire),
+            comp.CurrentAngle.Theta - (comp.AngleDecayModified.Theta * timeSinceLastFire),
             comp.MinAngleModified.Theta,
             comp.MaxAngleModified.Theta);
     }

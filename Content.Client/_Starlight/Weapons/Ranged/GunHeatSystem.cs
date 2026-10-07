@@ -24,7 +24,18 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
 
     private readonly Dictionary<EntityUid, (ShaderInstance Instance, ShaderInstance? Shader, string? Prototype)> _glowing = new();
 
-    private readonly Dictionary<EntityUid, (EntityUid Holder, string[] Layers, ShaderInstance Instance)> _held = new();
+    private readonly Dictionary<EntityUid, HeldGlow> _held = new();
+
+    private const string DisplacementSuffix = "-displacement";
+
+    private sealed class HeldGlow(EntityUid holder, string[] layers, ShaderInstance instance)
+    {
+        public readonly EntityUid Holder = holder;
+        public readonly string[] Layers = layers;
+        public readonly ShaderInstance Instance = instance;
+
+        public readonly Dictionary<string, (ShaderInstance? Shader, string? Prototype)> Originals = new();
+    }
 
     private readonly Dictionary<EntityUid, GunHeatStatusControl> _statusControls = new();
 
@@ -65,7 +76,8 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
             return;
         }
 
-        _held[ent] = (args.User, args.RevealedLayers.ToArray(), _prototype.Index(_inhandHeatShader).InstanceUnique());
+        var layers = args.RevealedLayers.Where(key => !key.EndsWith(DisplacementSuffix)).ToArray();
+        _held[ent] = new HeldGlow(args.User, layers, _prototype.Index(_inhandHeatShader).InstanceUnique());
         UpdateInhandGlow(ent, GetGlow(ent.Comp, ent.Comp.Temperature));
     }
 
@@ -106,13 +118,22 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
 
         foreach (var key in held.Layers)
         {
-            if (!_sprite.LayerMapTryGet((held.Holder, sprite), key, out var index, false))
+            if (!_sprite.LayerMapTryGet((held.Holder, sprite), key, out var index, false)
+                || sprite[index] is not SpriteComponent.Layer layer)
                 continue;
 
             if (glow <= 0f)
-                sprite.LayerSetShader(index, null, null);
-            else
+            {
+                if (held.Originals.Remove(key, out var original))
+                    sprite.LayerSetShader(index, original.Shader, original.Prototype);
+                continue;
+            }
+
+            if (!held.Originals.ContainsKey(key))
+            {
+                held.Originals[key] = (layer.Shader, layer.ShaderPrototype?.Id);
                 sprite.LayerSetShader(index, held.Instance, _inhandHeatShader);
+            }
         }
     }
 }
