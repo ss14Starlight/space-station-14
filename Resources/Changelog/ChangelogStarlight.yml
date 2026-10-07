@@ -1,11 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: (Reach) Some point defense turrets not being powered.
-    type: Fix
-  id: 408844
-  time: '2026-09-24T10:30:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6307
 - author: XeroTec/Meepmerp
   changes:
   - message: Security gas masks, glasses/huds, emergency tanks, and crisis buttons fit in belt/carrier.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409243
   time: '2026-10-07T11:07:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6541
+- author: kirb
+  changes:
+  - message: Station radio volume fix.
+    type: Fix
+  id: 409244
+  time: '2026-10-07T11:33:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6537
 Order: -1
