@@ -19,6 +19,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Content.Shared.Station.Components;
+using Content.Shared.NPC;
 
 namespace Content.Server._Starlight.CryoTeleportation;
 
@@ -66,6 +67,7 @@ public sealed partial class CryoTeleportationSystem : EntitySystem
                 || comp.ExitTime == null
                 || _timing.CurTime - comp.ExitTime - comp.TimeDelay < stationComp.TransferDelay
                 || HasComp<CryostorageContainedComponent>(uid)
+                || HasComp<ActiveNPCComponent>(uid)
                 || HasComp<UncryoableComponent>(uid))
                 continue;
 
