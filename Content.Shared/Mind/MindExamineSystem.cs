@@ -17,7 +17,9 @@ public sealed partial class MindExamineSystem : EntitySystem
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] private ISharedPlayerManager _player = default!;
+    #region Starlight
     [Dependency] private IEntityManager _entManager = default!;
+    #endregion
 
     public override void Initialize()
     {
@@ -52,7 +54,7 @@ public sealed partial class MindExamineSystem : EntitySystem
             MindState.Dead => $"[color=red]{Loc.GetString("comp-mind-examined-dead", ("ent", ent.Owner))}[/color]",
             MindState.Catatonic => $"[color=mediumpurple]{Loc.GetString("comp-mind-examined-catatonic", ("ent", ent.Owner))}[/color]",
             MindState.SSD => $"[color=yellow]{Loc.GetString("comp-mind-examined-ssd", ("ent", ent.Owner))}[/color]",
-            MindState.Npc => $"[color=darkorange]{Loc.GetString("comp-mind-examined-npc-controlled", ("ent", ent.Owner))}[/color]",
+            MindState.Npc => $"[color=darkorange]{Loc.GetString("comp-mind-examined-npc-controlled", ("ent", ent.Owner))}[/color]", // Starlight
             _ => null,
         };
 

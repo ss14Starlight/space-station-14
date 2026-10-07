@@ -25,12 +25,10 @@ public sealed partial class MindExaminableComponent : Component
 public enum MindState : byte
 {
     None, // No text
+    Npc, // Entity is AI controlled
     Dead, // Player is dead but still connected
     Catatonic, // Entity is alive but has no mind attached to it.
     SSD, // Player disconnected while alive
     DeadSSD, // Player died and disconnected
-    #region Starlight
-    Irrecoverable, // Entity is dead and has no mind attached
-    Npc, // Entity is AI controlled
-    #endregion
+    Irrecoverable // Entity is dead and has no mind attached
 }
