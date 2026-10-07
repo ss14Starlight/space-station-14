@@ -53,11 +53,11 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
     private void OnInsertedInContainer(Entity<DeliveryComponent> ent, ref EntGotInsertedIntoContainerMessage args)
     {
         var containerEntity = args.Container.Owner;
-        if (!HasComp<MailBoxComponent>(containerEntity)) // Leave insertions into ordinary containers unchanged.
-            return;
-
-        GrantSpesoReward(ent!);
-        _nanoChat.QueueMailboxDeposit(ent.Comp.RecipientName, Name(containerEntity)); // Queue recipient and localized mailbox type for batching.
+        if (HasComp<MailBoxComponent>(containerEntity))
+        {
+            GrantSpesoReward(ent!);
+            _nanoChat.QueueMailboxDeposit(ent.Comp.RecipientName, Name(containerEntity)); // Queue recipient and localized mailbox type for batching.
+        }
     }
     //Starlight-edit end
 
