@@ -365,6 +365,7 @@
   loadouts:
   - MagistrateWhiteGloves
   - MagistrateBlackGloves
+  - HopGloves
 
 - type: loadoutGroup
   id: BlueShieldHead
@@ -1268,3 +1269,13 @@
   - BrigmedicRig
   - BrigmedicBelt
   - CorpsmanBelt
+
+# for paperwork related roles, Magi, IAA, and NTR
+- type: loadoutGroup
+  id: PaperworkGloves
+  name: loadout-group-gloves-paperwork
+  defaultSelected: 1
+  loadouts:
+  - MagistrateWhiteGloves
+  - MagistrateBlackGloves
+  - HoPGloves
