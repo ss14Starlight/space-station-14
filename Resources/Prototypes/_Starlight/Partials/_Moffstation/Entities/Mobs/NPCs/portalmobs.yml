@@ -1,4 +1,3 @@
-# Starlight uses slotted bodies and Damageable rather than Moff's body/health bases.
 - type: !PartialOnly entity
   id: MoffMobDemonNarsieBase
   components:
