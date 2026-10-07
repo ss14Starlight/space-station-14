@@ -342,7 +342,7 @@ public sealed class MeteorStuckBodyTest : GameTest
             {
                 for (var y = -4; y <= 4; y++)
                 {
-                    if (x * x + (y * y) > BlastRadius * BlastRadius)
+                    if ((x * x) + (y * y) > BlastRadius * BlastRadius)
                         continue;
 
                     var uid = Spawn(entMan, ItemProto, grid.Owner, x, y);
