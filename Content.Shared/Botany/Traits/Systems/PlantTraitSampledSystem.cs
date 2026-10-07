@@ -12,7 +12,7 @@ public sealed partial class PlantTraitSampledSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnPlantSampleAttempt(Entity<PlantTraitSampledComponent> ent, ref PlantSampleAttemptEvent args)
     {
-        _popup.PopupPredictedCursor(Loc.GetString("plant-sample-component-already-sampled-popup"), args.User); // Starlight: Predicted for popups
+        _popup.PopupCursor(Loc.GetString("plant-sample-component-already-sampled-popup")); // Starlight: If you see here error after upstreaming, revert this commit
         args.Cancel();
     }
 }

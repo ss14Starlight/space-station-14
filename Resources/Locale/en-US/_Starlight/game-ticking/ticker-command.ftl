@@ -12,6 +12,8 @@ command-description-ticker-toggletimeronend =
     Toggle whether the round restart timer will auto-start on round end. Resets to true automatically upon returning to lobby.
 command-description-ticker-delaystart =
     Delay round start by a specified number of seconds, or pause if 0 or unspecified.
+command-description-ticker-changeshifttime =
+    Add or remove time until the round end system kicks in (emergency shuttle call).
 command-description-ticker-getrule =
     Get a reference to an added gamerule entity.
 command-description-ticker-getrules =
