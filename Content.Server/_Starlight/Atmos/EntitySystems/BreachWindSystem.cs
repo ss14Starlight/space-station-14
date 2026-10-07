@@ -33,6 +33,9 @@ public sealed partial class BreachWindSystem : EntitySystem
         public float? PassVolume;
     }
 
+    /// <summary>
+    /// Reports the flow of air through a breach, creating wind effects.
+    /// </summary>
     public void ReportFlow(EntityUid grid, Vector2i tile, float pressureDifference)
     {
         var patch = new Vector2i(
