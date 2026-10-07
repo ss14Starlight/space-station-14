@@ -1,6 +1,6 @@
 - files: ["book_drop.ogg", "book_pickup.ogg", "paper_drop.ogg", "paper_pickup.ogg", "disk_drop.ogg", "disk_pickup.ogg", "drinkglass_drop.ogg", "drinkglass_pickup.ogg", "beaker_pickup.ogg", "beaker_place.ogg", "toolbelt_drop.ogg", "toolbelt_pickup.ogg", "component_drop.ogg", "component_pickup.ogg", "matchbox_pickup.ogg", "pill_bottle_pickup.ogg", "pill_bottle_place.ogg", "ammobox_pickup.ogg", "ammobox_drop.ogg", "crowbar_pickup.ogg", "multitool_pickup.ogg", "screwdriver_pickup.ogg", "weldingtool_pickup.ogg", "wirecutter_pickup.ogg", "wrench_pickup.ogg", "toolbox_pickup.ogg", "toolbox_drop.ogg"]
   license: "CC-BY-SA-3.0"
-  copyright: "Taken from /tg/station, downmixed to mono, loudness-normalized"
+  copyright: "Taken from /tg/station, downmixed to mono, loudness-normalized; drinkglass_pickup.ogg also low-passed to soften it"
   source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling"
 
 - files: ["cloth_drop1.ogg", "cloth_drop2.ogg", "cloth_drop3.ogg", "cloth_drop4.ogg", "cloth_pickup1.ogg", "cloth_pickup2.ogg", "cloth_pickup3.ogg", "cloth_pickup4.ogg", "sneakers_drop1.ogg", "sneakers_pickup1.ogg", "backpack_drop1.ogg", "backpack_pickup1.ogg", "id_card_drop1.ogg", "id_card_pickup1.ogg", "headset_drop1.ogg", "headset_pickup1.ogg", "headset_pickup2.ogg", "headset_pickup3.ogg", "glove_drop.ogg", "glove_pick_up.ogg"]
