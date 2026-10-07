@@ -99,6 +99,8 @@
   - type: Reflect
     reflectProb: 0.5
     spread: 45
+  - type: ToolTileCompatible
+    delay: 2
   - type: PointLight
     enabled: true
     radius: 3

@@ -4,7 +4,7 @@
   components:
   - type: Body
     prototype: Bloodsucker
-  - !Remove type: NarSieDemonAccent
+  - type: !Remove NarSieDemonAccent
   - type: Tag
     tags:
     - StutterImmune

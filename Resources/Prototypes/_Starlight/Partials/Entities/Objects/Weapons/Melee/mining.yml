@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: BaseWeaponCrusher
+  components:
+  - type: ToolTileCompatible
+    delay: 2

@@ -7,4 +7,5 @@
     maxOccurrences: !Remove
     reoccurrenceDelay: 40
   - type: RandomSpawnRule
+    prototype: HellPortalAnomaly
     requireUnobstructedTile: true

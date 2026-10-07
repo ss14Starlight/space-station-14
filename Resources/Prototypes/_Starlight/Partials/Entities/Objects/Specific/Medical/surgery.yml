@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: Scalpel
+  components:
+  - type: ToolTileCompatible
+    delay: 2
+
+- type: !PartialOnly entity
+  id: Saw
+  components:
+  - type: ToolTileCompatible
+    delay: 2

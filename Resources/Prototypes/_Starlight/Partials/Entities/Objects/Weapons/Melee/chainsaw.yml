@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: Chainsaw
+  components:
+  - type: ToolTileCompatible
+    delay: 2

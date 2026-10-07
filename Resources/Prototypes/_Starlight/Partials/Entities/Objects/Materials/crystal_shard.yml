@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: ShardCrystalBase
+  components:
+  - type: ToolTileCompatible
+    delay: 2

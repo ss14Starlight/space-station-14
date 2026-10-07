@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: HydroponicsToolScythe
+  components:
+  - type: ToolTileCompatible
+    delay: 2
+
+- type: !PartialOnly entity
+  id: HydroponicsToolHatchet
+  components:
+  - type: ToolTileCompatible
+    delay: 2

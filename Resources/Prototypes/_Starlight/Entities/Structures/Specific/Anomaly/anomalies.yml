@@ -422,6 +422,7 @@
   parent: BaseStructure
   id: CosmicMalignRift
   name: anomaly
+  suffix: Cosmic
   description: A malign light pours forth from within.
   placement:
     mode: SnapgridCenter
@@ -526,6 +527,7 @@
 - type: entity
   id: CosmicMalignEmpoweredRift
   name: anomaly
+  suffix: Cosmic, Empowered
   description: A malign light pours forth from within.
   placement:
     mode: SnapgridCenter

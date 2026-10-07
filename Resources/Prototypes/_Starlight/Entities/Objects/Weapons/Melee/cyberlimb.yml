@@ -87,6 +87,8 @@
   - type: Tool
     qualities:
     - Slicing
+  - type: ToolTileCompatible
+    delay: 2
   - type: Tag
     tags:
       - CyberHandItem

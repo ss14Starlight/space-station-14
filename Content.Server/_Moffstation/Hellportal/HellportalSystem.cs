@@ -26,7 +26,7 @@ public sealed partial class HellportalSystem : EntitySystem
 
             comp.NextSpawn = _time.CurTime + comp.SpawnCooldown;
 
-            #region Strlight
+            #region Starlight
             // Count once when a wave is due, rather than scanning all mobs every frame.
             if (!countedMobs)
             {
