@@ -46,6 +46,7 @@
 - type: npcFaction
   id: DungeonSyndicate
   hostile:
+    - MoffNarsianDemon
     - NanoTrasen
     - NanoTrasenSilicon
     - SimpleHostile
