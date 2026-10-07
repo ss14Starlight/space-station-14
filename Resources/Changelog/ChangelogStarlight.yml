@@ -1,207 +1,4 @@
 Entries:
-- author: qbrx
-  changes:
-  - message: Fixed abductor's welding tool.
-    type: Fix
-  id: 408846
-  time: '2026-09-24T11:27:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6287
-- author: qbrx
-  changes:
-  - message: Added inhand sprites for abductor's welding tool.
-    type: Add
-  id: 408847
-  time: '2026-09-24T11:27:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6287
-- author: Caws
-  changes:
-  - message: (Novo Lobster) K9s.
-    type: Add
-  id: 408848
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Laundromat.
-    type: Add
-  id: 408849
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Mailboxes.
-    type: Add
-  id: 408850
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Buckets have been added to the Janitor Closet and two Cleaning Closets.
-    type: Add
-  id: 408851
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added Surgeon lockers to Surgery.
-    type: Add
-  id: 408852
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added a security records computer to Genpop porcessing.
-    type: Add
-  id: 408853
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added a scrubber to the intermediate room between Botany and Botany's 'Gas Room'.
-    type: Add
-  id: 408854
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added a non-IPC surgery area to Robotics.
-    type: Add
-  id: 408855
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Washing machines in SEC locker room.
-    type: Add
-  id: 408856
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Washing machine in MED locker room.
-    type: Add
-  id: 408857
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) The air alarm for Botany's 'Gas Room' is now unlocked at roundstart.
-    type: Tweak
-  id: 408858
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) The NanoMed in Medbay is now a randomized medical vending machine spawner again.
-    type: Tweak
-  id: 408859
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) The air alarms at Science's artifact testing now start unlocked.
-    type: Tweak
-  id: 408860
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Updated the Mining Bay to be more comfy.
-    type: Tweak
-  id: 408861
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed missing tile under the Detective's west door.
-    type: Fix
-  id: 408862
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Cargo's front intercom is no longer unpowered.
-    type: Fix
-  id: 408863
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Removed some firelocks I put on the east side of Engineering for some reason that would always go off at the start of a round.
-    type: Fix
-  id: 408864
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Science's left-most artifact chamber is now linked with its analysis pad at roundstart.
-    type: Fix
-  id: 408865
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) The conveyors on the Cargo Shuttle now actually work.
-    type: Fix
-  id: 408866
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) NCT Office.
-    type: Remove
-  id: 408867
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Swonki
-  changes:
-  - message: SPKA and Regulator recharge rates and accuracy.
-    type: Tweak
-  id: 408868
-  time: '2026-09-24T11:27:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6274
-- author: Pickra
-  changes:
-  - message: Changelogs now know what "unknown" type means.
-    type: Tweak
-  id: 408869
-  time: '2026-09-24T18:47:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6336
-- author: Johnny
-  changes:
-  - message: Changed the cost of the summon events spell to 2.
-    type: Tweak
-  id: 408870
-  time: '2026-09-25T05:34:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6324
-- author: neomoth
-  changes:
-  - message: "Removed my own shitcode \U0001F5E3️\U0001F525\U0001F525\U0001F525."
-    type: Remove
-  id: 408871
-  time: '2026-09-25T06:48:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6191
-- author: Light
-  changes:
-  - message: Polished the new health analyzer UI.
-    type: Fix
-  id: 408872
-  time: '2026-09-25T10:29:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6106
-- author: Light
-  changes:
-  - message: The health analyzer now displays open surgeries and incisions and catatonic / hollowed out state.
-    type: Add
-  id: 408873
-  time: '2026-09-25T10:29:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6106
-- author: Pickra
-  changes:
-  - message: Added ToolshedMarker component for scripting use.
-    type: Add
-  id: 408874
-  time: '2026-09-25T21:41:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6315
 - author: Kirb
   changes:
   - message: tweaked the ID section on sawian guidebooks.
@@ -2799,4 +2596,207 @@ Entries:
   id: 409245
   time: '2026-10-07T11:33:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6543
+- author: Sparlight
+  changes:
+  - message: Fixed an issue where K9s with mindshields could still be rev converted.
+    type: Fix
+  id: 409246
+  time: '2026-10-07T12:27:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6356
+- author: Teddiousbear
+  changes:
+  - message: Salvage Techfab (Included in SL Locker).
+    type: Add
+  id: 409247
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: Teddiousbear
+  changes:
+  - message: New Blueprints to Salvage Ticket Vendor.
+    type: Add
+  id: 409248
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: Teddiousbear
+  changes:
+  - message: Added Common  to Exped Radio Key.
+    type: Tweak
+  id: 409249
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: Teddiousbear
+  changes:
+  - message: Increased Salvage Magboots Available to Purchase.
+    type: Tweak
+  id: 409250
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: Teddiousbear
+  changes:
+  - message: Adjusted Bluespace Crystal odds in Surplus Crate.
+    type: Tweak
+  id: 409251
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: Teddiousbear
+  changes:
+  - message: Removed duplicate items in salvage ticket vendor for techfab.
+    type: Tweak
+  id: 409252
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: SirLutz
+  changes:
+  - message: Preparation for an Colossus update.
+    type: Add
+  id: 409253
+  time: '2026-10-07T12:27:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6153
+- author: Johnny
+  changes:
+  - message: Changed the soviet horn, its GLORIOUS now.
+    type: Tweak
+  id: 409254
+  time: '2026-10-07T14:45:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6551
+- author: neomoth
+  changes:
+  - message: Crateopsmaxxing. I will not elaborate further.
+    type: Add
+  id: 409255
+  time: '2026-10-07T16:08:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6513
+- author: neomoth
+  changes:
+  - message: When the automatic shuttle call is suppressed by shuttle calls being disabled, it will now use the shortened timer when it restarts instead of the normal length timer.
+    type: Tweak
+  id: 409256
+  time: '2026-10-07T16:08:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6513
+- author: Sparlight
+  changes:
+  - message: Fixed K9 latch UI occluding the K9 or their latch target in some situations.
+    type: Fix
+  id: 409257
+  time: '2026-10-07T16:38:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6366
+- author: redmushie
+  changes:
+  - message: Added Barfo plushie.
+    type: Add
+  id: 409258
+  time: '2026-10-07T16:38:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6377
+- author: wonderfulnewworld
+  changes:
+  - message: The hellportal now manifests the underworld into the real world (makes flesh tiles).
+    type: Add
+  id: 409259
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: wonderfulnewworld
+  changes:
+  - message: The hellportal now counts as an anomaly, the same way the malign rift counts as one. (Although you can also still just beat it up if you want. It does have more health now, though.).
+    type: Add
+  id: 409260
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: wonderfulnewworld
+  changes:
+  - message: When prying flesh tiles, you get random meat now.
+    type: Tweak
+  id: 409261
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: wonderfulnewworld
+  changes:
+  - message: The hellportal will now spawn mobs proportional to player count. (49 at beta max pop).
+    type: Tweak
+  id: 409262
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: wonderfulnewworld
+  changes:
+  - message: Each hellportal will now have its own mob spawn limit, instead of having one shared across all of them.
+    type: Tweak
+  id: 409263
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: wonderfulnewworld
+  changes:
+  - message: Health HUDs/medical cyborgs can now see the health of organic hellportal mobs, Diagnostic HUDs/Engineering cyborgs can now see the health of inorganic hellportal mobs.
+    type: Tweak
+  id: 409264
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: wonderfulnewworld
+  changes:
+  - message: Hellportal mobs now speak darktongue, and no longer stutter.
+    type: Tweak
+  id: 409265
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: wonderfulnewworld
+  changes:
+  - message: The hellportal will no longer spawn on occupied tiles.
+    type: Fix
+  id: 409266
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: wonderfulnewworld
+  changes:
+  - message: Cyborgs, Syndicate soldiers, specifically derelict xenoborgs, comrades, and Pun Pun are now hostile to the spawn of the underworld.
+    type: Fix
+  id: 409267
+  time: '2026-10-07T17:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: Sparlight
+  changes:
+  - message: You can now view the contents of bags,containers, and certain machines like chemmasters in replays.
+    type: Add
+  id: 409268
+  time: '2026-10-07T18:51:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6422
+- author: Sparlight
+  changes:
+  - message: You can now view the mass scanner in replays.
+    type: Add
+  id: 409269
+  time: '2026-10-07T18:51:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6422
+- author: Sparlight
+  changes:
+  - message: You can now view silicon laws and Thaven moods in replays.
+    type: Add
+  id: 409270
+  time: '2026-10-07T18:51:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6422
+- author: Sparlight
+  changes:
+  - message: You can now open the round-end screen from anywhere in a replay.
+    type: Add
+  id: 409271
+  time: '2026-10-07T18:51:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6422
+- author: Sparlight
+  changes:
+  - message: Replay viewers now have many ghost observer actions, such as lighting toggle and FoV toggle.
+    type: Add
+  id: 409272
+  time: '2026-10-07T18:51:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6422
+- author: Sparlight
+  changes:
+  - message: You can now view mind job roles, username, and antag status in replays.
+    type: Add
+  id: 409273
+  time: '2026-10-07T18:51:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6422
+- author: Sparlight
+  changes:
+  - message: Fixed ghost trails showing up in replays when ghosts are hidden.
+    type: Fix
+  id: 409274
+  time: '2026-10-07T18:51:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6422
 Order: -1
