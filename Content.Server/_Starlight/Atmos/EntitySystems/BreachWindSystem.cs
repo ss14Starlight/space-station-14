@@ -30,6 +30,7 @@ public sealed partial class BreachWindSystem : EntitySystem
         public EntityUid Entity;
         public TimeSpan Until;
         public float Volume;
+        public float? PassVolume;
     }
 
     public void ReportFlow(EntityUid grid, Vector2i tile, float pressureDifference)
@@ -44,25 +45,25 @@ public sealed partial class BreachWindSystem : EntitySystem
         {
             wind.Until = _timing.CurTime + _linger;
 
-            // Follow the strongest flow in the patch, ignore small wobbles to keep network traffic down.
-            if (volume > wind.Volume + 1f || volume < wind.Volume - 4f)
-            {
-                wind.Volume = volume;
-                _ambient.SetVolume(wind.Entity, volume);
-            }
-
+            wind.PassVolume = MathF.Max(wind.PassVolume ?? float.MinValue, volume);
             return;
         }
 
         var entity = Spawn(_windPrototype, _maps.ToCenterCoordinates(grid, tile));
         _ambient.SetVolume(entity, volume);
-        _winds[key] = new Wind { Entity = entity, Until = _timing.CurTime + _linger, Volume = volume };
+        _winds[key] = new Wind
+        {
+            Entity = entity,
+            Until = _timing.CurTime + _linger,
+            Volume = volume,
+            PassVolume = volume,
+        };
     }
 
     private static float VolumeFor(float pressureDifference)
     {
         var t = Math.Clamp((pressureDifference - QuietPressure) / (LoudPressure - QuietPressure), 0f, 1f);
-        return MinVolume + (MaxVolume - MinVolume) * t;
+        return MinVolume + ((MaxVolume - MinVolume) * t);
     }
 
     public override void Update(float frameTime)
@@ -78,7 +79,21 @@ public sealed partial class BreachWindSystem : EntitySystem
         foreach (var (key, wind) in _winds)
         {
             if (now >= wind.Until || !Exists(wind.Entity))
+            {
                 _expired.Add(key);
+                continue;
+            }
+
+            if (wind.PassVolume is not { } passVolume)
+                continue;
+
+            wind.PassVolume = null;
+
+            if (MathF.Abs(passVolume - wind.Volume) < 1f)
+                continue;
+
+            wind.Volume = passVolume;
+            _ambient.SetVolume(wind.Entity, passVolume);
         }
 
         foreach (var key in _expired)

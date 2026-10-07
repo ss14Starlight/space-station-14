@@ -33,16 +33,13 @@ public sealed partial class VacuumHearingSystem : EntitySystem
     public const float WallOcclusionMultiplier = 2.5f;
 
     private float _maxRayLength;
-
-    private float _listenerMuffle;
-    private float _helmetOcclusion;
-    private Dictionary<EntityUid, bool> _openSpace = new();
-    private Dictionary<EntityUid, bool> _openSpaceNext = new();
+    private Dictionary<EntityUid, bool> _openSpace = [];
+    private Dictionary<EntityUid, bool> _openSpaceNext = [];
 
     public int OcclusionCalls;
 
-    public float ListenerMuffleValue => _listenerMuffle;
-    public float HelmetOcclusionValue => _helmetOcclusion;
+    public float ListenerMuffleValue { get; private set; }
+    public float HelmetOcclusionValue { get; private set; }
 
     public override void Initialize()
     {
@@ -67,13 +64,13 @@ public sealed partial class VacuumHearingSystem : EntitySystem
 
         if (TryComp(_player.LocalEntity, out HearingPressureComponent? hearing))
         {
-            _listenerMuffle = Math.Clamp(1f - hearing.Pressure / MuffleStartPressure, 0f, 1f);
-            _helmetOcclusion = hearing.SealedHelmet ? HelmetOcclusion : 0f;
+            ListenerMuffleValue = Math.Clamp(1f - (hearing.Pressure / MuffleStartPressure), 0f, 1f);
+            HelmetOcclusionValue = hearing.SealedHelmet ? HelmetOcclusion : 0f;
         }
         else
         {
-            _listenerMuffle = 0f;
-            _helmetOcclusion = 0f;
+            ListenerMuffleValue = 0f;
+            HelmetOcclusionValue = 0f;
         }
 
         // The hook only knows a stream by the entity it is attached to, so look those up here.
@@ -109,12 +106,12 @@ public sealed partial class VacuumHearingSystem : EntitySystem
         }
 
         var sourceInSpace = ignoredEnt is { } source && _openSpace.GetValueOrDefault(source);
-        var muffle = MathF.Max(_listenerMuffle, sourceInSpace ? 1f : 0f);
+        var muffle = MathF.Max(ListenerMuffleValue, sourceInSpace ? 1f : 0f);
 
         if (distance <= ContactRange)
             muffle *= ContactMuffle;
 
-        return occlusion + _helmetOcclusion + VacuumOcclusion * muffle;
+        return occlusion + HelmetOcclusionValue + (VacuumOcclusion * muffle);
     }
 
     private bool IsOpenSpace(MapId map, Vector2 position)

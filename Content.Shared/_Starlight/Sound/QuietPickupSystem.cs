@@ -13,16 +13,9 @@ public sealed partial class QuietPickupSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
 
-    private static readonly TimeSpan Delay = TimeSpan.FromSeconds(2.5);
+    private static readonly TimeSpan _delay = TimeSpan.FromSeconds(2.5);
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<EmitSoundOnPickupComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
-        SubscribeLocalEvent<EmitSoundOnPickupComponent, QuietPickupDoAfterEvent>(OnDoAfter);
-    }
-
+    [SubscribeLocalEvent]
     private void OnGetVerbs(Entity<EmitSoundOnPickupComponent> ent, ref GetVerbsEvent<Verb> args)
     {
         if (args.Hands == null ||
@@ -45,15 +38,14 @@ public sealed partial class QuietPickupSystem : EntitySystem
     }
 
     private void StartPickup(EntityUid user, EntityUid item)
-    {
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, Delay, new QuietPickupDoAfterEvent(), item, target: item)
+        => _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, _delay, new QuietPickupDoAfterEvent(), item, target: item)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
             NeedHand = true,
         });
-    }
 
+    [SubscribeLocalEvent]
     private void OnDoAfter(Entity<EmitSoundOnPickupComponent> ent, ref QuietPickupDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled)
