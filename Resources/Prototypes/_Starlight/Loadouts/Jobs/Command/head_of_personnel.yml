@@ -14,7 +14,7 @@
   - !type:GroupLoadoutEffect
     proto: SeniorCommand
 
-# Hands
+# Hands # this may seem redundant but is needed for other roles to get these gloves
 - type: loadout
   id: HopGloves
   equipment:
