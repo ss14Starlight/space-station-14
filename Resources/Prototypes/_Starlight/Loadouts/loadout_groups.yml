@@ -365,7 +365,7 @@
   loadouts:
   - MagistrateWhiteGloves
   - MagistrateBlackGloves
-  - HopGloves
+  - MagistratePaperworkGloves
 
 - type: loadoutGroup
   id: BlueShieldHead
@@ -1278,4 +1278,4 @@
   loadouts:
   - MagistrateWhiteGloves
   - MagistrateBlackGloves
-  - HoPGloves
+  - HopGloves

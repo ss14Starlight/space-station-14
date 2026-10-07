@@ -16,7 +16,7 @@
 
 # Hands
 - type: loadout
-  id: HoPGloves
+  id: HopGloves
   equipment:
     gloves: ClothingHandsGlovesHop
 
