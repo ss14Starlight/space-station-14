@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Novo Lobster) Washing machine in MED locker room.
-    type: Add
-  id: 408857
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) The air alarm for Botany's 'Gas Room' is now unlocked at roundstart.
-    type: Tweak
-  id: 408858
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
   - message: (Novo Lobster) The NanoMed in Medbay is now a randomized medical vending machine spawner again.
     type: Tweak
   id: 408859
@@ -2799,4 +2785,18 @@ Entries:
   id: 409256
   time: '2026-10-07T16:08:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6513
+- author: Sparlight
+  changes:
+  - message: Fixed K9 latch UI occluding the K9 or their latch target in some situations.
+    type: Fix
+  id: 409257
+  time: '2026-10-07T16:38:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6366
+- author: redmushie
+  changes:
+  - message: Added Barfo plushie.
+    type: Add
+  id: 409258
+  time: '2026-10-07T16:38:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6377
 Order: -1
