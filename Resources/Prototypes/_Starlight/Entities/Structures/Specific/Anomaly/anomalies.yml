@@ -693,7 +693,7 @@
     - settings:
         spawnOnSuperCritical: true
         minAmount: 6
-        maxAmount: 18
+        maxAmount: 15
         minRange: 1
         maxRange: 6
       spawns:
