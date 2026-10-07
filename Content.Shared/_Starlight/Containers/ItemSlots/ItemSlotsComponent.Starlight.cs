@@ -1,5 +1,6 @@
 using Robust.Shared.GameObjects;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Containers.ItemSlots;
 
 public sealed partial class ItemSlotsComponent
