@@ -1,46 +1,4 @@
 Entries:
-- author: qbrx
-  changes:
-  - message: Added inhand sprites for abductor's welding tool.
-    type: Add
-  id: 408847
-  time: '2026-09-24T11:27:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6287
-- author: Caws
-  changes:
-  - message: (Novo Lobster) K9s.
-    type: Add
-  id: 408848
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Laundromat.
-    type: Add
-  id: 408849
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Mailboxes.
-    type: Add
-  id: 408850
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Buckets have been added to the Janitor Closet and two Cleaning Closets.
-    type: Add
-  id: 408851
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added Surgeon lockers to Surgery.
-    type: Add
-  id: 408852
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
 - author: Caws
   changes:
   - message: (Novo Lobster) Added a security records computer to Genpop porcessing.
@@ -2799,4 +2757,46 @@ Entries:
   id: 409246
   time: '2026-10-07T12:27:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6356
+- author: Teddiousbear
+  changes:
+  - message: Salvage Techfab (Included in SL Locker).
+    type: Add
+  id: 409247
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: Teddiousbear
+  changes:
+  - message: New Blueprints to Salvage Ticket Vendor.
+    type: Add
+  id: 409248
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: Teddiousbear
+  changes:
+  - message: Added Common  to Exped Radio Key.
+    type: Tweak
+  id: 409249
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: Teddiousbear
+  changes:
+  - message: Increased Salvage Magboots Available to Purchase.
+    type: Tweak
+  id: 409250
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: Teddiousbear
+  changes:
+  - message: Adjusted Bluespace Crystal odds in Surplus Crate.
+    type: Tweak
+  id: 409251
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: Teddiousbear
+  changes:
+  - message: Removed duplicate items in salvage ticket vendor for techfab.
+    type: Tweak
+  id: 409252
+  time: '2026-10-07T12:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6525
 Order: -1
