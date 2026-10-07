@@ -16,15 +16,15 @@ public sealed partial class RoomReverbPrototype : IPrototype
     [DataField]
     public float Amount = 0.5f;
 
-    public ProtoId<AudioPresetPrototype> PresetFor(int roomSize)
+    public RoomReverbTier TierFor(int roomSize)
     {
         foreach (var tier in Tiers)
         {
             if (roomSize <= tier.MaxTiles)
-                return tier.Preset;
+                return tier;
         }
 
-        return Tiers[^1].Preset;
+        return Tiers[^1];
     }
 }
 
@@ -36,4 +36,16 @@ public partial record struct RoomReverbTier
 
     [DataField(required: true)]
     public ProtoId<AudioPresetPrototype> Preset;
+
+    /// <summary>
+    /// Multiplies the preset's decay time, to shorten long tails without picking a different character.
+    /// </summary>
+    [DataField]
+    public float DecayScale = 1f;
+
+    /// <summary>
+    /// Multiplies the preset's reflection and late reverb delays, so the walls answer audibly later.
+    /// </summary>
+    [DataField]
+    public float DelayScale = 1f;
 }

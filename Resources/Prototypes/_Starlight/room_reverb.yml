@@ -1,35 +1,41 @@
 - type: roomReverb
   id: Default
-  amount: 0.5
+  amount: 0.35
   tiers:
-  - maxTiles: 12
+  - maxTiles: 25
     preset: SpaceStationCupboard
-  - maxTiles: 40
+    decayScale: 0.7
+  - maxTiles: 90
     preset: SpaceStationSmallRoom
-  - maxTiles: 120
+    decayScale: 0.7
+  - maxTiles: 250
     preset: SpaceStationMediumRoom
-  - maxTiles: 350
+    decayScale: 0.7
+  - maxTiles: 600
     preset: SpaceStationLargeRoom
+    decayScale: 0.7
   - maxTiles: 100000
     preset: SpaceStationHall
+    decayScale: 0.8
 
 - type: roomReverb
   id: Hallway
-  amount: 0.5
+  amount: 0.35
   tiers:
-  - maxTiles: 60
-    preset: SpaceStationShortPassage
   - maxTiles: 100000
-    preset: SpaceStationLongPassage
+    preset: Hallway
 
 - type: roomReverb
   id: Maintenance
-  amount: 0.6
+  amount: 0.8
   tiers:
-  - maxTiles: 40
-    preset: FactoryShortPassage
+  - maxTiles: 6
+    preset: PipeSmall
+    decayScale: 0.4
   - maxTiles: 100000
-    preset: FactoryLongPassage
+    preset: PipeLongThin
+    decayScale: 0.45
+    delayScale: 3
 
 - type: roomReverb
   id: Chapel
