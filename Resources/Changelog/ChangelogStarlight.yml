@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Novo Lobster) Added a non-IPC surgery area to Robotics.
-    type: Add
-  id: 408855
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Washing machines in SEC locker room.
-    type: Add
-  id: 408856
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
   - message: (Novo Lobster) Washing machine in MED locker room.
     type: Add
   id: 408857
@@ -2799,4 +2785,18 @@ Entries:
   id: 409254
   time: '2026-10-07T14:45:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6551
+- author: neomoth
+  changes:
+  - message: Crateopsmaxxing. I will not elaborate further.
+    type: Add
+  id: 409255
+  time: '2026-10-07T16:08:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6513
+- author: neomoth
+  changes:
+  - message: When the automatic shuttle call is suppressed by shuttle calls being disabled, it will now use the shortened timer when it restarts instead of the normal length timer.
+    type: Tweak
+  id: 409256
+  time: '2026-10-07T16:08:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6513
 Order: -1
