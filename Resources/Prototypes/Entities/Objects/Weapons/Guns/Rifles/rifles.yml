@@ -176,7 +176,7 @@
     sprite: Objects/Weapons/Guns/Rifles/estoc.rsi
   - type: Gun
     minAngle: 21
-    maxAngle: 32 
+    maxAngle: 32
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/estocshot.ogg
     shotsPerBurst: 3
