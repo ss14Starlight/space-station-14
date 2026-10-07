@@ -759,6 +759,9 @@
   id: StoveMachineBoard
 
 - type: Tag
+  id: StutterImmune
+
+- type: Tag
   id: SurgeryCompatibleArmor
 
 - type: Tag

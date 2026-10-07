@@ -132,7 +132,7 @@ public sealed partial class PlantHarvestSystem : EntitySystem
             return;
 
         var name = Loc.GetString(plantData.Name);
-        _popup.PopupCursor(Loc.GetString("botany-harvest-success-message", ("name", name)), user, PopupType.Medium);
+        _popup.PopupCursor(Loc.GetString("botany-harvest-success-message", ("name", name)), PopupType.Medium); // Starlight: If you see here error after upstreaming, revert this commit
 
         var totalYield = 0;
         if (plant.Yield >= 0)
