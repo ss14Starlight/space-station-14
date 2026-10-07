@@ -1,11 +1,4 @@
 Entries:
-- author: XeroTec/Meepmerp
-  changes:
-  - message: Security gas masks, glasses/huds, emergency tanks, and crisis buttons fit in belt/carrier.
-    type: Add
-  id: 408845
-  time: '2026-09-24T11:01:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6301
 - author: qbrx
   changes:
   - message: Fixed abductor's welding tool.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409244
   time: '2026-10-07T11:33:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6537
+- author: ItsCharles
+  changes:
+  - message: Adds paperwork-related gloves to NTR and IAA loadouts.
+    type: Add
+  id: 409245
+  time: '2026-10-07T11:33:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6543
 Order: -1
