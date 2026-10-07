@@ -65,6 +65,7 @@
   - type: EncryptionKey
     channels:
     - Expedition
+    - Common
     defaultChannel: Expedition
   - type: Sprite
     layers:
