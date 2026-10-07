@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Novo Lobster) Added a security records computer to Genpop porcessing.
-    type: Add
-  id: 408853
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
   - message: (Novo Lobster) Added a scrubber to the intermediate room between Botany and Botany's 'Gas Room'.
     type: Add
   id: 408854
@@ -2799,4 +2792,11 @@ Entries:
   id: 409252
   time: '2026-10-07T12:27:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6525
+- author: SirLutz
+  changes:
+  - message: Preparation for an Colossus update.
+    type: Add
+  id: 409253
+  time: '2026-10-07T12:27:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6153
 Order: -1
