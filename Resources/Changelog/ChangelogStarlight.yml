@@ -1,53 +1,4 @@
 Entries:
-- author: Swonki
-  changes:
-  - message: SPKA and Regulator recharge rates and accuracy.
-    type: Tweak
-  id: 408868
-  time: '2026-09-24T11:27:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6274
-- author: Pickra
-  changes:
-  - message: Changelogs now know what "unknown" type means.
-    type: Tweak
-  id: 408869
-  time: '2026-09-24T18:47:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6336
-- author: Johnny
-  changes:
-  - message: Changed the cost of the summon events spell to 2.
-    type: Tweak
-  id: 408870
-  time: '2026-09-25T05:34:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6324
-- author: neomoth
-  changes:
-  - message: "Removed my own shitcode \U0001F5E3️\U0001F525\U0001F525\U0001F525."
-    type: Remove
-  id: 408871
-  time: '2026-09-25T06:48:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6191
-- author: Light
-  changes:
-  - message: Polished the new health analyzer UI.
-    type: Fix
-  id: 408872
-  time: '2026-09-25T10:29:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6106
-- author: Light
-  changes:
-  - message: The health analyzer now displays open surgeries and incisions and catatonic / hollowed out state.
-    type: Add
-  id: 408873
-  time: '2026-09-25T10:29:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6106
-- author: Pickra
-  changes:
-  - message: Added ToolshedMarker component for scripting use.
-    type: Add
-  id: 408874
-  time: '2026-09-25T21:41:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6315
 - author: Kirb
   changes:
   - message: tweaked the ID section on sawian guidebooks.
@@ -2799,4 +2750,53 @@ Entries:
   id: 409267
   time: '2026-10-07T17:50:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6547
+- author: Sparlight
+  changes:
+  - message: You can now view the contents of bags,containers, and certain machines like chemmasters in replays.
+    type: Add
+  id: 409268
+  time: '2026-10-07T18:51:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6422
+- author: Sparlight
+  changes:
+  - message: You can now view the mass scanner in replays.
+    type: Add
+  id: 409269
+  time: '2026-10-07T18:51:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6422
+- author: Sparlight
+  changes:
+  - message: You can now view silicon laws and Thaven moods in replays.
+    type: Add
+  id: 409270
+  time: '2026-10-07T18:51:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6422
+- author: Sparlight
+  changes:
+  - message: You can now open the round-end screen from anywhere in a replay.
+    type: Add
+  id: 409271
+  time: '2026-10-07T18:51:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6422
+- author: Sparlight
+  changes:
+  - message: Replay viewers now have many ghost observer actions, such as lighting toggle and FoV toggle.
+    type: Add
+  id: 409272
+  time: '2026-10-07T18:51:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6422
+- author: Sparlight
+  changes:
+  - message: You can now view mind job roles, username, and antag status in replays.
+    type: Add
+  id: 409273
+  time: '2026-10-07T18:51:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6422
+- author: Sparlight
+  changes:
+  - message: Fixed ghost trails showing up in replays when ghosts are hidden.
+    type: Fix
+  id: 409274
+  time: '2026-10-07T18:51:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6422
 Order: -1
