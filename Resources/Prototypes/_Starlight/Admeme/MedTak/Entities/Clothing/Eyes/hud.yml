@@ -19,6 +19,8 @@
     - Biological
     - IPC
     - Hybrid
+    - MoffDemonBiological
+    - MoffDemonInorganic
   - type: Tag
     tags:
     - HudMedical

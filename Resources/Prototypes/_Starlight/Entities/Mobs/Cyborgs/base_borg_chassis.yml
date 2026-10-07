@@ -184,6 +184,8 @@
     - Inorganic
     - Silicon
     - Hybrid # Neocytes
+    - MoffDemonBiological
+    - MoffDemonInorganic
   - type: ShowHealthIcons
   - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons

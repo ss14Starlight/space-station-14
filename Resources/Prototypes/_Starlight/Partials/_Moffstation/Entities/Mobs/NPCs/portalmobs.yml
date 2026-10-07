@@ -5,6 +5,9 @@
   - type: Body
     prototype: Bloodsucker
   - !Remove type: NarSieDemonAccent
+  - type: Tag
+    tags:
+    - StutterImmune
   - type: LanguageSpeaker
     currentLanguage: Darktongue
   - type: LanguageKnowledge
@@ -19,6 +22,9 @@
   components:
   - type: Damageable
     damageContainer: MoffDemonBiological
+  - type: Tag
+    tags:
+    - StutterImmune
 
 - type: !PartialOnly entity
   id: MoffMobDemonNarsieConstructBase
@@ -41,3 +47,10 @@
   - type: BasicEntityAmmoProvider
     ammoTable: !Remove
     proto: MoffBloodBolt
+
+- type: !PartialOnly entity
+  id: MoffMobDemonNarsieFleshFlyingBase
+  components:
+  - type: Tag
+    tags:
+    - StutterImmune

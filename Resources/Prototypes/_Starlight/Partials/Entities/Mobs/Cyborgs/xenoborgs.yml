@@ -1,7 +1,8 @@
 - type: !PartialOnly entity
-  id: AdminObserver
+  id: XenoborgEngi
   components:
   - type: ShowHealthBars
     damageContainers:
-    - MoffDemonBiological
+    - IPC
+    - Hybrid
     - MoffDemonInorganic

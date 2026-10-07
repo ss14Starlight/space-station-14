@@ -1158,6 +1158,8 @@
     damageContainers:
     - Biological
     - Hybrid # Neocytes
+    - MoffDemonBiological
+    - MoffDemonInorganic
   - type: ShowHealthIcons
   - type: FlashImmunity
     blocksSpecialVision: false
@@ -1200,6 +1202,8 @@
     damageContainers:
     - Biological
     - Hybrid # Neocytes
+    - MoffDemonBiological
+    - MoffDemonInorganic
   - type: ShowHealthIcons
   - type: FlashImmunity
     blocksSpecialVision: false

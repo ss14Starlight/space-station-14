@@ -48,6 +48,7 @@
       - Biological
       - IPC
       - Hybrid
+      - MoffDemonBiological
     - type: SolutionScanner
     - type: FlashImmunity
       showInExamine: false

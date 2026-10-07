@@ -41,6 +41,7 @@
       - Silicon
       - IPC
       - Hybrid
+      - MoffDemonInorganic
 
 - type: entity
   id: EyeImplantMedical
@@ -56,6 +57,8 @@
       damageContainers:
       - Biological
       - Hybrid # Neocytes
+      - MoffDemonBiological
+      - MoffDemonInorganic
     - type: ShowHealthIcons
       damageContainers:
         - Biological
@@ -101,6 +104,8 @@
       damageContainers:
       - Biological
       - Hybrid # Neocytes
+      - MoffDemonBiological
+      - MoffDemonInorganic
     - type: ShowHealthIcons
       damageContainers:
         - Biological

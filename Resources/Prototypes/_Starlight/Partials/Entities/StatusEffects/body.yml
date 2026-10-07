@@ -1,0 +1,8 @@
+# Blood-loss damage is applied by the bloodstream independently of this status effect.
+- type: !PartialOnly entity
+  id: StatusEffectBloodloss
+  components:
+  - type: StatusEffect
+    blacklist:
+      tags:
+      - StutterImmune
