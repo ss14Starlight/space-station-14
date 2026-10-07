@@ -240,7 +240,7 @@ public sealed class MeteorStuckBodyTest : GameTest
             while (query.MoveNext(out var uid, out var meta))
             {
                 var id = meta.EntityPrototype?.ID;
-                if (id != "ShardGlass" && id != "BrokenBottle")
+                if (id is not ("ShardGlass" or "BrokenBottle"))
                     continue;
                 probes.Add(new Probe(uid, Cohort.Blast, WorldOf(transform, uid)));
                 if (id == "ShardGlass")
@@ -342,7 +342,7 @@ public sealed class MeteorStuckBodyTest : GameTest
             {
                 for (var y = -4; y <= 4; y++)
                 {
-                    if (x * x + y * y > BlastRadius * BlastRadius)
+                    if (x * x + (y * y) > BlastRadius * BlastRadius)
                         continue;
 
                     var uid = Spawn(entMan, ItemProto, grid.Owner, x, y);
@@ -367,15 +367,11 @@ public sealed class MeteorStuckBodyTest : GameTest
         return delta.LengthSquared() < 9f;
     }
 
-    private static EntityUid Spawn(IEntityManager entMan, string proto, EntityUid grid, int x, int y)
-    {
-        return entMan.SpawnEntity(proto, new EntityCoordinates(grid, x + 0.5f, y + 0.5f));
-    }
+    private static EntityUid Spawn(IEntityManager entMan, string proto, EntityUid grid, int x, int y) =>
+        entMan.SpawnEntity(proto, new EntityCoordinates(grid, x + 0.5f, y + 0.5f));
 
-    private static Vector2 WorldOf(SharedTransformSystem transform, EntityUid uid)
-    {
-        return transform.GetWorldPosition(uid);
-    }
+    private static Vector2 WorldOf(SharedTransformSystem transform, EntityUid uid) =>
+        transform.GetWorldPosition(uid);
 
     private Census Measure(List<Probe> probes, HashSet<EntityUid> walls)
     {
@@ -709,9 +705,8 @@ public sealed class MeteorStuckBodyTest : GameTest
         int observationSeconds,
         bool cascade,
         bool nothingMoving,
-        bool ruledOut)
-    {
-        return $"""
+        bool ruledOut) =>
+        $"""
             Meteor stuck-body census. Pass means every probe is asleep by the observation horizon and the far cohort stays asleep.
             Before: {before}
             {EarlyCensusSeconds}s:     {early}
@@ -723,7 +718,6 @@ public sealed class MeteorStuckBodyTest : GameTest
             Nothing moving at {observationSeconds}s: {nothingMoving}
             Ruled out: {ruledOut}
             """;
-    }
 
     private enum Cohort
     {
