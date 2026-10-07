@@ -32,9 +32,11 @@ public sealed partial class VacuumHearingSystem : EntitySystem
 
     public const float WallOcclusionMultiplier = 2.5f;
 
+    private const float SourceMatchRange = 0.05f;
+
     private float _maxRayLength;
-    private Dictionary<EntityUid, bool> _openSpace = [];
-    private Dictionary<EntityUid, bool> _openSpaceNext = [];
+    private List<MapCoordinates> _openSources = new();
+    private List<MapCoordinates> _openSourcesNext = new();
 
     public int OcclusionCalls;
 
@@ -73,20 +75,24 @@ public sealed partial class VacuumHearingSystem : EntitySystem
             HelmetOcclusionValue = 0f;
         }
 
-        // The hook only knows a stream by the entity it is attached to, so look those up here.
-        _openSpaceNext.Clear();
+        _openSourcesNext.Clear();
         var query = AllEntityQuery<AudioComponent, TransformComponent>();
-        while (query.MoveNext(out _, out var audio, out var xform))
+        while (query.MoveNext(out var uid, out var audio, out var xform))
         {
-            if (audio.Global || _openSpaceNext.ContainsKey(xform.ParentUid))
+            if (audio.Global
+                || xform.MapID == MapId.Nullspace
+                || (audio.Flags & AudioFlags.NoOcclusion) != 0)
                 continue;
 
-            var position = _xform.GetMapCoordinates(xform.ParentUid);
-            _openSpaceNext[xform.ParentUid] = position.MapId != MapId.Nullspace
-                && IsOpenSpace(position.MapId, position.Position);
+            var position = (audio.Flags & AudioFlags.GridAudio) != 0
+                ? _maps.GetGridPosition(xform.ParentUid)
+                : _xform.GetWorldPosition(xform);
+
+            if (IsOpenSpace(xform.MapID, position))
+                _openSourcesNext.Add(new MapCoordinates(position, xform.MapID));
         }
 
-        (_openSpace, _openSpaceNext) = (_openSpaceNext, _openSpace);
+        (_openSources, _openSourcesNext) = (_openSourcesNext, _openSources);
     }
 
     private float GetOcclusion(MapCoordinates listener, Vector2 delta, float distance, EntityUid? ignoredEnt)
@@ -105,13 +111,24 @@ public sealed partial class VacuumHearingSystem : EntitySystem
                 * WallOcclusionMultiplier;
         }
 
-        var sourceInSpace = ignoredEnt is { } source && _openSpace.GetValueOrDefault(source);
+        var sourceInSpace = IsOpenSource(listener.MapId, listener.Position + delta);
         var muffle = MathF.Max(ListenerMuffleValue, sourceInSpace ? 1f : 0f);
 
         if (distance <= ContactRange)
             muffle *= ContactMuffle;
 
         return occlusion + HelmetOcclusionValue + (VacuumOcclusion * muffle);
+    }
+
+    private bool IsOpenSource(MapId map, Vector2 position)
+    {
+        foreach (var source in _openSources)
+        {
+            if (source.MapId == map && (source.Position - position).LengthSquared() <= SourceMatchRange * SourceMatchRange)
+                return true;
+        }
+
+        return false;
     }
 
     private bool IsOpenSpace(MapId map, Vector2 position)
