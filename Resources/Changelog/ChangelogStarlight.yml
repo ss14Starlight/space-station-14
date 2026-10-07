@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Novo Lobster) Added a scrubber to the intermediate room between Botany and Botany's 'Gas Room'.
-    type: Add
-  id: 408854
-  time: '2026-09-24T11:27:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6284
-- author: Caws
-  changes:
   - message: (Novo Lobster) Added a non-IPC surgery area to Robotics.
     type: Add
   id: 408855
@@ -2799,4 +2792,11 @@ Entries:
   id: 409253
   time: '2026-10-07T12:27:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6153
+- author: Johnny
+  changes:
+  - message: Changed the soviet horn, its GLORIOUS now.
+    type: Tweak
+  id: 409254
+  time: '2026-10-07T14:45:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6551
 Order: -1
