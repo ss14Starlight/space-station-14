@@ -3,10 +3,13 @@ using System.Runtime.InteropServices;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Server._Starlight.Toolshed;
 using Content.Server.Administration;
+using Content.Server.Administration.Logs;
+using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.RoundEnd;
 using Content.Shared._Starlight.Commands;
 using Content.Shared.Administration;
+using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
@@ -15,11 +18,14 @@ namespace Content.Server._Starlight.GameTicking;
 
 [ToolshedCommand]
 [AdminCommand(AdminFlags.Round)]
-public sealed class TickerCommand : ToolshedCommand
+public sealed partial class TickerCommand : ToolshedCommand
 {
     private GameTicker? _ticker;
     private RoundEndSystem? _end;
     private AutoDiscordLogSystem? _log;
+
+    [Dependency] private IAdminLogManager _aLog = null!;
+    [Dependency] private IChatManager _chat = null!;
 
     #region RoundTiming
 
@@ -83,6 +89,7 @@ public sealed class TickerCommand : ToolshedCommand
     /// <summary>
     /// Cancels the restart timer.
     /// </summary>
+    [AdminCommand(AdminFlags.Fun)]
     [CommandImplementation("cancelrestart")]
     public void CancelRestartTimer(IInvocationContext ctx)
     {
@@ -99,6 +106,7 @@ public sealed class TickerCommand : ToolshedCommand
     /// <summary>
     /// Cancels the post-round state, making the game act as though the round has not yet ended.
     /// </summary>
+    [AdminCommand(AdminFlags.Fun)]
     [CommandImplementation("cancelpostround")]
     public void CancelPostRound(IInvocationContext ctx)
     {
@@ -112,6 +120,7 @@ public sealed class TickerCommand : ToolshedCommand
     /// <summary>
     /// Toggles the automatic timer on round end.
     /// </summary>
+    [AdminCommand(AdminFlags.Fun)]
     [CommandImplementation("toggletimeronend")]
     public void ToggleTimerOnend(IInvocationContext ctx, bool state)
     {
@@ -141,6 +150,22 @@ public sealed class TickerCommand : ToolshedCommand
 
         if (!_ticker.DelayStart(TimeSpan.FromSeconds(seconds)))
             ctx.WriteLine(Loc.GetString("cmd-delaystart-too-late"));
+    }
+
+    /// <summary>
+    /// Add or remove time until the round end system kicks in (emergency shuttle call).
+    /// </summary>
+    [AdminCommand(AdminFlags.Fun)]
+    [CommandImplementation("changeshifttime")]
+    public void ExtendShiftTime(IInvocationContext ctx, float seconds)
+    {
+        _end ??= GetSys<RoundEndSystem>();
+        _end.AutoCallTime += seconds;
+        ctx.WriteLine($"{(Math.Sign(seconds) > 0 ? "Added" : "Removed")} {seconds} until shift change is called.");
+        _aLog.Add(LogType.AdminCommands, LogImpact.High,
+            $"{CommandHelpers.PlayerNameOrServer(ctx)} changed shift time by {seconds} seconds.");
+        _chat.SendAdminAnnouncement(
+            $"{CommandHelpers.PlayerNameOrServer(ctx)} changed shift time by {seconds} seconds.");
     }
 
     #endregion
@@ -199,12 +224,14 @@ public sealed class TickerCommand : ToolshedCommand
     /// <summary>
     /// Add a gamerule entity prototype to the round.
     /// </summary>
+    [AdminCommand(AdminFlags.Fun)]
     [CommandImplementation("addrule")]
     public EntityUid AddRule(IInvocationContext ctx,
         [CommandArgument(typeof(EntProtoIdWithCompCompletionParser<GameRuleComponent>))] EntProtoId ruleId)
     {
         _ticker ??= GetSys<GameTicker>();
         var uid = _ticker.AddGameRule(ruleId);
+        if (_ticker.RunLevel == GameRunLevel.InRound) _ticker.StartGameRule(uid);
         ctx.WriteLine($"Added game rule {EntityManager.ToPrettyString(uid)}");
         return uid;
     }
@@ -225,6 +252,7 @@ public sealed class TickerCommand : ToolshedCommand
     /// <summary>
     /// End a gamerule entity's gamerule.
     /// </summary>
+    [AdminCommand(AdminFlags.Fun)]
     [CommandImplementation("endrule")]
     public EntityUid EndRuleFiltered(IInvocationContext ctx,
         [CommandArgument(typeof(EntityWithCompCompletionParser<ActiveGameRuleComponent>))] EntityUid uid) =>
@@ -233,12 +261,14 @@ public sealed class TickerCommand : ToolshedCommand
     /// <summary>
     /// End a gamerule entity's gamerule. This one lets you pipe in an entity instead.
     /// </summary>
+    [AdminCommand(AdminFlags.Fun)]
     [CommandImplementation("endrule")]
     public EntityUid EndRulePiped(IInvocationContext ctx, [PipedArgument] EntityUid uid) => EndRuleDo(ctx, uid);
 
     /// <summary>
     /// End a gamerule entity's gamerule. This one lets you pipe in a set of entities instead.
     /// </summary>
+    [AdminCommand(AdminFlags.Fun)]
     [CommandImplementation("endrule")]
     public IEnumerable<EntityUid> EndRulePiped(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid) =>
         uid.Select(x => EndRulePiped(ctx, x));
