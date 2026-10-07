@@ -33,7 +33,9 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private IPrototypeManager _protoMan = default!;
+    #region Starlight
     [Dependency] private NanoChatCartridgeSystem _nanoChat = default!; // Starlight: queues notices after accepted mailbox deposits.
+    #endregion
 
     /// <summary>
     /// Default reason to use if the penalization is triggered

@@ -16,11 +16,9 @@ using Robust.Shared.Timing;
 using Content.Shared.Abilities.Mime;
 using Content.Server.Popups;
 using Content.Shared.Alert;
-// Starlight Start
 using Content.Shared.Ghost;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
-// Starlight End
 
 namespace Content.Server._CD.CartridgeLoader.Cartridges;
 
@@ -32,14 +30,14 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedNanoChatSystem _nanoChat = default!;
     [Dependency] private StationSystem _station = default!;
-    // Starlight Start
+    #region Starlight
     [Dependency] private IPlayerManager _playerManager = default!; // Resolve each card's online player.
-    // Starlight End
+    #endregion
 
     // Messages in notifications get cut off after this point
     // no point in storing it on the comp
     private const int NotificationMaxLength = 64;
-    // Starlight Start
+    #region Starlight
     private const uint MailServiceNumber = 0; // One synthetic sender keeps mail notices in one conversation.
     private static readonly TimeSpan MailBatchWindow = TimeSpan.FromSeconds(5); // Later parcels do not extend the first parcel's deadline.
     private TimeSpan _nextMailboxFlush = TimeSpan.MaxValue; // Earliest due time lets Update skip unnecessary scans.
@@ -62,7 +60,7 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
     }
 
     private readonly Dictionary<(string RecipientName, string MailboxName), PendingMailboxMessage> _pendingMailboxMessages = new(); // Separate recipients and pickup locations into distinct batches.
-    // Starlight End
+    #endregion
 
     #region Starlight
 
@@ -77,10 +75,6 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-
-        // Starlight Start
-        FlushMailboxMessages(); // Send mailbox batches whose five-second collection window has expired.
-        // Starlight End
 
         // Update card references for any cartridges that need it
         var query = EntityQueryEnumerator<NanoChatCartridgeComponent, CartridgeComponent>();
@@ -106,10 +100,14 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
             UpdateUI((uid, nanoChat), loader);
         }
 
+        // Starlight Start
+        FlushMailboxMessages(); // Deliver expired batches after cartridge references are synchronized.
+        // Starlight End
+
         UpdateUnreadAlerts();
     }
 
-    // Starlight Start
+    #region Starlight
     /// <summary>
     ///     Queues a mailbox deposit for a batched NanoChat notification.
     /// </summary>
@@ -185,7 +183,7 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
             RaiseLocalEvent(ref messageEvent); // Let NanoChat update unread state, UI, and mute-aware notifications.
         }
     }
-    // Starlight End
+    #endregion
 
     #region Starlight
     /// <summary>
