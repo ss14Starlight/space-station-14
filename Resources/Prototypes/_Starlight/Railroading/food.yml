@@ -1,4 +1,26 @@
 - type: entity
+  id: FoodCondition
+  categories: [ HideSpawnMenu ]
+  abstract: true
+  components:
+  - type: Conditions
+    conditions:
+    - !type:SubjectMindJobCondition
+      blacklist:
+      - Chef
+    - !type:SubjectSpeciesCondition
+      blacklist:
+      - Abductor
+      - Moth
+      - Skeleton
+      - Terminator
+      - Reptilian
+      - IPC
+    - !type:SubjectMindAntagCondition
+      blacklist:
+      - Brighteye
+
+- type: entity
   id: FoodConditionWithReptilian
   categories: [ HideSpawnMenu ]
   abstract: true

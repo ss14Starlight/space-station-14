@@ -26,6 +26,14 @@
 - type: entity
   abstract: true
   parent: BaseTraitorStealObjective
+  id: BaseTraitorScienceStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ ResearchDirector, ResearchAssistant, Scientist, Roboticist ]
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
   id: BaseTraitorEngineeringStealObjective
   components:
   - type: NotJobRequirement
@@ -56,6 +64,35 @@
     jobs: [ Magistrate, IAA, Lawyer ]
 
   # Base Steal NTR / IAA / Magi
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseNTRStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ NanoTrasenRepresentative ]
+  - type: StealCondition
+    owner: job-name-ntrep
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseIAAStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ IAA ]
+  - type: StealCondition
+    owner: job-name-iaa
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseMagistrateStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Magistrate ]
+  - type: StealCondition
+    owner: job-name-magistrate
 
 # Teach a Lesson
 - type: entity
@@ -325,6 +362,7 @@
         sprite: _Starlight/Interface/Misc/objective_icons.rsi
         state: rp
 
+
 - type: entity
   parent: BaseStoryObjective
   id: AccessForAllObjective
@@ -350,6 +388,7 @@
       icon:
         sprite: _Starlight/Interface/Misc/objective_icons.rsi
         state: rp
+
 
 - type: entity
   parent: BaseStoryObjective
@@ -615,6 +654,13 @@
         state: rp
 
 # RP OBJECTIVES END
+
+- type: entity
+  parent: BaseTraitorStealObjective
+  id: HoPBoardStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: HoPBoardSteal
 
 # Control Implant
 

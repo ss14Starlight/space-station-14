@@ -1,5 +1,6 @@
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared._Starlight.Actions.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
@@ -461,6 +462,10 @@ public sealed partial class ChangelingSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("changeling-passive-activate"), uid, uid);
     }
     #endregion
+    /// <summary>
+    /// Dissolves cuffs and bolas, frees the changeling from a latch, and splashes
+    /// acid on whoever is holding it (latcher, then puller, else its own tile).
+    /// </summary>
     private void OnBiodegrade(EntityUid uid, ChangelingComponent comp, ref ActionBiodegradeEvent args)
     {
         if (TryComp<CuffableComponent>(uid, out var cuffs) && cuffs.Container.ContainedEntities.Count > 0)
@@ -492,6 +497,15 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         var soln = new Solution();
         soln.AddReagent(PolytrinicAcidPrototype, 10f);
+
+        // Latched: free ourselves and splash whoever had their teeth in us, same as a puller.
+        if (TryComp<LatchedComponent>(uid, out var latched) && Exists(latched.Latcher))
+        {
+            var latcher = latched.Latcher;
+            _latch.TryBreakLatch((uid, latched));
+            _puddle.TrySplashSpillAt(latcher, Transform(latcher).Coordinates, soln, out _);
+            return;
+        }
 
         if (_pull.IsPulled(uid))
         {

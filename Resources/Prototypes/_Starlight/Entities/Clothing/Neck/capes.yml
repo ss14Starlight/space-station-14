@@ -349,6 +349,45 @@
   - type: UseDelay
     delay: 10.0
 
+- type: entity
+  parent: [ClothingNeckBase, BaseNanoTrasenContraband]
+  id: ClothingNeckCapeNTSFLead
+  name: NanoTrasen special forces cape
+  suffix: NT. Do Not Map
+  description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/nt.rsi
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#5eaad6"
+  - type: StaticPrice
+    price: 10000
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 8
+    domePrototype: EnergyDomeSmallCap
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 2
+    useCharge: 0
+  - type: UseDelay
+    delay: 10.0
+
 # Greenshield Officer
 - type: entity
   parent: [ ClothingNeckBase ]

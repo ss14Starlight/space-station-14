@@ -55,3 +55,20 @@
   - type: StealTarget
     stealGroup: CrewMonitorCollection
 
+- type: entity
+  id: HandheldBrigmedicCrewMonitorEmpty
+  parent: HandheldBrigmedicCrewMonitor
+  suffix: Empty
+  components:
+  - type: Tag
+    tags:
+      - BrigmedicBeltEquip
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        blacklist:
+          tags:
+          - MechReactor
+  - type: PowerCellDraw
+    useCharge: 15

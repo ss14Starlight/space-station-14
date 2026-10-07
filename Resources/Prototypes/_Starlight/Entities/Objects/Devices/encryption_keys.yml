@@ -63,6 +63,7 @@
   - type: EncryptionKey
     channels:
     - Expedition
+    - Common
     defaultChannel: Expedition
   - type: Sprite
     layers:
@@ -214,6 +215,15 @@
           state: wizard_label
 
 - type: entity
+  parent: EncryptionKeyWinds
+  id: EncryptionKeyWindsUnremovable
+  name: winds of magic encryption key
+  description: An encryption key that grants permanent access to the Winds of Magic.
+  suffix: Unremovable
+  components:
+    - type: Unremoveable
+
+- type: entity
   parent: [ EncryptionKey, BaseMagicalContraband ]
   id: EncryptionKeyWizardMaster
   name: wizard encryption key
@@ -247,3 +257,38 @@
   components:
     - type: Unremoveable
 
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyAspace
+  name: aspace encryption key
+  description: An encryption key for people being tortured by admins.
+  suffix: Admeme
+  components:
+    - type: EncryptionKey
+      channels:
+        - Aspace
+      defaultChannel: Aspace
+    - type: Sprite
+      layers:
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: crypt_purple
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: admeme_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyGlobal
+  name: global encryption key
+  description: Despite the name, this encryption key does not grant all available channels.
+  suffix: Admeme
+  components:
+    - type: EncryptionKey
+      channels:
+        - Global
+      defaultChannel: Global
+    - type: Sprite
+      layers:
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: crypt_purple
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: global_label
