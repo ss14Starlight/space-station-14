@@ -22,14 +22,14 @@ public sealed class PluralizationTests : GameTest
         Assert.That(result, Is.EqualTo(expected));
     }
 
-    [TestCase(1, "You have a package waiting at the engineering mailbox.")]
-    [TestCase(5, "You have 5 packages waiting at the engineering mailbox.")]
-    public void MailboxNanoChatMessagePluralizationTest(int count, string expected)
+    [TestCase("mailbox-nanochat-message-one", "You have a package waiting at the engineering mailbox.")]
+    [TestCase("mailbox-nanochat-message-many", "You have 5 packages waiting at the engineering mailbox.")]
+    public void MailboxNanoChatMessagePluralizationTest(string messageKey, string expected)
     {
         var locMan = Pair.Server.ResolveDependency<ILocalizationManager>();
 
-        var result = locMan.GetString("mailbox-nanochat-message",
-            ("count", count),
+        var result = locMan.GetString(messageKey,
+            ("count", 5),
             ("mailbox", "engineering mailbox"));
 
         Assert.That(result, Is.EqualTo(expected));

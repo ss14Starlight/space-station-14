@@ -17,6 +17,8 @@ using Content.Shared.Abilities.Mime;
 using Content.Server.Popups;
 using Content.Shared.Alert;
 using Content.Shared.Ghost;
+using Robust.Server.Player;
+using Robust.Shared.Enums;
 
 namespace Content.Server._CD.CartridgeLoader.Cartridges;
 
@@ -162,7 +164,7 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
 
             var message = new NanoChatMessage(
                 _timing.CurTime,
-                Loc.GetString("mailbox-nanochat-message",
+                Loc.GetString(pending.Count == 1 ? "mailbox-nanochat-message-one" : "mailbox-nanochat-message-many",
                     ("count", pending.Count),
                     ("mailbox", pending.MailboxName)),
                 MailServiceNumber);
