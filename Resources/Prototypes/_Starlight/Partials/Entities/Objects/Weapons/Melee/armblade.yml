@@ -1,5 +1,0 @@
-- type: !PartialOnly entity
-  id: ArmBlade
-  components:
-  - type: ToolTileCompatible
-    delay: 2

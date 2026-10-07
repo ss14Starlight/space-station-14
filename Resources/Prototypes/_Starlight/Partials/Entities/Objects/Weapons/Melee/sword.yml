@@ -1,5 +1,0 @@
-- type: !PartialOnly entity
-  id: BaseSword
-  components:
-  - type: ToolTileCompatible
-    delay: 2

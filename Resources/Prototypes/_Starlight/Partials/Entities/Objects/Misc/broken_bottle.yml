@@ -1,5 +1,0 @@
-- type: !PartialOnly entity
-  id: BrokenBottle
-  components:
-  - type: ToolTileCompatible
-    delay: 2

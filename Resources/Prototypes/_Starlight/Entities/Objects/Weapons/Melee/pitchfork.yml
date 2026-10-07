@@ -55,6 +55,4 @@
   - type: Item
     size: Large
   - type: UseDelay
-  - type: ToolTileCompatible
-    delay: 2
   - type: Appearance

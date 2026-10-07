@@ -24,8 +24,6 @@
   - type: Tool
     qualities:
     - Slicing
-  - type: ToolTileCompatible
-    delay: 2
   - type: Clothing
     slots: [gloves]
     equipSound:

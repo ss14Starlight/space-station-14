@@ -144,6 +144,11 @@ public sealed partial class ToolRefinableSystem : EntitySystem
         if (ev.Cancelled)
             return;
 
+        #region Starlight - Refine opted-in stacks one item at a time.
+        if (!TrySplitRefinementStack(ent, out uid))
+            return;
+        #endregion
+
         if (component.RefineResult.Count == 0)
             Log.Warning($"Attempted to refine {ToPrettyString(ent)}, but no spawns were supplied. Refining should leave results.");
         else

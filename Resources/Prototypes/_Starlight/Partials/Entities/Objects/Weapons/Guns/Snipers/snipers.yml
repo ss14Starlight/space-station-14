@@ -10,8 +10,6 @@
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 2
-  - type: ToolTileCompatible
-    delay: 2
   - type: Gun
     minAngle: 8
     maxAngle: 18
@@ -50,9 +48,3 @@
     maxAngleDivider: 1.4
     minAngle: 0
     maxAngle: 0
-
-- type: !PartialOnly entity
-  id: Musket
-  components:
-  - type: ToolTileCompatible
-    delay: 2

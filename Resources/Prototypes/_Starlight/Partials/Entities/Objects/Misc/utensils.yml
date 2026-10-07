@@ -1,5 +1,0 @@
-- type: !PartialOnly entity
-  id: KnifePlastic
-  components:
-  - type: ToolTileCompatible
-    delay: 2
