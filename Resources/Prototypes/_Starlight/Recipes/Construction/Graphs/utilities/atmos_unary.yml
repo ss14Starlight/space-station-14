@@ -107,18 +107,6 @@
         amount: 2
         doAfter: 1
 
-    - to: dualportventpumpVoxAlt1
-      steps:
-      - material: Steel
-        amount: 2
-        doAfter: 1
-
-    - to: dualportventpumpVoxAlt2
-      steps:
-      - material: Steel
-        amount: 2
-        doAfter: 1
-
     # Freezer variants
     - to: ventpumpfreezerAlt1
       steps:
