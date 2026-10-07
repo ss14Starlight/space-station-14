@@ -6,9 +6,18 @@
     factions:
     - !Remove SimpleHostile
     - MoffNarsianDemon
+  - type: Hands
+  - type: ComplexInteraction
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
   - type: Tag
     tags:
     - StutterImmune
+    - DoorBumpOpener
   - type: LanguageSpeaker
     currentLanguage: Darktongue
   - type: LanguageKnowledge
@@ -32,7 +41,7 @@
       0: Alive
       50: Dead
   - type: Destructible
-    thresholds:
+    thresholds: !Clear
     - trigger:
         !type:DamageTrigger
         damage: 50
@@ -58,8 +67,6 @@
     damageModifierSet: MoffDemonFlesh
     damageContainer: MoffDemonBiological
   - type: HTN
-    rootTask:
-      task: SimpleHostileCompound #TODO: Make custom HTN
     blackboard:
       NavClimb: !type:Bool
         true
@@ -67,5 +74,9 @@
         true
       NavPry: !type:Bool
         true
-      NavSmash: !type:Bool
-        true
+  - type: Respirator
+    minSaturation: 0
+    suffocationThreshold: 0
+  - type: PressureImmunity
+  - type: TemperatureDamage
+    coldDamageThreshold: 0
