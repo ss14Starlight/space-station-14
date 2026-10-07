@@ -52,6 +52,35 @@
       - state: base-stripes-inhand-right
         color: "#7B0F12"
 
+- type: entity
+  parent: BaseBorgModule
+  id: BaseBorgModuleCentcomm
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - BorgModuleCentcomm
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+  - type: Item
+    inhandVisuals: # todo fix these
+      left:
+      - state: base-icon-inhand-left
+        color: "#6E9EE0"
+      - state: base-module-inhand-left
+        color: "#337dd6"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#FF00CC"
+      right:
+      - state: base-icon-inhand-right
+        color: "#6E9EE0"
+      - state: base-module-inhand-right
+        color: "#337dd6"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#FF00CC"
+
 # Blacklist abstracts
 - type: entity
   parent: BaseXenoborgModuleHeavy
@@ -286,6 +315,60 @@
     - BorgModuleSecurityStation
 
 # region TSF
+- type: entity
+  id: BorgModuleTSF
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: TSF Security cyborg module
+  description: A Security TSF cyborg module which allows the unit to use unlethal equipment.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+  - type: ItemBorgModule
+    hands:
+    - item: Flash
+      hand:
+        emptyRepresentative: Flash
+        emptyLabel: borg-slot-flash-empty
+        whitelist:
+          components:
+          - Flash
+    - item: Crowbar
+    - item: Zipties
+      hand:
+        emptyRepresentative: Zipties
+        emptyLabel: borg-slot-zipties-empty
+        whitelist:
+          tags:
+          - Handcuffs # Can be replaced by handcuffs or zipties
+    - item: TSFBatonModel5
+    - item: WeaponDisabler
+      hand:
+        emptyRepresentative: WeaponDisabler
+        emptyLabel: borg-slot-disabler-empty
+        whitelist:
+          tags:
+          - Disabler
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
+
+- type: entity
+  id: BorgModuleTSFCombat
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: TSMC Combat cyborg module
+  description: A TSMC cyborg module which allows the unit to use combat equipment.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+  - type: ItemBorgModule
+    hands:
+    - item: AccessOveriderRecharging
+    - item: TSFBatonModel5
+    - item: WeaponPistolTSFBorg
+    - item: WeaponAdvancedLaser
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-weapon-module }
 
 # region Purrfus
 - type: entity
@@ -1100,6 +1183,22 @@
 # Makeshift End
 
 - type: entity
+  id: BorgModuleTeaPartyMAG
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseMajorContraband ]
+  name: TeaPartyMAG cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: xenoborg_engi
+    - state: icon-xenoborg-access-breaker
+  - type: ItemBorgModule
+    hands:
+    - item: EmagTeaParty
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-door-remote-module }
+
+
+- type: entity
   id: BorgModuleMiningDefense
   parent: [ BaseBorgModuleMining, BaseProviderBorgModule ]
   name: mining defense cyborg module
@@ -1183,6 +1282,75 @@
       icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-space-movement-module }
 
 # region NTNC
+
+- type: entity
+  parent: [BaseBorgModuleCentcomm,BaseProviderBorgModule,BaseCentcommContraband]
+  id: CentcommLaserModule
+  name: CentComm cyborg laser module.
+  description: Module with a standard issue HAW laser.
+  components:
+  - type: Sprite
+    layers:
+    - state: centcomm
+    - state: icon-centcomm
+  - type: ItemBorgModule
+    hands:
+    - item: CentcommCyborgLaser
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser2-module }
+
+- type: entity
+  parent: [ BaseBorgModuleCentcomm, BaseProviderBorgModule, BaseCentcommContraband ]
+  id: CentcommAccessBreakerModule
+  name: CentComm Breacher Module
+  description: Module with an ERT-modified Access Configurator designed to quickly allow access into an area.
+  components:
+  - type: Sprite
+    layers:
+    - state: centcomm
+    - state: icon-centcomm
+  - type: ItemBorgModule
+    hands:
+    - item: AccessOveriderRecharging
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-access-breaker-module }
+
+- type: entity
+  id: CentcommBulwarkModule
+  parent: [ BaseBorgModuleCentcomm, BaseProviderBorgModule, BaseCentcommContraband ]
+  name: CentComm bulwark module
+  description: A module that comes with an energy chainsword and shield.
+  components:
+    - type: Sprite
+      layers:
+      - state: centcomm
+      - state: icon-centcomm
+    - type: ItemBorgModule
+      hands:
+      - item: EnergyShieldCyber
+      - item: CyberEnergyChainsword
+    - type: BorgModuleIcon
+      icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-esword-module }
+
+- type: entity
+  parent: [ BaseBorgModuleCentcomm, BaseProviderBorgModule, BaseCentcommContraband ]
+  id: CentcommModuleSpaceMovement
+  name: CentComm space movement module
+  description: After seeing the success of the thruster module, CentComm decided to develop a proper jetpack for their most valued cyborgs.
+  components:
+  - type: Sprite
+    layers:
+    - state: centcomm
+    - state: icon-centcomm
+  - type: ItemBorgModule
+    hands:
+    - item: HandheldGPSBasic
+    - item: HandHeldMassScannerBorg
+    - item: HandheldStationMapUnpowered
+    - item: WeaponGrapplingGun
+    - item: JetpackCyborgCentcomm
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-space-movement-module }
 
 # Xenoborg Tier 3
 - type: entity

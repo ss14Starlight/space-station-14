@@ -242,6 +242,7 @@
     maxOffset: 3
     pvsIncrease: 0.3
 
+
 - type: entity
   name: Pitbull
   parent: [ BaseWeaponRifle, BaseSyndicateContraband ]
@@ -293,6 +294,7 @@
         whitelist:
           tags:
             - CartridgeMagnum
+
 
 - type: entity
   name: Peacemaker
@@ -351,6 +353,17 @@
     minAngleDivider: 8
     maxAngleDivider: 3.75
     angleIncreaseDivider: 2
+
+- type: entity
+  name: ForceableFollow AKMS
+  parent: [ WeaponRifleAk, BaseSovietContraband ]
+  id: WeaponRifleAkAdmeme
+  suffix: Admeme
+  description: An iconic weapon of war. Uses .30 rifle ammo.
+  components:
+  - type: Tag
+    tags:
+    - ForceableFollow
 
 - type: entity
   name: Lawbringer

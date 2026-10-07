@@ -274,6 +274,37 @@
       - state: base-stripes-inhand-right
         color: "#7B0F12"
 
+
+- type: entity
+  id: BaseBorgModuleSyndicateAssault
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: BorgModule
+    borgFitTypes:
+    - borg-type-syndicate-assault
+  - type: Tag
+    tags:
+    - BorgModuleSyndicateAssault
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#FF0000"
+      - state: base-module-inhand-left
+        color: "#891417"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#7B0F12"
+      right:
+      - state: base-icon-inhand-right
+        color: "#FF0000"
+      - state: base-module-inhand-right
+        color: "#891417"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#7B0F12"
+
 - type: entity
   abstract: true
   parent: BaseBorgModule
@@ -1283,6 +1314,49 @@
     # Starlight end
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: musical-module }
+
+- type: entity
+  id: BorgModuleGardening
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: gardening cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-gardening
+  - type: ItemBorgModule
+    hands:
+    - item: HydroponicsToolMiniHoe
+    - item: HydroponicsToolSpade
+    - item: HydroponicsToolClippers
+    - item: Bucket
+      #Starlight start
+    - hand:
+        emptyLabel: borg-slot-seeds-empty
+        emptyRepresentative: WheatSeeds
+        whitelist:
+          components:
+          - Seed
+      #Starlight end
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: gardening-module }
+
+- type: entity
+  id: BorgModuleHarvesting
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: harvesting cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-harvesting
+  - type: ItemBorgModule
+    hands:
+    - item: HydroponicsToolScythe
+    - item: HydroponicsToolHatchet
+    - item: PlantBag
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: harvesting-module }
 
 - type: entity
   id: BorgModuleClowning

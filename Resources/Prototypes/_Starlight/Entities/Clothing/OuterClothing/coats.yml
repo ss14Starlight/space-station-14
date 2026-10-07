@@ -92,6 +92,11 @@
     - MonkeyWearable
 
 - type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatNtrep, BaseNanoTrasenContraband ]
+  id: ClothingOuterCoatNtrepOpen
+  name: nt representative jacket
+
+- type: entity
   parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWarm]
   id: ClothingOuterCoatLabSeniorChemist
   name: senior chemist lab coat
@@ -111,6 +116,11 @@
   - type: Tag
     tags:
     - MonkeyWearable
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorChemist]
+  id: ClothingOuterCoatLabSeniorChemistOpened
+  name: senior chemist lab coat
 
 - type: entity
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSecurityContraband, ClothingOuterWinterCoatToggleable]
@@ -172,6 +182,11 @@
     zombificationResistanceCoefficient: 0.65
 
 - type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabBrigmedic]
+  id: ClothingOuterCoatLabBrigmedicOpened
+  name: brigmedic's reminisced overcoat
+
+- type: entity
   parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWarm, AllowSuitStorageClothing, BaseSecurityContraband]
   id: ClothingOuterCoatLabCorpsman
   name: corpsman's nostalgic overcoat
@@ -194,6 +209,11 @@
         Caustic: 0.75
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.65
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabCorpsman]
+  id: ClothingOuterCoatLabCorpsmanOpened
+  name: corpsman's nostalgic overcoat
 
 # Fashion-O-Mat
 - type: entity
@@ -221,6 +241,18 @@
     tags:
     - MonkeyWearable
 # Fashion-O-Mat END
+
+
+- type: entity
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
+  id: ClothingOuterCoatSquidPrisoner
+  name: last coat
+  description: Will look great on your body! Oh.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/squid_prisoner.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/squid_prisoner.rsi
 
 - type: entity
   parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
@@ -303,6 +335,11 @@
   - type: ExplosionResistance
     damageCoefficient: 0.60 # Incredibly niche explosion resist armor; it's half a joke about having "bomb" in the name, but also gives it something...
 
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterSecurityBomber]
+  id: ClothingOuterSecurityBomberOpened
+  name: security bomber
+
 # Security Windbreaker
 - type: entity
   parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWinter, AllowSuitStorageClothing, BaseSecurityContraband]
@@ -311,9 +348,9 @@
   description: A stylish red windbreaker with additional inserted plate padding for security usage.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_security.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_security
   - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_security.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_security
   - type: Armor
     modifiers:
       coefficients:
@@ -323,6 +360,11 @@
         Heat: 0.90
         Cold: 0.90
 
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerSecurity]
+  id: ClothingOuterWindbreakerSecurityOpened
+  name: security windbreaker
+
 # Cargo Windbreaker
 - type: entity
   parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWinter, AllowSuitStorageClothing]
@@ -331,9 +373,14 @@
   description: A simple windbreaker with a fur collar.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_cargo.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_cargo
   - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_cargo.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_cargo
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerCargo]
+  id: ClothingOuterWindbreakerCargoOpened
+  name: cargo windbreaker
 
 # Engineering Windbreaker
 - type: entity
@@ -343,9 +390,9 @@
   description: A reflective windbreaker for engineers.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_engineering.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_engineering
   - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_engineering.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_engineering
   - type: Reflect
     reflectProb: 0.02
     reflects:
@@ -355,6 +402,11 @@
     tags:
     - HiViz
 
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerEngineering]
+  id: ClothingOuterWindbreakerEngineeringOpened
+  name: engineering windbreaker
+
 # Medical Windbreaker
 - type: entity
   parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWinter, AllowSuitStorageClothing]
@@ -363,9 +415,14 @@
   description: A light windbreaker to see when you accidentally cut an artery.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_medical.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_medical
   - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_medical.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_medical
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerMedical]
+  id: ClothingOuterWindbreakerMedicalOpened
+  name: medical windbreaker
 
 # Senior Chemist long coat
 - type: entity
@@ -379,6 +436,12 @@
     - type: Clothing
       sprite: _Starlight/Clothing/OuterClothing/Coats/senior_chemistry_long_lab.rsi
 
+
+- type: entity
+  parent: [ ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorChemistLong ]
+  id: ClothingOuterCoatLabSeniorChemistLongOpened
+  name: long senior chemist lab coat
+
 # Virologist long coat
 - type: entity
   parent: ClothingOuterCoatLab
@@ -390,6 +453,11 @@
       sprite: _Starlight/Clothing/OuterClothing/Coats/virology_long_lab.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/OuterClothing/Coats/virology_long_lab.rsi
+
+- type: entity
+  parent: [ ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabVirologyLong ]
+  id: ClothingOuterCoatLabVirologyLongOpened
+  name: long virologist lab coat
 
 # Black long coat
 - type: entity
@@ -403,6 +471,11 @@
     - type: Clothing
       sprite: _Starlight/Clothing/OuterClothing/Coats/black_long_lab.rsi
 
+- type: entity
+  parent: [ ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabBlackLong ]
+  id: ClothingOuterCoatLabBlackLongOpened
+  name: long black lab coat
+
 # Coroner long coat
 - type: entity
   parent: ClothingOuterCoatLab
@@ -415,7 +488,12 @@
     - type: Clothing
       sprite: _Starlight/Clothing/OuterClothing/Coats/coroner_long_lab.rsi
 
+- type: entity
+  parent: [ ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabCoronerLong ]
+  id: ClothingOuterCoatLabCoronerLongOpened
+  name: long coroner lab coat
 # Starlight End
+
 
 #Science Windbreaker
 - type: entity
@@ -425,9 +503,14 @@
   description: a labcoat style windbreaker with a pocket for all of your pens.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_science.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_science
   - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_science.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_science
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerScience]
+  id: ClothingOuterWindbreakerScienceOpened
+  name: science windbreaker
 
 - type: entity
   parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter, AllowSuitStorageClothing, BaseCentcommContraband]
@@ -576,6 +659,63 @@
         - state: icon
     - type: Clothing
       sprite: _Starlight/Clothing/OuterClothing/Coats/edgerunners.rsi
+      clothingVisuals:
+        outerClothing:
+          - state: equipped-OUTERCLOTHING
+          - state: equipped-OUTERCLOTHING-unshaded
+            shader: unshaded
+
+- type: entity
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
+  id: ClothingOuterCoatLeatherJacket
+  name: leather jacket # Alternative Clothing Catalog
+  description: A plain leather jacket, pairs well with a lit cigarette.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket.rsi
+
+- type: entity
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
+  id: ClothingOuterCoatLeatherJacketFiery
+  name: fiery leather jacket # Alternative Clothing Catalog
+  description: The cooler leather jacket, for the more fiery personalities.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_firey.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_firey.rsi
+
+- type: entity
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
+  id: ClothingOuterCoatLeatherJacketHellfire
+  name: hellfire leather jacket # Alternative Clothing Catalog
+  description: The COOLEST leather jacket, for the biggest of personalities.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_hellfire.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_hellfire.rsi
+
+- type: entity
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
+  id: ClothingOuterCoatLeatherEldritch
+  name: eldritch leather jacket # Alternative Clothing Catalog
+  description: You get the feeling it's watching you.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_eldritch.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_eldritch.rsi
       clothingVisuals:
         outerClothing:
           - state: equipped-OUTERCLOTHING

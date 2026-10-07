@@ -357,6 +357,16 @@
       settings: VisitorLawyer
 
 - type: entity
+  id: RandomHumanoidVisitorLawyerCentcom
+  name: visiting centcom lawyer ghost role
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: lawyer
+    - type: RandomHumanoidSpawner
+      settings: VisitorLawyerCentcom
+
+- type: entity
   id: RandomHumanoidVisitorLibrarian
   name: visiting librarian ghost role
   components:
@@ -375,6 +385,26 @@
       state: musician
     - type: RandomHumanoidSpawner
       settings: VisitorMusician
+
+- type: entity
+  id: RandomHumanoidVisitorMusicianFancy
+  name: visiting fancy musician ghost role
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: musician
+    - type: RandomHumanoidSpawner
+      settings: VisitorMusicianFancy
+
+- type: entity
+  id: RandomHumanoidVisitorMusicianRelaxed
+  name: visiting relaxed musician ghost role
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: musician
+    - type: RandomHumanoidSpawner
+      settings: VisitorMusicianRelaxed
 
 - type: entity
   id: RandomHumanoidVisitorMime
@@ -418,13 +448,103 @@
 
 # Misc
 
+- type: entity
+  id: RandomHumanoidClownTroupeBanana
+  name: banana clown troupe
+  parent: RandomHumanoidVisitorClown
+  components:
+    - type: RandomHumanoidSpawner
+      settings: ClownTroupeBanana
+
 ### Visitors missing equipment for challenges
 
 # Command
 
+- type: entity
+  id: RandomHumanoidChallengeVictimCaptain
+  name: disaster victim Captain ghost role
+  suffix: CHALLENGE
+  # This is supposed to be for challenge events. Its intentionally missing QOL gear to make interesting scenarios.
+  components:
+    - type: Sprite
+      sprite: Mobs/Species/Skeleton/parts.rsi
+      state: skull_icon
+    - type: RandomHumanoidSpawner
+      settings: ChallengeVictimCaptain
+
+- type: entity
+  id: RandomHumanoidChallengeVictimCE
+  parent: RandomHumanoidChallengeVictimCaptain
+  name: disaster victim CE ghost role
+  suffix: CHALLENGE
+  # This is supposed to be for challenge events. Its intentionally missing QOL gear to make interesting scenarios.
+  components:
+    - type: RandomHumanoidSpawner
+      settings: ChallengeVictimChiefEngineer
+
+- type: entity
+  id: RandomHumanoidChallengeVictimCMO
+  parent: RandomHumanoidChallengeVictimCaptain
+  name: disaster victim CMO ghost role
+  suffix: CHALLENGE
+  # This is supposed to be for challenge events. Its intentionally missing QOL gear to make interesting scenarios.
+  components:
+    - type: RandomHumanoidSpawner
+      settings: ChallengeVictimCMO
+
+- type: entity
+  id: RandomHumanoidChallengeVictimHOP
+  parent: RandomHumanoidChallengeVictimCaptain
+  name: disaster victim HOP ghost role
+  suffix: CHALLENGE
+  # This is supposed to be for challenge events. Its intentionally missing QOL gear to make interesting scenarios.
+  components:
+    - type: RandomHumanoidSpawner
+      settings: ChallengeVictimHeadOfPersonnel
+
+- type: entity
+  id: RandomHumanoidChallengeVictimHOS
+  parent: RandomHumanoidChallengeVictimCaptain
+  name: disaster victim HOS ghost role
+  suffix: CHALLENGE
+  # This is supposed to be for challenge events. Its intentionally missing QOL gear to make interesting scenarios.
+  components:
+    - type: RandomHumanoidSpawner
+      settings: ChallengeVictimHeadOfSecurity
+
+- type: entity
+  id: RandomHumanoidChallengeVictimRD
+  parent: RandomHumanoidChallengeVictimCaptain
+  name: disaster victim RD ghost role
+  suffix: CHALLENGE
+  # This is supposed to be for challenge events. Its intentionally missing QOL gear to make interesting scenarios.
+  components:
+    - type: RandomHumanoidSpawner
+      settings: ChallengeVictimResearchDirector
+
+- type: entity
+  id: RandomHumanoidChallengeVictimQM
+  parent: RandomHumanoidChallengeVictimCaptain
+  name: disaster victim QM ghost role
+  suffix: CHALLENGE
+  # This is supposed to be for challenge events. Its intentionally missing QOL gear to make interesting scenarios.
+  components:
+    - type: RandomHumanoidSpawner
+      settings: ChallengeVictimQuartermaster
+
 # Security
 
 # Cargo
+
+- type: entity
+  id: RandomHumanoidChallengeCargoTechnician
+  parent: RandomHumanoidChallengeVictimCaptain
+  name: disaster cargo technician ghost role
+  suffix: CHALLENGE
+  # This is supposed to be for challenge events. Its intentionally missing QOL gear to make interesting scenarios.
+  components:
+    - type: RandomHumanoidSpawner
+      settings: ChallengeCargoTechnician
 
 # Engineering
 
@@ -468,7 +588,40 @@
     - type: RandomHumanoidSpawner
       settings: SyndieVisitor
 
+- type: entity
+  id: RandomHumanoidPirateScooner
+  name: pirate crewman ghost role
+  suffix: scooner
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner-red
+    - type: RandomHumanoidSpawner
+      settings: PirateScooner
+
+- type: entity
+  id: RandomHumanoidPirateCaptainScooner
+  name: pirate captain ghost role
+  suffix: scooner
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner-red
+    - type: RandomHumanoidSpawner
+      settings: PirateCaptainScooner
+
 ### Other
+
+- type: entity
+  id: RandomHumanoidVisitorBlackmarketeer
+  name: visiting blackmarketeer ghost role
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner-yellow
+    - type: RandomHumanoidSpawner
+      settings: VisitorBlackmarketeer
+
 
 - type: entity
   id: RandomHumanoidCossack

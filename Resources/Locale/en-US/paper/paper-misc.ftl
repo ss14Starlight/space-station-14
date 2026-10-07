@@ -1,3 +1,8 @@
+book-text-plasma-trap = Heheheheh, no way in hell they're going to get at our stash NOW, is there?
+      I rigged the area where our stuff's at to be a toasty thousand K.
+      You know how to drain it when we need it out.
+       - J.
+
 book-text-holoparasite-info = Thanks for choosing our holoparasite package!
       At cybersun, we pride ourselves on cutting-edge military and industrial technology, and greatly appreciate your contribution to our establishment!
       Guardians are helpful and intelligent beings which nest within your body, completely immune to common hazards such as pressure, temperature and even bullets!
@@ -106,6 +111,7 @@ book-text-agrichemkit-manual =
     {"[color=Red]Do not drink unstable mutagen. Wash your hands thoroughly after handling. Wash your eyes if you have looked at unstable mutagen for over 30 minutes in a 24 hour period. Do not use on corporate holidays. If you begin hearing voices telling you to drink unstable mutagen, please contact your doctor, head of personnel, or exorcist.[/color]"}
 
     {"[color=#aaaaaa][italic]NanoTrasen™ is not liable for dead crops, excessive water usage, newly sentient plants asking existential questions, or flora-strangled farmhands that may coincidentally occur while using it.[/italic][/color]"}
+
 
 book-text-combat-bakery-kit = Thank you for choosing our combat bakery kit!
       Enclosed are two (2) CyberSun patented Throwing Croissants, and one (1) patent-pending Baguette Sword.

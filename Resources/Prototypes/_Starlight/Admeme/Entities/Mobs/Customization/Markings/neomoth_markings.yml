@@ -1,8 +1,0 @@
-- type: marking
-  id: NeoCatEarsGeneric
-  bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: []
-  sprites:
-    - sprite: _Starlight/Admeme/Mobs/markings.rsi
-      state: generic_cat_ears

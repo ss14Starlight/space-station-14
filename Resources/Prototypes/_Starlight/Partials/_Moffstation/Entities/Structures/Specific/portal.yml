@@ -1,0 +1,6 @@
+# Starlight's ghost warp list falls back to the localized entity name.
+- type: !PartialOnly entity
+  id: HellPortal
+  components:
+  - type: WarpPoint
+    location: !Remove

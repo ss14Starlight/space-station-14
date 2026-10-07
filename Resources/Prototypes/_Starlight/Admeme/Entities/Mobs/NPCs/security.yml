@@ -1,9 +1,0 @@
-- type: startingGear
-  id: SecurityCadetNpcGear
-  equipment:
-    head: ClothingHeadHelmetDredd
-    jumpsuit: ClothingUniformJumpsuitSec
-    shoes: ClothingShoesBootsJackFilled
-    outerClothing: ClothingOuterArmorStab
-  inhand:
-  - Stunbaton

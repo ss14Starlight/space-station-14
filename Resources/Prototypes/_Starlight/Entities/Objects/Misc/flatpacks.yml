@@ -82,6 +82,23 @@
     entity: IceCreamMaker
 
 # Departmental techfabs
+- type: entity
+  parent: [BaseFlatpack, BaseMedicalContraband]
+  id: MedicalTechFabFlatpack
+  name: medical techfab flatpack
+  description: A flatpack used for constructing a medical techfab.
+  components:
+  - type: Flatpack
+    entity: MedicalTechFab
+
+- type: entity
+  parent: [BaseFlatpack, BaseSecurityContraband]
+  id: SecurityTechFabFlatpack
+  name: security techfab flatpack
+  description: A flatpack used for constructing a security techfab.
+  components:
+  - type: Flatpack
+    entity: SecurityTechFab
 
 - type: entity
   parent: [BaseFlatpack, BaseCargoContraband]
