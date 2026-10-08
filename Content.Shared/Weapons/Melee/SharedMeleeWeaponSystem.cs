@@ -743,9 +743,6 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
                         $"{ToPrettyString(user):actor} melee attacked (heavy) {ToPrettyString(entity):subject} using {ToPrettyString(meleeUid):tool} and dealt {damageResult.GetTotal():damage} damage");
                 }
             }
-
-            if (TerminatingOrDeleted(entity))
-                targets.RemoveAt(i);
         }
 
         targets.ExceptWith(filteredTargets);
@@ -756,7 +753,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
             _meleeSound.PlayHitSound(target, user, GetHighestDamageSound(appliedDamage, _protoManager), hitEvent.HitSoundOverride, component);
         }
 
-        if (appliedDamage.GetTotal() > FixedPoint2.Zero && targets.Count > 0)
+        if (appliedDamage.GetTotal() > FixedPoint2.Zero)
         {
             DoDamageEffect(targets, user, Transform(targets.First()));
             DoScreenshake(meleeUid, damage, user, targets); // Starlight | ES Screenshake

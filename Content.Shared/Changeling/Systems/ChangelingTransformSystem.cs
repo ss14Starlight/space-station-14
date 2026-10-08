@@ -21,7 +21,6 @@ public sealed partial class ChangelingTransformSystem : EntitySystem
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private SharedHumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
@@ -163,7 +162,6 @@ public sealed partial class ChangelingTransformSystem : EntitySystem
         var beforeTransformEvent = new BeforeChangelingTransformEvent(targetIdentity);
         RaiseLocalEvent(args.User, beforeTransformEvent);
 
-        _visualBody.CopyAppearanceFrom(targetIdentity, args.User);
         _cloning.CloneComponents(targetIdentity, args.User, settings);
 
         if (TryComp<ChangelingStoredIdentityComponent>(targetIdentity, out var storedIdentity) && storedIdentity.OriginalSession != null)

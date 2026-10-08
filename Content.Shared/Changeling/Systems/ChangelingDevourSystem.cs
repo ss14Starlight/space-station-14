@@ -240,7 +240,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         }
 
         #region Starlight ling devour.
-        var consumeEv = new OnLingDevour(target.Value);
+        var consumeEv = new OnLingDevour(target);
         RaiseLocalEvent(ent, ref consumeEv);
         #endregion
 
