@@ -27,12 +27,12 @@ public sealed class GasTileHeatBlurOverlay : Overlay
     private static readonly ProtoId<ShaderPrototype> UnshadedShader = "unshaded";
     private static readonly ProtoId<ShaderPrototype> HeatOverlayShader = "HeatBlur";
 
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly SharedMapSystem _mapManager = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IClyde _clyde = default!;
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    private SharedMapSystem _mapManager = default!; //Starlight-edit
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IClyde _clyde = default!;
+    [Dependency] private IConfigurationManager _configManager = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
 
     private readonly SharedTransformSystem _xformSys;
     private readonly ShaderInstance _shader;
@@ -64,6 +64,7 @@ public sealed class GasTileHeatBlurOverlay : Overlay
     {
         IoCManager.InjectDependencies(this);
         _xformSys = _entManager.System<SharedTransformSystem>();
+        _mapManager = _entManager.System<SharedMapSystem>(); //Starlight-edit
 
         _noiseTexture = _resourceCache.GetTexture("/Textures/Effects/HeatBlur/perlin_noise.png");
         _heatGradientTexture = _resourceCache.GetTexture("/Textures/Effects/HeatBlur/soft_circle.png");
