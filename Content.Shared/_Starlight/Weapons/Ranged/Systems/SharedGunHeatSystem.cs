@@ -52,7 +52,8 @@ public abstract partial class SharedGunHeatSystem : EntitySystem
             {
                 ent.Comp.Jammed = true;
                 Audio.PlayPredicted(ent.Comp.JamSound, ent, args.User);
-                Popup.PopupClient(Loc.GetString("gun-heat-jammed"), ent, args.User, PopupType.SmallCaution);
+                Popup.PopupClient(Loc.GetString("gun-heat-jammed"), ent, args.User, PopupType.MediumCaution);
+                ent.Comp.NextPopupTime = Timing.CurTime + ent.Comp.PopupCooldown;
             }
         }
 
