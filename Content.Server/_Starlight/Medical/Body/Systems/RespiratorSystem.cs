@@ -87,7 +87,7 @@ public sealed partial class RespiratorSystem : EntitySystem
 
             UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds, respirator);
 
-            if (!(_mobState.IsIncapacitated(uid) // cannot breathe in crit.
+            if (!(_mobState.IsIncapacitated(uid) || _mobState.IsSoftCritical(uid) // cannot breathe in crit.
                 || HasComp<HeldBreathComponent>(uid) // Starlight Edit - hold your breath
                 || HasComp<WrappedComponent>(uid))) // Starlight Edit - cannot breathe while wrapped in a web
             {
@@ -188,7 +188,7 @@ public sealed partial class RespiratorSystem : EntitySystem
     /// </summary>
     public bool IsBreathing(Entity<RespiratorComponent?> ent)
     {
-        if (_mobState.IsIncapacitated(ent))
+        if (_mobState.IsIncapacitated(ent) || _mobState.IsSoftCritical(ent))
             return false;
 
         if (!Resolve(ent, ref ent.Comp))
@@ -204,7 +204,7 @@ public sealed partial class RespiratorSystem : EntitySystem
     /// <returns>Returns true only if the air is not toxic, and it wouldn't suffocate.</returns>
     public bool CanMetabolizeInhaledAir(Entity<RespiratorComponent?> ent)
     {
-        if (!Resolve(ent, ref ent.Comp))
+        if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
         // Get the gas at our location but don't actually remove it from the gas mixture.

@@ -12,8 +12,13 @@
     },
     {
       "name": "equipped-OUTERCLOTHING",
-      "directions": 4
-
+      "directions": 4,
+      "copyright": "Romero/Littlemen"
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-avali",
+      "directions": 4,
+      "copyright": "Modified by DocMoth"
     }
   ]
 }

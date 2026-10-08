@@ -5,8 +5,6 @@ using Content.Shared.Atmos.Reactions;
 using JetBrains.Annotations;
 using Robust.Shared.Timing;
 using Content.Server.Radiation.Systems;
-using Robust.Shared.Map.Components;
-using Content.Server.Atmos.Components;
 using Content.Server.Radiation.Components;
 
 

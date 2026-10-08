@@ -1,6 +1,5 @@
 using Content.Shared._Starlight.Cargo.MailCompanion;
 using JetBrains.Annotations;
-using Robust.Client.UserInterface;
 using Content.Client._Starlight.UserInterface;
 
 namespace Content.Client._Starlight.Cargo.MailCompanion;

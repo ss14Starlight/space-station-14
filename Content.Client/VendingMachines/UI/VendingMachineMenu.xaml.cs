@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Numerics;
 using Content.Client.Stylesheets;
 using Content.Shared.VendingMachines;
@@ -10,7 +9,6 @@ using FancyWindow = Content.Client.UserInterface.Controls.FancyWindow;
 using Robust.Client.UserInterface;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.IdentityManagement;
-using Robust.Client.Graphics;
 using Robust.Shared.Utility;
 
 namespace Content.Client.VendingMachines.UI

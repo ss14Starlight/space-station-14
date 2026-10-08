@@ -280,6 +280,19 @@
         Glass: 2
 
 - type: entity
+  id: VendingMachineGumballsCircuitboard
+  parent: BaseMachineCircuitboard
+  name: gumball dispenser circuitboard
+  description: A machine printed circuit board for a gumball dispenser
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineGumballsEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
   id: VendingMachineLegalDrobeCircuitboard
   parent: BaseMachineCircuitboard
   name: LegalDrobe circuitboard
@@ -1269,7 +1282,7 @@
     componentRequirements:
       PowerCell:
         amount: 4
-        defaultPrototype: PowerCellHigh
+        defaultPrototype: PowerCellHighPrinted
 
 - type: entity
   id: IceCreamMakerMachineCircuitBoard
@@ -1282,6 +1295,25 @@
       prototype: IceCreamMaker
       stackRequirements:
         Steel: 5
+      tagRequirements:
+        GlassBeaker:
+          amount: 1
+          defaultPrototype: Beaker
+
+- type: entity
+  id: ChemApprenticeMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: ChemMaster 1000 machine board
+  description: A machine printed circuit board for a ChemMaster 1000.
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: ChemMaster1k
+      stackRequirements:
+        Manipulator: 1
+        Glass: 1
+        Cable: 1
       tagRequirements:
         GlassBeaker:
           amount: 1
@@ -1304,6 +1336,8 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+    - type: StealTarget
+      stealGroup: DepartmentalTechFabCircuitboard
 
 - type: entity
   id: EngineeringTechFabCircuitboard
@@ -1321,6 +1355,8 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+    - type: StealTarget
+      stealGroup: DepartmentalTechFabCircuitboard
 
 - type: entity
   id: ServiceTechFabCircuitboard
@@ -1355,6 +1391,8 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+    - type: StealTarget
+      stealGroup: DepartmentalTechFabCircuitboard
 
 - type: entity
   id: CommandTechFabCircuitboard
@@ -1372,6 +1410,8 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+    - type: StealTarget
+      stealGroup: SecureTechFabCircuitboard
 
 - type: entity
   id: NanoTrasenTechFabCircuitboard
@@ -1390,6 +1430,8 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+    - type: StealTarget
+      stealGroup: SecureTechFabCircuitboard
 
 - type: entity
   id: CentralCommandTechFabCircuitboard
@@ -1408,6 +1450,8 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+    - type: StealTarget
+      stealGroup: SecureTechFabCircuitboard
 
 - type: entity
   id: SyndicateTechFabCircuitboard

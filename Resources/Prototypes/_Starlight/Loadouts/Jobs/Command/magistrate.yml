@@ -38,6 +38,11 @@
   equipment:
     head: ClothingHeadHatPwig
 
+- type: loadout
+  id: MagistrateHeadBeret
+  equipment:
+    head: ClothingHeadHatBeretMagistrate
+
 #Eyewear
 - type: loadout
   id: MagistrateSecGlasses

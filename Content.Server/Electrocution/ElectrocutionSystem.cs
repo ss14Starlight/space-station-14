@@ -32,7 +32,6 @@ using Robust.Shared.Random;
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
 using PullerComponent = Content.Shared.Movement.Pulling.Components.PullerComponent;
 using Content.Shared._ES.Sparks;
-using Content.Shared.Interaction.Events;
 
 namespace Content.Server.Electrocution;
 

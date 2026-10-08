@@ -17,8 +17,8 @@
   result: FoodBakedVulpkaninPlate
   time: 15
   reagents:
-    TableSalt: 2
-    Blackpepper: 2
+    TableSalt: 1
+    Blackpepper: 1
   solids:
     FoodPlate: 1
     FoodMeat: 1
@@ -58,7 +58,7 @@
   time: 20
   reagents:
     Ketchup: 3
-    Blackpepper: 2
+    Blackpepper: 1
   solids:
     FoodPlate: 1
     FoodOrange: 1
@@ -605,7 +605,7 @@
   reagents:
     IceCream: 10
     Sugar: 5
-    TableSalt: 5
+    TableSalt: 1
 
 - type: microwaveMealRecipe
   id: RecipeRockyRoadIceCream
@@ -893,8 +893,8 @@
     FoodOnionSlice: 2
     FoodPlateSmall: 1
   reagents:
-    TableSalt: 5
-    Blackpepper: 5
+    TableSalt: 1
+    Blackpepper: 1
 
 - type: microwaveMealRecipe
   id: RecipeEmpanadas
@@ -936,4 +936,201 @@
     Rice: 10
     Milk: 10
     Water: 10
-    TableSalt: 5
+    TableSalt: 1
+
+- type: microwaveMealRecipe
+  id: RecipeBananaIceCream
+  name: banana ice cream
+  result: FoodBananaIceCream
+  deviceType: IceCreamMaker
+  time: 5
+  group: IceCream
+  solids:
+    DrinkGlass: 1
+    FoodBanana: 1
+  reagents:
+    IceCream: 15
+
+- type: microwaveMealRecipe
+  id: RecipeClownIceCream
+  name: clown ice cream
+  result: FoodClownIceCream
+  deviceType: IceCreamMaker
+  time: 5
+  group: IceCream
+  solids:
+    DrinkGlass: 1
+    FoodBanana: 1
+    FoodBerries: 1
+  reagents:
+    IceCream: 15
+
+- type: microwaveMealRecipe
+  id: RecipeCoconutIceCream
+  name: coconut ice cream
+  result: FoodCoconutIceCream
+  deviceType: IceCreamMaker
+  time: 5
+  group: IceCream
+  solids:
+    DrinkGlass: 1
+  reagents:
+    IceCream: 15
+    CoconutWater: 5
+
+- type: microwaveMealRecipe
+  id: RecipeIanIceCream
+  name: ian ice cream
+  result: FoodIanIceCream
+  deviceType: IceCreamMaker
+  time: 5
+  group: IceCream
+  solids:
+    DrinkGlass: 1
+    FoodOrange: 2
+  reagents:
+    IceCream: 15
+    Cream: 5
+
+- type: microwaveMealRecipe
+  id: RecipeNTIceCream
+  name: nanotrasen ice cream
+  result: FoodNTIceCream
+  deviceType: IceCreamMaker
+  time: 5
+  group: IceCream
+  solids:
+    DrinkGlass: 1
+    FoodBerries: 2
+  reagents:
+    IceCream: 15
+    Cream: 5
+    Sugar: 5
+
+- type: microwaveMealRecipe
+  id: RecipeNTMarineIceCream
+  name: nanotrasen marine ice cream
+  result: FoodNTMarineIceCream
+  deviceType: IceCreamMaker
+  time: 5
+  group: IceCream
+  solids:
+    DrinkGlass: 1
+    FoodBerries: 2
+    FoodLime: 1
+  reagents:
+    IceCream: 15
+    Cream: 5
+
+- type: microwaveMealRecipe
+  id: RecipePineappleIceCream
+  name: pineapple ice cream
+  result: FoodPineappleIceCream
+  deviceType: IceCreamMaker
+  time: 5
+  group: IceCream
+  solids:
+    DrinkGlass: 1
+    FoodPineappleSlice: 1
+  reagents:
+    IceCream: 15
+
+- type: microwaveMealRecipe
+  id: RecipeRisingSunIceCream
+  name: rising sun ice cream
+  result: FoodRisingSunIceCream
+  deviceType: IceCreamMaker
+  time: 5
+  group: IceCream
+  solids:
+    DrinkGlass: 1
+    FoodLemon: 1
+    FoodBerries: 1
+    FoodOrange: 1
+  reagents:
+    IceCream: 15
+
+- type: microwaveMealRecipe
+  id: RecipeRockyOreIceCream
+  name: rocky ore ice cream
+  result: FoodRockyOreIceCream
+  deviceType: IceCreamMaker
+  time: 5
+  group: IceCream
+  solids:
+    DrinkGlass: 1
+    FoodCherry: 1
+    FoodBakedCookie: 1
+  reagents:
+    IceCream: 15
+
+- type: microwaveMealRecipe
+  id: RecipeStunBatonIceCream
+  name: stun baton ice cream
+  result: FoodStunBatonIceCream
+  deviceType: IceCreamMaker
+  time: 5
+  group: IceCream
+  solids:
+    DrinkGlass: 1
+    FoodOrange: 1
+    FoodBakedCookie: 1
+  reagents:
+    IceCream: 15
+
+- type: microwaveMealRecipe
+  id: RecipeSyndieLandIceCream
+  name: syndie-land ice cream
+  result: FoodSyndieLandIceCream
+  deviceType: IceCreamMaker
+  time: 5
+  group: IceCream
+  solids:
+    DrinkGlass: 1
+    FoodCherry: 1
+    FoodLime: 1
+  reagents:
+    IceCream: 15
+    Cream: 5
+
+- type: microwaveMealRecipe
+  id: RecipeTiramisuIceCream
+  name: tiramisu ice cream
+  result: FoodTiramisuIceCream
+  deviceType: IceCreamMaker
+  time: 5
+  group: IceCream
+  solids:
+    DrinkGlass: 1
+  reagents:
+    IceCream: 5
+    Cinnamon: 5
+    Coffee: 5
+    CocoaPowder: 5
+
+- type: microwaveMealRecipe
+  id: RecipeUraniumIceCream
+  name: uranium ice cream
+  result: FoodUraniumIceCream
+  deviceType: IceCreamMaker
+  time: 5
+  group: IceCream
+  solids:
+    DrinkGlass: 1
+    SheetUranium1: 1
+  reagents:
+    IceCream: 15
+
+- type: microwaveMealRecipe
+  id: RecipeVoxIceCream
+  name: vox ice cream
+  result: FoodVoxIceCream
+  deviceType: IceCreamMaker
+  time: 5
+  group: IceCream
+  solids:
+    DrinkGlass: 1
+    FoodMintLeaf: 1
+  reagents:
+    IceCream: 15
+    WeldingFuel: 5

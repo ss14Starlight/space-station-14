@@ -9,7 +9,6 @@ using Robust.Server.Console;
 using Robust.Shared.Player;
 using Content.Shared.Speech.Muting;
 using Content.Shared.StatusEffectNew; //Starlight
-using Content.Shared._Starlight.BreathOrgan;
 using Content.Shared._Starlight.BreathOrgan.Systems; //Starlight
 
 namespace Content.Server.Mobs;
@@ -49,7 +48,7 @@ public sealed partial class CritMobActionsSystem : EntitySystem
 
     private void OnFakeDeath(EntityUid uid, MobStateActionsComponent component, CritFakeDeathEvent args)
     {
-        if (!_mobState.IsCritical(uid))
+        if (_mobState.IsDead(uid)) //Starlight - changed to checking if the creature is *dead*, rather than not critical, now we can use the same action to fake death on anyone still alive.
             return;
 
         //Starlight Start

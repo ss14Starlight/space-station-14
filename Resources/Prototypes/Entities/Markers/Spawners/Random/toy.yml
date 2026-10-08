@@ -155,6 +155,7 @@
     # Science
     - id: ToyFigurineResearchDirector
     - id: ToyFigurineScientist
+    - id: ToyFigurineRoboticist # Starlight
     # Security
     - id: ToyFigurineHeadOfSecurity
     - id: ToyFigurineWarden

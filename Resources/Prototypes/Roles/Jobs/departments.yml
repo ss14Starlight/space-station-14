@@ -7,8 +7,6 @@
   - CargoTechnician
   - MailTech
   - Quartermaster
-  - SalvageLead # Starlight
-  - SalvageSpecialist
   - MiningSpecialist
 
 - type: department
@@ -37,7 +35,6 @@
   - Performer
   - Lawyer
   - Boxer
-  - Zookeeper
   - Prisoner
   - RadioHost
   # Starlight end

@@ -10,13 +10,13 @@
     state: pill3
   - type: Label
     currentLabel: reagent-label-psicodine-10
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Psicodine
-          Quantity: 10
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Psicodine
+        Quantity: 10
 
 - type: entity
   name: pill canister

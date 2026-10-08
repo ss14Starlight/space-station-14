@@ -31,6 +31,7 @@
   jobBlacklist:
   - SalvageLead
   - SalvageSpecialist
+  - SalvageMedic
   - Paramedic
   - AssistantManager
 
@@ -98,11 +99,13 @@
   - Warden
   - Detective
   - Brigmedic
+  - K9
   - DutyOfficer
   - SecurityOfficer
   - SecurityCadet
   - SalvageLead
   - SalvageSpecialist
+  - SalvageMedic
   - AssistantManager
 
 # Cosmic Cult

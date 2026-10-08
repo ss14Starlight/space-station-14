@@ -312,15 +312,6 @@
     difficulty: 2.5 # Heavy, huge, hard to hide.
 
 - type: entity
-  parent: BaseTraitorCargoStealObjective
-  id: SalvLeadHardsuitStealObjective
-  components:
-  - type: StealCondition
-    stealGroup: SalvLeadHardsuit
-  - type: Objective
-    difficulty: 2.5 # Heavy, huge, hard to hide. Would be 3, but Salvage Lead usually tosses it after getting a better one.
-
-- type: entity
   parent: BaseTraitorCommandStealObjective
   id: CaptainHardsuitStealObjective
   components:
@@ -368,8 +359,8 @@
       difficulty: 2
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
 
 
 - type: entity
@@ -382,8 +373,8 @@
       difficulty: 2
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
 
 - type: entity
   parent: BaseStoryObjective
@@ -395,8 +386,8 @@
       difficulty: 2
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
 
 
 - type: entity
@@ -408,8 +399,8 @@
       difficulty: 1
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
     - type: DepartmentObjective
       title: objective-framing
     - type: PickRandomDepartment
@@ -423,8 +414,8 @@
       difficulty: 2
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
     - type: DepartmentObjective
       title: objective-false-uprising
     - type: PickRandomDepartment
@@ -439,8 +430,8 @@
       difficulty: 1
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
 
 - type: entity
   parent: BaseStoryObjective
@@ -452,8 +443,8 @@
       difficulty: 2
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
 
 - type: entity
   parent: BaseStoryObjective
@@ -465,8 +456,8 @@
       difficulty: 1
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
 
 - type: entity
   parent: BaseStoryObjective
@@ -478,8 +469,8 @@
       difficulty: 1
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
 
 - type: entity
   parent: BaseStoryObjective
@@ -491,8 +482,8 @@
       difficulty: 1.5
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
 
 - type: entity
   parent: BaseStoryObjective
@@ -503,8 +494,8 @@
       difficulty: 0.5
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
     - type: DepartmentObjective
       title: objective-stalking
     - type: PickRandomDepartment
@@ -518,8 +509,8 @@
       difficulty: 1
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
     - type: DepartmentObjective
       title: objective-disgrace
     - type: PickRandomDepartment
@@ -533,8 +524,8 @@
       difficulty: 1
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
     - type: DepartmentObjective
       title: objective-harass
     - type: PickRandomDepartment
@@ -548,8 +539,8 @@
       difficulty: 1
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
     - type: DepartmentObjective
       title: objective-impersonate
     - type: PickRandomDepartment
@@ -563,8 +554,8 @@
       difficulty: 1
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
     - type: DepartmentObjective
       title: objective-feud
     - type: PickRandomDepartment
@@ -578,8 +569,8 @@
       difficulty: 1
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
     - type: DepartmentObjective
       title: objective-waste
     - type: PickRandomDepartment
@@ -594,8 +585,8 @@
       difficulty: 2
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
 
 - type: entity
   parent: BaseStoryObjective
@@ -607,8 +598,8 @@
       difficulty: 2
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
 
 - type: entity
   parent: BaseStoryObjective
@@ -620,8 +611,8 @@
       difficulty: 2
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
 
 - type: entity
   parent: BaseStoryObjective
@@ -633,8 +624,8 @@
       difficulty: 2 # Rev metagame counterplay.
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
 
 - type: entity
   parent: BaseStoryObjective
@@ -646,8 +637,8 @@
       difficulty: 0.5 # Easy, lets you slander people for fun.
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
 
 - type: entity
   parent: BaseStoryObjective
@@ -659,8 +650,8 @@
       difficulty: 2 # Doing this should take the majority of your shift, so it can be higher difficulty.
       unique: true
       icon:
-        sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon
+        sprite: _Starlight/Interface/Misc/objective_icons.rsi
+        state: rp
 
 # RP OBJECTIVES END
 

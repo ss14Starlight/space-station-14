@@ -17,6 +17,8 @@
       mixture:
         Oxygen: 25
         Nitrogen: 75
+    - type: SandboxCopyOverride
+      override: GasPipeTankSubfloorFilledAir500
 
 - type: entity
   parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledAir500]
@@ -74,6 +76,8 @@
       mixture:
         Oxygen: 25
         Nitrogen: 75
+    - type: SandboxCopyOverride
+      override: GasPipeTankSubfloorFilledAir1000
 
 - type: entity
   parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledAir1000]

@@ -1,14 +1,12 @@
 using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Antag;
-using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
 using Content.Shared.Antag;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
-using Robust.Server.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -66,6 +64,8 @@ public sealed partial class StationJobsSystem
         if (userIdsIn.Count == 0)
             return new();
 
+        RecordRoundJobPreferences(userIdsIn); // Starlight
+
         // We need to modify this collection later, so make a copy of it.
         var userIds = userIdsIn.ToHashSet();
 
@@ -86,6 +86,7 @@ public sealed partial class StationJobsSystem
             }
         }
 
+        _roundStatistics.RecordInitialJobSlots(stationJobs); // Starlight
 
         // We reuse this collection. It tracks what jobs we're currently trying to select players for.
         var currentlySelectingJobs = new Dictionary<EntityUid, Dictionary<ProtoId<JobPrototype>, int?>>(stations.Count);
@@ -115,6 +116,7 @@ public sealed partial class StationJobsSystem
                     goto endFunc;
 
                 var candidates = GetPlayersJobCandidates(weight, selectedPriority, userIds);
+                _roundStatistics.RecordJobCandidates(candidates); // Starlight
 
                 var optionsRemaining = 0;
 
@@ -270,6 +272,7 @@ public sealed partial class StationJobsSystem
         }
 
         endFunc:
+        _roundStatistics.RecordRoundStartJobAssignments(assigned); // Starlight
         return assigned;
     }
 

@@ -32,3 +32,14 @@
   - type: Metabolizer
     metabolizerTypes: [ Resomi, Neocyte ]
     stages: [ Respiration ]
+
+- type: entity
+  id: OrganNeoResomiTongue
+  parent: OrganNeocyteTongueForked
+  suffix: Neo-Resomi
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: NeoResomiMSounds
+      Female: NeoResomiFSounds
+      Unsexed: NeoResomiMSounds

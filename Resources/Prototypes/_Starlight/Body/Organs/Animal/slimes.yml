@@ -12,15 +12,11 @@
       maxReagents: 3
       metabolizerTypes: [ Slime ]
       stages: [ Digestion, Bloodstream, Metabolites ]
-    - type: SolutionContainerManager
+    - type: SolutionManager
       solutions:
-        stomach:
-          maxVol: 30.0
-        food:
-          maxVol: 5
-          reagents:
-          - ReagentId: GreyMatter
-            Quantity: 5
+      - SolutionOrganSlime
+      - SolutionOrganFoodGreyMatter
+      - SolutionOrganStomach30
 
 - type: entity
   id: OrganSlimesLungs
@@ -39,17 +35,8 @@
     - type: Metabolizer
       metabolizerTypes: [ Slime ]
       stages: [ Respiration ]
-    - type: SolutionContainerManager
+    - type: SolutionManager
       solutions:
-        organ:
-          reagents:
-          - ReagentId: Nutriment
-            Quantity: 10
-        Lung:
-          maxVol: 100.0
-          canReact: false
-        food:
-          maxVol: 5
-          reagents:
-          - ReagentId: Slime
-            Quantity: 5
+      - SolutionOrganSlime
+      - SolutionOrganFoodSlime
+      - SolutionOrganLung

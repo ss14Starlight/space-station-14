@@ -1,0 +1,143 @@
+- type: entity
+  parent: [ SmokeGrenade ]
+  id: LubeGrenade
+  name: lube grenade
+  description: Special grenade for shenanigans, releasing large cloud of lube foam.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Grenades/lube.rsi
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 10
+    spreadAmount: 25
+    smokePrototype: Foam
+    solution:
+      reagents:
+      - ReagentId: SpaceLube
+        Quantity: 20
+  - type: EorgPreventTrigger # Starlight
+
+- type: entity
+  parent: [ SmokeGrenade ]
+  id: GlueGrenade
+  name: glue grenade
+  description: Special grenade for shenanigans, releasing large cloud of glue foam.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Grenades/glue.rsi
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 15
+    spreadAmount: 20
+    smokePrototype: Foam
+    solution:
+      reagents:
+      - ReagentId: SpaceGlue
+        Quantity: 20
+  - type: EorgPreventTrigger # Starlight
+
+- type: entity
+  parent: SmokeGrenade
+  id: ToxicGasGrenade
+  name: acidic gas grenade
+  description: A painful crowd control gas grenade full of Sulfuric Acid. Turn on your internals before using it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Grenades/toxic_gas.rsi
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 10
+    spreadAmount: 20
+    smokePrototype: TearGasSmokeYellow
+    solution:
+      reagents:
+      - ReagentId: SulfuricAcid
+        Quantity: 12
+  - type: StaticPrice
+    price: 500
+  - type: EorgPreventTrigger # Starlight
+
+- type: entity
+  parent: AirGrenade
+  id: HalonGasGrenade
+  name: halon gas grenade
+  description: A special solid state chemical grenade used for quickly releasing halon gas to extinguish fires.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Grenades/halon_gas.rsi
+  - type: ReleaseGasOnTrigger
+    keysIn:
+    - timer
+    removeFraction: 0.25
+    air:
+      volume: 500
+      moles:
+        Halon: 250 # Halon
+      temperature: 250
+  - type: StaticPrice
+    price: 500
+
+- type: entity # Starlight Grenade spawn the Peacekeeper stinger round
+  id: Grenade20mmStinger
+  parent: ProjectileGrenadeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: armedstinger
+  - type: GenericVisualizer
+    visuals: {}
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    beepSound:
+      path: /Audio/Effects/beep1.ogg
+      params:
+        volume: 5
+    initialBeepDelay: 0
+    beepInterval: 0.5
+    delay: 1.5
+
+  - type: ProjectileGrenade
+    triggerKey: timer
+    fillPrototype: PelletClusterLesserRubber
+    capacity: 30
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound:
+      path: /Audio/Effects/flash_bang.ogg
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
+
+- type: entity # Starlight Grenades spawns for the sec grenade launcher
+  id: Grenade20mmGas
+  parent: ProjectileGrenadeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: armedgas
+  - type: GenericVisualizer
+    visuals: {}
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 1.5
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 10
+    spreadAmount: 15
+    smokePrototype: TearGasSmokeWhite
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 20
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer

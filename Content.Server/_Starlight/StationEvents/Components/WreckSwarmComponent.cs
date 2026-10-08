@@ -1,5 +1,7 @@
 ﻿using Content.Server._Starlight.StationEvents.Events;
+using Content.Shared._Starlight.Salvage.Ruins;
 using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.StationEvents.Components;
@@ -7,11 +9,14 @@ namespace Content.Server._Starlight.StationEvents.Components;
 [RegisterComponent, Access(typeof(WreckSwarmSystem))]
 public sealed partial class WreckSwarmComponent : Component
 {
+    /// <summary>
+    /// World-space speed applied toward the station, matching the original wreck swarm.
+    /// </summary>
     [DataField]
     public float Velocity = 50f;
 
     /// <summary>
-    /// The announcement played when a meteor swarm begins.
+    /// The announcement played when a wreck swarm begins.
     /// </summary>
     [DataField]
     public LocId? Announcement = "station-event-incoming-wreck-announcement";
@@ -26,13 +31,13 @@ public sealed partial class WreckSwarmComponent : Component
     };
 
     /// <summary>
-    /// The size of wreck this should select from, mapping to <see cref="SalvageMapPrototype.SizeString"/>.
+    /// Ruin chunk size config (<c>Small</c> / <c>Medium</c> / <c>Large</c>).
     /// </summary>
     [DataField]
-    public LocId? SizeFilter;
+    public ProtoId<RuinChunkConfigPrototype>? ChunkConfig;
 
     /// <summary>
-    /// The fixed grid that should be spawned in this case; overrides SizeFilter-based selection.
+    /// The fixed grid that should be spawned in this case; overrides ruin generation.
     /// </summary>
     [DataField]
     public ResPath? FixedGrid;

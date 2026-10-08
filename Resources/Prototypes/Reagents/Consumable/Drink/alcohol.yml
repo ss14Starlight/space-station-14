@@ -9,6 +9,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: absinthe
   color: "#33EE00"
+  flammability: 2 # Funky change
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/absintheglass.rsi
     state: icon_empty
@@ -131,6 +132,7 @@
   physicalDesc: reagent-physical-desc-aromatic
   flavor: bluecuracao
   color: "#0099FF"
+  flammability: 1 # Funky change
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/curacaoglass.rsi
     state: icon_empty
@@ -150,6 +152,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: cognac
   color: "#AB3C05"
+  flammability: 1 # Funky change
   recognizable: true
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/cognacglass.rsi
@@ -179,6 +182,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: rum
   color: "#664300"
+  flammability: 1 # Funky change
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/rumglass.rsi
     state: icon_empty
@@ -198,6 +202,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: alcohol
   color: "#b05b3c"
+  flammability: 2 # Funky change
   boilingPoint: 78.2
   meltingPoint: -114.1
   metabolisms:
@@ -255,6 +260,14 @@
       #     groups:
       #       Brute: -0.1
       - !type:Vomit
+        probability: 0.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: Ethanol
+          min: 0.01
+        - !type:MetabolizerTypeCondition
+          type: [ Experiment ]
+      - !type:Vomit
         probability: 0.04
         conditions:
         - !type:ReagentCondition
@@ -289,6 +302,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: gin
   color: "#664300"
+  flammability: 1 # Funky change
   recognizable: true
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/ginvodkaglass.rsi
@@ -363,6 +377,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: bitter
   color: "#990066"
+  flammability: 3 # Funky change
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/pwineglass.rsi
     state: icon_empty
@@ -389,6 +404,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: rum
   color: "#f09f42"
+  flammability: 1 # Funky change
   recognizable: true
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/rumglass.rsi
@@ -418,6 +434,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: sake
   color: "#DDDDDD"
+  flammability: 1 # Funky change
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/sakeglass.rsi
     state: icon_empty
@@ -437,6 +454,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: tequila
   color: "#d7d1d155"
+  flammability: 1 # Funky change
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/tequillaglass.rsi
     state: icon_empty
@@ -496,6 +514,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: vodka
   color: "#d1d1d155"
+  flammability: 2 # Funky change
   recognizable: true
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/ginvodkaglass.rsi
@@ -526,6 +545,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: whiskey
   color: "#ee7732"
+  flammability: 2 # Funky change
   recognizable: true
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/whiskeyglass.rsi
@@ -659,15 +679,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.06
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
         - !type:MobStateCondition
           mobstate: Critical
         damage:
-          groups:
-            Burn: -1
+          Burn: -1
   # Starlight edit end
 
 - type: reagent
@@ -708,6 +727,12 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.06
+      - !type:EvenHealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+        damage:
+          Brute: 1.5
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
@@ -715,8 +740,6 @@
         damage:
           types:
             Radiation: -3
-          groups:
-            Brute: 1.5
   # Starlight edit end
 
 - type: reagent
@@ -789,6 +812,7 @@
   physicalDesc: reagent-physical-desc-cloudy
   flavor: atomicbomb
   color: "#666300"
+  flammability: 4 # Starlight, has bomb in the name and takes uranium to make
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/atomicbombglass.rsi
     state: icon_empty
@@ -809,6 +833,7 @@
   physicalDesc: reagent-physical-desc-bubbly
   flavor: b52
   color: "#664300"
+  flammability: 3 # Starlight, it's a bomber
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/b52glass.rsi
     state: icon_empty
@@ -927,6 +952,24 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
+  metabolisms: # SL Dolls - Easter Egg, since it contains *no* blood
+    Digestion:
+      effects:
+      #Starlight Start
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
+      - !type:EvenHealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          Brute: -0.75
+          Burn: -0.375
+      #Starlight End
 
 - type: reagent
   id:  Booger
@@ -1141,14 +1184,34 @@
   metabolisms: # SL vampires
     Digestion:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Bloodsucker ]
         damage:
-          groups:
-            Brute: -3
-            Burn: -1.25
+          Brute: -3
+          Burn: -1.25
+      #Starlight Start
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: UncookedAnimalProteins
+        amount: 0.5
+      - !type:EvenHealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          Brute: -0.75
+          Burn: -0.375
+      #Starlight End
 
 - type: reagent
   id: DevilsKiss
@@ -1167,14 +1230,34 @@
   metabolisms: # SL vampires
     Digestion:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Bloodsucker ]
         damage:
-          groups:
-            Brute: -3
-            Burn: -1.25
+          Brute: -3
+          Burn: -1.25
+      #Starlight Start
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: UncookedAnimalProteins
+        amount: 0.5
+      - !type:EvenHealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          Brute: -0.75
+          Burn: -0.375
+      #Starlight End
 
 - type: reagent
   id: DoctorsDelight
@@ -1199,13 +1282,18 @@
         factor: 2
       - !type:SatiateHunger
         factor: -2
+      # Starlight start, use Mixmax instead
       - !type:HealthChange
         damage:
-          groups:
-            Burn: -1
-            Brute: -1
-            Airloss: -1
-            Toxin: -1
+          mixmax:
+            value: -0.5
+            groups:
+            - Burn
+            - Brute
+            - Airloss
+            - Toxin
+            - Genetic
+      # Starlight end
 
 - type: reagent
   id: DriestMartini
@@ -1455,6 +1543,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: hooch
   color: "#664e00"
+  flammability: 2 # Starlight
   # Starlight edit start - Make Hooch work like Ephedrine for dwarves
   metabolisms:
     Digestion:
@@ -1528,6 +1617,7 @@
   physicalDesc: reagent-physical-desc-bubbly
   flavor: irishcarbomb
   color: "#2E6671"
+  flammability: 2 # Starlight, has bomb in the name lmao
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/irishslammer.rsi
     state: icon_empty
@@ -1612,6 +1702,7 @@
   physicalDesc: reagent-physical-desc-tart
   flavor: jackrose
   color: "#f53b3b"
+  flammability: 0 # Starlight
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/jackrose.rsi
     state: icon_empty
@@ -1817,15 +1908,17 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.06
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
-        - !type:TotalDamageCondition
-          max: 50
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
         damage:
-          groups:
-            Brute: -1
+          Brute: -1
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+        damage:
           types:
             Poison: -0.5
             Heat: -0.33
@@ -1872,6 +1965,7 @@
   physicalDesc: reagent-physical-desc-pungent
   flavor: moonshine
   color: "#d1d7d155"
+  flammability: 2 # Starlight
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/moonshineglass.rsi
     state: icon_empty
@@ -1999,15 +2093,34 @@
           types:
             Asphyxiation: -1
             Bloodloss: -0.5
-      - !type:HealthChange # SL vampires
+      - !type:EvenHealthChange # SL vampires
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Bloodsucker ]
         damage:
-          groups:
-            Brute: -3
-            Burn: -1.25
-  # Starlight edit end
+          Brute: -3
+          Burn: -1.25
+      #Dolls
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: UncookedAnimalProteins
+        amount: 0.5
+      - !type:EvenHealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          Brute: -0.75
+          Burn: -0.375
+      #Starlight End
 
 - type: reagent
   id: PinaColada
@@ -2051,15 +2164,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.06
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
         - !type:MobStateCondition
           mobstate: Critical
         damage:
-          groups:
-            Brute: -1
+          Brute: -1
   # Starlight edit end
 
 - type: reagent
@@ -2199,6 +2311,7 @@
   physicalDesc: reagent-physical-desc-opaque
   flavor: syndiebomb
   color: "#e3e77b"
+  flammability: 2 # Starlight, has bomb in the name lmao
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/syndicatebomb.rsi
     state: icon_empty
@@ -2324,6 +2437,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: vodkamartini
   color: "#004666"
+  flammability: 1 # Starlight
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/martiniglass.rsi
     state: icon_empty
@@ -2343,6 +2457,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: vodkatonic
   color: "#0064C8"
+  flammability: 1 # Starlight
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/vodkatonicglass.rsi
     state: icon_empty
@@ -2396,9 +2511,9 @@
   fizziness: 0.4
 
 - type: reagent
+  parent: BaseAlcohol
   id: WhiteGilgamesh
   name: reagent-name-white-gilgamesh
-  parent: BaseDrink
   desc: reagent-desc-white-gilgamesh
   physicalDesc: reagent-physical-desc-creamy
   flavor: white-gilgamesh
@@ -2446,6 +2561,7 @@
   physicalDesc: reagent-physical-desc-bubbly
   flavor: vodkaredbool
   color: "#c4c27655"
+  flammability: 1 # Starlight
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/ginvodkaglass.rsi
     state: icon_empty
@@ -2990,6 +3106,7 @@
   physicalDesc: reagent-physical-desc-unidentifiable
   flavor: bacchusblessing
   color: "#331303"
+  flammability: 3 # Starlight
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/bacchusblessing.rsi
     state: icon_empty

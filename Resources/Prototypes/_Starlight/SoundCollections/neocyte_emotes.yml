@@ -33,11 +33,6 @@
     - /Audio/_FarHorizons/Voice/Proto/Resomi/resomi_laugh3.ogg
 
 - type: soundCollection
-  id: NeoReptilianLaugh
-  files:
-    - /Audio/_FarHorizons/Voice/Proto/Reptilian/lizard_happy.ogg
-
-- type: soundCollection
   id: NeoVoxLaugh
   files:
     - /Audio/_FarHorizons/Voice/Proto/Vox/vox_laugh.ogg

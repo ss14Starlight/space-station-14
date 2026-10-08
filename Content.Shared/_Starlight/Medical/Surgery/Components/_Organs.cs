@@ -1,6 +1,8 @@
 ﻿using Content.Shared.Actions;
+using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Tag;
 using Robust.Shared.GameStates;
@@ -21,11 +23,18 @@ namespace Content.Shared._Starlight.Medical.Surgery.Components;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class OrganKidneysComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class LeftArmComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class RightArmComponent : Component;
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class OrganShellComponent : Component;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class OrganTongueComponent : Component
 {
     [DataField]
     public bool IsMuted;
+
+    [DataField] public List<ProtoId<EmotePrototype>> AllowedEmotes = new();
+
+    [DataField] public Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>? Sounds;
+
+    [DataField] public bool AllowAllVocalEmotes;
 }
 
 [RegisterComponent, NetworkedComponent]
@@ -92,6 +101,29 @@ public sealed partial class OpenStorageOrganEvent : InstantActionEvent
 {
     [DataField]
     public string Key = "InternalStorage";
+}
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class MarkingOrganComponent : Component
+{
+    [DataField]
+    public List<ProtoId<MarkingPrototype>> AppliedMarkings = [];
+
+    [DataField]
+    public Dictionary<ProtoId<MarkingPrototype>, (bool isGlowing, IReadOnlyList<Color> markingColors)> Markings = [];
+
+    [DataField]
+    public bool StoreMarkings = false;
+
+    [DataField]
+    public bool IsGlowing = false;
+}
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class DamageModifierOrganComponent : Component
+{
+    [DataField(required: true)]
+    public DamageModifierSet Modifiers = default!;
 }
 
 [RegisterComponent, NetworkedComponent]

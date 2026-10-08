@@ -93,6 +93,8 @@
     ClothingHeadHatTVHead: 1
     ClothingHeadHatFeatheredHat: 1
     ClothingHeadHatBrimHat: 1
+    ClothingHeadSafari: 2 # Zookeeper removal
+    ClothingUniformJumpsuitSafari: 2 # Zookeeper removal
   contrabandInventory:
     ClothingHeadHatRichard: 1
     ToyFigurineBoxer: 1

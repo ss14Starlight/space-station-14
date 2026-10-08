@@ -6,6 +6,10 @@
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/MedTak/Structures/Shelfs/medtak.rsi
+  - type: Storage
+    grid:
+    - 0,0,7,7
+    maxItemSize: Huge
 
 - type: entity
   parent: ShelfMedTak

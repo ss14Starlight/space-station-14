@@ -13,6 +13,9 @@ public sealed partial class AntagMonsterScalingComponent : Component
     public double MaximumHealthScaling = 0.50;
 
     [DataField]
+    public double MinimumHealthScaling = -0.50;
+
+    [DataField]
     public bool IsScaled = false;
 
     [DataField]

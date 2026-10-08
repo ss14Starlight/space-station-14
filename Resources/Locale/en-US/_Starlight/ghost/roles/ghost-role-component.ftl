@@ -129,10 +129,32 @@ ghost-role-information-kiki-name = Kiki
 ghost-role-information-kiki-description = An honorable member of the kobold society in charge of botany and helping the botanists in any way she can.
 
 ghost-role-information-stirstir-name = Stir Stir
-ghost-role-information-stirstir-description = A disreputable monkey who should not be trusted. A real cell stuffer.
+ghost-role-information-stirstir-description = A disreputable monkey who should not be trusted. A real cell stuffer. Check the Guidebook for more information.
 
 ghost-role-information-syndicate-mothroach-reinforcement-name = Syndicate Mobroach
 ghost-role-information-syndicate-mothroach-reinforcement-description = Someone needs reinforcements. You, a trained mobroach, will help them.
 ghost-role-information-icesculpture-name = Ice sculpture
 ghost-role-information-icesculpture-description = A sculpture of ice given sentience by magic, obey your master!
 ghost-role-information-icesculpture-rules = Ensure your summoner survives, defend them at all cost. You were made for this.
+
+ghost-role-information-sentient-sharkminnow-name = Sentient Sharkminnow
+ghost-role-information-sentient-sharkminnow-description = Guard the dragon's rift and obey the Space Dragon. Protect the rift from anyone who would seek to destroy it!
+
+ghost-role-information-sentient-holocarp-name = Sentient Holocarp
+ghost-role-information-sentient-holocarp-description = Aid the Space Dragon and obey its commands. Help the dragon flood the station with carps and overwhelm its enemies!
+
+
+ghost-role-information-maintenance-drone-description = Maintain the station. Ignore other beings except drones.
+ghost-role-information-maintenance-drone-rules = You are bound by these laws both in-game and out-of-character:
+                                                 1. You may not involve yourself in the matters of another being, even if such matters conflict with Law Two or Law Three, unless the other being is another drone.
+                                                 2. You may not harm any being, regardless of intent or circumstance.
+                                                 3. Your goals are to build, maintain, repair, improve, and power the station to the best of your abilities. You must never actively work against these goals.
+
+# Ghost role names, descriptions and rules
+
+ghost-role-information-mob-nyr-mouse-ops-name = red mouse!
+ghost-role-information-drone-name = Maintenance Drone
+ghost-role-information-spawn-point-ghost-cluwne-beast-name = Cluwne Beast
+ghost-role-information-mob-nyr-mouse-ops-description = You are mouff leader. Your goal is to steal cheese from heads!
+ghost-role-information-spawn-point-ghost-cluwne-beast-description = Spread laughter and chaos by hitting and turning the crew into cluwnes.
+ghost-role-information-spawn-point-ghost-cluwne-beast-rules = You are an antagonist, transform as many of the crew as you can into cluwnes.

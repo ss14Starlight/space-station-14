@@ -90,4 +90,5 @@
     baseSprintSpeed: 0
   - type: TextToSpeech
     voice: karma
+  - type: AntagImmune
 # Fashion-O-Mat END

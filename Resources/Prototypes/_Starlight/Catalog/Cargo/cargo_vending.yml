@@ -47,3 +47,13 @@
   cost: 1200
   category: cargoproduct-category-name-service
   group: market
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockGumball
+  icon:
+    sprite: _Starlight/Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: CrateVendingMachineRestockGumballFilled
+  cost: 600
+  category: cargoproduct-category-name-service
+  group: market

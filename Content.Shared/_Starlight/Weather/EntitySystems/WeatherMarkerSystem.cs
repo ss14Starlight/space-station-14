@@ -11,8 +11,8 @@ namespace Content.Shared._Starlight.Weather.EntitySystems;
 /// </summary>
 public sealed partial class WeatherMarkerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedWeatherSystem _weather = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
+    [Dependency] private SharedWeatherSystem _weather = default!;
+    [Dependency] private INetManager _netManager = default!;
 
     public override void Initialize()
     {

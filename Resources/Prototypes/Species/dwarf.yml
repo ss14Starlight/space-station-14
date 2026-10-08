@@ -7,10 +7,8 @@
   markingLimits: MobHumanMarkingLimits
   dollPrototype: AppearanceDwarf
   skinColoration: HumanToned
-  customName: true # Starlight start
-  minWidth: 1.25
-  defaultWidth: 1.25
-  maxWidth: 1.5
+  displacement: Dwarfism # Starlight start
+  customName: true
   minHeight: 0.8
   defaultHeight: 0.8
   maxHeight: 0.85

@@ -444,7 +444,7 @@
 
 - type: entity
   id: BedsheetSyndie
-  parent: [ BedsheetBase, BaseMinorContraband ]  #SL EDIT, Syndie to Minor
+  parent: [ BedsheetBase, BaseMinorContraband ] # Starlight, major contra -> minor contra
   name: syndicate bedsheet
   description: It has a syndicate emblem and it has an aura of evil.
   components:
@@ -478,13 +478,12 @@
 
 - type: entity
   id: BedsheetWhite
-  parent: BedsheetBase
+  parent: [BedsheetBase, BaseSlicingRefinable]
   name: white bedsheet
   components:
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: ClothingOuterGhostSheet #ghostly!
-      amount: 1
   - type: Sprite
     state: sheetwhite
   - type: Clothing

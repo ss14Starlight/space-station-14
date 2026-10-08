@@ -1,0 +1,47 @@
+- type: !PartialOnly entity
+  id: Nukeops
+  components:
+  - type: DynamicRuleCooldown
+    cooldown: 1
+    rules:
+    - NukeopsLate
+    presets:
+    - Nukeops
+
+- type: !PartialOnly entity
+  id: NukeopsLate
+  components:
+  - type: DynamicRuleCooldown
+    cooldown: 1
+    rules:
+    - Nukeops
+    presets:
+    - Nukeops
+
+- type: !PartialOnly entity
+  id: Revolutionary
+  components:
+  - type: DynamicRuleCooldown
+    cooldown: 1
+    presets:
+    - Revolutionary
+
+- type: !PartialOnly entity
+  id: Zombie
+  components:
+  - type: DynamicRuleCooldown
+    cooldown: 1
+    rules:
+    - Zombie
+    presets:
+    - Zombieteors
+
+- type: !PartialOnly entity
+  id: Xenoborgs
+  components:
+  - type: DynamicRuleCooldown
+    cooldown: 1
+    rules:
+    - SubXenoborgs
+    presets:
+    - Xenoborgs

@@ -15,7 +15,7 @@
   - type: AutoRecharge
     rechargeDuration: 60
   - type: TargetAction
-    range: 1.5
+    range: 3
   - type: EntityTargetAction
     canTargetSelf: false
     whitelist:

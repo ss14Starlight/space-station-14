@@ -15,7 +15,8 @@
   id: UplinkExplosiveCollar
   name: uplink-explosive-collar-name
   description: uplink-explosive-collar-desc
-  productEntity: ClothingNeckExplosiveCollar
+  icon: { sprite: /Textures/_Starlight/Clothing/Neck/Misc/explosivecollar.rsi, state: icon }
+  productEntity: ClothingNeckExplosiveCollarBox
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 8
@@ -71,3 +72,39 @@
     whitelist:
       tags:
       - NukeOpsUplink
+
+- type: listing
+  id: UplinkClusterGrenade
+  name: uplink-cluster-grenade-name
+  description: uplink-cluster-grenade-desc
+  productEntity: ClusterGrenade
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkExplosives
+
+- type: listing
+  id: UplinkEmpKit
+  name: uplink-emp-kit-name
+  description: uplink-emp-kit-desc
+  productEntity: ElectricalDisruptionKit
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 6
+  categories:
+    - UplinkExplosives
+
+- type: listing
+  id: UplinkExplosiveGrenadeFlash
+  name: uplink-flash-grenade-name
+  description: uplink-flash-grenade-desc
+  productEntity: GrenadeFlashBang
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkExplosives

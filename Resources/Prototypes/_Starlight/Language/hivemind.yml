@@ -8,7 +8,7 @@
     fontId: Cosmic
     obfuscationFont: true
     radioChannel: CosmicRadio
-    chatTypeOverride: Whisper
+    blockSpeech: true
   obfuscation:
     !type:RandomObfuscation
 

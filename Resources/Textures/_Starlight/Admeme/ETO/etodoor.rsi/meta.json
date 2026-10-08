@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "assembly",
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "bolted_unlit",
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "closed",
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "closed_unlit",
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "closing",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.07,
+          0.07,
+          0.07,
+          0.2
+        ]
+      ],
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "closing_unlit",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.07,
+          0.07,
+          0.07,
+          0.2
+        ]
+      ],
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "deny_unlit",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ],
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "open",
+      "delays": [
+        [
+          1
+        ]
+      ],
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "opening",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.07,
+          0.07,
+          0.07,
+          0.2
+        ]
+      ],
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "opening_unlit",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.07,
+          0.07,
+          0.07,
+          0.2
+        ]
+      ],
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "panel_closing",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.07,
+          0.07,
+          0.07,
+          0.2
+        ]
+      ],
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "panel_open",
+      "delays": [
+        [
+          1
+        ]
+      ],
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "panel_opening",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.07,
+          0.07,
+          0.07,
+          0.2
+        ]
+      ],
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "sparks",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ],
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "welded",
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "emergency_unlit",
+      "delays": [
+        [
+          0.4,
+          0.4
+        ]
+      ],
+      "copyright": "The Purple Screen"
+    }
+  ]
+}

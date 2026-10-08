@@ -4,7 +4,7 @@ using Content.Shared.Verbs;
 
 namespace Content.Shared.Electrocution;
 
-public sealed class InsulatedSystem : EntitySystem
+public sealed partial class InsulatedSystem : EntitySystem
 {
     [Dependency] private ExamineSystemShared _examine = default!;
 
@@ -25,8 +25,8 @@ public sealed class InsulatedSystem : EntitySystem
 
         _examine.AddHoverExamineVerb(args,
             component,
-            Loc.GetString("identity-block-examinable-verb-text"),
-            Loc.GetString("identity-block-examinable-verb-text-message"),
+            Loc.GetString("insulated-examinable-verb-text"),
+            Loc.GetString("insulated-examinable-verb-text-message"),
             iconTexture
         );
     }

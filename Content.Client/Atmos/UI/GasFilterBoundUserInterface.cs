@@ -38,10 +38,9 @@ namespace Content.Client.Atmos.UI
             // _window.SelectGasPressed += OnSelectGasPressed;  // Starlight
         }
 
-        private void OnToggleStatusButtonPressed()
+        private void OnToggleStatusButtonPressed(bool status)
         {
-            if (_window is null) return;
-            SendMessage(new GasFilterToggleStatusMessage(_window.FilterStatus));
+            SendMessage(new GasFilterToggleStatusMessage(status));
         }
 
         private void OnFilterTransferRatePressed(string value)

@@ -1,0 +1,49 @@
+- type: entity
+  id: OverlayFireEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ParticleEmitter
+    effect: SfFireContinuous
+  - type: Tag
+    tags:
+      - HideContextMenu
+
+- type: entity
+  id: OverlayEmbersEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ParticleEmitter
+    effect: SfFireEmbers
+  - type: Tag
+    tags:
+      - HideContextMenu
+
+- type: entity
+  id: OverlaySmokeEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ParticleEmitter
+    effect: SfFireSmoke
+  - type: Tag
+    tags:
+      - HideContextMenu
+
+- type: entity
+  id: OverlayBluespaceBurstEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ParticleEmitter
+    effect: BluespaceBurst
+  - type: Tag
+    tags:
+      - HideContextMenu
+
+- type: entity
+  id: OverlayBluespaceSparksEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ParticleEmitter
+    effect: BluespaceSparks
+  - type: Tag
+    tags:
+      - HideContextMenu

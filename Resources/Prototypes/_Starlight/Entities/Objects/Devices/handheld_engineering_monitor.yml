@@ -4,9 +4,7 @@
   id: HandheldEngineeringMonitor
   description: A hand-held diagnostic slate. It switches between mapping the station's power network and paging through atmospheric alarms.
   components:
-  # Explicit in-hand visuals. ItemSwitch sets a held prefix per mode ("power"/"atmos"), and the
-  # default lookup would then hunt for power-inhand-left etc, which tablets.rsi has no states for.
-  # Declaring them here short-circuits that lookup entirely.
+  # ItemSwitch sets a held prefix per mode, and tablets.rsi has no power-inhand-left etc to match.
   - type: Item
     sprite: Objects/Devices/tablets.rsi
     inhandVisuals:
@@ -18,10 +16,8 @@
     sprite: Objects/Devices/tablets.rsi
     state: tabletsol
     layers:
-    # Tablet shell.
     - state: tabletsol
-    # Lit screen. Only shown while a screen is actually open, and the state is swapped to
-    # match whichever ItemSwitch mode is active below.
+    # Lit screen, hidden until a UI is open. State follows the ItemSwitch mode.
     - sprite: Objects/Specific/Engineering/handheldengineeringmonitor.rsi
       state: power
       shader: unshaded
@@ -30,31 +26,31 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      # Driven by ItemToggle, which ActivatableUIRequiresPowerCell activates while a screen is
-      # open. An idle monitor and a dead one therefore look identical: just the dark shell.
+      # ItemToggle, set by ActivatableUIRequiresPowerCell while a screen is open.
       enum.ToggleableVisuals.Enabled:
         screen:
           True: { visible: true }
           False: { visible: false }
-      # State names match the ItemSwitch mode keys, so the screen follows the mode directly.
+      # Keys match the ItemSwitch state names.
       enum.SwitchableVisuals.Switched:
         screen:
           power: { state: power }
           atmos: { state: atmos }
   - type: PowerCellDraw
     drawRate: 1.5
-  # Declared here rather than per mode. The key is only ever read from the prototype and is never
-  # networked, so an ActivatableUI added at runtime arrives on the client with no key at all.
-  # ItemSwitch retargets this one instead, via each state's activatableUiKey.
+  # Declared once rather than per mode: the key is never networked, so an ActivatableUI added at
+  # runtime reaches the client without one. Each ItemSwitch state retargets this via activatableUiKey.
   - type: ActivatableUI
     key: enum.PowerMonitoringConsoleUiKey.Key
     inHandsOnly: true
     singleUser: true
-  # Each mode swaps in its own console component and points the ActivatableUI above at its own
-  # screen, so only one is ever live. onUse is off so that using it in hand opens the screen
-  # rather than switching mode -- mode is picked from the Switch verb category.
+  # Each mode swaps in its own console component, so only one screen is ever live. onUse is off so
+  # that use in hand opens the screen; alt-use cycles the mode instead. onActivate is off because
+  # with two states the Switch verb category only repeats what the alt-use verb already offers.
   - type: ItemSwitch
     onUse: false
+    onAltUse: true
+    onActivate: false
     state: power
     states:
       power: !type:ItemSwitchState
@@ -81,7 +77,7 @@
     - DeviceMonitoringAndControl
   - type: StaticPrice
     price: 250
-  # Lets it into the engineering toolbelt whitelist.
+  # Engineering toolbelt whitelists by tag, not by component.
   - type: Tag
     tags:
     - HandheldEngineeringMonitor

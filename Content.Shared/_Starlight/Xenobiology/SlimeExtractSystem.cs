@@ -24,7 +24,7 @@ public sealed partial class SlimeExtractSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<SlimeExtractComponent, SolutionContainerChangedEvent>(OnSolutionChanged);
+        SubscribeLocalEvent<SlimeExtractComponent, SolutionChangedEvent>(OnSolutionChanged);
         SubscribeLocalEvent<SlimeExtractActiveReactionComponent, EntityPausedEvent>(OnPaused);
         SubscribeLocalEvent<SlimeExtractActiveReactionComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<SlimeExtractComponent, ExaminedEvent>(OnExamined);
@@ -52,7 +52,7 @@ public sealed partial class SlimeExtractSystem : EntitySystem
         return minimumScalingFactor;
     }
 
-    private void OnSolutionChanged(Entity<SlimeExtractComponent> entity, ref SolutionContainerChangedEvent args)
+    private void OnSolutionChanged(Entity<SlimeExtractComponent> entity, ref SolutionChangedEvent args)
     {
         if (TerminatingOrDeleted(entity.Owner)) return;
         _entityManager.EnsureComponent<SlimeExtractActiveReactionComponent>(entity.Owner,
@@ -60,7 +60,7 @@ public sealed partial class SlimeExtractSystem : EntitySystem
         foreach (var extractReactionProto in entity.Comp.ExtractReactions)
         {
             var reaction = _prototypeManager.Index<ExtractReactionPrototype>(extractReactionProto);
-            if (IsSolutionRequirementFulfilled(reaction.Requirements, args.Solution))
+            if (IsSolutionRequirementFulfilled(reaction.Requirements, args.Solution.Comp.Solution))
             {
                 activeReactionComponent.ActiveReactions[extractReactionProto] = _gameTiming.CurTime + reaction.Delay;
             }

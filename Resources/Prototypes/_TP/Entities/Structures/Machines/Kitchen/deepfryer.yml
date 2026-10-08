@@ -41,13 +41,13 @@
     solution: fryer
   - type: DrawableSolution
     solution: fryer
-  - type: SolutionContainerManager
-    solutions:
-      fryer:
-        maxVol: 400
-        reagents:
-        - ReagentId: Cornoil
-          Quantity: 400
+  - type: Solution
+    id: fryer
+    solution:
+      maxVol: 400
+      reagents:
+      - ReagentId: Cornoil
+        Quantity: 400
   - type: SolutionItemStatus
     solution: fryer
   - type: SolutionTransfer
@@ -87,17 +87,17 @@
   id: TP14KitchenDeepFryerEmpty
   suffix: Empty, Service
   components:
-  - type: SolutionContainerManager
-    solutions:
-      fryer:
-        maxVol: 400
+  - type: Solution
+    id: fryer
+    solution:
+      maxVol: 400
 
 - type: entity
   parent: TP14KitchenDeepFryerTabletop
   id: TP14KitchenDeepFryerTabletopEmpty
   suffix: Empty, Service
   components:
-  - type: SolutionContainerManager
-    solutions:
-      fryer:
-        maxVol: 400
+  - type: Solution
+    id: fryer
+    solution:
+      maxVol: 400

@@ -23,14 +23,14 @@
   abstract: true
 
 - type: entity
-  parent: [MobDogColdResistant, MobCorgiBaseTemplate]
+  parent: MobCorgiBaseTemplate
   id: MobCorgiBase
   abstract: true
   components:
   - type: AntagImmune
 
 - type: entity
-  parent: [MobDogColdResistant, MobCorgiBaseTemplate]
+  parent: MobCorgiBaseTemplate
   id: MobCorgiBaseAntag
   abstract: true
 
@@ -43,3 +43,12 @@
     coldDamageThreshold: 230
   - type: TemperatureProtection
     coolingCoefficient: 0.8
+
+# Shared identity system for dogs (corgis, MobFox, MobMcGriff, MobWalter).
+- type: entity
+  abstract: true
+  id: MobDogIdentity
+  components:
+  - type: Identity
+  - type: IdExaminable
+  - type: AnimalIdentity

@@ -29,3 +29,15 @@
   components:
     - type: Metabolizer
       metabolizerTypes: [ Rodentia ]
+
+- type: entity
+  id: OrganRodentiaTongue
+  parent: OrganHumanTongue
+  suffix: Rodentia
+  components:
+  - type: OrganTongue
+    allowedEmotes: ['Squeak']
+    sounds:
+      Male: MaleRodentia
+      Female: FemaleRodentia
+      Unsexed: MaleRodentia

@@ -1,0 +1,18 @@
+# threats called in by ninja hacking comms console
+- type: !PartialOnly weightedRandom
+  id: NinjaThreats
+  weights:
+    Dragon: 1
+    Revenant: 0.25
+    DisasterSyndies: 0.75
+    LoneOp: 0.5
+    StrikeTeam: 0.25
+    NinjaBackup: 0.25 # I swear to god if they roll 10 ninjas in a row im gonna cry
+    Wizard: 0.75
+    Terminator: 0.75
+    TheClownening: 0.25
+    #Xenoborgs: 0.25
+    #TerrorSpiders: 0.25
+    Eeeplet: 1
+    Abductors: 0.5
+    Colossus: 1

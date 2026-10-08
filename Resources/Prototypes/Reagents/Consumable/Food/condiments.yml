@@ -259,6 +259,7 @@
   recognizable: true
   physicalDesc: reagent-physical-desc-sticky
   viscosity: 0.55 #Start using syrup to attach your remote recievers to your microwaves!
+  viscosityMin: 1 # Starlight
   tileReactions:
     - !type:SpillTileReaction
   metabolisms:

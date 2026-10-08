@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Text;
-using Content.Server.Administration.Managers;
+﻿using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -115,7 +113,7 @@ public sealed partial class RoleBanCommand : IConsoleCommand
         if (success)
         {
             HashSet<string>? roles = new() { role }; // Used for updating webhook
-            _bans.WebhookUpdateRoleBans(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, roles, minutes, severity, reason, DateTimeOffset.UtcNow);
+            _ = _bans.WebhookUpdateRoleBans(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, roles, minutes, severity, reason, DateTimeOffset.UtcNow);
         }
         // Starlight end - webhook for bans
     }

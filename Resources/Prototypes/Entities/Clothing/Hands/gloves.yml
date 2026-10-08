@@ -1,13 +1,8 @@
 - type: entity
-  parent: ClothingHandsBase
-  id: ClothingHandsGlovesBoxingRed
-  name: red boxing gloves
-  description: Red gloves for competitive boxing.
+  abstract: true
+  parent: ClothingHandsBaseWarm # Starlight
+  id: ClothingHandsGlovesBoxingBase
   components:
-  - type: Sprite
-    sprite: Clothing/Hands/Gloves/Boxing/boxingred.rsi
-  - type: Clothing
-    sprite: Clothing/Hands/Gloves/Boxing/boxingred.rsi
   - type: StaminaDamageOnHit
     damage: 8 #Stam damage values seem a bit higher than regular damage because of the decay, etc
     # This needs to be moved to boxinggloves
@@ -21,17 +16,28 @@
       collection: BoxingHit
     animation: WeaponArcFist
     mustBeEquippedToUse: true
-  - type: Fiber
-    fiberMaterial: fibers-leather
-    fiberColor: fibers-red
-  - type: FingerprintMask
   - type: Tag
     tags:
     - Kangaroo
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHandsGlovesBoxingRed
+  parent: ClothingHandsGlovesBoxingBase
+  id: ClothingHandsGlovesBoxingRed
+  name: red boxing gloves
+  description: Red gloves for competitive boxing.
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Boxing/boxingred.rsi
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Boxing/boxingred.rsi
+  - type: Fiber
+    fiberMaterial: fibers-leather
+    fiberColor: fibers-red
+  - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHandsGlovesBoxingBase
   id: ClothingHandsGlovesBoxingBlue
   name: blue boxing gloves
   description: Blue gloves for competitive boxing.
@@ -47,7 +53,7 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: ClothingHandsGlovesBoxingRed
+  parent: ClothingHandsGlovesBoxingBase
   id: ClothingHandsGlovesBoxingGreen
   name: green boxing gloves
   description: Green gloves for competitive boxing.
@@ -63,7 +69,7 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: ClothingHandsGlovesBoxingRed
+  parent: ClothingHandsGlovesBoxingBase
   id: ClothingHandsGlovesBoxingYellow
   name: yellow boxing gloves
   description: Yellow gloves for competitive boxing.
@@ -79,22 +85,56 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: ClothingHandsGlovesBoxingBlue
-  id: ClothingHandsGlovesBoxingRigged
+  abstract: true
+  parent: ClothingHandsGlovesBoxingBase
+  id: ClothingHandsGlovesBoxingRiggedBase
   suffix: Rigged
   components:
-  - type: StaminaDamageOnHit
-    damage: 25
   - type: MeleeWeapon
-    attackRate: 1.4
     damage:
       types:
         Blunt: 8
-    bluntStaminaDamageFactor: 0.0 # so blunt doesn't deal stamina damage at all
-    mustBeEquippedToUse: true
+    bluntStaminaDamageFactor: 2
 
 - type: entity
-  parent: [ClothingHandsBase, BaseCommandContraband]
+  parent: [ ClothingHandsGlovesBoxingRiggedBase, ClothingHandsGlovesBoxingRed ]
+  id: ClothingHandsGlovesBoxingRiggedRed
+  name: red boxing gloves
+  description: Red gloves for competitive boxing.
+
+- type: entity
+  parent: [ ClothingHandsGlovesBoxingRiggedBase, ClothingHandsGlovesBoxingBlue ]
+  id: ClothingHandsGlovesBoxingRiggedBlue
+  name: blue boxing gloves
+  description: Blue gloves for competitive boxing.
+
+- type: entity
+  parent: [ ClothingHandsGlovesBoxingRiggedBase, ClothingHandsGlovesBoxingGreen ]
+  id: ClothingHandsGlovesBoxingRiggedGreen
+  name: green boxing gloves
+  description: Green gloves for competitive boxing.
+
+- type: entity
+  parent: [ ClothingHandsGlovesBoxingRiggedBase, ClothingHandsGlovesBoxingYellow ]
+  id: ClothingHandsGlovesBoxingRiggedYellow
+  name: yellow boxing gloves
+  description: Yellow gloves for competitive boxing.
+
+- type: entity
+  id: GlovesBoxingRiggedRandomSpawner
+  categories: [ HideSpawnMenu ]
+  name: random rigged boxing glove spawner
+  components:
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: ClothingHandsGlovesBoxingRiggedRed
+      - id: ClothingHandsGlovesBoxingRiggedBlue
+      - id: ClothingHandsGlovesBoxingRiggedGreen
+      - id: ClothingHandsGlovesBoxingRiggedYellow
+
+- type: entity
+  parent: [ClothingHandsBaseWarm, BaseCommandContraband] # Starlight
   id: ClothingHandsGlovesCaptain
   name: captain gloves
   description: Regal blue gloves, with a nice gold trim. Swanky.
@@ -110,7 +150,7 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: ClothingHandsBase
+  parent: ClothingHandsBaseWarm # Starlight
   id: ClothingHandsGlovesHop
   name: papercut-proof gloves
   description: Perfect for dealing with paperwork and matters with bureaucracy.
@@ -170,7 +210,7 @@
     zombificationResistanceCoefficient: 0.9 # Starlight end
 
 - type: entity
-  parent: ClothingHandsButcherable
+  parent: [ClothingHandsButcherable, ClothingHandsBaseWarm] # Starlight
   id: ClothingHandsGlovesLeather
   name: botanist's leather gloves
   description: These leather gloves protect against thorns, barbs, prickles, spikes and other harmful objects of floral origin. They're also quite warm.
@@ -190,7 +230,7 @@
         Caustic: 5
 
 - type: entity
-  parent: ClothingHandsBase
+  parent: ClothingHandsBaseWarm # Starlight
   id: ClothingHandsGlovesPowerglove
   name: power gloves
   description: Now I'm playin' with power! Wait... they're turned off. #Use "Now I'm playin' with power! BAM!" for when they're turned on
@@ -204,7 +244,7 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: ClothingHandsButcherable
+  parent: [ClothingHandsButcherable, ClothingHandsBaseWarm] # Starlight
   id: ClothingHandsGlovesRobohands
   name: robohands gloves
   description: Beep boop borp!
@@ -219,7 +259,7 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: [ClothingHandsBase, BaseToggleClothing, BaseHighlyIllegalContraband]
+  parent: [ClothingHandsBaseWarm, BaseToggleClothing, BaseHighlyIllegalContraband] # Starlight
   id: ClothingHandsGlovesSpaceNinja
   name: space ninja gloves
   description: These black nano-enhanced gloves insulate from electricity and provide fire resistance.
@@ -307,7 +347,7 @@
     fiberColor: fibers-black
 
 - type: entity
-  parent: [ BaseEngineeringSecurityCommandSalvageMiningContraband, ClothingHandsGlovesCombat ] # SL edit: Engi/Sec/Command/Salvage/Mining contra
+  parent: [ BaseEngineeringSecurityCommandSalvageMiningContraband, ClothingHandsGlovesCombat, BaseSlicingRefinable ] # SL edit: Engi/Sec/Command/Salvage/Mining contra
   id: ClothingHandsMercGlovesCombat
   name: mercenary combat gloves
   description: High-quality combat gloves to protect hands from mechanical damage during combat.
@@ -316,9 +356,8 @@
     sprite: Clothing/Hands/Gloves/mercbattle.rsi
   - type: Clothing
     sprite: Clothing/Hands/Gloves/mercbattle.rsi
-  - type: Butcherable
-    butcheringType: Knife
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: ClothingHandsGlovesMercFingerless
   - type: Fiber
     fiberMaterial: fibers-insulative
@@ -455,7 +494,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHandsBase, BaseSecurityContraband]
+  parent: [ClothingHandsBaseWarm, BaseSecurityContraband] # Starlight
   id: ClothingHandsGlovesForensic
   name: forensic gloves
   description: Do not leave fibers or fingerprints. If you work without them, you're A TERRIBLE DETECTIVE.

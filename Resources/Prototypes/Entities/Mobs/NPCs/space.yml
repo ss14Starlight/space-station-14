@@ -43,7 +43,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Cryoxadone
-        Quantity: 300
+        Quantity: 600
   - type: CombatMode
   - type: Temperature
   - type: TemperatureDamage
@@ -75,7 +75,7 @@
 - type: entity
   name: space bear
   id: MobBearSpace
-  parent: MobSpaceBasic
+  parent: [MobSpaceBasic, BaseSlicingRefinable]
   description: It looks friendly. Why don't you give it a hug?
   components:
   - type: Sprite
@@ -96,8 +96,8 @@
         Base: bear_dead
       Dead:
         Base: bear_dead
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeatBear
       amount: 3
     - id: MaterialHideBear
@@ -125,7 +125,7 @@
 - type: entity
   name: space kangaroo
   id: MobKangarooSpace
-  parent: [MobSpaceBasic, StripableInventoryBase]
+  parent: [MobSpaceBasic, StripableInventoryBase, BaseSlicingRefinable]
   description: It looks friendly. Why don't you give it a hug?
   components:
   - type: Sprite
@@ -168,8 +168,8 @@
       Unsexed: Kangaroo
   - type: ReplacementAccent
     accent: kangaroo
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeat
       amount: 1
 
@@ -183,7 +183,7 @@
 - type: entity
   name: space spider
   id: MobSpiderSpace
-  parent: MobSpaceBasic
+  parent: [MobSpaceBasic, BaseSlicingRefinable]
   description: It's so glowing, it looks dangerous.
   components:
   - type: VentCrawler
@@ -232,8 +232,8 @@
         BaseUnshaded: glow
       Dead:
         Base: spacespider_dead
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeatSpider
       amount: 2
     - id: EggSpider
@@ -264,12 +264,9 @@
       types:
         Piercing: 6
         Poison: 4
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      melee:
-        reagents:
-        - ReagentId: ChloralHydrate
-          Quantity: 80
+    - SolutionVenomSpiderSpace
   - type: MeleeChemicalInjector
     solution: melee
     transferAmount: 4
@@ -298,6 +295,17 @@
     proto: spider
 
 - type: entity
+  parent: [SolutionWeapon, SolutionTiny]
+  id: SolutionVenomSpiderSpace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: ChloralHydrate
+        Quantity: 30
+
+- type: entity
   id: MobSpiderSpaceSalvage
   parent: MobSpiderSpace
   suffix: "Salvage Ruleset"
@@ -307,7 +315,7 @@
 - type: entity
   name: space cobra
   id: MobCobraSpace
-  parent: MobSpaceBasic
+  parent: [MobSpaceBasic, BaseSlicingRefinable]
   description: Long fangs and a glowing hood, and the alluring look begs to come closer.
   components:
     - type: Sprite
@@ -335,15 +343,15 @@
           BaseUnshaded: glow
         Dead:
           Base: dead_spacecobra
-    - type: Butcherable
-      spawned:
-        - id: FoodMeatSnake
-          amount: 2
-        - id: UraniumOre1
-          amount: 1
-        - id: ClothingShoesSnakeskinBoots
-          amount: 1
-          prob: 0.3
+    - type: ToolRefinable
+      refineResult:
+      - id: FoodMeatSnake
+        amount: 2
+      - id: UraniumOre1
+        amount: 1
+      - id: ClothingShoesSnakeskinBoots
+        amount: 1
+        prob: 0.3
     - type: Bloodstream
       bloodReferenceSolution:
         reagents:
@@ -370,12 +378,9 @@
         types:
           Piercing: 6
           Poison: 4
-    - type: SolutionContainerManager
+    - type: SolutionManager
       solutions:
-        melee:
-          reagents:
-          - ReagentId: NorepinephricAcid
-            Quantity: 90
+      - SolutionVenomCobraSpace
     - type: MeleeChemicalInjector
       solution: melee
       transferAmount: 6
@@ -397,6 +402,17 @@
       movementVisibilityRate: 0.25
 
 - type: entity
+  parent: [SolutionWeapon, SolutionTiny]
+  id: SolutionVenomCobraSpace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: NorepinephricAcid
+        Quantity: 30
+
+- type: entity
   id: MobCobraSpaceSalvage
   parent: MobCobraSpace
   suffix: "Salvage Ruleset"
@@ -404,9 +420,7 @@
     - type: SalvageMobRestrictions
 
 - type: entity
-  parent:
-  - SimpleSpaceMobBase
-  # - BaseMobAnimal # Starlight Edit: Revert NuBody
+  parent: [SimpleSpaceMobBase, SolutionVermin] # Starlight Edit: Removed BaseMobAnimal
   id: MobSnail
   name: snail
   description: Revolting unless you're french.
@@ -487,6 +501,15 @@
       Dead:
         Base: dead
   - type: Edible
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 8
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: Water
+        Quantity: 4 #It makes saline if you add salt!
   - type: Thirst
     startingThirst: 25  # spawn with Okay thirst state
     thresholds:
@@ -506,16 +529,6 @@
     baseDecayRate: 0.1
   - type: Extractable
     grindableSolutionName: food
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 3
-  - type: Butcherable
-    spawned:
-    - id: FoodMeatSnail
-      amount: 1
   - type: Tag
     tags:
     - Trash

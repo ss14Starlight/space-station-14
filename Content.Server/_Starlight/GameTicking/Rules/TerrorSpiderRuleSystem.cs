@@ -12,7 +12,6 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Server.Player;
-using Robust.Shared.Audio;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
@@ -167,7 +166,7 @@ public sealed partial class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpider
         {
             // If the shuttle is already called, we need to recall it
             // Cancel the current shuttle call - force it with false for checkCooldown
-            _roundEnd.CancelRoundEndCountdown(null, false);
+            _roundEnd.CancelRoundEndCountdown(null, null, false);
         }
     }
 

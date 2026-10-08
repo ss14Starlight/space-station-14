@@ -40,7 +40,6 @@
     WardenHardsuitStealObjective: 1 # Not a member of command, yet has 3 steal targets.
     BrigmedicHardsuitStealObjective: 1 # You're not escaping.
     QMHardsuitStealObjective: 1 # Would you believe it was never an objective before?
-    SalvLeadHardsuitStealObjective: 0.75 # Likely to be easy if Salvage actually gets better suits.
     CaptainHardsuitStealObjective: 0.75 # Good luck.
     NTRepHardsuitStealObjective: 0.75 # Usually in the bridge... hard to get to.
     NTRepBriefcaseSecureStealObjective: 0.75 # Same as most NT Rep stuff.
@@ -144,7 +143,6 @@
     AmePartFlatpackStealObjective: 1
     ExpeditionsCircuitboardStealObjective: 1            #sup
     CargoShuttleCircuitboardStealObjective: 1
-    #ClothingEyesHudBeerStealObjective: 0.5              #srv, beer goggles less common cause its so easy # Starlight. Disabled in favor of a slight harder collection objective.
     BibleStealObjective: 1
     ClothingNeckGoldmedalStealObjective: 1              #other
     ClothingNeckClownmedalStealObjective: 0.5

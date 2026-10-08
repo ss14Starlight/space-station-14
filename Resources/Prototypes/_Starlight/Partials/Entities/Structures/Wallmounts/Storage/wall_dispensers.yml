@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: CleanerDispenser
+  components:
+  - type: Solution
+    solution:
+      maxVol: 3840
+      reagents:
+      - !CombineIndex:0 Quantity: 3840

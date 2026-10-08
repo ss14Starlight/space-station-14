@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Stylesheets;
-using Content.Shared.Clothing;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;

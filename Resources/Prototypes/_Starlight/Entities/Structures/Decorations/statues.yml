@@ -91,3 +91,16 @@
             - MidImpassable
             - LowImpassable
     - type: Anchorable
+
+- type: entity
+  id: StatueAngel
+  parent: BaseStructure
+  name: statue of an angel
+  description: An ancient marble statue. The subject is depicted with flowing robes and wide spread wings.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Starlight/Structures/Decorations/angel.rsi
+    state: angel
+    drawdepth: Mobs
+    offset: "0.0,0.5"
