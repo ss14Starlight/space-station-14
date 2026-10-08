@@ -101,10 +101,14 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
         if (aimedAt == cover.Owner)
             return true;
 
-        if (aimedAt is { } target && shotDirection is { } direction && IsSheltering(cover, target, direction))
+        var isSheltering = aimedAt is { } target
+            && shotDirection is { } direction
+            && IsSheltering(cover, target, direction);
+
+        if (isSheltering && comp.ProneAlwaysBlock)
             return true;
 
-        if (comp.ProneOnly)
+        if (comp.ProneOnly && (aimedAt is not { } target1 || !_standing.IsDown(target1) || !isSheltering))
             return false;
 
         if (IsPointBlank(cover, shooter, distance))

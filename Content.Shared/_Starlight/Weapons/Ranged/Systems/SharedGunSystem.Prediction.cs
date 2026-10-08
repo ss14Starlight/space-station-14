@@ -24,6 +24,14 @@ public abstract partial class SharedGunSystem
     public int GetShotSeed(EntityUid gun, int salt = 0)
         => SharedRandomExtensions.HashCodeCombine((int) ShotTick.Value, GetNetEntity(gun).Id, salt);
 
+    private static GameTick? GetBurstShotTick(GunComponent gun)
+    {
+        if (!gun.BurstActivated || gun.BurstShotsCount <= 0 || gun.BurstTick == GameTick.Zero)
+            return null;
+
+        return new GameTick(gun.BurstTick.Value + (uint) gun.BurstShotsCount);
+    }
+
     private GameTick? GetRequestTick(GameTick tick)
     {
         var now = Timing.CurTick;

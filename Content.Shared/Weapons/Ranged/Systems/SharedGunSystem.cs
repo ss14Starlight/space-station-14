@@ -178,7 +178,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
 
         bool fired;
-        _shotTick = GetRequestTick(msg.Tick);
+        _shotTick = GetBurstShotTick(gun.Comp) ?? GetRequestTick(msg.Tick);
 
         try
         {
@@ -470,6 +470,13 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (gun.Comp.SelectedMode == SelectiveFire.Burst || gun.Comp.BurstActivated)
         {
             var burstShots = gun.Comp.BurstShotsCount + shots;
+
+            if (!gun.Comp.BurstActivated)
+            {
+                gun.Comp.BurstTick = ShotTick;
+                DirtyField(gun.AsNullable(), nameof(GunComponent.BurstTick));
+            }
+
             if (burstShots >= gun.Comp.ShotsPerBurstModified)
             {
                 gun.Comp.NextFire += TimeSpan.FromSeconds(gun.Comp.BurstCooldown);
@@ -694,7 +701,16 @@ public abstract partial class SharedGunSystem : EntitySystem
             return false;
         }
 
-        return AttemptShoot(user, gun);
+        var previous = _shotTick;
+        _shotTick = GetBurstShotTick(gun.Comp) ?? previous;
+        try
+        {
+            return AttemptShoot(user, gun);
+        }
+        finally
+        {
+            _shotTick = previous;
+        }
     }
 
     protected static readonly AudioParams EjectSoundParams =

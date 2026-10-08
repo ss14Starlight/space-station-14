@@ -5,6 +5,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Weapons.Ranged.Components;
 
@@ -281,6 +282,9 @@ public sealed partial class GunComponent : Component
 
     [DataField]
     public Angle MovingMinAngle = Angle.Zero;
+
+    [ViewVariables, AutoNetworkedField]
+    public GameTick BurstTick;
     #endregion
 }
 

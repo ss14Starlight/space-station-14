@@ -86,20 +86,26 @@ public sealed partial class HitscanBasicRaycastSystem
 
         var normal = Vector2.Normalize(direction);
 
+        _shelters.Clear();
         foreach (var shelter in _cover.GetShelters(target, normal))
         {
             var along = Vector2.Dot(_transform.GetWorldPosition(shelter) - from.Position, normal);
-            if (along <= 0f || along >= targetDistance)
-                continue;
+            if (along > 0f && along < targetDistance)
+                _shelters.Add((shelter, along, GetNetEntity(shelter).Id));
+        }
 
-            if (!_cover.IsShotStopped(shelter, hitscan.Owner, shooter, along, target, normal, seed))
-                continue;
+        _shelters.Sort((a, b) => a.Along != b.Along ? a.Along.CompareTo(b.Along) : a.NetId.CompareTo(b.NetId));
 
-            return new RayCastResults(along, from.Position + (normal * along), shelter);
+        foreach (var (shelter, along, _) in _shelters)
+        {
+            if (_cover.IsShotStopped(shelter, hitscan.Owner, shooter, along, target, normal, seed))
+                return new RayCastResults(along, from.Position + (normal * along), shelter);
         }
 
         return null;
     }
+
+    private readonly List<(EntityUid Shelter, float Along, int NetId)> _shelters = new();
 
     private bool Prob(float chance, int? seed, EntityUid rolledFor)
     {
