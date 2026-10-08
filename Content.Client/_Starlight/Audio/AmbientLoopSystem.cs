@@ -28,6 +28,7 @@ public sealed partial class AmbientLoopSystem : EntitySystem
     [Dependency] private RulesSystem _rules = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SoundCategorySystem _soundCategory = default!;
+    [Dependency] private VacuumHearingSystem _vacuumHearing = default!;
 
     private static readonly TimeSpan CheckInterval = TimeSpan.FromSeconds(1);
 
@@ -108,6 +109,22 @@ public sealed partial class AmbientLoopSystem : EntitySystem
 
         if (wanted != null)
             Play(wanted);
+    }
+
+    public override void FrameUpdate(float frameTime)
+    {
+        base.FrameUpdate(frameTime);
+
+        var occlusion = _vacuumHearing.AmbienceOcclusionValue;
+        SetOcclusion(_stream, occlusion);
+        foreach (var stream in _fadingOut)
+            SetOcclusion(stream, occlusion);
+    }
+
+    private void SetOcclusion(EntityUid? stream, float occlusion)
+    {
+        if (TryComp(stream, out AudioComponent? audio) && MathF.Abs(audio.Occlusion - occlusion) > 0.01f)
+            audio.Occlusion = occlusion;
     }
 
     private AmbientLoopPrototype? GetLoop()
