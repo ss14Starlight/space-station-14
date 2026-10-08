@@ -29,3 +29,9 @@
   id: MobPig
   components:
   - type: FirelockOpener
+
+- type: !PartialOnly entity
+  id: MobBaseKobold
+  components:
+  - type: CosmicLapseForm # Kobolds inherit the monkey species ID, so lapse needs an explicit form
+    form: CosmicLapseMobKobold

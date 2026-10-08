@@ -34,6 +34,15 @@
         {
             "name": "crab",
             "copyright": "A custom item by AftrLite(Github)"
+        },
+        {
+            "name": "monkey"
+        },
+        {
+            "name": "kobold"
+        },
+        {
+            "name": "scurret"
         }
     ]
 }

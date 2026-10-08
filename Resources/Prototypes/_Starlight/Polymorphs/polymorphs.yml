@@ -161,6 +161,39 @@
     duration: 12
     polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
 
+- type: polymorph
+  id: CosmicLapseMobMonkey
+  configuration:
+    entity: CosmicPolymorphEntMonkey
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobKobold
+  configuration:
+    entity: CosmicPolymorphEntKobold
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobScurret
+  configuration:
+    entity: CosmicPolymorphEntScurret
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: BaseStructure
@@ -280,6 +313,39 @@
     sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
     layers:
       - state: crab
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntMonkey
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: monkey
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntKobold
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: kobold
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntScurret
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: scurret
         shader: unshaded
 
 - type: polymorph
