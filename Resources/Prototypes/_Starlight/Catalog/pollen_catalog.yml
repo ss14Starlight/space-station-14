@@ -96,7 +96,7 @@
   id: PollenTreeBarkT3SapSerum
   name: pollen-bark-t3-name
   description: pollen-bark-t3-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: bark_biogenerator }
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: bark_bioreactor }
   cost:
     PollenPoints: 4
   categories:

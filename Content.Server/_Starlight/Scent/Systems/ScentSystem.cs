@@ -579,7 +579,7 @@ public sealed partial class ScentSystem : SharedScentSystem
 
     // Checks all parents of the entity, so nested containment (e.g. a bag inside a crate)
     // is still detected.
-    private EntityUid? GetAirtightContainer(TransformComponent xform)
+    internal EntityUid? GetAirtightContainer(TransformComponent xform)
     {
         var parent = xform.ParentUid;
 

@@ -7,7 +7,7 @@ public sealed partial class PollenAdvancedPollenComponent : Component
     public float CheckRange = 2f;
 
     [DataField]
-    public float DionaChance = 0.8f;
+    public float DionaChance = 0.2f;
 
     [DataField]
     public float AllergicChance = 0.5f;

@@ -45,9 +45,9 @@
   description: A cluster of potent pollen drifting on the air.
   components:
   - type: Sprite
-    sprite: _Starlight/Interface/Actions/actions_diona.rsi # TODO: real cloud sprite/animation
+    sprite: _Starlight/Pollen/advanced_pollen.rsi
     layers:
-    - state: alert_pollen
+    - state: advanced_pollen
   - type: EmitPollen
     pollenId: advancedpollen
   - type: TimedDespawn

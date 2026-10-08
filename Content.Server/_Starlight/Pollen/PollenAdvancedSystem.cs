@@ -162,11 +162,14 @@ public sealed partial class PollenAdvancedSystem : EntitySystem
         {
             case 0:
                 ApplyHealBuff(diona, cloud);
+                _popup.PopupEntity(Loc.GetString("gotheal"), diona, diona, PopupType.Small);
                 break;
             case 1:
                 ApplySpeedBuff(diona, cloud);
+                _popup.PopupEntity(Loc.GetString("gotspeed"), diona, diona, PopupType.Small);
                 break;
             default:
+                _popup.PopupEntity(Loc.GetString("nothing"),  diona, diona, PopupType.Small);
                 break;
         }
     }
