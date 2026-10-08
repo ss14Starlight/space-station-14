@@ -16,6 +16,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -178,7 +179,10 @@ public sealed partial class ToolRefinableSystem : EntitySystem
             if (container == null || !_container.Insert(refineResultUid, container))
             {
                 var randVect = rng.NextVector2(2.0f, 2.5f);
-                _physics.SetLinearVelocity(refineResultUid, randVect);
+                #region Starlight - Scatter physical refinement results.
+                if (TryComp<PhysicsComponent>(refineResultUid, out var body))
+                    _physics.SetLinearVelocity(refineResultUid, randVect, body: body);
+                #endregion
             }
         }
 

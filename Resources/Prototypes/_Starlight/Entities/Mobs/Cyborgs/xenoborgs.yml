@@ -1,4 +1,45 @@
 - type: entity
+  parent: XenoborgEngi
+  id: XenoborgEngiFilled
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - MMIFilled
+
+- type: entity
+  parent: XenoborgHeavy
+  id: XenoborgHeavyFilled
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - MMIFilled
+
+- type: entity
+  parent: XenoborgScout
+  id: XenoborgScoutFilled
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - MMIFilled
+
+- type: entity
+  parent: XenoborgStealth
+  id: XenoborgStealthFilled
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - MMIFilled
+
+
+- type: entity
   parent: BaseXenoborgChassisDerelict
   id: DerelictEngiXenoborg
   name: derelict engi xenoborg
@@ -37,6 +78,7 @@
         - Inorganic
         - Silicon
         - Hybrid
+        - MoffDemonInorganic
 
 - type: entity
   parent: BaseXenoborgChassisDerelict
@@ -144,6 +186,7 @@
     - type: MovementSpeedModifier # faster
       baseWalkSpeed : 3
       baseSprintSpeed : 6
+
 
 - type: entity
   parent: BaseXenoborgChassisDerelict

@@ -355,6 +355,28 @@
     color: "#a1f7f7" # Starlight
 
 #Chitinous Helmet
+- type: entity
+  parent: [ ClothingHeadHelmetBase, BaseMajorContraband]
+  id: ClothingHeadHelmetLing
+  name: chitinous helmet
+  description: An all-consuming chitinous mass of armor.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Helmets/linghelmet.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Helmets/linghelmet.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor #admeme item so it should be fine being overpowered while helmets are still intentionally kneecapped.
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.9
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
 
 #ERT HELMETS
 #ERT Leader Helmet

@@ -113,30 +113,6 @@
   - type: SolutionScanner
   - type: IgnoreUIRange
   - type: ShowAntagIcons
-  - type: AdminGhostHud # Starlight BEGIN
-  - type: ShowCriminalRecordIcons
-  - type: ShowJobIcons
-  - type: ShowMindShieldIcons
-  - type: ShowSyndicateIcons
-  - type: ShowHealthBars
-    damageContainers:
-      - Biological
-      - Inorganic
-      - Silicon
-      - IPC
-      - Hybrid
-  - type: ShowHealthIcons
-    damageContainers:
-      - Biological
-      - Inorganic
-      - Silicon
-      - IPC
-      - Hybrid
-  - type: ShowHungerIcons
-  - type: ShowThirstIcons
-  - type: ShowAccess
-    seeIdHolder: true
-    itemsOnly: false # Starlight END
   - type: ShowContrabandDetails
   - type: Inventory
     templateId: aghost
@@ -157,6 +133,15 @@
     iconOn: { sprite: Structures/Machines/parts.rsi, state: box_2 }
     keywords: [ "AI", "console", "interface" ]
     priority: -10
+
+- type: entity
+  parent: BaseAGhostAction
+  id: ActionAGhostShowSolar
+  name: Solar Control Interface
+  description: View a Solar Control Interface.
+  components:
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.SolarControlConsoleUiKey.Key }
 
 - type: entity
   parent: BaseAGhostAction
@@ -185,6 +170,15 @@
     priority: -6
   - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.RadarConsoleUiKey.Key }
+
+- type: entity
+  parent: BaseAGhostAction
+  id: ActionAGhostShowCargo
+  name: Cargo Ordering Interface
+  description: View a Cargo Ordering Interface.
+  components:
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.CargoConsoleUiKey.Orders }
 
 - type: entity
   parent: BaseAGhostAction

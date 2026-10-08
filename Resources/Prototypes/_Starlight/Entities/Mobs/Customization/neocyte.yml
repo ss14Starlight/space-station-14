@@ -427,7 +427,7 @@
   markingCategory: BodyCover
   speciesRestriction: [NeoResomi]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Protogen/ProtoResomi/body_armor.rsi # Starlight, new body sprite
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/body_armor.rsi # Starlight, new body sprite
     state: medium
 
 - type: marking
@@ -436,7 +436,7 @@
   markingCategory: FaceCover
   speciesRestriction: [NeoResomi]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Protogen/ProtoResomi/visor_shapes.rsi # Starlight, new body sprite
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/visor_shapes.rsi # Starlight, new body sprite
     state: visor
 
 - type: marking
@@ -445,7 +445,7 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoResomi]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Protogen/ProtoResomi/led_shapes_face.rsi # Starlight, new body sprite
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/led_shapes_face.rsi # Starlight, new body sprite
     state: face
 
 - type: marking
@@ -454,7 +454,7 @@
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoResomi]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Protogen/ProtoResomi/led_shapes_body.rsi # Starlight, new body sprite
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/led_shapes_body.rsi # Starlight, new body sprite
     state: body
 
 #region REPTILIAN ####
@@ -735,7 +735,7 @@
   markingCategory: FaceCover
   speciesRestriction: [Neocyte, NeoLagomorph]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Protogen/ProtoLagomorph/visor_shapes.rsi
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-lagomorph/visor_shapes.rsi
     state: visor
 
 - type: marking
@@ -744,6 +744,6 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [Neocyte, NeoLagomorph]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Protogen/ProtoLagomorph/led_shapes_face.rsi
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-lagomorph/led_shapes_face.rsi
     state: face
 # Starlight end

@@ -19,7 +19,7 @@ public sealed partial class CosmicImposingComponent : Component
     public float SpeedMultiplier = 0.65f;
 
     [DataField]
-    public SpriteSpecifier Sprite = new SpriteSpecifier.Rsi(new("/Textures/_Starlight/Effects/CosmicCult/ability_imposition_overlay.rsi"), "vfx");
+    public SpriteSpecifier Sprite = new SpriteSpecifier.Rsi(new("/Textures/_Starlight/CosmicCult/Effects/ability_imposition_overlay.rsi"), "vfx");
 }
 
 [Serializable, NetSerializable]

@@ -16,6 +16,7 @@
     damageContainers:
       - Biological
       - Hybrid # Neocytes
+      - MoffDemonBiological
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -46,6 +47,7 @@
     damageContainers:
       - Biological
       - Hybrid # Neocytes
+      - MoffDemonBiological
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -137,6 +139,7 @@
     - Biological
     - IPC
     - Hybrid
+    - MoffDemonBiological
   - type: ShowHealthIcons
     damageContainers:
     - Biological
@@ -178,6 +181,8 @@
         - Silicon
         - IPC
         - Hybrid
+        - MoffDemonBiological
+        - MoffDemonInorganic
     - type: ShowHealthIcons
       damageContainers:
         - Biological
@@ -229,6 +234,7 @@
     damageContainers:
       - Biological
       - Hybrid # Neocytes
+      - MoffDemonBiological
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -278,6 +284,18 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionscience.rsi
   - type: VisionCorrection
+
+- type: entity
+  parent: ClothingEyesGlassesCentCommBase
+  id: ClothingEyesGlassesCentCommPrescription
+  name: prescription CentComm glasses
+  description: A set of prescription glasses for CentComm personnel. Protects against flashes and has a built-in visor.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
+    - type: VisionCorrection
 
 # USSP
 
@@ -369,6 +387,18 @@
         coverage: EYES
       - type: EyeProtection
         protectionTime: 5
+
+- type: entity
+  parent: ClothingEyesGlassesCentCommBase
+  id: ClothingEyesGlassesJamjarCentComm
+  name: CentComm jamjar glasses
+  description: For looking at their profits with even wider eyes.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Glasses/jamjarcentcomm.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Glasses/jamjarcentcomm.rsi
+    - type: VisionCorrection
 
 - type: entity
   parent: ClothingEyesBase

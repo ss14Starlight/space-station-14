@@ -134,6 +134,48 @@
 
 ## ADMIN MICE
 
+- type: entity
+  parent: MobMouse
+  id: MobMouseRemy
+  name: Remy
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - GalacticCommon
+    - Mouse
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _Starlight/Mobs/Animals/mouse_special.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-remy
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-remy
+    noMovementLayers:
+      movement:
+        state: mouse-remy
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-remy
+      Critical:
+        Base: dead-remy
+      Dead:
+        Base: splat-remy
+  - type: Item
+    size: Tiny
+    heldPrefix: 0
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Mobs/Animals/mouse_special.rsi #SL Edit
+    equippedPrefix: 0
+    slots:
+    - HEAD
+
 # Mentor / Admin Mouse
 - type: entity
   parent: BaseSimpleMob

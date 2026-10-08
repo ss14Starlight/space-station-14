@@ -1,7 +1,0 @@
-- type: department
-  id: Casino
-  name: department-Casino
-  description: department-Casino-description
-  color: "#c19a2b"
-  primary: false
-  editorHidden: true

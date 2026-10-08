@@ -60,6 +60,23 @@
   - type: Lube
 
 # Find your nearest clown and give them a gift :o)
+- type: entity
+  parent: BluespaceBeaker
+  id: BottomlessLube
+  name: bottomless lube beaker
+  suffix: DEBUG
+  description: This anomalous beaker infinitely produces space lube and as such is to be closely guarded such that it doesn't fall in the wrong hands.
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: SpaceLube
+        Quantity: 960
+  - type: SolutionRegeneration
+    generated:
+      reagents:
+      - ReagentId: SpaceLube
+        Quantity: 240
 
 - type: entity
   parent: [DrinkBaseMaterialGlass, DrinkBase]

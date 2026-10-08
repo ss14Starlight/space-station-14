@@ -345,6 +345,20 @@
       enum.RadarConsoleUiKey.Key:
         toggleAction: ActionAGhostShowRadar
   - type: RadarConsole
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: !Append Tag
+    tags:
+    - CanPilot
   - type: !Remove AccessReader
   - type: !Remove Access
   - type: !Remove StationAIShunt
@@ -380,6 +394,21 @@
         blacklist:
           tags:
           - MechReactor
+
+- type: entity
+  id: PlayerBorgSyndicateStealthGhostRole
+  parent: PlayerBorgSyndicateStealthBattery
+  suffix: Ghost role
+  components:
+    - type: GhostRole
+      name: ghost-role-information-syndicate-cyborg-name
+      description: ghost-role-information-syndicate-cyborg-description
+      rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleGhostRoleSiliconAntagonist]
+      important: true # SL
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
 
 - type: entity
   id: PlayerBorgChassis
@@ -431,6 +460,21 @@
         blacklist:
           tags:
           - MechReactor
+
+- type: entity
+  id: PlayerBorgSyndicateMedicalGhostRole
+  parent: PlayerBorgSyndicateMedicalBattery
+  suffix: Ghost role
+  components:
+    - type: GhostRole
+      name: ghost-role-information-syndicate-cyborg-medical-name
+      description: ghost-role-information-syndicate-cyborg-description
+      rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleGhostRoleSiliconAntagonist]
+      important: true
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
 
 # region derelict
 
@@ -656,6 +700,47 @@
 
 # region TSF
 
+- type: entity
+  id: PlayerBorgChassisTSFBattery
+  parent: BorgChassisTSF
+  suffix: Battery, Module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+  - type: DefaultBorgModules
+    modules:
+      - BorgModulePrying
+      - BorgModuleTool
+      - BorgModuleFireExtinguisher
+      - BorgModuleTSF
+      - BorgModuleTSFCombat
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+        blacklist:
+          tags:
+          - MechReactor
+
+- type: entity
+  parent: PlayerBorgChassisTSFBattery
+  id: PlayerBorgChassisTSFGhostRole
+  suffix: Ghost role
+  components:
+  - type: GhostRole
+    name: ghost-role-information-tsf-borg-name
+    description: ghost-role-information-tsf-borg-desc
+    rules: ghost-role-information-silicon-rules
+    important: true # SL
+    raffle:
+      settings: default
+    reregister: false
+    job: Borg
+  - type: GhostTakeoverAvailable
+
 # AI
 
 - type: entity
@@ -696,3 +781,24 @@
     container: station_ai_mind_slot
 
 # region NTNC
+- type: entity
+  id: PlayerBorgHAWBattery
+  parent: NTNCBorgChassisHAW
+  suffix: Battery, module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - BorgModulePrying
+        - BorgModuleAdvancedTool
+        - CentcommAccessBreakerModule
+        - CentcommLaserModule
+        - CentcommBulwarkModule
+        - CentcommModuleSpaceMovement
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor

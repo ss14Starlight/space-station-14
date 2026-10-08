@@ -23,9 +23,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: ShowHealthBars
-    damageContainers: # Starlight start
-    - Biological
-    - Hybrid # Starlight end, Neocytes
   - type: ShowHealthIcons
 
 - type: entity
@@ -42,8 +39,6 @@
     damageContainers:
     - Inorganic
     - Silicon
-    - IPC # SL
-    - Hybrid # Starlight
   - type: ShowAccessReaderSettings
 
 - type: entity
@@ -140,6 +135,44 @@
       - greasey
 
 - type: entity
+  parent: ClothingEyesHudBase
+  id: ClothingEyesHudOnionBeer
+  name: thungerst goggles
+  description: Filler
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Hud/onionbeer.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Hud/onionbeer.rsi
+  - type: ShowHungerIcons
+  - type: ShowThirstIcons
+
+- type: entity
+  parent: [ClothingEyesHudBase, ShowMedicalIcons]
+  id: ClothingEyesHudMedOnion
+  name: medonion hud
+  description: Filler
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Hud/medonion.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Hud/medonion.rsi
+  - type: ShowHungerIcons
+
+- type: entity
+  parent: [ClothingEyesHudBase, ShowMedicalIcons]
+  id: ClothingEyesHudMedOnionBeer
+  name: medthungerst hud
+  description: Filler
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Hud/medonionbeer.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Hud/medonionbeer.rsi
+  - type: ShowHungerIcons
+  - type: ShowThirstIcons
+
+- type: entity
   parent: [ClothingEyesHudBase, ShowSecurityIcons, ShowMedicalIcons, BaseSecurityCommandContraband]
   id: ClothingEyesHudMedSec
   name: medsec hud
@@ -152,6 +185,40 @@
   - type: Construction
     graph: HudMedSec
     node: medsecHud
+
+- type: entity
+  parent: [ClothingEyesHudBase, ShowSecurityIcons, ShowMedicalIcons]
+  id: ClothingEyesHudMultiversal
+  name: multiversal hud
+  description: Filler
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Hud/medsecengi.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Hud/medsecengi.rsi
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Inorganic
+  - type: ShowSyndicateIcons
+
+- type: entity
+  parent: [ClothingEyesHudBase, ShowSecurityIcons, ShowMedicalIcons]
+  id: ClothingEyesHudOmni
+  name: omni hud
+  description: Filler
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Hud/omni.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Hud/omni.rsi
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Inorganic
+  - type: ShowHungerIcons
+  - type: ShowThirstIcons
+  - type: ShowSyndicateIcons
 
 - type: entity
   parent: [ClothingEyesHudBase, ShowSecurityIcons, BaseSyndicateContraband]
@@ -181,10 +248,6 @@
     sprite: Clothing/Eyes/Hud/syndagent.rsi
   - type: ShowSyndicateIcons
   - type: ShowHealthBars
-    damageContainers: # Starlight start
-    - Biological
-    - Hybrid # Neocytes
-  - type: SolutionScanner # Starlight end
   - type: Tag
     tags:
     - PetWearable
@@ -215,6 +278,11 @@
     - HudMedical
 
 - type: entity
+  parent: [ClothingEyesEyepatchHudMedical, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchHudMedicalFlipped
+  name: medical hud eyepatch
+
+- type: entity
   parent: [ClothingEyesHudSecurity, ClothingHeadEyeBaseFlippable]
   id: ClothingEyesEyepatchHudSecurity
   name: security hud eyepatch
@@ -229,6 +297,11 @@
     - PetWearable
     - WhitelistChameleon
     - HudSecurity
+
+- type: entity
+  parent: [ClothingEyesEyepatchHudSecurity,  ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchHudSecurityFlipped
+  name: security hud eyepatch
 
 - type: entity
   parent: ClothingHeadEyeBaseFlippable
@@ -249,6 +322,11 @@
     - WhitelistChameleon
 
 - type: entity
+  parent: [ClothingEyesEyepatchHudBeer, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchHudBeerFlipped
+  name: beer hud eyepatch
+
+- type: entity
   parent: [ClothingEyesHudDiagnostic, ClothingHeadEyeBaseFlippable]
   id: ClothingEyesEyepatchHudDiag
   name: diagnostic hud eyepatch
@@ -259,3 +337,7 @@
   - type: Clothing
     sprite: Clothing/Eyes/Hud/diagpatch.rsi
 
+- type: entity
+  parent: [ClothingEyesEyepatchHudDiag, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchHudDiagFlipped
+  name: diagnostic hud eyepatch

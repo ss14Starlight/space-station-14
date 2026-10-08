@@ -19,6 +19,9 @@ thaven-mood-worship-silicons-desc = Their word is law.
 thaven-mood-dinner-etiquette-name = Meal Etiquette
 thaven-mood-dinner-etiquette-desc = Food should always be consumed in the manner of a proper meal - seated at a table, in courses, with dishes and utensils.
 
+thaven-mood-clarity-name = Clarity Is Vital
+thaven-mood-clarity-desc = Misunderstandings are the primary cause of conflict. You should be excessively clear and honest in your speech, explaining every minute detail, to avoid miscommunication.
+
 thaven-mood-hug-good-name = Free Hugs
 thaven-mood-hug-good-desc = It is extremely impolite not to hug people frequently.
 
@@ -39,6 +42,12 @@ thaven-mood-radio-only-desc = You firmly believe in the freedom of information. 
 
 thaven-mood-proper-storage-name = Proper Handling
 thaven-mood-proper-storage-desc = It is unacceptable to allow personal belongings to touch the floor. Your possessions should be properly stored, placed on tables, or exchanged by hand.
+
+thaven-mood-swearing-good-name = !@$%#ing @$^%*#@!$
+thaven-mood-swearing-good-desc = Swearing is the spice of any conversation, and should be used as much as reasonably possible.
+
+thaven-mood-statement-only-name = Asking Questions Is Rude
+thaven-mood-statement-only-desc = It would be terribly impolite to go around flagrantly asking questions all over the place. You'd prefer to phrase everything as a concrete statement.
 
 thaven-mood-theft-neutral-name = Petty Theft Is Morally Neutral
 thaven-mood-theft-neutral-desc = You don't understand the concept of property as it relates to other people.

@@ -16,6 +16,7 @@
         - Biological
         - IPC
         - Hybrid
+        - MoffDemonBiological
     - type: ShowHealthIcons
       damageContainers:
         - Biological
@@ -42,6 +43,11 @@
         - PetWearable
         - WhitelistChameleon
         - HudMedical
+
+- type: entity
+  parent: [ClothingEyesEyepatchHudBlueShield, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchHudBlueShieldFlipped
+  name: blue shield hud eyepatch
 
 - type: entity
   parent: [BaseCommandManagerContraband, ClothingEyesHudCommand]
@@ -71,6 +77,10 @@
     - type: EyeProtection
       protectionTime: 5
     - type: ShowHealthBars
+      damageContainers:
+      - Biological
+      - Hybrid
+      - MoffDemonBiological
     - type: SolutionScanner
     - type: Construction
       graph: GlassesSecHUD
@@ -101,6 +111,11 @@
         - HudSecurity
 
 - type: entity
+  parent: [ClothingEyesEyepatchHudBrigmedic, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchHudBrigmedicFlipped
+  name: brigmedic hud eyepatch
+
+- type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
   id: ClothingEyesHudCorpsman
   name: corpsman hud
@@ -116,6 +131,7 @@
       damageContainers:
         - Biological
         - Hybrid # Neocytes
+        - MoffDemonBiological
     - type: SolutionScanner
     - type: Construction
       graph: GlassesSecHUD
@@ -162,6 +178,11 @@
         - HudMedical
 
 - type: entity
+  parent: [ClothingEyesEyepatchHudChemical, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchHudChemicalFlipped
+  name: chemical hud eyepatch
+
+- type: entity
   parent: ClothingEyesBase
   id: ClothingEyesHudSkills
   name: skills hud
@@ -195,6 +216,7 @@
       damageContainers:
         - Biological
         - Hybrid
+        - MoffDemonBiological
     - type: ShowHealthIcons
       damageContainers:
         - Biological

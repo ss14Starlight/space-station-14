@@ -32,6 +32,22 @@
     price: 1250
 
 - type: entity
+  name: ForceableFollow finka
+  parent: [Finka, BaseSovietContraband]
+  id: FinkaAdmeme
+  suffix: Admeme
+  description: Legendary SNKVD dagger, an excellent melee weapon, and it's said there was a secret technique for throwing this knife.
+  components:
+  - type: Tag
+    tags:
+    - ForceableFollow
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Melee/finka_admeme.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/finka_admeme.rsi
+    state: icon
+
+- type: entity
   name: shiv
   id: XenoShiv
   parent: ScalpelShiv
@@ -51,6 +67,7 @@
   name: combat knife
   parent: [ CombatKnife, BaseXenoborgContraband ]
   id: XenoKnife
+  suffix: Xenoborg
   description: A deadly knife intended for melee confrontations.
   components:
   - type: MeleeWeapon

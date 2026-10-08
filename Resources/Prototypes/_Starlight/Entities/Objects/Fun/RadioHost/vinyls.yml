@@ -13,7 +13,7 @@
       color: "#8b5cf6"
   - type: Vinyl
     song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/Music/CrazyBot.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/CrazyBot.ogg
 
 - type: entity
   parent: BaseVinylDisc
@@ -29,7 +29,7 @@
       color: "#2457a6"
   - type: Vinyl
     song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/Music/D2.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/D2.ogg
 
 - type: entity
   parent: BaseVinylDisc
@@ -45,7 +45,7 @@
       color: "#3ca6a6"
   - type: Vinyl
     song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/Music/AcidRaindream.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/AcidRaindream.ogg
 
 - type: entity
   parent: BaseVinylDisc
@@ -61,7 +61,7 @@
       color: "#8a8792"
   - type: Vinyl
     song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/Music/Untitled#7.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/Untitled#7.ogg
 
 - type: entity
   parent: BaseVinylDisc
@@ -77,7 +77,7 @@
       color: "#ef4f9a"
   - type: Vinyl
     song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/Music/Smarties.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/Smarties.ogg
 
 - type: entity
   parent: BaseVinylDisc
@@ -93,7 +93,7 @@
       color: "#b8d9e8"
   - type: Vinyl
     song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/Music/SilverandCold.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/SilverandCold.ogg
 
 - type: entity
   parent: BaseVinylDisc
@@ -109,7 +109,7 @@
       color: "#9e2638"
   - type: Vinyl
     song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/Music/CirclesofBlackandRed.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/CirclesofBlackandRed.ogg
 
 #Non FMA Music.
 - type: entity
@@ -126,7 +126,7 @@
       color: "#64705f"
   - type: Vinyl
     song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/Music/DepressedWawatriestoprotest.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/DepressedWawatriestoprotest.ogg
 
 - type: entity
   parent: BaseVinylDisc
@@ -156,7 +156,7 @@
       color: "#00ff00"
   - type: Vinyl
     song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/Music/DriverUpdate.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/DriverUpdate.ogg
 
 - type: entity
   parent: BaseVinylDisc
@@ -172,7 +172,7 @@
       color: "#00ff00"
   - type: Vinyl
     song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/Music/ResonantInfinite.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/ResonantInfinite.ogg
 
 - type: entity
   parent: BaseVinylDisc
@@ -188,7 +188,7 @@
       color: "#00ff00"
   - type: Vinyl
     song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/Music/VadeRetro.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/VadeRetro.ogg
 
 - type: entity
   parent: BaseVinylDisc
@@ -204,7 +204,7 @@
       color: "#00ff00"
   - type: Vinyl
     song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/Music/ConcreteFlavoured.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/ConcreteFlavoured.ogg
 
 - type: entity
   parent: BaseVinylDisc
@@ -220,7 +220,7 @@
       color: "#baa459"
   - type: Vinyl
     song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/Music/damper_ii.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/damper_ii.ogg
 
 - type: entity
   parent: BaseVinylDisc
@@ -236,4 +236,4 @@
       color: "#d1382f"
   - type: Vinyl
     song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/Music/Cathode.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/Cathode.ogg

@@ -359,12 +359,30 @@
 
 - type: entity
   parent: Paper
+  id: PaperWritten
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    # Changing it here is fine - if the PaperStatus key is actually added,
+    #  something happened, so that ought to override this either way.
+    - state: paper_words
+
+- type: entity
+  parent: Paper
   id: NukeCodePaper
   name: nuclear authentication codes
   suffix: Random # Starlight
   components:
   - type: NukeCodePaper
     allNukesAvailable: true
+
+- type: entity
+  parent: NukeCodePaper
+  id: NukeCodePaperStation
+  suffix: Station Only
+  components:
+  - type: NukeCodePaper
 
 - type: entity
   parent: [Paper, BaseSyndicateContraband] # eat or burn your damn piece of paper damn thieves
