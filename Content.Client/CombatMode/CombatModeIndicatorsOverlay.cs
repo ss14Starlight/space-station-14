@@ -175,8 +175,8 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
     }
 
     private bool IsJammed(EntityUid gun)
-        => _entMan.TryGetComponent<GunHeatComponent>(gun, out var heat) && heat.Jammed
-        || _entMan.TryGetComponent<GunJamDefectComponent>(gun, out var defect) && defect.IsJammed;
+        => (_entMan.TryGetComponent<GunHeatComponent>(gun, out var heat) && heat.Jammed)
+        || (_entMan.TryGetComponent<GunJamDefectComponent>(gun, out var defect) && defect.IsJammed);
 
     private float DrawHeatGauge(DrawingHandleScreen screen, EntityUid gun, Vector2 position, float uiScale)
     {

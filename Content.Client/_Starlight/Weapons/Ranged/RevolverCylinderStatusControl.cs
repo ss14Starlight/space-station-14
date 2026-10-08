@@ -59,7 +59,7 @@ public sealed class RevolverCylinderStatusControl : Control
             return;
         }
 
-        var step = ((currentIndex - _index) % capacity + capacity) % capacity;
+        var step = (((currentIndex - _index) % capacity) + capacity) % capacity;
         _index = currentIndex;
 
         if (step == 0)

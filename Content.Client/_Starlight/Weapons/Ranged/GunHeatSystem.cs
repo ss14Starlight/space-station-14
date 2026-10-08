@@ -170,15 +170,13 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
     }
 
     private static ProtoId<ShaderPrototype>? GetInhandShader(SpriteComponent.Layer layer)
-    {
-        return layer.ShaderPrototype?.Id switch
+        => layer.ShaderPrototype?.Id switch
         {
             null when layer.Shader == null => _inhandHeatShader,
             DisplacedDrawShader => _inhandHeatDisplacedShader,
             DisplacedStencilDrawShader => _inhandHeatDisplacedStencilShader,
             _ => (ProtoId<ShaderPrototype>?) null,
         };
-    }
 
     private Vector2 GetMuzzleDirection(EntityUid holder)
     {

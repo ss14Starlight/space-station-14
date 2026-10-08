@@ -28,7 +28,5 @@ public sealed partial class GunSystem
 
     [SubscribeLocalEvent]
     private void OnRevolverCounter(Entity<RevolverAmmoProviderComponent> ent, ref AmmoCounterControlEvent args)
-    {
-        args.Control = new RevolverCylinderStatusControl(); // Starlight-edit: cylinder view
-    }
+        => args.Control = new RevolverCylinderStatusControl(); // Starlight-edit: cylinder view
 }
