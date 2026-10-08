@@ -1,6 +1,5 @@
 - type: !PartialOnly entity
   id: BaseMobCarp
-  parent: [ SimpleSpaceMobBase, FlyingMobBase, MobCombat, BaseSlicingRefinable ]
   components:
     - type: LanguageSpeaker
     - type: LanguageKnowledge
@@ -12,6 +11,8 @@
       - Carpmind
       - Thaveyan
       - GalacticCommon
+    - type: MovementIgnoreGravity # Lets the space fish go into space alot more freely
+    - type: !Remove ReplacementAccent
 
 - type: !PartialOnly entity
   id: MobCarpDragon

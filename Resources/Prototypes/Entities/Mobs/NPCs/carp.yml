@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ SimpleSpaceMobBase, FlyingMobBase, MobCombat, BaseSlicingRefinableButchering, MobNightVision, BaseMobDestructible ]
+  parent: [ SimpleSpaceMobBase, FlyingMobBase, MobCombat, BaseSlicingRefinable ] # Starlight
   id: BaseMobCarp
   name: space carp
   description: It's a space carp.
@@ -163,7 +163,7 @@
       30: Dead
 
 - type: entity
-  parent: [ MobDragonBrood, MobCarp ]
+  parent: [ MobCarp ] # Starlight: Removed dragon brood (couldnt figure how to partial it)
   id: MobCarpDragon
   name: space carp
   suffix: DragonBrood
@@ -257,13 +257,3 @@
     thresholds:
       0: Alive
       82: Dead # Might seem random, but this brings up the hits to kill with a crusher mark to 3
-
-- type: entity
-  parent: [ MobDragonBrood, MobShark ]
-  id: MobSharkDragon
-  suffix: DragonBrood
-  components:
-  - type: GhostRole
-    name: ghost-role-information-sentient-sharkminnow-name
-    description: ghost-role-information-sentient-carp-description
-    rules: ghost-role-information-space-dragon-summoned-carp-rules
