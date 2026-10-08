@@ -21,6 +21,18 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<string> HandLabelerSavedLabels =
         CVarDef.Create("ui.hand_labeler_saved_labels", "", CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    /// <summary>
+    /// The theme of the interface.
+    /// </summary>
+    public static readonly CVarDef<string> StyleTheme =
+        CVarDef.Create("ui.style_theme", "Void", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Accent color of the interface: window titles, headings, selected tabs, pressed buttons.
+    /// </summary>
+    public static readonly CVarDef<string> StyleAccent =
+        CVarDef.Create("ui.style_accent", "#D4D4D8", CVar.CLIENTONLY | CVar.ARCHIVE);
+
     public static readonly CVarDef<string> RangedSight =
         CVarDef.Create("ui.ranged_sight", "GunSight", CVar.CLIENTONLY | CVar.ARCHIVE);
 

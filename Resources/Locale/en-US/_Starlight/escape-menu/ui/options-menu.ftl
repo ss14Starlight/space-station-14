@@ -47,6 +47,11 @@ ui-options-radio-chime-mute = Mute Radio Chimes
 
 ui-options-tab-ui = User Interface
 ui-options-ui-style = User Interface Style
+ui-options-style-theme = Color Theme
+ui-options-style-accent = Accent Color
+style-theme-void = Void
+style-theme-graphite = Graphite
+style-theme-paper = Paper
 ui-options-ui-sight-hash = Sight Preferences String
 ui-options-wield-before-rack = Wield before racking
 ui-options-wield-before-rack-tooltip = Using a gun in hand wields it first; racking the bolt happens on the next press.
