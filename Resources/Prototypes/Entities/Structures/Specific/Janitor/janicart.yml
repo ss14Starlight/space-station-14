@@ -140,9 +140,6 @@
     - id: MopBucketCube
   - type: Sprite
     state: wrapper
-  - type: Tag # Starlight
-    tags:
-    - NonAnimalCube
 
 # Janicart
 - type: entity
