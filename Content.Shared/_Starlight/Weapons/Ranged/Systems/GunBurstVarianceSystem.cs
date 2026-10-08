@@ -14,6 +14,8 @@ public sealed partial class GunBurstVarianceSystem : EntitySystem
     [Dependency] private INetManager _net = default!;
     [Dependency] private SharedGunSystem _gun = default!;
 
+    private const int BurstSalt = -5;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -51,11 +53,7 @@ public sealed partial class GunBurstVarianceSystem : EntitySystem
         if (gun.SelectedMode != SelectiveFire.Burst || gun.BurstActivated)
             return;
 
-        // Burst just ended — re-roll for the next one.
-        if (_net.IsClient)
-            return;
-
-        ent.Comp.CurrentShots = _random.Next(ent.Comp.MinShots, ent.Comp.MaxShots + 1);
+        ent.Comp.CurrentShots = _gun.GetShotRandom(ent, BurstSalt).Next(ent.Comp.MinShots, ent.Comp.MaxShots + 1);
         Dirty(ent, ent.Comp);
         _gun.RefreshModifiers(ent.Owner);
     }

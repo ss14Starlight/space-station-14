@@ -71,6 +71,7 @@
                         <ui:OptionDropDown Name="DropDownHeldItemShowMode" Title="{Loc 'ui-options-held-item-show-mode'}" />
                         <CheckBox Name="SightBoltIndicatorCheckBox" Text="{Loc 'ui-options-sight-bolt-indicator'}" />
                         <CheckBox Name="SightJamIndicatorCheckBox" Text="{Loc 'ui-options-sight-jam-indicator'}" />
+                        <CheckBox Name="SightHeatIndicatorCheckBox" Text="{Loc 'ui-options-sight-heat-indicator'}" />
 
                         <ui:OptionColorSlider Name="SightMainColorSlider" Title="{Loc 'ui-options-sight-main-color'}" />
                         <ui:OptionColorSlider Name="SightSecondColorSlider" Title="{Loc 'ui-options-sight-second-color'}" />

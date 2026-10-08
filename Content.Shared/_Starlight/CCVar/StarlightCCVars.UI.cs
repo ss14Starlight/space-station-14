@@ -54,6 +54,12 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<bool> SightShowBoltIndicator =
         CVarDef.Create("ui.sight_show_bolt_indicator", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    /// <summary>
+    /// Whether a gauge of the held gun's heat is drawn next to the sight.
+    /// </summary>
+    public static readonly CVarDef<bool> SightShowHeatIndicator =
+        CVarDef.Create("ui.sight_show_heat_indicator", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     public static readonly CVarDef<bool> SightShowJamIndicator =
         CVarDef.Create("ui.sight_show_jam_indicator", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 

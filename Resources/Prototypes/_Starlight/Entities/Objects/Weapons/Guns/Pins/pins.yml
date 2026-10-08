@@ -71,6 +71,10 @@
     state: laser
   - type: FiringPin
     pinType: Laser
+    meltedPrototype: FiringPinLaserCracked
+    meltedPopup: gun-heat-crystal-cracked
+    meltedSound:
+      collection: GlassBreak
   - type: StaticPrice
     price: 50
   - type: Damageable
@@ -130,6 +134,10 @@
     state: adv-laser
   - type: FiringPin
     pinType: AdvancedLaser
+    meltedPrototype: FiringPinAdvancedLaserCracked
+    meltedPopup: gun-heat-crystal-cracked
+    meltedSound:
+      collection: GlassBreak
   - type: StealTarget
     stealGroup: FiringPinAdvancedLaser
   - type: Explosive
@@ -209,3 +217,50 @@
     - Trash
   - type: StaticPrice
     price: 0
+
+- type: entity
+  parent: FiringPinMelted
+  id: FiringPinLaserCracked
+  name: cracked laser crystal
+  description: The lens crystal of an energy weapon, cracked by heat. It won't focus a beam ever again.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
+    state: laser-cracked
+    color: "#ffffff"
+  - type: EmitSoundOnLand
+    sound:
+      collection: GlassBreak
+      params:
+        volume: -8
+
+- type: entity
+  parent: FiringPinLaserCracked
+  id: FiringPinAdvancedLaserCracked
+  name: cracked prototype laser crystal
+  description: What is left of a prototype laser crystal after someone kept firing. At least it didn't explode.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
+    state: adv-laser-cracked
+    color: "#ffffff"
+
+- type: entity
+  parent: FiringPinAdvancedLaser
+  id: FiringPinAdvancedLaserReplacement
+  name: lab-grown prototype laser crystal
+  description: A lab-grown copy of a prototype laser crystal. Just as fragile as the original.
+  components:
+  - type: StealTarget
+    stealGroup: FiringPin
+  - type: StaticPrice
+    price: 300
+
+- type: entity
+  parent: FiringPinSmartLMG
+  id: FiringPinSmartLMGReplacement
+  name: replacement smartgun bolt assembly
+  description: A machined copy of a smartgun bolt assembly. Includes a round counter.
+  components:
+  - type: StealTarget
+    stealGroup: FiringPin

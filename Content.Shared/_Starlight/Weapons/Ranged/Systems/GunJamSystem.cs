@@ -1,7 +1,7 @@
 using Content.Shared._Starlight.Weapons.Ranged.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
-using Content.Shared.Random.Helpers;
+using Robust.Shared.Random;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
@@ -15,6 +15,9 @@ public sealed partial class GunJamSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedGunSystem _gun = default!;
+
+    private const int JamSalt = -4;
 
     public override void Initialize()
     {
@@ -45,7 +48,7 @@ public sealed partial class GunJamSystem : EntitySystem
         if (ent.Comp.IsJammed)
             return;
 
-        if (!SharedRandomExtensions.PredictedProb(_timing, ent.Comp.JamChance, GetNetEntity(ent)))
+        if (!_gun.GetShotRandom(ent, JamSalt).Prob(ent.Comp.JamChance))
             return;
 
         ent.Comp.IsJammed = true;

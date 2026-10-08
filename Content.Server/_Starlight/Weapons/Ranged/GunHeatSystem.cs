@@ -8,20 +8,19 @@ using Content.Shared.Atmos;
 using Content.Shared.Popups;
 using Content.Shared.Temperature;
 using Content.Shared.Temperature.Components;
-using Content.Shared.Weapons.Ranged.Systems;
-using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Weapons.Ranged;
 
 public sealed partial class GunHeatSystem : SharedGunHeatSystem
 {
     [Dependency] private TemperatureSystem _temperature = default!;
-    [Dependency] private IRobustRandom _random = default!;
 
     private const float SyncStep = 2f;
 
     private static readonly TimeSpan _passiveCoolingInterval = TimeSpan.FromSeconds(1);
     private TimeSpan _nextPassiveCooling;
+
+    private bool _firing;
 
     [SubscribeLocalEvent]
     private void OnMapInit(Entity<GunHeatComponent> ent, ref MapInitEvent _)
@@ -29,24 +28,38 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
         var temperature = EnsureComp<TemperatureComponent>(ent);
         temperature.AtmosTemperatureTransferEfficiency = ent.Comp.CoolingEfficiency;
         EnsureComp<AtmosExposedComponent>(ent);
+
+        var heatCapacity = _temperature.GetHeatCapacity(ent, temperature);
+        ent.Comp.TemperaturePerShot = heatCapacity > 0f ? ent.Comp.HeatPerShot / heatCapacity : 0f;
+
         Sync(ent, temperature.CurrentTemperature, force: true);
     }
 
-    [SubscribeLocalEvent]
-    private void OnGunShot(Entity<GunHeatComponent> ent, ref GunShotEvent args)
+    protected override void AddShotHeat(Entity<GunHeatComponent> ent, int shots)
     {
-        if (args.Ammo.Count == 0 || !TryComp<TemperatureComponent>(ent, out var temperature))
+        if (!TryComp<TemperatureComponent>(ent, out var temperature))
             return;
 
-        _temperature.ChangeHeat(ent, ent.Comp.HeatPerShot * args.Ammo.Count, ignoreHeatResistance: true, temperature);
+        _firing = true;
+        try
+        {
+            _temperature.ChangeHeat(ent, ent.Comp.HeatPerShot * shots, ignoreHeatResistance: true, temperature);
+        }
+        finally
+        {
+            _firing = false;
+        }
+    }
 
-        if (ent.Comp.Jammed || !_random.Prob(GetJamChance(ent.Comp, temperature.CurrentTemperature)))
+    [SubscribeLocalEvent]
+    private void OnModifyTemperature(EntityUid uid, GunHeatComponent component, ModifyChangedTemperatureEvent args)
+    {
+        if (args.TemperatureDelta <= 0f || !TryComp<TemperatureComponent>(uid, out var temperature))
             return;
 
-        ent.Comp.Jammed = true;
-        Dirty(ent);
-        Audio.PlayPvs(ent.Comp.JamSound, ent);
-        Popup.PopupEntity(Loc.GetString("gun-heat-jammed"), ent, args.User, PopupType.SmallCaution);
+        var limit = component.JamTemperature - component.EnvironmentHeatMargin;
+        var room = (limit - temperature.CurrentTemperature) * _temperature.GetHeatCapacity(uid, temperature);
+        args.TemperatureDelta = Math.Clamp(args.TemperatureDelta, 0f, Math.Max(0f, room));
     }
 
     [SubscribeLocalEvent]
@@ -54,7 +67,7 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
     {
         Sync(ent, args.CurrentTemperature);
 
-        if (args.CurrentTemperature >= ent.Comp.MeltTemperature)
+        if (_firing && args.CurrentTemperature >= ent.Comp.MeltTemperature)
             MeltFiringPin(ent);
     }
 
@@ -63,7 +76,6 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
         if (!force && MathF.Abs(temperature - ent.Comp.Temperature) < SyncStep)
             return;
 
-        // Clients derive the barrel glow from this, see the client GunHeatSystem.
         ent.Comp.Temperature = temperature;
         Dirty(ent);
     }
@@ -75,14 +87,16 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
 
         foreach (var pin in holder.PinContainer.ContainedEntities.ToArray())
         {
+            var pinComp = CompOrNull<FiringPinComponent>(pin);
+
+            if ((pinComp?.MeltedPrototype ?? ent.Comp.MeltedPin) is { } melted)
+                SpawnNextToOrDrop(melted, ent);
+
+            Audio.PlayPvs(pinComp?.MeltedSound ?? ent.Comp.MeltSound, ent);
+            Popup.PopupEntity(Loc.GetString(pinComp?.MeltedPopup.Id ?? "gun-heat-pin-melted", ("gun", ent.Owner)), ent, PopupType.MediumCaution);
+
             QueueDel(pin);
         }
-
-        if (ent.Comp.MeltedPin != null)
-            SpawnNextToOrDrop(ent.Comp.MeltedPin.Value, ent);
-
-        Audio.PlayPvs(ent.Comp.MeltSound, ent);
-        Popup.PopupEntity(Loc.GetString("gun-heat-pin-melted", ("gun", ent.Owner)), ent, PopupType.MediumCaution);
     }
 
     public override void Update(float frameTime)

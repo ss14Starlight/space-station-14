@@ -88,6 +88,7 @@ public sealed partial class UITab : Control
             ]);
         Control.AddOptionCheckBox(StarlightCCVars.SightShowBoltIndicator, SightBoltIndicatorCheckBox);
         Control.AddOptionCheckBox(StarlightCCVars.SightShowJamIndicator, SightJamIndicatorCheckBox);
+        Control.AddOptionCheckBox(StarlightCCVars.SightShowHeatIndicator, SightHeatIndicatorCheckBox);
         Control.AddOptionColorSlider(StarlightCCVars.SightMainColor, SightMainColorSlider);
         Control.AddOptionColorSlider(StarlightCCVars.SightSecondColor, SightSecondColorSlider);
     }

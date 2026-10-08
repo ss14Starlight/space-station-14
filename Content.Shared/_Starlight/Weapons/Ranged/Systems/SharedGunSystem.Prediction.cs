@@ -5,6 +5,7 @@ using Content.Shared.Random.Helpers;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 // ReSharper disable once CheckNamespace
 namespace Content.Shared.Weapons.Ranged.Systems;
@@ -14,14 +15,30 @@ public abstract partial class SharedGunSystem
     private const int RecoilSalt = -1;
     private const int PelletSalt = -2;
 
+    private static readonly TimeSpan MaxShotTickLag = TimeSpan.FromSeconds(0.5);
+
+    private GameTick? _shotTick;
+
+    public GameTick ShotTick => _shotTick ?? Timing.CurTick;
+
     public int GetShotSeed(EntityUid gun, int salt = 0)
-        => SharedRandomExtensions.HashCodeCombine((int) Timing.CurTick.Value, GetNetEntity(gun).Id, salt);
+        => SharedRandomExtensions.HashCodeCombine((int) ShotTick.Value, GetNetEntity(gun).Id, salt);
+
+    private GameTick? GetRequestTick(GameTick tick)
+    {
+        var now = Timing.CurTick;
+        if (tick > now || tick == GameTick.Zero)
+            return null;
+
+        var maxLag = (uint) Math.Ceiling(MaxShotTickLag.TotalSeconds * Timing.TickRate);
+        return now.Value - tick.Value <= maxLag ? tick : null;
+    }
 
     public int GetHitscanSeed(EntityUid gun, int ammoIndex, int pelletIndex)
         => GetShotSeed(gun, SharedRandomExtensions.HashCodeCombine(ammoIndex, pelletIndex));
 
-    private System.Random GetShotRandom(EntityUid gun, int salt)
-        => Random.GetPredictedRandom(Timing, GetShotSeed(gun, salt));
+    public System.Random GetShotRandom(EntityUid gun, int salt)
+        => new(GetShotSeed(gun, salt));
 
     public Vector2 GetShotMapDirection(Entity<GunComponent> gun, Vector2 fromMap, Vector2 toMap)
     {

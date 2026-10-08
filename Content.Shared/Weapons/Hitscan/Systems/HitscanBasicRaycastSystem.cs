@@ -183,6 +183,7 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
             Shooter = GetNetEntity(shooter),
             Gun = GetNetEntity(gun),
             PredictionSeed = predictionSeed,
+            Prototype = MetaData(hitscan).EntityPrototype?.ID,
             // Starlight-end
         };
 

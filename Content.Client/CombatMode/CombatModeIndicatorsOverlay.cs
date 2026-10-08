@@ -13,6 +13,7 @@ using Robust.Shared.Prototypes;
 using SixLabors.ImageSharp.PixelFormats;
 using Robust.Shared.Graphics.RSI;
 using Content.Client.Weapons.Ranged.Systems;
+using Content.Client._Starlight.Weapons.Ranged;
 
 namespace Content.Client.CombatMode;
 
@@ -43,6 +44,7 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
     private readonly bool _meleeRotation = true;
     private readonly bool _showBoltIndicator = true;
     private readonly bool _showJamIndicator = true;
+    private readonly bool _showHeatIndicator = true;
     private Texture? _boltIndicator;
     private Texture? _jamIndicator;
     private static readonly ResPath IndicatorRsi = new("/Textures/_Starlight/Interface/Misc/sight_indicators.rsi");
@@ -55,7 +57,7 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
     public override OverlaySpace Space => OverlaySpace.ScreenSpace;
 
     public CombatModeIndicatorsOverlay(IInputManager input, IEntityManager entMan, IPrototypeManager prototypes,
-            IEyeManager eye, CombatModeSystem combatSys, HandsSystem hands, IClyde clyde, SightPrototype gunSight, SightPrototype meleeSight, float scale, float offset, Color main, Color second, bool rangedRotation = true, bool meleeRotation = true, bool showBoltIndicator = true, bool showJamIndicator = true) // Starlight-edit
+            IEyeManager eye, CombatModeSystem combatSys, HandsSystem hands, IClyde clyde, SightPrototype gunSight, SightPrototype meleeSight, float scale, float offset, Color main, Color second, bool rangedRotation = true, bool meleeRotation = true, bool showBoltIndicator = true, bool showJamIndicator = true, bool showHeatIndicator = true) // Starlight-edit
     {
         _inputManager = input;
         _entMan = entMan;
@@ -74,6 +76,7 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
         _meleeRotation = meleeRotation;
         _showBoltIndicator = showBoltIndicator;
         _showJamIndicator = showJamIndicator;
+        _showHeatIndicator = showHeatIndicator;
 
         if (_gunSight.BoltVariant != null)
             prototypes.TryIndex(_gunSight.BoltVariant, out _gunBoltSight);
@@ -148,7 +151,13 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
         }
 
         if (isHandGunItem && handEntity != null)
-            DrawStatusIndicators(args.ScreenHandle, spriteSys, mousePos, limitedScale, showOpenBolt, _showJamIndicator && IsJammed(handEntity.Value));
+        {
+            var indicatorsPos = mousePos + (new Vector2(14f, 12f) * limitedScale);
+            if (_showHeatIndicator)
+                indicatorsPos.Y += DrawHeatGauge(args.ScreenHandle, handEntity.Value, indicatorsPos, limitedScale);
+
+            DrawStatusIndicators(args.ScreenHandle, spriteSys, indicatorsPos, limitedScale, showOpenBolt, _showJamIndicator && IsJammed(handEntity.Value));
+        }
 
         // Starlight-end
     }
@@ -165,15 +174,27 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
         return base.BeforeDraw(in args);
     }
 
-    /// <summary>
-    /// Hides the system cursor while it is over the game viewport, where the sight replaces it.
-    /// The cursor is set on the viewport control, so UI elements keep their normal cursor.
-    /// </summary>
     private bool IsJammed(EntityUid gun)
         => _entMan.TryGetComponent<GunHeatComponent>(gun, out var heat) && heat.Jammed
         || _entMan.TryGetComponent<GunJamDefectComponent>(gun, out var defect) && defect.IsJammed;
 
-    private void DrawStatusIndicators(DrawingHandleScreen screen, SpriteSystem sprites, Vector2 cursor, float uiScale, bool boltOpen, bool jammed)
+    private float DrawHeatGauge(DrawingHandleScreen screen, EntityUid gun, Vector2 position, float uiScale)
+    {
+        if (!_entMan.TryGetComponent<GunHeatComponent>(gun, out var heat))
+            return 0f;
+
+        var (fill, jam) = GunHeatStatusControl.GetFractions(heat);
+        if (fill <= 0.01f)
+            return 0f;
+
+        screen.SetTransform(Matrix3x2.Identity);
+
+        var size = new Vector2(30f, 5f) * uiScale;
+        GunHeatStatusControl.DrawGauge(screen, UIBox2.FromDimensions(position, size), fill, jam, MathF.Max(1f, uiScale));
+        return size.Y + (3f * uiScale);
+    }
+
+    private void DrawStatusIndicators(DrawingHandleScreen screen, SpriteSystem sprites, Vector2 position, float uiScale, bool boltOpen, bool jammed)
     {
         if (!boltOpen && !jammed)
             return;
@@ -184,7 +205,6 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
         screen.SetTransform(Matrix3x2.Identity);
 
         var size = _boltIndicator.Size * 1.5f * uiScale;
-        var position = cursor + (new Vector2(14f, 12f) * uiScale);
 
         if (jammed)
         {

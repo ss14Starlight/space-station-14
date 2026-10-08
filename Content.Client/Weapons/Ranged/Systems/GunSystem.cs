@@ -144,7 +144,11 @@ public sealed partial class GunSystem : SharedGunSystem
     {
         var delay = 0f;
         // Starlight-start: Prediction
-        var first = TryConsumePredictedHitscan(ev) ? 1 : 0;
+        var predicted = TryConsumePredictedHitscan(ev);
+        var first = predicted ? 1 : 0;
+
+        if (!predicted && IsOwnPredictedShot(ev))
+            PlayPredictedImpactSound(ev);
         for (var i = first; i < ev.Traces.Count; i++)
             delay = FireEffect(ev, delay, ev.Traces[i]);
         // Starlight-end
@@ -459,6 +463,7 @@ public sealed partial class GunSystem : SharedGunSystem
             Coordinates = GetNetCoordinates(coordinates),
             Gun = GetNetEntity(gun),
             Continuous = _cfg.GetCVar(CCVars.ControlHoldToAttackRanged),
+            Tick = Timing.CurTick, // Starlight
         });
     }
 
@@ -517,6 +522,11 @@ public sealed partial class GunSystem : SharedGunSystem
                         userImpulse = false;
                         Audio.PlayPredicted(gun.Comp.SoundEmpty, gun, user);
                     }
+
+                    // Starlight-start
+                    if (!cartridge.DeleteOnSpawn && !Containers.IsEntityInContainer(ent!.Value) && !gun.Comp.Pump)
+                        Audio.PlayPredicted(cartridge.EjectSound, gun, user, EjectSoundParams);
+                    // Starlight-end
 
                     if (IsClientSide(ent!.Value))
                         Del(ent.Value);
@@ -679,6 +689,6 @@ public sealed partial class GunSystem : SharedGunSystem
         _animPlayer.Play((gunUid, uidPlayer), animTwo, "muzzle-flash-light");
     }
 
-    // TODO: Move RangedDamageSoundComponent to shared so this can be predicted.
+    // Starlight: it is shared now; hitscan impact sounds are predicted in GunSystem.Prediction.cs.
     public override void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound, bool forceWeaponSound) { }
 }

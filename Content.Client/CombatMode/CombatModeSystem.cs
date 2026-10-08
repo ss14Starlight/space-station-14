@@ -30,6 +30,7 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
     private bool _meleeRotation = true;
     private bool _showBoltIndicator = true;
     private bool _showJamIndicator = true;
+    private bool _showHeatIndicator = true;
     private Color _main = Color.White.WithAlpha(0.3f);
     private Color _second = Color.Black.WithAlpha(0.5f);
     #endregion
@@ -57,6 +58,7 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
         Subs.CVar(_cfg, StarlightCCVars.MeleeSightRotation, OnMeleeRotationChanged, true);
         Subs.CVar(_cfg, StarlightCCVars.SightShowBoltIndicator, OnShowBoltIndicatorChanged, true);
         Subs.CVar(_cfg, StarlightCCVars.SightShowJamIndicator, OnShowJamIndicatorChanged, true);
+        Subs.CVar(_cfg, StarlightCCVars.SightShowHeatIndicator, OnShowHeatIndicatorChanged, true);
         // Starlight-end
     }
 
@@ -158,6 +160,12 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
         UpdateCombatIndicators();
     }
 
+    private void OnShowHeatIndicatorChanged(bool show)
+    {
+        _showHeatIndicator = show;
+        UpdateCombatIndicators();
+    }
+
     private void OnMeleeRotationChanged(bool rotation)
     {
         _meleeRotation = rotation;
@@ -190,7 +198,8 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
                 _rangedRotation,
                 _meleeRotation,
                 _showBoltIndicator,
-                _showJamIndicator));
+                _showJamIndicator,
+                _showHeatIndicator));
         }
     }
 
