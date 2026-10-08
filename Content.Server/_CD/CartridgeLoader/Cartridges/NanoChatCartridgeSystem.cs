@@ -16,9 +16,6 @@ using Robust.Shared.Timing;
 using Content.Shared.Abilities.Mime;
 using Content.Server.Popups;
 using Content.Shared.Alert;
-using Content.Shared.Ghost;
-using Robust.Server.Player;
-using Robust.Shared.Enums;
 
 namespace Content.Server._CD.CartridgeLoader.Cartridges;
 
@@ -30,37 +27,10 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedNanoChatSystem _nanoChat = default!;
     [Dependency] private StationSystem _station = default!;
-    #region Starlight
-    [Dependency] private IPlayerManager _playerManager = default!; // Resolve each card's online player.
-    #endregion
 
     // Messages in notifications get cut off after this point
     // no point in storing it on the comp
     private const int NotificationMaxLength = 64;
-    #region Starlight
-    private const uint MailServiceNumber = 0; // One synthetic sender keeps mail notices in one conversation.
-    private static readonly TimeSpan MailBatchWindow = TimeSpan.FromSeconds(5); // Later parcels do not extend the first parcel's deadline.
-    private TimeSpan _nextMailboxFlush = TimeSpan.MaxValue; // Earliest due time lets Update skip unnecessary scans.
-
-    /// <summary>Stores the recipient, pickup point, parcel count, and delivery time for one batch.</summary>
-    private sealed class PendingMailboxMessage
-    {
-        public readonly string RecipientName; // Matched against an ID card when the batch expires.
-        public readonly string MailboxName; // Localized pickup location included in the message.
-        public int Count = 1; // The first deposit creates the batch, so its initial count is one.
-        public readonly TimeSpan FlushAt; // Absolute game time at which this batch can be sent.
-
-        /// <summary>Captures delivery details without keeping a reference to the deposited parcel.</summary>
-        public PendingMailboxMessage(string recipientName, string mailboxName, TimeSpan flushAt)
-        {
-            RecipientName = recipientName; // Save the name used to find the recipient's card later.
-            MailboxName = mailboxName; // Save the mailbox type used as the pickup location.
-            FlushAt = flushAt; // Preserve the first deposit's fixed batch deadline.
-        }
-    }
-
-    private readonly Dictionary<(string RecipientName, string MailboxName), PendingMailboxMessage> _pendingMailboxMessages = new(); // Separate recipients and pickup locations into distinct batches.
-    #endregion
 
     #region Starlight
 
@@ -100,90 +70,8 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
             UpdateUI((uid, nanoChat), loader);
         }
 
-        // Starlight Start
-        FlushMailboxMessages(); // Deliver expired batches after cartridge references are synchronized.
-        // Starlight End
-
         UpdateUnreadAlerts();
     }
-
-    #region Starlight
-    /// <summary>
-    ///     Queues a mailbox deposit for a batched NanoChat notification.
-    /// </summary>
-    public void QueueMailboxDeposit(string? recipientName, string mailboxName)
-    {
-        if (string.IsNullOrWhiteSpace(recipientName)) // Without a name, no NanoChat card can be selected.
-            return;
-
-        var key = (recipientName, mailboxName); // Same recipient and mailbox type share one notice.
-        if (_pendingMailboxMessages.TryGetValue(key, out var pending))
-        {
-            pending.Count++; // Add this parcel without extending the batch's original deadline.
-            return;
-        }
-
-        var flushAt = _timing.CurTime + MailBatchWindow; // Start this batch's fixed five-second collection window.
-        _pendingMailboxMessages.Add(key, new PendingMailboxMessage(recipientName, mailboxName, flushAt)); // Store only the details needed for the later notice.
-        if (flushAt < _nextMailboxFlush)
-            _nextMailboxFlush = flushAt; // Wake the flush check at the earliest pending deadline.
-    }
-
-    private void FlushMailboxMessages()
-    {
-        if (_pendingMailboxMessages.Count == 0 || _timing.CurTime < _nextMailboxFlush) // Skip work until at least one batch can be due.
-            return;
-
-        var dueMessages = _pendingMailboxMessages
-            .Where(entry => entry.Value.FlushAt <= _timing.CurTime)
-            .ToArray(); // Snapshot before removing batches from the dictionary.
-
-        foreach (var (key, pending) in dueMessages)
-        {
-            _pendingMailboxMessages.Remove(key); // Remove first so this batch cannot be delivered twice.
-            DeliverMailboxMessage(pending); // Turn the accumulated count into one NanoChat message.
-        }
-
-        _nextMailboxFlush = TimeSpan.MaxValue; // Clear the old deadline before examining remaining batches.
-        foreach (var pending in _pendingMailboxMessages.Values)
-        {
-            if (pending.FlushAt < _nextMailboxFlush)
-                _nextMailboxFlush = pending.FlushAt; // Remember the next batch that needs to be flushed.
-        }
-    }
-
-    private void DeliverMailboxMessage(PendingMailboxMessage pending)
-    {
-        var query = EntityQueryEnumerator<NanoChatCardComponent, IdCardComponent>();
-        while (query.MoveNext(out var cardUid, out var card, out var idCard)) // Pair each numbered NanoChat card with its owner's identity.
-        {
-            if (card.Number == null || !string.Equals(idCard.FullName, pending.RecipientName, StringComparison.Ordinal)) // Ignore unnumbered cards and cards for other people.
-                continue;
-
-            if (_nanoChat.GetPdaHolder((cardUid, card)) is not { } holder || // Require the card to be inside a PDA carried by a player (to avoid lag from random PDAs on the ground).
-                !_playerManager.TryGetSessionByEntity(holder, out var session) || // Ignore holders without an online player session.
-                session.Status != SessionStatus.InGame || // Ignore sessions that are not currently in game.
-                session.AttachedEntity is not { } attached || // Require the session to control an entity.
-                attached != holder || // Skip cards left on a body that the player is no longer controlling.
-                HasComp<GhostComponent>(attached)) // Do not deliver to a ghost entity; dead bodies without ghosts still qualify.
-                continue;
-
-            var sender = new NanoChatRecipient(MailServiceNumber, Loc.GetString("mailbox-nanochat-sender")); // Create the localized Mail Service contact.
-            _nanoChat.SetRecipient((cardUid, card), MailServiceNumber, sender); // Ensure the inbox has a conversation for that contact.
-
-            var message = new NanoChatMessage(
-                _timing.CurTime, // Timestamp the incoming message with the current game time.
-                Loc.GetString(pending.Count == 1 ? "mailbox-nanochat-message-one" : "mailbox-nanochat-message-many",
-                    ("count", pending.Count),
-                    ("mailbox", pending.MailboxName)), // Localize count and pickup type without exposing parcel contents.
-                MailServiceNumber); // Attribute the message to the Mail Service contact.
-
-            _nanoChat.AddMessage((cardUid, card), MailServiceNumber, message); // Store the notice even when notifications are muted.
-            var messageEvent = new NanoChatMessageReceivedEvent(cardUid, message, MailServiceNumber); // Prepare NanoChat's standard incoming-message event.
-            RaiseLocalEvent(ref messageEvent); // Let NanoChat update unread state, UI, and mute-aware notifications.
-        }
-    }
-    #endregion
 
     #region Starlight
     /// <summary>
