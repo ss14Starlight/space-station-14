@@ -27,7 +27,7 @@
           - ReagentId: Water
             Quantity: 0.1
     - type: ExaminableSolution
-      solution: dropper
+      solution: injector
     - type: SolutionPurge
       preserve:
         - Water

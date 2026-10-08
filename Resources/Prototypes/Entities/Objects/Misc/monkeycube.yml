@@ -14,7 +14,7 @@
     state: box
   - type: Tag
     tags:
-      - AnimalCubeBox #Starlight
+      - AnimalCubeBox # Starlight
 
 - type: entity
   parent: BaseItem
@@ -31,7 +31,7 @@
     sprite: Objects/Misc/monkeycube.rsi
   - type: Tag
     tags:
-      - WrappedCube #Starlight
+      - WrappedCube # Starlight
 
 
 - type: entity

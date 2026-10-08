@@ -601,6 +601,9 @@
   id: Nexus
 
 - type: Tag
+  id: NonAnimalCube
+
+- type: Tag
   id: NonLethalMech # Used to allow nonlethal mech equipment on a mech.
 
 - type: Tag
@@ -673,14 +676,12 @@
   id: RomerolDisasterSurvivorTraitBackground
 
 - type: Tag
-  id:
-    ReflectiveArmorHelmet
-    # Tag for reflective helmet, used for set bonus detection by ReflectiveSetBonusSystem
+  id: ReflectiveArmorHelmet
+  # Tag for reflective helmet, used for set bonus detection by ReflectiveSetBonusSystem
 
 - type: Tag
-  id:
-    ReflectiveArmorVest
-    # Tag for reflective vest, used for set bonus detection by ReflectiveSetBonusSystem
+  id: ReflectiveArmorVest
+  # Tag for reflective vest, used for set bonus detection by ReflectiveSetBonusSystem
 
 - type: Tag
   id: RollerBed

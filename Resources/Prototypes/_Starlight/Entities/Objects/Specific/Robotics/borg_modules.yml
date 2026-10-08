@@ -673,6 +673,9 @@
           - AnimalCubeBox
           - AnimalCube
           - WrappedCube
+        blacklist:
+          - NonAnimalCube
+
     - item: BorgHydrator
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: butcher-module }
