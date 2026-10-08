@@ -476,6 +476,18 @@
 - type: Tag
   id: MagazineBattery
 
+- type: tag
+  id: MagazineBoltPistol
+
+- type: tag
+  id: MagazineBoltRifle
+
+- type: tag
+  id: MagazineBoxBoltRifle
+
+- type: tag
+  id: CartridgeImpactBolt
+
 - type: Tag
   id: MagazineL10DMR
 
