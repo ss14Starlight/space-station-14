@@ -11,13 +11,16 @@
             "name": "open_shop"
         },
         {
-            "name": "alert_pollen"
+            "name": "floral_alert_pollen"
         },
         {
-            "name": "blooming_moss"
+            "name": "floral_blooming_moss"
         },
         {
-            "name": "make_wood"
+            "name": "bark_make_wood"
+        },
+        {
+            "name": "bark_bioreactor"
         },
         {
             "name": "mush_spore_hivemind"

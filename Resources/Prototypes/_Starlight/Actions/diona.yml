@@ -34,7 +34,7 @@
     itemIconStyle: BigAction
     icon:
       sprite: _Starlight/Interface/Actions/actions_diona.rsi
-      state: make_wood
+      state: bark_make_wood
     useDelay: 30
   - type: ConfirmableAction
     popup: pollen-bark-make-wood-confirm

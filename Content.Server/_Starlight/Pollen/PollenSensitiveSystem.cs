@@ -68,6 +68,9 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
                 if (!TryComp<ScentMarkerComponent>(candidate, out var pollen) || !pollen.IsPollen)
                     continue;
 
+                if (pollen.ContainedIn != _scent.GetAirtightContainer(sensitiveTransform))
+                    continue;
+
                 if (!_random.Prob(sensitive.InteractionChance))
                     continue;
 

@@ -14,7 +14,7 @@
   id: PollenTreeFloralT1AlertPollen
   name: pollen-floral-t1-name
   description: pollen-floral-t1-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: alert_pollen }
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: floral_alert_pollen }
   cost:
     PollenPoints: 2
   categories:
@@ -27,7 +27,7 @@
   id: PollenTreeFloralT2BloomingMoss
   name: pollen-floral-t2-name
   description: pollen-floral-t2-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: blooming_moss }
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: floral_blooming_moss }
   cost:
     PollenPoints: 3
   categories:
@@ -43,7 +43,7 @@
   id: PollenTreeFloralT3AdvancedPollen
   name: pollen-floral-t3-name
   description: pollen-floral-t3-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: alert_pollen } # TODO
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: floral_alert_pollen }
   applyToMob: true
   cost:
     PollenPoints: 4
@@ -65,7 +65,7 @@
   id: PollenTreeBarkT1MakeWood
   name: pollen-bark-t1-name
   description: pollen-bark-t1-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: make_wood }
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: bark_make_wood }
   productAction: PollenTreeBarkT1ActionMakeWood
   applyToMob: true
   cost:
@@ -80,7 +80,7 @@
   id: PollenTreeBarkT2Harden
   name: pollen-bark-t2-name
   description: pollen-bark-t2-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: open_shop } # TODO
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: open_shop }
   cost:
     PollenPoints: 3
   categories:
@@ -96,7 +96,7 @@
   id: PollenTreeBarkT3SapSerum
   name: pollen-bark-t3-name
   description: pollen-bark-t3-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: open_shop } # TODO
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: bark_biogenerator }
   cost:
     PollenPoints: 4
   categories:
