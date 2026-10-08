@@ -1,0 +1,12 @@
+- type: !PartialOnly entity
+  id: BasePlant
+  components:
+  - type: Sprite
+    noRot: true
+  - type: LanguageKnowledge
+    speaks:
+    - Sylvan
+    - GalacticCommon
+    understands:
+    - Sylvan
+    - GalacticCommon
