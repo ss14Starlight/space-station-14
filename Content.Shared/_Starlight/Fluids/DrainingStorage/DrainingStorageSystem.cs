@@ -23,6 +23,10 @@ public sealed partial class DrainingStorageSystem : EntitySystem
         }
     private void OnMapInit(Entity<DrainingStorageComponent> ent, ref MapInitEvent args)
     {
+
+        ent.Comp.NextUpdate = _timing.CurTime + ent.Comp.DrainInterval;
+        Dirty(ent);
+
         if (!TryComp<StorageComponent>(ent, out var storage))
             return;
 
@@ -68,7 +72,7 @@ public sealed partial class DrainingStorageSystem : EntitySystem
             if (curTime < buffer.NextUpdate)
                 continue;
 
-            buffer.NextUpdate += buffer.DrainInterval;
+            buffer.NextUpdate = curTime + buffer.DrainInterval;
             Dirty(uid, buffer);
 
             if (!_solutionContainerSystem.ResolveSolution(uid, DrainingStorageComponent.SolutionName, ref buffer.Solution, out var bufferSolution))

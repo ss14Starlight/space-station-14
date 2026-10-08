@@ -2,7 +2,7 @@
   name: glassware drying rack
   id: DryingRackGlassware
   parent: BaseStructure
-  description: A convinient way to dry and store your glasses behind the bar. Be careful not to overfill the tray!
+  description: A convenient way to dry and store your glasses behind the bar. Be careful not to overfill the tray!
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/glass_drying_rack.rsi
@@ -52,6 +52,9 @@
         - DrinkMetamorphic
     storageInsertSound: /Audio/Items/bottle_clunk.ogg
     storageOpenSound: null
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:
