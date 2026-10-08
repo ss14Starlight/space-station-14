@@ -823,7 +823,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     {
         remoteEntity = default;
         return component.Controller == actor
-               && _sharedRemoteControl.TryGetRemoteEntity((component.Owner, component), out remoteEntity);
+                && _sharedRemoteControl.TryGetRemoteEntity((component.Owner, component), out remoteEntity);
     }
 
     public bool TryGetControlledEntity(EntityUid actor, out EntityUid remoteEntity)
