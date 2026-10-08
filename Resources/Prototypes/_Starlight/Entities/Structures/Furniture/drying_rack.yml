@@ -95,3 +95,6 @@
     solution: buffer
   - type: DrainingStorage
   - type: PickLast
+  - type: Construction
+    graph: DryingRackGraph
+    node: dryingRack
