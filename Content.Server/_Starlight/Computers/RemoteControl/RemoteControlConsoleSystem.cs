@@ -482,6 +482,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         if (console.Users.Contains(uid))
         {
+            AddRemotePvsOverrides(remoteEntity, uid, session);
+            _viewSubscriber.AddViewSubscriber(remoteEntity, session);
             if (console.Controller != uid)
                 SetController(uid, console, uid, remoteEntity, false);
 
