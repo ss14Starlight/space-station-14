@@ -476,16 +476,16 @@
 - type: Tag
   id: MagazineBattery
 
-- type: tag
+- type: Tag
   id: MagazineBoltPistol
 
-- type: tag
+- type: Tag
   id: MagazineBoltRifle
 
-- type: tag
+- type: Tag
   id: MagazineBoxBoltRifle
 
-- type: tag
+- type: Tag
   id: CartridgeImpactBolt
 
 - type: Tag
