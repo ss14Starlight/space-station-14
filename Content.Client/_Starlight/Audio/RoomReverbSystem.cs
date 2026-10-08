@@ -160,8 +160,7 @@ public sealed partial class RoomReverbSystem : EntitySystem
 
         // Straight onto the OpenAL source, never through AudioComponent.Auxiliary: that field is networked, and
         // touching it on a server sound made the engine re-apply the sound's state, seeking it to client time.
-        // Client time runs ahead, so cries lost their start and short sounds (claps, salute) stopped outright.
-        // Re-sent every frame, which is free for OpenAL and survives the engine resetting the send.
+        // This causes the audio to play with the beginning cut off and to stretch out, creating a "drilling" effect.
         var attached = 0;
         var query = AllEntityQuery<AudioComponent>();
         while (query.MoveNext(out var audio))
