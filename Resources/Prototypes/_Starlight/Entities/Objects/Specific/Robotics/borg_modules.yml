@@ -674,6 +674,7 @@
           - AnimalCube
           - WrappedCube
         blacklist:
+          tags:
           - NonAnimalCube
 
     - item: BorgHydrator
