@@ -27,7 +27,7 @@ public sealed partial class NPCHidingWitnessSystem : EntitySystem
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
 
-    private const float MaxWitnessRange = 15f;
+    private const float MaxWitnessRange = 30f;
 
     private readonly HashSet<Entity<HTNComponent>> _witnesses = [];
     private readonly List<EntityUid> _forgotten = [];
@@ -39,9 +39,6 @@ public sealed partial class NPCHidingWitnessSystem : EntitySystem
         base.Initialize();
 
         _seeThrough = IsSeeThrough;
-
-        SubscribeLocalEvent<NpcFactionMemberComponent, EntGotInsertedIntoContainerMessage>(OnInsertedIntoContainer);
-        SubscribeLocalEvent<NpcFactionMemberComponent, EntGotRemovedFromContainerMessage>(OnRemovedFromContainer);
     }
 
     private bool IsSeeThrough(EntityUid uid)
@@ -49,6 +46,7 @@ public sealed partial class NPCHidingWitnessSystem : EntitySystem
         || HasComp<FlippableStructureComponent>(uid)
         || HasComp<ProjectileCoverComponent>(uid);
 
+    [SubscribeLocalEvent]
     private void OnInsertedIntoContainer(Entity<NpcFactionMemberComponent> hider, ref EntGotInsertedIntoContainerMessage args)
     {
         var storage = args.Container.Owner;
@@ -76,6 +74,7 @@ public sealed partial class NPCHidingWitnessSystem : EntitySystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnRemovedFromContainer(Entity<NpcFactionMemberComponent> hider, ref EntGotRemovedFromContainerMessage args)
     {
         var storage = args.Container.Owner;
@@ -128,12 +127,12 @@ public sealed partial class NPCHidingWitnessSystem : EntitySystem
     /// <summary>
     /// Whether <paramref name="npc"/> saw <paramref name="hider"/> shut themselves into the storage they are in now.
     /// </summary>
-    public bool KnowsHidingSpot(EntityUid npc, EntityUid hider, out EntityUid storage)
+    public bool KnowsHidingSpot(Entity<NPCHidingWitnessComponent?> npc, EntityUid hider, out EntityUid storage)
     {
         storage = default;
 
-        return TryComp<NPCHidingWitnessComponent>(npc, out var witness)
-            && witness.Hidden.TryGetValue(hider, out var known)
+        return Resolve(npc.Owner, ref npc.Comp, false)
+            && npc.Comp.Hidden.TryGetValue(hider, out var known)
             && TryGetHidingSpot(hider, out storage)
             && storage == known;
     }
@@ -170,15 +169,15 @@ public sealed partial class NPCHidingWitnessSystem : EntitySystem
     /// <summary>
     /// Adds the hostiles this NPC saw hiding nearby to its target candidates. Regular lookups skip anything inside a container.
     /// </summary>
-    public void AddWitnessedHiders(EntityUid npc, float range, HashSet<EntityUid> entities)
+    public void AddWitnessedHiders(Entity<NPCHidingWitnessComponent?> npc, float range, HashSet<EntityUid> entities)
     {
-        if (!TryComp<NPCHidingWitnessComponent>(npc, out var witness))
+        if (!Resolve(npc.Owner, ref npc.Comp, false))
             return;
 
-        var npcPos = _transform.GetMapCoordinates(npc);
+        var npcPos = _transform.GetMapCoordinates(npc.Owner);
         _forgotten.Clear();
 
-        foreach (var (hider, storage) in witness.Hidden)
+        foreach (var (hider, storage) in npc.Comp.Hidden)
         {
             if (TerminatingOrDeleted(hider)
                 || TerminatingOrDeleted(storage)
@@ -198,9 +197,9 @@ public sealed partial class NPCHidingWitnessSystem : EntitySystem
         }
 
         foreach (var hider in _forgotten)
-            witness.Hidden.Remove(hider);
+            npc.Comp.Hidden.Remove(hider);
 
-        if (witness.Hidden.Count == 0)
+        if (npc.Comp.Hidden.Count == 0)
             RemCompDeferred<NPCHidingWitnessComponent>(npc);
     }
 }

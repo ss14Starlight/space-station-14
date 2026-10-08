@@ -60,7 +60,7 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
     [SubscribeLocalEvent]
     private void OnModifyTemperature(EntityUid uid, GunHeatComponent component, ModifyChangedTemperatureEvent args)
     {
-        if (args.TemperatureDelta <= 0f || !TryComp<TemperatureComponent>(uid, out var temperature))
+        if (_firing || args.TemperatureDelta <= 0f || !TryComp<TemperatureComponent>(uid, out var temperature))
             return;
 
         var limit = component.JamTemperature - component.EnvironmentHeatMargin;

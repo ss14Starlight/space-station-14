@@ -168,11 +168,11 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
     }
 
     private static bool CanShelter(ProjectileCoverComponent comp)
-        => comp.ProneOnly || comp.BlockChance > 0f;
+        => (comp.ProneOnly && comp.ProneAlwaysBlock) || comp.BlockChance > 0f;
 
     private bool IsSheltering(Entity<ProjectileCoverComponent> cover, EntityUid target, Vector2 shotDirection)
     {
-        if (!_standing.IsDown(target))
+        if (cover.Comp.ProneAlwaysBlock && !_standing.IsDown(target))
             return false;
 
         var coverPos = _transform.GetMapCoordinates(cover);
