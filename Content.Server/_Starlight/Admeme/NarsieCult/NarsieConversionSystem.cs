@@ -9,6 +9,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
 using Content.Shared.Verbs;
@@ -60,7 +61,7 @@ public sealed partial class NarsieConversionSystem : EntitySystem
             return;
 
         // Only react to things that can have a mind; let other interactions through.
-        if (!HasComp<MindContainerComponent>(target))
+        if (!TryComp<MindContainerComponent>(target, out var mindContainer))
             return;
 
         args.Handled = true;
@@ -75,7 +76,7 @@ public sealed partial class NarsieConversionSystem : EntitySystem
             return;
         }
 
-        TryConvert(target, args.User, comp.ConversionSound);
+        TryConvert((target, mindContainer), args.User, comp.ConversionSound);
     }
 
     // ---- Admin verb entry point -------------------------------------------------------------
@@ -97,7 +98,7 @@ public sealed partial class NarsieConversionSystem : EntitySystem
             Message = Loc.GetString("narsie-cult-convert-verb-desc"),
             Category = VerbCategory.Antag,
             Impact = LogImpact.High, // verbs with an Impact are written to the admin log automatically
-            Act = () => TryConvert(target, user),
+            Act = () => TryConvert((target, null), user),
         });
     }
 
@@ -106,12 +107,15 @@ public sealed partial class NarsieConversionSystem : EntitySystem
     /// <summary>
     ///     Converts the mind of <paramref name="target"/> into a Nar'Sie cultist.
     /// </summary>
-    /// <param name="target">The mob to convert.</param>
+    /// <param name="target">The mob to convert (must resolve a mind container).</param>
     /// <param name="user">Who is doing the converting (for popups). May be null.</param>
     /// <param name="sound">Conversion sound. Defaults to the Admeme Nar'Sie sound.</param>
     /// <returns>True if the role was newly granted.</returns>
-    public bool TryConvert(EntityUid target, EntityUid? user = null, SoundSpecifier? sound = null)
+    public bool TryConvert(Entity<MindContainerComponent?> target, EntityUid? user = null, SoundSpecifier? sound = null)
     {
+        if (!Resolve(target, ref target.Comp, logMissing: false))
+            return false;
+
         var name = Identity.Entity(target, EntityManager);
 
         if (!_mind.TryGetMind(target, out var mindId, out var mind))
@@ -130,7 +134,7 @@ public sealed partial class NarsieConversionSystem : EntitySystem
 
         _role.MindAddRole(mindId, CultistMindRole, mind);
 
-        _npcFaction.AddFaction(target, "MoffNarsianDemon");
+        _npcFaction.AddFaction((target.Owner, null), "MoffNarsianDemon");
 
         if (mind.UserId is { } userId && _player.TryGetSessionById(userId, out var session))
         {
