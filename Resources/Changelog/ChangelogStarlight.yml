@@ -1,13 +1,6 @@
 Entries:
 - author: Seven Shades & Mack
   changes:
-  - message: Cards hud button is back.
-    type: Add
-  id: 408881
-  time: '2026-09-26T09:27:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6331
-- author: Seven Shades & Mack
-  changes:
   - message: There is now a 3 minute delay between picking the criminal card and the NT-ISD fax being sent.
     type: Tweak
   id: 408882
@@ -2799,4 +2792,11 @@ Entries:
   id: 409280
   time: '2026-10-08T06:07:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6561
+- author: Xale
+  changes:
+  - message: Examining living catatonic characters under NPC control will now display them as "acting without reason" instead of catatonic.
+    type: Add
+  id: 409281
+  time: '2026-10-08T06:26:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6556
 Order: -1
