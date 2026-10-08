@@ -249,6 +249,9 @@
   id: DrinkCarton
 
 - type: Tag
+  id: DrinkMetamorphic
+
+- type: Tag
   id: DurandArmor
 
 - type: Tag
