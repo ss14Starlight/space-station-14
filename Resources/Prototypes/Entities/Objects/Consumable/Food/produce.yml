@@ -880,7 +880,7 @@
   - type: Item
     heldPrefix: produce
   - type: Produce
-    plantId: PotatoPlants
+    seedId: potato
   - type: Tag
     tags:
     - Potato

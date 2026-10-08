@@ -7,7 +7,6 @@ using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
-using Content.Shared.Tools.Systems;
 using Content.Shared.Trigger.Components;
 using Content.Shared.Trigger.Systems;
 using Robust.Shared.Audio.Systems;
@@ -16,18 +15,18 @@ using Robust.Shared.Player;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
-public abstract partial class SharedCreamPieSystem : EntitySystem
+public abstract class SharedCreamPieSystem : EntitySystem
 {
-    [Dependency] private SharedStunSystem _stunSystem = default!;
-    [Dependency] private SharedAppearanceSystem _appearance = default!;
-    [Dependency] private IngestionSystem _ingestion = default!;
-    [Dependency] private ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private SharedPuddleSystem _puddle = default!;
-    [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private SharedSolutionContainerSystem _solutions = default!;
-    [Dependency] private TriggerSystem _trigger = default!;
-    [Dependency] private INetManager _net = default!;
+    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly IngestionSystem _ingestion = default!;
+    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedPuddleSystem _puddle = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
+    [Dependency] private readonly TriggerSystem _trigger = default!;
+    [Dependency] private readonly INetManager _net = default!;
 
     public override void Initialize()
     {
@@ -36,7 +35,7 @@ public abstract partial class SharedCreamPieSystem : EntitySystem
         SubscribeLocalEvent<CreamPieComponent, ThrowDoHitEvent>(OnCreamPieHit);
         SubscribeLocalEvent<CreamPieComponent, LandEvent>(OnCreamPieLand);
         SubscribeLocalEvent<CreamPiedComponent, ThrowHitByEvent>(OnCreamPiedHitBy);
-        SubscribeLocalEvent<CreamPieComponent, BeforeToolRefinedEvent>(OnToolRefine);
+        SubscribeLocalEvent<CreamPieComponent, SliceFoodEvent>(OnSlice);
         SubscribeLocalEvent<CreamPiedComponent, RejuvenateEvent>(OnRejuvenate);
     }
 
@@ -45,13 +44,16 @@ public abstract partial class SharedCreamPieSystem : EntitySystem
     /// </summary>
     public void SplatCreamPie(Entity<CreamPieComponent> creamPie)
     {
+        // Already splatted! Do nothing.
         if (creamPie.Comp.Splatted)
             return;
 
+        // The pie will be queued for deletion but there may be multiple collisions in the same tick, so we prevent it from splatting more than once.
         creamPie.Comp.Splatted = true;
         Dirty(creamPie);
 
-        if (_net.IsServer)
+        // The entity is being deleted, so play the sound at its position rather than parenting.
+        if (_net.IsServer) // we don't have a user to pass in TODO: make the popup API sane and remove this guard
         {
             var coordinates = Transform(creamPie).Coordinates;
             _audio.PlayPvs(creamPie.Comp.Sound, coordinates);
@@ -74,6 +76,8 @@ public abstract partial class SharedCreamPieSystem : EntitySystem
     /// </summary>
     public void ActivatePayload(EntityUid uid)
     {
+        // Keep this server side for now since we don't have a user we can pass in for prediction purposes.
+        // Ideally the popup and audio API will be reworked so that is not needed anymore.
         if (_net.IsClient)
             return;
 
@@ -83,6 +87,10 @@ public abstract partial class SharedCreamPieSystem : EntitySystem
             _trigger.ActivateTimerTrigger((item.Value, timerTrigger));
     }
 
+    /// <summary>
+    /// Sets the creampied status of an entity.
+    /// This toggles the visuals for the pie in their face.
+    /// </summary>
     public void SetCreamPied(Entity<CreamPiedComponent?> ent, bool value)
     {
         if (!Resolve(ent, ref ent.Comp))
@@ -93,15 +101,8 @@ public abstract partial class SharedCreamPieSystem : EntitySystem
 
         ent.Comp.CreamPied = value;
         Dirty(ent);
-        _appearance.SetData(ent.Owner, CreamPiedVisuals.Creamed, value);
-    }
 
-    /// <summary>
-    /// Compatibility overload for fork systems which still pass the resolved component separately.
-    /// </summary>
-    public void SetCreamPied(EntityUid uid, CreamPiedComponent creamPied, bool value)
-    {
-        SetCreamPied((uid, creamPied), value);
+        _appearance.SetData(ent.Owner, CreamPiedVisuals.Creamed, value);
     }
 
     private void OnCreamPieLand(Entity<CreamPieComponent> ent, ref LandEvent args)
@@ -116,36 +117,34 @@ public abstract partial class SharedCreamPieSystem : EntitySystem
 
     private void OnCreamPiedHitBy(Entity<CreamPiedComponent> creamPied, ref ThrowHitByEvent args)
     {
-        if (!Exists(args.Thrown) || !TryComp<CreamPieComponent>(args.Thrown, out var creamPie))
+        if (creamPied.Comp.CreamPied || !Exists(args.Thrown) || !TryComp<CreamPieComponent>(args.Thrown, out var creamPie))
             return;
 
-        _stunSystem.TryUpdateParalyzeDuration(creamPied.Owner, TimeSpan.FromSeconds(creamPie.ParalyzeTime));
-
-        if (creamPied.Comp.CreamPied)
-            return;
-
+        // TODO: Check if they even have a head that can be hit.
         SetCreamPied(creamPied.AsNullable(), true);
+        _stunSystem.TryUpdateParalyzeDuration(creamPied.Owner, creamPie.ParalyzeTime);
 
+        // Throwing is not predicted, so the thrower is not equal to the client predicting the collision, so we cannot pass in a user.
+        // TODO: Make the popup API sane.
         if (_net.IsClient)
             return;
 
+        // Shown only to the player that was hit.
         _popup.PopupEntity(
             Loc.GetString(
                 "cream-pied-component-on-hit-by-message",
                 ("thrown", args.Thrown)),
-            creamPied.Owner,
-            creamPied.Owner);
+            creamPied.Owner, creamPied.Owner);
 
         var otherPlayers = Filter.PvsExcept(creamPied.Owner);
 
+        // Show to everyone else.
         _popup.PopupEntity(
             Loc.GetString(
                 "cream-pied-component-on-hit-by-message-others",
                 ("owner", Identity.Entity(creamPied.Owner, EntityManager)),
                 ("thrown", args.Thrown)),
-            creamPied.Owner,
-            otherPlayers,
-            false);
+            creamPied.Owner, otherPlayers, false);
     }
 
     private void OnRejuvenate(Entity<CreamPiedComponent> ent, ref RejuvenateEvent args)
@@ -153,7 +152,12 @@ public abstract partial class SharedCreamPieSystem : EntitySystem
         SetCreamPied(ent.AsNullable(), false);
     }
 
-    private void OnToolRefine(Entity<CreamPieComponent> ent, ref BeforeToolRefinedEvent args)
+    // TODO
+    // A regression occured here. Previously creampies would activate their hidden payload if you tried to eat them.
+    // However, the refactor to IngestionSystem caused the event to not be reached,
+    // because eating is blocked if an item is inside the food.
+
+    private void OnSlice(Entity<CreamPieComponent> ent, ref SliceFoodEvent args)
     {
         ActivatePayload(ent);
     }

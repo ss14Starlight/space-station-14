@@ -1573,10 +1573,6 @@
     - map: [ "outerClothing" ]
     - map: [ "mask" ]
     - map: [ "head" ]
-    - map: [ "clownedon" ]
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_human"
-      visible: false
   - type: Hands
     # Starlight edit Start: Reverted NuBody
     # activeHandId: Hand
@@ -1597,6 +1593,9 @@
     requiredLegs: 1 # TODO: More than 1 leg
   # Starlight - end
   - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_monkey
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Monkey_burning
@@ -1718,7 +1717,7 @@
 - type: entity
   name: monkey
   id: MobBaseSyndicateMonkey
-  parent: MobBaseAncestor
+  parent: MobBaseAncestor # TODO: fix copy paste from MobMonkey
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   suffix: syndicate base
   components:
@@ -1885,10 +1884,6 @@
     - map: [ "id" ]
     - map: [ "mask" ]
     - map: [ "head" ]
-    - map: [ "clownedon" ]
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_human"
-      visible: false
   - type: RandomSprite
     getAllGroups: true
     available:
@@ -2925,6 +2920,7 @@
     raffle:
       settings: short
   - type: GhostTakeoverAvailable
+  - type: ForceAttack
 
 - type: entity
   name: tarantula
