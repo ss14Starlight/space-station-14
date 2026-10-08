@@ -28,7 +28,6 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
     private readonly IEyeManager _eye;
     private readonly CombatModeSystem _combat;
     private readonly HandsSystem _hands = default!;
-    private readonly RemoteControlInterface _remoteControl;
 
     #region Starlight
     private readonly RemoteControlInterface _remoteControl;
