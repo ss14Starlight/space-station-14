@@ -77,7 +77,7 @@
   - type: Tag
     tags:
     - Meat
-    - AnimalCube #Starlight
+    - AnimalCube # Starlight
 
 - type: entity
   parent: RehydratableAnimalCube
