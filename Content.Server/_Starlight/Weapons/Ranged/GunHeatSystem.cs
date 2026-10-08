@@ -22,6 +22,10 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
 
     private bool _firing;
 
+    private static readonly TimeSpan _syncHold = TimeSpan.FromSeconds(2);
+
+    private readonly Dictionary<EntityUid, TimeSpan> _lastShot = new();
+
     [SubscribeLocalEvent]
     private void OnMapInit(Entity<GunHeatComponent> ent, ref MapInitEvent _)
     {
@@ -39,6 +43,8 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
     {
         if (!TryComp<TemperatureComponent>(ent, out var temperature))
             return;
+
+        _lastShot[ent] = Timing.CurTime;
 
         _firing = true;
         try
@@ -63,6 +69,10 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
     }
 
     [SubscribeLocalEvent]
+    private void OnShutdown(Entity<GunHeatComponent> ent, ref ComponentShutdown args)
+        => _lastShot.Remove(ent);
+
+    [SubscribeLocalEvent]
     private void OnTemperatureChange(Entity<GunHeatComponent> ent, ref OnTemperatureChangeEvent args)
     {
         Sync(ent, args.CurrentTemperature);
@@ -74,6 +84,9 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
     private void Sync(Entity<GunHeatComponent> ent, float temperature, bool force = false)
     {
         if (!force && MathF.Abs(temperature - ent.Comp.Temperature) < SyncStep)
+            return;
+
+        if (!force && _lastShot.TryGetValue(ent, out var lastShot) && Timing.CurTime < lastShot + _syncHold)
             return;
 
         ent.Comp.Temperature = temperature;
