@@ -26,7 +26,7 @@ public sealed partial class ItemToggleSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private IGameTiming _timing = default!; // Starlight
+    [Dependency] private IGameTiming _gameTiming = default!;
 
     private EntityQuery<ItemToggleComponent> _query;
 
@@ -326,9 +326,7 @@ public sealed partial class ItemToggleSystem : EntitySystem
     /// </summary>
     private void TurnOnOnWielded(Entity<ItemToggleComponent> ent, ref ItemWieldedEvent args)
     {
-        // FIXME: for some reason both client and server play sound
-        if (ent.Comp.IgnoreWieldState) return; // Starlight
-        TryActivate((ent, ent.Comp), args.User); // Starlight edit
+        TryActivate((ent, ent.Comp), args.User);
     }
 
     public bool IsActivated(Entity<ItemToggleComponent?> ent)
@@ -352,13 +350,16 @@ public sealed partial class ItemToggleSystem : EntitySystem
     /// </summary>
     private void UpdateActiveSound(Entity<ItemToggleActiveSoundComponent> ent, ref ItemToggledEvent args)
     {
+        if (!_gameTiming.IsFirstTimePredicted)
+            return;
+
         var (uid, comp) = ent;
         if (!args.Activated)
         {
             // Starlight begin
             // TODO: Make an RT pull request adding a Stop method to the shared audio system to do this because clearly setting things to null on client here cause issues with prediction.
             var maybeNoAudio = _audio.Stop(comp.PlayingStream);
-            if (!maybeNoAudio.HasValue && !_timing.IsFirstTimePredicted) return;
+            if (!maybeNoAudio.HasValue && !_gameTiming.IsFirstTimePredicted) return;
             comp.PlayingStream = maybeNoAudio;
             return;
             // Starlight end

@@ -34,4 +34,13 @@ public static class UserFormattableTags
         typeof(MetaTagHandler),
         // Starlight end
     ];
+
+    /// <summary>
+    /// Tags allowed in Silicon UIs. Extends from BaseAllowedTags.
+    /// </summary>
+    public static readonly Type[] SiliconAllowedTags =
+    [
+        ..BaseAllowedTags,
+        typeof(ScrambleTag)
+    ];
 }

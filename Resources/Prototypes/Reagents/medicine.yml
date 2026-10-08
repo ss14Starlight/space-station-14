@@ -1110,13 +1110,17 @@
       effects:
       # Starlight start, use mixmax instead
       - !type:HealthChange
+        conditions:
+        - !type:MobStateCondition # no healing in crit so that dedicated single damage type meds can still have a niche.
+          mobstate: Alive
         damage:
           mixmax:
             value: -0.75
             groups:
             - Burn
             - Brute
-            - Toxin
+            types:
+            - Poison
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition

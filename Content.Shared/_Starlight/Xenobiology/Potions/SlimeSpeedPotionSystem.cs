@@ -33,7 +33,7 @@ public sealed partial class SlimeSpeedPotionSystem : EntitySystem
         _clothingSpeedModifierSystem.SetWalkSpeedModifier(clothingSpeedModifierComponent, (clothingSpeedModifierComponent.WalkModifier + 1.0F) / 2.0F);
         _clothingSpeedModifierSystem.SetSprintSpeedModifier(clothingSpeedModifierComponent, (clothingSpeedModifierComponent.SprintModifier + 1.0F) / 2.0F);
         Dirty(target, clothingSpeedModifierComponent);
-        _sharedPopupSystem.PopupPredicted($"{MetaData(target).EntityName} walk/sprint speed reduction is now {clothingSpeedModifierComponent.WalkModifier}/{clothingSpeedModifierComponent.SprintModifier}.", user, user);
+        _sharedPopupSystem.PopupPredicted(Loc.GetString("slime-potion-speed-applied", ("target", MetaData(target).EntityName), ("walk", clothingSpeedModifierComponent.WalkModifier), ("sprint", clothingSpeedModifierComponent.SprintModifier)), user, user);
         return true;
     }
 
