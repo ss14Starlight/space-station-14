@@ -11,16 +11,8 @@
       sprite: Objects/Specific/Chemistry/dropper.rsi
       layers:
         - state: borgdropper
-        - state: dropper1
-          map: ["enum.SolutionContainerLayers.Fill"]
-          visible: false
     - type: Item
       sprite: Objects/Specific/Chemistry/dropper.rsi
-    - type: SolutionContainerVisuals
-      maxFillLevels: 1
-      fillBaseName: dropper
-      inHandsMaxFillLevels: 1
-      inHandsFillBaseName: -fill-
     - type: SolutionRegeneration
       generated:
         reagents:
