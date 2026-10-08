@@ -177,6 +177,9 @@
   id: ClownKudzu
 
 - type: Tag
+  id: Citrus # Artifact citrus trigger
+
+- type: Tag
   id: CluwneBeastWearable
 
 - type: Tag
@@ -322,6 +325,9 @@
 
 - type: Tag
   id: FlatpackBlacklist
+
+- type: Tag
+  id: FloppyDisk # Artifact floppy storage trigger
 
 - type: Tag
   id: GearAcidifier
