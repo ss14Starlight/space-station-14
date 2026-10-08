@@ -11,3 +11,34 @@
       override: !type:CreateVariants
         values: *protos
 
+# Subfloor layers
+- type: !PartialOnly entity
+  id: GasTrinaryBase
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasFilter
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasFilterFlipped
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasMixer
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: PressureControlledValve
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+

@@ -1,0 +1,9 @@
+- type: entity
+  parent: RandomMeat
+  id: FleshTileMeatSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: MeatTable
+      prob: 1

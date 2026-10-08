@@ -25,6 +25,7 @@
   - NanoTrasenRepresentativeJumpsuit
   - NanoTrasenRepresentativeEyewear
   - CommonBackpack
+  - PaperworkGloves
   - NanotrasenRepresentativeShoes
   - Trinkets
   - Scarves
@@ -40,6 +41,7 @@
   - IAANeck
   - IAAJumpsuit
   - CommonBackpack
+  - PaperworkGloves
   - IAAShoes
   - Trinkets
   - Scarves
@@ -363,13 +365,14 @@
 - type: roleLoadout
   id: JobSalvageMedic
   groups:
-    - GroupTankHarness
-    - SalvageSpecialistBackpack
-    - SalvageSpecialistOuterClothing
-    - SalvageSpecialistShoes
-    - Glasses
-    - Survival
-    - Trinkets
-    - Scarves
-    - Pins
-    - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - SalvageSpecialistBackpack
+  - SalvageSpecialistOuterClothing
+  - SalvageSpecialistShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - GroupSpeciesBreathTool

@@ -76,7 +76,8 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
         EntityUid? shooter,
         float? distance = null,
         EntityUid? aimedAt = null,
-        Vector2? shotDirection = null)
+        Vector2? shotDirection = null,
+        int? seed = null)
     {
         var comp = cover.Comp;
 
@@ -98,18 +99,23 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
         if (comp.BlockChance >= 1f)
             return true;
 
-        return DeterministicRandom.Prob(GetNetEntity(shot), GetNetEntity(cover), comp.BlockChance);
+        // A predicted hitscan is a throwaway client entity with its own NetEntity id, so the shot seed
+        // replaces the shot id when given: client and server have to roll the same value.
+        return DeterministicRandom.Prob(
+            comp.BlockChance,
+            seed ?? GetNetEntity(shot).Id,
+            GetNetEntity(cover).Id);
     }
 
     public bool IsShotStopped(EntityUid cover, EntityUid shot, EntityUid? shooter, float? distance = null,
-        EntityUid? aimedAt = null, Vector2? shotDirection = null)
+        EntityUid? aimedAt = null, Vector2? shotDirection = null, int? seed = null)
         => TryComp<ProjectileCoverComponent>(cover, out var comp)
-        && IsShotStopped((cover, comp), shot, shooter, distance, aimedAt, shotDirection);
+        && IsShotStopped((cover, comp), shot, shooter, distance, aimedAt, shotDirection, seed);
 
     public bool PassesOverCover(EntityUid cover, EntityUid shot, EntityUid? shooter, float? distance = null,
-        EntityUid? aimedAt = null, Vector2? shotDirection = null)
+        EntityUid? aimedAt = null, Vector2? shotDirection = null, int? seed = null)
         => TryComp<ProjectileCoverComponent>(cover, out var comp)
-        && !IsShotStopped((cover, comp), shot, shooter, distance, aimedAt, shotDirection);
+        && !IsShotStopped((cover, comp), shot, shooter, distance, aimedAt, shotDirection, seed);
 
     public bool IsShelteredFromShot(EntityUid target, Vector2 shotDirection)
     {

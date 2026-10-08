@@ -1,0 +1,3 @@
+- type: !PartialOnly cargoProduct
+  id: CrateVendingMachineRestockClothes
+  cost: 4300
