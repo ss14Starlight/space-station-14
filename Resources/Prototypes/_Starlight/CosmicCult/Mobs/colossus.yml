@@ -52,6 +52,7 @@
       visible: false
       map: ["hibernating"]
   - type: Appearance
+  - type: SyncSprite
   - type: GenericVisualizer
     visuals:
       enum.ColossusVisuals.Status:

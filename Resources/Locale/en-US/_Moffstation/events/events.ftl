@@ -1,1 +1,1 @@
-ent-HellPortal = Hell Portal
+ent-HellPortal = Hellportal
