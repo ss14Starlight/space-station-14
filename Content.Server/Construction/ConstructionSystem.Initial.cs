@@ -429,15 +429,16 @@ namespace Content.Server.Construction
         // LEGACY CODE. See warning at the top of the file!
         private async void HandleStartStructureConstruction(TryStartStructureConstructionMessage ev, EntitySessionEventArgs args)
         {
-            if (args.SenderSession.AttachedEntity is not {Valid: true} user)
+            if (args.SenderSession.AttachedEntity is not {Valid: true} user) // Starlight
             {
                 Log.Error($"Client sent {nameof(TryStartStructureConstructionMessage)} with no attached entity!");
                 return;
             }
 
-            await TryStartStructureConstruction(ev, user, args.SenderSession);
+            await TryStartStructureConstruction(ev, user, args.SenderSession); // Starlight
         }
 
+        #region Starlight
         /// <summary>
         ///     Starts the requested structure construction for the given user.
         /// </summary>
@@ -445,10 +446,17 @@ namespace Content.Server.Construction
         /// <param name="user">The entity performing the construction.</param>
         /// <param name="session">The requesting session used to track progress and send acknowledgements.</param>
         /// <returns>A task representing the asynchronous construction operation.</returns>
-        public async Task TryStartStructureConstruction(
+        public Task TryStartStructureConstruction(
             TryStartStructureConstructionMessage ev,
             EntityUid user,
             ICommonSession session)
+            => TryStartStructureConstructionForUser(ev, user, session);
+        #endregion
+
+        private async Task TryStartStructureConstructionForUser(
+            TryStartStructureConstructionMessage ev,
+            EntityUid user,
+            ICommonSession session) // Starlight: shared implementation for the legacy handler and remote callers.
         {
             if (!PrototypeManager.TryIndex(ev.PrototypeName, out ConstructionPrototype? constructionPrototype))
             {

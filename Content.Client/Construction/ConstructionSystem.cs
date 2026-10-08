@@ -34,9 +34,9 @@ namespace Content.Client.Construction
         [Dependency] private SharedTransformSystem _transformSystem = default!;
         [Dependency] private SpriteSystem _sprite = default!;
         [Dependency] private PopupSystem _popupSystem = default!;
-        // Starlight-edit start
+        #region Starlight
         [Dependency] private IConfigurationManager _configurationManager = default!;
-        // Starlight-edit end
+        #endregion
 
         private readonly Dictionary<int, EntityUid> _ghosts = new();
         private readonly Dictionary<string, ConstructionGuide> _guideCache = new();
@@ -280,12 +280,10 @@ namespace Content.Client.Construction
                 return false;
             }
 
-            // Starlight start
-            return TrySpawnGhost(prototype, loc, dir, user, out ghost);
-            // Starlight end
+            return TrySpawnGhost(prototype, loc, dir, user, out ghost); // Starlight
         }
 
-        // Starlight start
+        #region Starlight
         /// <summary>
         ///     Attempts to create a construction ghost for the specified user.
         /// </summary>
@@ -304,10 +302,25 @@ namespace Content.Client.Construction
             [NotNullWhen(true)] out EntityUid? ghost,
             bool showPopup = true)
         {
-            ghost = null;
             if (!user.IsValid())
+            {
+                ghost = null;
                 return false;
+            }
 
+            return TrySpawnGhostForUser(prototype, loc, dir, user, out ghost, showPopup);
+        }
+        #endregion
+
+        private bool TrySpawnGhostForUser(
+            ConstructionPrototype prototype,
+            EntityCoordinates loc,
+            Direction dir,
+            EntityUid user,
+            [NotNullWhen(true)] out EntityUid? ghost,
+            bool showPopup) // Starlight: shared implementation for local and remote users.
+        {
+            ghost = null;
             if (!TryGetRecipePrototype(prototype.ID, out var targetProtoId) || !PrototypeManager.TryIndex(targetProtoId, out EntityPrototype? targetProto))
                 return false;
 
@@ -320,7 +333,7 @@ namespace Content.Client.Construction
             if (!_examineSystem.InRangeUnOccluded(user, loc, 20f, predicate: predicate))
                 return false;
 
-            if (!CheckConstructionConditions(prototype, loc, dir, user, showPopup))
+            if (!CheckConstructionConditions(prototype, loc, dir, user, showPopup)) // Starlight
                 return false;
 
             ghost = Spawn("constructionghost", loc);
@@ -364,7 +377,6 @@ namespace Content.Client.Construction
 
             return true;
         }
-        // Starlight end
 
         private bool CheckConstructionConditions(ConstructionPrototype prototype, EntityCoordinates loc, Direction dir,
             EntityUid user, bool showPopup = false)

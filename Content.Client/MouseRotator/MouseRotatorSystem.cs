@@ -58,6 +58,7 @@ public sealed partial class MouseRotatorSystem : SharedMouseRotatorSystem
             mapPos = _eye.PixelToMap(coords);
         // Starlight-end
 
+        // Starlight-start
         if (mapPos is not { } remoteMapPosition)
             return;
 
@@ -65,6 +66,7 @@ public sealed partial class MouseRotatorSystem : SharedMouseRotatorSystem
             return;
 
         var angle = (remoteMapPosition.Position - _transform.GetMapCoordinates(rotationEntity, xform: xform).Position).ToWorldAngle();
+        // Starlight-end
 
         var curRot = _transform.GetWorldRotation(xform);
 
@@ -72,7 +74,7 @@ public sealed partial class MouseRotatorSystem : SharedMouseRotatorSystem
         // only raise event if the cardinal direction has changed
         if (rotator.Simple4DirMode)
         {
-            var eyeRot = eye.Rotation; // camera rotation
+            var eyeRot = eye.Rotation; // Starlight: camera rotation
             var angleDir = (angle + eyeRot).GetCardinalDir(); // apply GetCardinalDir in the camera frame, not in the world frame
             if (angleDir == (curRot + eyeRot).GetCardinalDir())
                 return;
@@ -85,7 +87,7 @@ public sealed partial class MouseRotatorSystem : SharedMouseRotatorSystem
             RaisePredictiveEvent(new RequestMouseRotatorRotationEvent
             {
                 Rotation = rotation,
-                User = GetNetEntity(player.Value)
+                User = GetNetEntity(player.Value) // Starlight
             });
 
             return;
@@ -106,7 +108,7 @@ public sealed partial class MouseRotatorSystem : SharedMouseRotatorSystem
         RaisePredictiveEvent(new RequestMouseRotatorRotationEvent
         {
             Rotation = angle,
-            User = GetNetEntity(player.Value)
+            User = GetNetEntity(player.Value) // Starlight
         });
     }
 }

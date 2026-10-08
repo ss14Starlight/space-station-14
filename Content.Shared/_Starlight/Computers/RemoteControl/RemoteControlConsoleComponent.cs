@@ -2,16 +2,16 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared._Starlight.Computers.RemoteControl;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class RemoteControlConsoleComponent : Component
 {
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField]
     public EntityUid? RemoteBrain;
 
     [ViewVariables]
     public HashSet<EntityUid> Users = new();
 
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField]
     public EntityUid? Controller;
 
     [ViewVariables]
@@ -20,6 +20,9 @@ public sealed partial class RemoteControlConsoleComponent : Component
     [ViewVariables]
     public bool BorgActivatedByRemote;
 
+    /// <summary>
+    /// Whether this console provides a full remote view instead of a compact control-only interface.
+    /// </summary>
     [DataField]
     public bool EnableRemoteView = true;
 

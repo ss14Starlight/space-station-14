@@ -5,7 +5,7 @@
     xmlns:alerts="clr-namespace:Content.Client.UserInterface.Systems.Alerts.Widgets"
     xmlns:ui="clr-namespace:Robust.Client.UserInterface.Controls"
     xmlns:viewport="clr-namespace:Content.Client.Viewport"
-    Title="Remote control"
+    Title="{Loc 'remote-control-console-title'}"
     SetSize="1024 770"
     MinSize="800 608">
         <LayoutContainer Name="RootContainer" Access="Public"
@@ -16,7 +16,7 @@
                       LayoutContainer.AnchorRight="1" LayoutContainer.AnchorBottom="1"
                       LayoutContainer.MarginLeft="8" LayoutContainer.MarginTop="8"
                       LayoutContainer.MarginRight="-8" LayoutContainer.MarginBottom="-8">
-            <Label Name="StatusLabel" Access="Public" Text="No remote entity connected" HorizontalAlignment="Center" />
+            <Label Name="StatusLabel" Access="Public" Text="{Loc 'remote-control-console-status-disconnected'}" HorizontalAlignment="Center" />
             <viewport:ScalingViewport Name="RemoteView" Access="Public" VerticalExpand="True" HorizontalExpand="True" Margin="0" MinSize="400 400" MouseFilter="Pass" />
         </BoxContainer>
         <BoxContainer Name="ActionButtons" Access="Public" Orientation="Horizontal"
@@ -25,7 +25,7 @@
                       LayoutContainer.AnchorTop="0"
                       LayoutContainer.MarginTop="8" />
         <controls:SwitchButton Name="ControlButton" Access="Public" MinWidth="140" MinHeight="32"
-                               OnStateText="Controlling" OffStateText="Viewing"
+                               OnStateText="{Loc 'remote-control-console-control-button-controlling'}" OffStateText="{Loc 'remote-control-console-control-button-viewing'}"
                                LayoutContainer.AnchorLeft="1" LayoutContainer.AnchorTop="0"
                                LayoutContainer.AnchorRight="1"
                                LayoutContainer.MarginLeft="-148" LayoutContainer.MarginTop="8"

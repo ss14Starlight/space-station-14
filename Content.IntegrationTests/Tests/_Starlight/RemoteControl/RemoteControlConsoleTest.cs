@@ -316,6 +316,92 @@ public sealed class RemoteControlConsoleTest : GameTest
     }
 
     [Test]
+    public async Task ReleasingRemoteControlClosesMirroredUisAndPreservesExistingRelay()
+    {
+        IPlayerManager playerManager = default!;
+        ICommonSession session = default!;
+        EntityUid? previousAttachedEntity = null;
+        EntityUid? map = null;
+        EntityUid target = default;
+        EntityUid remote = default;
+        EntityUid controller = default;
+        EntityUid consoleUid = default;
+        EntityUid existingRelay = default;
+        var hasAttachedSession = false;
+        var uiKey = BorgSwitchableTypeUiKey.SelectBorgType;
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                playerManager = Server.ResolveDependency<IPlayerManager>();
+                session = playerManager.Sessions.Single();
+                previousAttachedEntity = session.AttachedEntity;
+
+                map = Server.System<SharedMapSystem>().CreateMap(out var mapId);
+                target = SEntMan.SpawnEntity("RemoteControlRangeTestUi", new MapCoordinates(1, 0, mapId));
+                SEntMan.AddComponent<BorgSwitchableTypeComponent>(target);
+                remote = SEntMan.SpawnEntity("MobHuman", new MapCoordinates(0, 0, mapId));
+                controller = SEntMan.SpawnEntity("MobHuman", new MapCoordinates(100, 0, mapId));
+                existingRelay = SEntMan.SpawnEntity(null, new MapCoordinates(100, 0, mapId));
+                Assert.That(playerManager.SetAttachedEntity(session, controller), Is.True);
+                hasAttachedSession = true;
+                Server.System<SharedMoverController>().SetRelay(controller, existingRelay);
+
+                consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", new MapCoordinates(100, 0, mapId));
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+                console.RemoteBrain = remote;
+                console.Users.Add(controller);
+                SetTestController(console, controller);
+
+                var inRangeCheck = new RemoteControlInteractionCheckEvent(controller, target);
+                SEntMan.EventBus.RaiseEvent(EventSource.Local, ref inRangeCheck);
+                Assert.That(inRangeCheck.Allowed, Is.True,
+                    "Remote interaction range should be evaluated from the controlled entity.");
+
+                var outOfRangeTarget = SEntMan.SpawnEntity(null, new MapCoordinates(10, 0, mapId));
+                var outOfRangeCheck = new RemoteControlInteractionCheckEvent(controller, outOfRangeTarget);
+                SEntMan.EventBus.RaiseEvent(EventSource.Local, ref outOfRangeCheck);
+                Assert.That(outOfRangeCheck.Allowed, Is.False);
+
+                Server.System<SharedUserInterfaceSystem>().OpenUi(target, uiKey, remote);
+            });
+
+            await Server.WaitRunTicks(1);
+            await Server.WaitAssertion(() =>
+            {
+                var ui = Server.System<SharedUserInterfaceSystem>();
+                Assert.That(ui.IsUiOpen(target, uiKey, controller), Is.True);
+
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid,
+                    new BoundUIClosedEvent(RemoteControlUIKey.Key, consoleUid, controller));
+
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+                Assert.That(console.Controller, Is.Null);
+                Assert.That(ui.IsUiOpen(target, uiKey, controller), Is.False);
+                Assert.That(ui.IsUiOpen(target, uiKey, remote), Is.False);
+                Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(controller).RelayEntity,
+                    Is.EqualTo(existingRelay));
+
+                Assert.DoesNotThrow(() => ui.OpenUi(target, uiKey, controller));
+                Assert.That(ui.IsUiOpen(target, uiKey, controller), Is.False,
+                    "A released controller must not retain the remote UI range override.");
+            });
+        }
+        finally
+        {
+            await Server.WaitPost(() =>
+            {
+                if (hasAttachedSession)
+                    playerManager.SetAttachedEntity(session, previousAttachedEntity);
+
+                if (map is { } mapUid && !SEntMan.Deleted(mapUid))
+                    SEntMan.DeleteEntity(mapUid);
+            });
+        }
+    }
+
+    [Test]
     public async Task BorgTypeChangeRefreshesAllConnectedConsoleStates()
     {
         EntityUid? map = null;

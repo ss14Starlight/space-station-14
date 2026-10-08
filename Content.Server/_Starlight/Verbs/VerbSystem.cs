@@ -1,4 +1,5 @@
 using Content.Server._Starlight.Computers.RemoteControl;
+using Content.Shared._Starlight.Computers.RemoteControl;
 
 // ReSharper disable CheckNamespace
 namespace Content.Server.Verbs;
@@ -9,8 +10,7 @@ public sealed partial class VerbSystem
 
     protected override EntityUid? ResolveVerbUser(EntityUid attachedEntity)
     {
-        if (!TryComp<RemoteControlControllerComponent>(attachedEntity, out var controller)
-            || !_remoteControl.TryGetControlledEntity(attachedEntity, controller, out var remoteEntity))
+        if (!_remoteControl.TryGetControlledEntity(attachedEntity, out var remoteEntity))
             return attachedEntity;
 
         return remoteEntity;

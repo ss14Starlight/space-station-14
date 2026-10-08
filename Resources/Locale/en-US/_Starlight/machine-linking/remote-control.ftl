@@ -3,3 +3,7 @@ remote-control-signal-port-description = Links a remote control console to a rem
 remote-control-target-player-controlled = Remote control is unavailable while directly controlled.
 remote-control-target-already-controlled = This entity is already under remote control.
 remote-control-control-taken-over = Another remote controller has taken control of this entity.
+remote-control-console-title = Remote control
+remote-control-console-status-disconnected = No remote entity connected
+remote-control-console-control-button-controlling = Controlling
+remote-control-console-control-button-viewing = Viewing

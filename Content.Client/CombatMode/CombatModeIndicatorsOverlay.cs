@@ -31,6 +31,7 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
     private readonly RemoteControlInterface _remoteControl;
 
     #region Starlight
+    private readonly RemoteControlInterface _remoteControl;
     private readonly IClyde _clyde = default!;
     private readonly SightPrototype? _gunSight;
     private readonly SightPrototype? _gunBoltSight;
@@ -76,7 +77,7 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
     {
         var mouseScreenPosition = _inputManager.MouseScreenPosition;
         var eye = _remoteControl.ControlledEye ?? _eye.CurrentEye; // Starlight
-        var mousePosMap = _remoteControl.RemoteMousePosition ?? _eye.PixelToMap(mouseScreenPosition);
+        var mousePosMap = _remoteControl.RemoteMousePosition ?? _eye.PixelToMap(mouseScreenPosition); // Starlight
         if (mousePosMap.MapId != args.MapId)
             return;
 
@@ -86,8 +87,8 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
         if (_entMan.TryGetComponent(handEntity, out ChamberMagazineAmmoProviderComponent? chamber))
             isGunBolted = chamber.BoltClosed ?? true;
 
-        var remoteViewport = _remoteControl.ControlledViewport;
-        var mousePos = remoteViewport?.WorldToScreen(mousePosMap.Position) ?? mouseScreenPosition.Position;
+        var remoteViewport = _remoteControl.ControlledViewport; // Starlight
+        var mousePos = remoteViewport?.WorldToScreen(mousePosMap.Position) ?? mouseScreenPosition.Position; // Starlight
         var uiScale = (args.ViewportControl as Control)?.UIScale ?? 1f;
         var limitedScale = uiScale > 1.25f ? 1.25f : uiScale;
 
@@ -107,7 +108,7 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
         var originMap = handEntity != null
             ? _entMan.System<SharedTransformSystem>().GetMapCoordinates(handEntity.Value)
             : eye.Position; // Starlight
-        var originScreen = remoteViewport?.WorldToScreen(originMap.Position) ?? _eye.MapToScreen(originMap).Position;
+        var originScreen = remoteViewport?.WorldToScreen(originMap.Position) ?? _eye.MapToScreen(originMap).Position; // Starlight
         var rot = MathF.Atan2(originScreen.Y - mousePos.Y, originScreen.X - mousePos.X);
         rot -= MathF.PI / 2f;
         var rsiState = spriteSys.RsiStateLike(sight.Sprite);
@@ -146,6 +147,7 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
     #region Starlight
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
+        // Starlight-start
         if (_remoteControl.ControlledEntity is not null)
         {
             if (!_combat.IsInCombatMode()
@@ -158,6 +160,7 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
 
             return base.BeforeDraw(in args);
         }
+        // Starlight-end
 
         if (!_combat.IsInCombatMode())
         {

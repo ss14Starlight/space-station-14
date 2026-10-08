@@ -64,6 +64,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private readonly HashSet<EntityUid> _pendingBorgRefreshes = new();
     private readonly HashSet<(EntityUid Console, EntityUid Chassis)> _pendingRemoteBorgActivations = new();
     private readonly HashSet<(EntityUid UiEntity, Enum UiKey, EntityUid Controller)> _pendingRemoteUiMirrors = new();
+    private readonly HashSet<(EntityUid Console, EntityUid UiEntity, Enum UiKey, EntityUid Controller, EntityUid Remote)>
+        _remoteUiMirrors = new();
     private readonly Dictionary<EntityUid, HashSet<EntityUid>> _remoteActionOverrides = new();
 
     private readonly Dictionary<EntityUid, (EntityUid Storage, EntityUid Controller, EntityUid Remote)>
@@ -83,6 +85,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private ItemToggleSystem _itemToggle = default!;
     [Dependency] private SharedMoverController _mover = default!;
+    [Dependency] private SharedRemoteControlConsoleSystem _sharedRemoteControl = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private PullController _pullController = default!;
@@ -184,16 +187,6 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnRemoteInventoryChanged(RemoteControlInventoryChangedEvent args)
         => RefreshRemoteConsoleStates(args.Actor);
-
-    [SubscribeLocalEvent]
-    private void OnRemoteControlInteractionCheck(ref RemoteControlInteractionCheckEvent args)
-    {
-        if (!TryGetControlledEntity(args.Actor, out var remoteEntity))
-            return;
-
-        args.RemoteEntity = remoteEntity;
-        args.Allowed = _interaction.InRangeAndAccessible(remoteEntity, args.Target);
-    }
 
     [SubscribeLocalEvent]
     private void OnToyRemoteDropped(Entity<RemoteControlConsoleComponent> entity, ref DroppedEvent args)
@@ -477,9 +470,11 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (!TryGetRemoteEntity(console, out var remoteEntity))
         {
             console.RemoteBrain = null;
+            Dirty(uid, console);
             return;
         }
 
+        Dirty(uid, console);
         if (console.Users.Contains(uid))
         {
             AddRemotePvsOverrides(remoteEntity, uid, session);
@@ -827,33 +822,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     }
 
     public bool TryGetControlledEntity(EntityUid actor, out EntityUid remoteEntity)
-    {
-        if (TryComp<RemoteControlControllerComponent>(actor, out var controller))
-            return TryGetControlledEntity(actor, controller, out remoteEntity);
-
-        remoteEntity = default;
-        return false;
-    }
-
-    internal bool TryGetControlledEntity(EntityUid actor, RemoteControlControllerComponent controller,
-        out EntityUid remoteEntity)
-    {
-        if (controller.Owner == actor)
-        {
-            foreach (var consoleUid in controller.Consoles)
-            {
-                if (!TryComp<RemoteControlConsoleComponent>(consoleUid, out var console)
-                    || console.Controller != actor
-                    || !TryGetRemoteEntity(console, out remoteEntity))
-                    continue;
-
-                return true;
-            }
-        }
-
-        remoteEntity = default;
-        return false;
-    }
+        => _sharedRemoteControl.TryGetControlledEntity(actor, out remoteEntity);
 
     public bool TryGetControllerForRemoteEntity(EntityUid remoteEntity, out EntityUid controller) =>
         TryFindConsole(remoteEntity, out _, out controller);
@@ -911,6 +880,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         }
 
         _pendingRemoteUiMirrors.Add((entity.Owner, args.UiKey, controller));
+        _remoteUiMirrors.Add((console.Owner, entity.Owner, args.UiKey, controller, args.Actor));
         if (args.UiKey.Equals(StorageComponent.StorageUiKey.Key))
             TrackRemoteStorageUi(console.Owner, entity.Owner, controller, args.Actor);
     }
@@ -924,14 +894,15 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         _remoteUiRangeOverrides.TryRemove((entity.Owner, args.UiKey, args.Actor), out _);
 
         if (args.UiKey.Equals(StorageComponent.StorageUiKey.Key))
-            foreach (var (console, storageUi) in _remoteStorageUiActors.ToArray())
+            foreach (var (trackedConsole, storageUi) in _remoteStorageUiActors.ToArray())
             {
                 if (storageUi.Storage != entity.Owner
                     || (storageUi.Controller != args.Actor && storageUi.Remote != args.Actor))
                     continue;
 
-                _remoteStorageUiActors.Remove(console);
+                _remoteStorageUiActors.Remove(trackedConsole);
                 _pendingRemoteUiMirrors.Remove((entity.Owner, args.UiKey, storageUi.Controller));
+                _remoteUiMirrors.Remove((trackedConsole, entity.Owner, args.UiKey, storageUi.Controller, storageUi.Remote));
                 _remoteUiRangeOverrides.TryRemove((entity.Owner, args.UiKey, storageUi.Controller), out _);
                 _remoteUiRangeOverrides.TryRemove((entity.Owner, args.UiKey, storageUi.Remote), out _);
             }
@@ -939,14 +910,26 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (HasComp<QuickConstructableComponent>(entity.Owner))
             return;
 
-        if (TryFindConsole(args.Actor, out _, out var controller))
+        if (TryFindConsole(args.Actor, out var controllingConsole, out var controller))
         {
+            _pendingRemoteUiMirrors.Remove((entity.Owner, args.UiKey, controller));
+            _remoteUiMirrors.Remove((controllingConsole.Owner, entity.Owner, args.UiKey, controller, args.Actor));
+            _remoteUiRangeOverrides.TryRemove((entity.Owner, args.UiKey, controller), out _);
             _ui.CloseUi((entity.Owner, null), args.UiKey, controller);
             return;
         }
 
         if (TryGetControlledEntity(args.Actor, out var remoteEntity))
+        {
+            if (TryFindConsole(remoteEntity, out var remoteConsole, out _))
+            {
+                _pendingRemoteUiMirrors.Remove((entity.Owner, args.UiKey, args.Actor));
+                _remoteUiMirrors.Remove((remoteConsole.Owner, entity.Owner, args.UiKey, args.Actor, remoteEntity));
+            }
+
+            _remoteUiRangeOverrides.TryRemove((entity.Owner, args.UiKey, remoteEntity), out _);
             _ui.CloseUi((entity.Owner, null), args.UiKey, remoteEntity);
+        }
     }
 
     [SubscribeLocalEvent]
@@ -959,8 +942,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         var hasControlledEntity = TryGetControlledEntity(args.Actor.Owner, out var remoteEntity);
 
         if (hasRangeOverride
+            && hasControlledEntity
             && (args.Data.InteractionRange <= 0
-                || !hasControlledEntity
                 || _interaction.InRangeUnobstructed(remoteEntity, entity.Owner, args.Data.InteractionRange)))
             args.Result = BoundUserInterfaceRangeResult.Pass;
 
@@ -1012,7 +995,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (!TryComp<RelayInputMoverComponent>(args.Actor, out var relay))
             return;
 
-        if (!TryGetBody(component, out var body) || relay.RelayEntity == body)
+        if (TryGetBody(component, out var body) && relay.RelayEntity == body)
             RemComp(args.Actor, relay);
     }
 
@@ -1169,11 +1152,19 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         bool clearUsers = true, bool clearController = true)
     {
         var controllingUser = entity.Comp.Controller;
+        if (clearController && controllingUser is { } controller)
+        {
+            CloseMirroredStorageUis(entity.Owner, controller);
+            CloseMirroredUis(entity.Owner, controller);
+            CloseRemoteBorgTypeSelectionUi(remoteEntity, controller);
+        }
+
         DeactivateRemoteBorg(entity.Comp, remoteEntity);
         if (clearController)
         {
             UpdateControllerIndex(entity.Owner, entity.Comp.Controller, null);
             entity.Comp.Controller = null;
+            Dirty(entity);
             _pendingRemoteBorgActivations.RemoveWhere(pending => pending.Console == entity.Owner);
             DeactivateToyRemote(entity.Owner, entity.Comp);
         }
@@ -1273,7 +1264,10 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         }
 
         if (component.Controller is { } previousController && previousController != controller)
+        {
             CloseMirroredStorageUis(consoleUid, previousController);
+            CloseMirroredUis(consoleUid, previousController);
+        }
 
         if (component.Controller is { } oldController
             && TryGetBody(component, out var oldBody)
@@ -1306,6 +1300,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         var controllerBeforeUpdate = component.Controller;
         component.Controller = controller;
         UpdateControllerIndex(consoleUid, controllerBeforeUpdate, controller);
+        Dirty(consoleUid, component);
 
         if (controllerBeforeUpdate is { } disconnectedController
             && disconnectedController != controller
@@ -1339,7 +1334,11 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             RemoveControllerIndex(consoleUid, previous);
 
         if (controller is { } current)
-            EnsureComp<RemoteControlControllerComponent>(current).Consoles.Add(consoleUid);
+        {
+            var mapping = EnsureComp<RemoteControlControllerComponent>(current);
+            mapping.Consoles.Add(consoleUid);
+            Dirty(current, mapping);
+        }
     }
 
     private void RemoveControllerIndex(EntityUid consoleUid, EntityUid controller)
@@ -1350,6 +1349,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         mapping.Consoles.Remove(consoleUid);
         if (mapping.Consoles.Count == 0)
             RemComp(controller, mapping);
+        else
+            Dirty(controller, mapping);
     }
 
     private void CloseMirroredStorageUis(EntityUid consoleUid, EntityUid controller)
@@ -1364,14 +1365,41 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             out _);
         _remoteUiRangeOverrides.TryRemove((storageUi.Storage, StorageComponent.StorageUiKey.Key, storageUi.Controller),
             out _);
-        _pendingRemoteUiMirrors.Remove((storageUi.Storage, StorageComponent.StorageUiKey.Key, storageUi.Controller));
+        _pendingRemoteUiMirrors.Remove((
+            storageUi.Storage,
+            StorageComponent.StorageUiKey.Key,
+            storageUi.Controller));
+        _remoteUiMirrors.Remove((
+            consoleUid,
+            storageUi.Storage,
+            StorageComponent.StorageUiKey.Key,
+            storageUi.Controller,
+            storageUi.Remote));
         _remoteStorageUiActors.Remove(consoleUid);
+    }
+
+    private void CloseMirroredUis(EntityUid consoleUid, EntityUid controller)
+    {
+        foreach (var mirror in _remoteUiMirrors.ToArray())
+        {
+            if (mirror.Console != consoleUid || mirror.Controller != controller)
+                continue;
+
+            _remoteUiMirrors.Remove(mirror);
+            _pendingRemoteUiMirrors.Remove((mirror.UiEntity, mirror.UiKey, mirror.Controller));
+            _remoteUiRangeOverrides.TryRemove((mirror.UiEntity, mirror.UiKey, mirror.Controller), out _);
+            _remoteUiRangeOverrides.TryRemove((mirror.UiEntity, mirror.UiKey, mirror.Remote), out _);
+            _ui.CloseUi((mirror.UiEntity, null), mirror.UiKey, mirror.Controller);
+            _ui.CloseUi((mirror.UiEntity, null), mirror.UiKey, mirror.Remote);
+        }
     }
 
     private void CloseRemoteBorgTypeSelectionUi(EntityUid remoteEntity, EntityUid controller)
     {
         var uiKey = BorgSwitchableTypeUiKey.SelectBorgType;
         _pendingRemoteUiMirrors.Remove((remoteEntity, uiKey, controller));
+        _remoteUiMirrors.RemoveWhere(mirror =>
+            mirror.UiEntity == remoteEntity && mirror.UiKey.Equals(uiKey) && mirror.Controller == controller);
         _ui.CloseUi((remoteEntity, null), uiKey, controller);
         _remoteUiRangeOverrides.TryRemove((remoteEntity, uiKey, controller), out _);
     }

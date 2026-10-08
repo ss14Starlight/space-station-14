@@ -458,10 +458,7 @@ public sealed partial class RCDSystem : EntitySystem
         }
 
         // Finalize the operation (this should handle prediction properly)
-        var pipeLayer = component.CurrentMode == RpdMode.Free && component.LastSelectedLayer is { } selectedLayer
-            ? selectedLayer // Starlight: Used by remote interaction to overwrite by remote selected layer
-            : args.PipeLayer;
-        FinalizeRCDOperation(uid, component, gridUid, mapGrid, tile, position, args.Direction, pipeLayer, args.Target, args.User);         // Starlight Edit: Include layer from do-after event to avoid finalize time drift.
+        FinalizeRCDOperation(uid, component, gridUid, mapGrid, tile, position, args.Direction, args.PipeLayer, args.Target, args.User); // Starlight edit: Use the layer captured by the do-after event.
 
         // Play audio and consume charges
         _audio.PlayPredicted(component.SuccessSound, uid, args.User);

@@ -80,11 +80,8 @@ namespace Content.Shared.Friction
 
                 // If we're not touching the ground, don't use tileFriction.
                 // TODO: Make IsWeightless event-based; we already have grid traversals tracked so just raise events
-                if (body.BodyStatus == BodyStatus.InAir || _gravity.IsWeightless(uid) ||
-                    !xform.Coordinates.IsValid(EntityManager))
-                    friction = xform.GridUid == null || !_gridQuery.HasComp(xform.GridUid)
-                        ? _offGridDamping
-                        : _airDamping;
+                if (body.BodyStatus == BodyStatus.InAir || _gravity.IsWeightless(uid) || !xform.Coordinates.IsValid(EntityManager))
+                    friction = xform.GridUid == null || !_gridQuery.HasComp(xform.GridUid) ? _offGridDamping : _airDamping;
                 else
                     friction = _frictionModifier * GetTileFriction(uid, body, xform);
 
@@ -122,13 +119,9 @@ namespace Content.Shared.Friction
                      * Extra catch for input movers that may be temporarily unable to move for whatever reason.
                      * Block movement shouldn't be added and removed frivolously so it should be reliable to use this
                      * as a check for brains and such which have input mover purely for ghosting behavior.
-                     * Starlight: Kinematic input movers are valid too, e.g. admin ghosts.
                      */
-                    DebugTools.Assert(
-                        body.BodyType == BodyType.Kinematic
-                            || !_moverQuery.HasComp(uid)
-                            || _blockMoverQuery.HasComp(uid),
-                        $"Input mover: {ToPrettyString(uid)} in TileFrictionController is not the correct BodyType, BodyType found: {body.BodyType}, expected: Kinematic or KinematicController.");
+                    DebugTools.Assert(!_moverQuery.HasComp(uid) || _blockMoverQuery.HasComp(uid),
+                        $"Input mover: {ToPrettyString(uid)} in TileFrictionController is not the correct BodyType, BodyType found: {body.BodyType}, expected: KinematicController.");
                     continue;
                 }
 

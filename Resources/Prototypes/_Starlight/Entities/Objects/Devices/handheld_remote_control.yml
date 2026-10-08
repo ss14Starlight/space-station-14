@@ -2,7 +2,7 @@
   id: HandheldRemoteControl
   parent: [ PowerCellSlotMediumItem, BaseHandheldComputer ] # Starlight
   name: handheld remote control
-  description: A tablet computer, able to remote control another connected entity
+  description: A tablet computer, able to remotely control another connected entity.
   components:
   - type: Item
     sprite: Objects/Devices/tablets.rsi
@@ -49,7 +49,7 @@
   id: HandheldRemoteControlExpedition
   parent: [ PowerCellSlotSmallItem, BaseHandheldComputer ] # Starlight
   name: toy remote control
-  description: A compact remote control without a screen, meant for RC toys
+  description: A compact remote control without a screen, meant for RC toys.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Devices/expeditionhandy.rsi

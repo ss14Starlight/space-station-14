@@ -8,7 +8,6 @@ using Robust.Shared.Timing;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.CustomControls;
-using Robust.Client.Player;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Storage.Controls;
 using System.Numerics;
@@ -18,7 +17,6 @@ namespace Content.Client._Starlight.Computers.RemoteControl;
 public sealed partial class RemoteControlInterface : EntitySystem
 {
     private RemoteControlConsoleWindow? _window;
-    private IPlayerManager _playerManager = default!;
     private TimeSpan _nextRemoteAlertUpdate;
 
     public EntityUid? ControlledEntity { get; private set; }
@@ -34,8 +32,6 @@ public sealed partial class RemoteControlInterface : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        _playerManager = IoCManager.Resolve<IPlayerManager>();
-        SubscribeLocalEvent<RemoteControlInteractionCheckEvent>(OnRemoteControlInteractionCheck);
     }
 
     public override void Shutdown() => base.Shutdown();
@@ -121,12 +117,6 @@ public sealed partial class RemoteControlInterface : EntitySystem
 
     public void SetRemoteMousePosition(MapCoordinates? position)
         => RemoteMousePosition = position;
-
-    private void OnRemoteControlInteractionCheck(ref RemoteControlInteractionCheckEvent args)
-    {
-        if (_playerManager.LocalEntity == args.Actor && ControlledEntity is { } remoteEntity)
-            args.RemoteEntity = remoteEntity;
-    }
 
     public bool TryRequestItemConstruction(string prototypeName)
     {

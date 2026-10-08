@@ -59,7 +59,7 @@ namespace Content.Client.ContextMenu.UI
         [UISystemDependency] private readonly CombatModeSystem _combatMode = default!;
 
         private bool _updating;
-        private PopupContainer? _menuRoot;
+        private PopupContainer? _menuRoot; // Starlight
 
         /// <summary>
         ///     This maps the currently displayed entities to the actual GUI elements.
@@ -92,18 +92,20 @@ namespace Content.Client.ContextMenu.UI
         /// <summary>
         ///     Given a list of entities, sort them into groups and them to a new entity menu.
         /// </summary>
-        public void OpenRootMenu(List<EntityUid> entities, UIRoot? uiRoot = null)
+        public void OpenRootMenu(List<EntityUid> entities, UIRoot? uiRoot = null) // Starlight
         {
             // close any old menus first.
             if (_context.RootMenu.Visible)
                 _context.Close();
 
+            // Starlight-start
             _menuRoot = uiRoot?.ModalRoot ?? _userInterfaceManager.ModalRoot;
             if (_context.RootMenu.Parent != _menuRoot)
             {
                 _context.RootMenu.Orphan();
                 _menuRoot.AddChild(_context.RootMenu);
             }
+            // Starlight-end
 
             var entitySpriteStates = GroupEntities(entities);
             var orderedStates = entitySpriteStates.ToList();
@@ -150,13 +152,23 @@ namespace Content.Client.ContextMenu.UI
             {
                 // Starlight - start
                 // Remote control binds
-                if (_remoteControl.ControlledEntity is { } remoteUser)
+                if (_remoteControl.ControlledEntity is not null)
                 {
+                    if (args.Function == ContentKeyFunctions.Point)
+                    {
+                        _context.Close();
+                        args.Handle();
+                        return;
+                    }
+
+                    var action = RemoteControlInteractionAction.Interact;
+                    if (args.Function == ContentKeyFunctions.TryPullObject)
+                        action = RemoteControlInteractionAction.TryPull;
+                    else if (args.Function == ContentKeyFunctions.MovePulledObject)
+                        action = RemoteControlInteractionAction.MovePulledObject;
                     _remoteControl.RequestInteraction(entity.Value,
                         args.Function == ContentKeyFunctions.AltActivateItemInWorld,
-                        args.Function == ContentKeyFunctions.TryPullObject
-                            ? RemoteControlInteractionAction.TryPull
-                            : RemoteControlInteractionAction.Interact);
+                        action);
                     _context.Close();
                     args.Handle();
                     return;
@@ -219,8 +231,18 @@ namespace Content.Client.ContextMenu.UI
             if (!_context.RootMenu.Visible)
                 return;
 
+            // Starlight-start
             if (_remoteControl.ControlledEntity != null)
+            {
+                foreach (var entity in Elements.Keys.ToList())
+                {
+                    if (_entityManager.Deleted(entity))
+                        RemoveEntity(entity);
+                }
+
                 return;
+            }
+            // Starlight-end
 
             if (_playerManager.LocalEntity is not { } player ||
                 !player.IsValid())
@@ -298,7 +320,7 @@ namespace Content.Client.ContextMenu.UI
         private void AddGroupToUI(List<EntityUid> group)
         {
             EntityMenuElement element = new();
-            ContextMenuPopup subMenu = new(_context, element, _menuRoot!.Root);
+            ContextMenuPopup subMenu = new(_context, element, _menuRoot!.Root); // Starlight
 
             AddGroupToMenu(group, subMenu);
 
@@ -323,7 +345,7 @@ namespace Content.Client.ContextMenu.UI
         private void AddEntityToMenu(EntityUid entity, ContextMenuPopup menu)
         {
             var element = new EntityMenuElement(entity);
-            element.SubMenu = new ContextMenuPopup(_context, element, _menuRoot!.Root);
+            element.SubMenu = new ContextMenuPopup(_context, element, _menuRoot!.Root); // Starlight
             element.SubMenu.OnPopupOpen += () => _verb.OpenVerbMenu(entity, popup: element.SubMenu);
             element.SubMenu.OnPopupHide += element.SubMenu.MenuBody.RemoveAllChildren;
             _context.AddElement(menu, element);
