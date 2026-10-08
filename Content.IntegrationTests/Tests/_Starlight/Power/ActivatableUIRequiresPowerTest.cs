@@ -16,6 +16,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Power;
 public sealed class ActivatableUIRequiresPowerTest
 {
     private static readonly EntProtoId ComputerCommsPrototype = "ComputerComms";
+    private static readonly EntProtoId ComputerCommsFilledPrototype = "ComputerCommsFilled";
     private static readonly EntProtoId KeycardAuthPrototype = "KeycardAuth";
 
     [Test]
@@ -69,7 +70,7 @@ public sealed class ActivatableUIRequiresPowerTest
 
             var powerCells = server.System<PowerCellSystem>();
             var wires = server.System<WiresSystem>();
-            foreach (var prototypeId in new[] { ComputerCommsPrototype.Id, KeycardAuthPrototype.Id })
+            foreach (var prototypeId in new[] { ComputerCommsFilledPrototype.Id, KeycardAuthPrototype.Id })
             {
                 var terminal = entMan.SpawnEntity(prototypeId, MapCoordinates.Nullspace);
                 var receiver = entMan.GetComponent<ApcPowerReceiverComponent>(terminal);
@@ -117,7 +118,7 @@ public sealed class ActivatableUIRequiresPowerTest
             var powerCells = server.System<PowerCellSystem>();
             var wires = server.System<WiresSystem>();
 
-            foreach (var prototypeId in new[] { ComputerCommsPrototype.Id, KeycardAuthPrototype.Id })
+            foreach (var prototypeId in new[] { ComputerCommsFilledPrototype.Id, KeycardAuthPrototype.Id })
             {
                 var terminal = entMan.SpawnEntity(prototypeId, MapCoordinates.Nullspace);
 

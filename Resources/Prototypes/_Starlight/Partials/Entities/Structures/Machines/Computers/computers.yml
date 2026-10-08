@@ -8,13 +8,18 @@
     - type: BatteryVisuals
     - type: ContainerContainer
       containers:
-        cell_slot: !type:ContainerSlot {}
+        cell_slot: !type:ContainerSlot
+          ent: null
+          showEnts: false
+          occludes: true
+        board: !type:Container
+          ents: []
+          showEnts: false
+          occludes: true
     - type: ItemSlots
-      suppressStartingItemsOnConstructionChange: true
       slots:
         cell_slot:
           name: power-cell-slot-component-slot-name-default
-          startingItem: PowerCellHigh
           blacklist:
             tags:
               - MechReactor
@@ -41,3 +46,114 @@
             Off: { visible: false }
             OnBatteryIdle: { visible: true, shader: unshaded, color: "#8f7541" }
             OnBatteryInUse: { visible: true, shader: unshaded, color: "#e8c36b" }
+
+# These variants replace the base sprite layers, so add their battery-tinted screen layers back.
+- type: !PartialOnly entity
+  id: CentCommSectoralConsole
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBatteryScreen"]
+          sprite: Structures/Machines/computers.rsi
+          state: comm_sectoral
+          visible: false
+
+- type: !PartialOnly entity
+  id: CentcommComputerComms
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBatteryScreen"]
+          sprite: Structures/Machines/computers.rsi
+          state: comm_logs
+          visible: false
+
+- type: !PartialOnly entity
+  id: ComputerCommsCargo
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBatteryScreen"]
+          sprite: _Starlight/Structures/Machines/computers.rsi
+          state: comm-sup
+          visible: false
+
+- type: !PartialOnly entity
+  id: ComputerCommsEngineering
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBatteryScreen"]
+          sprite: _Starlight/Structures/Machines/computers.rsi
+          state: comm-eng
+          visible: false
+
+- type: !PartialOnly entity
+  id: ComputerCommsMedical
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBatteryScreen"]
+          sprite: _Starlight/Structures/Machines/computers.rsi
+          state: comm-med
+          visible: false
+
+- type: !PartialOnly entity
+  id: ComputerCommsScience
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBatteryScreen"]
+          sprite: _Starlight/Structures/Machines/computers.rsi
+          state: comm-sci
+          visible: false
+
+- type: !PartialOnly entity
+  id: ComputerCommsSecurity
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBatteryScreen"]
+          sprite: _Starlight/Structures/Machines/computers.rsi
+          state: comm-sec
+          visible: false
+
+- type: !PartialOnly entity
+  id: ComputerCommsService
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBatteryScreen"]
+          sprite: _Starlight/Structures/Machines/computers.rsi
+          state: comm-srv
+          visible: false
+
+- type: !PartialOnly entity
+  id: SolgovComputerComms
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBatteryScreen"]
+          sprite: Structures/Machines/computers.rsi
+          state: eris_control
+          visible: false
+
+- type: !PartialOnly entity
+  id: SyndicateComputerComms
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBatteryScreen"]
+          sprite: Structures/Machines/computers.rsi
+          state: comm_syndie
+          visible: false
+
+- type: !PartialOnly entity
+  id: WizardComputerComms
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBatteryScreen"]
+          sprite: Structures/Machines/computers.rsi
+          state: comm_wizard
+          visible: false

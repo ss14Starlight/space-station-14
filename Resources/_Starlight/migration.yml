@@ -368,6 +368,21 @@ SpawnPointSalvageSpecialist: null
 SpawnPointSalvageLead: null
 ComputerSalvageExpedition: null
 ComputerSalvageJobBoard: null
+
+# 2026-10-08 - Map communications consoles with their filled (battery) variants
+CentCommSectoralConsole: CentCommSectoralConsoleFilled
+CentcommComputerComms: CentcommComputerCommsFilled
+ComputerComms: ComputerCommsFilled
+ComputerCommsCargo: ComputerCommsCargoFilled
+ComputerCommsEngineering: ComputerCommsEngineeringFilled
+ComputerCommsMedical: ComputerCommsMedicalFilled
+ComputerCommsScience: ComputerCommsScienceFilled
+ComputerCommsSecurity: ComputerCommsSecurityFilled
+ComputerCommsService: ComputerCommsServiceFilled
+SolgovComputerComms: SolgovComputerCommsFilled
+SyndicateComputerComms: SyndicateComputerCommsFilled
+WizardComputerComms: WizardComputerCommsFilled
+
 AirlockSalvageMining: AirlockMining
 AirlockSalvageMiningLocked: AirlockMiningCargoLocked
 AirlockSalvageMiningGlass: AirlockMiningCargoLocked

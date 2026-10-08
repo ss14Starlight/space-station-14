@@ -8,7 +8,10 @@
     - type: BatteryVisuals
     - type: ContainerContainer
       containers:
-        cell_slot: !type:ContainerSlot {}
+        cell_slot: !type:ContainerSlot
+          ent: null
+          showEnts: false
+          occludes: true
     - type: ItemSlots
       slots:
         cell_slot:
