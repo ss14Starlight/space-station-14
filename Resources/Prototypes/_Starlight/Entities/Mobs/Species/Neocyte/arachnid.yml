@@ -78,6 +78,10 @@
         color: "#162581"
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
+  - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_arachnid
   - type: Sprite
     layers:
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -123,10 +127,6 @@
         color: "#ffffff"
         sprite: Objects/Misc/handcuffs.rsi
         state: body-overlay-2
-        visible: false
-      - map: [ "clownedon" ]
-        sprite: "Effects/creampie.rsi"
-        state: "creampie_arachnid"
         visible: false
   - type: Inventory
     templateId: neoarachnid
@@ -185,10 +185,6 @@
         color: "#ffffff"
         sprite: Objects/Misc/handcuffs.rsi
         state: body-overlay-2
-        visible: false
-      - map: [ "clownedon" ]
-        sprite: "Effects/creampie.rsi"
-        state: "creampie_arachnid"
         visible: false
   - type: Inventory
     templateId: neoarachnid

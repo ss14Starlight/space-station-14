@@ -151,10 +151,10 @@
     - map: [ "head" ]
     - map: [ "pocket1" ]
     - map: [ "pocket2" ]
-    - map: [ "clownedon" ]
-      sprite: "_Starlight/Effects/creampie.rsi"
-      state: "creampie_resomi"
-      visible: false
+  - type: CreamPied
+    sprite:
+      sprite: _Starlight/Effects/creampie.rsi
+      state: creampie_resomi
   - type: Vocal
   - type: Speech
     speechVerb: Resomi

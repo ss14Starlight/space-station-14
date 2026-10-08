@@ -1581,12 +1581,6 @@
     #     location: Left
     # Starlight edit End: Reverted NuBody
   - type: ComplexInteraction
-  - type: GenericVisualizer
-    visuals:
-      enum.CreamPiedVisuals.Creamed:
-        clownedon:
-          True: {visible: true}
-          False: {visible: false}
   # Starlight - start
   - type: Body
     prototype: Primate
@@ -3344,6 +3338,10 @@
   - type: MobPrice
     price: 200
   - type: MessyDrinker
+  - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_corgi
   - type: Puller
     needsHands: false
   # Starlight Start
