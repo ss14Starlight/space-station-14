@@ -1,13 +1,13 @@
 ﻿<BoxContainer
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sc="clr-namespace:Content.Client._Starlight.UserInterface.Controls"
     Orientation="Vertical"
     HorizontalExpand="True">
-    <OutputPanel Name="TextOutput" VerticalExpand="true" />
-    <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-        <Button Visible="False" Name="CloseTicket" Access="Public" Text="{Loc 'mentor-close-ticket'}" StyleClasses="OpenBoth" HorizontalAlignment="Left" />
-        <Button Visible="False" Name="TptoTicket" Access="Public" Text="{Loc 'mentor-tpto'}" StyleClasses="OpenBoth" HorizontalAlignment="Right" />
-        <RichTextLabel Name="TypingIndicator" Access="Public" />
+    <BoxContainer Orientation="Horizontal" Margin="0 0 0 6">
+        <Label Name="TitleLabel" StyleClasses="LabelKeyText" ClipText="True" HorizontalExpand="True" VerticalAlignment="Center" />
+        <Button Visible="False" Name="TptoTicket" Access="Public" Text="{Loc 'mentor-tpto'}" StyleClasses="OpenRight" />
+        <Button Visible="False" Name="CloseTicket" Access="Public" Text="{Loc 'mentor-close-ticket'}" StyleClasses="OpenLeft" />
     </BoxContainer>
-    <HistoryLineEdit Name="SenderLineEdit" />
+    <sc:ConversationView Name="Conversation" />
 </BoxContainer>

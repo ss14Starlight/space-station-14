@@ -5,6 +5,7 @@
            xmlns:is="clr-namespace:Content.Shared.Input;assembly=Content.Shared"
            xmlns:xe="clr-namespace:Content.Client.UserInterface.XamlExtensions"
            xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
+           xmlns:sc="clr-namespace:Content.Client._Starlight.UserInterface.Controls"
            xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.MenuBar.Widgets"
            Name = "MenuButtons"
            VerticalExpand="False"
@@ -13,126 +14,114 @@
            VerticalAlignment="Top"
            SeparationOverride="5"
 >
-    <ui:MenuButton
-        Name="EscapeButton"
-        Access="Internal"
-        Icon="{xe:Tex '/Textures/Interface/hamburger.svg.192dpi.png'}"
-        BoundKey = "{x:Static ic:EngineKeyFunctions.EscapeMenu}"
-        ToolTip="{Loc 'game-hud-open-escape-menu-button-tooltip'}"
-        MinSize="70 64"
-        HorizontalExpand="True"
-        AppendStyleClass="{x:Static style:StyleClass.ButtonOpenRight}"
-        />
-    <ui:MenuButton
-        Name="GuidebookButton"
-        Access="Internal"
-        Icon="{xe:Tex '/Textures/Interface/VerbIcons/information.svg.192dpi.png'}"
-        ToolTip="{Loc 'game-hud-open-guide-menu-button-tooltip'}"
-        BoundKey = "{x:Static is:ContentKeyFunctions.OpenGuidebook}"
-        MinSize="42 64"
-        HorizontalExpand="True"
-        AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
-        />
-    <ui:MenuButton
-        Name="CharacterButton"
-        Access="Internal"
-        Icon="{xe:Tex '/Textures/Interface/character.svg.192dpi.png'}"
-        ToolTip="{Loc 'game-hud-open-character-menu-button-tooltip'}"
-        BoundKey = "{x:Static is:ContentKeyFunctions.OpenCharacterMenu}"
-        MinSize="42 64"
-        HorizontalExpand="True"
-        AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
-        />
-    <ui:MenuButton
-        Name="EmotesButton"
-        Access="Internal"
-        Icon="{xe:Tex '/Textures/Interface/emotes.svg.192dpi.png'}"
-        ToolTip="{Loc 'game-hud-open-emotes-menu-button-tooltip'}"
-        BoundKey = "{x:Static is:ContentKeyFunctions.OpenEmotesMenu}"
-        MinSize="42 64"
-        HorizontalExpand="True"
-        AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
-        />
-    <ui:MenuButton
-        Name="CraftingButton"
-        Access="Internal"
-        Icon="{xe:Tex '/Textures/Interface/hammer.svg.192dpi.png'}"
-        BoundKey = "{x:Static is:ContentKeyFunctions.OpenCraftingMenu}"
-        ToolTip="{Loc 'game-hud-open-crafting-menu-button-tooltip'}"
-        MinSize="42 64"
-        HorizontalExpand="True"
-        AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
-        />
-    <ui:MenuButton
-        Name="ActionButton"
-        Access="Internal"
-        Icon="{xe:Tex '/Textures/Interface/fist.svg.192dpi.png'}"
-        BoundKey = "{x:Static is:ContentKeyFunctions.OpenActionsMenu}"
-        ToolTip="{Loc 'game-hud-open-actions-menu-button-tooltip'}"
-        MinSize="42 64"
-        HorizontalExpand="True"
-        AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
-        />
-    <!-- Starlight-start: Languages -->
-    <ui:MenuButton
-        Name="LanguageButton"
-        Access="Internal"
-        Icon="{xe:Tex '/Textures/_Starlight/Interface/language.png'}"
-        BoundKey = "{x:Static is:ContentKeyFunctions.OpenLanguageMenu}"
-        ToolTip="{Loc 'language-menu-open-tooltip'}"
-        MinSize="42 64"
-        HorizontalExpand="True"
-        AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
-        />
+    <!-- Starlight-start -->
+    <sc:OverflowBar Name="Bar" HorizontalExpand="True">
+        <ui:MenuButton
+            Name="EscapeButton"
+            Access="Internal"
+            Icon="{xe:Tex '/Textures/Interface/hamburger.svg.192dpi.png'}"
+            BoundKey = "{x:Static ic:EngineKeyFunctions.EscapeMenu}"
+            ToolTip="{Loc 'game-hud-open-escape-menu-button-tooltip'}"
+            MinSize="36 36"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
+            />
+        <ui:MenuButton
+            Name="GuidebookButton"
+            Access="Internal"
+            Icon="{xe:Tex '/Textures/Interface/VerbIcons/information.svg.192dpi.png'}"
+            ToolTip="{Loc 'game-hud-open-guide-menu-button-tooltip'}"
+            BoundKey = "{x:Static is:ContentKeyFunctions.OpenGuidebook}"
+            MinSize="36 36"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
+            />
+        <ui:MenuButton
+            Name="CharacterButton"
+            Access="Internal"
+            Icon="{xe:Tex '/Textures/Interface/character.svg.192dpi.png'}"
+            ToolTip="{Loc 'game-hud-open-character-menu-button-tooltip'}"
+            BoundKey = "{x:Static is:ContentKeyFunctions.OpenCharacterMenu}"
+            MinSize="36 36"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
+            />
+        <ui:MenuButton
+            Name="EmotesButton"
+            Access="Internal"
+            Icon="{xe:Tex '/Textures/Interface/emotes.svg.192dpi.png'}"
+            ToolTip="{Loc 'game-hud-open-emotes-menu-button-tooltip'}"
+            BoundKey = "{x:Static is:ContentKeyFunctions.OpenEmotesMenu}"
+            MinSize="36 36"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
+            />
+        <ui:MenuButton
+            Name="CraftingButton"
+            Access="Internal"
+            Icon="{xe:Tex '/Textures/Interface/hammer.svg.192dpi.png'}"
+            BoundKey = "{x:Static is:ContentKeyFunctions.OpenCraftingMenu}"
+            ToolTip="{Loc 'game-hud-open-crafting-menu-button-tooltip'}"
+            MinSize="36 36"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
+            />
+        <ui:MenuButton
+            Name="ActionButton"
+            Access="Internal"
+            Icon="{xe:Tex '/Textures/Interface/fist.svg.192dpi.png'}"
+            BoundKey = "{x:Static is:ContentKeyFunctions.OpenActionsMenu}"
+            ToolTip="{Loc 'game-hud-open-actions-menu-button-tooltip'}"
+            MinSize="36 36"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
+            />
+        <ui:MenuButton
+            Name="LanguageButton"
+            Access="Internal"
+            Icon="{xe:Tex '/Textures/_Starlight/Interface/language.png'}"
+            BoundKey = "{x:Static is:ContentKeyFunctions.OpenLanguageMenu}"
+            ToolTip="{Loc 'language-menu-open-tooltip'}"
+            MinSize="36 36"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
+            />
+        <ui:MenuButton
+            Name="AdminButton"
+            Access="Internal"
+            Icon="{xe:Tex '/Textures/Interface/gavel.svg.192dpi.png'}"
+            BoundKey = "{x:Static is:ContentKeyFunctions.OpenAdminMenu}"
+            ToolTip="{Loc 'game-hud-open-admin-menu-button-tooltip'}"
+            MinSize="36 36"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
+            />
+        <ui:MenuButton
+            Name="AHelpButton"
+            Access="Internal"
+            Icon="{xe:Tex '/Textures/Interface/info.svg.192dpi.png'}"
+            BoundKey = "{x:Static is:ContentKeyFunctions.OpenAHelp}"
+            ToolTip="{Loc 'ui-options-function-open-a-help'}"
+            MinSize="36 36"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
+            />
+        <ui:MenuButton
+            Name="SandboxButton"
+            Access="Internal"
+            Icon="{xe:Tex '/Textures/Interface/sandbox.svg.192dpi.png'}"
+            BoundKey = "{x:Static is:ContentKeyFunctions.OpenSandboxWindow}"
+            ToolTip="{Loc 'game-hud-open-sandbox-menu-button-tooltip'}"
+            MinSize="36 36"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
+            />
+        <ui:MenuButton
+            Name="ReportBugButton"
+            Access="Internal"
+            Icon="{xe:Tex '/Textures/_Starlight/Interface/bug.svg.192dpi.png'}"
+            ToolTip="{Loc 'game-hud-open-bug-report-window-button-tooltip'}"
+            MinSize="36 36"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
+            />
+        <ui:MenuButton
+            Name="AchievementButton"
+            Access="Internal"
+            Icon="{xe:Tex '/Textures/_Starlight/Interface/Achievements/achievements.png'}"
+            ToolTip="{Loc 'game-hud-open-achievement-menu-button-tooltip'}"
+            MinSize="36 36"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
+            />
     <!-- Starlight-end -->
-    <ui:MenuButton
-        Name="AdminButton"
-        Access="Internal"
-        Icon="{xe:Tex '/Textures/Interface/gavel.svg.192dpi.png'}"
-        BoundKey = "{x:Static is:ContentKeyFunctions.OpenAdminMenu}"
-        ToolTip="{Loc 'game-hud-open-admin-menu-button-tooltip'}"
-        MinSize="42 64"
-        HorizontalExpand="True"
-        AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
-        />
-    <ui:MenuButton
-        Name="SandboxButton"
-        Access="Internal"
-        Icon="{xe:Tex '/Textures/Interface/sandbox.svg.192dpi.png'}"
-        BoundKey = "{x:Static is:ContentKeyFunctions.OpenSandboxWindow}"
-        ToolTip="{Loc 'game-hud-open-sandbox-menu-button-tooltip'}"
-        MinSize="42 64"
-        HorizontalExpand="True"
-        AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
-        />
-  <!-- Starlight begin -->
-  <ui:MenuButton
-        Name="ReportBugButton"
-        Access="Internal"
-        Icon="{xe:Tex '/Textures/_Starlight/Interface/bug.svg.192dpi.png'}"
-        ToolTip="{Loc 'game-hud-open-bug-report-window-button-tooltip'}"
-        MinSize="42 64"
-        HorizontalExpand="True"
-        AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
-        />
-  <ui:MenuButton
-        Name="AchievementButton"
-        Access="Internal"
-        Icon="{xe:Tex '/Textures/_Starlight/Interface/Achievements/achievements.png'}"
-        ToolTip="{Loc 'game-hud-open-achievement-menu-button-tooltip'}"
-        MinSize="42 64"
-        HorizontalExpand="True"
-        AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
-        />
-    <!-- Starlight end -->
-    <ui:MenuButton
-        Name="AHelpButton"
-        Access="Internal"
-        Icon="{xe:Tex '/Textures/Interface/info.svg.192dpi.png'}"
-        BoundKey = "{x:Static is:ContentKeyFunctions.OpenAHelp}"
-        ToolTip="{Loc 'ui-options-function-open-a-help'}"
-        MinSize="42 64"
-        HorizontalExpand="True"
-        AppendStyleClass="{x:Static style:StyleClass.ButtonOpenLeft}"
-        />
+    </sc:OverflowBar>
 </widgets:GameTopMenuBar>

@@ -1,33 +1,42 @@
 ﻿<Control
     xmlns="https://spacestation14.io"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
-    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls">
-    <PanelContainer StyleClasses="BackgroundDark">
-        <SplitContainer Orientation="Vertical" ResizeMode="NotResizable">
-            <SplitContainer Orientation="Horizontal" VerticalExpand="True">
-                <cc:PlayerListControl Access="Public" Name="ChannelSelector" HorizontalExpand="True" SizeFlagsStretchRatio="2" />
-                <BoxContainer Orientation="Vertical" HorizontalExpand="True" SizeFlagsStretchRatio="2">
-                    <BoxContainer Access="Public" Name="BwoinkArea" VerticalExpand="True" />
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:sc="clr-namespace:Content.Client._Starlight.UserInterface.Controls">
+    <!-- Starlight-start: reworked layout -->
+    <SplitContainer Orientation="Horizontal" VerticalExpand="True">
+        <cc:PlayerListControl Access="Public" Name="ChannelSelector" HorizontalExpand="True" SizeFlagsStretchRatio="1" MinWidth="200" />
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" SizeFlagsStretchRatio="2" Margin="6 5 0 0">
+            <BoxContainer Orientation="Horizontal" Margin="0 0 0 6">
+                <TextureRect Name="JobIcon" Visible="False" TextureScale="3 3" Stretch="KeepCentered" VerticalAlignment="Center" Margin="0 0 6 0" />
+                <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                    <Label Name="PlayerNameLabel" StyleClasses="LabelKeyText" ClipText="True" />
+                    <Label Name="PlayerInfoLabel" StyleClasses="LabelSubText" ClipText="True" />
                 </BoxContainer>
-            </SplitContainer>
-            <BoxContainer Orientation="Horizontal" SetHeight="30" >
-                <CheckBox Name="AdminOnly" Access="Public" Text="{Loc 'admin-ahelp-admin-only'}" ToolTip="{Loc 'admin-ahelp-admin-only-tooltip'}" />
-                <Control HorizontalExpand="True" MinWidth="5" />
-                <CheckBox Name="PlaySound" Access="Public" Text="{Loc 'admin-bwoink-play-sound'}" Pressed="True" />
-                <Control HorizontalExpand="True" MinWidth="5" />
-                <!-- Starlight begin -->
-                <CheckBox Name="RememberSelected" Access="Public" Text="{Loc 'admin-ahelp-remember-selected'}" ToolTip="{Loc 'admin-ahelp-remember-selected-tooltip'}" Pressed="True"/>
-                <Control HorizontalExpand="True" MinWidth="5" />
-                <!-- Starlight end -->
-                <Button Visible="True" Name="PopOut" Access="Public" Text="{Loc 'admin-logs-pop-out'}" StyleClasses="OpenBoth" HorizontalAlignment="Left" />
-                <Control HorizontalExpand="True" />
-                <Button Visible="False" Name="Bans" Text="{Loc 'admin-player-actions-bans'}" StyleClasses="OpenRight" />
-                <Button Visible="False" Access="Public" Name="Notes" Text="{Loc 'admin-player-actions-notes'}" StyleClasses="OpenBoth" />
-                <controls:ConfirmButton Visible="False" Name="Kick" Text="{Loc 'admin-player-actions-kick'}" ConfirmationText="{Loc 'admin-player-actions-confirm'}" StyleClasses="OpenBoth" />
-                <Button Visible="False" Name="Ban" Text="{Loc 'admin-player-actions-ban'}" StyleClasses="OpenBoth" />
-                <controls:ConfirmButton Visible="False" Name="Respawn" Text="{Loc 'admin-player-actions-respawn'}" ConfirmationText="{Loc 'admin-player-actions-confirm'}" StyleClasses="OpenBoth" />
-                <Button Visible="False" Name="Follow" Text="{Loc 'admin-player-actions-follow'}" StyleClasses="OpenLeft" />
+                <Button Visible="False" Name="Follow" Text="{Loc 'admin-player-actions-follow'}" StyleClasses="OpenRight" VerticalAlignment="Center" />
+                <Button Visible="False" Access="Public" Name="Notes" Text="{Loc 'admin-player-actions-notes'}" StyleClasses="OpenBoth" VerticalAlignment="Center" />
+                <sc:DropdownButton Name="MoreActions" Text="{Loc 'admin-ahelp-more-actions'}" StyleClasses="OpenLeft" VerticalAlignment="Center" />
+                <sc:DropdownButton Name="SettingsButton" Text="{Loc 'admin-ahelp-settings'}" Margin="6 0 0 0" VerticalAlignment="Center" />
             </BoxContainer>
-        </SplitContainer>
-    </PanelContainer>
+            <Control VerticalExpand="True">
+                <BoxContainer Access="Public" Name="BwoinkArea" VerticalExpand="True" />
+                <Label Name="EmptyLabel" Text="{Loc 'admin-ahelp-select-player'}" StyleClasses="LabelWeak"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Control>
+        </BoxContainer>
+    </SplitContainer>
+
+    <CheckBox Name="AdminOnly" Access="Public" Text="{Loc 'admin-ahelp-admin-only'}" ToolTip="{Loc 'admin-ahelp-admin-only-tooltip'}" />
+
+    <BoxContainer Name="MoreActionsMenu" Orientation="Vertical" MinWidth="140">
+        <Button Visible="False" Name="Bans" Text="{Loc 'admin-player-actions-bans'}" />
+        <Button Visible="False" Name="Ban" Text="{Loc 'admin-player-actions-ban'}" />
+        <controls:ConfirmButton Visible="False" Name="Kick" Text="{Loc 'admin-player-actions-kick'}" ConfirmationText="{Loc 'admin-player-actions-confirm'}" />
+        <controls:ConfirmButton Visible="False" Name="Respawn" Text="{Loc 'admin-player-actions-respawn'}" ConfirmationText="{Loc 'admin-player-actions-confirm'}" />
+    </BoxContainer>
+    <BoxContainer Name="SettingsMenu" Orientation="Vertical" MinWidth="180">
+        <CheckBox Name="PlaySound" Access="Public" Text="{Loc 'admin-bwoink-play-sound'}" Pressed="True" Margin="4 2" />
+        <CheckBox Name="RememberSelected" Access="Public" Text="{Loc 'admin-ahelp-remember-selected'}" ToolTip="{Loc 'admin-ahelp-remember-selected-tooltip'}" Pressed="True" Margin="4 2" />
+    </BoxContainer>
+	<!-- Starlight-end -->
 </Control>
