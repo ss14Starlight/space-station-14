@@ -183,7 +183,8 @@ public sealed partial class ContentAudioSystem
         if (isDone == true)
         {
             // Also don't need to worry about rounding here as it doesn't affect the sim
-            _nextAudio = _timing.CurTime + _random.Next(_minAmbienceTime, _maxAmbienceTime);
+            _nextAudio = _timing.CurTime + _random.Next(_minAmbienceTime, _maxAmbienceTime)
+                + (_musicProto?.ExtraDelay ?? TimeSpan.Zero); // Starlight
         }
 
         _ambientMusicStream = null;

@@ -19,8 +19,9 @@ using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Random;
-using Robust.Shared.Player; // Starlight
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.Sound;
 
 namespace Content.Shared.Sound;
 
@@ -128,6 +129,9 @@ public abstract partial class SharedEmitSoundSystem : EntitySystem
 
     private void OnEmitSoundOnPickup(EntityUid uid, EmitSoundOnPickupComponent component, GotEquippedHandEvent args)
     {
+        if (HasComp<SilentPickupComponent>(uid)) // Starlight: quiet pickups, borg modules
+            return;
+
         TryEmitSound(uid, component, args.User);
     }
 

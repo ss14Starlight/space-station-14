@@ -2,3 +2,18 @@
   license: "CC-BY-4.0"
   copyright: "Kevin MacLeod (incompetech.com)"
   source: "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Music%20for%20Manatees.mp3"
+
+- files: ["ashstorm.ogg", "ashstorm_weak.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Paradise Station (weather/ashstorm/outside active_mid1-3 and weak_mid1-3), joined and crossfaded into seamless loops"
+  source: "https://github.com/ParadiseSS13/Paradise/tree/master/sound/weather/ashstorm"
+
+- files: ["breach_wind.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Paradise Station (effects/wind/wind_5_1.ogg), trimmed, downmixed to mono and crossfaded into a seamless loop"
+  source: "https://github.com/ParadiseSS13/Paradise/tree/master/sound/effects/wind"
+
+- files: ["space_wind_2_1.ogg", "space_wind_2_2.ogg", "space_wind_3_1.ogg", "space_wind_4_1.ogg", "space_wind_4_2.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Paradise Station (effects/wind), downmixed to mono"
+  source: "https://github.com/ParadiseSS13/Paradise/tree/master/sound/effects/wind"
