@@ -3,6 +3,7 @@ using Content.Server.Shuttles.Components;
 using Content.Shared._Starlight.Shuttles;
 using Robust.Server.GameObjects;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ThrusterSystem
