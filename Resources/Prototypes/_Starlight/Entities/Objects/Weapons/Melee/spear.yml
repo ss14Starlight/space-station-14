@@ -31,12 +31,13 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Piercing: 6
-        Slash: 6
+        Piercing: 7
+        Slash: 7
   - type: DamageOtherOnHit
     damage:
       types:
         Piercing: 15
+        Slash: 15
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -53,3 +54,4 @@
     price: 1000
   - type: Contraband
     allowedDepartments: [ Security ]
+    severity: Restricted

@@ -249,7 +249,7 @@
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/ares.rsi
   - type: MeleeWeapon
-    attackRate: 0.8
+    attackRate: 0.75
     damage:
       types:
         Slash: 30
