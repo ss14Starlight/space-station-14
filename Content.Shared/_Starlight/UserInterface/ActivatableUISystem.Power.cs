@@ -1,6 +1,7 @@
 using Content.Shared.Power;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
+using Content.Shared.PowerCell;
 
 // ReSharper disable once CheckNamespace
 namespace Content.Shared.UserInterface;
@@ -11,27 +12,39 @@ public sealed partial class ActivatableUISystem
 
     [SubscribeLocalEvent]
     private void OnPowerChanged(Entity<ActivatableUIRequiresPowerCellComponent> ent, ref PowerChangedEvent args)
+        => OnPowerSourceChanged(ent.Owner, args.Powered);
+
+    [SubscribeLocalEvent]
+    private void OnPowerCellChanged(Entity<ActivatableUIRequiresPowerCellComponent> ent, ref PowerCellChangedEvent args)
+        => OnPowerSourceChanged(ent.Owner, _powerReceiver.IsPowered(ent.Owner));
+
+    [SubscribeLocalEvent]
+    private void OnPowerCellSlotEmpty(Entity<ActivatableUIRequiresPowerCellComponent> ent, ref PowerCellSlotEmptyEvent args)
+        => OnPowerSourceChanged(ent.Owner, _powerReceiver.IsPowered(ent.Owner));
+
+    private void OnPowerSourceChanged(EntityUid uid, bool powered)
     {
-        if (!TryComp<ActivatableUIRequiresPowerComponent>(ent, out var powerRequirement) ||
+        if (!TryComp<ActivatableUIRequiresPowerComponent>(uid, out var powerRequirement) ||
             !powerRequirement.AllowPowerCellFallback)
             return;
 
-        if (args.Powered)
+        if (powered)
         {
-            _toggle.TryDeactivate(ent.Owner);
+            _toggle.TryDeactivate(uid);
             return;
         }
 
-        if (_cell.HasActivatableCharge(ent.Owner) && _cell.HasDrawCharge(ent.Owner))
+        if (_cell.HasActivatableCharge(uid) && _cell.HasDrawCharge(uid))
         {
-            if (TryComp<ActivatableUIComponent>(ent, out var ui) && ui.Key is { } openKey &&
-                _uiSystem.IsUiOpen(ent.Owner, openKey))
-                _toggle.TryActivate(ent.Owner);
+            if (TryComp<ActivatableUIComponent>(uid, out var ui) && ui.Key is { } openKey &&
+                _uiSystem.IsUiOpen(uid, openKey))
+                _toggle.TryActivate(uid);
             return;
         }
 
-        if (TryComp<ActivatableUIComponent>(ent, out var activatable) && activatable.Key is { } key)
-            _uiSystem.CloseUi(ent.Owner, key);
+        if (TryComp<ActivatableUIComponent>(uid, out var activatable) && activatable.Key is { } key &&
+            _uiSystem.IsUiOpen(uid, key))
+            _uiSystem.CloseUi(uid, key);
     }
 
     private partial bool IsApcPoweredFallback(EntityUid uid)
