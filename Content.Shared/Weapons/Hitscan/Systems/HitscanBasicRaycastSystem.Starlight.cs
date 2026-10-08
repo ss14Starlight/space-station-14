@@ -66,7 +66,7 @@ public sealed partial class HitscanBasicRaycastSystem
             result = cover;
         // Low cover that bullets normally fly over (counters, crates) still catches a shot at someone lying behind it.
         else if (result is { } hit && target is { } aimed && hit.HitEntity == aimed
-                 && TryShelterHit(hitscan, from, direction, shooter, aimed, hit.Distance, seed) is { } shelterHit)
+            && TryShelterHit(hitscan, from, direction, shooter, aimed, hit.Distance, seed) is { } shelterHit)
             result = shelterHit;
 
         return result;

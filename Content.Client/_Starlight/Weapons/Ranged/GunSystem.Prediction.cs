@@ -27,14 +27,14 @@ public sealed partial class GunSystem
     private const double MispredictAngleDegrees = 1;
     private const float MispredictDistance = 0.5f;
 
-    private readonly List<PendingHitscan> _pendingHitscans = new();
+    private readonly List<PendingHitscan> _pendingHitscans = [];
 
     /// <summary>
     /// Effects of a predicted trace, kept so they can be removed if the server disagrees with the prediction.
     /// </summary>
     private sealed class PredictedHitscanEffects
     {
-        public readonly List<EntityUid> Entities = new();
+        public readonly List<EntityUid> Entities = [];
         public bool Cancelled;
     }
 
@@ -179,8 +179,8 @@ public sealed partial class GunSystem
 
     private bool IsOwnPredictedShot(HitscanEvent ev)
         => _hitscanPrediction
-           && ev.Shooter is { } shooter
-           && GetEntity(shooter) == _player.LocalEntity;
+        && ev.Shooter is { } shooter
+        && GetEntity(shooter) == _player.LocalEntity;
 
     private void PlayPredictedImpactSound(HitscanEvent ev)
     {
@@ -190,7 +190,7 @@ public sealed partial class GunSystem
             || !proto.TryComp<HitscanBasicEffectsComponent>(out var effects, Factory))
             return;
 
-        proto.TryComp<HitscanBasicDamageComponent>(out var damage, Factory);
+        _ = proto.TryComp<HitscanBasicDamageComponent>(out var damage, Factory);
         PlayPredictedImpactSound(damage, effects, ev.Traces[0]);
     }
 
