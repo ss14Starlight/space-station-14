@@ -1,11 +1,4 @@
 Entries:
-- author: Seven Shades & Mack
-  changes:
-  - message: There is now a 3 minute delay between picking the criminal card and the NT-ISD fax being sent.
-    type: Tweak
-  id: 408882
-  time: '2026-09-26T09:27:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6331
 - author: Caws
   changes:
   - message: After reviewing hiring guidelines, Central Command has determined Blueshield Officers may no longer be pacifists.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409281
   time: '2026-10-08T06:26:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6556
+- author: SevenShades
+  changes:
+  - message: Added a drying rack for drinking glasses, to store and drain after washing.
+    type: Add
+  id: 409282
+  time: '2026-10-08T10:21:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6568
 Order: -1
