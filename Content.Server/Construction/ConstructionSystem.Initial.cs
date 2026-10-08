@@ -429,11 +429,13 @@ namespace Content.Server.Construction
         // LEGACY CODE. See warning at the top of the file!
         private async void HandleStartStructureConstruction(TryStartStructureConstructionMessage ev, EntitySessionEventArgs args)
         {
-            if (args.SenderSession.AttachedEntity is not {Valid: true} user) // Starlight
+            // Starlight edit start
+            if (args.SenderSession.AttachedEntity is not {Valid: true} user)
             {
                 Log.Error($"Client sent {nameof(TryStartStructureConstructionMessage)} with no attached entity!");
                 return;
             }
+            // Starlight edit end
 
             await TryStartStructureConstruction(ev, user, args.SenderSession); // Starlight
         }

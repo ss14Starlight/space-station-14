@@ -50,6 +50,17 @@ public sealed class SharedRemoteControlConsoleSystem : EntitySystem
         args.Allowed = _interaction.InRangeAndAccessible(remoteEntity, args.Target);
     }
 
+    public bool TryGetRemoteEntity(Entity<RemoteControlConsoleComponent?> entity, out EntityUid remoteEntity)
+    {
+        if (!Resolve(entity, ref entity.Comp))
+        {
+            remoteEntity = default;
+            return false;
+        }
+
+        return TryGetRemoteEntity(entity.Comp, out remoteEntity);
+    }
+
     private bool TryGetRemoteEntity(RemoteControlConsoleComponent component, out EntityUid remoteEntity)
     {
         remoteEntity = default;
@@ -64,6 +75,17 @@ public sealed class SharedRemoteControlConsoleSystem : EntitySystem
 
         remoteEntity = brain;
         return true;
+    }
+
+    public bool TryGetBody(Entity<RemoteControlConsoleComponent?> entity, out EntityUid body)
+    {
+        if (!Resolve(entity, ref entity.Comp))
+        {
+            body = default;
+            return false;
+        }
+
+        return TryGetBody(entity.Comp, out body);
     }
 
     private bool TryGetBody(RemoteControlConsoleComponent component, out EntityUid body)
