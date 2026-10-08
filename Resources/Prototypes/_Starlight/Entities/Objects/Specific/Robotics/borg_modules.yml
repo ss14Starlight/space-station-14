@@ -649,10 +649,12 @@
     - state: service
     - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
       state: icon-knife
-    - item: ButchKnife
+  - type: ItemBorgModule
+    hands:
+    - item: ButchCleaver
     - hand:
-        emptyLabel: borg-slot-organs-empty
-        emptyRepresentative: BorgModuleOrganPlaceholder
+        emptyLabel: borg-slot-organs-strict-empty
+        emptyRepresentative: OrganHumanLungs
         whitelist:
           components:
           - Organ
@@ -671,7 +673,7 @@
           - AnimalCubeBox
           - AnimalCube
           - WrappedCube
-
+    - item: BorgHydrator
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: butcher-module }
 
