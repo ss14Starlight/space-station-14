@@ -1,81 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: After reviewing hiring guidelines, Central Command has determined Blueshield Officers may no longer be pacifists.
-    type: Tweak
-  id: 408883
-  time: '2026-09-26T09:54:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6341
-- author: Caws
-  changes:
-  - message: Straitjackets now take 5 seconds to apply to a stunned target instead of 6 seconds. It was already possible to put someone in a straitjacket from being stunned with good timing, this just makes it less annoying.
-    type: Tweak
-  id: 408884
-  time: '2026-09-26T10:19:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6258
-- author: Caws
-  changes:
-  - message: Straitjackets are now a Huge inventory item (4x4) instead of Normal (2x2) inventory item.
-    type: Tweak
-  id: 408885
-  time: '2026-09-26T10:19:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6258
-- author: baltdev
-  changes:
-  - message: Added the Twisty Cube, a 3x3x3 turning puzzle identical in functionality (but not copyright) to the Rubik's Cube.
-    type: Add
-  id: 408886
-  time: '2026-09-26T10:42:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6317
-- author: Caws
-  changes:
-  - message: Dogs can now blink.
-    type: Fix
-  id: 408887
-  time: '2026-09-26T10:42:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6358
-- author: Caws
-  changes:
-  - message: Dogs can now sneeze.
-    type: Fix
-  id: 408888
-  time: '2026-09-26T10:42:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6358
-- author: Caws
-  changes:
-  - message: Dogs can now yawn.
-    type: Fix
-  id: 408889
-  time: '2026-09-26T10:42:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6358
-- author: Xale
-  changes:
-  - message: Reduced the fire intensity scaling of tainted clothing being set on fire. It is still very lethal if ignored.
-    type: Tweak
-  id: 408890
-  time: '2026-09-26T10:42:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6352
-- author: Terkala
-  changes:
-  - message: Reduced some sources of Dungeon generation lag.
-    type: Fix
-  id: 408891
-  time: '2026-09-26T11:11:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6259
-- author: Wizden Team
-  changes:
-  - message: Starlight is now 6 months behind Wizden instead of 7.
-    type: Add
-  id: 408892
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: 'EXPERIMENTAL: Added the xenoborg crystal!'
-    type: Add
-  id: 408893
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
 - author: Wizden Team
   changes:
   - message: 'EXPERIMENTAL: Added the xenoborg extractor which can produce the xenoborg crystal.'
@@ -2799,4 +2722,81 @@ Entries:
   id: 409282
   time: '2026-10-08T10:21:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6568
+- author: Rinary
+  changes:
+  - message: 'Added reverb based on room size and zones, now you will hear reverb in maints, in chaplain, hallway and big rooms NOTE: THIS CHANGE HAS VOLUME SLIDER - YOU CAN DISABLE IT.'
+    type: Add
+  id: 409283
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Added sounds occlusion in Vacuum, now you won't hear anything in space or rooms without atmosphere.
+    type: Add
+  id: 409284
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Changed walls occlusion power, now you'll hear less sounds through walls.
+    type: Tweak
+  id: 409285
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Added silent pickup ability, it takes 2.5seconds to pickup item but you won't make any sound.
+    type: Add
+  id: 409286
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Fixed loud sounds when swapping modules when playing borgs.
+    type: Fix
+  id: 409287
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Added slight sounds occlusion while wearing hardsuit helmet(not all).
+    type: Add
+  id: 409288
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Reworked audio tab in settings, now it has vertical tabs, so it's will be categorized and you will see only 2-3 sliders at one time rather then wall of sliders.
+    type: Tweak
+  id: 409289
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Changed pickup sounds volume, now they're quiter.
+    type: Tweak
+  id: 409290
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Changed glass/dring glass pickup sounds to be more soft.
+    type: Tweak
+  id: 409291
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Add unique ambience sounds for working emitter and medical scanner.
+    type: Add
+  id: 409292
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Added unique weather sounds for space wind(6 different sounds) and for both ashstorms, weak and strong.
+    type: Add
+  id: 409293
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
 Order: -1
