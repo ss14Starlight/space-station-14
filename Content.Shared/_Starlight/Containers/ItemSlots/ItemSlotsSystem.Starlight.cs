@@ -5,15 +5,19 @@ namespace Content.Shared.Containers.ItemSlots;
 
 public sealed partial class ItemSlotsSystem
 {
-    public void SuppressStartingItemsOnConstructionChange(EntityUid uid)
+    /// <summary>
+    /// Suppresses configured starting items when construction creates an entity.
+    /// </summary>
+    /// <param name="ent">The entity created by the construction change.</param>
+    public void SuppressStartingItemsOnConstructionChange(Entity<ItemSlotsComponent?> ent)
     {
-        if (!TryComp<ItemSlotsComponent>(uid, out var itemSlots) ||
-            !itemSlots.SuppressStartingItemsOnConstructionChange)
-        {
+        if (!Resolve(ent, ref ent.Comp, false))
             return;
-        }
 
-        foreach (var slot in itemSlots.Slots.Values)
+        if (!ent.Comp.SuppressStartingItemsOnConstructionChange)
+            return;
+
+        foreach (var slot in ent.Comp.Slots.Values)
         {
             slot.StartingItem = null;
         }

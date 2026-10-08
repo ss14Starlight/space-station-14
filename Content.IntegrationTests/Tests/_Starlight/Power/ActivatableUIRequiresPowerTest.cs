@@ -74,6 +74,12 @@ public sealed class ActivatableUIRequiresPowerTest
                 var terminal = entMan.SpawnEntity(prototypeId, MapCoordinates.Nullspace);
                 var receiver = entMan.GetComponent<ApcPowerReceiverComponent>(terminal);
                 Assert.That(powerCells.HasBattery(terminal), Is.True);
+                Assert.That(powerCells.HasCharge(terminal, 1f), Is.True);
+
+                receiver.Powered = false;
+                var cellPoweredAttempt = new ActivatableUIOpenAttemptEvent(EntityUid.Invalid, silent: true);
+                entMan.EventBus.RaiseLocalEvent(terminal, cellPoweredAttempt);
+                Assert.That(cellPoweredAttempt.Cancelled, Is.False);
 
                 var panel = entMan.GetComponent<WiresPanelComponent>(terminal);
                 Assert.That(wires.TogglePanel(terminal, panel, true), Is.True);
@@ -81,15 +87,14 @@ public sealed class ActivatableUIRequiresPowerTest
                 Assert.That(powerCells.HasBattery(terminal), Is.False);
                 Assert.That(wires.TogglePanel(terminal, panel, false), Is.True);
 
+                var unpoweredAttempt = new ActivatableUIOpenAttemptEvent(EntityUid.Invalid, silent: true);
+                entMan.EventBus.RaiseLocalEvent(terminal, unpoweredAttempt);
+                Assert.That(unpoweredAttempt.Cancelled, Is.True);
+
                 receiver.Powered = true;
                 var poweredAttempt = new ActivatableUIOpenAttemptEvent(EntityUid.Invalid, silent: true);
                 entMan.EventBus.RaiseLocalEvent(terminal, poweredAttempt);
                 Assert.That(poweredAttempt.Cancelled, Is.False);
-
-                receiver.Powered = false;
-                var unpoweredAttempt = new ActivatableUIOpenAttemptEvent(EntityUid.Invalid, silent: true);
-                entMan.EventBus.RaiseLocalEvent(terminal, unpoweredAttempt);
-                Assert.That(unpoweredAttempt.Cancelled, Is.True);
 
                 entMan.DeleteEntity(terminal);
                 if (ejectedCell is { } cell)

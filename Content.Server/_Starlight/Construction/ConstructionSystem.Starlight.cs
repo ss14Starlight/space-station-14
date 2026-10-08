@@ -9,5 +9,5 @@ public sealed partial class ConstructionSystem
 
     [SubscribeLocalEvent]
     private void OnConstructionChangeEntity(ConstructionChangeEntityEvent args) =>
-        _itemSlots.SuppressStartingItemsOnConstructionChange(args.New);
+        _itemSlots.SuppressStartingItemsOnConstructionChange(new(args.New, null));
 }
