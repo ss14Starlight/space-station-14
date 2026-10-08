@@ -82,9 +82,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
     /// Grants the latch action on component add.
     /// </summary>
     private void OnLatchStartup(EntityUid uid, LatchComponent comp, ComponentStartup ev)
-    {
-        _action.AddAction(uid, ref comp.ActionEntity, comp.Action);
-    }
+        => _action.AddAction(uid, ref comp.ActionEntity, comp.Action);
 
     /// <summary>
     /// Cleans up actions; ends an active latch if the component is removed early.
@@ -128,6 +126,11 @@ public sealed partial class LatchSystem : SharedLatchSystem
     private bool DoBiteHarder(EntityUid uid, LatchComponent comp)
     {
         if (!comp.Active || comp.Target is not { } target)
+            return false;
+
+        // Can't bite a pinned target through a wall. ObstructedSince is only
+        // refreshed once per tick in Update, so recheck sight here as well.
+        if (comp.ObstructedSince != null || (IsPinnedTarget(target) && !HasLatchLineOfSight(uid, target)))
             return false;
 
         // Ratio of the bite's damage that got through armor.
@@ -198,6 +201,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         comp.MaxEndTime = Timing.CurTime + comp.MaxDuration;
         comp.NextTickTime = Timing.CurTime + comp.TickInterval;
         comp.StartTime = Timing.CurTime;
+        comp.ObstructedSince = null;
         comp.TickPaused = _mobState.IsCritical(target) || _mobState.IsSoftCritical(target);
 
         // Slow targets in SlowPrototypes; pin everyone else.
@@ -220,16 +224,6 @@ public sealed partial class LatchSystem : SharedLatchSystem
             StartStruggleAttempt(comp, struggle, Timing.CurTime + comp.StruggleCooldown, Timing.CurTime);
             Dirty(target, struggle);
         }
-
-        var toLatcher = _transform.GetWorldPosition(uid) - _transform.GetWorldPosition(target);
-        var withinObscureRange = MathF.Abs(toLatcher.Y) <= comp.UiObscureNorthRange
-            && MathF.Abs(toLatcher.X) <= comp.UiObscureHorizontalTolerance;
-
-        // K9 north of target -> K9 sits where the target's own UI would be -> target's UI flips below.
-        comp.TargetUiBelow = withinObscureRange && toLatcher.Y > 0f;
-
-        // K9 south of target -> target sits where the K9's own UI would be -> latcher's UI flips below.
-        comp.LatcherUiBelow = withinObscureRange && toLatcher.Y < 0f;
 
         if (TryComp<PullableComponent>(uid, out var latcherPullable))
             _pulling.TryStopPull(uid, latcherPullable);
@@ -261,6 +255,10 @@ public sealed partial class LatchSystem : SharedLatchSystem
         Dirty(uid, comp);
     }
 
+    /// <inheritdoc/>
+    protected override void BreakLatch(Entity<LatchComponent> latcher)
+        => EndLatch(latcher.Owner, latcher.Comp);
+
     /// <summary>
     /// True if the target floats: InAir and able to move in air, like carp,
     /// dragons, and colossi, regardless of gravity.
@@ -291,12 +289,14 @@ public sealed partial class LatchSystem : SharedLatchSystem
     /// <summary>
     /// Ends the latch. Safe to call on an already-inactive component.
     /// </summary>
-    private void EndLatch(EntityUid uid, LatchComponent comp)
+    /// <param name="forceRefund">Refund the charge even outside the usual grace period.</param>
+    private void EndLatch(EntityUid uid, LatchComponent comp, bool forceRefund = false)
     {
         var target = comp.Target;
 
         // Refund if the latch ended almost immediately.
-        if (comp.Active && comp.ActionEntity is { } actionEnt && Timing.CurTime - comp.StartTime < comp.RefundGracePeriod)
+        if (comp.Active && comp.ActionEntity is { } actionEnt &&
+            (forceRefund || Timing.CurTime - comp.StartTime < comp.RefundGracePeriod))
         {
             _charges.AddCharges((actionEnt, null, null), 1);
             _action.ClearCooldown(actionEnt);
@@ -305,6 +305,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         comp.Active = false;
         comp.Target = null;
         comp.TickPaused = false;
+        comp.ObstructedSince = null;
         comp.LatcherWeightless = false;
 
         if (comp.LatchJointId is { } jointId)
@@ -543,6 +544,13 @@ public sealed partial class LatchSystem : SharedLatchSystem
     }
 
     /// <summary>
+    /// True if the target is held in place rather than slowed. Only pinned
+    /// targets are subject to the latch's line-of-sight rules.
+    /// </summary>
+    private bool IsPinnedTarget(EntityUid target)
+        => !TryComp<LatchedComponent>(target, out var latched) || latched.SpeedMultiplier <= 0f;
+
+    /// <summary>
     /// Per-tick upkeep: end conditions, DoT ticks, combat-mode enforcement.
     /// </summary>
     public override void Update(float frameTime)
@@ -595,13 +603,32 @@ public sealed partial class LatchSystem : SharedLatchSystem
                 continue;
             }
 
+            // Pulled round a corner by the joint; a pinned target can't swing back through
+            // the wall, so break the latch if it doesn't clear up quickly. Refund it
+            // if the obstruction began right as the latch landed (an unlucky snap).
+            // Slowed targets can still walk, so they're expected to fix this themselves:
+            // the latch sticks and keeps biting.
+            if (IsPinnedTarget(target) && !HasLatchLineOfSight(uid, target))
+            {
+                comp.ObstructedSince ??= now;
+                if (now - comp.ObstructedSince.Value >= comp.ObstructionBreakDelay)
+                {
+                    EndLatch(uid, comp, comp.ObstructedSince.Value - comp.StartTime < comp.RefundGracePeriod);
+                    continue;
+                }
+            }
+            else
+            {
+                comp.ObstructedSince = null;
+            }
+
             // Re-assert every tick so this can't be toggled back on mid-latch.
             _combatMode.SetInCombatMode(uid, false);
 
             if (TryComp<LatchStruggleComponent>(target, out var struggle))
                 UpdateStruggle(target, struggle, comp, now);
 
-            if (!comp.TickPaused && now >= comp.NextTickTime)
+            if (!comp.TickPaused && comp.ObstructedSince == null && now >= comp.NextTickTime)
             {
                 DealTick(uid, comp, target);
                 comp.NextTickTime = now + comp.TickInterval;

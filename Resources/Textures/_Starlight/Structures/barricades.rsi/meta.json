@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "barricade",
+      "copyright": "Taken from /vg/station at commit https://github.com/vgstation-coders/vgstation13/commit/fa615ead9d02b879b2ed0461f36622affb32088f"
+    },
+    {
+      "name": "barricade_full",
+      "copyright": "Taken from /vg/station at commit https://github.com/vgstation-coders/vgstation13/commit/fa615ead9d02b879b2ed0461f36622affb32088f"
+    },
+    {
+      "name": "barricade_directional",
+      "directions": 4,
+      "copyright": "Taken from /vg/station at commit https://github.com/vgstation-coders/vgstation13/commit/fa615ead9d02b879b2ed0461f36622affb32088f"
+    }
+  ]
+}

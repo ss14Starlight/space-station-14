@@ -45,7 +45,7 @@ public sealed partial class PlantTraitLigneousSystem : EntitySystem
             && _tool.HasQuality(used, ent.Comp.HarvestToolQuality))
             return;
 
-        _popup.PopupCursor(Loc.GetString("plant-component-ligneous-cant-harvest-message"), args.User);
+        _popup.PopupCursor(Loc.GetString("plant-component-ligneous-cant-harvest-message")); // Starlight: If you see here error after upstreaming, revert this commit
         args.Cancelled = true;
     }
 }

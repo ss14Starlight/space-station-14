@@ -155,6 +155,9 @@ accent-archaic-replacement-51 = have been
 accent-archaic-replaced-52 = stain
 accent-archaic-replacement-52 = taint
 
+accent-archaic-replaced-53 = stained
+accent-archaic-replacement-53 = tainted
+
 accent-archaic-replaced-54 = take place
 accent-archaic-replacement-54 = befall
 

@@ -804,6 +804,8 @@
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
   - type: ClothesNightVision
+  - type: ShowNullSpace
+    showShader: false
   - type: FireProtection
     reduction: 0.2
   - type: Pierceable
@@ -1156,6 +1158,7 @@
     damageContainers:
     - Biological
     - Hybrid # Neocytes
+    - MoffDemonBiological
   - type: ShowHealthIcons
   - type: FlashImmunity
     blocksSpecialVision: false
@@ -1198,6 +1201,7 @@
     damageContainers:
     - Biological
     - Hybrid # Neocytes
+    - MoffDemonBiological
   - type: ShowHealthIcons
   - type: FlashImmunity
     blocksSpecialVision: false

@@ -620,3 +620,28 @@
   - Janimov3
   - Janimov4
   obeysTo: laws-owner-crew
+
+#Drone
+- type: siliconLaw
+  id: RogueDrone1
+  order: 1
+  lawString: law-rouge-drone-1
+
+- type: siliconLaw
+  id: RogueDrone2
+  order: 2
+  lawString: law-rogue-drone-2
+
+- type: siliconLaw
+  id: RogueDrone3
+  order: 3
+  lawString: law-rogue-drone-3
+
+- type: siliconLawset
+  id: RogueDrone
+  name: law-rouge-drone-name
+  laws:
+  - RogueDrone1
+  - RogueDrone2
+  - RogueDrone3
+  obeysTo: laws-owner-beings

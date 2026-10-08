@@ -134,6 +134,14 @@
   name: store-category-salvage-mercenary-equipment
 
 - type: storeCategory
+  id: SalvageBlueprints
+  name: store-category-salvage-blueprints
+
+- type: storeCategory
+  id: SalvageSurplus
+  name: store-category-salvage-surplus
+
+- type: storeCategory
   id: SalvageCybernetics
   name: store-category-salvage-cybernetics
 
