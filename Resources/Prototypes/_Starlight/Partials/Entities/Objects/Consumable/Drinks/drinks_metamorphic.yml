@@ -7,4 +7,7 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/_Starlight/Items/Handling/drinkglass_drop.ogg
+  - type: Tag
+    tags:
+    - DrinkMetamorphic
 
