@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Blackstar StG-44 artwork made for starlight, using the Blackstar MG-42 as a style reference. Held pose layout rebuilt using the Prometheus and Lecter as templates, with mirrored opposite-hand frames. Prometheus: tgstation https://github.com/tgstation/tgstation/pull/41393/commits/1e56473177d0994d163c9edca3d13d6e5b640cc4, Peptide, Boaz1111, RiceMar1244, whatston3 and scarletlightweaver_ss14. Lecter: Emisse, https://github.com/august-sun and RedBookcase. Original Blackstar artwork reference credits: CEV-Eris, Peptide, Boaz1111 and JustAdler (ss14Starlight).",
+  "copyright": "Blackstar StG-44 in-hand sprites made for Starlight, inspired by existing Blackstar items and the Lecter/Prometheus sprites. By Inanistheinsane DISCORD",
   "size": {
     "x": 32,
     "y": 32
