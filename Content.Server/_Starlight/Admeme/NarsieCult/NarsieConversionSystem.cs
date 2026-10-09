@@ -137,7 +137,7 @@ public sealed partial class NarsieConversionSystem : EntitySystem
 
         _role.MindAddRole(mindId, CultistMindRole, mind);
 
-        _npcFaction.AddFaction((target.Owner, null), "MoffNarsianDemon");
+        _npcFaction.AddFaction((target.Owner, null), CultistFaction);
 
         if (mind.UserId is { } userId && _player.TryGetSessionById(userId, out var session))
         {
