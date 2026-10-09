@@ -18,6 +18,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.NPC.Prototypes;
 
 namespace Content.Server._Starlight.Admeme.NarsieCult;
 
@@ -39,7 +40,10 @@ public sealed partial class NarsieConversionSystem : EntitySystem
     [Dependency] private NpcFactionSystem _npcFaction = default!;
 
     /// <summary>The mind role entity prototype granted on conversion.</summary>
+
     public static readonly EntProtoId CultistMindRole = "MindRoleNarsieCultist";
+
+    private static readonly ProtoId<NpcFactionPrototype> CultistFaction = "MoffNarsianDemon";
 
     private static readonly SoundSpecifier DefaultSound =
         new SoundPathSpecifier(NarsieConverterComponent.DefaultSoundPath);
