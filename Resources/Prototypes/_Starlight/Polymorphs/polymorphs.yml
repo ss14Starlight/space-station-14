@@ -194,6 +194,392 @@
     duration: 12
     polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
 
+- type: polymorph
+  id: CosmicLapseMobAvali
+  configuration:
+    entity: CosmicPolymorphEntAvali
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobCyclorite
+  configuration:
+    entity: CosmicPolymorphEntCyclorite
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobDoll
+  configuration:
+    entity: CosmicPolymorphEntDoll
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobDwarf
+  configuration:
+    entity: CosmicPolymorphEntDwarf
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobElf
+  configuration:
+    entity: CosmicPolymorphEntElf
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobExperiment
+  configuration:
+    entity: CosmicPolymorphEntExperiment
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobFelionoid
+  configuration:
+    entity: CosmicPolymorphEntFelionoid
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobIPC
+  configuration:
+    entity: CosmicPolymorphEntIPC
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobLagomorph
+  configuration:
+    entity: CosmicPolymorphEntLagomorph
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeocyte
+  configuration:
+    entity: CosmicPolymorphEntNeocyte
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeoKin
+  configuration:
+    entity: CosmicPolymorphEntNeoKin
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+# Hybrid species resolve to their base species' lapse form.
+- type: polymorph
+  id: CosmicLapseMobNeoArachnid
+  configuration:
+    entity: CosmicPolymorphEntArachnid
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeoAvali
+  configuration:
+    entity: CosmicPolymorphEntAvali
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeoCyclorite
+  configuration:
+    entity: CosmicPolymorphEntCyclorite
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeoDwarf
+  configuration:
+    entity: CosmicPolymorphEntDwarf
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeoDiona
+  configuration:
+    entity: CosmicPolymorphEntDiona
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeoElf
+  configuration:
+    entity: CosmicPolymorphEntElf
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeoFelionoid
+  configuration:
+    entity: CosmicPolymorphEntFelionoid
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeoHuman
+  configuration:
+    entity: CosmicPolymorphEntHuman
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeoLagomorph
+  configuration:
+    entity: CosmicPolymorphEntLagomorph
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeoMoth
+  configuration:
+    entity: CosmicPolymorphEntMoth
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeoReptilian
+  configuration:
+    entity: CosmicPolymorphEntReptilian
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeoResomi
+  configuration:
+    entity: CosmicPolymorphEntResomi
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeoSlimePerson
+  configuration:
+    entity: CosmicPolymorphEntSlimePerson
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeoThaven
+  configuration:
+    entity: CosmicPolymorphEntThaven
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeoVox
+  configuration:
+    entity: CosmicPolymorphEntVox
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobNeoVulpkanin
+  configuration:
+    entity: CosmicPolymorphEntVulpkanin
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobReptilian
+  configuration:
+    entity: CosmicPolymorphEntReptilian
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobResomi
+  configuration:
+    entity: CosmicPolymorphEntResomi
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobRodentia
+  configuration:
+    entity: CosmicPolymorphEntRodentia
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobShadekin
+  configuration:
+    entity: CosmicPolymorphEntShadekin
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobSlimePerson
+  configuration:
+    entity: CosmicPolymorphEntSlimePerson
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobDog
+  configuration:
+    entity: CosmicPolymorphEntDog
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobThaven
+  configuration:
+    entity: CosmicPolymorphEntThaven
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobVulpkanin
+  configuration:
+    entity: CosmicPolymorphEntVulpkanin
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: BaseStructure
@@ -346,6 +732,215 @@
     sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
     layers:
       - state: scurret
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntAvali
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: avali
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntCyclorite
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: cyclorite
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntDoll
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: doll
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntDwarf
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: dwarf
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntElf
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: elf
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntExperiment
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: experiment
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntFelionoid
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: felionoid
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntIPC
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: ipc
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntLagomorph
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: lagomorph
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntNeocyte
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: neocyte
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntNeoKin
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: shadekin
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntReptilian
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: reptilian
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntResomi
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: resomi
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntRodentia
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: rodentia
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntShadekin
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: shadekin
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntSlimePerson
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: slimeperson
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntDog
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: dog
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntThaven
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: thaven
+        shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CosmicPolymorphEnt
+  id: CosmicPolymorphEntVulpkanin
+  components:
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
+    layers:
+      - state: vulpkanin
         shader: unshaded
 
 - type: polymorph
