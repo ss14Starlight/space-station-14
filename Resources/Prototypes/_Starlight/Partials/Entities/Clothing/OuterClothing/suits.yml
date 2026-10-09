@@ -1,0 +1,52 @@
+- type: !PartialOnly entity
+  id: ClothingOuterSuitBomb
+  components:
+  - type: Tag
+    tags:
+    - CorgiWearable
+
+- type: !PartialOnly entity
+  id: ClothingOuterSuitJanitorBomb
+  categories: !Remove # Again, doesn't need to be DNM.
+
+- type: !PartialOnly entity
+  id: ClothingOuterSuitFire
+  components:
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
+
+- type: !PartialOnly entity
+  id: ClothingOuterSuitAtmosFire
+  components:
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+
+# Dog addition
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - ClothingOuterSuitRad
+    - ClothingOuterSuitChicken
+    - ClothingOuterSuitMonkey
+    - ClothingOuterSuitCarp
+    - ClothingOuterHardsuitCarp
+  components:
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+
+- type: !PartialOnly entity
+  id: ClothingOuterSuitSpaceNinja
+  components:
+  - type: Armor
+    modifiers:
+      coefficients: # 30% on all
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7

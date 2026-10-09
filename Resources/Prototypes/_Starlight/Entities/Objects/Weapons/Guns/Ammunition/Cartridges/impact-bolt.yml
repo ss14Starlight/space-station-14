@@ -1,0 +1,30 @@
+- type: entity
+  parent: [ BaseItem, BaseMajorContraband ]
+  id: CartridgeImpactBolt
+  name: impact bolt
+  description: The standard explosive caseless ammunition used by bolt weapons.
+  components:
+  - type: Tag
+    tags:
+    - CartridgeImpactBolt
+  - type: Item
+    size: Tiny
+  - type: CartridgeAmmo
+    proto: BulletImpactBolt
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Casings/impact_bolt.rsi
+    layers:
+    - state: base
+      map:
+      - "enum.AmmoVisualLayers.Base"
+  - type: Explosive
+    explosionType: ImpactBolt
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 1
+    maxTileBreak: 0
+    canCreateVacuum: false
+  - type: Appearance
+  - type: StaticPrice
+    price: 10

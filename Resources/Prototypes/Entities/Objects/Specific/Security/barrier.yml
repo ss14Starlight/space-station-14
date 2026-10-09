@@ -37,7 +37,7 @@
   - type: DeployableBarrier
     fixture: barrier
   - type: AccessReader
-    access: [["Security"], ["Cadet"]] # Starlight: add cadet
+    access: [["Security"]]
   - type: Lock
     locked: false
     lockOnClick: true # toggle lock just by clicking on barrier
@@ -72,6 +72,5 @@
     enabled: false
     radius: 3
     color: red
-    castShadows: false #SL lighting optimization
   - type: StaticPrice
     price: 200

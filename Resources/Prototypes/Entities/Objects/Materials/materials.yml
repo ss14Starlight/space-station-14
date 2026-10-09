@@ -63,7 +63,6 @@
   - type: Healing
     damageContainers:
       - Biological
-      - Hybrid # Starlight
     damage:
       types:
         Slash: -0.5
@@ -112,7 +111,6 @@
       - ClothMade
       - Gauze
       - RawMaterial
-      - TiderAnvilParts #SL
       - ConstructionMaterial
   - type: Construction
     graph: WebObjects # not sure if I should either keep this here or just make another prototype. Will keep it here just in case.
@@ -222,7 +220,6 @@
     tags:
     - Wooden
     - RawMaterial
-    - TiderAnvilParts #SL
     - ConstructionMaterial
   - type: Solution
     solution:
@@ -288,9 +285,6 @@
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
       state: bearpelt_glow
       shader: unshaded
-  - type: Tag #starlight start
-    tags:
-    - SpaceBearHide #starlight end
   - type: Item
     sprite: Clothing/Head/Misc/hides.rsi
     heldPrefix: bear
@@ -721,7 +715,7 @@
   suffix: Full
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Materials/hide.rsi #SL Edit
+    sprite: Objects/Materials/hide.rsi
     layers:
     - state: goliath_hide
       map: [ "base" ]
@@ -740,7 +734,7 @@
   - type: Item
     size: Large
     heldPrefix: goliathhide
-    sprite: _Starlight/Objects/Materials/hide.rsi #SL Edit
+    sprite: Objects/Materials/hide.rsi
     shape:
     - 0,0,2,2
   - type: Tag

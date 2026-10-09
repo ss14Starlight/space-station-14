@@ -1,0 +1,41 @@
+- type: entity
+  id: ThrusterAdmeme
+  parent: Thruster
+  suffix: Admeme
+  name: overtuned thruster
+  description: A thruster with the regulator interlocks cut out. The nozzle is glowing.
+  components:
+  - type: Thruster
+    thrust: 100000
+    requireSpace: false
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 0
+
+- type: entity
+  id: ThrusterLargeAdmeme
+  parent: ThrusterLarge
+  suffix: Admeme
+  name: overtuned large thruster
+  description: A large thruster with the regulator interlocks cut out. The nozzle is glowing.
+  components:
+  - type: Thruster
+    thrust: 1600000
+    requireSpace: false
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 0
+
+- type: entity
+  id: GyroscopeAdmeme
+  parent: Gyroscope
+  suffix: Admeme
+  name: overtuned gyroscope
+  description: A gyroscope with the regulator interlocks cut out. It is humming ominously.
+  components:
+  - type: Thruster
+    thrust: 2000000
+    requireSpace: false
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 0

@@ -1,0 +1,29 @@
+- type: !PartialOnly entity
+  id: BaseKnife
+  components:
+  - type: Tool
+    qualities: !Clear [ Slicing ]
+    useSound: !Remove
+    speedModifier: 1
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+      - behavior: [ Slicing ]
+        useSound: /Audio/Items/Culinary/chop.ogg
+        SpeedModifier: 1
+      - behavior: [ Screwing ]
+        useSound: /Audio/Items/screwdriver.ogg
+        SpeedModifier: 0.05
+  - type: SurgeryTool
+  - type: Scalpel
+    successRate: 0.9
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+
+- type: !PartialOnly entity
+  id: Shiv
+  components:
+  - type: Scalpel
+    successRate: 0.7
