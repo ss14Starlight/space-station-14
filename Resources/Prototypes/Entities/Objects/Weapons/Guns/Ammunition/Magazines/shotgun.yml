@@ -2,7 +2,7 @@
   abstract: true
   parent: [ BaseItem, BaseSecurityContraband ]
   id: BaseMagazineShotgun
-  name: 12 gauge ammo drum # Starlight change: .50 -> 12 gauge
+  name: ammo drum (.50 shells)
   components:
   - type: Tag
     tags:
@@ -44,7 +44,7 @@
 
 - type: entity
   id: MagazineShotgunEmpty
-  name: 12 gauge ammo drum # Starlight change: .50 -> 12 gauge
+  name: ammo drum (.50 shells any)
   suffix: empty
   description: A large drum magazine used by some military-grade automatic shotguns.
   parent: BaseMagazineShotgun
@@ -55,7 +55,7 @@
 - type: entity
   parent: BaseMagazineShotgun
   id: MagazineShotgun
-  name: 12 gauge buckshot drum # Starlight change: .50 -> 12 gauge
+  name: ammo drum (.50 pellet)
   description: A large drum magazine used by some military-grade automatic shotguns. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -80,7 +80,7 @@
 - type: entity
   parent: BaseMagazineShotgun
   id: MagazineShotgunBeanbag
-  name: 12 gauge beanbag drum # Starlight change: .50 -> 12 gauge
+  name: ammo drum (.50 beanbag)
   description: A large drum magazine used by some military-grade automatic shotguns. Intended to hold less-than-lethal beanbag ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -105,7 +105,7 @@
 - type: entity
   parent: BaseMagazineShotgun
   id: MagazineShotgunSlug
-  name: 12 gauge slug drum # Starlight change: .50 -> 12 gauge
+  name: ammo drum (.50 slug)
   description: A large drum magazine used by some military-grade automatic shotguns. Intended to hold long-ranged slug ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -130,7 +130,7 @@
 - type: entity
   parent: BaseMagazineShotgun
   id: MagazineShotgunIncendiary
-  name: 12 gauge incendiary drum # Starlight change: .50 -> 12 gauge
+  name: ammo drum (.50 incendiary)
   description: A large drum magazine used by some military-grade automatic shotguns. Intended to hold self-igniting incendiary ammunition.
   components:
   - type: BallisticAmmoProvider

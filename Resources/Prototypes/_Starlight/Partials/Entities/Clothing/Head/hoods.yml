@@ -1,0 +1,88 @@
+- type: !PartialOnly entity
+  id: ClothingHeadHatHoodBioGeneral
+  components:
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.8 # also removed the specific coefficients from the security and virology hoods
+  - type: Tag
+    tags:
+    - !Index:0 CorgiWearable
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatHoodBioCmo
+  components:
+  - type: !Remove ZombificationResistance
+    zombificationResistanceCoefficient: !Remove
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatHoodBioJanitor
+  components:
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatHoodBioScientist
+  components:
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatHoodBioSecurity
+  components:
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatHoodBioVirology
+  components:
+  - type: !Remove ZombificationResistance
+    zombificationResistanceCoefficient: !Remove
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatHoodChaplainHood
+  name: chaplain hood # de-pluralifcation
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatHoodRad
+  components:
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatHoodGoliathCloak
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hoods/goliathcloak.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hoods/goliathcloak.rsi
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatHoodCarp
+  components:
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitCarp
+  components:
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon

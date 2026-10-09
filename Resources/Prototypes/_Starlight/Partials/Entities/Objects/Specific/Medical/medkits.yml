@@ -1,0 +1,76 @@
+- type: !PartialOnly entity
+  id: Medkit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+
+- type: !PartialOnly entity
+  id: MedkitBurn
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+
+- type: !PartialOnly entity
+  id: MedkitToxin
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+
+- type: !PartialOnly entity
+  id: MedkitO2
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+
+- type: !PartialOnly entity
+  id: MedkitBrute
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+
+- type: !PartialOnly entity
+  id: MedkitAdvanced
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+
+- type: !PartialOnly entity
+  id: MedkitRadiation
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+
+- type: !PartialOnly entity
+  id: MedkitCombat
+  components:
+  - type: Storage
+    whitelist:
+       tags:
+        - GlassBeaker
+        - Patch
+        - Bottle
+        - Spray
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Hypospray
+        - Ointment
+        - CigPack
+        - PillCanister
+        - Radio
+        - DiscreteHealthAnalyzer
+        - SurgeryTool
+        - Dropper
+        - BodyBag
+        - Vial
+        - AutoMender
+        - PatchPack
+       components:
+        - Injector
+        - Pill
+        - HandLabeler
+        - ConditionalHealing
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi

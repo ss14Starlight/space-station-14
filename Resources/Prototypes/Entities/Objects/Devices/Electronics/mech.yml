@@ -4,7 +4,7 @@
   id: RipleyCentralElectronics
   parent: BaseElectronics
   name: ripley central control module
-  description: The electrical control center for the Ripley mech.
+  description: The electrical control center for the ripley mech.
   components:
     - type: Item
       storedRotation: 0
@@ -14,7 +14,6 @@
     - type: Tag
       tags:
       - RipleyCentralControlModule
-      - RamChip # FH + Starlight
     - type: GuideHelp
       guides:
       - Robotics
@@ -23,7 +22,7 @@
   id: RipleyPeripheralsElectronics
   parent: BaseElectronics
   name: ripley peripherals control module
-  description: The electrical peripherals control for the Ripley mech.
+  description: The electrical peripherals control for the ripley mech.
   components:
     - type: Sprite
       sprite: Objects/Misc/module.rsi
@@ -31,7 +30,6 @@
     - type: Tag
       tags:
       - RipleyPeripheralsControlModule
-      - RamChip # FH + Starlight
     - type: GuideHelp
       guides:
       - Robotics
@@ -52,7 +50,6 @@
     - type: Tag
       tags:
       - HonkerCentralControlModule
-      - RamChip # FH + Starlight
     - type: GuideHelp
       guides:
       - Robotics
@@ -69,7 +66,6 @@
     - type: Tag
       tags:
       - HonkerPeripheralsControlModule
-      - RamChip # FH + Starlight
     - type: GuideHelp
       guides:
       - Robotics
@@ -82,11 +78,10 @@
   components:
     - type: Sprite
       sprite: Objects/Misc/module.rsi
-      state: mcontroller
+      state: id_mod
     - type: Tag
       tags:
       - HonkerTargetingControlModule
-      - RamChip # FH + Starlight
     - type: GuideHelp
       guides:
       - Robotics
@@ -107,7 +102,6 @@
     - type: Tag
       tags:
       - HamtrCentralControlModule
-      - RamChip # FH + Starlight
     - type: GuideHelp
       guides:
       - Robotics
@@ -124,7 +118,6 @@
     - type: Tag
       tags:
       - HamtrPeripheralsControlModule
-      - RamChip # FH + Starlight
     - type: GuideHelp
       guides:
       - Robotics
