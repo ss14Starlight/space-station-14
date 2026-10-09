@@ -973,13 +973,6 @@
     sprite: Structures/Doors/Airlocks/Standard/maint.rsi
 
 - type: entity
-  parent: AirlockInternalAffairsLocked # Starlight
-  id: AirlockMaintInternalAffairsLocked # Starlight
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
-
-- type: entity
   parent: AirlockServiceLocked
   id: AirlockMaintServiceLocked
   components:
