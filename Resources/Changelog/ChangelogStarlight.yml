@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Hyperzine now heals you when critical, rather than relying on being above a certain amount of damage.
-    type: Tweak
-  id: 408908
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
   - message: Tricordrazine and Holy Water no longer have an upper damage.
     type: Tweak
   id: 408909
@@ -2799,4 +2792,11 @@ Entries:
   id: 409307
   time: '2026-10-09T12:34:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6559
+- author: Mack, SevenShades
+  changes:
+  - message: Thrusters and Gyroscope can have their max thrust adjusted.
+    type: Tweak
+  id: 409308
+  time: '2026-10-09T13:07:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5846
 Order: -1
