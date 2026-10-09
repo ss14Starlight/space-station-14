@@ -74,6 +74,7 @@
       SheetPrinter: 100
   - type: Tag
     tags:
+    - Recyclable
     - Paper # SL End
 
 # Magazines
