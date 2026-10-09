@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: ScalpelShiv
+  components:
+  - type: Scalpel
+    speed: 1.4
+
+- type: !PartialOnly entity
+  id: Hemostat
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi

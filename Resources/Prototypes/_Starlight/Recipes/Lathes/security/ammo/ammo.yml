@@ -83,3 +83,60 @@
     Steel: 400
     Plastic: 100
     Silver: 100
+
+# BOLT WEAPONS
+- type: latheRecipe
+  id: MagazineBoltRifleEmpty
+  result: MagazineBoltRifleEmpty
+  categories:
+  - Ammo
+  completetime: 3
+  materials:
+    Steel: 500
+    Plastic: 300
+
+- type: latheRecipe
+  id: MagazineBoltRifle
+  result: MagazineBoltRifle
+  categories:
+  - Ammo
+  completetime: 3
+  materials:
+    Steel: 920
+    Plastic: 300
+    Plasma: 210
+    Silver: 105
+
+- type: latheRecipe
+  id: MagazineBoltPistolEmpty
+  result: MagazineBoltPistolEmpty
+  categories:
+  - Ammo
+  completetime: 3
+  materials:
+    Steel: 200
+    Plastic: 150
+
+- type: latheRecipe
+  id: MagazineBoltPistol
+  result: MagazineBoltPistol
+  categories:
+  - Ammo
+  completetime: 3
+  materials:
+    Steel: 360
+    Plastic: 150
+    Plasma: 80
+    Silver: 40
+
+- type: latheRecipe
+  id: MagazineBoxBoltRifle
+  result: MagazineBoxBoltRifle
+  categories:
+  - Ammo
+  completetime: 3
+  materials:
+    # 42 bolts at 0.2 Steel, 0.1 Plasma and 0.05 Silver per bolt + 2 steel for the box.
+    Steel: 1040
+    Plasma: 420
+    Silver: 210

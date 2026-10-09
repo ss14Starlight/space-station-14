@@ -1,0 +1,37 @@
+- type: entity
+  parent: [ BaseItem, BaseMajorContraband ]
+  id: MagazineBoltRifle
+  name: bolt rifle magazine (standard)
+  description: A 21-round magazine for impact bolts.
+  components:
+  - type: Tag
+    tags:
+    - MagazineBoltRifle
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - CartridgeImpactBolt
+    proto: CartridgeImpactBolt
+    capacity: 21
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/impact_bolt_rifle.rsi
+    layers:
+    - state: icon
+      map:
+      - enum.GunVisualLayers.Base
+  - type: Appearance
+
+- type: entity
+  parent: MagazineBoltRifle
+  id: MagazineBoltRifleEmpty
+  name: bolt rifle magazine (any)
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
