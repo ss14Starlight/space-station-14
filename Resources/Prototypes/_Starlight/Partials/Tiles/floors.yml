@@ -2,3 +2,38 @@
   id: FloorFlesh
   deconstructTools: [ Prying ]
   itemDrop: FleshTileMeatSpawner
+
+- type: !PartialOnly tile
+  id: FloorGlass
+  footstepSounds:
+    collection: FootstepGlass
+
+- type: !PartialOnly tile
+  id: FloorRGlass
+  footstepSounds:
+    collection: FootstepGlass
+
+- type: !PartialOnly tile
+  id: FloorGlassBronze
+  footstepSounds:
+    collection: FootstepGlass
+
+- type: !PartialOnly tile
+  id: FloorGlassPlasma
+  footstepSounds:
+    collection: FootstepGlass
+
+- type: !PartialOnly tile
+  id: FloorGlassPlasmaReinforced
+  footstepSounds:
+    collection: FootstepGlass
+
+- type: !PartialOnly tile
+  id: FloorGlassUranium
+  footstepSounds:
+    collection: FootstepGlass
+
+- type: !PartialOnly tile
+  id: FloorGlassUraniumReinforced
+  footstepSounds:
+    collection: FootstepGlass

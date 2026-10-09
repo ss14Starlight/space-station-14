@@ -6,3 +6,30 @@
   - /Audio/_Starlight/CosmicCult/footsteps/step3.ogg
   - /Audio/_Starlight/CosmicCult/footsteps/step4.ogg
   - /Audio/_Starlight/CosmicCult/footsteps/step5.ogg
+
+- type: soundCollection
+  id: FootstepGlass
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/glass1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/glass2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/glass3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/glass4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/glass5.ogg
+
+- type: soundCollection
+  id: FootstepLayerHeavy
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/heavy1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/heavy2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/heavy3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/heavy4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/heavy5.ogg
+
+- type: soundCollection
+  id: FootstepLayerMagboots
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/magstep1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/magstep2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/magstep3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/magstep4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/magstep5.ogg

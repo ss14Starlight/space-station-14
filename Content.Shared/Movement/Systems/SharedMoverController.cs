@@ -392,6 +392,8 @@ public abstract partial class SharedMoverController : VirtualController
                 {
                     _audio.PlayPredicted(sound, uid, uid, audioParams);
                 }
+
+                PlayFootstepLayers(uid, relaySource ?? uid, audioParams); // Starlight
             }
         }
     }

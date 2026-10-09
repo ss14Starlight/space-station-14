@@ -5,7 +5,7 @@ https://github.com/vgstation-coders/vgstation13/tree/fbe7abec4cbadf2ad0136983882
 
 bare foorsteps taken from tgstation at commit https://github.com/tgstation/tgstation/commit/e0bbbca40f6cdbcf2b497228215a37e9c9ec8473
 
-catwalk, floor, plating, tile, hull and wood sfx modified by mirrorcult.
+catwalk, floor, plating, tile, hull, wood, carpet, asteroid and suitstep sfx were replaced by Starlight with CC0 sounds built from Kenney's Impact Sounds, see attributions.yml (the old ones came from Half-Life via CEV-Eris).
 
 grass1.ogg and grass2.ogg are taken from https://freesound.org/people/D001447733/sounds/464609/ by D001447733 licensed under CC BY-3.0 and split by mirrorcult
 grass3.ogg and grass4.ogg are taken from https://freesound.org/people/jevans27/sounds/563529/ by jevans27 licensed under CC-0 and split/modified by mirrorcult

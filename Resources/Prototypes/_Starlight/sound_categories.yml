@@ -4,6 +4,7 @@
   paths:
   - /Audio/Effects/Footsteps/
   - /Audio/_Starlight/CosmicCult/footsteps/
+  - /Audio/_Starlight/Effects/Footsteps/
   collections:
   - FootstepAsteroid
   - FootstepBells

@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: ClothingShoesBootsMagBase
+  components:
+  - type: FootstepLayer
+    requireActive: true
+    sound:
+      collection: FootstepLayerMagboots
+      params:
+        volume: -3
+        variation: 0.1

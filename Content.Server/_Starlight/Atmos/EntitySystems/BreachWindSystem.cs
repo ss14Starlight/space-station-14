@@ -1,4 +1,6 @@
 using Content.Server.Audio;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -10,6 +12,7 @@ public sealed partial class BreachWindSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private AmbientSoundSystem _ambient = default!;
     [Dependency] private SharedMapSystem _maps = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     private static readonly EntProtoId _windPrototype = "BreachWindSound";
 
@@ -21,6 +24,13 @@ public sealed partial class BreachWindSystem : EntitySystem
     private const float LoudPressure = 250f;
     private const float MinVolume = -12f;
     private const float MaxVolume = 2f;
+
+    private static readonly SoundSpecifier _decompressionSound = new SoundCollectionSpecifier("BreachDecompression");
+    private static readonly TimeSpan _decompressionCooldown = TimeSpan.FromSeconds(6);
+    private const float DecompressionPressure = 40f;
+    private const float DecompressionSpacing = 10f;
+
+    private readonly List<(EntityUid Grid, Vector2i Tile, TimeSpan Time)> _decompressions = new();
 
     private readonly Dictionary<(EntityUid Grid, Vector2i Patch), Wind> _winds = new();
     private readonly List<(EntityUid Grid, Vector2i Patch)> _expired = new();
@@ -52,7 +62,10 @@ public sealed partial class BreachWindSystem : EntitySystem
             return;
         }
 
-        var entity = Spawn(_windPrototype, _maps.ToCenterCoordinates(grid, tile));
+        var coordinates = _maps.ToCenterCoordinates(grid, tile);
+        TryPlayDecompression(grid, tile, coordinates, pressureDifference, volume);
+
+        var entity = Spawn(_windPrototype, coordinates);
         _ambient.SetVolume(entity, volume);
         _winds[key] = new Wind
         {
@@ -61,6 +74,24 @@ public sealed partial class BreachWindSystem : EntitySystem
             Volume = volume,
             PassVolume = volume,
         };
+    }
+
+    private void TryPlayDecompression(EntityUid grid, Vector2i tile, EntityCoordinates coordinates, float pressureDifference, float volume)
+    {
+        if (pressureDifference < DecompressionPressure)
+            return;
+
+        var now = _timing.CurTime;
+        _decompressions.RemoveAll(d => now - d.Time > _decompressionCooldown);
+
+        foreach (var (otherGrid, otherTile, _) in _decompressions)
+        {
+            if (otherGrid == grid && (otherTile - tile).Length <= DecompressionSpacing)
+                return;
+        }
+
+        _decompressions.Add((grid, tile, now));
+        _audio.PlayPvs(_decompressionSound, coordinates, AudioParams.Default.WithVolume(volume + 4f).WithMaxDistance(16f).WithVariation(0.08f));
     }
 
     private static float VolumeFor(float pressureDifference)
