@@ -36,9 +36,9 @@
   - type: Gun
     fireRate: 2.5
   - type: RevolverAmmoProvider
-    capacity: 6 # bigger chamber
-    chambers: [ True, True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null, null ]
+    capacity: 6
+    chambers: !Clear [ True, True, True, True, True, True ]
+    ammoSlots: !Clear [ null, null, null, null, null, null ]
 
 - type: !PartialOnly entity
   name: inspector # capitalization
