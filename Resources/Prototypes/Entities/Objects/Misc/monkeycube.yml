@@ -27,7 +27,6 @@
   - type: Sprite
     sprite: Objects/Misc/monkeycube.rsi
 
-
 - type: entity
   parent: BaseWrappedCube
   name: monkey cube
