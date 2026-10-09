@@ -333,7 +333,7 @@
 # Maints
 - type: entity
   parent: AirlockCentralCommand
-  id: AirockMaintCentralCommand
+  id: AirlockMaintCentralCommand
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/centcomm_maints.rsi
