@@ -50,7 +50,7 @@ public sealed partial class BotanySampleTakerSystem : EntitySystem
 
         if (_plantHolder.IsDead((ent.Owner, holder)))
         {
-            _popup.PopupCursor(Loc.GetString("plant-sample-component-dead-plant-popup"), args.User);
+            _popup.PopupCursor(Loc.GetString("plant-sample-component-dead-plant-popup")); // Starlight: If you see here error after upstreaming, revert this commit
             return;
         }
 
@@ -58,7 +58,7 @@ public sealed partial class BotanySampleTakerSystem : EntitySystem
         var growthStage = _plant.GetGrowthStageValue(ent.AsNullable());
         if (growthStage < ent.Comp.GrowthStages && growthStage <= args.Sample.Comp.MinSampleStage)
         {
-            _popup.PopupCursor(Loc.GetString("plant-sample-component-early-sample-popup"), args.User);
+            _popup.PopupCursor(Loc.GetString("plant-sample-component-early-sample-popup")); // Starlight: If you see here error after upstreaming, revert this commit
             return;
         }
 
@@ -73,7 +73,7 @@ public sealed partial class BotanySampleTakerSystem : EntitySystem
         _botany.SpawnSeedPacket(plantData, protoId, ent.Owner, Transform(args.User).Coordinates, args.User, healthOverride);
 
         var name = Loc.GetString(plantData.Name);
-        _popup.PopupCursor(Loc.GetString("plant-sample-component-take-sample-popup", ("seedName", name)), args.User);
+        _popup.PopupCursor(Loc.GetString("plant-sample-component-take-sample-popup", ("seedName", name))); // Starlight: If you see here error after upstreaming, revert this commit
 
         if (random.Prob(args.Sample.Comp.SampleProbability))
             EnsureComp<PlantTraitSampledComponent>(ent.Owner);

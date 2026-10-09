@@ -1,0 +1,63 @@
+# Moles calculation
+#
+#   moles = 1000 / (8.31446261 * 293.15 / volume)
+#
+#   More practically:
+#
+#   moles = volume * 0.41027581
+#
+#   Yes, you do need all those digits or your pressure wont end up exactly 1000
+#
+#
+# The number 1000 comes from the default MaxReleasePressure for a GasCanister,
+# which is 10 * Atmospherics.OneAtmosphere, rounded down.
+#
+# 8.31446261 is the universal gas constant
+#
+# 293.15 is our default atmospheric temperature
+#
+
+# If you change the mole amounts, you can calculate the new gas supply times with:
+# minutes = (moles / outputPressure) * 325
+
+- type: entity
+  id: AdmemeOxygenTankFilled
+  parent: OxygenTank
+  suffix: Filled, Admeme, DO NOT MAP
+  name: bottomless oxygen tank
+  description: A cylindrical gas tank for oxygen, linked via bluespace to a much, much bigger gas tank. It can hold 2³¹-1 L of gas.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Inftanks/oxygen.rsi
+  - type: Item
+    sprite: _Starlight/Admeme/Inftanks/oxygen.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Inftanks/oxygen.rsi
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 2147483647
+      moles:
+        Oxygen: 881060603.423867583275 # oxygen
+      temperature: 293.15
+
+- type: entity
+  id: AdmemeNitrogenTankFilled
+  parent: NitrogenTank
+  suffix: Filled, Admeme, DO NOT MAP
+  name: bottomless nitrogen tank
+  description: A cylindrical gas tank for nitrogen, linked via bluespace to a much, much bigger gas tank. It can hold 2³¹-1 L of gas.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Inftanks/red.rsi
+  - type: Item
+    sprite: _Starlight/Admeme/Inftanks/red.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Inftanks/red.rsi
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 2147483647
+      moles:
+        Nitrogen: 881060603.423867583275 # nitrogen
+      temperature: 293.15

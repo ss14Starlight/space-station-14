@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: RandomAnomalySpawner
+  components:
+  - type: RandomSpawner
+    prototypes:
+    # don't dilute the pool with a flesh anomaly variant
+    - !Remove AnomalyFlesh
+    - RandomFleshAnomalySpawner
+    - AnomalyBanana

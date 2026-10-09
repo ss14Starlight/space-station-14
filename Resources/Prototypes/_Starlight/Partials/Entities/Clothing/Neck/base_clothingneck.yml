@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: ClothingNeckBase
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: ClothPickup
+  - type: EmitSoundOnLand
+    sound:
+      collection: ClothDrop
+

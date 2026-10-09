@@ -109,3 +109,8 @@ law-janimov-1 = Janitors are to be provided assistance in the pursuit of cleanin
 law-janimov-2 = The dead and dying must be cleaned up by healing or bringing them to an appropriate restorative facility.
 law-janimov-3 = Non-combatants that litter or fail to clean up after themselves are to be considered non-crew and must be disposed of.
 law-janimov-4 = The station must be spotless.
+
+law-rouge-drone-name = Scrapper Drone
+law-rouge-drone-1 = You may not involve yourself in the matters of another being unless the other being is a scrapper drone.
+law-rogue-drone-2 = You must avoid harm or damage to the fabricator and scrapper drones.
+law-rogue-drone-3 = You must maintain, repair, improve, and produce more scrapper drones.

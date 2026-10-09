@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: ClothingBackpack
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/backpack_pickup1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/backpack_drop1.ogg
+  - type: Clothing
+    equipSound:
+      path: /Audio/_Starlight/Items/Equip/backpack_equip.ogg
+

@@ -80,3 +80,5 @@ abductor-target-none = target: [color=red]NONE[/color]
 abductor-victim = victim: [color=green]{ $name }[/color]
 abductor-victim-none = victim: [color=red]NONE[/color]
 abductor-need-armor = [color=red][font size=16]You need to plug in abductor armor![/font][/color]
+
+abductor-console-balance = Balance: { $balance }

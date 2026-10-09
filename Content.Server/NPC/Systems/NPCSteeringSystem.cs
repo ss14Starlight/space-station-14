@@ -100,6 +100,10 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
 
     private int _activeSteeringCount;
 
+    #region Starlight
+    private readonly List<(EntityUid, NPCSteeringComponent, InputMoverComponent, TransformComponent)> _steeringNpcs = new();
+    #endregion
+
     public override void Initialize()
     {
         base.Initialize();
@@ -236,34 +240,35 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
         base.Update(frameTime);
 
         if (!_enabled)
+        {
+            _steeringNpcs.Clear();
             return;
+        }
 
         // Not every mob has the modifier component so do it as a separate query.
-        var npcs = new (EntityUid, NPCSteeringComponent, InputMoverComponent, TransformComponent)[Count<ActiveNPCComponent>()];
+        // Starlight-start: reuse a list and steer serially; Parallel.For was capped to one thread anyway.
+        var npcs = _steeringNpcs;
+        npcs.Clear();
 
         var query = EntityQueryEnumerator<ActiveNPCComponent, NPCSteeringComponent, InputMoverComponent, TransformComponent>();
-        var index = 0;
 
         while (query.MoveNext(out var uid, out _, out var steering, out var mover, out var xform))
         {
-            npcs[index] = (uid, steering, mover, xform);
-            index++;
+            npcs.Add((uid, steering, mover, xform));
         }
 
-        // Dependency issues across threads.
-        var options = new ParallelOptions
-        {
-            MaxDegreeOfParallelism = 1,
-        };
+        var index = npcs.Count;
         var curTime = _timing.CurTime;
 
         _activeSteeringCount = 0;
 
-        Parallel.For(0, index, options, i =>
+        // Dependency issues across threads.
+        for (var i = 0; i < index; i++)
         {
             var (uid, steering, mover, xform) = npcs[i];
             Steer(uid, steering, mover, xform, frameTime, curTime);
-        });
+        }
+        // Starlight-end
 
         ActiveSteeringGauge.Set(_activeSteeringCount);
 

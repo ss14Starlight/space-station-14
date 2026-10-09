@@ -21,8 +21,7 @@ public sealed partial class SlimeExtractEnhancerPotionSystem : EntitySystem
         if (!_entityManager.TryGetComponent<SlimeExtractComponent>(args.Target.Value,
                 out var slimeExtractComponent)) return;
         slimeExtractComponent.RemainingUses += 1;
-        var plural = slimeExtractComponent.RemainingUses == 1 ? "s" : "";
-        _sharedPopupSystem.PopupPredicted($"{MetaData(args.Target.Value).EntityName} now has {slimeExtractComponent.RemainingUses} use{plural} remaining.", args.User, args.User);
+        _sharedPopupSystem.PopupPredicted(Loc.GetString("slime-potion-enhancer-applied", ("target", MetaData(args.Target.Value).EntityName), ("uses", slimeExtractComponent.RemainingUses)), args.User, args.User);
         PredictedQueueDel(args.Used);
     }
 }

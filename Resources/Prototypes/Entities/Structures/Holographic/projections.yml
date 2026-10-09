@@ -112,7 +112,6 @@
       enabled: true
       radius: 3
       color: red
-      castShadows: false #SL lighting optimization
     - type: Climbable
 
 - type: entity
@@ -143,7 +142,6 @@
     enabled: true
     radius: 3
     color: blue
-    castShadows: false #SL lighting optimization
   - type: ContainmentField
     throwForce: 0
   - type: Destructible

@@ -92,7 +92,7 @@ public sealed partial class IPCSystem
 
         var verb = new Verb
         {
-            Text = "Brain",
+            Text = Loc.GetString("ipc-verb-eject-brain"),
             Category = VerbCategory.Eject,
             IconEntity = GetNetEntity(brain.BrainEntity),
             Act = () => EjectBrain(ev.Target, ev.User),
