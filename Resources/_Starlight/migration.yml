@@ -422,3 +422,25 @@ GasDualPortVentPumpVoxAlt1: null
 GasDualPortVentPumpVoxAlt2: null
 GasDualPortVentPumpVoxAlt3: null
 GasDualPortVentPumpVoxAlt4: null
+
+#2026-10-08 - Fix maints door IDs
+AirlockRoboticsMaints: AirlockMaintRoboticsLocked
+AirlockParamedicMaints: AirlockMaintParamedicLocked
+AirlockSurgeryMaints: AirlockMaintSurgeryLocked
+AirlockMailMaints: AirlockMaintMailLocked
+AirlockBrigmedMaints: AirlockMaintBrigmedLocked
+AirlockServiceMaints: AirlockMaintServiceLocked
+AirlockAtmosphericsMaints: AirlockMaintAtmoLocked
+AirlockCargoMaints: AirlockMaintCargoLocked
+AirlockCentcommMaints: AirockMaintCentralCommand
+AirlockChemistryMaints: AirlockMaintChemLocked
+AirlockCommandMaints: AirlockMaintCommandLocked
+AirlockEngineeringMaints: AirlockMaintEngiLocked
+AirlockEvaMaints: AirlockMaintEVALocked
+AirlockHydroponicsMaints: AirlockMaintHydroLocked
+AirlockMedicalMaints: AirlockMaintMedLocked
+AirlockMiningMaints: AirlockMaintMiningCargoLocked
+AirlockNTMaints: AirlockMaintNTLocked
+AirlockScienceMaints: AirlockMaintRnDLocked
+AirlockSecurityMaints: AirlockMaintSecLocked
+AirlockVirologyMaints: AirlockMaintVirologyLocked
