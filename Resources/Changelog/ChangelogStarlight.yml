@@ -1,20 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Vulpkanins can now use Gauze markings.
-    type: Add
-  id: 408911
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Spent air grenades cannot be re-triggered.
-    type: Fix
-  id: 408912
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
   - message: Hostile vent critters now crawl out of a single vent, alerting the station about the location in advance.
     type: Add
   id: 408913
@@ -2799,4 +2785,18 @@ Entries:
   id: 409310
   time: '2026-10-09T13:37:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6558
+- author: Romero/Littlemen
+  changes:
+  - message: Nerfed the Athena and Ares.
+    type: Tweak
+  id: 409311
+  time: '2026-10-09T13:57:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6536
+- author: Romero/Littlemen
+  changes:
+  - message: Dragon slash vulnerability lowered, from 200% to 120%.
+    type: Tweak
+  id: 409312
+  time: '2026-10-09T13:57:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6536
 Order: -1
