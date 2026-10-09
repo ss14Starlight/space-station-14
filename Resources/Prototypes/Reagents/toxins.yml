@@ -1139,6 +1139,7 @@
         amount: 0.25
         # Starlight-End
 
+# Starlight-Start
 - type: reagent
   id: NeuralPrion
   name: reagent-name-neuralprion
@@ -1155,7 +1156,6 @@
         damage:
           types:
             Poison: 1.4 # Low damage per metabolism, high damage per unit.
-      # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
         - !type:ReagentCondition
@@ -1165,3 +1165,4 @@
           type: [ Cyclorite ]
         reagent: NeuralPrion
         amount: 0.015
+# Starlight-End

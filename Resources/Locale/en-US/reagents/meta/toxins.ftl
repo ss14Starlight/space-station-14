@@ -87,6 +87,3 @@ reagent-desc-toxintrash = An awful-smelling slurry efficiently refined from disc
 
 reagent-name-hemorrhinol = hemorrhinol
 reagent-desc-hemorrhinol = A toxin that causes severe damage to blood vessels, causing rapid bleeding.
-
-reagent-name-neuralprion = neural prion
-reagent-desc-neuralprion = A biological mash of foriegn brain matter that has misfolded from the trauma of digestion. Slow acting, but can become lethal if medical treatment is not sought.

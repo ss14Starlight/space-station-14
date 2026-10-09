@@ -14,7 +14,7 @@
 
 - type: entity
   parent: Solution
-  id: SolutionOrganBrain
+  id: SolutionOrganBrain  # Solution used for reagent grinder
   categories: [ HideSpawnMenu ]
   components:
   - type: Solution
@@ -139,7 +139,7 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
+      maxVol: 15
       reagents:
       - ReagentId: GreyMatter
         Quantity: 5
@@ -254,7 +254,7 @@
     solutions:
     - SolutionOrganNutriment
     - SolutionOrganFoodGreyMatterLarge
-    - SolutionOrganNeuralPrion
+    - SolutionOrganBrain
   - type: FlavorProfile
     flavors:
       - people
