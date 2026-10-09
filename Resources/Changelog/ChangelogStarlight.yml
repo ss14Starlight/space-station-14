@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Hostile vent critters now crawl out of a single vent, alerting the station about the location in advance.
-    type: Add
-  id: 408913
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
   - message: Vent critters can no longer spawn on unachored vents.
     type: Remove
   id: 408914
@@ -2799,4 +2792,11 @@ Entries:
   id: 409312
   time: '2026-10-09T13:57:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6536
+- author: Caws
+  changes:
+  - message: The new maintenance door sprites (with Departmental colours) will now actually show up in game.
+    type: Fix
+  id: 409313
+  time: '2026-10-09T14:21:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6587
 Order: -1
