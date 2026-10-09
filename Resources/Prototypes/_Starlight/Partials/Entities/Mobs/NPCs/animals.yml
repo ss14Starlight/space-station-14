@@ -35,3 +35,8 @@
   components:
   - type: CosmicLapseForm # Kobolds inherit the monkey species ID, so lapse needs an explicit form
     form: CosmicLapseMobKobold
+
+- type: !PartialOnly entity
+  id: MobCorgiSmart
+  components:
+  - type: CosmicCultConvertible

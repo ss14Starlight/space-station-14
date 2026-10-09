@@ -102,7 +102,7 @@ public sealed partial class CosmicGlyphSystem : EntitySystem
         _convertibles.Clear();
         foreach (var entity in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, range))
         {
-            if (!HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<CosmicCultConvertibleComponent>(entity))
+            if (!HasComp<HumanoidAppearanceComponent>(entity) && !_cosmicCult.IsConvertible(entity))
                 continue;
             _convertibles.Add(entity);
         }

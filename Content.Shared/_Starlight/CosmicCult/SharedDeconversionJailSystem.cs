@@ -27,6 +27,7 @@ public abstract partial class SharedDeconversionJailSystem : EntitySystem
     [Dependency] protected IRobustRandom Random = default!;
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] protected SharedPopupSystem PopUp = default!;
+    [Dependency] protected SharedCosmicCultSystem CosmicCult = default!;
 
     [Dependency] private INetManager _netManager = default!;
     [Dependency] private SharedAnomalySystem _anomaly = default!;
@@ -107,7 +108,7 @@ public abstract partial class SharedDeconversionJailSystem : EntitySystem
     {
         if (_netManager.IsClient) // don't predict this function.
             return;
-        if (ent.Comp.OublietteState == OublietteStates.Cooldown || !_power.IsPowered(ent.Owner) || (!HasComp<HumanoidAppearanceComponent>(args.Entity) && !HasComp<CosmicCultConvertibleComponent>(args.Entity)))
+        if (ent.Comp.OublietteState == OublietteStates.Cooldown || !_power.IsPowered(ent.Owner) || (!HasComp<HumanoidAppearanceComponent>(args.Entity) && !CosmicCult.IsConvertible(args.Entity)))
             return;
 
         ent.Comp.CanInteract = false;

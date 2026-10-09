@@ -24,7 +24,7 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
 
     private void OnInteract(Entity<CosmicFinaleComponent> ent, ref InteractHandEvent args)
     {
-        if (!HasComp<HumanoidAppearanceComponent>(args.User) && !HasComp<CosmicCultConvertibleComponent>(args.User))
+        if (!HasComp<HumanoidAppearanceComponent>(args.User) && !IsConvertible(args.User))
             return; // humanoids and convertible (has mind) non-humanoids only!
         if (!EntityIsCultist(args.User) && !args.Handled && !ent.Comp.Occupied && ent.Comp.FinaleActive)
         {
