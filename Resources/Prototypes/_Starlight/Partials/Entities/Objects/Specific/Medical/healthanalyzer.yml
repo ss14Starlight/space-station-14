@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: HandheldHealthAnalyzer
+  components:
+  - type: HealthAnalyzer
+    damageContainers:
+    - Biological
+    - Hybrid
+  - type: ItemPrice
+    fallbackPrice: 50

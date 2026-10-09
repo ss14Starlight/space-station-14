@@ -1,0 +1,70 @@
+- type: !PartialOnly entity
+  id: SpawnPointLatejoin
+  categories: [ ShouldMapStation ]
+  components:
+  - type: Sprite # Added layers and jobicon
+    state: !Remove
+    layers:
+      - state: green
+      - state: jobicon
+
+- type: !PartialOnly entity
+  id: SpawnPointAnyJob
+  components:
+  - type: Sprite # Added layers and jobicon
+    state: !Remove
+    layers:
+      - state: green
+      - state: jobicon
+
+# Appended as the last sprite layer
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - SpawnPointQuartermaster
+    - SpawnPointCargoTechnician
+    - SpawnPointSalvageSpecialist
+    - SpawnPointTechnicalAssistant
+    - SpawnPointMedicalIntern
+    - SpawnPointSecurityCadet
+    - SpawnPointResearchAssistant
+    - SpawnPointServiceWorker
+    - SpawnPointBartender
+    - SpawnPointChef
+    - SpawnPointBotanist
+    - SpawnPointClown
+    - SpawnPointMime
+    - SpawnPointChaplain
+    - SpawnPointLibrarian
+    - SpawnPointLawyer
+    - SpawnPointJanitor
+    - SpawnPointMusician
+    - SpawnPointBorg
+    - SpawnPointCaptain
+    - SpawnPointHeadOfPersonnel
+    - SpawnPointChiefEngineer
+    - SpawnPointStationEngineer
+    - SpawnPointAtmos
+    - SpawnPointChiefMedicalOfficer
+    - SpawnPointMedicalDoctor
+    - SpawnPointParamedic
+    - SpawnPointChemist
+    - SpawnPointResearchDirector
+    - SpawnPointScientist
+    - SpawnPointHeadOfSecurity
+    - SpawnPointWarden
+    - SpawnPointSecurityOfficer
+    - SpawnPointDetective
+    - SpawnPointBrigmedic
+    - SpawnPointERTLeader
+    - SpawnPointERTChaplain
+    - SpawnPointERTEngineer
+    - SpawnPointERTMedical
+    - SpawnPointERTSecurity
+    - SpawnPointERTJanitor
+    - SpawnPointReporter
+    - SpawnPointPsychologist
+  components:
+  - type: Sprite
+    layers:
+      - state: jobicon

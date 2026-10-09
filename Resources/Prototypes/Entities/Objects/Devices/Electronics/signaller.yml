@@ -48,8 +48,3 @@
     range: 50
   - type: StaticPrice
     price: 30
-  - type: Tag #Starlight
-    tags:
-      - Payload
-      - RemoteSignaller
-      - RemoteSignallerAdvanced
