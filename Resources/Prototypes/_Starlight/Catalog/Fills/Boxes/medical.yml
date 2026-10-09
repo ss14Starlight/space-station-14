@@ -50,7 +50,7 @@
   name: jug box
   parent: BoxCardboard
   id: BoxJug
-  description: A box containing two chemical storage jugs.
+  description: A box containing four chemical storage jugs.
   components:
   - type: Storage
     grid:
