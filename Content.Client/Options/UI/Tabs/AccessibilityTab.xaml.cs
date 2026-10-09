@@ -16,7 +16,7 @@ public sealed partial class AccessibilityTab : Control
         Control.AddOptionCheckBox(CCVars.AccessibilityColorblindFriendly, ColorblindFriendlyCheckBox);
         Control.AddOptionCheckBox(CCVars.ReducedMotion, ReducedMotionCheckBox);
         Control.AddOptionPercentSlider(CCVars.ScreenShakeIntensity, ScreenShakeIntensitySlider);
-        Control.AddOptionPercentSlider(CCVars.ChatWindowOpacity, ChatWindowOpacitySlider);
+        // Starlight: chat window opacity moved to the interface tab (UITab).
         Control.AddOptionPercentSlider(CCVars.SpeechBubbleTextOpacity, SpeechBubbleTextOpacitySlider);
         Control.AddOptionPercentSlider(CCVars.SpeechBubbleSpeakerOpacity, SpeechBubbleSpeakerOpacitySlider);
         Control.AddOptionPercentSlider(CCVars.SpeechBubbleBackgroundOpacity, SpeechBubbleBackgroundOpacitySlider);

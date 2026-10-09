@@ -5,52 +5,41 @@
     xmlns:tabs="clr-namespace:Content.Client._Starlight.Options.UI.Tabs"
     xmlns:ui="clr-namespace:Content.Client.Options.UI">
     <BoxContainer Orientation="Vertical">
-        <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
-            <BoxContainer
-                Margin="8,8,8,8"
-                Orientation="Vertical"
-                VerticalExpand="True">
+        <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False">
+            <BoxContainer Margin="0 0 8 8" Orientation="Vertical">
+                <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-style-theme'}" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
+                    <BoxContainer Orientation="Vertical" Margin="10 8" SeparationOverride="10">
+                        <sui:StyleThemePicker Name="ThemePicker" />
+                        <sui:AccentPicker Name="AccentPicker" />
+                    </BoxContainer>
+                </PanelContainer>
 
-                <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-ui-style'}" />
-                <ui:OptionDropDown Name="DropDownStyleTheme" Title="{Loc 'ui-options-style-theme'}" />
-                <CheckBox Name="StyleCustomAccentCheckBox" Text="{Loc 'ui-options-style-custom-accent'}" />
-                <ui:OptionColorSlider Name="StyleAccentSlider" Title="{Loc 'ui-options-style-accent'}" />
-                <ui:OptionDropDown Name="DropDownHudTheme" Title="{Loc 'ui-options-hud-theme'}" />
-                <ui:OptionDropDown Name="DropDownHudLayout" Title="{Loc 'ui-options-hud-layout'}" />
-                <ui:OptionSlider Name="SeparatedChatWidthSlider" Title="{Loc 'ui-options-chat-width'}" />
+                <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-ui-style'}" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
+                    <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
+                        <ui:OptionDropDown Name="DropDownHudTheme" Title="{Loc 'ui-options-hud-theme'}" />
+                        <ui:OptionDropDown Name="DropDownHudLayout" Title="{Loc 'ui-options-hud-layout'}" />
+                        <ui:OptionDropDown Name="DropDownUIScale" Title="{Loc 'ui-options-scale-label'}" />
+                        <ui:OptionSlider Name="SeparatedChatWidthSlider" Title="{Loc 'ui-options-chat-width'}" />
+                        <ui:OptionSlider Name="ChatWindowOpacitySlider" Title="{Loc 'ui-options-chat-window-opacity'}" />
+                    </BoxContainer>
+                </PanelContainer>
 
-                <PanelContainer Margin="0,8,0,8" StyleClasses="PanelLight">
-
-                    <BoxContainer Margin="6" Orientation="Vertical">
-                        <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-ui-ranged-sight'}" />
-                        <PanelContainer Margin="0,6,0,6" StyleClasses="PanelDark">
-
-                            <BoxContainer
-                                Margin="6"
-                                HorizontalAlignment="Center"
-                                Orientation="Horizontal">
-                                <BoxContainer HorizontalAlignment="Center" Orientation="Vertical">
-                                    <Label
-                                        HorizontalAlignment="Center"
-                                        StyleClasses="LabelSecondaryText"
-                                        Text="{Loc 'ui-options-ranged-sight'}" />
-                                    <sui:OptionsSightPreview Name="RangedSightPreview" Access="Public" />
-                                </BoxContainer>
-
-                                <Control MinSize="12 1" />
-
-                                <BoxContainer HorizontalAlignment="Center" Orientation="Vertical">
-                                    <Label
-                                        HorizontalAlignment="Center"
-                                        StyleClasses="LabelSecondaryText"
-                                        Text="{Loc 'ui-options-melee-sight'}" />
-                                    <sui:OptionsSightPreview Name="MeleeSightPreview" Access="Public" />
-                                </BoxContainer>
+                <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-ui-ranged-sight'}" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel">
+                    <BoxContainer Margin="10 6" Orientation="Vertical" SeparationOverride="4">
+                        <BoxContainer HorizontalAlignment="Center" Orientation="Horizontal" Margin="0 4">
+                            <BoxContainer Orientation="Vertical">
+                                <Label HorizontalAlignment="Center" StyleClasses="LabelSubText" Text="{Loc 'ui-options-ranged-sight'}" />
+                                <sui:OptionsSightPreview Name="RangedSightPreview" Access="Public" />
                             </BoxContainer>
-                        </PanelContainer>
-
-                        <Label Text="{Loc 'ui-options-ui-sight-hash'}" />
-                        <LineEdit Name="SightsOptionsHash" />
+                            <Control MinSize="12 1" />
+                            <BoxContainer Orientation="Vertical">
+                                <Label HorizontalAlignment="Center" StyleClasses="LabelSubText" Text="{Loc 'ui-options-melee-sight'}" />
+                                <sui:OptionsSightPreview Name="MeleeSightPreview" Access="Public" />
+                            </BoxContainer>
+                        </BoxContainer>
 
                         <ui:OptionDropDown Name="DropDownRangedSight" Title="{Loc 'ui-options-ranged-sight'}" />
                         <ui:OptionDropDown Name="DropDownMeleeSight" Title="{Loc 'ui-options-melee-sight'}" />
@@ -62,9 +51,12 @@
                         <CheckBox Name="SightBoltIndicatorCheckBox" Text="{Loc 'ui-options-sight-bolt-indicator'}" />
                         <CheckBox Name="SightJamIndicatorCheckBox" Text="{Loc 'ui-options-sight-jam-indicator'}" />
                         <CheckBox Name="SightHeatIndicatorCheckBox" Text="{Loc 'ui-options-sight-heat-indicator'}" />
-
                         <ui:OptionColorSlider Name="SightMainColorSlider" Title="{Loc 'ui-options-sight-main-color'}" />
                         <ui:OptionColorSlider Name="SightSecondColorSlider" Title="{Loc 'ui-options-sight-second-color'}" />
+                        <BoxContainer Orientation="Horizontal" Margin="0 4 0 0">
+                            <Label Text="{Loc 'ui-options-ui-sight-hash'}" HorizontalExpand="True" VerticalAlignment="Center" />
+                            <LineEdit Name="SightsOptionsHash" MinWidth="240" />
+                        </BoxContainer>
                     </BoxContainer>
                 </PanelContainer>
             </BoxContainer>
