@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Changeling devour damage is no longer capped.
-    type: Tweak
-  id: 408910
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
   - message: Vulpkanins can now use Gauze markings.
     type: Add
   id: 408911
@@ -2799,4 +2792,11 @@ Entries:
   id: 409309
   time: '2026-10-09T13:37:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6566
+- author: Xale
+  changes:
+  - message: Possession by the golden mask will no longer cryo the player after 7 minutes.
+    type: Fix
+  id: 409310
+  time: '2026-10-09T13:37:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6558
 Order: -1
