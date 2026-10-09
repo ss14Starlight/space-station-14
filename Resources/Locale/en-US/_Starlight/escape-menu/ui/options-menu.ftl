@@ -1,8 +1,28 @@
 ui-options-function-open-m-help = Open mentor help
+ui-options-function-jump = Jump
+ui-options-function-latch-struggle = Struggle (while latched)
 ui-escape-connect-discord = Link Discord
 server-info-connect-discord-button = Link Discord
 ui-escape-connect-steam = Link Steam
 server-info-connect-steam-button = Link Steam
+
+## Graphics
+
+ui-options-trace = Display the bullet's trace
+ui-options-trace-tooltip = If you're lagging while shooting, uncheck this box,
+                           and the hitscan won't display the texture of the smoke behind the flying bullet.
+
+ui-options-holes = Display the bullet's holes
+ui-options-holes-tooltip = If you're lagging while shooting, uncheck this box,
+                           and the hitscan won't display the texture of the bullet holes.
+
+ui-options-sparks = Display sparks
+ui-options-sparks-tooltip = If you're lagging while shooting, uncheck this box,
+                           and the hitscan won't display sparks when the bullet hits a surface.
+
+ui-options-hitscan-prediction = Predict your own shots
+ui-options-hitscan-prediction-tooltip = Draws your bullets the moment you fire instead of waiting for the server.
+                                        The server still decides what was hit.
 
 ## Accessibility
 
@@ -28,7 +48,10 @@ ui-options-radio-chime-mute = Mute Radio Chimes
 ui-options-tab-ui = User Interface
 ui-options-ui-style = User Interface Style
 ui-options-ui-sight-hash = Sight Preferences String
-ui-options-sight-rotation = Sight Rotation
+ui-options-wield-before-rack = Wield before racking
+ui-options-wield-before-rack-tooltip = Using a gun in hand wields it first; racking the bolt happens on the next press.
+ui-options-ranged-sight-rotation = Ranged Sight Rotation
+ui-options-melee-sight-rotation = Melee Sight Rotation
 ui-options-chat-width = Separated Chat Width
 ui-options-ui-ranged-sight = Sights
 ui-options-ranged-sight = Ranged Sight
@@ -76,6 +99,8 @@ ui-options-admin-ghost-script-tooltip =
 ui-options-hud-theme-mpurp = M-Purp
 
 # Graphics
+ui-options-show-stains = Show clothing stains
+
 # Technically this is a more general Sprite Effects option, but right now it's literally only used for weather, so I'm just going to label it that for now
 ui-options-sprite-quality = Weather Quality:
 ui-options-sprite-quality-low = Low
@@ -90,3 +115,22 @@ ui-options-interaction-particles-without-inhand = Except In-hand
 ui-options-interaction-particles-none = None
 ui-options-interaction-particles-tooltip =
     In-hand and inventory particles are only shown for actions performed by your character.
+
+## Audio sections and per-category volumes
+
+ui-options-music-label = Music
+ui-options-environment-label = Environment
+ui-options-world-label = World
+ui-options-voices-label = Voices
+ui-options-sound-toggles-label = Sound options
+ui-options-other-label = Other
+ui-options-station-hum-volume = Station hum:
+ui-options-machine-ambience-volume = Machines and devices:
+ui-options-environment-volume = Creaks and hisses:
+ui-options-reverb-volume = Room echo:
+ui-options-effects-volume = Sound effects:
+ui-options-footsteps-volume = Footsteps:
+ui-options-handling-volume = Picking up and equipping:
+ui-options-combat-volume = Weapons and combat:
+ui-options-voice-volume = Voices and emotes:
+ui-options-announcement-volume = Announcements and alerts:

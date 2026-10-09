@@ -1,4 +1,5 @@
-﻿using Robust.Shared.Prototypes;
+﻿using System.Linq;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Zones;
 
@@ -26,15 +27,20 @@ public sealed partial class SharedZoneTrackerSystem : EntitySystem
     public void SetZone(
         Entity<ZoneTrackerComponent> ent,
         ProtoId<ZonePrototype>? zone,
+        IReadOnlyList<ProtoId<ZonePrototype>> zones,
         (EntityUid Grid, Vector2i Tile) position,
-        int revision = 0)
+        int revision = 0,
+        int roomSize = 0)
     {
         ent.Comp.LastPosition = position;
         ent.Comp.LastRevision = revision;
 
-        if (ent.Comp.Zone != zone)
+        if (ent.Comp.Zone != zone || ent.Comp.RoomSize != roomSize || !ent.Comp.Zones.SequenceEqual(zones))
         {
             ent.Comp.Zone = zone;
+            ent.Comp.RoomSize = roomSize;
+            ent.Comp.Zones.Clear();
+            ent.Comp.Zones.AddRange(zones);
             Dirty(ent);
         }
 
@@ -61,8 +67,14 @@ public sealed partial class SharedZoneTrackerSystem : EntitySystem
         => Resolve(ent.Owner, ref ent.Comp, false) ? ent.Comp.Zone : null;
 
     /// <summary>
-    /// Checks if the given entity is currently in the specified zone. Returns true if the entity's current zone matches the provided zone ID, otherwise returns false.
+    /// Gets every zone the entity's current room belongs to. Empty if the entity is not in a zone.
+    /// </summary>
+    public IReadOnlyList<ProtoId<ZonePrototype>> GetZones(Entity<ZoneTrackerComponent?> ent)
+        => Resolve(ent.Owner, ref ent.Comp, false) ? ent.Comp.Zones : [];
+
+    /// <summary>
+    /// Checks if the given entity's current room belongs to the specified zone, as its main zone or any other.
     /// </summary>
     public bool IsInZone(Entity<ZoneTrackerComponent?> ent, ProtoId<ZonePrototype> zone)
-        => GetZone(ent) == zone;
+        => GetZones(ent).Contains(zone);
 }

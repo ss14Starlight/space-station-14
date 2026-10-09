@@ -46,6 +46,16 @@
         {
             "name": "SyndicateResearchDirector",
             "copyright": "Taken and modified from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by @redmushie (GitHub)"
+        },
+        {
+            "name": "SyndicateMindShield",
+            "copyright": "tgstation, modified by StygianEagle",
+            "delays": [
+                [
+                    1.0,
+                    1.0
+                ]
+            ]
         }
     ]
 }

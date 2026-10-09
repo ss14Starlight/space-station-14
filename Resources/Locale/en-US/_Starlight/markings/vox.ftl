@@ -63,3 +63,20 @@ marking-VoxTailBigAnimated = Vox Tail (Big, animated)
 
 marking-VoxTailDockedAnimated-vox_tail_docked_animated = Vox Tail (Docked, animated)
 marking-VoxTailDockedAnimated = Vox Tail (Docked, animated)
+
+marking-VoxBushTail-bushtail = Vox Tail (Bush)
+marking-VoxBushTail = Vox Tail (Bush)
+
+marking-VoxAllSeeing-allseeingeyes = All Seeing Eyes
+marking-VoxAllSeeing-allseeingface = All Seeing Face
+marking-VoxAllSeeing = All Seeing Eyes
+
+marking-VoxThirdEye-thirdeye = Third Eye
+marking-VoxThirdEye = Third Eye
+
+marking-VoxPeafowlTail-peafowltailbase = Vox Tail (Peafowl)
+marking-VoxPeafowlTail-peafowltaileyes = Peafowl Tail Eyes
+marking-VoxPeafowlTail = Vox Tail (Peafowl)
+
+marking-VoxSeveredTail-severedtail = Vox Tail (Severed)
+marking-VoxSeveredTail = Vox Tail (Severed)

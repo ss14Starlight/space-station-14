@@ -122,6 +122,10 @@
 		{
             "name": "wt550_gunsafe_doors",
 			"copyright": "Made by Conflee for Starlight, gun icon by @Stxcking (github) for DeltaV"
+        },
+		{
+            "name": "melee_gunsafe_doors",
+			"copyright": "Made by Romero/Littlemen"
         }
     ]
 }

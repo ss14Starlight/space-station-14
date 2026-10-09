@@ -27,8 +27,8 @@ public sealed partial class SlimeNameChangePotionSystem : EntitySystem
         var oldName = MetaData(args.Target.Value).EntityName;
         _metaDataSystem.SetEntityName(args.Target.Value, ent.Comp.AssignedName);
         if (args.User != args.Target.Value)
-            _sharedPopupSystem.PopupPredicted($"{oldName} is now named {MetaData(args.Target.Value).EntityName}.", args.User, args.User);
-        _sharedPopupSystem.PopupPredicted($"You are now named {MetaData(args.Target.Value).EntityName}.", args.Target.Value, args.Target.Value);
+            _sharedPopupSystem.PopupPredicted(Loc.GetString("slime-potion-name-changed", ("old", oldName), ("new", MetaData(args.Target.Value).EntityName)), args.User, args.User);
+        _sharedPopupSystem.PopupPredicted(Loc.GetString("slime-potion-name-changed-self", ("new", MetaData(args.Target.Value).EntityName)), args.Target.Value, args.Target.Value);
         PredictedQueueDel(args.Used);
     }
 

@@ -1,0 +1,6 @@
+- type: latheRecipe
+  parent: BaseRoboticsRecipe
+  id: DroneRogueShell
+  result: DroneRogueShell
+  materials:
+    Steel: 300

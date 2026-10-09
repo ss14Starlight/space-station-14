@@ -36,7 +36,7 @@ public sealed partial class ZoneSystem
 
         if (xform.GridUid is not { } grid || !_mapGridQuery.TryComp(grid, out var gridComp))
         {
-            _tracker.SetZone(ent, null, default);
+            _tracker.SetZone(ent, null, [], default);
             return;
         }
 
@@ -46,6 +46,9 @@ public sealed partial class ZoneSystem
         if (comp.LastPosition == (grid, tile) && comp.LastRevision == revision && comp.Raised == comp.Zone)
             return;
 
-        _tracker.SetZone(ent, GetZone(GetZoneId(grid, tile))?.ID, (grid, tile), revision);
+        var id = GetZoneId(grid, tile);
+        var region = zoneComp == null ? NoRegion : GetRegion(zoneComp, tile);
+        var roomSize = region == NoRegion ? 0 : zoneComp!.Regions[region].TileCount;
+        _tracker.SetZone(ent, GetZone(id)?.ID, GetZones(id), (grid, tile), revision, roomSize);
     }
 }

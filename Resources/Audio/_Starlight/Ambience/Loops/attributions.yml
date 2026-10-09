@@ -1,0 +1,4 @@
+- files: ["maint_hum.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Derived from shipambience.ogg (/tg/station, originally CEV Eris): pitched down, low-passed and crossfaded into a seamless loop"
+  source: "https://github.com/tgstation/tgstation/blob/66a625e6df15eaa97e599248a2281c74238ce26e/sound/ambience/shipambience.ogg"

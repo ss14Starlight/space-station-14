@@ -1,0 +1,234 @@
+- type: entity
+  parent: [ BaseSimpleMob, FlyingMobBase ]
+  id: BaseMobCosmicHostile
+  suffix: Hostile
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 3
+    weightlessModifier: 1
+  - type: AntagImmune
+  - type: NoSlip
+  - type: ProtectedFromStepTriggers
+  - type: IgnoreSpiderWeb
+  - type: Insulated
+  - type: Climbing
+  - type: StatusEffects
+    allowed:
+    - Stunned
+    - Stutter
+  - type: Physics
+    bodyStatus: OnGround
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 80
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: LanguageKnowledge
+    speaks:
+    - Cosmic
+    understands:
+    - Cosmic
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool "true"
+      NavSmash: !type:Bool "true"
+  - type: CosmicCultFaction
+  - type: CosmicMinion
+  - type: NpcFactionMember
+    factions:
+    - CosmicCult
+  - type: CosmicMalignantHealing
+    healInterval: 10s
+    healAmount: 0.5
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: false
+    name: ghost-role-information-cosmic-minion-name
+  - type: CosmicCultExamine
+    cultistText: cosmic-examine-text-cultentity
+    othersText: cosmic-examine-text-entities
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    allowRevives: true
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: GhostOnMove
+    mustBeDead: true
+  - type: Damageable
+    damageContainer: MalignStructure
+    damageModifierSet: Malignstone
+  - type: CosmicRiftHealth
+    healthPerCorpse: 2
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 70
+        behaviors:
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              CosmicLapseAbilityVFX:
+                min: 1
+                max: 1
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              path: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Entropy
+        Quantity: 200
+    examineLocPrefix: cosmic-bloodstream
+    maxBleedAmount: 10.75
+    bleedReductionAmount: 0.1
+    bloodlossDamage:
+      types:
+        Bloodloss: 0
+    bloodlossHealDamage:
+      types:
+        Bloodloss: 0
+  - type: CombatMode
+  - type: TypingIndicator
+    proto: CosmicTyping
+  - type: PointLight
+    color: "#42a4ae"
+    radius: 2
+    energy: 2
+    softness: 1
+    castShadows: false
+  - type: ZombieImmune
+  - type: GhostTakeoverAvailable
+  - type: LightBehaviour
+    behaviours:
+     - !type:FadeBehaviour
+       interpolate: Linear
+       minDuration: 5.5
+       maxDuration: 5.5
+       startValue: 0.5
+       endValue: 2
+       property: Energy
+       enabled: true
+       isLooped: true
+       reverseWhenFinished: true
+  - type: HealthExaminable
+    locPrefix: cosmic
+
+- type: entity
+  parent: [ BaseMobCosmicHostile, MobCosmicCustodian ]
+  id: MobCosmicCustodianHostile #Bruiser/Sword/Lance stats
+  components:
+  - type: TypingIndicator
+    proto: CosmicTyping
+  - type: GhostRole
+    name: ghost-role-information-cosmic-custodian-name
+    description: ghost-role-information-cosmic-custodian-description
+    rules: ghost-role-information-cosmic-custodian-rules
+    mindRoles:
+    - MindRoleCosmicMinion
+  - type: MeleeWeapon
+    altDisarm: false
+    animation: WeaponArcCosmic
+    damage:
+      types:
+        Cold: 5
+        Blunt: 10
+        Structural: 16
+    soundHit:
+      path: /Audio/_Starlight/CosmicCult/cosmicsword_hit.ogg
+      params:
+        variation: 0.2
+        volume: 1
+    soundSwing:
+      path: /Audio/_Starlight/CosmicCult/cosmicweapon_swing.ogg
+      params:
+        variation: 0.125
+        volume: -4
+
+- type: entity
+  parent: [ BaseMobCosmicHostile, MobCosmicOracle ]
+  id: MobCosmicOracleHostile #Lead/Chaff
+  components:
+  - type: TypingIndicator
+    proto: CosmicTyping
+  - type: GhostRole
+    name: ghost-role-information-cosmic-oracle-name
+    description: ghost-role-information-cosmic-oracle-description
+    rules: ghost-role-information-cosmic-oracle-rules
+    mindRoles:
+    - MindRoleCosmicMinion
+  - type: ThermalVision
+    active: false
+  - type: MeleeWeapon
+    altDisarm: false
+    animation: WeaponArcCosmic
+    damage:
+      types:
+        Asphyxiation: 10
+        Cold: 5
+        Blunt: 5
+        Structural: 12
+    soundHit:
+      path: /Audio/_Starlight/CosmicCult/cosmiclance_hit.ogg
+      params:
+        variation: 0.2
+        volume: 1
+    soundSwing:
+      path: /Audio/_Starlight/CosmicCult/cosmicweapon_swing.ogg
+      params:
+        variation: 0.125
+        volume: -4
+
+- type: entity
+  parent: [ BaseMobCosmicHostile, MobCosmicLodestar ]
+  id: MobCosmicLodestarHostile #ranged unit 20 damage shot.
+  components:
+  - type: GhostRole
+    name: ghost-role-information-cosmic-lodestar-name
+    description: ghost-role-information-cosmic-lodestar-description
+    rules: ghost-role-information-cosmic-lodestar-rules
+    mindRoles:
+    - MindRoleCosmicMinion
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: Gun
+    projectileSpeed: 15
+    soundGunshot: /Audio/_Starlight/CosmicCult/projectile_razor.ogg
+    soundEmpty: null
+    fireRate: 1
+    useKey: false
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.8
+    rechargeSound:
+      path: /Audio/_Starlight/CosmicCult/projectile_razor_reload.ogg
+      params:
+        volume: -99
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileCosmic
+    capacity: 1
+    count: 1

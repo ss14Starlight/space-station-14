@@ -75,3 +75,5 @@ gas-turbine-ui-power = { POWERWATTS($power) }
 gas-turbine-ui-locked-message = Controls locked.
 gas-turbine-ui-footer-left = Danger: fast-moving machinery.
 gas-turbine-ui-footer-right = 2.1 REV 1
+
+gas-turbine-ui-title = Gas Turbine
