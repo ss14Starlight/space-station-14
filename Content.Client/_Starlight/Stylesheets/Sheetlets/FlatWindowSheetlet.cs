@@ -20,9 +20,10 @@ public sealed class FlatWindowSheetlet : Sheetlet<NanotrasenStylesheet>
 
         var proto = theme.Proto;
 
-        var windowBox = FlatBox.Bordered(proto.Background, proto.Border);
-        var headerBox = FlatBox.Underlined(proto.Surface, proto.Border, 1)
-            .WithContentMargin(StyleBox.Margin.Bottom, 0);
+        var windowBox = ThemeBox.Or(proto.Window, ResCache,
+            FlatBox.Bordered(proto.Background, proto.Border, proto.BorderThickness));
+        var headerBox = ThemeBox.Or(proto.Header, ResCache,
+            FlatBox.Underlined(proto.Surface, proto.Border, 1).WithContentMargin(StyleBox.Margin.Bottom, 0));
         var alertHeaderBox = FlatBox.Underlined(theme.Negative.Background, theme.Negative.Base, 1)
             .WithContentMargin(StyleBox.Margin.Bottom, 0);
 

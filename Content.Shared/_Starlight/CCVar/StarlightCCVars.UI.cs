@@ -33,6 +33,12 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<string> StyleAccent =
         CVarDef.Create("ui.style_accent", "#D4D4D8", CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    /// <summary>
+    /// Use <see cref="StyleAccent"/> instead of the accent of the selected theme.
+    /// </summary>
+    public static readonly CVarDef<bool> StyleCustomAccent =
+        CVarDef.Create("ui.style_custom_accent", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     public static readonly CVarDef<string> RangedSight =
         CVarDef.Create("ui.ranged_sight", "GunSight", CVar.CLIENTONLY | CVar.ARCHIVE);
 

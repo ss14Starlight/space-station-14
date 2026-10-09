@@ -25,6 +25,7 @@ public sealed partial class StylesheetManager
     {
         _cfg.OnValueChanged(StarlightCCVars.StyleTheme, _ => QueueStyleThemeRebuild());
         _cfg.OnValueChanged(StarlightCCVars.StyleAccent, _ => QueueStyleThemeRebuild());
+        _cfg.OnValueChanged(StarlightCCVars.StyleCustomAccent, _ => QueueStyleThemeRebuild());
         _prototype.PrototypesReloaded += args =>
         {
             if (args.WasModified<StyleThemePrototype>())
@@ -47,14 +48,26 @@ public sealed partial class StylesheetManager
             }
         }
 
-        if (!Color.TryFromHex(_cfg.GetCVar(StarlightCCVars.StyleAccent), out var accent))
-            accent = Color.FromHex(StarlightCCVars.StyleAccent.DefaultValue);
+        if (proto.Stock)
+        {
+            _hudStyleTheme = null;
+            return new BaseStylesheet.NoConfig();
+        }
 
         _hudStyleTheme = proto.Hud is { } hud && _prototype.TryIndex(hud, out var hudProto)
-            ? new StyleTheme(hudProto, accent)
+            ? new StyleTheme(hudProto, ResolveAccent(hudProto))
             : null;
 
-        return new StyleTheme(proto, accent);
+        return new StyleTheme(proto, ResolveAccent(proto));
+    }
+
+    private Color ResolveAccent(StyleThemePrototype proto)
+    {
+        if (_cfg.GetCVar(StarlightCCVars.StyleCustomAccent)
+            && Color.TryFromHex(_cfg.GetCVar(StarlightCCVars.StyleAccent), out var custom))
+            return custom;
+
+        return proto.Accent ?? Color.FromHex(StarlightCCVars.StyleAccent.DefaultValue);
     }
 
     private void QueueStyleThemeRebuild()

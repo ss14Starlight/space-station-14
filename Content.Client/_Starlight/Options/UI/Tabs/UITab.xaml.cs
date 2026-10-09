@@ -76,6 +76,7 @@ public sealed partial class UITab : Control
         SightsOptionsHash.OnTextChanged += OnTextChanged;
 
         Control.AddOptionDropDown(StarlightCCVars.StyleTheme, DropDownStyleTheme, styleThemeEntries);
+        Control.AddOptionCheckBox(StarlightCCVars.StyleCustomAccent, StyleCustomAccentCheckBox);
         Control.AddOptionColorSlider(StarlightCCVars.StyleAccent, StyleAccentSlider);
         Control.AddOptionDropDown(CVars.InterfaceTheme, DropDownHudTheme, themeEntries);
         Control.AddOptionDropDown(CCVars.UILayout, DropDownHudLayout, layoutEntries);

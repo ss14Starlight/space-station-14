@@ -13,6 +13,7 @@
 
                 <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-ui-style'}" />
                 <ui:OptionDropDown Name="DropDownStyleTheme" Title="{Loc 'ui-options-style-theme'}" />
+                <CheckBox Name="StyleCustomAccentCheckBox" Text="{Loc 'ui-options-style-custom-accent'}" />
                 <ui:OptionColorSlider Name="StyleAccentSlider" Title="{Loc 'ui-options-style-accent'}" />
                 <ui:OptionDropDown Name="DropDownHudTheme" Title="{Loc 'ui-options-hud-theme'}" />
                 <ui:OptionDropDown Name="DropDownHudLayout" Title="{Loc 'ui-options-hud-layout'}" />

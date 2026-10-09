@@ -1,4 +1,5 @@
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.UserInterface;
 
@@ -26,6 +27,24 @@ public sealed partial class StyleThemePrototype : IPrototype
     [DataField]
     public bool Light;
 
+    [DataField]
+    public bool Stock;
+
+    [DataField]
+    public Color? Accent;
+
+    [DataField]
+    public float BorderThickness = 1f;
+
+    [DataField]
+    public StyleThemeBox? Window;
+
+    [DataField]
+    public StyleThemeBox? Header;
+
+    [DataField]
+    public StyleThemeBox? Button;
+
     /// <summary>
     /// Theme for the in-game HUD screen, if it should differ from this one. HUD textures are dark, so light themes
     /// keep a dark HUD and only restyle windows and menus.
@@ -33,40 +52,40 @@ public sealed partial class StyleThemePrototype : IPrototype
     [DataField]
     public ProtoId<StyleThemePrototype>? Hud;
 
-    [DataField(required: true)]
+    [DataField]
     public Color Background;
 
-    [DataField(required: true)]
+    [DataField]
     public Color Surface;
 
-    [DataField(required: true)]
+    [DataField]
     public Color SurfaceRaised;
 
-    [DataField(required: true)]
+    [DataField]
     public Color Element;
 
-    [DataField(required: true)]
+    [DataField]
     public Color ElementHovered;
 
-    [DataField(required: true)]
+    [DataField]
     public Color ElementDisabled;
 
-    [DataField(required: true)]
+    [DataField]
     public Color Border;
 
-    [DataField(required: true)]
+    [DataField]
     public Color Text;
 
-    [DataField(required: true)]
+    [DataField]
     public Color TextMuted;
 
-    [DataField(required: true)]
+    [DataField]
     public Color TextDisabled;
 
-    [DataField(required: true)]
+    [DataField]
     public Color Positive;
 
-    [DataField(required: true)]
+    [DataField]
     public Color Negative;
 
     /// <summary>
@@ -74,4 +93,29 @@ public sealed partial class StyleThemePrototype : IPrototype
     /// </summary>
     [DataField]
     public float AccentTint = 0.35f;
+}
+
+[DataDefinition]
+public sealed partial class StyleThemeBox
+{
+    [DataField(required: true)]
+    public ResPath Texture;
+
+    [DataField]
+    public float[] Patch = [0f];
+
+    [DataField]
+    public bool Tile;
+
+    [DataField]
+    public float Scale = 1f;
+
+    [DataField]
+    public float Expand;
+
+    [DataField]
+    public float? Content;
+
+    [DataField]
+    public Color Modulate = Color.White;
 }

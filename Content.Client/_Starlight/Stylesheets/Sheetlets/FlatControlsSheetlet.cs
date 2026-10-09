@@ -39,7 +39,7 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
             .WithContentMargin(StyleBox.Margin.Horizontal, 8)
             .WithContentMargin(StyleBox.Margin.Vertical, 3);
 
-        var tooltipBox = FlatBox.Bordered(proto.Surface.WithAlpha(0.96f), proto.Border)
+        var tooltipBox = FlatBox.Bordered(proto.Surface.WithAlpha(0.96f), proto.Border, proto.BorderThickness)
             .WithContentMargin(StyleBox.Margin.Vertical, 2)
             .WithContentMargin(StyleBox.Margin.Horizontal, 7);
 

@@ -27,7 +27,7 @@ public sealed class FlatContextMenuSheetlet : Sheetlet<NanotrasenStylesheet>
         {
             E<PanelContainer>()
                 .Class(ContextMenuPopup.StyleClassContextMenuPopup)
-                .Panel(FlatBox.Bordered(proto.Surface, proto.Border)
+                .Panel(FlatBox.Bordered(proto.Surface, proto.Border, proto.BorderThickness)
                     .WithContentMargin(StyleBox.Margin.All, ContextMenuElement.ElementMargin)),
         };
 
