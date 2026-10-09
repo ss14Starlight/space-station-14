@@ -252,7 +252,6 @@
   - type: OrganBrain
   - type: SolutionManager
     solutions:
-    - SolutionOrganNutriment
     - SolutionOrganFoodGreyMatterLarge
     - SolutionOrganBrain
   - type: FlavorProfile
