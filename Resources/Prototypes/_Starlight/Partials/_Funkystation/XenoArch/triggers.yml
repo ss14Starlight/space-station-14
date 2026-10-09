@@ -1,0 +1,49 @@
+- type: !PartialOnly xenoArchTrigger
+  id: TriggerCitrus
+  components: !Clear
+    - type: XATCompNearby
+      requireComponentWithName: Tag
+      requireTag: Citrus
+      radius: 2
+    - type: XATReactive
+      reagents:
+      - Lemonade
+      - JuiceLemon
+      - LemonLime
+      - LemonLimeCranberry
+      - JuiceLime
+      - OrangeLimeSoda
+      - JuiceOrange
+      - ScrewdriverCocktail
+      - Starkist
+      - Mimosa
+      - ArnoldPalmer
+      - Radler
+
+- type: !PartialOnly xenoArchTrigger
+  id: TriggerTechnologyDisk
+  components: !Clear
+    - type: XATCompNearby
+      requireComponentWithName: Tag
+      requireTag: FloppyDisk
+      radius: 2
+
+- type: !PartialOnly xenoArchTrigger
+  id: TriggerMilk
+  components: !Clear
+    - type: XATCompNearby
+      requireComponentWithName: Tag
+      requireTag: IceCream
+      radius: 2
+    - type: XATReactive
+      reagents:
+      - Milk
+      - MilkGoat
+      - MilkChocolate
+      - MilkStrawberry
+      - MilkBanana
+      - MilkOat
+      - MilkSoy
+      - Pilk
+      - Cream
+      - IceCream
