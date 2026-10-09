@@ -11,8 +11,8 @@ public sealed partial class DamagedByContactComponent : Component
 
     [ViewVariables]
     public DamageSpecifier? Damage;
-// Starlight-start
+#region Starlight
     [ViewVariables]
     public bool DamageDead;
-// Starlight-end
+#endregion
 }

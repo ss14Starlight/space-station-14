@@ -230,6 +230,17 @@
   id: TotemSlowCurse
   name: Hex of slowness
   components:
+  - type: DeviceLinkSink
+    ports:
+    - On
+    - Off
+    - Toggle
+    - TriggerSpawn
+  - type: DeviceLinkSource
+    ports:
+    - Enabled
+    - Disabled
+    - SpawnTriggered
   - type: Sprite
     sprite: _Starlight/Objects/Magic/magicactions.rsi
     state: totemweb

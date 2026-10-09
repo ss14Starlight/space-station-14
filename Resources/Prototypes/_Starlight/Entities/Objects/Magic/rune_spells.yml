@@ -211,6 +211,17 @@
     sentence: action-speech-spell-soulknives
     tts: action-speech-spell-soulknives-tts
     modifier: Spell
+  - type: DeviceLinkSink
+    ports:
+    - On
+    - Off
+    - Toggle
+    - TriggerSpawn
+  - type: DeviceLinkSource
+    ports:
+    - Enabled
+    - Disabled
+    - SpawnTriggered
   - type: EorgPreventAction
 
 - type: entity
@@ -327,6 +338,17 @@
     sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
     layers:
     - state: speardown
+  - type: DeviceLinkSink
+    ports:
+    - On
+    - Off
+    - Toggle
+    - TriggerSpawn
+  - type: DeviceLinkSource
+    ports:
+    - Enabled
+    - Disabled
+    - SpawnTriggered
   - type: CustomSpawner
     enabled: true
     spawnOnInterval: true
