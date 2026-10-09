@@ -1,0 +1,37 @@
+- type: !PartialOnly entity
+  id: TrackingImplant
+  components:
+  # Tracker rattle
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+    - Dead
+  - type: RattleOnTrigger
+    targetUser: true
+    radioChannel:
+    - Security
+
+- type: !PartialOnly entity
+  id: UplinkImplant
+  components:
+  - type: UplinkImplant # Uplink Implant discounts
+
+- type: !PartialOnly entity
+  id: DeathRattleImplant
+  components:
+  - type: RattleOnTrigger
+    radioChannel: [Syndicate] # syndicate isn't default rattle channel anymore
+
+- type: !PartialOnly entity
+  id: MindShieldImplant
+  description: This implant will ensure loyalty to NanoTrasen and prevent mind control devices.
+
+- type: !PartialOnly entity
+  id: RadioImplantCentcomm
+  name: centcomm radio implant
+
+- type: !PartialOnly entity
+  id: DeathRattleImplantCentcomm
+  components:
+  - type: RattleOnTrigger
+    radioChannel: [CentCom] # List

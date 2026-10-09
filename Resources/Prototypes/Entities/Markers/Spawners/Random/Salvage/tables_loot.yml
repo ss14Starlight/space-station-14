@@ -105,7 +105,6 @@
         range: 1, 2
     - !type:NestedSelector
       tableId: SalvageInstrumentTable
-    - id: ClothingHeadHatWhiteCatEars #Starlight
 
 - type: entityTable
   id: SalvageTreasureUncommon
