@@ -115,6 +115,9 @@
     - id: BoxJug
     - id: PatchPack
       amount: 2
+    - id: CardboardBoxLargeChemistryJugsExtra # These Jugs boxes must be removed when BoxShelfChemistry is properly mapped
+    - id: CardboardBoxLargeChemistryJugs # These Jugs boxes must be removed when BoxShelfChemistry is properly mapped
+      amount: 2
     # Starlight end
     - id: ClothingEyesGlassesChemical
     - id: ChemBag
