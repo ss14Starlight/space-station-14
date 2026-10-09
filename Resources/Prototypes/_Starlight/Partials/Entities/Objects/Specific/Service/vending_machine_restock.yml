@@ -1,0 +1,34 @@
+- type: !PartialOnly entity
+  id: VendingMachineRestockClothes
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - PietyVendInventory
+    - PrideDrobeInventory
+    - LegalDrobeInventory
+
+- type: !PartialOnly entity
+  id: VendingMachineRestockMedical
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - NanoMedSecurityInventory
+    - InterdyneCommercialInventory
+    - InterdyneEnterpriseInventory
+    - InterdyneCommercialWallInventory
+    - InterdyneEnterpriseWallInventory
+    - DeforestInterstellarInventory
+    - DeforestPlanetaryInventory
+    - DeforestInterstellarWallInventory
+    - DeforestPlanetaryWallInventory
+    - GoldNanoMedInventory
+    - GoldNanoMedCivilianWallInventory
+    - GoldNanoMedPlusInventory
+    - GoldNanoMedCivilianInventory
+
+- type: !PartialOnly entity
+  id: VendingMachineRestockSecTech
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - AmmoVendInventory
