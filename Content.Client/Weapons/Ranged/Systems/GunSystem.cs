@@ -144,10 +144,9 @@ public sealed partial class GunSystem : SharedGunSystem
     {
         var delay = 0f;
         // Starlight-start: Prediction
-        var predicted = TryConsumePredictedHitscan(ev);
-        var first = predicted ? 1 : 0;
+        var first = TryConsumePredictedHitscan(ev);
 
-        if (!predicted && IsOwnPredictedShot(ev))
+        if (first == 0 && IsOwnPredictedShot(ev))
             PlayPredictedImpactSound(ev);
         for (var i = first; i < ev.Traces.Count; i++)
             delay = FireEffect(ev, delay, ev.Traces[i]);

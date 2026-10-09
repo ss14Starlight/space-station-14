@@ -110,6 +110,7 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
             HitEntity = result?.HitEntity,
             OutputTrace = args.OutputTrace, // Starlight
             HitPosition = result?.HitPos, // Starlight
+            PredictionSeed = args.PredictionSeed, // Starlight
         };
 
         var attemptEvent = new AttemptHitscanRaycastFiredEvent { Data = data };

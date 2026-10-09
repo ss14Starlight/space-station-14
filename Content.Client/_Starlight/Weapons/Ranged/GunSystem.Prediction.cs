@@ -38,7 +38,7 @@ public sealed partial class GunSystem
         public bool Cancelled;
     }
 
-    private readonly record struct PendingHitscan(NetEntity Gun, int Seed, TimeSpan Expires, HitscanTrace Predicted, PredictedHitscanEffects Effects, string? Prototype);
+    private readonly record struct PendingHitscan(NetEntity Gun, int Seed, TimeSpan Expires, List<HitscanTrace> Predicted, PredictedHitscanEffects Effects, string? Prototype);
 
     /// <summary>
     /// Set while a predicted trace is being rendered, so every spawned effect gets recorded.
@@ -92,11 +92,8 @@ public sealed partial class GunSystem
         var fromCoordinates = MapManager.TryFindGridAt(from, out var gridUid, out _)
             ? TransformSystem.ToCoordinates(gridUid, from)
             : TransformSystem.ToCoordinates(from);
-        var trace = _hitscan.PredictTrace((shot, raycast), user!.Value, fromCoordinates, direction, pointer, gun.Comp.Target, seed);
-        var traces = new List<HitscanTrace>
-        {
-            trace
-        };
+
+        var traces = _hitscan.PredictTrace((shot, raycast), user!.Value, fromCoordinates, direction, pointer, gun.Comp.Target, seed);
 
         var ev = new HitscanEvent
         {
@@ -109,12 +106,16 @@ public sealed partial class GunSystem
         };
 
         var effects = new PredictedHitscanEffects();
-        FireEffect(ev, 0f, trace, effects);
+        var delay = 0f;
+        foreach (var trace in traces)
+        {
+            delay = FireEffect(ev, delay, trace, effects);
+        }
 
         if (TryComp<HitscanBasicEffectsComponent>(shot, out var impactEffects))
-            PlayPredictedImpactSound(CompOrNull<HitscanBasicDamageComponent>(shot), impactEffects, trace);
+            PlayPredictedImpactSound(CompOrNull<HitscanBasicDamageComponent>(shot), impactEffects, traces[0]);
 
-        _pendingHitscans.Add(new PendingHitscan(GetNetEntity(gun), seed, Timing.RealTime + _pendingHitscanTimeout, trace, effects,
+        _pendingHitscans.Add(new PendingHitscan(GetNetEntity(gun), seed, Timing.RealTime + _pendingHitscanTimeout, traces, effects,
             MetaData(shot).EntityPrototype?.ID));
     }
 
@@ -126,14 +127,14 @@ public sealed partial class GunSystem
         return from.Offset(direction.Normalized() * MechMuzzleOffset);
     }
 
-    private bool TryConsumePredictedHitscan(HitscanEvent ev)
+    private int TryConsumePredictedHitscan(HitscanEvent ev)
     {
         if (_pendingHitscans.Count == 0
             || ev.Shooter is not { } shooter
             || ev.Gun is not { } gun
             || ev.PredictionSeed is not { } seed
             || GetEntity(shooter) != _player.LocalEntity)
-            return false;
+            return 0;
 
         var now = Timing.RealTime;
         _pendingHitscans.RemoveAll(pending => pending.Expires < now);
@@ -145,20 +146,31 @@ public sealed partial class GunSystem
             index = _pendingHitscans.FindIndex(pending => pending.Gun == gun);
 
         if (index < 0)
-            return false;
+            return 0;
 
         var pending = _pendingHitscans[index];
         _pendingHitscans.RemoveAt(index);
 
         if (seedMatched
-            && ev.Traces.Count > 0
+            && ev.Traces.Count >= pending.Predicted.Count
             && (ev.Prototype == null || ev.Prototype == pending.Prototype)
-            && IsPredictedCorrectly(gun, pending.Predicted, ev.Traces[0]))
-            return true;
+            && IsPredictedCorrectly(gun, pending.Predicted, ev.Traces))
+            return pending.Predicted.Count;
 
         // The server disagrees: drop what we drew and let the authoritative trace render instead.
         CancelPredictedEffects(pending.Effects);
-        return false;
+        return 0;
+    }
+
+    private bool IsPredictedCorrectly(NetEntity gun, List<HitscanTrace> predicted, List<HitscanTrace> actual)
+    {
+        for (var i = 0; i < predicted.Count; i++)
+        {
+            if (!IsPredictedCorrectly(gun, predicted[i], actual[i]))
+                return false;
+        }
+
+        return true;
     }
 
     private void CancelPredictedEffects(PredictedHitscanEffects effects)
