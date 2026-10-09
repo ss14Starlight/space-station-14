@@ -119,9 +119,6 @@ public sealed partial class RoomReverbSystem : EntitySystem
     {
         base.Shutdown();
         Clear();
-        Delete(_auxiliary, _effect);
-        _auxiliary = null;
-        _effect = null;
     }
 
     public override void FrameUpdate(float frameTime)
@@ -271,7 +268,7 @@ public sealed partial class RoomReverbSystem : EntitySystem
         return soft;
     }
 
-    // One slot and effect for the whole session, a room change only rewrites the effect's parameters.
+    // One slot and effect while the listener is in rooms, a room change only rewrites the effect's parameters.
     // Recreating them meant moving every playing sound to a new slot.
     private bool EnsureSlot()
     {
@@ -305,10 +302,13 @@ public sealed partial class RoomReverbSystem : EntitySystem
 
     private void Clear()
     {
-        if (_current == null)
+        if (_current == null && _auxiliary == null && _effect == null)
             return;
 
         Detach();
+        Delete(_auxiliary, _effect);
+        _auxiliary = null;
+        _effect = null;
         _current = null;
         AttachedSources = 0;
     }
