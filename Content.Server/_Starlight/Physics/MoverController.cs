@@ -263,7 +263,10 @@ public sealed partial class SLMoverController : SharedMoverController
 
         foreach (ref readonly var sound in _handleMobMovementJob.Sounds)
             if (sound.HasValue)
+            {
                 _audio.PlayPredicted(sound.Value.SoundSpecifier, sound.Value.Source, sound.Value.User, sound.Value.AudioParams);
+                PlayFootstepLayers(sound.Value.Source, sound.Value.User, sound.Value.AudioParams);
+            }
 
         var perfDirtySounds = Stopwatch.GetTimestamp();
 
@@ -496,6 +499,7 @@ public sealed partial class SLMoverController : SharedMoverController
                 var audioParams = sound.Params
                     .WithVolume(sound.Params.Volume + soundModifier)
                     .WithVariation(sound.Params.Variation ?? mobMover.FootstepVariation);
+                audioParams = ApplyStepTimbre(uid, audioParams);
 
                 soundEvent = new SoundEvent(sound, uid, uid, audioParams);
             }

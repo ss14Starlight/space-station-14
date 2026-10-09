@@ -382,6 +382,7 @@ public abstract partial class SharedMoverController : VirtualController
                 var audioParams = sound.Params
                     .WithVolume(sound.Params.Volume + soundModifier)
                     .WithVariation(sound.Params.Variation ?? mobMover.FootstepVariation);
+                audioParams = ApplyStepTimbre(uid, audioParams); // Starlight
 
                 // If we're a relay target then predict the sound for all relays.
                 if (relaySource != null)
@@ -392,6 +393,8 @@ public abstract partial class SharedMoverController : VirtualController
                 {
                     _audio.PlayPredicted(sound, uid, uid, audioParams);
                 }
+
+                PlayFootstepLayers(uid, relaySource ?? uid, audioParams); // Starlight
             }
         }
     }
@@ -624,7 +627,8 @@ public abstract partial class SharedMoverController : VirtualController
 
         // STARLIGHT: Check for outer clothing (hardsuits) before shoes
         if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var outerClothing) &&
-            FootstepModifierQuery.TryComp(outerClothing, out var outerModifier))
+            FootstepModifierQuery.TryComp(outerClothing, out var outerModifier) &&
+            outerModifier.FootstepSoundCollection != null)
         {
             sound = outerModifier.FootstepSoundCollection;
             return sound != null;
@@ -696,7 +700,7 @@ public abstract partial class SharedMoverController : VirtualController
         if (tileDef == null)
             return false;
 
-        sound = haveShoes ? tileDef.FootstepSounds : tileDef.BarestepSounds;
+        sound = GetTileStepSound(tileDef, haveShoes); // Starlight
         return sound != null;
     }
 
