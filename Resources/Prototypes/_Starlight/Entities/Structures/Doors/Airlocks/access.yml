@@ -2,7 +2,7 @@
 - type: entity
   parent: AirlockServiceLocked
   id: AirlockAttorneyLocked
-  suffix: Internal Affairs/Legal (Attorney), Locked
+  suffix: IAA/Legal (Attorney), Locked
   components:
   - type: ContainerFill
     containers:
@@ -11,7 +11,7 @@
 - type: entity
   parent: AirlockServiceGlassLocked
   id: AirlockAttorneyGlassLocked
-  suffix: Internal Affairs/Legal (Attorney), Locked
+  suffix: IAA/Legal (Attorney), Locked
   components:
   - type: ContainerFill
     containers:
@@ -22,7 +22,7 @@
   id: AirlockMaintAttorneyLocked
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/security_maints.rsi
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
 
 # Brigmedic
 - type: entity
@@ -79,7 +79,7 @@
 - type: entity
   parent: AirlockSecurityLocked
   id: AirlockCourtroomLocked
-  suffix: Security/Internal Affairs/Legal (Courtroom), Locked
+  suffix: Security/IAA/Legal (Courtroom), Locked
   components:
   - type: ContainerFill
     containers:
@@ -88,7 +88,7 @@
 - type: entity
   parent: AirlockSecurityGlassLocked
   id: AirlockCourtroomGlassLocked
-  suffix: Security/Internal Affairs/Legal (Courtroom), Locked
+  suffix: Security/IAA/Legal (Courtroom), Locked
   components:
   - type: ContainerFill
     containers:
@@ -113,7 +113,7 @@
 - type: entity
   parent: AirlockNT
   id: AirlockInternalAffairsLocked
-  suffix: Internal Affairs, Locked
+  suffix: IAA, Locked
   components:
   - type: Wires
     layoutId: AirlockSecurity
@@ -158,6 +158,7 @@
 - type: entity
   parent: AirlockMaintMiningCargoLocked
   id: AirlockMaintMiningLocked
+  suffix:
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/mining_cargo_maints.rsi
@@ -165,7 +166,7 @@
 # Mining / Cargo Shared
 - type: entity
   parent: AirlockMiningCargo
-  id: AirlockMiningCargoLocked
+  id: AirlockMiningLocked
   suffix: Mining, Locked
   components:
   - type: ContainerFill
@@ -180,13 +181,6 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsMining ]
-
-- type: entity
-  parent: AirlockMiningCargoLocked
-  id: AirlockMaintMiningCargoLocked
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/mining_cargo_maints.rsi
 
 # NT Personnel
 - type: entity

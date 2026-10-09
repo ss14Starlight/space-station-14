@@ -117,7 +117,7 @@
   id: AirlockMaintMedLocked
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/medical_maints.rsi
 
 - type: !PartialOnly entity
   id: AirlockMedicalMorgueMaintLocked

@@ -444,3 +444,4 @@ AirlockNTMaints: AirlockMaintNTLocked
 AirlockScienceMaints: AirlockMaintRnDLocked
 AirlockSecurityMaints: AirlockMaintSecLocked
 AirlockVirologyMaints: AirlockMaintVirologyLocked
+AirlockMaintMiningCargoLocked: AirlockMaintMiningLocked
