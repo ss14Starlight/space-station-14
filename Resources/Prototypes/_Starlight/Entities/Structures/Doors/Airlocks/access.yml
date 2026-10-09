@@ -183,10 +183,10 @@
 - type: entity
   parent: AirlockMiningCargoLocked
   id: AirlockMaintMiningCargoLocked
+  name: maintenance access
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/mining_cargo_maints.rsi
-
 
 # NT Personnel
 - type: entity
