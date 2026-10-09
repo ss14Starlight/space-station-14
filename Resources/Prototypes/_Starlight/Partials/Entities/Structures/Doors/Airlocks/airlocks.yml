@@ -30,6 +30,12 @@
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/command_maints.rsi
 
 - type: !PartialOnly entity
+  id: AirlockMaintCargoLocked
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/cargo_maints.rsi
+
+- type: !PartialOnly entity
   id: AirlockMaintCommandLocked
   components:
   - type: Sprite
@@ -129,13 +135,19 @@
   id: AirlockMaintResearchDirectorLocked
   components:
   - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/command_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintRnDLocked
+  components:
+  - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/science_maints.rsi
 
 - type: !PartialOnly entity
   id: AirlockMaintRnDMedLocked
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/command_maints.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/science_maints.rsi
 
 - type: !PartialOnly entity
   id: AirlockMaintSecLocked
@@ -147,7 +159,13 @@
   id: AirlockMaintServiceLocked
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/medical_maints.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintServiceTheatreLocked
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
 
 - type: !PartialOnly entity
   id: AirlockMaintTheatreLocked

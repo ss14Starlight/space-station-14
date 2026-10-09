@@ -332,41 +332,6 @@
 
 # Maints
 - type: entity
-  parent: AirlockRoboticsLocked
-  id: AirlockMaintRoboticsLocked
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/robotics_maints.rsi
-
-- type: entity
-  parent: AirlockParamedicLocked
-  id: AirlockMaintParamedicLocked
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/paramedic_maints.rsi
-
-- type: entity
-  parent: AirlockSurgeryLocked
-  id: AirlockMaintSurgeryLocked
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/surgery_maints.rsi
-
-- type: entity
-  parent: AirlockMailLocked
-  id: AirlockMaintMailLocked
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/mail_maints.rsi
-
-- type: entity
-  parent: AirlockBrigmedLocked
-  id: AirlockMaintBrigmedLocked
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/brigmedic_maints.rsi
-
-- type: entity
   parent: AirlockCentralCommand
   id: AirockMaintCentralCommand
   components:
@@ -386,14 +351,6 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/mining_cargo_maints.rsi
-
-- type: entity
-  parent: AirlockNT
-  id: AirlockNTMaints
-  suffix: NanoTrasen Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/nanotrasen_maints.rsi
 
 - type: entity
   parent: AirlockVirologyLocked

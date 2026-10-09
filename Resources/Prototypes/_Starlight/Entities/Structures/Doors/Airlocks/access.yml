@@ -22,7 +22,7 @@
   id: AirlockMaintNTLocked
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/nanotrasen_maints.rsi
 
 # Syndicate
 - type: entity
@@ -147,7 +147,7 @@
   id: AirlockMaintRoboticsLocked
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/robotics_maints.rsi
 
   # Surgery
 - type: entity
@@ -173,7 +173,7 @@
   id: AirlockMaintSurgeryLocked
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/surgery_maints.rsi
 
 # Paramedic
 - type: entity
@@ -199,7 +199,7 @@
   id: AirlockMaintParamedicLocked
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/paramedic_maints.rsi
 
 # Salvage/Mining Shared
 - type: entity
@@ -251,7 +251,7 @@
   id: AirlockMaintMiningCargoLocked
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/mining_cargo_maints.rsi
 
 # Retro Salvage
 - type: entity
@@ -334,7 +334,7 @@
   id: AirlockMaintMailLocked
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/mail_maints.rsi
 
 # Service
 - type: entity
@@ -356,18 +356,18 @@
       board: [ DoorElectronicsLegal ]
 
 - type: entity
-  parent: AirlockLegalLocked # Starlight
-  id: AirlockMaintLegalLocked # Starlight
+  parent: AirlockLegalLocked
+  id: AirlockMaintLegalLocked
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
 
 - type: entity
   parent: AirlockJournalismLocked
   id: AirlockMaintJournalismLocked
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
 
 # Courtroom
 - type: entity
@@ -393,7 +393,7 @@
   id: AirlockMaintCourtroomLocked
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/security_maints.rsi
 
 
 # Attorney
@@ -420,7 +420,7 @@
   id: AirlockMaintAttorneyLocked
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/security_maints.rsi
 
 
 # Xenoborg
@@ -540,7 +540,7 @@
   id: AirlockMaintBrigmedLocked
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/brigmedic_maints.rsi
 
 - type: entity
   parent: AirlockBrigmedPara
@@ -565,7 +565,7 @@
   id: AirlockMaintBrigmedParaLocked
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/security_maints.rsi
 
 # Solgov
 - type: entity
