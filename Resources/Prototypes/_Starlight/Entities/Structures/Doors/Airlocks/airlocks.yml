@@ -309,7 +309,7 @@
 - type: entity
   parent: Airlock
   id: AirlockNT
-  suffix: NanoTrasen
+  suffix: NT
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/nanotrasen.rsi
@@ -321,7 +321,7 @@
 - type: entity
   parent: AirlockGlass
   id: AirlockNTGlass
-  suffix: NanoTrasen
+  suffix: NT
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Glass/nanotrasen.rsi
@@ -337,32 +337,3 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/centcomm_maints.rsi
-
-- type: entity
-  parent: AirlockEVALocked
-  id: AirlockMaintEVALocked
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/eva_maints.rsi
-
-- type: entity
-  parent: AirlockMaintMiningCargoLocked
-  id: AirlockMaintMiningLocked
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/mining_cargo_maints.rsi
-
-- type: entity
-  parent: AirlockVirologyLocked
-  id: AirlockMaintVirologyLocked
-  suffix: Virology Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/virology_maints.rsi
-
-- type: entity
-  parent: AirlockInternalAffairsLocked
-  id: AirlockMaintInternalAffairsLocked
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/nanotrasen_maints.rsi

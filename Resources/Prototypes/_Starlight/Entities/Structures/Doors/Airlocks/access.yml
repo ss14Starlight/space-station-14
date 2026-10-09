@@ -2,7 +2,7 @@
 - type: entity
   parent: AirlockNT
   id: AirlockNTLocked
-  suffix: NanoTrasen, Locked
+  suffix: NT, Locked
   components:
     - type: ContainerFill
       containers:
@@ -11,7 +11,7 @@
 - type: entity
   parent: AirlockNTGlass
   id: AirlockNTGlassLocked
-  suffix: NanoTrasen, Locked
+  suffix: NT, Locked
   components:
     - type: ContainerFill
       containers:
@@ -20,6 +20,25 @@
 - type: entity
   parent: AirlockNTLocked
   id: AirlockMaintNTLocked
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/nanotrasen_maints.rsi
+
+# IAA
+- type: entity
+  parent: AirlockNT
+  id: AirlockInternalAffairsLocked
+  suffix: Internal Affairs, Locked
+  components:
+  - type: Wires
+    layoutId: AirlockSecurity
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsInternalAffairs ]
+
+- type: entity
+  parent: AirlockInternalAffairsLocked
+  id: AirlockMaintInternalAffairsLocked
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/nanotrasen_maints.rsi
@@ -122,6 +141,23 @@
     - type: ContainerFill
       containers:
         board: [DoorElectronicsSyndicateAgent]
+
+# EVA
+- type: entity
+  parent: AirlockEVALocked
+  id: AirlockMaintEVALocked
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/eva_maints.rsi
+
+# Virology
+- type: entity
+  parent: AirlockVirologyLocked
+  id: AirlockMaintVirologyLocked
+  suffix: Virology Maints
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/virology_maints.rsi
 
 # Robotics
 - type: entity
@@ -249,6 +285,14 @@
 - type: entity
   parent: AirlockMiningCargoLocked
   id: AirlockMaintMiningCargoLocked
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/mining_cargo_maints.rsi
+
+# Mining
+- type: entity
+  parent: AirlockMaintMiningCargoLocked
+  id: AirlockMaintMiningLocked
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/mining_cargo_maints.rsi
@@ -395,7 +439,6 @@
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/security_maints.rsi
 
-
 # Attorney
 - type: entity
   parent: AirlockServiceLocked
@@ -421,7 +464,6 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/security_maints.rsi
-
 
 # Xenoborg
 - type: entity
@@ -967,7 +1009,6 @@
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsVisitor ]
-
 
 # Escape Pods (gridfills)
 - type: entity
