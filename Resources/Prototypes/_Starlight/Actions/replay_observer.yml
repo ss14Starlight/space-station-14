@@ -1,0 +1,54 @@
+# Granted to the ReplayObserver. clientExclusive because replays have no server.
+
+- type: entity
+  parent: ActionToggleGhostHearing
+  id: ActionReplayToggleGhostHearing
+  components:
+  - type: Action
+    clientExclusive: true
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionReplayTogglePlayerOverlay
+  name: Toggle Player Overlay
+  description: Show usernames and antagonist status above players in this replay.
+  components:
+  - type: Action
+    icon: Interface/VerbIcons/information.svg.192dpi.png
+    clientExclusive: true
+  - type: InstantAction
+    event: !type:ReplayTogglePlayerOverlayActionEvent
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionReplayToggleStatusIcons
+  name: Toggle Status Icons
+  description: Show job, mindshield and health icons in this replay.
+  components:
+  - type: Action
+    icon: { sprite: Clothing/Eyes/Hud/med.rsi, state: icon }
+    clientExclusive: true
+  - type: InstantAction
+    event: !type:ReplayToggleStatusIconsActionEvent
+
+# Component set added to the replay observer by the status icons action. Never spawned.
+- type: entity
+  id: ReplayObserverStatusHud
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Inorganic
+    - Silicon
+    - IPC
+    - Hybrid
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+    - Inorganic
+    - Silicon
+    - IPC
+    - Hybrid

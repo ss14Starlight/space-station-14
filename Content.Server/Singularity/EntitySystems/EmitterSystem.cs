@@ -175,6 +175,7 @@ namespace Content.Server.Singularity.EntitySystems
             AlertRadio((uid, component), component.LocUnpowered);
 
             component.IsPowered = false;
+            UpdateAmbience(uid, component); // Starlight
 
             // Must be set while emitter powered.
             DebugTools.AssertNotNull(component.TimerCancel);
@@ -191,6 +192,7 @@ namespace Content.Server.Singularity.EntitySystems
             }
 
             component.IsPowered = true;
+            UpdateAmbience(uid, component); // Starlight
 
             component.FireShotCounter = 0;
             component.TimerCancel = new CancellationTokenSource();

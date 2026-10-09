@@ -19,6 +19,7 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     private readonly ResPath _rsiPath = new("/Textures/_Starlight/CosmicCult/Effects/ability_siphonvfx.rsi");
 
@@ -40,6 +41,8 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
 
         SubscribeNetworkEvent<CosmicSiphonIndicatorEvent>(OnSiphon);
         SubscribeLocalEvent<CosmicCultComponent, UpdateAlertSpriteEvent>(OnUpdateAlert);
+
+        SubscribeLocalEvent<CosmicColossusComponent, AppearanceChangeEvent>(OnColossusAppearanceChange);
     }
 
     #region Siphon Visuals
@@ -138,6 +141,25 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
         if (_prototype.TryIndex(ent.Comp.StatusIcon, out var iconPrototype))
             args.StatusIcons.Add(iconPrototype);
     }
+    #endregion
+
+    #region Colossus sprite
+    private void OnColossusAppearanceChange(Entity<CosmicColossusComponent> ent, ref AppearanceChangeEvent args)
+        {
+            if (!_appearance.TryGetData(ent, ColossusVisuals.Health, out ColossusHealth health))
+                return;
+
+            var state = health switch
+            {
+                ColossusHealth.Healthy => "colossus",
+                ColossusHealth.Damaged => "colossus_damaged",
+                ColossusHealth.HeavilyDamaged => "colossus_heavily_damaged",
+                ColossusHealth.Crumbling => "colossus_crumbling",
+                _ => "colossus",
+            };
+
+            _sprite.LayerSetRsiState(ent.Owner, "base", state);
+        }
     #endregion
 }
 
