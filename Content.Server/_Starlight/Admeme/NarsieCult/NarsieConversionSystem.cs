@@ -18,7 +18,6 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Content.Shared.NPC.Systems;  // or Content.Server.NPC if that's where it lives in your tree
 
 namespace Content.Server._Starlight.Admeme.NarsieCult;
 
