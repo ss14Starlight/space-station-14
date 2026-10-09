@@ -1,0 +1,15 @@
+- type: !PartialOnly entity
+  id: ReplayObserver
+  components:
+  - type: BypassInteractionChecks # Reveals strip-hidden slots and items, as for aghosts.
+  - type: IgnoreUIRange # Viewer windows are opened from anywhere; without this they close as soon as they open.
+  - type: RadarConsole
+    followEntity: true
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionObserverShowRadar

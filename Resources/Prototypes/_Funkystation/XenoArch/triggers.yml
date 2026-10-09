@@ -15,7 +15,7 @@
 - type: xenoArchTrigger
   id: TriggerMilk
   tip: artifact-trigger-hint-milk
-  components:
+  components: # Starlight: Overridden by partial
   - type: XATReactive
     reagents:
     - Milk
@@ -122,7 +122,7 @@
 - type: xenoArchTrigger
   id: TriggerCitrus
   tip: artifact-trigger-hint-citrus
-  components:
+  components: # Starlight: Overridden by partial
   - type: XATReactive
     reagents:
     - Lemonade
@@ -187,7 +187,7 @@
 - type: xenoArchTrigger
   id: TriggerTechnologyDisk
   tip: artifact-trigger-hint-tech-disc
-  components:
+  components: # Starlight: Overridden by partial
   - type: XATCompNearby
     requireComponentWithName: TechnologyDisk
     radius: 2

@@ -45,3 +45,16 @@
 - type: !PartialOnly ambientMusic
   id: Maintenance
   rules: InMaintenanceZone
+
+- type: !PartialOnly ambientMusic
+  id: General
+  extraDelay: 120
+
+- type: !PartialOnly soundCollection
+  id: SpaceWind
+  files:
+    - /Audio/_Starlight/Effects/Weather/space_wind_2_1.ogg
+    - /Audio/_Starlight/Effects/Weather/space_wind_2_2.ogg
+    - /Audio/_Starlight/Effects/Weather/space_wind_3_1.ogg
+    - /Audio/_Starlight/Effects/Weather/space_wind_4_1.ogg
+    - /Audio/_Starlight/Effects/Weather/space_wind_4_2.ogg

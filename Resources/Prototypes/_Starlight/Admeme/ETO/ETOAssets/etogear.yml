@@ -63,6 +63,7 @@
       - Biological
       - IPC
       - Hybrid
+      - MoffDemonBiological
   - type: HideLayerClothing
     slots:
     - Hair
@@ -124,6 +125,7 @@
       - Biological
       - IPC
       - Hybrid
+      - MoffDemonBiological
   - type: HideLayerClothing
     slots:
     - Hair
