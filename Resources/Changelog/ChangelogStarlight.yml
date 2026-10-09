@@ -1,20 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: The Estoc DMR now has less slowdown when wielding and the same accuracy as other rifles.
-    type: Tweak
-  id: 408906
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Passive regeneration on mobs no longer stops after taking a certain amount of damage.
-    type: Tweak
-  id: 408907
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
   - message: Hyperzine now heals you when critical, rather than relying on being above a certain amount of damage.
     type: Tweak
   id: 408908
@@ -2799,4 +2785,18 @@ Entries:
   id: 409305
   time: '2026-10-09T12:34:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6580
+- author: VictoriaActual
+  changes:
+  - message: Added five new ties to the game.
+    type: Add
+  id: 409306
+  time: '2026-10-09T12:34:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6559
+- author: VictoriaActual
+  changes:
+  - message: Adjusted role loadouts to include ties for everyone!
+    type: Tweak
+  id: 409307
+  time: '2026-10-09T12:34:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6559
 Order: -1
