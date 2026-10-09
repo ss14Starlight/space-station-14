@@ -1,158 +1,4 @@
 Entries:
-- author: Kirb
-  changes:
-  - message: tweaked the ID section on sawian guidebooks.
-    type: Tweak
-  id: 408875
-  time: '2026-09-25T23:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6300
-- author: wonderfulnewworld
-  changes:
-  - message: You can now disable viewing stains.
-    type: Tweak
-  id: 408876
-  time: '2026-09-26T00:04:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6349
-- author: wonderfulnewworld
-  changes:
-  - message: Stains will no longer appear on masks that are toggled off.
-    type: Fix
-  id: 408877
-  time: '2026-09-26T00:04:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6349
-- author: Yosif
-  changes:
-  - message: Botany refactor from a wizards now is ported to a starlight (will port more stuff when it will be on a stable branch).
-    type: Add
-  id: 408878
-  time: '2026-09-26T02:03:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6355
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Reverted emote wheel ordering to how it was before the most recent update, and ensured it can't be shuffled around again.
-    type: Tweak
-  id: 408879
-  time: '2026-09-26T08:57:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6338
-- author: Musiklie
-  changes:
-  - message: Science Techfab now gains the experimental welder when advanced tools is unlocked.
-    type: Add
-  id: 408880
-  time: '2026-09-26T09:27:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6337
-- author: Seven Shades & Mack
-  changes:
-  - message: Cards hud button is back.
-    type: Add
-  id: 408881
-  time: '2026-09-26T09:27:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6331
-- author: Seven Shades & Mack
-  changes:
-  - message: There is now a 3 minute delay between picking the criminal card and the NT-ISD fax being sent.
-    type: Tweak
-  id: 408882
-  time: '2026-09-26T09:27:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6331
-- author: Caws
-  changes:
-  - message: After reviewing hiring guidelines, Central Command has determined Blueshield Officers may no longer be pacifists.
-    type: Tweak
-  id: 408883
-  time: '2026-09-26T09:54:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6341
-- author: Caws
-  changes:
-  - message: Straitjackets now take 5 seconds to apply to a stunned target instead of 6 seconds. It was already possible to put someone in a straitjacket from being stunned with good timing, this just makes it less annoying.
-    type: Tweak
-  id: 408884
-  time: '2026-09-26T10:19:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6258
-- author: Caws
-  changes:
-  - message: Straitjackets are now a Huge inventory item (4x4) instead of Normal (2x2) inventory item.
-    type: Tweak
-  id: 408885
-  time: '2026-09-26T10:19:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6258
-- author: baltdev
-  changes:
-  - message: Added the Twisty Cube, a 3x3x3 turning puzzle identical in functionality (but not copyright) to the Rubik's Cube.
-    type: Add
-  id: 408886
-  time: '2026-09-26T10:42:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6317
-- author: Caws
-  changes:
-  - message: Dogs can now blink.
-    type: Fix
-  id: 408887
-  time: '2026-09-26T10:42:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6358
-- author: Caws
-  changes:
-  - message: Dogs can now sneeze.
-    type: Fix
-  id: 408888
-  time: '2026-09-26T10:42:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6358
-- author: Caws
-  changes:
-  - message: Dogs can now yawn.
-    type: Fix
-  id: 408889
-  time: '2026-09-26T10:42:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6358
-- author: Xale
-  changes:
-  - message: Reduced the fire intensity scaling of tainted clothing being set on fire. It is still very lethal if ignored.
-    type: Tweak
-  id: 408890
-  time: '2026-09-26T10:42:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6352
-- author: Terkala
-  changes:
-  - message: Reduced some sources of Dungeon generation lag.
-    type: Fix
-  id: 408891
-  time: '2026-09-26T11:11:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6259
-- author: Wizden Team
-  changes:
-  - message: Starlight is now 6 months behind Wizden instead of 7.
-    type: Add
-  id: 408892
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: 'EXPERIMENTAL: Added the xenoborg crystal!'
-    type: Add
-  id: 408893
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: 'EXPERIMENTAL: Added the xenoborg extractor which can produce the xenoborg crystal.'
-    type: Add
-  id: 408894
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: Techfabs now play an animation while building something.
-    type: Add
-  id: 408895
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: The xenoborg gun now has a unique sprite.
-    type: Add
-  id: 408896
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
 - author: Wizden Team
   changes:
   - message: Internal code changes to damage handling may result in slightly different numbers for some medicines and/or some attacks.
@@ -2799,4 +2645,158 @@ Entries:
   id: 409274
   time: '2026-10-07T18:51:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6422
+- author: Yosif
+  changes:
+  - message: Sentient plants now cant rotate their sprite.
+    type: Fix
+  id: 409275
+  time: '2026-10-08T05:38:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6565
+- author: Yosif
+  changes:
+  - message: Sentient plants now can speak Sylvan.
+    type: Tweak
+  id: 409276
+  time: '2026-10-08T05:38:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6565
+- author: wonderfulnewworld
+  changes:
+  - message: The servant of narsie can now spawn from the hellportal.
+    type: Add
+  id: 409277
+  time: '2026-10-08T06:06:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6562
+- author: wonderfulnewworld
+  changes:
+  - message: Lowered servant of narsie health and damage.
+    type: Tweak
+  id: 409278
+  time: '2026-10-08T06:06:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6562
+- author: wonderfulnewworld
+  changes:
+  - message: The servant of narsie is now in the same faction as the other hellportal mobs.
+    type: Fix
+  id: 409279
+  time: '2026-10-08T06:06:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6562
+- author: Yosif
+  changes:
+  - message: PlantTray no longer shows ReadyToHarvest indicator if plant died.
+    type: Fix
+  id: 409280
+  time: '2026-10-08T06:07:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6561
+- author: Xale
+  changes:
+  - message: Examining living catatonic characters under NPC control will now display them as "acting without reason" instead of catatonic.
+    type: Add
+  id: 409281
+  time: '2026-10-08T06:26:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6556
+- author: SevenShades
+  changes:
+  - message: Added a drying rack for drinking glasses, to store and drain after washing.
+    type: Add
+  id: 409282
+  time: '2026-10-08T10:21:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6568
+- author: Rinary
+  changes:
+  - message: 'Added reverb based on room size and zones, now you will hear reverb in maints, in chaplain, hallway and big rooms NOTE: THIS CHANGE HAS VOLUME SLIDER - YOU CAN DISABLE IT.'
+    type: Add
+  id: 409283
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Added sounds occlusion in Vacuum, now you won't hear anything in space or rooms without atmosphere.
+    type: Add
+  id: 409284
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Changed walls occlusion power, now you'll hear less sounds through walls.
+    type: Tweak
+  id: 409285
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Added silent pickup ability, it takes 2.5seconds to pickup item but you won't make any sound.
+    type: Add
+  id: 409286
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Fixed loud sounds when swapping modules when playing borgs.
+    type: Fix
+  id: 409287
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Added slight sounds occlusion while wearing hardsuit helmet(not all).
+    type: Add
+  id: 409288
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Reworked audio tab in settings, now it has vertical tabs, so it's will be categorized and you will see only 2-3 sliders at one time rather then wall of sliders.
+    type: Tweak
+  id: 409289
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Changed pickup sounds volume, now they're quiter.
+    type: Tweak
+  id: 409290
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Changed glass/dring glass pickup sounds to be more soft.
+    type: Tweak
+  id: 409291
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Add unique ambience sounds for working emitter and medical scanner.
+    type: Add
+  id: 409292
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Rinary
+  changes:
+  - message: Added unique weather sounds for space wind(6 different sounds) and for both ashstorms, weak and strong.
+    type: Add
+  id: 409293
+  time: '2026-10-08T10:37:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Xale
+  changes:
+  - message: Vape now works properly with activation hotkeys such as "Activate item in hand".
+    type: Fix
+  id: 409294
+  time: '2026-10-08T11:17:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6572
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Broadened the activators for "floppy storage", "citrus", "magnetic waves", and "dairy" artifact triggers. There's now new, creative ways to trigger these nodes.
+    type: Tweak
+  id: 409295
+  time: '2026-10-08T11:17:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6542
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Changed the "bluespace disturbance" artifact effect variant that swaps the artifact and a random person. This effect will no longer teleport SSD or dead people, and is half as likely to appear.
+    type: Tweak
+  id: 409296
+  time: '2026-10-08T11:17:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6542
 Order: -1

@@ -26,6 +26,9 @@ public sealed partial class AmbientOneShotSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private SoundCategorySystem _soundCategory = default!;
+    [Dependency] private VacuumHearingSystem _vacuumHearing = default!;
+
+    private const float HelmetVolume = -6f;
 
     private readonly Dictionary<string, TimeSpan> _next = new();
     private float _volumeSlider;
@@ -82,7 +85,12 @@ public sealed partial class AmbientOneShotSystem : EntitySystem
     {
         var offset = _random.NextAngle().ToVec() * _random.NextFloat(proto.Distance.X, proto.Distance.Y);
         var coords = _xform.GetMoverCoordinates(player).Offset(offset);
-        var audioParams = proto.Sound.Params.WithVolume(proto.Sound.Params.Volume + _volumeSlider);
+        var volume = proto.Sound.Params.Volume + _volumeSlider;
+
+        if (_vacuumHearing.HelmetOcclusionValue > 0f)
+            volume += HelmetVolume;
+
+        var audioParams = proto.Sound.Params.WithVolume(volume);
 
         using (_soundCategory.Exempt())
             _audio.PlayStatic(proto.Sound, Filter.Local(), coords, false, audioParams);
