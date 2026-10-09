@@ -159,7 +159,7 @@
     outerClothing: ClothingOuterArmorBlackstarAssault
     jumpsuit: ClothingUniformJumpsuitBlackstarAssault
     gloves: ClothingHandsGlovesCombat
-    shoes: ClothingShoesBootsBlackstarAssaultFilled
+    shoes: ClothingShoesBootsJackFilled
     back: ClothingBackpackRadioBlackstar
     belt: ClothingBeltMilitaryWebbing
     id: BlackstarDreadwalkerPDA
@@ -167,7 +167,7 @@
     eyes: ClothingEyesGlassesBlackstar
     pocket1: WeaponTaser
     pocket2: PinpointerUniversal
-    suitstorage: WeaponRifleBlackstarSTG44
+    suitstorage: WeaponRiflePrometheus
   storage:
     back:
     - RegenerativeMesh
@@ -235,7 +235,7 @@
     id: BlackstarHighLegatePDA
     pocket1: WeaponTaser
     pocket2: PinpointerUniversal
-    suitstorage: WeaponRifleBlackstarSTG44
+    suitstorage: WeaponRiflePrometheus
   storage:
     back:
     - RegenerativeMesh
@@ -268,7 +268,7 @@
     id: BlackstarLegatePDA
     pocket1: WeaponTaser
     pocket2: PinpointerUniversal
-    suitstorage: WeaponRifleBlackstarSTG44
+    suitstorage: WeaponRiflePrometheus
   storage:
     back:
     - RegenerativeMesh
@@ -301,7 +301,7 @@
     id: BlackstarLegionnairePDA
     pocket1: WeaponTaser
     pocket2: PinpointerUniversal
-    suitstorage: WeaponRifleBlackstarSTG44
+    suitstorage: WeaponRiflePrometheus
   storage:
     back:
     - RegenerativeMesh
@@ -358,5 +358,4 @@
     - MedkitFilled
     - FlashlightSeclite
     - DoubleEmergencyOxygenTankFilled
-
 
