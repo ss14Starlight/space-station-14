@@ -155,6 +155,7 @@
     - PowerCellsStatic
     - ElectronicsStatic
     - ServiceBoardsStaticGoob # Goobstation - Radio Host boards
+    - HydroponicsStatic
     # Starlight Start
     - CassetteTape
     - TapeRecorder
