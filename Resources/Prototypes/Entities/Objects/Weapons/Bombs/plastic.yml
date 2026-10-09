@@ -35,7 +35,6 @@
         base:
           Primed: { state: primed }
           Unprimed: { state: icon }
-  - type: EorgPreventSticking # Starlight
 
 - type: entity
   name: composition C-4
@@ -99,7 +98,7 @@
 - type: entity
   name: seismic charge
   description: Concussion based explosive designed to destroy large amounts of rock.
-  parent: [ BaseSalvageMiningContraband, BasePlasticExplosive ] #Starlight SalvContra
+  parent: [ BaseSalvageMiningContraband, BasePlasticExplosive ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: SeismicCharge
   components:
   - type: Sprite

@@ -1,0 +1,16 @@
+- type: !PartialOnly entity
+  id: DoorElectronics
+  components:
+    - type: Tag
+      tags:
+        - RamChip # FH
+    - type: DoorElectronics
+      accessGroups:
+      - General
+      - Security
+      - Cargo
+      - Command
+      - Research
+      - Medical
+      - Service
+      - Engineering

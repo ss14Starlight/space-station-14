@@ -1,0 +1,32 @@
+- type: constructionGraph
+  id: DryingRackGraph
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: dryingRack
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 1
+            - material: MetalRod
+              amount: 2
+              doAfter: 2
+    - node: dryingRack
+      entity: DryingRackGlassware
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: PartRodMetal
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 4

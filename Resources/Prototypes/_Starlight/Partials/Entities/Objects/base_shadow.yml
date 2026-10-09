@@ -1,0 +1,4 @@
+- type: !PartialOnly entity
+  id: BaseShadow
+  components:
+  - type: DarkLight

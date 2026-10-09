@@ -30,7 +30,6 @@
     damageUnholy: ## What damage is dealt when a chaplain hits an unholy creature
       types:
         Heat: 20
-    cluwneCureChance: 0.7 #Starlight Edit
   - type: MeleeWeapon
     soundHit:
       collection: Punch
@@ -67,10 +66,6 @@
     - Book
   - type: StealTarget
     stealGroup: Bible
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    fallbackPrice: 0
-  # Starlight-end
 
 - type: entity
   parent: [Bible, BaseSyndicateContraband]
@@ -100,6 +95,7 @@
     failChance: 0
     locPrefix: "necro"
     healSound: "/Audio/Effects/lightburn.ogg"
+    healingLightEffect: EvilLightEffect
   - type: Summonable
     specialItem: SpawnPointGhostCerberus
     respawnTime: 300
@@ -185,3 +181,26 @@
     sprite: Objects/Specific/Chapel/ratvartablet.rsi
   - type: Item
     sprite: Objects/Specific/Chapel/ratvartablet.rsi
+
+- type: entity
+  id: HolyLightEffect
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: PointLight
+      enabled: true
+      radius: 1.5
+      energy: 20
+      color: lightgoldenrodyellow
+      netsync: false
+    - type: LightFade
+      duration: 0.7
+    - type: TimedDespawn
+      lifetime: 0.7
+
+- type: entity
+  id: EvilLightEffect
+  categories: [ HideSpawnMenu ]
+  parent: HolyLightEffect
+  components:
+    - type: PointLight
+      color: red

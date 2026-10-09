@@ -14,6 +14,8 @@ namespace Content.Server.RoundEnd;
 
 public sealed partial class RoundEndSystem
 {
+    public float AutoCallTime;
+
     public void CancelRoundRestartTimer(ICommonSession? canceller = null)
     {
         if (_gameTicker.RunLevel != GameRunLevel.PostRound)

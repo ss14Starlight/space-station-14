@@ -52,6 +52,7 @@
     - id: KingRatMigration
     - id: RevenantSpawn
     - id: RailroadingTerminator # Starlight
+    - id: ScrapperSpawn # Starlight
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -62,18 +63,10 @@
     - id: DragonSpawn
     - id: NinjaSpawn
     - id: ParadoxCloneSpawn
-    - id: ParadoxCrisisSpawn # Starlight
     - id: SleeperAgents
- #   - id: ZombieOutbreak starlight - no more midround zeds
+    - id: ZombieOutbreak
     - id: LoneOpsSpawn
     - id: WizardSpawn
-    - id: AbductorsSpawn # Starlight start
-    #- id: SubXenoborgs
-    #- id: BrighteyeSpawn
-    #- id: TerrorSpidersSpawn
-    - id: RailroadingTerminator
-    - id: ColossusSpawn # Starlight end
-    - id: EeepEvent # imp
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -449,13 +442,12 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-horde-announcement
     startAudio:
-      path: /Audio/_Starlight/Announcements/attention.ogg
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 20
     minimumPlayers: 15
-    weight: 3.5 # 🌟Starlight🌟 Casualization
+    weight: 5
     duration: 5
     maxDuration: 20
   - type: VentHordeRule
@@ -471,13 +463,12 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-horde-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
+    earliestStart: 20
     minimumPlayers: 15
-    weight: 3.5 # 🌟Starlight🌟 Casualization
+    weight: 5
     duration: 5
     maxDuration: 20
   - type: VentHordeRule
@@ -493,13 +484,12 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-horde-announcement
     startAudio:
-      path: /Audio/_Starlight/Announcements/attention.ogg
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 20
     minimumPlayers: 15
-    weight: 3.5 # 🌟Starlight🌟 Casualization
+    weight: 5
     duration: 5
     maxDuration: 20
   - type: VentHordeRule
@@ -513,11 +503,10 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-horde-announcement
     startAudio:
-      path: /Audio/_Starlight/Announcements/attention.ogg
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 20
     minimumPlayers: 20
     weight: 1.5
     duration: 5

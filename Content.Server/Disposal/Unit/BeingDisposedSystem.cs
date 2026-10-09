@@ -1,6 +1,7 @@
-﻿using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Disposal.Unit;
+using Content.Shared.Atmos;
 
 namespace Content.Server.Disposal.Unit;
 

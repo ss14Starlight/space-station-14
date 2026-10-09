@@ -32,16 +32,21 @@ public sealed partial class LatchSystem : SharedLatchSystem
     private const float ShakeMagnitude = 0.08f;
 
     private const string OutlineShaderId = "latch-target-outline";
-    private static readonly ProtoId<ShaderPrototype> OutlineShaderProto = "LatchTargetOutline";
+    private static readonly ProtoId<ShaderPrototype> _outlineShaderProto = "LatchTargetOutline";
 
     private readonly LatchVignetteOverlay _vignette = new();
     private ShaderInstance _outline = default!;
+
+    /// <summary>
+    /// Raised when the local player is the one being bitten by Bite Harder.
+    /// </summary>
+    public event Action? LocalTargetBitten;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        _outline = _prototypes.Index(OutlineShaderProto).Instance();
+        _outline = _prototypes.Index(_outlineShaderProto).Instance();
 
         SubscribeNetworkEvent<LatchBiteShakeEvent>(OnBiteShake);
         SubscribeLocalEvent<LatchBiteShakeVisualsComponent, AnimationCompletedEvent>(OnShakeAnimationCompleted);
@@ -123,8 +128,15 @@ public sealed partial class LatchSystem : SharedLatchSystem
             latched.Latcher == entity)
         {
             _vignette.BiteIntensity = 1f;
+            LocalTargetBitten?.Invoke();
         }
     }
+
+    /// <summary>
+    /// Sends a struggle press to the server, tick-stamped by the engine.
+    /// </summary>
+    /// <param name="tickOffset">How far past the current tick this frame was, in seconds.</param>
+    public void RequestStruggle(float tickOffset) => RaiseNetworkEvent(new LatchStruggleRequestEvent(tickOffset));
 
     private void OnShakeAnimationCompleted(Entity<LatchBiteShakeVisualsComponent> ent, ref AnimationCompletedEvent args)
     {

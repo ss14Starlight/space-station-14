@@ -1,0 +1,16 @@
+- type: !PartialOnly loadoutGroup
+  id: MedicalBackpack
+  loadouts:
+  - StarBackpack
+  - StarSatchel
+
+- type: !PartialOnly loadoutGroup
+  id: ChemistBackpack
+  loadouts:
+  - StarBackpack
+  - StarSatchel
+
+- type: !PartialOnly loadoutGroup
+  id: SurvivalMedical
+  loadouts:
+  - EmergencyDwarfOxygenMedical

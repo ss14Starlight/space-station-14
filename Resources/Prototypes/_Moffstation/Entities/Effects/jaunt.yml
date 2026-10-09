@@ -1,0 +1,61 @@
+﻿- type: entity
+  id: EffectWraithJaunt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Mobs/Demons/wraith.rsi
+    state: jaunt_out
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 0.9
+
+- type: entity
+  parent: BaseActionPolymorph
+  id: MoffActionPolymorphWraithJaunt
+  name: Abyssal Jaunt
+  description: Melt into the the shadows, ambush your prey
+  components:
+  - type: Action
+    useDelay: 10
+  - type: TargetAction
+  - type: Sprite
+    sprite: Objects/Magic/magicactions.rsi
+    state: jaunt
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: MoffDemonWraithJaunt
+
+- type: entity
+  parent: BaseMobJaunt
+  id: MoffDemonWraithJaunt
+  name: narsian wraith
+  suffix: Hellportal, Jaunt
+  components:
+  - type: Sprite
+    sprite: Mobs/Ghosts/ghost_human.rsi
+    color: "#690d2a"
+    layers:
+    - state: animated
+      shader: unshaded
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 6
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: EffectWraithJaunt
+  - type: NpcFactionMember
+    factions:
+    - MoffNarsianDemon
+  - type: CombatMode
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 0
+    soundHit: null
+    attackRate: 0.1
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
