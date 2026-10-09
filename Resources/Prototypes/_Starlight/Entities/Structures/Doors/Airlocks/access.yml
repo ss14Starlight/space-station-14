@@ -76,7 +76,7 @@
   name: maintenance access
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/security_maints.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/brigmedic_maints.rsi
 
 # Courtroom
 - type: entity
