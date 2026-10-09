@@ -1,27 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Internal code changes to damage handling may result in slightly different numbers for some medicines and/or some attacks.
-    type: Tweak
-  id: 408897
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: 'EXPERIMENTAL: The recipes to make xenoborg chassis and xenoborg modules now uses xenoborg crystals instead of normal materials.'
-    type: Tweak
-  id: 408898
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: The uplink now properly states the capacity of the hypodart.
-    type: Fix
-  id: 408899
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
   - message: Holosign projectors and dragon rifts no longer place signs at strange angles.
     type: Fix
   id: 408900
@@ -2799,4 +2778,25 @@ Entries:
   id: 409296
   time: '2026-10-08T11:17:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6542
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Fixed a few air vents and scrubbers that were not the 'cold weather' variants (with larger temperature thresholds before firelocks and what not close).
+    type: Fix
+  id: 409297
+  time: '2026-10-09T11:27:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6581
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Fixed some labels around the Supermatter.
+    type: Fix
+  id: 409298
+  time: '2026-10-09T11:27:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6581
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Fixed a pipe that ran under a solid wall by Supermatter.
+    type: Fix
+  id: 409299
+  time: '2026-10-09T11:27:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6581
 Order: -1
