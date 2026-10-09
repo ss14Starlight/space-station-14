@@ -23,7 +23,7 @@
   - AirlockMaintMedLocked
   - AirlockMaintJanitorLocked
   - AirlockMaintAtmoLocked
-  - AirlockMaintMiningLocked
+  - AirlockMaintMiningCargoLocked
 
 - type: zone
   id: Command

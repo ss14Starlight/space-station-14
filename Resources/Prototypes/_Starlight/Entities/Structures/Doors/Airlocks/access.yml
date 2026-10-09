@@ -163,18 +163,8 @@
 
 # Mining
 - type: entity
-  parent: AirlockMiningLocked
-  id: AirlockMaintMiningLocked
-  name: maintenance access
-  suffix:
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/mining_cargo_maints.rsi
-
-# Mining / Cargo Shared
-- type: entity
   parent: AirlockMiningCargo
-  id: AirlockMiningLocked
+  id: AirlockMiningCargoLocked
   suffix: Mining, Locked
   components:
   - type: ContainerFill
@@ -189,6 +179,14 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsMining ]
+
+- type: entity
+  parent: AirlockMiningCargoLocked
+  id: AirlockMaintMiningCargoLocked
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/mining_cargo_maints.rsi
+
 
 # NT Personnel
 - type: entity
