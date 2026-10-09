@@ -280,6 +280,8 @@ namespace Content.IntegrationTests.Tests
                 // Most of the filled xenobiology slime cores intentionally spawn an entity
                 "FilledSlimeExtract",
                 "Loadout",
+                // spawns temporary SpiderWebSoul entities that outlive the totem.
+                "TotemSlowCurse",
                 // Starlight end
                 // ES start
                 "ESTimedDespawn",
