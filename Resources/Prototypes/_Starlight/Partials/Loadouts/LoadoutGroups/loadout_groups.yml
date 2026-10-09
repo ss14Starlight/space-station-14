@@ -1,0 +1,195 @@
+# Prototypes/Loadouts/loadout_groups.yml
+- type: !PartialOnly loadoutGroup
+  id: CaptainNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+
+- type: !PartialOnly loadoutGroup
+  id: HoPNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+  - DetectiveTie
+  - SecurityRedNeckTie
+
+- type: !PartialOnly loadoutGroup
+  id: AssistantNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+
+- type: !PartialOnly loadoutGroup
+  id: IAANeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+
+- type: !PartialOnly loadoutGroup
+  id: LawyerNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+
+- type: !PartialOnly loadoutGroup
+  id: ChaplainNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+
+- type: !PartialOnly loadoutGroup
+  id: QuartermasterNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+
+- type: !PartialOnly loadoutGroup
+  id: ChiefEngineerNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+
+- type: !PartialOnly loadoutGroup
+  id: ResearchDirectorNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+
+- type: !PartialOnly loadoutGroup
+  id: ScientistNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+
+- type: !PartialOnly loadoutGroup
+  id: HeadofSecurityNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+  - DetectiveTie
+  - SecurityRedNeckTie
+
+- type: !PartialOnly loadoutGroup
+  id: DetectiveNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+  - SecurityRedNeckTie
+
+- type: !PartialOnly loadoutGroup
+  id: RoboticistNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+
+- type: !PartialOnly loadoutGroup
+  id: NanoTrasenRepresentativeNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+
+- type: !PartialOnly loadoutGroup
+  id: MagistrateNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+
+- type: !PartialOnly loadoutGroup
+  id: BlueShieldNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+
+- type: !PartialOnly loadoutGroup
+  id: SalvageLeadNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+
+- type: !PartialOnly loadoutGroup
+  id: JanitorNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+
+- type: !PartialOnly loadoutGroup
+  id: WardenNeck
+  loadouts:
+  - BlueTieGeneric
+  - BrownTieGeneric
+  - GreenTieGeneric
+  - GreyTieGeneric
+  - LGBTieLoadout
+  - ScientistTie
+  - DetectiveTie
+  - SecurityRedNeckTie
