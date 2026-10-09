@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Admin door remote once again works through walls.
-    type: Fix
-  id: 408904
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
   - message: Hyper Autolathe now needs 4 manipulators instead of 3.
     type: Tweak
   id: 408905
@@ -2799,4 +2792,11 @@ Entries:
   id: 409303
   time: '2026-10-09T12:04:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6579
+- author: rhithebirdthing
+  changes:
+  - message: Added a butcher module for service borgs.
+    type: Add
+  id: 409304
+  time: '2026-10-09T12:04:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6567
 Order: -1
