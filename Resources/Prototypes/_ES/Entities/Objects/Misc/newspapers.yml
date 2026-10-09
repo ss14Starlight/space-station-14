@@ -71,7 +71,7 @@
         Quantity: 1
   - type: PhysicalComposition
     materialComposition:
-      SheetPrinter: 100
+      SheetPrinter: 300
   - type: Tag
     tags:
     - Recyclable
