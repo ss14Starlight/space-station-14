@@ -31,8 +31,7 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Piercing: 7
-        Slash: 7
+        Piercing: 16
   - type: DamageOtherOnHit
     damage:
       types:
@@ -43,7 +42,6 @@
       types:
         Piercing: 2
         Slash: 2
-        Structural: 10 #Unable to damage some structure otherwise
   - type: DamageOnLand
     damage:
       types:
