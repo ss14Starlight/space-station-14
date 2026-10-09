@@ -37,3 +37,98 @@
   id: FloorGlassUraniumReinforced
   footstepSounds:
     collection: FootstepGlass
+
+- type: !PartialOnly tile
+  id: FloorConcrete
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorConcreteMono
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorConcreteSmooth
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorGrayConcrete
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorGrayConcreteMono
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorGrayConcreteSmooth
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorOldConcrete
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorOldConcreteMono
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorOldConcreteSmooth
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorOldConcreteBricks
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorOldConcreteTile
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorIronsandConcrete
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorIronsandConcreteMono
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorIronsandConcreteSmooth
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorAsphalt
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorWhiteMarble
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorDarkMarble
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorPlasmaMarble
+  footstepSounds:
+    collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorUraniumMarble
+  footstepSounds:
+    collection: FootstepConcrete

@@ -41,6 +41,8 @@ public sealed partial class BreachWindSystem : EntitySystem
         public TimeSpan Until;
         public float Volume;
         public float? PassVolume;
+
+        public bool Decompressed;
     }
 
     /// <summary>
@@ -59,13 +61,16 @@ public sealed partial class BreachWindSystem : EntitySystem
             wind.Until = _timing.CurTime + _linger;
 
             wind.PassVolume = MathF.Max(wind.PassVolume ?? float.MinValue, volume);
+
+            if (!wind.Decompressed)
+                wind.Decompressed = TryPlayDecompression(grid, tile, pressureDifference, volume);
+
             return;
         }
 
-        var coordinates = _maps.ToCenterCoordinates(grid, tile);
-        TryPlayDecompression(grid, tile, coordinates, pressureDifference, volume);
+        var decompressed = TryPlayDecompression(grid, tile, pressureDifference, volume);
 
-        var entity = Spawn(_windPrototype, coordinates);
+        var entity = Spawn(_windPrototype, _maps.ToCenterCoordinates(grid, tile));
         _ambient.SetVolume(entity, volume);
         _winds[key] = new Wind
         {
@@ -73,13 +78,14 @@ public sealed partial class BreachWindSystem : EntitySystem
             Until = _timing.CurTime + _linger,
             Volume = volume,
             PassVolume = volume,
+            Decompressed = decompressed,
         };
     }
 
-    private void TryPlayDecompression(EntityUid grid, Vector2i tile, EntityCoordinates coordinates, float pressureDifference, float volume)
+    private bool TryPlayDecompression(EntityUid grid, Vector2i tile, float pressureDifference, float volume)
     {
         if (pressureDifference < DecompressionPressure)
-            return;
+            return false;
 
         var now = _timing.CurTime;
         _decompressions.RemoveAll(d => now - d.Time > _decompressionCooldown);
@@ -87,11 +93,12 @@ public sealed partial class BreachWindSystem : EntitySystem
         foreach (var (otherGrid, otherTile, _) in _decompressions)
         {
             if (otherGrid == grid && (otherTile - tile).Length <= DecompressionSpacing)
-                return;
+                return true;
         }
 
         _decompressions.Add((grid, tile, now));
-        _audio.PlayPvs(_decompressionSound, coordinates, AudioParams.Default.WithVolume(volume + 4f).WithMaxDistance(16f).WithVariation(0.08f));
+        _audio.PlayPvs(_decompressionSound, _maps.ToCenterCoordinates(grid, tile), AudioParams.Default.WithVolume(volume + 4f).WithMaxDistance(16f).WithVariation(0.08f));
+        return true;
     }
 
     private static float VolumeFor(float pressureDifference)

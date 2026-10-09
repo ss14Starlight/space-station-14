@@ -1183,6 +1183,8 @@
           Heat: 0.4
           Caustic: 0
       staminaModifier: 0.0
+    - type: FootstepModifier
+      footstepSoundCollection: null
     - type: FootstepLayer
       sound:
         collection: FootstepLayerHeavy

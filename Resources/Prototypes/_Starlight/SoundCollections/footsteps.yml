@@ -33,3 +33,12 @@
   - /Audio/_Starlight/Effects/Footsteps/magstep3.ogg
   - /Audio/_Starlight/Effects/Footsteps/magstep4.ogg
   - /Audio/_Starlight/Effects/Footsteps/magstep5.ogg
+
+- type: soundCollection
+  id: FootstepConcrete
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/concrete1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/concrete2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/concrete3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/concrete4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/concrete5.ogg

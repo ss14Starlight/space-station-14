@@ -152,6 +152,12 @@ public sealed partial class RoomReverbSystem : EntitySystem
         if (wanted != _current)
             Apply(wanted.Value);
 
+        if (_current == null)
+        {
+            Clear();
+            return;
+        }
+
         if (!TryComp(_auxiliary, out AudioAuxiliaryComponent? slot))
             return;
 
@@ -302,7 +308,7 @@ public sealed partial class RoomReverbSystem : EntitySystem
 
     private void Clear(bool deleteSlot = false)
     {
-        if (_current != null)
+        if (_current != null || AttachedSources > 0)
         {
             Detach();
             _current = null;
