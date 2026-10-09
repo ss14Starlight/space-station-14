@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Hyper Autolathe now needs 4 manipulators instead of 3.
-    type: Tweak
-  id: 408905
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
   - message: The Estoc DMR now has less slowdown when wielding and the same accuracy as other rifles.
     type: Tweak
   id: 408906
@@ -2799,4 +2792,11 @@ Entries:
   id: 409304
   time: '2026-10-09T12:04:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6567
+- author: Caws
+  changes:
+  - message: Fixed wrong air vents / scrubbers being picked when using the 'P' picker tool.
+    type: Fix
+  id: 409305
+  time: '2026-10-09T12:34:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6580
 Order: -1
