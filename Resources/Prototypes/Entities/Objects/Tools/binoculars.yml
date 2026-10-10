@@ -20,7 +20,7 @@
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 10
-    pvsIncrease: 1.2
+    pvsIncrease: 1.0
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
