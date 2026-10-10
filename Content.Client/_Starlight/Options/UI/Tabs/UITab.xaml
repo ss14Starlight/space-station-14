@@ -68,6 +68,10 @@
                         <ui:OptionSlider Name="RangedSightOffsetSlider" Title="{Loc 'ui-options-ranged-sight-offset'}" />
                         <CheckBox Name="RangedSightRotationCheckBox" Text="{Loc 'ui-options-ranged-sight-rotation'}" />
                         <CheckBox Name="MeleeSightRotationCheckBox" Text="{Loc 'ui-options-melee-sight-rotation'}" />
+                        <ui:OptionDropDown Name="DropDownHeldItemShowMode" Title="{Loc 'ui-options-held-item-show-mode'}" />
+                        <CheckBox Name="SightBoltIndicatorCheckBox" Text="{Loc 'ui-options-sight-bolt-indicator'}" />
+                        <CheckBox Name="SightJamIndicatorCheckBox" Text="{Loc 'ui-options-sight-jam-indicator'}" />
+                        <CheckBox Name="SightHeatIndicatorCheckBox" Text="{Loc 'ui-options-sight-heat-indicator'}" />
 
                         <ui:OptionColorSlider Name="SightMainColorSlider" Title="{Loc 'ui-options-sight-main-color'}" />
                         <ui:OptionColorSlider Name="SightSecondColorSlider" Title="{Loc 'ui-options-sight-second-color'}" />

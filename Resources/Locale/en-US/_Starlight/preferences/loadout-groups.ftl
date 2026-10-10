@@ -135,6 +135,7 @@ loadout-group-lawyer-shoes = Lawyer shoes
 loadout-group-scarves = Scarf
 loadout-group-pins = Pins
 loadout-group-pens = Pen
+loadout-group-ties = Ties
 
 # Brighteye
 loadout-group-brighteye-jumpsuit = Brighteye jumpsuit

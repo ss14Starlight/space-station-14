@@ -5,6 +5,7 @@ using Content.Shared.Popups;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Weapons.Ranged.Systems;
@@ -14,6 +15,12 @@ public abstract partial class SharedGunHeatSystem : EntitySystem
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] protected SharedAudioSystem Audio = default!;
     [Dependency] protected SharedPopupSystem Popup = default!;
+    [Dependency] private SharedGunSystem _gun = default!;
+
+    /// <summary>
+    /// Salt for the jam chance random number generator. This is used to ensure that the jam chance is consistent across clients and servers.
+    /// </summary>
+    private const int JamSalt = -3;
 
     /// <summary>
     /// How strongly the barrel glows at the given temperature, from 0 to 1.
@@ -32,6 +39,31 @@ public abstract partial class SharedGunHeatSystem : EntitySystem
 
         return comp.MaxJamChance * Math.Clamp((temperature - comp.JamTemperature) / range, 0f, 1f);
     }
+
+    [SubscribeLocalEvent]
+    private void OnGunShot(Entity<GunHeatComponent> ent, ref GunShotEvent args)
+    {
+        if (args.Ammo.Count == 0)
+            return;
+
+        ent.Comp.Temperature += ent.Comp.TemperaturePerShot * args.Ammo.Count;
+        AddShotHeat(ent, args.Ammo.Count);
+
+        if (!ent.Comp.Jammed)
+        {
+            if (_gun.GetShotRandom(ent, JamSalt).Prob(GetJamChance(ent.Comp, ent.Comp.Temperature)))
+            {
+                ent.Comp.Jammed = true;
+                Audio.PlayPredicted(ent.Comp.JamSound, ent, args.User);
+                Popup.PopupClient(Loc.GetString("gun-heat-jammed"), ent, args.User, PopupType.MediumCaution);
+                ent.Comp.NextPopupTime = Timing.CurTime + ent.Comp.PopupCooldown;
+            }
+        }
+
+        Dirty(ent);
+    }
+
+    protected virtual void AddShotHeat(Entity<GunHeatComponent> ent, int shots) { }
 
     [SubscribeLocalEvent]
     private void OnAttemptShoot(Entity<GunHeatComponent> ent, ref AttemptShootEvent args)

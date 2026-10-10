@@ -2,7 +2,6 @@
   parent: BaseItem
   id: BoxFolderNuclearCodes
   name: nuclear code folder
-  suffix: Random # Starlight
   components:
   - type: Sprite
     sprite: Objects/Misc/folders.rsi

@@ -1,146 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: 'EXPERIMENTAL: Added the xenoborg extractor which can produce the xenoborg crystal.'
-    type: Add
-  id: 408894
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: Techfabs now play an animation while building something.
-    type: Add
-  id: 408895
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: The xenoborg gun now has a unique sprite.
-    type: Add
-  id: 408896
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: Internal code changes to damage handling may result in slightly different numbers for some medicines and/or some attacks.
-    type: Tweak
-  id: 408897
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: 'EXPERIMENTAL: The recipes to make xenoborg chassis and xenoborg modules now uses xenoborg crystals instead of normal materials.'
-    type: Tweak
-  id: 408898
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: The uplink now properly states the capacity of the hypodart.
-    type: Fix
-  id: 408899
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: Holosign projectors and dragon rifts no longer place signs at strange angles.
-    type: Fix
-  id: 408900
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: Fixed bar sign UI not closing correctly.
-    type: Fix
-  id: 408901
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: Makeshift Juicers now correctly craft in your hands instead of being a construction ghost.
-    type: Fix
-  id: 408902
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: Fixed door remotes working on fences, curtains and other entities they shouldn't work on.
-    type: Fix
-  id: 408903
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: Admin door remote once again works through walls.
-    type: Fix
-  id: 408904
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: Hyper Autolathe now needs 4 manipulators instead of 3.
-    type: Tweak
-  id: 408905
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: The Estoc DMR now has less slowdown when wielding and the same accuracy as other rifles.
-    type: Tweak
-  id: 408906
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Passive regeneration on mobs no longer stops after taking a certain amount of damage.
-    type: Tweak
-  id: 408907
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Hyperzine now heals you when critical, rather than relying on being above a certain amount of damage.
-    type: Tweak
-  id: 408908
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Tricordrazine and Holy Water no longer have an upper damage.
-    type: Tweak
-  id: 408909
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Changeling devour damage is no longer capped.
-    type: Tweak
-  id: 408910
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Vulpkanins can now use Gauze markings.
-    type: Add
-  id: 408911
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Spent air grenades cannot be re-triggered.
-    type: Fix
-  id: 408912
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Hostile vent critters now crawl out of a single vent, alerting the station about the location in advance.
-    type: Add
-  id: 408913
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
   - message: Vent critters can no longer spawn on unachored vents.
     type: Remove
   id: 408914
@@ -2799,4 +2659,144 @@ Entries:
   id: 409293
   time: '2026-10-08T10:37:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6554
+- author: Xale
+  changes:
+  - message: Vape now works properly with activation hotkeys such as "Activate item in hand".
+    type: Fix
+  id: 409294
+  time: '2026-10-08T11:17:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6572
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Broadened the activators for "floppy storage", "citrus", "magnetic waves", and "dairy" artifact triggers. There's now new, creative ways to trigger these nodes.
+    type: Tweak
+  id: 409295
+  time: '2026-10-08T11:17:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6542
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Changed the "bluespace disturbance" artifact effect variant that swaps the artifact and a random person. This effect will no longer teleport SSD or dead people, and is half as likely to appear.
+    type: Tweak
+  id: 409296
+  time: '2026-10-08T11:17:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6542
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Fixed a few air vents and scrubbers that were not the 'cold weather' variants (with larger temperature thresholds before firelocks and what not close).
+    type: Fix
+  id: 409297
+  time: '2026-10-09T11:27:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6581
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Fixed some labels around the Supermatter.
+    type: Fix
+  id: 409298
+  time: '2026-10-09T11:27:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6581
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Fixed a pipe that ran under a solid wall by Supermatter.
+    type: Fix
+  id: 409299
+  time: '2026-10-09T11:27:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6581
+- author: Johnny
+  changes:
+  - message: Changed carp to ignore gravity.
+    type: Tweak
+  id: 409300
+  time: '2026-10-09T12:04:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6569
+- author: Johnny
+  changes:
+  - message: Partialed carp.
+    type: Tweak
+  id: 409301
+  time: '2026-10-09T12:04:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6569
+- author: Swonki
+  changes:
+  - message: Scrappers should no longer need to recharge batteries.
+    type: Tweak
+  id: 409302
+  time: '2026-10-09T12:04:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6579
+- author: Swonki
+  changes:
+  - message: Drones can no longer become communist or join the syndicate.
+    type: Fix
+  id: 409303
+  time: '2026-10-09T12:04:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6579
+- author: rhithebirdthing
+  changes:
+  - message: Added a butcher module for service borgs.
+    type: Add
+  id: 409304
+  time: '2026-10-09T12:04:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6567
+- author: Caws
+  changes:
+  - message: Fixed wrong air vents / scrubbers being picked when using the 'P' picker tool.
+    type: Fix
+  id: 409305
+  time: '2026-10-09T12:34:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6580
+- author: VictoriaActual
+  changes:
+  - message: Added five new ties to the game.
+    type: Add
+  id: 409306
+  time: '2026-10-09T12:34:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6559
+- author: VictoriaActual
+  changes:
+  - message: Adjusted role loadouts to include ties for everyone!
+    type: Tweak
+  id: 409307
+  time: '2026-10-09T12:34:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6559
+- author: Mack, SevenShades
+  changes:
+  - message: Thrusters and Gyroscope can have their max thrust adjusted.
+    type: Tweak
+  id: 409308
+  time: '2026-10-09T13:07:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5846
+- author: Maxim
+  changes:
+  - message: Mailboxes will now send a Nanochat message when you have mail awaiting pickup.
+    type: Add
+  id: 409309
+  time: '2026-10-09T13:37:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6566
+- author: Xale
+  changes:
+  - message: Possession by the golden mask will no longer cryo the player after 7 minutes.
+    type: Fix
+  id: 409310
+  time: '2026-10-09T13:37:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6558
+- author: Romero/Littlemen
+  changes:
+  - message: Nerfed the Athena and Ares.
+    type: Tweak
+  id: 409311
+  time: '2026-10-09T13:57:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6536
+- author: Romero/Littlemen
+  changes:
+  - message: Dragon slash vulnerability lowered, from 200% to 120%.
+    type: Tweak
+  id: 409312
+  time: '2026-10-09T13:57:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6536
+- author: Caws
+  changes:
+  - message: The new maintenance door sprites (with Departmental colours) will now actually show up in game.
+    type: Fix
+  id: 409313
+  time: '2026-10-09T14:21:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6587
 Order: -1

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: BaseBorgModule
   parent: BaseItem
   name: borg module
@@ -49,9 +49,6 @@
   - type: ContainerContainer
     containers:
       holding_container: !type:Container { }
-  - type: Tag # Starlight Change - Allows for people to escape from borg modules when they are picked up
-    tags:
-      - PersonnelStorage # Starlight Change - Allows for people to escape from borg modules when they are picked up
 
 - type: entity
   parent: BaseAction
@@ -73,7 +70,7 @@
   components:
   - type: BorgModule
     borgFitTypes:
-    - borg-type-salvage-cargo # Starlight
+    - borg-type-salvage
   - type: Tag
     tags:
     - BorgModuleCargo
@@ -565,7 +562,6 @@
     - item: Wirecutter
     - item: WelderIndustrial
     - item: Multitool
-    - item: SprayPainterBorg # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: tool-module }
 
@@ -622,13 +618,12 @@
 
 - type: entity
   id: BorgModuleMining
-  parent: [ BaseBorgModuleMining, BaseProviderBorgModule ] # Starlight
+  parent: [ BaseBorgModuleMining, BaseProviderBorgModule ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: mining cyborg module
   components:
   - type: Sprite
     layers:
-    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi # Starlight
-      state: mining
+    - state: cargo
     - state: icon-mining
   - type: ItemBorgModule
     hands:
@@ -636,27 +631,18 @@
     - item: Shovel
     - item: MineralScannerUnpowered
     - item: BorgOreBag
-    - item: RadioHandheldExpedition # Starlight
-    - hand: # Starlight
-        emptyRepresentative: GoldOre
-        emptyLabel: borg-slot-ore-ticket-empty
-        whitelist:
-          tags:
-            - Ore
-            - SalvageTicket # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: mining-module }
 
 - type: entity
   id: BorgModuleAdvancedMining
-  parent: [ BaseBorgModuleMining, BaseProviderBorgModule ] # Starlight
+  parent: [ BaseBorgModuleMining, BaseProviderBorgModule ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: advanced mining cyborg module
   description: Advanced cargo module containing advanced mining equipment. Studies show it advances productivity of a cyborg by 150%.
   components:
   - type: Sprite
     layers:
-    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
-      state: mining # Starlight
+    - state: cargo
     - state: icon-mining-adv
   - type: ItemBorgModule
     hands:
@@ -664,26 +650,17 @@
     - item: Shovel
     - item: AdvancedMineralScannerUnpowered
     - item: OreBagOfHolding
-    - hand: # Starlight
-        emptyRepresentative: GoldOre
-        emptyLabel: borg-slot-ore-ticket-empty
-        whitelist:
-          tags:
-            - Ore
-            - SalvageTicket # Starlight
-    - item: RadioHandheldExpedition # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-mining-module }
 
 - type: entity
   id: BorgModuleTraversal
-  parent: [ BaseBorgModuleMining, BaseProviderBorgModule ] # Starlight
+  parent: [ BaseBorgModuleMining, BaseProviderBorgModule ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: traversal cyborg module
   components:
   - type: Sprite
     layers:
-    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi # Starlight
-      state: mining
+    - state: cargo
     - state: icon-grappling-gun
   - type: ItemBorgModule
     hands:
@@ -712,13 +689,11 @@
     - item: WelderExperimental
     - item: Multitool
     - item: RemoteSignallerAdvanced
-    - item: SprayPainterBorg # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-tools-module }
 
 - type: entity
   id: BorgModuleConstructionMaterialPlaceholder
-  categories: [ HideSpawnMenu ] # Starlight
   parent: BaseItem
   components:
   - type: Sprite
@@ -762,15 +737,10 @@
           - Circuitboard
     - hand:
         emptyRepresentative: MicroManipulatorStockPart
-        #STARLIGHT start
-        emptyLabel: borg-slot-comp-empty
+        emptyLabel: borg-slot-construction-empty
         whitelist:
           tags:
-          - MicroManipulatorStockPart
-          - PowerCell
-          - PowerCellSmall
-          - PowerCage
-        #STARLIGHT end
+          - ConstructionMaterial
     - hand:
         emptyRepresentative: SpaceHeaterFlatpack
         emptyLabel: borg-slot-flatpacks-empty
@@ -795,16 +765,6 @@
         whitelist:
           components:
           - FloorTile
-    #Starlight-edit: start
-    - hand:
-        emptyRepresentative: PlasmaTank
-        emptyLabel: borg-slot-fuel-empty
-        whitelist:
-          components:
-          - GasTank
-          - AmeFuelContainer
-          - ReactorPart # FH edit
-    #Starlight-edit: end
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: construction-module }
 
@@ -1302,16 +1262,6 @@
         whitelist:
           components:
           - Instrument
-    # Starlight start
-    - hand:
-        emptyLabel: borg-slot-music-media-empty
-        emptyRepresentative: VinylAirportLounge
-        whitelist:
-          tags:
-          - VinylSleeveFit
-          - VinylSleeve
-          - CD
-    # Starlight end
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: musical-module }
 
@@ -1330,14 +1280,6 @@
     - item: HydroponicsToolSpade
     - item: HydroponicsToolClippers
     - item: Bucket
-      #Starlight start
-    - hand:
-        emptyLabel: borg-slot-seeds-empty
-        emptyRepresentative: WheatSeeds
-        whitelist:
-          components:
-          - Seed
-      #Starlight end
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: gardening-module }
 
@@ -1400,7 +1342,6 @@
   parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
   id: BorgModuleSyndicateWeapon
   name: weapon cyborg module
-  description: a simple weapon module that comes with an Echis and energy dagger. # starlight
   components:
   - type: Sprite
     layers:
@@ -1487,40 +1428,24 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-desword-module }
 
 - type: entity
-  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ] #Starlight L6 printing
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: BorgModuleL6C
   name: L6C ROW cyborg module
   description: A weapons module that comes with an L6 and capacity to hold 2 spare magazines.
   components:
-    - type: Sprite
-      layers:
-      - state: syndicate
-      - state: icon-syndicate
-    - type: ItemBorgModule
-      hands:
-      - item: WeaponLightMachineGunL6C
-      # region starlight - L6C uses ammo
-      - item: MagazineLightRifleBoxSP
-        hand:
-          emptyRepresentative: MagazineLightRifleBoxSP
-          emptyLabel: borg-slot-light-box-empty
-          whitelist:
-            tags:
-            - MagazineLightRifleBox
-      - item: MagazineLightRifleBoxSP
-        hand:
-          emptyRepresentative: MagazineLightRifleBoxSP
-          emptyLabel: borg-slot-light-box-empty
-          whitelist:
-            tags:
-            - MagazineLightRifleBox
-      # end region starlight
-      - item: PinpointerSyndicateNuclear
-    - type: BorgModuleIcon
-      icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-l6c-module }
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    hands:
+    - item: WeaponLightMachineGunL6C
+    - item: PinpointerSyndicateNuclear
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-l6c-module }
 
 - type: entity
-  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ] #Starlight c20 printing
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: BorgModuleC20r
   name: C-20r ROW cyborg module
   description: A weapons module that comes with a burst-fire C-20r.
@@ -1540,7 +1465,7 @@
   parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
   id: BorgModuleMartyr
   name: martyr cyborg module
-  description: A module that comes with an explosive you probably don't want to handle yourself.
+  description: "A module that comes with an explosive you probably don't want to handle yourself."
   components:
     - type: Sprite
       layers:
@@ -1614,11 +1539,6 @@
         whitelist:
           components:
           - PowerCell
-        #Starlight Start
-        blacklist:
-          tags:
-          - MechReactor
-        #Starlight End
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-module-module }
 
@@ -1752,7 +1672,7 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-jammer-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleHeavyWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
+  parent: [ BaseXenoborgModuleHeavyWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: XenoborgModuleLaser
   name: laser xenoborg module
   description: Module with a laser gun.
@@ -1764,12 +1684,11 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponLaserGunXenoborg
-    - item: XenoShiv # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleHeavyWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
+  parent: [ BaseXenoborgModuleHeavyWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: XenoborgModuleHeavyLaser
   name: laser cannon xenoborg module
   description: Module with a laser cannon.
@@ -1781,7 +1700,6 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponLaserCannonXenoborg
-    - item: XenoKnife # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser2-module }
 
@@ -1824,7 +1742,7 @@
     - state: icon-xenoborg-jump
 
 - type: entity
-  parent: [ BaseXenoborgModuleScoutWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
+  parent: [ BaseXenoborgModuleScoutWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: XenoborgModuleSword
   name: knife xenoborg module
   description: Module with a kukri knife.
@@ -1841,7 +1759,7 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-sword-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleScoutWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
+  parent: [ BaseXenoborgModuleScoutWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: XenoborgModuleEnergySword
   name: energy dagger xenoborg module
   description: Module with an energy dagger.
@@ -1858,10 +1776,10 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-sword2-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleStealthWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
+  parent: [ BaseXenoborgModuleStealthWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: XenoborgModuleHypo
-  name: hypo xenoborg module # Starlight
-  description: Module with self-refilling hypos. # Starlight
+  name: nocturine hypo xenoborg module
+  description: Module with a self-refilling nocturine hypo.
   components:
   - type: Sprite
     layers:
@@ -1870,7 +1788,6 @@
   - type: ItemBorgModule
     hands:
     - item: NocturineHypo
-    - item: LicoxideHypo # Starlight. It's not that good. They can have it.
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-hypo-module }
 

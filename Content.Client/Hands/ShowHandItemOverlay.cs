@@ -1,6 +1,8 @@
 using System.Numerics;
 using Content.Client.Hands.Systems;
 using Content.Shared.CCVar;
+using Content.Client.CombatMode;
+using Content.Shared._Starlight.CCVar;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -50,11 +52,27 @@ namespace Content.Client.Hands
 
         protected override bool BeforeDraw(in OverlayDrawArgs args)
         {
-            if (!_cfg.GetCVar(CCVars.HudHeldItemShow))
+            // Starlight-start: show mode instead of a plain toggle
+            if (!ShouldShowForMode())
                 return false;
+            // Starlight-end
 
             return base.BeforeDraw(in args);
         }
+
+        // Starlight-start
+        private bool ShouldShowForMode()
+        {
+            var mode = (HeldItemShowMode) _cfg.GetCVar(StarlightCCVars.HeldItemShowMode);
+            if (mode == HeldItemShowMode.Always)
+                return true;
+            if (mode == HeldItemShowMode.Never)
+                return false;
+
+            var inCombat = _entMan.System<CombatModeSystem>().IsInCombatMode();
+            return mode == HeldItemShowMode.CombatModeOnly ? inCombat : !inCombat;
+        }
+        // Starlight-end
 
         protected override void Draw(in OverlayDrawArgs args)
         {

@@ -1,0 +1,14 @@
+- type: !PartialOnly entityTable
+  id: RandomSatchelFunnyTable
+  table: !type:GroupSelector
+    children:
+    # listed in reverse: partial list items are appended back-to-front
+    - id: GoldenPill
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+    - id: WeirdPill
+      amount: !type:RangeNumberSelector
+        range: 2, 4
+    - id: OminousPill
+      amount: !type:RangeNumberSelector
+        range: 1, 2
