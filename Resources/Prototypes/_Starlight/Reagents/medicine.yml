@@ -372,3 +372,187 @@
           type: [ Cyclorite ]
         reagent: Respirazone
         amount: -0.5
+
+- type: reagent
+  id: Phytovitalin
+  name: reagent-name-phytovitalin
+  group: Botanical
+  desc: reagent-desc-phytovitalin
+  flavor: medicine
+  color: "#b2c21f"
+  physicalDesc: reagent-physical-desc-gloopy
+  worksOnTheDead: true
+  plantMetabolism:
+  - !type:PlantAdjustPotency
+    amount: 1
+  - !type:PlantRestoreSeeds
+    probability: 0.5
+  - !type:PlantAdjustToxins
+    amount: -5
+  - !type:PlantAdjustHealth
+    amount: 1
+  - !type:PlantChangeTraits
+    trait: PlantTraitUnviable
+    type: Remove
+    minScale: 4
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:EvenHealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+        damage:
+          Brute: -2
+          Burn: -0.2
+          Toxin: -2.5
+          Airloss: -1
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+        damage:
+          types:
+            Radiation: -0.25
+            Cellular: -0.1
+      - !type:ModifyBloodLevel
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+        amount: 1
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+          inverted: true
+        damage:
+          types:
+            Poison: 1.5
+            Cellular: 0.2
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+          inverted: true
+        reagent: Histamine
+        amount: 0.75
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: Phytovitalin
+          min: 0.11
+        - !type:MetabolizerTypeCondition
+          type: [Cyclorite]
+        reagent: Phytovitalin
+        amount: 0.1
+
+- type: reagent
+  id: Mycophylin
+  name: reagent-name-mycophylin
+  group: Botanical
+  desc: reagent-desc-mycophylin
+  flavor: bitter
+  color: "#7c9c35"
+  physicalDesc: reagent-physical-desc-gloopy
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.1
+      effects:
+      # Diona metabolism
+      - !type:AdjustReagent
+        probability: 0.1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+        reagent: Kelotane
+        amount: 0.5
+      - !type:AdjustReagent
+        probability: 0.1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+        reagent: Bicaridine
+        amount: 0.5
+      - !type:AdjustReagent
+        probability: 0.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+        reagent: Epinephrine
+        amount: 0.75
+      # Non-Diona metabolism
+      - !type:AdjustReagent
+        probability: 0.25
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+          inverted: true
+        reagent: Mold
+        amount: 1
+      - !type:AdjustReagent
+        probability: 0.75
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+          inverted: true
+        reagent: SpaceDrugs
+        amount: 1
+      - !type:AdjustReagent
+        probability: 0.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+          inverted: true
+        reagent: THC
+        amount: 1
+      - !type:AdjustReagent
+        probability: 0.25
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+          inverted: true
+        reagent: Lipozine
+        amount: 0.5
+      - !type:AdjustReagent
+        probability: 0.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+          inverted: true
+        reagent: Impedrezene
+        amount: 1
+      - !type:AdjustReagent
+        probability: 0.2
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+          inverted: true
+        reagent: Stellibinin
+        amount: 1
+      - !type:AdjustReagent
+        probability: 0.25
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+          inverted: true
+        reagent: Pax
+        amount: 1
+      - !type:AdjustReagent
+        probability: 0.25
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+          inverted: true
+        reagent: Histamine
+        amount: 1
+      # Cyclorite Metabolism
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: Mycophylin
+          min: 0.11
+        - !type:MetabolizerTypeCondition
+          type: [Cyclorite]
+        reagent: Mycophylin
+        amount: 0.1
+

@@ -37,6 +37,10 @@ using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Pollen.Components;
+using Content.Shared.Botany.Items.Components;
+using Robust.Shared.Map;
+using Content.Shared.Botany.Components;
 
 namespace Content.Server._Starlight.Scent.Systems;
 
@@ -108,8 +112,9 @@ public sealed partial class ScentSystem : SharedScentSystem
             PruneExpiredTraces(trace);
 
         var hasOwnScent = TryComp<ScentComponent>(args.Target, out var targetScent) && targetScent.ScentId != null;
+        var isPollen = HasComp<EmitPollenComponent>(args.Target);
 
-        if ((trace == null || trace.Scents.Count == 0) && !hasOwnScent)
+        if ((trace == null || trace.Scents.Count == 0) && !hasOwnScent && !isPollen)
         {
             _popup.PopupEntity(Loc.GetString("scent-sniff-no-scents", ("target", Name(args.Target))), args.Target, ent.Owner);
             args.Handled = true;
@@ -169,6 +174,11 @@ public sealed partial class ScentSystem : SharedScentSystem
 
         var ownScentId = TryComp<ScentComponent>(target, out var targetScent) ? targetScent.ScentId : null;
 
+        if (HasComp<EmitPollenComponent>(target) && GetPollenId(target) is { } pollenId)
+        {
+            entries.Add(new ScentTraceEntry(pollenId, ScentFreshness.VeryFresh, Loc.GetString("scent-species-non-humanoid")));
+        }
+
         if (!_ui.TryOpenUi(uid, ScentSniffUiKey.Key, uid))
         {
             Log.Warning($"{ToPrettyString(uid)} has SmellerComponent but couldn't open ScentSniffUiKey - " +
@@ -204,6 +214,39 @@ public sealed partial class ScentSystem : SharedScentSystem
     private void OnSmellerZombified(Entity<SmellerComponent> ent, ref EntityZombifiedEvent args) =>
         RemComp<SmellerComponent>(ent.Owner);
 
+    // Helper
+    private string? GetPollenId(EntityUid uid)
+    {
+        if (TryComp<EmitPollenComponent>(uid, out var emit) && emit.PollenId is { } overrideId)
+            return overrideId;
+
+        if (TryComp<ProduceComponent>(uid, out var produce) && produce.PlantProtoId is { } plantId)
+            return plantId.ToString();
+
+        if (!TryComp<PlantDataComponent>(uid, out var plantData))
+            return null;
+
+        string? resolvedId = null;
+
+        foreach (var productId in plantData.ProductPrototypes)
+        {
+            var prototype = _prototype.Index(productId);
+
+            if (!prototype.TryGetComponent<ProduceComponent>(out var product) ||
+                product.PlantProtoId is not { } productPlantId)
+                continue;
+
+            var productPollenId = productPlantId.ToString();
+
+            if (resolvedId != null && resolvedId != productPollenId)
+                return null;
+
+            resolvedId = productPollenId;
+        }
+
+        return resolvedId;
+    }
+
     private void OnTrackMessage(EntityUid uid, SmellerComponent component, ScentSniffTrackMessage args)
     {
         if (component.SniffTarget is not { } target || !Exists(target))
@@ -225,7 +268,9 @@ public sealed partial class ScentSystem : SharedScentSystem
                 IsWithinPerceivedLifetime(component, trace, traceInfo.LastTouched);
         }
 
-        if (!isOwnScent && !isTracedScent)
+        var isPollen = HasComp<EmitPollenComponent>(target) && args.ScentId == GetPollenId(target);
+
+        if (!isOwnScent && !isTracedScent && !isPollen)
             return;
 
         var isNewTrack = component.TrackedScentId != args.ScentId;
@@ -453,7 +498,7 @@ public sealed partial class ScentSystem : SharedScentSystem
         var query = EntityQueryEnumerator<ScentComponent>();
         while (query.MoveNext(out var uid, out var scent))
         {
-            if (scent.ScentId is not { } scentId)
+            if (scent.ScentId == null && scent.AdditionalScents.Count == 0)
                 continue;
 
             if (scent.NextEmitTime == TimeSpan.Zero)
@@ -464,9 +509,33 @@ public sealed partial class ScentSystem : SharedScentSystem
 
             scent.NextEmitTime = now + RollEmitDelay(scent);
 
+            var scentId = PickScent(scent);
+            if (scentId == null)
+                continue;
+
             if (TryComp(uid, out TransformComponent? xform))
                 EmitScent((uid, scent, xform), scentId);
         }
+    }
+
+    private string? PickScent(ScentComponent scent)
+    {
+        var total = (scent.ScentId != null ? 1 : 0) + scent.AdditionalScents.Count;
+
+        if (total == 0)
+            return null;
+
+        var index = _random.Next(total);
+
+        if (scent.ScentId != null)
+        {
+            if (index == 0)
+                return scent.ScentId;
+
+            return scent.AdditionalScents[index - 1];
+        }
+
+        return scent.AdditionalScents[index];
     }
 
     private TimeSpan RollEmitDelay(ScentComponent scent)
@@ -498,7 +567,7 @@ public sealed partial class ScentSystem : SharedScentSystem
         if (IsHiddenVentCrawl(uid))
             return;
 
-        if (TryMergeIntoExisting(ent))
+        if (TryMergeIntoExisting(ent, scentId))
             return;
 
         var marker = SpawnAtPosition(ScentMarkerPrototype, xform.Coordinates);
@@ -533,7 +602,7 @@ public sealed partial class ScentSystem : SharedScentSystem
 
     // Checks all parents of the entity, so nested containment (e.g. a bag inside a crate)
     // is still detected.
-    private EntityUid? GetAirtightContainer(TransformComponent xform)
+    internal EntityUid? GetAirtightContainer(TransformComponent xform)
     {
         var parent = xform.ParentUid;
 
@@ -568,16 +637,19 @@ public sealed partial class ScentSystem : SharedScentSystem
 
     // Only merges into our own chain tail, never any other nearby marker. Revisiting an old spot
     // would otherwise rewrite the trail's visit order.
-    private bool TryMergeIntoExisting(Entity<ScentComponent, TransformComponent> ent)
+    private bool TryMergeIntoExisting(Entity<ScentComponent, TransformComponent> ent, string scentId)
     {
         var (uid, scent, xform) = ent;
 
         if (scent.LastMarkerEntity is not { } tail ||
             !TryComp<ScentMarkerComponent>(tail, out var marker) ||
+            marker.ScentId != scentId ||
             !TryComp(tail, out TransformComponent? tailXform))
         {
             return false;
         }
+
+    // Keep the existing range check and merge logic below.
 
         if (!_transform.InRange(xform.Coordinates, tailXform.Coordinates, scent.MergeRadius))
             return false;
@@ -596,5 +668,53 @@ public sealed partial class ScentSystem : SharedScentSystem
             despawn.Lifetime = (float)decayTime.TotalSeconds;
 
         return true;
+    }
+
+    /// <summary>
+    /// Emits or refreshes a pollen marker for an emitter (a plant, or any other
+    /// pollen source). If the emitter's last marker still exists, matches this
+    /// pollenId, and is within merge range, refreshes it in place instead of
+    /// scanning every ScentMarkerComponent on the server. Otherwise spawns a
+    /// fresh marker and records it via lastMarker.
+    /// </summary>
+    /// <param name="lastMarker">
+    /// The emitter's cached last-marker reference (e.g. EmitPollenComponent.LastMarkerEntity).
+    /// Updated in place when a new marker is spawned.
+    /// </param>
+    /// <returns>The marker entity now associated with this emitter.</returns>
+    public EntityUid EmitPollenMarker(ref EntityUid? lastMarker, string pollenId, TransformComponent emitterXform, TimeSpan lifetime, float mergeRadius, float mergeStrengthStep)
+    {
+        if (lastMarker is { } tail &&
+            TryComp<ScentMarkerComponent>(tail, out var marker) &&
+            marker.IsPollen && marker.ScentId == pollenId &&
+            TryComp(tail, out TransformComponent? tailXform) &&
+            _transform.InRange(emitterXform.Coordinates, tailXform.Coordinates, mergeRadius))
+        {
+            marker.ExpiresAt = _timing.CurTime + lifetime;
+            marker.TotalDuration = lifetime;
+            marker.Strength = Math.Min(1f, marker.Strength + mergeStrengthStep);
+            marker.ContainedIn = GetAirtightContainer(emitterXform);
+            Dirty(tail, marker);
+
+            if (TryComp<TimedDespawnComponent>(tail, out var despawn))
+                despawn.Lifetime = (float)lifetime.TotalSeconds;
+
+            return tail;
+        }
+
+        var newMarker = SpawnAtPosition(ScentMarkerPrototype, emitterXform.Coordinates);
+        var newMarkerComp = Comp<ScentMarkerComponent>(newMarker);
+        newMarkerComp.ScentId = pollenId;
+        newMarkerComp.IsPollen = true;
+        newMarkerComp.ExpiresAt = _timing.CurTime + lifetime;
+        newMarkerComp.TotalDuration = lifetime;
+        newMarkerComp.ContainedIn = GetAirtightContainer(emitterXform);
+        Dirty(newMarker, newMarkerComp);
+
+        if (TryComp<TimedDespawnComponent>(newMarker, out var newDespawn))
+            newDespawn.Lifetime = (float)lifetime.TotalSeconds;
+
+        lastMarker = newMarker;
+        return newMarker;
     }
 }

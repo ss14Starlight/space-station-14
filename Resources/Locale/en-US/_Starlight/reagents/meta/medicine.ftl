@@ -24,3 +24,10 @@ reagent-desc-iceialin = Cool to the touch, a chem that can restore the temperatu
 
 reagent-name-respirazone = respirazone
 reagent-desc-respirazone = Used in the treatment of severe respiratory distress and blood loss. Unlike conventional oxygenation medicines, it is compatible with a wide variety of species.
+
+reagent-name-phytovitalin = phytovitalin
+reagent-desc-phytovitalin = A complex compound, unique in origin to a select few Dionas, and an extraordinarily versatile botanical compound. It seems to be moving.
+
+reagent-name-mycophylin = mycophylin
+reagent-desc-mycophylin = A strange fungal compound produced by Diona biology. What the body makes of it seems to depend entirely on what the body is made of.
+
