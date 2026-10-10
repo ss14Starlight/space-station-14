@@ -35,10 +35,14 @@
             "name": "makeshift"
         },
         {
-            "name": "laser-cracked"
+            "name": "laser-cracked",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Arkanic 2025, for Starlight; Modified by rinary for making cracked"
         },
         {
-            "name": "adv-laser-cracked"
+            "name": "adv-laser-cracked",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Arkanic 2025, for Starlight; Modified by rinary for making cracked"
         }
     ]
 }

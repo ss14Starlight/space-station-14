@@ -61,7 +61,7 @@ public sealed partial class BatteryWeaponFireMode
     /// <summary>
     /// Means that this condition will work only on server, i.e. unpredicted, useful for important conditions like alert level.
     /// </summary>
-    public bool Conditional;
+    public bool ServerOnly;
     // Starlight-end
 
     [DataField("heldPrefix")]

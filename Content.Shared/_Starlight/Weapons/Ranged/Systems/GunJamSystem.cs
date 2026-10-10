@@ -17,17 +17,13 @@ public sealed partial class GunJamSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedGunSystem _gun = default!;
 
+    /// <summary>
+    /// Salt for the random number generator to ensure that the jam chance is different each time a shot is fired.
+    /// </summary>
     private const int JamSalt = -4;
 
-    public override void Initialize()
-    {
-        base.Initialize();
 
-        SubscribeLocalEvent<GunJamDefectComponent, AttemptShootEvent>(OnAttemptShoot);
-        SubscribeLocalEvent<GunJamDefectComponent, GunShotEvent>(OnGunShot);
-        SubscribeLocalEvent<GunJamDefectComponent, UseInHandEvent>(OnUseInHand);
-    }
-
+    [SubscribeLocalEvent]
     private void OnAttemptShoot(Entity<GunJamDefectComponent> ent, ref AttemptShootEvent args)
     {
         if (!ent.Comp.IsJammed)
@@ -43,6 +39,7 @@ public sealed partial class GunJamSystem : EntitySystem
         _popup.PopupClient(Loc.GetString("gun-jam-blocked"), ent, args.User, PopupType.SmallCaution);
     }
 
+    [SubscribeLocalEvent]
     private void OnGunShot(Entity<GunJamDefectComponent> ent, ref GunShotEvent args)
     {
         if (ent.Comp.IsJammed)
@@ -59,6 +56,7 @@ public sealed partial class GunJamSystem : EntitySystem
         ent.Comp.NextPopupTime = _timing.CurTime + ent.Comp.PopupCooldown;
     }
 
+    [SubscribeLocalEvent]
     private void OnUseInHand(Entity<GunJamDefectComponent> ent, ref UseInHandEvent args)
     {
         if (!ent.Comp.IsJammed)

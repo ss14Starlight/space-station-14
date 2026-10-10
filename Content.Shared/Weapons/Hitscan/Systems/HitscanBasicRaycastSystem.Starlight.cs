@@ -116,7 +116,9 @@ public sealed partial class HitscanBasicRaycastSystem
         if (seed is not { } value)
             return _rand.Prob(chance);
 
+#pragma warning disable CS0618
         return new System.Random(SharedRandomExtensions.HashCodeCombine(value, GetNetEntity(rolledFor).Id)).Prob(chance);
+#pragma warning restore CS0618
     }
 
     public List<HitscanTrace> PredictTrace(

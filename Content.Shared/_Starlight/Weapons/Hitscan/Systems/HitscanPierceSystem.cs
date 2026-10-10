@@ -24,18 +24,18 @@ public sealed partial class PierceSystem : EntitySystem
     private EntityQuery<HitscanReflectComponent> _reflectQuery;
     private static readonly ProtoId<TagPrototype> _shieldTag = "Shield";
 
+    /// <summary>
+    /// A salt value used to generate a new seed for piercing events. This ensures that the random number generation for piercing is consistent and unique for each event, preventing predictable outcomes.
+    /// </summary>
     private const int PierceSalt = -7;
 
     public override void Initialize()
     {
         _reflectQuery = GetEntityQuery<HitscanReflectComponent>();
-
-        SubscribeLocalEvent<HitscanPierceComponent, HitscanRaycastFiredEvent>(OnHitscanHit);
-        SubscribeLocalEvent<PierceableComponent, HitScanPierceAttemptEvent>(OnPierceablePierce);
-        SubscribeLocalEvent<PierceableComponent, InventoryRelayedEvent<HitScanPierceAttemptEvent>>(OnArmorPierce);
         base.Initialize();
     }
 
+    [SubscribeLocalEvent]
     private void OnHitscanHit(Entity<HitscanPierceComponent> hitscan, ref HitscanRaycastFiredEvent args)
     {
         var data = args.Data;
@@ -111,12 +111,14 @@ public sealed partial class PierceSystem : EntitySystem
         return true;
     }
 
+    [SubscribeLocalEvent]
     private void OnArmorPierce(Entity<PierceableComponent> ent, ref InventoryRelayedEvent<HitScanPierceAttemptEvent> args)
     {
         if ((byte)ent.Comp.Level > (byte)args.Args.Level)
             args.Args.Pierced = false;
     }
 
+    [SubscribeLocalEvent]
     private void OnPierceablePierce(Entity<PierceableComponent> ent, ref HitScanPierceAttemptEvent args)
     {
         if ((byte)ent.Comp.Level > (byte)args.Level)

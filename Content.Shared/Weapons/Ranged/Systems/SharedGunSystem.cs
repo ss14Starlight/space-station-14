@@ -493,6 +493,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         var shotEv = new GunShotEvent(user, ev.Ammo);
         RaiseLocalEvent(gun, ref shotEv);
 
+        // ES Screenshake
         if (fired)
         {
             var gunShakeRotation = new ScreenshakeParameters()

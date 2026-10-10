@@ -17,6 +17,9 @@ public abstract partial class SharedGunHeatSystem : EntitySystem
     [Dependency] protected SharedPopupSystem Popup = default!;
     [Dependency] private SharedGunSystem _gun = default!;
 
+    /// <summary>
+    /// Salt for the jam chance random number generator. This is used to ensure that the jam chance is consistent across clients and servers.
+    /// </summary>
     private const int JamSalt = -3;
 
     /// <summary>

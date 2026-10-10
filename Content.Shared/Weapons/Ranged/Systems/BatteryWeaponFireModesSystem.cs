@@ -142,7 +142,7 @@ public sealed partial class BatteryWeaponFireModesSystem : EntitySystem
         var fireMode = ent.Comp.FireModes[index];
 
         // Conditions only exist on the server, so the client predicts only the modes without them.
-        if (_net.IsClient && fireMode.Conditional)
+        if (_net.IsClient && fireMode.ServerOnly)
             return;
 
         if (fireMode.Conditions != null && user != null)
@@ -203,7 +203,7 @@ public sealed partial class BatteryWeaponFireModesSystem : EntitySystem
     private void OnMapInit(Entity<BatteryWeaponFireModesComponent> ent, ref MapInitEvent args)
     {
         foreach (var mode in ent.Comp.FireModes)
-            mode.Conditional = mode.Conditions is { Count: > 0 };
+            mode.ServerOnly = mode.Conditions is { Count: > 0 };
 
         Dirty(ent);
     }
