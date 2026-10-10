@@ -1,3 +1,4 @@
+chat-speech-verb-name-glorpish = Glorpish
 chat-speech-verb-glorpish-1 = zeepity slorpo glorb
 chat-speech-verb-glorpish-2 = glarp gnaru glompurt
 chat-speech-verb-glorpish-3 = SPACE COP

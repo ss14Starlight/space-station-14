@@ -664,3 +664,60 @@
           - state: equipped-OUTERCLOTHING
           - state: equipped-OUTERCLOTHING-unshaded
             shader: unshaded
+
+- type: entity
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
+  id: ClothingOuterCoatLeatherJacket
+  name: leather jacket # Alternative Clothing Catalog
+  description: A plain leather jacket, pairs well with a lit cigarette.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket.rsi
+
+- type: entity
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
+  id: ClothingOuterCoatLeatherJacketFiery
+  name: fiery leather jacket # Alternative Clothing Catalog
+  description: The cooler leather jacket, for the more fiery personalities.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_firey.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_firey.rsi
+
+- type: entity
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
+  id: ClothingOuterCoatLeatherJacketHellfire
+  name: hellfire leather jacket # Alternative Clothing Catalog
+  description: The COOLEST leather jacket, for the biggest of personalities.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_hellfire.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_hellfire.rsi
+
+- type: entity
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
+  id: ClothingOuterCoatLeatherEldritch
+  name: eldritch leather jacket # Alternative Clothing Catalog
+  description: You get the feeling it's watching you.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_eldritch.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_eldritch.rsi
+      clothingVisuals:
+        outerClothing:
+          - state: equipped-OUTERCLOTHING
+          - state: equipped-OUTERCLOTHING-unshaded
+            shader: unshaded

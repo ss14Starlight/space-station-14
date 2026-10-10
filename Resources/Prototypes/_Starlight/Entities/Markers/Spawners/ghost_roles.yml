@@ -208,3 +208,24 @@
       - state: green
       - sprite: Mobs/Aliens/cluwnebeast.rsi
         state: icon
+
+- type: entity
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostDroneRogue
+  name: rogue drone ghost role spawn point
+  components:
+  - type: GhostRole
+    name: ghost-role-information-roguedrone-name
+    description: ghost-role-information-rogue-drone-description
+    rules: ghost-role-information-rogue-drone-rules
+    mindRoles: [MindRoleSubvertedSilicon]
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: DroneRogue
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/Chassis/derelict.rsi
+      state: borg

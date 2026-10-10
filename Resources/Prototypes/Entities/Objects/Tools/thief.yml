@@ -41,9 +41,9 @@
 
 - type: entity
   id: ToolboxThief
-  name: undetermined toolbox # Starlight
-  description: This is where your favorite tools lie. Try to remember which ones. # Starlight
-  parent: [ BaseItem ] # Starlight - no longer contraband
+  name: undetermined thieving toolbox
+  description: This is where your favorite thief's supplies lie. Try to remember which ones.
+  parent: [ BaseItem ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   components:
   - type: Sprite
     sprite: Objects/Tools/Toolboxes/toolbox_thief.rsi
@@ -67,8 +67,8 @@
 
 - type: entity
   id: SatchelThief
-  name: undetermined tools satchel # Starlight
-  description: This is where your favorite tools lie. Folded for your convenience. # Starlight
+  name: undetermined thieving satchel
+  description: This is where your favorite thief's supplies lie. Folded for your convenience.
   parent: ToolboxThief
   components:
   - type: Sprite

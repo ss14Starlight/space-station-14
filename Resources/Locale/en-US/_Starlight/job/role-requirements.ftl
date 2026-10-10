@@ -15,6 +15,7 @@ role-timer-overall-too-high = You have [color=red]{TOSTRING($current, "0")}[/col
 
 role-timer-role-sufficient = You have [color=limegreen]{TOSTRING($current, "0")}[/color] of the [color=lightblue]{TOSTRING($required, "0")}[/color] playtime required as [color={$departmentColor}]{$job}[/color].
 role-timer-role-insufficient = You have [color=yellow]{TOSTRING($current, "0")}[/color] of the [color=lightblue]{TOSTRING($required, "0")}[/color] playtime required as [color={$departmentColor}]{$job}[/color].
+role-timer-role-not-too-high = You have [color=limegreen]{TOSTRING($current, "0")}[/color] of at most [color=lightblue]{TOSTRING($required, "0")}[/color] playtime as [color={$departmentColor}]{$job}[/color].
 role-timer-role-too-high = You have [color=red]{TOSTRING($current, "0")}[/color] of at most [color=lightblue]{TOSTRING($required, "0")}[/color] playtime as [color={$departmentColor}]{$job}[/color]. (Are you trying to play a trainee role?)
 
 role-whitelisted = You [color=limegreen]are[/color] whitelisted to play this role.

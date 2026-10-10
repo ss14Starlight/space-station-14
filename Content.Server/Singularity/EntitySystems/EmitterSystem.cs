@@ -174,6 +174,7 @@ namespace Content.Server.Singularity.EntitySystems
             }
 
             component.IsPowered = false;
+            UpdateAmbience(uid, component); // Starlight
 
             ScheduleUnpoweredAlert(uid, component); // Starlight
 
@@ -194,6 +195,7 @@ namespace Content.Server.Singularity.EntitySystems
             }
 
             component.IsPowered = true;
+            UpdateAmbience(uid, component); // Starlight
 
             component.FireShotCounter = 0;
             component.TimerCancel = new CancellationTokenSource();

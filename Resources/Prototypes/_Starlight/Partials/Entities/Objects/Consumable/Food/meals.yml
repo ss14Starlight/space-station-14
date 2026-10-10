@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: FoodSaladWatermelonFruitBowl
+  components:
+  - type: Tag
+    tags:
+    - Citrus
