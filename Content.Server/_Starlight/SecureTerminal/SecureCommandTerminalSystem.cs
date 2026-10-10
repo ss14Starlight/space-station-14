@@ -1149,10 +1149,8 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         return false;
     }
 
-    private string GetAccessName(ProtoId<AccessLevelPrototype> id)
-    {
-        return _protos.TryIndex(id, out var access) ? access.GetAccessLevelName() : id.Id;
-    }
+    private string GetAccessName(ProtoId<AccessLevelPrototype> id) =>
+        _protos.TryIndex(id, out var access) ? access.GetAccessLevelName() : id.Id;
 
     private string GetJobName(EntityUid actor)
     {

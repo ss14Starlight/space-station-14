@@ -16,6 +16,7 @@ namespace Content.Client._Starlight.SecureTerminal;
 public sealed partial class SecureCommandTerminalWindow : FancyWindow
 {
     [Dependency] private IPrototypeManager _protos = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private Content.Client.Administration.Managers.IClientAdminManager _adminManager = default!;
 
@@ -521,18 +522,15 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         }
     }
 
-    private string GetAccessName(ProtoId<AccessLevelPrototype> id)
-    {
-        return _protos.TryIndex(id, out var access) ? access.GetAccessLevelName() : id.Id;
-    }
+    private string GetAccessName(ProtoId<AccessLevelPrototype> id) =>
+        _protos.TryIndex(id, out var access) ? access.GetAccessLevelName() : id.Id;
 
-    private static string GetSalarySourceName(string source)
-    {
-        var key = $"secure-terminal-salary-source-{source.ToLowerInvariant().Replace(' ', '-')}";
-        return Loc.TryGetString(key, out var name) ? name : source;
-    }
+    private string GetSalarySourceName(string source) =>
+        _loc.TryGetString($"secure-terminal-salary-source-{source.ToLowerInvariant().Replace(' ', '-')}", out var name)
+            ? name
+            : source;
 
-    private static string GetSalaryModifierNote(SecureCommandTerminalRequestPrototype proto)
+    private string GetSalaryModifierNote(SecureCommandTerminalRequestPrototype proto)
     {
         var changes = proto.SalaryModifiers
             .Where(modifier => modifier.Change != 0)
