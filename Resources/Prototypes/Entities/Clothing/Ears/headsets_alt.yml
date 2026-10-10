@@ -148,7 +148,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeySyndie
+      - EncryptionKeyGorlex # Starlight Edit
   - type: Sprite
     sprite: Clothing/Ears/Headsets/syndicate.rsi
   - type: Clothing

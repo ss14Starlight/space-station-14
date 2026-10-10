@@ -292,3 +292,22 @@
           state: crypt_purple
         - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
           state: global_label
+
+# Gorlex
+- type: entity
+  parent: [ EncryptionKey, BaseSyndicateContraband ]
+  id: EncryptionKeyGorlex
+  name: gorlex encryption key
+  description: An encryption key used by... wait... Who is the owner of this chip?
+  components:
+  - type: EncryptionKey
+    channels:
+    - Syndicate
+    - Gorlex
+    defaultChannel: Gorlex
+  - type: Sprite
+    layers:
+    - state: crypt_red
+    - state: synd_label
+  - type: StaticPrice
+    price: 5000
