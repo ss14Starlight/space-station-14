@@ -1,6 +1,6 @@
 - type: thiefBackpackSet
   id: ERTLoadoutSecLaserVanguard
-  name: Laser Vanguard
+  name: cc-radio-category-laser-vanguard-name
   description: cc-radio-category-laser-vanguard-description
   sprite:
     sprite: _Starlight/Objects/Weapons/Guns/Battery/energy_smg.rsi
@@ -11,7 +11,7 @@
 
 - type: thiefBackpackSet
   id: ERTLoadoutSecLaserShotgun
-  name: Laser Breacher
+  name: cc-radio-category-laser-shotgun-name
   description: cc-radio-category-laser-shotgun-description
   sprite:
     sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Shotgun.rsi
@@ -23,7 +23,7 @@
 
 - type: thiefBackpackSet
   id: ERTLoadoutSecLaserSniper
-  name: Laser Sniper
+  name: cc-radio-category-laser-sniper-name
   description: cc-radio-category-laser-sniper-description
   sprite:
     sprite: _Starlight/Objects/Weapons/Guns/Battery/energy_sniper.rsi
@@ -35,7 +35,7 @@
 
 - type: thiefBackpackSet
   id: ERTLoadoutSecBallisticRifle
-  name: Ballistic Rifler
+  name: cc-radio-category-ballistic-rifle-name
   description: cc-radio-category-ballistic-rifler-description
   sprite:
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/ert.rsi
