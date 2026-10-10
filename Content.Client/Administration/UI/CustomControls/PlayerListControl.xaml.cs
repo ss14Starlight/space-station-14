@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Client.Administration.Systems;
+using Content.Client._Starlight.Stylesheets;
 using Content.Client.UserInterface.Controls;
 using Content.Client.Verbs.UI;
 using Content.Shared.Administration;
@@ -42,12 +43,19 @@ public sealed partial class PlayerListControl : BoxContainer
         PopulateList(_adminSystem.PlayerList);
         FilterLineEdit.OnTextChanged += _ => FilterList();
         _adminSystem.PlayerListChanged += PopulateList;
-        BackgroundPanel.PanelOverride = new StyleBoxFlat { BackgroundColor = new Color(32, 32, 40) };
+        BackgroundPanel.AddStyleClass(StarlightStyleClass.InsetPanel); // Starlight-edit: Unhardcode
     }
 
     public IReadOnlyList<PlayerInfo> PlayerInfo => _playerList;
 
     public event Action<PlayerInfo?>? OnSelectionChanged;
+
+    #region Starlight
+    /// <summary>
+    /// Raised after the list is refreshed with new player data. Starlight.
+    /// </summary>
+    public event Action? OnListPopulated;
+    #endregion
 
     private void PlayerListNoItemSelected()
     {
@@ -70,8 +78,8 @@ public sealed partial class PlayerListControl : BoxContainer
         _selectedPlayer = selectedPlayer;
 
         // update label text. Only required if there is some override (e.g. unread bwoink count).
-        if (OverrideText != null && args.Button.Children.FirstOrDefault()?.Children?.FirstOrDefault() is Label label)
-            label.Text = GetText(selectedPlayer);
+        if (OverrideText != null && args.Button.Children.FirstOrDefault() is PlayerListEntry entry) // Starlight-edit: Job icon
+            entry.PlayerEntryLabel.Text = GetText(selectedPlayer);
     }
 
     private void PlayerListItemKeyBindDown(GUIBoundKeyEventArgs? args, ListData? data)
@@ -132,10 +140,19 @@ public sealed partial class PlayerListControl : BoxContainer
             }
         }
 
-        if (_selectedPlayer != null && !_playerList.Contains(_selectedPlayer))
-            _selectedPlayer = null;
+        // Starlight-start
+        var selectionLost = false;
+        if (_selectedPlayer != null)
+        {
+            _selectedPlayer = _playerList.FirstOrDefault(p => p.SessionId == _selectedPlayer.SessionId);
+            selectionLost = _selectedPlayer == null;
+        }
 
         FilterList();
+        if (selectionLost)
+            OnSelectionChanged?.Invoke(null);
+        OnListPopulated?.Invoke();
+        // Starlight-end
     }
 
 

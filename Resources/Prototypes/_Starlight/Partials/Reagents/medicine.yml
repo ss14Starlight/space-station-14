@@ -1,12 +1,4 @@
 - type: !PartialOnly reagent
-  id: Epinephrine
-  metabolisms:
-    Bloodstream:
-      effects:
-      - !type:ReduceSleepiness
-        time: 2
-
-- type: !PartialOnly reagent
   id: Ethyloxyephedrine
   metabolisms:
     Bloodstream:
@@ -47,6 +39,8 @@
   metabolisms:
     Bloodstream:
       effects:
+      - !type:ReduceSleepiness
+        time: 2
       - !type:HealthChange
         conditions:
           # Soft Crit should also work
@@ -76,3 +70,41 @@
           damage:
             types:
               Asphyxiation: -2
+
+- type: !PartialOnly reagent
+  id: Tricordrazine
+  metabolisms:
+    Bloodstream:
+      effects: !Clear
+      - !type:HealthChange
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Alive
+        - !type:ReagentCondition
+          reagent: Tricordrazine
+          max: 40
+        damage:
+          mixmax:
+            value: -0.75
+            groups:
+            - Burn
+            - Brute
+            types:
+            - Poison
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 0.75
+        sprintSpeedModifier: 0.75
+        conditions:
+        - !type:ReagentCondition
+          reagent: Tricordrazine
+          min: 20
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Tricordrazine
+        amount: -0.5
+    Digestion:
+      metabolismRate: 1
+      effects: !Clear []
+      metabolites: !Clear {}

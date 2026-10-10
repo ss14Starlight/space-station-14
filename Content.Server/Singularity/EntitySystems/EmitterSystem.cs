@@ -140,6 +140,7 @@ namespace Content.Server.Singularity.EntitySystems
 
         public void SwitchOff(EntityUid uid, EmitterComponent component)
         {
+            CancelUnpoweredAlert(uid); // Starlight
             component.IsOn = false;
             if (TryComp<PowerConsumerComponent>(uid, out var powerConsumer))
                 powerConsumer.DrawRate = 1; // this needs to be not 0 so that the visuals still work.
@@ -172,10 +173,10 @@ namespace Content.Server.Singularity.EntitySystems
                 return;
             }
 
-            AlertRadio((uid, component), component.LocUnpowered);
-
             component.IsPowered = false;
             UpdateAmbience(uid, component); // Starlight
+
+            ScheduleUnpoweredAlert(uid, component); // Starlight
 
             // Must be set while emitter powered.
             DebugTools.AssertNotNull(component.TimerCancel);
@@ -186,6 +187,8 @@ namespace Content.Server.Singularity.EntitySystems
 
         public void PowerOn(EntityUid uid, EmitterComponent component)
         {
+            CancelUnpoweredAlert(uid); // Starlight
+
             if (component.IsPowered)
             {
                 return;
@@ -311,9 +314,9 @@ namespace Content.Server.Singularity.EntitySystems
             AlertRadio(ent, ent.Comp.LocDeconstructed);
         }
 
-        private void AlertRadio(Entity<EmitterComponent> ent, string locString)
+        private void AlertRadio(Entity<EmitterComponent> ent, string locString, bool requirePowered = true) // Starlight
         {
-            if (!ent.Comp.AlertRadio || !ent.Comp.IsOn || !ent.Comp.IsPowered)
+            if (!ent.Comp.AlertRadio || !ent.Comp.IsOn || (requirePowered && !ent.Comp.IsPowered)) // Starlight
                 return; // APEs do not need to scream over engineering radio, and an emitter that is off is probably not going to be alerting radios
 
             var message = Loc.GetString(
