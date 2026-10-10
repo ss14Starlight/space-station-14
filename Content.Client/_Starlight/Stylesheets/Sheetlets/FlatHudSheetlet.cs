@@ -65,12 +65,10 @@ public sealed class FlatHudSheetlet : Sheetlet<NanotrasenStylesheet>
     }
 
     private static void IconColors<T>(List<StyleRule> rules, StyleTheme theme) where T : Control
-    {
-        rules.AddRange([
+        => rules.AddRange([
             E<T>().PseudoNormal().Prop(StarlightStyleProperty.IconColor, theme.Proto.TextMuted),
             E<T>().PseudoHovered().Prop(StarlightStyleProperty.IconColor, theme.Proto.Text),
             E<T>().PseudoPressed().Prop(StarlightStyleProperty.IconColor, theme.Accent),
             E<T>().PseudoDisabled().Prop(StarlightStyleProperty.IconColor, theme.Proto.TextDisabled),
         ]);
-    }
 }

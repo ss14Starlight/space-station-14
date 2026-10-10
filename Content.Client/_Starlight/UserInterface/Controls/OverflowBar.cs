@@ -161,7 +161,5 @@ public sealed class OverflowBar : Control
     }
 
     private float BarWidth(Control item)
-    {
-        return _barWidths.GetValueOrDefault(item, item.MinWidth);
-    }
+        => _barWidths.GetValueOrDefault(item, item.MinWidth);
 }

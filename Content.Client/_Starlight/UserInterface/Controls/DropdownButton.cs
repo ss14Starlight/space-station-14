@@ -56,7 +56,7 @@ public sealed class DropdownButton : Button
 
         button.OnPressed += _ =>
         {
-            if (button is not CheckBox && button is not ConfirmButton { IsConfirming: true })
+            if (button is not CheckBox and not ConfirmButton { IsConfirming: true })
                 _popup.Close();
         };
     }

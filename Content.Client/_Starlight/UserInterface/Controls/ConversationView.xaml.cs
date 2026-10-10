@@ -37,6 +37,9 @@ public sealed partial class ConversationView : BoxContainer
         SendButton.OnPressed += _ => Submit(InputLineEdit.Text);
     }
 
+    /// <summary>
+    /// Adds a message to the conversation view. If the message matches the current filter, it will also be displayed in the output.
+    /// </summary>
     public void AddMessage(FormattedMessage message)
     {
         _messages.Add(message);
@@ -44,6 +47,9 @@ public sealed partial class ConversationView : BoxContainer
             Output.AddMessage(message);
     }
 
+    /// <summary>
+    /// Sets the text for the typing indicator.
+    /// </summary>
     public void SetTyping(string text)
     {
         TypingLabel.SetMessage(FormattedMessage.FromUnformatted(text));
@@ -71,7 +77,5 @@ public sealed partial class ConversationView : BoxContainer
     }
 
     private bool Matches(FormattedMessage message)
-    {
-        return _filter.Length == 0 || message.ToString().Contains(_filter, StringComparison.CurrentCultureIgnoreCase);
-    }
+        => _filter.Length == 0 || message.ToString().Contains(_filter, StringComparison.CurrentCultureIgnoreCase);
 }
