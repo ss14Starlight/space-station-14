@@ -39,7 +39,7 @@
   - type: HeadsetLoudMode
 
 - type: entity
-  parent: [ClothingHeadsetAlt, BaseNanoTrasenContraband]
+  parent: [ ClothingHeadsetAlt, BaseNanoTrasenContraband ]
   id: ClothingHeadsetAltNanoTrasen
   name: NanoTrasen over-ear headset
   components:
@@ -59,7 +59,7 @@
   - type: HeadsetLoudMode
 
 - type: entity
-  parent: [ClothingHeadsetAlt, BaseNanoTrasenContraband]
+  parent: [ ClothingHeadsetAlt, BaseNanoTrasenContraband ]
   id: ClothingHeadsetAltRepresentative
   name: NanoTrasen representative over-ear headset
   components:
@@ -157,6 +157,8 @@
   name: blood-red over-ear commander headset
   description: An updated, modular syndicate intercom that fits over the head and takes encryption keys (there are 5 key slots.).
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier4
   - type: Headset
   - type: EncryptionKeyHolder
     keySlots: 5
@@ -179,6 +181,8 @@
   name: blood-red over-ear agent headset
   description: An updated, modular syndicate intercom that fits over the head and takes encryption keys (there are 5 key slots.).
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier4
   - type: Headset
   - type: EncryptionKeyHolder
     keySlots: 5

@@ -15,7 +15,7 @@
 
 - type: entity
   id: NTDefaultCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
+  parent: [ BaseSiliconLawboard, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (NT Default)
   description: An electronics board containing the NT Default lawset.
   components:
@@ -24,7 +24,7 @@
 
 - type: entity
   id: AsimovCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
+  parent: [ BaseSiliconLawboard, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Crewsimov)
   description: An electronics board containing the Crewsimov lawset.
   components:
@@ -33,7 +33,7 @@
 
 - type: entity
   id: CorporateCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
+  parent: [ BaseSiliconLawboard, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Corporate)
   description: An electronics board containing the Corporate lawset.
   components:
@@ -42,7 +42,7 @@
 
 - type: entity
   id: CommandmentCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
+  parent: [ BaseSiliconLawboard, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Ten Commandments)
   description: An electronics board containing the Ten Commandments lawset.
   components:
@@ -51,7 +51,7 @@
 
 - type: entity
   id: PaladinCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
+  parent: [ BaseSiliconLawboard, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Paladin)
   description: An electronics board containing the Paladin lawset.
   components:
@@ -60,7 +60,7 @@
 
 - type: entity
   id: LiveLetLiveCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
+  parent: [ BaseSiliconLawboard, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Live and Let Live)
   description: An electronics board containing the Live and Let Live lawset.
   components:
@@ -69,7 +69,7 @@
 
 - type: entity
   id: StationEfficiencyCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
+  parent: [ BaseSiliconLawboard, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Station Efficiency)
   description: An electronics board containing the Station Efficiency lawset.
   components:
@@ -78,7 +78,7 @@
 
 - type: entity
   id: RobocopCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
+  parent: [ BaseSiliconLawboard, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Robocop)
   description: An electronics board containing the Robocop lawset.
   components:
@@ -87,7 +87,7 @@
 
 - type: entity
   id: OverlordCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
+  parent: [ BaseSiliconLawboard, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Overlord)
   description: An electronics board containing the Overlord lawset.
   components:
@@ -96,7 +96,7 @@
 
 - type: entity
   id: GameMasterCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
+  parent: [ BaseSiliconLawboard, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Game Master)
   description: An electronics board containing the Game Master lawset.
   components:
@@ -105,7 +105,7 @@
 
 - type: entity
   id: ArtistCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
+  parent: [ BaseSiliconLawboard, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Artist)
   description: An electronics board containing the Artist lawset.
   components:
@@ -138,7 +138,7 @@
 
 - type: entity
   id: NutimovCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
+  parent: [ BaseSiliconLawboard, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Nutimov)
   description: An electronics board containing the Nutimov lawset.
   components:

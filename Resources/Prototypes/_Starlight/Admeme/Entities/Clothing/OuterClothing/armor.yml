@@ -11,7 +11,7 @@
       sprite: _Starlight/Admeme/Clothing/OuterClothing/Vests/ntnc-ensign.rsi
 
 - type: entity
-  parent: [ClothingOuterArmorBase, BaseNanoTrasenContraband]
+  parent: [ BaseNanoTrasenContraband, ClothingOuterArmorBase ] # Blimpuf
   id: ClothingOuterVestNTNC
   name: NanoTrasen navy marine's vest
   description: Much better than a standard type-1 security vest. Don't lose it, you will NOT get a replacement.

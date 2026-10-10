@@ -64,7 +64,7 @@
 ## Belts without visualizers
 
 - type: entity
-  parent: [ClothingBeltAmmoProviderBase, BaseSecurityBartenderContraband]
+  parent: [ ClothingBeltAmmoProviderBase, BaseSecurityContraband, BaseBartenderContraband ] # Blimpuf
   id: ClothingBeltBandolier
   name: bandolier
   description: A bandolier for holding shotgun ammunition.
@@ -225,7 +225,7 @@
     sprite: Clothing/Belt/militarywebbingmed.rsi
 
 - type: entity
-  parent: ClothingBeltMilitaryWebbing
+  parent: [ BaseCentcommContraband, ClothingBeltMilitaryWebbing ] # Blimpuf
   id: ClothingBeltMilitaryWebbingERT
   name: ERT chest rig
   description: A set of tactical webbing worn by Emergency Response Team operatives.

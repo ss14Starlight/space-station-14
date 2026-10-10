@@ -39,7 +39,7 @@
 
 - type: entity
   name: captain's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampCaptain
   categories: [ DoNotMap ]
   components:
@@ -52,7 +52,7 @@
 
 - type: entity
   name: CentComm rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampCentcom
   categories: [ DoNotMap ]
   components:
@@ -104,7 +104,7 @@
 
 - type: entity
   name: chief engineer's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampCE
   categories: [ DoNotMap ]
   components:
@@ -117,7 +117,7 @@
 
 - type: entity
   name: chief medical officer's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampCMO
   categories: [ DoNotMap ]
   components:
@@ -130,7 +130,7 @@
 
 - type: entity
   name: head of personnel's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampHop
   categories: [ DoNotMap ]
   components:
@@ -143,7 +143,7 @@
 
 - type: entity
   name: head of security's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampHos
   categories: [ DoNotMap ]
   components:
@@ -170,7 +170,7 @@
 
 - type: entity
   name: quartermaster's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampQm
   categories: [ DoNotMap ]
   components:
@@ -183,7 +183,7 @@
 
 - type: entity
   name: research director's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampRd
   categories: [ DoNotMap ]
   components:
@@ -223,7 +223,7 @@
 
 - type: entity
   name: warden's rubber stamp
-  parent: [RubberStampBase, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseSecurityContraband ] # Blimpuf
   id: RubberStampWarden
   categories: [ DoNotMap ]
   components:
@@ -260,7 +260,7 @@
 
 - type: entity
   name: detective's rubber stamp
-  parent: [RubberStampBase, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseSecurityContraband ] # Blimpuf
   id: RubberStampDetective
   categories: [ DoNotMap ]
   components:

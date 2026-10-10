@@ -86,3 +86,10 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatHoodWinterSyndie
+  components:
+  - type: Contraband
+    tier: Tier1
+    contrabandType: Syndicate

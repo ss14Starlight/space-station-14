@@ -128,7 +128,7 @@
         - id: JawsOfLifeMed #Starlight
 
 - type: entity
-  parent: [GunSafeBaseArmorySL, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, GunSafeBaseArmorySL, BaseSecurityContraband ] # Blimpuf
   id: GunSafeHeavyWeapons # To save remapping
   name: DMR safe
   description: Contains a set of L10 DMRs
@@ -149,7 +149,7 @@
           amount: 1
 
 - type: entity
-  parent: [GunSafeBaseArmorySL, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, GunSafeBaseArmorySL, BaseSecurityContraband ] # Blimpuf
   id: GunSafeLMG
   categories: [ DoNotMap ]
   name: heavy weapon safe

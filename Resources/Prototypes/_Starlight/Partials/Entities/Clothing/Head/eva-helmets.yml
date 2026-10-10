@@ -13,3 +13,9 @@
     # PointLight energy/radius moved to ClothingHeadLightParams(..) prototypes
     radius: !Remove
     energy: !Remove
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetSyndicate
+  components:
+  - type: Contraband
+    contrabandType: Syndicate

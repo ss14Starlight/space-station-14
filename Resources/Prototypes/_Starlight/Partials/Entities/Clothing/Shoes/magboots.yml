@@ -4,6 +4,8 @@
   components:
   - type: ClothingSlowOnDamageModifier
     modifier: 0.5
+  - type: Contraband
+    tier: Tier4
 
 - type: !PartialOnly entity
   id: ClothingShoesBootsMagERT

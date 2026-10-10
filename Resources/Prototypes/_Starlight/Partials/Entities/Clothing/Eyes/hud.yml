@@ -57,3 +57,12 @@
     - Hybrid
     - MoffDemonBiological
   - type: SolutionScanner
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudSyndicate
+  components:
+  - type: Contraband
+    tier: Tier4
+

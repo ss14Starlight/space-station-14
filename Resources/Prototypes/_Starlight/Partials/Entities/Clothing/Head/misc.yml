@@ -27,6 +27,8 @@
     sprite: _Starlight/Clothing/Head/Hats/blackcatears.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hats/blackcatears.rsi
+  - type: Contraband
+    tier: Tier1
 
 - type: !PartialOnly entity
   id: ClothingHeadHatCatEarsValid
