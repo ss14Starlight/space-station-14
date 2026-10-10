@@ -41,5 +41,18 @@ public static class ThemeBox
     }
 
     public static StyleBox Or(StyleThemeBox? decor, IResourceCache resCache, StyleBox fallback)
-        => decor == null ? fallback : Create(decor, resCache);
+    {
+        if (decor == null)
+            return fallback;
+
+        try
+        {
+            return Create(decor, resCache);
+        }
+        catch (Exception e)
+        {
+            Logger.GetSawmill("style").Error($"Failed to load theme texture {decor.Texture}, falling back to the flat style: {e}");
+            return fallback;
+        }
+    }
 }
