@@ -18,5 +18,9 @@ reagent-physical-desc-highlander = immortal
 
 reagent-physical-desc-resinfera = spiny
 
+reagent-physical-desc-coated-bruizine = crystalline and mucus-like
+reagent-physical-desc-coated-puncturase = crystalline and fizzy
+reagent-physical-desc-coated-lacerinol = crystalline and viscous
+
 
 reagent-physical-desc-sawian = artificial
