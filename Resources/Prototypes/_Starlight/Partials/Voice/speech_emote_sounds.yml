@@ -90,12 +90,14 @@
 
 - type: !PartialOnly emoteSounds
   id: MaleSlime
+  parent: SlimeCoreSounds
   sounds:
     ThavenGlub:
       path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
 
 - type: !PartialOnly emoteSounds
   id: FemaleSlime
+  parent: SlimeCoreSounds
   sounds:
     ThavenGlub:
       path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
