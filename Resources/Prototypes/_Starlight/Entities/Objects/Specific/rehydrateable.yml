@@ -25,8 +25,42 @@
   parent: RehydratableAnimalCube
   id: CCMoproachCube
   name: cc moproach cube
-  description: Just add water! *chitters*
+  description: Just add water!
   components:
     - type: Rehydratable
       possibleSpawns:
         - MobCCMoproach
+
+- type: entity
+  parent: RehydratableAnimalCube
+  id: PigCube
+  name: pig cube
+  description: Just add water!
+  components:
+    - type: Rehydratable
+      possibleSpawns:
+        - MobPig
+
+- type: entity
+  parent: RehydratableAnimalCube
+  id: ChickenCube
+  name: chicken cube
+  description: Just add water!
+  components:
+    - type: Rehydratable
+      possibleSpawns:
+        - MobChicken
+
+- type: entity
+  parent: RehydratableAnimalCube
+  id: KoiCube
+  name: koi cube
+  description: Just add water!
+  components:
+    - type: Rehydratable
+      possibleSpawns:
+        - MobSpaceGlowKoi
+        - MobBloodSkeletonKoi
+        - MobRedCircleKoi
+        - MobGoldBlackKoi
+        - MobRedBlackKoi
