@@ -184,10 +184,10 @@
   parent: BaseRuneAction
   id: ActionSummonSlowCurse
   name: Summon curse of slowness
-  description: Summon a hex totem that continuously spawns soul webs around it. Soulmancers are immune to them (45 seconds cooldown).
+  description: Summon a hex totem that continuously spawns soul webs around it. Soulmancers are immune to them (30 seconds cooldown).
   components:
   - type: Action
-    useDelay: 45
+    useDelay: 30
     itemIconStyle: BigAction
     icon:
         sprite: _Starlight/Objects/Magic/magicactions.rsi
@@ -271,11 +271,13 @@
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/gib1.ogg
+  - type: TimedDespawn
+    lifetime: 2
   - type: CustomSpawner
     enabled: true
     spawnOnInterval: true
-    spawnInterval: 5
-    oneShot: false
+    spawnInterval: 0.1
+    oneShot: true
     strategy: All
     spawnData:
     - protoId: SpiderWebSoul
