@@ -44,4 +44,16 @@ public sealed partial class EmitPollenComponent : Component
 
     [DataField]
     public EntityUid? LastMarkerEntity;
+
+    /// <summary>
+    /// How close a new emission needs to be to the previous marker to merge into it.
+    /// </summary>
+    [DataField]
+    public float MergeRadius = 1f;
+
+    /// <summary>
+    /// How much marker strength increases with each merge, capped at 1.
+    /// </summary>
+    [DataField]
+    public float MergeStrengthStep = 0.25f;
 }

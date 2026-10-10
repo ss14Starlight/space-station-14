@@ -40,6 +40,7 @@ using Robust.Shared.Utility;
 using Content.Shared._Starlight.Pollen.Components;
 using Content.Shared.Botany.Items.Components;
 using Robust.Shared.Map;
+using Content.Shared.Botany.Components;
 
 namespace Content.Server._Starlight.Scent.Systems;
 
@@ -222,7 +223,28 @@ public sealed partial class ScentSystem : SharedScentSystem
         if (TryComp<ProduceComponent>(uid, out var produce) && produce.PlantProtoId is { } plantId)
             return plantId.ToString();
 
-        return null;
+        if (!TryComp<PlantDataComponent>(uid, out var plantData))
+            return null;
+
+        string? resolvedId = null;
+
+        foreach (var productId in plantData.ProductPrototypes)
+        {
+            var prototype = _prototype.Index(productId);
+
+            if (!prototype.TryGetComponent<ProduceComponent>(out var product) ||
+                product.PlantProtoId is not { } productPlantId)
+                continue;
+
+            var productPollenId = productPlantId.ToString();
+
+            if (resolvedId != null && resolvedId != productPollenId)
+                return null;
+
+            resolvedId = productPollenId;
+        }
+
+        return resolvedId;
     }
 
     private void OnTrackMessage(EntityUid uid, SmellerComponent component, ScentSniffTrackMessage args)
@@ -660,17 +682,17 @@ public sealed partial class ScentSystem : SharedScentSystem
     /// Updated in place when a new marker is spawned.
     /// </param>
     /// <returns>The marker entity now associated with this emitter.</returns>
-    public EntityUid EmitPollenMarker(ref EntityUid? lastMarker, string pollenId, TransformComponent emitterXform, TimeSpan lifetime)
+    public EntityUid EmitPollenMarker(ref EntityUid? lastMarker, string pollenId, TransformComponent emitterXform, TimeSpan lifetime, float mergeRadius, float mergeStrengthStep)
     {
         if (lastMarker is { } tail &&
             TryComp<ScentMarkerComponent>(tail, out var marker) &&
             marker.IsPollen && marker.ScentId == pollenId &&
             TryComp(tail, out TransformComponent? tailXform) &&
-            _transform.InRange(emitterXform.Coordinates, tailXform.Coordinates, 0.25f))
+            _transform.InRange(emitterXform.Coordinates, tailXform.Coordinates, mergeRadius))
         {
             marker.ExpiresAt = _timing.CurTime + lifetime;
             marker.TotalDuration = lifetime;
-            marker.Strength = 1f;
+            marker.Strength = Math.Min(1f, marker.Strength + mergeStrengthStep);
             marker.ContainedIn = GetAirtightContainer(emitterXform);
             Dirty(tail, marker);
 
@@ -684,7 +706,6 @@ public sealed partial class ScentSystem : SharedScentSystem
         var newMarkerComp = Comp<ScentMarkerComponent>(newMarker);
         newMarkerComp.ScentId = pollenId;
         newMarkerComp.IsPollen = true;
-        newMarkerComp.Strength = 1f;
         newMarkerComp.ExpiresAt = _timing.CurTime + lifetime;
         newMarkerComp.TotalDuration = lifetime;
         newMarkerComp.ContainedIn = GetAirtightContainer(emitterXform);

@@ -50,7 +50,7 @@ public sealed partial class EmitPollenSystem : EntitySystem
             return;
 
         var lifetime = TimeSpan.FromSeconds(pollen.PollenLifetime);
-        _scent.EmitPollenMarker(ref pollen.LastMarkerEntity, pollenId, transform, lifetime);
+        _scent.EmitPollenMarker(ref pollen.LastMarkerEntity, pollenId, transform, lifetime, pollen.MergeRadius, pollen.MergeStrengthStep);
     }
 
     private TimeSpan RollEmitDelay(EmitPollenComponent pollen)
