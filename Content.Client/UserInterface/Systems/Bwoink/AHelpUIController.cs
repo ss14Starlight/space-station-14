@@ -483,6 +483,16 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
 
     public void Dispose()
     {
+        // Starlight-start
+        if (Window != null)
+        {
+            Window.OnFinalClose -= OnFinalClose;
+            if (_poppedOut)
+                Window.DisposePopOut();
+        }
+        _poppedOut = false;
+        // Starlight-end
+
         Window?.Dispose();
         Window = null;
         Control = null;
