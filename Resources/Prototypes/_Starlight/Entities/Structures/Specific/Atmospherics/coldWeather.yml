@@ -68,28 +68,43 @@
       Quinary: GasVentPumpColdWeatherAlt4
 
 - type: entity
+  parent: [AirSensorColdWeatherBase, GasVentPumpColdWeatherBase, GasVentPump]
+  id: GasVentPumpColdWeather
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentPumpColdWeather
+
+- type: entity
   parent: [AirSensorColdWeatherBase, GasVentPumpColdWeatherBase, GasVentPumpAlt1]
   id: GasVentPumpColdWeatherAlt1
   categories: [ HideSpawnMenu ]
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentPumpColdWeather
 
 - type: entity
   parent: [AirSensorColdWeatherBase, GasVentPumpColdWeatherBase, GasVentPumpAlt2]
   id: GasVentPumpColdWeatherAlt2
   categories: [ HideSpawnMenu ]
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentPumpColdWeather
 
 - type: entity
   parent: [AirSensorColdWeatherBase, GasVentPumpColdWeatherBase, GasVentPumpAlt3]
   id: GasVentPumpColdWeatherAlt3
   categories: [ HideSpawnMenu ]
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentPumpColdWeather
 
 - type: entity
   parent: [AirSensorColdWeatherBase, GasVentPumpColdWeatherBase, GasVentPumpAlt4]
   id: GasVentPumpColdWeatherAlt4
   categories: [ HideSpawnMenu ]
-
-- type: entity
-  parent: [AirSensorColdWeatherBase, GasVentPumpColdWeatherBase, GasVentPump]
-  id: GasVentPumpColdWeather
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentPumpColdWeather
 
 # Gas Scrubber
 
@@ -107,25 +122,40 @@
       Quinary: GasVentScrubberColdWeatherAlt4
 
 - type: entity
+  parent: [AirSensorColdWeatherBase, GasVentScrubberColdWeatherBase, GasVentScrubber]
+  id: GasVentScrubberColdWeather
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentScrubberColdWeather
+
+- type: entity
   parent: [AirSensorColdWeatherBase, GasVentScrubberColdWeatherBase, GasVentScrubberAlt1]
   id: GasVentScrubberColdWeatherAlt1
   categories: [ HideSpawnMenu ]
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentScrubberColdWeather
 
 - type: entity
   parent: [AirSensorColdWeatherBase, GasVentScrubberColdWeatherBase, GasVentScrubberAlt2]
   id: GasVentScrubberColdWeatherAlt2
   categories: [ HideSpawnMenu ]
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentScrubberColdWeather
 
 - type: entity
   parent: [AirSensorColdWeatherBase, GasVentScrubberColdWeatherBase, GasVentScrubberAlt3]
   id: GasVentScrubberColdWeatherAlt3
   categories: [ HideSpawnMenu ]
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentScrubberColdWeather
 
 - type: entity
   parent: [AirSensorColdWeatherBase, GasVentScrubberColdWeatherBase, GasVentScrubberAlt4]
   id: GasVentScrubberColdWeatherAlt4
   categories: [ HideSpawnMenu ]
-
-- type: entity
-  parent: [AirSensorColdWeatherBase, GasVentScrubberColdWeatherBase, GasVentScrubber]
-  id: GasVentScrubberColdWeather
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentScrubberColdWeather

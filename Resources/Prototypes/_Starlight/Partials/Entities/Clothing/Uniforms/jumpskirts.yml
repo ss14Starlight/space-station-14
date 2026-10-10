@@ -1,0 +1,29 @@
+- type: !PartialOnly entity
+  id: ClothingUniformJumpskirtChaplain
+  name: chaplain jumpskirt # chaplain's -> chaplain
+
+- type: !PartialOnly entity
+  id: ClothingUniformJumpskirtBrigmedic
+  components:
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
+
+- type: !PartialOnly entity
+  id: ClothingUniformJumpskirtWarden
+  description: A formal security suit for officers complete with NanoTrasen belt buckle.
+
+- type: !PartialOnly entity
+  id: ClothingUniformJumpskirtOfLife
+  components:
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.95
+
+- type: !PartialOnly entity
+  id: ClothingUniformJumpskirtSecGrey
+  description: A tactical relic of years past before NanoTrasen decided it was cheaper to dye the suits red instead of washing out the blood.

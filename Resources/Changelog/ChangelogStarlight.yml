@@ -1,242 +1,4 @@
 Entries:
-- author: Wizden Team
-  changes:
-  - message: Internal code changes to damage handling may result in slightly different numbers for some medicines and/or some attacks.
-    type: Tweak
-  id: 408897
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: 'EXPERIMENTAL: The recipes to make xenoborg chassis and xenoborg modules now uses xenoborg crystals instead of normal materials.'
-    type: Tweak
-  id: 408898
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: The uplink now properly states the capacity of the hypodart.
-    type: Fix
-  id: 408899
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: Holosign projectors and dragon rifts no longer place signs at strange angles.
-    type: Fix
-  id: 408900
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: Fixed bar sign UI not closing correctly.
-    type: Fix
-  id: 408901
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: Makeshift Juicers now correctly craft in your hands instead of being a construction ghost.
-    type: Fix
-  id: 408902
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: Fixed door remotes working on fences, curtains and other entities they shouldn't work on.
-    type: Fix
-  id: 408903
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: Admin door remote once again works through walls.
-    type: Fix
-  id: 408904
-  time: '2026-09-26T11:23:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6239
-- author: Wizden Team
-  changes:
-  - message: Hyper Autolathe now needs 4 manipulators instead of 3.
-    type: Tweak
-  id: 408905
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: The Estoc DMR now has less slowdown when wielding and the same accuracy as other rifles.
-    type: Tweak
-  id: 408906
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Passive regeneration on mobs no longer stops after taking a certain amount of damage.
-    type: Tweak
-  id: 408907
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Hyperzine now heals you when critical, rather than relying on being above a certain amount of damage.
-    type: Tweak
-  id: 408908
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Tricordrazine and Holy Water no longer have an upper damage.
-    type: Tweak
-  id: 408909
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Changeling devour damage is no longer capped.
-    type: Tweak
-  id: 408910
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Vulpkanins can now use Gauze markings.
-    type: Add
-  id: 408911
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Spent air grenades cannot be re-triggered.
-    type: Fix
-  id: 408912
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Hostile vent critters now crawl out of a single vent, alerting the station about the location in advance.
-    type: Add
-  id: 408913
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Wizden Team
-  changes:
-  - message: Vent critters can no longer spawn on unachored vents.
-    type: Remove
-  id: 408914
-  time: '2026-09-26T16:17:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6276
-- author: Rinary
-  changes:
-  - message: Added bullet holes visual effect when shooting in objects like walls.
-    type: Add
-  id: 408915
-  time: '2026-09-26T18:04:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6251
-- author: Rinary
-  changes:
-  - message: Added sparks visual effect when shooting in metal piercable objects.
-    type: Add
-  id: 408916
-  time: '2026-09-26T18:04:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6251
-- author: Rinary
-  changes:
-  - message: 'Added new options tab: "User Interface".'
-    type: Add
-  id: 408917
-  time: '2026-09-26T18:04:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6251
-- author: Rinary
-  changes:
-  - message: Added a lot of options for sights.
-    type: Add
-  id: 408918
-  time: '2026-09-26T18:04:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6251
-- author: Rinary
-  changes:
-  - message: Added ability to change crosshair at options.
-    type: Add
-  id: 408919
-  time: '2026-09-26T18:04:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6251
-- author: Rinary
-  changes:
-  - message: Changed wielding bonus on all weapons, now when you're wielding weapon it wouldn't be 100% accurate.
-    type: Tweak
-  id: 408920
-  time: '2026-09-26T18:04:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6251
-- author: Rinary
-  changes:
-  - message: Changed spread, now when you're moving your spread will be bigger.
-    type: Tweak
-  id: 408921
-  time: '2026-09-26T18:04:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6251
-- author: Rinary
-  changes:
-  - message: Changed spread stats of large amount of weapons.
-    type: Tweak
-  id: 408922
-  time: '2026-09-26T18:04:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6251
-- author: Rinary
-  changes:
-  - message: Now all pistols are wieldable.
-    type: Tweak
-  id: 408923
-  time: '2026-09-26T18:04:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6251
-- author: Rinary
-  changes:
-  - message: Now all smgs are wieldable.
-    type: Tweak
-  id: 408924
-  time: '2026-09-26T18:04:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6251
-- author: Rinary
-  changes:
-  - message: Added heat system, now if you're shooting too long your weapon may overheat(it's more then 1 magazine) which leads to jamming and if you're shooting after jamming - firing pin melting(you can replace it).
-    type: Add
-  id: 408925
-  time: '2026-09-26T18:04:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6251
-- author: Rinary
-  changes:
-  - message: Added shotgun bullets deviation, now you won't get same bullets pattern every time you shoot.
-    type: Add
-  id: 408926
-  time: '2026-09-26T18:04:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6251
-- author: Rinary
-  changes:
-  - message: Removed cursor visibility when entering at combat for some crosshairs.
-    type: Remove
-  id: 408927
-  time: '2026-09-26T18:04:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6251
-- author: Rinary
-  changes:
-  - message: Difference between 1st shooting 3.0 and 2nd shooting 3.0 - more balanced weapons, they're more accurate then before.
-    type: Tweak
-  id: 408928
-  time: '2026-09-26T18:04:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6251
-- author: Rinary
-  changes:
-  - message: Changed wield order, now you bolt/rack first and then wield.
-    type: Tweak
-  id: 408929
-  time: '2026-09-26T18:04:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6251
-- author: Rinary
-  changes:
-  - message: Added "wield before racking" option which returns old bolt/rack order.
-    type: Add
-  id: 408930
-  time: '2026-09-26T18:04:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6251
 - author: wonderfulnewworld
   changes:
   - message: Tricordizine and Doctor's Delight now prioritize higher damage types instead of healing uniformly.
@@ -2799,4 +2561,326 @@ Entries:
   id: 409296
   time: '2026-10-08T11:17:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6542
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Fixed a few air vents and scrubbers that were not the 'cold weather' variants (with larger temperature thresholds before firelocks and what not close).
+    type: Fix
+  id: 409297
+  time: '2026-10-09T11:27:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6581
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Fixed some labels around the Supermatter.
+    type: Fix
+  id: 409298
+  time: '2026-10-09T11:27:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6581
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Fixed a pipe that ran under a solid wall by Supermatter.
+    type: Fix
+  id: 409299
+  time: '2026-10-09T11:27:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6581
+- author: Johnny
+  changes:
+  - message: Changed carp to ignore gravity.
+    type: Tweak
+  id: 409300
+  time: '2026-10-09T12:04:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6569
+- author: Johnny
+  changes:
+  - message: Partialed carp.
+    type: Tweak
+  id: 409301
+  time: '2026-10-09T12:04:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6569
+- author: Swonki
+  changes:
+  - message: Scrappers should no longer need to recharge batteries.
+    type: Tweak
+  id: 409302
+  time: '2026-10-09T12:04:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6579
+- author: Swonki
+  changes:
+  - message: Drones can no longer become communist or join the syndicate.
+    type: Fix
+  id: 409303
+  time: '2026-10-09T12:04:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6579
+- author: rhithebirdthing
+  changes:
+  - message: Added a butcher module for service borgs.
+    type: Add
+  id: 409304
+  time: '2026-10-09T12:04:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6567
+- author: Caws
+  changes:
+  - message: Fixed wrong air vents / scrubbers being picked when using the 'P' picker tool.
+    type: Fix
+  id: 409305
+  time: '2026-10-09T12:34:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6580
+- author: VictoriaActual
+  changes:
+  - message: Added five new ties to the game.
+    type: Add
+  id: 409306
+  time: '2026-10-09T12:34:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6559
+- author: VictoriaActual
+  changes:
+  - message: Adjusted role loadouts to include ties for everyone!
+    type: Tweak
+  id: 409307
+  time: '2026-10-09T12:34:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6559
+- author: Mack, SevenShades
+  changes:
+  - message: Thrusters and Gyroscope can have their max thrust adjusted.
+    type: Tweak
+  id: 409308
+  time: '2026-10-09T13:07:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5846
+- author: Maxim
+  changes:
+  - message: Mailboxes will now send a Nanochat message when you have mail awaiting pickup.
+    type: Add
+  id: 409309
+  time: '2026-10-09T13:37:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6566
+- author: Xale
+  changes:
+  - message: Possession by the golden mask will no longer cryo the player after 7 minutes.
+    type: Fix
+  id: 409310
+  time: '2026-10-09T13:37:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6558
+- author: Romero/Littlemen
+  changes:
+  - message: Nerfed the Athena and Ares.
+    type: Tweak
+  id: 409311
+  time: '2026-10-09T13:57:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6536
+- author: Romero/Littlemen
+  changes:
+  - message: Dragon slash vulnerability lowered, from 200% to 120%.
+    type: Tweak
+  id: 409312
+  time: '2026-10-09T13:57:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6536
+- author: Caws
+  changes:
+  - message: The new maintenance door sprites (with Departmental colours) will now actually show up in game.
+    type: Fix
+  id: 409313
+  time: '2026-10-09T14:21:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6587
+- author: Vincolan
+  changes:
+  - message: Added Nar'sie Cultists Admeme Antag with a custom Debrief and Conversion sound.
+    type: Add
+  - message: Nar'sie Cultists are not attacked by Hellportal mobs.
+    type: Add
+  - message: Added Admeme Consumed Nar'sie tome, that can convert people to Nar'sie cultists.
+    type: Add
+  id: 409314
+  time: '2026-10-09T16:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6582
+- author: Alloy-Inc, Swonkus
+  changes:
+  - message: The ITG has made new items available in the salvage ticket vendor.
+    type: Add
+  - message: Bolt Rifle and Bolt Pistol firearms. For the Emp- I mean ITG !
+    type: Add
+  - message: Impact Bolt ammunition and matching magazines / ammo-box.
+    type: Add
+  - message: Impact Bolt recipes to the ammofab and secfab.
+    type: Add
+  - message: current bolt_rifle.yml (the sniper rifle) has been renamed to bolt_rifle_.48 to make it easier to know what you're looking at and avoid confusion with the new weapons, nothing else was made to it.
+    type: Tweak
+  id: 409315
+  time: '2026-10-09T17:41:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6446
+- author: Swonki
+  changes:
+  - message: Scrapper guidebook entry.
+    type: Add
+  id: 409316
+  time: '2026-10-09T20:23:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6557
+- author: Johnny
+  changes:
+  - message: Changed EventHumanoid to restrict a few more species.
+    type: Tweak
+  id: 409317
+  time: '2026-10-10T08:48:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6601
+- author: wonderfulnewworld
+  changes:
+  - message: Medibots only inject 5u of Tricordrazine (Alive) now. Use them to stabilize critical patients with Inaprovaline (unchanged, 15u Critical) instead of relying on them to do your alive treatments.
+    type: Tweak
+  - message: Tricordrazine now has an OD effect (Slowdown) at 20u, and stops working entirely above 40u. Don't overrely on it!!!
+    type: Tweak
+  - message: Tricordrazine no longer works on digestion. No more drinking a ton of it to get prolonged healing.
+    type: Tweak
+  - message: The Doctor's Delight now has an OD effect (Slowdown) at 35u (so you can still drink a full glass), and stops working entirely at 40u.
+    type: Tweak
+  - message: Real Doctor injects Tricordrazine (Alive) instead of Omnizine (Alive), and Epinephrine (Critical) instead of Omnizine (Critical).
+    type: Tweak
+  - message: Real Doctor only costs 500 credits now.
+    type: Tweak
+  id: 409318
+  time: '2026-10-10T08:48:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6604
+- author: Floximo
+  changes:
+  - message: Emitter and StationAI power alerts are now more reliable.
+    type: Fix
+  id: 409319
+  time: '2026-10-10T09:02:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6600
+- author: SirLutz
+  changes:
+  - message: Colossus healing ability works again.
+    type: Fix
+  - message: Colossus had an illegal gamestate which caused it to be stuck when reviving, also fixed.
+    type: Fix
+  id: 409320
+  time: '2026-10-10T09:15:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6597
+- author: rhithebirdthing
+  changes:
+  - message: Added slice turns to the twisty cube.
+    type: Add
+  - message: Unswapped x and x' on the twisty cube.
+    type: Fix
+  id: 409321
+  time: '2026-10-10T09:20:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6596
+- author: Sparlight, a_197
+  changes:
+  - message: K9 SOP.  No more biting tider ankles for fun while running solo.
+    type: Add
+  id: 409322
+  time: '2026-10-10T09:26:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6594
+- author: Scarlet.
+  changes:
+  - message: Added the assault suit for blackstar!.
+    type: Add
+  - message: Removed warlord combat suit.
+    type: Remove
+  - message: Added the MG42 and the STG44(not usable yet) for blackstar.
+    type: Add
+  - message: 'added the: radiopack blackstar varient, blackstar gas mask, blackstar helmet and fatiuges.'
+    type: Add
+  id: 409323
+  time: '2026-10-10T09:37:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6592
+- author: Xale
+  changes:
+  - message: Trash bags, pills, pill canisters, books, guidebooks, magazines, and newspapers can now be recycled by the disposals recycler.
+    type: Add
+  id: 409324
+  time: '2026-10-10T09:40:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6593
+- author: baltdev
+  changes:
+  - message: Added a snout marking option to Laspi.
+    type: Add
+  id: 409325
+  time: '2026-10-10T09:47:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6598
+- author: Johnny
+  changes:
+  - message: Added an ERT loadout radio.
+    type: Add
+  - message: Changed ERT security to use the new loadout radio.
+    type: Tweak
+  id: 409326
+  time: '2026-10-10T10:22:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6605
+- author: Rinary
+  changes:
+  - message: Changed space occlusion logic, now you won't hear sounds from another players while standing in atmosphere, you won't hear anyone else sounds while standing in space(only yours).
+    type: Tweak
+  - message: Changed general occlusion, now grille has less occlusion power, airlocks get occlusion.
+    type: Tweak
+  - message: Changed space wind sounds(again), added decompression sound effect at the start.
+    type: Tweak
+  id: 409327
+  time: '2026-10-10T12:34:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6590
+- author: Rinary
+  changes:
+  - message: Changed ammo counter for revolvers, now it visualized as revolver drum.
+    type: Tweak
+  - message: Changed shotgun pellets, now default pellets will lose their damage as distance increases.
+    type: Tweak
+  - message: Changed shotgun pellets, now default pellets has worse armor penetration(however slug will breach armor).
+    type: Tweak
+  - message: Changed shotgun deviation, now it won't make big amount of pellets in one place.
+    type: Tweak
+  - message: 'Added 2 new indicators on top of item preview: opened bolt and jammed, so now you can see when your weapon isn''t bolted or jammed on sight.'
+    type: Add
+  - message: 'Added ability to disable 2 new indicators, Added ability to disable item preview in combat or show only in combat(4 options: in combat, not in combat, always, never).'
+    type: Add
+  - message: Changed pistols accuracy options, now they're 100% accurate on first shot, however you anyway can't spam click.
+    type: Tweak
+  - message: Added heat gauge near ammo counter so now you will know which weapon has heat system and how much it heated, it also shows you when weapon jams or melts.
+    type: Add
+  - message: Added new heat shader for held sprite, so now you can see how heated weapon is held by your opponent.
+    type: Add
+  - message: 'Changed lockers, now you also can flip them to use as cover(NOTE: only closed lockers, you can''t open flipped locker, entity inside flipped locker can go out, but they will unflip locker).'
+    type: Tweak
+  - message: Changed crates/counters, now you can use them as cover but only when you're laying down.
+    type: Tweak
+  - message: Changed LR-30 balance, now it's burst weapon with 3 shots per second instead of 10.
+    type: Tweak
+  - message: Changed NPCs, now they will remember you if you'll try to hide in lockers while they're near you(i.e. they'll try to break or open locker to kill you if they're hostile, this works only if you done that on their eyes, so you anyway can hide from NPCs).
+    type: Tweak
+  - message: Changed NPCs , now they will see you through lockers/crates/vending machines, they'll break your "cover" first.
+    type: Tweak
+  - message: Added heat gauge near crosshair(you can disable it in settings).
+    type: Add
+  - message: Fixed some cases with shotgun/burst weaponry misspredicts.
+    type: Fix
+  - message: Fixed burst overall, now it will shoot even if you won't keep activated mouse button(i.e. 1 click, all burst), it won't fire 90 degrees up.
+    type: Fix
+  - message: Added prediction for sounds when shooting.
+    type: Add
+  - message: Fixed problems when firing pin can be melted from things like burning or explosion while it's in weapon(i.e. gun heat  only now).
+    type: Fix
+  - message: Added craft for unique pins, requires tier 3 research.
+    type: Add
+  - message: Added broken laser crystal which works the same as melted pin but for laser weaponry(before it also spawned melted firing pin).
+    type: Add
+  - message: You can again fast-swap modes for energy pistols by pressing interaction button.
+    type: Tweak
+  - message: Fixed bug when weapon disappears when trying to wield it, when it don't have any wield sprite.
+    type: Fix
+  - message: Added prediction for firing modes, so now instead of <whatever> laser you will see correct laser mode when shooting(was reported before that if you're shooting in taser mode you can see a laser from stun mode or kill mode and other such reports).
+    type: Add
+  id: 409328
+  time: '2026-10-10T12:38:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6373
+- author: Johnny
+  changes:
+  - message: Changed warops ERT to take 50 minutes instead of 25.
+    type: Tweak
+  id: 409329
+  time: '2026-10-10T12:38:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6607
+- author: Rinary
+  changes:
+  - message: 'Added themes into SS14(NOTE: You can return to old theme).'
+    type: Add
+  id: 409330
+  time: '2026-10-10T12:55:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6595
 Order: -1

@@ -6,6 +6,7 @@ using Content.Shared.Bed.Cryostorage;
 using Content.Shared.GameTicking;
 using Content.Shared._Starlight.CryoTeleportation;
 using Content.Shared._Starlight.CCVar;
+using Content.Shared.Inventory;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
@@ -19,6 +20,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Content.Shared.Station.Components;
+using Content.Shared.Clothing.Components;
 
 namespace Content.Server._Starlight.CryoTeleportation;
 
@@ -35,6 +37,7 @@ public sealed partial class CryoTeleportationSystem : EntitySystem
     [Dependency] private IPlayerManager _playerMan = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
     [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private InventorySystem _inventory = default!;
 
     public TimeSpan _nextTick = TimeSpan.Zero;
     private readonly TimeSpan _refreshCooldown = TimeSpan.FromSeconds(5);
@@ -65,6 +68,7 @@ public sealed partial class CryoTeleportationSystem : EntitySystem
                 || mobStateComponent.CurrentState != MobState.Alive
                 || comp.ExitTime == null
                 || _timing.CurTime - comp.ExitTime - comp.TimeDelay < stationComp.TransferDelay
+                || IsHeldByCursedMask(uid)
                 || HasComp<CryostorageContainedComponent>(uid)
                 || HasComp<UncryoableComponent>(uid))
                 continue;
@@ -214,5 +218,19 @@ public sealed partial class CryoTeleportationSystem : EntitySystem
 
         // if we couldn't find a cryo storage unit, return null
         return null;
+    }
+
+    /// <summary>
+    /// Checks if the target is wearing a cursed mask, which forces their mind out of the body.
+    /// </summary>
+    private bool IsHeldByCursedMask(EntityUid uid)
+    {
+        if (!_inventory.TryGetSlotEntity(uid, "mask", out var mask)
+            || !TryComp<CursedMaskComponent>(mask, out var cursed)
+            || cursed.StolenMind is not { } stolen)
+            return false;
+
+        // Victim took a new life or ghost role, so the old mind has no player.
+        return TryComp<MindComponent>(stolen, out var mind) && mind.UserId != null;
     }
 }

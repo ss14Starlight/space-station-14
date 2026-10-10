@@ -12,11 +12,15 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Random;
 using Content.Shared.Random.Helpers;
+using Content.Shared._Starlight.Weapons.Hitscan.Components;
+using Content.Shared._Starlight.Weapons.Hitscan.Systems;
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
 
 public sealed partial class HitscanBasicRaycastSystem
 {
+    [Dependency] private PierceSystem _pierce = default!;
+
     private RayCastResults? SelectHit(
         Entity<HitscanBasicRaycastComponent> hitscan,
         EntityUid shooter,
@@ -64,19 +68,60 @@ public sealed partial class HitscanBasicRaycastSystem
 
         if (TryFindCover(hitscan, from, direction, shooter, result?.Distance ?? hitscan.Comp.MaxDistance, target, seed) is { } cover)
             result = cover;
+        // Low cover that bullets normally fly over (counters, crates) still catches a shot at someone lying behind it.
+        else if (result is { } hit && target is { } aimed && hit.HitEntity == aimed
+            && TryShelterHit(hitscan, from, direction, shooter, aimed, hit.Distance, seed) is { } shelterHit)
+            result = shelterHit;
 
         return result;
     }
+
+    private RayCastResults? TryShelterHit(
+        Entity<HitscanBasicRaycastComponent> hitscan,
+        MapCoordinates from,
+        Vector2 direction,
+        EntityUid? shooter,
+        EntityUid target,
+        float targetDistance,
+        int? seed)
+    {
+        if (direction.LengthSquared() <= 0f)
+            return null;
+
+        var normal = Vector2.Normalize(direction);
+
+        _shelters.Clear();
+        foreach (var shelter in _cover.GetShelters(target, normal))
+        {
+            var along = Vector2.Dot(_transform.GetWorldPosition(shelter) - from.Position, normal);
+            if (along > 0f && along < targetDistance)
+                _shelters.Add((shelter, along, GetNetEntity(shelter).Id));
+        }
+
+        _shelters.Sort((a, b) => a.Along != b.Along ? a.Along.CompareTo(b.Along) : a.NetId.CompareTo(b.NetId));
+
+        foreach (var (shelter, along, _) in _shelters)
+        {
+            if (_cover.IsShotStopped(shelter, hitscan.Owner, shooter, along, target, normal, seed))
+                return new RayCastResults(along, from.Position + (normal * along), shelter);
+        }
+
+        return null;
+    }
+
+    private readonly List<(EntityUid Shelter, float Along, int NetId)> _shelters = new();
 
     private bool Prob(float chance, int? seed, EntityUid rolledFor)
     {
         if (seed is not { } value)
             return _rand.Prob(chance);
 
+#pragma warning disable CS0618
         return new System.Random(SharedRandomExtensions.HashCodeCombine(value, GetNetEntity(rolledFor).Id)).Prob(chance);
+#pragma warning restore CS0618
     }
 
-    public HitscanTrace PredictTrace(
+    public List<HitscanTrace> PredictTrace(
         Entity<HitscanBasicRaycastComponent> hitscan,
         EntityUid shooter,
         EntityCoordinates fromCoordinates,
@@ -88,14 +133,37 @@ public sealed partial class HitscanBasicRaycastSystem
         if (TryComp<MechPilotComponent>(shooter, out var pilot))
             shooter = pilot.Mech;
 
-        var from = _transform.ToMapCoordinates(fromCoordinates);
-        var ray = new CollisionRay(from.Position, direction, (int) hitscan.Comp.CollisionMask);
-        var rayCastResults = _physics.IntersectRay(from.MapId, ray, hitscan.Comp.MaxDistance, shooter, false).ToList();
+        var traces = new List<HitscanTrace>();
+        int? legSeed = seed;
 
-        var result = SelectHit(hitscan, shooter, from, direction, pointer, target, rayCastResults, seed);
-        var distance = result?.Distance ?? hitscan.Comp.MaxDistance;
+        while (true)
+        {
+            var from = _transform.ToMapCoordinates(fromCoordinates);
+            var ray = new CollisionRay(from.Position, direction, (int) hitscan.Comp.CollisionMask);
+            var rayCastResults = _physics.IntersectRay(from.MapId, ray, hitscan.Comp.MaxDistance, shooter, false).ToList();
 
-        return GenerateTraceStep(fromCoordinates, distance, direction.ToAngle(), result?.HitEntity);
+            var result = SelectHit(hitscan, shooter, from, direction, pointer, target, rayCastResults, legSeed);
+            var distance = result?.Distance ?? hitscan.Comp.MaxDistance;
+
+            traces.Add(GenerateTraceStep(fromCoordinates, distance, direction.ToAngle(), result?.HitEntity));
+
+            if (result is not { } hit
+                || !TryComp<HitscanPierceComponent>(hitscan, out var pierce)
+                || !_pierce.TryPierce((hitscan, pierce), hit.HitEntity, direction, legSeed, out var next)
+                || !TryComp<HitscanReflectComponent>(hitscan, out var reflect)
+                || Transform(hit.HitEntity).MapUid is not { } hitMap)
+                break;
+
+            reflect.CurrentReflections++;
+            legSeed = PierceSystem.GetNextSeed(legSeed, reflect.CurrentReflections);
+            fromCoordinates = new EntityCoordinates(hitMap, hit.HitPos);
+            shooter = hit.HitEntity;
+            target = null;
+            pointer = 1f;
+            direction = next;
+        }
+
+        return traces;
     }
 
     private RayCastResults? TryFindCover(
