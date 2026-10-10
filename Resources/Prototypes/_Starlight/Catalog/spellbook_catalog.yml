@@ -365,3 +365,222 @@
   - !type:BuyBeforeCondition
     whitelist:
       - SpellbookCryomancer
+
+- type: listing
+  id: SpellbookSoulmancer
+  name: spellbook-soulmancer-name
+  description: spellbook-soulmancer-desc
+  priority: 19
+  productEntity: ClothingOuterSoftsuitWizardDark
+  cost:
+    WizCoin: 11
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  disableRefund: true
+
+- type: listing
+  id: SpellbookSummonCursedSkull
+  name: spellbook-summoncursedskull-name
+  description: spellbook-summoncursedskull-desc
+  priority: 20
+  productAction: ActionSummonCursedSkull
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookSoulmancer
+
+- type: listing
+  id: SpellbookRuneofCutting
+  name: spellbook-soulknives-name
+  description: spellbook-soulknives-desc
+  priority: 21
+  productAction: ActionSoulKnives
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookSoulmancer
+
+- type: listing
+  id: SpellbookReaperScythe
+  name: spellbook-scythe-name
+  description: spellbook-scythe-desc
+  priority: 22
+  productEntity: ReaperScythe
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookSoulmancer
+
+- type: listing
+  id: SpellbookImpale
+  name: spellbook-impale-name
+  description: spellbook-impale-desc
+  priority: 23
+  productAction: ActionImpale
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookSoulmancer
+
+- type: listing
+  id: SpellbookShadowPassage
+  name: spellbook-shadowpassage-name
+  description: spellbook-shadowpassage-desc
+  priority: 24
+  productAction: ActionDarkPassage
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookSoulmancer
+
+- type: listing
+  id: SpellbookAnnihilation
+  name: spellbook-annihilation-name
+  description: spellbook-annihilation-desc
+  priority: 25
+  productAction: ActionAnnihilationRune
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookSoulmancer
+
+- type: listing
+  id: SpellbookFogCloud
+  name: spellbook-fogcloud-name
+  description: spellbook-fogcloud-desc
+  priority: 26
+  productAction: ActionFogCloud
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookSoulmancer
+
+- type: listing
+  id: SpellbookHarmCurse
+  name: spellbook-harmcurse-name
+  description: spellbook-harmcurse-desc
+  priority: 27
+  productAction: ActionSummonHarmCurse
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookSoulmancer
+
+- type: listing
+  id: SpellbookGravityRune
+  name: spellbook-gravityrune-name
+  description: spellbook-gravityrune-desc
+  priority: 28
+  productAction: ActionRuneGravity
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookSoulmancer
+
+- type: listing
+  id: SpellbookSlowCurse
+  name: spellbook-slowcurse-name
+  description: spellbook-slowcurse-desc
+  priority: 29
+  productAction: ActionSummonSlowCurse
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookSoulmancer
+
+- type: listing
+  id: SpellbookShadowJaunt
+  name: spellbook-shadowjaunt-name
+  description: spellbook-shadowjaunt-desc
+  priority: 30
+  productAction: ActionShadowJaunt
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookSoulmancer
+
+- type: listing
+  id: SpellbookShadowBoon
+  name: spellbook-shadowboon-name
+  description: spellbook-shadowboon-desc
+  priority: 31
+  productEntity: ShadowSeal
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookSoulmancer

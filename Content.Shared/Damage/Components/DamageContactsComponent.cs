@@ -17,4 +17,11 @@ public sealed partial class DamageContactsComponent : Component
     /// </summary>
     [DataField("ignoreWhitelist")]
     public EntityWhitelist? IgnoreWhitelist;
+#region Starlight
+    /// <summary>
+    /// Whether this entity can damage mobs that are already dead, set to true if you want to.
+    /// </summary>
+    [DataField("damageDead")]
+    public bool DamageDead = true;
+#endregion
 }
