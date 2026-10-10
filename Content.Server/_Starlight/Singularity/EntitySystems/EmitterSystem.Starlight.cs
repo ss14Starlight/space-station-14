@@ -3,6 +3,7 @@ using Content.Server._Starlight.Utility;
 using Content.Server._Starlight.Utility.Events;
 using Content.Shared.Singularity.Components;
 
+// ReSharper disable CheckNamespace
 namespace Content.Server.Singularity.EntitySystems;
 
 public sealed partial class EmitterSystem

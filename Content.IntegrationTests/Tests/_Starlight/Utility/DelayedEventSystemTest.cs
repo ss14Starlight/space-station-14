@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Concurrent;
-using System.Linq;
 using Content.IntegrationTests.Fixtures;
+using Content.IntegrationTests.Tests.Helpers;
 using Content.Server._Starlight.Utility;
 using Content.Server._Starlight.Utility.Events;
 using Robust.Shared.GameObjects;
@@ -13,25 +12,8 @@ public sealed class DelayedEventSystemTest : GameTest
 {
     private const string TestEventId = "delayed-event-system-test";
 
-    public sealed class DelayedEventListenerSystem : EntitySystem
+    public sealed class DelayedEventListenerSystem : TestListenerSystem<DelayedEventTriggeredEvent>
     {
-        public ConcurrentQueue<(EntityUid Entity, string EventId)> Triggered { get; } = new();
-
-        public override void Initialize()
-        {
-            base.Initialize();
-            SubscribeLocalEvent<DelayedEventTriggeredEvent>(OnDelayedEventTriggered);
-        }
-
-        private void OnDelayedEventTriggered(EntityUid uid, ref DelayedEventTriggeredEvent args)
-            => Triggered.Enqueue((uid, args.EventId));
-
-        public void Clear()
-        {
-            while (Triggered.TryDequeue(out _))
-            {
-            }
-        }
     }
 
     [Test]
@@ -49,25 +31,24 @@ public sealed class DelayedEventSystemTest : GameTest
 
         await server.WaitAssertion(() =>
         {
-            listener.Clear();
             scheduledEntity = entities.SpawnEntity(null, map.MapCoords);
             cancelledEntity = entities.SpawnEntity(null, map.MapCoords);
+            entities.AddComponent<TestListenerComponent>(scheduledEntity);
+            entities.AddComponent<TestListenerComponent>(cancelledEntity);
 
             delayedEvents.Schedule(scheduledEntity, TestEventId, TimeSpan.FromMilliseconds(100));
             delayedEvents.Schedule(cancelledEntity, TestEventId, TimeSpan.FromMilliseconds(100));
             delayedEvents.Cancel(cancelledEntity, TestEventId);
-
-            Assert.That(listener.Triggered, Is.Empty);
+            Assert.That(listener.Count(scheduledEntity), Is.Zero);
+            Assert.That(listener.Count(cancelledEntity), Is.Zero);
         });
 
-        await PoolManager.WaitUntil(server, () => listener.Triggered.Count > 0, maxTicks: 60);
+        await PoolManager.WaitUntil(server, () => listener.Count(scheduledEntity) > 0, maxTicks: 60);
 
         await server.WaitAssertion(() =>
         {
-            var triggered = listener.Triggered.ToArray();
-            Assert.That(triggered, Has.Length.EqualTo(1));
-            Assert.That(triggered[0].Entity, Is.EqualTo(scheduledEntity));
-            Assert.That(triggered[0].EventId, Is.EqualTo(TestEventId));
+            Assert.That(listener.Count(scheduledEntity, ev => ev.EventId == TestEventId), Is.EqualTo(1));
+            Assert.That(listener.Count(cancelledEntity), Is.Zero);
         });
     }
 }
