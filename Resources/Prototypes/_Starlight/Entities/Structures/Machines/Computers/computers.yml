@@ -788,6 +788,133 @@
 ## Departmental Communications Consoles END
 
 - type: entity
+  parent: ComputerComms
+  id: ComputerCommsFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: CentCommSectoralConsole
+  id: CentCommSectoralConsoleFilled
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: CentcommComputerComms
+  id: CentcommComputerCommsFilled
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsCargo
+  id: ComputerCommsCargoFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsEngineering
+  id: ComputerCommsEngineeringFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsMedical
+  id: ComputerCommsMedicalFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsScience
+  id: ComputerCommsScienceFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsSecurity
+  id: ComputerCommsSecurityFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsService
+  id: ComputerCommsServiceFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: SolgovComputerComms
+  id: SolgovComputerCommsFilled
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: SyndicateComputerComms
+  id: SyndicateComputerCommsFilled
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: WizardComputerComms
+  id: WizardComputerCommsFilled
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
   id: ComputerShipyard
   parent: BaseComputer
   name: shipyard console

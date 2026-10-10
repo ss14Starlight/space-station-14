@@ -1,0 +1,51 @@
+- type: !PartialOnly entity
+  id: KeycardAuth
+  components:
+    - type: ActivatableUIRequiresPower
+      allowPowerCellFallback: true
+    - type: ActivatableUIRequiresPowerCell
+    - type: PowerCellFallbackVisuals
+    - type: BatteryVisuals
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+          ent: null
+          showEnts: false
+          occludes: true
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellMedium
+          blacklist:
+            tags:
+              - MechReactor
+    - type: PowerCellDraw
+      drawRate: 2
+      useCharge: 5
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+      requiresOpenPanelToEject: true
+    - type: Charger
+      slotId: cell_slot
+      chargeRate: 5
+      passiveDraw: 5
+    - type: WiresPanel
+    - type: Construction # This is important. it prevents deconstruction
+      graph: KeycardAuth
+      node: auth
+      deconstructionTarget: null
+    - type: Sprite
+      layers:
+        - map: ["keycardBatteryLight"]
+          sprite: _Starlight/Structures/Machines/auth.rsi
+          state: light
+          shader: unshaded
+          visible: false
+    - type: GenericVisualizer
+      visuals:
+        enum.PowerCellFallbackVisuals.VisualState:
+          keycardBatteryLight:
+            Off: { visible: false }
+            OnBatteryIdle: { visible: true, shader: unshaded, color: "#8f7541" }
+            OnBatteryInUse: { visible: true, shader: unshaded, color: "#e8c36b" }
