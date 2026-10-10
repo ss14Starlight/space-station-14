@@ -56,7 +56,7 @@
   id: DragonResistances
   coefficients:
     Piercing: 0.3
-    Slash: 2
+    Slash: 1.2
     Heat: 0.5
     Bloodloss: 0
   flatReductions:

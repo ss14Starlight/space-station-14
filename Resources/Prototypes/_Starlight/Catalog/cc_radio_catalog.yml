@@ -1,0 +1,46 @@
+- type: thiefBackpackSet
+  id: ERTLoadoutSecLaserVanguard
+  name: cc-radio-category-laser-vanguard-name
+  description: cc-radio-category-laser-vanguard-description
+  sprite:
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/energy_smg.rsi
+    state: icon
+  content:
+  - ClothingBackpackERTSecurityLaserVanguardFilled
+  - CombatKnife
+
+- type: thiefBackpackSet
+  id: ERTLoadoutSecLaserShotgun
+  name: cc-radio-category-laser-shotgun-name
+  description: cc-radio-category-laser-shotgun-description
+  sprite:
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Shotgun.rsi
+    state: icon
+  content:
+  - ClothingBackpackERTSecurityLaserBreacherFilled
+  - WeaponEnergyShotgun
+  - CombatKnife
+
+- type: thiefBackpackSet
+  id: ERTLoadoutSecLaserSniper
+  name: cc-radio-category-laser-sniper-name
+  description: cc-radio-category-laser-sniper-description
+  sprite:
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/energy_sniper.rsi
+    state: icon
+  content:
+  - ClothingBackpackERTSecurityLaserSniperFilled
+  - WeaponSniperEnergy
+  - CombatKnife
+
+- type: thiefBackpackSet
+  id: ERTLoadoutSecBallisticRifle
+  name: cc-radio-category-ballistic-rifle-name
+  description: cc-radio-category-ballistic-rifler-description
+  sprite:
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/ert.rsi
+    state: icon
+  content:
+  - ClothingBackpackERTSecurityBallisticRiflemenFilled
+  - WeaponRiflePeacemaker
+  - CombatKnife

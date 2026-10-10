@@ -286,6 +286,7 @@
   # Starlight start
   - BorgModuleBartending
   - BorgModuleCooking
+  - BorgModuleButcher
   - BorgModuleBotany
   - BorgModuleBooks
   # Starlight end

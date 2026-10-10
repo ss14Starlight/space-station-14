@@ -38,14 +38,6 @@
     materialComposition:
       Steel: 100
       Wood: 100
-  # 🌟Starlight-start🌟
-  - type: SurgeryTool
-  - type: SurgicalDrill
-    successRate: 0.01 # You can try
-    speed: 0.5
-    endSound:
-      path: "/Audio/Weapons/smash.ogg"
-  # 🌟Starlight-end🌟
 
 - type: entity
   name: mining drill
@@ -72,16 +64,6 @@
       types:
         Piercing: 3
         Structural: 15
-  # 🌟Starlight-start🌟
-  - type: SurgeryTool
-  - type: SurgicalDrill
-    successRate: 0.2 # This drill is way too big, really
-    speed: 0.8
-    startSound:
-      path: "/Audio/Items/drill_use.ogg"
-    endSound:
-      path: "/Audio/Items/drill_use.ogg"
-  # 🌟Starlight-end🌟
 
 - type: entity
   name: diamond tipped mining drill
@@ -182,8 +164,6 @@
   - type: GunRequiresWield
   - type: DisarmMalus
   - type: Prying
-    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
-    playSoundOnDoafter: true #SL
 
 - type: entity
   parent: [ BaseKnife, BaseWeaponCrusher, BaseSecurityCargoContraband]

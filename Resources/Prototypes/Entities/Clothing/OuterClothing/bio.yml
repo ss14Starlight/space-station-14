@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingOuterBaseLarge, ClothingOuterBaseWarm, AllowSuitStorageClothingGasTanks] # Starlight
+  parent: [ClothingOuterBaseLarge, ClothingOuterBaseWarm, AllowSuitStorageClothingGasTanks] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: ClothingOuterBioGeneral
   name: bio suit
   suffix: Generic
@@ -19,16 +19,11 @@
       coefficients:
         Caustic: 0.75
   - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.1 # Starlight Edit, also removed the specific coefficients from the security and virology biosuits
+    zombificationResistanceCoefficient: 0.35
   - type: GroupExamine
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
-#Starlight
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterBioGeneral
@@ -41,11 +36,6 @@
     sprite: Clothing/OuterClothing/Bio/cmo.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/cmo.rsi
-#Starlight
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterBioGeneral
@@ -62,11 +52,6 @@
     modifiers:
       coefficients:
         Caustic: 0.4
-#Starlight
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterBioGeneral
@@ -79,14 +64,9 @@
     sprite: Clothing/OuterClothing/Bio/scientist.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/scientist.rsi
-#Starlight
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, ClothingOuterBaseWarm, AllowSuitStorageClothing, BaseSecurityContraband] # Starlight
+  parent: [ClothingOuterBaseLarge, ClothingOuterBaseWarm, AllowSuitStorageClothing, BaseSecurityContraband] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: ClothingOuterBioSecurity
   name: bio suit
   suffix: Security
@@ -106,16 +86,11 @@
         Slash: 0.6
         Piercing: 0.8
   - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.1 # Starlight - this used to be inherited from ClothingOuterBioGeneral, which is no longer a parent, and is a downgrade from upstream's 0.4
+    zombificationResistanceCoefficient: 0.4
   - type: GroupExamine
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
-#Starlight
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterBioGeneral
@@ -128,8 +103,5 @@
     sprite: Clothing/OuterClothing/Bio/virology.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/virology.rsi
-#Starlight
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.25

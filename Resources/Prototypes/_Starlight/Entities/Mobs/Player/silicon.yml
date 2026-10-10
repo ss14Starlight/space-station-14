@@ -178,6 +178,7 @@
     - Unimplantable
     - Drone
     - EmagImmune
+    - CantBecomeRevolutionary
   - type: GenericVisualizer
     visuals:
       enum.DroneVisuals.Status:
@@ -305,6 +306,7 @@
     prototypes:
       - StartingGearDrone
   - type: GlitchOnEMP
+  - type: AntagImmune
 
 #Scrapper
 - type: entity
@@ -365,6 +367,7 @@
   - type: !Remove PowerCellDraw
   - type: !Remove GlitchOnEMP
   - type: !Remove Pacified
+  - type: !Remove BatteryDrainer
 
 # Borgs
 

@@ -1,0 +1,207 @@
+# Keep alphabetical
+- type: !PartialOnly entity
+  id: AirlockMaintArmoryLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/security_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintAtmoLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/atmospherics_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintBarLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintBarKitchenLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintCaptainLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/command_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintCargoLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/cargo_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintCommandLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/command_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintChapelLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintChiefEngineerLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/command_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintChiefMedicalOfficerLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/command_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintChemLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/chemistry_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintDetectiveLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/security_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintEngiLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/engineering_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintHeadOfSecurityLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/command_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintHOPLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/command_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintHydroLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/hydroponics_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintJanitorLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintKitchenLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintKitchenHydroLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/hydroponics_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintMedLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/medical_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMedicalMorgueMaintLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintQuartermasterLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/command_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintResearchDirectorLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/command_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintRnDLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/science_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintRnDMedLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/science_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintSalvageLocked
+  name: maintenance access
+
+- type: !PartialOnly entity
+  id: AirlockMaintSecLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/security_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintServiceLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintServiceTheatreLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockMaintTheatreLocked
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi

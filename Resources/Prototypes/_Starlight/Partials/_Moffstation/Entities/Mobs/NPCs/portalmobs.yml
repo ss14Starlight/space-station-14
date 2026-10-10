@@ -53,3 +53,9 @@
   - type: Tag
     tags:
     - StutterImmune
+
+- type: !PartialOnly entityTable
+  id: MoffHellportalFleshlingsTable
+  table:
+    children:
+    - id: MobGooseNarsie

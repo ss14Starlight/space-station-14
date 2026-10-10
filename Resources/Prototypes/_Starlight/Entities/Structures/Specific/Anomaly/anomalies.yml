@@ -701,6 +701,7 @@
       - MoffMobDemonNarsieFleshGolem
       - MoffMobDemonNarsieFleshJared
       - MoffMobDemonNarsieFleshLover
+      - MobGooseNarsie
     - settings:
         spawnOnSuperCritical: true
         minAmount: 3

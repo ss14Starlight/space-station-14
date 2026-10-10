@@ -1,0 +1,32 @@
+- type: !PartialOnly entity
+  id: ReinforcementRadioSyndicate
+  components:
+  - type: GhostRole
+    important: true
+
+- type: !PartialOnly entity
+  id: ReinforcementRadioSyndicateNukeops
+  components:
+  - type: GhostRole
+    important: true
+
+- type: !PartialOnly entity
+  id: ReinforcementRadioSyndicateAncestor
+  components:
+  - type: GhostRole
+    important: true
+
+- type: !PartialOnly entity
+  id: ReinforcementRadioSyndicateSyndiCat
+  components:
+  - type: GhostRole
+    important: true
+
+- type: !PartialOnly entity
+  id: ReinforcementRadioSyndicateCyborgAssault
+  components:
+    - type: GhostRole
+      important: true
+      mindRoles:
+      - !Remove MindRoleGhostRoleSilicon
+      - MindRoleGhostRoleSiliconAntagonist

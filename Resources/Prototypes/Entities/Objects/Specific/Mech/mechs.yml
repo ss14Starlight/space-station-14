@@ -5,38 +5,18 @@
   components:
   - type: MobMover
   - type: Mech
-# 🌟Starlight-start🌟
-    maxIntegrity: 170
-    batteryWhitelist:
-      tags:
-      - MechReactor
-  - type: ArmorSparkEffect
-    alwaysSparks: true
-# 🌟Starlight-end🌟
   - type: MechAir
   - type: DoAfter
   - type: Repairable
-    # STARLIGHT BEGIN - Borg-like mech repair
-    damageValue: -30 # 15 seconds to repair durand
-    doAfterDelay: 1
-    fuelCost: 3 # 3x more expensive than cyborg repair costing 70u for durand
-    # STARLIGHT END
+    fuelCost: 25
+    doAfterDelay: 10
   - type: UserInterface
     interfaces:
       enum.MechUiKey.Key:
         type: MechBoundUserInterface
-      # STARLIGHT BEGIN - Equipment radial
-      enum.MechEquipmentSelectUiKey.Key:
-        type: MechEquipmentSelectBoundUserInterface
-      # STARLIGHT END
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.75
-    # STARLIGHT BEGIN
-    angle: 0
-    animation: WeaponArcFist
-    wideAnimation: WeaponArcFist
-    # STARLIGHT END
     damage:
       types:
         Blunt: 25 #thwack
@@ -79,7 +59,7 @@
       mech-battery-slot: !type:ContainerSlot
       mech-gas-tank-slot: !type:ContainerSlot
   - type: Damageable
-    damageContainer: StructuralInorganic #🌟STARLIGHT Inorganic -> StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: LightArmor
   - type: FootstepModifier
     footstepSoundCollection:
@@ -100,16 +80,7 @@
         node: start
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: PowerCellDraw
-    enabled: false
-    drawRate: 0.333333333 #Starlight, delay was 3 seconds per draw
   - type: ActiveInputMover
-# 🌟Starlight-start🌟
-  - type: Prying
-    pryPowered: false
-    force: false
-    useSound: /Audio/Items/jaws_pry.ogg
-# 🌟Starlight-end🌟
 
 # Ripley MK-I
 - type: entity
@@ -145,9 +116,9 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 25 #Starlight - Ripley gets to punch, but is *not* safe
+        Blunt: 14 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
+    baseWalkSpeed: 2.25
     baseSprintSpeed: 3.6
   - type: PointLight
     lightMask: ConeSingle
@@ -168,7 +139,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - MechReactorHigh #Starlight - MechReactors
+      - PowerCellHigh
 
 # H.O.N.K.
 - type: entity
@@ -189,24 +160,11 @@
       collection: FootstepClown
       params:
         variation: 0.17
-  # STARLIGHT BEGIN
-  - type: MeleeWeapon
-    hidden: true
-    attackRate: 1
-    damage:
-      types:
-        Structural: 2
-    soundHit:
-      path: /Audio/Items/bikehorn.ogg
-  - type: MeleeThrowOnHit
-    speed: 1
-    distance: 2
-  # STARLIGHT END
   - type: Mech
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+    mechToPilotDamageMultiplier: 0.5
     airtight: true # Space Honks is real.
     pilotWhitelist:
       components:
@@ -220,7 +178,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - MechReactorHigh #Starlight - MechReactors
+      - PowerCellHigh
 
 # HAMTR
 - type: entity
@@ -243,7 +201,7 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+    mechToPilotDamageMultiplier: 0.2
     maxEquipmentAmount: 2
     airtight: true
     pilotWhitelist:
@@ -257,7 +215,7 @@
         Blunt: 10 #thwack
         Structural: 2
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
+    baseWalkSpeed: 2.4
     baseSprintSpeed: 3.7
 
 - type: entity
@@ -268,17 +226,17 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - MechReactorHigh #Starlight - MechReactors
+      - PowerCellHigh
       mech-gas-tank-slot:
       - MechAirTankFilled
 
 # Vim!!!!!!!
 
 - type: entity
-  parent: [ BaseMech, SmallMech ] # Starlight - give Vim equipment
+  parent: [ BaseMech, SmallMech ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: MechVim
   name: Vim
-  description: A miniature exosuit from NanoTrasen, developed to let the irreplaceable station pets live a little longer. # SL
+  description: A miniature exosuit from Nanotrasen, developed to let the irreplaceable station pets live a little longer.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -307,9 +265,9 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    maxEquipmentAmount: 1 # Starlight - give Vim equipment
+    maxEquipmentAmount: 0
     # keep mouse safe
-    mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+    mechToPilotDamageMultiplier: 0.1
     airtight: true
     pilotWhitelist:
       tags:
@@ -322,7 +280,7 @@
         Blunt: 10 #thwack
         Structural: 2
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
+    baseWalkSpeed: 2.25
     baseSprintSpeed: 3.6
   - type: Access
     tags:
@@ -338,6 +296,6 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - MechReactorHigh #Starlight - MechReactors
+      - PowerCellHigh
       mech-gas-tank-slot:
       - MechAirTankFilled

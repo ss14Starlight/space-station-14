@@ -368,6 +368,21 @@ SpawnPointSalvageSpecialist: null
 SpawnPointSalvageLead: null
 ComputerSalvageExpedition: null
 ComputerSalvageJobBoard: null
+
+# 2026-10-08 - Map communications consoles with their filled (battery) variants
+CentCommSectoralConsole: CentCommSectoralConsoleFilled
+CentcommComputerComms: CentcommComputerCommsFilled
+ComputerComms: ComputerCommsFilled
+ComputerCommsCargo: ComputerCommsCargoFilled
+ComputerCommsEngineering: ComputerCommsEngineeringFilled
+ComputerCommsMedical: ComputerCommsMedicalFilled
+ComputerCommsScience: ComputerCommsScienceFilled
+ComputerCommsSecurity: ComputerCommsSecurityFilled
+ComputerCommsService: ComputerCommsServiceFilled
+SolgovComputerComms: SolgovComputerCommsFilled
+SyndicateComputerComms: SyndicateComputerCommsFilled
+WizardComputerComms: WizardComputerCommsFilled
+
 AirlockSalvageMining: AirlockMining
 AirlockSalvageMiningLocked: AirlockMiningCargoLocked
 AirlockSalvageMiningGlass: AirlockMiningCargoLocked
@@ -422,3 +437,26 @@ GasDualPortVentPumpVoxAlt1: null
 GasDualPortVentPumpVoxAlt2: null
 GasDualPortVentPumpVoxAlt3: null
 GasDualPortVentPumpVoxAlt4: null
+
+#2026-10-08 - Fix maints door IDs
+AirlockRoboticsMaints: AirlockMaintRoboticsLocked
+AirlockParamedicMaints: AirlockMaintParamedicLocked
+AirlockSurgeryMaints: AirlockMaintSurgeryLocked
+AirlockMailMaints: AirlockMaintMailLocked
+AirlockBrigmedMaints: AirlockMaintBrigmedLocked
+AirlockServiceMaints: AirlockMaintServiceLocked
+AirlockAtmosphericsMaints: AirlockMaintAtmoLocked
+AirlockCargoMaints: AirlockMaintCargoLocked
+AirlockCentcommMaints: AirlockMaintCentralCommand
+AirlockChemistryMaints: AirlockMaintChemLocked
+AirlockCommandMaints: AirlockMaintCommandLocked
+AirlockEngineeringMaints: AirlockMaintEngiLocked
+AirlockEvaMaints: AirlockMaintEVALocked
+AirlockHydroponicsMaints: AirlockMaintHydroLocked
+AirlockMedicalMaints: AirlockMaintMedLocked
+AirlockMiningMaints: AirlockMaintMiningCargoLocked
+AirlockMaintMiningLocked: AirlockMaintMiningCargoLocked
+AirlockNTMaints: AirlockMaintNTLocked
+AirlockScienceMaints: AirlockMaintRnDLocked
+AirlockSecurityMaints: AirlockMaintSecLocked
+AirlockVirologyMaints: AirlockMaintVirologyLocked
