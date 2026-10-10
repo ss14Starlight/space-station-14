@@ -44,6 +44,12 @@ public sealed partial class CosmicLapseSystem : EntitySystem
                 return;
             }
 
+        if (!HasComp<HumanoidAppearanceComponent>(action.Target) && !_cult.IsConvertible(action.Target))
+        {
+            _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
+            return;
+        }
+
         action.Handled = true;
         var tgtpos = Transform(action.Target).Coordinates;
         Spawn(uid.Comp.LapseVFX, tgtpos);
@@ -69,7 +75,7 @@ public sealed partial class CosmicLapseSystem : EntitySystem
         {
             ProtoId<PolymorphPrototype> speciesPolymorphId = "CosmicLapseMob"
                 + char.ToUpperInvariant(speciesId[0])
-                + speciesId.Substring(1);
+                + speciesId[1..];
             if (_prototype.HasIndex(speciesPolymorphId))
                 polymorphId = speciesPolymorphId;
         }
