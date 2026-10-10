@@ -1159,6 +1159,7 @@
     toolName: cc-radio-name
     maxSelectedSets: 1
     possibleSets:
-    - ERTLoadoutSecLaserRifle
+    - ERTLoadoutSecLaserVanguard
     - ERTLoadoutSecLaserShotgun
-    - ERTLoadoutSecLaserCannon
+    - ERTLoadoutSecLaserSniper
+    - ERTLoadoutSecBallisticRifle

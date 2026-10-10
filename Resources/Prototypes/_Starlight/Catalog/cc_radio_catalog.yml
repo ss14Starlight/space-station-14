@@ -1,43 +1,47 @@
 - type: thiefBackpackSet
-  id: ERTLoadoutSecLaserRifle
-  name: Laser Riflemen
-  description: cc-radio-category-laser-rifle-description
+  id: ERTLoadoutSecLaserVanguard
+  name: Laser Vanguard
+  description: cc-radio-category-laser-vanguard-description
   sprite:
-    sprite: Objects/Tools/jaws_of_life.rsi
-    state: syn_jaws_pry
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/energy_smg.rsi
+    state: icon
   content:
-  - ClothingBackpackERTSecurityLaserRiflemenFilled
-  - WelderIndustrialAdvanced
-  - PowerDrill
-  - Multitool
-  - ClothingHandsGlovesInsulatedChameleon
-  - RadioJammer
-  - FreedomImplanter
-  - ClothingEyesGlassesMeson
+  - ClothingBackpackERTSecurityLaserVanguardFilled
+  - CombatKnife
 
 - type: thiefBackpackSet
   id: ERTLoadoutSecLaserShotgun
-  name: Laser Shotgunner
+  name: Laser Breacher
   description: cc-radio-category-laser-shotgun-description
   sprite:
-    sprite: _Moffstation/Objects/Tools/handheld_camera.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Shotgun.rsi
     state: icon
   content:
-  - SurveillanceWirelessCameraHandheld
-  - EncryptionKeyBinarySyndicate
-  - MicrophoneInstrument
-  - VoiceMaskImplanter
-  - ScramImplanter
+  - ClothingBackpackERTSecurityLaserBreacherFilled
+  - WeaponEnergyShotgun
+  - CombatKnife
 
 - type: thiefBackpackSet
-  id: ERTLoadoutSecLaserCannon
-  name: Laser Cannon
-  description: cc-radio-category-laser-cannon-description
+  id: ERTLoadoutSecLaserSniper
+  name: Laser Sniper
+  description: cc-radio-category-laser-sniper-description
   sprite:
-    sprite: Objects/Devices/camera_bug.rsi
-    state: camera_bug
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/energy_sniper.rsi
+    state: icon
   content:
   - StorageImplanter
   - ChameleonProjector
   - WeaponPistolStechkin
   - CameraBug
+
+- type: thiefBackpackSet
+  id: ERTLoadoutSecBallisticRifle
+  name: Ballistic Rifler
+  description: cc-radio-category-ballistic-rifler-description
+  sprite:
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/ert.rsi
+    state: icon
+  content:
+  - ClothingBackpackERTSecurityBallisticRiflemenFilled
+  - WeaponRiflePeacemaker
+  - CombatKnife
