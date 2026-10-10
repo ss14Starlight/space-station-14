@@ -19,6 +19,8 @@ using Robust.Shared.Utility;
 using Content.Shared.Mech.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
+using Content.Shared._Starlight.CCVar;
+using Robust.Shared.Configuration;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
@@ -29,16 +31,15 @@ public sealed partial class GunSystem : SharedGunSystem
 
 #region Starlight
     [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private INetConfigurationManager _netConfig = default!;
+
+    private bool PredictsHitscans(ICommonSession session)
+        => _netConfig.GetClientCVar(session.Channel, StarlightCCVars.HitscanPrediction);
 #endregion Starlight
 
-    private const float DamagePitchVariation = 0.05f;
+    // Starlight-edit: DamagePitchVariation moved to SharedGunSystem
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<BallisticAmmoProviderComponent, PriceCalculationEvent>(OnBallisticPrice);
-    }
-
+    [SubscribeLocalEvent] // Starlight-edit: attribute
     private void OnBallisticPrice(Entity<BallisticAmmoProviderComponent> ent, ref PriceCalculationEvent args)
     {
         if (string.IsNullOrEmpty(ent.Comp.Proto) || ent.Comp.UnspawnedCount == 0)
@@ -129,7 +130,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
                     // Something like ballistic might want to leave it in the container still
                     if (!cartridge.DeleteOnSpawn && !Containers.IsEntityInContainer(ent!.Value) && !gun.Comp.Pump)
-                        EjectCartridge(ent!.Value, angle);
+                        EjectCartridge(ent!.Value, angle, user: user); // Starlight-edit: predicted sound
 
                     Dirty(ent!.Value, cartridge);
                     break;
@@ -163,7 +164,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     fired = true; // Starlight
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException($"This type of ammo is unsupported! {shootable}"); // Starlight-edit: exception message
             }
         }
 
@@ -303,27 +304,26 @@ public sealed partial class GunSystem : SharedGunSystem
         // 1. Entity specific sound
         // 2. Ammo's sound
         // 3. Nothing
-        var playedSound = false;
-
-        if (!forceWeaponSound && modifiedDamage != null && modifiedDamage.GetTotal() > 0 && TryComp<RangedDamageSoundComponent>(otherEntity, out var rangedSound))
-        {
-            var type = SharedMeleeWeaponSystem.GetHighestDamageSound(modifiedDamage, ProtoManager);
-
-            if (type != null && rangedSound.SoundTypes?.TryGetValue(type, out var damageSoundType) == true)
-            {
-                Audio.PlayPvs(damageSoundType, otherEntity, AudioParams.Default.WithVariation(DamagePitchVariation));
-                playedSound = true;
-            }
-            else if (type != null && rangedSound.SoundGroups?.TryGetValue(type, out var damageSoundGroup) == true)
-            {
-                Audio.PlayPvs(damageSoundGroup, otherEntity, AudioParams.Default.WithVariation(DamagePitchVariation));
-                playedSound = true;
-            }
-        }
-
-        if (!playedSound && weaponSound != null)
-        {
-            Audio.PlayPvs(weaponSound, otherEntity);
-        }
+        // Starlight-edit: the choice moved to SharedGunSystem.GetImpactSound, so the client can predict it
+        PlayImpactSound(otherEntity, modifiedDamage, weaponSound, forceWeaponSound, null);
     }
+
+    #region Starlight
+    public override void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound, bool forceWeaponSound, EntityUid? shooter)
+    {
+        DebugTools.Assert(!Deleted(otherEntity), "Impact sound entity was deleted");
+
+        var sound = GetImpactSound(otherEntity, modifiedDamage, weaponSound, forceWeaponSound, out var variation);
+        if (sound == null)
+            return;
+
+        var filter = Filter.Pvs(otherEntity, entityManager: EntityManager);
+
+        if (TryComp<ActorComponent>(shooter, out var actor) && PredictsHitscans(actor.PlayerSession))
+            filter.RemovePlayer(actor.PlayerSession);
+
+        Audio.PlayEntity(sound, filter, otherEntity, true,
+            variation ? AudioParams.Default.WithVariation(DamagePitchVariation) : null);
+    }
+    #endregion
 }

@@ -60,6 +60,10 @@
       "copyright": "AegisShieldDev"
     },
     {
+      "name": "butcher-module",
+      "copyright": "rhithebirdthing"
+    },
+    {
       "name": "hands",
       "directions": 1,
       "copyright": "Citrea-Lingua, modified from robohands.rsi"

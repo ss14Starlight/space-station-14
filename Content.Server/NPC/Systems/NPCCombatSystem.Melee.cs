@@ -2,7 +2,9 @@ using System.Numerics;
 using Content.Server.NPC.Components;
 using Content.Shared.Buckle.Components;
 using Content.Shared.CombatMode;
+using Content.Shared.Hands.Components;
 using Content.Shared.NPC;
+using Content.Shared.Storage.EntitySystems;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
@@ -12,6 +14,8 @@ namespace Content.Server.NPC.Systems;
 public sealed partial class NPCCombatSystem
 {
     private const float TargetMeleeLostRange = 14f;
+
+    [Dependency] private SharedEntityStorageSystem _entityStorage = default!; // Starlight
 
     private void InitializeMelee()
     {
@@ -89,6 +93,16 @@ public sealed partial class NPCCombatSystem
             return;
         }
 
+        // Starlight-start: lost track of someone who hid in a locker unseen; one it saw hiding gets the locker opened or smashed
+        if (_hidingWitness.IsHiddenFrom(uid, component.Target))
+        {
+            component.Status = CombatStatus.TargetUnreachable;
+            return;
+        }
+
+        var attackTarget = _hidingWitness.GetAttackTarget(uid, component.Target);
+        // Starlight-end
+
         if (TryComp<NPCSteeringComponent>(uid, out var steering) &&
             steering.Status == SteeringStatus.NoPath)
         {
@@ -114,9 +128,13 @@ public sealed partial class NPCCombatSystem
         {
             _melee.AttemptLightAttackMiss(uid, weaponUid, weapon, targetXform.Coordinates.Offset(_random.NextVector2(0.5f)));
         }
+        // Starlight-start
+        else if (attackTarget != component.Target
+            && HasComp<HandsComponent>(uid)
+            && _entityStorage.CanOpen(uid, attackTarget, silent: true))
+            _entityStorage.TryOpenStorage(uid, attackTarget);
         else
-        {
-            _melee.AttemptLightAttack(uid, weaponUid, weapon, component.Target);
-        }
+            _melee.AttemptLightAttack(uid, weaponUid, weapon, attackTarget);
+        // Starlight-end
     }
 }

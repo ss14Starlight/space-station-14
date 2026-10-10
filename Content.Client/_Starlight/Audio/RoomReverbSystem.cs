@@ -75,7 +75,7 @@ public sealed partial class RoomReverbSystem : EntitySystem
 
         UpdatesOutsidePrediction = true;
         Subs.CVar(_cfg, StarlightCCVars.ReverbVolume, value => _volume = value, true);
-        SubscribeLocalEvent<LocalPlayerDetachedEvent>(_ => Clear());
+        SubscribeLocalEvent<LocalPlayerDetachedEvent>(_ => Clear(deleteSlot: true));
         RebuildDryFiles();
     }
 
@@ -118,10 +118,7 @@ public sealed partial class RoomReverbSystem : EntitySystem
     public override void Shutdown()
     {
         base.Shutdown();
-        Clear();
-        Delete(_auxiliary, _effect);
-        _auxiliary = null;
-        _effect = null;
+        Clear(deleteSlot: true);
     }
 
     public override void FrameUpdate(float frameTime)
@@ -154,6 +151,12 @@ public sealed partial class RoomReverbSystem : EntitySystem
 
         if (wanted != _current)
             Apply(wanted.Value);
+
+        if (_current == null)
+        {
+            Clear();
+            return;
+        }
 
         if (!TryComp(_auxiliary, out AudioAuxiliaryComponent? slot))
             return;
@@ -271,7 +274,7 @@ public sealed partial class RoomReverbSystem : EntitySystem
         return soft;
     }
 
-    // One slot and effect for the whole session, a room change only rewrites the effect's parameters.
+    // One slot and effect while the listener is in rooms, a room change only rewrites the effect's parameters.
     // Recreating them meant moving every playing sound to a new slot.
     private bool EnsureSlot()
     {
@@ -303,14 +306,21 @@ public sealed partial class RoomReverbSystem : EntitySystem
         _applyCalls++;
     }
 
-    private void Clear()
+    private void Clear(bool deleteSlot = false)
     {
-        if (_current == null)
+        if (_current != null || AttachedSources > 0)
+        {
+            Detach();
+            _current = null;
+            AttachedSources = 0;
+        }
+
+        if (!deleteSlot || _auxiliary == null && _effect == null)
             return;
 
-        Detach();
-        _current = null;
-        AttachedSources = 0;
+        Delete(_auxiliary, _effect);
+        _auxiliary = null;
+        _effect = null;
     }
 
     private void Detach()
@@ -326,6 +336,12 @@ public sealed partial class RoomReverbSystem : EntitySystem
 
     private void Delete(EntityUid? auxiliary, EntityUid? effect)
     {
+        if (TryComp(auxiliary, out AudioAuxiliaryComponent? slot))
+        {
+            var openAlSlot = slot.Auxiliary;
+            openAlSlot.Dispose();
+        }
+
         if (Exists(auxiliary))
             Del(auxiliary.Value);
 

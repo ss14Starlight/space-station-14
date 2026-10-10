@@ -1,5 +1,4 @@
 # Blackstar NPC Faction
-
 - type: npcFaction
   id: Blackstar
   hostile:
