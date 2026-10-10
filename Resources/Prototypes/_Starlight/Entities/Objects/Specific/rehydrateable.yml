@@ -25,7 +25,7 @@
   parent: RehydratableAnimalCube
   id: CCMoproachCube
   name: cc moproach cube
-  description: Just add water!
+  description: Just add water! *chitters!*
   components:
     - type: Rehydratable
       possibleSpawns:
@@ -35,7 +35,7 @@
   parent: RehydratableAnimalCube
   id: PigCube
   name: pig cube
-  description: Just add water!
+  description: Just add water! Oink!
   components:
     - type: Rehydratable
       possibleSpawns:
@@ -45,7 +45,7 @@
   parent: RehydratableAnimalCube
   id: ChickenCube
   name: chicken cube
-  description: Just add water!
+  description: Just add water! Bokbok!
   components:
     - type: Rehydratable
       possibleSpawns:
@@ -55,7 +55,7 @@
   parent: RehydratableAnimalCube
   id: KoiCube
   name: koi cube
-  description: Just add water!
+  description: Just add water! Glub!
   components:
     - type: Rehydratable
       possibleSpawns:
