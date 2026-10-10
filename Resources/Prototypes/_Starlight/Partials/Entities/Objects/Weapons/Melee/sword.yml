@@ -1,4 +1,10 @@
 - type: !PartialOnly entity
+  id: BaseSword
+  components:
+  - type: Engraveable
+    engraveVerb: "engraving-verb-engrave"
+
+- type: !PartialOnly entity
   id: EnergyKatana
   components:
   - type: Contraband

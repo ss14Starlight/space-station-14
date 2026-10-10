@@ -1,6 +1,12 @@
+# Additional Starlight and hellportal damage containers.
 - type: !PartialOnly entity
   id: ShowMedicalIcons
   components:
+    - type: ShowHealthBars
+      damageContainers:
+        - Biological
+        - Hybrid
+        - MoffDemonBiological
     - type: ShowHealthIcons
       damageContainers:
         - Biological
@@ -14,13 +20,49 @@
       - SecBeltEquip
 
 - type: !PartialOnly entity
+  id: ClothingEyesHudDiagnostic
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - IPC
+    - Hybrid
+    - MoffDemonInorganic
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudMultiversal
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - IPC
+    - Hybrid
+    - MoffDemonBiological
+    - MoffDemonInorganic
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudOmni
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - IPC
+    - Hybrid
+    - MoffDemonBiological
+    - MoffDemonInorganic
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudSyndicateAgent
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Hybrid
+    - MoffDemonBiological
+  - type: SolutionScanner
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
   id: ClothingEyesHudSyndicate
   components:
   - type: Contraband
     tier: Tier4
 
-- type: !PartialOnly entity
-  id: ClothingEyesHudSyndicateAgent
-  components:
-  - type: Contraband
-    tier: Tier4

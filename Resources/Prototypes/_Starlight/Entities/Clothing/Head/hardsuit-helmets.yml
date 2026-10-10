@@ -1164,6 +1164,7 @@
     damageContainers:
     - Biological
     - Hybrid # Neocytes
+    - MoffDemonBiological
   - type: ShowHealthIcons
   - type: FlashImmunity
     blocksSpecialVision: false
@@ -1206,6 +1207,7 @@
     damageContainers:
     - Biological
     - Hybrid # Neocytes
+    - MoffDemonBiological
   - type: ShowHealthIcons
   - type: FlashImmunity
     blocksSpecialVision: false
@@ -1328,3 +1330,4 @@
         Slash: 0.9
         Piercing: 0.95
         Heat: 0.85
+

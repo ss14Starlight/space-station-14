@@ -1,4 +1,10 @@
 - type: !PartialOnly entity
+  id: ClothingBackpackDuffelCaptain
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Duffels/captain.rsi # rescolored
+
+- type: !PartialOnly entity
   id: ClothingBackpackDuffelSyndicate
   components:
   - type: Contraband

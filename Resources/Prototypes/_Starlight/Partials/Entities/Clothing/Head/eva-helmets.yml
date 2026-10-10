@@ -1,4 +1,20 @@
 - type: !PartialOnly entity
+  id: ClothingHeadHelmetVoidParamed
+  components:
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head-avali:
+      - state: equipped-head-light-avali
+  - type: Clothing
+    clothingVisuals:
+      head-avali:
+      - state: equipped-head-avali
+  - type: PointLight
+    # PointLight energy/radius moved to ClothingHeadLightParams(..) prototypes
+    radius: !Remove
+    energy: !Remove
+
+- type: !PartialOnly entity
   id: ClothingHeadHelmetSyndicate
   components:
   - type: Contraband

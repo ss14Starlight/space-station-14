@@ -1,0 +1,30 @@
+- type: !PartialOnly roleLoadout
+  id: JobChiefMedicalOfficer
+  groups:
+    - TiesGroup
+
+
+- type: !PartialOnly roleLoadout
+  id: JobMedicalDoctor
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobMedicalIntern
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobChemist
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobParamedic
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobSurgeon
+  groups:
+    - TiesGroup

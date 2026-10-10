@@ -8,14 +8,6 @@
     sprite: Clothing/Neck/Cloaks/centcomcloakformal.rsi
   - type: StealTarget
     stealGroup: HeadCloak # leaving this here because I suppose it might be interesting?
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -27,14 +19,6 @@
     sprite: Clothing/Neck/Cloaks/cap.rsi
   - type: StealTarget
     stealGroup: HeadCloak
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -46,14 +30,6 @@
     sprite: Clothing/Neck/Cloaks/hos.rsi
   - type: StealTarget
     stealGroup: HeadCloak
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -65,14 +41,6 @@
     sprite: Clothing/Neck/Cloaks/ce.rsi
   - type: StealTarget
     stealGroup: HeadCloak
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -84,14 +52,6 @@
     sprite: Clothing/Neck/Cloaks/cmo.rsi
   - type: StealTarget
     stealGroup: HeadCloak
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -103,14 +63,6 @@
     sprite: Clothing/Neck/Cloaks/rd.rsi
   - type: StealTarget
     stealGroup: HeadCloak
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -122,14 +74,6 @@
     sprite: Clothing/Neck/Cloaks/qm.rsi
   - type: StealTarget
     stealGroup: HeadCloak
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -141,14 +85,6 @@
     sprite: Clothing/Neck/Cloaks/hop.rsi
   - type: StealTarget
     stealGroup: HeadCloak
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -178,14 +114,6 @@
     sprite: Clothing/Neck/Cloaks/capcloakformal.rsi
   - type: StealTarget
     stealGroup: HeadCloak
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -197,14 +125,6 @@
     sprite: Clothing/Neck/Cloaks/admin.rsi
   - type: StealTarget
     stealGroup: HeadCloak
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -223,14 +143,6 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/trans.rsi
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -239,7 +151,7 @@
   description: A cloak made from the hide of resilient fauna from a distant planet, though its protective value has faded with its age.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/Cloaks/goliathcloak.rsi #SL Edit
+    sprite: Clothing/Neck/Cloaks/goliathcloak.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodGoliathCloak
     requiredSlot:
@@ -312,18 +224,10 @@
   parent: ClothingNeckBase
   id: ClothingNeckCloakAce
   name: pilot's cloak
-  description: Cloak awarded to NanoTrasen's finest space aces. # SL
+  description: Cloak awarded to Nanotrasen's finest space aces.
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/ace.rsi
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -333,31 +237,15 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/aro.rsi
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakAroace
   name: aeropilot's cloak # thank you happyman442 this was the best name idea ever
-  description: Cloak awarded to NanoTrasen's finest pilots on planets with inhabitable atmospheres. # SL
+  description: Cloak awarded to Nanotrasen's finest pilots on planets with inhabitable atmospheres.
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/aroace.rsi
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -367,14 +255,6 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/bi.rsi
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -384,14 +264,6 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/intersex.rsi
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -401,31 +273,15 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/les.rsi
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakGay
   name: multi-level marketing cloak
-  description: This cloak is highly sought after in the NanoTrasen Marketing Offices. # SL
+  description: This cloak is highly sought after in the Nanotrasen Marketing Offices.
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/gay.rsi
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -435,14 +291,6 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/enby.rsi
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -452,12 +300,4 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/pan.rsi
-# Starlight Start
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - WhitelistChameleon
-    - CorgiWearable
-# Starlight End
 

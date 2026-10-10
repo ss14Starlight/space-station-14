@@ -20,7 +20,6 @@
         volume: 5
     initialBeepDelay: 0
     beepInterval: 2 # 2 beeps total (at 0 and 2)
-  - type: EorgPreventTrigger # Starlight
 
 - type: entity
   name: flashbang
@@ -105,7 +104,6 @@
         volume: 12
   - type: StaticPrice
     price: 2000
-  - type: EorgPreventTrigger # Starlight
 
 - type: entity
   name: self destruct
@@ -151,7 +149,6 @@
       maxDuration: 5
       startValue: 1
       endValue: 2
-  - type: EorgPreventTrigger # Starlight
 
 
 - type: entity
@@ -225,7 +222,6 @@
         - stageTwo
   - type: StaticPrice
     price: 1000
-  - type: EorgPreventTrigger # Starlight
 
 - type: entity
   name: whitehole grenade
@@ -286,7 +282,6 @@
         - stageTwo
   - type: StaticPrice
     price: 1000
-  - type: EorgPreventTrigger # Starlight
 
 - type: entity
   name: the nuclear option
@@ -320,7 +315,6 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/countdown.ogg
-  - type: EorgPreventTrigger # Starlight
 
 - type: entity
   name: modular grenade
@@ -369,7 +363,6 @@
           # Unprimed: <Use state determined by enum.ConstructionVisuals.Layer>
   - type: StaticPrice
     price: 75
-  - type: EorgPreventTrigger # Starlight
 
 - type: entity
   name: EMP grenade
@@ -389,7 +382,6 @@
     - trigger
   - type: StaticPrice
     price: 666 # 2000 for 3, I love fractions
-  - type: EorgPreventTrigger # Starlight
 
 - type: entity
   name: holy hand grenade
@@ -419,7 +411,6 @@
       path: /Audio/Effects/hallelujah.ogg
   - type: StaticPrice
     price: 10000
-  - type: EorgPreventTrigger # Starlight
 
 # Non-explosive "dummy" grenades to use as a distraction.
 
@@ -474,3 +465,4 @@
         volume: 12
   - type: StaticPrice
     price: 50
+

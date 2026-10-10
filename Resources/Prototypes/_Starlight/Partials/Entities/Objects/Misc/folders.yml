@@ -1,4 +1,8 @@
 - type: !PartialOnly entity
+  id: BoxFolderNuclearCodes
+  suffix: Random
+
+- type: !PartialOnly entity
   id: BoxFolderCentComClipboardEmpty
   components:
   - type: Contraband

@@ -25,9 +25,6 @@
   name: jetpack
   description: It's a jetpack. It can hold 5 L of gas.
   components:
-  - type: Jump
-    action: JumpJet
-    isEquipment: true
   - type: Sprite
     sprite: Objects/Tanks/Jetpacks/blue.rsi
     layers:
@@ -65,12 +62,6 @@
           False: {state: icon}
   - type: StaticPrice
     price: 100
-# Starlight Start
-  - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.95
-  - type: HeldSpeedModifier
-#Starlight End
 
 - type: entity
   parent: BaseAction
@@ -137,12 +128,6 @@
       - Back
   - type: StaticPrice
     price: 1000
-#Starlight Start
-  - type: ClothingSpeedModifier
-    walkModifier: 1.0
-    sprintModifier: 1.0
-  - type: HeldSpeedModifier
-#Starlight End
 
 # Filled black
 - type: entity
@@ -183,12 +168,6 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: JetpackCaptainFilled
-#Starlight Start
-  - type: ClothingSpeedModifier
-    walkModifier: 1.0
-    sprintModifier: 1.0
-  - type: HeldSpeedModifier
-#Starlight End
 
 # Filled captain
 - type: entity
@@ -256,17 +235,17 @@
   suffix: Empty
   components:
   - type: Item
-    sprite: _Starlight/Objects/Tanks/Jetpacks/security_mini.rsi # Starlight - mini jetpack textures
+    sprite: Objects/Tanks/Jetpacks/security.rsi
   - type: Sprite
-    sprite: _Starlight/Objects/Tanks/Jetpacks/security_mini.rsi # Starlight - mini jetpack textures
+    sprite: Objects/Tanks/Jetpacks/security.rsi
   - type: Clothing
-    sprite: _Starlight/Objects/Tanks/Jetpacks/security_mini.rsi # Starlight - mini jetpack textures
+    sprite: Objects/Tanks/Jetpacks/security.rsi
 
 #Filled security
 - type: entity
   id: JetpackSecurityFilled
   parent: JetpackSecurity
-# name: security jetpack # Starlight - inherit name from parent
+  name: security jetpack
   suffix: Filled
   components:
   - type: GasTank

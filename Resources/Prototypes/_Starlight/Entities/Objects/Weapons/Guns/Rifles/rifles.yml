@@ -410,3 +410,67 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  name: Bolt Rifle
+  parent: [ BaseWeaponRifle, BaseSalvageContraband ]
+  id: WeaponRifleBolt
+  description: A terrifyingly powerful and rugged rifle commonly used by the ITG for their frontier logistic escorts and salvage teams. Fires high-caliber explosive impact bolts. Watch out for the recoil.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/impact_bolt_rifle.rsi
+    layers:
+    - state: base
+      map:
+      - "enum.GunVisualLayers.Base"
+    - state: mag-0
+      map:
+      - "enum.GunVisualLayers.Mag"
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/m16.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,2
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -19
+    maxAngle: -22
+  - type: Gun
+    minAngle: 20
+    maxAngle: 24
+    fireRate: 3.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    shotsPerBurst: 3
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp.ogg
+      params:
+        pitch: 0.7
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineBoltRifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineBoltRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeImpactBolt
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
