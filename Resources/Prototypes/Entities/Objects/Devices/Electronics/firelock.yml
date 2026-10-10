@@ -12,7 +12,6 @@
     - type: Tag
       tags:
       - FirelockElectronics
-      - RamChip # FH + Starlight
     - type: StaticPrice
       price: 14
     - type: PhysicalComposition

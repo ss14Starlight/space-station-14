@@ -492,3 +492,50 @@
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-inanimate
     weight: 0.01
+
+- type: entity
+  name: Bolt Pistol
+  parent: [ BaseWeaponPistol, BaseSalvageContraband ]
+  id: WeaponPistolBolt
+  description: A compact pistol chambered for explosive impact bolts, all the punch of a full rifle at the cost of firerate and ammo capacity. Don't strain your wrist too much.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/impact_bolt_pistol.rsi
+    layers:
+    - state: base
+      map:
+      - "enum.GunVisualLayers.Base"
+    - state: mag-0
+      map:
+      - "enum.GunVisualLayers.Mag"
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+  - type: Item
+    storedOffset: 0,-2
+  - type: Gun
+    minAngle: 2
+    maxAngle: 4
+    fireRate: 1.8
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineBoltPistol
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineBoltPistol
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeImpactBolt

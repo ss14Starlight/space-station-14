@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: HandheldStationMapEmpty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor
