@@ -34,11 +34,6 @@ namespace Content.Shared.Speech
         // Starlight - start
         /// <summary>
         ///     If true, only emotes in <see cref="AllowedEmotes"/> may be used in the Vocal category.
-        ///     This is useful when an allowlist (whitelist) works better than a denylist (blacklist). For example,
-        ///     slimes have a lot of vocal emotes that don't make sense for them, so instead of adding every emote
-        ///     they can't use to a blacklist, we can list the ones they can use and set this to true.
-        ///     This also helps with maintainability: new global emotes won't automatically be available to slimes
-        ///     unless we add them to <see cref="AllowedEmotes"/>.
         /// </summary>
         [DataField, AutoNetworkedField]
         public bool RestrictVocalEmotesToAllowed;
