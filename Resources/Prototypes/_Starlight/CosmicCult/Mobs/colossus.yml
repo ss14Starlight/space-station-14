@@ -5,6 +5,16 @@
   name: entropic colossus
   description: A colossal monstrosity of malign plating and dendritic infestation.
   components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - Look
+    - Wave
+  - type: SocialInteractionReceiver
+    interactionOverrides: # no nose
+    - id: Boop
+      interactString: booping-borg-success
+      messagePerceivedByOthers: booping-borg-success-others
+      emoteMessage: booping-borg-emote
   - type: FTLSmashImmune
   - type: CosmicCultExamine
     cultistText: cosmic-examine-text-cultentity
@@ -14,8 +24,8 @@
     factions:
     - CosmicCult
   - type: CosmicMalignantHealing
-    healInterval: 1s
-    healAmount: 0.2
+    healInterval: 10s
+    healAmount: 1
   - type: StaminaResistance
     damageCoefficient: 0 # No more stunning colossi
   - type: Sprite
@@ -42,6 +52,7 @@
       visible: false
       map: ["hibernating"]
   - type: Appearance
+  - type: SyncSprite
   - type: GenericVisualizer
     visuals:
       enum.ColossusVisuals.Status:
@@ -123,7 +134,7 @@
     - DoorBumpOpener
     - Unimplantable
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: MalignStructure
     damageModifierSet: Malignstone
   - type: Destructible
     thresholds:
@@ -149,7 +160,7 @@
         sound:
           collection: MeatLaserImpact
   - type: CosmicRiftHealth
-    healthPerCorpse: 25
+    healthPerCorpse: 20
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -170,12 +181,10 @@
     - Dead
   - type: AntagMonsterScaling
     minimumHealthScaling: -0.25
-    maximumHealthScaling: 0.50
+    maximumHealthScaling: 0.25
   - type: ToolRefinable
     refineTime: 16
-    refineResult:
-    - id: CosmicCultMindSink
-      amount: 1
+    refineResult: []
   - type: PointLight
     color: "#42a4ae"
     radius: 4

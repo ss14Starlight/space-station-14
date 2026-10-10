@@ -101,6 +101,7 @@
     intervalSeconds: 90
     despawnWhenDone: true
     requiredState: Alive
+    allowContainerPlacement: true
 
 - type: entity
   name: spiderling
@@ -111,6 +112,7 @@
   - type: TimedSpawner
     prototypes:
     - MobTerrorRed
+    allowContainerPlacement: true
 
 - type: entity
   name: spiderling
@@ -121,6 +123,7 @@
   - type: TimedSpawner
     prototypes:
     - MobTerrorGray
+    allowContainerPlacement: true
 
 - type: entity
   name: spiderling
@@ -131,6 +134,7 @@
   - type: TimedSpawner
     prototypes:
     - MobTerrorGreen
+    allowContainerPlacement: true
 
 - type: entity
   name: spiderling
@@ -142,3 +146,4 @@
     prototypes:
     - MobGiantSpiderAngry
     intervalSeconds: 60
+    allowContainerPlacement: true

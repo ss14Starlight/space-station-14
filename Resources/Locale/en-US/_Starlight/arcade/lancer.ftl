@@ -399,3 +399,6 @@ lancer-arcade-roll-divine-save = Divine Punishment save ({$unit})
 lancer-arcade-log-divine-empty = Divine Punishment — no targets in range.
 lancer-arcade-log-divine-save = {$unit} saves vs Divine Punishment for {$damage}.
 lancer-arcade-log-divine-fail = {$unit} fails save vs Divine Punishment for {$damage}.
+
+lancer-dice-damage = Damage: { $sum }
+lancer-dice-damage-sum = Damage: { $dice } = { $sum }

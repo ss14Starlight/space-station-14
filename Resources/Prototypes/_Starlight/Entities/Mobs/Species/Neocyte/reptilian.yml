@@ -33,6 +33,7 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
+    allowedEmotes: ['Thump', 'Flap']
   - type: BodyEmotes
     soundsId: ReptilianBodyEmotes
   - type: Butcherable

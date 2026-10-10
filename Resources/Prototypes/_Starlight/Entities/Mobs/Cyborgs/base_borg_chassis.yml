@@ -7,6 +7,9 @@
   description: A man-machine hybrid that aims to replicate itself. This one has seen better days.
   abstract: true
   components:
+  - type: NpcFactionMember
+    factions:
+    - Xenoborg
   - type: RandomMetadata
     nameSegments:
      - NamesXenoborg
@@ -181,6 +184,8 @@
     - Inorganic
     - Silicon
     - Hybrid # Neocytes
+    - MoffDemonBiological
+    - MoffDemonInorganic
   - type: ShowHealthIcons
   - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons

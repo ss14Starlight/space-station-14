@@ -18,6 +18,9 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Audio;
+using Robust.Shared.Physics.Dynamics;
+using Content.Shared.Gibbing;
+using Content.Shared.Mind;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
@@ -38,12 +41,15 @@ public sealed partial class CosmicColossusSystem : EntitySystem
     [Dependency] private PointLightSystem _pointLight = default!;
     [Dependency] private CosmicMalignEmpoweredRiftSystem _riftSystem = default!;
     [Dependency] private CosmicCorruptingSystem _corrupting = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<CosmicColossusComponent, ComponentInit>(OnSpawn);
         SubscribeLocalEvent<CosmicColossusComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<CosmicColossusComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<CosmicColossusComponent, GibbedBeforeDeletionEvent>(OnGibbed);
     }
 
     public override void Update(float frameTime)
@@ -69,7 +75,8 @@ public sealed partial class CosmicColossusSystem : EntitySystem
                 Spawn(comp.CultBigVfx, Transform(ent).Coordinates);
                 if (!TryComp<DamageableComponent>(ent, out var damageable))
                     continue;
-                _damage.TryChangeDamage(ent, damageable.Damage / 2 * -1, true);
+                var damageSpec = _damage.GetPositiveDamage(ent!);
+                _damage.TryChangeDamage(ent, damageSpec / 2 * -1, true);
             }
             if (comp.Timed && _timing.CurTime >= comp.DeathTimer)
             {
@@ -109,6 +116,7 @@ public sealed partial class CosmicColossusSystem : EntitySystem
             _appearance.SetData(ent, ColossusVisuals.Status, ColossusStatus.Alive);
             _appearance.SetData(ent, ColossusVisuals.Hibernation, ColossusAction.Stopped);
             _appearance.SetData(ent, ColossusVisuals.Sunder, ColossusAction.Stopped);
+            UpdateHealthVisual(ent);
 
             _ambientSound.SetAmbience(ent, true);
 
@@ -168,5 +176,44 @@ public sealed partial class CosmicColossusSystem : EntitySystem
         //Turn off corruption
         if (TryComp<CosmicCorruptingComponent>(ent, out var deathCorrupting))
             _corrupting.Disable((ent.Owner, deathCorrupting));
+    }
+
+    private void OnDamageChanged(Entity<CosmicColossusComponent> ent, ref DamageChangedEvent args)
+    {
+        if (args.DamageDelta == null)
+            return;
+
+        UpdateHealthVisual(ent);
+    }
+
+    private void UpdateHealthVisual(Entity<CosmicColossusComponent> ent)
+    {
+        if (!TryComp<DamageableComponent>(ent, out var damageable))
+            return;
+
+        if (!_threshold.TryGetThresholdForState(ent, MobState.Dead, out var maxHealth))
+            return;
+
+        var damagePercentage = (_damage.GetTotalDamage((ent.Owner, damageable)) / maxHealth.Value).Float();
+
+        var health = damagePercentage switch
+        {
+            < 0.10f => ColossusHealth.Healthy,
+            < 0.35f => ColossusHealth.Damaged,
+            < 0.75f => ColossusHealth.HeavilyDamaged,
+            _ => ColossusHealth.Crumbling,
+        };
+
+        _appearance.SetData(ent, ColossusVisuals.Health, health);
+    }
+
+    private void OnGibbed(Entity<CosmicColossusComponent> ent, ref GibbedBeforeDeletionEvent args)
+    {
+        var mindSink = Spawn("CosmicCultMindSink", Transform(ent).Coordinates);
+
+        if (!_mind.TryGetMind(ent, out var mindId, out var mind))
+            return;
+
+        _mind.TransferTo(mindId, mindSink, mind: mind);
     }
 }

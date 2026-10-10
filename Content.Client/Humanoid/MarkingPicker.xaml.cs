@@ -454,7 +454,7 @@ public sealed partial class MarkingPicker : Control
             ColorSelectorSliders colorSelector = new ColorSelectorSliders();
             colorSelector.SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv; // defaults color selector to HSV
 
-            colorContainer.AddChild(new Label { Text = $"{colorNames[i]} color:" });
+            colorContainer.AddChild(new Label { Text = Loc.GetString("marking-picker-slot-color", ("name", colorNames[i])) });
             colorContainer.AddChild(colorSelector);
 
             var listing = _currentMarkings.Markings[_selectedMarkingCategory];

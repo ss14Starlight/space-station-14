@@ -142,3 +142,52 @@
   sprites:
   - sprite: _Starlight/Mobs/Customization/vox.rsi
     state: voxplumage
+
+- type: marking
+  id: VoxBushTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: bushtail
+
+- type: marking
+  id: VoxAllSeeing
+  bodyPart: Eyes
+  markingCategory: Overlay
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: allseeingeyes
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: allseeingface
+
+- type: marking
+  id: VoxThirdEye
+  bodyPart: Eyes
+  markingCategory: Overlay
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: thirdeye
+
+- type: marking
+  id: VoxPeafowlTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: peafowltailbase
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: peafowltaileyes
+
+- type: marking
+  id: VoxSeveredTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: severedtail

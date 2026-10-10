@@ -29,8 +29,6 @@ using Robust.Shared.Timing;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Store;
 using Robust.Shared.Player;
-
-#region Starlight
 using Content.Server._Starlight.Achievement;
 using Content.Server.AlertLevel;
 using Content.Server.Chat.Systems;
@@ -54,7 +52,7 @@ using Content.Server._Starlight.Implants;
 using Content.Shared._Starlight.Implants.Components;
 using Content.Shared._Starlight.Revolutionary.Components;
 using Content.Server._Starlight.Revolutionary.Components;
-#endregion Starlight
+using Content.Server._Starlight.Statistics;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -75,6 +73,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private RoleSystem _role = default!;
     [Dependency] private RoundEndSystem _roundEnd = default!;
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!; // Starlight
     [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private StationSystem _stationSystem = default!;
 
@@ -233,13 +232,16 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
         // (moony wrote this comment idk what it means)
         var index = (commandLost ? 1 : 0) | (revsLost ? 2 : 0);
         args.AddLine(Loc.GetString(Outcomes[index]));
+        _roundStatistics.RecordAntagOutcome(uid, "Revolutionary", _results[index]); // Starlight
 
         var sessionData = _antag.GetAntagIdentifiers(uid).ToList();
         args.AddLine(Loc.GetString("rev-headrev-count", ("initialCount", sessionData.Count)));
+        _roundStatistics.RecordAntagOutcomeStat("Revolutionary", "head_revs", sessionData.Count); // Starlight
         foreach (var (mind, data, name) in sessionData)
         {
             _role.MindHasRole<RevolutionaryRoleComponent>(mind, out var role);
             var count = CompOrNull<RevolutionaryRoleComponent>(role)?.ConvertedCount ?? 0;
+            _roundStatistics.RecordAntagOutcomeStat("Revolutionary", "converts", count); // Starlight
 
             args.AddLine(Loc.GetString("rev-headrev-name-user",
                 ("name", name),
@@ -379,8 +381,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
             return;
         // Starlight End
 
-        if (!_whitelistSystem.CheckBoth(ev.Target, comp.Blacklist, comp.Whitelist) && // Starlight-edit: rework all has comp to whitelist & blacklist.
-            !alwaysConvertible ||
+        if (!_whitelistSystem.CheckBoth(ev.Target, comp.Blacklist, alwaysConvertible ? null : comp.Whitelist) || // Starlight-edit: rework all has comp to whitelist & blacklist.
             !_mobState.IsAlive(ev.Target))
         {
             return;
@@ -482,14 +483,14 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
                     }
 
                     // Show popup to the head revolutionary (private)
-                    _popup.PopupEntity(Loc.GetString($"+1 Telebond (Total: {finalTelebond})"), ev.User.Value, ev.User.Value, PopupType.Medium);
+                    _popup.PopupEntity(Loc.GetString("ussp-uplink-telebond", ("total", finalTelebond)), ev.User.Value, ev.User.Value, PopupType.Medium);
 
                     // If the uplink is implanted in someone else, show them a popup too
                     if (TryComp<SubdermalImplantComponent>(uplinkUid.Value, out var implant) &&
                         implant.ImplantedEntity != null &&
                         implant.ImplantedEntity.Value != ev.User.Value)
                     {
-                        _popup.PopupEntity(Loc.GetString($"+1 Telebond (Total: {finalTelebond}) (for {Identity.Name(ev.User.Value, EntityManager)})"),
+                        _popup.PopupEntity(Loc.GetString("ussp-uplink-telebond-total-for", ("total", finalTelebond), ("name", Identity.Name(ev.User.Value, EntityManager))),
                             implant.ImplantedEntity.Value, implant.ImplantedEntity.Value, PopupType.Large);
                     }
 
@@ -501,7 +502,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
                             revId != ev.User.Value &&
                             (implant == null || implant.ImplantedEntity == null || revId != implant.ImplantedEntity.Value))
                         {
-                            _popup.PopupEntity(Loc.GetString($"+1 Telebond (for {Identity.Name(ev.User.Value, EntityManager)})"),
+                            _popup.PopupEntity(Loc.GetString("ussp-uplink-telebond-for", ("name", Identity.Name(ev.User.Value, EntityManager))),
                                 revId, revId, PopupType.Large);
                         }
                     }
@@ -528,7 +529,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
                                     (TryComp<USSPUplinkOwnerComponent>(revImplant, out var ownerComp) &&
                                      ownerComp.OwnerUid == ev.User.Value))
                                 {
-                                    _popup.PopupEntity(Loc.GetString($"+1 Telebond (for {Identity.Name(ev.User.Value, EntityManager)})"),
+                                    _popup.PopupEntity(Loc.GetString("ussp-uplink-telebond-for", ("name", Identity.Name(ev.User.Value, EntityManager))),
                                         revId, revId, PopupType.Medium);
                                     break;
                                 }
@@ -900,6 +901,16 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
         // revs lost and heads died
         "rev-stalemate"
     };
+
+    #region Starlight
+    private static readonly string[] _results =
+    {
+        "ReverseStalemate",
+        "RevsWin",
+        "RevsLose",
+        "Stalemate"
+    };
+    #endregion
 
     /// <summary>
     /// STARLIGHT: Synchronizes currencies between all uplinks owned by the same head revolutionary.

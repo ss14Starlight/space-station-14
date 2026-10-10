@@ -32,31 +32,34 @@ namespace Content.Client.Cargo.UI
 
             foreach (var order in orders)
             {
-                 var proto = protoManager.Index(order.CargoProductId); // Starlight
-                 var account = protoManager.Index(order.Account);
+                if (!protoManager.Resolve(order.Product, out var productProto))
+                    continue;
 
-                 var row = new CargoOrderRow
-                 {
-                     Order = order,
-                     Icon = { Texture = sprites.Frame0(proto.Icon) }, // Starlight
-                     ProductName =
-                     {
-                         Text = Loc.GetString(
-                             "cargo-console-menu-populate-orders-cargo-order-row-product-name-text",
-                             ("productName", order.ProductName), // Starlight
-                             ("orderAmount", order.OrderQuantity - order.NumDispatched),
-                             ("orderRequester", order.Requester),
-                             ("accountColor", account.Color),
-                             ("account", Loc.GetString(account.Code)))
-                     },
-                     Description = {Text = Loc.GetString("cargo-console-menu-order-reason-description",
-                         ("reason", order.Reason))}
-                 };
+                var productName = productProto.Name;
+                var account = protoManager.Index(order.Account);
 
-                 row.Approve.Visible = false;
-                 row.Cancel.Visible = false;
+                var row = new CargoOrderRow
+                {
+                    Order = order,
+                    Icon = { Texture = sprites.Frame0(productProto.Icon) }, // Starlight
+                    ProductName =
+                    {
+                        Text = Loc.GetString(
+                            "cargo-console-menu-populate-orders-cargo-order-row-product-name-text",
+                            ("productName", productName), // Starlight
+                            ("orderAmount", order.OrderQuantity - order.NumDispatched),
+                            ("orderRequester", order.Requester),
+                            ("accountColor", account.Color),
+                            ("account", Loc.GetString(account.Code)))
+                    },
+                    Description = {Text = Loc.GetString("cargo-console-menu-order-reason-description",
+                        ("reason", order.Reason))}
+                };
 
-                 Orders.AddChild(row);
+                row.Approve.Visible = false;
+                row.Cancel.Visible = false;
+
+                Orders.AddChild(row);
             }
         }
     }

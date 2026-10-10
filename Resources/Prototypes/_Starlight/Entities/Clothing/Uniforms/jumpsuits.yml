@@ -27,7 +27,7 @@
   - type: VentCrawlClothing
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseNanoTrasenContraband]
   id: MagistrateUniformSuit
   name: magistrate's jumpsuit
   components:
@@ -37,7 +37,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate.rsi
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseNanoTrasenContraband]
   id: ClothingUniformJumpsuitNtrep
   name: nt representative suit
   description: That suit that is better not to see.
@@ -48,7 +48,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntrep.rsi
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseNanoTrasenContraband]
   id: ClothingUniformJumpsuitNtrepFormal
   name: nt representative formal suit
   description: That suit that is better not to see.
@@ -59,7 +59,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntrepformal.rsi
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseNanoTrasenContraband]
   id: ClothingUniformJumpsuitNtrepTurtleNeck
   name: nt representative's turtleneck jumpsuit
   description: For a more casual look while on the job.
@@ -70,7 +70,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntrepturtleneck.rsi
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseNanoTrasenContraband]
   id: ClothingUniformJumpsuitNtrepNoble
   name: nt representative's noble jumpsuit
   description: A more classical and elegant style of clothing, designed to emulate the fashion of old earth nobility.
@@ -756,6 +756,182 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcom_official.rsi
 
 - type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalCAD
+  name: Central Administration Division officer's formal jumpsuit
+  description: It's a formal jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCAD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCAD.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalCMD
+  name: Central Medical Division officer's formal jumpsuit
+  description: It's a formal jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCMD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCMD.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalCRD
+  name: Central Research Division officer's formal jumpsuit
+  description: It's a formal jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCRD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCRD.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalCCD
+  name: Central Cargo Division officer's formal jumpsuit
+  description: It's a formal jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCCD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCCD.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalCSOD
+  name: Central Special Operations Division officer's formal jumpsuit
+  description: It's a formal jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCSOD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCSOD.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalCID
+  name: Central Intelligence Division officer's formal jumpsuit
+  description: It's a formal jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCID.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCID.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalCSD
+  name: Central Security Division officer's formal jumpsuit
+  description: It's a formal jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCSD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCSD.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalCED
+  name: Central Engineering Division officer's formal jumpsuit
+  description: It's a formal jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCED.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCED.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalDressCAD
+  name: Central Administration Division officer's formal dress jumpsuit
+  description: It's a formal dress jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformaldressCAD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformaldressCAD.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalDressCMD
+  name: Central Medical Division officer's formal dress jumpsuit
+  description: It's a formal dress jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformaldressCMD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformaldressCMD.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalDressCRD
+  name: Central Research Division officer's formal dress jumpsuit
+  description: It's a formal dress jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformaldressCRD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformaldressCRD.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalDressCCD
+  name: Central Cargo Division officer's formal dress jumpsuit
+  description: It's a formal dress jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformaldressCCD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformaldressCCD.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalDressCSOD
+  name: Central Special Operations Division officer's formal dress jumpsuit
+  description: It's a formal dress jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformaldressCSOD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformaldressCSOD.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalDressCID
+  name: Central Intelligence Division officer's formal dress jumpsuit
+  description: It's a formal dress jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformaldressCID.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformaldressCID.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalDressCSD
+  name: Central Security Division officer's formal dress jumpsuit
+  description: It's a formal dress jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformaldressCSD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformaldressCSD.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalDressCED
+  name: Central Engineering Division officer's formal dress jumpsuit
+  description: It's a formal dress jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformaldressCED.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformaldressCED.rsi
+
+- type: entity
   parent: [ClothingUniformBase, BaseSecurityContraband]
   id: ClothingUniformSecurityTshirt
   name: t-shirt security uniform
@@ -855,7 +1031,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/tsfelite.rsi
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseNanoTrasenContraband ]
   id: ClothingUniformJumpsuitNCT
   name: nt career trainer's uniform
   description: A neatly pressed olive green shirt paired with black jeans, worn by those dedicated to shaping the future of the workforce.

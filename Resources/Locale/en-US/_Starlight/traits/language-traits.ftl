@@ -6,8 +6,14 @@ trait-language-foreigner-light-desc = You understand the common language, but yo
 trait-language-foreigner-name = Foreigner
 trait-language-foreigner-desc = You can't understand the common language, and you require a translator at all times to talk. You have a translator to help you with your understanding and speaking. Make sure to keep it charged.
 
-trait-language-signlanguage-name = Sign Language
+trait-language-xenosocialized-name = Xenosocialized
+trait-language-xenosocialized-desc = You were raised without being taught the language your species normally uses.
+
+trait-language-signlanguage-name = Galactic Sign Language
 trait-language-signlanguage-desc = A sign language commonly used for those who are deaf or mute. Especially popular with spacers, due to practicality in airless environments.
+
+trait-language-classicalsign-name = Classical Sign Language
+trait-language-classicalsign-desc = An older, more obscure sign language originating from Terra. It is completely distinct from Galactic Sign Language.
 
 trait-language-bubblish-name = Bubblish
 trait-language-bubblish-desc = You've picked up on how to communicate in Bubblish, the language of the slimes spoken using a variety of blops and pops.
@@ -29,6 +35,9 @@ trait-language-scratch-desc = You know how to speak and understand Avali Scratch
 
 trait-language-solcommon-name = Sol Common
 trait-language-solcommon-desc = You picked up knowledge on Sol Common, Old Earth's current primary language developed by the Trans-Solar Federation.
+
+trait-language-cygnistandard-name = Cygni standard
+trait-language-cygnistandard-desc = You learned the language of the USSP, either through residence, or some other means. Maybe don't carry flashes on you.
 
 trait-language-sylvan-name = Sylvan
 trait-language-sylvan-desc = You understand Sylvan, spoken by Dionae and plants alike. Most people would probably call you crazy if you said you could talk to plants.

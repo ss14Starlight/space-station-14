@@ -23,6 +23,7 @@
     - Silicon
     - IPC
     - Hybrid
+    - MoffDemonInorganic
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1036,3 +1037,4 @@
         - NewsReaderCartridge
         - AstroNavCartridge
         - MedTekCartridge
+        - NanoChatCartridge

@@ -1,0 +1,28 @@
+# A damaged version for use with alternative uses (Peacekeeper Bola Ammo)
+# Already has a hit one it
+- type: entity
+  name: bola
+  parent: Bola
+  id: BolaWeakened
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 70
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 5

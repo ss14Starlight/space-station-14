@@ -20,10 +20,6 @@
     burstFireRate: 8
     shotsPerBurst: 3
     burstCooldown: 0.6
-    minAngle: 21
-    maxAngle: 32
-    angleIncrease: 2
-    angleDecay: 16
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -35,8 +31,5 @@
     magState: mag
     steps: 5
     zeroVisible: true
-  - type: GunWieldBonus
-    minAngle: -20
-    maxAngle: -28
   - type: SpeedModifiedOnWield
     walkModifier: 0.80

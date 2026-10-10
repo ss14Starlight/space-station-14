@@ -3,7 +3,6 @@
   parent: [ BaseMachinePowered, SmallConstructibleMachine ]
   name: reagent grinder
   description: From BlenderTech. Will It Blend? Let's find out!
-  suffix: grinder/juicer
   components:
   - type: ReagentGrinder
   - type: ActivatableUI
@@ -130,7 +129,7 @@
     solution: solution
   # Starlight - Plumbing integration
   - type: PlumbingOutlet
-    solutionName: output
+    solutionName: solution
     connectedOutlets: true
     outletNames:
     - outletNorth

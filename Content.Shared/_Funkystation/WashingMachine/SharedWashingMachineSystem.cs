@@ -1,26 +1,28 @@
-﻿using Content.Shared.Interaction;
+using System.Linq;
+using Content.Shared._Funkystation.Stains.Systems;
+using Content.Shared._Starlight.Lube;
+using Content.Shared.Chemistry;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Clothing.Components;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Destructible;
+using Content.Shared.Glue;
+using Content.Shared.Interaction;
+using Content.Shared.Lube;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Timing;
-using Robust.Shared.Utility;
-using System.Linq;
-using Content.Shared._Funkystation.Stains.Components;
-using Content.Shared._Funkystation.Stains.Systems;
-using Content.Shared.Chemistry;
-using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Clothing.Components;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Prototypes;
-using Content.Shared.Damage.Systems;
-using Content.Shared.Destructible;
-using Content.Shared.Random.Helpers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Funkystation.WashingMachine;
 
@@ -35,8 +37,10 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private DamageableSystem _damageable = null!;
     [Dependency] private ReactiveSystem _reactive = null!;
-    [Dependency] private SharedSolutionContainerSystem _solution = default!;
     [Dependency] private SharedStainSystem _stains = default!;
+    [Dependency] private SharedCreamPieSystem _creamPie = default!; // Starlight
+    [Dependency] private GlueSystem _glueSystem = default!;  // Starlight
+    [Dependency] private SharedLubedSystem _lubedSystem = default!;  // Starlight
 
     public override void Initialize()
     {
@@ -64,10 +68,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnMapInit(Entity<WashingMachineComponent> ent, ref MapInitEvent args)
-    {
-        _appearance.SetData(ent.Owner, WashingMachineVisuals.State, ent.Comp.State);
-    }
+    private void OnMapInit(Entity<WashingMachineComponent> ent, ref MapInitEvent args) => _appearance.SetData(ent.Owner, WashingMachineVisuals.State, ent.Comp.State);
 
     [SubscribeLocalEvent]
     private void OnBreak(Entity<WashingMachineComponent> ent, ref BreakageEventArgs args)
@@ -195,11 +196,17 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
             foreach (var item in items)
             {
-                if (TryComp<StainableComponent>(item, out var stain) && _solution.TryGetSolution(item, stain.SolutionName, out var sol))
-                {
-                    _solution.RemoveAllSolution(sol.Value);
-                    _stains.UpdateVisuals((item, stain));
-                }
+                // Starlight Start - Clean lube, glue, and any creampied crew
+                if (TryComp<CreamPiedComponent>(item, out var creamPiedComp))
+                    _creamPie.SetCreamPied(item, creamPiedComp, false);
+                if (HasComp<LubedComponent>(item))
+                    _lubedSystem.RemoveLubed(item);
+                if (HasComp<GluedComponent>(item))
+                    _glueSystem.RemoveGlued(item);
+
+                _stains.CleanStains(item);
+                _stains.CleanEquippedClothing(item);
+                // Starlight End
             }
         }
 

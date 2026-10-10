@@ -464,6 +464,20 @@
     state: segmented_torso
 
 - type: marking
+  id: DollShellChestSegmentedM
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+    state: segmented_m
+
+- type: marking
   id: DollShellHeadSegmented
   bodyPart: Head
   markingCategory: Head
@@ -641,6 +655,24 @@
     state: unbroken_torso_repaired
 
 - type: marking
+  id: DollShellChestUnbrokenM
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+    state: unbroken_m
+  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+    state: unbroken_torso_gold
+  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+    state: unbroken_torso_repaired
+
+- type: marking
   id: DollShellHeadUnbroken
   bodyPart: Head
   markingCategory: Head
@@ -756,6 +788,20 @@
   sprites:
   - sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
     state: overgrown_torso
+
+- type: marking
+  id: DollShellChestOvergrownM
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
+    state: overgrown_m
 
 - type: marking
   id: DollShellHeadOvergrown
@@ -911,6 +957,20 @@
     state: paradigm_torso
 
 - type: marking
+  id: DollShellChestParadigmM
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+    state: paradigm_m
+
+- type: marking
   id: DollShellHeadParadigm
   bodyPart: Head
   markingCategory: Head
@@ -938,6 +998,22 @@
   sprites:
   - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
     state: head_fox
+  emotes:
+    - emotePrototype: Yip
+      requiredMarkingsAny:
+        - DollShellHeadFox
+    - emotePrototype: Whine
+      requiredMarkingsAny:
+        - DollShellHeadFox
+    - emotePrototype: Bark
+      requiredMarkingsAny:
+        - DollShellHeadFox
+    - emotePrototype: Howl
+      requiredMarkingsAny:
+        - DollShellHeadFox
+    - emotePrototype: Growl
+      requiredMarkingsAny:
+        - DollShellHeadFox
 
 - type: marking
   id: DollShellHeadMoth
@@ -952,6 +1028,10 @@
   sprites:
   - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
     state: head_moth
+  emotes:
+    - emotePrototype: Chitter
+      requiredMarkingsAny:
+        - DollShellHeadMoth
 
 # Other Masks
 - type: marking

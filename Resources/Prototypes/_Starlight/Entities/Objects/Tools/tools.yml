@@ -8,7 +8,6 @@
       path: /Audio/Items/wirecutter_drop.ogg
   - type: Tag
     tags:
-    - PlantSampleTaker
     - Wirecutter
   - type: Sprite
     sprite: Objects/Tools/wirecutters.rsi
@@ -20,6 +19,7 @@
       - Cutting
     useSound:
       path: /Audio/Items/wirecutter.ogg
+  - type: BotanySampleTaker
   - type: MeleeWeapon
     wideAnimationRotation: -90
     damage:
@@ -302,7 +302,6 @@
       path: /Audio/Items/wirecutter_drop.ogg
   - type: Tag
     tags:
-    - PlantSampleTaker
     - ImprovisedWirecutter
   - type: Sprite
     sprite: _Starlight/Objects/Tools/improvised_wirecutters.rsi
@@ -315,6 +314,7 @@
     soundHit:
       path: "/Audio/Items/wirecutter.ogg"
     attackRate: 2
+  - type: BotanySampleTaker
   - type: Item
     sprite: _Starlight/Objects/Tools/improvised_wirecutters.rsi
     storedRotation: -90
@@ -642,6 +642,7 @@
         - type: ItemTogglePointLight
         - type: Appearance
         - type: RequiresEyeProtection
+        - type: BotanySampleTaker
         - type: IgnitionSource
           temperature: 700
         - type: ItemToggleMeleeWeapon
@@ -675,13 +676,12 @@
       - Multitool
       - DoorElectronicsConfigurator
       - Wrench
-      - PlantSampleTaker
       - Wirecutter
       - Screwdriver
 
 - type: entity
   name: forged omnitool
-  parent: BaseItem
+  parent: [SolutionWelder, BaseItem]
   id: OmnitoolForged
   description: Some absolute psychopath decided to saw off the heads of all tools they could find and smash it together into a makeshift drill. Looks nice, considering it's origins.
   components:
@@ -697,13 +697,12 @@
       shader: unshaded
       map: ["enum.ToggleableVisuals.Layer"]
   - type: RefillableSolution
-    solution: Welder
+    solution: welder
   - type: Tool
     useSound:
       collection: Welder
     qualities: [ Welding ]
   - type: Solution
-    id: Welder
     solution:
       reagents:
       - ReagentId: WeldingFuel
@@ -781,6 +780,7 @@
             - Cutting
           useSound:
             path: /Audio/Items/wirecutter.ogg
+        - type: BotanySampleTaker
         - type: MeleeWeapon
           wideAnimationRotation: -135
           soundHit:
@@ -874,7 +874,7 @@
         - type: ToggleableVisuals
           spriteLayer: flame
         - type: RefillableSolution
-          solution: Welder
+          solution: welder
         - type: Tool
           useSound:
             collection: Welder
@@ -917,7 +917,6 @@
       - Multitool
       - DoorElectronicsConfigurator
       - Wrench
-      - PlantSampleTaker
       - Wirecutter
       - Screwdriver
 
@@ -973,6 +972,7 @@
     - Deconstruct
     - AirAlarm
     - AirSensor
+    - GasInletSiphon
   - type: LimitedCharges
     maxCharges: 90
   - type: Sprite

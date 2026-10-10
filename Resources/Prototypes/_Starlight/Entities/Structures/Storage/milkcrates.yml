@@ -66,9 +66,22 @@
     whitelist:
       tags:
         - VinylSleeve
+        - VinylSleeveFit
   - type: Construction
     graph: MilkCrateGraph
     node: recordMilkCrate
+
+- type: entity
+  id: RecordMilkCrateFilled
+  suffix: Filled
+  parent: RecordMilkCrate
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: RandomVinylSleeve
+        rolls: !type:RangeNumberSelector
+          range: 6, 8
 
 - type: entity
   id: MilkCrate

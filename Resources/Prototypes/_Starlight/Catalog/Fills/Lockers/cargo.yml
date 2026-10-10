@@ -7,6 +7,8 @@
     - id: RubberStampSalvageLead
     - id: ClothingNeckMantleDecoratedSalvager
     - id: ITGTrackerImplanter
+    - id: SalvageTechFabFlatpack
+    - id: Multitool
 
 - type: entityTable
   id: FillSalvageLeadHardsuitSpatio
@@ -412,6 +414,8 @@
         prob: 0.3
         rolls: !type:ConstantNumberSelector
           value: 3
+      - id: OilPack
+        amount: 2
       - id: ClothingNeckMantleMedic
       - id: ITGTrackerImplanter
       - id: BoxBodyBag

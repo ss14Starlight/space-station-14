@@ -16,6 +16,7 @@
     damageContainers:
       - Biological
       - Hybrid # Neocytes
+      - MoffDemonBiological
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -25,6 +26,7 @@
     tags:
     - HamsterWearable
     - WhitelistChameleon
+    - SecBeltEquip
   - type: IdentityBlocker
     coverage: EYES
 
@@ -45,6 +47,7 @@
     damageContainers:
       - Biological
       - Hybrid # Neocytes
+      - MoffDemonBiological
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -54,6 +57,7 @@
     tags:
     - HamsterWearable
     - WhitelistChameleon
+    - SecBeltEquip
   - type: IdentityBlocker
     coverage: EYES
 
@@ -135,6 +139,7 @@
     - Biological
     - IPC
     - Hybrid
+    - MoffDemonBiological
   - type: ShowHealthIcons
     damageContainers:
     - Biological
@@ -176,6 +181,8 @@
         - Silicon
         - IPC
         - Hybrid
+        - MoffDemonBiological
+        - MoffDemonInorganic
     - type: ShowHealthIcons
       damageContainers:
         - Biological
@@ -227,9 +234,11 @@
     damageContainers:
       - Biological
       - Hybrid # Neocytes
+      - MoffDemonBiological
   - type: Tag
     tags:
     - WhitelistChameleon
+    - SecBeltEquip
 
 - type: entity
   parent: [ClothingEyesBase, ShowMedicalIcons]
@@ -261,8 +270,8 @@
   - type: VisionCorrection
   - type: Tag
     tags:
-    - HudSecurity
     - WhitelistChameleon
+    - SecBeltEquip
 
 - type: entity
   parent: ClothingEyesGlassesChemical

@@ -1124,8 +1124,8 @@
       path: /Audio/Animals/cat_hiss.ogg
     hidden: true
     damage:
-      groups:
-        Brute: 1
+      types:
+        Blunt: 1
 
 # Suppermatter
 # I can't figure out where to put this. It kind of acts like a cake I guess?
@@ -1214,6 +1214,7 @@
     tags:
     - Cake
     - ClothMade
+    - CottonCake # Starlight
   - type: Solution
     solution:
       reagents:
@@ -1241,6 +1242,7 @@
     - Cake
     - ClothMade
     - Slice
+    - CottonCake # Starlight
   - type: Solution
     solution:
       reagents:

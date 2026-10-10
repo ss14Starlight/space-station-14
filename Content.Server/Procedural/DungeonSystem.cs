@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Content.Server.Decals;
 using Content.Server.GameTicking.Events;
@@ -44,13 +45,19 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
     private EntityQuery<MetaDataComponent> _metaQuery;
     private EntityQuery<TransformComponent> _xformQuery;
 
-    private const double DungeonJobTime = 0.005;
+    private double DungeonJobTime = 0.005; // Starlight: set from StarlightCCVars.DungeonJobTime
 
     public const int CollisionMask = (int) CollisionGroup.Impassable;
     public const int CollisionLayer = (int) CollisionGroup.Impassable;
 
-    private readonly JobQueue _dungeonJobQueue = new(DungeonJobTime);
+    private readonly TimedJobQueue _dungeonJobQueue = new(); // Starlight: budget set from StarlightCCVars.DungeonJobTime
     private readonly Dictionary<DungeonJob.DungeonJob, CancellationTokenSource> _dungeonJobs = new();
+
+    #region Starlight
+    private readonly List<DungeonJob.DungeonJob> _finishedDungeonJobs = new();
+
+    internal int TrackedDungeonJobCount => _dungeonJobs.Count;
+    #endregion
 
     public static readonly ProtoId<ContentTileDefinition> FallbackTileId = "FloorSteel";
 
@@ -66,23 +73,53 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(PrototypeReload);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
         SubscribeLocalEvent<RoundStartingEvent>(OnRoundStart);
+        InitializeJobTime(); // Starlight
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
         _dungeonJobQueue.Process();
+        CleanupFinishedDungeonJobs(); // Starlight: Remove completed jobs instead of retaining them until round restart.
     }
 
-    private void OnRoundCleanup(RoundRestartCleanupEvent ev)
+    #region Starlight
+    /// <summary>
+    /// Removes finished jobs from tracking and disposes their cancellation token sources.
+    /// Jobs are buffered first because <see cref="_dungeonJobs"/> cannot be modified while it is enumerated.
+    /// </summary>
+    private void CleanupFinishedDungeonJobs()
+    {
+        _finishedDungeonJobs.Clear();
+
+        foreach (var (job, _) in _dungeonJobs)
+        {
+            if (job.Status == JobStatus.Finished)
+                _finishedDungeonJobs.Add(job);
+        }
+
+        foreach (var job in _finishedDungeonJobs)
+        {
+            if (!_dungeonJobs.Remove(job, out var token))
+                continue;
+
+            token.Dispose();
+        }
+    }
+
+    private void CancelAndDisposeDungeonJobs()
     {
         foreach (var token in _dungeonJobs.Values)
         {
             token.Cancel();
+            token.Dispose();
         }
 
         _dungeonJobs.Clear();
     }
+    #endregion
+
+    private void OnRoundCleanup(RoundRestartCleanupEvent ev) => CancelAndDisposeDungeonJobs(); // Starlight
 
     private void OnRoundStart(RoundStartingEvent ev)
     {
@@ -106,12 +143,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
     public override void Shutdown()
     {
         base.Shutdown();
-        foreach (var token in _dungeonJobs.Values)
-        {
-            token.Cancel();
-        }
-
-        _dungeonJobs.Clear();
+        CancelAndDisposeDungeonJobs(); // Starlight
     }
 
     private void PrototypeReload(PrototypesReloadedEventArgs obj)

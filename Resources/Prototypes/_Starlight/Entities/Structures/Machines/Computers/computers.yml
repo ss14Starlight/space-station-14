@@ -364,8 +364,9 @@
     - Syndicate
     - Silicon
     - Xenoborg
+    - ITG
     privilegedIdSlot:
-      name: UniversalIdConsole-privilegedId
+      name: id-card-console-privileged-id
       ejectSound: /Audio/Machines/id_swipe.ogg
       insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
       ejectOnBreak: true
@@ -375,7 +376,7 @@
         - IdCard
     targetIdSlot:
       priority: 1
-      name: UniversalIdConsole-targetId
+      name: id-card-console-target-id
       ejectSound: /Audio/Machines/id_swipe.ogg
       insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
       ejectOnBreak: true

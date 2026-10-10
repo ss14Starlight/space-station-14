@@ -177,6 +177,9 @@
   id: ClownKudzu
 
 - type: Tag
+  id: Citrus # Artifact citrus trigger
+
+- type: Tag
   id: CluwneBeastWearable
 
 - type: Tag
@@ -196,6 +199,15 @@
 
 - type: Tag
   id: ConstructionComment
+
+- type: Tag
+  id: CottonBread # BountyCottonBread
+
+- type: Tag
+  id: CottonCake # BountyCottonCake
+
+- type: Tag
+  id: CoupeGlass # BountyCoupeGlass
 
 - type: Tag
   id: CrispyRiceBar
@@ -231,7 +243,16 @@
   id: DogEmotes
 
 - type: Tag
+  id: Drone
+
+- type: Tag
+  id: DroneUsable
+
+- type: Tag
   id: DrinkCarton
+
+- type: Tag
+  id: DrinkMetamorphic
 
 - type: Tag
   id: DurandArmor
@@ -279,6 +300,9 @@
   id: Felionoid
 
 - type: Tag
+  id: Experiment
+
+- type: Tag
   id: FreeMag
 
 - type: Tag
@@ -301,6 +325,9 @@
 
 - type: Tag
   id: FlatpackBlacklist
+
+- type: Tag
+  id: FloppyDisk # Artifact floppy storage trigger
 
 - type: Tag
   id: GearAcidifier
@@ -660,10 +687,16 @@
   id: RollerBed
 
 - type: Tag
+  id: Salad # BountySalad
+
+- type: Tag
   id: SalvageTicket
 
 - type: Tag
   id: Sausage # MetamorphRecipe: FoodSausageBun
+
+- type: Tag
+  id: SausageBun # BountySausageBun
 
 - type: Tag
   id: ScanGateMachineBoard
@@ -733,6 +766,9 @@
 
 - type: Tag
   id: StoveMachineBoard
+
+- type: Tag
+  id: StutterImmune
 
 - type: Tag
   id: SurgeryCompatibleArmor

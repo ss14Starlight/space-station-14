@@ -9,6 +9,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 4
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner
@@ -35,6 +36,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 4
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner
@@ -59,6 +61,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 15
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner
@@ -83,6 +86,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 15
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner
@@ -107,6 +111,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 15
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner
@@ -131,6 +136,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 15
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner
@@ -155,6 +161,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 15
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner
@@ -186,6 +193,33 @@
     prototype: SyndieDeadDropSpawner
     radioMessage: {channel: Syndicate, message: "syndicate-dead-drop-announcement"}
 
+- type: entity
+  parent: BaseAntagGhostRoleRule
+  id: ColossusSpawn
+  components:
+  - type: StationEvent
+    weight: 2
+    earliestStart: 45
+    reoccurrenceDelay: 20
+    minimumPlayers: 40
+    duration: null
+    occursDuringRoundEnd: false
+  - type: SpaceSpawnRule
+  - type: AntagSpawner
+    prototype: MobCosmicColossusLone
+  - type: AntagObjectives
+    objectives:
+    - ColossusSurviveObjective
+    - ColossusEffigyObjective
+    - ColossusSacrificeObjective
+  - type: AntagSelection
+    agentName: role-subtype-colossus
+    antags:
+    - !type:FixedAntagCount
+      proto: CosmicAntagColossus
+  - type: DynamicRuleCost
+    cost: 100
+
 # Shitstation
 - type: entityTable
   id: ShitEventsTable
@@ -193,7 +227,6 @@
     children:
     - id: BreakerFlip
     - id: CockroachMigration
-    - id: MoproachMigration # They can clean. This is the lucky pull of this pool.
     - id: MouseMigration
     - id: GasLeak
     - id: KudzuGrowth
@@ -220,6 +253,7 @@
   - type: StationEvent
     weight: 2
     duration: null
+    occursDuringRoundEnd: false
     earliestStart: 35
     reoccurrenceDelay: 20
     minimumPlayers: 15
@@ -250,3 +284,54 @@
     delay:
       min: 0
       max: 0
+
+- type: entity
+  id: MalignRiftSpawn
+  parent: BaseStationEvent
+  components:
+  - type: StationEvent
+    weight: 1.5
+    earliestStart: 45
+    # reoccurrenceDelay: 90
+    # minimumPlayers: 40
+    # maxOccurrences: 1
+    duration: 20
+    occursDuringRoundEnd: false
+  - type: MalignRiftSpawnRule
+
+# Scrapper
+- type: entity
+  parent: BaseGameRule
+  id: ScrapperSpawn
+  components:
+  - type: StationEvent
+    earliestStart: 15
+    weight: 3
+    minimumPlayers: 10
+    duration: null
+    occursDuringRoundEnd: false
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/Scrapper-2987.yml
+  - type: DynamicRuleCost
+    cost: 100
+
+- type: entity
+  id: SyndicateCrateOpsPrompt
+  parent: BaseGameRule
+  components:
+    - type: SendFaxRule
+      enqueueFaxes: true
+      faxes:
+        - faxPrototype: CrateOpsForDummies
+          paperData:
+            sentBy: Syndicate High Command
+          addresses:
+            - ERR*?*%!
+        - faxPrototype: CrateOpsCargoInvoice
+          paperData:
+            sentBy: Syndicate High Command
+            includeMeta: false
+          addresses:
+            - ERR*?*%!
+          delay: 8

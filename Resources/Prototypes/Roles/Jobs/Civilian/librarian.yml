@@ -19,49 +19,55 @@
     components:
     - type: AdditionalLanguageKnowledge # If we just put in LanguageKnowledge, it'd overwrite your ability to e.g. understand mothroaches as a moth
       speaks:
-      - GalacticCommon
-      - Scratch
-      - SolCommon
+      - Aielic
       - Bubblish
       - Canilunzt
       - Chittin
+      - Classical
+      - ClassicalSign
+      - CygniStandard
+      - Darktongue
       - Draconic
+      - Felyaic
+      - GalacticCommon
+      - Grumbakul
+      - Lagomorphian
       - Marish
       - Moffic
       - Nekomimetic
+      - Scratch
+      - Sign
+      - SolCommon
+      - Squeakish
       - Sylvan
       - Terrum
       - Thaveyan
       - VoxPidgin
-      - Sign
-      - Grumbakul
-      - Aielic
-      - Classical
-      - Darktongue
-      - Lagomorphian
-      - Squeakish
       understands:
-      - GalacticCommon
-      - Scratch
-      - SolCommon
+      - Aielic
       - Bubblish
       - Canilunzt
       - Chittin
+      - Classical
+      - ClassicalSign
+      - CygniStandard
+      - Darktongue
       - Draconic
+      - Felyaic
+      - GalacticCommon
+      - Grumbakul
+      - Lagomorphian
       - Marish
       - Moffic
       - Nekomimetic
+      - Scratch
+      - Sign
+      - SolCommon
+      - Squeakish
       - Sylvan
       - Terrum
       - Thaveyan
       - VoxPidgin
-      - Sign
-      - Grumbakul
-      - Aielic
-      - Classical
-      - Darktongue
-      - Lagomorphian
-      - Squeakish
   # Starlight end
 
 - type: startingGear

@@ -1,0 +1,67 @@
+- type: entity
+  parent: GassyStoneBase
+  id: GassyStonePluoxium
+  suffix: Pluoxium
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Touch ]
+    reactions:
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:CreateGas
+        gas: Pluoxium
+
+- type: entity
+  parent: GassyStoneBase
+  id: GassyStoneUlnitranium
+  suffix: Ulnitranium
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Touch ]
+    reactions:
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:CreateGas
+        gas: Ulnitranium
+
+- type: entity
+  parent: GassyStoneBase
+  id: GassyStoneZXA
+  suffix: ZXA
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Touch ]
+    reactions:
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:CreateGas
+        gas: ZXA
+
+- type: entity
+  parent: GassyStoneBase
+  id: GassyStoneHalon
+  suffix: Halon
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Touch ]
+    reactions:
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:CreateGas
+        gas: Halon
