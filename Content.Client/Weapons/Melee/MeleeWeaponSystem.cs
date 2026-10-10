@@ -304,29 +304,31 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     private void ClientHeavyAttack(EntityUid user, EntityCoordinates coordinates, EntityUid meleeUid, MeleeWeaponComponent component)
     {
         // Only run on first prediction to avoid the potential raycast entities changing.
-        if (!_xformQuery.TryGetComponent(user, out var userXform) ||
-            !Timing.IsFirstTimePredicted)
-        {
+        if (!Timing.IsFirstTimePredicted)
             return;
-        }
+
+        // Starlight - Mech wideswing handling
+        var originUid = GetOriginEntity(user);
+        if (!TryComp(originUid, out TransformComponent? originXform))
+            return;
 
         var targetMap = TransformSystem.ToMapCoordinates(coordinates);
 
-        if (targetMap.MapId != userXform.MapID)
+        if (targetMap.MapId != originXform.MapID)
             return;
 
-        var userPos = TransformSystem.GetWorldPosition(userXform);
-        var direction = targetMap.Position - userPos;
+        var originPos = TransformSystem.GetWorldPosition(originXform);
+        var direction = targetMap.Position - originPos;
         var distance = MathF.Min(component.Range, direction.Length());
-
-        var ignoreUid = GetOriginEntity(user); // Starlight - Mech wideswing handling
 
         // This should really be improved. GetEntitiesInArc uses pos instead of bounding boxes.
         // Server will validate it with InRangeUnobstructed.
-        var entities = GetNetEntitySet(ArcRayCast(userPos, direction.ToWorldAngle(), component.Angle, distance, userXform.MapID, user));
+        var entities = GetNetEntitySet(ArcRayCast(originPos, direction.ToWorldAngle(), component.Angle, distance, originXform.MapID, originUid));
+        entities.Remove(GetNetEntity(user));
         entities = entities.Take(Math.Min(MaxTargets, entities.Count)).ToHashSet();
         RaisePredictiveEvent(new HeavyAttackEvent(GetNetEntity(meleeUid), entities, GetNetCoordinates(coordinates)));
     }
+
 
     private void ClientDisarm(EntityUid attacker, MapCoordinates mousePos, EntityCoordinates coordinates)
     {
