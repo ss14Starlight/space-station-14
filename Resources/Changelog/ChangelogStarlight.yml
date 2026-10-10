@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (CentComm G24) Cecil (sea salt).
-    type: Add
-  id: 408949
-  time: '2026-09-28T09:21:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6383
-- author: Caws
-  changes:
-  - message: (CentComm G24) Fryers in the kitchen for CC chefs.
-    type: Add
-  id: 408950
-  time: '2026-09-28T09:21:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6383
-- author: Caws
-  changes:
   - message: (CentComm G24) Added way more biomass to cloning.
     type: Add
   id: 408951
@@ -2883,4 +2869,18 @@ Entries:
   id: 409348
   time: '2026-10-10T18:12:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6610
+- author: enerjak
+  changes:
+  - message: Binoculars are now autolatheable for 4 steel, 2 plastic, and 2 glass.
+    type: Add
+  id: 409349
+  time: '2026-10-10T18:36:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6585
+- author: enerjak
+  changes:
+  - message: Buffed binoculars; they now see twice as far.
+    type: Tweak
+  id: 409350
+  time: '2026-10-10T18:36:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6585
 Order: -1
