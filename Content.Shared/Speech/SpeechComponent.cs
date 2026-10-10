@@ -31,6 +31,19 @@ namespace Content.Shared.Speech
         [DataField, AutoNetworkedField]
         public List<ProtoId<EmotePrototype>> AllowedEmotes = new();
 
+        // Starlight - start
+        /// <summary>
+        ///     If true, only emotes in <see cref="AllowedEmotes"/> may be used in the Vocal category.
+        ///     This is useful when an allowlist (whitelist) works better than a denylist (blacklist). For example,
+        ///     slimes have a lot of vocal emotes that don't make sense for them, so instead of adding every emote
+        ///     they can't use to a blacklist, we can list the ones they can use and set this to true.
+        ///     This also helps with maintainability: new global emotes won't automatically be available to slimes
+        ///     unless we add them to <see cref="AllowedEmotes"/>.
+        /// </summary>
+        [DataField, AutoNetworkedField]
+        public bool RestrictVocalEmotesToAllowed;
+        // Starlight - end
+
         /// <summary>
         ///     A mapping from chat suffixes loc strings to speech verb prototypes that should be conditionally used.
         ///     For things like '?' changing to 'asks' or '!!' making text bold and changing to 'yells'. Can be overridden if necessary.

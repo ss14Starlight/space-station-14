@@ -90,12 +90,16 @@
 
 - type: !PartialOnly emoteSounds
   id: MaleSlime
+  # Making it a parent so any time new emotes are added, everything slime gets them automatically
+  parent: SlimeCoreSounds
   sounds:
     ThavenGlub:
       path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
 
 - type: !PartialOnly emoteSounds
   id: FemaleSlime
+  # Making it a parent so any time new emotes are added, everything slime gets them automatically
+  parent: SlimeCoreSounds
   sounds:
     ThavenGlub:
       path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg

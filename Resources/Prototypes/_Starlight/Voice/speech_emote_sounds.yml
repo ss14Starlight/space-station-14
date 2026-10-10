@@ -874,6 +874,16 @@
         volume: -5
         variation: 0.025
 
+- type: emoteSounds
+  id: SlimeCoreSounds
+  sounds:
+    Squish:
+      collection: Squishes
+    Bubble:
+      collection: Bubbles
+    Pop:
+      collection: Pops
+
 # Generic male sounds for every emote
 - type: emoteSounds
   id: MaleAllEmotes
