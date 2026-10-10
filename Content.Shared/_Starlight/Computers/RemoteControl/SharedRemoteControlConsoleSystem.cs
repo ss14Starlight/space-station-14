@@ -5,7 +5,7 @@ using Robust.Shared.Containers;
 
 namespace Content.Shared._Starlight.Computers.RemoteControl;
 
-public sealed class SharedRemoteControlConsoleSystem : EntitySystem
+public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;

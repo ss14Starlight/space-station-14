@@ -455,7 +455,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         {
             var localMousePosition = (_remoteMouseScreenPosition - (Vector2)_remoteSpeechBubbleRoot.GlobalPixelPosition)
                 / _remoteSpeechBubbleRoot.UIScale;
-            LayoutContainer.SetPosition(cursor, localMousePosition - cursor.Size / 2);
+            LayoutContainer.SetPosition(cursor, localMousePosition - (cursor.Size / 2));
         }
     }
 
@@ -467,7 +467,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         _remoteRadialMenu?.Close();
         _remoteRadialMenu = menu;
         menu.OnClose += OnRemoteRadialMenuClosed;
-        menu.OpenEmbedded(RootContainer, RemoteView.Position + RemoteView.Size / 2);
+        menu.OpenEmbedded(RootContainer, RemoteView.Position + (RemoteView.Size / 2));
         return true;
     }
 
@@ -517,7 +517,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
     private void ClearRemoteSpeechBubbles()
     {
         foreach (var (_, bubble, _) in _remoteSpeechBubbles)
-            bubble.Dispose();
+            bubble.Orphan();
 
         _remoteSpeechBubbles.Clear();
     }
@@ -655,7 +655,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
                 || !_entityManager.TryGetComponent<TransformComponent>(entity, out var xform)
                 || xform.MapID != _remoteEye.Position.MapId)
             {
-                bubble.Dispose();
+                bubble.Orphan();
                 _remoteSpeechBubbles.RemoveAt(i);
                 continue;
             }
@@ -923,6 +923,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         RemoteView.FixedStretchSize = (Vector2i)(viewSize * scale);
     }
 
+    [Obsolete("Controls should only be removed from UI tree instead of being disposed")]
     protected override void Dispose(bool disposing)
     {
         if (disposing)

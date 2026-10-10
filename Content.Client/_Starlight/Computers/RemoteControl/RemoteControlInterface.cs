@@ -29,10 +29,7 @@ public sealed partial class RemoteControlInterface : EntitySystem
     public event Action<EntityUid, bool, RemoteControlInteractionAction>? InteractionRequested;
     public event Action<string>? ItemConstructionRequested;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-    }
+    public override void Initialize() => base.Initialize();
 
     public override void Shutdown() => base.Shutdown();
 
