@@ -23,7 +23,7 @@
           mobstate: Alive
         - !type:ReagentCondition
           reagent: DoctorsDelight
-          max: 50
+          max: 40
       - !type:MovementSpeedModifier
         walkSpeedModifier: 0.70
         sprintSpeedModifier: 0.70
