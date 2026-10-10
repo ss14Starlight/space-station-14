@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Runtime.InteropServices;
+using Content.Server._Starlight.Toolshed;
 using Content.Shared._Starlight.Commands;
 using Content.Server.Administration;
 using Content.Server.Mind;
@@ -103,12 +104,14 @@ public sealed partial class RoleCommand : ToolshedCommand
 
     // TODO: When my RT pull request gets merged, replace [DefaultParameterValue] in favor of OptionalValue<T>.
     [CommandImplementation("addrole")]
-    public EntityUid AddRole(IInvocationContext ctx, [PipedArgument] EntityUid uid, MindRoleProtoId mindRolePrototype,
-        [Optional] [DefaultParameterValue(true)] bool silent)
+    public EntityUid AddRole(IInvocationContext ctx, [PipedArgument] EntityUid uid,
+        [CommandArgument(typeof(EntProtoIdWithCompCompletionParser<MindRoleComponent>))] EntProtoId mindRolePrototype,
+        [Optional] [DefaultParameterValue(true)]
+        bool silent)
     {
-        if (!_proto.TryIndex(mindRolePrototype.ProtoId, out var proto))
+        if (!_proto.TryIndex(mindRolePrototype, out var proto))
         {
-            CommandMarkup.Error(ctx, $"Invalid prototype id: {mindRolePrototype.ProtoId.Id}");
+            CommandMarkup.Error(ctx, $"Invalid prototype id: {mindRolePrototype.Id}");
             return uid;
         }
 
@@ -121,37 +124,40 @@ public sealed partial class RoleCommand : ToolshedCommand
         if (proto.ID == "MindRoleJob")
         {
             CommandMarkup.Error(ctx,
-                $"Prototype ID {proto.ID} is for job roles and does nothing. Don't use this, use {CommandMarkup.Highlight(ctx, "role:setjob")} to set job role.");
+                $"Prototype ID {proto.ID} is for job roles and does nothing. Don't use this, use {CommandMarkup.Highlight("role:setjob")} to set job role.");
             return uid;
         }
 
         _mind ??= GetSys<MindSystem>();
         _roles ??= GetSys<RoleSystem>();
         if (!_mind.TryGetMind(uid, out var mindUid, out var mind)) return uid;
-        _roles.MindAddRole(mindUid, mindRolePrototype.ProtoId, mind, silent);
+        _roles.MindAddRole(mindUid, mindRolePrototype, mind, silent);
         ctx.WriteLine($"Added role {proto.ID} to entity {EntityManager.ToPrettyString(uid)}.");
         return uid;
     }
 
     [CommandImplementation("addrole")]
     public IEnumerable<EntityUid> AddRole(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid,
-        MindRoleProtoId mindRolePrototype, [Optional] [DefaultParameterValue(true)] bool silent) =>
+        [CommandArgument(typeof(EntProtoIdWithCompCompletionParser<MindRoleComponent>))]
+        EntProtoId mindRolePrototype, [Optional] [DefaultParameterValue(true)] bool silent) =>
         uid.Select(x => AddRole(ctx, x, mindRolePrototype, silent));
 
     [CommandImplementation("rmrole")]
-    public EntityUid RemoveRole(IInvocationContext ctx, [PipedArgument] EntityUid uid, MindRoleEntity mindRole)
+    public EntityUid RemoveRole(IInvocationContext ctx, [PipedArgument] EntityUid uid,
+        [CommandArgument(typeof(EntityWithCompCompletionParser<MindRoleComponent>))] EntityUid mindRole)
     {
         _mind ??= GetSys<MindSystem>();
         _roles ??= GetSys<RoleSystem>();
         if (!_mind.TryGetMind(uid, out var mindUid, out var mind)) return uid;
         _roles.MindRemoveRole((mindUid, mind),
-            new EntProtoId<MindRoleComponent>(MetaData(mindRole.Entity).EntityPrototype!.ID));
-        ctx.WriteLine($"Removed role {mindRole.Entity} from {EntityManager.ToPrettyString(uid)}.");
+            new EntProtoId<MindRoleComponent>(MetaData(mindRole).EntityPrototype!.ID));
+        ctx.WriteLine($"Removed role {mindRole} from {EntityManager.ToPrettyString(uid)}.");
         return uid;
     }
 
     [CommandImplementation("rmrole")]
-    public IEnumerable<EntityUid> RemoveRole(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, MindRoleEntity mindRole) =>
+    public IEnumerable<EntityUid> RemoveRole(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid,
+        [CommandArgument(typeof(EntityWithCompCompletionParser<MindRoleComponent>))] EntityUid mindRole) =>
         uid.Select(x => RemoveRole(ctx, x, mindRole));
 
     [CommandImplementation("doroleupdate")]
@@ -168,4 +174,69 @@ public sealed partial class RoleCommand : ToolshedCommand
     [CommandImplementation("doroleupdate")]
     public IEnumerable<EntityUid> DoRoleUpdate(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid) =>
         uid.Select(x => DoRoleUpdate(ctx, x));
+
+    [CommandImplementation("with")]
+    public IEnumerable<EntityUid> WithRole([PipedArgument] IEnumerable<EntityUid> uids,
+        [CommandArgument(typeof(EntProtoIdWithCompCompletionParser<MindRoleComponent>))]
+        EntProtoId mindRole,
+        [CommandInverted] bool inverted)
+    {
+        _mind ??= GetSys<MindSystem>();
+        _roles ??= GetSys<RoleSystem>();
+        List<EntityUid> results = [];
+        foreach (var uid in uids)
+        {
+            if (!_mind.TryGetMind(uid, out var mindUid, out _))
+            {
+                if (inverted) results.Add(uid);
+                continue;
+            }
+
+            if (_roles.MindHasRole(mindUid, mindRole, out _) ^ inverted) results.Add(uid);
+        }
+        return results;
+    }
+
+    [CommandImplementation("has")]
+    public bool HasRole([PipedArgument] EntityUid uid,
+        [CommandArgument(typeof(EntProtoIdWithCompCompletionParser<MindRoleComponent>))] EntProtoId mindRole,
+        [CommandInverted] bool inverted)
+    {
+        _mind ??= GetSys<MindSystem>();
+        _roles ??= GetSys<RoleSystem>();
+        if (!_mind.TryGetMind(uid, out var mindUid, out _))
+            return inverted;
+        return _roles.MindHasRole(mindUid, mindRole, out _) ^ inverted;
+    }
+
+    [CommandImplementation("withjob")]
+    public IEnumerable<EntityUid> WithJob([PipedArgument] IEnumerable<EntityUid> uids, ProtoId<JobPrototype> job,
+        [CommandInverted] bool inverted)
+    {
+        _mind ??= GetSys<MindSystem>();
+        _job ??= GetSys<JobSystem>();
+        List<EntityUid> results = [];
+        foreach (var uid in uids)
+        {
+            if (!_mind.TryGetMind(uid, out var mindUid, out _))
+            {
+                if (inverted) results.Add(uid);
+                continue;
+            }
+
+            if (_job.MindHasJobWithId(mindUid, job) ^ inverted) results.Add(uid);
+        }
+
+        return results;
+    }
+
+    [CommandImplementation("hasjob")]
+    public bool HasJob([PipedArgument] EntityUid uid, ProtoId<JobPrototype> job, [CommandInverted] bool inverted)
+    {
+        _mind ??= GetSys<MindSystem>();
+        _job ??= GetSys<JobSystem>();
+        if (!_mind.TryGetMind(uid, out var mindUid, out _))
+            return inverted;
+        return _job.MindHasJobWithId(mindUid, job) ^ inverted;
+    }
 }

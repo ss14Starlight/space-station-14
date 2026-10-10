@@ -93,7 +93,7 @@ public sealed partial class UmbraeSystem : EntitySystem
 
     private void OnUmbraeMobStateChanged(EntityUid uid, UmbraeComponent umbrae, ref MobStateChangedEvent args)
     {
-        if (args.NewMobState != MobState.Critical)
+        if (args.NewMobState is not (MobState.SoftCritical or MobState.Critical))
             return;
 
         if (!umbrae.CloakOfDarknessActive)

@@ -1,6 +1,7 @@
 using Content.Server.Administration;
 using Content.Server.Chat.Systems;
 using Content.Server.RoundEnd;
+using Content.Shared._Starlight.Commands;
 using Content.Shared.Administration;
 using Robust.Shared.Audio;
 using Robust.Shared.Console;
@@ -9,6 +10,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Administration.Systems.Commands;
 
+[Obsolete("Use shuttle:allowemergencyshuttlecalls instead.")]
 [AdminCommand(AdminFlags.Round)]
 public sealed partial class AllowShuttleCallsCommand : LocalizedEntityCommands
 {
@@ -34,6 +36,7 @@ public sealed partial class AllowShuttleCallsCommand : LocalizedEntityCommands
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
+        CommandMarkup.Warn(shell, "This command is obsolete. Use shuttle:allowemergencyshuttlecalls instead.");
 
         if (args.Length == 0)
         {

@@ -81,7 +81,7 @@ public sealed class SignatureTagHandler : IMarkupTagHandler
     {
         var btn = new Button
         {
-            Text = "Sign",
+            Text = Loc.GetString("paper-signature-sign-button"),
             MinSize = new Vector2(48, FontLineHeight + 4),
             MaxSize = new Vector2(48, FontLineHeight + 4),
             Margin = new Thickness(1, 2, 1, 2),

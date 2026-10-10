@@ -3,3 +3,12 @@
   components:
   - type: ExaminableSolution
     solution: stain
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/glove_pick_up.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/glove_drop.ogg
+  - type: Clothing
+    equipSound:
+      path: /Audio/_Starlight/Items/Equip/glove_equip.ogg

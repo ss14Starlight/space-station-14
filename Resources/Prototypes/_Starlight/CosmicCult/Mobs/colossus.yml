@@ -5,6 +5,16 @@
   name: entropic colossus
   description: A colossal monstrosity of malign plating and dendritic infestation.
   components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - Look
+    - Wave
+  - type: SocialInteractionReceiver
+    interactionOverrides: # no nose
+    - id: Boop
+      interactString: booping-borg-success
+      messagePerceivedByOthers: booping-borg-success-others
+      emoteMessage: booping-borg-emote
   - type: FTLSmashImmune
   - type: CosmicCultExamine
     cultistText: cosmic-examine-text-cultentity
@@ -42,6 +52,7 @@
       visible: false
       map: ["hibernating"]
   - type: Appearance
+  - type: SyncSprite
   - type: GenericVisualizer
     visuals:
       enum.ColossusVisuals.Status:

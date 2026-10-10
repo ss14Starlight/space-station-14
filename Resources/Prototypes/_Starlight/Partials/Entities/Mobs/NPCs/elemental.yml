@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: ReagentSlimeSpawner
+  components:
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - !Index:-0 id: ReagentSlimeGlubotoxin
+      - !Index:-0 id: ReagentSlimeWehJuice

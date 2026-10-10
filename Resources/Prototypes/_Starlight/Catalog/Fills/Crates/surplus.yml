@@ -226,9 +226,9 @@
       weight: .15
     - id: MakeshiftID
       weight: .1
-    - id: BluespaceCrystal
+    - id: BluespaceCrystal1
       amount: 5
-      weight: .1
+      weight: .05
     - id: Claymore
       weight: .05
     - id: ClothingBackpackSyndicate

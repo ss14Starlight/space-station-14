@@ -1282,7 +1282,7 @@
     componentRequirements:
       PowerCell:
         amount: 4
-        defaultPrototype: PowerCellHigh
+        defaultPrototype: PowerCellHighPrinted
 
 - type: entity
   id: IceCreamMakerMachineCircuitBoard
@@ -1295,6 +1295,25 @@
       prototype: IceCreamMaker
       stackRequirements:
         Steel: 5
+      tagRequirements:
+        GlassBeaker:
+          amount: 1
+          defaultPrototype: Beaker
+
+- type: entity
+  id: ChemApprenticeMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: ChemMaster 1000 machine board
+  description: A machine printed circuit board for a ChemMaster 1000.
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: ChemMaster1k
+      stackRequirements:
+        Manipulator: 1
+        Glass: 1
+        Cable: 1
       tagRequirements:
         GlassBeaker:
           amount: 1
@@ -1451,3 +1470,36 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+
+- type: entity
+  id: SalvageTechFabCircuitboard
+  parent: [BaseMachineCircuitboard, BaseSalvageContraband]
+  name: salvage techfab machine board
+  description: A machine printed circuit board for a salvage techfab.
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: SalvageTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
+  id: ScrapperExoFabricatorMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Scrapper fabricator machine board
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: RogueExofabricator
+    stackRequirements:
+      Manipulator: 4
+      Glass: 5
+  - type: GuideHelp
+    guides:
+    - Robotics

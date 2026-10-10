@@ -89,6 +89,12 @@ public sealed partial class CosmicCorruptingComponent : Component
     public ProtoId<ContentTileDefinition> ConversionTile = "FloorCosmicCorruption";
 
     /// <summary>
+    /// Whether anchored entities are converted along with the floor tiles.
+    /// </summary>
+    [DataField]
+    public bool ConvertEntities = true;
+
+    /// <summary>
     /// Dictionary for what entities to convert to which prototypes. Similar to CosmicCorruptibleComponent, but
     /// non-inheriting.
     /// </summary>

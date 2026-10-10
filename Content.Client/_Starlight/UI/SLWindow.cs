@@ -339,6 +339,11 @@ public static class SLControlExtensions
         parent.Margin = thickness;
         return parent;
     }
+    public static Control WithMinWidth(this Control parent, float width)
+    {
+        parent.MinWidth = width;
+        return parent;
+    }
     public static Control AddClass(this Control parent, string @class)
     {
         parent.AddStyleClass(@class);

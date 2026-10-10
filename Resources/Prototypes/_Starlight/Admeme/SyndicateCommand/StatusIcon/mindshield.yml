@@ -1,0 +1,6 @@
+- type: securityIcon
+  parent: MindShieldIcon
+  id: SyndicateMindShieldIcon
+  icon:
+    sprite: &rsi /Textures/_Starlight/Admeme/SyndicateCommand/Interface/Misc/job_icons.rsi
+    state: SyndicateMindShield

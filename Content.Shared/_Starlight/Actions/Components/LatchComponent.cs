@@ -52,6 +52,27 @@ public sealed partial class LatchComponent : Component
     public EntityWhitelist? Whitelist;
 
     /// <summary>
+    /// Targets matching this get the struggle minigame. Checked once at latch
+    /// start. Null means every target gets it. Doesn't affect who can be latched.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? StruggleWhitelist;
+
+    /// <summary>
+    /// Targets whose prototype or any parent, abstract included, is listed here
+    /// are slowed to <see cref="SlowSpeedMultiplier"/> and not knocked down.
+    /// Checked at latch start. Empty pins everyone.
+    /// </summary>
+    /// <remarks>
+    /// Lives on the latcher so every exception is made in one place. Keep it short.
+    /// </remarks>
+    [DataField]
+    public List<EntProtoId> SlowPrototypes = new();
+
+    [DataField]
+    public float SlowSpeedMultiplier = 0.5f;
+
+    /// <summary>
     /// Distance a latch breaks at if exceeded mid-latch. Independent of the
     /// action's own engage range (TargetAction.range on the Latch prototype).
     /// </summary>
@@ -65,25 +86,32 @@ public sealed partial class LatchComponent : Component
     public float DriftBreakTolerance = 0.5f;
 
     /// <summary>
-    /// Cap on the physics joint's max length. Matches baseline unarmed melee
-    /// range (1.5), not DriftBreakRange, so the target can always punch back.
+    /// Cap on the physics joint's max length, measured center-to-center.
+    /// Must stay below 1 + the latcher's fixture radius (1.35 for K9) so the
+    /// latcher always sits inside 1-tile AoEs the target can fire off (e.g.
+    /// vampire Glare), letting antag abilities break the latch regardless of
+    /// how far away it was started. Melee range is measured fixture
+    /// edge-to-edge, so the target can still punch back.
     /// </summary>
     [DataField]
-    public float MaxJointLength = 1.5f;
+    public float MaxJointLength = 1.2f;
 
     /// <summary>
-    /// How far north the latcher can start and still count as behind the status
-    /// UI, which flips the panel to draw below the target instead.
+    /// How long a wall (or anything else that blocks melee) can sit between the
+    /// latcher and a pinned target before the latch breaks. Gives the joint a
+    /// moment to settle after the initial snap. The DoT and Bite Harder are
+    /// suspended while obstructed, so nothing bites through the wall in the
+    /// meantime. Slowed targets (<see cref="SlowPrototypes"/>) are exempt: they
+    /// can walk the latch back into view, so it sticks and keeps biting.
     /// </summary>
     [DataField]
-    public float UiObscureNorthRange = 2.5f;
+    public TimeSpan ObstructionBreakDelay = TimeSpan.FromSeconds(0.75);
 
     /// <summary>
-    /// Horizontal tolerance for the above check - latcher must start roughly
-    /// straight north, not far off to either side.
+    /// When the current obstruction began, or null if the two have line of sight.
     /// </summary>
-    [DataField]
-    public float UiObscureHorizontalTolerance = 2.5f;
+    [ViewVariables]
+    public TimeSpan? ObstructedSince;
 
     /// <summary>
     /// Physics joint keeping latcher and target from drifting apart (e.g. in
@@ -133,6 +161,64 @@ public sealed partial class LatchComponent : Component
     public float StaminaDamagePerBite = 15f;
 
     /// <summary>
+    /// Seconds for the target's struggle cursor to cross the bar once.
+    /// </summary>
+    [DataField]
+    public float StruggleCrossingTime = 1f;
+
+    /// <summary>
+    /// Struggle cursor speed multiplier for a short time after each Bite Harder.
+    /// </summary>
+    [DataField]
+    public float StruggleFrenzySpeedMultiplier = 1.4f;
+
+    [DataField]
+    public TimeSpan StruggleFrenzyDuration = TimeSpan.FromSeconds(1);
+
+    /// <summary>
+    /// Width of the perfect zone, as a fraction of the bar.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float StrugglePerfectWidth = 0.1f;
+
+    /// <summary>
+    /// Width of the good zone on each side of the perfect zone, as a fraction of the bar.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float StruggleGoodWidth = 0.12f;
+
+    /// <summary>
+    /// Taken off both the remaining time and the hard cap, so Bite Harder
+    /// can refill the timer but can't undo struggle progress.
+    /// </summary>
+    [DataField]
+    public TimeSpan StrugglePerfectReduction = TimeSpan.FromSeconds(1.5);
+
+    [DataField]
+    public TimeSpan StruggleGoodReduction = TimeSpan.FromSeconds(0.75);
+
+    /// <summary>
+    /// Time from a press until the next attempt's cursor starts moving.
+    /// Also gives the new zone time to reach the client first.
+    /// </summary>
+    [DataField]
+    public TimeSpan StruggleCooldown = TimeSpan.FromSeconds(0.5);
+
+    /// <summary>
+    /// How much of <see cref="StruggleCooldown"/> shows the press result
+    /// before the next attempt's zone appears.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public TimeSpan StruggleResultDisplay = TimeSpan.FromSeconds(0.25);
+
+    /// <summary>
+    /// Lowest allowed zone centre, so there's always a moment to see the new
+    /// zone before the cursor (which starts at the left edge) reaches it.
+    /// </summary>
+    [DataField]
+    public float StruggleMinZoneCenter = 0.25f;
+
+    /// <summary>
     /// How frequently the latch should apply 'ticks', mostly used
     /// for ticking damage onto the latch target.
     /// </summary>
@@ -171,28 +257,17 @@ public sealed partial class LatchComponent : Component
     public bool Active;
 
     /// <summary>
+    /// Latcher is weightless while latched to a floating target (InAir and able
+    /// to move in air), so it floats with them.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public bool LatcherWeightless;
+
+    /// <summary>
     /// The entity being targeted by the latch.
     /// </summary>
     [ViewVariables, AutoNetworkedField]
     public EntityUid? Target;
-
-    /// <summary>
-    /// Set once at latch start if the K9 began roughly north of the target,
-    /// which would put the K9 behind the TARGET's status UI. Target's client
-    /// draws its own panel below itself instead of above when this is true.
-    /// </summary>
-    [ViewVariables, AutoNetworkedField]
-    public bool TargetUiBelow;
-
-    /// <summary>
-    /// Set once at latch start if the target began roughly north of the K9
-    /// (i.e. the K9 started south of the target), which would put the target
-    /// behind the LATCHER's own status UI. Latcher's client draws its own
-    /// panel below itself instead of above when this is true.
-    /// </summary>
-    [ViewVariables, AutoNetworkedField]
-    public bool LatcherUiBelow;
-
 
     /// <summary>
     /// The specific, discrete end time designated for the latch.

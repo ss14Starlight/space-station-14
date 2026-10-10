@@ -875,15 +875,15 @@
 
 # USSP
 - type: entity
-  id: MechPodeba
-  parent: [ BaseMech, CombatMech, BaseSovietContraband ]
-  name: Podeba
+  id: MechPobeda
+  parent: [ BaseMech, CombatMech, SpecialMech, BaseSovietContraband ]
+  name: Pobeda
   description: A Soviet combat mech. It is slower and older than other mechs, but makes up for it with sheer durability and strength.
   components:
     - type: Sprite
       drawdepth: Mobs
       noRot: true
-      sprite: _Starlight/Objects/Specific/Mechs/Mechs/podeba.rsi
+      sprite: _Starlight/Objects/Specific/Mechs/Mechs/pobeda.rsi
       layers:
         - map: [ "enum.MechVisualLayers.Base" ]
           state: base
@@ -909,10 +909,10 @@
           Structural: 180
     - type: MeleeThrowOnHit
       speed: 15
-      distance: 8
+      distance: 6
     - type: MovementSpeedModifier
       baseWalkSpeed: 2 #All mechs walk at the same speed
-      baseSprintSpeed: 2.5
+      baseSprintSpeed: 2
     - type: Damageable
       damageModifierSet: DarkGygaxArmor
     - type: MechThrusters
@@ -926,24 +926,24 @@
       pryPowered: true
 
 - type: entity
-  id: MechPodebaBattery
-  parent: MechPodeba
+  id: MechPobedaBattery
+  parent: MechPobeda
   suffix: Battery, Air
   components:
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorMicro
+          - MechReactorBurnout
         mech-gas-tank-slot:
           - MechAirTankFilled
 
 - type: entity
-  id: MechPodebaFilled
-  parent: MechPodebaBattery
+  id: MechPobedaFilled
+  parent: MechPobedaBattery
   suffix: Battery, Filled
   components:
     - type: Mech
       startingEquipment:
-        - WeaponMechCombatUltraRifle
+        - WeaponMechCombatSolarisLaser
         - WeaponMechCombatShotgun
-        - WeaponMechCombatMissileRack6
+        - MechEquipmentSovietHorn

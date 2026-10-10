@@ -10,3 +10,30 @@
   components:
   - type: RefillableSolution
     solution: injector
+  - type: EmitSoundOnPickup
+    sound:
+      collection: NeedlePickup
+  - type: EmitSoundOnLand
+    sound:
+      collection: NeedleDrop
+
+- type: !PartialOnly entity
+  id: BaseBeaker
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/beaker_pickup.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/beaker_place.ogg
+
+- type: !PartialOnly entity
+  id: PillCanister
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/pill_bottle_pickup.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/pill_bottle_place.ogg
+

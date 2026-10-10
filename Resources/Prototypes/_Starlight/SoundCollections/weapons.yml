@@ -1,0 +1,7 @@
+- type: soundCollection
+  id: CockPumpAction
+  files:
+  - /Audio/_Starlight/Weapons/Guns/Cock/pump_action_1.ogg
+  - /Audio/_Starlight/Weapons/Guns/Cock/pump_action_2.ogg
+  - /Audio/_Starlight/Weapons/Guns/Cock/pump_action_3.ogg
+  - /Audio/_Starlight/Weapons/Guns/Cock/pump_action_4.ogg

@@ -325,9 +325,9 @@
   suffix: Unremoveable
   components:
   - type: Sprite
-    sprite: Changeling/ling_armor_helmet.rsi
+    sprite: _Starlight/Clothing/Head/Helmets/changeling.rsi
   - type: Clothing
-    sprite: Changeling/ling_armor_helmet.rsi
+    sprite: _Starlight/Clothing/Head/Helmets/changeling.rsi
   - type: Pierceable
     level: Metal
   - type: Armor

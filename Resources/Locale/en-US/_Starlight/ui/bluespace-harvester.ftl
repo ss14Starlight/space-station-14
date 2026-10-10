@@ -27,3 +27,6 @@ bluespace-harvester-pool-power-cell = Unknown Power Cell
 bluespace-harvester-pool-artifact = Unknown artifact
 bluespace-harvester-pool-rare-seeds = Unknown Rare Seeds
 bluespace-harvester-pool-circuit-board = Unknown Circuit Board
+
+bluespace-harvester-min = MIN
+bluespace-harvester-max = MAX

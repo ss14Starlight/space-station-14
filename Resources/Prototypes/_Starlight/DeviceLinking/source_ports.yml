@@ -70,3 +70,9 @@
   id: Disabled
   name: signal-port-name-disabled
   description: signal-port-description-disabled
+
+- type: sourcePort
+  id: TurretControllerSyncSender
+  name: signal-port-name-turret-controller-sync-sender
+  description: signal-port-description-turret-controller-sync-sender
+  defaultLinks: [ TurretControllerSyncReceiver ]

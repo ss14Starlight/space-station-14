@@ -9,12 +9,6 @@ public sealed partial class GunSystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
 
-    private void InitializeMagazineVisuals()
-    {
-        SubscribeLocalEvent<MagazineVisualsComponent, ComponentInit>(OnMagazineVisualsInit);
-        SubscribeLocalEvent<MagazineVisualsComponent, AppearanceChangeEvent>(OnMagazineVisualsChange);
-    }
-
     public void SetMagState(EntityUid uid, string? magState, bool force = false, MagazineVisualsComponent? component = null)
     {
         if (!Resolve(uid, ref component, false))
@@ -29,6 +23,7 @@ public sealed partial class GunSystem
             _appearance.QueueUpdate(uid, appearance);
     }
 
+    [SubscribeLocalEvent]
     private void OnMagazineVisualsInit(Entity<MagazineVisualsComponent> ent, ref ComponentInit args)
     {
         if (!TryComp<SpriteComponent>(ent, out var sprite)) return;
@@ -52,6 +47,7 @@ public sealed partial class GunSystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnMagazineVisualsChange(Entity<MagazineVisualsComponent> ent, ref AppearanceChangeEvent args)
     {
         // tl;dr

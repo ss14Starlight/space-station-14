@@ -9,3 +9,23 @@
   components:
   - type: TimedSpawner
     allowContainerPlacement: true
+
+- type: !PartialOnly entity
+  id: MobBat
+  components:
+  - type: FirelockOpener
+
+- type: !PartialOnly entity
+  id: MobChicken
+  components:
+  - type: FirelockOpener
+
+- type: !PartialOnly entity
+  id: MobDuckMallard
+  components:
+  - type: FirelockOpener
+
+- type: !PartialOnly entity
+  id: MobPig
+  components:
+  - type: FirelockOpener

@@ -1,0 +1,133 @@
+- type: !PartialOnly vendingMachineInventory
+  id: AutoDrobeInventory
+  startingInventory: !Clear
+- type: vendingMachineInventory
+  id: AutoDrobeInventory
+  startingInventory:
+    ClothingHeadHatJester: 1
+    ClothingUniformJumpsuitJester: 1
+    ClothingHeadHatJesterAlt: 1
+    ClothingUniformJumpsuitJesterAlt: 1
+    ClothingShoesJester: 2
+    ClothingOuterWinterClown: 1
+    ClothingOuterWinterMime: 1
+    ClothingOuterWinterMusician: 1
+    ClothingMaskJoy: 2
+    ClothingHeadHatCardborg: 2
+    ClothingOuterCardborg: 2
+    ClothingHeadHatSombrero: 2
+    ClothingOuterPonchoClassic: 2
+    ClothingHeadHatPwig: 2
+    ClothingOuterRobesJudge: 2
+    ClothingOuterPoncho: 2
+    ClothingOuterCoatDuster: 2 # DeltaV
+    ClothingHeadHatSantahat: 2
+    ClothingOuterSanta: 2
+    ClothingHeadHatSkub: 2
+    ClothingOuterSkub: 2
+    ClothingHeadHatBeretFrench: 2
+    ClothingOuterSuitChicken: 2
+    ClothingHeadHatChickenhead: 2
+    ClothingOuterSuitMonkey: 2
+    ClothingHeadHatPumpkin: 2
+    ClothingHeadHatShrineMaidenWig: 2
+    ClothingOuterSuitShrineMaiden: 2
+    Gohei: 2
+    ClothingOuterSuitWitchRobes: 2
+    ClothingHeadHatWitch1: 2
+    ClothingHeadHatRedRacoon: 2
+    ClothingOuterRedRacoon: 2
+    ClothingHeadPaperSack: 2
+    ClothingHeadPaperSackSmile: 2
+    ClothingEyesBlindfold: 1
+    ClothingHeadRastaHat: 2
+    ClothingUniformJumpsuitDameDane: 2
+    ClothingShoesDameDane: 2
+    ClothingOuterDameDane: 2
+    ClothingOuterClownPriest: 1
+    ClothingMaskSadMime: 1
+    ClothingMaskScaredMime: 1
+    ClothingUniformJumpsuitKimono: 1
+    ClothingUniformJumpsuitPerformerMusician: 1
+    ClothingUniformJumpskirtPerformerMusician: 1
+    ClothingUniformJumpsuitPerformerClown: 1
+    ClothingUniformJumpskirtPerformerClown: 1
+    ClothingUniformJumpsuitPerformerMime: 1
+    ClothingUniformJumpskirtPerformerMime: 1
+    ClothingHeadHatCasa: 1
+    FoodPoppy: 1
+    ClothingHeadHatGladiator: 1
+    ClothingUniformJumpsuitGladiator: 1
+    ClothingHeadHatCowboyBrown: 1
+    ClothingHeadHatCowboyBlack: 1
+    ClothingHeadHatCowboyWhite: 1
+    ClothingHeadHatCowboyGrey: 1
+    ClothingShoesBootsCowboyBrown: 1
+    ClothingShoesBootsCowboyBlack: 1
+    ClothingShoesBootsCowboyWhite: 1
+    #Starlight
+    ClothingUniformJumpsuitRisk: 1
+    ClothingHeadHelmetRisk: 1
+    ClothingUniformJumpsuitKilt: 1 # DeltaV
+    ClothingHeadHatWrestlingMaskLuchaBlue: 1 # DeltaV
+    ClothingHeadHatWrestlingMaskLuchaRed: 1 # DeltaV
+    ClothingUniformJumpsuitWrestlerBlue: 1 # DeltaV
+    ClothingUniformJumpsuitWrestlerRed: 1 # DeltaV
+    ClothingUniformJumpsuitWrestlerGreen: 1 # DeltaV
+    ClothingUniformJumpsuitWrestlerYellow: 1 # DeltaV
+    CandyClownUniformSuit: 1
+    StripedClownUniformSuit: 1
+    SpottedClownUniformSuit: 1
+    GothicFrillDressUniformSuit: 1 #Starlight # Alternative Clothing Catalog
+    ClothingHeadHatGothicFrill: 1 #Starlight # Alternative Clothing Catalog
+    PastelFrillDressUniformSuit: 1 #Starlight # Alternative Clothing Catalog
+    ClothingHeadHatPastelFrill: 1 #Starlight # Alternative Clothing Catalog
+    PunkOffShoulderUniformSuit: 2 #Starlight # Alternative Clothing Catalog
+    ClothingShoesSpecificMoffers: 1 # DeltaV
+    DruidRobesUniformSuit: 1
+    FlamboyantUniformSuit: 3
+    FlamencoUniformSuit: 2
+    FlyCaptainUniformSuit: 1
+    ClothingHeadHatWitchyHat: 2 # Starlight
+    KiltUniformSuit: 4
+    MimeFrillsUniformSuit: 1
+    RefereeUniformSuit: 2
+    SailorUniformSuit: 2
+    TogaUniformSuit: 2
+    ClothingUnderSocksMime: 1
+    ClothingUnderSocksStirrup: 1
+    ClothingOutercorset: 2
+    ClothingKitsuneMask: 2
+    ClothingHeadHatTVHead: 1
+    ClothingHeadHatFeatheredHat: 1
+    ClothingHeadHatBrimHat: 1
+    ClothingHeadHatFroggyHat: 2 #Starlight # Alternative Clothing Catalog
+    ClothingHeadHatKittyHat: 2 #Starlight # Alternative Clothing Catalog
+    ClothingHeadSafari: 2 # Zookeeper removal
+    ClothingUniformJumpsuitSafari: 2 # Zookeeper removal
+    LittleAngelUniformSuit: 1 #Starlight # Alternative Clothing Catalog
+    ClothingHeadLittleAngelEars: 1 #Starlight # Alternative Clothing Catalog
+    ClothingUnderSocksLittleAngel: 1 #Starlight # Alternative Clothing Catalog
+    ClothingNeckLittleAngelWings: 1 #Starlight # Alternative Clothing Catalog
+  contrabandInventory: !Clear
+    ClothingHeadHatRichard: 1
+    ToyFigurineBoxer: 1
+    ToyFigurineMusician: 1
+    ClothingUniformJumpsuitLittleGuyOveralls: 1 # DeltaV
+    ClothingOuterBurnedRobes: 1 #Starlight
+    CamoUniformSuit: 1 #Starlight
+    TatteredClothesUniformSuit: 1 #Starlight
+    ClothingNeckTatteredHood: 1 #Starlight
+    ClothingShoesBling: 1
+    ClothingShoesBootsCowboyFancy: 1
+    ClothingOuterDogi: 1
+    ClothingOuterSuitCarp: 1
+    ClothingMaskBlushingClown: 1
+    ClothingMaskBlushingMime: 1
+    ClothingMaskSusMime: 1 #Starlight
+    ClothingHeadHatCowboyBountyHunter: 1
+    LittleDevilUniformSuit: 1 #Starlight # Alternative Clothing Catalog
+    ClothingHeadLittleDevilHorns: 1 #Starlight # Alternative Clothing Catalog
+    ClothingUnderSocksLittleDevil: 1 #Starlight # Alternative Clothing Catalog
+    ClothingNeckLittleDevilWings: 1 #Starlight # Alternative Clothing Catalog
+    ClothingBackpackSatchelIta: 1 #Starlight # Alternative Clothing Catlog

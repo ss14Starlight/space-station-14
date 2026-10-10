@@ -104,6 +104,25 @@
   kind: source
   path: "/Textures/_Starlight/Shaders/holy_stars_trail.swsl"
 
+# Cosmic cult
+
+- type: shader
+  id: SaturationShuffle
+  kind: source
+  path: "/Textures/_Starlight/CosmicCult/Shaders/saturation_shuffle.swsl"
+  params:
+    tileSize: 32, 32
+    hsv: 1.0, 1.0, 1.0
+
+- type: shader
+  id: MonumentStars
+  kind: source
+  path: "/Textures/_Starlight/CosmicCult/Shaders/monument_stars.swsl"
+
+- type: shader
+  id: MonumentPulse
+  kind: source
+  path: "/Textures/_Starlight/CosmicCult/Shaders/monument_pulse.swsl"
 - type: shader
   id: DisplacedDrawUnshaded
   kind: source
@@ -120,3 +139,10 @@
     light_boost: 2
     light_gamma: 1.5
     light_whitepoint: 48
+
+- type: shader
+  id: GunHeat
+  kind: source
+  path: "/Textures/_Starlight/Shaders/gun_heat.swsl"
+  params:
+    heat: 0

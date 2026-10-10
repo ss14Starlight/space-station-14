@@ -46,14 +46,57 @@
           reagent: ConcentratedCorgiJuice
           amount: 0.1
         # Medicine
-        - !type:HealthChange
+        - !type:EvenHealthChange
           damage:
-            groups:
-              Airloss: -2
-              Brute: -2
-              Burn: -2
-              Toxin: -2
+            Airloss: -2
+            Brute: -2
+            Burn: -2
+            Toxin: -2
         - !type:SatiateThirst
           factor: 2
         - !type:SatiateHunger
           factor: 2
+
+- type: reagent
+  id: Glubotoxin
+  name: reagent-name-glubotoxin
+  group: Toxins
+  desc: reagent-desc-glubotoxin
+  physicalDesc: reagent-physical-desc-salty
+  flavor: Glubotoxin
+  color: "#009690"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.25
+      effects:
+      - !type:Emote
+        emote: ThavenGlub
+        showInChat: true
+        showInGuidebook: true
+        force: true
+        probability: 0.5
+      - !type:Polymorph
+        prototype: SpaceKoiMorph
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Animal ]
+          inverted: true
+        - !type:ReagentCondition
+          reagent: Glubotoxin
+          min: 50
+      - !type:AdjustReagent
+        reagent: Glubotoxin
+        amount: -20
+        conditions:
+        - !type:ReagentCondition
+          reagent: Glubotoxin
+          min: 50
+      - !type:AdjustReagent
+        conditions:
+          - !type:ReagentCondition
+            reagent: Glubotoxin
+            min: 0.11
+          - !type:MetabolizerTypeCondition
+            type: [ Cyclorite ]
+        reagent: Glubotoxin
+        amount: 0.1

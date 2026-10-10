@@ -2,7 +2,8 @@
     xmlns="https://spacestation14.io"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:ui="clr-namespace:Content.Client._Starlight.HealthAnalyzer.UI"
-    MinWidth="440"> <!-- Starlight - make wider for custom UI -->
+    MinWidth="410"
+    SetWidth="410"> <!-- Starlight - make wider for custom UI -->
     <!-- Starlight - replace upstream interface with custom one
     <ScrollContainer
         Margin="5 5 5 5"

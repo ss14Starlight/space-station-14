@@ -1,3 +1,13 @@
+- type: !PartialOnly entity
+  id: DrinkBottlePlasticBaseFull
+  components:
+  - type: ShakeSpillable
+    solutionName: drink
+  - type: ReactionMixer
+    mixerType: None
+    reactionTypes:
+    - Shake
+
 # Empty
 
 - type: !PartialOnly entity

@@ -8,13 +8,12 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         damage:
-          groups:
-            Brute: -2
-            Burn: -2
-            Toxin: -2
-            Genetic: -2
+          Brute: -2
+          Burn: -2
+          Toxin: -2
+          Genetic: -2
 
 # basically the same as protein, but having a separate chemical allows us to extract it from peas
 - type: reagent
@@ -28,11 +27,10 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         probability: 0.25
         damage:
-          groups:
-            Brute: -0.8
+          Brute: -0.8
       - !type:ModifyBloodLevel
         amount: 1
       # Starlight edit start - Make food 50% less effective for dwarfs
@@ -102,11 +100,10 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         probability: 0.25
         damage:
-          groups:
-            Brute: -0.4
+          Brute: -0.4
       # Starlight edit start - Make food 50% less effective for dwarfs
       - !type:SatiateHunger
         factor: 0.75

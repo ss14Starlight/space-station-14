@@ -1,0 +1,73 @@
+- type: !PartialOnly entity
+  id: BaseWeaponBattery
+  components:
+  - type: GunHeat
+    heatPerShot: 2000
+
+- type: !PartialOnly entity
+  id: BaseLaserRifle
+  components:
+  - type: GunHeat
+    heatPerShot: 2500
+
+- type: !PartialOnly entity
+  id: BaseWeaponPowerCell
+  components:
+  - type: GunHeat
+    heatPerShot: 2000
+
+- type: !PartialOnly entity
+  id: BaseWeaponBatterySmall
+  components:
+  # Starlight: energy handguns can be wielded like ballistic ones
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: Gun
+    minAngle: 6
+    maxAngle: 22
+    angleIncrease: 4
+    angleDecay: 16
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 1.5
+    maxAngleDivider: 1.5
+    angleIncreaseDivider: 1.5
+
+- type: !PartialOnly entity
+  id: BaseWeaponPowerCellSmall
+  components:
+  # Starlight: energy handguns can be wielded like ballistic ones
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: Gun
+    minAngle: 6
+    maxAngle: 22
+    angleIncrease: 4
+    angleDecay: 16
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 1.5
+    maxAngleDivider: 1.5
+    angleIncreaseDivider: 1.5
+
+- type: !PartialOnly entity
+  id: WeaponDisablerSMG
+  components:
+  # Starlight: energy handguns can be wielded like ballistic ones
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: Gun
+    minAngle: 10
+    maxAngle: 28
+    angleIncrease: 2
+    angleDecay: 14
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 2
+    maxAngleDivider: 2
+    angleIncreaseDivider: 2
+  - type: GunHeat
+    heatPerShot: 1000

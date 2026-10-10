@@ -65,24 +65,6 @@
   - Engineering
   - Science
 
-  # Starlight start: Engiborg hud, access
-  addComponents:
-  - type: ShowHealthBars
-    damageContainers:
-    - Inorganic
-    - Silicon
-    - IPC
-    - Hybrid
-  - type: ShowAccessReaderSettings
-  - type: Access
-    groups:
-      - CyborgAllAccess
-    tags:
-      - Borg
-      - BorgEngineering
-      - ChiefEngineer
-  # Starlight end
-
   # Visual
   inventoryTemplateId: borgShort
   spritePath: Mobs/Silicon/Chassis/engineer.rsi
@@ -226,11 +208,13 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
-    - Hybrid # Starlight, Neocytes
+    - Hybrid # Starlight, doesn't work with partials
+    - MoffDemonBiological # Starlight, doesn't work with partials
   - type: ShowHealthIcons
     damageContainers:
     - Biological
-    - Hybrid # Starlight, Neocytes
+    - Hybrid # Starlight, doesn't work with partials
+    - MoffDemonBiological # Starlight, doesn't work with partials
   - type: Access # Starlight BEGIN
     groups:
       - CyborgAllAccess

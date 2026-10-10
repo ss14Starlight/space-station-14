@@ -50,6 +50,12 @@ public record struct HitscanTraceEvent
     /// The effect list being used
     /// </summary>
     public List<HitscanTrace>? OutputTrace;
+
+    /// <summary>
+    /// Seed for the random rolls of this leg. Set on shots the shooter's client predicts,
+    /// so both sides roll the same cover and crowd checks. Null falls back to the regular random.
+    /// </summary>
+    public int? PredictionSeed;
     #endregion
 }
 

@@ -44,3 +44,9 @@ comp-nuclear-reactor-ui-therm-format = { POWERWATTS($power) }t
 
 comp-nuclear-reactor-ui-footer-left = Danger: high radiation.
 comp-nuclear-reactor-ui-footer-right = 1.0 REV 1
+
+comp-nuclear-reactor-ui-title = Nuclear Reactor
+comp-nuclear-reactor-ui-alarm-ack = ACK
+comp-nuclear-reactor-ui-overload = OVERLOAD
+comp-nuclear-reactor-ui-empty = empty
+comp-nuclear-reactor-ui-fuel-level = Fuel Level: { $level }%

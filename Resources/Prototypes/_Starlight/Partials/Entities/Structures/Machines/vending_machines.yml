@@ -1,0 +1,11 @@
+
+- type: !PartialOnly entity
+  id: VendingMachine
+  components:
+  - type: FlippableStructure
+    delay: 4
+    unflipDelay: 6
+    coverChance: 0.6
+    crushDamage:
+      types:
+        Blunt: 15

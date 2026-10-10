@@ -200,3 +200,7 @@ gofish-card-rules-content = [color=#1b67a5]
         a set with!
 
     {"  • [bold]Remember to have fun![/bold]"}
+
+gofish-card-rules-name = Go Fish! Rules Card
+gofish-card-rules-name-reverse = playing card
+gofish-card-rules-desc = This is the rules card! You may read it to get a better understanding of the rules.

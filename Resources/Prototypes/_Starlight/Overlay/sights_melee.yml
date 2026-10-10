@@ -1,0 +1,17 @@
+- type: sight
+  id: ArrowsSight
+  name: overlay-melee-sight-arrows
+  sightType: Melee
+  showCursor: false
+  sprite:
+    sprite: _Starlight/Interface/Misc/crosshair_pointers.rsi
+    state: arrows
+
+- type: sight
+  id: ArrowsDotSight
+  name: overlay-melee-sight-dot-arrows
+  sightType: Melee
+  showCursor: false
+  sprite:
+    sprite: _Starlight/Interface/Misc/crosshair_pointers.rsi
+    state: arrows_dot

@@ -1,7 +1,8 @@
 - type: !PartialOnly entity
   id: ClothingBeltSecurity
   components:
-  - type: Storage
-    whitelist:
-      tags:
-      - Bola # Starlight
+    - type: Storage
+      whitelist:
+        tags:
+          - Bola # Starlight
+          - HudSecurity

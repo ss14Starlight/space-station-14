@@ -1,10 +1,10 @@
 using Content.Server._Starlight.Objectives.Components;
 using Content.Server.Administration.Systems;
-using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Piping.EntitySystems;
 using Content.Server.Chat.Managers;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Managers;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Database;
 using Content.Shared.Verbs;
 using Robust.Shared.Map;
@@ -76,7 +76,7 @@ public sealed partial class AdminVerbSystem : EntitySystem
                     _chat.SendAdminAnnouncementMessage(player, $"Added NoObjectiveTarget component to the entity! ({args.Target})");
                 },
                 Impact = LogImpact.Low,
-                Message = "Prevents this entity from being targeted by other player's objectives. Will also prevent paraclones of this player.",
+                Message = Loc.GetString("admin-trick-prevent-objective-targeting-description"),
                 Priority = (int)TricksVerbPriorities.BlockObjectiveTargeting
             };
             if (HasComp<ActorComponent>(args.Target)) args.Verbs.Add(preventObjectiveTargeting);

@@ -16,7 +16,7 @@
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-nt-personnel
   displayWeight: 2
-  overrideConsoleVisibility: false
+# overrideConsoleVisibility: false # what if an NCT ID is stolen? then a new one cannot be remade with the same Icon and whatnot.
   joinNotifyCrew: true
   access:
     - Lawyer
@@ -31,6 +31,8 @@
     - Cargo
     - Medical
     - IAA
+    - NTPersonnel
+  # - Debrief # We don't need this many people in Debrief.
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]

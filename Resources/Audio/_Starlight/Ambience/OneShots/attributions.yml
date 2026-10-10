@@ -1,0 +1,4 @@
+- files: ["creak1.ogg", "creak2.ogg", "creak3.ogg", "pop1.ogg", "pop2.ogg", "pop3.ogg", "bang.ogg", "gas_hissing.ogg", "doorcreaky.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from /tg/station, downmixed to mono"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/effects"

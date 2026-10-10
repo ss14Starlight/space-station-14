@@ -79,6 +79,8 @@ public partial class MobStateSystem
 
     private void OnStateExitSubscribers(EntityUid target, MobStateComponent component, MobState state)
     {
+        if (SLOnStateExitSubscribers(target, component, state)) return; // Starlight hook
+
         switch (state)
         {
             case MobState.Alive:
@@ -106,7 +108,9 @@ public partial class MobStateSystem
         if (_timing.ApplyingState)
             return;
 
+
         _blocker.UpdateCanMove(target); //update movement anytime a state changes
+        if (SLStateEnteredSubscribers(target, component, state)) return; // Starlight hook
         switch (state)
         {
             case MobState.Alive:
@@ -159,6 +163,7 @@ public partial class MobStateSystem
     private void OnGettingStripped(EntityUid target, MobStateComponent component, BeforeGettingStrippedEvent args)
     {
         // Incapacitated or dead targets get stripped two or three times as fast. Makes stripping corpses less tedious.
+        SLOnGettingStripped(target, component, args); // SL hook
         if (IsDead(target, component))
             args.Multiplier /= 3;
         else if (IsCritical(target, component))
@@ -178,6 +183,8 @@ public partial class MobStateSystem
 
     private void CheckAct(EntityUid target, MobStateComponent component, CancellableEntityEventArgs args)
     {
+        if (SLCheckAct(target, component, args)) return; // Starlight Hook
+
         switch (component.CurrentState)
         {
             case MobState.Dead:

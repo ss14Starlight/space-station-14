@@ -23,6 +23,7 @@ using Content.Server.Mind;
 using Content.Server.Chat.Managers;
 using Content.Shared.Roles.Jobs;
 using Content.Server.Administration;
+using Content.Server.EUI;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
 using Content.Server.Nuke;
@@ -31,6 +32,7 @@ using Content.Shared.Doors.Systems;
 using Content.Shared.Toggleable;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Shared._NullLink;
+using Content.Shared._Starlight.Computers.PodConsole;
 
 namespace Content.Server._Starlight.SecureTerminal;
 
@@ -65,6 +67,12 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
     [Dependency] private AutoDiscordLogSystem _autolog = default!;
     [Dependency] private RoundStatisticsSystem _roundStatistics = default!;
     [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResources = default!;
+    [Dependency] private EuiManager _euiManager = default!;
+
+    private static readonly TimeSpan UIUpdateInterval = TimeSpan.FromSeconds(5.0);
+    private static readonly SoundPathSpecifier AdminAlarmSound = new("/Audio/Misc/adminlarm.ogg");
+
+    private readonly Dictionary<(EntityUid StationUid, string RequestId), HashSet<SecureTerminalAdminApprovalEui>> _adminApprovalEuis = new();
 
     public override void Initialize()
     {
@@ -85,6 +93,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             return;
 
         stationComp.AlertLevelSetAt = _timing.CurTime;
+        stationComp.NextUIUpdate = _timing.CurTime + UIUpdateInterval;
         UpdateAllConsolesForStation(ev.Station);
     }
 
@@ -94,6 +103,8 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         var stationQuery = EntityQueryEnumerator<SecureCommandTerminalStationComponent>();
         while (stationQuery.MoveNext(out var stationUid, out var stationComp))
         {
+            var needsRefresh = false;
+
             // Remove expired cooldowns
             List<string>? expiredKeys = null;
             foreach (var (key, endTime) in stationComp.Cooldowns)
@@ -102,20 +113,59 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     (expiredKeys ??= new()).Add(key);
             }
             if (expiredKeys != null)
+            {
                 foreach (var k in expiredKeys)
                     stationComp.Cooldowns.Remove(k);
+                needsRefresh = true;
+            }
 
-            // Fire activating proposals whose timer has elapsed
-            // And check AuthTimer.
+            // Fire activating proposals whose timer has elapsed.
             List<string>? toFire = null;
-            List<string>? toExpire = null;
+            List<string>? toCancel = null;
             List<EntityUid>? authToLightUp = null;
+            var presenceChanged = false;
             foreach (var (requestId, proposal) in stationComp.ActiveProposals)
             {
+                if (!_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var activeProto))
+                    continue;
+
+                if (proposal.Status == SecureTerminalProposalStatus.Activating &&
+                    activeProto.RescindSchemes.Count > 0 && HasLostRescindPresence(proposal))
+                {
+                    RemoveAbsentRescinders(proposal);
+                    presenceChanged = true;
+                }
+
+                if (proposal.Status == SecureTerminalProposalStatus.Activating &&
+                    proposal.ActivateAt > now && activeProto.RescindSchemes.Count > 0 &&
+                    HasRescinded(proposal, activeProto))
+                {
+                    (toCancel ??= new()).Add(requestId);
+                    continue;
+                }
+
                 if (proposal.Status == SecureTerminalProposalStatus.Pending)
                 {
-                    if (proposal.AuthTimer.HasValue && proposal.AuthTimer.Value <= now)
-                        (toExpire ??= new()).Add(requestId);
+                    if (proposal.AwaitingAdminApproval)
+                        continue;
+
+                    if (!IsRequesterPresent(proposal))
+                    {
+                        (toCancel ??= new()).Add(requestId);
+                        continue;
+                    }
+
+                    if (HasLostAuthorizationPresence(proposal))
+                    {
+                        RemoveAbsentAuthorizers(proposal);
+                        presenceChanged = true;
+                    }
+
+                    if (proposal.Authorizers.Count == 0)
+                    {
+                        (toCancel ??= new()).Add(requestId);
+                        continue;
+                    }
 
                     var query = EntityQueryEnumerator<SecureCommandTerminalConsoleComponent>();
                     while (query.MoveNext(out var consoleUid, out var comp))
@@ -127,6 +177,9 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     proposal.ActivateAt.HasValue && proposal.ActivateAt.Value <= now)
                     (toFire ??= new()).Add(requestId);
             }
+
+            if (presenceChanged)
+                needsRefresh = true;
 
             if (authToLightUp != null)
                 foreach (var consoleUid in authToLightUp)
@@ -143,19 +196,8 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     authToLightUp is not null && authToLightUp.Contains(consoleUid));
             }
 
-            if (toExpire != null)
-                foreach (var requestId in toExpire)
-                {
-                    // Expired proposals are always still Pending, so refund the held fee.
-                    if (stationComp.ActiveProposals.TryGetValue(requestId, out var expiredProposal))
-                        RefundFee(expiredProposal);
-                    stationComp.ActiveProposals.Remove(requestId);
-
-                    if (_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var expiredProto))
-                        _roundStatistics.RecordSecureTerminalOutcome(requestId, expiredProto.ActionType, SecureTerminalResult.Expired);
-                }
-
             if (toFire != null)
+            {
                 foreach (var requestId in toFire)
                 {
                     if (_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var proto))
@@ -164,6 +206,10 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                         var requester = stationComp.ActiveProposals.TryGetValue(requestId, out var firingProposal)
                             ? firingProposal.Requester
                             : EntityUid.Invalid;
+
+                        // Salary will be modified on activation now, no longer on accepting proposal, so rescinding is not a way to avoid the penalty
+                        foreach (var modifier in proto.SalaryModifiers)
+                            stationComp.SalaryModifiers[modifier.Source] = stationComp.SalaryModifiers.GetValueOrDefault(modifier.Source) + modifier.Change;
 
                         ExecuteAction(stationUid, proto);
                         _roundStatistics.RecordSecureTerminalOutcome(requestId, proto.ActionType, SecureTerminalResult.Executed);
@@ -187,9 +233,33 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     }
                 }
 
-            if (toExpire is null && toFire is null) continue;
+                needsRefresh = true;
+            }
 
-            UpdateAllConsolesForStation(stationUid);
+            if (toCancel != null)
+            {
+                foreach (var requestId in toCancel)
+                {
+                    if (!stationComp.ActiveProposals.TryGetValue(requestId, out var cancelledProposal))
+                        continue;
+
+                    var isRescind = cancelledProposal.Status == SecureTerminalProposalStatus.Activating &&
+                        _protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var cancelProto) &&
+                        HasRescinded(cancelledProposal, cancelProto);
+
+                    CancelProposal(stationUid, stationComp, requestId, cancelledProposal,
+                        cancelledProposal.RequesterTerminal, EntityUid.Invalid, false, isRescind: isRescind, refreshConsoles: false);
+                }
+
+                needsRefresh = true;
+            }
+
+            // Refresh consoles if state changed or rate-limited fallback interval elapsed
+            if (needsRefresh || now >= stationComp.NextUIUpdate)
+            {
+                stationComp.NextUIUpdate = now + UIUpdateInterval;
+                UpdateAllConsolesForStation(stationUid);
+            }
         }
     }
 
@@ -200,6 +270,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             _ui.CloseUi(uid, SecureCommandTerminalUiKey.Key, ev.Actor);
             return;
         }
+
         UpdateConsoleInterface(uid);
     }
 
@@ -323,16 +394,22 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         {
             if (_playerResources.TryGetResource(actor, "credits", out var balance) && balance < proto.Fee)
             {
-                _popup.PopupCursor($"Insufficient funds. Required: {proto.Fee}\u20a1", actor, PopupType.Medium);
+                _popup.PopupCursor(Loc.GetString("secure-terminal-insufficient-funds", ("fee", proto.Fee)), actor, PopupType.Medium);
                 return;
             }
 
             _playerResources.TryUpdateResource(actor, "credits", -proto.Fee);
-            _popup.PopupCursor($"Held {proto.Fee}\u20a1 pending authorization.", actor, PopupType.Medium);
+            _popup.PopupCursor(Loc.GetString("secure-terminal-fee-held", ("fee", proto.Fee)), actor, PopupType.Medium);
         }
 
         // Create the proposal
-        var proposal = new SecureTerminalProposalData { RequestId = msg.RequestId, Requester = actor, CreatedAt = _timing.CurTime };
+        var proposal = new SecureTerminalProposalData
+        {
+            RequestId = msg.RequestId,
+            Requester = actor,
+            RequesterTerminal = uid,
+            CreatedAt = _timing.CurTime
+        };
         stationComp.ActiveProposals[msg.RequestId] = proposal;
 
         _roundStatistics.RecordSecureTerminalProposal(msg.RequestId, proto.ActionType, reason is not null, proto.Fee);
@@ -343,9 +420,6 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         // The requestor automatically authorizes their matching group(s)
         TryAuthorize(actor, proposal, proto, uid, comp);
 
-        if (proto.AuthTimer > 0)
-            proposal.AuthTimer = _timing.CurTime + TimeSpan.FromSeconds(proto.AuthTimer);
-
         _adminLog.Add(LogType.Action, LogImpact.Medium,
             $"{ToPrettyString(actor):player} created secure terminal proposal: {msg.RequestId}");
 
@@ -354,20 +428,24 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         _chatManager.SendAdminAnnouncement(
             $"Secure Terminal — {MetaData(actor).EntityName} ({GetJobName(actor)}) proposed: {Loc.GetString(proto.Name)}.");
 
-        var proposalAnnounce = Loc.GetString("secure-terminal-proposal-created", ("request", Loc.GetString(proto.Name)));
-        if (reason is not null)
-            proposalAnnounce = Loc.GetString("secure-terminal-proposal-created-reason", ("request", Loc.GetString(proto.Name)), ("reason", reason));
-
-        if (proto.ProposalAnnouncement)
-            _chat.DispatchGlobalAnnouncement(proposalAnnounce, colorOverride: proto.AnnouncementColor);
-
-        var proposalRadio = Loc.GetString("secure-terminal-radio-proposal", ("request", Loc.GetString(proto.Name)));
-        if (reason is not null)
-            proposalRadio = Loc.GetString("secure-terminal-radio-proposal-reason", ("request", Loc.GetString(proto.Name)), ("reason", reason));
-
-        _radio.SendRadioMessage(uid, proposalRadio, "Command", uid);
-
         CheckAndStartCountdown(stationUid, stationComp, msg.RequestId, proto);
+
+        if (proposal.Status == SecureTerminalProposalStatus.Pending)
+        {
+            var proposalAnnounce = Loc.GetString("secure-terminal-proposal-created", ("request", Loc.GetString(proto.Name)));
+            if (reason is not null)
+                proposalAnnounce = Loc.GetString("secure-terminal-proposal-created-reason", ("request", Loc.GetString(proto.Name)), ("reason", reason));
+
+            if (proto.ProposalAnnouncement)
+                _chat.DispatchGlobalAnnouncement(proposalAnnounce, colorOverride: proto.AnnouncementColor);
+
+            var proposalRadio = Loc.GetString("secure-terminal-radio-proposal", ("request", Loc.GetString(proto.Name)));
+            if (reason is not null)
+                proposalRadio = Loc.GetString("secure-terminal-radio-proposal-reason", ("request", Loc.GetString(proto.Name)), ("reason", reason));
+
+            _radio.SendRadioMessage(uid, proposalRadio, "Command", uid);
+        }
+
         UpdateAllConsolesForStation(stationUid);
     }
 
@@ -393,15 +471,10 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         if (comp.Admin)
         {
             proposal.AdminApproved = true;
+            CloseAdminApprovalEuis(stationUid.Value, msg.RequestId);
             _roundStatistics.RecordSecureTerminalAuthorization(msg.RequestId, proto.ActionType, true);
             _autolog.LogToDiscord($"authorized secure terminal proposal: {msg.RequestId}", ToPrettyString(actor));
         }
-        else if (proposal.Authorizers.Any(a => a.PlayerUid == actor))
-        {
-            _popup.PopupCursor(Loc.GetString("secure-terminal-already-authorized"), actor, PopupType.Medium);
-            return;
-        }
-
         if (!comp.Admin && proposal.UsedTerminals.Contains(uid))
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-already-activated"), actor, PopupType.Medium);
@@ -439,47 +512,50 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             return;
         }
 
-        // Any Command member can deny
+        if (!_protos.TryIndex<SecureCommandTerminalRequestPrototype>(msg.RequestId, out var proto))
+            return;
+
+        if (deniedProposal.Status == SecureTerminalProposalStatus.Activating)
+        {
+            if (deniedProposal.UsedRescindTerminals.Contains(uid))
+            {
+                _popup.PopupCursor(Loc.GetString("secure-terminal-already-activated"), actor, PopupType.Medium);
+                return;
+            }
+
+            if (!deniedProposal.ActivateAt.HasValue || deniedProposal.ActivateAt.Value <= _timing.CurTime || proto.RescindSchemes.Count == 0 ||
+                !TryRescind(actor, deniedProposal, proto, uid))
+            {
+                _popup.PopupCursor(Loc.GetString("secure-terminal-request-denied"), actor, PopupType.Medium);
+                return;
+            }
+
+            _adminLog.Add(LogType.Action, LogImpact.Medium,
+                $"{ToPrettyString(actor):player} signed rescind order for secure terminal proposal: {msg.RequestId}");
+
+            _chatManager.SendAdminAnnouncement(
+                $"Secure Terminal — {MetaData(actor).EntityName} ({GetJobName(actor)}) signed RESCIND for: {Loc.GetString(proto.Name)}.");
+
+            if (HasRescinded(deniedProposal, proto))
+            {
+                _roundStatistics.RecordSecureTerminalOutcome(msg.RequestId, proto.ActionType, SecureTerminalResult.Denied);
+                CancelProposal(stationUid.Value, stationComp, msg.RequestId, deniedProposal, uid, actor, comp.Admin, isRescind: true);
+            }
+            else
+            {
+                UpdateAllConsolesForStation(stationUid.Value);
+            }
+            return;
+        }
+
         var tags = _access.FindAccessTags(actor);
-        if (!tags.Contains((Robust.Shared.Prototypes.ProtoId<Content.Shared.Access.AccessLevelPrototype>)"Command"))
+        if (!comp.Admin && !tags.Contains((Robust.Shared.Prototypes.ProtoId<Content.Shared.Access.AccessLevelPrototype>)"Command"))
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-request-denied"), actor, PopupType.Medium);
             return;
         }
 
-        stationComp.ActiveProposals.Remove(msg.RequestId);
-
-        // Refund the held fee if denied
-        RefundFee(deniedProposal);
-
-        _adminLog.Add(LogType.Action, LogImpact.Medium,
-            $"{ToPrettyString(actor):player} denied secure terminal proposal: {msg.RequestId}");
-
-        if (_protos.TryIndex<SecureCommandTerminalRequestPrototype>(msg.RequestId, out var proto))
-        {
-            _roundStatistics.RecordSecureTerminalOutcome(msg.RequestId, proto.ActionType, SecureTerminalResult.Denied);
-
-            _chatManager.SendAdminAnnouncement(
-                $"Secure Terminal — {MetaData(actor).EntityName} ({GetJobName(actor)}) DENIED / cancelled: {Loc.GetString(proto.Name)}.");
-
-            if (proto.ProposalAnnouncement)
-            {
-                var locKey = comp.Admin
-                    ? "secure-terminal-proposal-denied-cc"
-                   : "secure-terminal-proposal-denied";
-                _chat.DispatchGlobalAnnouncement(
-                    Loc.GetString(locKey, ("request", Loc.GetString(proto.Name))),
-                    colorOverride: proto.AnnouncementColor);
-            }
-
-            if (!comp.Admin)
-                _radio.SendRadioMessage(uid,
-                    Loc.GetString("secure-terminal-radio-denied",
-                        ("request", Loc.GetString(proto.Name))),
-                    "Command", uid);
-        }
-
-        UpdateAllConsolesForStation(stationUid.Value);
+        CancelProposal(stationUid.Value, stationComp, msg.RequestId, deniedProposal, uid, actor, comp.Admin);
     }
 
     private void OnRecall(EntityUid uid, SecureCommandTerminalConsoleComponent _, SecureTerminalRecallMessage msg)
@@ -578,9 +654,91 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         UpdateAllConsolesForStation(stationUid.Value);
     }
 
+    private void OpenAdminApprovalEuis(EntityUid stationUid, string requestId, SecureCommandTerminalRequestPrototype proto,
+        SecureTerminalProposalData proposal)
+    {
+        if (!proto.RequiresAdminApproval)
+            return;
+
+        var key = (stationUid, requestId);
+        if (_adminApprovalEuis.ContainsKey(key))
+            return;
+
+        foreach (var admin in _adminManager.ActiveAdmins)
+        {
+            var eui = new SecureTerminalAdminApprovalEui(this, stationUid, requestId, Loc.GetString(proto.Name),
+                Loc.GetString(proto.Description),
+                string.IsNullOrWhiteSpace(proposal.Reason) ? null : proposal.Reason,
+                proposal.Authorizers
+                    .Select(authorizer => $"{authorizer.Name} ({authorizer.Job})")
+                    .Distinct()
+                    .ToList());
+            if (!_adminApprovalEuis.TryGetValue(key, out var euis))
+            {
+                euis = new HashSet<SecureTerminalAdminApprovalEui>();
+                _adminApprovalEuis[key] = euis;
+            }
+
+            euis.Add(eui);
+            _euiManager.OpenEui(eui, admin);
+        }
+    }
+
+    public void OnAdminApprovalEuiClosed(SecureTerminalAdminApprovalEui eui)
+    {
+        var key = (eui.StationUid, eui.RequestId);
+        if (!_adminApprovalEuis.TryGetValue(key, out var euis))
+            return;
+
+        euis.Remove(eui);
+        if (euis.Count == 0)
+            _adminApprovalEuis.Remove(key);
+    }
+
+    private void CloseAdminApprovalEuis(EntityUid stationUid, string requestId)
+    {
+        if (!_adminApprovalEuis.Remove((stationUid, requestId), out var euis))
+            return;
+
+        foreach (var eui in euis)
+        {
+            if (!eui.IsShutDown)
+                eui.Close();
+        }
+    }
+
+    public void HandleAdminApproval(ICommonSession admin, EntityUid stationUid, string requestId, bool approved)
+    {
+        if (!_adminManager.ActiveAdmins.Any(session => session.UserId == admin.UserId))
+            return;
+
+        if (!TryComp<SecureCommandTerminalStationComponent>(stationUid, out var stationComp) ||
+            !stationComp.ActiveProposals.TryGetValue(requestId, out var proposal) ||
+            proposal.Status != SecureTerminalProposalStatus.Pending ||
+            !_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var proto))
+            return;
+
+        if (approved)
+        {
+            proposal.AdminApproved = true;
+            proposal.AwaitingAdminApproval = false;
+            _adminLog.Add(LogType.Action, LogImpact.Medium,
+                $"{admin.Name} approved secure terminal proposal: {requestId}");
+            CheckAndStartCountdown(stationUid, stationComp, requestId, proto);
+            UpdateAllConsolesForStation(stationUid);
+        }
+        else
+        {
+            CancelProposal(stationUid, stationComp, requestId, proposal, EntityUid.Invalid,
+                admin.AttachedEntity ?? EntityUid.Invalid, true);
+        }
+
+        CloseAdminApprovalEuis(stationUid, requestId);
+    }
+
     /// <summary>
-    /// Attempts to satisfy the first available auth group for <paramref name="actor"/>.
-    /// Returns true if an unsatisfied group was claimed.
+    /// Attempts to satisfy one available auth group in every scheme for <paramref name="actor"/>.
+    /// Returns true if at least one unsatisfied group was claimed.
     /// </summary>
     private bool TryAuthorize(EntityUid actor, SecureTerminalProposalData proposal,
         SecureCommandTerminalRequestPrototype proto, EntityUid terminalUid, SecureCommandTerminalConsoleComponent terminal)
@@ -589,19 +747,28 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             return true;
 
         var accessTags = _access.FindAccessTags(actor);
-        var satisfied = BuildSatisfiedGroups(proposal, proto);
+        var schemes = proto.AuthSchemes;
 
-        for (var i = 0; i < proto.AuthGroups.Count; i++)
+        var authorized = false;
+        for (var schemeIndex = 0; schemeIndex < schemes.Count; schemeIndex++)
         {
-            if (satisfied[i]) continue;
-            var group = proto.AuthGroups[i];
-            if (group.Any(tag => accessTags.Contains((Robust.Shared.Prototypes.ProtoId<Content.Shared.Access.AccessLevelPrototype>)tag)))
+            var scheme = schemes[schemeIndex];
+            if (proposal.Authorizers.Any(a => a.PlayerUid == actor && a.SchemeIndex == schemeIndex))
+                continue;
+
+            var satisfied = BuildSatisfiedGroups(proposal, schemeIndex, scheme.Groups.Count);
+            for (var groupIndex = 0; groupIndex < scheme.Groups.Count; groupIndex++)
             {
+                if (satisfied[groupIndex]) continue;
+                var group = scheme.Groups[groupIndex];
+                if (!group.Any(tag => accessTags.Contains(tag)))
+                    continue;
+
                 string name, job;
-                if (_idCard.TryFindIdCard(actor, out var idCard))
+                if (_idCard.TryFindIdCard(actor, out var authIdCard))
                 {
-                    name = idCard.Comp.FullName ?? MetaData(actor).EntityName;
-                    job = idCard.Comp.LocalizedJobTitle ?? GetJobName(actor);
+                    name = authIdCard.Comp.FullName ?? MetaData(actor).EntityName;
+                    job = authIdCard.Comp.LocalizedJobTitle ?? GetJobName(actor);
                 }
                 else
                 {
@@ -609,60 +776,93 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     job = GetJobName(actor);
                 }
                 proposal.UsedTerminals.Add(terminalUid);
-                proposal.Authorizers.Add((actor, name, job, i));
+                proposal.Authorizers.Add((actor, name, job, terminalUid, schemeIndex, groupIndex));
                 _roundStatistics.RecordSecureTerminalAuthorization(proposal.RequestId, proto.ActionType, false);
-                return true;
+                authorized = true;
+                break;
             }
         }
-        return false;
+        return authorized;
     }
 
     /// <summary>
     /// If all auth groups are satisfied, begin the countdown and charge the fee.
     /// </summary>
-    private void CheckAndStartCountdown(EntityUid _,
+    private void CheckAndStartCountdown(EntityUid stationUid,
         SecureCommandTerminalStationComponent stationComp,
         string requestId, SecureCommandTerminalRequestPrototype proto)
     {
         if (!stationComp.ActiveProposals.TryGetValue(requestId, out var proposal)) return;
         if (proposal.Status != SecureTerminalProposalStatus.Pending) return;
 
-        var satisfied = BuildSatisfiedGroups(proposal, proto);
-        if (!satisfied.All(s => s)) return;
+        var schemeSatisfied = proto.AuthSchemes
+            .Select((scheme, schemeIndex) => BuildSatisfiedGroups(proposal, schemeIndex, scheme.Groups.Count))
+            .Any(satisfiedGroups => satisfiedGroups.All(satisfied => satisfied));
+        if (!schemeSatisfied) return;
+
+        var adminApprovalBypassed = false;
 
         // Admin Approval
         if (proto.RequiresAdminApproval && !proposal.AdminApproved)
         {
             if (_adminManager.ActiveAdmins.Count() > 0 || !proto.BypassIfNoAdmin)
             {
-                proposal.AuthTimer = null;
-                _chat.DispatchGlobalAnnouncement(Loc.GetString("secure-terminal-awaiting-admin", ("request", Loc.GetString(proto.Name))), colorOverride: proto.AnnouncementColor);
-                _chatManager.SendAdminAlert(Loc.GetString("secure-terminal-admin", ("request", Loc.GetString(proto.Name)), ("reason", proposal.Reason)));
-                _audio.PlayGlobal("/Audio/Misc/adminlarm.ogg",
-                    Filter.Empty().AddPlayers(_adminManager.ActiveAdmins),
-                    false,
-                    AudioParams.Default.WithVolume(-8f));
+                if (!proposal.AwaitingAdminApproval)
+                {
+                    proposal.AwaitingAdminApproval = true;
+                    OpenAdminApprovalEuis(stationUid, requestId, proto, proposal);
+                    _chat.DispatchGlobalAnnouncement(Loc.GetString("secure-terminal-awaiting-admin", ("request", Loc.GetString(proto.Name))), colorOverride: proto.AnnouncementColor);
+                    _chatManager.SendAdminAlert(Loc.GetString("secure-terminal-admin", ("request", Loc.GetString(proto.Name)), ("reason", proposal.Reason)));
+                    _audio.PlayGlobal(AdminAlarmSound,
+                        Filter.Empty().AddPlayers(_adminManager.ActiveAdmins),
+                        false,
+                        AudioParams.Default.WithVolume(-8f));
+                    UpdateAllConsolesForStation(stationUid);
+                }
                 return;
             }
+
+            adminApprovalBypassed = true;
         }
+
+        proposal.AwaitingAdminApproval = false;
 
         _autolog.LogToDiscord($"activating secure terminal proposal: {requestId}");
 
         proposal.Status = SecureTerminalProposalStatus.Activating;
         proposal.ActivateAt = _timing.CurTime + TimeSpan.FromSeconds(proto.ActivationDelaySecs);
 
-        _roundStatistics.RecordSecureTerminalActivation(requestId, proto.ActionType, _timing.CurTime - proposal.CreatedAt, proto.SalaryPenalty);
+        var salaryPenalty = proto.SalaryModifiers
+            .Where(modifier => modifier.Change < 0)
+            .Sum(modifier => -modifier.Change);
+        _roundStatistics.RecordSecureTerminalActivation(requestId, proto.ActionType, _timing.CurTime - proposal.CreatedAt, salaryPenalty);
 
         if (proto.ProposalAnnouncement)
         {
-            // Authorized-by announcement listing all signatories
+            // Authorized-by announcement listing signatories from the scheme that passed.
+            var authorizedSchemeIndex = proto.AuthSchemes
+                .Select((scheme, schemeIndex) => (scheme, schemeIndex))
+                .FirstOrDefault(item => BuildSatisfiedGroups(proposal, item.schemeIndex, item.scheme.Groups.Count)
+                    .All(satisfied => satisfied))
+                .schemeIndex;
             var signatories = string.Join(", ",
-                proposal.Authorizers.Select(a => $"{a.Name} ({a.Job})"));
-            _chat.DispatchGlobalAnnouncement(
-                Loc.GetString("secure-terminal-authorized-by",
-                    ("request", Loc.GetString(proto.Name)),
-                    ("signatories", signatories)),
-                colorOverride: proto.AnnouncementColor);
+                proposal.Authorizers
+                    .Where(authorizer => authorizer.SchemeIndex == authorizedSchemeIndex)
+                    .GroupBy(authorizer => authorizer.PlayerUid)
+                    .Select(group => group.First())
+                    .Select(authorizer => $"{authorizer.Name} ({authorizer.Job})"));
+            var authorizationMessage = Loc.GetString("secure-terminal-authorized-by",
+                ("request", Loc.GetString(proto.Name)),
+                ("signatories", signatories));
+            if (proto.RequiresAdminApproval)
+            {
+                var approvalNote = adminApprovalBypassed
+                    ? "secure-terminal-authorized-by-central-command-deferred"
+                    : "secure-terminal-authorized-by-central-command";
+                authorizationMessage += $" {Loc.GetString(approvalNote, ("request", Loc.GetString(proto.Name)))}";
+            }
+
+            _chat.DispatchGlobalAnnouncement(authorizationMessage, colorOverride: proto.AnnouncementColor);
         }
 
         // Per-request announcement (ERT dispatch notice, Code GAMMA text, etc.)
@@ -671,8 +871,6 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                 Loc.GetString(proto.Announcement),
                 colorOverride: proto.AnnouncementColor);
 
-        // Apply salary penalty to station
-        stationComp.SalaryPenalty = Math.Min(0.8f, stationComp.SalaryPenalty + proto.SalaryPenalty);
     }
 
     /// <summary>
@@ -682,6 +880,76 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
     {
         if (_protos.TryIndex<SecureCommandTerminalRequestPrototype>(proposal.RequestId, out var proto))
             RefundFee(proposal.Requester, proto, fraction);
+    }
+
+    private void CancelProposal(EntityUid stationUid, SecureCommandTerminalStationComponent stationComp,
+        string requestId, SecureTerminalProposalData proposal, EntityUid terminalUid, EntityUid actor, bool admin,
+        bool isRescind = false, bool refreshConsoles = true)
+    {
+        CloseAdminApprovalEuis(stationUid, requestId);
+        stationComp.ActiveProposals.Remove(requestId);
+        RefundFee(proposal);
+
+        var actorName = "authorization presence";
+        if (actor.IsValid())
+        {
+            var name = MetaData(actor).EntityName;
+            var job = GetJobName(actor);
+            if (_idCard.TryFindIdCard(actor, out var idCard))
+            {
+                name = idCard.Comp.FullName ?? name;
+                job = idCard.Comp.LocalizedJobTitle ?? job;
+            }
+
+            actorName = $"{name} ({job})";
+        }
+        _adminLog.Add(LogType.Action, LogImpact.Medium,
+            $"{actorName} cancelled secure terminal proposal: {requestId}");
+
+        if (_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var proto))
+        {
+            var rescinders = string.Join(", ", proposal.Rescinders
+                .GroupBy(rescinder => rescinder.PlayerUid)
+                .Select(group => group.First())
+                .Select(rescinder => $"{rescinder.Name} ({rescinder.Job})"));
+            _chatManager.SendAdminAnnouncement(isRescind
+                ? Loc.GetString("secure-terminal-proposal-rescinded-by",
+                    ("rescinders", rescinders),
+                    ("request", Loc.GetString(proto.Name)))
+                : Loc.GetString("secure-terminal-proposal-cancelled-by",
+                    ("actor", actorName),
+                    ("request", Loc.GetString(proto.Name))));
+
+            if (proto.ProposalAnnouncement)
+            {
+                if (isRescind)
+                {
+                    _chat.DispatchGlobalAnnouncement(
+                        Loc.GetString("secure-terminal-proposal-rescinded-by",
+                            ("rescinders", rescinders),
+                            ("request", Loc.GetString(proto.Name))),
+                        colorOverride: proto.AnnouncementColor);
+                }
+                else
+                {
+                    var locKey = admin
+                        ? "secure-terminal-proposal-denied-cc"
+                        : "secure-terminal-proposal-denied";
+                    _chat.DispatchGlobalAnnouncement(
+                        Loc.GetString(locKey, ("request", Loc.GetString(proto.Name))),
+                        colorOverride: proto.AnnouncementColor);
+                }
+            }
+
+            if (terminalUid.IsValid() && !admin)
+                _radio.SendRadioMessage(terminalUid,
+                    Loc.GetString("secure-terminal-radio-denied",
+                        ("request", Loc.GetString(proto.Name))),
+                    "Command", terminalUid);
+        }
+
+        if (refreshConsoles)
+            UpdateAllConsolesForStation(stationUid);
     }
 
     private void RefundFee(EntityUid requester, SecureCommandTerminalRequestPrototype proto, float fraction = 1f)
@@ -734,9 +1002,19 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     if (proto.AllowedAccesses is null || proto.AllowedAccesses.Count() <= 0)
                         _airlock.SetEmergencyAccess((ent, airlockcomp), proto.AccessEnabled);
                     else
-                        if (_access.GetMainAccessReader(ent, out var accessEnt) && _access.AreAccessTagsAllowed(proto.AllowedAccesses, accessEnt.Value.Comp))
+                        if (_access.GetMainAccessReader(ent, out var accessEnt) && _access.AreAccessTagsAllowed(proto.AllowedAccesses, accessEnt.Value)) // Starlight-edit
                             _airlock.SetEmergencyAccess((ent, airlockcomp), proto.AccessEnabled);
                 }
+                break;
+
+            case SecureTerminalActionType.EscapePods:
+                var escapePodConsole = AllEntityQuery<PodConsoleComponent, TransformComponent>();
+                while (escapePodConsole.MoveNext(out var ent,out var podConsole, out var xform))
+                {
+                    podConsole.Locked = false;
+                    Dirty(ent, podConsole);
+                }
+
                 break;
 
             case SecureTerminalActionType.Announcement:
@@ -745,21 +1023,121 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         }
     }
 
-    private static List<bool> BuildSatisfiedGroups(SecureTerminalProposalData proposal,
-        SecureCommandTerminalRequestPrototype proto)
+    private static List<bool> BuildSatisfiedGroups(SecureTerminalProposalData proposal, int schemeIndex, int groupCount)
     {
-        var result = new List<bool>(new bool[proto.AuthGroups.Count]);
-        foreach (var (_, _, _, groupIdx) in proposal.Authorizers)
-            if (groupIdx >= 0 && groupIdx < result.Count)
-                result[groupIdx] = true;
+        var result = new List<bool>(new bool[groupCount]);
+        foreach (var (_, _, _, _, authorizerSchemeIndex, groupIndex) in proposal.Authorizers)
+            if (authorizerSchemeIndex == schemeIndex && groupIndex >= 0 && groupIndex < result.Count)
+                result[groupIndex] = true;
         return result;
     }
+
+    private void RemoveAbsentRescinders(SecureTerminalProposalData proposal)
+    {
+        var removedTerminals = new List<EntityUid>();
+        proposal.Rescinders.RemoveAll(rescinder =>
+        {
+            if (_ui.IsUiOpen(rescinder.TerminalUid, SecureCommandTerminalUiKey.Key, rescinder.PlayerUid))
+                return false;
+
+            removedTerminals.Add(rescinder.TerminalUid);
+            return true;
+        });
+
+        removedTerminals.ForEach(terminalUid => proposal.UsedRescindTerminals.Remove(terminalUid));
+    }
+
+    private bool HasLostRescindPresence(SecureTerminalProposalData proposal) =>
+        proposal.Rescinders.Any(rescinder =>
+            !_ui.IsUiOpen(rescinder.TerminalUid, SecureCommandTerminalUiKey.Key, rescinder.PlayerUid));
+
+    private bool TryRescind(EntityUid actor, SecureTerminalProposalData proposal,
+        SecureCommandTerminalRequestPrototype proto, EntityUid terminalUid)
+    {
+        var accessTags = _idCard.TryFindIdCard(actor, out var idCard)
+            ? _access.FindAccessTags(idCard.Owner)
+            : Array.Empty<ProtoId<Content.Shared.Access.AccessLevelPrototype>>();
+        var rescinded = false;
+        for (var schemeIndex = 0; schemeIndex < proto.RescindSchemes.Count; schemeIndex++)
+        {
+            if (proposal.Rescinders.Any(v => v.PlayerUid == actor && v.SchemeIndex == schemeIndex))
+                continue;
+
+            var scheme = proto.RescindSchemes[schemeIndex];
+            var satisfied = BuildSatisfiedRescindGroups(proposal, schemeIndex, scheme.Groups.Count);
+            for (var groupIndex = 0; groupIndex < scheme.Groups.Count; groupIndex++)
+            {
+                if (satisfied[groupIndex] || !scheme.Groups[groupIndex].Any(tag => accessTags.Contains(tag)))
+                    continue;
+
+                string name, job;
+                if (_idCard.TryFindIdCard(actor, out var rescindIdCard))
+                {
+                    name = rescindIdCard.Comp.FullName ?? MetaData(actor).EntityName;
+                    job = rescindIdCard.Comp.LocalizedJobTitle ?? GetJobName(actor);
+                }
+                else
+                {
+                    name = MetaData(actor).EntityName;
+                    job = GetJobName(actor);
+                }
+                proposal.UsedRescindTerminals.Add(terminalUid);
+                proposal.Rescinders.Add((actor, name, job, terminalUid, schemeIndex, groupIndex));
+                rescinded = true;
+                break;
+            }
+        }
+
+        return rescinded;
+    }
+
+    private static bool HasRescinded(SecureTerminalProposalData proposal, SecureCommandTerminalRequestPrototype proto) =>
+        proto.RescindSchemes.Select((scheme, index) => BuildSatisfiedRescindGroups(proposal, index, scheme.Groups.Count))
+            .Any(groups => groups.All(satisfied => satisfied));
+
+    private static List<bool> BuildSatisfiedRescindGroups(SecureTerminalProposalData proposal, int schemeIndex, int groupCount)
+    {
+        var result = new List<bool>(new bool[groupCount]);
+        foreach (var (_, _, _, _, rescindSchemeIndex, groupIndex) in proposal.Rescinders)
+            if (rescindSchemeIndex == schemeIndex && groupIndex >= 0 && groupIndex < result.Count)
+                result[groupIndex] = true;
+        return result;
+    }
+
+    private void RemoveAbsentAuthorizers(SecureTerminalProposalData proposal)
+    {
+        if (proposal.Requester.IsValid() &&
+            !_ui.IsUiOpen(proposal.RequesterTerminal, SecureCommandTerminalUiKey.Key, proposal.Requester))
+        {
+            proposal.Authorizers.RemoveAll(authorizer => authorizer.PlayerUid == proposal.Requester);
+        }
+
+        var removedTerminals = new List<EntityUid>();
+        proposal.Authorizers.RemoveAll(authorizer =>
+        {
+            if (_ui.IsUiOpen(authorizer.TerminalUid, SecureCommandTerminalUiKey.Key, authorizer.PlayerUid))
+                return false;
+
+            removedTerminals.Add(authorizer.TerminalUid);
+            return true;
+        });
+
+        removedTerminals.ForEach(terminalUid => proposal.UsedTerminals.Remove(terminalUid));
+    }
+
+    private bool IsRequesterPresent(SecureTerminalProposalData proposal) =>
+        proposal.Requester.IsValid() &&
+        _ui.IsUiOpen(proposal.RequesterTerminal, SecureCommandTerminalUiKey.Key, proposal.Requester);
+
+    private bool HasLostAuthorizationPresence(SecureTerminalProposalData proposal) =>
+        proposal.Authorizers.Any(authorizer =>
+            !_ui.IsUiOpen(authorizer.TerminalUid, SecureCommandTerminalUiKey.Key, authorizer.PlayerUid));
 
     private bool CanRequest(EntityUid actor, SecureCommandTerminalRequestPrototype proto)
     {
         var tags = _access.FindAccessTags(actor);
-        return proto.AuthGroups.Any(group =>
-            group.Any(tag => tags.Contains((ProtoId<Content.Shared.Access.AccessLevelPrototype>)tag)));
+        return proto.AuthSchemes.Any(scheme => scheme.Groups.Any(group =>
+            group.Any(tag => tags.Contains(tag))));
     }
 
     private bool IsWarDeclared()
@@ -804,26 +1182,63 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                 if (!_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var proto))
                     continue;
 
-                var satisfiedGroups = BuildSatisfiedGroups(data, proto);
-                var labels = proto.AuthGroupLabels.Count == proto.AuthGroups.Count
-                    ? proto.AuthGroupLabels
-                    : proto.AuthGroups.Select(g => string.Join(" / ", g)).ToList();
+                var schemeStates = proto.AuthSchemes.Select((scheme, schemeIndex) =>
+                {
+                    var groups = scheme.Groups;
+                    var satisfiedGroups = BuildSatisfiedGroups(data, schemeIndex, groups.Count);
+                    var authByGroup = data.Authorizers
+                        .Where(a => a.SchemeIndex == schemeIndex)
+                        .ToDictionary(a => a.GroupIndex, a => (a.Name, a.Job));
+                    var authorizedBy = Enumerable.Range(0, groups.Count)
+                        .Select(i => authByGroup.TryGetValue(i, out var auth) ? auth : (string.Empty, string.Empty))
+                        .ToList();
 
-                // Build AuthorizedBy indexed by group so the client can show who authorized each slot
-                var authByGroup = data.Authorizers.ToDictionary(a => a.GroupIndex, a => (a.Name, a.Job));
-                var authorizedBy = Enumerable.Range(0, proto.AuthGroups.Count)
-                    .Select(i => authByGroup.TryGetValue(i, out var auth) ? auth : (string.Empty, string.Empty))
-                    .ToList();
+                    return new SecureTerminalAuthSchemeState
+                    {
+                        Id = scheme.Id,
+                        Name = scheme.Name,
+                        Description = scheme.Description,
+                        AuthorizedBy = authorizedBy,
+                        GroupsSatisfied = satisfiedGroups,
+                        GroupLabels = groups.Select(g => string.Join(" / ", g)).ToList(),
+                    };
+                }).ToList();
+
+                var rescindSchemeStates = proto.RescindSchemes.Select((scheme, schemeIndex) =>
+                {
+                    var groups = scheme.Groups;
+                    var satisfiedGroups = BuildSatisfiedRescindGroups(data, schemeIndex, groups.Count);
+                    var rescindByGroup = data.Rescinders
+                        .Where(v => v.SchemeIndex == schemeIndex)
+                        .ToDictionary(v => v.GroupIndex, v => (v.Name, v.Job));
+                    var authorizedBy = Enumerable.Range(0, groups.Count)
+                        .Select(i => rescindByGroup.TryGetValue(i, out var rescind) ? rescind : (string.Empty, string.Empty))
+                        .ToList();
+
+                    return new SecureTerminalAuthSchemeState
+                    {
+                        Id = scheme.Id,
+                        Name = scheme.Name,
+                        Description = scheme.Description,
+                        AuthorizedBy = authorizedBy,
+                        GroupsSatisfied = satisfiedGroups,
+                        GroupLabels = groups.Select(g => string.Join(" / ", g)).ToList(),
+                    };
+                }).ToList();
 
                 proposals.Add(new SecureTerminalProposalState
                 {
                     RequestId = requestId,
-                    AuthorizedBy = authorizedBy,
-                    GroupsSatisfied = satisfiedGroups,
-                    GroupLabels = labels,
+                    AuthSchemes = schemeStates,
+                    RescindSchemes = rescindSchemeStates,
+                    AuthorizedBy = data.Authorizers
+                        .GroupBy(authorizer => authorizer.PlayerUid)
+                        .Select(group => group.First())
+                        .Select(authorizer => (authorizer.Name, authorizer.Job))
+                        .ToList(),
                     ActivateAt = data.ActivateAt,
-                    AuthTimer = data.AuthTimer,
                     Status = data.Status,
+                    AwaitingAdminApproval = data.AwaitingAdminApproval,
                 });
             }
         }
@@ -837,7 +1252,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
     {
         var query = EntityQueryEnumerator<SecureCommandTerminalConsoleComponent>();
         while (query.MoveNext(out var consoleUid, out var comp))
-            if (_stations.GetOwningStation(consoleUid) == stationUid)
+            if (_stations.GetOwningStation(consoleUid) == stationUid && _ui.IsUiOpen(consoleUid, SecureCommandTerminalUiKey.Key))
                 UpdateConsoleInterface(consoleUid);
     }
 }

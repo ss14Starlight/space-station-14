@@ -16,6 +16,7 @@
     damageContainers:
     - Biological
     - Hybrid
+    - MoffDemonBiological
 
 # Blackstar Combat Suit
 - type: entity

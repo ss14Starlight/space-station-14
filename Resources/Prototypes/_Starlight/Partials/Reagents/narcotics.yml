@@ -1,0 +1,33 @@
+- type: !PartialOnly reagent
+  id: Desoxyephedrine
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:ReduceSleepiness
+        time: 2.5
+
+- type: !PartialOnly reagent
+  id: Ephedrine
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:ReduceSleepiness
+        time: 1.5
+
+- type: !PartialOnly reagent
+  id: Stimulants
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:ReduceSleepiness
+        time: 4.5
+
+- type: !PartialOnly reagent
+  id: THC
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:ModifySleepiness
+        effectProto: StatusEffectSleepiness
+        maximumSleepiness: 60s
+        time: 2.5

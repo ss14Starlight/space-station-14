@@ -8,9 +8,9 @@
       - state: red
       - sprite: Structures/Machines/arcade.rsi
         state: icon
-  - type: RandomSpawner
-    prototypes:
-      - BlockGameArcade
-      - SpaceVillainArcadeFilled
-      - LancerArcade # Starlight-edit: Lancer arcade spawner
-    chance: 1
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: BlockGameArcade
+      - id: SpaceVillainArcadeFilled
+      - id: LancerArcade # Starlight-edit: Lancer arcade spawner

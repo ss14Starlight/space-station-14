@@ -163,11 +163,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
     /// <summary>
     ///     Attempts to get the EntityUid of the emergency shuttle
     /// </summary>
-    public EntityUid? GetShuttle()
-    {
-        AllEntityQuery<EmergencyShuttleComponent>().MoveNext(out var shuttle, out _);
-        return shuttle;
-    }
+    public List<EntityUid?> GetShuttles() => [.. EntityManager.GetEntities().Where(HasComp<EmergencyShuttleComponent>)]; // Starlight edit
 
     private void SetEmergencyShuttleEnabled(bool value)
     {
@@ -813,30 +809,4 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
         /// </summary>
         GoodLuck,
     }
-
-    //Starlight begin
-    /// <summary>
-    /// Sends shuttle dock announcement to all players on a station, removing all recipients from a filter.
-    /// </summary>
-    private void SendShuttleAnnouncement(LocId announcementText, Entity<StationEmergencyShuttleComponent> station,
-        SoundSpecifier sound, Filter filter)
-    {
-        var allPlayersOnStation = Filter.Empty().AddWhere(session =>
-        {
-            if (session.AttachedEntity is null) return false;
-            if (!TryComp<StationMemberComponent>(Transform(session.AttachedEntity.Value).GridUid,
-                    out var stationGrid)) return false;
-            return stationGrid.Station == station.Owner;
-        });
-        filter.RemoveWhere(x => allPlayersOnStation.Recipients.Contains(x));
-        _chatSystem.DispatchFilteredAnnouncement(allPlayersOnStation, Loc.GetString(announcementText),
-            announcementSound: sound);
-    }
-
-    /// <summary>
-    /// Sends a separate shuttle dock announcement to all remaining players, so anyone in space, salvie planet, etc.
-    /// </summary>
-    private void SendShuttleAnnouncement(LocId announcementText, SoundSpecifier sound, Filter filter) =>
-        _chatSystem.DispatchFilteredAnnouncement(filter, Loc.GetString(announcementText), announcementSound: sound);
-    //Starlight end
 }

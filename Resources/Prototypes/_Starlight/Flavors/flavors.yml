@@ -49,6 +49,11 @@
   description: flavor-complex-highlander
 
 - type: flavor
+  id: entropic
+  flavorType: Complex
+  description: flavor-complex-entropy
+
+- type: flavor
   id: thelastcall
   flavorType: Complex
   description: flavor-complex-the-last-call
@@ -234,6 +239,11 @@
   description: flavor-complex-tesla-ice-cream
 
 - type: flavor
+  id: Glubotoxin
+  flavorType: Complex
+  description: flavor-complex-glubotoxin
+
+- type: flavor
   id: chocolateMilk
   flavorType: Complex
   description: flavor-complex-chocolate-milk
@@ -317,3 +327,8 @@
   id: voxIceCream
   flavorType: Complex
   description: flavor-complex-vox-ice-cream
+
+- type: flavor
+  id: sawianBlood
+  flavorType: Complex
+  description: flavor-complex-sawian-blood

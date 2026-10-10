@@ -180,6 +180,8 @@
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
   - type: Item
+    shape:
+    - 0,0,1,3
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Melee/tidebreaker.rsi
     slots:
@@ -237,3 +239,37 @@
       - belt
     - type: Contraband
       allowedJobs: [ Chaplain ]
+
+- type: entity
+  name: ares
+  parent: [ BaseSword, BaseSecurityContraband ]
+  id: SwordAres
+  description: The combat sword "Ares" is a mono-molecular-edged blade. This highly engineered sword is made for close-quarter combat, befitting the cramped nature of NanoTrasen's stations.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/ares.rsi
+  - type: MeleeWeapon
+    attackRate: 0.8
+    damage:
+      types:
+        Slash: 35
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Item
+    shape:
+    - 0,0,1,3
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Melee/ares.rsi
+    slots:
+    - suitStorage
+  - type: DisarmMalus
+    malus: 0.6
+  - type: SurgeryTool
+  - type: Scalpel
+    successRate: 0.6
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+  - type: StaticPrice
+    price: 1000
