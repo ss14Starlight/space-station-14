@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Removed a warp point aboard Manor's evac shuttle that would allow wizards to teleport to Central Command.
-    type: Remove
-  id: 408948
-  time: '2026-09-28T09:21:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6330
-- author: Caws
-  changes:
   - message: (CentComm G24) Cecil (sea salt).
     type: Add
   id: 408949
@@ -2883,4 +2876,11 @@ Entries:
   id: 409347
   time: '2026-10-10T17:48:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6564
+- author: Conflee
+  changes:
+  - message: Added the Gorlex Marauder communication channel. All Nukie headsets now come with a Gorlex Encryption Key that has access to Traitor and Gorlex comms channels. The new Gorlex channel is not obfuscated, allowing Nukie teams to once again coordinate on comms and tell who the fuck is talking.
+    type: Add
+  id: 409348
+  time: '2026-10-10T18:12:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6610
 Order: -1
