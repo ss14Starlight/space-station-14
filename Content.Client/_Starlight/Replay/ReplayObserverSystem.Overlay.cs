@@ -118,7 +118,8 @@ public sealed partial class ReplayObserverSystem
                 userId,
                 connected,
                 true,
-                null);
+                null,
+                jobProto?.ID);
         }
 
         _admin.SetPlayerList(players.Values);

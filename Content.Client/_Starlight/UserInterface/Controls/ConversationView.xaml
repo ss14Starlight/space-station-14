@@ -1,0 +1,17 @@
+<BoxContainer xmlns="https://spacestation14.io"
+              Orientation="Vertical"
+              HorizontalExpand="True"
+              VerticalExpand="True">
+    <LineEdit Name="SearchLineEdit"
+              Margin="0 0 0 4"
+              PlaceHolder="{Loc 'conversation-search-placeholder'}" />
+    <PanelContainer StyleClasses="InsetPanel" VerticalExpand="True">
+        <OutputPanel Name="Output" Margin="4" />
+    </PanelContainer>
+    <RichTextLabel Name="TypingLabel" Margin="0 2" />
+    <BoxContainer Name="InputRow" Orientation="Horizontal" Margin="0 4 0 0">
+        <BoxContainer Name="InputPrefixContainer" Access="Public" Orientation="Horizontal" Margin="0 0 4 0" />
+        <HistoryLineEdit Name="InputLineEdit" HorizontalExpand="True" PlaceHolder="{Loc 'conversation-input-placeholder'}" />
+        <Button Name="SendButton" Text="{Loc 'conversation-send'}" StyleClasses="OpenLeft" />
+    </BoxContainer>
+</BoxContainer>

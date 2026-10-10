@@ -249,3 +249,28 @@
       prob: 0.02
     - id: ChemistryBottleLaughter
       prob: 0.01
+
+# Chemistry / Medical
+- type: entityTable
+  id: LockerFillMedicineJugs
+  table: !type:AllSelector
+    children:
+    - id: Jug
+      amount: 24
+    - id: ClothingEyesGlassesChemical
+    - id: HandLabeler
+
+- type: entity
+  parent: LockerChemistry
+  id: LockerMedicineJugsFilled
+  name: medicine jug locker
+  description: A locker pre-filled with jugs. Chemists rejoice!
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillMedicineJugs
+  - type: AccessReader
+    access: [ [ "Medical" ] ]

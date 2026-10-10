@@ -42,8 +42,8 @@
       - Meat
   - type: SolutionManager
     solutions:
-    - SolutionOrganNutriment
-    - SolutionOrganFoodGreyMatter
+    - SolutionOrganBrain
+    - SolutionOrganFoodNeuralPrion
   - type: FlavorProfile
     flavors:
       - people

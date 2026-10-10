@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Text;
+using Content.Client._Starlight.Administration;
 using Content.Client.Administration.Managers;
 using Content.Client.Administration.UI.CustomControls;
 using Content.Client.UserInterface.Systems.Bwoink;
@@ -35,6 +36,13 @@ namespace Content.Client.Administration.UI.Bwoink
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
 
+            // Starlight-start
+            MoreActions.SetContent(MoreActionsMenu);
+            SettingsButton.SetContent(SettingsMenu);
+            AdminOnly.Orphan();
+            UpdateHeader();
+            // Starlight-end
+
             var newPlayerThreshold = 0;
             _cfg.OnValueChanged(CCVars.NewPlayerThreshold, (val) => { newPlayerThreshold = val; }, true);
 
@@ -52,9 +60,14 @@ namespace Content.Client.Administration.UI.Bwoink
             ChannelSelector.OnSelectionChanged += sel =>
             {
                 _currentPlayer = sel;
+                UpdateHeader(); // Starlight
                 SwitchToChannel(sel?.SessionId);
                 ChannelSelector.PlayerListContainer.DirtyList();
             };
+
+            // Starlight-start
+            ChannelSelector.OnListPopulated += RefreshCurrentPlayer;
+            // Starlight-end
 
             ChannelSelector.OverrideText += (info, text) =>
             {
@@ -156,7 +169,6 @@ namespace Content.Client.Administration.UI.Bwoink
                 return bch.LastMessage.CompareTo(ach.LastMessage);
             };
 
-
             Bans.OnPressed += _ =>
             {
                 if (_currentPlayer is not null)
@@ -194,17 +206,12 @@ namespace Content.Client.Administration.UI.Bwoink
                     _console.ExecuteCommand($"respawn \"{_currentPlayer.Username}\"");
             };
 
-            PopOut.OnPressed += _ =>
-            {
-                uiController.PopOut();
-            };
         }
 
         public void OnBwoink(NetUserId channel)
         {
             ChannelSelector.PopulateList();
         }
-
 
         public void SelectChannel(NetUserId channel)
         {
@@ -245,7 +252,45 @@ namespace Content.Client.Administration.UI.Bwoink
 
             Follow.Visible = _adminManager.CanCommand("follow");
             Follow.Disabled = !Follow.Visible || disabled;
+
+            // Starlight-start
+            MoreActions.Visible = Bans.Visible || Ban.Visible || Kick.Visible || Respawn.Visible;
+            MoreActions.Disabled = disabled;
+            // Starlight-end
         }
+
+        #region Starlight
+        private void RefreshCurrentPlayer()
+        {
+            if (_currentPlayer == null)
+                return;
+
+            _currentPlayer = ChannelSelector.PlayerInfo.FirstOrDefault(p => p.SessionId == _currentPlayer.SessionId)
+                ?? _currentPlayer;
+            UpdateHeader();
+            UpdateButtons();
+        }
+
+        private void UpdateHeader()
+        {
+            if (_currentPlayer is not { } player)
+            {
+                PlayerNameLabel.Text = Loc.GetString("bwoink-title-none-selected");
+                PlayerInfoLabel.Text = string.Empty;
+                JobIcon.Visible = false;
+                return;
+            }
+
+            JobIcon.Visible = player.TryGetJobIconTexture(out var jobIcon);
+            JobIcon.Texture = jobIcon;
+
+            PlayerNameLabel.Text = $"{player.CharacterName} · {player.Username}";
+            var playtime = player.OverallPlaytime != null ? player.PlaytimeString : Loc.GetString("generic-unknown-title");
+            PlayerInfoLabel.Text = string.IsNullOrEmpty(player.StartingJob)
+                ? $"{Loc.GetString("generic-playtime-title")}: {playtime}"
+                : $"{player.StartingJob} · {Loc.GetString("generic-playtime-title")}: {playtime}";
+        }
+        #endregion
 
         private string FormatTabTitle(ItemList.Item li, PlayerInfo? pl = default)
         {
@@ -283,10 +328,15 @@ namespace Content.Client.Administration.UI.Bwoink
             UpdateButtons();
 
             AHelpHelper.HideAllPanels();
+            EmptyLabel.Visible = ch == null; // Starlight-edit
             if (ch != null)
             {
                 var panel = AHelpHelper.EnsurePanel(ch.Value);
                 panel.Visible = true;
+                // Starlight-start
+                AdminOnly.Orphan();
+                panel.Conversation.InputPrefixContainer.AddChild(AdminOnly);
+                // Starlight-end
             }
         }
 
