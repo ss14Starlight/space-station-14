@@ -29,10 +29,9 @@
     sprite: _Starlight/Objects/Weapons/Guns/Battery/energy_sniper.rsi
     state: icon
   content:
-  - StorageImplanter
-  - ChameleonProjector
-  - WeaponPistolStechkin
-  - CameraBug
+  - ClothingBackpackERTSecurityLaserSniperFilled
+  - WeaponSniperEnergy
+  - CombatKnife
 
 - type: thiefBackpackSet
   id: ERTLoadoutSecBallisticRifle
