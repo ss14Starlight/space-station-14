@@ -39,12 +39,6 @@ public sealed partial class UITab : Control
             themeEntries.Add(new OptionDropDownCVar<string>.ValueOption(gear.ID, Loc.GetString(gear.Name)));
         }
 
-        var styleThemeEntries = new List<OptionDropDownCVar<string>.ValueOption>();
-        foreach (var theme in _prototypeManager.EnumeratePrototypes<StyleThemePrototype>().OrderBy(t => t.Order))
-        {
-            styleThemeEntries.Add(new OptionDropDownCVar<string>.ValueOption(theme.ID, Loc.GetString(theme.Name)));
-        }
-
         var layoutEntries = new List<OptionDropDownCVar<string>.ValueOption>();
         foreach (var layout in Enum.GetValues(typeof(ScreenType)))
         {
@@ -75,12 +69,27 @@ public sealed partial class UITab : Control
 
         SightsOptionsHash.OnTextChanged += OnTextChanged;
 
-        Control.AddOptionDropDown(StarlightCCVars.StyleTheme, DropDownStyleTheme, styleThemeEntries);
-        Control.AddOptionCheckBox(StarlightCCVars.StyleCustomAccent, StyleCustomAccentCheckBox);
-        Control.AddOptionColorSlider(StarlightCCVars.StyleAccent, StyleAccentSlider);
+        Control.AddOption(new OptionStyleThemeCVar(Control, _cfg, ThemePicker));
+        Control.AddOption(new OptionAccentCVar(Control, _cfg, AccentPicker));
+        Control.AddOption(new OptionCustomAccentCVar(Control, _cfg, AccentPicker));
         Control.AddOptionDropDown(CVars.InterfaceTheme, DropDownHudTheme, themeEntries);
         Control.AddOptionDropDown(CCVars.UILayout, DropDownHudLayout, layoutEntries);
         Control.AddOptionSlider(StarlightCCVars.ChatSeparatedMinWidth, SeparatedChatWidthSlider, 300, 580);
+        Control.AddOptionPercentSlider(CCVars.ChatWindowOpacity, ChatWindowOpacitySlider);
+        Control.AddOptionDropDown(
+            CVars.DisplayUIScale,
+            DropDownUIScale,
+            [
+                new OptionDropDownCVar<float>.ValueOption(
+                    0f,
+                    Loc.GetString("ui-options-scale-auto", ("scale", UserInterfaceManager.DefaultUIScale))),
+                new OptionDropDownCVar<float>.ValueOption(0.75f, Loc.GetString("ui-options-scale-75")),
+                new OptionDropDownCVar<float>.ValueOption(1.00f, Loc.GetString("ui-options-scale-100")),
+                new OptionDropDownCVar<float>.ValueOption(1.25f, Loc.GetString("ui-options-scale-125")),
+                new OptionDropDownCVar<float>.ValueOption(1.50f, Loc.GetString("ui-options-scale-150")),
+                new OptionDropDownCVar<float>.ValueOption(1.75f, Loc.GetString("ui-options-scale-175")),
+                new OptionDropDownCVar<float>.ValueOption(2.00f, Loc.GetString("ui-options-scale-200")),
+            ]);
         Control.AddOptionDropDown(StarlightCCVars.RangedSight, DropDownRangedSight, rangedSights);
         Control.AddOptionDropDown(StarlightCCVars.MeleeSight, DropDownMeleeSight, meleeSights);
         Control.AddOptionSlider(StarlightCCVars.RangedSightScale, RangedSightScaleSlider, 10, 100);

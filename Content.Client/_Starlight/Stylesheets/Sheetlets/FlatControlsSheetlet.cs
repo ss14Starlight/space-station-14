@@ -85,6 +85,10 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
                 .Prop(TabContainer.StylePropertyTabFontColorInactive, proto.TextMuted),
 
             E<PanelContainer>()
+                .Class(StarlightStyleClass.SpritePreview)
+                .Panel(FlatBox.Bordered(Color.FromHex("#1B1B1F"), proto.Border)),
+
+            E<PanelContainer>()
                 .Class(StarlightStyleClass.InsetPanel)
                 .Panel(FlatBox.Bordered(proto.Surface, proto.Border)),
 

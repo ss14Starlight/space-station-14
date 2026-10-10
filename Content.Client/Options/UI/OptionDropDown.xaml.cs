@@ -18,4 +18,19 @@ public sealed partial class OptionDropDown : Control
         get => NameLabel.Text;
         set => NameLabel.Text = value;
     }
+
+    #region Starlight
+    /// <summary>
+    /// A short explanation shown under the title.
+    /// </summary>
+    public string? Description
+    {
+        get => DescriptionLabel.Text;
+        set
+        {
+            DescriptionLabel.Text = value;
+            DescriptionLabel.Visible = !string.IsNullOrEmpty(value);
+        }
+    }
+    #endregion
 }

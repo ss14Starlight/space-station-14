@@ -3,35 +3,52 @@
          xmlns:ui="clr-namespace:Content.Client.Options.UI">
     <BoxContainer Orientation="Vertical">
         <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
-            <BoxContainer Orientation="Vertical" Margin="8">
-                <!-- Starlight BEGIN -->
-                <Label Text="{Loc 'ui-options-admin-ghost'}" StyleClasses="LabelKeyText"/>
-                <BoxContainer Orientation="Horizontal">
-	                <Label ToolTip="{Loc 'ui-options-admin-ghost-script-tooltip'}" Text="{Loc 'ui-options-admin-ghost-script-label'}"/>
-	                <LineEdit ToolTip="{Loc 'ui-options-admin-ghost-script-tooltip'}" Name="AghostScriptName" HorizontalExpand="True"></LineEdit>
-                </BoxContainer>
-                <Label Text="{Loc 'ui-options-admin-ghost-hud'}" StyleClasses="LabelKeyText"/>
-                <ui:OptionDropDown Name="DropDownAGhostJobIconSetting" Title="{Loc 'ui-options-admin-ghost-hud-setting-job'}" />
-                <ui:OptionDropDown Name="DropDownAGhostHealthIconSetting" Title="{Loc 'ui-options-admin-ghost-hud-setting-health'}" />
-                <CheckBox Name="EnableAGhostCriminalRecordIcons" Text="{Loc 'ui-options-admin-ghost-hud-show-criminal-record-icons'}" />
-                <CheckBox Name="EnableAGhostFactionIcons" Text="{Loc 'ui-options-admin-ghost-hud-show-faction-icons'}" />
-                <CheckBox Name="EnableAGhostSatiationIcons" Text="{Loc 'ui-options-admin-ghost-hud-show-satiation-icons'}" />
-                <!-- Starlight END -->
-                <Label Text="{Loc 'ui-options-admin-player-panel'}"
-                       StyleClasses="LabelKeyText"/>
-                <ui:OptionDropDown Name="DropDownPlayerTabSymbolSetting" Title="{Loc 'ui-options-admin-player-tab-symbol-setting'}" />
-                <ui:OptionDropDown Name="DropDownPlayerTabRoleSetting" Title="{Loc 'ui-options-admin-player-tab-role-setting'}" />
-                <ui:OptionDropDown Name="DropDownPlayerTabColorSetting" Title="{Loc 'ui-options-admin-player-tab-color-setting'}" />
-                <Label Text="{Loc 'ui-options-admin-overlay-title'}"
-                       StyleClasses="LabelKeyText"/>
-                <ui:OptionDropDown Name="DropDownOverlayAntagFormat" Title="{Loc 'ui-options-admin-overlay-antag-format'}" />
-                <ui:OptionDropDown Name="DropDownOverlayAntagSymbol" Title="{Loc 'ui-options-admin-overlay-antag-symbol'}" />
-                <CheckBox Name="EnableOverlayPlaytimeCheckBox" Text="{Loc 'ui-options-admin-enable-overlay-playtime'}" />
-                <CheckBox Name="EnableOverlayStartingJobCheckBox" Text="{Loc 'ui-options-admin-enable-overlay-starting-job'}" />
-                <ui:OptionSlider Name="OverlayMergeDistanceSlider"  Title="{Loc 'ui-options-admin-overlay-merge-distance'}"/>
-                <ui:OptionSlider Name="OverlayGhostFadeSlider"  Title="{Loc 'ui-options-admin-overlay-ghost-fade-distance'}"/>
-                <ui:OptionSlider Name="OverlayGhostHideSlider"  Title="{Loc 'ui-options-admin-overlay-ghost-hide-distance'}"/>
+            <!-- Starlight-start -->
+            <BoxContainer Orientation="Vertical" Margin="0 0 8 8">
+                <Label Text="{Loc 'ui-options-admin-ghost'}" StyleClasses="LabelKeyText" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
+                    <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
+                        <BoxContainer Orientation="Horizontal">
+                            <Label ToolTip="{Loc 'ui-options-admin-ghost-script-tooltip'}" Text="{Loc 'ui-options-admin-ghost-script-label'}" HorizontalExpand="True" VerticalAlignment="Center" />
+                            <LineEdit ToolTip="{Loc 'ui-options-admin-ghost-script-tooltip'}" Name="AghostScriptName" MinWidth="240" />
+                        </BoxContainer>
+                    </BoxContainer>
+                </PanelContainer>
+
+                <Label Text="{Loc 'ui-options-admin-ghost-hud'}" StyleClasses="LabelKeyText" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
+                    <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
+                        <ui:OptionDropDown Name="DropDownAGhostJobIconSetting" Title="{Loc 'ui-options-admin-ghost-hud-setting-job'}" />
+                        <ui:OptionDropDown Name="DropDownAGhostHealthIconSetting" Title="{Loc 'ui-options-admin-ghost-hud-setting-health'}" />
+                        <CheckBox Name="EnableAGhostCriminalRecordIcons" Text="{Loc 'ui-options-admin-ghost-hud-show-criminal-record-icons'}" />
+                        <CheckBox Name="EnableAGhostFactionIcons" Text="{Loc 'ui-options-admin-ghost-hud-show-faction-icons'}" />
+                        <CheckBox Name="EnableAGhostSatiationIcons" Text="{Loc 'ui-options-admin-ghost-hud-show-satiation-icons'}" />
+                    </BoxContainer>
+                </PanelContainer>
+
+                <Label Text="{Loc 'ui-options-admin-player-panel'}" StyleClasses="LabelKeyText" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
+                    <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
+                        <ui:OptionDropDown Name="DropDownPlayerTabSymbolSetting" Title="{Loc 'ui-options-admin-player-tab-symbol-setting'}" />
+                        <ui:OptionDropDown Name="DropDownPlayerTabRoleSetting" Title="{Loc 'ui-options-admin-player-tab-role-setting'}" />
+                        <ui:OptionDropDown Name="DropDownPlayerTabColorSetting" Title="{Loc 'ui-options-admin-player-tab-color-setting'}" />
+                    </BoxContainer>
+                </PanelContainer>
+
+                <Label Text="{Loc 'ui-options-admin-overlay-title'}" StyleClasses="LabelKeyText" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel">
+                    <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
+                        <ui:OptionDropDown Name="DropDownOverlayAntagFormat" Title="{Loc 'ui-options-admin-overlay-antag-format'}" />
+                        <ui:OptionDropDown Name="DropDownOverlayAntagSymbol" Title="{Loc 'ui-options-admin-overlay-antag-symbol'}" />
+                        <CheckBox Name="EnableOverlayPlaytimeCheckBox" Text="{Loc 'ui-options-admin-enable-overlay-playtime'}" />
+                        <CheckBox Name="EnableOverlayStartingJobCheckBox" Text="{Loc 'ui-options-admin-enable-overlay-starting-job'}" />
+                        <ui:OptionSlider Name="OverlayMergeDistanceSlider" Title="{Loc 'ui-options-admin-overlay-merge-distance'}" />
+                        <ui:OptionSlider Name="OverlayGhostFadeSlider" Title="{Loc 'ui-options-admin-overlay-ghost-fade-distance'}" />
+                        <ui:OptionSlider Name="OverlayGhostHideSlider" Title="{Loc 'ui-options-admin-overlay-ghost-hide-distance'}" />
+                    </BoxContainer>
+                </PanelContainer>
             </BoxContainer>
+			<!-- Starlight-end -->
         </ScrollContainer>
         <ui:OptionsTabControlRow Name="Control" Access="Public" />
     </BoxContainer>
