@@ -5,9 +5,6 @@ namespace Content.Server.Power.EntitySystems;
 
 public sealed partial class ActivatableUIRequiresPowerSystem
 {
-    private partial bool HasPowerCellFallback(EntityUid uid, ActivatableUIRequiresPowerComponent component)
-    {
-        return component.AllowPowerCellFallback &&
-                HasComp<ActivatableUIRequiresPowerCellComponent>(uid);
-    }
+    private partial bool HasPowerCellFallback(EntityUid uid, ActivatableUIRequiresPowerComponent component) =>
+        component.AllowPowerCellFallback && HasComp<ActivatableUIRequiresPowerCellComponent>(uid);
 }
