@@ -1,0 +1,6 @@
+- type: entity
+  parent: AccessOverider
+  id: AccessOveriderRecharging
+  suffix: Limited, recharging
+  components:
+  - type: AutoRecharge
