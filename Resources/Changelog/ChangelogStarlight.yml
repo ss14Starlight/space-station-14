@@ -1,25 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: You can no longer change internals while unconscious.
-    type: Fix
-  id: 408943
-  time: '2026-09-27T19:09:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6116
-- author: anytap, Feasel Easel
-  changes:
-  - message: Added Science SOP.
-    type: Add
-  id: 408944
-  time: '2026-09-27T19:37:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6339
-- author: Caws
-  changes:
-  - message: (Orwell) Assistant Managers no long roundstart in the Conference Room (that they can't get out of).
-    type: Fix
-  id: 408945
-  time: '2026-09-28T08:56:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6322
 - author: RedSpeeds
   changes:
   - message: Fixed A error related to vent critters spawning.
@@ -2883,4 +2862,25 @@ Entries:
   id: 409342
   time: '2026-10-10T16:56:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6583
+- author: Rinary
+  changes:
+  - message: Changed and modernized admin help UI, now it won't have a lot of buttons in row, added job icon of player, added typing indicator, added search.
+    type: Tweak
+  id: 409343
+  time: '2026-10-10T17:16:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6609
+- author: Rinary
+  changes:
+  - message: Changed and modernized mentor help.
+    type: Tweak
+  id: 409344
+  time: '2026-10-10T17:16:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6609
+- author: Rinary
+  changes:
+  - message: Changed separated chatbox, now it has smaller amount of buttons and some of not popular buttons hidden under dialog(... button).
+    type: Tweak
+  id: 409345
+  time: '2026-10-10T17:16:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6609
 Order: -1
