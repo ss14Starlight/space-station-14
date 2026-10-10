@@ -1,0 +1,40 @@
+# .50 -> 12 gauge
+- type: !PartialOnly entity
+  id: BoxBeanbag
+  name: box of 12 gauge beanbag slugs
+  description: A cardboard box of 12 gauge shotgun shells. Intended to hold less-than-lethal beanbag ammunition.
+
+- type: !PartialOnly entity
+  id: BoxLethalshot
+  name: box of 12 gauge buckshot
+  description: A cardboard box of 12 gauge shotgun shells. Intended to hold general-purpose kinetic ammunition.
+
+- type: !PartialOnly entity
+  id: BoxShotgunSlug
+  name: box of 12 gauge slugs
+  description: A cardboard box of 12 gauge shotgun shells. Intended to hold long-ranged slug ammunition.
+
+- type: !PartialOnly entity
+  id: BoxShotgunFlare
+  name: box of 12 gauge flares
+  description: A cardboard box of 12 gauge shotgun shells. Intended to hold illuminating flare ammunition.
+
+- type: !PartialOnly entity
+  id: BoxShotgunIncendiary
+  name: box of 12 gauge incendiary buckshot
+  description: A cardboard box of 12 gauge shotgun shells. Intended to hold self-igniting incendiary ammunition.
+
+- type: !PartialOnly entity
+  id: BoxShotgunUranium
+  name: box of 12 gauge uranium buckshot
+  description: A cardboard box of 12 gauge shotgun shells. Intended to hold exotic uranium-core ammunition.
+
+- type: !PartialOnly entity
+  id: BoxShotgunPractice
+  name: box of 12 gauge blanks
+  description: A cardboard box of 12 gauge shotgun shells. Intended to hold harmless practice ammunition.
+
+- type: !PartialOnly entity
+  id: BoxShellTranquilizer
+  name: box of 12 gauge tranquilizer slugs
+  description: A cardboard box of 12 gauge shotgun shells. Intended to hold nonlethal tranquilizer ammunition.

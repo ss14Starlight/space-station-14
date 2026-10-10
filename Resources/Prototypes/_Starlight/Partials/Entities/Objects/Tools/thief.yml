@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: ToolboxThief
+  name: undetermined toolbox
+  description: This is where your favorite tools lie. Try to remember which ones.
+
+- type: !PartialOnly entity
+  id: SatchelThief
+  name: undetermined tools satchel
+  description: This is where your favorite tools lie. Folded for your convenience.

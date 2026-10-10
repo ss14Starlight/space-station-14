@@ -1,5 +1,6 @@
 ﻿using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Station.Systems;
 using Content.Shared._Starlight.Zones;
 using Content.Shared.Atmos;
 using Content.Shared.Pinpointer;
@@ -56,6 +57,13 @@ public sealed partial class ZoneSystem
     [SubscribeLocalEvent]
     private void OnMapInit(Entity<ZoneGridComponent> ent, ref MapInitEvent args)
         => QueueFullRebuild(ent);
+
+    [SubscribeLocalEvent]
+    private void OnStationGridAdded(StationGridAddedEvent args)
+    {
+        if (_mapGridQuery.HasComp(args.GridId))
+            EnsureComp<ZoneGridComponent>(args.GridId);
+    }
 
     [SubscribeLocalEvent]
     private void OnAirtightChanged(ref AirtightChanged args)

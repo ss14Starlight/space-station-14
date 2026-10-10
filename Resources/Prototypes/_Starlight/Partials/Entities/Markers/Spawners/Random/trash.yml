@@ -1,0 +1,12 @@
+- type: !PartialOnly entityTable
+  id: GenericTrashItems
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      !CombineIndex:0 children:
+      - id: FoodPacketRiceBarTrash
+      - id: FoodPacketCheeseBoxTrash
+      - id: FoodPacketHardCandyTrash
+      - id: FoodFrozenPopsicleNicotineTrashStick
+      - id: FoodFrozenPopsicleOrangeTrash
+      - id: FoodFrozenPopsicleJumboTrash

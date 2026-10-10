@@ -1,0 +1,3 @@
+- type: !PartialOnly entity
+  id: BoxFolderNuclearCodes
+  suffix: Random

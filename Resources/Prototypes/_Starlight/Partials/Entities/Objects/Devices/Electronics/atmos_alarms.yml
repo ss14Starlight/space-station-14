@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: AirAlarmElectronics
+  components:
+  - type: Tag
+    tags:
+    - RamChip # FH
+
+- type: !PartialOnly entity
+  id: FireAlarmElectronics
+  components:
+  - type: Tag
+    tags:
+    - RamChip # FH

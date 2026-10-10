@@ -15,6 +15,12 @@
   id: AdminSpawnedPlayer # Signifies that this player entity was spawned via the "Spawn here" admin verb.
 
 - type: Tag
+  id: AnimalCube
+
+- type: Tag
+  id: AnimalCubeBox
+
+- type: Tag
   id: AnomalyCoreShadow
 
 - type: Tag
@@ -177,6 +183,9 @@
   id: ClownKudzu
 
 - type: Tag
+  id: Citrus # Artifact citrus trigger
+
+- type: Tag
   id: CluwneBeastWearable
 
 - type: Tag
@@ -249,6 +258,9 @@
   id: DrinkCarton
 
 - type: Tag
+  id: DrinkMetamorphic
+
+- type: Tag
   id: DurandArmor
 
 - type: Tag
@@ -319,6 +331,9 @@
 
 - type: Tag
   id: FlatpackBlacklist
+
+- type: Tag
+  id: FloppyDisk # Artifact floppy storage trigger
 
 - type: Tag
   id: GearAcidifier
@@ -468,6 +483,18 @@
   id: MagazineBattery
 
 - type: Tag
+  id: MagazineBoltPistol
+
+- type: Tag
+  id: MagazineBoltRifle
+
+- type: Tag
+  id: MagazineBoxBoltRifle
+
+- type: Tag
+  id: CartridgeImpactBolt
+
+- type: Tag
   id: MagazineL10DMR
 
 - type: Tag
@@ -593,6 +620,9 @@
 
 - type: Tag
   id: Nexus
+
+- type: Tag
+  id: NonAnimalCube
 
 - type: Tag
   id: NonLethalMech # Used to allow nonlethal mech equipment on a mech.
@@ -759,6 +789,9 @@
   id: StoveMachineBoard
 
 - type: Tag
+  id: StutterImmune
+
+- type: Tag
   id: SurgeryCompatibleArmor
 
 - type: Tag
@@ -805,6 +838,9 @@
 
 - type: Tag
   id: Wizard
+
+- type: Tag
+  id: WrappedCube
 
 - type: Tag
   id: RawXenoMeat #BountySalvageRawXenoMeat
