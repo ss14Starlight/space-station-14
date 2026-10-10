@@ -72,3 +72,29 @@
               type: [ Cyclorite ]
           reagent: DevilJuice
           amount: 0.25
+
+- type: reagent
+  id: NeuralPrion
+  name: reagent-name-neuralprion
+  group: Toxins
+  desc: reagent-desc-neuralprion
+  physicalDesc: reagent-physical-desc-neural
+  contrabandSeverity: Major
+  color: "#EE35FF"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.07 # Delayed metabolism for poison to last longer
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1.4 # Low damage per metabolism, high damage per unit.
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: NeuralPrion
+          min: 0.25
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: NeuralPrion
+        amount: 0.015
