@@ -76,6 +76,11 @@
   text: reagent-name-opporozidone
 
 - type: quickPhrase
+  id: ChemMortizolPhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-mortizol
+
+- type: quickPhrase
   id: ChemChronexalinePhrase
   parent: BaseMedicinePhrase
   text: reagent-name-chronexaline

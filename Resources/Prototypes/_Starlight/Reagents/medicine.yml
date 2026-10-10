@@ -372,3 +372,100 @@
           type: [ Cyclorite ]
         reagent: Respirazone
         amount: -0.5
+
+- type: reagent
+  id: Mortizol # name is a combination of Rigor Mortis and Cortizol ^w^
+  name: reagent-name-mortizol
+  group: Medicine
+  desc: reagent-desc-mortizol
+  physicalDesc: reagent-physical-desc-thick
+  flavor: death
+  color: "#1b0330"
+  worksOnTheDead: true
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 2.5 # fast metabolism, get that player revived! (cryopod limits its speed)
+      effects:
+        - !type:ReduceRotting
+          seconds: 150 # 60 seconds per unit, 10 minutes per 10u
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+          - !type:MobStateCondition
+            mobstate: Dead
+        - !type:HealthChange
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+          - !type:MobStateCondition
+            mobstate: Dead
+          damage:
+            types:
+              Heat: 3.75  # 1.5 damage per unit, 15 damage per 10u
+              Shock: 3.75  # 1.5 damage per unit, 15 damage per 10u
+              Caustic: 7.5  # 3 damage per unit, 30 damage per 10u
+              Radiation: 17.5 # 7 damage per unit, 70 damage per 10u. Synergy with Chronexaline
+              Cellular: -4.5 # 1.8 healed per unit. This equals 1/2 of the Cell Rot DPS, per 1 unit
+        - !type:AdjustReagent
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
+          reagent: Mortizol
+          amount: -2.5
+
+- type: reagent
+  id: CoatedBruizine
+  name: reagent-name-coated-bruizine
+  group: Medicine
+  desc: reagent-desc-coated-bruizine
+  physicalDesc: reagent-physical-desc-coated-bruizine
+  flavor: metallic
+  color: "#bc3a46" # mix between #364266 and #ff3636
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1.5
+      - !type:AdjustReagent
+        reagent: Bruizine
+        amount: 0.5
+ 
+- type: reagent
+  id: CoatedPuncturase
+  name: reagent-name-coated-puncturase
+  group: Medicine
+  desc: reagent-desc-coated-puncturase
+  physicalDesc: reagent-physical-desc-coated-puncturase
+  flavor: metallic
+  color: "#8d9584" # mix between #364266 and #b9bf93
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1.5
+      - !type:AdjustReagent
+        reagent: Puncturase
+        amount: 0.5
+ 
+- type: reagent
+  id: CoatedLacerinol
+  name: reagent-name-coated-lacerinol
+  group: Medicine
+  desc: reagent-desc-coated-lacerinol
+  physicalDesc: reagent-physical-desc-coated-lacerinol
+  flavor: metallic
+  color: "#2d3843" # mix between #364266 and #283332
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1.5
+      - !type:AdjustReagent
+        reagent: Lacerinol
+        amount: 0.5

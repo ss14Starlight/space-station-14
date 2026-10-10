@@ -381,6 +381,20 @@
         Quantity: 120
 
 - type: entity
+  suffix: mortizol
+  parent: LargeBeaker
+  id: MortizolBeakerLarge
+  components:
+  - type: Label
+    currentLabel: reagent-name-mortizol
+  - type: Solution
+    id: beaker
+    solution:
+      reagents:
+      - ReagentId: Mortizol
+        Quantity: 120
+
+- type: entity
   parent: Jug
   id: JugLacer
   suffix: lacer

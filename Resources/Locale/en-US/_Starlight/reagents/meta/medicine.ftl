@@ -24,3 +24,16 @@ reagent-desc-iceialin = Cool to the touch, a chem that can restore the temperatu
 
 reagent-name-respirazone = respirazone
 reagent-desc-respirazone = Used in the treatment of severe respiratory distress and blood loss. Unlike conventional oxygenation medicines, it is compatible with a wide variety of species.
+
+reagent-name-mortizol = mortizol
+reagent-desc-mortizol = A strange concoction of some of the most potent medicines. Looking at it reminds you of Death. Heals rotting in dead patients, at a cost.
+
+reagent-name-coated-bruizine = coated bruizine
+reagent-desc-coated-bruizine = It's Bruizine coated in Silicon. Can be used for advanced recipes.
+
+reagent-name-coated-puncturase = coated puncturase
+reagent-desc-coated-puncturase = It's Puncturase coated in Silicon. Can be used for advanced recipes.
+
+reagent-name-coated-lacerinol = coated lacerinol
+reagent-desc-coated-lacerinol = It's Lacerinol coated in Silicon. Can be used for advanced recipes.
+

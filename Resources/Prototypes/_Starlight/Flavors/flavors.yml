@@ -9,6 +9,11 @@
   description: flavor-complex-dragan-special
 
 - type: flavor
+  id: death
+  flavorType: Complex
+  description: flavor-complex-death
+
+- type: flavor
   id: evil
   flavorType: Base
   description: flavor-basic-evil
