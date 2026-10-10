@@ -197,7 +197,7 @@ public sealed partial class BatteryWeaponFireModesSystem : EntitySystem
         // Starlight-end
     }
 
-    # region Starlight
+    #region Starlight
 
     [SubscribeLocalEvent]
     private void OnMapInit(Entity<BatteryWeaponFireModesComponent> ent, ref MapInitEvent args)
