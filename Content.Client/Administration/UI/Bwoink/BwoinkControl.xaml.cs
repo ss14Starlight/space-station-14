@@ -65,6 +65,10 @@ namespace Content.Client.Administration.UI.Bwoink
                 ChannelSelector.PlayerListContainer.DirtyList();
             };
 
+            // Starlight-start
+            ChannelSelector.OnListPopulated += RefreshCurrentPlayer;
+            // Starlight-end
+
             ChannelSelector.OverrideText += (info, text) =>
             {
                 var sb = new StringBuilder();
@@ -256,6 +260,17 @@ namespace Content.Client.Administration.UI.Bwoink
         }
 
         #region Starlight
+        private void RefreshCurrentPlayer()
+        {
+            if (_currentPlayer == null)
+                return;
+
+            _currentPlayer = ChannelSelector.PlayerInfo.FirstOrDefault(p => p.SessionId == _currentPlayer.SessionId)
+                ?? _currentPlayer;
+            UpdateHeader();
+            UpdateButtons();
+        }
+
         private void UpdateHeader()
         {
             if (_currentPlayer is not { } player)

@@ -50,6 +50,13 @@ public sealed partial class PlayerListControl : BoxContainer
 
     public event Action<PlayerInfo?>? OnSelectionChanged;
 
+    #region Starlight
+    /// <summary>
+    /// Raised after the list is refreshed with new player data. Starlight.
+    /// </summary>
+    public event Action? OnListPopulated;
+    #endregion
+
     private void PlayerListNoItemSelected()
     {
         _selectedPlayer = null;
@@ -133,10 +140,13 @@ public sealed partial class PlayerListControl : BoxContainer
             }
         }
 
-        if (_selectedPlayer != null && !_playerList.Contains(_selectedPlayer))
-            _selectedPlayer = null;
+        // Starlight-start
+        if (_selectedPlayer != null)
+            _selectedPlayer = _playerList.FirstOrDefault(p => p.SessionId == _selectedPlayer.SessionId);
+        // Starlight-end
 
         FilterList();
+        OnListPopulated?.Invoke(); // Starlight
     }
 
 
