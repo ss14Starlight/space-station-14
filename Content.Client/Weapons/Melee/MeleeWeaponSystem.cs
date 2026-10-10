@@ -304,7 +304,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     private void ClientHeavyAttack(EntityUid user, EntityCoordinates coordinates, EntityUid meleeUid, MeleeWeaponComponent component)
     {
         // Only run on first prediction to avoid the potential raycast entities changing.
-        if (!Timing.IsFirstTimePredicted)
+        if (!Timing.IsFirstTimePredicted) // Starlight edit
             return;
 
         // Starlight - Mech wideswing handling
@@ -314,21 +314,20 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
         var targetMap = TransformSystem.ToMapCoordinates(coordinates);
 
-        if (targetMap.MapId != originXform.MapID)
+        if (targetMap.MapId != originXform.MapID) // Starlight edit
             return;
 
-        var originPos = TransformSystem.GetWorldPosition(originXform);
-        var direction = targetMap.Position - originPos;
+        var originPos = TransformSystem.GetWorldPosition(originXform); // Starlight edit
+        var direction = targetMap.Position - originPos; // Starlight edit
         var distance = MathF.Min(component.Range, direction.Length());
 
         // This should really be improved. GetEntitiesInArc uses pos instead of bounding boxes.
         // Server will validate it with InRangeUnobstructed.
-        var entities = GetNetEntitySet(ArcRayCast(originPos, direction.ToWorldAngle(), component.Angle, distance, originXform.MapID, originUid));
-        entities.Remove(GetNetEntity(user));
+        var entities = GetNetEntitySet(ArcRayCast(originPos, direction.ToWorldAngle(), component.Angle, distance, originXform.MapID, originUid)); // Starlight edit
+        entities.Remove(GetNetEntity(user)); // Starlight edit
         entities = entities.Take(Math.Min(MaxTargets, entities.Count)).ToHashSet();
         RaisePredictiveEvent(new HeavyAttackEvent(GetNetEntity(meleeUid), entities, GetNetCoordinates(coordinates)));
     }
-
 
     private void ClientDisarm(EntityUid attacker, MapCoordinates mousePos, EntityCoordinates coordinates)
     {
