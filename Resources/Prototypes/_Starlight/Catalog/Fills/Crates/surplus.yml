@@ -255,7 +255,7 @@
       weight: 1
     - id: FoolboxFilled
       weight: .5
-    - id: MagicCrayon
+    - id: CrayonMagic
       weight: 1
     - id: MegaSprayBottle
       weight: 1
@@ -263,7 +263,7 @@
       weight: 1
     - id: WeaponSprayNozzle
       weight: 1
-    - id: SuperSynth
+    - id: SuperSynthesizerInstrument
       weight: 1
     - id: CrateRadioHostVinyls
       weight: 1
