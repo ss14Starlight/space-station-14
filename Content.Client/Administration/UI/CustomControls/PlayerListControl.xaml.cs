@@ -141,12 +141,18 @@ public sealed partial class PlayerListControl : BoxContainer
         }
 
         // Starlight-start
+        var selectionLost = false;
         if (_selectedPlayer != null)
+        {
             _selectedPlayer = _playerList.FirstOrDefault(p => p.SessionId == _selectedPlayer.SessionId);
-        // Starlight-end
+            selectionLost = _selectedPlayer == null;
+        }
 
         FilterList();
-        OnListPopulated?.Invoke(); // Starlight
+        if (selectionLost)
+            OnSelectionChanged?.Invoke(null);
+        OnListPopulated?.Invoke();
+        // Starlight-end
     }
 
 

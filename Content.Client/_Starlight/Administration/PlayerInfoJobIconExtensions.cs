@@ -9,12 +9,12 @@ namespace Content.Client._Starlight.Administration;
 /// <summary>
 /// Helper class for retrieving the job icon texture for a given player.
 /// </summary>
-public static class PlayerJobIcon
+public static class PlayerInfoJobIconExtensions
 {
     /// <summary>
     /// Attempts to retrieve the job icon texture for a given player info. Returns true if successful, false otherwise.
     /// </summary>
-    public static bool TryGetTexture(PlayerInfo info, [NotNullWhen(true)] out Texture? texture)
+    public static bool TryGetJobIconTexture(this PlayerInfo info, [NotNullWhen(true)] out Texture? texture)
     {
         texture = null;
         if (info.JobId is not { } jobId)

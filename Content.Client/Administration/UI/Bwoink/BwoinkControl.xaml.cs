@@ -281,7 +281,7 @@ namespace Content.Client.Administration.UI.Bwoink
                 return;
             }
 
-            JobIcon.Visible = PlayerJobIcon.TryGetTexture(player, out var jobIcon);
+            JobIcon.Visible = player.TryGetJobIconTexture(out var jobIcon);
             JobIcon.Texture = jobIcon;
 
             PlayerNameLabel.Text = $"{player.CharacterName} · {player.Username}";

@@ -44,7 +44,7 @@ public sealed partial class PlayerListEntry : BoxContainer
         UpdatePinButtonTexture(info.IsPinned);
 
         // Starlight-start
-        JobIcon.Visible = PlayerJobIcon.TryGetTexture(info, out var jobIcon);
+        JobIcon.Visible = info.TryGetJobIconTexture(out var jobIcon);
         JobIcon.Texture = jobIcon;
         // Starlight-end
     }
