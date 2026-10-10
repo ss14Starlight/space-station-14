@@ -2,10 +2,16 @@
   id: !type:CreateVariants
     values: &protos
     - GasVentPumpFreezer
+    - GasVentPumpFreezerAlt1
+    - GasVentPumpFreezerAlt2
+    - GasVentPumpFreezerAlt3
+    - GasVentPumpFreezerAlt4
     - GasVentScrubberFreezer
+    - GasVentScrubberFreezerAlt1
+    - GasVentScrubberFreezerAlt2
+    - GasVentScrubberFreezerAlt3
+    - GasVentScrubberFreezerAlt4
   components:
     - type: SandboxCopyOverride
       override: !type:CreateVariants
         values: *protos
-
-

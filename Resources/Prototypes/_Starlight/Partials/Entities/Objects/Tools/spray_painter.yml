@@ -1,0 +1,18 @@
+- type: !PartialOnly entity
+  id: SprayPainter
+  components:
+  - type: SprayPainter
+    colorPalette:
+      # new colors
+      purple: '#AA7DCEFF'
+      pink: '#E49AB0FF'
+      light yellow: '#F2E94EFF'
+      light green: '#C4FFB2FF'
+      # new colors for standard pipes
+      buying: '#DAB73AFF' # buying gas from ATS
+      selling: '#3FA43FFF' # selling gas to ATS
+      cold: '#087CA7FF'
+      hot: '#EF6F6CFF'
+      frezon: '#05B2DCFF'
+      ammonia: '#426B69FF'
+      tritium: '#8DE969FF'

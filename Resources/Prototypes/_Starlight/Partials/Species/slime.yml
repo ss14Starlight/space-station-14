@@ -1,0 +1,11 @@
+- type: !PartialOnly speciesBaseSprites
+  id: MobSlimeSprites
+  sprites:
+    Snout: MobHumanoidAnyMarking
+
+- type: !PartialOnly markingPoints
+  id: MobSlimeMarkingLimits
+  points:
+    Snout:
+      points: 1
+      required: false

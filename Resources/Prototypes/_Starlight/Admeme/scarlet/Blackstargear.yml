@@ -18,80 +18,6 @@
     - Hybrid
     - MoffDemonBiological
 
-# Blackstar Combat Suit
-- type: entity
-  parent: [ClothingOuterBaseLarge, BaseMajorContraband]
-  id: ClothingOuterHardsuitBlackstar
-  name: Blackstar 'Warlord' combat suit
-  description: A heavily armored combat suit issued to elite Dreadwalker operatives of the Blackstar mercenary group. Built to survive anything the frontier can throw at it.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Admeme/Scarlet/wardlord.rsi
-  - type: Clothing
-    sprite: _Starlight/Admeme/Scarlet/wardlord.rsi
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
-  - type: StaminaResistance
-    damageCoefficient: 0.75
-  - type: Pierceable
-    level: Metal
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.5
-        Radiation: 0.5
-        Caustic: 0.5
-    staminaModifier: 0.3
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: HeldSpeedModifier
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepHeavy
-      params:
-        volume: -6
-        variation: 0.09
-  - type: AllowSuitStorage
-  - type: Tag
-    tags:
-    - MonkeyWearable
-    - WhitelistChameleon
-    - CorgiWearable
-    - ScurretWearable
-    - FootstepSound
-
-# Blackstar Mercenary Helmet
-- type: entity
-  parent: [ClothingHeadHelmetArmoredBase, BaseMajorContraband]
-  id: ClothingHeadHelmetBlackstar
-  name: Blackstar mercenary helmet
-  description: A reinforced combat helmet issued to Dreadwalker operatives of the Blackstar mercenary group. Offers superior protection over standard mercenary gear.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Admeme/Scarlet/Blackmerc.rsi
-  - type: Clothing
-    sprite: _Starlight/Admeme/Scarlet/Blackmerc.rsi
-  - type: Pierceable
-    level: Metal
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.85
-        Heat: 0.85
-        Radiation: 0.85
-        Caustic: 0.85
-  - type: ExplosionResistance
-    damageCoefficient: 0.7
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
-
 # =============================================
 # Blackstar Rank Clothing (PLACEHOLDER SPRITES)
 # All sprites marked for replacement later.
@@ -158,15 +84,71 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHeadHelmetArmoredBase, BaseMajorContraband]
+  parent: ClothingHeadHelmetBlackstarAssault
   id: ClothingHeadHelmetBlackstarLegate
   name: Legate helmet
   description: A helmet issued to Legate officers of the Blackstar Legion.
+
+# Blackstar heavy assault kit. Combat protection and movement retained from the retired kit.
+- type: entity
+  parent: [ClothingOuterBaseLarge, BaseMajorContraband]
+  id: ClothingOuterArmorBlackstarAssault
+  name: Blackstar assault armor
+  description: A heavy combat suit with a ribbed breastplate and articulated guards over brown padded fatigues. Issued to Blackstar Dreadwalkers.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Scarlet/Blackmerc.rsi
+    sprite: _Starlight/Admeme/Scarlet/blackstar_assault/armor.rsi
   - type: Clothing
-    sprite: _Starlight/Admeme/Scarlet/Blackmerc.rsi
+    sprite: _Starlight/Admeme/Scarlet/blackstar_assault/armor.rsi
+  - type: Item
+    sprite: _Starlight/Admeme/Scarlet/blackstar_assault/armor.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+    staminaModifier: 0.3
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHeavy
+      params:
+        volume: -6
+        variation: 0.09
+  - type: AllowSuitStorage
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - WhitelistChameleon
+    - CorgiWearable
+    - ScurretWearable
+    - FootstepSound
+
+- type: entity
+  parent: [ClothingHeadHelmetArmoredBase, BaseMajorContraband]
+  id: ClothingHeadHelmetBlackstarAssault
+  name: Blackstar assault helmet
+  description: A reinforced black combat helmet with a low brow and armored neck guard, built to fit over a Blackstar assault respirator.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Scarlet/blackstar_assault/helmet.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Scarlet/blackstar_assault/helmet.rsi
+  - type: Item
+    sprite: _Starlight/Admeme/Scarlet/blackstar_assault/helmet.rsi
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -183,3 +165,111 @@
   - type: HideLayerClothing
     layers:
       Hair: HEAD
+
+# A fixed respirator: explicit layered clothing visuals do not support pull-down prefixes.
+- type: entity
+  parent: [ClothingMaskBase, BaseMajorContraband]
+  id: ClothingMaskGasBlackstarAssault
+  name: Blackstar assault gas mask
+  description: An armored respirator with a central filter and two crimson optical lenses that remain visible in darkness. Can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Scarlet/blackstar_assault/mask.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Admeme/Scarlet/blackstar_assault/mask.rsi
+    clothingVisuals:
+      mask:
+      - sprite: _Starlight/Admeme/Scarlet/blackstar_assault/mask.rsi
+        state: equipped-MASK
+      - sprite: _Starlight/Admeme/Scarlet/blackstar_assault/mask.rsi
+        state: equipped-MASK-unshaded
+        shader: unshaded
+  - type: Item
+    sprite: Clothing/Mask/swat.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+  - type: HideLayerClothing
+    layers:
+      Hair: Mask
+      Snout: Mask
+      HeadTop: Mask
+      HeadSide: Mask
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.95
+
+- type: entity
+  parent: [ClothingUniformBase, BaseMajorContraband]
+  id: ClothingUniformJumpsuitBlackstarAssault
+  name: Blackstar padded combat fatigues
+  description: Brown quilted combat fatigues designed to cushion the joints and plates of Blackstar assault armor.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Scarlet/blackstar_assault/uniform.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Scarlet/blackstar_assault/uniform.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+        state: inhand-left
+        color: "#6c5039"
+      right:
+      - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+        state: inhand-right
+        color: "#6c5039"
+
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseMajorContraband]
+  id: ClothingBackpackRadioBlackstar
+  name: Blackstar radio pack
+  description: A matte black field telephone pack with brown straps, a side handset and a long antenna, issued to Blackstar assault troops.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Scarlet/blackstar_assault/backpack.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Scarlet/blackstar_assault/backpack.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      - sprite: _Starlight/Clothing/Back/rtp.rsi
+        state: inhand-left
+        color: "#3f3f3f"
+      right:
+      - sprite: _Starlight/Clothing/Back/rtp.rsi
+        state: inhand-right
+        color: "#3f3f3f"
+  - type: UserInterface
+    interfaces:
+      enum.HolopadUiKey.InteractionWindow:
+        type: HolopadBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: Telephone
+    transmissionRange: Unlimited
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
+    ringTone: /Audio/_Starlight/Machines/telephone_ring.ogg
+    listeningRange: 0
+  - type: Holopad
+  - type: ActivatableUI
+    key: enum.HolopadUiKey.InteractionWindow
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: PhoneSpeak
+  - type: Appearance

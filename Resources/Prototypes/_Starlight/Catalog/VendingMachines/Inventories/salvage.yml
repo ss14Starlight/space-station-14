@@ -297,10 +297,30 @@
   - !type:BuyerAccessCondition
 
 - type: listing
+  id: VendorSalvageWeaponBoltRifle
+  productEntity: WeaponRifleBolt
+  cost:
+    SalvageTicket: 1500
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorSalvageWeaponSPKA
   productEntity: WeaponSPKA
   cost:
     SalvageTicket: 200
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageWeaponBoltPistol
+  productEntity: WeaponPistolBolt
+  cost:
+    SalvageTicket: 750
   categories:
   - SalvageWeapons
   conditions:
@@ -478,6 +498,26 @@
     - !type:BuyerAccessCondition
 
 
+- type: listing
+  id: VendorSalvageMagazineBoltRifle
+  productEntity: MagazineBoltRifle
+  cost:
+    SalvageTicket: 250
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageMagazineBoltPistol
+  productEntity: MagazineBoltPistol
+  cost:
+    SalvageTicket: 150
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
+
 #Merc Stuff
 - type: listing
   id: VendorSalvageClothingHeadHatBeretSalvageMercPurple
@@ -649,5 +689,3 @@
     - SalvageCybernetics
   conditions:
     - !type:BuyerAccessCondition
-
-
