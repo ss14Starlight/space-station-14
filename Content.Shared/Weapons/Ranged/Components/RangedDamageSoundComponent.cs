@@ -2,7 +2,7 @@ using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Weapons.Ranged.Components;
+namespace Content.Shared.Weapons.Ranged.Components;
 
 /// <summary>
 /// Plays the specified sound upon receiving damage of that type.

@@ -48,6 +48,21 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<bool> RangedSightRotation =
         CVarDef.Create("ui.ranged_sight_rotation", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    public static readonly CVarDef<int> HeldItemShowMode =
+        CVarDef.Create("ui.held_item_show_mode", (int) Content.Shared._Starlight.CCVar.HeldItemShowMode.Always, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> SightShowBoltIndicator =
+        CVarDef.Create("ui.sight_show_bolt_indicator", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Whether a gauge of the held gun's heat is drawn next to the sight.
+    /// </summary>
+    public static readonly CVarDef<bool> SightShowHeatIndicator =
+        CVarDef.Create("ui.sight_show_heat_indicator", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> SightShowJamIndicator =
+        CVarDef.Create("ui.sight_show_jam_indicator", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     public static readonly CVarDef<bool> MeleeSightRotation =
         CVarDef.Create("ui.melee_sight_rotation", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
@@ -81,4 +96,12 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<bool> AdminGhostHudShowSatiationIcons =
         CVarDef.Create("ui.admin_ghost_satiation_icons", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+}
+
+public enum HeldItemShowMode
+{
+    Always = 0,
+    CombatModeOnly = 1,
+    OutsideCombatModeOnly = 2,
+    Never = 3,
 }
