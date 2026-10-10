@@ -88,6 +88,31 @@
             "name": "equipped-HELMET-monkey",
             "copyright": "monkey/kobold state modified from coscult base by DocMoth",
             "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-dog",
+            "copyright": "Made by Swonki",
+            "directions": 4
+        },
+        {
+            "name": "equipped-HELMET-dog",
+            "copyright": "Made by Swonki",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-light-monkey",
+            "copyright": "Made by .rhapsody (Discord)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-light-scurret",
+            "copyright": "Made by .rhapsody (Discord)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-light-dog",
+            "copyright": "Made by .rhapsody (Discord)",
+            "directions": 4
         }
     ]
 }
