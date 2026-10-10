@@ -27,7 +27,7 @@ public sealed partial class PollenAdvancedPollenComponent : Component
     public float SpeedWalkModifier = 1.1f;
 
     [DataField]
-    public float SpeedSprintModifier = 1.2f;
+    public float SpeedSprintModifier = 1.1f;
 
     [DataField]
     public TimeSpan SpeedBuffDuration = TimeSpan.FromSeconds(5);
