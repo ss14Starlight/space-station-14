@@ -5,6 +5,7 @@ using Content.Shared._Starlight.CosmicCult;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.Audio;
 using Robust.Shared.Audio;
@@ -24,7 +25,7 @@ public sealed partial class CosmicGlyphSystem : EntitySystem
     [Dependency] private SharedCosmicCultSystem _cosmicCult = default!;
 
     private readonly HashSet<Entity<CosmicCultComponent>> _cultists = [];
-    private readonly HashSet<Entity<HumanoidAppearanceComponent>> _humanoids = [];
+    private readonly HashSet<EntityUid> _convertibles = [];
 
     public override void Initialize()
     {
@@ -90,20 +91,26 @@ public sealed partial class CosmicGlyphSystem : EntitySystem
     }
 
     /// <summary>
-    ///     Gets all the humanoids near a glyph.
+    ///     Gets all convertible entities near a glyph; humanoids, plus non-humanoids
+    ///     explicitly marked with <see cref="CosmicCultConvertibleComponent"/>.
     /// </summary>
     /// <param name="uid">The glyph.</param>
     /// <param name="range">Radius for a lookup.</param>
     /// <param name="exclude">Filter to exclude from return.</param>
-    public HashSet<Entity<HumanoidAppearanceComponent>> GetTargetsNearGlyph(EntityUid uid, float range, Predicate<Entity<HumanoidAppearanceComponent>>? exclude = null)
+    public HashSet<EntityUid> GetTargetsNearGlyph(EntityUid uid, float range, Predicate<EntityUid>? exclude = null)
     {
-        _humanoids.Clear();
-        _lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(Transform(uid).Coordinates, range, _humanoids);
+        _convertibles.Clear();
+        foreach (var entity in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, range))
+        {
+            if (!HasComp<HumanoidAppearanceComponent>(entity) && !_cosmicCult.IsConvertible(entity))
+                continue;
+            _convertibles.Add(entity);
+        }
         if (exclude != null)
-            _humanoids.RemoveWhere(exclude);
-        _humanoids.RemoveWhere(target => HasComp<CosmicBlankComponent>(target) || HasComp<CosmicLapseComponent>(target)); // We never want these.
+            _convertibles.RemoveWhere(exclude);
+        _convertibles.RemoveWhere(target => HasComp<CosmicBlankComponent>(target) || HasComp<CosmicLapseComponent>(target)); // We never want these.
 
-        return _humanoids;
+        return _convertibles;
     }
     #endregion
 }

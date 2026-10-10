@@ -1,4 +1,4 @@
-cosmicability-generic-fail = Your influence fails to take hold..
+cosmicability-generic-fail = Your influence fails to take hold...
 
 cosmicability-glare-confirm = Press again to activate Null Glare.
 

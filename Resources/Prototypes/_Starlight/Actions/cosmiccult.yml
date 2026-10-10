@@ -14,6 +14,7 @@
     whitelist:
       components:
       - HumanoidAppearance
+      - CosmicCultConvertible
     blacklist:
       components:
       - CosmicCult
@@ -38,6 +39,7 @@
     whitelist:
       components:
       - HumanoidAppearance
+      - CosmicCultConvertible
     blacklist:
       components:
       - CosmicCult
@@ -99,7 +101,7 @@
 
 - type: entity
   id: ActionCosmicLapse
-  name: Abberant Lapse
+  name: Aberrant Lapse
   description: Lapse your target's corporeal form, temporarily rendering it immutable, impassible, and frozen in place.
   components:
   - type: Action
@@ -114,6 +116,7 @@
     whitelist:
       components:
       - HumanoidAppearance
+      - CosmicCultConvertible
     blacklist:
       components:
       - BibleUser

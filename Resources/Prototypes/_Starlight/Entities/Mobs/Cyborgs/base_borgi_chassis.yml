@@ -4,6 +4,8 @@
   save: false
   abstract: true
   components:
+    - type: CosmicCultConvertible
+      convertible: false
     - type: RandomMetadata
       nameSegments:
       - NamesBorgi
