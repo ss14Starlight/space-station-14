@@ -99,8 +99,5 @@ public sealed partial class StylesheetManager
     }
 
     private void ApplyHudSheet(UIScreen? screen)
-    {
-        if (screen != null)
-            screen.Stylesheet = _hudSheet;
-    }
+        => screen?.Stylesheet = _hudSheet;
 }

@@ -100,7 +100,7 @@ public sealed class StyleTheme
     }
 
     private static ColorPalette StatusPalette(StyleThemePrototype proto, Color color)
-        => new ColorPalette(
+        => new(
             Base: color,
             LightnessShift: 0f,
             ChromaShift: 0f,

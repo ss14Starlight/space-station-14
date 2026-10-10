@@ -52,25 +52,19 @@ public sealed class FlatWindowSheetlet : Sheetlet<NanotrasenStylesheet>
     }
 
     private static StyleRule[] ChromeButton(string styleClass, Color normal, Color hovered)
-    {
-        return
+        =>
         [
             E<TextureButton>().Class(styleClass).PseudoNormal().Modulate(normal),
             E<TextureButton>().Class(styleClass).PseudoHovered().Modulate(hovered),
             E<TextureButton>().Class(styleClass).PseudoPressed().Modulate(hovered.WithAlpha(0.7f)),
         ];
-    }
 
     private static StyleRule Panel(string styleClass, StyleBox box)
-    {
-        return E().Class(styleClass).Prop(PanelContainer.StylePropertyPanel, box).Modulate(Color.White);
-    }
+        => E().Class(styleClass).Prop(PanelContainer.StylePropertyPanel, box).Modulate(Color.White);
 
     private static StyleBoxFlat BackgroundBox(Color color, Color border)
-    {
-        return FlatBox.Bordered(color, border)
+        => FlatBox.Bordered(color, border)
             .WithPadding(StyleBox.Margin.All, 1)
             .WithContentMargin(StyleBox.Margin.Vertical, 2)
             .WithContentMargin(StyleBox.Margin.Horizontal, 14);
-    }
 }

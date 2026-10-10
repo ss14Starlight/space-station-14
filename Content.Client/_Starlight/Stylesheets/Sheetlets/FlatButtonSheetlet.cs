@@ -37,15 +37,11 @@ public sealed class FlatButtonSheetlet : Sheetlet<NanotrasenStylesheet>
     }
 
     private StyleBox Box(StyleThemeBox? decor, float horizontalMargin)
-    {
-        return ThemeBox.Or(decor, ResCache, FlatBox.Fill(Color.White))
+        => ThemeBox.Or(decor, ResCache, FlatBox.Fill(Color.White))
             .WithPadding(StyleBox.Margin.All, 1)
             .WithContentMargin(StyleBox.Margin.Vertical, 2)
             .WithContentMargin(StyleBox.Margin.Horizontal, horizontalMargin);
-    }
 
     private static MutableSelectorElement CButton()
-    {
-        return E<ContainerButton>().Class(ContainerButton.StyleClassButton);
-    }
+        => E<ContainerButton>().Class(ContainerButton.StyleClassButton);
 }
