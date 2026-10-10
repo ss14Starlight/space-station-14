@@ -162,29 +162,42 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
         }
 
-        // 🌟Starlight🌟 — in dual-wield mode, TryGetGun already picks the correct alternating gun;
-        // skip the gun-ID match check so the server fires the right gun even when the client's
-        // NextIsLeft state hasn't synced back yet.
+        // Starlight-start
         var isDualWield = TryComp<DualWieldComponent>(user.Value, out var dualWield) && dualWield.Active;
         if (!isDualWield && gun.Owner != GetEntity(msg.Gun))
             return;
 
-        if (TryComp(user, out VentCrawlerComponent? crawlerComp) //🌟Starlight🌟
+        if (TryComp(user, out VentCrawlerComponent? crawlerComp)
             && crawlerComp.InTube == true)
             return;
 
-        gun.Comp.ShootCoordinates = GetCoordinates(msg.Coordinates);
-        gun.Comp.Target = GetEntity(msg.Target);
-        var fired = AttemptShoot(user.Value, gun);
+        if (!gun.Comp.BurstActivated)
+        {
+            gun.Comp.ShootCoordinates = GetCoordinates(msg.Coordinates);
+            gun.Comp.Target = GetEntity(msg.Target);
+        }
+
+        bool fired;
+        _shotTick = GetBurstShotTick(gun.Comp) ?? GetRequestTick(msg.Tick);
+
+        try
+        {
+            fired = AttemptShoot(user.Value, gun);
+        }
+        finally
+        {
+            _shotTick = null;
+        }
+
         if (msg.Continuous)
             gun.Comp.ShotCounter = 0;
 
-        // 🌟Starlight🌟 — dual-wield: only alternate after an actual shot so both guns stay in sync
         if (isDualWield && fired)
         {
             dualWield!.NextIsLeft = !dualWield.NextIsLeft;
             Dirty(user.Value, dualWield);
         }
+        // Starlight-end
     }
 
     private void OnStopShootRequest(RequestStopShootEvent ev, EntitySessionEventArgs args)
@@ -278,8 +291,13 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
 
         ent.Comp.ShotCounter = 0;
-        ent.Comp.ShootCoordinates = null;
-        ent.Comp.Target = null;
+        // Starlight-start
+        if (!ent.Comp.BurstActivated)
+        {
+            ent.Comp.ShootCoordinates = null;
+            ent.Comp.Target = null;
+        }
+        // Starlight-end
         DirtyField(ent.AsNullable(), nameof(GunComponent.ShotCounter));
     }
 
@@ -397,8 +415,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             {
                 PopupSystem.PopupClient(attemptEv.Message, gun, user);
             }
-            gun.Comp.BurstActivated = false;
-            gun.Comp.BurstShotsCount = 0;
+            SetBurst(gun, false, 0); // Starlight-edit
             gun.Comp.NextFire = TimeSpan.FromSeconds(Math.Max(lastFire.TotalSeconds + SafetyNextFire, gun.Comp.NextFire.TotalSeconds));
             return false;
         }
@@ -426,8 +443,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             var emptyGunShotEvent = new OnEmptyGunShotEvent(user);
             RaiseLocalEvent(gun, ref emptyGunShotEvent);
 
-            gun.Comp.BurstActivated = false;
-            gun.Comp.BurstShotsCount = 0;
+            SetBurst(gun, false, 0); // Starlight-edit
             gun.Comp.NextFire += TimeSpan.FromSeconds(gun.Comp.BurstCooldown);
 
             // Play empty gun sounds if relevant
@@ -446,24 +462,29 @@ public abstract partial class SharedGunSystem : EntitySystem
             return false;
         }
 
-        //Starlight start
+        // Starlight-start
         var NonEmptyGunShotEvent = new OnNonEmptyGunShotEvent(user, ev.Ammo);
         RaiseLocalEvent(gun, ref NonEmptyGunShotEvent);
-        //starlight end
 
         // Handle burstfire
-        if (gun.Comp.SelectedMode == SelectiveFire.Burst)
+        if (gun.Comp.SelectedMode == SelectiveFire.Burst || gun.Comp.BurstActivated)
         {
-            gun.Comp.BurstActivated = true;
-        }
-        if (gun.Comp.BurstActivated)
-        {
-            gun.Comp.BurstShotsCount += shots;
-            if (gun.Comp.BurstShotsCount >= gun.Comp.ShotsPerBurstModified)
+            var burstShots = gun.Comp.BurstShotsCount + shots;
+
+            if (!gun.Comp.BurstActivated)
+            {
+                gun.Comp.BurstTick = ShotTick;
+                DirtyField(gun.AsNullable(), nameof(GunComponent.BurstTick));
+            }
+
+            if (burstShots >= gun.Comp.ShotsPerBurstModified)
             {
                 gun.Comp.NextFire += TimeSpan.FromSeconds(gun.Comp.BurstCooldown);
-                gun.Comp.BurstActivated = false;
-                gun.Comp.BurstShotsCount = 0;
+                SetBurst(gun, false, 0);
+            }
+            else
+            {
+                SetBurst(gun, true, burstShots);
             }
         }
 
@@ -472,7 +493,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         var shotEv = new GunShotEvent(user, ev.Ammo);
         RaiseLocalEvent(gun, ref shotEv);
 
-        //Starlight begin | ES Screenshake
+        // ES Screenshake
         if (fired)
         {
             var gunShakeRotation = new ScreenshakeParameters()
@@ -483,7 +504,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             };
             _shake.Screenshake(user, null, gunShakeRotation);
         }
-        //Starlight end
+        // Starlight-end
 
         if (!userImpulse || !TryComp<PhysicsComponent>(user, out var userPhysics))
             return true;
@@ -587,18 +608,25 @@ public abstract partial class SharedGunSystem : EntitySystem
             return Angle.Zero;
 
         var theta = GetNextShotTheta(gun.Comp, curTime ?? Timing.CurTime);
-        return new Angle(theta * GetMovementSpreadModifier((gun, gun.Comp)));
+        return new Angle(ApplyMovementSpread((gun, gun.Comp), theta));
     }
 
     /// <summary>
-    /// Advances <see cref="GunComponent.CurrentAngle"/> for a shot fired now and returns it.
+    /// Fires a shot now: returns the spread this shot uses, then adds the shot's own recoil to
+    /// <see cref="GunComponent.CurrentAngle"/> for the shots after it.
     /// Must only be called when the gun actually fires.
     /// </summary>
     public Angle UpdateCurrentAngle(Entity<GunComponent> gun, TimeSpan? curTime = null)
     {
-        gun.Comp.CurrentAngle = new Angle(GetNextShotTheta(gun.Comp, curTime ?? Timing.CurTime));
+        var shot = GetNextShotTheta(gun.Comp, curTime ?? Timing.CurTime);
+
+        gun.Comp.CurrentAngle = new Angle(MathHelper.Clamp(
+            shot + gun.Comp.AngleIncreaseModified.Theta,
+            gun.Comp.MinAngleModified.Theta,
+            gun.Comp.MaxAngleModified.Theta));
         DirtyField(gun.AsNullable(), nameof(GunComponent.CurrentAngle));
-        return gun.Comp.CurrentAngle;
+
+        return new Angle(shot);
     }
 
     private static double GetNextShotTheta(GunComponent comp, TimeSpan curTime)
@@ -607,7 +635,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         // Recoil only starts decaying once the gun could fire again.
         var timeSinceLastFire = Math.Max(0, (curTime - comp.LastFire).TotalSeconds);
         return MathHelper.Clamp(
-            comp.CurrentAngle.Theta + comp.AngleIncreaseModified.Theta - (comp.AngleDecayModified.Theta * timeSinceLastFire),
+            comp.CurrentAngle.Theta - (comp.AngleDecayModified.Theta * timeSinceLastFire),
             comp.MinAngleModified.Theta,
             comp.MaxAngleModified.Theta);
     }
@@ -625,9 +653,21 @@ public abstract partial class SharedGunSystem : EntitySystem
         return 1f + (mover.Sprinting ? gun.Comp.SprintSpreadModifier : gun.Comp.WalkSpreadModifier);
     }
 
+    /// <summary>
+    /// Applies the movement penalty to a spread.
+    /// </summary>
+    private double ApplyMovementSpread(Entity<GunComponent> gun, double theta)
+    {
+        var modifier = GetMovementSpreadModifier(gun);
+        if (modifier <= 1f)
+            return theta;
+
+        return Math.Max(theta, gun.Comp.MovingMinAngle.Theta) * modifier;
+    }
+
     public Angle GetRecoilAngle(Entity<GunComponent> gun, Angle direction, TimeSpan? curTime = null)
     {
-        var spread = UpdateCurrentAngle(gun, curTime).Theta * GetMovementSpreadModifier(gun);
+        var spread = ApplyMovementSpread(gun, UpdateCurrentAngle(gun, curTime).Theta);
 
         // Convert it so angle can go either side.
 #pragma warning disable CS0618
@@ -635,6 +675,47 @@ public abstract partial class SharedGunSystem : EntitySystem
 #pragma warning restore CS0618
         return new Angle(direction.Theta + (spread * random));
     }
+
+    private void SetBurst(Entity<GunComponent> gun, bool activated, int shotsCount)
+    {
+        if (gun.Comp.BurstActivated != activated)
+        {
+            gun.Comp.BurstActivated = activated;
+            DirtyField(gun.AsNullable(), nameof(GunComponent.BurstActivated));
+        }
+
+        if (gun.Comp.BurstShotsCount != shotsCount)
+        {
+            gun.Comp.BurstShotsCount = shotsCount;
+            DirtyField(gun.AsNullable(), nameof(GunComponent.BurstShotsCount));
+        }
+    }
+
+    /// <summary>
+    ///   Continues a burst fire if the gun is still aimed at the same target. If not, stops the burst.
+    /// </summary>
+    public bool ContinueBurst(EntityUid user, Entity<GunComponent> gun)
+    {
+        if (gun.Comp.ShootCoordinates == null)
+        {
+            SetBurst(gun, false, 0);
+            return false;
+        }
+
+        var previous = _shotTick;
+        _shotTick = GetBurstShotTick(gun.Comp) ?? previous;
+        try
+        {
+            return AttemptShoot(user, gun);
+        }
+        finally
+        {
+            _shotTick = previous;
+        }
+    }
+
+    protected static readonly AudioParams EjectSoundParams =
+        AudioParams.Default.WithVariation(SharedContentAudioSystem.DefaultVariation).WithVolume(-1f);
 
     public bool IsChamberClosed(EntityUid gunEntity)
         => Appearance.TryGetData(gunEntity, AmmoVisuals.BoltClosed, out bool boltClosed) && boltClosed;
@@ -646,7 +727,8 @@ public abstract partial class SharedGunSystem : EntitySystem
     protected void EjectCartridge(
         EntityUid entity,
         Angle? angle = null,
-        bool playSound = true)
+        bool playSound = true,
+        EntityUid? user = null) // Starlight-edit: predicted the sound
     {
         // TODO: Sound limit version.
         var offsetPos = Random.NextVector2(EjectOffset);
@@ -668,7 +750,12 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
         if (playSound && TryComp<CartridgeAmmoComponent>(entity, out var cartridge))
         {
-            Audio.PlayPvs(cartridge.EjectSound, entity, AudioParams.Default.WithVariation(SharedContentAudioSystem.DefaultVariation).WithVolume(-1f));
+            // Starlight-edit: start
+            if (user != null)
+                Audio.PlayPredicted(cartridge.EjectSound, entity, user, EjectSoundParams);
+            else
+                Audio.PlayPvs(cartridge.EjectSound, entity, EjectSoundParams);
+            // Starlight-edit: end
         }
     }
 
@@ -833,6 +920,11 @@ public abstract partial class SharedGunSystem : EntitySystem
         /// Seed of the shot this trace belongs to, lets the shooter match it to its predicted trace.
         /// </summary>
         public int? PredictionSeed;
+
+        /// <summary>
+        /// Prototype of the hitscan, so the shooter can play the impact sound the server leaves to it.
+        /// </summary>
+        public string? Prototype;
         // Starlight-end
     }
 

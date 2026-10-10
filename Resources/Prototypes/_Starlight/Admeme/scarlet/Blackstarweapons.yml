@@ -33,3 +33,45 @@
     zeroVisible: true
   - type: SpeedModifiedOnWield
     walkModifier: 0.80
+
+# Blackstar MG42-inspired L6 variant. Weapon handling and .30 belt boxes are inherited.
+- type: entity
+  name: Blackstar MG-42
+  parent: WeaponLightMachineGunL6
+  id: WeaponLightMachineGunBlackstarMG42
+  suffix: Admeme
+  description: A Blackstar belt-fed machine gun with a long ventilated barrel jacket, a folded bipod, and dark wooden furniture. Feeds from standard .30 rifle belt boxes.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Scarlet/blackstar_mg42.rsi
+  - type: Item
+    sprite: _Starlight/Admeme/Scarlet/blackstar_mg42.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Scarlet/blackstar_mg42.rsi
+  - type: Contraband
+    severity: Major
+
+# Blackstar's StG 44 / Haenel MKb 42(H)-inspired primary rifle.
+#- type: entity
+#  name: Blackstar StG-44
+#  parent: WeaponRifleLecter
+#  id: WeaponRifleBlackstarSTG44
+#  suffix: Admeme
+#  description: A Blackstar assault rifle with dark wooden furniture, a raised gas tube, and a curved steel magazine. Fires in semi-automatic or fully automatic mode. Feeds from standard .20 rifle magazines.
+#  components:
+#  - type: Sprite
+#    sprite: _Starlight/Admeme/Scarlet/blackstar_stg44.rsi
+#  - type: Item
+#    sprite: _Starlight/Admeme/Scarlet/blackstar_stg44_inhands.rsi
+#  - type: Clothing
+#    sprite: _Starlight/Admeme/Scarlet/blackstar_stg44.rsi
+#  - type: MagazineVisuals
+#    # The steel magazine remains visible when empty and disappears when removed.
+#    magState: mag
+#    steps: 1
+#    zeroVisible: true
+#  - type: Contraband
+#    severity: Major
+#    allowedDepartments: []
+#    allowedJobs: []
+#Commented out the prototype for now til theres proper sprites for it. (i had issues making it and wanted to finish the PR in good time.)

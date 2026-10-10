@@ -24,10 +24,10 @@
   - type: Medibot
     treatments:
       Alive:
-        reagent: Omnizine
-        quantity: 10
+        reagent: Tricordrazine
+        quantity: 15
       Critical:
-        reagent: Omnizine
+        reagent: Epinephrine
         quantity: 10
   - type: EmaggableMedibot
     replacements:

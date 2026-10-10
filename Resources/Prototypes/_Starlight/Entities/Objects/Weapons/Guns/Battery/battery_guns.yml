@@ -291,6 +291,15 @@
     autoRechargeRate: 20
   - type: StealTarget
     stealGroup: BSOWeapon
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinAdvancedLaserReplacement
+  - type: FiringPinHolder
+    supportedPins: [ AdvancedLaser ]
 
 - type: entity
   name: MT-7 Magnum
