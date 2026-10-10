@@ -17,3 +17,10 @@
   id: SovietAdvertisementGlory
   files:
   - /Audio/_Starlight/Speaker/Mosin_Nagant_ad.ogg
+
+- type: soundCollection
+  id: BreachDecompression
+  files:
+  - /Audio/_Starlight/Effects/Weather/decompression1.ogg
+  - /Audio/_Starlight/Effects/Weather/decompression2.ogg
+  - /Audio/_Starlight/Effects/Weather/decompression3.ogg

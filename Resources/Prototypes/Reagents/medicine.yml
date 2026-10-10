@@ -1108,26 +1108,20 @@
   metabolisms:
     Bloodstream:
       effects:
-      # Starlight start, use mixmax instead
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MobStateCondition # no healing in crit so that dedicated single damage type meds can still have a niche.
           mobstate: Alive
         damage:
-          mixmax:
-            value: -0.75
-            groups:
-            - Burn
-            - Brute
-            types:
-            - Poison
-      - !type:AdjustReagent
+          Brute: -1
+          Burn: -1
+      - !type:HealthChange
         conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Cyclorite ]
-        reagent: Tricordrazine
-        amount: -0.5
-        # Starlight end
+        - !type:MobStateCondition
+          mobstate: Alive
+        damage:
+          types:
+            Poison: -0.5 # Same as what it was before the second coming of offmed
 
 - type: reagent
   id: Lipozine

@@ -1,0 +1,33 @@
+- type: !PartialOnly reagent
+  id: DoctorsDelight
+  metabolisms:
+    Digestion:
+      effects: !Clear
+      - !type:SatiateThirst
+        factor: 2
+      - !type:SatiateHunger
+        factor: -2
+      - !type:HealthChange
+        damage:
+          mixmax:
+            value: -0.5
+            groups:
+            - Burn
+            - Brute
+            - Airloss
+            - Genetic
+            types:
+            - Poison
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Alive
+        - !type:ReagentCondition
+          reagent: DoctorsDelight
+          max: 40
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 0.70
+        sprintSpeedModifier: 0.70
+        conditions:
+        - !type:ReagentCondition
+          reagent: DoctorsDelight
+          min: 35
