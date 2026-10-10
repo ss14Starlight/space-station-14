@@ -572,6 +572,9 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Animal, Avali, Experiment] # Starlight, add Avali
+        - !type:ReagentCondition # Starlight-Start prevent poisoning with Stelli Syrup
+          reagent: StellibininSyrup 
+          max: 0.04 # Starlight-End
         damage:
           types:
             Poison: 0.4
@@ -580,6 +583,9 @@
         conditions:
           - !type:MetabolizerTypeCondition
             type: [Animal, Avali, Experiment] # Starlight, add Avali
+          - !type:ReagentCondition # Starlight-Start prevent poisoning with Stelli Syrup
+            reagent: StellibininSyrup 
+            max: 0.04 # Starlight-End
       # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
