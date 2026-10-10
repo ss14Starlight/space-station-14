@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "github @sir-lutz",
+    "copyright": "discord @reisyn#3934",
     "size": {
         "x": 32,
         "y": 32
@@ -21,6 +21,9 @@
         },
         {
             "name": "bark_make_wood"
+        },
+        {
+            "name": "bark_harden"
         },
         {
             "name": "bark_bioreactor"

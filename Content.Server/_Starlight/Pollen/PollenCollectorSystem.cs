@@ -13,6 +13,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
 using Content.Shared._Starlight.Pollen;
+using Content.Server._Starlight.Scent.Systems;
 
 namespace Content.Server._Starlight.Pollen;
 
@@ -25,6 +26,8 @@ public sealed partial class PollenCollectorSystem : EntitySystem
     [Dependency] private BloodstreamSystem _bloodstream = default!;
     [Dependency] private PollenCatalogSystem _catalog = default!;
     [Dependency] private StoreSystem _store = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private ScentSystem _scent = default!;
 
     public static readonly ProtoId<CurrencyPrototype> PollenPointsCurrency = "PollenPoints";
 
@@ -78,13 +81,15 @@ public sealed partial class PollenCollectorSystem : EntitySystem
             if (collector.Collected >= collector.Pollen.Count)
                 continue;
 
-            var markerQuery = EntityQueryEnumerator<ScentMarkerComponent, TransformComponent>();
-            while (markerQuery.MoveNext(out _, out var marker, out var markerXform))
+            var nearby = _lookup.GetEntitiesInRange(collectorXform.Coordinates, collector.PollenRange);
+            var containerHere = _scent.GetAirtightContainer(collectorXform);
+
+            foreach (var candidate in nearby)
             {
-                if (!marker.IsPollen)
+                if (!TryComp<ScentMarkerComponent>(candidate, out var marker) || !marker.IsPollen)
                     continue;
 
-                if (!_transform.InRange(collectorXform.Coordinates, markerXform.Coordinates, collector.PollenRange))
+                if (marker.ContainedIn != containerHere)
                     continue;
 
                 if (!_random.Prob(collector.InteractionChance))

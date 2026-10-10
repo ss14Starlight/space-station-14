@@ -126,16 +126,16 @@ public abstract partial class SharedScentSystem : EntitySystem
         Actions.SetCooldown(ent.Comp.ToggleActionEntity, lockout);
     }
 
-    public void ForceAllergySneeze(Entity<SmellerComponent> ent, TimeSpan lockout)
+    public bool ForceAllergySneeze(Entity<SmellerComponent> ent, TimeSpan lockout)
     {
         if (MobState.IsDead(ent.Owner))
-            return;
+            return false;
 
         if (TryComp<ActionComponent>(ent.Comp.ToggleActionEntity, out var toggleAction) &&
             Actions.IsCooldownActive(toggleAction))
         {
             Actions.SetCooldown(ent.Comp.ToggleActionEntity, lockout);
-            return;
+            return false;
         }
 
         ClearTrackedScent(ent);
@@ -143,6 +143,7 @@ public abstract partial class SharedScentSystem : EntitySystem
 
         SetSniffing(ent, false);
         Actions.SetCooldown(ent.Comp.ToggleActionEntity, lockout);
+        return true;
     }
 
     /// <summary>

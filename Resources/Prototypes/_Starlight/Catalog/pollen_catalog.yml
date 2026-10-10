@@ -80,7 +80,7 @@
   id: PollenTreeBarkT2Harden
   name: pollen-bark-t2-name
   description: pollen-bark-t2-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: open_shop }
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: bark_harden }
   cost:
     PollenPoints: 3
   categories:

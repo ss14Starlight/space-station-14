@@ -173,11 +173,9 @@ public sealed partial class ScentSystem : SharedScentSystem
 
         var ownScentId = TryComp<ScentComponent>(target, out var targetScent) ? targetScent.ScentId : null;
 
-        if (HasComp<EmitPollenComponent>(target) &&
-            TryComp<ProduceComponent>(target, out var produce) &&
-            produce.PlantProtoId is { } plantId)
+        if (HasComp<EmitPollenComponent>(target) && GetPollenId(target) is { } pollenId)
         {
-            entries.Add(new ScentTraceEntry(plantId.ToString(), ScentFreshness.VeryFresh, Loc.GetString("scent-species-non-humanoid")));
+            entries.Add(new ScentTraceEntry(pollenId, ScentFreshness.VeryFresh, Loc.GetString("scent-species-non-humanoid")));
         }
 
         if (!_ui.TryOpenUi(uid, ScentSniffUiKey.Key, uid))
@@ -218,10 +216,13 @@ public sealed partial class ScentSystem : SharedScentSystem
     // Helper
     private string? GetPollenId(EntityUid uid)
     {
-        if (!TryComp<ProduceComponent>(uid, out var produce) || produce.PlantProtoId is not { } plantId)
-            return null;
+        if (TryComp<EmitPollenComponent>(uid, out var emit) && emit.PollenId is { } overrideId)
+            return overrideId;
 
-        return plantId.ToString();
+        if (TryComp<ProduceComponent>(uid, out var produce) && produce.PlantProtoId is { } plantId)
+            return plantId.ToString();
+
+        return null;
     }
 
     private void OnTrackMessage(EntityUid uid, SmellerComponent component, ScentSniffTrackMessage args)
@@ -544,7 +545,7 @@ public sealed partial class ScentSystem : SharedScentSystem
         if (IsHiddenVentCrawl(uid))
             return;
 
-        if (TryMergeIntoExisting(ent))
+        if (TryMergeIntoExisting(ent, scentId))
             return;
 
         var marker = SpawnAtPosition(ScentMarkerPrototype, xform.Coordinates);
@@ -614,16 +615,19 @@ public sealed partial class ScentSystem : SharedScentSystem
 
     // Only merges into our own chain tail, never any other nearby marker. Revisiting an old spot
     // would otherwise rewrite the trail's visit order.
-    private bool TryMergeIntoExisting(Entity<ScentComponent, TransformComponent> ent)
+    private bool TryMergeIntoExisting(Entity<ScentComponent, TransformComponent> ent, string scentId)
     {
         var (uid, scent, xform) = ent;
 
         if (scent.LastMarkerEntity is not { } tail ||
             !TryComp<ScentMarkerComponent>(tail, out var marker) ||
+            marker.ScentId != scentId ||
             !TryComp(tail, out TransformComponent? tailXform))
         {
             return false;
         }
+
+    // Keep the existing range check and merge logic below.
 
         if (!_transform.InRange(xform.Coordinates, tailXform.Coordinates, scent.MergeRadius))
             return false;
