@@ -1,0 +1,358 @@
+- type: styleTheme
+  id: Void
+  name: style-theme-void
+  order: 0
+  accent: "#D4D4D8"
+  background: "#0B0B0D"
+  surface: "#121215"
+  surfaceRaised: "#18181C"
+  element: "#222227"
+  elementHovered: "#2D2D33"
+  elementDisabled: "#17171A"
+  border: "#26262B"
+  text: "#E4E4E7"
+  textMuted: "#8E8E96"
+  textDisabled: "#55555C"
+  positive: "#3E9A5A"
+  negative: "#C24141"
+
+- type: styleTheme
+  id: Graphite
+  name: style-theme-graphite
+  order: 1
+  background: "#18181B"
+  surface: "#1F1F23"
+  surfaceRaised: "#26262B"
+  element: "#313137"
+  elementHovered: "#3C3C43"
+  elementDisabled: "#222226"
+  border: "#34343A"
+  text: "#ECECEF"
+  textMuted: "#9A9AA2"
+  textDisabled: "#5C5C64"
+  positive: "#45A463"
+  negative: "#C94848"
+
+- type: styleTheme
+  id: Paper
+  name: style-theme-paper
+  order: 2
+  light: true
+  hud: Void
+  background: "#F4F4F5"
+  surface: "#EAEAEC"
+  surfaceRaised: "#FAFAFA"
+  element: "#DCDCE0"
+  elementHovered: "#CFCFD4"
+  elementDisabled: "#EDEDEF"
+  border: "#C8C8CE"
+  text: "#18181B"
+  textMuted: "#5E5E66"
+  textDisabled: "#A1A1A8"
+  positive: "#2F7D46"
+  negative: "#B42F2F"
+
+- type: styleTheme
+  id: Classic
+  name: style-theme-classic
+  order: 3
+  stock: true
+
+- type: styleTheme
+  id: Abyss
+  name: style-theme-abyss
+  order: 10
+  accent: "#6FA8FF"
+  borderThickness: 2
+  background: "#0A1020"
+  surface: "#0F172A"
+  surfaceRaised: "#15203A"
+  element: "#1C2A4A"
+  elementHovered: "#253760"
+  elementDisabled: "#121A2E"
+  border: "#3B6FB6"
+  text: "#DCE6F5"
+  textMuted: "#8395B5"
+  textDisabled: "#4A5878"
+  positive: "#3E9A6A"
+  negative: "#C74A55"
+
+- type: styleTheme
+  id: Ribbon
+  name: style-theme-ribbon
+  order: 11
+  light: true
+  hud: Rosewood
+  accent: "#E0457B"
+  borderThickness: 2
+  window:
+    texture: /Textures/_Starlight/Interface/StyleThemes/Ribbon/window.png
+    patch: [14]
+    scale: 2
+    expand: 28
+    content: 0
+  header:
+    texture: /Textures/_Starlight/Interface/StyleThemes/Ribbon/header.png
+    patch: [0, 0, 0, 1]
+    tile: true
+    scale: 2
+    content: 0
+  background: "#FFF0F5"
+  surface: "#FCE4EC"
+  surfaceRaised: "#FFF7FA"
+  element: "#F8C8DA"
+  elementHovered: "#F4B2CB"
+  elementDisabled: "#F7E3EA"
+  border: "#E68FB0"
+  text: "#4A1F33"
+  textMuted: "#8E5570"
+  textDisabled: "#C7A0B1"
+  positive: "#3E8E5A"
+  negative: "#C23B5A"
+
+- type: styleTheme
+  id: Rosewood
+  name: style-theme-rosewood
+  order: 12
+  accent: "#FF7BAC"
+  window:
+    texture: /Textures/_Starlight/Interface/StyleThemes/Rosewood/window.png
+    patch: [14]
+    scale: 2
+    expand: 28
+    content: 0
+  header:
+    texture: /Textures/_Starlight/Interface/StyleThemes/Rosewood/header.png
+    patch: [0, 0, 0, 1]
+    tile: true
+    scale: 2
+    content: 0
+  background: "#1C0F15"
+  surface: "#24141B"
+  surfaceRaised: "#2D1922"
+  element: "#3A2030"
+  elementHovered: "#4A2A3D"
+  elementDisabled: "#22131A"
+  border: "#5A3247"
+  text: "#F5E1EA"
+  textMuted: "#B48A9C"
+  textDisabled: "#6E4F5D"
+  positive: "#4FA66E"
+  negative: "#D9475E"
+
+- type: styleTheme
+  id: WorldMachine
+  name: style-theme-oneshot
+  order: 13
+  accent: "#FFC23D"
+  borderThickness: 2
+  window:
+    texture: /Textures/_Starlight/Interface/StyleThemes/WorldMachine/window.png
+    patch: [5]
+    scale: 2
+    expand: 8
+    content: 0
+  background: "#0C0A08"
+  surface: "#15110C"
+  surfaceRaised: "#1D1810"
+  element: "#2A2216"
+  elementHovered: "#3A2F1C"
+  elementDisabled: "#16120D"
+  border: "#C9A24A"
+  text: "#FFF2C7"
+  textMuted: "#BFA672"
+  textDisabled: "#6B5C3E"
+  positive: "#8DBF4A"
+  negative: "#D9573B"
+
+- type: styleTheme
+  id: PDA
+  name: style-theme-pda
+  order: 14
+  accent: "#6FBF73"
+  window:
+    texture: /Textures/_Starlight/Interface/StyleThemes/PDA/window.png
+    patch: [11]
+    expand: 8
+    content: 0
+  header:
+    texture: /Textures/_Starlight/Interface/StyleThemes/PDA/header.png
+    patch: [0, 0, 0, 2]
+    scale: 2
+    content: 0
+  background: "#17181B"
+  surface: "#1F2023"
+  surfaceRaised: "#28292D"
+  element: "#313138"
+  elementHovered: "#3A4A3C"
+  elementDisabled: "#222226"
+  border: "#4A4A40"
+  text: "#E8E8E0"
+  textMuted: "#9A9A88"
+  textDisabled: "#5A5A52"
+  positive: "#3E8C4A"
+  negative: "#B84A3E"
+
+- type: styleTheme
+  id: Holo
+  name: style-theme-holo
+  order: 15
+  accent: "#4FD8FF"
+  window:
+    texture: /Textures/_Starlight/Interface/StyleThemes/Holo/window.png
+    patch: [9]
+    expand: 3
+    content: 0
+  header:
+    texture: /Textures/_Starlight/Interface/StyleThemes/Holo/header.png
+    patch: [0, 0, 0, 3]
+    tile: true
+    scale: 2
+    content: 0
+  button:
+    texture: /Textures/_Starlight/Interface/StyleThemes/Holo/button.png
+    patch: [4]
+  background: "#041621E8"
+  surface: "#072030E0"
+  surfaceRaised: "#0A2A3D"
+  element: "#0E3A52"
+  elementHovered: "#145071"
+  elementDisabled: "#0A1E2A"
+  border: "#2A8FB5"
+  text: "#CFF6FF"
+  textMuted: "#7FB3C4"
+  textDisabled: "#3F6170"
+  positive: "#3FD69A"
+  negative: "#FF5A6A"
+
+- type: styleTheme
+  id: Industrial
+  name: style-theme-industrial
+  order: 16
+  accent: "#F2B233"
+  borderThickness: 2
+  window:
+    texture: /Textures/_Starlight/Interface/StyleThemes/Industrial/window.png
+    patch: [12]
+    tile: true
+    expand: 10
+    content: 0
+  header:
+    texture: /Textures/_Starlight/Interface/StyleThemes/Industrial/header.png
+    patch: [0, 0, 0, 6]
+    tile: true
+    scale: 2
+    content: 0
+  button:
+    texture: /Textures/_Starlight/Interface/StyleThemes/Industrial/button.png
+    patch: [4]
+  background: "#2A2C2E"
+  surface: "#33363A"
+  surfaceRaised: "#3C4045"
+  element: "#4A4F55"
+  elementHovered: "#585E66"
+  elementDisabled: "#2F3236"
+  border: "#1A1B1D"
+  text: "#E6E6E1"
+  textMuted: "#A3A69F"
+  textDisabled: "#62655F"
+  positive: "#5FA83E"
+  negative: "#D9453B"
+
+- type: styleTheme
+  id: Cosmic
+  name: style-theme-cosmic
+  order: 17
+  accent: "#7FB8FF"
+  window:
+    texture: /Textures/_Starlight/Interface/StyleThemes/Cosmic/window.png
+    patch: [3]
+    tile: true
+    expand: 2
+    content: 0
+  header:
+    texture: /Textures/_Starlight/Interface/StyleThemes/Cosmic/header.png
+    patch: [0, 0, 0, 1]
+    tile: true
+    scale: 2
+    content: 0
+  background: "#04050B"
+  surface: "#0A1028"
+  surfaceRaised: "#0E1A3D"
+  element: "#14234F"
+  elementHovered: "#1C3066"
+  elementDisabled: "#0A0F22"
+  border: "#2C4C8C"
+  text: "#DDEBFF"
+  textMuted: "#8AA4CC"
+  textDisabled: "#44587A"
+  positive: "#4FC2A0"
+  negative: "#D9506A"
+
+- type: styleTheme
+  id: Flesh
+  name: style-theme-flesh
+  order: 18
+  accent: "#E0525F"
+  window:
+    texture: /Textures/_Starlight/Interface/StyleThemes/Flesh/window.png
+    patch: [7]
+    tile: true
+    expand: 7
+    content: 0
+  header:
+    texture: /Textures/_Starlight/Interface/StyleThemes/Flesh/header.png
+    patch: [0, 0, 0, 1]
+    tile: true
+    scale: 2
+    content: 0
+  background: "#1E0B0D"
+  surface: "#2A1013"
+  surfaceRaised: "#34151A"
+  element: "#4A1C22"
+  elementHovered: "#5E242C"
+  elementDisabled: "#22100F"
+  border: "#7A2E36"
+  text: "#F3D9D3"
+  textMuted: "#B88A86"
+  textDisabled: "#6A4744"
+  positive: "#8FAE4A"
+  negative: "#FF4A3A"
+
+- type: styleTheme
+  id: Syndicate
+  name: style-theme-syndicate
+  order: 19
+  accent: "#E03A3A"
+  borderThickness: 2
+  background: "#0E0B0B"
+  surface: "#171111"
+  surfaceRaised: "#1F1616"
+  element: "#2B1D1D"
+  elementHovered: "#3A2525"
+  elementDisabled: "#140F0F"
+  border: "#5C1E1E"
+  text: "#F0E0E0"
+  textMuted: "#A88E8E"
+  textDisabled: "#5E4A4A"
+  positive: "#4FA66E"
+  negative: "#FF4040"
+
+- type: styleTheme
+  id: Clockwork
+  name: style-theme-clockwork
+  order: 20
+  accent: "#E3B55C"
+  borderThickness: 2
+  background: "#1A140C"
+  surface: "#241B10"
+  surfaceRaised: "#2E2314"
+  element: "#3D2E19"
+  elementHovered: "#4D3A20"
+  elementDisabled: "#1E170E"
+  border: "#B5893A"
+  text: "#F3E3C0"
+  textMuted: "#B49A6A"
+  textDisabled: "#6A5A3E"
+  positive: "#7FA84A"
+  negative: "#C9503A"
