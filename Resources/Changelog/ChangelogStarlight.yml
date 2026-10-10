@@ -1,18 +1,4 @@
 Entries:
-- author: RedSpeeds
-  changes:
-  - message: Fixed A error related to vent critters spawning.
-    type: Fix
-  id: 408946
-  time: '2026-09-28T09:21:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6368
-- author: Caws
-  changes:
-  - message: Replaced warp points at the Nuclear Operative Outposts that would allow wizards to teleport to them (and get immediately gunned down by turrets).
-    type: Fix
-  id: 408947
-  time: '2026-09-28T09:21:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6330
 - author: Caws
   changes:
   - message: Removed a warp point aboard Manor's evac shuttle that would allow wizards to teleport to Central Command.
@@ -2883,4 +2869,18 @@ Entries:
   id: 409345
   time: '2026-10-10T17:16:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6609
+- author: Floximo
+  changes:
+  - message: The secure terminal and its keycard counterparts have now power cells for reserve power.
+    type: Add
+  id: 409346
+  time: '2026-10-10T17:48:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6564
+- author: Floximo
+  changes:
+  - message: The tools to add the same ability to every terminal or computer.
+    type: Add
+  id: 409347
+  time: '2026-10-10T17:48:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6564
 Order: -1
