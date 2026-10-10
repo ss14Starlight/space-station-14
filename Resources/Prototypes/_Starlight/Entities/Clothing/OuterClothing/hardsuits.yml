@@ -297,12 +297,12 @@
       walkModifier: 0.90
       sprintModifier: 0.90
     - type: HeldSpeedModifier
-    - type: FootstepLayer
-      sound:
-        collection: FootstepLayerHeavy
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepHeavy
         params:
-          volume: -2
-          variation: 0.08
+          volume: -6
+          variation: 0.09
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitSovietMarine
     - type: Tag
@@ -1184,13 +1184,11 @@
           Caustic: 0
       staminaModifier: 0.0
     - type: FootstepModifier
-      footstepSoundCollection: null
-    - type: FootstepLayer
-      sound:
-        collection: FootstepLayerHeavy
+      footstepSoundCollection:
+        collection: FootstepHeavy
         params:
-          volume: -2
-          variation: 0.08
+          volume: -6
+          variation: 0.09
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitTSFMARSOC
 

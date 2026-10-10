@@ -58,9 +58,3 @@
     - /Audio/_Starlight/Effects/Weather/space_wind_3_1.ogg
     - /Audio/_Starlight/Effects/Weather/space_wind_4_1.ogg
     - /Audio/_Starlight/Effects/Weather/space_wind_4_2.ogg
-
-- type: !PartialOnly soundCollection
-  id: FootstepTile
-  files:
-  - /Audio/_Starlight/Effects/Footsteps/tile4.ogg
-  - /Audio/_Starlight/Effects/Footsteps/tile5.ogg

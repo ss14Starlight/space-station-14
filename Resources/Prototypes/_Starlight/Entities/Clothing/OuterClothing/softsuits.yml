@@ -76,12 +76,12 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: HeldSpeedModifier
-  - type: FootstepLayer
-    sound:
-      collection: FootstepLayerHeavy
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHeavy
       params:
-        volume: -2
-        variation: 0.08
+        volume: -6
+        variation: 0.09
   - type: Tag
     tags:
     - SuitEVA

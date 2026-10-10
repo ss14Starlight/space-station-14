@@ -392,8 +392,6 @@ public abstract partial class SharedMoverController : VirtualController
                 {
                     _audio.PlayPredicted(sound, uid, uid, audioParams);
                 }
-
-                PlayFootstepLayers(uid, relaySource ?? uid, audioParams); // Starlight
             }
         }
     }
@@ -626,8 +624,7 @@ public abstract partial class SharedMoverController : VirtualController
 
         // STARLIGHT: Check for outer clothing (hardsuits) before shoes
         if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var outerClothing) &&
-            FootstepModifierQuery.TryComp(outerClothing, out var outerModifier) &&
-            outerModifier.FootstepSoundCollection != null)
+            FootstepModifierQuery.TryComp(outerClothing, out var outerModifier))
         {
             sound = outerModifier.FootstepSoundCollection;
             return sound != null;
