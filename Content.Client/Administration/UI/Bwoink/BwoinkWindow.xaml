@@ -1,8 +1,7 @@
-﻿<DefaultWindow xmlns="https://spacestation14.io"
-            xmlns:cc="clr-namespace:Content.Client.Administration.UI.Bwoink"
+﻿<!-- Starlight-edit: PopOutWindow, which adds the pop out button to the header -->
+<bwoink:BwoinkWindow xmlns="https://spacestation14.io"
+            xmlns:bwoink="clr-namespace:Content.Client.Administration.UI.Bwoink"
             SetSize="920 500"
-            HeaderClass="windowHeaderAlert"
-            TitleClass="windowTitleAlert"
-            Title="{Loc 'bwoink-user-title'}" >
-    <cc:BwoinkControl Name="Bwoink" Access="Public"/>
-</DefaultWindow>
+            Title="{Loc 'bwoink-admin-title'}" >
+    <bwoink:BwoinkControl Name="Bwoink" Access="Public"/>
+</bwoink:BwoinkWindow>
