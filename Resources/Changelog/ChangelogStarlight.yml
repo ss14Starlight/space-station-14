@@ -1,20 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Tricordizine and Doctor's Delight now prioritize higher damage types instead of healing uniformly.
-    type: Tweak
-  id: 408931
-  time: '2026-09-27T00:31:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6367
-- author: wonderfulnewworld
-  changes:
-  - message: Lowered total healing by Tricordizine and Doctor's Delight.
-    type: Tweak
-  id: 408932
-  time: '2026-09-27T00:31:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6367
-- author: wonderfulnewworld
-  changes:
   - message: Doctor's Delight can now heal genetic.
     type: Tweak
   id: 408933
@@ -2826,7 +2812,7 @@ Entries:
     type: Tweak
   - message: Changed shotgun deviation, now it won't make big amount of pellets in one place.
     type: Tweak
-  - message: 'Added 2 new indicators on top of item preview: opened bolt and jammed, so now you can see when your weapon isn''t bolted or jammed on sight.'
+  - message: "Added 2 new indicators on top of item preview: opened bolt and jammed, so now you can see when your weapon isn't bolted or jammed on sight."
     type: Add
   - message: 'Added ability to disable 2 new indicators, Added ability to disable item preview in combat or show only in combat(4 options: in combat, not in combat, always, never).'
     type: Add
@@ -2836,7 +2822,7 @@ Entries:
     type: Add
   - message: Added new heat shader for held sprite, so now you can see how heated weapon is held by your opponent.
     type: Add
-  - message: 'Changed lockers, now you also can flip them to use as cover(NOTE: only closed lockers, you can''t open flipped locker, entity inside flipped locker can go out, but they will unflip locker).'
+  - message: "Changed lockers, now you also can flip them to use as cover(NOTE: only closed lockers, you can't open flipped locker, entity inside flipped locker can go out, but they will unflip locker)."
     type: Tweak
   - message: Changed crates/counters, now you can use them as cover but only when you're laying down.
     type: Tweak
@@ -2883,4 +2869,18 @@ Entries:
   id: 409330
   time: '2026-10-10T12:55:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6595
+- author: OmgDev
+  changes:
+  - message: Smile and other slime-kin can also Squish, Pop, and Bubble!
+    type: Add
+  id: 409331
+  time: '2026-10-10T16:03:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6603
+- author: OmgDev
+  changes:
+  - message: Added an option to SpeechComponent that allows entities to opt-in to vocal emotes rather then having to blacklist global ones!
+    type: Tweak
+  id: 409332
+  time: '2026-10-10T16:03:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6603
 Order: -1
