@@ -114,6 +114,17 @@
   solids:
     FoodMothBatter: 1
 
+- type: microwaveMealRecipe
+  id: RecipeSpacemanCake
+  name: spaceman's cake recipe
+  result: FoodCakeSpaceman
+  time: 5
+  group: Cake
+  deviceType: Oven
+  solids:
+    FoodCakePlain: 1
+    FoodSpacemansTrumpet: 4
+
 # pizza
 - type: microwaveMealRecipe
   id: RecipeNutribrickPizza
