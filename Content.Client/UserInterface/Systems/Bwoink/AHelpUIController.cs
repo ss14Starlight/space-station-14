@@ -355,10 +355,10 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
         else
             Window?.Close();
 
-        if (Control is not {Disposed: true})
+        if (Control is { Disposed: false })
         {
             EnsurePanel(_ownerId);
-            Control?.SelectChannel(_ownerId);
+            Control.SelectChannel(_ownerId);
         }
         // Starlight-end
     }
