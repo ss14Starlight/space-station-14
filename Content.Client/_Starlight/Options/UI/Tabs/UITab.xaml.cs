@@ -86,6 +86,7 @@ public sealed partial class UITab : Control
         MenuBarLayoutEditor.SetEntries(GameTopMenuBar.LayoutEntries);
         Control.AddOption(new OptionBarLayoutCVar(Control, _cfg, StarlightCCVars.MenuBarLayout, MenuBarLayoutEditor));
         Control.AddOptionPercentSlider(CCVars.ChatWindowOpacity, ChatWindowOpacitySlider);
+        Control.AddOptionCheckBox(StarlightCCVars.LobbyJobColumns, LobbyJobColumnsCheckBox);
         Control.AddOptionDropDown(
             CVars.DisplayUIScale,
             DropDownUIScale,

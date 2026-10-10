@@ -1,12 +1,12 @@
 <Control xmlns="https://spacestation14.io">
     <!-- Starlight-start -->
-    <BoxContainer Orientation="Horizontal">
-        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Center">
-            <Label Name="NameLabel" />
-            <Label Name="DescriptionLabel" StyleClasses="LabelSubText" Visible="False" />
+    <BoxContainer Orientation="Vertical">
+        <BoxContainer Orientation="Horizontal">
+            <Label Name="NameLabel" HorizontalExpand="True" VAlign="Center" />
+            <Slider Name="Slider" Access="Public" MinWidth="240" VerticalAlignment="Center" />
+            <Label Name="ValueLabel" Access="Public" Margin="8 0 4 0" MinWidth="48" Align="Right" />
         </BoxContainer>
-        <Slider Name="Slider" Access="Public" MinWidth="240" VerticalAlignment="Center" />
-        <Label Name="ValueLabel" Access="Public" Margin="8 0 4 0" MinWidth="48" Align="Right" />
+        <RichTextLabel Name="DescriptionLabel" StyleClasses="LabelSubText" Visible="False" />
     </BoxContainer>
 	<!-- Starlight-end -->
 </Control>

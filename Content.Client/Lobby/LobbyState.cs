@@ -71,13 +71,12 @@ namespace Content.Client.Lobby
             //    : lobbyNameCvar; //Moved to Lobby GUI
             // STARLIGHT-END
 
-            var width = _cfg.GetCVar(CCVars.ServerLobbyRightPanelWidth);
-            Lobby.RightSide.SetWidth = width;
+            // Starlight-edit: the right side only holds the chat now, its width is set in LobbyGui.xaml.
 
             UpdateLobbyUi();
 
             Lobby.CharacterPreview.CharacterSetupButton.OnPressed += OnSetupPressed;
-            Lobby.CharacterPreview.PrioritiesUpdated += UpdateReadyAllowed;
+            // Starlight-edit: priorities are edited in their own window, OnAnyCharacterOrJobChange covers it
             Lobby.ReadyButton.OnPressed += OnReadyPressed;
             Lobby.ReadyButton.OnToggled += OnReadyToggled;
             Lobby.ReadyButton.TooltipSupplier = GetReadyButtonTooltip;
