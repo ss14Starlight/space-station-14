@@ -1,7 +1,6 @@
 - type: !PartialOnly randomHumanoidSettings
   id: EventHumanoid
   speciesBlacklist:
-    - Rodentia
     - IPC
     - Diona
     - Vox
