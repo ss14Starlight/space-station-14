@@ -1,34 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: Added sleepiness, for every chemical or gas that can put someone to sleep.
-    type: Add
-  id: 408939
-  time: '2026-09-27T19:09:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6116
-- author: Floximo
-  changes:
-  - message: Now lots of drinks as well as drugs are working against sleepiness.
-    type: Tweak
-  id: 408940
-  time: '2026-09-27T19:09:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6116
-- author: Floximo
-  changes:
-  - message: Added forced sleep builds a resistance against forced sleep. After 10-20 minutes this resistance outperforms sleep inducing drugs.
-    type: Add
-  id: 408941
-  time: '2026-09-27T19:09:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6116
-- author: Floximo
-  changes:
-  - message: Now getting shaken or receiving damage work against sleepiness. If the sleep is light, it also has a chance to wake the target.
-    type: Tweak
-  id: 408942
-  time: '2026-09-27T19:09:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6116
-- author: Floximo
-  changes:
   - message: You can no longer change internals while unconscious.
     type: Fix
   id: 408943
@@ -2883,4 +2855,32 @@ Entries:
   id: 409338
   time: '2026-10-10T16:31:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6608
+- author: FoxStellar
+  changes:
+  - message: Added chemistry jug boxes, filled with empty jugs! Use em to make the Jug Locker! For now, they spawn in Chem Lockers, but only until their shelf can be mapped!
+    type: Add
+  id: 409339
+  time: '2026-10-10T16:56:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6583
+- author: FoxStellar
+  changes:
+  - message: Also added a fully complete Jug Locker that can optionally be mapped instead of the Jug Shelf.
+    type: Add
+  id: 409340
+  time: '2026-10-10T16:56:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6583
+- author: FoxStellar
+  changes:
+  - message: Changed jug box (small box) to once again have 4 jugs (instead of 2).
+    type: Tweak
+  id: 409341
+  time: '2026-10-10T16:56:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6583
+- author: FoxStellar
+  changes:
+  - message: Temporarily removed the jug box (small box) from the Chem Lockers, they'll return once the big boxes leave.
+    type: Remove
+  id: 409342
+  time: '2026-10-10T16:56:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6583
 Order: -1
