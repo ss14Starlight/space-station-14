@@ -151,6 +151,7 @@
       path: /Audio/_Starlight/Effects/Radio/bso.ogg
   - type: HeadsetLoudMode
 
+# Gorlex Marauders
 - type: entity
   parent: [ClothingHeadsetAlt, BaseSyndicateContraband]
   id: ClothingHeadsetAltSyndicateCommander
@@ -163,7 +164,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeySyndie
+      - EncryptionKeyGorlex
   - type: Sprite
     sprite: Clothing/Ears/Headsets/syndicate.rsi
   - type: Clothing
@@ -185,7 +186,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeySyndie
+      - EncryptionKeyGorlex
   - type: Sprite
     sprite: Clothing/Ears/Headsets/syndicate.rsi
   - type: Clothing
@@ -194,6 +195,28 @@
     sound:
       path: /Audio/_Starlight/Effects/Radio/marauder_agent.ogg
 
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseSyndicateContraband]
+  id: ClothingHeadsetAltGorlex
+  name: blood-red over-ear headset
+  description: An updated, modular syndicate intercom that fits over the head and takes encryption keys (there are 5 key slots.).
+  components:
+  - type: Headset
+  - type: EncryptionKeyHolder
+    keySlots: 5
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyGorlex
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/syndicate.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/syndicate.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/marauder.ogg
+
+# Decimus
 - type: entity
   parent: [ ClothingHeadsetAltCentCom, BaseCentcommContraband ]
   id: ClothingHeadsetAltCentComDS
