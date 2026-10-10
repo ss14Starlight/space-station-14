@@ -59,7 +59,6 @@ public sealed partial class GasPrototype : IPrototype
     [DataField]
     public float MolarMass = 1f;
 
-
     /// <summary>
     /// Minimum amount of moles for this gas to be visible.
     /// </summary>
