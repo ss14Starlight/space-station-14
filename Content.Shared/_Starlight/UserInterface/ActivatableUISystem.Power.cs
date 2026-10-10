@@ -47,10 +47,8 @@ public sealed partial class ActivatableUISystem
             _uiSystem.CloseUi(uid, key);
     }
 
-    private partial bool IsApcPoweredFallback(EntityUid uid)
-    {
-        return TryComp<ActivatableUIRequiresPowerComponent>(uid, out var powerRequirement) &&
-                powerRequirement.AllowPowerCellFallback &&
-                _powerReceiver.IsPowered(uid);
-    }
+    private partial bool IsApcPoweredFallback(EntityUid uid) =>
+        TryComp<ActivatableUIRequiresPowerComponent>(uid, out var powerRequirement) &&
+        powerRequirement.AllowPowerCellFallback &&
+        _powerReceiver.IsPowered(uid);
 }

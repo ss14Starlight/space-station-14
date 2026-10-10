@@ -20,25 +20,21 @@ public sealed partial class PowerCellFallbackVisualsSystem : EntitySystem
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
     [SubscribeLocalEvent]
-    private void OnStartup(Entity<PowerCellFallbackVisualsComponent> ent, ref ComponentStartup args)
-    {
+    private void OnStartup(Entity<PowerCellFallbackVisualsComponent> ent, ref ComponentStartup args) =>
         UpdateBatteryAppearance(ent.Owner);
-    }
+
     [SubscribeLocalEvent]
-    private void OnPowerChanged(Entity<ApcPowerReceiverComponent> ent, ref PowerChangedEvent args)
-    {
+    private void OnPowerChanged(Entity<ApcPowerReceiverComponent> ent, ref PowerChangedEvent args) =>
         UpdateBatteryAppearance(ent.Owner);
-    }
+
     [SubscribeLocalEvent]
-    private void OnUiOpened(Entity<PowerCellFallbackVisualsComponent> ent, ref BoundUIOpenedEvent args)
-    {
+    private void OnUiOpened(Entity<PowerCellFallbackVisualsComponent> ent, ref BoundUIOpenedEvent args) =>
         UpdateBatteryAppearance(ent.Owner);
-    }
+
     [SubscribeLocalEvent]
-    private void OnUiClosed(Entity<PowerCellFallbackVisualsComponent> ent, ref BoundUIClosedEvent args)
-    {
+    private void OnUiClosed(Entity<PowerCellFallbackVisualsComponent> ent, ref BoundUIClosedEvent args) =>
         UpdateBatteryAppearance(ent.Owner);
-    }
+
     [SubscribeLocalEvent]
     private void OnCellInserted(Entity<PowerCellFallbackVisualsComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
@@ -54,15 +50,12 @@ public sealed partial class PowerCellFallbackVisualsSystem : EntitySystem
             UpdateBatteryAppearance(ent.Owner);
     }
     [SubscribeLocalEvent]
-    private void OnBatteryChargeChanged(Entity<BatteryComponent> ent, ref ChargeChangedEvent args)
-    {
+    private void OnBatteryChargeChanged(Entity<BatteryComponent> ent, ref ChargeChangedEvent args) =>
         UpdateBatteryAppearanceFromCell(ent.Owner);
-    }
+
     [SubscribeLocalEvent]
-    private void OnBatteryStateChanged(Entity<BatteryComponent> ent, ref BatteryStateChangedEvent args)
-    {
+    private void OnBatteryStateChanged(Entity<BatteryComponent> ent, ref BatteryStateChangedEvent args) =>
         UpdateBatteryAppearanceFromCell(ent.Owner);
-    }
 
     private void UpdateBatteryAppearanceFromCell(EntityUid battery)
     {
