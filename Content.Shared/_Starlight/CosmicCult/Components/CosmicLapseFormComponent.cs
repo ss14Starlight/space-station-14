@@ -9,6 +9,9 @@ namespace Content.Shared._Starlight.CosmicCult.Components;
 [RegisterComponent]
 public sealed partial class CosmicLapseFormComponent : Component
 {
+    /// <summary>
+    /// The polymorph prototype used when this entity is lapsed.
+    /// </summary>
     [DataField(required: true)]
     public ProtoId<PolymorphPrototype> Form = default!;
 }
