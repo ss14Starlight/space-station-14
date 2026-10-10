@@ -267,6 +267,8 @@
   - WeaponLaserSvalinn
   - WeaponTemperatureGun
   - FiringPinLaser
+  - FiringPinAdvancedLaserReplacement
+  - FiringPinSmartLMGReplacement
 
 - type: latheRecipePack
   id: StarlightSecurityMechsWeapons

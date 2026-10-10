@@ -236,6 +236,7 @@ public sealed partial class AdminSystem : EntitySystem
         // Starting role, antagonist status and role type
         RoleTypePrototype? roleType = null;
         var startingRole = string.Empty;
+        ProtoId<JobPrototype>? jobId = null; // Starlight
         LocId? subtype = null;
         if (_minds.TryGetMind(session, out var mindId, out var mindComp) && mindComp is not null)
         {
@@ -251,6 +252,7 @@ public sealed partial class AdminSystem : EntitySystem
 
             antag = _role.MindIsAntagonist(mindId);
             startingRole = _jobs.MindTryGetJobName(mindId);
+            _jobs.MindTryGetJobId(mindId, out jobId); // Starlight
         }
 
         // Connection status and playtime
@@ -280,7 +282,8 @@ public sealed partial class AdminSystem : EntitySystem
             data.UserId,
             connected,
             _roundActivePlayers.Contains(data.UserId),
-            overallPlaytime);
+            overallPlaytime,
+            jobId); // Starlight
     }
 
     private void OnPanicBunkerChanged(bool enabled)

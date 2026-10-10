@@ -1,7 +1,6 @@
 <tabs:UITab
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     xmlns:sui="clr-namespace:Content.Client._Starlight.Options.UI"
     xmlns:tabs="clr-namespace:Content.Client._Starlight.Options.UI.Tabs"
     xmlns:ui="clr-namespace:Content.Client.Options.UI">
@@ -13,27 +12,18 @@
                 VerticalExpand="True">
 
                 <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-ui-style'}" />
+                <ui:OptionDropDown Name="DropDownStyleTheme" Title="{Loc 'ui-options-style-theme'}" />
+                <CheckBox Name="StyleCustomAccentCheckBox" Text="{Loc 'ui-options-style-custom-accent'}" />
+                <ui:OptionColorSlider Name="StyleAccentSlider" Title="{Loc 'ui-options-style-accent'}" />
                 <ui:OptionDropDown Name="DropDownHudTheme" Title="{Loc 'ui-options-hud-theme'}" />
                 <ui:OptionDropDown Name="DropDownHudLayout" Title="{Loc 'ui-options-hud-layout'}" />
                 <ui:OptionSlider Name="SeparatedChatWidthSlider" Title="{Loc 'ui-options-chat-width'}" />
 
-                <PanelContainer Margin="0,8,0,8">
-                    <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxFlat
-                            BackgroundColor="#353540"
-                            BorderColor="#2E2E35"
-                            BorderThickness="1" />
-                    </PanelContainer.PanelOverride>
+                <PanelContainer Margin="0,8,0,8" StyleClasses="PanelLight">
 
                     <BoxContainer Margin="6" Orientation="Vertical">
                         <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-ui-ranged-sight'}" />
-                        <PanelContainer Margin="0,6,0,6">
-                            <PanelContainer.PanelOverride>
-                                <gfx:StyleBoxFlat
-                                    BackgroundColor="#24242b"
-                                    BorderColor="#2E2E35"
-                                    BorderThickness="1" />
-                            </PanelContainer.PanelOverride>
+                        <PanelContainer Margin="0,6,0,6" StyleClasses="PanelDark">
 
                             <BoxContainer
                                 Margin="6"
@@ -68,6 +58,10 @@
                         <ui:OptionSlider Name="RangedSightOffsetSlider" Title="{Loc 'ui-options-ranged-sight-offset'}" />
                         <CheckBox Name="RangedSightRotationCheckBox" Text="{Loc 'ui-options-ranged-sight-rotation'}" />
                         <CheckBox Name="MeleeSightRotationCheckBox" Text="{Loc 'ui-options-melee-sight-rotation'}" />
+                        <ui:OptionDropDown Name="DropDownHeldItemShowMode" Title="{Loc 'ui-options-held-item-show-mode'}" />
+                        <CheckBox Name="SightBoltIndicatorCheckBox" Text="{Loc 'ui-options-sight-bolt-indicator'}" />
+                        <CheckBox Name="SightJamIndicatorCheckBox" Text="{Loc 'ui-options-sight-jam-indicator'}" />
+                        <CheckBox Name="SightHeatIndicatorCheckBox" Text="{Loc 'ui-options-sight-heat-indicator'}" />
 
                         <ui:OptionColorSlider Name="SightMainColorSlider" Title="{Loc 'ui-options-sight-main-color'}" />
                         <ui:OptionColorSlider Name="SightSecondColorSlider" Title="{Loc 'ui-options-sight-second-color'}" />
