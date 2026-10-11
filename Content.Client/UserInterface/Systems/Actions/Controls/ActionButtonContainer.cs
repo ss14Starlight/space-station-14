@@ -30,8 +30,16 @@ public partial class ActionButtonContainer : GridContainer
 
     public void SetActionData(ActionsSystem system, params EntityUid?[] actionTypes)
     {
+        // Starlight - start
         var clientActions = system.GetClientActions().Select(action => action.Owner).ToHashSet();
-        var uniqueCount = Math.Min(clientActions.Count, actionTypes.Length + 1);
+        var highestEligibleSlot = -1;
+        for (var i = 0; i < actionTypes.Length; i++)
+        {
+            if (actionTypes[i] is { } actionId && clientActions.Contains(actionId))
+                highestEligibleSlot = i;
+        }
+
+        var uniqueCount = Math.Min(Math.Max(clientActions.Count, highestEligibleSlot + 1), actionTypes.Length + 1);
         var keys = ContentKeyFunctions.GetHotbarBoundKeys();
 
         for (var i = 0; i < uniqueCount; i++)
@@ -46,9 +54,9 @@ public partial class ActionButtonContainer : GridContainer
                 !clientActions.Contains(actionId))
                 action = null;
 
-            // Starlight - Hide assigned actions that are not eligible for the current entity.
             ((ActionButton) GetChild(i)).UpdateData(action, system);
         }
+        // Starlight - end
 
         for (var i = ChildCount - 1; i >= uniqueCount; i--)
         {
