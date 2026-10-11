@@ -36,7 +36,7 @@
             - material: Glass
               amount: 1
             - material: Cable
-              amount: 5
+              amount: 1
             - material: Steel
               amount: 1
     - node: lightTile
@@ -46,6 +46,7 @@
       edges:
         - to: start
           conditions:
+            - !type:WirePanel {}
             - !type:ContainerEmpty
               container: "light_bulb"
           steps:
