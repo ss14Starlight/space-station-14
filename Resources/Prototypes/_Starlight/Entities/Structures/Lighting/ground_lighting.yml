@@ -323,3 +323,74 @@
       types:
         Heat: 2
     popupText: powered-light-component-burn-hand
+
+#Paradise Content - Light Floors
+
+- type: entity
+  id: LightFloorEmpty
+  name: light floor
+  description: "A walking surface that doubles as area lighting. Takes a light bulb."
+  suffix: Empty
+  parent: PoweredFloorLightEmpty
+  components:
+    - type: Sprite
+      sprite: _Paradise/Tiles/light_floor.rsi
+      drawdepth: FloorTiles
+      layers:
+        - map: ["enum.PoweredLightLayers.Base"]
+          state: light_off
+        - map: ["enum.PoweredLightLayers.Glow"]
+          state: light_on
+          shader: unshaded
+          visible: false
+      state: light_off
+    - type: Construction
+      graph: LightFloor
+      node: lightFloor
+    - type: PoweredLightVisuals
+      spriteStateMap:
+        empty: light_off
+        off: light_off
+        on: light_off
+        broken: light_off
+        burned: light_off
+
+- type: entity
+  id: LightFloor
+  suffix: ""
+  parent: LightFloorEmpty
+  components:
+    - type: PointLight
+      enabled: true
+    - type: PoweredLight
+      hasLampOnSpawn: LightBulb
+
+- type: entity
+  id: FloorTileItemLight
+  name: light tile
+  description: "A wired glass tile. Lay it on a floor, then fit a light bulb."
+  parent: FloorTileItemBase
+  components:
+    - type: Sprite
+      state: white
+    - type: Item
+      heldPrefix: white
+    - type: FloorTile
+      outputs:
+        - Plating
+    - type: Stack
+      stackType: FloorTileLight
+    - type: Construction # crafting deletes the result without this
+      graph: LightFloor
+      node: lightTile
+    - type: SpawnAfterInteract # same placement pattern as upstream carpets
+      prototype: LightFloorEmpty
+      doAfter: 0.5
+      removeOnInteract: true
+
+- type: stack
+  parent: BaseTileStack
+  id: FloorTileLight
+  name: stack-light-tile
+  icon: { sprite: /Textures/Objects/Tiles/tile.rsi, state: white }
+  spawn: FloorTileItemLight
