@@ -39,4 +39,9 @@
 - type: !PartialOnly entity
   id: MobCorgiSmart
   components:
+  - type: CosmicStarMarkOffset
+    south: 0.03,-0.1
+    north: 0.03,-0.1
+    east: 0.2,-0.13
+    west: -0.2,-0.13
   - type: CosmicCultConvertible
