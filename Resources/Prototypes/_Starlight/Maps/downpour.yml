@@ -4,6 +4,7 @@
   mapPath: /Maps/_Starlight/Stations/Downpour.yml
   minPlayers: 20
   maxPlayers: 80
+  randomRotation: false # random rotation looks weird with weather
   stations:
     StarlightDownpour:
       stationProto: StandardNanotrasenStation
