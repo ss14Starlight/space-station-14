@@ -56,7 +56,7 @@
   components:
   - type: Action
     useDelay: 5
-    icon: Objects/Misc/zipties.rsi/cuff.png
+    icon: Interface/Actions/actions_borg.rsi/security-unlethal-module.png
     itemIconStyle: BigAction
   - type: TargetAction
   - type: EntityTargetAction
