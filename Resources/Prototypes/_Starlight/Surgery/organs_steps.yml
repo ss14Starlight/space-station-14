@@ -1117,6 +1117,23 @@
 
 - type: entity
   parent: SurgeryStepBase
+  id: SurgeryStepInsertCore
+  name: Insert Core
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: OrganCore
+    bodyRemove:
+    - type: Uncryoable
+  - type: SurgeryStepOrganInsert
+    slot: core
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: brain
+
+- type: entity
+  parent: SurgeryStepBase
   id: SurgeryStepReconnectCranialNerves
   name: Reconnect Cranial Nerves
   components:

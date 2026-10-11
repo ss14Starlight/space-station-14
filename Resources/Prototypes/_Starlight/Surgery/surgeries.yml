@@ -1223,7 +1223,7 @@
     - SurgeryStepPrepareScalp
     - SurgeryStepMakeIncisionScalp
     - SurgeryStepRetractScalp
-    - SurgeryStepInsertBrain
+    - SurgeryStepInsertCore
     - SurgeryStepReplaceScalp
     - SurgeryStepSutureScalp
   - type: SurgerySpeciesCondition
@@ -1236,7 +1236,7 @@
     - Torso
   - type: SurgeryOrganDontExistCondition
     organ:
-    - type: OrganBrain
+    - type: OrganCore
   - type: Sprite
     sprite: Mobs/Species/Slime/organs.rsi
     state: brain
