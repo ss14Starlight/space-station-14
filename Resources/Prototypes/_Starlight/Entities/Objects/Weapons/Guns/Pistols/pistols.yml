@@ -7,10 +7,10 @@
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/makarov.rsi
     - type: Gun
-      minAngle: 6
+      minAngle: 0
       maxAngle: 24
-      angleIncrease: 5
-      angleDecay: 14
+      angleIncrease: 7
+      angleDecay: 18
       fireRate: 3
       availableModes:
         - SemiAuto
@@ -18,6 +18,7 @@
         path: /Audio/_Starlight/Weapons/Guns/Gunshots/makarov.ogg
         params:
           variation: 0.05
+      movingMinAngle: 6
     - type: ItemSlots
       slots:
         gun_magazine:
@@ -203,14 +204,15 @@
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/dp.rsi
     - type: Gun
       fireRate: 4
-      minAngle: 6
+      minAngle: 0
       maxAngle: 22
-      angleIncrease: 4
-      angleDecay: 16
+      angleIncrease: 6
+      angleDecay: 20
       availableModes:
         - SemiAuto
       soundGunshot:
         path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp.ogg
+      movingMinAngle: 6
     - type: ItemSlots
       slots:
         gun_magazine:
@@ -281,15 +283,16 @@
     - type: Gun
       selectedMode: Burst
       shotsPerBurst: 3
-      minAngle: 7
+      minAngle: 0
       maxAngle: 24
-      angleIncrease: 5
-      angleDecay: 16
+      angleIncrease: 7
+      angleDecay: 20
       availableModes:
         - Burst
         - SemiAuto
       soundGunshot:
         path: /Audio/_Starlight/Weapons/Guns/Gunshots/1suppres.ogg
+      movingMinAngle: 7
     - type: Contraband
       severity: Soviet
     - type: ItemSlots
@@ -353,14 +356,15 @@
         - 0,1,1,1
     - type: Gun
       fireRate: 4
-      minAngle: 8
+      minAngle: 0
       maxAngle: 26
-      angleIncrease: 6
-      angleDecay: 14
+      angleIncrease: 8
+      angleDecay: 18
       availableModes:
         - SemiAuto
       soundGunshot:
         path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      movingMinAngle: 8
     - type: ItemSlots
       slots:
         gun_magazine:
@@ -460,10 +464,11 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp.ogg
-    minAngle: 7
+    minAngle: 0
     maxAngle: 24
-    angleIncrease: 5
-    angleDecay: 16
+    angleIncrease: 7
+    angleDecay: 20
+    movingMinAngle: 7
   - type: BallisticAmmoProvider
     capacity: 15
     proto: CartridgePistol40SP

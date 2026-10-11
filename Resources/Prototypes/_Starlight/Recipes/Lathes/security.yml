@@ -199,3 +199,28 @@
   materials:
     Steel: 200
     Glass: 500
+
+- type: latheRecipe
+  id: FiringPinAdvancedLaserReplacement
+  result: FiringPinAdvancedLaserReplacement
+  categories:
+  - Weapons
+  completetime: 20
+  materials:
+    Steel: 300
+    Glass: 1000
+    Plasma: 500
+    Gold: 200
+    Uranium: 200
+
+- type: latheRecipe
+  id: FiringPinSmartLMGReplacement
+  result: FiringPinSmartLMGReplacement
+  categories:
+  - Weapons
+  completetime: 20
+  materials:
+    Steel: 1000
+    Plasteel: 300
+    Silver: 200
+    Gold: 100

@@ -1,3 +1,4 @@
+using Content.Server._Starlight.NPC.Systems;
 using Content.Server.Interaction;
 using Content.Shared.Physics;
 
@@ -7,6 +8,7 @@ public sealed partial class TargetInLOSPrecondition : HTNPrecondition
 {
     [Dependency] private IEntityManager _entManager = default!;
     private InteractionSystem _interaction = default!;
+    private NPCHidingWitnessSystem _hidingWitness = default!; // Starlight
 
     [DataField("targetKey")]
     public string TargetKey = "Target";
@@ -21,6 +23,7 @@ public sealed partial class TargetInLOSPrecondition : HTNPrecondition
     {
         base.Initialize(sysManager);
         _interaction = sysManager.GetEntitySystem<InteractionSystem>();
+        _hidingWitness = sysManager.GetEntitySystem<NPCHidingWitnessSystem>(); // Starlight
     }
 
     public override bool IsMet(NPCBlackboard blackboard)
@@ -33,6 +36,6 @@ public sealed partial class TargetInLOSPrecondition : HTNPrecondition
         var range = blackboard.GetValueOrDefault<float>(RangeKey, _entManager);
         var collisionGroup = UseOpaqueForLOSChecksKey ? CollisionGroup.Opaque : (CollisionGroup.Impassable | CollisionGroup.InteractImpassable);
 
-        return _interaction.InRangeUnobstructed(owner, target, range, collisionGroup);
+        return _hidingWitness.CanSee(owner, target, range, collisionGroup); // Starlight-edit
     }
 }

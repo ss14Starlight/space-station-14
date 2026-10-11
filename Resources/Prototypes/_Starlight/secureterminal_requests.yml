@@ -12,7 +12,7 @@
   description: secure-terminal-warops-security-desc
   announcement: secure-terminal-warops-security-announcement
   announcementColor: "#ff4444"
-  activationDelaySecs: 1500 # Plus travel delay of 5 minutes
+  activationDelaySecs: 3000 # Plus travel delay of 5 minutes
   requiresWarDeclared: true
   fee: 8000
   salaryModifiers:
