@@ -7,12 +7,8 @@ namespace Content.Shared.Silicons.Bots;
 public sealed partial class MedibotSystem
 {
     private partial bool OnTryInject(Entity<MedibotComponent?> medibot, EntityUid target)
-    {
-        return HasComp<NPCRecentlyInjectedComponent>(target);
-    }
+        => HasComp<NPCRecentlyInjectedComponent>(target);
 
     partial void OnInjected(Entity<MedibotComponent?> medibot, EntityUid target)
-    {
-        EnsureComp<NPCRecentlyInjectedComponent>(target);
-    }
+        => EnsureComp<NPCRecentlyInjectedComponent>(target);
 }
