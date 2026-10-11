@@ -1,11 +1,4 @@
 Entries:
-- author: TaserTheFox
-  changes:
-  - message: Moved salv team in AAC tablet to its own group, the ITG.
-    type: Tweak
-  id: 408956
-  time: '2026-09-28T09:54:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6325
 - author: Floximo
   changes:
   - message: AI can now access shuttles that are connected with a remote shuttle console to their gird.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409355
   time: '2026-10-11T09:23:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6616
+- author: Caws
+  changes:
+  - message: Mice-spawning artifacts can no longer spawn the Admeme-only blood-red 'mouff operative'.
+    type: Remove
+  id: 409356
+  time: '2026-10-11T09:23:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6617
 Order: -1
