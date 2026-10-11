@@ -62,12 +62,10 @@
       weight: 1.1
     - id: ClothingSovietBandolier
       weight: 1.1
-    - id: ClothingOuterArmorBulletproof
-      weight: 0.7
     - id: ClothingOuterArmorBasic
-      weight: 0.7
+      weight: 0.5
     - id: ClothingHeadHelmetReflective
-      weight: 0.3
+      weight: 0.1
 
 - type: entityTable
   id: SKBEquipmentTable
@@ -126,7 +124,7 @@
     children:
     - id: RevolutionaryHeldBanner
       weight: 1.1
-    - id: SpearUranium
+    - id: Spear
       weight: 1
     - id: SwordForged
       weight: 1
