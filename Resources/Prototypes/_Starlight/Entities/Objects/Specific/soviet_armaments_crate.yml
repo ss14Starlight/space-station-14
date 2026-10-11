@@ -96,17 +96,15 @@
     - id: EmagCommie
       weight: 0.1
     - id: USSPDeathRattleImplanter
-      weight: 0.4
+      weight: 0.35
     - id: RadioImplanterUSSP
-      weight: 0.4
+      weight: 0.35
     - id: ClothingEyesGlassesSKBGlasses
       weight: 1
     - id: ClothingEyesHudSovietMarine
       weight: 0.9
     - id: EncryptionKeySoviet
       weight: 1.1
-    - id: EmpGrenade
-      weight: 0.9
     - id: SmokeGrenade
       weight: 1
     - id: GrenadeDummy
