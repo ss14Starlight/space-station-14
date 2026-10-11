@@ -1,39 +1,48 @@
+# Replace inherited inventories to preserve the item order in the vending menu.
 - type: !PartialOnly vendingMachineInventory
   id: NanoMedInventory
-  startingInventory:
-    PillCanisterTricordrazine: !Remove
+  startingInventory: !Clear
+    HandheldHealthAnalyzer: 1
     ClothingBeltMedical: 2
     ClothingBeltMedicalEMT: 1
+    Gauze: 3
+    Brutepack: 3
+    Ointment: 3
+    Bloodpack: 3
+    ChemistryBottleEpinephrine: 3
     ChemistryBottleTricordrazine: 2
-  contrabandInventory:
+    Syringe: 3
+  contrabandInventory: !Clear
+    PillCanisterRandom: 1
     StrangePill: 1
     PowerCellSmall: 2
-  emaggedInventory:
+  emaggedInventory: !Clear
     OminousPill: 1
     PillDesoxyephedrine5: 1
 
 - type: !PartialOnly vendingMachineInventory
   id: NanoMedCivilianWallInventory
-  startingInventory:
-    PillTricordrazine: !Remove
+  startingInventory: !Clear
+    HandheldHealthAnalyzer: 1
     Gauze: 3
+    Tourniquet: 3
+    Brutepack: 3
+    AloeCream: 3
+    Bloodpack: 3
+    ChemistryBottleInaprovaline: 3
     ChemistryBottleTricordrazine: 2
-  contrabandInventory:
+    Syringe: 3
+  contrabandInventory: !Clear
+    PillCanisterRandom: 1
     StrangePill: 1
-  emaggedInventory:
+  emaggedInventory: !Clear
     OminousPill: 1
     PillDesoxyephedrine5: 1
 
 - type: !PartialOnly vendingMachineInventory
   id: NanoMedPlusInventory
-  startingInventory:
-    ClothingBeltMedicalFilled: !Remove
-    ClothingBeltMedicalEMTFilled: !Remove
-    EmergencyRollerBedSpawnFolded: !Remove
-    BoxBodyBag: !Remove
-    Defibrillator: !Remove
-    PillCanisterTricordrazine: !Remove
-    ClothingOuterHospitalGown: !Remove
+  startingInventory: !Clear
+    HandheldHealthAnalyzer: 3
     ClothingBeltMedical: 3
     ClothingBeltMedicalEMT: 2
     Gauze: 5
@@ -43,8 +52,10 @@
     Tourniquet: 2
     ChemistryBottleEpinephrine: 3
     ChemistryBottleBicaridine: 1
-    Syringe: 5
     ChemistryBottleTricordrazine: 2
+    Syringe: 5
+    JetInjector: 3
+    BoxBottle: 3
     PillCanisterIron: 1
     PillCanisterCopper: 1
     PillCanisterPotassiumIodide: 1
@@ -55,28 +66,37 @@
     AutoMenderBruteFilled: 1
     AutoMenderBurnFilled: 1
     SpaceMedipen: 1
-  contrabandInventory:
+  contrabandInventory: !Clear
+    PillCanisterRandom: 3
+    PillSpaceDrugs: 3
     StrangePill: 2
-  emaggedInventory:
+    FoodApple: 1
+  emaggedInventory: !Clear
     OminousPill: 2
     PillDesoxyephedrine5: 2
 
 - type: !PartialOnly vendingMachineInventory
   id: NanoMedCivilianInventory
-  startingInventory:
-    PillTricordrazine: !Remove
-    PillIron: !Remove
-    PillCopper: !Remove
+  startingInventory: !Clear
+    HandheldHealthAnalyzer: 3
+    Tourniquet: 5
     Gauze: 3
+    Brutepack: 5
+    AloeCream: 5
+    Bloodpack: 5
     ChemistryBottleInaprovaline: 3
     ChemistryBottleEpinephrine: 3
-    BoxBottle: 3
     ChemistryBottleTricordrazine: 2
+    Syringe: 5
+    BoxBottle: 3
     PillCanisterIron: 1
     PillCanisterCopper: 1
     PillCanisterPotassiumIodide: 1
-  contrabandInventory:
+  contrabandInventory: !Clear
+    PillCanisterRandom: 1
+    PillSpaceDrugs: 3
     StrangePill: 2
-  emaggedInventory:
+    FoodApple: 1
+  emaggedInventory: !Clear
     OminousPill: 2
     PillDesoxyephedrine5: 1
