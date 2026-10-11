@@ -116,6 +116,7 @@
       metabolismRate: 1
       effects: !Clear
       - !type:Vomit
+        probability: 0.75
         conditions:
         - !type:ReagentCondition
           reagent: Tricordrazine
