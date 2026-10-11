@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (CentComm G24) Reworked Debrief. It now has just one entrance/exit and a better 'viewing' area for crew. The shutters have been replaced with blast doors to prevent people being annoying by prying the shutters open and closed.
-    type: Tweak
-  id: 408953
-  time: '2026-09-28T09:21:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6383
-- author: Caws
-  changes:
   - message: (CentComm G24) Removed portable flashers from Security.
     type: Remove
   id: 408954
@@ -2883,4 +2876,11 @@ Entries:
   id: 409352
   time: '2026-10-11T08:53:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6621
+- author: Johnny
+  changes:
+  - message: Changed the acidic gas grenade to be better at its purpose.
+    type: Tweak
+  id: 409353
+  time: '2026-10-11T09:23:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6619
 Order: -1
