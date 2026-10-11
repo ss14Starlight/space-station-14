@@ -1,27 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (CentComm GNT9) Added Interdyne medical vendor for a certain debrief room.
-    type: Add
-  id: 408962
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) Reworked Debrief. It now has just one entrance/exit and a better 'viewing' area for crew. The shutters have been replaced with blast doors to prevent people being annoying by prying the shutters open and closed.
-    type: Tweak
-  id: 408963
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) Brigmedic now uses Brigmedic doors.
-    type: Fix
-  id: 408964
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
-- author: Caws
-  changes:
   - message: (CentComm GNT9) Security now uses Brig doors and Security doors were appropriate, instead of IAA doors.
     type: Fix
   id: 408965
@@ -2883,4 +2862,25 @@ Entries:
   id: 409361
   time: '2026-10-11T12:20:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6631
+- author: Scarlet lightweaver.
+  changes:
+  - message: Added beef strognaoff to the game!.
+    type: Add
+  id: 409362
+  time: '2026-10-11T12:51:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6627
+- author: Scarlet lightweaver.
+  changes:
+  - message: Added wooden bowls.
+    type: Add
+  id: 409363
+  time: '2026-10-11T12:51:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6627
+- author: Scarlet lightweaver.
+  changes:
+  - message: added brown mushrooms and thier spores.
+    type: Add
+  id: 409364
+  time: '2026-10-11T12:51:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6627
 Order: -1
