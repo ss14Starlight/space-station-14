@@ -232,6 +232,17 @@
     sprite: _Starlight/Objects/Magic/magicactions.rsi
     layers:
     - state: kniveruneanim
+  - type: DeviceLinkSink
+    ports:
+    - On
+    - Off
+    - Toggle
+    - TriggerSpawn
+  - type: DeviceLinkSource
+    ports:
+    - Enabled
+    - Disabled
+    - SpawnTriggered
   - type: CustomSpawner
     enabled: true
     spawnOnInterval: true
