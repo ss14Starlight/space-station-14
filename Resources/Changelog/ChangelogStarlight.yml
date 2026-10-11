@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (CentComm G24) Added Interdyne medical vendor for a certain debrief room.
-    type: Add
-  id: 408952
-  time: '2026-09-28T09:21:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6383
-- author: Caws
-  changes:
   - message: (CentComm G24) Reworked Debrief. It now has just one entrance/exit and a better 'viewing' area for crew. The shutters have been replaced with blast doors to prevent people being annoying by prying the shutters open and closed.
     type: Tweak
   id: 408953
@@ -2883,4 +2876,11 @@ Entries:
   id: 409351
   time: '2026-10-11T08:53:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6620
+- author: Johnny
+  changes:
+  - message: Balanced the war category for revolutionaries a bit.
+    type: Tweak
+  id: 409352
+  time: '2026-10-11T08:53:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6621
 Order: -1
