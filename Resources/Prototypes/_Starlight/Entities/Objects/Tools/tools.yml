@@ -1140,3 +1140,26 @@
     - SaboteurSELF
     - PressSELF
     - SpySELF
+
+- type: entity
+  id: LoadoutRadioERTSec
+  parent: ToolboxThief
+  name: Bluespace Loadout Radio
+  description: Highly advanced bluespace technology packed into a radio, allowing you to call for a variety of different loadouts.
+  suffix: Security
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    layers:
+    - state: radio
+  - type: Item
+    sprite: Objects/Devices/communication.rsi
+    heldPrefix: radio
+  - type: ThiefUndeterminedBackpack
+    toolName: cc-radio-name
+    maxSelectedSets: 1
+    possibleSets:
+    - ERTLoadoutSecLaserVanguard
+    - ERTLoadoutSecLaserShotgun
+    - ERTLoadoutSecLaserSniper
+    - ERTLoadoutSecBallisticRifle

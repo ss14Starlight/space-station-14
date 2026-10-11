@@ -87,10 +87,10 @@
   - type: Gun
     fireRate: 1
     selectedMode: SemiAuto
-    minAngle: 1
-    maxAngle: 30
+    angleDecay: 45
+    minAngle: 21
+    maxAngle: 32
     angleIncrease: 5
-    angleDecay: 3
     projectileSpeed: 20
     availableModes:
     - SemiAuto
@@ -151,10 +151,10 @@
   - type: Gun
     projectileSpeed: 20
     fireRate: 1.75
-    minAngle: 24
-    maxAngle: 45
-    angleIncrease: 4
-    angleDecay: 16
+    angleDecay: 25
+    minAngle: 21
+    maxAngle: 32
+    angleIncrease: 10
     selectedMode: FullAuto
     availableModes:
       - SemiAuto
