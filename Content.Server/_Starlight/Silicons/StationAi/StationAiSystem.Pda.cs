@@ -62,7 +62,7 @@ public sealed partial class StationAiSystem
             return;
 
         _audio.PlayGlobal(
-            new SoundPathSpecifier("/Audio/Items/bikehorn.ogg"),
+            new SoundPathSpecifier("/Audio/_Starlight/Machines/fastbeep.ogg"),
             Filter.SinglePlayer(session),
             false);
     }
