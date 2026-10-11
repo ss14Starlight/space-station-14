@@ -21,7 +21,7 @@ public sealed partial class CCVars
 
     public static readonly CVarDef<bool> ChatEnableColorName =
         CVarDef.Create("accessibility.enable_color_name",
-            true,
+            false,
             CVar.CLIENTONLY | CVar.ARCHIVE,
             "Toggles displaying names with individual colors.");
 
@@ -80,6 +80,12 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<bool> AccessibilityArachnophobia =
             CVarDef.Create("accessibility.arachnophobia", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    ///     Toggle for enabling pixelated chat font inspired by SS13.
+    /// </summary>
+    public static readonly CVarDef<bool> AccessibilitySS13Font =
+            CVarDef.Create("accessibility.SS13Font", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
     /// If enabled, job icons in chat and status icons are not animated.

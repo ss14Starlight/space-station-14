@@ -364,6 +364,7 @@ ui-options-accessability-header-visuals = Visuals
 ui-options-accessability-header-content = Content
 
 ui-options-enable-color-name = Add colors to character names
+ui-options-SS13-font = Changes to a pixelated speech font
 ui-options-colorblind-friendly = Colorblind friendly mode
 ui-options-reduced-motion = Reduce motion of visual effects
 ui-options-screen-shake-intensity = Screen shake intensity
