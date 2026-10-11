@@ -11,7 +11,7 @@
         - id: Brutepack
         - id: Ointment
         - id: Gauze
-        - id: PillCanisterTricordrazine
+        - id: ChemistryBottleTricordrazine # Starlight
       # see https://github.com/tgstation/blob/master/code/game/objects/items/storage/firstaid.dm for example contents
 
 - type: entity
