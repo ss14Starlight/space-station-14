@@ -1,13 +1,6 @@
 Entries:
 - author: BriocheBear
   changes:
-  - message: Added chance for a bottle of Glubotoxin to spawn in medical chem cases.
-    type: Add
-  id: 408969
-  time: '2026-09-28T10:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5989
-- author: BriocheBear
-  changes:
   - message: Added chance for a Glub auto-injector to spawn in auto-injector packs.
     type: Add
   id: 408970
@@ -2883,4 +2876,11 @@ Entries:
   id: 409368
   time: '2026-10-11T13:10:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6370
+- author: Rinary
+  changes:
+  - message: Fixed issue when after space you're losing your ability to hear any sound.
+    type: Fix
+  id: 409369
+  time: '2026-10-11T18:32:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6641
 Order: -1
