@@ -1,13 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: AI can now access shuttles that are connected with a remote shuttle console to their gird.
-    type: Add
-  id: 408957
-  time: '2026-09-28T09:54:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6055
-- author: Floximo
-  changes:
   - message: Error resolved that caused a lot of logs, created by the AI camera eye not being a physical entity.
     type: Fix
   id: 408958
@@ -2883,4 +2876,11 @@ Entries:
   id: 409356
   time: '2026-10-11T09:23:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6617
+- author: Caws
+  changes:
+  - message: (Novo Lobster) The 'brigmedic plumbing input' near Chemistry that wouldn't accept any chemicals has now been fixed.
+    type: Fix
+  id: 409357
+  time: '2026-10-11T09:51:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6614
 Order: -1
