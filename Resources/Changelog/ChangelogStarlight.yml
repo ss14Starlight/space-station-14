@@ -1,18 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (CentComm G24) Removed portable flashers from Security.
-    type: Remove
-  id: 408954
-  time: '2026-09-28T09:21:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6383
-- author: TaserTheFox
-  changes:
-  - message: New AAC buttons, including, Sawians, Dolls, Soft crit, and Assistant Managers!
-    type: Add
-  id: 408955
-  time: '2026-09-28T09:54:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6325
 - author: TaserTheFox
   changes:
   - message: Moved salv team in AAC tablet to its own group, the ITG.
@@ -2883,4 +2869,18 @@ Entries:
   id: 409353
   time: '2026-10-11T09:23:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6619
+- author: Caws
+  changes:
+  - message: NT Career Trainers now have Brig access (meaning they can enter Brigmedic).
+    type: Add
+  id: 409354
+  time: '2026-10-11T09:23:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6616
+- author: Caws
+  changes:
+  - message: NT Career Trainers no longer have Security access by default.
+    type: Remove
+  id: 409355
+  time: '2026-10-11T09:23:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6616
 Order: -1
