@@ -115,8 +115,6 @@
       weight: 1
     - id: DrinkVodkizineBottleFull
       weight: 1
-    - id: JetpackSSFMarine
-      weight: 0.4
 
 - type: entityTable
   id: SKBWeaponsTable
@@ -139,7 +137,7 @@
     - id: WeaponSniperMosin
       weight: 1.2
     - id: WeaponPistol75auto
-      weight: 0.9
+      weight: 0.7
     - id: WeaponShotgunToz106
       weight: 1.2
     - id: WeaponShotgunToz106Extended
