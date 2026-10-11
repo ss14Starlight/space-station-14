@@ -1,3 +1,4 @@
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared.Decals;
 using Content.Shared.SprayPainter;
 using Content.Shared.SprayPainter.Components;
@@ -22,6 +23,7 @@ public sealed class SprayPainterBoundUserInterface(EntityUid owner, Enum uiKey) 
         if (_window == null)
         {
             _window = this.CreateWindow<SprayPainterWindow>();
+            EntMan.System<RemoteControlInterface>().TryEmbedWindow(_window); // Starlight
 
             _window.OnSpritePicked += OnSpritePicked;
             _window.OnSetPipeColor += OnSetPipeColor;

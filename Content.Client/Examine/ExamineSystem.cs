@@ -2,6 +2,7 @@ using System.Linq;
 using System.Numerics;
 using System.Threading;
 using Content.Client.Verbs;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Utility;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
@@ -38,6 +39,13 @@ namespace Content.Client.Examine
         public const string StyleClassEntityTooltip = "entity-tooltip";
 
         private EntityUid _examinedEntity;
+
+        #region Starlight
+        private RemoteControlInterface _remoteControl = default!;
+        private EntityUid _examiningEntity;
+        private UIRoot? _examineTooltipRoot;
+        #endregion
+
         private Popup? _examineTooltipOpen;
         private ScreenCoordinates _popupPos;
         private CancellationTokenSource? _requestCancelTokenSource;
@@ -46,6 +54,7 @@ namespace Content.Client.Examine
         public override void Initialize()
         {
             base.Initialize();
+            _remoteControl = EntityManager.System<RemoteControlInterface>(); // Starlight
 
             UpdatesOutsidePrediction = true;
 
@@ -78,8 +87,16 @@ namespace Content.Client.Examine
             if (_examineTooltipOpen is not {Visible: true}) return;
             if (!_examinedEntity.Valid || _playerManager.LocalEntity is not { } player) return;
 
-            if (!CanExamine(player, _examinedEntity))
+            // Starlight start
+            if (_remoteControl.ControlledEntity == null && _examiningEntity != player)
+            {
                 CloseTooltip();
+                return;
+            }
+
+            if (!CanExamine(_examiningEntity, _examinedEntity))
+                CloseTooltip();
+            // Starlight end
         }
 
         public override void Shutdown()
@@ -96,13 +113,16 @@ namespace Content.Client.Examine
             if (examinerComp.SkipChecks)
                 return true;
 
-            if (examinerComp.CheckInRangeUnOccluded)
+            // Starlight start
+            if (examinerComp.CheckInRangeUnOccluded
+                && _remoteControl.ControlledEntity != examiner)
             {
                 // TODO fix this. This should be using the examiner's eye component, not eye manager.
                 var b = _eyeManager.GetWorldViewbounds();
                 if (!b.Contains(target.Position))
                     return false;
             }
+            // Starlight end
 
             return base.CanExamine(examiner, target, predicate, examined, examinerComp);
         }
@@ -136,7 +156,7 @@ namespace Content.Client.Examine
             verb.Category = VerbCategory.Examine;
             verb.Priority = 10;
             // Center it on the entity if they use the verb instead.
-            verb.Act = () => DoExamine(args.Target, false);
+            verb.Act = () => DoExamine(args.Target, false, args.User); // Starlight
             verb.Text = Loc.GetString("examine-verb-name");
             verb.Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/examine.svg.192dpi.png"));
             verb.ShowOnExamineTooltip = false;
@@ -159,13 +179,14 @@ namespace Content.Client.Examine
             // since there's probably one open already if it's coming in from the server.
             var entity = GetEntity(ev.EntityUid);
 
-            OpenTooltip(player.Value, entity, out _, out _, ev.CenterAtCursor, ev.OpenAtOldTooltip, ev.KnowTarget); // Starlight-edit
+            OpenTooltip(player.Value, entity, out _, out _, ev.CenterAtCursor, ev.OpenAtOldTooltip, ev.KnowTarget,
+                _examiningEntity, _examineTooltipRoot); // Starlight
             UpdateTooltipInfo(player.Value, entity, ev.Message, ev.Verbs, getVerbs: false);
         }
 
         public override void SendExamineTooltip(EntityUid player, EntityUid target, FormattedMessage message, bool getVerbs, bool centerAtCursor)
         {
-            OpenTooltip(player, target, out _, out _, centerAtCursor); // Starlight-ediit
+            OpenTooltip(player, target, out _, out _, centerAtCursor, examiner: _examiningEntity, uiRoot: _examineTooltipRoot); // Starlight
             UpdateTooltipInfo(player, target, message, getVerbs: getVerbs);
         }
 
@@ -174,20 +195,28 @@ namespace Content.Client.Examine
         ///     not fill it with information. This is done when the server sends examine info/verbs,
         ///     or immediately if it's entirely clientside.
         /// </summary>
-        public void OpenTooltip(EntityUid player, EntityUid target, out RichTextLabel? nameLabel, out string? name, bool centeredOnCursor=true, bool openAtOldTooltip=true, bool knowTarget = true) // Starlight-edit: need to get the label oughh
+        public void OpenTooltip(EntityUid player, EntityUid target, out RichTextLabel? nameLabel, out string? name,
+            bool centeredOnCursor = true, bool openAtOldTooltip = true, bool knowTarget = true,
+            EntityUid? examiner = null, UIRoot? uiRoot = null) // Starlight: optional examiner and uiRoot support
         {
             // Close any examine tooltip that might already be opened
             // Before we do that, save its position. We'll prioritize opening any new popups there if
             // openAtOldTooltip is true.
             ScreenCoordinates? oldTooltipPos = _examineTooltipOpen != null ? _popupPos : null;
+            var oldTooltipRoot = _examineTooltipOpen?.Root?.ModalRoot;
             CloseTooltip();
 
             // cache entity for Update function
             _examinedEntity = target;
+            // Starlight start
+            _examiningEntity = examiner ?? player;
+            _examineTooltipRoot = uiRoot;
+            // Starlight end
 
             const float minWidth = 300;
 
-            if (openAtOldTooltip && oldTooltipPos != null)
+            var targetPopupRoot = uiRoot?.ModalRoot ?? _userInterfaceManager.ModalRoot;
+            if (openAtOldTooltip && oldTooltipPos != null && oldTooltipRoot == targetPopupRoot)
             {
                 _popupPos = oldTooltipPos.Value;
             }
@@ -203,7 +232,7 @@ namespace Content.Client.Examine
 
             // Actually open the tooltip.
             _examineTooltipOpen = new Popup { MaxWidth = 400 };
-            _userInterfaceManager.ModalRoot.AddChild(_examineTooltipOpen);
+            targetPopupRoot.AddChild(_examineTooltipOpen);
             var panel = new PanelContainer() { Name = "ExaminePopupPanel" };
             panel.AddStyleClass(StyleClassEntityTooltip);
             panel.ModulateSelfOverride = Color.LightGray.WithAlpha(0.90f);
@@ -291,7 +320,8 @@ namespace Content.Client.Examine
                 break;
             }
 
-            var totalVerbs = _verbSystem.GetLocalVerbs(target, player, typeof(ExamineVerb));
+            var verbUser = _remoteControl.ControlledEntity ?? player; // Starlight
+            var totalVerbs = _verbSystem.GetLocalVerbs(target, verbUser, typeof(ExamineVerb));
 
             // We still need client-exclusive verbs even when the server sends its data in so if that's the case
             // we remove any non-client-exclusive verbs.
@@ -403,7 +433,8 @@ namespace Content.Client.Examine
             }
         }
 
-        public void DoExamine(EntityUid entity, bool centeredOnCursor = true, EntityUid? userOverride = null)
+        public void DoExamine(EntityUid entity, bool centeredOnCursor = true, EntityUid? userOverride = null,
+            UIRoot? uiRoot = null) // Starlight: uiRoot support
         {
             var playerEnt = userOverride ?? _playerManager.LocalEntity;
             if (playerEnt == null)
@@ -411,7 +442,8 @@ namespace Content.Client.Examine
 
             FormattedMessage message;
 
-            OpenTooltip(playerEnt.Value, entity, out var label, out var name, centeredOnCursor, false); // Starlight-edit
+            OpenTooltip(playerEnt.Value, entity, out var label, out var name, centeredOnCursor, false,
+                examiner: userOverride, uiRoot: uiRoot); // Starlight: optional examiner and uiRoot support
 
             // Always update tooltip info from client first.
             // If we get it wrong, server will correct us later anyway.
@@ -430,7 +462,12 @@ namespace Content.Client.Examine
                 {
                     _idCounter += 1;
                 }
-                RaiseNetworkEvent(new ExamineSystemMessages.RequestExamineInfoMessage(GetNetEntity(entity), _idCounter, true));
+                // Starlight: pass the remote body as the examiner for server-side range and verb checks.
+                RaiseNetworkEvent(new ExamineSystemMessages.RequestExamineInfoMessage(
+                    GetNetEntity(entity),
+                    _idCounter,
+                    true,
+                    userOverride is { } remoteExaminer ? GetNetEntity(remoteExaminer) : null));
             }
 
             RaiseLocalEvent(entity, new ClientExaminedEvent(entity, playerEnt.Value));
@@ -456,6 +493,7 @@ namespace Content.Client.Examine
                 _requestCancelTokenSource.Cancel();
                 _requestCancelTokenSource = null;
             }
+
         }
     }
 

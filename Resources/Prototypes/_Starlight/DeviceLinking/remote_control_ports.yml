@@ -1,0 +1,10 @@
+- type: sourcePort
+  id: RemoteControl
+  name: remote-control-signal-port-name
+  description: remote-control-signal-port-description
+  defaultLinks: [ RemoteControl ]
+
+- type: sinkPort
+  id: RemoteControl
+  name: remote-control-signal-port-name
+  description: remote-control-signal-port-description

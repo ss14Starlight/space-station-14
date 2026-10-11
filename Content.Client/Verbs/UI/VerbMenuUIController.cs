@@ -4,6 +4,7 @@ using Content.Client.CombatMode;
 using Content.Client.ContextMenu.UI;
 using Content.Client.Gameplay;
 using Content.Client.Mapping;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared.Input;
 using Content.Shared.Verbs;
 using Robust.Client.Player;
@@ -29,6 +30,10 @@ namespace Content.Client.Verbs.UI
     {
         [Dependency] private IPlayerManager _playerManager = default!;
         [Dependency] private ContextMenuUIController _context = default!;
+
+        #region Starlight
+        [UISystemDependency] private RemoteControlInterface _remoteControl = default!;
+        #endregion
 
         [UISystemDependency] private readonly CombatModeSystem _combatMode = default!;
         [UISystemDependency] private readonly VerbSystem _verbSystem = default!;
@@ -100,10 +105,13 @@ namespace Content.Client.Verbs.UI
         public void OpenVerbMenu(NetEntity target, bool force = false, ContextMenuPopup? popup=null)
         {
             DebugTools.Assert(target.IsValid());
-            if (_playerManager.LocalEntity is not {Valid: true} user)
+
+            // Starlight start
+            var user = _remoteControl.ControlledEntity ?? _playerManager.LocalEntity;
+            if (user is not {Valid: true} userEntity)
                 return;
 
-            if (!force && _combatMode.IsInCombatMode(user))
+            if (!force && _combatMode.IsInCombatMode(userEntity))
                 return;
 
             Close();
@@ -112,7 +120,8 @@ namespace Content.Client.Verbs.UI
             menu.MenuBody.RemoveAllChildren();
 
             CurrentTarget = target;
-            CurrentVerbs = _verbSystem.GetVerbs(target, user, Verb.VerbTypes, out ExtraCategories, force);
+            CurrentVerbs = _verbSystem.GetVerbs(target, userEntity, Verb.VerbTypes, out ExtraCategories, force);
+            // Starlight end
             OpenMenu = menu;
 
             // Fill in client-side verbs.

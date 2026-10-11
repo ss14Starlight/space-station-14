@@ -1,0 +1,17 @@
+- type: entity
+  parent: [BaseOrganBrain, BaseHumanOrgan]
+  id: RemoteControlBrain
+  name: Remote Control Interface
+  description: A synthetic interface installed in place of a positronic brain, allowing a compatible robotic body to be controlled remotely.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Robotics/mmi.rsi
+    layers:
+    - state: posibrain
+  - type: Eye
+  - type: ContentEye
+  - type: RemoteControlBrain
+  - type: BorgBrain
+  - type: DeviceLinkSink
+    ports:
+    - RemoteControl

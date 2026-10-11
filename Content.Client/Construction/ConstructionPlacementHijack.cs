@@ -85,6 +85,11 @@ namespace Content.Client.Construction
                     if (layer.ActualRsi?.Path == null || layer.RsiState.Name == null)
                         continue;
 
+                    // Starlight start
+                    if (!_spriteSystem.TryGetLayer((overlay, overlaySprite), i, out _, false))
+                        break;
+                    // Starlight end
+
                     _spriteSystem.LayerSetOffset((overlay, overlaySprite), i, sprite.Offset + ((SpriteComponent.Layer)layer).Offset);
                     i++;
                 }
