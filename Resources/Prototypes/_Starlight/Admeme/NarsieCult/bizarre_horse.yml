@@ -86,7 +86,7 @@
   components:
     - type: Action
       useDelay: 15
-      icon: Interface/Actions/sleep.png
+      icon: Interface/Actions/harm.png
       itemIconStyle: BigAction
     - type: TargetAction
     - type: EntityTargetAction
