@@ -1,67 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) Fryers in the kitchen for CC chefs.
-    type: Add
-  id: 408960
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) Added way more biomass to cloning.
-    type: Add
-  id: 408961
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) Added Interdyne medical vendor for a certain debrief room.
-    type: Add
-  id: 408962
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) Reworked Debrief. It now has just one entrance/exit and a better 'viewing' area for crew. The shutters have been replaced with blast doors to prevent people being annoying by prying the shutters open and closed.
-    type: Tweak
-  id: 408963
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) Brigmedic now uses Brigmedic doors.
-    type: Fix
-  id: 408964
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) Security now uses Brig doors and Security doors were appropriate, instead of IAA doors.
-    type: Fix
-  id: 408965
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) Removed problematic portable flashers from Security.
-    type: Remove
-  id: 408966
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) Removed hidden Decimus armour from CC's Armoury.
-    type: Remove
-  id: 408967
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
-- author: BriocheBear
-  changes:
-  - message: Added Glubotoxin to the game! Makes you glub. When 50u is metabolized at once, the subject will temporarily morph into a space koi.
-    type: Add
-  id: 408968
-  time: '2026-09-28T10:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5989
 - author: BriocheBear
   changes:
   - message: Added chance for a bottle of Glubotoxin to spawn in medical chem cases.
@@ -2883,4 +2820,67 @@ Entries:
   id: 409359
   time: '2026-10-11T09:51:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6613
+- author: Swonki
+  changes:
+  - message: Jurisdiction SOP clarity regarding ATS.
+    type: Tweak
+  id: 409360
+  time: '2026-10-11T10:17:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6522
+- author: Rinary
+  changes:
+  - message: Fixed damage overlay flickering.
+    type: Fix
+  id: 409361
+  time: '2026-10-11T12:20:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6631
+- author: Scarlet lightweaver.
+  changes:
+  - message: Added beef strognaoff to the game!.
+    type: Add
+  id: 409362
+  time: '2026-10-11T12:51:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6627
+- author: Scarlet lightweaver.
+  changes:
+  - message: Added wooden bowls.
+    type: Add
+  id: 409363
+  time: '2026-10-11T12:51:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6627
+- author: Scarlet lightweaver.
+  changes:
+  - message: added brown mushrooms and thier spores.
+    type: Add
+  id: 409364
+  time: '2026-10-11T12:51:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6627
+- author: wonderfulnewworld
+  changes:
+  - message: Diona minds are now correctly transferred to their nymphs when they gib. (this time for real).
+    type: Fix
+  id: 409365
+  time: '2026-10-11T12:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6630
+- author: Rhapsody (Pepta Vismahl), Johnny, DocMoth, Swonkus
+  changes:
+  - message: Player-controlled monkeys, kobolds, scurrets (including Pun Pun, Stir Stir, and Kiki), and smart corgis can now become cosmic cultists!
+    type: Tweak
+  id: 409366
+  time: '2026-10-11T13:10:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6370
+- author: Rhapsody (Pepta Vismahl), Johnny, DocMoth, Swonkus
+  changes:
+  - message: Monkeys, kobolds, scurrets, and corgis can now wear the cosmic cult's entropic armor thanks to sprite work by Johnny, DocMoth, and Swonkus!
+    type: Add
+  id: 409367
+  time: '2026-10-11T13:10:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6370
+- author: Rhapsody (Pepta Vismahl), Johnny, DocMoth, Swonkus
+  changes:
+  - message: Aberrant Lapse now has unique sprites for every player species, as well as monkeys, kobolds, scurrets, and corgis.
+    type: Add
+  id: 409368
+  time: '2026-10-11T13:10:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6370
 Order: -1
