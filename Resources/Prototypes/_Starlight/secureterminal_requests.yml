@@ -38,9 +38,9 @@
     - id: SecurityLeadership
       name: secure-terminal-security-leadership-name
       groups:
-        - [Captain, HeadOfSecurity, Ntrep]
-        - [Captain, HeadOfSecurity, Ntrep]
-        - [Captain, HeadOfSecurity, Ntrep]
+        - [Captain]
+        - [HeadOfSecurity]
+        - [Ntrep]
     - id: Command
       name: secure-terminal-command-name
       groups:
