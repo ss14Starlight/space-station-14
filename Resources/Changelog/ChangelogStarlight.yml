@@ -1,25 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Added some glorious equipment to the pobeda.
-    type: Add
-  id: 408976
-  time: '2026-09-28T10:38:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6390
-- author: Johnny
-  changes:
-  - message: The pobedas equipment has been made more fair.
-    type: Tweak
-  id: 408977
-  time: '2026-09-28T10:38:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6390
-- author: Johnny
-  changes:
-  - message: Fixed the name on the pobeda, it is not a podeba.
-    type: Fix
-  id: 408978
-  time: '2026-09-28T10:38:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6390
 - author: Pickra
   changes:
   - message: Temporarily removed Peacekeeper bola option for now due to time constraints.
@@ -2883,4 +2862,25 @@ Entries:
   id: 409375
   time: '2026-10-11T18:32:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6638
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Tricordrazine is now effective when ingested once again.
+    type: Tweak
+  id: 409376
+  time: '2026-10-11T18:40:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6640
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Tricordrazine now induces vomiting when over 40.5u is in the stomach, and deals poison damage while over 40.5u in the bloodstream. It still does no healing when above 40u.
+    type: Tweak
+  id: 409377
+  time: '2026-10-11T18:40:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6640
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed multiple medibots being able to inject the same patient, resulting in patients with large amounts of inap or tric. Now only the first injection succeeds.
+    type: Fix
+  id: 409378
+  time: '2026-10-11T18:40:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6640
 Order: -1
