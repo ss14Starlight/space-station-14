@@ -1,41 +1,6 @@
 Entries:
 - author: BriocheBear
   changes:
-  - message: Added chance for a Glub auto-injector to spawn in auto-injector packs.
-    type: Add
-  id: 408970
-  time: '2026-09-28T10:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5989
-- author: BriocheBear
-  changes:
-  - message: Added weh & glub reagent slimes. They are just as deadly, good luck!
-    type: Add
-  id: 408971
-  time: '2026-09-28T10:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5989
-- author: BriocheBear
-  changes:
-  - message: Space koi can now feel the love! Space koi will now show hearts when pet, and make the glub sound effect.
-    type: Tweak
-  id: 408972
-  time: '2026-09-28T10:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5989
-- author: BriocheBear
-  changes:
-  - message: Space koi can no longer access the carp hivemind.
-    type: Remove
-  id: 408973
-  time: '2026-09-28T10:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5989
-- author: BriocheBear
-  changes:
-  - message: All species now able to make the thaven glub sound effect, with the condition of metabolizing Glubotoxin.
-    type: Tweak
-  id: 408974
-  time: '2026-09-28T10:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5989
-- author: BriocheBear
-  changes:
   - message: All species now able to make the weh and hew sound effects, as some were not already capable of doing so.
     type: Tweak
   id: 408975
@@ -2883,4 +2848,39 @@ Entries:
   id: 409369
   time: '2026-10-11T18:32:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6641
+- author: OJG
+  changes:
+  - message: (Refinery) Redid the reactor due to map version errors.
+    type: Tweak
+  id: 409370
+  time: '2026-10-11T18:32:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6622
+- author: OJG
+  changes:
+  - message: (Refinery) Bunch of changes re-implemented due to aforementioned map versions.
+    type: Fix
+  id: 409371
+  time: '2026-10-11T18:32:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6622
+- author: OJG
+  changes:
+  - message: (Refinery) Engineer hardsuits.
+    type: Fix
+  id: 409372
+  time: '2026-10-11T18:32:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6622
+- author: OJG
+  changes:
+  - message: (Refinery) Intercom for AI.
+    type: Fix
+  id: 409373
+  time: '2026-10-11T18:32:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6622
+- author: OJG
+  changes:
+  - message: (Refinery) QM office computers and terminals.
+    type: Fix
+  id: 409374
+  time: '2026-10-11T18:32:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6622
 Order: -1
