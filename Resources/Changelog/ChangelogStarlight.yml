@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (CentComm G24) Added way more biomass to cloning.
-    type: Add
-  id: 408951
-  time: '2026-09-28T09:21:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6383
-- author: Caws
-  changes:
   - message: (CentComm G24) Added Interdyne medical vendor for a certain debrief room.
     type: Add
   id: 408952
@@ -2883,4 +2876,11 @@ Entries:
   id: 409350
   time: '2026-10-10T18:36:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6585
+- author: Sparlight
+  changes:
+  - message: Fixed creatures like corgis, K9s, xenos, and various other combat-capable creatures doing no damage to objects or mechs.
+    type: Fix
+  id: 409351
+  time: '2026-10-11T08:53:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6620
 Order: -1
