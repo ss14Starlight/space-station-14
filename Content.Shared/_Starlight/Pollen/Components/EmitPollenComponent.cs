@@ -2,7 +2,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared._Starlight.Pollen.Components;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
 public sealed partial class EmitPollenComponent : Component
 {
     /// <summary>
@@ -39,9 +39,14 @@ public sealed partial class EmitPollenComponent : Component
     /// <summary>
     /// Time when this entity should emit pollen again.
     /// </summary>
-    [DataField]
+    [DataField, AutoPausedField]
     public TimeSpan NextEmitTime;
 
+    /// <summary>
+    /// The most recent scent marker this emitter created or refreshed.
+    /// Reused on the next emission (if still valid and in range) instead of
+    /// scanning every marker on the server - mirrors ScentComponent.LastMarkerEntity.
+    /// </summary>
     [DataField]
     public EntityUid? LastMarkerEntity;
 

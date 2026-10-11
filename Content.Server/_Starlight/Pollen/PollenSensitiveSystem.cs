@@ -170,9 +170,15 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
         ent.Comp.AllergyStack = MathF.Max(0f, ent.Comp.AllergyStack - ent.Comp.SneezeAmount);
         ent.Comp.AllergyStack = MathF.Round(ent.Comp.AllergyStack, 2);
 
-        if (TryComp(ent.Owner, out SmellerComponent? smeller) &&
-            _scent.ForceAllergySneeze((ent.Owner, smeller), smeller.SmokeLockout))
+        if (TryComp(ent.Owner, out SmellerComponent? smeller))
         {
+            if (_scent.ForceAllergySneeze((ent.Owner, smeller), smeller.SmokeLockout))
+                _popup.PopupEntity(Loc.GetString("scent-sneeze-allergic"), ent.Owner, ent.Owner, PopupType.Small);
+        }
+        else
+        {
+            // No SmellerComponent (e.g. Humans) - no scent-tracking machinery to
+            // clear or toggle, but still give sneeze feedback.
             _popup.PopupEntity(Loc.GetString("scent-sneeze-allergic"), ent.Owner, ent.Owner, PopupType.Small);
         }
 

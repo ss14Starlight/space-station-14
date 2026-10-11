@@ -126,8 +126,22 @@ public abstract partial class SharedScentSystem : EntitySystem
         Actions.SetCooldown(ent.Comp.ToggleActionEntity, lockout);
     }
 
-    public bool ForceAllergySneeze(Entity<SmellerComponent> ent, TimeSpan lockout)
+    /// <summary>
+    /// Not the voluntary sneeze action. Forces a sneeze on behalf of some
+    /// external cause (e.g. pollen allergy), locking out Toggle Smelling for
+    /// <paramref name="lockout"/>. Returns false (and does nothing) if the
+    /// entity has no SmellerComponent, is dead, or Toggle Smelling is already
+    /// on cooldown - in all of those cases no sneeze occurred, and callers
+    /// should not show sneeze-specific feedback.
+    /// </summary>
+    /// <param name="ent">Entity to sneeze; SmellerComponent is resolved if not provided.</param>
+    /// <param name="lockout">Lockout period, in seconds, to disable the smelling ability.</param>
+    /// <returns>True if the entity actually sneezed.</returns>
+    public bool ForceAllergySneeze(Entity<SmellerComponent?> ent, TimeSpan lockout)
     {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
         if (MobState.IsDead(ent.Owner))
             return false;
 
@@ -138,10 +152,10 @@ public abstract partial class SharedScentSystem : EntitySystem
             return false;
         }
 
-        ClearTrackedScent(ent);
+        ClearTrackedScent((ent.Owner, ent.Comp!));
         Audio.PlayPredicted(ent.Comp.SneezeSound, ent.Owner, null);
 
-        SetSniffing(ent, false);
+        SetSniffing((ent.Owner, ent.Comp!), false);
         Actions.SetCooldown(ent.Comp.ToggleActionEntity, lockout);
         return true;
     }

@@ -192,8 +192,8 @@ public sealed partial class PollenAdvancedSystem : EntitySystem
         if (!TryComp(target, out SmellerComponent? smeller))
             return;
 
-        _scent.ForceAllergySneeze((target, smeller), smeller.SmokeLockout);
-        _popup.PopupEntity(Loc.GetString("scent-sneeze-allergic"), target, target, PopupType.Small);
+        if (_scent.ForceAllergySneeze((target, smeller), smeller.SmokeLockout))
+            _popup.PopupEntity(Loc.GetString("scent-sneeze-allergic"), target, target, PopupType.Small);
     }
 }
 
