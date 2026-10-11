@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: MedkitFilled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        children:
+        - !CombineIndex:3 id: ChemistryBottleTricordrazine

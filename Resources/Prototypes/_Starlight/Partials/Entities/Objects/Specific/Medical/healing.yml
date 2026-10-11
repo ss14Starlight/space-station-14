@@ -12,3 +12,52 @@
   - type: EmitSoundOnPickup
     sound:
       collection: MeshPickup
+
+- type: !PartialOnly entity
+  id: PillCanisterRandom
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        children: !Clear
+        - id: PillDexalin
+          amount: 1, 6
+        - id: PillDylovene
+          amount: 1, 6
+        - id: PillHyronalin
+          amount: 1, 6
+        - id: PillPotassiumIodide
+          amount: 1, 6
+        - id: PillIron
+          amount: 1, 6
+        - id: PillCopper
+          amount: 1, 6
+        - id: PillKelotane
+          amount: 1, 6
+        - id: PillDermaline
+          amount: 1, 6
+        - id: PillBicaridine
+          amount: 1, 6
+        - id: PillCharcoal
+          amount: 1, 6
+        - id: PillAmbuzol
+          weight: 0.75
+          amount: 1, 6
+        - id: PillAmbuzolPlus
+          weight: 0.75
+          amount: 1, 6
+        - id: PillSpaceDrugs
+          weight: 0.75
+          amount: 1, 6
+        - id: StrangePill
+          weight: 0.75
+          amount: 1, 6
+        - id: OminousPill
+          weight: 0.375
+          amount: 1, 3
+        - id: WeirdPill
+          weight: 0.5
+          amount: 1, 6
+        - id: GoldenPill
+          weight: 0.25
+          amount: 1, 2

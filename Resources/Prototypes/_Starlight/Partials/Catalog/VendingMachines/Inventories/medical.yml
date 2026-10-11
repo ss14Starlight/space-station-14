@@ -1,0 +1,82 @@
+- type: !PartialOnly vendingMachineInventory
+  id: NanoMedInventory
+  startingInventory:
+    PillCanisterTricordrazine: !Remove
+    ClothingBeltMedical: 2
+    ClothingBeltMedicalEMT: 1
+    ChemistryBottleTricordrazine: 2
+  contrabandInventory:
+    StrangePill: 1
+    PowerCellSmall: 2
+  emaggedInventory:
+    OminousPill: 1
+    PillDesoxyephedrine5: 1
+
+- type: !PartialOnly vendingMachineInventory
+  id: NanoMedCivilianWallInventory
+  startingInventory:
+    PillTricordrazine: !Remove
+    Gauze: 3
+    ChemistryBottleTricordrazine: 2
+  contrabandInventory:
+    StrangePill: 1
+  emaggedInventory:
+    OminousPill: 1
+    PillDesoxyephedrine5: 1
+
+- type: !PartialOnly vendingMachineInventory
+  id: NanoMedPlusInventory
+  startingInventory:
+    ClothingBeltMedicalFilled: !Remove
+    ClothingBeltMedicalEMTFilled: !Remove
+    EmergencyRollerBedSpawnFolded: !Remove
+    BoxBodyBag: !Remove
+    Defibrillator: !Remove
+    PillCanisterTricordrazine: !Remove
+    ClothingOuterHospitalGown: !Remove
+    ClothingBeltMedical: 3
+    ClothingBeltMedicalEMT: 2
+    Gauze: 5
+    Brutepack: 5
+    Ointment: 5
+    Bloodpack: 5
+    Tourniquet: 2
+    ChemistryBottleEpinephrine: 3
+    ChemistryBottleBicaridine: 1
+    Syringe: 5
+    ChemistryBottleTricordrazine: 2
+    PillCanisterIron: 1
+    PillCanisterCopper: 1
+    PillCanisterPotassiumIodide: 1
+    SyringeIpecac: 1
+    ClothingEyesHudMedical: 2
+    ClothingEyesEyepatchHudMedical: 2
+    ClothingEyeGlassesMedicalPrescription: 2
+    AutoMenderBruteFilled: 1
+    AutoMenderBurnFilled: 1
+    SpaceMedipen: 1
+  contrabandInventory:
+    StrangePill: 2
+  emaggedInventory:
+    OminousPill: 2
+    PillDesoxyephedrine5: 2
+
+- type: !PartialOnly vendingMachineInventory
+  id: NanoMedCivilianInventory
+  startingInventory:
+    PillTricordrazine: !Remove
+    PillIron: !Remove
+    PillCopper: !Remove
+    Gauze: 3
+    ChemistryBottleInaprovaline: 3
+    ChemistryBottleEpinephrine: 3
+    BoxBottle: 3
+    ChemistryBottleTricordrazine: 2
+    PillCanisterIron: 1
+    PillCanisterCopper: 1
+    PillCanisterPotassiumIodide: 1
+  contrabandInventory:
+    StrangePill: 2
+  emaggedInventory:
+    OminousPill: 2
+    PillDesoxyephedrine5: 1

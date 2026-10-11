@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: LootSpawnerMedicalClassy
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - !Index:9 ChemistryBottleTricordrazine
+    - !Remove PillCanisterTricordrazine

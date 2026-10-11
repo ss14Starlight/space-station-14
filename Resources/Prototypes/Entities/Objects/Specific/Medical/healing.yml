@@ -801,51 +801,33 @@
       storagebase: !type:GroupSelector
         children:
         - id: PillDexalin
-          amount: &Range1to6 !type:RangeNumberSelector
-            range: 1, 6
+          amount: 1, 6
         - id: PillDylovene
-          amount: *Range1to6
+          amount: 1, 6
         - id: PillHyronalin
-          amount: *Range1to6
+          amount: 1, 6
         - id: PillPotassiumIodide
-          amount: *Range1to6
+          amount: 1, 6
         - id: PillIron
-          amount: *Range1to6
+          amount: 1, 6
         - id: PillCopper
-          amount: *Range1to6
+          amount: 1, 6
         - id: PillKelotane
-          amount: *Range1to6
+          amount: 1, 6
         - id: PillDermaline
-          amount: *Range1to6
-        #- id: PillTricordrazine # Starlight
-        #  amount: *Range1to6 # Starlight
+          amount: 1, 6
+        - id: PillTricordrazine
+          amount: 1, 6
         - id: PillBicaridine
-          amount: *Range1to6
+          amount: 1, 6
         - id: PillCharcoal
-          amount: *Range1to6
-        - id: PillAmbuzol
-          weight: 0.75
-          amount: *Range1to6
-        - id: PillAmbuzolPlus
-          weight: 0.75
-          amount: *Range1to6
+          amount: 1, 6
         - id: PillSpaceDrugs
           weight: 0.75
-          amount: *Range1to6
+          amount: 1, 6
         - id: StrangePill
           weight: 0.75
-          amount: *Range1to6
-        - id: OminousPill # Starlight start
-          weight: 0.375
-          amount: !type:RangeNumberSelector
-            range: 1, 3
-        - id: WeirdPill
-          weight: 0.5
-          amount: *Range1to6
-        - id: GoldenPill
-          weight: 0.25
-          amount: !type:RangeNumberSelector
-            range: 1, 2  # Starlight end
+          amount: 1, 6
 
 # Syringes
 - type: entity
