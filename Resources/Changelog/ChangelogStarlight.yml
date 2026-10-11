@@ -1,18 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: Error resolved that caused a lot of logs, created by the AI camera eye not being a physical entity.
-    type: Fix
-  id: 408958
-  time: '2026-09-28T09:54:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6055
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) Cecil (sea salt).
-    type: Add
-  id: 408959
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
 - author: Caws
   changes:
   - message: (CentComm GNT9) Fryers in the kitchen for CC chefs.
@@ -2883,4 +2869,18 @@ Entries:
   id: 409357
   time: '2026-10-11T09:51:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6614
+- author: SirLutz
+  changes:
+  - message: The red damage indicator now also accounts for structural damage.
+    type: Fix
+  id: 409358
+  time: '2026-10-11T09:51:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6613
+- author: SirLutz
+  changes:
+  - message: Mechs can no longer hit themselves or their pilots with wide swings.
+    type: Fix
+  id: 409359
+  time: '2026-10-11T09:51:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6613
 Order: -1
