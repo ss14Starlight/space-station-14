@@ -1,9 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Numerics;
 using Content.Server.Cargo.Components;
-using Content.Shared.Atmos;
-using Content.Shared.Atmos.Prototypes;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
@@ -13,22 +10,14 @@ using Content.Shared.Database;
 using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
-using Content.Shared.Labels.Components;
 using Content.Shared.Paper;
 using Content.Shared.Station.Components;
-using Content.Shared.Tools;
+using Content.Shared._Starlight.CCVar;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-
-#region Starlight
-using Content.Shared._Starlight.Cargo.TamperSeal.Components;
-using Content.Server._Starlight.Cargo.TamperSeal.Components;
-using Content.Shared._Starlight.CCVar;
-
-#endregion
 
 namespace Content.Server.Cargo.Systems
 {
@@ -37,12 +26,6 @@ namespace Content.Server.Cargo.Systems
         [Dependency] private SharedTransformSystem _transformSystem = default!;
         [Dependency] private EmagSystem _emag = default!;
         [Dependency] private IGameTiming _timing = default!;
-
-        #region Starlight
-        private float _tamperSealRewardMultiplier = 0.1f;
-        private float _tamperSealPenaltyMultiplier = 0.1f;
-        private float _tamperSealRefundMultiplier = 0.5f;
-        #endregion
 
         private void InitializeConsole()
         {
@@ -99,7 +82,7 @@ namespace Content.Server.Cargo.Systems
                 return;
 
             var orderId = GenerateOrderId(orderDatabase);
-            var data = new CargoOrderData(orderId, product.Product, product.Name, product.Cost, slip.OrderQuantity, slip.Requester, slip.Reason, slip.Account, GetNetEntity(stationUid.Value), slip.Product, product.GasType, product.GasMoles, product.GasTemperature); // Starlight
+            var data = new CargoOrderData(orderId, product, slip.OrderQuantity, slip.Requester, slip.Reason, slip.Account, GetNetEntity(stationUid.Value)); // Starlight, keep gas and tamper-seal stuff
 
             if (!TryAddOrder(stationUid.Value, ent.Comp.Account, data, orderDatabase))
             {
@@ -111,7 +94,7 @@ namespace Content.Server.Cargo.Systems
             _audio.PlayPvs(ent.Comp.ScanSound, ent);
             _adminLogger.Add(LogType.Action,
                 LogImpact.Low,
-                $"{ToPrettyString(args.User):user} inserted order slip [orderId:{data.OrderId}, quantity:{data.OrderQuantity}, product:{data.ProductId}, requester:{data.Requester}, reason:{data.Reason}]");
+                $"{ToPrettyString(args.User):user} inserted order slip [orderId:{data.OrderId}, quantity:{data.OrderQuantity}, product:{data.Product}, requester:{data.Requester}, reason:{data.Reason}]");
             QueueDel(args.Used);
             args.Handled = true;
         }
@@ -196,9 +179,10 @@ namespace Content.Server.Cargo.Systems
             }
 
             // Invalid order
-            if (!(order.ProductId.HasValue || order.GasType.HasValue) || // Starlight since they are both nullable now
-                (order.ProductId.HasValue && !_protoMan.HasIndex<EntityPrototype>(order.ProductId.Value)) || // Starlight
-                (order.GasType.HasValue && !_protoMan.HasIndex(order.GasType))) // Starlight: Check gas too
+            if (!_protoMan.Resolve(order.Product, out var product) ||
+                (product.Product is { } productId && !_protoMan.HasIndex(productId)) ||
+                (product.GasType is { } gasType && !_protoMan.HasIndex(gasType)) ||
+                (product.Product == null && product.GasType == null))
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-invalid-product"));
                 PlayDenySound(uid, component);
@@ -226,7 +210,7 @@ namespace Content.Server.Cargo.Systems
                 PlayDenySound(uid, component);
             }
 
-            var cost = order.Price * order.OrderQuantity;
+            var cost = order.Price * order.OrderQuantity; // Starlight, use the price snapshotted when the order was placed
             var accountBalance = GetBalanceFromAccount((station.Value, bank), order.Account);
 
             // Not enough balance
@@ -263,7 +247,7 @@ namespace Content.Server.Cargo.Systems
                 order.SetApproverData(tryGetIdentityShortInfoEvent.Title);
 
                 var message = Loc.GetString("cargo-console-unlock-approved-order-broadcast",
-                    ("productName", Loc.GetString(order.ProductName)),
+                    ("productName", Loc.GetString(product.Name)),
                     ("orderAmount", order.OrderQuantity),
                     ("approver", order.Approver ?? string.Empty),
                     ("cost", cost));
@@ -277,7 +261,7 @@ namespace Content.Server.Cargo.Systems
             // Log order approval
             _adminLogger.Add(LogType.Action,
                 LogImpact.Low,
-                $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, reason:{order.Reason}] on account {order.Account} with balance at {accountBalance}");
+                $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.Product}, requester:{order.Requester}, reason:{order.Reason}] on account {order.Account} with balance at {accountBalance}");
 
             orderDatabase.Orders[component.Account].Remove(order);
             UpdateBankAccount((station.Value, bank), -cost, order.Account);
@@ -286,54 +270,17 @@ namespace Content.Server.Cargo.Systems
 
         private EntityUid? TryFulfillOrder(Entity<StationDataComponent> stationData, ProtoId<CargoAccountPrototype> account, CargoOrderData order, StationCargoOrderDatabaseComponent orderDatabase)
         {
+            if (order.GasType != null) // Starlight, gas orders fill cargo gas pallets instead of spawning parcel entities.
+                return TryFulfillGasOrder(stationData, account, order, orderDatabase); // Starlight
+
             // No slots at the trade station
             _listEnts.Clear();
             GetTradeStations(stationData, ref _listEnts);
             EntityUid? tradeDestination = null;
-            var orderSlipPrinted = new HashSet<EntityUid>(); // Starlight
 
             // Try to fulfill from any station where possible, if the pad is not occupied.
             foreach (var trade in _listEnts)
             {
-                // Starlight BEGIN: Gas orders
-                if (order.GasType != null)
-                {
-                    var gasTanks = GetCargoGasPallets(trade, BuySellType.Buy);
-                    _random.Shuffle(gasTanks);
-                    var freeTanks = GetFreeCargoGasPallets(gasTanks,
-                        Enum.Parse<Gas>(order.GasType.Value.Id), order.GasMoles, order.GasTemperature,
-                        order.OrderQuantity);
-
-                    // Not enough room? Fail.
-                    if (freeTanks.Count < order.OrderQuantity)
-                        continue;
-
-                    tradeDestination = trade;
-                    foreach (var gasTank in freeTanks)
-                    {
-                        if (order.NumDispatched >= order.OrderQuantity)
-                            break;
-
-                        // Dispatch to this tank ONCE. It is already repeated in the "freeTanks" list if the order will
-                        // fit multiple times.
-                        var gas = new GasMixture(gasTank.Component.Air.Volume) { Temperature = order.GasTemperature };
-                        gas.SetMoles(Enum.Parse<Gas>(order.GasType.Value.Id), order.GasMoles);
-                        _atmosphereSystem.Merge(gasTank.Component.Air, gas);
-
-                        // Print one order slip at this gas tank only if we haven't already.
-                        // This prevents printing 30 slips at once; cargo only needs 1 signed anyways..
-                        if (orderSlipPrinted.Add(gasTank.Entity))
-                            CreateOrderSlip(order, account,
-                                new EntityCoordinates(gasTank.Entity, Vector2.Zero),
-                                orderDatabase.PrinterOutput, null, order.ProductName);
-
-                        order.NumDispatched++;
-                    }
-
-                    break;
-                }
-                // Starlight END: Gas orders
-
                 var tradePads = GetCargoPallets(trade, BuySellType.Buy);
                 _random.Shuffle(tradePads);
 
@@ -451,7 +398,7 @@ namespace Content.Server.Cargo.Systems
 
             var targetAccount = component.Mode == CargoOrderConsoleMode.SendToPrimary ? bank.PrimaryAccount : component.Account;
 
-            var data = new CargoOrderData(GenerateOrderId(orderDatabase), product.Product, product.Name, product.Cost, args.Amount, args.Requester, args.Reason, component.Account, GetNetEntity(stationUid.Value), args.CargoProductId, product.GasType, product.GasMoles, product.GasTemperature); // Starlight
+            var data = new CargoOrderData(GenerateOrderId(orderDatabase), product, args.Amount, args.Requester, args.Reason, component.Account, GetNetEntity(stationUid.Value)); // Starlight
 
             if (!TryAddOrder(stationUid.Value, targetAccount, data, orderDatabase))
             {
@@ -462,7 +409,7 @@ namespace Content.Server.Cargo.Systems
             // Log order addition
             _adminLogger.Add(LogType.Action,
                 LogImpact.Low,
-                $"{ToPrettyString(player):user} added order [orderId:{data.OrderId}, quantity:{data.OrderQuantity}, product:{data.ProductId}, requester:{data.Requester}, reason:{data.Reason}]");
+                $"{ToPrettyString(player):user} added order [orderId:{data.OrderId}, quantity:{data.OrderQuantity}, product:{data.Product}, requester:{data.Requester}, reason:{data.Reason}]");
 
         }
 
@@ -529,16 +476,6 @@ namespace Content.Server.Cargo.Systems
             }
         }
 
-        #region Starlight
-        // This is an upstream method, but it is now unused due to our changes elsewhere in this file.
-        /*
-        private static CargoOrderData GetOrderData(CargoConsoleAddOrderMessage args, CargoProductPrototype cargoProduct, int id, ProtoId<CargoAccountPrototype> account)
-        {
-            return new CargoOrderData(id, cargoProduct.Product, cargoProduct.Name, cargoProduct.Cost, args.Amount, args.Requester, args.Reason, account);
-        }
-        */
-        #endregion
-
         public int GetOutstandingOrderCount(Entity<StationCargoOrderDatabaseComponent> station, ProtoId<CargoAccountPrototype> account)
         {
             var amount = 0;
@@ -589,26 +526,19 @@ namespace Content.Server.Cargo.Systems
 
         public bool AddAndApproveOrder(
             EntityUid dbUid,
-            EntProtoId? spawnId, // Starlight
-            string name,
-            int cost,
+            CargoProductPrototype product,
             int qty,
             string sender,
             string description,
             string dest,
             StationCargoOrderDatabaseComponent component,
             ProtoId<CargoAccountPrototype> account,
-            Entity<StationDataComponent> stationData,
-            ProtoId<CargoProductPrototype> cargoProductId, // Starlight
-            ProtoId<GasPrototype>? gasType, // Starlight
-            float gasMoles, // Starlight
-            float gasTemperature) // Starlight
+            Entity<StationDataComponent> stationData
+        )
         {
-            DebugTools.Assert(!spawnId.HasValue || _protoMan.HasIndex<EntityPrototype>(spawnId));
-            DebugTools.Assert(!gasType.HasValue || _protoMan.HasIndex(gasType));
             // Make an order
             var id = GenerateOrderId(component);
-            var order = new CargoOrderData(id, spawnId, name, cost, qty, sender, description, account, GetNetEntity(stationData.Owner), cargoProductId, gasType, gasMoles, gasTemperature); // Starlight
+            var order = new CargoOrderData(id, product, qty, sender, description, account, GetNetEntity(stationData.Owner)); // Starlight
 
             // Approve it now
             order.SetApproverData(dest, sender);
@@ -617,7 +547,7 @@ namespace Content.Server.Cargo.Systems
             // Log order addition
             _adminLogger.Add(LogType.Action,
                 LogImpact.Low,
-                $"AddAndApproveOrder {description} added order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, reason:{order.Reason}]");
+                $"AddAndApproveOrder {description} added order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.Product}, requester:{order.Requester}, reason:{order.Reason}]");
 
             // Add it to the list
             return TryAddOrder(dbUid, account, order, component) && TryFulfillOrder(stationData, account, order, component).HasValue;
@@ -692,82 +622,41 @@ namespace Content.Server.Cargo.Systems
         /// </summary>
         private bool FulfillOrder(CargoOrderData order, ProtoId<CargoAccountPrototype> account, EntityCoordinates spawn, string? paperProto)
         {
+            if (!_protoMan.Resolve(order.Product, out var product) || product.Product is not { } productId)
+                return false;
+
             // Create the item itself
-            var item = Spawn(order.ProductId, spawn);
+            var item = Spawn(productId, spawn);
+            var itemXForm = Transform(item);
 
             // Ensure the item doesn't start anchored
-            _transformSystem.Unanchor(item, Transform(item));
+            _transformSystem.Unanchor(item, itemXForm);
 
-            // Starlight BEGIN
-            // Create a sheet of paper to write the order details on
-            CreateOrderSlip(order, account, spawn, paperProto, item, MetaData(item).EntityName); // Replaced with method
-
-            // If the entity does not support tamper seals, do not apply one.
-            if (!TryComp<TamperSealableComponent>(item, out var tamperSealable))
-                return true;
-
-            var recipient = _protoMan.Index(account);
-
-            // Apply a tamper seal to the entity. This does the actual sealing logic.
-            var seal = EnsureComp<TamperSealComponent>(item);
-            seal.Recipient = account;
-            seal.RecipientName = recipient.TamperSealName;
-            seal.RecipientExamineColor = recipient.Color;
-            seal.Color = recipient.TamperSealColor;
-            seal.Accesses = new List<TamperSealAccessPattern>(recipient.TamperSealAccesses);
-            seal.DestroyToolQualities = new HashSet<ProtoId<ToolQualityPrototype>>(tamperSealable.DestroyToolQualities);
-
-            // Attach a tamper seal value component to enable reward/penalty on unseal/destroy.
-            var value = EnsureComp<TamperSealValueComponent>(item);
-            value.StationId = GetEntity(order.StationId);
-            value.Value = order.Price;
-            value.Reward = (int) Math.Floor(_tamperSealRewardMultiplier * order.Price); // Rewards rounded down.
-            value.Penalty = (int) Math.Ceiling(_tamperSealPenaltyMultiplier * order.Price); // Penalties rounded up.
-            value.Refund = (int) Math.Ceiling(_tamperSealRefundMultiplier * order.Price); // Refunds rounded up.
-
-            // Attach an integrity component. This is used by the integrity system to detect repeat tampering.
-            var integrity = EnsureComp<TamperSealIntegrityBeaconComponent>(item);
-            integrity.StationId = GetEntity(order.StationId);
-
-            DirtyEntity(item);
-            return true;
-            // Starlight END
-        }
-
-        #region Starlight
-
-        private void CreateOrderSlip(CargoOrderData order, ProtoId<CargoAccountPrototype> account,
-            EntityCoordinates spawn, string? paperProto, EntityUid? item, string name)
-        {
-            var printed = Spawn(paperProto, spawn);
-            if (TryComp<PaperComponent>(printed, out var paper))
+            // Spawn container and insert the item into it if a container is defined.
+            if (product.Container is { } productContainer)
             {
-                // fill in the order data
-                var val = Loc.GetString("cargo-console-paper-print-name", ("orderNumber", order.OrderId));
-                _metaSystem.SetEntityName(printed, val);
+                var containerEntity = Spawn(productContainer.Entity, itemXForm.Coordinates);
+                _transformSystem.SetLocalRotation(containerEntity, itemXForm.LocalRotation);
 
-                var accountProto = _protoMan.Index(account);
-                _paperSystem.SetContent((printed, paper),
-                    Loc.GetString(
-                        "cargo-console-paper-print-text",
-                        ("orderNumber", order.OrderId),
-                        ("itemName", name),
-                        ("orderQuantity", order.OrderQuantity),
-                        ("requester", order.Requester),
-                        ("reason", string.IsNullOrWhiteSpace(order.Reason) ? Loc.GetString("cargo-console-paper-reason-default") : order.Reason),
-                        ("account", Loc.GetString(accountProto.Name)),
-                        ("accountcode", Loc.GetString(accountProto.Code)),
-                        ("approver", string.IsNullOrWhiteSpace(order.Approver) ? Loc.GetString("cargo-console-paper-approver-default") : order.Approver)));
-
-                // attempt to attach the label to the item
-                if (item.HasValue && TryComp<PaperLabelComponent>(item, out var label))
+                if (!_container.TryGetContainer(containerEntity, productContainer.ContainerId, out var container1) ||
+                    !_container.Insert(item, container1, force: true))
                 {
-                    _slots.TryInsert(item.Value, label.LabelSlot, printed, null);
+                    DebugTools.Assert(
+                        $"Failed to insert cargo product into its specified container. This indicates an error in the cargo product definition's YAML as the product should be insertable into its container. {nameof(CargoProductPrototype)}: {(ProtoId<CargoProductPrototype>)order.Product.Id}");
+                    QueueDel(containerEntity);
+                }
+                else
+                {
+                    item = containerEntity;
                 }
             }
-        }
 
-        #endregion
+            CreateOrderSlip(order, account, spawn, paperProto, item, product.Name); // Starlight
+            ApplyCargoTamperSeal(item, order, account); // Starlight
+
+            return true;
+
+        }
 
         public List<ProtoId<CargoProductPrototype>> GetAvailableProducts(Entity<CargoOrderConsoleComponent> ent)
         {

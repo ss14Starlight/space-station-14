@@ -1,0 +1,55 @@
+- type: !PartialOnly entity
+  id: FoodCakeLemon
+  components:
+  - type: Tag
+    tags:
+    - Citrus
+
+- type: !PartialOnly entity
+  id: FoodCakeLemoon
+  components:
+  - type: Tag
+    tags:
+    - Citrus
+
+- type: !PartialOnly entity
+  id: FoodCakeLime
+  components:
+  - type: Tag
+    tags:
+    - Citrus
+
+- type: !PartialOnly entity
+  id: FoodCakeOrange
+  components:
+  - type: Tag
+    tags:
+    - Citrus
+
+- type: !PartialOnly entity
+  id: FoodCakeLemonSlice
+  components:
+  - type: Tag
+    tags:
+    - Citrus
+
+- type: !PartialOnly entity
+  id: FoodCakeLemoonSlice
+  components:
+  - type: Tag
+    tags:
+    - Citrus
+
+- type: !PartialOnly entity
+  id: FoodCakeLimeSlice
+  components:
+  - type: Tag
+    tags:
+    - Citrus
+
+- type: !PartialOnly entity
+  id: FoodCakeOrangeSlice
+  components:
+  - type: Tag
+    tags:
+    - Citrus

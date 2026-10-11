@@ -117,7 +117,7 @@
   - type: ItemSlots
     slots:
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         priority: 1
         whitelist:
           tags:

@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: ParticleAcceleratorControlBox
+  components:
+  - type: AmbientSound
+    enabled: false # Switched on by code while the machine works.
+    range: 8
+    volume: -6
+    sound:
+      path: /Audio/_Starlight/Ambience/Objects/pa_hum.ogg

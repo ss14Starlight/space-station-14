@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: CloningPod
+  components:
+  - type: AmbientSound
+    enabled: false # Switched on by code while the machine works.
+    range: 3
+    volume: -8
+    sound:
+      path: /Audio/_Starlight/Ambience/Objects/scanner_loop.ogg

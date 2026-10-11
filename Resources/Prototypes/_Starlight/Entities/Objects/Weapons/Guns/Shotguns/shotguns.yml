@@ -29,7 +29,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazineShotgun
         priority: 2
         whitelist:
@@ -60,6 +60,8 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun_inhands_64x.rsi
   - type: Gun
     spread: 20
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/gun_shotgun_automatic.ogg
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun.rsi
   - type: Clothing
@@ -67,6 +69,8 @@
   - type: GunRequiresWield
   - type: BallisticAmmoProvider
     capacity: 7
+    soundRack:
+      collection: CockPumpAction
 
 - type: entity
   name: cycler shotgun
@@ -241,7 +245,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazineShotgun
         priority: 2
         whitelist:
@@ -305,7 +309,7 @@
   - type: ItemSlots
     slots:
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         priority: 1
         whitelist:
           tags:
@@ -382,6 +386,8 @@
     proto: ShellShotgunToz
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+    soundRack:
+      path: /Audio/_Starlight/Weapons/Guns/Cock/cycle_bolt.ogg
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container

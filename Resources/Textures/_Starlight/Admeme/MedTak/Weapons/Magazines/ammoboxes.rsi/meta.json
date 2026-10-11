@@ -1,0 +1,75 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "states": [
+        {
+            "name": "HVA_box",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "HVA_mag-1",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "HVA_mag-2",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "HVA_mag-3",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "HVA_mag-4",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "HVA_mag-5",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "HVA_mag-6",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "MVA_box",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "MVA_mag-1",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "MVA_mag-2",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "MVA_mag-3",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "MVA_mag-4",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "LVA_box",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "LVA_mag-1",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "LVA_mag-2",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "LVA_mag-3",
+            "copyright": "SevenShades"
+        }
+    ]
+}

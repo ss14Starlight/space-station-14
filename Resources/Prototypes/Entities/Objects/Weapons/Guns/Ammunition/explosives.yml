@@ -43,10 +43,10 @@
 # Grenades
 
 - type: entity
+  abstract: true
+  parent: BaseItem # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: BaseGrenade
   name: base grenade
-  parent: BaseItem # Starlight edit: Removes major contraband from grenades
-  abstract: true
   components:
   - type: Tag
     tags:
@@ -56,10 +56,9 @@
   - type: Sprite
 
 - type: entity
+  parent: [ BaseGrenade, BaseSecurityContraband] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: GrenadeBaton
   name: baton grenade
-  description: Crack skulls, break jaws. # Starlight-edit
-  parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeBaton
@@ -72,16 +71,11 @@
   - type: SpentAmmoVisuals
     state: baton
     suffix: false
-  # Starlight-start
-  - type: Tag
-    tags:
-    - GrenadeLessLethal
-  # Starlight-end
 
 - type: entity
+  parent: [ BaseGrenade, BaseSecurityContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: GrenadeBlast
   name: blast grenade
-  parent: [ BaseGrenade, BaseSecurityContraband ] # Starlight edit: Major -> Security contraband
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeBlast
@@ -96,10 +90,9 @@
     suffix: false
 
 - type: entity
+  parent: [ BaseGrenade, BaseSecurityContraband] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: GrenadeFlash
   name: flash grenade
-  description: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE # Starlight
-  parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeFlash
@@ -112,16 +105,11 @@
   - type: SpentAmmoVisuals
     state: flash
     suffix: false
-  # Starlight-start
-  - type: Tag
-    tags:
-    - GrenadeLessLethal
-  # Starlight-end
 
 - type: entity
+  parent: [ BaseGrenade, BaseSyndicateContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: GrenadeFrag
   name: frag grenade
-  parent: [ BaseGrenade, BaseSyndicateContraband ] # Starlight edit: Major -> Syndicate contraband TODO decide on if these should be given to sec?
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeFrag
@@ -136,7 +124,7 @@
     suffix: false
 
 - type: entity
-  parent: [ BaseGrenade, BaseJanitorContraband ] # Starlight edit: Major -> Janitor contraband
+  parent: [ BaseGrenade, BaseJanitorContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: GrenadeCleanade
   name: cleanade grenade round
   components:
@@ -149,17 +137,13 @@
       map: [ "enum.AmmoVisualLayers.Base" ]
   - type: Appearance
   - type: SpentAmmoVisuals
-    state: cleanade # Starlight edit: frag -> cleanade (bugfix)
+    state: frag
     suffix: false
-  - type: Tag # Starlight start
-    tags:
-    - Grenade
-    - Cleanade # Starlight end - hydra whitelist
 
 - type: entity
+  parent: [ BaseGrenade, BaseSecurityContraband] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: GrenadeEMP
   name: EMP grenade
-  parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeEMP
@@ -170,7 +154,7 @@
       map: ["enum.AmmoVisualLayers.Base"]
   - type: Appearance
   - type: SpentAmmoVisuals
-    state: emp # Starlight edit: frag -> emp (bugfix)
+    state: frag
     suffix: false
 
 # Cannon Balls

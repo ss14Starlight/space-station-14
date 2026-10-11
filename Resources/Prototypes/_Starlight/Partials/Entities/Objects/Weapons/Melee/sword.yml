@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: BaseSword
+  components:
+  - type: Engraveable
+    engraveVerb: "engraving-verb-engrave"

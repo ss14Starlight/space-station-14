@@ -1,4 +1,6 @@
 ui-options-function-open-m-help = Open mentor help
+ui-options-function-jump = Jump
+ui-options-function-latch-struggle = Struggle (while latched)
 ui-escape-connect-discord = Link Discord
 server-info-connect-discord-button = Link Discord
 ui-escape-connect-steam = Link Steam
@@ -17,6 +19,10 @@ ui-options-holes-tooltip = If you're lagging while shooting, uncheck this box,
 ui-options-sparks = Display sparks
 ui-options-sparks-tooltip = If you're lagging while shooting, uncheck this box,
                            and the hitscan won't display sparks when the bullet hits a surface.
+
+ui-options-hitscan-prediction = Predict your own shots
+ui-options-hitscan-prediction-tooltip = Draws your bullets the moment you fire instead of waiting for the server.
+                                        The server still decides what was hit.
 
 ## Accessibility
 
@@ -41,11 +47,37 @@ ui-options-radio-chime-mute = Mute Radio Chimes
 
 ui-options-tab-ui = User Interface
 ui-options-ui-style = User Interface Style
+ui-options-style-theme = Color Theme
+ui-options-style-accent = Accent Color
+ui-options-style-custom-accent = Use custom accent color
+style-theme-void = Void
+style-theme-graphite = Graphite
+style-theme-paper = Paper (debug)
+style-theme-classic = Classic (Nanotrasen)
+style-theme-abyss = Abyss
+style-theme-ribbon = Ribbon
+style-theme-rosewood = Rosewood
+style-theme-oneshot = World Machine
+style-theme-pda = PDA
+style-theme-holo = Holo
+style-theme-industrial = Industrial
+style-theme-cosmic = Cosmic
+style-theme-flesh = Flesh
+style-theme-syndicate = Syndicate
+style-theme-clockwork = Clockwork
 ui-options-ui-sight-hash = Sight Preferences String
 ui-options-wield-before-rack = Wield before racking
-ui-options-wield-before-rack-tooltip = Using a gun in hand wields it first; racking the bolt happens on the next press.
+ui-options-wield-before-rack-tooltip = Using a gun in hand wields it first; racking the bolt or switching the fire mode happens on the next press.
 ui-options-ranged-sight-rotation = Ranged Sight Rotation
 ui-options-melee-sight-rotation = Melee Sight Rotation
+ui-options-held-item-show-mode = Show held item
+ui-options-held-item-show-always = Always
+ui-options-held-item-show-combat = Only in combat mode
+ui-options-held-item-show-outside-combat = Only outside combat mode
+ui-options-held-item-show-never = Never
+ui-options-sight-bolt-indicator = Show open bolt indicator
+ui-options-sight-jam-indicator = Show jam indicator
+ui-options-sight-heat-indicator = Show gun heat gauge
 ui-options-chat-width = Separated Chat Width
 ui-options-ui-ranged-sight = Sights
 ui-options-ranged-sight = Ranged Sight
@@ -109,3 +141,22 @@ ui-options-interaction-particles-without-inhand = Except In-hand
 ui-options-interaction-particles-none = None
 ui-options-interaction-particles-tooltip =
     In-hand and inventory particles are only shown for actions performed by your character.
+
+## Audio sections and per-category volumes
+
+ui-options-music-label = Music
+ui-options-environment-label = Environment
+ui-options-world-label = World
+ui-options-voices-label = Voices
+ui-options-sound-toggles-label = Sound options
+ui-options-other-label = Other
+ui-options-station-hum-volume = Station hum:
+ui-options-machine-ambience-volume = Machines and devices:
+ui-options-environment-volume = Creaks and hisses:
+ui-options-reverb-volume = Room echo:
+ui-options-effects-volume = Sound effects:
+ui-options-footsteps-volume = Footsteps:
+ui-options-handling-volume = Picking up and equipping:
+ui-options-combat-volume = Weapons and combat:
+ui-options-voice-volume = Voices and emotes:
+ui-options-announcement-volume = Announcements and alerts:

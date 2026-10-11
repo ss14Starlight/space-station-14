@@ -1,0 +1,84 @@
+- type: !PartialOnly entity
+  id: BaseWeaponLauncher
+  components:
+  - type: RestrictByUserTag
+    doestContain:
+    - Abductor
+    messages:
+    - abductor-gun-restricted-1
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: 5
+        staminaMultiplier: 20
+      Rodentia:
+        knockback: 10
+        staminaMultiplier: 18
+      Resomi:
+        knockback: 10
+        staminaMultiplier: 18
+      Felionoid:
+        knockback: 5 # half of what resomi take
+        staminaMultiplier: 18
+
+- type: !PartialOnly entity
+  id: WeaponLauncherHydra
+  components:
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags: !Clear
+      - Cleanade # make it use cleanades instead of frags
+
+# Ballistics
+- type: !PartialOnly entity
+  id: WeaponLauncherHydraLethal
+  name: modified hydra # give it a proper name
+  suffix: Security # differentiate
+  components:
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - Grenade
+  - type: ScanDetectable # major contra (I think this is valid?)
+  - type: Contraband
+    severity: Major
+
+- type: !PartialOnly entity
+  id: WeaponLauncherRocket
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: -2.5
+        staminaMultiplier: 10
+      Rodentia:
+        knockback: -10
+        staminaMultiplier: 20
+      Resomi:
+        knockback: -5
+        staminaMultiplier: 20
+      Felionoid:
+        knockback: -2.5 # half of what resomi take
+        staminaMultiplier: 20
+
+- type: !PartialOnly entity
+  id: WeaponLauncherMultipleRocket
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 10
+        staminaMultiplier: 18
+      Rodentia:
+        knockback: 10
+        staminaMultiplier: 18
+      Felionoid:
+        knockback: 5 # half of what resomi take
+        staminaMultiplier: 18
+
+- type: !PartialOnly entity
+  id: WeaponGrapplingGun
+  components:
+  - type: Tag
+    tags:
+    - GrappleGun

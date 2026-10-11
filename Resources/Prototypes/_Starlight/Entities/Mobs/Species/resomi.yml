@@ -4,7 +4,12 @@
   id: BaseMobResomi
   abstract: true
   components:
-  # Starlight-start: Languages
+  - type: SocialInteractionReceiver
+    interactionOverrides: # resomi don't have noses
+    - id: Boop
+      interactString: booping-snoot-success
+      messagePerceivedByOthers: booping-snoot-success-others
+      emoteMessage: booping-snoot-emote
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
@@ -12,7 +17,6 @@
     understands:
     - GalacticCommon
     - Scratch
-  # Starlight-end
   - type: Absorbable
   - type: Jump
     action: JumpResomi

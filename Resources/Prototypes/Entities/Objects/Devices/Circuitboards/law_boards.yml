@@ -9,132 +9,118 @@
     state: std_mod
   - type: SiliconLawProvider
     laws: NTDefault
-    IsLawboard: true # Starlight
   - type: GuideHelp
     guides:
     - Lawsets
-  - type: StaticPrice # Starlight: Made all lawboards sellable for at least 700
-    price: 700
 
 - type: entity
   id: NTDefaultCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (NT Default)
-  # description: An electronics board containing the NT Default lawset. # Starlight Edit: Removed for Dynamic Description
+  description: An electronics board containing the NT Default lawset.
   components:
   - type: SiliconLawProvider
     laws: NTDefault
 
 - type: entity
   id: AsimovCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Crewsimov)
-  # description: An electronics board containing the Crewsimov lawset. # Starlight Edit: Removed for Dynamic Description
+  description: An electronics board containing the Crewsimov lawset.
   components:
   - type: SiliconLawProvider
-    laws: CrewsimovAI # Starlight Edit: Crewsimov -> CrewsimovAI
-    IsLawboard: true # Starlight
+    laws: Crewsimov
 
 - type: entity
   id: CorporateCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Corporate)
-  # description: An electronics board containing the Corporate lawset. # Starlight Edit: Removed for Dynamic Description
+  description: An electronics board containing the Corporate lawset.
   components:
   - type: SiliconLawProvider
     laws: Corporate
-    IsLawboard: true # Starlight
 
 - type: entity
   id: CommandmentCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Ten Commandments)
-  # description: An electronics board containing the Ten Commandments lawset. # Starlight Edit: Removed for Dynamic Description
+  description: An electronics board containing the Ten Commandments lawset.
   components:
   - type: SiliconLawProvider
     laws: CommandmentsLawset
-    IsLawboard: true # Starlight
 
 - type: entity
   id: PaladinCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Paladin)
-  # description: An electronics board containing the Paladin lawset. # Starlight Edit: Removed for Dynamic Description
+  description: An electronics board containing the Paladin lawset.
   components:
   - type: SiliconLawProvider
     laws: PaladinLawset
-    IsLawboard: true # Starlight
 
 - type: entity
   id: LiveLetLiveCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Live and Let Live)
-  # description: An electronics board containing the Live and Let Live lawset. # Starlight Edit: Removed for Dynamic Description
+  description: An electronics board containing the Live and Let Live lawset.
   components:
   - type: SiliconLawProvider
     laws: LiveLetLiveLaws
-    IsLawboard: true # Starlight
 
 - type: entity
   id: StationEfficiencyCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Station Efficiency)
-  # description: An electronics board containing the Station Efficiency lawset. # Starlight Edit: Removed for Dynamic Description
+  description: An electronics board containing the Station Efficiency lawset.
   components:
   - type: SiliconLawProvider
     laws: EfficiencyLawset
-    IsLawboard: true # Starlight
 
 - type: entity
   id: RobocopCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Robocop)
-  # description: An electronics board containing the Robocop lawset. # Starlight Edit: Removed for Dynamic Description
+  description: An electronics board containing the Robocop lawset.
   components:
   - type: SiliconLawProvider
     laws: RobocopLawset
-    IsLawboard: true # Starlight
 
 - type: entity
   id: OverlordCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Overlord)
-  # description: An electronics board containing the Overlord lawset. # Starlight Edit: Removed for Dynamic Description
+  description: An electronics board containing the Overlord lawset.
   components:
   - type: SiliconLawProvider
     laws: OverlordLawset
-    IsLawboard: true # Starlight
 
 - type: entity
   id: GameMasterCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Game Master)
-  # description: An electronics board containing the Game Master lawset. # Starlight Edit: Removed for Dynamic Description
+  description: An electronics board containing the Game Master lawset.
   components:
   - type: SiliconLawProvider
     laws: GameMasterLawset
-    IsLawboard: true # Starlight
 
 - type: entity
   id: ArtistCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Artist)
-  # description: An electronics board containing the Artist lawset. # Starlight Edit: Removed for Dynamic Description
+  description: An electronics board containing the Artist lawset.
   components:
   - type: SiliconLawProvider
     laws: PainterLawset
-    IsLawboard: true # Starlight
 
 - type: entity
   id: AntimovCircuitBoard
   parent: [BaseSiliconLawboard, BaseSyndicateContraband]
   name: law board (Antimov)
-  # description: An electronics board containing the Antimov lawset. # Starlight Edit: Removed for Dynamic Description
+  description: An electronics board containing the Antimov lawset.
   components:
   - type: SiliconLawProvider
     laws: AntimovLawset
     lawUploadSound: /Audio/Ambience/Antag/silicon_lawboard_antimov.ogg
-    IsLawboard: true # Starlight
   - type: StaticPrice
     price: 10000
 
@@ -146,40 +132,35 @@
   components:
   - type: SiliconLawProvider
     laws: SyndicateStatic
-    lawUploadSound: /Audio/Ambience/Antag/silicon_lawboard_antimov.ogg # This should probably have its own sound but it's fine for now. # Starlight, using antimov sound for now
+    lawUploadSound: /Audio/Ambience/Antag/emagged_borg.ogg # This should probably have its own sound but it's fine for now.
   - type: StaticPrice
     price: 5000
 
 - type: entity
   id: NutimovCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Nutimov)
-  # description: An electronics board containing the Nutimov lawset. # Starlight Edit: Removed for Dynamic Description
+  description: An electronics board containing the Nutimov lawset.
   components:
   - type: SiliconLawProvider
     laws: NutimovLawset
-    IsLawboard: true # Starlight
 
 - type: entity
   id: XenoborgCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseXenoborgContraband ] #SL Edit made Xenoborg Contra
+  parent: [ BaseSiliconLawboard, BaseXenoborgContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Xenoborg)
   suffix: Admeme
-  # description: An electronics board containing the Xenoborg lawset. # Starlight Edit: Removed for Dynamic Description
+  description: An electronics board containing the Xenoborg lawset.
   components:
   - type: SiliconLawProvider
     laws: XenoborgLawset
-    IsLawboard: true # Starlight
-  - type: StaticPrice # Starlight: Made sellable for 5000
-    price: 5000
 
 - type: entity
   id: MothershipCircuitBoard
-  parent: [ BaseSiliconLawboard, BaseXenoborgContraband ] #SL Edit made Xenoborg Contra
+  parent: [ BaseSiliconLawboard, BaseXenoborgContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: law board (Mothership Core)
   suffix: Admeme
-  # description: An electronics board containing the Mothership Core lawset. # Starlight Edit: Removed for Dynamic Description
+  description: An electronics board containing the Mothership Core lawset.
   components:
   - type: SiliconLawProvider
     laws: MothershipCoreLawset
-    IsLawboard: true # Starlight

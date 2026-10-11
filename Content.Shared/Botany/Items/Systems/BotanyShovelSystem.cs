@@ -18,7 +18,6 @@ public sealed partial class BotanyShovelSystem : EntitySystem
     [Dependency] private PlantTraySystem _plantTray = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
 
-    [Dependency] private EntityQuery<PlantComponent> _plantQuery;
     [Dependency] private EntityQuery<PlantTrayComponent> _trayQuery;
 
     [SubscribeLocalEvent]
@@ -27,20 +26,11 @@ public sealed partial class BotanyShovelSystem : EntitySystem
         if (args.Target == null || args.Handled || !args.CanReach)
             return;
 
-        // Allow interacting with either the plant or the tray.
-        var target = args.Target.Value;
-        if (_plantQuery.HasComp(target))
-        {
-            if (!_plant.TryGetTray(target, out var tray))
-                return;
-
-            target = tray.Owner;
-        }
-        else if (!_trayQuery.HasComp(target))
+        if (!_trayQuery.HasComp(args.Target.Value))
             return;
 
         var ev = new TrayShovelAttemptEvent(ent, args.User);
-        RaiseLocalEvent(target, ref ev);
+        RaiseLocalEvent(args.Target.Value, ref ev);
 
         args.Handled = true;
     }
@@ -54,14 +44,12 @@ public sealed partial class BotanyShovelSystem : EntitySystem
         if (!_plantTray.TryGetPlant(ent.AsNullable(), out var plantUid))
         {
             _popup.PopupCursor(
-                Loc.GetString("plant-shovel-component-no-plant-popup", ("name", ent.Owner)),
-                args.User);
+                Loc.GetString("plant-shovel-component-no-plant-popup", ("name", ent.Owner))); // Starlight: If you see here error after upstreaming, revert this commit
             return;
         }
 
         _popup.PopupCursor(
-            Loc.GetString("plant-shovel-component-remove-plant-popup", ("name", ent.Owner)),
-            args.User,
+            Loc.GetString("plant-shovel-component-remove-plant-popup", ("name", ent.Owner)), // Starlight: If you see here error after upstreaming, revert this commit
             PopupType.Medium);
         _popup.PopupEntity(
             Loc.GetString("plant-shovel-component-remove-plant-others-popup",

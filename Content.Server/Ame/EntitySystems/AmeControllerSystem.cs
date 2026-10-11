@@ -229,6 +229,7 @@ public sealed partial class AmeControllerSystem : EntitySystem
             return;
 
         controller.Injecting = value;
+        UpdateAmbience(uid, controller); // Starlight
         UpdateDisplay(uid, controller.Stability, controller);
         if (!value && TryComp<PowerSupplierComponent>(uid, out var powerOut))
             powerOut.MaxSupply = 0;
@@ -322,6 +323,7 @@ public sealed partial class AmeControllerSystem : EntitySystem
 
     private void OnPowerChanged(EntityUid uid, AmeControllerComponent comp, ref PowerChangedEvent args)
     {
+        UpdateAmbience(uid, comp); // Starlight
         UpdateUi(uid, comp);
     }
 

@@ -640,6 +640,48 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: gardening-module }
 
 - type: entity
+  id: BorgModuleButcher
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: butcher cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-knife
+  - type: ItemBorgModule
+    hands:
+    - item: ButchCleaver
+    - hand:
+        emptyLabel: borg-slot-organs-strict-empty
+        emptyRepresentative: OrganHumanLungs
+        whitelist:
+          components:
+          - Organ
+    - hand:
+        emptyLabel: borg-slot-meat-empty
+        emptyRepresentative: FoodMeat
+        whitelist:
+          tags:
+          - Meat
+    - hand:
+        emptyLabel: borg-slot-animbox-empty
+        emptyRepresentative: MonkeyCubeBox
+        whitelist:
+          tags:
+          - MonkeyCube
+          - AnimalCubeBox
+          - AnimalCube
+          - WrappedCube
+        blacklist:
+          tags:
+          - NonAnimalCube
+
+    - item: BorgHydrator
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: butcher-module }
+
+- type: entity
   id: BorgModuleCooking
   parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
   name: cooking cyborg module

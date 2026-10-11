@@ -1,4 +1,51 @@
 ﻿- type: reagent
+  id: Entropy
+  group: Toxins
+  name: reagent-name-entropy
+  desc: reagent-desc-entropy
+  flavor: entropic
+  color: "#371a47"
+  physicalDesc: reagent-physical-desc-malign
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: 10
+  - !type:PlantAdjustHealth
+    amount: -5
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cold: 0.25
+            Asphyxiation: 1.05
+      - !type:PopupMessage
+        type: Local
+        visualType: SmallCaution
+        messages: [ "entropy-effect-numb" ]
+        probability: 0.1
+
+- type: reagent
+  id: ZXAMetabolites
+  name: reagent-name-zxa-metabolites
+  group: Toxins
+  desc: reagent-desc-zxa-metabolites
+  flavor: bitter
+  color: "#869ea3"
+  physicalDesc: reagent-physical-desc-nondescript
+  # Just as BZ Metabolites don't actually function right now, neither do ZXA Metabolites. Maybe we could make it hurt vampires too or something.
+  # metabolisms:
+  #   Poison:
+  #     effects:
+  #     - !type:AdjustLingChemicals
+  #       conditions:
+  #       - !type:LingCondition {}
+  #       - !type:ReagentThreshold
+  #         reagent: BZMetabolites
+  #         min: 0.2
+  #       amount: -12
+
+- type: reagent
   id: DevilJuice
   name: reagent-name-devil-juice
   group: Toxins
@@ -27,21 +74,27 @@
           amount: 0.25
 
 - type: reagent
-  id: ZXAMetabolites
-  name: reagent-name-zxa-metabolites
+  id: NeuralPrion
+  name: reagent-name-neuralprion
   group: Toxins
-  desc: reagent-desc-zxa-metabolites
-  flavor: bitter
-  color: "#869ea3"
-  physicalDesc: reagent-physical-desc-nondescript
-  # Just as BZ Metabolites don't actually function right now, neither do ZXA Metabolites. Maybe we could make it hurt vampires too or something.
-  # metabolisms:
-  #   Poison:
-  #     effects:
-  #     - !type:AdjustLingChemicals
-  #       conditions:
-  #       - !type:LingCondition {}
-  #       - !type:ReagentThreshold
-  #         reagent: BZMetabolites
-  #         min: 0.2
-  #       amount: -12
+  desc: reagent-desc-neuralprion
+  physicalDesc: reagent-physical-desc-neural
+  contrabandSeverity: Major
+  color: "#EE35FF"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.07 # Delayed metabolism for poison to last longer
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1.4 # Low damage per metabolism, high damage per unit.
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: NeuralPrion
+          min: 0.25
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: NeuralPrion
+        amount: 0.015

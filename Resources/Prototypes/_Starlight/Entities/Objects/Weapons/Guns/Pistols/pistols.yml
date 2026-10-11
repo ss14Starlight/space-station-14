@@ -7,10 +7,10 @@
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/makarov.rsi
     - type: Gun
-      minAngle: 6
+      minAngle: 0
       maxAngle: 24
-      angleIncrease: 5
-      angleDecay: 14
+      angleIncrease: 7
+      angleDecay: 18
       fireRate: 3
       availableModes:
         - SemiAuto
@@ -18,10 +18,11 @@
         path: /Audio/_Starlight/Weapons/Guns/Gunshots/makarov.ogg
         params:
           variation: 0.05
+      movingMinAngle: 6
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistolSP
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -32,7 +33,7 @@
               - MagazinePistolHighCapacitySP
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgePistolSP
           priority: 1
           whitelist:
@@ -54,7 +55,7 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistolRubber
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -63,7 +64,7 @@
             tags:
               - MagazinePistol
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgePistolRubber
           priority: 1
           whitelist:
@@ -79,7 +80,7 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazineMagnumRubber
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -88,7 +89,7 @@
             tags:
               - MagazineMagnum
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgeMagnumRubber
           priority: 1
           whitelist:
@@ -105,7 +106,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazinePistolHighCapacitySP
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -130,7 +131,7 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistolSPGolden
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -150,7 +151,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazinePistolHighCapacitySPGolden
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -203,18 +204,19 @@
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/dp.rsi
     - type: Gun
       fireRate: 4
-      minAngle: 6
+      minAngle: 0
       maxAngle: 22
-      angleIncrease: 4
-      angleDecay: 16
+      angleIncrease: 6
+      angleDecay: 20
       availableModes:
         - SemiAuto
       soundGunshot:
         path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp.ogg
+      movingMinAngle: 6
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistol40SP
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -224,7 +226,7 @@
               - MagazinePistolDP
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgePistol40SP
           priority: 1
           whitelist:
@@ -281,21 +283,22 @@
     - type: Gun
       selectedMode: Burst
       shotsPerBurst: 3
-      minAngle: 7
+      minAngle: 0
       maxAngle: 24
-      angleIncrease: 5
-      angleDecay: 16
+      angleIncrease: 7
+      angleDecay: 20
       availableModes:
         - Burst
         - SemiAuto
       soundGunshot:
         path: /Audio/_Starlight/Weapons/Guns/Gunshots/1suppres.ogg
+      movingMinAngle: 7
     - type: Contraband
       severity: Soviet
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistol40SP
           insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -305,7 +308,7 @@
               - MagazinePistolDP
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgePistol40SP
           priority: 1
           whitelist:
@@ -353,25 +356,26 @@
         - 0,1,1,1
     - type: Gun
       fireRate: 4
-      minAngle: 8
+      minAngle: 0
       maxAngle: 26
-      angleIncrease: 6
-      angleDecay: 14
+      angleIncrease: 8
+      angleDecay: 18
       availableModes:
         - SemiAuto
       soundGunshot:
         path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      movingMinAngle: 8
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: null
           whitelist:
             tags:
               - MagazinePistolImprovised
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: null
           priority: 1
           whitelist:
@@ -460,10 +464,11 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp.ogg
-    minAngle: 7
+    minAngle: 0
     maxAngle: 24
-    angleIncrease: 5
-    angleDecay: 16
+    angleIncrease: 7
+    angleDecay: 20
+    movingMinAngle: 7
   - type: BallisticAmmoProvider
     capacity: 15
     proto: CartridgePistol40SP
@@ -492,3 +497,50 @@
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-inanimate
     weight: 0.01
+
+- type: entity
+  name: Bolt Pistol
+  parent: [ BaseWeaponPistol, BaseSalvageContraband ]
+  id: WeaponPistolBolt
+  description: A compact pistol chambered for explosive impact bolts, all the punch of a full rifle at the cost of firerate and ammo capacity. Don't strain your wrist too much.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/impact_bolt_pistol.rsi
+    layers:
+    - state: base
+      map:
+      - "enum.GunVisualLayers.Base"
+    - state: mag-0
+      map:
+      - "enum.GunVisualLayers.Mag"
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+  - type: Item
+    storedOffset: 0,-2
+  - type: Gun
+    minAngle: 2
+    maxAngle: 4
+    fireRate: 1.8
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineBoltPistol
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineBoltPistol
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeImpactBolt

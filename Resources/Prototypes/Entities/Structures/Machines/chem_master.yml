@@ -106,7 +106,7 @@
           # Starlight start - patch output and pAI slot
           - PatchPack
       pai_slot:
-        name: Personal AI Device
+        name: item-slot-component-slot-name-personal-ai
         ejectOnInteract: true
         whitelist:
           components:

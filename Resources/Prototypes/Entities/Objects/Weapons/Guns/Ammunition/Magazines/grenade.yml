@@ -1,8 +1,8 @@
 - type: entity
+  abstract: true
+  parent: BaseItem # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: BaseMagazineGrenade
   name: grenade cartridge
-  parent: BaseItem # Starlight edit: Security -> No contra
-  abstract: true
   components:
   - type: Tag
     tags:
@@ -12,7 +12,7 @@
     whitelist:
       tags:
         - Grenade
-    capacity: 6 # starlight change: 5 -> 6 to fit the hydra
+    capacity: 5
     soundRack:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
       params:
@@ -35,7 +35,7 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 6 # starlight change: 5 -> 6 to fit the hydra
+    steps: 5
     zeroVisible: false
   - type: Appearance
 
@@ -47,41 +47,41 @@
   - type: BallisticAmmoProvider
 
 - type: entity
+  parent: [ BaseMagazineGrenade, BaseSyndicateContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: MagazineGrenadeFrag
   name: frag grenade cartridge
-  parent: [ BaseMagazineGrenade, BaseSyndicateContraband ] # Starlight edit: Security -> Syndicate contraband TODO decide on if these should eventually be sec contra?
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeFrag
 
 - type: entity
+  parent: [ BaseMagazineGrenade, BaseSecurityContraband] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: MagazineGrenadeEMP
   name: EMP grenade cartridge
-  parent: [ BaseMagazineGrenade, BaseSecurityContraband] # Starlight edit: Re-add Security contraband
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeEMP
 
 - type: entity
+  parent: [ BaseMagazineGrenade, BaseSecurityContraband] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: MagazineGrenadeFlash
   name: flash grenade cartridge
-  parent: [ BaseMagazineGrenade, BaseSecurityContraband] # Starlight edit: Re-add Security contraband
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeFlash
 
 - type: entity
+  parent: [ BaseMagazineGrenade, BaseSecurityContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: MagazineGrenadeBlast
   name: blast grenade cartridge
-  parent: [ BaseMagazineGrenade, BaseSecurityContraband ] # Starlight edit: Re-add Security contraband
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeBlast
 
 - type: entity
+  parent: [ BaseMagazineGrenade, BaseSecurityContraband] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: MagazineGrenadeBaton
   name: baton grenade cartridge
-  parent: [ BaseMagazineGrenade, BaseSecurityContraband] # Starlight edit: Re-add Security contraband
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeBaton

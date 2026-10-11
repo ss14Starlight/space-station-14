@@ -66,7 +66,7 @@
   - type: UserInterface
     interfaces:
       enum.ChemMasterUiKey.Key:
-        type: ChemMasterBoundUserInterface
+        type: ModernChemMasterBui
   - type: ApcPowerReceiver
     powerLoad: 150
   - type: Appearance
@@ -106,11 +106,11 @@
         whitelist:
           components:
           - PAI
-  - type: SolutionContainerManager
-    solutions:
-      buffer:
-        maxVol: 500
-        canReact: false
+  - type: Solution # Chemmaster is special in how it interacts with reagents. For now.
+    id: buffer
+    solution:
+      maxVol: 500
+      canReact: false
   - type: DumpableSolution
     solution: buffer
   - type: GuideHelp
