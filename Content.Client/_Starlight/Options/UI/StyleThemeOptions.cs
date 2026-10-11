@@ -143,7 +143,12 @@ public sealed class AccentPicker : BoxContainer
         }
 
         _custom = new Button { Text = Loc.GetString("ui-options-style-accent-custom"), ToggleMode = true, Group = _group };
-        _custom.OnPressed += _ => _sliders.Visible = true;
+        _custom.OnPressed += _ =>
+        {
+            UseCustom = true;
+            _sliders.Visible = true;
+            OnPicked?.Invoke();
+        };
         row.AddChild(_custom);
         AddChild(row);
         AddChild(_sliders);

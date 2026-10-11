@@ -67,7 +67,7 @@ public sealed class SectionNav : BoxContainer
 
     private void Select(int index)
     {
-        if (index < 0 || index >= _sections.Count)
+        if (index < 0 || index >= _sections.Count || !_sections[index].Button.Visible)
             return;
 
         _current = index;
