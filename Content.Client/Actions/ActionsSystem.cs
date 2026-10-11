@@ -60,7 +60,7 @@ namespace Content.Client.Actions
             SubscribeLocalEvent<ActionsComponent, ComponentHandleState>(OnHandleState);
 
             // Starlight - Refresh emote action visibility when speech state changes.
-            SubscribeLocalEvent<SpeechComponent, ComponentHandleState>(OnSpeechHandleState);
+            SubscribeLocalEvent<SpeechComponent, AfterAutoHandleStateEvent>(OnSpeechAfterHandleState);
 
             SubscribeLocalEvent<ActionComponent, AfterAutoHandleStateEvent>(OnActionAutoHandleState);
 
@@ -76,7 +76,7 @@ namespace Content.Client.Actions
 
         #region Starlight
 
-        private void OnSpeechHandleState(Entity<SpeechComponent> ent, ref ComponentHandleState args)
+        private void OnSpeechAfterHandleState(Entity<SpeechComponent> ent, ref AfterAutoHandleStateEvent args)
         {
             if (_playerManager.LocalEntity != ent.Owner)
                 return;
