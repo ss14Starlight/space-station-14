@@ -35,8 +35,8 @@ public sealed partial class NymphSystem : EntitySystem
         if (HasComp<ZombieComponent>(args.OldBody)) // Zombify the new nymph if old one is a zombie // Starlight Edit: Target -> OldBody
             _zombie.ZombifyEntity(nymph);
 
-        // Move the mind if there is one and it's supposed to be transferred.
-        if (comp.TransferMind && _mindSystem.TryGetMind(args.OldBody, out var mindId, out var mind)) // Starlight Edit: uid -> OldBody
+        // Move the mind if there is one and it's supposed to be transferred
+        if (comp.TransferMind == true && _mindSystem.TryGetMind(args.OldBody, out var mindId, out var mind)) // Starlight Edit: Target -> OldBody
             _mindSystem.TransferTo(mindId, nymph, mind: mind);
 
         // Delete the old organ

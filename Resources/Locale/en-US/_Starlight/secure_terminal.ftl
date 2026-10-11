@@ -32,6 +32,8 @@ secure-terminal-countdown-label = Activating in {$minutes}m {$seconds}s…
 
 secure-terminal-fee-note = Processing fee: {$fee}
 secure-terminal-salary-note = Changes to salaries:
+secure-terminal-salary-source-everyone = Everyone
+secure-terminal-salary-source-interstellar-trade-guild = Interstellar Trade Guild
 secure-terminal-delay-note = { $minutes ->
     [1] ETA: 1 minute after authorization.
    *[other] ETA: {$minutes} minutes after authorization.
