@@ -1,25 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) Removed problematic portable flashers from Security.
-    type: Remove
-  id: 408966
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) Removed hidden Decimus armour from CC's Armoury.
-    type: Remove
-  id: 408967
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
-- author: BriocheBear
-  changes:
-  - message: Added Glubotoxin to the game! Makes you glub. When 50u is metabolized at once, the subject will temporarily morph into a space koi.
-    type: Add
-  id: 408968
-  time: '2026-09-28T10:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5989
 - author: BriocheBear
   changes:
   - message: Added chance for a bottle of Glubotoxin to spawn in medical chem cases.
@@ -2883,4 +2862,25 @@ Entries:
   id: 409365
   time: '2026-10-11T12:51:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6630
+- author: Rhapsody (Pepta Vismahl), Johnny, DocMoth, Swonkus
+  changes:
+  - message: Player-controlled monkeys, kobolds, scurrets (including Pun Pun, Stir Stir, and Kiki), and smart corgis can now become cosmic cultists!
+    type: Tweak
+  id: 409366
+  time: '2026-10-11T13:10:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6370
+- author: Rhapsody (Pepta Vismahl), Johnny, DocMoth, Swonkus
+  changes:
+  - message: Monkeys, kobolds, scurrets, and corgis can now wear the cosmic cult's entropic armor thanks to sprite work by Johnny, DocMoth, and Swonkus!
+    type: Add
+  id: 409367
+  time: '2026-10-11T13:10:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6370
+- author: Rhapsody (Pepta Vismahl), Johnny, DocMoth, Swonkus
+  changes:
+  - message: Aberrant Lapse now has unique sprites for every player species, as well as monkeys, kobolds, scurrets, and corgis.
+    type: Add
+  id: 409368
+  time: '2026-10-11T13:10:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6370
 Order: -1
