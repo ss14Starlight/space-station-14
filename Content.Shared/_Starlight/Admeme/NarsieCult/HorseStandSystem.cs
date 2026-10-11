@@ -21,7 +21,7 @@ using Content.Shared.Bed.Sleep;
 
 namespace Content.Shared._Starlight.Admeme.NarsieCult;
 
-public sealed class HorseStandSystem : EntitySystem
+public sealed partial class HorseStandSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
@@ -36,6 +36,7 @@ public sealed class HorseStandSystem : EntitySystem
     [Dependency] private MovementSpeedModifierSystem _speed = default!;
     [Dependency] private PullingSystem _pulling = default!;
     [Dependency] private INetManager _net = default!;
+    [Dependency] private SleepingSystem _sleeping = default!;
 
     public override void Initialize()
     {
@@ -269,7 +270,10 @@ public sealed class HorseStandSystem : EntitySystem
             return;
         }
 
-        EnsureComp<SleepingComponent>(target);
+        // TrySleeping refuses dead / cancelled / otherwise ineligible targets.
+        // Do not show horse-stand-sleep-fail here — that string means "already asleep".
+        if (!_sleeping.TrySleeping(target))
+            return;
 
         args.Handled = true;
         _audio.PlayPredicted(ent.Comp.SleepSound, target, ent.Owner);

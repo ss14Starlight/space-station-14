@@ -56,7 +56,7 @@
   components:
   - type: Action
     useDelay: 5
-    icon: Interface/Actions/rooting.png
+    icon: Objects/Misc/zipties.rsi/cuff.png
     itemIconStyle: BigAction
   - type: TargetAction
   - type: EntityTargetAction
@@ -86,7 +86,7 @@
   components:
     - type: Action
       useDelay: 15
-      icon: Interface/Actions/harm.png
+      icon: Interface/Emotes/yawn.png
       itemIconStyle: BigAction
     - type: TargetAction
     - type: EntityTargetAction
