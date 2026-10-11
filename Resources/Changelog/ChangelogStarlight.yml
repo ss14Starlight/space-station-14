@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (CentComm GNT9) Fryers in the kitchen for CC chefs.
-    type: Add
-  id: 408960
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
-- author: Caws
-  changes:
   - message: (CentComm GNT9) Added way more biomass to cloning.
     type: Add
   id: 408961
@@ -2883,4 +2876,11 @@ Entries:
   id: 409359
   time: '2026-10-11T09:51:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6613
+- author: Swonki
+  changes:
+  - message: Jurisdiction SOP clarity regarding ATS.
+    type: Tweak
+  id: 409360
+  time: '2026-10-11T10:17:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6522
 Order: -1
