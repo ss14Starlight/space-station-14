@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (CentComm GNT9) Security now uses Brig doors and Security doors were appropriate, instead of IAA doors.
-    type: Fix
-  id: 408965
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
-- author: Caws
-  changes:
   - message: (CentComm GNT9) Removed problematic portable flashers from Security.
     type: Remove
   id: 408966
@@ -2883,4 +2876,11 @@ Entries:
   id: 409364
   time: '2026-10-11T12:51:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6627
+- author: wonderfulnewworld
+  changes:
+  - message: Diona minds are now correctly transferred to their nymphs when they gib. (this time for real).
+    type: Fix
+  id: 409365
+  time: '2026-10-11T12:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6630
 Order: -1
