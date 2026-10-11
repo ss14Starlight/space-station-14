@@ -15,8 +15,8 @@ namespace Content.Shared._CD.NanoChat;
 public abstract partial class SharedNanoChatSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private AlertsSystem _alerts = default!; // Starlight
-    [Dependency] private SharedContainerSystem _containers = default!; // Starlight
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private SharedContainerSystem _containers = default!;
 
     public override void Initialize()
     {
@@ -196,13 +196,11 @@ public abstract partial class SharedNanoChatSystem : EntitySystem
             return;
 
         card.Comp.NotificationsMuted = muted;
-        //Starlight start
         if (muted)
         {
             var holder = GetPdaHolder(card.Owner!);
             if (holder.HasValue) _alerts.ClearAlert(holder.Value, card.Comp.Alert);
         }
-        //Starlight end
         Dirty(card);
     }
 
@@ -286,6 +284,7 @@ public abstract partial class SharedNanoChatSystem : EntitySystem
             || !HasComp<PdaComponent>(pdaContainer.Owner))
             return null;
 
+        // A Station AI has no inventory owner above its virtual PDA; use the AI itself for alert display and cleanup.
         if (HasComp<StationAiHeldComponent>(pdaContainer.Owner))
             return pdaContainer.Owner;
 

@@ -23,9 +23,11 @@ public sealed partial class StationAiSystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedNanoChatSystem _nanoChat = default!;
 
+    // Create only the program container required by the virtual PDA; replacing the AI's full container manager breaks its other containers.
     [SubscribeLocalEvent]
     private void OnAiHeldInit(Entity<StationAiHeldComponent> ent, ref ComponentInit args) => _container.EnsureContainer<Container>(ent.Owner, SharedCartridgeLoaderSystem.InstalledContainerId);
 
+    // Use the AI entity name on its ID so NanoChat search and messages identify the virtual PDA correctly.
     [SubscribeLocalEvent]
     private void OnStationAiSpawnComplete(PlayerSpawnCompleteEvent args)
     {
@@ -37,6 +39,7 @@ public sealed partial class StationAiSystem
         _idCard.TryChangeFullName(idCard, Name(args.Mob));
     }
 
+    // Keep the virtual ID name in sync if the Station AI is renamed after spawning.
     [SubscribeLocalEvent]
     private void OnStationAiRenamed(Entity<StationAiHeldComponent> ent, ref EntityRenamedEvent args)
     {
@@ -47,6 +50,7 @@ public sealed partial class StationAiSystem
         _idCard.TryChangeFullName(idCard, args.NewName);
     }
 
+    // Route NanoChat's incoming-message sound only to the player controlling the AI that received it.
     [SubscribeLocalEvent]
     private void OnNanoChatMessageReceived(ref NanoChatMessageReceivedEvent args)
     {
@@ -63,6 +67,7 @@ public sealed partial class StationAiSystem
             false);
     }
 
+    // Remove PDA programs before the AI's container manager shuts down, preventing duplicate deletion during teardown.
     [SubscribeLocalEvent]
     private void OnStationAiTerminating(Entity<StationAiHeldComponent> ent, ref EntityTerminatingEvent args)
     {
@@ -78,6 +83,7 @@ public sealed partial class StationAiSystem
         }
     }
 
+    // Keep the special ID card in the virtual PDA even if a client sends an eject request directly.
     [SubscribeLocalEvent]
     private void OnStationAiIdEjectAttempt(Entity<StationAiHeldComponent> ent, ref ItemSlotEjectAttemptEvent args)
     {
@@ -90,6 +96,7 @@ public sealed partial class StationAiSystem
         }
     }
 
+    // Spawn the configured ID after the PDA slot exists; an already-initialized AI does not populate PDA starting items.
     [SubscribeLocalEvent]
     private void OnAiPdaMapInit(Entity<PdaComponent> ent, ref MapInitEvent args)
     {
@@ -106,6 +113,7 @@ public sealed partial class StationAiSystem
             return;
         }
 
+        // PresetIdCard sets the title and access but not this prototype ID, which NanoChat identity and ejection checks need.
         idCardComponent.JobPrototype = "StationAi";
         Dirty(idCard, idCardComponent);
 
