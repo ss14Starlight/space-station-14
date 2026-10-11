@@ -41,9 +41,6 @@ public sealed partial class VerbNameCustomParser : CustomCompletionParser<string
 
     private static string Quote(string text) => $"\"{text.Replace("\\", @"\\").Replace("\"", "\\\"")}\"";
 
-    /// <summary>
-    /// The piped variants of the command have no invoker argument, and use the user's attached entity instead.
-    /// </summary>
     private static bool TryResolveInvoker(ParserContext ctx, out EntityUid invoker)
     {
         if (ctx.Bundle.Arguments?.ContainsKey("invoker") == true)
