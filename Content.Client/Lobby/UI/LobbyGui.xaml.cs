@@ -38,6 +38,13 @@ namespace Content.Client.Lobby.UI
 
             _configurationManager.OnValueChanged(StarlightCCVars.LobbyJobColumns, show => JobColumnsBox.Visible = show, true);
 
+            _configurationManager.OnValueChanged(StarlightCCVars.AntagsEnabled, enabled => AntagsCheckBox.Pressed = enabled, true);
+            AntagsCheckBox.OnToggled += args =>
+            {
+                _configurationManager.SetCVar(StarlightCCVars.AntagsEnabled, args.Pressed);
+                _configurationManager.SaveToFile();
+            };
+
             _configurationManager.OnValueChanged(StarlightCCVars.ServerName, name => ServerName.Text = name, true);
             // Starlight-end
         }

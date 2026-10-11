@@ -4,6 +4,7 @@ using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
 using Content.Shared._Starlight.CombatMode;
 using Content.Shared.CCVar;
+using Content.Shared.GameTicking.Prototypes;
 using Content.Shared.HUD;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.UserInterface;
@@ -87,6 +88,17 @@ public sealed partial class UITab : Control
         Control.AddOption(new OptionBarLayoutCVar(Control, _cfg, StarlightCCVars.MenuBarLayout, MenuBarLayoutEditor));
         Control.AddOptionPercentSlider(CCVars.ChatWindowOpacity, ChatWindowOpacitySlider);
         Control.AddOptionCheckBox(StarlightCCVars.LobbyJobColumns, LobbyJobColumnsCheckBox);
+
+        var backgrounds = new List<OptionDropDownCVar<string>.ValueOption>
+        {
+            new(string.Empty, Loc.GetString("ui-options-lobby-background-server")),
+        };
+        foreach (var background in _prototypeManager.EnumeratePrototypes<LobbyBackgroundPrototype>()
+                     .OrderBy(b => Loc.GetString(b.Title)))
+        {
+            backgrounds.Add(new(background.ID, Loc.GetString(background.Title)));
+        }
+        Control.AddOptionDropDown(StarlightCCVars.LobbyBackground, DropDownLobbyBackground, backgrounds);
         Control.AddOptionDropDown(
             CVars.DisplayUIScale,
             DropDownUIScale,

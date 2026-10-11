@@ -23,7 +23,7 @@ public sealed class FlatLobbySheetlet : Sheetlet<NanotrasenStylesheet>
             return [];
 
         var proto = theme.Proto;
-        var translucent = proto.Background.WithAlpha(0.85f);
+        var translucent = proto.Background.WithAlpha(0.95f);
         var onAccent = theme.Accent.LabFromSrgb().X > 0.6f ? proto.Background : proto.Text;
 
         var rules = new List<StyleRule>

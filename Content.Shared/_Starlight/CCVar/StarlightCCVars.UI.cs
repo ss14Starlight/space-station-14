@@ -45,6 +45,9 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<bool> LobbyJobColumns =
         CVarDef.Create("ui.lobby_job_columns", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    public static readonly CVarDef<string> LobbyBackground =
+        CVarDef.Create("ui.lobby_background", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+
     /// <summary>
     /// Where each button of the top menu bar goes: <c>Name=Pinned|Auto|Menu|Hidden;...</c>, see BarLayout.
     /// Buttons left out are Auto: on the bar while it fits, in the "more" menu otherwise.

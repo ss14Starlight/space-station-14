@@ -23,6 +23,13 @@
                         <ui:OptionDropDown Name="DropDownUIScale" Title="{Loc 'ui-options-scale-label'}" />
                         <ui:OptionSlider Name="SeparatedChatWidthSlider" Title="{Loc 'ui-options-chat-width'}" />
                         <ui:OptionSlider Name="ChatWindowOpacitySlider" Title="{Loc 'ui-options-chat-window-opacity'}" />
+                    </BoxContainer>
+                </PanelContainer>
+
+                <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-lobby-label'}" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
+                    <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
+                        <ui:OptionDropDown Name="DropDownLobbyBackground" Title="{Loc 'ui-options-lobby-background'}" />
                         <CheckBox Name="LobbyJobColumnsCheckBox" Text="{Loc 'ui-options-lobby-job-columns'}" ToolTip="{Loc 'ui-options-lobby-job-columns-tooltip'}" />
                     </BoxContainer>
                 </PanelContainer>

@@ -74,7 +74,11 @@
                 </Control>
                 <PanelContainer StyleClasses="HubPanel">
                     <BoxContainer Orientation="Vertical" SeparationOverride="6" Margin="8">
-                        <Label Name="StartTime" Access="Public" Align="Center" />
+                        <BoxContainer Orientation="Horizontal">
+                            <Label Name="StartTime" Access="Public" HorizontalExpand="True" VAlign="Center" />
+                            <CheckBox Name="AntagsCheckBox" Text="{Loc 'lobby-antags-checkbox'}"
+                                      ToolTip="{Loc 'lobby-antags-checkbox-tooltip'}" />
+                        </BoxContainer>
                         <BoxContainer Orientation="Horizontal" SeparationOverride="8">
                             <cc:UICommandButton Command="observe" Name="ObserveButton" Access="Public"
                                                 Text="{Loc 'ui-lobby-observe-button'}"

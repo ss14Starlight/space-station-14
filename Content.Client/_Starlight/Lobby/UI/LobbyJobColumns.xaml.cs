@@ -47,10 +47,12 @@ public sealed partial class LobbyJobColumns : Control
         SetCollapsed(false);
     }
 
-    protected override void ExitedTree()
+    [Obsolete]
+    protected override void Dispose(bool disposing)
     {
-        base.ExitedTree();
-        _prototypeManager.PrototypesReloaded -= OnPrototypesReloaded;
+        base.Dispose(disposing);
+        if (disposing)
+            _prototypeManager.PrototypesReloaded -= OnPrototypesReloaded;
     }
 
     private void SetCollapsed(bool collapsed)
