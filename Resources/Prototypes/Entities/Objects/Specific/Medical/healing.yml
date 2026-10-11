@@ -1030,7 +1030,6 @@
     - id: PillPotassiumIodide
     - id: PillTricordrazine
     - id: StrangePill
-    - id: WeirdPill # Starlight
 
 - type: entityTable
   id: RandomSafeSyringeTable
