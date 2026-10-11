@@ -86,25 +86,32 @@ public sealed partial class LatchComponent : Component
     public float DriftBreakTolerance = 0.5f;
 
     /// <summary>
-    /// Cap on the physics joint's max length. Matches baseline unarmed melee
-    /// range (1.5), not DriftBreakRange, so the target can always punch back.
+    /// Cap on the physics joint's max length, measured center-to-center.
+    /// Must stay below 1 + the latcher's fixture radius (1.35 for K9) so the
+    /// latcher always sits inside 1-tile AoEs the target can fire off (e.g.
+    /// vampire Glare), letting antag abilities break the latch regardless of
+    /// how far away it was started. Melee range is measured fixture
+    /// edge-to-edge, so the target can still punch back.
     /// </summary>
     [DataField]
-    public float MaxJointLength = 1.5f;
+    public float MaxJointLength = 1.2f;
 
     /// <summary>
-    /// How far north the latcher can start and still count as behind the status
-    /// UI, which flips the panel to draw below the target instead.
+    /// How long a wall (or anything else that blocks melee) can sit between the
+    /// latcher and a pinned target before the latch breaks. Gives the joint a
+    /// moment to settle after the initial snap. The DoT and Bite Harder are
+    /// suspended while obstructed, so nothing bites through the wall in the
+    /// meantime. Slowed targets (<see cref="SlowPrototypes"/>) are exempt: they
+    /// can walk the latch back into view, so it sticks and keeps biting.
     /// </summary>
     [DataField]
-    public float UiObscureNorthRange = 2.5f;
+    public TimeSpan ObstructionBreakDelay = TimeSpan.FromSeconds(0.75);
 
     /// <summary>
-    /// Horizontal tolerance for the above check - latcher must start roughly
-    /// straight north, not far off to either side.
+    /// When the current obstruction began, or null if the two have line of sight.
     /// </summary>
-    [DataField]
-    public float UiObscureHorizontalTolerance = 2.5f;
+    [ViewVariables]
+    public TimeSpan? ObstructedSince;
 
     /// <summary>
     /// Physics joint keeping latcher and target from drifting apart (e.g. in
@@ -261,24 +268,6 @@ public sealed partial class LatchComponent : Component
     /// </summary>
     [ViewVariables, AutoNetworkedField]
     public EntityUid? Target;
-
-    /// <summary>
-    /// Set once at latch start if the K9 began roughly north of the target,
-    /// which would put the K9 behind the TARGET's status UI. Target's client
-    /// draws its own panel below itself instead of above when this is true.
-    /// </summary>
-    [ViewVariables, AutoNetworkedField]
-    public bool TargetUiBelow;
-
-    /// <summary>
-    /// Set once at latch start if the target began roughly north of the K9
-    /// (i.e. the K9 started south of the target), which would put the target
-    /// behind the LATCHER's own status UI. Latcher's client draws its own
-    /// panel below itself instead of above when this is true.
-    /// </summary>
-    [ViewVariables, AutoNetworkedField]
-    public bool LatcherUiBelow;
-
 
     /// <summary>
     /// The specific, discrete end time designated for the latch.

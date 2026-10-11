@@ -1,0 +1,60 @@
+# Extra tracks for the upstream ambience collections in Prototypes/audio.yml.
+- type: !PartialOnly soundCollection
+  id: AmbienceEngineering
+  files:
+    - /Audio/_Starlight/Ambience/Music/ambieng1.ogg
+    - /Audio/_Starlight/Ambience/Music/ambifailure.ogg
+
+- type: !PartialOnly soundCollection
+  id: AmbienceGeneral
+  files:
+    - /Audio/_Starlight/Ambience/Music/ambigen2.ogg
+
+- type: !PartialOnly soundCollection
+  id: AmbienceMaintenance
+  files:
+    - /Audio/_Starlight/Ambience/Music/ambimaint.ogg
+    - /Audio/Ambience/ambimystery.ogg
+    - /Audio/Ambience/ambiodd.ogg
+    - /Audio/_Starlight/Ambience/Music/ambimaint6.ogg
+    - /Audio/_Starlight/Ambience/Music/ambimaint7.ogg
+    - /Audio/_Starlight/Ambience/Music/ambimaint8.ogg
+    - /Audio/_Starlight/Ambience/Music/ambimaint9.ogg
+    - /Audio/_Starlight/Ambience/Music/ambimaint10.ogg
+    - /Audio/_Starlight/Ambience/Music/ambimaint11.ogg
+    - /Audio/_Starlight/Ambience/Music/ambimaint12.ogg
+
+- type: !PartialOnly soundCollection
+  id: AmbienceSpace
+  files:
+    - /Audio/_Starlight/Ambience/Music/ambispace.ogg
+    - /Audio/_Starlight/Ambience/Music/ambispace3.ogg
+    - /Audio/_Starlight/Ambience/Music/ambispace4.ogg
+    - /Audio/_Starlight/Ambience/Music/ambispace5.ogg
+    - /Audio/_Starlight/Ambience/Music/ambispace6.ogg
+
+# Area ambience follows station zones (whole rooms) instead of nearby doors or plating.
+- type: !PartialOnly ambientMusic
+  id: Medical
+  rules: InMedicalZone
+
+- type: !PartialOnly ambientMusic
+  id: Engineering
+  rules: InEngineeringZone
+
+- type: !PartialOnly ambientMusic
+  id: Maintenance
+  rules: InMaintenanceZone
+
+- type: !PartialOnly ambientMusic
+  id: General
+  extraDelay: 120
+
+- type: !PartialOnly soundCollection
+  id: SpaceWind
+  files:
+    - /Audio/_Starlight/Effects/Weather/space_wind_2_1.ogg
+    - /Audio/_Starlight/Effects/Weather/space_wind_2_2.ogg
+    - /Audio/_Starlight/Effects/Weather/space_wind_3_1.ogg
+    - /Audio/_Starlight/Effects/Weather/space_wind_4_1.ogg
+    - /Audio/_Starlight/Effects/Weather/space_wind_4_2.ogg

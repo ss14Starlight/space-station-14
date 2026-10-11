@@ -1,8 +1,10 @@
+using System.Linq;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
 
 namespace Content.Shared._Starlight.Zones;
@@ -33,13 +35,17 @@ public abstract partial class SharedZoneSystem : EntitySystem
 
     private readonly Dictionary<string, ushort> _idByProto = [];
 
-    private ZonePrototype?[] _protoById = [null];
+    private readonly List<ZonePrototype?> _protoById = new();
 
-    private int[] _priorityById = [NoZonePriority];
+    private readonly List<int> _priorityById = new();
+
+    private readonly List<ProtoId<ZonePrototype>[]> _zonesById = new();
+
+    private readonly Dictionary<string, ushort> _setByKey = [];
 
     protected ushort CorridorZone { get; private set; }
 
-    private readonly Dictionary<string, ushort> _zoneByDoor = [];
+    private readonly Dictionary<string, List<ushort>> _zonesByDoor = [];
     private readonly Dictionary<string, ushort> _doorCache = [];
 
     [Dependency] private EntityQuery<ZoneGridComponent> _zoneQuery = default!;
@@ -124,7 +130,13 @@ public abstract partial class SharedZoneSystem : EntitySystem
     /// Returns the zone prototype for a given zone id, or null if the id is invalid.
     /// </summary>
     public ZonePrototype? GetZone(ushort id)
-        => id < _protoById.Length ? _protoById[id] : null;
+        => id < _protoById.Count ? _protoById[id] : null;
+
+    /// <summary>
+    /// Returns every zone a zone id stands for: one for a single zone, several for a zone set, none for <see cref="NoZone"/>.
+    /// </summary>
+    public IReadOnlyList<ProtoId<ZonePrototype>> GetZones(ushort id)
+        => id < _zonesById.Count ? _zonesById[id] : [];
 
     /// <summary>
     /// Returns the zone id for a given zone prototype, or <see cref="NoZone"/> if the prototype is not registered.
@@ -169,10 +181,7 @@ public abstract partial class SharedZoneSystem : EntitySystem
     /// Returns true if the given tile on a grid is in the specified zone.
     /// </summary>
     public bool IsInZone(EntityUid grid, Vector2i tile, ProtoId<ZonePrototype> zone)
-    {
-        var id = GetZoneId(zone);
-        return id != NoZone && GetZoneId(grid, tile) == id;
-    }
+        => GetZones(GetZoneId(grid, tile)).Contains(zone);
 
     /// <summary>
     /// Returns the region id for a given tile on a grid, or <see cref="NoRegion"/> if the tile is not in any region.
@@ -310,7 +319,7 @@ public abstract partial class SharedZoneSystem : EntitySystem
     }
 
     protected int ZonePriority(ushort zone)
-        => zone < _priorityById.Length ? _priorityById[zone] : NoZonePriority;
+        => zone < _priorityById.Count ? _priorityById[zone] : NoZonePriority;
 
     protected virtual void QueueFullRebuild(Entity<ZoneGridComponent> ent)
         => ent.Comp.NeedsFullRebuild = true;
@@ -396,6 +405,10 @@ public abstract partial class SharedZoneSystem : EntitySystem
 
     #region Door prototypes
 
+    /// <summary>
+    /// Returns the zone id of a door prototype: the union of every zone claiming the door or any of its parents,
+    /// interned as a zone set when there is more than one. The corridor zone only counts when nothing else does.
+    /// </summary>
     public ushort GetDoorZone(string? prototype)
     {
         if (prototype == null)
@@ -404,31 +417,71 @@ public abstract partial class SharedZoneSystem : EntitySystem
         if (_doorCache.TryGetValue(prototype, out var cached))
             return cached;
 
-        var resolved = ResolveDoorZone(prototype, 0);
+        var zones = new HashSet<ushort>();
+        CollectDoorZones(prototype, zones, 0);
+
+        // The corridor zone is a fallback: claiming the base Airlock must not put every room in the hallway too.
+        if (zones.Count > 1)
+            zones.Remove(CorridorZone);
+
+        var resolved = GetZoneSet(zones);
         _doorCache[prototype] = resolved;
         return resolved;
     }
 
-    private ushort ResolveDoorZone(string prototype, int depth)
+    private void CollectDoorZones(string prototype, HashSet<ushort> zones, int depth)
     {
         if (depth > 16)
-            return NoZone;
+            return;
 
-        if (_zoneByDoor.TryGetValue(prototype, out var direct))
-            return direct;
+        if (_zonesByDoor.TryGetValue(prototype, out var direct))
+            zones.UnionWith(direct);
 
         if (!Proto.TryIndex<EntityPrototype>(prototype, out var proto) || proto.Parents == null)
-            return NoZone;
+            return;
 
         foreach (var parent in proto.Parents)
         {
-            var resolved = ResolveDoorZone(parent, depth + 1);
+            CollectDoorZones(parent, zones, depth + 1);
+        }
+    }
 
-            if (resolved != NoZone)
-                return resolved;
+    /// <summary>
+    /// Returns the zone id standing for exactly these single zone ids: <see cref="NoZone"/> for none,
+    /// the zone itself for one, an interned zone set for several.
+    /// </summary>
+    protected ushort GetZoneSet(HashSet<ushort> zones) => zones.Count switch
+    {
+        0 => NoZone,
+        1 => zones.First(),
+        _ => InternZoneSet(zones),
+    };
+
+    private ushort InternZoneSet(HashSet<ushort> zones)
+    {
+        var members = zones.ToArray();
+        Array.Sort(members);
+
+        var key = string.Join(',', members);
+        if (_setByKey.TryGetValue(key, out var existing))
+            return existing;
+
+        if (_protoById.Count >= ushort.MaxValue)
+            return members[0];
+
+        var primary = members[0];
+        foreach (var member in members)
+        {
+            if (CompareZones(member, primary) > 0)
+                primary = member;
         }
 
-        return NoZone;
+        var id = (ushort) _protoById.Count;
+        _protoById.Add(_protoById[primary]);
+        _priorityById.Add(_priorityById[primary]);
+        _zonesById.Add(members.Select(x => _zonesById[x][0]).ToArray());
+        _setByKey[key] = id;
+        return id;
     }
 
     #endregion
@@ -450,19 +503,24 @@ public abstract partial class SharedZoneSystem : EntitySystem
         if (protos.Count >= ushort.MaxValue)
             throw new InvalidOperationException($"Too many {nameof(ZonePrototype)}s, zone ids are ushort.");
 
-        _protoById = new ZonePrototype?[protos.Count + 1];
-        _priorityById = new int[protos.Count + 1];
-        _priorityById[NoZone] = NoZonePriority;
+        _protoById.Clear();
+        _priorityById.Clear();
+        _zonesById.Clear();
+        _setByKey.Clear();
+        _protoById.Add(null);
+        _priorityById.Add(NoZonePriority);
+        _zonesById.Add([]);
 
-        _zoneByDoor.Clear();
+        _zonesByDoor.Clear();
         _doorCache.Clear();
         CorridorZone = NoZone;
 
         for (var i = 0; i < protos.Count; i++)
         {
             var id = (ushort) (i + 1);
-            _protoById[id] = protos[i];
-            _priorityById[id] = protos[i].Priority;
+            _protoById.Add(protos[i]);
+            _priorityById.Add(protos[i].Priority);
+            _zonesById.Add([protos[i].ID]);
             _idByProto[protos[i].ID] = id;
 
             if (protos[i].Corridor)
@@ -474,15 +532,7 @@ public abstract partial class SharedZoneSystem : EntitySystem
             }
 
             foreach (var door in protos[i].Doors)
-            {
-                if (_zoneByDoor.TryGetValue(door.Id, out var existing))
-                {
-                    Log.Error($"Door prototype {door.Id} is claimed by both {_protoById[existing]!.ID} and {protos[i].ID}.");
-                    continue;
-                }
-
-                _zoneByDoor[door.Id] = id;
-            }
+                _zonesByDoor.GetOrNew(door.Id).Add(id);
         }
     }
 

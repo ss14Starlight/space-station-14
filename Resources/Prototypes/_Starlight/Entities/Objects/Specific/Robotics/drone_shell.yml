@@ -59,3 +59,34 @@
     guides:
     - Cyborgs
     - Robotics
+
+- type: entity
+  parent: DroneShell
+  id: DroneRogueShell
+  name: scrapper drone shell
+  description: A compact mechanical frame for drone assembly. Missing arms, sensors, and power. This one has a corrupted dataset
+  components:
+  - type: Construction
+    graph: DroneRogue
+    node: start
+    defaultTarget: rogue_drone_complete
+    containers:
+    - part-container
+    - cell_slot
+  - type: Sprite
+    noRot: true
+    drawdepth: Items
+    sprite: _Starlight/Mobs/Silicon/Bots/scrapperdrone.rsi
+    state: shell
+  - type: Appearance
+  - type: ItemMapper
+    sprite: _Starlight/Mobs/Silicon/Bots/scrapperdrone.rsi
+    mapLayers:
+      l_hand:
+        whitelist:
+          tags:
+          - BorgLArm
+      r_hand:
+        whitelist:
+          tags:
+          - BorgRArm

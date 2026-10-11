@@ -139,7 +139,7 @@ public sealed partial class AbductorConsoleBui : BoundUserInterface
             if (_balance >= price)
                 _balance -= price;
 
-            _window.BalanceLabel.SetMessage($"Balance: {_balance}");
+            _window.BalanceLabel.SetMessage(Loc.GetString("abductor-console-balance", ("balance", _balance)));
 
             SendMessage(new AbductorItemBuyedBuiMsg()
             {
@@ -226,7 +226,7 @@ public sealed partial class AbductorConsoleBui : BoundUserInterface
         if (state.CurrentBalance != null)
             _balance = state.CurrentBalance.Value;
 
-        _window.BalanceLabel.SetMessage($"Balance: {_balance}");
+        _window.BalanceLabel.SetMessage(Loc.GetString("abductor-console-balance", ("balance", _balance)));
     }
 
     private void UpdateDisabledPanel(bool disable)

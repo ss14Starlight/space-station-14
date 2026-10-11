@@ -77,7 +77,7 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
             foreach (var item in ent.Comp.Completed)
                 RaiseLocalEvent(item, ref collect);
 
-        args.Groups["Cards"] = collect.Objectives;
+        args.Groups[Loc.GetString("cards")] = collect.Objectives;
     }
 
     private void OnExamined(Entity<RailroadableComponent> ent, ref ExaminedEvent args)

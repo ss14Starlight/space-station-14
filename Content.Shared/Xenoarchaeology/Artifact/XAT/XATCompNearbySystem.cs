@@ -28,7 +28,8 @@ public sealed partial class XATCompNearbySystem : BaseQueryUpdateXATSystem<XATCo
 
         _entities.Clear();
         _entityLookup.GetEntitiesInRange(comp.Type, pos, compNearbyComponent.Radius, _entities);
-        if (_entities.Count >= compNearbyComponent.Count)
+        //if (_entities.Count >= compNearbyComponent.Count)
+        if (CountMatchingEntities(compNearbyComponent, _entities) >= compNearbyComponent.Count) // Starlight: tag filtering in partial
             Trigger(artifact, node);
     }
 }

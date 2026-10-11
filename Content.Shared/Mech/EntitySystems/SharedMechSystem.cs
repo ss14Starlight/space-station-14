@@ -150,7 +150,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (!component.MaintenanceMode)
         {
             args.Cancel();
-            args.Message = "You need to turn on maintenance mode first!";
+            args.Message = Loc.GetString("mech-maintenance-mode-required");
         }
     }
 

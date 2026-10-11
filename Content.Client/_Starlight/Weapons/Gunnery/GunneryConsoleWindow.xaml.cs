@@ -117,7 +117,7 @@ public sealed class GunneryConsoleWindow : FancyWindow
 
         // Guidance indicator.
         _guidanceLabel.Text = state.TrackedGuidedProjectile != null
-            ? "GUIDANCE ACTIVE"
+            ? Loc.GetString("gunnery-guidance-active")
             : string.Empty;
     }
 

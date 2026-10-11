@@ -151,8 +151,7 @@
     damage:
       types:
         Cold: 5
-        Blunt: 5
-        Slash: 5
+        Blunt: 10
         Structural: 16
     soundHit:
       path: /Audio/_Starlight/CosmicCult/cosmicsword_hit.ogg
@@ -201,7 +200,7 @@
 
 - type: entity
   parent: [ BaseMobCosmicHostile, MobCosmicLodestar ]
-  id: MobCosmicLodestarHostile #ranged unit 25 damage from razor.
+  id: MobCosmicLodestarHostile #ranged unit 20 damage shot.
   components:
   - type: GhostRole
     name: ghost-role-information-cosmic-lodestar-name

@@ -1,0 +1,19 @@
+﻿- type: utilityQuery
+  id: MoffNearbyCritMeleeTargets
+  query:
+  - !type:NearbyHostilesQuery
+  considerations:
+  - !type:TargetIsCritCon # Target is Critical
+    curve: !type:InverseBoolCurve
+  - !type:TargetIsAliveCon # Target is Living
+    curve: !type:BoolCurve
+  - !type:TargetDistanceCon # Closer targets
+    curve: !type:PresetCurve
+      preset: TargetDistance
+  - !type:TargetHealthCon # Target is closer to death
+    curve: !type:PresetCurve
+      preset: TargetHealth
+  - !type:TargetAccessibleCon # Target is reachable
+    curve: !type:BoolCurve
+  - !type:TargetInLOSOrCurrentCon # Target is within line of sight
+    curve: !type:BoolCurve

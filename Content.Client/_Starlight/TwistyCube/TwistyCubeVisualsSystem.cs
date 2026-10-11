@@ -27,7 +27,7 @@ public sealed partial class TwistyCubeVisualsSystem : VisualizerSystem<TwistyCub
         SpriteSystem.LayerSetColor((uid, args.Sprite), "fl-1", cubeState.FrontLeft.Side1.AsColor());
         SpriteSystem.LayerSetColor((uid, args.Sprite), "fl-2", cubeState.FrontLeft.Side2.AsColor());
 
-        SpriteSystem.LayerSetColor((uid, args.Sprite), "f", TwistyCubeColor.Front.AsColor());
+        SpriteSystem.LayerSetColor((uid, args.Sprite), "f", cubeState.Front.AsColor());
 
         SpriteSystem.LayerSetColor((uid, args.Sprite), "fr-1", cubeState.FrontRight.Side1.AsColor());
 
@@ -39,11 +39,11 @@ public sealed partial class TwistyCubeVisualsSystem : VisualizerSystem<TwistyCub
         SpriteSystem.LayerSetColor((uid, args.Sprite), "fbr-1", cubeState.FrontBottomRight.Side1.AsColor());
 
         SpriteSystem.LayerSetColor((uid, args.Sprite), "bl-2", cubeState.BottomLeft.Side2.AsColor());
-        SpriteSystem.LayerSetColor((uid, args.Sprite), "l", TwistyCubeColor.Left.AsColor());
+        SpriteSystem.LayerSetColor((uid, args.Sprite), "l", cubeState.Left.AsColor());
         SpriteSystem.LayerSetColor((uid, args.Sprite), "tl-2", cubeState.TopLeft.Side2.AsColor());
 
         SpriteSystem.LayerSetColor((uid, args.Sprite), "tl-1", cubeState.TopLeft.Side1.AsColor());
-        SpriteSystem.LayerSetColor((uid, args.Sprite), "t", TwistyCubeColor.Top.AsColor());
+        SpriteSystem.LayerSetColor((uid, args.Sprite), "t", cubeState.Top.AsColor());
         SpriteSystem.LayerSetColor((uid, args.Sprite), "tr-1", cubeState.TopRight.Side1.AsColor());
 
         SpriteSystem.LayerSetColor((uid, args.Sprite), "kbl-3", cubeState.BackBottomLeft.Side3.AsColor());

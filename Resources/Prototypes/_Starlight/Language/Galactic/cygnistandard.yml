@@ -1,0 +1,49 @@
+- type: language
+  id: CygniStandard
+  icon: LanguageIconCommunist
+  chatPrefix: cys
+  speech:
+    color: "#A31700"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 5
+    replacement:
+    - szcz
+    - yz
+    - na
+    - da
+    - dobr
+    - be
+    - ę
+    - i
+    - pyn
+    - pav
+    - zu
+    - pię
+    - ó
+    - ż
+    - sial
+    - sot
+    - ny
+    - ik
+    - k
+    - k
+    - ś
+    - śto
+    - byn
+    - ł
+    - svo
+    - v
+    - ni
+    - w
+    - wy
+    - dz
+    - wz
+    - kz
+    - dzen
+    - dzi
+    - che
+    - posle
+    - nost
+    - podpos

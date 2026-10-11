@@ -2,8 +2,8 @@
 - type: entity
   name: CODE-6 "Arbitration"
   id: WeaponMedTakLightMachineGun
-  parent: [ BaseWeaponLightMachineGun, BaseMedTakContraband ]
-  description: "An ultralight assault LMG developed for MedTak security.\nAccepts .30 box magazines."
+  parent: [ BaseWeaponLightMachineGun, BaseVariableHeavySettings, BaseMedTakContraband ]
+  description: "An ultralight assault LMG developed for MedTak security.\nAccepts HVA box magazines."
   suffix: Admeme
   components:
   - type: Sprite
@@ -34,19 +34,19 @@
     slots:
       gun_magazine:
         name: item-slot-component-slot-name-magazine
-        startingItem: LightRifleHeavyMagazineSP
+        startingItem: MagazineVariableBoxHeavy
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
         whitelist:
           tags:
-            - LightRifleHeavy
+            - BoxHVA
       gun_chamber:
         name: item-slot-component-slot-name-chamber
-        startingItem: CartridgeLightRifleSP
+        startingItem: RoundVariableHeavy
         priority: 1
         whitelist:
           tags:
-            - CartridgeLightRifle
+            - RoundHVA
   - type: HeldSpeedModifier
   - type: Gun
     soundGunshot:
@@ -62,9 +62,9 @@
 # Rifle
 - type: entity
   name: CODE-9 "Compliance"
-  parent: [ BaseWeaponRifle, BaseMedTakContraband ]
+  parent: [ BaseWeaponRifle, BaseVariableMediumSettings, BaseMedTakContraband ]
   id: WeaponMedTakRifle
-  description: "A bullpuped heavy rifle designed for MedTak operators.\nAccepts heavy .20 rifle magazines."
+  description: "A bullpuped rifle designed for MedTak operators.\nAccepts MVA magazines."
   suffix: Admeme
   components:
   - type: Sprite
@@ -92,20 +92,20 @@
     slots:
       gun_magazine:
         name: item-slot-component-slot-name-magazine
-        startingItem: MagazineRifleM52SP
+        startingItem: MagazineVariableMedium
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineRifleM52
+            - MagazineMVA
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: item-slot-component-slot-name-chamber
         priority: 1
         whitelist:
           tags:
-          - CartridgeRifle
+          - RoundMVA
   - type: MagazineVisuals
     magState: mag
     steps: 4
@@ -114,7 +114,7 @@
 
 - type: entity
   name: CODE-9 ROW
-  parent: BaseItem
+  parent: [ BaseItem, BaseVariableMediumSettings]
   id: WeaponMedTakRifleROW
   description: "A cut-down CODE-9 designed for cyborgs, feeding from a slowly recharging internal ammo fabricator"
   suffix: Admeme
@@ -149,9 +149,9 @@
   - type: BallisticAmmoProvider
     whitelist:
       tags:
-      - CartridgeRifle
-    capacity: 24
-    proto: CartridgeRifleSP
+      - RoundMVA
+    capacity: 25
+    proto: RoundVariableMedium
     cycleable: false
   - type: BallisticAmmoSelfRefiller
     autoRefillRate: 4s
@@ -196,9 +196,9 @@
 # SMG
 - type: entity
   name: CODE-10 "Intervention"
-  parent: [BaseWeaponSubMachineGun, BaseMedTakContraband]
+  parent: [BaseWeaponSubMachineGun, BaseVariableLightSettings, BaseMedTakContraband]
   id: WeaponMedTakSubMachineGun
-  description: A compact submachine gun with an integral supressor. It features an advanced recoil system, but suffers slightly in rate of fire.
+  description: "A compact submachine gun with an integral supressor. It features an advanced recoil system, but suffers slightly in rate of fire.\nAccepts LVA magazines."
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/MedTak/Weapons/SMG.rsi
@@ -226,6 +226,24 @@
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/pdw90_shot.ogg
       params:
         volume: -2
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineVariableLight
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLVA
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - RoundLVA
   - type: MagazineVisuals
     magState: mag
     steps: 6

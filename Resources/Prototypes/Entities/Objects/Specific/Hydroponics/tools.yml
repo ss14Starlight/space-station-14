@@ -106,16 +106,6 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
-  # 🌟Starlight-start🌟
-  - type: SurgeryTool
-  - type: BoneSaw
-    successRate: 0.4
-    speed: 0.8
-    startSound:
-      path: /Audio/Effects/chop.ogg
-    endSound:
-      path: /Audio/Effects/chop.ogg
-  # 🌟Starlight-end🌟
 
 - type: entity
   name: spade
@@ -144,12 +134,6 @@
       sprite: Objects/Tools/Hydroponics/spade.rsi
   - type: Shovel
     speedModifier: 0.75 # slower at digging than a full-sized shovel
-  # 🌟Starlight-start🌟
-  - type: Tool
-    qualities:
-      - Digging
-    speedModifier: 0.75 # see above
-  # 🌟Starlight-end🌟
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
@@ -161,7 +145,7 @@
   description: A bag for botanists to easily move their huge harvests.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Hydroponics/Equipment/plant_bag.rsi
+    sprite: Objects/Specific/Hydroponics/Equipment/plant_bag.rsi
     state: icon
   - type: Item
     storedRotation: -90

@@ -1,0 +1,19 @@
+- type: !PartialOnly entity
+  id: MineralScannerEmpty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor
+
+- type: !PartialOnly entity
+  id: AdvancedMineralScannerEmpty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor

@@ -33,11 +33,11 @@ public sealed partial class SlimeGenderChangePotionSystem : EntitySystem
 
         if (ent.Comp.Gender.Value == humanoidAppearanceComponent.Gender)
         {
-            _sharedPopupSystem.PopupPredicted($"Target's gender is already {ent.Comp.Gender.Value}.", args.User, args.User);
+            _sharedPopupSystem.PopupPredicted(Loc.GetString($"comp-gender-change-potion-{ent.Comp.Gender.Value.ToString().ToLowerInvariant()}-set-already"), args.User, args.User);
             return;
         }
         _sharedHumanoidAppearanceSystem.SetGender((args.Target.Value, humanoidAppearanceComponent), ent.Comp.Gender.Value);
-        _sharedPopupSystem.PopupPredicted($"Target's gender set to {ent.Comp.Gender.Value}.", args.User, args.User);
+        _sharedPopupSystem.PopupPredicted(Loc.GetString($"comp-gender-change-potion-{ent.Comp.Gender.Value.ToString().ToLowerInvariant()}-set"), args.User, args.User);
         PredictedQueueDel(args.Used);
     }
 

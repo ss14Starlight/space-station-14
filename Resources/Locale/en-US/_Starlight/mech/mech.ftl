@@ -15,3 +15,5 @@ mech-menu-passive-equipment = Passive Equipment
 mech-need-maintenance = You need to turn on maintenance mode first!
 mech-turn-off-maintenance = Turn off maintenance mode first!
 mech-cant-lie-down = You can't lie down while piloting a mech.
+
+mech-maintenance-mode-required = You need to turn on maintenance mode first!

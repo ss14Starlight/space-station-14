@@ -36,6 +36,9 @@ public abstract partial class SharedMagicMirrorSystem : EntitySystem
         if (args.Result == BoundUserInterfaceRangeResult.Fail)
             return;
 
+        if (args.UiKey is not MagicMirrorUiKey)
+            return;
+
         if (component.Target == null || !Exists(component.Target))
         {
             component.Target = null;
@@ -50,6 +53,9 @@ public abstract partial class SharedMagicMirrorSystem : EntitySystem
     private void OnAttemptOpenUI(EntityUid uid, MagicMirrorComponent component, ref ActivatableUIOpenAttemptEvent args)
     {
         var user = component.Target ?? args.User;
+
+        if (!HasComp<UserInterfaceComponent>(uid))
+            return;
 
         if (!HasComp<HumanoidAppearanceComponent>(user))
             args.Cancel();
