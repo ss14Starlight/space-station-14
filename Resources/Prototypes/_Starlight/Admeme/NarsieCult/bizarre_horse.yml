@@ -56,7 +56,7 @@
   components:
   - type: Action
     useDelay: 5
-    icon: Interface/Actions/actions_borg.rsi/security-unlethal-module.png
+    icon: Resources/Textures/Interface/Actions/web.png
     itemIconStyle: BigAction
   - type: TargetAction
   - type: EntityTargetAction
@@ -76,7 +76,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Handcuff
-    breakoutTime: 12
+    breakoutTime: 20
 
 - type: entity
   parent: BaseAction
