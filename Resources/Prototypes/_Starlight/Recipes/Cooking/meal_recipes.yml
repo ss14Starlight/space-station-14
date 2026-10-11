@@ -152,6 +152,42 @@
 
 # misc
 - type: microwaveMealRecipe
+  id: RecipeBeefStroganoff
+  name: beef stroganoff recipe
+  result: FoodStroganoff
+  time: 20
+  group: Savory
+  deviceType: Microwave
+  reagents:
+    Cream: 5
+    TableSalt: 1
+    Blackpepper: 1
+  solids:
+    FoodBowlWooden: 1
+    FoodMeatCutlet: 2
+    FoodBrownMushroom: 1
+    FoodOnionSlice: 1
+    FoodButterSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeBeefStroganoffCookedCutlets
+  name: beef stroganoff with cooked cutlets recipe
+  result: FoodStroganoff
+  time: 20
+  group: Savory
+  deviceType: Microwave
+  reagents:
+    Cream: 5
+    TableSalt: 1
+    Blackpepper: 1
+  solids:
+    FoodBowlWooden: 1
+    FoodMeatCutletCooked: 2
+    FoodBrownMushroom: 1
+    FoodOnionSlice: 1
+    FoodButterSlice: 1
+
+- type: microwaveMealRecipe
   id: RecipeCharcuterie
   name: charcuterie recipe
   result: FoodCharcuterie
