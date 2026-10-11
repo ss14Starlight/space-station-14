@@ -1,0 +1,30 @@
+- type: entity
+  parent: IDCardStandard
+  id: StationAiIDCard
+  name: station AI ID card
+  components:
+  - type: PresetIdCard
+    job: StationAi
+
+- type: !PartialOnly entity
+  id: AiHeld
+  components:
+  - type: Alerts
+  - type: Pda
+    id: StationAiIDCard
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+    - CrewManifestCartridge
+    - NewsReaderCartridge
+    - NanoChatCartridge
+    cartridgeSlot:
+      locked: true
+  - type: UserInterface
+    interfaces:
+      enum.PdaUiKey.Key:
+        type: PdaBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.PdaUiKey.Key:
+        toggleAction: ActionStationAiOpenPDA

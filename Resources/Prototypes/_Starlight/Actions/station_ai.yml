@@ -2,6 +2,20 @@
 
 - type: entity
   parent: BaseMentalAction
+  id: ActionStationAiOpenPDA
+  name: Open PDA
+  description: Opens your personal data assistant.
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Devices/pda.rsi
+      state: pda
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.PdaUiKey.Key }
+
+- type: entity
+  parent: BaseMentalAction
   id: ActionAIShunt
   name: Shunt
   description: Shunt into a borg chassis with a AI interface installed.
