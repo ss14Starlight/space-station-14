@@ -36,7 +36,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
     [Dependency] private IPrototypeManager _proto = default!;
 
     private HubSystem _hub = default!;
-    private ISawmill _sawmill = default!;
+    private readonly ISawmill _sawmill = default!;
 
     private readonly BoxContainer _root;
     private readonly ScrollContainer _scroll;
@@ -228,7 +228,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         _root.AddChild(panel);
     }
 
-    private Control MakeProjectHeader(string project, List<KeyValuePair<string, NullLink.Server>> list, bool expanded)
+    private Button MakeProjectHeader(string project, List<KeyValuePair<string, NullLink.Server>> list, bool expanded)
     {
         var onlinePlayers = list.Sum(kv => _hub.ServerInfo?.GetValueOrDefault(kv.Key)?.Players ?? 0);
 
@@ -291,7 +291,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         return button;
     }
 
-    private Control MakeServerRow(string key, NullLink.Server server)
+    private PanelContainer MakeServerRow(string key, NullLink.Server server)
     {
         var info = _hub.ServerInfo?.GetValueOrDefault(key);
         var insufficient = _hub.InsufficientPlaytime.GetValueOrDefault(key);
@@ -344,7 +344,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         return panel;
     }
 
-    private Control MakeConnectButton(NullLink.Server server)
+    private Button MakeConnectButton(NullLink.Server server)
     {
         var connected = _hub.CurrentGameHostName == server.Title;
         var button = new Button
@@ -368,9 +368,8 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         return button;
     }
 
-    private static Control MakeStatusDot(NullLink.ServerInfo? info)
-    {
-        return new PanelContainer
+    private static PanelContainer MakeStatusDot(NullLink.ServerInfo? info)
+        => new()
         {
             PanelOverride = new StyleBoxFlat { BackgroundColor = StatusColor(info) },
             MinSize = new Vector2(10, 10),
@@ -379,11 +378,9 @@ internal sealed partial class Hub : PanelContainer, IDisposable
             ToolTip = info?.GetStatus() ?? Loc.GetString("nulllink-hub-status-unknown"),
             TooltipDelay = 0.2f,
         };
-    }
 
-    private Control MakeGlyph(string glyph, string styleClass, string tooltip)
-    {
-        return new Label
+    private Label MakeGlyph(string glyph, string styleClass, string tooltip)
+        => new()
         {
             Text = glyph,
             FontOverride = _resCache.GetFont(IconFont, 16),
@@ -394,7 +391,6 @@ internal sealed partial class Hub : PanelContainer, IDisposable
             TooltipDelay = 0.2f,
             Margin = new Thickness(2, 0, 0, 0),
         };
-    }
 
     private static string PanicBunkerTooltip(NullLink.Server server)
     {
@@ -453,6 +449,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         List<KeyValuePair<string, NullLink.Server>> list)
         => list.OrderBy(kv => kv.Value.Title, StringComparer.OrdinalIgnoreCase);
 
+    [Obsolete]
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);

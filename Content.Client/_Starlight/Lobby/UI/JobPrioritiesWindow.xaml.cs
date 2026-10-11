@@ -74,7 +74,7 @@ public sealed partial class JobPrioritiesWindow : DefaultWindow
             var jobs = new List<JobPrototype>();
             foreach (var id in department.Roles)
             {
-                if (!seen.Add(id) || !_prototype.TryIndex(id, out var job) || !job.SetPreference)
+                if (!seen.Add(id) || !_prototype.TryIndex(id, out var job) || !job.SetPreference || job.Hidden)
                     continue;
                 jobs.Add(job);
             }

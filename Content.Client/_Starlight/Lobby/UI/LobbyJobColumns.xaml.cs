@@ -47,6 +47,12 @@ public sealed partial class LobbyJobColumns : Control
         SetCollapsed(false);
     }
 
+    protected override void ExitedTree()
+    {
+        base.ExitedTree();
+        _prototypeManager.PrototypesReloaded -= OnPrototypesReloaded;
+    }
+
     private void SetCollapsed(bool collapsed)
     {
         JobGrid.Visible = !collapsed;
@@ -112,12 +118,12 @@ public sealed partial class LobbyJobColumns : Control
         var best = (Rows: int.MaxValue, Spread: int.MaxValue, Columns: (MinColumns, MinColumns, MinColumns));
         for (var a = MinColumns; a <= TotalColumns - 2 * MinColumns; a++)
         {
-            for (var b = MinColumns; b <= TotalColumns - a - MinColumns; b++)
+            for (var b = MinColumns; b <= (TotalColumns - a) - MinColumns; b++)
             {
                 var c = TotalColumns - a - b;
                 var rows = Math.Max((counts[0] - 1) / a, Math.Max((counts[1] - 1) / b, (counts[2] - 1) / c)) + 1;
-                var spread = a * a + b * b + c * c;
-                if (rows < best.Rows || rows == best.Rows && spread < best.Spread)
+                var spread = (a * a) + (b * b) + (c * c);
+                if (rows < best.Rows || (rows == best.Rows && spread < best.Spread))
                     best = (rows, spread, (a, b, c));
             }
         }
