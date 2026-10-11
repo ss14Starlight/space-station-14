@@ -1,0 +1,13 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls">
+	<HBox Orientation="Horizontal" VerticalExpand="False" Margin="0 0 4 0">
+		<Button Access="Public" Name="Button" ToggleMode="True"
+		        Text="{Loc 'xenobiology-ui-widgets-traitdisplay-name-placeholder'}" HorizontalExpand="True"
+		        StyleClasses="OpenRight"/>
+		<customControls:VSeparator Margin="5 0 5 0"/>
+		<PanelContainer Name="ThresholdContainer">
+			<Label Access="Public" Name="ThresholdLabel" HorizontalAlignment="Center"
+			       Text="{Loc 'xenobiology-ui-widgets-traitdisplay-threshold-placeholder'}"/>
+		</PanelContainer>
+	</HBox>
+</Control>

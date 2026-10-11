@@ -1,0 +1,64 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+         xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+         xmlns:widgets="clr-namespace:Content.Client._Starlight.Xenobiology.UI.Widgets"
+         VerticalExpand="True" HorizontalExpand="True">
+	<BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
+				<controls:StripeBack>
+					<PanelContainer>
+						<Label HorizontalAlignment="Center" Text="{Loc 'xenobiology-ui-panel-selected-gene-title'}"/>
+					</PanelContainer>
+				</controls:StripeBack>
+				<VBox Name="SelectedGeneDataDisplay">
+					<HBox>
+						<Label Text="{Loc 'xenobiology-ui-panel-selected-gene-name'}" HorizontalExpand="True"/>
+						<Label Name="SelectedGeneNameField"
+							   Text="{Loc 'xenobiology-ui-panel-selected-gene-name-placeholder'}"/>
+					</HBox>
+					<HBox>
+						<Label Text="{Loc 'xenobiology-ui-panel-selected-gene-identifier'}" HorizontalExpand="True"/>
+						<Label Name="SelectedGeneIdentifierField"
+							   Text="{Loc 'xenobiology-ui-panel-selected-gene-identifier-placeholder'}"/>
+					</HBox>
+					<HBox>
+						<Label Text="{Loc 'xenobiology-ui-panel-selected-gene-sequence'}" HorizontalExpand="True"/>
+						<Label Name="SelectedGeneSequenceField"
+						       Text="{Loc 'xenobiology-ui-panel-selected-gene-sequence-placeholder'}"/>
+					</HBox>
+				</VBox>
+				<!--Trait Selection-->
+				<Label Margin="0 5 0 2" Text="{Loc 'xenobiology-ui-panel-selected-gene-traits'}"/>
+				<customControls:HSeparator Margin="0 5 0 5"/>
+				<ScrollContainer Name="SelectedGeneTraitListDisplay" VScrollEnabled="True"
+				                 VerticalExpand="True" HScrollEnabled="False" HorizontalExpand="True" MinHeight="100">
+					<BoxContainer Name="SelectedGeneTraitListContainer" VerticalExpand="True"
+					              Orientation="Vertical" SeparationOverride="5">
+						<!--placeholder trait display-->
+						<widgets:TraitDisplay/>
+						<widgets:TraitDisplay/>
+						<widgets:TraitDisplay/>
+						<widgets:TraitDisplay/>
+						<widgets:TraitDisplay/>
+						<widgets:TraitDisplay/>
+						<widgets:TraitDisplay/>
+						<widgets:TraitDisplay/>
+						<widgets:TraitDisplay/>
+						<widgets:TraitDisplay/>
+						<widgets:TraitDisplay/>
+						<widgets:TraitDisplay/>
+						<widgets:TraitDisplay/>
+						<widgets:TraitDisplay/>
+					</BoxContainer>
+				</ScrollContainer>
+				<customControls:HSeparator Margin="0 5 0 5"/>
+				<HBox Name="SelectionPanelButtons">
+					<Button Name="SelectionPanelRenameButton" Text="{Loc 'xenobiology-ui-panel-selected-button-rename'}"
+					        StyleClasses="OpenRight"/>
+					<controls:ConfirmButton
+						Name="SelectionPanelDeleteButton"
+						Text="{Loc 'xenobiology-ui-panel-selected-button-delete'}"
+						StyleClasses="negative OpenLeft"
+						ConfirmationText="{Loc 'xenobiology-ui-panel-selected-button-delete-confirm'}"/>
+				</HBox>
+			</BoxContainer>
+</Control>

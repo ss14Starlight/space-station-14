@@ -1,0 +1,11 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+         xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+         xmlns:widgets="clr-namespace:Content.Client._Starlight.Xenobiology.UI.Widgets"
+         xmlns:panels="clr-namespace:Content.Client._Starlight.Xenobiology.UI.Panels">
+	<HBox Orientation="Horizontal" VerticalExpand="False" Name="ButtonContainer">
+		<Button ToggleMode="True" Name="GeneButton" HorizontalExpand="True"
+		        Text="{Loc 'xenobiology-ui-panel-selected-gene-name-placeholder'}"
+		        StyleClasses="OpenRight"/>
+	</HBox>
+</Control>

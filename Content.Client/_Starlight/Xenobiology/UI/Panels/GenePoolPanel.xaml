@@ -1,0 +1,50 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+         xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+         xmlns:widgets="clr-namespace:Content.Client._Starlight.Xenobiology.UI.Widgets"
+         xmlns:panels="clr-namespace:Content.Client._Starlight.Xenobiology.UI.Panels"
+         VerticalExpand="True" HorizontalExpand="True">
+	<BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
+		<controls:StripeBack>
+			<PanelContainer>
+				<Label HorizontalAlignment="Center" Text="{Loc 'xenobiology-ui-panel-pool-title'}"/>
+			</PanelContainer>
+		</controls:StripeBack>
+		<!--TODO: implement sort+filter buttons-->
+		<ScrollContainer VerticalExpand="True" HorizontalExpand="True"
+		                 VScrollEnabled="True" HScrollEnabled="False">
+			<BoxContainer VerticalExpand="True" Orientation="Vertical" SeparationOverride="5">
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+				<widgets:GeneSelector/>
+			</BoxContainer>
+		</ScrollContainer>
+		<customControls:HSeparator Margin="0 5 0 5"/>
+		<HBox Name="GenePoolPanelButtons">
+			<Button Text="{Loc 'xenobiology-ui-panel-pool-button-sampler'}"/>
+		</HBox>
+	</BoxContainer>
+</Control>
