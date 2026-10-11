@@ -424,9 +424,31 @@ public sealed partial class GameTicker
         if (args.Forced || args.Cancelled)
             return;
 
+        // Starlight - start
+        if (CurrentPreset is { MinPlayers: { } presetMinimumPlayers } preset)
+        {
+            var effectivePlayers = GetEffectivePlayerCountGameruleEligibility(args.Players.Length);
+            if (effectivePlayers < presetMinimumPlayers)
+            {
+                _chatManager.SendAdminAnnouncement(Loc.GetString("preset-not-enough-ready-players-sl",
+                    ("readyPlayersCount", effectivePlayers),
+                    ("minimumPlayers", presetMinimumPlayers),
+                    ("presetName", Loc.GetString(preset.ModeTitle))));
+                args.Cancel();
+                Log.Info($"Preset '{preset.ID}' requires {presetMinimumPlayers} players, but only {effectivePlayers} are effectively ready.");
+                return;
+            }
+        }
+        // Starlight - end
+
         var query = EntityQueryEnumerator<GameRuleComponent>();
         while (query.MoveNext(out var uid, out var gameRule))
         {
+            // Starlight - start
+            if (!IsGameRuleAdded(uid, gameRule))
+                continue;
+            // Starlight - end
+
             var minPlayers = gameRule.MinPlayers;
             var name = ToPrettyString(uid);
 
