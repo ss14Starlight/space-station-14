@@ -163,8 +163,11 @@ namespace Content.Client.Actions
             if (_playerManager.LocalEntity is not { } user)
                 return Enumerable.Empty<Entity<ActionComponent>>();
 
+            // Starlight - Filter disallowed vocal emote actions from the quick menu.
             return GetActions(user).Where(action => ShouldShowEmoteAction(user, action));
         }
+
+        #region Starlight
 
         private bool ShouldShowEmoteAction(EntityUid user, Entity<ActionComponent> action)
         {
@@ -202,6 +205,8 @@ namespace Content.Client.Actions
             // Show Vocal emote actions only when the emote is explicitly allowed.
             return speech.AllowedEmotes.Contains(emote.ID);
         }
+
+        #endregion Starlight
 
         private void OnPlayerAttached(EntityUid uid, ActionsComponent component, LocalPlayerAttachedEvent args)
         {
