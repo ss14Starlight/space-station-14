@@ -148,7 +148,7 @@
   id: Molotov
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Grenades/halon_gas.rsi
+    sprite: _Starlight/Objects/Weapons/Grenades/molotov.rsi
     state: icon
   - type: Item
     size: Normal
@@ -184,3 +184,22 @@
       reagents:
       - ReagentId: WeldingFuel
         Quantity: 120
+  - type: Spillable
+    solution: solution
+  - type: TriggerOnUse
+  - type: AddComponentsOnTrigger
+    targetUser: false
+    components:
+      - type: TriggerOnLand
+      - type: SpawnOnTrigger
+        proto: burningrag
+
+- type: entity
+  name: burning rag
+  parent: BaseItem
+  id: burningrag
+  components:
+  - type: IgnitionSource
+    temperature: 1000
+  - type: TimedDespawn
+    lifetime: 10
