@@ -74,13 +74,11 @@ public sealed class StyleThemePicker : GridContainer
     }
 
     internal static PanelContainer Swatch(Color color, float width, float height)
-    {
-        return new PanelContainer
+        => new PanelContainer
         {
             PanelOverride = new StyleBoxFlat { BackgroundColor = color },
             MinSize = new(width, height),
         };
-    }
 }
 
 /// <summary>
@@ -237,11 +235,9 @@ public sealed class OptionAccentCVar : BaseOptionCVar<string>
     }
 
     protected override bool IsValueEqual(string a, string b)
-    {
-        return Color.TryFromHex(a, out var ca) && Color.TryFromHex(b, out var cb)
+        => Color.TryFromHex(a, out var ca) && Color.TryFromHex(b, out var cb)
             ? ca.WithAlpha(1f).ToHex() == cb.WithAlpha(1f).ToHex()
             : a == b;
-    }
 }
 
 public sealed class OptionCustomAccentCVar : BaseOptionCVar<bool>

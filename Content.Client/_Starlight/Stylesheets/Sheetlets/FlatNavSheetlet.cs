@@ -56,7 +56,7 @@ public sealed class FlatNavSheetlet : Sheetlet<NanotrasenStylesheet>
         => E<ContainerButton>().Class(StyleThemePicker.StyleClassSwatchButton);
 
     private static StyleBoxFlat Frame(Color border)
-        => new StyleBoxFlat
+        => new()
         {
             BackgroundColor = Color.Transparent,
             BorderColor = border,
@@ -68,7 +68,7 @@ public sealed class FlatNavSheetlet : Sheetlet<NanotrasenStylesheet>
         };
 
     private static StyleBoxFlat Item(Color color, Color? marker)
-        => new StyleBoxFlat
+        => new()
         {
             BackgroundColor = color,
             BorderColor = marker ?? Color.Transparent,
