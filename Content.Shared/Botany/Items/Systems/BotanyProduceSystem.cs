@@ -42,10 +42,9 @@ public sealed partial class BotanyProduceSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        _popup.PopupPredictedCursor(Loc.GetString("plant-produce-component-compost-popup", // Starlight: Predicted for popups
+        _popup.PopupCursor(Loc.GetString("plant-produce-component-compost-popup",
                 ("owner", ent.Owner),
-                ("usingItem", args.Produce.Owner)),
-            args.User,
+                ("usingItem", args.Produce.Owner)), // Starlight: If you see here error after upstreaming, revert this commit
             PopupType.Medium);
         _popup.PopupEntity(Loc.GetString("plant-produce-component-compost-others-popup",
                 ("user", Identity.Entity(args.User, EntityManager)),

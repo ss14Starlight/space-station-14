@@ -315,3 +315,23 @@
     gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/Scrapper-2987.yml
   - type: DynamicRuleCost
     cost: 100
+
+- type: entity
+  id: SyndicateCrateOpsPrompt
+  parent: BaseGameRule
+  components:
+    - type: SendFaxRule
+      enqueueFaxes: true
+      faxes:
+        - faxPrototype: CrateOpsForDummies
+          paperData:
+            sentBy: Syndicate High Command
+          addresses:
+            - ERR*?*%!
+        - faxPrototype: CrateOpsCargoInvoice
+          paperData:
+            sentBy: Syndicate High Command
+            includeMeta: false
+          addresses:
+            - ERR*?*%!
+          delay: 8

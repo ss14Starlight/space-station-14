@@ -54,12 +54,10 @@
   #Starlight End
   - type: ItemToggle
     predictable: false
-  # ES START
-#    soundActivate:
-#      collection: sparks
-#      params:
-#        variation: 0.250
-  # ES END
+    soundActivate:
+      collection: sparks
+      params:
+        variation: 0.250
     soundDeactivate:
       collection: sparks
       params:
@@ -75,8 +73,6 @@
     activatedDamage:
       types:
         Blunt: 0
-    deactivatedSoundOnHit: #starlight
-      collection: GenericHit #starlight
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
@@ -85,13 +81,6 @@
     bluntStaminaDamageFactor: 2.0
     angle: 60
     animation: WeaponArcThrust
-    soundHit: #starlight
-      collection: GenericHit #starlight
-  # ES START
-  - type: ESSparkOnItemToggle
-    count: 1
-    sparkPrototype: SLEffectSparksBaton # Starlight, smaller sparks
-  # ES END
   - type: StaminaDamageOnHit
     damage: 35
     sound: /Audio/Weapons/egloves.ogg

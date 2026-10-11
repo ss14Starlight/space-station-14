@@ -23,6 +23,7 @@
     - Silicon
     - IPC
     - Hybrid
+    - MoffDemonInorganic
 
 - type: entity
   parent: BaseMedicalPDA

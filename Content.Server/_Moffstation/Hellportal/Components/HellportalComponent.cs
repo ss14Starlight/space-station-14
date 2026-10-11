@@ -28,8 +28,7 @@ public sealed partial class HellportalComponent : Component
     public TimeSpan SpawnCooldown = TimeSpan.FromSeconds(45f);
 
     /// <summary>
-    /// If the number of existing hellportal-spawned entities exceed this number,
-    /// the hellportal will not spawn any further entities.
+    /// Maximum number of existing mobs spawned by this portal when population scaling is disabled.
     /// </summary>
     [DataField]
     public int MaxSpawns = 50;

@@ -469,11 +469,11 @@ public sealed partial class EmergencyShuttleSystem
     /// <summary>
     /// Attempts to early launch the emergency shuttle if not already done.
     /// </summary>
-    public bool EarlyLaunch()
+    public bool EarlyLaunch(ICommonSession? session = null) // Starlight edit
     {
         if (EarlyLaunchAuthorized || !EmergencyShuttleArrived || _consoleAccumulator <= _authorizeTime) return false;
 
-        _logger.Add(LogType.EmergencyShuttle, LogImpact.High, $"Emergency shuttle launch authorized");
+        _logger.Add(LogType.EmergencyShuttle, LogImpact.High, $"Emergency shuttle launch authorized{(session is not null ? $" by {session.Name}." : ".")}"); // Starlight edit
         _consoleAccumulator = _authorizeTime;
         EarlyLaunchAuthorized = true;
         RaiseLocalEvent(new EmergencyShuttleAuthorizedEvent());

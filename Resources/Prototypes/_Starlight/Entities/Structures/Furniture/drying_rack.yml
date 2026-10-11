@@ -1,0 +1,103 @@
+- type: entity
+  name: glassware drying rack
+  id: DryingRackGlassware
+  parent: BaseStructure
+  description: A convenient way to dry and store your glasses behind the bar. Be careful not to overfill the tray!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/glass_drying_rack.rsi
+    drawdepth: SmallObjects
+    layers:
+    - state: drying-rack
+    - map: [ "enum.SolutionContainerLayers.Fill" ]
+      state: liquid-1
+      visible: false
+    - state: fill1
+      map: ["fill1"]
+      visible: false
+    - state: fill2
+      map: ["fill2"]
+      visible: false
+    - state: fill3
+      map: ["fill3"]
+      visible: false
+    - state: fill4
+      map: ["fill4"]
+      visible: false
+    - state: fill5
+      map: ["fill5"]
+      visible: false
+    - state: fill6
+      map: ["fill6"]
+      visible: false
+    - state: fill7
+      map: ["fill7"]
+      visible: false
+    - state: fill8
+      map: ["fill8"]
+      visible: false
+    - state: fill9
+      map: ["fill9"]
+      visible: false
+    - state: fill10
+      map: ["fill10"]
+      visible: false
+  - type: Storage
+    grid:
+    - 0,0,4,3
+    maxItemSize: Small
+    hideStackVisualsWhenClosed: false
+    whitelist:
+      tags:
+        - DrinkMetamorphic
+    storageInsertSound: /Audio/Items/bottle_clunk.ogg
+    storageOpenSound: null
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ItemCounter
+    count:
+      tags: [DrinkMetamorphic]
+    composite: true
+    layerStates:
+    - fill1
+    - fill2
+    - fill3
+    - fill4
+    - fill5
+    - fill6
+    - fill7
+    - fill8
+    - fill9
+    - fill10
+  - type: Appearance
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.3,0.4,0.3"
+        density: 40
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: Solution
+    id: buffer
+    solution:
+      maxVol: 60
+  - type: SolutionContainerVisuals
+    maxFillLevels: 2
+    fillBaseName: liquid-
+    solutionName: buffer
+  - type: ExaminableSolution
+    solution: buffer
+  - type: DrainingStorage
+  - type: PickLast
+  - type: Construction
+    graph: DryingRackGraph
+    node: dryingRack

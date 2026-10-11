@@ -178,6 +178,7 @@
     - Unimplantable
     - Drone
     - EmagImmune
+    - CantBecomeRevolutionary
   - type: GenericVisualizer
     visuals:
       enum.DroneVisuals.Status:
@@ -305,6 +306,7 @@
     prototypes:
       - StartingGearDrone
   - type: GlitchOnEMP
+  - type: AntagImmune
 
 #Scrapper
 - type: entity
@@ -345,12 +347,27 @@
       enum.RadarConsoleUiKey.Key:
         toggleAction: ActionAGhostShowRadar
   - type: RadarConsole
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: !Append Tag
+    tags:
+    - CanPilot
   - type: !Remove AccessReader
   - type: !Remove Access
   - type: !Remove StationAIShunt
   - type: !Remove PowerCellDraw
   - type: !Remove GlitchOnEMP
   - type: !Remove Pacified
+  - type: !Remove BatteryDrainer
 
 # Borgs
 

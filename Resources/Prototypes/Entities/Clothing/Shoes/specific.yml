@@ -117,8 +117,6 @@
   - type: SpeedModifierContactCapClothing
     maxContactSprintSlowdown: 0.7
     maxContactWalkSlowdown: 0.7
-  - type: StealTarget # Starlight
-    stealGroup: GaloshesCollection # Starlight
 
 - type: entity
   parent: [ClothingShoesBaseButcherable, BaseHighlyIllegalContraband]
@@ -236,13 +234,6 @@
   - type: Clothing
     sprite: Clothing/Shoes/Specific/cluwne.rsi
   - type: Unremoveable
-  #region Starlight
-  - type: Tag
-    tags:
-      - ClownShoes
-      - WhitelistChameleon
-      - BibleThwackRemovable
-  #endregion
 
 - type: entity
   parent: ClothingShoesClown
@@ -283,14 +274,11 @@
   - type: Item
     sprite: Clothing/Shoes/Specific/skates.rsi
   - type: ClothingSpeedModifier
-    walkModifier: 1.5 #starlight
-    sprintModifier: 1.5 #starlight
+    walkModifier: 1.1
+    sprintModifier: 1.1
   - type: Skates
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSkates
       params:
         variation: 0.08
-  - type: AddTagsOnClothingEquip #starlight
-    tagsToAdd:
-      - Skating

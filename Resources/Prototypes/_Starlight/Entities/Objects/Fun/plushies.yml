@@ -1,5 +1,64 @@
 # Character Plushies - Keep alphabetical, please!
 - type: entity
+  parent: BaseFelionoidPlushie
+  id: PlushieBarfo # Original_Username2 (SS14) / greasi (Discord)
+  name: barfo plushie
+  description: Soft, cuddly, and suspiciously up to something! This talking Barfo plushie has lots to say!
+  components:
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Fun/Plushies/barfo_plushie.rsi
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/Plushies/barfo_plushie.rsi
+      state: icon
+    - type: Clothing
+      quickEquip: false
+      sprite: _Starlight/Objects/Fun/Plushies/barfo_plushie.rsi
+      slots:
+        - HEAD
+      clothingVisuals:
+        head:
+          - state: equipped-HELMET
+    - type: Edible
+      requiresSpecialDigestion: true
+      useSound:
+        collection: FelionoidHisses
+    - type: EmitSoundOnActivate
+      sound: &SoundBikeHorn
+        collection: BikeHorn
+        params:
+          variation: 0.125
+    - type: EmitSoundOnCollide
+      sound: *SoundBikeHorn
+    - type: EmitSoundOnTrigger
+      sound: *SoundBikeHorn
+    - type: EmitSoundOnLand
+      sound:
+        collection: FelionoidHisses
+    - type: EmitSoundOnUse
+      sound: *SoundBikeHorn
+    - type: MeleeWeapon
+      wideAnimationRotation: 180
+      soundHit: *SoundBikeHorn
+    - type: Extractable
+      juiceSolution:
+        reagents:
+          - ReagentId: Laughter
+            Quantity: 30
+    - type: Speech
+      speechSounds: Cat
+      speechVerb: Felionoid # for pais (In the secret stash)
+    - type: Solution
+      id: food
+      solution:
+        maxVol: 20
+        reagents:
+          - ReagentId: Fiber
+            Quantity: 10
+          - ReagentId: Laughter
+            Quantity: 10
+
+- type: entity
   parent: BaseShadekinPlushie
   id: PlushieBrightheart # rtasva
   name: brightheart plushie

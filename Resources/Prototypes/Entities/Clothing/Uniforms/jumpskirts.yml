@@ -56,7 +56,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtChaplain
-  name: chaplain jumpskirt # Starlight: chaplain's -> chaplain
+  name: chaplain's jumpskirt
   description: It's a black jumpskirt, often worn by religious folk.
   components:
     - type: Sprite
@@ -222,7 +222,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/hos_parade.rsi
 
 - type: entity
-  parent: [ClothingUniformSkirtBase, BaseCommandManagerContraband] # Starlight, Assistant Manager.
+  parent: [ClothingUniformSkirtBase, BaseCommandManagerContraband] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: ClothingUniformJumpskirtCommandGeneric
   name: command jumpskirt
   description: A generic Command-colored jumpsuit not associated with any particular department.
@@ -297,11 +297,6 @@
     sprite: Clothing/Uniforms/Jumpskirt/brigmedic.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpskirt/brigmedic.rsi
-  - type: Armor # Starlight start, so zombification resistance shows up
-    modifiers:
-      coefficients: { }
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.90 # Starlight end
 
 - type: entity
   parent: ClothingUniformBase
@@ -428,7 +423,7 @@
   parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
   id: ClothingUniformJumpskirtWarden
   name: warden's uniform
-  description: A formal security suit for officers complete with NanoTrasen belt buckle. # SL
+  description: A formal security suit for officers complete with Nanotrasen belt buckle.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/warden.rsi
@@ -633,7 +628,7 @@
       sprite: Clothing/Uniforms/Jumpskirt/lawyergood.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseMinorContraband ] #SL Edit Syndie > Minor
+  parent: [ ClothingUniformSkirtBase, BaseMinorContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: ClothingUniformJumpskirtSyndieFormalDress
   name: syndicate formal dress
   description: "The syndicate's uniform is made in an elegant style, it's even a pity to do dirty tricks in this."
@@ -664,11 +659,6 @@
       sprite: Clothing/Uniforms/Jumpskirt/skirtoflife.rsi
     - type: Clothing
       sprite: Clothing/Uniforms/Jumpskirt/skirtoflife.rsi
-    - type: Armor # Starlight start, so zombification resistance shows up
-      modifiers:
-        coefficients: { }
-    - type: ZombificationResistance
-      zombificationResistanceCoefficient: 0.95 # Starlight end
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -718,7 +708,7 @@
   parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
   id: ClothingUniformJumpskirtSecGrey
   name: grey security jumpskirt
-  description: A tactical relic of years past before NanoTrasen decided it was cheaper to dye the suits red instead of washing out the blood. # SL
+  description: A tactical relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/security_grey.rsi

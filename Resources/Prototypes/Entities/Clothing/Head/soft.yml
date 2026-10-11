@@ -102,7 +102,7 @@
   name: quartermaster's cap
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlippable, BaseCommandManagerContraband] # Starlight
+  parent: [ClothingHeadHeadHatBaseFlippable, BaseCommandManagerContraband] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: ClothingHeadHatCommandSoft
   name: command cap
   description: A baseball cap in command's distinctive shade of blue.

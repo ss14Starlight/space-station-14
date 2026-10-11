@@ -3,6 +3,7 @@
   name: zone-hallway
   color: "#7A7A7A"
   priority: 0
+  reverb: Hallway
   corridor: true
   doors:
   - AirlockGlass
@@ -13,6 +14,7 @@
   name: zone-maintenance
   color: "#5B4A2E"
   priority: 10
+  reverb: Maintenance
   doors:
   - AirlockMaint
   - AirlockMaintGlass
@@ -188,6 +190,7 @@
   name: zone-chapel
   color: "#9E9E9E"
   priority: 30
+  reverb: Chapel
   doors:
   - AirlockChapelLocked
 

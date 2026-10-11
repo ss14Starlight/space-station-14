@@ -1,0 +1,51 @@
+<Document>
+	# K9 Unit
+
+	<GuideEntityEmbed Entity="MobK9" Caption="K9 Unit"/>
+
+	- 1.\n
+	Standard [color=#00a933]Code Green[/color] equipment is:
+
+	<Box>
+		<GuideEntityEmbed Entity="DoubleEmergencyOxygenTankFilled"/>
+	</Box>
+	<Box>
+		<GuideEntityEmbed Entity="ClothingOuterArmorRiot"/>
+		or
+		<GuideEntityEmbed Entity="ClothingOuterArmorBasic"/>
+		or
+		<GuideEntityEmbed Entity="ClothingOuterArmorBulletproof"/>
+	</Box>
+	<Box>
+		<GuideEntityEmbed Entity="ClothingEyesHudSecurity"/>
+		or
+		<GuideEntityEmbed Entity="ClothingEyesEyepatchHudSecurity"/>
+		or
+		<GuideEntityEmbed Entity="ClothingEyesGlassesSecurity"/>
+	</Box>
+
+	- 2.\n
+	The Head of Security or Warden may assign a specific member of security to be the K9's handler.\n\n
+	2.1\n
+	If no handler has been assigned, K9s are to accompany and obey a proper member of security at all times.\n\n
+	2.2\n
+	A K9 found roaming without an escort is to be assigned a handler, preferably by the Warden or Head of Security.
+	- 3.\n
+	K9s are to follow standard escalation as per [textlink="§4 of Security SOP" link="security-sop-intro"], and follow their handler's (or any member of security's) lead in how a situation is handled. They are to avoid aggression toward suspects who are cooperating, and are not to show open hostility toward the crew or suspected criminals.\n\n
+	3.1\n
+	This includes following reasonable expectations, such as avoiding: disobeying orders, unnecessary harm to crew, suspects or prisoners, destruction of property, and fleeing from their handler or other members of security without reason.\n\n
+	3.2\n
+	A K9's bite is considered less-lethal. K9s are not to bite anyone without good reason.\n\n
+	3.3\n
+	K9s should only latch onto a suspect when their handler, or another member of security, is present or involved in the pursuit of that suspect.\n\n
+	3.4\n
+	A K9 left unaccompanied by circumstance, such as their handler being downed, or a situation developing too quickly to wait for security, may act on their own best judgement.
+	- 4.\n
+	K9s are to be trained and commanded by their handler, who is also responsible for reporting and punishing any misconduct. In the absence of a handler, this may be done by any member of security.\n\n
+	4.1\n
+	Punishment must be proportionate to the misconduct, and must not involve direct physical harm.
+	- 5.\n
+	If required, the Head of Security may sign documentation for the K9's demotion or, if necessary, their execution by euthanasia.
+	- 6.\n
+	K9s are exempt from the Uniform Requirements in [textlink="Security SOP §2" link="security-sop-intro"].
+</Document>
