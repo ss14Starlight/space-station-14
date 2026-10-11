@@ -1,11 +1,4 @@
 Entries:
-- author: BriocheBear
-  changes:
-  - message: All species now able to make the weh and hew sound effects, as some were not already capable of doing so.
-    type: Tweak
-  id: 408975
-  time: '2026-09-28T10:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5989
 - author: Johnny
   changes:
   - message: Added some glorious equipment to the pobeda.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409374
   time: '2026-10-11T18:32:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6622
+- author: Floximo
+  changes:
+  - message: More intelligent selection on secret game mode, that no longer simply fails on low pop.
+    type: Fix
+  id: 409375
+  time: '2026-10-11T18:32:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6638
 Order: -1
