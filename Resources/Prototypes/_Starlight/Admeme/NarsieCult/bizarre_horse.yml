@@ -163,8 +163,4 @@
       path: /Audio/Weapons/punch3.ogg
     damage:
       types:
-        Blunt: 12
-
-  - type: HTN
-    rootTask:
-      task: IdleCompound
+        Blunt: 22
