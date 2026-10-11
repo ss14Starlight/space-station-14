@@ -1,0 +1,18 @@
+- type: !PartialOnly borgType
+  id: engineering
+  addComponents:
+  - type: ShowHealthBars
+    damageContainers:
+    - Inorganic
+    - Silicon
+    - IPC
+    - Hybrid
+    - MoffDemonInorganic
+  - type: ShowAccessReaderSettings
+  - type: Access
+    groups:
+      - CyborgAllAccess
+    tags:
+      - Borg
+      - BorgEngineering
+      - ChiefEngineer

@@ -33,7 +33,7 @@ public sealed partial class ThavenMoodsComponent : Component
     /// Notification sound played if your moods change.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public SoundSpecifier? MoodsChangedSound = new SoundPathSpecifier("/Audio/_Starlight/Effects/Thaven/moods_changed.ogg");
+    public SoundSpecifier? MoodsChangedSound = new SoundPathSpecifier("/Audio/_Starlight/Thaven/moods_changed.ogg");
 
     [DataField(serverOnly: true)]
     public EntityUid? Action;

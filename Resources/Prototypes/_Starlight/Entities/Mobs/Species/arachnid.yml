@@ -124,10 +124,4 @@
         sprite: "Effects/creampie.rsi"
         state: "creampie_arachnid"
         visible: false
-  - type: SocialInteractionReceiver
-    interactionOverrides: # arachnids don't have noses
-    - id: Boop
-      interactString: booping-spider-success
-      messagePerceivedByOthers: booping-spider-success-others
-      emoteMessage: booping-spider-emote
 #>88w88<

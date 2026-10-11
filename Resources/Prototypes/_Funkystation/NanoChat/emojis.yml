@@ -338,7 +338,7 @@
   id: cosmic
   category: Plushies
   sprite:
-    sprite: /Textures/_Starlight/Objects/Specific/CosmicCult/unknownplushie.rsi
+    sprite: /Textures/_Starlight/CosmicCult/Objects/unknownplushie.rsi
     state: plushie_cosmic
 
 # Other

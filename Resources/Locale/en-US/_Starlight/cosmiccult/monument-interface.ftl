@@ -1,11 +1,13 @@
 # General
 monument-interface-title = The Monument
+monument-interface-occupied = Someone else is using that right now.
 
 # Progress bar
 monument-interface-progress-bar = {$percentage}%
 
 # Entropy
 monument-interface-entropy-title = Entropy
+monument-interface-entropy-infused-label = Infused:
 monument-interface-entropy-value = {$infused} Entropy
 monument-interface-entropy-available-label = Available for use:
 monument-interface-entropy-next-stage-title = Entropy till next Stage:

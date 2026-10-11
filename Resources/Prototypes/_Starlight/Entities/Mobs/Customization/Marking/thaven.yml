@@ -4,7 +4,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: 80s
 - type: marking
   id: ThavenHairA
@@ -12,7 +12,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: a
 - type: marking
   id: ThavenHairB
@@ -20,7 +20,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: b
 - type: marking
   id: ThavenHairBald
@@ -28,7 +28,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bald
 - type: marking
   id: ThavenHairBaldface
@@ -36,7 +36,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: baldface
 - type: marking
   id: ThavenHairBedHair
@@ -44,7 +44,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bedhead
 - type: marking
   id: ThavenHairBedHair2
@@ -52,7 +52,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bedhead2
 - type: marking
   id: ThavenHairBedHair3
@@ -60,7 +60,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bedhead3
 - type: marking
   id: ThavenHairBeehive
@@ -68,7 +68,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: beehive
 - type: marking
   id: ThavenHairBeehive2
@@ -76,7 +76,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: beehive2
 - type: marking
   id: ThavenHairBigflattop
@@ -84,7 +84,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bigflattop
 - type: marking
   id: ThavenHairBigpompadour
@@ -92,7 +92,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bigpompadour
 - type: marking
   id: ThavenHairBob
@@ -100,7 +100,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bob
 - type: marking
   id: ThavenHairBob2
@@ -108,7 +108,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bob2
 - type: marking
   id: ThavenHairBob4
@@ -116,7 +116,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bob4
 - type: marking
   id: ThavenHairBob5
@@ -124,7 +124,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bob5
 - type: marking
   id: ThavenHairBobcurl
@@ -132,7 +132,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bobcurl
 - type: marking
   id: ThavenHairBobcut
@@ -140,7 +140,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bobcut
 - type: marking
   id: ThavenHairBowlcut
@@ -148,7 +148,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bowlcut
 - type: marking
   id: ThavenHairBowlcut2
@@ -156,7 +156,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bowlcut2
 - type: marking
   id: ThavenHairBraid
@@ -164,7 +164,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: braid
 - type: marking
   id: ThavenHairBraid2
@@ -172,7 +172,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: braid2
 - type: marking
   id: ThavenHairBraided
@@ -180,7 +180,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: braided
 - type: marking
   id: ThavenHairBraidfront
@@ -188,7 +188,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: braidfront
 - type: marking
   id: ThavenHairBraidtail
@@ -196,7 +196,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: braidtail
 - type: marking
   id: ThavenHairBun
@@ -204,7 +204,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bun
 - type: marking
   id: ThavenHairBun3
@@ -212,7 +212,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bun3
 - type: marking
   id: ThavenHairBunhead2
@@ -220,7 +220,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bunhead2
 - type: marking
   id: ThavenHairBusiness
@@ -228,7 +228,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: business
 - type: marking
   id: ThavenHairBusiness2
@@ -236,7 +236,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: business2
 - type: marking
   id: ThavenHairBusiness3
@@ -244,7 +244,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: business3
 - type: marking
   id: ThavenHairBusiness4
@@ -252,7 +252,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: business4
 - type: marking
   id: ThavenHairBuzzcut
@@ -260,7 +260,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: buzzcut
 - type: marking
   id: ThavenHairC
@@ -268,7 +268,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: c
 - type: marking
   id: ThavenHairCia
@@ -276,7 +276,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: cia
 - type: marking
   id: ThavenHairClassicafro
@@ -284,7 +284,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classicafro
 - type: marking
   id: ThavenHairClassiccia
@@ -292,7 +292,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classiccia
 - type: marking
   id: ThavenHairClassicciabusiness
@@ -300,7 +300,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classicciabusiness
 - type: marking
   id: ThavenHairClassiccornrows
@@ -308,7 +308,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classiccornrows
 - type: marking
   id: ThavenHairClassicFloorlengthBedHair
@@ -316,7 +316,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classicfloorlength_bedhead
 
 - type: marking
@@ -325,7 +325,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classiclong2
 - type: marking
   id: ThavenHairClassiclong3
@@ -333,7 +333,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classiclong3
 - type: marking
   id: ThavenHairClassicmodern
@@ -341,7 +341,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classicmodern
 - type: marking
   id: ThavenHairClassicmulder
@@ -349,7 +349,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classicmulder
 - type: marking
   id: ThavenHairClassicwisp
@@ -357,7 +357,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classicwisp
 - type: marking
   id: ThavenHairCoffeehouse
@@ -365,7 +365,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: coffeehouse
 - type: marking
   id: ThavenHairCombover
@@ -373,7 +373,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: combover
 - type: marking
   id: ThavenHairCornrowbraid
@@ -381,7 +381,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: cornrowbraid
 - type: marking
   id: ThavenHairCornrowbun
@@ -389,7 +389,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: cornrowbun
 - type: marking
   id: ThavenHairCornrows
@@ -397,7 +397,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: cornrows
 - type: marking
   id: ThavenHairCornrows2
@@ -405,7 +405,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: cornrows2
 - type: marking
   id: ThavenHairCornrowtail
@@ -413,7 +413,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: cornrowtail
 - type: marking
   id: ThavenHairCountry
@@ -421,7 +421,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: country
 - type: marking
   id: ThavenHairCrewcut
@@ -429,7 +429,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: crewcut
 - type: marking
   id: ThavenHairCrewcut2
@@ -437,7 +437,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: crewcut2
 - type: marking
   id: ThavenHairCurls
@@ -445,7 +445,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: curls
 - type: marking
   id: ThavenHairD
@@ -453,7 +453,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: d
 - type: marking
   id: ThavenHairDandypompadour
@@ -461,7 +461,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: dandypompadour
 - type: marking
   id: ThavenHairDevilock
@@ -469,7 +469,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: devilock
 - type: marking
   id: ThavenHairDoublebun
@@ -477,7 +477,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: doublebun
 - type: marking
   id: ThavenHairDoublebunLong
@@ -485,7 +485,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: doublebun_long
 - type: marking
   id: ThavenHairDreads
@@ -493,7 +493,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: dreads
 - type: marking
   id: ThavenHairDrillhair
@@ -501,7 +501,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: drillhair
 - type: marking
   id: ThavenHairDrillhairextended
@@ -509,7 +509,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: drillhairextended
 - type: marking
   id: ThavenHairDrillruru
@@ -517,7 +517,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: drillruru
 - type: marking
   id: ThavenHairE
@@ -525,7 +525,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: e
 - type: marking
   id: ThavenHairEmo2
@@ -533,7 +533,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: emo2
 - type: marking
   id: ThavenHairEmofringe
@@ -541,7 +541,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: emofringe
 - type: marking
   id: ThavenHairF
@@ -549,7 +549,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: f
 - type: marking
   id: ThavenHairFather
@@ -557,7 +557,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: father
 - type: marking
   id: ThavenHairFeather
@@ -565,7 +565,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: feather
 - type: marking
   id: ThavenHairFlair
@@ -573,7 +573,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: flair
 - type: marking
   id: ThavenHairFloorlengthBedHair
@@ -581,7 +581,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: floorlength_bedhead
 - type: marking
   id: ThavenHairFringetail
@@ -589,7 +589,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: fringetail
 - type: marking
   id: ThavenHairGelled
@@ -597,7 +597,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: gelled
 - type: marking
   id: ThavenHairGentle
@@ -605,7 +605,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: gentle
 - type: marking
   id: ThavenHairHalfbang
@@ -613,7 +613,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: halfbang
 - type: marking
   id: ThavenHairHalfbang2
@@ -621,7 +621,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: halfbang2
 - type: marking
   id: ThavenHairHalfshaved
@@ -629,7 +629,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: halfshaved
 - type: marking
   id: ThavenHairHbraid
@@ -637,7 +637,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: hbraid
 - type: marking
   id: ThavenHairHedgehog
@@ -645,7 +645,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: hedgehog
 - type: marking
   id: ThavenHairHighfade
@@ -653,7 +653,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: highfade
 - type: marking
   id: ThavenHairHighponytail
@@ -661,7 +661,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: highponytail
 - type: marking
   id: ThavenHairHimecut
@@ -669,7 +669,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: himecut
 - type: marking
   id: ThavenHairHimecut2
@@ -677,7 +677,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: himecut2
 - type: marking
   id: ThavenHairHimeup
@@ -685,7 +685,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: himeup
 - type: marking
   id: ThavenHairHitop
@@ -693,7 +693,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: hitop
 - type: marking
   id: ThavenHairJade
@@ -701,7 +701,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: jade
 - type: marking
   id: ThavenHairJensen
@@ -709,7 +709,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: jensen
 - type: marking
   id: ThavenHairJoestar
@@ -717,7 +717,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: joestar
 - type: marking
   id: ThavenHairKagami
@@ -725,7 +725,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: kagami
 - type: marking
   id: ThavenHairKeanu
@@ -733,7 +733,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: keanu
 - type: marking
   id: ThavenHairKusanagi
@@ -741,7 +741,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: kusanagi
 - type: marking
   id: ThavenHairLargebun
@@ -749,7 +749,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: largebun
 - type: marking
   id: ThavenHairLbangs
@@ -757,7 +757,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: lbangs
 - type: marking
   id: ThavenHairLong
@@ -765,7 +765,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: long
 - type: marking
   id: ThavenHairLong2
@@ -773,7 +773,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: long2
 - type: marking
   id: ThavenHairLong3
@@ -781,7 +781,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: long3
 - type: marking
   id: ThavenHairLongBedHair
@@ -789,7 +789,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: long_bedhead
 - type: marking
   id: ThavenHairLongBedHair2
@@ -797,7 +797,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: long_bedhead2
 - type: marking
   id: ThavenHairLongbundled
@@ -805,7 +805,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: longbundled
 - type: marking
   id: ThavenHairLongeremo
@@ -813,7 +813,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: longeremo
 - type: marking
   id: ThavenHairLongest
@@ -821,7 +821,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: longest
 - type: marking
   id: ThavenHairLongest2
@@ -829,7 +829,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: longest2
 - type: marking
   id: ThavenHairLongfringe
@@ -837,7 +837,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: longfringe
 - type: marking
   id: ThavenHairLongovereye
@@ -845,7 +845,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: longovereye
 - type: marking
   id: ThavenHairLongsidepart
@@ -853,7 +853,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: longsidepart
 - type: marking
   id: ThavenHairLongstraightponytail
@@ -861,7 +861,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: longstraightponytail
 - type: marking
   id: ThavenHairLowfade
@@ -869,7 +869,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: lowfade
 - type: marking
   id: ThavenHairManbun
@@ -877,7 +877,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: manbun
 - type: marking
   id: ThavenHairMedfade
@@ -885,7 +885,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: medfade
 - type: marking
   id: ThavenHairMediumsidepart
@@ -893,7 +893,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: mediumsidepart
 - type: marking
   id: ThavenHairMegaeyebrows
@@ -901,7 +901,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: megaeyebrows
 - type: marking
   id: ThavenHairMessy
@@ -909,7 +909,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: messy
 - type: marking
   id: ThavenHairModern
@@ -917,7 +917,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: modern
 - type: marking
   id: ThavenHairMulder
@@ -925,7 +925,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: mulder
 - type: marking
   id: ThavenHairNitori
@@ -933,7 +933,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: nitori
 - type: marking
   id: ThavenHairNofade
@@ -941,7 +941,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: nofade
 - type: marking
   id: ThavenHairOdango
@@ -949,7 +949,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: odango
 - type: marking
   id: ThavenHairOmbre
@@ -957,7 +957,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ombre
 - type: marking
   id: ThavenHairOneshoulder
@@ -965,7 +965,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: oneshoulder
 - type: marking
   id: ThavenHairOxton
@@ -973,7 +973,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: oxton
 - type: marking
   id: ThavenHairPart
@@ -981,7 +981,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: part
 - type: marking
   id: ThavenHairParted
@@ -989,7 +989,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: parted
 - type: marking
   id: ThavenHairPigtails
@@ -997,7 +997,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: pigtails
 - type: marking
   id: ThavenHairPigtails2
@@ -1005,7 +1005,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: pigtails2
 - type: marking
   id: ThavenHairPixie
@@ -1013,7 +1013,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: pixie
 - type: marking
   id: ThavenHairPompadour
@@ -1021,7 +1021,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: pompadour
 - type: marking
   id: ThavenHairPonytail
@@ -1029,7 +1029,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ponytail
 - type: marking
   id: ThavenHairPonytail2
@@ -1037,7 +1037,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ponytail2
 - type: marking
   id: ThavenHairPonytail3
@@ -1045,7 +1045,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ponytail3
 - type: marking
   id: ThavenHairPonytail4
@@ -1053,7 +1053,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ponytail4
 - type: marking
   id: ThavenHairPonytail5
@@ -1061,7 +1061,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ponytail5
 - type: marking
   id: ThavenHairPonytail6
@@ -1069,7 +1069,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ponytail6
 - type: marking
   id: ThavenHairPonytail7
@@ -1077,7 +1077,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ponytail7
 - type: marking
   id: ThavenHairPoofy
@@ -1085,7 +1085,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: poofy
 - type: marking
   id: ThavenHairProtagonist
@@ -1093,7 +1093,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: protagonist
 - type: marking
   id: ThavenHairQuiff
@@ -1101,7 +1101,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: quiff
 - type: marking
   id: ThavenHairReversemohawk
@@ -1109,7 +1109,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: reversemohawk
 - type: marking
   id: ThavenHairRonin
@@ -1117,7 +1117,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ronin
 - type: marking
   id: ThavenHairRosa
@@ -1125,7 +1125,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: rosa
 - type: marking
   id: ThavenHairSargeant
@@ -1133,7 +1133,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: sargeant
 - type: marking
   id: ThavenHairShaved
@@ -1141,7 +1141,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shaved
 - type: marking
   id: ThavenHairShavedmohawk
@@ -1149,7 +1149,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shavedmohawk
 - type: marking
   id: ThavenHairShavedpart
@@ -1157,7 +1157,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shavedpart
 - type: marking
   id: ThavenHairShortbangs
@@ -1165,7 +1165,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shortbangs
 - type: marking
   id: ThavenHairShortbraid
@@ -1173,7 +1173,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shortbraid
 - type: marking
   id: ThavenHairShorthair2
@@ -1181,7 +1181,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shorthair2
 - type: marking
   id: ThavenHairShorthair3
@@ -1189,7 +1189,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shorthair3
 - type: marking
   id: ThavenHairShorthair9
@@ -1197,7 +1197,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shorthair9
 - type: marking
   id: ThavenHairShorthime
@@ -1205,7 +1205,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shorthime
 - type: marking
   id: ThavenHairShortovereye
@@ -1213,7 +1213,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shortovereye
 - type: marking
   id: ThavenHairShoulderlengthovereye
@@ -1221,7 +1221,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shoulderlengthovereye
 - type: marking
   id: ThavenHairSidecut
@@ -1229,7 +1229,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: sidecut
 - type: marking
   id: ThavenHairSidetail
@@ -1237,7 +1237,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: sidetail
 - type: marking
   id: ThavenHairSidetail2
@@ -1245,7 +1245,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: sidetail2
 - type: marking
   id: ThavenHairSidetail3
@@ -1253,7 +1253,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: sidetail3
 - type: marking
   id: ThavenHairSidetail4
@@ -1261,7 +1261,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: sidetail4
 - type: marking
   id: ThavenHairSkinhead
@@ -1269,7 +1269,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: skinhead
 - type: marking
   id: ThavenHairSpiky
@@ -1277,7 +1277,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: spiky
 - type: marking
   id: ThavenHairSpikyponytail
@@ -1285,7 +1285,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: spikyponytail
 - type: marking
   id: ThavenHairSpookylong
@@ -1293,7 +1293,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: spookylong
 - type: marking
   id: ThavenHairStail
@@ -1301,7 +1301,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: stail
 - type: marking
   id: ThavenHairSwept
@@ -1309,7 +1309,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: swept
 - type: marking
   id: ThavenHairSwept2
@@ -1317,7 +1317,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: swept2
 - type: marking
   id: ThavenHairTailed
@@ -1325,7 +1325,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: tailed
 - type: marking
   id: ThavenHairThinning
@@ -1333,7 +1333,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: thinning
 - type: marking
   id: ThavenHairThinningfront
@@ -1341,7 +1341,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: thinningfront
 - type: marking
   id: ThavenHairThinningrear
@@ -1349,7 +1349,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: thinningrear
 - type: marking
   id: ThavenHairTightbun
@@ -1357,7 +1357,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: tightbun
 - type: marking
   id: ThavenHairTopknot
@@ -1365,7 +1365,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: topknot
 - type: marking
   id: ThavenHairTressshoulder
@@ -1373,7 +1373,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: tressshoulder
 - type: marking
   id: ThavenHairTrimflat
@@ -1381,7 +1381,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: trimflat
 - type: marking
   id: ThavenHairTrimmed
@@ -1389,7 +1389,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: trimmed
 - type: marking
   id: ThavenHairTwintail
@@ -1397,7 +1397,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: twintail
 - type: marking
   id: ThavenHairTwostrands
@@ -1405,7 +1405,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: twostrands
 - type: marking
   id: ThavenHairUndercut
@@ -1413,7 +1413,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: undercut
 - type: marking
   id: ThavenHairUndercutleft
@@ -1421,7 +1421,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: undercutleft
 - type: marking
   id: ThavenHairUndercutright
@@ -1429,7 +1429,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: undercutright
 - type: marking
   id: ThavenHairUneven
@@ -1437,7 +1437,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: uneven
 - type: marking
   id: ThavenHairUnkept
@@ -1445,7 +1445,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: unkept
 - type: marking
   id: ThavenHairVeryshortovereyealternate
@@ -1453,7 +1453,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: veryshortovereyealternate
 - type: marking
   id: ThavenHairVlong
@@ -1461,7 +1461,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: vlong
 - type: marking
   id: ThavenHairVlongfringe
@@ -1469,7 +1469,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: vlongfringe
 - type: marking
   id: ThavenHairVolaju
@@ -1477,7 +1477,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: volaju
 - type: marking
   id: ThavenHairWisp
@@ -1485,7 +1485,7 @@
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/thaven_hair.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: wisp
 
 # Chest
@@ -1496,7 +1496,7 @@
   markingCategory: Chest
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/chest.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: hair
 
 - type: marking
@@ -1505,7 +1505,7 @@
   markingCategory: Chest
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/chest.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: gills
 
 - type: marking
@@ -1515,7 +1515,7 @@
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   followSkinColor: true
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/chest.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: muscular
 
 - type: marking
@@ -1524,7 +1524,7 @@
   markingCategory: Chest
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/chest.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: bitemark
 
 - type: marking
@@ -1533,7 +1533,7 @@
   markingCategory: Chest
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/chest.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: stripes
 
 - type: marking
@@ -1542,7 +1542,7 @@
   markingCategory: Chest
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/chest.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: scales
 
 - type: marking
@@ -1556,7 +1556,7 @@
         !type:TattooColoring
       fallbackColor: "#666666"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/chest.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: tat1
 
 - type: marking
@@ -1570,7 +1570,7 @@
         !type:EyeColoring
         negative: false
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/chest.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: spinechill
 
 - type: marking
@@ -1579,7 +1579,7 @@
   markingCategory: Chest
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/chest.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: spines
 
 - type: marking
@@ -1588,7 +1588,7 @@
   markingCategory: Chest
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/chest.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: tattoowave
 
 - type: marking
@@ -1597,7 +1597,7 @@
   markingCategory: Chest
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/chest.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: tattoovines
 
 - type: marking
@@ -1606,9 +1606,9 @@
   markingCategory: Chest
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/chest.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: tiger1
-  - sprite: _Starlight/Mobs/Customization/Thaven/chest.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: tiger2
 
 
@@ -1620,9 +1620,9 @@
   markingCategory: Head
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/head.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/head.rsi
     state: cap1
-  - sprite: _Starlight/Mobs/Customization/Thaven/head.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/head.rsi
     state: cap2
 
 - type: marking
@@ -1631,7 +1631,7 @@
   markingCategory: HeadTop
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/head.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/head.rsi
     state: scales
 
 - type: marking
@@ -1640,7 +1640,7 @@
   markingCategory: Head
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/head.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/head.rsi
     state: stripes
 
 - type: marking
@@ -1655,7 +1655,7 @@
         !type:SimpleColoring
         color: "#000000"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/head.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/head.rsi
     state: shadowthaven
 
 # Snout
@@ -1668,7 +1668,7 @@
   markingCategory: HeadTop
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/eyes.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/eyes.rsi
     state: sharkminnoweyeliner
 
 - type: marking
@@ -1682,7 +1682,7 @@
         !type:EyeColoring
         negative: false
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/eyes.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/eyes.rsi
     state: sharkminnow
 
 - type: marking
@@ -1696,7 +1696,7 @@
         !type:EyeColoring
         negative: false
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/eyes.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/eyes.rsi
     state: sharkminnow
 
 - type: marking
@@ -1710,7 +1710,7 @@
         !type:EyeColoring
         negative: false
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/eyes.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/eyes.rsi
     state: glowleft
 
 - type: marking
@@ -1724,7 +1724,7 @@
         !type:EyeColoring
         negative: false
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/eyes.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/eyes.rsi
     state: glowright
 
 # RArm
@@ -1735,7 +1735,7 @@
   markingCategory: Arms
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/rarm.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/rarm.rsi
     state: scales
 
 - type: marking
@@ -1749,7 +1749,7 @@
         !type:TattooColoring
       fallbackColor: "#666666"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/rarm.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/rarm.rsi
     state: tat1
 
 - type: marking
@@ -1758,7 +1758,7 @@
   markingCategory: Arms
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/rarm.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/rarm.rsi
     state: tiger
 
 # LArm
@@ -1769,7 +1769,7 @@
   markingCategory: Arms
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/larm.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/larm.rsi
     state: scales
 
 - type: marking
@@ -1783,7 +1783,7 @@
         !type:TattooColoring
       fallbackColor: "#666666"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/larm.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/larm.rsi
     state: tat1
 
 - type: marking
@@ -1792,7 +1792,7 @@
   markingCategory: Arms
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/larm.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/larm.rsi
     state: tiger
 
 # RLeg
@@ -1803,7 +1803,7 @@
   markingCategory: Legs
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/rleg.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/rleg.rsi
     state: scales
 
 # LLeg
@@ -1814,7 +1814,7 @@
   markingCategory: Legs
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/lleg.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/lleg.rsi
     state: scales
 
 # UndergarmentBottom
@@ -1830,7 +1830,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/undergarmentbottom.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/undergarmentbottom.rsi
     state: briefs
 
 - type: marking
@@ -1844,7 +1844,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/undergarmentbottom.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/undergarmentbottom.rsi
     state: boxers
 
 - type: marking
@@ -1858,7 +1858,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/undergarmentbottom.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/undergarmentbottom.rsi
     state: lowriders
 
 - type: marking
@@ -1872,7 +1872,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/undergarmentbottom.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/undergarmentbottom.rsi
     state: satin
 
 - type: marking
@@ -1886,7 +1886,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/undergarmentbottom.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/undergarmentbottom.rsi
     state: tanga
 
 # UndergarmentTop
@@ -1901,7 +1901,7 @@
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/undergarmenttop.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
     state: binder
 
 - type: marking
@@ -1915,7 +1915,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/undergarmenttop.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
     state: classic
 
 - type: marking
@@ -1929,7 +1929,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/undergarmenttop.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
     state: sports
 
 - type: marking
@@ -1943,7 +1943,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/undergarmenttop.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
     state: strapless
 
 - type: marking
@@ -1957,7 +1957,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/undergarmenttop.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
     state: undershirt
 
 - type: marking
@@ -1971,7 +1971,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/undergarmenttop.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
     state: grosssleeveless
 
 - type: marking
@@ -1985,7 +1985,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/undergarmenttop.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
     state: nanotrasen
 
 - type: marking
@@ -1999,7 +1999,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/undergarmenttop.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
     state: rolledundershirt
 
 # HeadSide
@@ -2012,7 +2012,7 @@
   forcedColoring: true
   followSkinColor: true
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/headside.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
     state: ears1
 
 - type: marking
@@ -2023,7 +2023,7 @@
   forcedColoring: true
   followSkinColor: true
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/headside.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
     state: ears2
 
 - type: marking
@@ -2034,7 +2034,7 @@
   forcedColoring: true
   followSkinColor: true
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/headside.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
     state: ears3
 
 - type: marking
@@ -2045,7 +2045,7 @@
   forcedColoring: true
   followSkinColor: true
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/headside.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
     state: ears4
 
 - type: marking
@@ -2054,9 +2054,9 @@
   markingCategory: HeadSide
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/headside.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
     state: bigfins
-  - sprite: _Starlight/Mobs/Customization/Thaven/headside.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
     state: bigfins2
 
 - type: marking
@@ -2067,7 +2067,7 @@
   forcedColoring: true
   followSkinColor: true
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/headside.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
     state: twinfin
 
 - type: marking
@@ -2078,7 +2078,7 @@
   forcedColoring: true
   followSkinColor: true
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/headside.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
     state: fishears
 
 - type: marking
@@ -2087,7 +2087,7 @@
   markingCategory: HeadSide
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/headside.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
     state: noears
 
 # HeadTop
@@ -2103,9 +2103,9 @@
         !type:EyeColoring
         negative: false
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/headtop.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/headtop.rsi
     state: hibiscus1
-  - sprite: _Starlight/Mobs/Customization/Thaven/headtop.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/headtop.rsi
     state: hibiscus2
 
 - type: marking
@@ -2119,7 +2119,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/headtop.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/headtop.rsi
     state: piercings
 
 - type: marking
@@ -2133,7 +2133,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/headtop.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/headtop.rsi
     state: piercings2
 
 # Tail
@@ -2144,9 +2144,9 @@
   markingCategory: Tail
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: basic_front
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: basic_behind
 
 - type: marking
@@ -2155,13 +2155,13 @@
   markingCategory: Tail
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: big1_behind
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: big1_front
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: big2_behind
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: big2_front
 
 - type: marking
@@ -2170,13 +2170,13 @@
   markingCategory: Tail
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: tadpole1_behind
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: tadpole1_front
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: tadpole2_behind
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: tadpole2_front
 
 - type: marking
@@ -2186,13 +2186,13 @@
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   followSkinColor: true
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: eel1_behind
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: eel1_front
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: eel2_behind
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: eel2_front
 
 - type: marking
@@ -2206,13 +2206,13 @@
         !type:EyeColoring
         negative: false
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: eelghost_behind
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: eelghost_front
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: eel3_behind
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: eel3_front
 
 - type: marking
@@ -2222,13 +2222,13 @@
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   followSkinColor: true
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: nurse1_behind
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: nurse1_front
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: nurse2_behind
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: nurse2_front
 
 - type: marking
@@ -2238,13 +2238,13 @@
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   followSkinColor: true
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: stub1_behind
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: stub1_front
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: stub2_behind
-  - sprite: _Starlight/Mobs/Customization/Thaven/taillayers.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: stub2_front
 
 - type: marking
@@ -2254,7 +2254,7 @@
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
   followSkinColor: true
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Thaven/tail.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/tail.rsi
     state: thresher1
-  - sprite: _Starlight/Mobs/Customization/Thaven/tail.rsi
+  - sprite: _Starlight/Mobs/Customization/thaven/tail.rsi
     state: thresher2

@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: FoodSaladCitrus
+  components:
+  - type: Tag
+    tags:
+    - Citrus
+
+- type: !PartialOnly entity
+  id: FoodSaladFruit
+  components:
+  - type: Tag
+    tags:
+    - Citrus

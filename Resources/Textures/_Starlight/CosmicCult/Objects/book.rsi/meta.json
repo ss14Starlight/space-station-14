@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "cosmiccultbook",
+            "copyright": "Cosmic Cult book by AftrLite (Github), Tenebrae Conspiracy book by Sha-Seng (Github)"
+        },
+        {
+            "name": "tenebraeconspiracybook",
+            "copyright": "Cosmic Cult book by AftrLite (Github), Tenebrae Conspiracy book by Sha-Seng (Github)"
+        }
+    ]
+}

@@ -19,26 +19,11 @@
   - type: Sprite
   - type: Item
     size: Small
-  - type: Tool # Starlight start
-    qualities: [ Slicing ]
-    speedModifier: 1
-  - type: MultipleTool
-    statusShowBehavior: true
-    entries:
-      - behavior: [ Slicing ]
-        useSound: /Audio/Items/Culinary/chop.ogg
-        SpeedModifier: 1
-      - behavior: [ Screwing ]
-        useSound: /Audio/Items/screwdriver.ogg
-        SpeedModifier: 0.05
-  - type: SurgeryTool
-  - type: Scalpel
-    successRate: 0.9
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
-# Starlight end
+  - type: Tool
+    qualities:
+      - Slicing
+    useSound:
+      path: /Audio/Items/Culinary/chop.ogg
 
 - type: entity
   parent: BaseKnife
@@ -174,7 +159,7 @@
 
 - type: entity
   name: survival knife
-  parent: [ BaseSecuritySalvageMiningContraband, CombatKnife ] #Starlight salvContra
+  parent: [ BaseSecuritySalvageMiningContraband, CombatKnife ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: SurvivalKnife
   description: Weapon of first and last resort for combatting space carp.
   components:
@@ -270,8 +255,6 @@
     sprite: Objects/Weapons/Melee/shiv.rsi
   - type: DisarmMalus
     malus: 0.225
-  - type: Scalpel #Starlight
-    successRate: 0.7
   - type: Fixtures
     fixtures:
       fix1:

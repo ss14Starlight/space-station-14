@@ -255,6 +255,16 @@
     SheetPrinter: 100
 
 - type: latheRecipe
+  id: PrintedDocumentRequestChangeSalaryRecipe
+  result: PrintedDocumentRequestChangeSalary
+  categories:
+  - InquiriesAndAppeals
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
   id: PrintedDocumentRequestForNonlistedEmploymentRecipe
   result: PrintedDocumentRequestForNonlistedEmployment
   categories:

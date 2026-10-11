@@ -89,6 +89,20 @@
   - type: StaticPrice
     price: 800
 
+- type: entity
+  parent: Magazine120mmGrenadeBlast
+  id: Magazine120mmGrenadeBlastEmpty
+  name: 120mm blast grenade magazine (empty)
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - Grenade120mm
+    capacity: 20
+
+
 # 60mm Rocket Ammunition
 
 # Override of the base 60mm rocket projectile with radar blip.
@@ -166,6 +180,19 @@
     zeroVisible: false
   - type: StaticPrice
     price: 600
+
+- type: entity
+  parent: Magazine60mmRocket
+  id: Magazine60mmRocketEmpty
+  name: 60mm rocket magazine (empty)
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - Cartridge60mmRocket
+    capacity: 30
 
 # PEACEKEEPER AMMO
 

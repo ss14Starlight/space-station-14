@@ -1,4 +1,43 @@
-﻿# Terror spiders
+﻿- type: entity
+  id: ActionWebball
+  name: Webball
+  description: Fires a webball towards the clicked location.
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    sound:
+      path: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_spider.rsi
+      state: web
+  - type: TargetAction
+    range: 20
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectileWebball
+
+- type: entity
+  id: ProjectileWebball
+  name: webball
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+  - type: Sprite
+    sprite: _Starlight/Interface/Actions/actions_spider.rsi
+    layers:
+    - state: web
+      shader: unshaded
+  - type: SpawnOnCollide
+    prototype: SpiderWeb
+
+# Terror spiders
 
 - type: entity
   id: ActionAcidVent

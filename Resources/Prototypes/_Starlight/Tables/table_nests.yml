@@ -1,0 +1,34 @@
+- type: entityTable
+  id: BeeHiveTable
+  table: !type:GroupSelector
+    children:
+    - id: MobAngryBee
+    - id: MobAngryBee
+    - id: MobAngryBee
+    - id: MobAngryBee
+    - id: Honeycomb
+
+- type: entityTable
+  id: SnakeNestTable
+  table: !type:GroupSelector
+    children:
+    - id: MobCobraSpace
+
+- type: entityTable
+  id: MouseNestTable
+  table: !type:GroupSelector
+    children:
+    - id: MobMouse1
+    - id: MobMouse2
+
+- type: entityTable
+  id: BeeBoxTable
+  table: !type:GroupSelector
+    children:
+    - id: MobBee
+    - id: MobAngryBee
+    - id: MobBee
+    - id: MobBee
+    - id: MobBee
+    - id: Honeycomb
+    - id: Honeycomb

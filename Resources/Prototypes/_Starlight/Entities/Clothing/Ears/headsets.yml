@@ -63,6 +63,17 @@
     - type: HeadsetLoudMode
 
 - type: entity
+  parent: [ ClothingHeadset, BaseMajorContraband ]
+  id: ClothingHeadsetAssistantNinja
+  name: stolen headset
+  components:
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/service.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/ninja.ogg
+
+- type: entity
   parent: [ ClothingHeadset, BaseSecurityContraband ]
   id: ClothingHeadsetSecurityWarden
   name: warden's headset

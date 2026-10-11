@@ -39,6 +39,14 @@
       scale: 0.75, 0.75
 
 - type: entity
+  parent: CarvedPumpkin
+  id: CarvedPumpkinLarge
+  suffix: Large
+  components:
+    - type: Sprite
+      scale: 1.5, 1.5
+
+- type: entity
   parent: PumpkinLantern
   id: PumpkinLanternSmall
   suffix: Small
@@ -46,3 +54,10 @@
     - type: Sprite
       scale: 0.75, 0.75
 
+- type: entity
+  parent: PumpkinLantern
+  id: PumpkinLanternLarge
+  suffix: Large
+  components:
+    - type: Sprite
+      scale: 1.5, 1.5

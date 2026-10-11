@@ -1,6 +1,7 @@
 # Numbers for armor here largely taken from /tg/.
 # armor.yml covers both armored vests (e.g. not just cosmetic) and armor that covers multiple bodyparts/limbs
 
+
 #Basic armor vest for inheritance
 - type: entity
   abstract: true
@@ -266,6 +267,7 @@
         Piercing: 0.5
         Heat: 0.9
 
+
 # Armor covering multiple body parts including limbs
 - type: entity
   parent: [ClothingOuterBaseLarge, ClothingOuterBaseWarm, AllowSuitStorageClothing, BaseSyndicateContraband ] # Starlight
@@ -481,6 +483,36 @@
     sprite: Clothing/OuterClothing/Armor/magusred.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/magusred.rsi
+
+- type: entity
+  parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
+  id: ClothingOuterArmorChangeling
+  name: chitinous armor
+  description: Inflates the changeling's body into an all-consuming chitinous mass of armor.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Armor/lingarmor.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Armor/lingarmor.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.9
+        Radiation: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.65
+    sprintModifier: 0.65
+  - type: HeldSpeedModifier
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: GroupExamine
+  - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
 
 - type: entity
   parent: [ ClothingOuterBaseLarge, ClothingOuterBaseWarm, BaseMajorContraband, AllowSuitStorageClothing ] # Starlight

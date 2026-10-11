@@ -198,6 +198,14 @@
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
 
 - type: entity
+  parent: WeaponShotgunEnforcer
+  id: WeaponShotgunSentielRubber # Starlight Edit: Enforcer -> Sentiel
+  suffix: Non-Lethal
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunBeanbag
+
+- type: entity
   name: Kammerer
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunKammerer
@@ -335,6 +343,15 @@
     node: shotgun
   - type: StaticPrice
     price: 20
+
+- type: entity
+  name: improvised shotgun
+  parent: WeaponShotgunImprovised
+  suffix: Loaded
+  id: WeaponShotgunImprovisedLoaded
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunImprovised
 
 - type: entity
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSyndicateContraband]

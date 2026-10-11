@@ -200,6 +200,11 @@
         Caustic: 0.75
 
 - type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabChem]
+  id: ClothingOuterCoatLabChemOpened
+  name: chemist lab coat
+
+- type: entity
   parent: ClothingOuterCoatLab # Starlight
   id: ClothingOuterCoatLabViro
   name: virologist lab coat
@@ -216,6 +221,11 @@
       coefficients:
         Cold: 0.9 # Starlight
         Caustic: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabViro]
+  id: ClothingOuterCoatLabViroOpened
+  name: virologist lab coat
 
 - type: entity
   parent: ClothingOuterCoatLab # Starlight
@@ -261,6 +271,11 @@
         Caustic: 0.65
 
 - type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabCmo]
+  id: ClothingOuterCoatLabCmoOpened
+  name: chief medical officer's lab coat
+
+- type: entity
   parent: ClothingOuterCoatLab # Starlight
   id: ClothingOuterCoatRnd
   name: scientist lab coat
@@ -302,6 +317,11 @@
         Caustic: 0.75
 
 - type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatRobo]
+  id: ClothingOuterCoatRoboOpened
+  name: roboticist lab coat
+
+- type: entity
   parent: ClothingOuterCoatLab # Starlight
   id: ClothingOuterCoatRD
   name: research director lab coat
@@ -319,6 +339,11 @@
         Cold: 0.8 # Starlight, RD can have a little better protection than normal lab coats
         Caustic: 0.75
         Radiation: 0.9
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatRD]
+  id: ClothingOuterCoatRDOpened
+  name: research director lab coat
 
 - type: entity
   parent: [ ClothingOuterStorageBase, ClothingOuterBaseWarm, AllowSuitStorageClothing ] # Starlight
@@ -393,6 +418,11 @@
     sprite: Clothing/OuterClothing/Coats/windbreaker_paramedic.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/windbreaker_paramedic.rsi
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatParamedicWB]
+  id: ClothingOuterCoatParamedicWBOpened
+  name: paramedic windbreaker
 
 - type: entity
   parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm, BaseMinorContraband] # Starlight
@@ -481,6 +511,11 @@
         Caustic: 0.75
 
 - type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorPhysician]
+  id: ClothingOuterCoatLabSeniorPhysicianOpened
+  name: senior physician lab coat
+
+- type: entity
   parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter] # Starlight
   id: ClothingOuterCoatSpaceAsshole
   name: the coat of space asshole
@@ -506,3 +541,7 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/expensive_coat.rsi
 
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatExpensive]
+  id: ClothingOuterCoatExpensiveOpened
+  name: expensive coat

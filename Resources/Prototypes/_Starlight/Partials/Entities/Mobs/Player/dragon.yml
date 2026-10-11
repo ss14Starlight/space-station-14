@@ -18,11 +18,3 @@
     available:
     - enum.DamageStateVisualLayers.Base:
         alive: Rainbow
-
-- type: !PartialOnly entity
-  id: BaseMobDragon
-  components:
-  - type: SocialInteractionGiver
-    interactionPrototypes:
-    - Look
-    - Wave

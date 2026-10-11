@@ -44,15 +44,6 @@
     coldDamageThreshold: 230
   - type: TemperatureProtection
     coolingCoefficient: 0.8
-  - type: SocialInteractionGiver
-    interactionPrototypes:
-    - Sniff
-  - type: SocialInteractionReceiver
-    interactionOverrides: # you can pet the dog
-    - id: Pat
-      interactString: petting-success
-      messagePerceivedByOthers: petting-success-others
-      emoteMessage: petting-emote
 
 # Shared identity system for dogs (corgis, MobFox, MobMcGriff, MobWalter).
 - type: entity

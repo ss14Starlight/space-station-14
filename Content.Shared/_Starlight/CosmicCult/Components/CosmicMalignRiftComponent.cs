@@ -19,6 +19,6 @@ public sealed partial class CosmicMalignRiftComponent : Component
 
     [DataField] public float MovementThreshold = 0.5f;
     [DataField] public EntProtoId PurgeVFX = "CleanseEffectVFX";
-    [DataField] public SoundSpecifier PurgeSFX = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/effigy_pulse.ogg");
+    [DataField] public SoundSpecifier PurgeSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/effigy_pulse.ogg");
     [DataField] public SoundSpecifier BeamSFX = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg");
 }

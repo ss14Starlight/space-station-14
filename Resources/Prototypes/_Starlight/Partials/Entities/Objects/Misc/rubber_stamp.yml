@@ -1,0 +1,95 @@
+- type: !PartialOnly entity
+  id: RubberStampBase
+  components:
+  - type: Tag
+    tags:
+    - Stamp
+
+- type: !PartialOnly entity
+  id: RubberStampBaseAlt
+  description: A rubber stamp for stamping important documents. How are you reading this?
+
+- type: !PartialOnly entity
+  id: RubberStampCaptain
+  description: A rubber stamp for stamping important documents. 9/10 clowns recommend stealing this. The 10th clown already has.
+
+- type: !PartialOnly entity
+  id: RubberStampCentcom
+  description: A rubber stamp for stamping important documents. Tell them who's boss!
+
+- type: !PartialOnly entity
+  id: RubberStampChaplain
+  description: A rubber stamp for stamping important documents. Holy rubber to bless the holy paper.
+  categories: !Remove
+
+- type: !PartialOnly entity
+  id: RubberStampLawyer
+  description: A rubber stamp for stamping important documents. Did you know that you have rights?
+  components:
+  - type: Stamp
+    stampedColor: "#496130" # Lawyer is green now
+    stampState: "paper_stamp-lawyer-sl"
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/stamps.rsi
+
+- type: !PartialOnly entity
+  id: RubberStampClown
+  description: A rubber stamp for stamping important documents. Funni.
+  categories: !Remove
+
+- type: !PartialOnly entity
+  id: RubberStampCE
+  description: A rubber stamp for stamping important documents. Used to approve the maints bars, the rage cages, and the shittles.
+
+- type: !PartialOnly entity
+  id: RubberStampCMO
+  description: A rubber stamp for stamping important documents. For when the doctor is in.
+
+- type: !PartialOnly entity
+  id: RubberStampHop
+  description: A rubber stamp for stamping important documents. Slightly chewed.
+
+- type: !PartialOnly entity
+  id: RubberStampHos
+  description: A rubber stamp for stamping important documents. I love the smell of rubber in the morning.
+
+- type: !PartialOnly entity
+  id: RubberStampMime
+  description: A rubber stamp for silently stamping important documents.
+  categories: !Remove
+
+- type: !PartialOnly entity
+  id: RubberStampQm
+  description: A rubber stamp for stamping important documents. For when they do fill out a damn form.
+
+- type: !PartialOnly entity
+  id: RubberStampRd
+  description: A rubber stamp for stamping important documents. Covered in ash and plasma residue.
+
+- type: !PartialOnly entity
+  id: RubberStampTrader
+  description: A rubber stamp for stamping important documents. Money must be made.
+
+- type: !PartialOnly entity
+  id: RubberStampSyndicate
+  description: A rubber stamp for stamping important documents. Especially secret documents.
+
+- type: !PartialOnly entity
+  id: RubberStampWarden
+  description: A rubber stamp for stamping important documents. Mostly used for approving whatever maints loot the secoffs bring in.
+
+- type: !PartialOnly entity
+  id: RubberStampApproved
+  description: A rubber stamp for accepting important documents.
+
+- type: !PartialOnly entity
+  id: RubberStampDenied
+  description: A rubber stamp for rejecting important documents.
+
+- type: !PartialOnly entity
+  id: RubberStampDetective
+  description: A rubber stamp for stamping important documents. The stamp talks to itself, too.
+
+- type: !PartialOnly entity
+  id: RubberStampPsychologist
+  categories: !Remove

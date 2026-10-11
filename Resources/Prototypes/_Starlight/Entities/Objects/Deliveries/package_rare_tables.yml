@@ -1,0 +1,11 @@
+- type: entityTable
+  id: PackageEngineeringRPDBundle
+  table: !type:AllSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: RPD
+      - id: RCDEmpty
+    - id: RCDAmmo
+      amount: !type:RangeNumberSelector
+        range: 1, 2

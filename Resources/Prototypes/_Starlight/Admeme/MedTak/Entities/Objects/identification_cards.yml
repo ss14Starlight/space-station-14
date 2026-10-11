@@ -1,0 +1,93 @@
+# MedTak
+- type: entity
+  parent: IDCardStandard
+  id: MedTakIDCard
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Objects/id_cards.rsi
+  - type: IdCard
+  - type: Access
+    tags:
+      - MedTak
+      - Maintenance
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: NanoChatCard
+    listNumber: false
+
+- type: entity
+  parent: MedTakIDCard
+  id: MedTakIDCardTeamLead
+  name: MedTak team leader ID card
+  components:
+  - type: Sprite
+    layers:
+      - state: medtak
+      - sprite: &starlight-icon-rsi _Starlight/Admeme/MedTak/Interface/job_icons.rsi
+        offset: &icon-offset -0.09375, 0.0625
+        state: MedTakLeader
+  - type: IdCard
+    jobTitle: job-name-medtak-leader
+    jobIcon: JobIconMedTakLeader
+
+- type: entity
+  parent: MedTakIDCard
+  id: MedTakIDCardDispatcher
+  name: MedTak dispatcher ID card
+  components:
+  - type: Sprite
+    layers:
+      - state: medtak
+      - sprite: *starlight-icon-rsi
+        offset: *icon-offset
+        state: MedTakDispatcher
+  - type: IdCard
+    jobTitle: job-name-medtak-dispatcher
+    jobIcon: JobIconMedTakDispatcher
+
+- type: entity
+  parent: MedTakIDCard
+  id: MedTakIDCardMedic
+  name: MedTak medic ID card
+  components:
+  - type: Sprite
+    layers:
+      - state: medtak
+      - sprite: *starlight-icon-rsi
+        offset: *icon-offset
+        state: MedTakMedic
+  - type: IdCard
+    jobTitle: job-name-medtak-medic
+    jobIcon: JobIconMedTakMedic
+
+- type: entity
+  parent: MedTakIDCard
+  id: MedTakIDCardPilot
+  name: MedTak pilot ID card
+  components:
+  - type: Sprite
+    layers:
+      - state: medtak
+      - sprite: *starlight-icon-rsi
+        offset: *icon-offset
+        state: MedTakPilot
+  - type: IdCard
+    jobTitle: job-name-medtak-pilot
+    jobIcon: JobIconMedTakPilot
+
+- type: entity
+  parent: MedTakIDCard
+  id: MedTakIDCardSecurity
+  name: MedTak security ID card
+  components:
+  - type: Sprite
+    layers:
+      - state: medtak
+      - sprite: *starlight-icon-rsi
+        offset: *icon-offset
+        state: MedTakSecurity
+  - type: IdCard
+    jobTitle: job-name-medtak-security
+    jobIcon: JobIconMedTakSecurity

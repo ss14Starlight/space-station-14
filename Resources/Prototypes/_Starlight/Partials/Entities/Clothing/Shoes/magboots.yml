@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: ClothingShoesBootsMagSyndie
+  description: Reverse-engineered from ERT magboots, they have a heavy magnetic pull, integrated thrusters, and are designed for combat. It can hold 0.75 L of gas.
+  components:
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5
+
+- type: !PartialOnly entity
+  id: ClothingShoesBootsMagERT
+  description: Upgraded magnetic boots utilized by NanoTrasen's Emergency Response Teams, they have a heavy magnetic pull and integrated thrusters. It can hold 0.75 L of gas.

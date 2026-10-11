@@ -60,7 +60,7 @@
   messagePerceivedByOthers: sniffing-success-others
   emoteMessage: sniffing-emote
   emoteMessageSelf: sniffing-emote-self
-  interactSound: /Audio/_Starlight/Effects/Scent/dog_sniff.ogg
+  interactSound: /Audio/_Starlight/Scent/dog_sniff.ogg
   allowSelfTarget: true
 
 # Palpate (sniffing, but with insect antennae)

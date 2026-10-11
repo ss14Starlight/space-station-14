@@ -495,6 +495,20 @@
   - type: Sprite
     state: stamp-hop
 
+- type: entity
+  name: solgov traders rubber stamp
+  parent: RubberStampBase
+  id: RubberStampSolgovTraders
+  description: A rubber stamp for stamping important documents. Where is money to be made, that is.
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-rubber-stamp-solgov-traders
+    stampedColor: "#B45F06"
+    stampState: "paper_stamp-qm"
+  - type: Sprite
+    state: stamp-detective
+
 # Civilian stamps
 - type: entity
   name: reporter rubber stamp
@@ -510,3 +524,17 @@
       state: stamp-hop
 
 # ITG stamp
+- type: entity
+  name: ITG stamp
+  parent: RubberStampBase
+  id: RubberStampITG
+  description: A rubber stamp for stamping important documents.
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-rubber-stamp-itg
+    stampedColor: "#b3844b"
+    stampState: "paper_stamp-qm"
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/stamps.rsi
+    state: stamp-senttoATS

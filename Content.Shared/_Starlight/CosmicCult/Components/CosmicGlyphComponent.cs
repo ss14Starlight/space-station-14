@@ -16,7 +16,7 @@ public sealed partial class CosmicGlyphComponent : Component
     [DataField] public DamageSpecifier ActivationDamage = new();
     [DataField] public bool CanBeErased = true;
     [DataField] public EntProtoId GylphVFX = "CosmicGenericVFX";
-    [DataField] public SoundSpecifier GylphSFX = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/glyph_trigger.ogg");
+    [DataField] public SoundSpecifier GylphSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/glyph_trigger.ogg");
 }
 
 public sealed class TryActivateGlyphEvent(EntityUid user, HashSet<Entity<CosmicCultComponent>> cultists) : CancellableEntityEventArgs

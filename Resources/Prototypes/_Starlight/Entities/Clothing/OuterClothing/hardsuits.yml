@@ -1220,6 +1220,50 @@
       clothingPrototype: ClothingHeadHelmetHardsuitTSFPhantom
 
 #Thanatos (Starlight version of Deathsquad with enhanced stats)
+- type: entity
+  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
+  id: ClothingOuterHardsuitThanatos
+  name: Thanatos
+  description: An advanced hardsuit favored by commandos for use in special operations.
+  components:
+    - type: Sprite
+      sprite: Clothing/OuterClothing/Hardsuits/deathsquad.rsi
+    - type: Clothing
+      sprite: Clothing/OuterClothing/Hardsuits/deathsquad.rsi
+    - type: PressureProtection
+      highPressureMultiplier: 0.02
+      lowPressureMultiplier: 1000
+    - type: TemperatureProtection
+      heatingCoefficient: 0.001
+      coolingCoefficient: 0.001
+    - type: ExplosionResistance
+      damageCoefficient: 0.2
+    - type: FireProtection
+      reduction: 0.8
+    - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+      damageCoefficient: 0.0 # 100% stamina resistance
+    - type: Pierceable
+      level: Rock
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.05 # 95% resistance
+          Slash: 0.05
+          Piercing: 0.01 # 99% pierce resistance
+          Heat: 0.05
+          Radiation: 0.05
+          Caustic: 0.05
+      staminaModifier: 0.0
+    - type: ClothingSpeedModifier
+      walkModifier: 1.0
+      sprintModifier: 1.0
+    - type: HeldSpeedModifier
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitThanatos
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - Hardsuit
 
 # COSMIC CULT HARDSUIT BODY
 - type: entity
@@ -1230,11 +1274,11 @@
   components:
   - type: CosmicEquipment
   - type: Sprite
-    sprite: _Starlight/Clothing/Head/CosmicCult/cosmiccult_armor.rsi
+    sprite: _Starlight/CosmicCult/Clothing/cosmiccult_armor.rsi
   - type: Item
     size: Huge
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/CosmicCult/cosmiccult_armor.rsi
+    sprite: _Starlight/CosmicCult/Clothing/cosmiccult_armor.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -1381,3 +1425,55 @@
     sprintModifier: 0.95
   - type: HeldSpeedModifier
   - type: Unremoveable
+
+#ITG
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSalvageContraband]
+  id: ClothingOuterHardsuitITGLossPrevention
+  name: ITG Loss Prevention Hardsuit
+  description: A suit made by the ITG to protect expensive assets in dangerous sectors.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/lossprevention.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/lossprevention.rsi
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 3 #starlight
+    unequipDelay: 3 #starlight
+  - type: PressureProtection
+    highPressureMultiplier: 0.2
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  # - type: StaminaResistance # Should not have stamina resistance, this is purely so people know it was not forgotten.
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3
+        Heat: 0.6
+        Radiation: 0.4
+        Caustic: 0.5
+    staminaModifier: 0.5
+    # Starlight-end
+  - type: ClothingSpeedModifier
+    walkModifier: 0.6
+    sprintModifier: 0.6
+  - type: HeldSpeedModifier
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHeavy
+      params:
+        volume: -6
+        variation: 0.09
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitLossPrevention
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon

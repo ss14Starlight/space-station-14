@@ -36,7 +36,7 @@ public sealed partial class DeconversionOublietteComponent : Component
     [DataField, AutoNetworkedField] public bool EjectContents = false;
 
     [DataField] public EntProtoId PurgeVFX = "CleanseEffectVFX";
-    [DataField] public SoundSpecifier PurgeSFX = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/effigy_pulse.ogg");
+    [DataField] public SoundSpecifier PurgeSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/effigy_pulse.ogg");
 
 }
 

@@ -1,0 +1,6 @@
+# Vending Machines Prices
+- type: !PartialOnly entity
+  id: FoodDonutBase
+  components:
+  - type: ItemPrice
+    priceCategory: food_cheap

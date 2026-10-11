@@ -362,6 +362,25 @@
         color: "#72E374"
 
 - type: entity
+  id: MagazineRifleM52Empty
+  name: "magazine (.20 rifle any)"
+  suffix: empty
+  parent: BaseMagazineRifleM52
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
   id: MagazineRifleM52Incendiary
   name: "magazine (.20 rifle incendiary)"
   parent: BaseMagazineRifleM52
@@ -382,6 +401,30 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#E7EEEE"
+
+- type: entity
+  id: MagazineRifleM52Practice
+  name: "magazine (.20 rifle practice)"
+  parent: BaseMagazineRifleM52
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRiflePractice
+  - type: Sprite
+    layers:
+    - state: practice
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#F08B4B"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#F08B4B"
 
 - type: entity
   id: MagazineRifleM52Uranium

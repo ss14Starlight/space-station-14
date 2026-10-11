@@ -6,13 +6,7 @@
   suffix: Full
   description: Explosive cord for removing whatever is in your way.
   components:
-  # Starlight start
-  - type: UserInterface
-    interfaces:
-      enum.StackCustomSplitUiKey.Key:
-        type: StackCustomSplitBoundUserInterface
   - type: Stack
-  # Starlight end
     stackType: CableDet
     baseLayer: base
     layerStates:
@@ -78,6 +72,25 @@
       # - Window
       # - Wall
   # - type: StickyVisualizer
+
+- type: entity
+  parent: CableDetStack
+  id: CableDetStack10
+  suffix: 10
+  components:
+  - type: Sprite
+    state: coilex-10
+  - type: Stack
+    count: 10
+  - type: Explosive # TODO: some how make stacking logic handle the explosion scaling. Maybe also something for lingering stacks.
+    explosionType: DemolitionCharge
+    totalIntensity: 30
+    intensitySlope: 5
+    maxIntensity: 15
+    canCreateVacuum: false
+  - type: Tag
+    tags:
+    - Payload
 
 - type: entity
   parent: CableDetStack

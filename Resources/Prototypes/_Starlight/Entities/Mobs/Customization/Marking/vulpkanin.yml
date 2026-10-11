@@ -5,7 +5,7 @@
 #  bodyPart: RFoot #highest possible layer
 #  speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
 #  sprites:
-#    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+#    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
 #      state: pawsocks
 - type: marking
   id: PawSocksFeet
@@ -13,7 +13,7 @@
   markingCategory: Overlay
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: pawsocks_feet
 
 - type: marking
@@ -22,7 +22,7 @@
   markingCategory: Legs
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: pawsocks_legs
 
 - type: marking
@@ -31,7 +31,7 @@
   markingCategory: Overlay
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: pawsocks_hands
 
 - type: marking
@@ -40,7 +40,7 @@
   markingCategory: Arms
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: pawsocks_arms
 
 - type: marking
@@ -50,9 +50,9 @@
   waggingId: FoxTailAnimated
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: vulp_tail
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: vulp_tail_inner
 
 - type: marking
@@ -61,9 +61,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: vulp_ear
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: vulp_ear_inner
 
 - type: marking
@@ -73,9 +73,9 @@
   waggingId: WolfTailAnimated
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: wolf_tail
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: wolf_tail_inner
 
 - type: marking
@@ -84,7 +84,7 @@
   markingCategory: Chest
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: vulp_belly-torso
 
 - type: marking
@@ -93,7 +93,7 @@
   markingCategory: Snout
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: vulp_face
 
 # Animated
@@ -104,9 +104,9 @@
   staticId: FoxTail
   speciesRestriction: []
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: tail_fox_waggin
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: tail_fox_inner_waggin
 
 - type: marking
@@ -116,9 +116,9 @@
   staticId: WolfTail
   speciesRestriction: []
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: tail_wolf_waggin
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/vulpkanin.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
       state: tail_wolf_inner_waggin
 
 - type: marking
@@ -127,9 +127,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: vulp
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: vulp-inner
 
 - type: marking
@@ -138,9 +138,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: vulp
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: vulp-fade
 
 - type: marking
@@ -149,9 +149,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: vulp
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: vulp-sharp
 
 - type: marking
@@ -160,9 +160,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: jackal
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: jackal-inner
 
 - type: marking
@@ -171,9 +171,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: terrier
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: terrier-inner
 
 - type: marking
@@ -182,9 +182,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: wolf
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: wolf-inner
 
 - type: marking
@@ -193,9 +193,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: fennec
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: fennec-inner
 
 - type: marking
@@ -204,7 +204,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: fox
 
 - type: marking
@@ -213,9 +213,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: otie
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: otie-inner
 
 - type: marking
@@ -224,9 +224,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: msai
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: msai-inner
 
 - type: marking
@@ -235,7 +235,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: shock
 
 - type: marking
@@ -244,7 +244,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: coyote
 
 - type: marking
@@ -253,7 +253,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: dalmatian
 
 - type: marking
@@ -262,7 +262,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: possum
 
 # Head Markings (Snout)
@@ -272,9 +272,9 @@
   markingCategory: Snout
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: muzzle_alt
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: nose
 
 - type: marking
@@ -283,9 +283,9 @@
   markingCategory: Snout
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: muzzle
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: nose
 
 - type: marking
@@ -294,9 +294,9 @@
   markingCategory: Snout
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: muzzle_sharp
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: nose
 
 - type: marking
@@ -305,9 +305,9 @@
   markingCategory: Snout
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: muzzle_fade
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: nose
 
 - type: marking
@@ -316,7 +316,7 @@
   markingCategory: Snout
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: nose
 
 - type: marking
@@ -325,9 +325,9 @@
   markingCategory: Snout
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: mask
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: nose
 
 - type: marking
@@ -336,9 +336,9 @@
   markingCategory: Snout
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: vulpine
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: vulpine-lines
 
 - type: marking
@@ -347,7 +347,7 @@
   markingCategory: Snout
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: vulpine-lines
 
 - type: marking
@@ -356,9 +356,9 @@
   markingCategory: Snout
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: blaze
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: nose
 
 - type: marking
@@ -367,9 +367,9 @@
   markingCategory: Snout
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: patch
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: nose
 
 # Head Markings (Head)
@@ -379,7 +379,7 @@
   markingCategory: Head
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: tiger_head
 
 - type: marking
@@ -388,7 +388,7 @@
   markingCategory: Head
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: tiger_face
 
 - type: marking
@@ -397,7 +397,7 @@
   markingCategory: Head
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: slash
 
 - type: marking
@@ -406,7 +406,7 @@
   markingCategory: Head
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: skunk
 
 - type: marking
@@ -415,7 +415,7 @@
   markingCategory: Head
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: eyeshadow-lower
 
 - type: marking
@@ -424,7 +424,7 @@
   markingCategory: Head
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/head_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: eyeshadow-upper
 
 # Tail Markings
@@ -435,9 +435,9 @@
   waggingId: VulpTailWag
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp-fade
 
 - type: marking
@@ -447,9 +447,9 @@
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   waggingId: VulpTailWagTip
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp-tip
 
 - type: marking
@@ -459,9 +459,9 @@
   staticId: VulpTail
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp_wag
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp_wag-tip #fade
 
 - type: marking
@@ -471,9 +471,9 @@
   staticId: VulpTailTip
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp_wag
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp_wag-tip
 
 - type: marking
@@ -482,9 +482,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp_alt
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp_alt-fade
 
 - type: marking
@@ -493,9 +493,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp_alt
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: vulp_alt-tip
 
 - type: marking
@@ -504,9 +504,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: long
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: long-tip
 
 - type: marking
@@ -516,9 +516,9 @@
   waggingId: VulpTailFoxWag
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox-fade
 
 - type: marking
@@ -528,9 +528,9 @@
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   waggingId: VulpTailFoxWagTip
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox-tip
 
 - type: marking
@@ -540,9 +540,9 @@
   staticId: VulpTailFox
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox_wag
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox_wag-fade
 
 - type: marking
@@ -552,9 +552,9 @@
   staticId: VulpTailFoxTip
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox_wag
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox_wag-tip
 
 - type: marking
@@ -564,7 +564,7 @@
   waggingId: VulpTailBushyWag
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: bushfluff
 
 - type: marking
@@ -574,7 +574,7 @@
   staticId: VulpTailBushy
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: bushfluff_wag
 
 - type: marking
@@ -584,7 +584,7 @@
   waggingId: VulpTailCoyoteWag
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: coyote
 
 - type: marking
@@ -594,7 +594,7 @@
   staticId: VulpTailCoyote
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: coyote_wag
 
 - type: marking
@@ -603,7 +603,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: corgi_wag
 
 - type: marking
@@ -612,9 +612,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: husky-inner
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: husky-outer
 
 - type: marking
@@ -623,7 +623,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: husky
 
 - type: marking
@@ -635,13 +635,13 @@
   spriteLayers: [Chest, Tail, Chest, Tail]
   spriteColorIndexes: [0, 0, 1, 1]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: m_tail_downhusky_BEHIND_B
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: m_tail_downhusky_FRONT_B
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: m_tail_downhusky_BEHIND_C
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: m_tail_downhusky_FRONT_C
 
 - type: marking
@@ -653,13 +653,13 @@
   spriteLayers: [Chest, Tail, Chest, Tail]
   spriteColorIndexes: [0, 0, 1, 1]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: m_tailwag_downhusky_BEHIND_B
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: m_tailwag_downhusky_FRONT_B
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: m_tailwag_downhusky_BEHIND_C
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: m_tailwag_downhusky_FRONT_C
 
 - type: marking
@@ -668,7 +668,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox2
 
 - type: marking
@@ -677,9 +677,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox3
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fox3-tip
 
 - type: marking
@@ -688,7 +688,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fennec
 
 - type: marking
@@ -697,7 +697,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: otie
 
 - type: marking
@@ -706,7 +706,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fluffy
 
 - type: marking
@@ -715,7 +715,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: dalmatian_wag
 
 - type: marking
@@ -724,7 +724,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: possum
 
 - type: marking
@@ -733,9 +733,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: raccoon
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: raccoon-stripes
 
 - type: marking
@@ -744,9 +744,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: skunk
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: skunk-top
 
 # Body Markings (Chest)
@@ -756,7 +756,7 @@
   markingCategory: Chest
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/body_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
       state: belly_crest
 
 - type: marking
@@ -765,7 +765,7 @@
   markingCategory: Chest
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/body_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
       state: belly_full
 
 - type: marking
@@ -774,7 +774,7 @@
   markingCategory: Chest
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/body_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
       state: belly_fox
 
 - type: marking
@@ -783,7 +783,7 @@
   markingCategory: Chest
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/body_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
       state: skunk
 
 # # Body Markings (Overlay)
@@ -794,7 +794,7 @@
 #   bodyPart: RFoot
 #   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
 #   sprites:
-#     - sprite: _Starlight/Mobs/Customization/Vulpkanin/body_markings.rsi
+#     - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
 #       state: points_crest
 #
 # - type: marking
@@ -803,7 +803,7 @@
 #   bodyPart: RFoot
 #   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
 #   sprites:
-#     - sprite: _Starlight/Mobs/Customization/Vulpkanin/body_markings.rsi
+#     - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
 #       state: points_fade
 #
 # - type: marking
@@ -812,7 +812,7 @@
 #   bodyPart: RFoot
 #   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
 #   sprites:
-#     - sprite: _Starlight/Mobs/Customization/Vulpkanin/body_markings.rsi
+#     - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
 #       state: points_sharp
 
 # Leg Markings
@@ -822,7 +822,7 @@
   bodyPart: RFoot
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/body_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
       state: points_feet
 
 - type: marking
@@ -831,7 +831,7 @@
   bodyPart: LLeg
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/body_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
       state: points_crest-legs
 
 - type: marking
@@ -840,7 +840,7 @@
   bodyPart: LLeg
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/body_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
       state: points_fade-legs
 
 - type: marking
@@ -849,7 +849,7 @@
   bodyPart: LLeg
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/body_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
       state: points_sharp-legs
 
 # Arm Markings
@@ -859,7 +859,7 @@
   bodyPart: RHand
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/body_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
       state: points_hands
 
 - type: marking
@@ -868,7 +868,7 @@
   bodyPart: LArm
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/body_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
       state: points_crest-arms
 
 - type: marking
@@ -877,7 +877,7 @@
   bodyPart: LArm
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/body_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
       state: points_fade-arms
 
 - type: marking
@@ -886,7 +886,7 @@
   bodyPart: LArm
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/body_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
       state: points_sharp-arms
 
 # Hairs
@@ -896,7 +896,7 @@
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   markingCategory: Hair
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: adhara
 
 - type: marking
@@ -905,7 +905,7 @@
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   markingCategory: Hair
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: anita
 
 - type: marking
@@ -914,7 +914,7 @@
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   markingCategory: Hair
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: apollo
 
 - type: marking
@@ -923,7 +923,7 @@
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   markingCategory: Hair
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: belle
 
 - type: marking
@@ -932,7 +932,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: braided
 
 - type: marking
@@ -941,7 +941,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: bun
 
 - type: marking
@@ -950,7 +950,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: clean_cut
 
 - type: marking
@@ -959,7 +959,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: curl
 
 - type: marking
@@ -968,7 +968,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: hawk
 
 - type: marking
@@ -977,7 +977,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: jagged
 
 - type: marking
@@ -986,7 +986,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: jeremy
 
 - type: marking
@@ -995,7 +995,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: kajam
 
 - type: marking
@@ -1004,7 +1004,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: keid
 
 - type: marking
@@ -1013,7 +1013,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: kleeia
 
 - type: marking
@@ -1022,7 +1022,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: mizar
 
 - type: marking
@@ -1031,7 +1031,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: punkbraided
 
 - type: marking
@@ -1040,7 +1040,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: raine
 
 - type: marking
@@ -1049,7 +1049,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: rough
 
 - type: marking
@@ -1058,7 +1058,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: short
 
 - type: marking
@@ -1067,7 +1067,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: short2
 
 - type: marking
@@ -1076,7 +1076,7 @@
   markingCategory: Hair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
       state: spike
 
 # Facial Hairs
@@ -1086,7 +1086,7 @@
   markingCategory: FacialHair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/facial_hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/facial_hair.rsi
       state: ruff
 
 - type: marking
@@ -1095,7 +1095,7 @@
   markingCategory: FacialHair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/facial_hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/facial_hair.rsi
       state: elder
 
 - type: marking
@@ -1104,7 +1104,7 @@
   markingCategory: FacialHair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/facial_hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/facial_hair.rsi
       state: elder_chin
 
 - type: marking
@@ -1113,7 +1113,7 @@
   markingCategory: FacialHair
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/facial_hair.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/facial_hair.rsi
       state: kita
 
 - type: marking
@@ -1123,5 +1123,5 @@
   staticId: WolfTail
   speciesRestriction: [Vulpkanin, NeoVulpkanin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: fluffy_tail_ex

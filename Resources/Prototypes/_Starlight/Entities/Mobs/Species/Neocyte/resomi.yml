@@ -69,7 +69,7 @@
   - type: Puller
     needsHands: false
   - type: Icon
-    sprite: _Starlight/Mobs/Species/ProtoResomi/parts.rsi
+    sprite: _Starlight/Mobs/Species/Proto-Resomi/parts.rsi
     state: full
   - type: Body
     prototype: NeoResomi

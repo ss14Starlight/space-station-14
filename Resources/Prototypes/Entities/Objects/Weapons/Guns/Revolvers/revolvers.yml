@@ -182,6 +182,7 @@
   - type: RevolverAmmoProvider
     proto: CartridgeMagnumAP
 
+
 - type: entity
   name: pirate revolver
   parent: [BaseWeaponRevolver, BaseMajorContraband]
@@ -202,5 +203,16 @@
   - type: RevolverAmmoProvider
     capacity: 5
     chambers: [ True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null ]
+
+- type: entity
+  parent: WeaponRevolverPirate
+  id: WeaponRevolverPirateEmpty
+  suffix: Empty
+  components:
+  - type: RevolverAmmoProvider
+    proto: null
+    capacity: 5
+    chambers: [ null, null, null, null, null ]
     ammoSlots: [ null, null, null, null, null ]
 

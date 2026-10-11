@@ -126,6 +126,24 @@
         color: "#3bd22d"
 
 - type: entity
+  id: SpeedLoaderShotgunBirdshot
+  name: 12 gauge birdshot speedloader
+  parent: [ BaseSpeedLoaderShotgun, BaseSecuritySalvageContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunBirdshot
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Shotgun/shotgun_speed_loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-7
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-7
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#B87333"
+
+- type: entity
   id: SpeedLoaderShotgunIncendiary
   name: 12 gauge incendiary speedloader
   parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]

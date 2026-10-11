@@ -11,17 +11,6 @@
     layoutId: AirlockService
 
 - type: entity
-  parent: AirlockNT # Starlight
-  id: AirlockInternalAffairsLocked # Starlight
-  suffix: Internal Affairs, Locked # Starlight
-  components:
-  - type: Wires # Starlight
-    layoutId: AirlockSecurity # Starlight
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsInternalAffairs ] # Starlight
-
-- type: entity
   parent: AirlockServiceLocked
   id: AirlockTheatreLocked
   suffix: Theatre, Locked
@@ -968,13 +957,6 @@
 - type: entity
   parent: AirlockJanitorLocked
   id: AirlockMaintJanitorLocked
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
-
-- type: entity
-  parent: AirlockInternalAffairsLocked # Starlight
-  id: AirlockMaintInternalAffairsLocked # Starlight
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/maint.rsi

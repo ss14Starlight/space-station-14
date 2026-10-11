@@ -242,11 +242,6 @@
   - type: ActiveInputMover # Starlight
   - type: CosmicCenserTarget # Stellar - Cosmic Cult
   - type: Scent # Starlight - smell system
-  - type: SocialInteractionGiver
-    interactionPrototypes:
-    - Look
-    - Wave
-    - Pat
 
 - type: entity
   save: false

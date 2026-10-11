@@ -117,6 +117,17 @@
 
 - type: entity
   parent: NTCredit
+  id: NTCredit50
+  suffix: 50
+  components:
+  - type: Icon
+    sprite: _Starlight/Objects/Economy/cash.rsi
+    state: cash_50
+  - type: Stack
+    count: 50
+
+- type: entity
+  parent: NTCredit
   id: NTCredit100
   suffix: 100
   components:
@@ -126,3 +137,68 @@
   - type: Stack
     count: 100
 
+- type: entity
+  parent: NTCredit
+  id: NTCredit200
+  suffix: 200
+  components:
+  - type: Icon
+    sprite: _Starlight/Objects/Economy/cash.rsi
+    state: cash_200
+  - type: Stack
+    count: 200
+
+- type: entity
+  parent: NTCredit
+  id: NTCredit500
+  suffix: 500
+  components:
+  - type: Icon
+    sprite: _Starlight/Objects/Economy/cash.rsi
+    state: cash_500
+  - type: Stack
+    count: 500
+
+- type: entity
+  parent: NTCredit
+  id: NTCredit1000
+  suffix: 1000
+  components:
+  - type: Icon
+    sprite: _Starlight/Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 1000
+
+- type: entity
+  parent: NTCredit
+  id: NTCredit10000
+  suffix: 10000
+  components:
+  - type: Icon
+    sprite: _Starlight/Objects/Economy/cash.rsi
+    state: cash_10000
+  - type: Stack
+    count: 10000
+
+- type: entity
+  parent: NTCredit
+  id: NTCredit30000
+  suffix: 30000
+  components:
+  - type: Icon
+    sprite: _Starlight/Objects/Economy/cash.rsi
+    state: cash_30000
+  - type: Stack
+    count: 30000
+
+- type: entity
+  parent: NTCredit
+  id: NTCredit60000
+  suffix: 60000
+  components:
+  - type: Icon
+    sprite: _Starlight/Objects/Economy/cash.rsi
+    state: cash_60000
+  - type: Stack
+    count: 60000

@@ -10,5 +10,8 @@ antag-category-ussp-desc = The United Soviet Socialist Planets, otherwise referr
 antag-category-outlaws-name = Outlaws
 antag-category-outlaws-desc = In the cracks between major corporations and countries, numerous outlaws plot in the shadows. They may be in it for themselves or to further the schemes of any number of minor factions.
 
+antag-category-nanotrasen-name = NanoTrasen
+antag-category-nanotrasen-desc = The company you (allegedly) work for. Glory to NanoTrasen!
+
 antag-category-misc-name = Other
 antag-category-misc-desc = Various roles which don't fall under the other factions.

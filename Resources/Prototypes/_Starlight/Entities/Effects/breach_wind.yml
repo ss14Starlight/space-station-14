@@ -1,0 +1,10 @@
+- type: entity
+  id: BreachWindSound
+  name: breach wind
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AmbientSound
+    range: 9
+    volume: -6
+    sound:
+      path: /Audio/_Starlight/Effects/Weather/breach_wind.ogg

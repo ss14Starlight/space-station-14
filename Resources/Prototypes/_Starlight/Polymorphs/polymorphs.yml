@@ -1,4 +1,20 @@
 - type: polymorph
+  id: AdmemeForcedJohnToe
+  configuration:
+    entity: MobJohnToe
+    forced: true
+    inventory: Transfer
+    allowRepeatedMorphs: true
+    transferName: false
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    polymorphSound: !type:SoundPathSpecifier
+      path: /Audio/Magic/forcewall.ogg
+    exitPolymorphSound: !type:SoundPathSpecifier
+      path: /Audio/Magic/forcewall.ogg
+
+- type: polymorph
   id: VampireSanguinePoolPolymorph
   configuration:
     entity: MobVampireSanguinePool
@@ -10,9 +26,9 @@
     revertOnDeath: true
     effectProto: null
     polymorphSound: !type:SoundPathSpecifier
-      path: /Audio/_Starlight/Effects/Vampire/enter_blood.ogg
+      path: /Audio/_Starlight/Effects/vampire/enter_blood.ogg
     exitPolymorphSound: !type:SoundPathSpecifier
-      path: /Audio/_Starlight/Effects/Vampire/exit_blood.ogg
+      path: /Audio/_Starlight/Effects/vampire/exit_blood.ogg
 
 - type: polymorph
   id: AdminMouse
@@ -77,7 +93,73 @@
     transferName: false
     transferDamage: true
     duration: 12
-    polymorphSound: /Audio/_Starlight/Effects/CosmicCult/ability_lapse.ogg
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobArachnid
+  configuration:
+    entity: CosmicPolymorphEntArachnid
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobDiona
+  configuration:
+    entity: CosmicPolymorphEntDiona
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobMoth
+  configuration:
+    entity: CosmicPolymorphEntMoth
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobVox
+  configuration:
+    entity: CosmicPolymorphEntVox
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobSnail
+  configuration:
+    entity: CosmicPolymorphEntSnail
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+
+- type: polymorph
+  id: CosmicLapseMobDecapoid
+  configuration:
+    entity: CosmicPolymorphEntDecapoid
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: true
+    duration: 12
+    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -88,7 +170,7 @@
   description: Trapped in a lapse between here and there.
   components:
   - type: Sprite
-    sprite: _Starlight/Effects/CosmicCult/ability_lapsepolymorph.rsi
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
     layers:
       - state: humanoid
         shader: unshaded
@@ -140,7 +222,7 @@
   id: CosmicPolymorphEntArachnid
   components:
   - type: Sprite
-    sprite: _Starlight/Effects/CosmicCult/ability_lapsepolymorph.rsi
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
     layers:
       - state: spider
         shader: unshaded
@@ -151,7 +233,7 @@
   id: CosmicPolymorphEntDiona
   components:
   - type: Sprite
-    sprite: _Starlight/Effects/CosmicCult/ability_lapsepolymorph.rsi
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
     layers:
       - state: diona
         shader: unshaded
@@ -162,7 +244,7 @@
   id: CosmicPolymorphEntMoth
   components:
   - type: Sprite
-    sprite: _Starlight/Effects/CosmicCult/ability_lapsepolymorph.rsi
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
     layers:
       - state: moth
         shader: unshaded
@@ -173,7 +255,7 @@
   id: CosmicPolymorphEntVox
   components:
   - type: Sprite
-    sprite: _Starlight/Effects/CosmicCult/ability_lapsepolymorph.rsi
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
     layers:
       - state: vox
         shader: unshaded
@@ -184,7 +266,7 @@
   id: CosmicPolymorphEntSnail
   components:
   - type: Sprite
-    sprite: _Starlight/Effects/CosmicCult/ability_lapsepolymorph.rsi
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
     layers:
       - state: snail
         shader: unshaded
@@ -195,7 +277,7 @@
   id: CosmicPolymorphEntDecapoid
   components:
   - type: Sprite
-    sprite: _Starlight/Effects/CosmicCult/ability_lapsepolymorph.rsi
+    sprite: _Starlight/CosmicCult/Effects/ability_lapsepolymorph.rsi
     layers:
       - state: crab
         shader: unshaded
@@ -211,6 +293,17 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: false
+
+- type: polymorph
+  id: ForcedCluwneBeast
+  configuration:
+    entity: MobCluwneBeast
+    forced: true
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+    transferName: false
+    transferDamage: false
 
 - type: polymorph
   id: PermanentCorgiMorph
@@ -235,4 +328,16 @@
     duration: 20
 
 #Vampire
+- type: polymorph
+  id: VampireMouse
+  configuration:
+    entity: MobMouse
+    revertOnDeath: true
+    revertOnCrit: true
 
+- type: polymorph
+  id: VampireBat
+  configuration:
+    entity: MobBat
+    revertOnDeath: true
+    revertOnCrit: true

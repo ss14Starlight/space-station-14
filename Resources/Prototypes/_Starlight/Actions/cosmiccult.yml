@@ -7,7 +7,7 @@
     useDelay: 50
     itemIconStyle: NoItem
     icon:
-      sprite: _Starlight/Interface/CosmicCult/cosmiccult_abilities.rsi
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: siphon
   - type: TargetAction
   - type: EntityTargetAction
@@ -29,7 +29,7 @@
     useDelay: 120
     itemIconStyle: NoItem
     icon:
-      sprite: _Starlight/Interface/CosmicCult/cosmiccult_abilities.rsi
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: blank
     checkCanInteract: false
   - type: TargetAction
@@ -56,7 +56,7 @@
     useDelay: 999
     itemIconStyle: NoItem
     icon:
-      sprite: _Starlight/Interface/CosmicCult/cosmiccult_abilities.rsi
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: monument
   - type: InstantAction
     event: !type:EventCosmicPlaceMonument {}
@@ -75,7 +75,7 @@
     useDelay: 999
     itemIconStyle: NoItem
     icon:
-      sprite: _Starlight/Interface/CosmicCult/cosmiccult_abilities.rsi
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: monument-relocate
   - type: InstantAction
     event: !type:EventCosmicMoveMonument
@@ -92,7 +92,7 @@
     itemIconStyle: NoItem
     useDelay: 0
     icon:
-      sprite: _Starlight/Interface/CosmicCult/cosmiccult_abilities.rsi
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: return
   - type: InstantAction
     event: !type:EventCosmicReturn {}
@@ -106,7 +106,7 @@
     useDelay: 45
     itemIconStyle: NoItem
     icon:
-      sprite: _Starlight/Interface/CosmicCult/cosmiccult_abilities.rsi
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: lapse
   - type: TargetAction
   - type: EntityTargetAction
@@ -133,7 +133,7 @@
     checkCanInteract: false
     itemIconStyle: NoItem
     icon:
-      sprite: _Starlight/Interface/CosmicCult/cosmiccult_abilities.rsi
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: glare
   - type: InstantAction
     event: !type:EventCosmicGlare {}
@@ -147,7 +147,7 @@
     useDelay: 25
     itemIconStyle: NoItem
     icon:
-      sprite: _Starlight/Interface/CosmicCult/cosmiccult_abilities.rsi
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: ingress
   - type: TargetAction
   - type: EntityTargetAction
@@ -166,7 +166,7 @@
     checkCanInteract: false
     itemIconStyle: NoItem
     icon:
-      sprite: _Starlight/Interface/CosmicCult/cosmiccult_abilities.rsi
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: entropic
   - type: InstantAction
     event: !type:EventCosmicImposition {}
@@ -181,7 +181,7 @@
     raiseOnUser: true
     itemIconStyle: NoItem
     icon:
-      sprite: _Starlight/Interface/CosmicCult/cosmiccult_abilities.rsi
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: nova
   - type: TargetAction
     range: 60
@@ -199,7 +199,7 @@
     useDelay: 25
     itemIconStyle: NoItem
     icon:
-      sprite: _Starlight/Interface/CosmicCult/cosmiccult_abilities.rsi
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: corruption
   - type: TargetAction
   - type: EntityTargetAction
@@ -221,7 +221,7 @@
     useDelay: 18
     itemIconStyle: NoItem
     icon:
-      sprite: _Starlight/Interface/CosmicCult/cosmiccult_abilities.rsi
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: sunder
   - type: TargetAction
     checkCanAccess: false
@@ -238,7 +238,7 @@
     useDelay: 8
     itemIconStyle: NoItem
     icon:
-      sprite: _Starlight/Interface/CosmicCult/cosmiccult_abilities.rsi
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: ingress
   - type: TargetAction
     range: 2
@@ -263,7 +263,7 @@
     checkCanInteract: false
     itemIconStyle: NoItem
     icon:
-      sprite: _Starlight/Interface/CosmicCult/cosmiccult_abilities.rsi
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: slumber
   - type: InstantAction
     event: !type:EventCosmicColossusHibernate {}
@@ -279,7 +279,7 @@
     useDelay: 1
     itemIconStyle: NoItem
     icon:
-      sprite: _Starlight/Interface/CosmicCult/cosmiccult_abilities.rsi
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: nova
   - type: InstantAction
     event: !type:EventCosmicColossusEffigy {}
@@ -295,7 +295,7 @@
     useDelay: 60
     itemIconStyle: NoItem
     icon:
-      sprite: _Starlight/Interface/CosmicCult/cosmiccult_abilities.rsi
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: ingress
   - type: TargetAction
     range: 2

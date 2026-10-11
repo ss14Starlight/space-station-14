@@ -62,6 +62,7 @@
         enum.CommunicationsConsoleUiKey.Key:
           type: CommunicationsConsoleBoundUserInterface
 
+
 - type: entity
   name: Captain's Management Tablet
   parent: BaseCommunicationTablet
@@ -80,3 +81,32 @@
     - type: StealTarget
       stealGroup: CaptainTablet
 
+
+- type: entity
+  name: Central Command Tablet
+  parent: [BaseCentcommContraband, BaseCommunicationTablet]
+  id: CentCommCommunicationTablet
+  description: The older, more narcistic brother of the Captain's Management Tablet. Comes with a fancy self recharging power cell.
+  components:
+    - type: Sprite
+      layers:
+      - state: cc_tablet
+        map: ["enum.CommandTabletLayers.Frame"]
+      - state: cc_powered
+        shader: unshaded
+        map: ["enum.CommandTabletLayers.Powered"]
+        visible: false
+    - type: AccessReader
+      access: [[ "CentralCommand" ]]
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellAntiqueProto
+          blacklist:
+            tags: [ MechReactor ]
+    - type: CommunicationsConsole
+      title: comms-console-announcement-title-centcom
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      canBroadcast: true
+      canShuttle: true

@@ -1,0 +1,32 @@
+
+- type: entity
+  parent: BaseBlueprint
+  id: BlueprintBasicAmmo
+  name: basic ammo
+  description: A blueprint containing the schematics to basic ammo and magazines for weapons commonly used by the salvage team.
+  components:
+    - type: Blueprint
+      providedRecipes:
+        - MagazineBoxLightRifleSP
+        - MagazineBoxPistolSP
+        - MagazineBoxRifleSP
+        - BoxLethalshot
+        - MagazineLightRifleEmpty
+        - MagazinePistolEmpty
+        - MagazineRifleEmpty
+        - SpeedLoaderShotgunEmpty
+        - MagazineBatteryLr30
+        - MagazineBoxBattery
+
+- type: entity
+  parent: BaseBlueprint
+  id: BlueprintBasicMedical
+  name: basic medical supplies
+  description: A blueprint containing the schematics to basic medical supplies for use by the salvage team.
+  components:
+    - type: Blueprint
+      providedRecipes:
+          - Brutepack
+          - Ointment
+          - Gauze
+          - JetInjector

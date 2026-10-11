@@ -1,0 +1,7 @@
+- type: accessLevel
+  id: MedTak
+  name: id-card-access-level-medtak
+
+- type: wireLayout
+  parent: Airlock
+  id: AirlockMedTak

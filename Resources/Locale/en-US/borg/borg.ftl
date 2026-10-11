@@ -38,6 +38,7 @@ borg-select-type-menu-available = Available types
 borg-select-type-menu-information = Information
 borg-select-type-menu-select-type = Select type to view information
 borg-select-type-menu-confirm = Confirm selection
+borg-select-type-menu-guidebook = Guidebook
 
 ## Borg type information
 

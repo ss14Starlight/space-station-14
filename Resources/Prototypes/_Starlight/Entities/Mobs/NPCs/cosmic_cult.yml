@@ -92,7 +92,7 @@
             acts: [ "Destruction" ]
           - !type:PlaySoundBehavior
             sound:
-              path: /Audio/_Starlight/Effects/CosmicCult/ability_lapse.ogg
+              path: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -154,12 +154,12 @@
         Blunt: 10
         Structural: 16
     soundHit:
-      path: /Audio/_Starlight/Weapons/CosmicCult/cosmicsword_hit.ogg
+      path: /Audio/_Starlight/CosmicCult/cosmicsword_hit.ogg
       params:
         variation: 0.2
         volume: 1
     soundSwing:
-      path: /Audio/_Starlight/Weapons/CosmicCult/cosmicweapon_swing.ogg
+      path: /Audio/_Starlight/CosmicCult/cosmicweapon_swing.ogg
       params:
         variation: 0.125
         volume: -4
@@ -188,12 +188,12 @@
         Blunt: 5
         Structural: 12
     soundHit:
-      path: /Audio/_Starlight/Weapons/CosmicCult/cosmiclance_hit.ogg
+      path: /Audio/_Starlight/CosmicCult/cosmiclance_hit.ogg
       params:
         variation: 0.2
         volume: 1
     soundSwing:
-      path: /Audio/_Starlight/Weapons/CosmicCult/cosmicweapon_swing.ogg
+      path: /Audio/_Starlight/CosmicCult/cosmicweapon_swing.ogg
       params:
         variation: 0.125
         volume: -4
@@ -218,14 +218,14 @@
         true
   - type: Gun
     projectileSpeed: 15
-    soundGunshot: /Audio/_Starlight/Weapons/CosmicCult/projectile_razor.ogg
+    soundGunshot: /Audio/_Starlight/CosmicCult/projectile_razor.ogg
     soundEmpty: null
     fireRate: 1
     useKey: false
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 1.8
     rechargeSound:
-      path: /Audio/_Starlight/Weapons/CosmicCult/projectile_razor_reload.ogg
+      path: /Audio/_Starlight/CosmicCult/projectile_razor_reload.ogg
       params:
         volume: -99
   - type: BasicEntityAmmoProvider

@@ -81,23 +81,22 @@
     - id: SiliconLiberation #Starlight
       prob: 0.20 #Starlight
 
-# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
-# - type: entity
-#   parent: BaseGameRule
-#   id: SubGamemodesRuleNoWizardNoXenoborg
-#   components:
-#   - type: SubGamemodes
-#     rules:
-#     - id: Thief
-#       prob: 0.70 # Starlight start. Most likely
-#     - id: SLChangeling # Lings
-#       prob: 0.15
-#     - id: VampireLess # Reworked
-#       prob: 0.15
-#     #- id: SubBrighteye
-#     #  prob: 0.05
-#     - id: SiliconLiberation
-#       prob: 0.2 #Starlight end
+- type: entity
+  parent: BaseGameRule
+  id: SubGamemodesRuleNoWizardNoXenoborg
+  components:
+  - type: SubGamemodes
+    rules:
+    - id: Thief
+      prob: 0.70 # Starlight start. Most likely
+    - id: SLChangeling # Lings
+      prob: 0.15
+    - id: VampireLess # Reworked
+      prob: 0.15
+    #- id: SubBrighteye
+    #  prob: 0.05
+    - id: SiliconLiberation
+      prob: 0.2 #Starlight end
 
 - type: entity
   parent: BaseGameRule
@@ -132,14 +131,13 @@
   - type: RespawnTracker
     respawnDelay: 5
 
-# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
-# - type: entity
-#   id: InactivityTimeRestart
-#   parent: BaseGameRule
-#   components:
-#   - type: InactivityRule
-#     inactivityMaxTime: 600
-#     roundEndDelay: 10
+- type: entity
+  id: InactivityTimeRestart
+  parent: BaseGameRule
+  components:
+  - type: InactivityRule
+    inactivityMaxTime: 600
+    roundEndDelay: 10
 
 - type: entity
   id: MaxTimeRestart

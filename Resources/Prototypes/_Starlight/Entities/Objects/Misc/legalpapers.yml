@@ -11,7 +11,7 @@
     - Paper
     - HighRiskItem
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/LegalPapers/rd-diploma.rsi
+    sprite: _Starlight/Objects/Specific/legalpapers/rd-diploma.rsi
     state: rd-diploma
   - type: StaticPrice
     price: 1000
@@ -33,7 +33,7 @@
     - Paper
     - HighRiskItem
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/LegalPapers/cmo-license.rsi
+    sprite: _Starlight/Objects/Specific/legalpapers/cmo-license.rsi
     state: cmo-license
   - type: StaticPrice
     price: 1000
