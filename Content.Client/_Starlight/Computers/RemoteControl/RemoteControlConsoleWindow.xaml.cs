@@ -467,7 +467,9 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         _remoteRadialMenu?.Close();
         _remoteRadialMenu = menu;
         menu.OnClose += OnRemoteRadialMenuClosed;
-        menu.OpenEmbedded(RootContainer, RootContainer.GetLocalPosition(RemoteView.GlobalPosition + (RemoteView.Size / 2)));
+        var remoteViewCenter = RootContainer.GetLocalPosition(RemoteView.ScreenCoordinates) / RootContainer.UIScale
+                               + (RemoteView.Size / 2);
+        menu.OpenEmbedded(RootContainer, remoteViewCenter);
         return true;
     }
 
