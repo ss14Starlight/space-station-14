@@ -3,11 +3,16 @@
   id: StationAiIDCard
   name: station AI ID card
   components:
+  - type: Sprite
+    layers:
+    - state: default
   - type: PresetIdCard
     job: StationAi
 
 - type: !PartialOnly entity
   id: AiHeld
+  # These component bundles are applied to an existing AI, not saved as standalone map entities.
+  save: false
   components:
   - type: Alerts
   - type: Pda
