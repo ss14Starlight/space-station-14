@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: CigarCase
+  components:
+  - type: Storage
+    whitelist:
+      components:
+        - Smokable
+        - Matchstick
+        - Welder # for lighters
+        - Crayon # they're ciggie shaped
+  # Vending Machines Prices
+  - type: ItemPrice
+    priceCategory: miscellaneous

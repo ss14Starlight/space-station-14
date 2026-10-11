@@ -1,0 +1,12 @@
+- type: !PartialOnly entity
+  id: BaseMobSlimePerson
+  components:
+  - type: SocialInteractionReceiver
+    interactionOverrides: # laspi don't have noses
+    - id: Pat
+      interactSound: /Audio/Voice/Slime/slime_squish.ogg
+    - id: Boop
+      interactString: booping-laspi-success
+      messagePerceivedByOthers: booping-laspi-success-others
+      emoteMessage: booping-laspi-emote
+      interactSound: /Audio/Voice/Slime/slime_squish.ogg

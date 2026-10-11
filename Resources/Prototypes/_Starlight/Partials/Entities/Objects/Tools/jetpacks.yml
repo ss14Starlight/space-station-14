@@ -1,0 +1,41 @@
+- type: !PartialOnly entity
+  id: BaseJetpack
+  components:
+  - type: Jump
+    action: JumpJet
+    isEquipment: true
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: HeldSpeedModifier
+
+- type: !PartialOnly entity
+  id: JetpackBlack
+  components:
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HeldSpeedModifier
+
+- type: !PartialOnly entity
+  id: JetpackCaptain
+  components:
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HeldSpeedModifier
+
+# Mini jetpack textures
+- type: !PartialOnly entity
+  id: JetpackSecurity
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Tanks/Jetpacks/security_mini.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Tanks/Jetpacks/security_mini.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Tanks/Jetpacks/security_mini.rsi
+
+- type: !PartialOnly entity
+  id: JetpackSecurityFilled
+  name: !Remove # inherit name from parent

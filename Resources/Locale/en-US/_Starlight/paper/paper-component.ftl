@@ -11,8 +11,10 @@ paper-component-examine-detail-signed-by = {CAPITALIZE(THE($paper))} {CONJUGATE-
 paper-form-fill-button = Fill
 paper-signature-sign-button = Sign
 paper-datetime-button = Date & Time
+paper-datetime-format = {$date} // {$time} Shift Time
 paper-form-dialog-ok = OK
 paper-form-dialog-cancel = Cancel
+paper-signature-unknown = Unknown
 
 paper-tamper-proof-modified-message = This page was written using tamper-proof ink.
 

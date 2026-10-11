@@ -231,7 +231,6 @@
     layers:
     - state: fax-machine
   - type: Flatpack
-    allowUnpackOnTables: true
     entity: FaxMachineBase
 
 - type: entity
@@ -278,7 +277,6 @@
     size: Normal
   - type: Flatpack
     entity: SyndicateMicrowave
-    allowUnpackOnTables: true # Starlight
   - type: GuideHelp
     guides:
     - FoodRecipes

@@ -6,6 +6,7 @@ ui-options-tab-admin = Admin
 ui-options-tab-graphics = Graphics
 ui-options-tab-controls = Controls
 ui-options-tab-audio = Audio
+ui-options-tab-network = Network
 ui-options-tab-misc = General
 
 ui-options-apply = Save & apply
@@ -17,10 +18,12 @@ ui-options-value-percent = { TOSTRING($value, "P0") }
 # Misc/General menu
 
 ui-options-discordrich = Enable Discord Rich Presence
+ui-options-general-ui-style = UI Style
 ui-options-general-discord = Discord
 ui-options-general-cursor = Cursor
 ui-options-general-speech = Speech
 ui-options-general-storage = Storage
+ui-options-general-accessibility = Accessibility
 
 ## Audio menu
 
@@ -44,6 +47,7 @@ ui-options-display-label = Display
 ui-options-quality-label = Quality
 ui-options-misc-label = Misc
 ui-options-interface-label = Interface
+
 
 ui-options-auto-fill-highlights = Automatically set the highlights list based on your character's name and job
 ui-options-highlights-color = Highlights color:
@@ -319,6 +323,36 @@ ui-options-function-text-complete-next = Complete next
 ui-options-function-text-complete-prev = Complete previous
 
 ## Network menu
+
+ui-options-net-predict = Client-side prediction
+
+ui-options-net-interp-ratio = State buffer size
+ui-options-net-interp-ratio-tooltip = Increasing this will generally make the game more resistant
+                                      to server->client packet-loss, however in doing so it
+                                      effectively adds slightly more latency and requires the
+                                      client to predict more future ticks.
+
+ui-options-net-predict-tick-bias = Prediction tick bias
+ui-options-net-predict-tick-bias-tooltip = Increasing this will generally make the game more resistant
+                                           to client->server packet-loss, however in doing so it
+                                           effectively adds slightly more latency and requires the
+                                           client to predict more future ticks.
+
+ui-options-net-pvs-spawn = PVS entity spawn budget
+ui-options-net-pvs-spawn-tooltip = This limits the rate at which the server will send newly spawned
+                                       entities to the client. Lowering this can help reduce
+                                       stuttering due to entity spawning, but can lead to pop-in.
+
+ui-options-net-pvs-entry = PVS entity budget
+ui-options-net-pvs-entry-tooltip = This limits the rate at which the server will send newly visible
+                                       entities to the client. Lowering this can help reduce
+                                       stuttering, but can lead to pop-in.
+
+ui-options-net-pvs-leave = PVS detach rate
+ui-options-net-pvs-leave-tooltip = This limits the rate at which the client will remove
+                                       out-of-view entities. Lowering this can help reduce
+                                       stuttering when walking around, but could occasionally
+                                       lead to mispredicts and other issues.
 
 ## Toggle window console command
 cmd-options-desc = Opens options menu, optionally with a specific tab selected.

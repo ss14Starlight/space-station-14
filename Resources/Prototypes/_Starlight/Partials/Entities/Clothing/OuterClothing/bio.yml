@@ -1,0 +1,42 @@
+- type: !PartialOnly entity
+  id: ClothingOuterBioGeneral
+  components:
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.1 # also removed the specific coefficients from the security and virology biosuits
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - ClothingOuterBioCmo
+    - ClothingOuterBioJanitor
+    - ClothingOuterBioScientist
+  components:
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+
+- type: !PartialOnly entity
+  id: ClothingOuterBioSecurity
+  components:
+  # this used to be inherited from ClothingOuterBioGeneral, which is no longer a parent, and is a downgrade from upstream's 0.4
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.1
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+
+- type: !PartialOnly entity
+  id: ClothingOuterBioVirology
+  components:
+  - type: !Remove ZombificationResistance
+    zombificationResistanceCoefficient: !Remove
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon

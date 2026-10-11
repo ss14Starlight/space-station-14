@@ -85,6 +85,10 @@ namespace Content.Server.RoundEnd
         private void SetAutoCallTime()
         {
             AutoCallStartTime = _gameTiming.CurTime;
+            // Starlight begin
+            AutoCallTime = _autoCalledBefore ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
+                : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime) * 60;
+            // Starlight end
         }
 
         private void Reset()
@@ -393,13 +397,14 @@ namespace Content.Server.RoundEnd
         public override void Update(float frameTime)
         {
             // Check if we should auto-call.
-            int mins = _autoCalledBefore ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
-                                        : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
-            if (mins != 0 && _gameTiming.CurTime - AutoCallStartTime > TimeSpan.FromMinutes(mins))
+            // Starlight begin
+            // (removal here)
+            if (AutoCallTime != 0 && _gameTiming.CurTime - AutoCallStartTime > TimeSpan.FromSeconds(AutoCallTime))
+            // Starlight end
             {
-                if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null && _shuttleCallsEnabled) //Starlight-edit
+                if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
                 {
-                    StartCallVote(); // Starlight-edit
+                    if (_shuttleCallsEnabled) StartCallVote(); // Starlight-edit - Moved check down here so that when disabling shuttlecalls, it will use the extension time once it suppresses the first one.
                     _autoCalledBefore = true;
                 }
 
@@ -408,13 +413,9 @@ namespace Content.Server.RoundEnd
             }
         }
 
-        public TimeSpan TimeToCallShuttle()
-        {
-            var autoCalledBefore = _autoCalledBefore
-                ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
-                : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
-            return AutoCallStartTime + TimeSpan.FromMinutes(autoCalledBefore);
-        }
+        // Starlight begin
+        public TimeSpan TimeToCallShuttle() => AutoCallStartTime + TimeSpan.FromSeconds(AutoCallTime);
+        // Starlight end
     }
 
     public sealed class RoundEndSystemChangedEvent : EntityEventArgs

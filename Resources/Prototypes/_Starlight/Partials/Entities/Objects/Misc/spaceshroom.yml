@@ -1,0 +1,38 @@
+- type: !PartialOnly entity
+  id: Spaceshroom
+  components:
+  # Dwarf spam
+  - type: TriggerOnPointedAt
+  - type: WhitelistTriggerCondition
+    userWhitelist:
+      tags:
+      - Dwarf
+  - type: SpeakOnTrigger
+    text: dwarf-callout-mushroom
+    targetUser: true
+
+- type: !PartialOnly entity
+  id: FoodSpaceshroom
+  components:
+  # Dwarf spam
+  - type: TriggerOnPointedAt
+  - type: WhitelistTriggerCondition
+    userWhitelist:
+      tags:
+      - Dwarf
+  - type: SpeakOnTrigger
+    text: dwarf-callout-mushroom
+    targetUser: true
+
+- type: !PartialOnly entity
+  id: FoodSpaceshroomCooked
+  components:
+  # Dwarf spam
+  - type: TriggerOnPointedAt
+  - type: WhitelistTriggerCondition
+    userWhitelist:
+      tags:
+      - Dwarf
+  - type: SpeakOnTrigger
+    text: dwarf-callout-mushroom
+    targetUser: true

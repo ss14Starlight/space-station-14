@@ -16,6 +16,7 @@
         - Biological
         - IPC
         - Hybrid
+        - MoffDemonBiological
     - type: ShowHealthIcons
       damageContainers:
         - Biological
@@ -76,6 +77,10 @@
     - type: EyeProtection
       protectionTime: 5
     - type: ShowHealthBars
+      damageContainers:
+      - Biological
+      - Hybrid
+      - MoffDemonBiological
     - type: SolutionScanner
     - type: Construction
       graph: GlassesSecHUD
@@ -126,6 +131,7 @@
       damageContainers:
         - Biological
         - Hybrid # Neocytes
+        - MoffDemonBiological
     - type: SolutionScanner
     - type: Construction
       graph: GlassesSecHUD
@@ -210,6 +216,7 @@
       damageContainers:
         - Biological
         - Hybrid
+        - MoffDemonBiological
     - type: ShowHealthIcons
       damageContainers:
         - Biological

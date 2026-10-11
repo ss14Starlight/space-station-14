@@ -1,0 +1,41 @@
+- type: !PartialOnly entity
+  id: ClothingHeadHatChickenhead
+  components:
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatPumpkin
+  components:
+  - type: PointLight
+    mask: !Remove
+    lightMask: ConeSingle
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatCatEars
+  categories: !Remove
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/blackcatears.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/blackcatears.rsi
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatCatEarsValid
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/blackcatears.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/blackcatears.rsi
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatDogEars
+  description: Only for good dogs. # we gender neutral in this mf spacestation

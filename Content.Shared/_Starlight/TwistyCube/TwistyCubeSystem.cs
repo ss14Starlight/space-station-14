@@ -1,11 +1,15 @@
 using Content.Shared.Examine;
+using Robust.Shared.Random;
 
 namespace Content.Shared._Starlight.TwistyCube;
 
 public sealed partial class TwistyCubeSystem: EntitySystem
 {
+    private const int ScrambleMoves = 60;
+
     [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -18,9 +22,7 @@ public sealed partial class TwistyCubeSystem: EntitySystem
 
     private void OnExamined(Entity<TwistyCubeComponent> ent, ref ExaminedEvent args)
     {
-        var isSolved = ent.Comp.State == new TwistyCubeState();
-        var solvedText = isSolved ? Loc.GetString("twistycube-solved") : Loc.GetString("twistycube-unsolved");
-
+        var solvedText = ent.Comp.State.Solved ? Loc.GetString("twistycube-solved") : Loc.GetString("twistycube-unsolved");
         args.PushMarkup(solvedText);
     }
 
@@ -40,7 +42,19 @@ public sealed partial class TwistyCubeSystem: EntitySystem
     {
         TwistyCubeAction action = msg.Action;
         TwistyCubeComponent comp = ent.Comp;
-        comp.State.ApplyAction(action);
+        if (action == TwistyCubeAction.Scramble)
+        {
+            for (int i = 0; i < ScrambleMoves; i++)
+                comp.State.ApplyAction((TwistyCubeAction) _random.Next(
+                    (int) TwistyCubeAction.FrontClockwise,
+                    (int) TwistyCubeAction.Scramble
+                ));
+        }
+        else
+        {
+            comp.State.ApplyAction(action);
+        }
+
         Dirty(ent, comp);
         if (TryComp<AppearanceComponent>(ent, out var appearance))
             _appearance.QueueUpdate(ent, appearance);

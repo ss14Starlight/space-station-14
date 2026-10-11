@@ -7,6 +7,7 @@ admin-notes-id = Id: {$id}
 admin-notes-type = Type: {$type}
 admin-notes-severity = Severity: {$severity}
 admin-notes-secret = Secret
+admin-notes-notsecret = Not secret
 admin-notes-expires = Expires on: {$expires}
 admin-notes-expires-never = Does not expire
 admin-notes-edited-never = Never
@@ -41,6 +42,7 @@ admin-notes-minutes = {$minutes} minutes
 # Note editor UI
 admin-note-editor-title-new = Creating a new note for {$player}
 admin-note-editor-title-existing = Editing note {$id} on {$player} by {$author}
+admin-note-editor-pop-out = Pop out
 admin-note-editor-secret = Secret?
 admin-note-editor-secret-tooltip = Checking this will make the note not be visible by the player
 admin-note-editor-type-note = Note
@@ -72,11 +74,13 @@ admin-note-button-months = Months
 admin-note-button-years = Years
 admin-note-button-centuries = Centuries
 
+
 # Verb
 admin-notes-verb-text = Open Admin Notes
 
 # Watchlist and message login
 admin-notes-watchlist = Watchlist for {$player}: {$message}
+admin-notes-new-message = You've received an admin message from {$admin}: {$message}
 admin-notes-fallback-admin-name = [System]
 
 # Admin remarks

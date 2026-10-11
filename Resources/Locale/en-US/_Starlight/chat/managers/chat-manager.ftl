@@ -1,3 +1,4 @@
+
 chat-manager-send-ooc-wrap-message = OOC: [bold]{$playerTitle} [color={$nameColor}]{$playerName}:[/color] [color={$messageColor}]{$message}[/color][/bold]
 
 chat-speech-verb-name-felionoid = Felionoid
@@ -5,6 +6,7 @@ chat-speech-verb-felionoid-1 = purrs
 chat-speech-verb-felionoid-2 = meows
 chat-speech-verb-felionoid-3 = hisses
 chat-speech-verb-felionoid-4 = yowls
+chat-speech-verb-name-vulpkanin = Vulpkanin
 
 chat-speech-verb-suffix-pause = ...
 

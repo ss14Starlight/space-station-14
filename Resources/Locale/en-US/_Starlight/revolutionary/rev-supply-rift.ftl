@@ -2,6 +2,8 @@ rev-supply-rift-placed = Psst..! Comrades! A supply rift has been opened by comr
 rev-supply-rift-sender = Private Soviet Communications
 
 # armaments rift
+rev-supply-rift-charging = A supply rift is already in use! (Charging: {$percentage}% - Placed by comrade {$name} {$location})
+rev-supply-rift-ready = Supply rift (Ready to Deploy)
 rev-supply-rift-destroyed = A rift has been destroyed! We deemed it to be too risky to open another. Good luck to your revolution!
 rev-supply-rift-charged = (!) A shady portal that coughs up Soviet stuff. This exposes them! If it's destroyed, commies won't be able to open another! There are currently {$count} active rifts!
 
@@ -40,6 +42,7 @@ toz-desc = Aim at head and eyes. Uses .42 ammo, comes with extended magazine.
 # Wearables
 soviet-eva-name = Soviet EVA Suit
 soviet-eva-desc = A rugged space suit with the hammer and sickle emblazoned on the back. Space cold resistant.
+soviet-eva-helm-name = Soviet EVA Helmet
 soviet-eva-helm-desc = A sturdy EVA helmet with a red star emblazoned on the front. Glory to the workers of space!
 soviet-bandolier-name = Marine bandolier (SSF)
 soviet-bandolier-desc = The marines have surplus bandoliers that can hold ammo, knives and radio.

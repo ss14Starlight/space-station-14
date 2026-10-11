@@ -20,6 +20,7 @@ nuke-user-interface-eject-button = EJECT
 ## Upper status
 nuke-user-interface-first-status-device-locked = DEVICE LOCKED
 nuke-user-interface-first-status-input-code = INPUT CODE
+nuke-user-interface-first-status-input-time = INPUT TIME
 nuke-user-interface-first-status-device-ready = DEVICE READY
 nuke-user-interface-first-status-device-armed = DEVICE ARMED
 nuke-user-interface-first-status-device-cooldown = DEACTIVATED

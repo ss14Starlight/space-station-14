@@ -69,6 +69,37 @@
       layers:
         - !CombineIndex:2 color: "#5eff5e" # Default color is now the green ON state.
 
+# Subfloor layers
+- type: !PartialOnly entity
+  id: GasUnaryBase
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasVentPump
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasPassiveVent
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasVentScrubber
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasOutletInjector
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
 # Fan noise while the thermomachine is switched on and powered.
 - type: !PartialOnly entity
   id: BaseGasThermoMachine

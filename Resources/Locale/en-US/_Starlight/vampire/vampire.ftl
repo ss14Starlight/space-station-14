@@ -45,6 +45,7 @@ objective-condition-drain-description = Drink {$count} units of blood from crew 
 objective-vampire-thrall-obey-master-title = Obey your master, {$targetName}.
 
 # Class selection action
+action-vampire-class-select = Select vampire class
 action-vampire-class-select-desc = Choose your vampire subclass
 
 # Round end statistics
@@ -82,6 +83,7 @@ vampire-space-burn-warning = The harsh void light scorches your undead flesh!
 
 action-vampire-blood-eruption-activated = You cause blood to erupt in spikes around you!
 
+action-vampire-blood-bringers-rite-not-enough-power = You lack full vampiric power (need above 1000 total blood & 8 unique victims)
 action-vampire-blood-brighters-rite-not-enough-blood = Not enough blood to activate blood bringers rite
 action-vampire-blood-bringers-rite-start = Blood Bringers Rite activated!
 action-vampire-blood-bringers-rite-stop = Blood bringers rite deactivated
@@ -103,6 +105,7 @@ action-vampire-cloak-of-darkness-stop = You step out of the shadows.
 
 action-vampire-shadow-snare-placed = You set a shadow snare trap.
 action-vampire-shadow-snare-wrong-place = You can't place a trap here.
+action-vampire-shadow-snare-scatter = You scattered the shadow trap.
 vampire-shadow-snare-oldest-removed = Your old shadow snare dissipates.
 ent-shadow-snare-ensnare = shadow snare
 
@@ -110,6 +113,7 @@ action-vampire-shadow-anchor-returned = You returned to the shadow anchor
 action-vampire-shadow-anchor-installed = You've secured a spot in the shadows
 
 action-vampire-shadow-boxing-start = You begin shadow boxing.
+action-vampire-shadow-boxing-stop = Shadow boxing has been stoped.
 action-vampire-shadow-boxing-ends = Shadow boxing ends.
 
 action-vampire-dark-passage-wrong-place = The darkness here is impenetrable...
@@ -165,12 +169,15 @@ vampire-seismic-stomp-activate = The ground shudders beneath your fury!
 vampire-overwhelming-force-start = Your presence becomes immovable.
 vampire-overwhelming-force-stop = You relax your iron grip.
 vampire-overwhelming-force-too-heavy = This object is far too heavy to move!
+vampire-overwhelming-force-door-pried = You wrench the door open with brute strength.
+vampire-overwhelming-force-latch-blocked = You can't get a grip on something so immovable!
 
 vampire-demonic-grasp-hit = A demonic claw seizes you!
 vampire-demonic-grasp-pull = The claw drags you toward the vampire!
 
 vampire-charge-start = You barrel forward with unstoppable force!
 vampire-charge-impact = You crash into {CAPITALIZE(THE($target))} with devastating force!
+
 
 vampire-blood-swell-cancel-shoot = Your fingers don`t fit in the trigger guard!!
 

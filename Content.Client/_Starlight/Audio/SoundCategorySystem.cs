@@ -21,6 +21,8 @@ public sealed partial class SoundCategorySystem : EntitySystem
     private readonly Dictionary<string, SoundCategory> _files = new();
     private readonly List<(string Prefix, SoundCategory Category)> _prefixes = new();
     private readonly List<EntityUid> _pending = new();
+    private readonly Dictionary<EntityUid, SoundCategory> _changes = new();
+    private readonly List<EntityUid> _gone = new();
     private int _exemptDepth;
 
     public override void Initialize()
@@ -28,7 +30,7 @@ public sealed partial class SoundCategorySystem : EntitySystem
         base.Initialize();
 
         UpdatesOutsidePrediction = true;
-        UpdatesBefore.Add(typeof(AudioSystem));
+        UpdatesAfter.Add(typeof(AudioSystem));
 
         SubscribeLocalEvent<AudioComponent, ComponentInit>(OnAudioInit);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnProtoReload);
@@ -102,17 +104,39 @@ public sealed partial class SoundCategorySystem : EntitySystem
 
         foreach (var uid in _pending)
         {
-            if (!TryComp(uid, out AudioComponent? audio)
-                || GetCategory(audio) is not { } category
-                || !_gains.TryGetValue(category, out var gain)
-                || gain.Equals(1f))
+            if (!TryComp(uid, out AudioComponent? audio) || GetCategory(audio) is not { } category)
                 continue;
 
-            var change = SharedAudioSystem.GainToVolume(MathF.Max(gain, MinGain));
-            _audio.SetVolume(uid, audio.Params.Volume + change, audio);
+            _changes[uid] = category;
         }
 
         _pending.Clear();
+
+        // Applied straight to the source after AudioSystem set it from Params, every frame. Changing Params through
+        // SetVolume touched a networked field of server sounds, which made the engine re-apply their state and seek
+        // them to client time: short sounds such as a carp bite stopped right after they started.
+        _gone.Clear();
+        foreach (var (uid, category) in _changes)
+        {
+            if (!TryComp(uid, out AudioComponent? audio))
+            {
+                _gone.Add(uid);
+                continue;
+            }
+
+            if (!_gains.TryGetValue(category, out var gain) || gain.Equals(1f))
+                continue;
+
+            if (audio.Gain <= 0f)
+                continue;
+
+            audio.Volume = audio.Params.Volume + SharedAudioSystem.GainToVolume(MathF.Max(gain, MinGain));
+        }
+
+        foreach (var uid in _gone)
+        {
+            _changes.Remove(uid);
+        }
     }
 
     private SoundCategory? GetCategory(AudioComponent audio)

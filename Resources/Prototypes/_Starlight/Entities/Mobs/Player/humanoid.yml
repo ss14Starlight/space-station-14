@@ -182,7 +182,7 @@
         - MindRoleGhostCorporateAligned
       job: NanoTrasenSpecialForces
     - type: Loadout
-      prototypes: [NanoTrasenSpecialForcesGear]
+      prototypes: [BaseNanoTrasenSpecialForcesGear]
       roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:

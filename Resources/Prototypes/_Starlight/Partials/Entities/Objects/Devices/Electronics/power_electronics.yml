@@ -1,0 +1,27 @@
+- type: !PartialOnly entity
+  id: WallmountSubstationElectronics
+  components:
+  - type: Tag
+    tags:
+    - RamChip # FH
+
+- type: !PartialOnly entity
+  id: WallmountGeneratorElectronics
+  components:
+  - type: Tag
+    tags:
+    - RamChip # FH
+
+- type: !PartialOnly entity
+  id: WallmountGeneratorAPUElectronics
+  components:
+  - type: Tag
+    tags:
+    - RamChip # FH
+
+- type: !PartialOnly entity
+  id: SolarTrackerElectronics
+  components:
+  - type: Tag
+    tags:
+    - RamChip # FH
