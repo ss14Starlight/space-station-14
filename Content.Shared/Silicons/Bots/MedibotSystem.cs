@@ -145,7 +145,7 @@ public sealed partial class MedibotSystem : EntitySystem
         if (!_solutionContainer.TryAddReagent(injectable.Value, treatment.Reagent, treatment.Quantity, out _))
             return false;
 
-        OnInjected(medibot, target); 
+        OnInjected(medibot, target);
         // Starlight end
 
         _popup.PopupEntity(Loc.GetString("injector-component-feel-prick-message"), target, target);
