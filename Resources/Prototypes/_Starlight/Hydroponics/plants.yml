@@ -194,3 +194,15 @@
         min: 5
         max: 20
         potencyDivisor: 20
+
+- type: entity
+  parent: ChanterellePlants
+  id: BrownMushroomPlants
+  name: brown mushrooms
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Hydroponics/brown_mushroom.rsi
+  - type: PlantData
+    name: seeds-brown-mushroom-name
+    packetPrototype: BrownMushroomSeeds
+    productPrototypes: [FoodBrownMushroom]
