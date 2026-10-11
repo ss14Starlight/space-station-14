@@ -13,7 +13,7 @@
     Bloodpack: 3
     ChemistryBottleEpinephrine: 2
     Syringe: 3
-    PillCanisterTricordrazine: 1
+    ChemistryBottleTricordrazine: 2
   contrabandInventory:
     PillCanisterRandom: 1
     PowerCellSmall: 2
@@ -34,7 +34,7 @@
     Bloodpack: 3
     ChemistryBottleEpinephrine: 2
     Syringe: 3
-    PillTricordrazine: 10
+    ChemistryBottleTricordrazine: 2
   contrabandInventory:
     PillCanisterRandom: 1
     OminousPill: 1
@@ -59,7 +59,7 @@
     Syringe: 5
     JetInjector: 2
     BoxBottle: 3
-    PillCanisterTricordrazine: 2
+    ChemistryBottleTricordrazine: 3
     PillCanisterIron: 1
     PillCanisterPotassiumIodide: 1
     SyringeIpecac: 1
@@ -90,7 +90,7 @@
     ChemistryBottleEpinephrine: 2
     Syringe: 5
     BoxBottle: 3
-    PillCanisterTricordrazine: 1
+    ChemistryBottleTricordrazine: 2
     PillCanisterIron: 1
     PillCanisterCopper: 1
     PillCanisterPotassiumIodide: 1

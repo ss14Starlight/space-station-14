@@ -13,7 +13,7 @@
     Bloodpack: 3
     ChemistryBottleEpinephrine: 3
     Syringe: 3
-    PillCanisterTricordrazine: 2
+    ChemistryBottleTricordrazine: 2
     JetInjector: 2
     DeforestJetInjector: 1
     BruteAutoInjector: 1
@@ -37,7 +37,7 @@
     Bloodpack: 3
     ChemistryBottleInaprovaline: 3
     Syringe: 3
-    PillTricordrazine: 10
+    ChemistryBottleTricordrazine: 2
   contrabandInventory:
     PillCanisterRandom: 1
     BruteAutoInjector: 1
@@ -69,7 +69,7 @@
     BruteAutoInjector: 3
     BurnAutoInjector: 3
     BoxBottle: 3
-    PillCanisterTricordrazine: 3
+    ChemistryBottleTricordrazine: 3
     PillCanisterIron: 1
     PillCanisterCopper: 1
     PillCanisterPotassiumIodide: 1
@@ -106,7 +106,7 @@
     ChemistryBottleEpinephrine: 3
     Syringe: 5
     BoxBottle: 3
-    PillCanisterTricordrazine: 2
+    ChemistryBottleTricordrazine: 2
     PillCanisterIron: 1
     PillCanisterCopper: 1
     PillCanisterPotassiumIodide: 1

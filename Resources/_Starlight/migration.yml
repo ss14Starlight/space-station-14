@@ -460,3 +460,6 @@ AirlockNTMaints: AirlockMaintNTLocked
 AirlockScienceMaints: AirlockMaintRnDLocked
 AirlockSecurityMaints: AirlockMaintSecLocked
 AirlockVirologyMaints: AirlockMaintVirologyLocked
+
+# 2026-10-11 - Trico pill replacement
+PillCanisterTricordrazine: ChemistryBottleTricordrazine

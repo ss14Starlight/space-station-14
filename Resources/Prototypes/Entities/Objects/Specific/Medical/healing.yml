@@ -817,8 +817,8 @@
           amount: *Range1to6
         - id: PillDermaline
           amount: *Range1to6
-        - id: PillTricordrazine
-          amount: *Range1to6
+        #- id: PillTricordrazine # Starlight
+        #  amount: *Range1to6 # Starlight
         - id: PillBicaridine
           amount: *Range1to6
         - id: PillCharcoal

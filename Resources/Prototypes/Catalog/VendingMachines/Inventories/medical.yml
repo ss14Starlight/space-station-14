@@ -10,7 +10,7 @@
     Bloodpack: 3
     ChemistryBottleEpinephrine: 3
     Syringe: 3
-    PillCanisterTricordrazine: 2
+    ChemistryBottleTricordrazine: 2 # Starlight
   contrabandInventory:
     PillCanisterRandom: 1
     StrangePill: 1 # Starlight
@@ -31,7 +31,7 @@
     Bloodpack: 3
     ChemistryBottleInaprovaline: 3
     Syringe: 3
-    PillTricordrazine: 10
+    ChemistryBottleTricordrazine: 2 # Starlight
   contrabandInventory:
     PillCanisterRandom: 1
     StrangePill: 1 # Starlight
@@ -57,7 +57,7 @@
     Syringe: 5
     JetInjector: 3
     BoxBottle: 3
-    PillCanisterTricordrazine: 3
+    ChemistryBottleTricordrazine: 2 # Starlight
     PillCanisterIron: 1
     PillCanisterCopper: 1
     PillCanisterPotassiumIodide: 1
@@ -92,7 +92,7 @@
     ChemistryBottleEpinephrine: 3 # Starlight
     Syringe: 5
     BoxBottle: 3 # Starlight
-    PillCanisterTricordrazine: 2 # Starlight
+    ChemistryBottleTricordrazine: 2 # Starlight
     PillCanisterIron: 1 # Starlight
     PillCanisterCopper: 1 # Starlight
     PillCanisterPotassiumIodide: 1 # Starlight
