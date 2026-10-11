@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (CentComm GNT9) Added way more biomass to cloning.
-    type: Add
-  id: 408961
-  time: '2026-09-28T09:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6384
-- author: Caws
-  changes:
   - message: (CentComm GNT9) Added Interdyne medical vendor for a certain debrief room.
     type: Add
   id: 408962
@@ -2883,4 +2876,11 @@ Entries:
   id: 409360
   time: '2026-10-11T10:17:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6522
+- author: Rinary
+  changes:
+  - message: Fixed damage overlay flickering.
+    type: Fix
+  id: 409361
+  time: '2026-10-11T12:20:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6631
 Order: -1
