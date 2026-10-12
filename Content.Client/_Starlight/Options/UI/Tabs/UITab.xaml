@@ -26,6 +26,15 @@
                     </BoxContainer>
                 </PanelContainer>
 
+                <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-menu-bar-label'}" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
+                    <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
+                        <ui:OptionDropDown Name="DropDownMenuBarKeyHints" Title="{Loc 'ui-options-menu-bar-key-hints'}" />
+                        <PanelContainer StyleClasses="LowDivider" Margin="0 4" />
+                        <sui:BarLayoutEditor Name="MenuBarLayoutEditor" />
+                    </BoxContainer>
+                </PanelContainer>
+
                 <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-ui-ranged-sight'}" Margin="0 0 0 4" />
                 <PanelContainer StyleClasses="InsetPanel">
                     <BoxContainer Margin="10 6" Orientation="Vertical" SeparationOverride="4">

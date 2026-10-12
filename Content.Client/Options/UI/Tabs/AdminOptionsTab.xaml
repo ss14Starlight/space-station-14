@@ -1,6 +1,7 @@
 <Control xmlns="https://spacestation14.io"
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-         xmlns:ui="clr-namespace:Content.Client.Options.UI">
+         xmlns:ui="clr-namespace:Content.Client.Options.UI"
+         xmlns:sui="clr-namespace:Content.Client._Starlight.Options.UI">
     <BoxContainer Orientation="Vertical">
         <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
             <!-- Starlight-start -->
@@ -32,6 +33,13 @@
                         <ui:OptionDropDown Name="DropDownPlayerTabSymbolSetting" Title="{Loc 'ui-options-admin-player-tab-symbol-setting'}" />
                         <ui:OptionDropDown Name="DropDownPlayerTabRoleSetting" Title="{Loc 'ui-options-admin-player-tab-role-setting'}" />
                         <ui:OptionDropDown Name="DropDownPlayerTabColorSetting" Title="{Loc 'ui-options-admin-player-tab-color-setting'}" />
+                    </BoxContainer>
+                </PanelContainer>
+
+                <Label Text="{Loc 'ui-options-admin-ahelp-label'}" StyleClasses="LabelKeyText" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
+                    <BoxContainer Orientation="Vertical" Margin="10 6">
+                        <sui:BarLayoutEditor Name="AHelpLayoutEditor" />
                     </BoxContainer>
                 </PanelContainer>
 

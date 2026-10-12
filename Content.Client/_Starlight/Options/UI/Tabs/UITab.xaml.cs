@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Client.Options.UI;
 using Content.Client.UserInterface.Screens;
+using Content.Client.UserInterface.Systems.MenuBar.Widgets;
 using Content.Shared._Starlight.CombatMode;
 using Content.Shared.CCVar;
 using Content.Shared.HUD;
@@ -75,6 +76,15 @@ public sealed partial class UITab : Control
         Control.AddOptionDropDown(CVars.InterfaceTheme, DropDownHudTheme, themeEntries);
         Control.AddOptionDropDown(CCVars.UILayout, DropDownHudLayout, layoutEntries);
         Control.AddOptionSlider(StarlightCCVars.ChatSeparatedMinWidth, SeparatedChatWidthSlider, 300, 580);
+
+        Control.AddOptionDropDown(StarlightCCVars.MenuBarKeyHints, DropDownMenuBarKeyHints,
+        [
+            new OptionDropDownCVar<string>.ValueOption("Always", Loc.GetString("ui-options-menu-bar-key-hints-always")),
+            new OptionDropDownCVar<string>.ValueOption("Hold", Loc.GetString("ui-options-menu-bar-key-hints-hold")),
+            new OptionDropDownCVar<string>.ValueOption("Never", Loc.GetString("ui-options-menu-bar-key-hints-never")),
+        ]);
+        MenuBarLayoutEditor.SetEntries(GameTopMenuBar.LayoutEntries);
+        Control.AddOption(new OptionBarLayoutCVar(Control, _cfg, StarlightCCVars.MenuBarLayout, MenuBarLayoutEditor));
         Control.AddOptionPercentSlider(CCVars.ChatWindowOpacity, ChatWindowOpacitySlider);
         Control.AddOptionDropDown(
             CVars.DisplayUIScale,
