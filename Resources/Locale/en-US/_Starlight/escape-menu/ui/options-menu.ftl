@@ -26,7 +26,7 @@ ui-options-hitscan-prediction-tooltip = Draws your bullets the moment you fire i
 
 ## Accessibility
 
-ui-options-SS13-font = Old Font
+ui-options-SS13-font = Pixelated chat font
 ui-options-arachnophobia = Arachnophobia Mode
 ui-options-disable-job-icon-animation = Disable animation for chat and status icons
 
