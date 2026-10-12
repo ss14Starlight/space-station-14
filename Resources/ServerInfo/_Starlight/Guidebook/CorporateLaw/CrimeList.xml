@@ -635,12 +635,12 @@
         To steal something with the threat of violence using anything that can be considered a weapon, whether or not the weapon is contraband or not. This can include knives, toolboxes, crowbars, or any number of other improvised weaponry. There must be an active threat of violence, or the implication of violence if the victim does not comply, in order to be considered armed robbery.
       </Box>
     </ColorBox>
-    <ColorBox>
+    <ColorBox Color="#2f3832">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         Possession or Use of a Category 3 Controlled Item
       </Box>
     </ColorBox>
-    <ColorBox>
+    <ColorBox Color="#2f3832">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         To make, hold, or use contraband of tier 3 without authorization. Permits for these items can be granted by the head of the related department, the Head of Security, as well as the Captain.
       </Box>
