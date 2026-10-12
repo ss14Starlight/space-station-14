@@ -4,6 +4,7 @@ using Content.Shared.Armor;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Body;
 using Content.Shared.Changeling.Components;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
@@ -85,12 +86,20 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         Dirty(ent, ent.Comp);
     }
 
+    partial void CapDevourDamage(EntityUid target, ChangelingDevourComponent comp, ref DamageSpecifier damage); // Starlight
+
     private void ConsumeDamageTick(EntityUid? target, ChangelingDevourComponent comp, EntityUid? user)
     {
         if (target == null)
             return;
 
-        _damageable.ChangeDamage(target.Value, comp.DamagePerTick, true, true, user);
+        // Starlight begin
+        //_damageable.ChangeDamage(target.Value, comp.DamagePerTick, true, true, user);
+        var damage = comp.DamagePerTick;
+        CapDevourDamage(target.Value, comp, ref damage);
+
+        _damageable.ChangeDamage(target.Value, damage, true, true, user);
+        // Starlight end
     }
 
     /// <summary>
