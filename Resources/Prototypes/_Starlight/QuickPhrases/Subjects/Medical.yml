@@ -81,6 +81,11 @@
   text: reagent-name-mortizol
 
 - type: quickPhrase
+  id: ChemCellCultureMediumPhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-cell-culture-medium
+
+- type: quickPhrase
   id: ChemChronexalinePhrase
   parent: BaseMedicinePhrase
   text: reagent-name-chronexaline
