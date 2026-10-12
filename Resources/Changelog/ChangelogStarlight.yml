@@ -1,11 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Fixed time requirements for NullLink playtime (try 2).
-    type: Fix
-  id: 408984
-  time: '2026-09-29T17:00:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6361
 - author: redmushie
   changes:
   - message: Air injectors now correctly show enabled/disabled state when initially spawned during mapping.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409383
   time: '2026-10-12T10:43:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6647
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed unit selection ordering on syringes so that it's sorted properly.
+    type: Fix
+  id: 409384
+  time: '2026-10-12T10:44:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6644
 Order: -1
