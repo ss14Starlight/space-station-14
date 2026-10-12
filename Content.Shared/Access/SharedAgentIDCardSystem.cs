@@ -74,8 +74,7 @@ namespace Content.Shared.Access.Systems
     }
 
     [Serializable, NetSerializable]
-    public sealed class AgentIDCardJobIconChangedMessage :
-        BoundUserInterfaceMessage
+    public sealed class AgentIDCardJobIconChangedMessage : BoundUserInterfaceMessage
     {
         public ProtoId<JobIconPrototype> JobIconId { get; }
 
