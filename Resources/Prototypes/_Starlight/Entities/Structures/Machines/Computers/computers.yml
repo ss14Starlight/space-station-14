@@ -1092,3 +1092,6 @@
       energy: 1.5
       color: "#d15abf"
     - type: GeneticsConsole
+      defaultGenes:
+        - startingSlimeGene
+        - debugGene

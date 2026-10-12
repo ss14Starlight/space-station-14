@@ -1,19 +1,19 @@
 <DefaultWindow
 	xmlns="https://spacestation14.io"
 	xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-	xmlns:widgets="clr-namespace:Content.Client._Starlight.Xenobiology.UI.Widgets"
+	xmlns:widgets="clr-namespace:Content.Client._Starlight.Genetics.UI.Widgets"
 	xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
-	xmlns:panels="clr-namespace:Content.Client._Starlight.Xenobiology.UI.Panels"
+	xmlns:panels="clr-namespace:Content.Client._Starlight.Genetics.UI.Panels"
 	Title="{Loc 'xenobiology-ui-console-window-title'}"
 	MinSize="1250 750" SetSize="1250 750">
 	<BoxContainer Orientation="Horizontal" VerticalExpand="True">
 		<!--Selection Panel-->
-		<BoxContainer Name="SelectionPanel" Orientation="Vertical" MinWidth="180" VerticalExpand="True"
+		<BoxContainer Orientation="Vertical" MinWidth="180" VerticalExpand="True"
 		              HorizontalExpand="True" SizeFlagsStretchRatio="0.2">
-			<panels:SelectedGenomePanel/>
-			<panels:SelectedTraitPanel/>
+			<panels:SelectedGenomePanel Name="SelectedGenomePanel" Access="Public"/>
+			<panels:SelectedTraitPanel Name="SelectedTraitPanel" Access="Public"/>
 		</BoxContainer>
 		<customControls:VSeparator Margin="5 0 5 0"/>
-		<panels:CreationPanel/>
+		<panels:CreationPanel Name="CreationPanel"/>
 	</BoxContainer>
 </DefaultWindow>

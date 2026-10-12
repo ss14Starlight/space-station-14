@@ -10,7 +10,8 @@
 			</PanelContainer>
 		</controls:StripeBack>
 		<HBox>
-			<TextureRect Name="TraitTextureDisplay" MaxSize="64 64" TexturePath="/Textures/error.rsi/error.png" Stretch="Scale"/>
+			<TextureRect Name="SelectedTraitTexture" SetSize="64 64"
+			             TexturePath="/Textures/_Starlight/Interface/Genetics/trait_generic.png" Stretch="Scale"/>
 			<VBox HorizontalExpand="True">
 				<HBox HorizontalExpand="True">
 					<Label Text="{Loc 'xenobiology-ui-panel-selected-trait-name'}"
@@ -24,6 +25,12 @@
 					<Label Name="SelectedTraitThresholdField"
 					       Text="{Loc 'xenobiology-ui-panel-selected-trait-threshold-placeholder'}"/>
 				</HBox>
+				<HBox HorizontalExpand="True">
+					<Label Text="{Loc 'xenobiology-ui-panel-selected-trait-accumulated'}"
+					       HorizontalExpand="True"/>
+					<Label Name="SelectedTraitAccumulatedField"
+					       Text="{Loc 'xenobiology-ui-panel-selected-trait-accumulated-placeholder'}"/>
+				</HBox>
 			</VBox>
 		</HBox>
 		<Label Text="{Loc 'xenobiology-ui-panel-selected-trait-description'}" Margin="0 5 0 2"/>
@@ -32,7 +39,8 @@
 			<ScrollContainer VerticalExpand="True" VScrollEnabled="True"
 			                 HScrollEnabled="False" HorizontalExpand="True" MinHeight="100">
 				<RichTextLabel Name="SelectedTraitDescriptionField"
-				               Text="{Loc 'xenobiology-ui-panel-selected-trait-description-placeholder'}"/>
+				               Text="{Loc 'xenobiology-ui-panel-selected-trait-description-placeholder'}"
+				               VerticalAlignment="Top"/>
 			</ScrollContainer>
 		</BoxContainer>
 	</BoxContainer>

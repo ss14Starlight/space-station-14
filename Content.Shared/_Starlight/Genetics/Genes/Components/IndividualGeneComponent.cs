@@ -13,21 +13,24 @@ public sealed partial class IndividualGeneComponent : Component
     /// <summary>
     /// The traits influenced by this gene.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
-    public TraitDict Traits = new TraitDict();
+    [DataField, AutoNetworkedField] public TraitDict Traits = new TraitDict();
 
     /// <summary>
     /// The unchanging "technical name" of a gene, i.e. PRKN (the name of a gene that creates the Parkin protein, mutations in which can cause parkinsons, hence the name).
     /// Can be procedurally generated.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
-    public string TechnicalName = string.Empty;
+    [DataField, AutoNetworkedField] public string TechnicalName = string.Empty;
 
     /// <summary>
     /// The informal name set by players and/or history.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
-    public string? Name;
+    [DataField, AutoNetworkedField] public string? Name;
+
+    /// <summary>
+    /// The DNA sequence for this gene. Randomly generated if null.
+    /// Should be roughly 16 characters, consisting of A, C, T, and G.
+    /// </summary>
+    [DataField, AutoNetworkedField] public string? Sequence;
 
     /// <summary>
     /// If non-null, the gene prototype this individual gene refers to.

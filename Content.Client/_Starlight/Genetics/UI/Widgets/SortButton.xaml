@@ -1,0 +1,8 @@
+<Control
+	xmlns="https://spacestation14.io"
+	xmlns:controls="clr-namespace:Content.Client._Starlight.Genetics.UI.Widgets">
+	<HBox>
+		<Label Text="{Loc 'xenobiology-ui-widgets-sort-button-label'}"/>
+		<OptionButton Access="Public" Name="Button"/>
+	</HBox>
+</Control>

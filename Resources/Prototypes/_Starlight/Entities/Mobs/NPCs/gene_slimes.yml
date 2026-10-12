@@ -82,3 +82,12 @@
       MonkeyCubeSpawn: 1.0
   technicalName: SLmE1
   name: Base Slime Gene
+
+- type: sampleGene
+  id: debugGene
+  traits:
+    traits:
+      SteelSpawnSlow: 0.7
+  technicalName: D3bG
+  name: Debug Gene
+

@@ -74,3 +74,37 @@ public sealed class GeneticsConsoleRenameGeneMessage : BoundUserInterfaceMessage
         NewName = data.NewName;
     }
 }
+
+/// <summary>
+/// Stages a gene, moving it from the gene pool to the input panel.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class GeneticsConsoleStageGeneMessage(NetEntity uid) : BoundUserInterfaceMessage
+{
+    public readonly NetEntity Uid = uid;
+}
+
+/// <summary>
+/// Unstages a gene, shifting it back to the gene pool from the input panel.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class GeneticsConsoleUnstageGeneMessage(NetEntity uid) : BoundUserInterfaceMessage
+{
+    public readonly NetEntity Uid = uid;
+}
+
+/// <summary>
+/// Set the sorting index for a panel on the console.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class GeneticsConsoleSetSortIndex(int panel, int index) : BoundUserInterfaceMessage
+{
+    public readonly int Panel = panel;
+    public readonly int Index = index;
+}
+
+/// <summary>
+/// Tell the UI to refresh.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class GeneticsConsoleRefreshUIMessage : BoundUserInterfaceMessage;

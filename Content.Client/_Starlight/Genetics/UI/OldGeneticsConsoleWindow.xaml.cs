@@ -5,10 +5,10 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client._Starlight.Genetics.Ui;
+namespace Content.Client._Starlight.Genetics.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class GeneticsConsoleWindow : FancyWindow
+public sealed partial class OldGeneticsConsoleWindow : FancyWindow
 {
     [Dependency] private EntityManager _entityManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
@@ -22,7 +22,7 @@ public sealed partial class GeneticsConsoleWindow : FancyWindow
     private string? _selectedGeneRename;
     public Action<GeneticsConsoleRenameGeneData>? OnRenameGenePressed;
 
-    public GeneticsConsoleWindow()
+    public OldGeneticsConsoleWindow()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);

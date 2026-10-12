@@ -6,16 +6,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Genetics.Genes.Systems;
 
-public sealed class GenesSystem : EntitySystem
+public sealed partial class GenesSystem : EntitySystem
 {
     [Dependency] private EntityManager _entityManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public TraitDict GetTraitsFromEnumerable(IEnumerable<EntityUid> genes) => TraitDict.Combine(genes.Select(g =>
-    {
-        if (!TryComp<IndividualGeneComponent>(g, out var comp)) return new TraitDict();
-        return comp.Traits;
-    }));
+        !TryComp<IndividualGeneComponent>(g, out var comp) ? new TraitDict() : comp.Traits));
 
     public TraitDict GetTraits(params EntityUid[] genes) => GetTraitsFromEnumerable(genes);
 

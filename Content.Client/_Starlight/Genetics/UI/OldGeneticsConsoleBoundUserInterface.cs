@@ -1,14 +1,14 @@
 using Content.Shared._Starlight.Genetics;
 using Robust.Client.UserInterface;
 
-namespace Content.Client._Starlight.Genetics.Ui;
+namespace Content.Client._Starlight.Genetics.UI;
 
-public sealed class GeneticsConsoleBoundUserInterface : BoundUserInterface
+public sealed class OldGeneticsConsoleBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
-    public GeneticsConsoleWindow _window = default!;
+    public OldGeneticsConsoleWindow _window = default!;
 
-    public GeneticsConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    public OldGeneticsConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
 
@@ -16,7 +16,7 @@ public sealed class GeneticsConsoleBoundUserInterface : BoundUserInterface
     {
         base.Open();
 
-        _window = this.CreateWindow<GeneticsConsoleWindow>();
+        _window = this.CreateWindow<OldGeneticsConsoleWindow>();
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
