@@ -74,7 +74,7 @@ public sealed class StyleThemePicker : GridContainer
     }
 
     internal static PanelContainer Swatch(Color color, float width, float height)
-        => new PanelContainer
+        => new()
         {
             PanelOverride = new StyleBoxFlat { BackgroundColor = color },
             MinSize = new(width, height),
@@ -86,7 +86,7 @@ public sealed class StyleThemePicker : GridContainer
 /// </summary>
 public sealed class AccentPicker : BoxContainer
 {
-    private static readonly Color[] Presets =
+    private static readonly Color[] _presets =
     [
         Color.FromHex("#D4D4D8"),
         Color.FromHex("#5B8DEF"),
@@ -130,7 +130,7 @@ public sealed class AccentPicker : BoxContainer
             OnPicked?.Invoke();
         };
         row.AddChild(_theme);
-        foreach (var color in Presets)
+        foreach (var color in _presets)
         {
             var button = new ContainerButton { ToggleMode = true, Group = _group };
             button.AddStyleClass(StyleThemePicker.StyleClassSwatchButton);

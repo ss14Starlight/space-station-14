@@ -52,10 +52,8 @@ public static class BarLayout
     }
 
     public static string Serialize(IReadOnlyDictionary<string, BarPlacement> layout)
-    {
-        return string.Join(';', layout
+        => string.Join(';', layout
             .Where(p => p.Value != BarPlacement.Auto)
             .OrderBy(p => p.Key, StringComparer.Ordinal)
             .Select(p => $"{p.Key}={p.Value}"));
-    }
 }

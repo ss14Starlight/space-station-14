@@ -281,9 +281,7 @@ namespace Content.Client.Administration.UI.Bwoink
         }
 
         private void OnBarLayoutChanged(string layout)
-        {
-            ActionBar.SetPlacements(BarLayout.Parse(layout));
-        }
+            => ActionBar.SetPlacements(BarLayout.Parse(layout));
 
         private void RefreshCurrentPlayer()
         {

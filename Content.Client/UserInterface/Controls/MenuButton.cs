@@ -82,8 +82,7 @@ public sealed partial class MenuButton : ContainerButton
                 UpdateKeyText();
             }
 
-            if (_keyBadge != null)
-                _keyBadge.Visible = value && !ShowName && _function != null;
+            _keyBadge?.Visible = value && !ShowName && _function != null;
         }
     }
 
