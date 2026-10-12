@@ -608,7 +608,9 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
     private bool DoHeavyAttack(EntityUid user, HeavyAttackEvent ev, EntityUid meleeUid, MeleeWeaponComponent component, ICommonSession? session)
     {
         // TODO: This is copy-paste as fuck with DoPreciseAttack
-        if (!TryComp(user, out TransformComponent? userXform))
+        var originEntity = GetOriginEntity(user); // Starlight edit
+
+        if (!TryComp(originEntity, out TransformComponent? userXform)) // Starlight edit
             return false;
 
         var targetMap = TransformSystem.ToMapCoordinates(GetCoordinates(ev.Coordinates));
@@ -661,7 +663,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
                                         component.Angle,
                                         distance,
                                         userXform.MapID,
-                                        user,
+                                        originEntity, // Starlight
                                         session));
 
         var targets = new HashSet<EntityUid>();
@@ -670,6 +672,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         foreach (var entity in entities)
         {
             if (entity == user ||
+                entity == originEntity || // Starlight edit
                 !damageQuery.HasComponent(entity))
                 continue;
 
