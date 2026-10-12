@@ -1,39 +1,4 @@
 Entries:
-- author: Sparlight
-  changes:
-  - message: All smellers can now only track a scent for up to 5 minutes before it dissipates.
-    type: Tweak
-  id: 408995
-  time: '2026-09-29T18:37:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6318
-- author: Mack
-  changes:
-  - message: Add syncing for turret control panels.
-    type: Add
-  id: 408996
-  time: '2026-09-29T19:02:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6304
-- author: Mack
-  changes:
-  - message: Read only turret control panel.
-    type: Add
-  id: 408997
-  time: '2026-09-29T19:02:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6304
-- author: qbrx
-  changes:
-  - message: Dwarves in medical roles now spawn with their survival box.
-    type: Fix
-  id: 408998
-  time: '2026-09-29T19:02:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6345
-- author: STARLIGHT TEAM
-  changes:
-  - message: Soft-crit experiments are now buckled instantly.
-    type: Fix
-  id: 408999
-  time: '2026-09-29T19:34:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6364
 - author: Rinary
   changes:
   - message: Added covers system.
@@ -2883,4 +2848,39 @@ Entries:
   id: 409394
   time: '2026-10-12T12:29:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6618
+- author: Swonki
+  changes:
+  - message: Scrapper engineering and general science access.
+    type: Remove
+  id: 409395
+  time: '2026-10-12T12:50:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6612
+- author: Swonki
+  changes:
+  - message: Scrappers use batteries, but very efficiently.
+    type: Tweak
+  id: 409396
+  time: '2026-10-12T12:50:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6612
+- author: Swonki
+  changes:
+  - message: Scrappers midround spawn rate is now lowered 3 -> 2.
+    type: Tweak
+  id: 409397
+  time: '2026-10-12T12:50:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6612
+- author: Swonki
+  changes:
+  - message: Scrappers are more likely to roll on shitstation.
+    type: Tweak
+  id: 409398
+  time: '2026-10-12T12:50:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6612
+- author: Swonki
+  changes:
+  - message: drone crafting messages.
+    type: Fix
+  id: 409399
+  time: '2026-10-12T12:50:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6612
 Order: -1
