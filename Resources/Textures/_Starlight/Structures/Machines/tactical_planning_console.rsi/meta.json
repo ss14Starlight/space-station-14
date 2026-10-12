@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Conf (Arry\\Leiz\\Suimu\\Honksnoo) [MSPA], contributed via the Starlight Discord",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "base"
+    },
+    {
+      "name": "powered",
+      "delays": [[0.3, 0.3, 0.3, 0.3]]
+    },
+    {
+      "name": "evil_powered",
+      "delays": [[0.3, 0.3, 0.3, 0.3]]
+    },
+    {
+      "name": "unpowered",
+      "delays": [[0.3, 0.3, 0.3, 0.3]]
+    }
+  ]
+}

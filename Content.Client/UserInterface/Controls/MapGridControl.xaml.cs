@@ -51,6 +51,11 @@ public partial class MapGridControl : LayoutContainer
     public const int UIDisplayRadius = 320;
     protected const int MinimapMargin = 4;
 
+    /// <summary>
+    /// Opt-in for maps embedded in resizable windows. Other map controls retain their fixed canvas.
+    /// </summary>
+    protected bool UseAvailableSize;
+
     protected float WorldMinRange;
     protected float WorldMaxRange;
     public float WorldRange;
@@ -70,11 +75,11 @@ public partial class MapGridControl : LayoutContainer
 
     public Vector2 MaxRadarRangeVector => new Vector2(MaxRadarRange, MaxRadarRange);
 
-    protected Vector2 MidPointVector => new Vector2(MidPoint, MidPoint);
+    protected Vector2 MidPointVector => UseAvailableSize ? PixelSize / 2f : new Vector2(MidPoint, MidPoint);
 
-    protected int MidPoint => SizeFull / 2;
+    protected int MidPoint => UseAvailableSize ? Math.Max(1, (int) (MathF.Min(PixelSize.X, PixelSize.Y) / 2f)) : SizeFull / 2;
     protected int SizeFull => (int) ((UIDisplayRadius + MinimapMargin) * 2 * UIScale);
-    protected int ScaledMinimapRadius => (int) (UIDisplayRadius * UIScale);
+    protected int ScaledMinimapRadius => UseAvailableSize ? Math.Max(1, MidPoint - (int) (MinimapMargin * UIScale)) : (int) (UIDisplayRadius * UIScale);
     protected float MinimapScale => WorldRange != 0 ? ScaledMinimapRadius / WorldRange : 0f;
 
     public event Action<float>? WorldRangeChanged;

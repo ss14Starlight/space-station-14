@@ -1,6 +1,7 @@
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
+using Content.Server.Station.Components;
 using Content.Shared.PowerCell;
 using Content.Shared.Pinpointer;
 using Content.Shared.Station;
@@ -36,18 +37,19 @@ public sealed partial class StationMapSystem : EntitySystem
         if (!ent.Comp.InitializeWithStation)
             return;
 
-        // If we ever find a need to make more exceptions like this, just turn this into an event.
+        // Planning consoles reuse StationMapComponent's target grid and the existing nav-map data.
+        // Choose that grid here before the client receives its first map: syndicate consoles
+        // show the operation's station, while ordinary consoles show the grid they are on.
         if (HasComp<NukeopsStationMapComponent>(ent))
         {
-            foreach (var rule in _gameTicker.GetActiveGameRules())
-            {
-                if (TryComp<NukeopsRuleComponent>(rule, out var nukeopsRule) && nukeopsRule.TargetStation != null)
-                {
-                    ent.Comp.TargetGrid = _station.GetLargestGrid((nukeopsRule.TargetStation.Value, null));
-                    Dirty(ent);
-                    return;
-                }
-            }
+            EnsureNukeopsTarget(ent.Owner);
+            return;
+        }
+
+        if (HasComp<TacticalPlanningConsoleComponent>(ent))
+        {
+            EnsureTacticalPlanningTarget(ent.Owner);
+            return;
         }
 
         var station = _station.GetStationInMap(_xform.GetMapId(ent.Owner));
@@ -56,6 +58,63 @@ public sealed partial class StationMapSystem : EntitySystem
             ent.Comp.TargetGrid = _station.GetLargestGrid((station.Value, null));
             Dirty(ent);
         }
+    }
+
+    /// <summary>
+    /// Ordinary planning consoles show their own grid, whether it is a station, ship, or platform.
+    /// Recheck on snapshot requests so a console moved to another grid follows its new location.
+    /// </summary>
+    public void EnsureTacticalPlanningTarget(EntityUid uid)
+    {
+        if (!HasComp<TacticalPlanningConsoleComponent>(uid) || HasComp<NukeopsStationMapComponent>(uid)
+            || !TryComp<StationMapComponent>(uid, out var map))
+            return;
+
+        var grid = Transform(uid).GridUid;
+        if (map.TargetGrid == grid)
+            return;
+
+        map.TargetGrid = grid;
+        Dirty(uid, map);
+    }
+
+    /// <summary>
+    /// When there is no active nuke-ops target (for example in a sandbox test), use the
+    /// event-eligible main station rather than the off-station map under the console.
+    /// </summary>
+    public void EnsureNukeopsTarget(EntityUid uid)
+    {
+        if (!HasComp<NukeopsStationMapComponent>(uid) || !TryComp<StationMapComponent>(uid, out var map))
+            return;
+
+        EntityUid? target = null;
+        foreach (var rule in _gameTicker.GetActiveGameRules())
+        {
+            if (TryComp<NukeopsRuleComponent>(rule, out var nukeopsRule) && nukeopsRule.TargetStation != null)
+            {
+                target = nukeopsRule.TargetStation;
+                break;
+            }
+        }
+
+        if (target == null)
+        {
+            foreach (var station in _station.GetStations())
+            {
+                if (!HasComp<StationEventEligibleComponent>(station))
+                    continue;
+
+                target = station;
+                break;
+            }
+        }
+
+        var grid = target == null ? null : _station.GetLargestGrid((target.Value, null));
+        if (map.TargetGrid == grid)
+            return;
+
+        map.TargetGrid = grid;
+        Dirty(uid, map);
     }
 
     private void OnStationMapClosed(EntityUid uid, StationMapComponent component, BoundUIClosedEvent args)
