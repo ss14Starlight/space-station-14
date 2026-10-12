@@ -8,8 +8,7 @@
   components:
   - type: Action
     icon:
-      sprite: Objects/Devices/pda.rsi
-      state: pda
+      { sprite: _Starlight/Interface/Actions/actions_aipda.rsi, state: icon }
     itemIconStyle: NoItem
   - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.PdaUiKey.Key }
