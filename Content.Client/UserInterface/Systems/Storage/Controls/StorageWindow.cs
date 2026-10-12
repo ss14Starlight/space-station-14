@@ -645,7 +645,7 @@ public sealed partial class StorageWindow : BaseWindow
 
     protected override DragMode GetDragModeFor(Vector2 relativeMousePos)
     {
-        if (_storageController.StaticStorageUIEnabled)
+        if (_storageController.UsesDockedWindows()) // Starlight
             return DragMode.None;
 
         if (_sidebar.SizeBox.Contains(relativeMousePos - _sidebar.Position))

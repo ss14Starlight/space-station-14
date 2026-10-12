@@ -29,15 +29,10 @@
 - type: entity
   name: latejoin spawn point
   id: SpawnPointLatejoin
-  categories: [ ShouldMapStation ] # Starlight
   parent: SpawnPointJobBase
   components:
   - type: Sprite
-    # Starlight Edit Start: Added layers and jobicon
-    layers:
-      - state: green
-      - state: jobicon
-    # Starlight Edit End: Added layers and jobicon
+    state: green
   - type: SpawnPoint
     spawn_type: LateJoin
 
@@ -47,11 +42,7 @@
   parent: SpawnPointJobBase
   components:
   - type: Sprite
-    # Starlight Edit Start: Added layers and jobicon
-    layers:
-      - state: green
-      - state: jobicon
-    # Starlight Edit End: Added layers and jobicon
+    state: green
   - type: SpawnPoint
     spawn_type: Job
     job_id: null # any job can spawn here
@@ -69,7 +60,7 @@
     layers:
       - state: green
       - state: qm
-      - state: jobicon # Starlight
+
 
 - type: entity
   id: SpawnPointCargoTechnician
@@ -82,7 +73,6 @@
     layers:
       - state: green
       - state: cargo_tech
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointSalvageSpecialist
@@ -95,7 +85,6 @@
     layers:
       - state: green
       - state: salvagespecialist
-      - state: jobicon # Starlight
 
 # Civilian
 
@@ -123,7 +112,6 @@
     layers:
       - state: green
       - state: technicalassistant
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointMedicalIntern
@@ -136,7 +124,6 @@
     layers:
       - state: green
       - state: medicalintern
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointSecurityCadet
@@ -149,7 +136,6 @@
     layers:
       - state: green
       - state: security_cadet
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointResearchAssistant
@@ -162,7 +148,6 @@
     layers:
       - state: green
       - state: researchassistant
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointServiceWorker
@@ -175,7 +160,6 @@
     layers:
       - state: green
       - state: serviceworker
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointBartender
@@ -188,7 +172,6 @@
     layers:
       - state: green
       - state: bartender
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointChef
@@ -201,7 +184,6 @@
     layers:
       - state: green
       - state: chef
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointBotanist
@@ -214,7 +196,6 @@
     layers:
       - state: green
       - state: botanist
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointClown
@@ -227,7 +208,6 @@
     layers:
       - state: green
       - state: clown
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointMime
@@ -240,7 +220,6 @@
     layers:
       - state: green
       - state: mime
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointChaplain
@@ -253,7 +232,6 @@
     layers:
       - state: green
       - state: chaplain
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointLibrarian
@@ -266,7 +244,6 @@
     layers:
       - state: green
       - state: librarian
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointLawyer
@@ -279,7 +256,6 @@
     layers:
       - state: green
       - state: lawyer
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointJanitor
@@ -292,7 +268,6 @@
     layers:
       - state: green
       - state: janitor
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointMusician
@@ -305,7 +280,6 @@
     layers:
       - state: green
       - state: musician
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointBorg
@@ -321,7 +295,6 @@
       state: borg
     - sprite: Mobs/Silicon/Chassis/generic.rsi
       state: borg_e
-    - state: jobicon # Starlight
 
 # Command
 
@@ -336,7 +309,6 @@
     layers:
       - state: green
       - state: captain
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointHeadOfPersonnel
@@ -349,7 +321,6 @@
     layers:
       - state: green
       - state: hop
-      - state: jobicon # Starlight
 
 # Engineering
 
@@ -364,7 +335,6 @@
     layers:
       - state: green
       - state: ce
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointStationEngineer
@@ -377,7 +347,6 @@
     layers:
       - state: green
       - state: engineer
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointAtmos
@@ -390,7 +359,6 @@
     layers:
       - state: green
       - state: atmospherics
-      - state: jobicon # Starlight
 
 # Medical
 
@@ -405,7 +373,6 @@
     layers:
       - state: green
       - state: cmo
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointMedicalDoctor
@@ -418,7 +385,6 @@
     layers:
       - state: green
       - state: doctor
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointParamedic
@@ -431,7 +397,6 @@
     layers:
       - state: green
       - state: paramedic
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointChemist
@@ -444,7 +409,6 @@
     layers:
       - state: green
       - state: chemist
-      - state: jobicon # Starlight
 
 # Science
 
@@ -459,7 +423,6 @@
     layers:
       - state: green
       - state: rd
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointScientist
@@ -472,7 +435,6 @@
     layers:
       - state: green
       - state: scientist
-      - state: jobicon # Starlight
 
 # Security
 
@@ -487,7 +449,6 @@
     layers:
       - state: green
       - state: hos
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointWarden
@@ -500,7 +461,6 @@
     layers:
       - state: green
       - state: warden
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointSecurityOfficer
@@ -513,7 +473,6 @@
     layers:
       - state: green
       - state: security_officer
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointDetective
@@ -526,7 +485,6 @@
     layers:
       - state: green
       - state: detective
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointBrigmedic
@@ -539,7 +497,6 @@
     layers:
       - state: green
       - state: brigmedic
-      - state: jobicon # Starlight
 
 # SPECIAL
 # ERT
@@ -554,7 +511,6 @@
     layers:
       - state: green
       - state: ertleader
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointERTChaplain
@@ -567,7 +523,6 @@
     layers:
       - state: green
       - state: chaplain
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointERTEngineer
@@ -580,7 +535,6 @@
     layers:
       - state: green
       - state: ertengineer
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointERTMedical
@@ -593,7 +547,6 @@
     layers:
       - state: green
       - state: ertmedical
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointERTSecurity
@@ -606,7 +559,6 @@
     layers:
       - state: green
       - state: ertsecurity
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointERTJanitor
@@ -619,7 +571,6 @@
     layers:
       - state: green
       - state: ertjanitor
-      - state: jobicon # Starlight
 
 # STATION SPECIFIC
 
@@ -634,7 +585,6 @@
     layers:
       - state: green
       - state: reporter
-      - state: jobicon # Starlight
 
 - type: entity
   id: SpawnPointPsychologist
@@ -647,4 +597,3 @@
     layers:
       - state: green
       - state: psychologist
-      - state: jobicon # Starlight

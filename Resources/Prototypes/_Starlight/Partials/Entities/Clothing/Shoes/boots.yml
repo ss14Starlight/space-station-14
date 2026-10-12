@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: ClothingShoesBootsWinterSyndicate
+  components:
+  - type: Contraband
+    tier: Tier1
+    contrabandType: Syndicate

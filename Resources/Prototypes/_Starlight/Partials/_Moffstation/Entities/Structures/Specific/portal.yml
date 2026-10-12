@@ -1,6 +1,22 @@
-# Starlight's ghost warp list falls back to the localized entity name.
 - type: !PartialOnly entity
   id: HellPortal
   components:
+  - type: Destructible
+    thresholds: !Clear
+    - trigger: !type:DamageTrigger
+        damage: 666 # Hell
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: WarpPoint
     location: !Remove
+  - type: Hellportal
+    mobsPerPlayer: 0.75 # Three mobs per four players, rounded up.
+  - type: CosmicCorrupting
+    conversionTile: FloorFlesh
+    convertEntities: false
+    useVFX: false
+    corruptionMaxTicks: 6
+    corruptionSpeed: 8
+    corruptionChance: 1
+    corruptionReduction: 0.16

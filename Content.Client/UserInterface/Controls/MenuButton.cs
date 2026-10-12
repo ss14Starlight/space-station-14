@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client._Starlight.Stylesheets;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.UserInterface.Controls;
@@ -38,6 +39,48 @@ public sealed partial class MenuButton : ContainerButton
     }
 
     public BoxContainer ButtonRoot => _root;
+
+    // Starlight-start
+    public Vector2 IconScale { set => _buttonIcon!.TextureScale = value; }
+
+    /// <summary>
+    /// Whether to show the key binding next to the icon. If false, the key binding will be hidden, but the name will still be shown if ShowName is true.
+    /// </summary>
+    public bool ShowKey
+    {
+        get;
+        set
+        {
+            field = value;
+            _buttonLabel!.Visible = value || ShowName;
+        }
+    } = true;
+
+    private Label? _nameLabel;
+
+    public bool ShowName
+    {
+        get => _nameLabel?.Visible ?? false;
+        set
+        {
+            if (value && _nameLabel == null)
+            {
+                _nameLabel = new Label { HorizontalExpand = true, Margin = new Thickness(6, 0) };
+                _root.AddChild(_nameLabel);
+                _buttonLabel!.SetPositionInParent(_root.ChildCount - 1);
+            }
+
+            if (_nameLabel != null)
+            {
+                _nameLabel.Text = ToolTip;
+                _nameLabel.Visible = value;
+            }
+
+            _root.Orientation = value ? BoxContainer.LayoutOrientation.Horizontal : BoxContainer.LayoutOrientation.Vertical;
+            _buttonLabel!.Visible = value || ShowKey;
+        }
+    }
+    // Starlight-end
 
     public MenuButton()
     {
@@ -107,6 +150,16 @@ public sealed partial class MenuButton : ContainerButton
     private void UpdateChildColors()
     {
         if (_buttonIcon == null || _buttonLabel == null) return;
+
+        // Starlight-start
+        if (TryGetStyleProperty<Color>(StarlightStyleProperty.IconColor, out var iconColor))
+        {
+            _buttonIcon.ModulateSelfOverride = iconColor;
+            _buttonLabel.ModulateSelfOverride = iconColor;
+            return;
+        }
+        // Starlight-end
+
         switch (DrawMode)
         {
             case DrawModeEnum.Normal:

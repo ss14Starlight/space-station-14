@@ -26,7 +26,7 @@
       flags:
         - Anchorable
     - type: ApcPowerReceiver
-      powerLoad: 100
+      powerLoad: 5
     - type: Godmode
     - type: Electrified
       enabled: false

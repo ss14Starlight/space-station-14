@@ -46,7 +46,7 @@
   parent: BaseHostilePortal
   id: HellPortal
   name: hellportal
-  description: a portal letting loose the worst hell has to offer.
+  description: A portal letting loose the worst hell has to offer.
   components:
   - type: Sprite
     sprite: Structures/Specific/Anomalies/shadow_anom.rsi
