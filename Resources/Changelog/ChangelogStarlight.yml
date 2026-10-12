@@ -1,27 +1,6 @@
 Entries:
 - author: STARLIGHT TEAM
   changes:
-  - message: Fixed various systems not considering soft critical as critical.
-    type: Fix
-  id: 408989
-  time: '2026-09-29T18:37:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6320
-- author: STARLIGHT TEAM
-  changes:
-  - message: Zombification also buffs soft critical thresholds.
-    type: Fix
-  id: 408990
-  time: '2026-09-29T18:37:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6320
-- author: STARLIGHT TEAM
-  changes:
-  - message: Expies eyes actually glow at round start.
-    type: Fix
-  id: 408991
-  time: '2026-09-29T18:37:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6320
-- author: STARLIGHT TEAM
-  changes:
   - message: latched K9s should not longer deal damage or critical or soft critical targets.
     type: Fix
   id: 408992
@@ -2883,4 +2862,25 @@ Entries:
   id: 409388
   time: '2026-10-12T11:34:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6633
+- author: Johnny
+  changes:
+  - message: Changed revolutionary rifts to take four times as longer to reach golden stage.
+    type: Tweak
+  id: 409389
+  time: '2026-10-12T11:59:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6628
+- author: Johnny
+  changes:
+  - message: Made revolutionary crates despawn quicker.
+    type: Tweak
+  id: 409390
+  time: '2026-10-12T11:59:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6628
+- author: Johnny
+  changes:
+  - message: Revolutionary armament crates use a different system for how they spawn items.
+    type: Tweak
+  id: 409391
+  time: '2026-10-12T11:59:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6628
 Order: -1
