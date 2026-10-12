@@ -1,20 +1,6 @@
 Entries:
 - author: Rinary
   changes:
-  - message: Added covers system.
-    type: Add
-  id: 409000
-  time: '2026-09-29T19:34:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6334
-- author: Rinary
-  changes:
-  - message: Added 4 different barricades(more info about them in PR desc).
-    type: Add
-  id: 409001
-  time: '2026-09-29T19:34:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6334
-- author: Rinary
-  changes:
   - message: Added spread bonus when you're holding pistol and shield in the same time.
     type: Add
   id: 409002
@@ -2883,4 +2869,18 @@ Entries:
   id: 409399
   time: '2026-10-12T12:50:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6612
+- author: wonderfulnewworld, Limerent-Sun
+  changes:
+  - message: Inspecting solutions with chemical goggles now reveals the contraband status of any reagents.
+    type: Add
+  id: 409400
+  time: '2026-10-12T21:24:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6457
+- author: wonderfulnewworld, Limerent-Sun
+  changes:
+  - message: Contraband system has been reworked into a 5-tiered system with independent types and authorizations.
+    type: Tweak
+  id: 409401
+  time: '2026-10-12T21:24:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6457
 Order: -1
