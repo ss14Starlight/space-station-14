@@ -1,95 +1,4 @@
 Entries:
-- author: BriocheBear
-  changes:
-  - message: Added chance for a bottle of Glubotoxin to spawn in medical chem cases.
-    type: Add
-  id: 408969
-  time: '2026-09-28T10:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5989
-- author: BriocheBear
-  changes:
-  - message: Added chance for a Glub auto-injector to spawn in auto-injector packs.
-    type: Add
-  id: 408970
-  time: '2026-09-28T10:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5989
-- author: BriocheBear
-  changes:
-  - message: Added weh & glub reagent slimes. They are just as deadly, good luck!
-    type: Add
-  id: 408971
-  time: '2026-09-28T10:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5989
-- author: BriocheBear
-  changes:
-  - message: Space koi can now feel the love! Space koi will now show hearts when pet, and make the glub sound effect.
-    type: Tweak
-  id: 408972
-  time: '2026-09-28T10:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5989
-- author: BriocheBear
-  changes:
-  - message: Space koi can no longer access the carp hivemind.
-    type: Remove
-  id: 408973
-  time: '2026-09-28T10:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5989
-- author: BriocheBear
-  changes:
-  - message: All species now able to make the thaven glub sound effect, with the condition of metabolizing Glubotoxin.
-    type: Tweak
-  id: 408974
-  time: '2026-09-28T10:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5989
-- author: BriocheBear
-  changes:
-  - message: All species now able to make the weh and hew sound effects, as some were not already capable of doing so.
-    type: Tweak
-  id: 408975
-  time: '2026-09-28T10:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5989
-- author: Johnny
-  changes:
-  - message: Added some glorious equipment to the pobeda.
-    type: Add
-  id: 408976
-  time: '2026-09-28T10:38:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6390
-- author: Johnny
-  changes:
-  - message: The pobedas equipment has been made more fair.
-    type: Tweak
-  id: 408977
-  time: '2026-09-28T10:38:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6390
-- author: Johnny
-  changes:
-  - message: Fixed the name on the pobeda, it is not a podeba.
-    type: Fix
-  id: 408978
-  time: '2026-09-28T10:38:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6390
-- author: Pickra
-  changes:
-  - message: Temporarily removed Peacekeeper bola option for now due to time constraints.
-    type: Remove
-  id: 408979
-  time: '2026-09-29T08:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6400
-- author: Scarlet Inanis Lightweaver
-  changes:
-  - message: Added a reptilian ethnicity trait! the Drakari.
-    type: Add
-  id: 408980
-  time: '2026-09-29T08:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6403
-- author: Scarlet Lightweaver
-  changes:
-  - message: Changed the sec sop for CODE GREEN, Armory weapons must remain the armory and not the brig now.
-    type: Tweak
-  id: 408981
-  time: '2026-09-29T14:16:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6404
 - author: joshujo
   changes:
   - message: Air siphons, the active counterpart to the air injector!
@@ -2883,4 +2792,95 @@ Entries:
   id: 409368
   time: '2026-10-11T13:10:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6370
+- author: Rinary
+  changes:
+  - message: Fixed issue when after space you're losing your ability to hear any sound.
+    type: Fix
+  id: 409369
+  time: '2026-10-11T18:32:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6641
+- author: OJG
+  changes:
+  - message: (Refinery) Redid the reactor due to map version errors.
+    type: Tweak
+  id: 409370
+  time: '2026-10-11T18:32:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6622
+- author: OJG
+  changes:
+  - message: (Refinery) Bunch of changes re-implemented due to aforementioned map versions.
+    type: Fix
+  id: 409371
+  time: '2026-10-11T18:32:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6622
+- author: OJG
+  changes:
+  - message: (Refinery) Engineer hardsuits.
+    type: Fix
+  id: 409372
+  time: '2026-10-11T18:32:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6622
+- author: OJG
+  changes:
+  - message: (Refinery) Intercom for AI.
+    type: Fix
+  id: 409373
+  time: '2026-10-11T18:32:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6622
+- author: OJG
+  changes:
+  - message: (Refinery) QM office computers and terminals.
+    type: Fix
+  id: 409374
+  time: '2026-10-11T18:32:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6622
+- author: Floximo
+  changes:
+  - message: More intelligent selection on secret game mode, that no longer simply fails on low pop.
+    type: Fix
+  id: 409375
+  time: '2026-10-11T18:32:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6638
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Tricordrazine is now effective when ingested once again.
+    type: Tweak
+  id: 409376
+  time: '2026-10-11T18:40:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6640
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Tricordrazine now induces vomiting when over 40.5u is in the stomach, and deals poison damage while over 40.5u in the bloodstream. It still does no healing when above 40u.
+    type: Tweak
+  id: 409377
+  time: '2026-10-11T18:40:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6640
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed multiple medibots being able to inject the same patient, resulting in patients with large amounts of inap or tric. Now only the first injection succeeds.
+    type: Fix
+  id: 409378
+  time: '2026-10-11T18:40:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6640
+- author: neomoth
+  changes:
+  - message: Emergency shuttle no longer misinterprets 45 minutes as 45 seconds when resetting the timer after the first automatic shuttle call.
+    type: Fix
+  id: 409379
+  time: '2026-10-12T06:24:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6648
+- author: SevenShades
+  changes:
+  - message: MedTak visors are now compatible with eye implants.
+    type: Tweak
+  id: 409380
+  time: '2026-10-12T10:09:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6653
+- author: Johnny
+  changes:
+  - message: Added the Nanotrasen Theme (Mimics the old theme while still working with the theme update).
+    type: Add
+  id: 409381
+  time: '2026-10-12T10:09:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6652
 Order: -1
