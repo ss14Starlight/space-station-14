@@ -1,18 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: Added GTS "Bellows" gas hauler shuttle.
-    type: Add
-  id: 408987
-  time: '2026-09-29T17:30:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6328
-- author: Musiklie
-  changes:
-  - message: Added the ChemMaster 1000, an ancient precursor to our updated model, this version is cheaper to make but only can hold 500u before becoming full. Maints chemistry is now a whole lot easier.
-    type: Add
-  id: 408988
-  time: '2026-09-29T18:05:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5735
 - author: STARLIGHT TEAM
   changes:
   - message: Fixed various systems not considering soft critical as critical.
@@ -2883,4 +2869,18 @@ Entries:
   id: 409386
   time: '2026-10-12T11:33:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6636
+- author: Tjmaxmillion
+  changes:
+  - message: Guide book and announcement for NRT now matches the time.
+    type: Fix
+  id: 409387
+  time: '2026-10-12T11:34:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6633
+- author: Tjmaxmillion
+  changes:
+  - message: NRT time reduced by 5 minutes to account for FTL.
+    type: Fix
+  id: 409388
+  time: '2026-10-12T11:34:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6633
 Order: -1
