@@ -718,11 +718,9 @@ public sealed partial class ScentSystem : SharedScentSystem
     }
 
     /// <summary>
-    /// Emits or refreshes a pollen marker for an emitter (a plant, or any other
-    /// pollen source). If the emitter's last marker still exists, matches this
-    /// pollenId, and is within merge range, refreshes it in place instead of
-    /// scanning every ScentMarkerComponent on the server. Otherwise spawns a
-    /// fresh marker and records it via lastMarker.
+    /// Emits or refreshes a pollen marker for an emitter. Searches within mergeRadius
+    /// for a pollen marker with the same pollenId and airtight container, and refreshes
+    /// the lowest-ID match. Otherwise spawns a new marker. The result is stored in lastMarker.
     /// </summary>
     /// <param name="lastMarker">
     /// The emitter's cached last-marker reference (e.g. EmitPollenComponent.LastMarkerEntity).
