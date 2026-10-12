@@ -14,6 +14,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Spawners;
 using System.Numerics;
+using Content.Shared.Ghost;
 
 namespace Content.Server._Starlight.Pollen;
 
@@ -131,7 +132,8 @@ public sealed partial class PollenAdvancedSystem : EntitySystem
                 continue;
             }
 
-            if (minded == null && _mind.TryGetMind(candidate, out _, out _))
+            // Observer ghosts should not trigger player-facing mind messages.
+            if (minded == null && !HasComp<GhostComponent>(candidate) && _mind.TryGetMind(candidate, out _, out _))
                 minded = candidate;
         }
 
