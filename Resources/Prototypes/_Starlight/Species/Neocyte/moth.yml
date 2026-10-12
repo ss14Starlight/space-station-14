@@ -48,7 +48,7 @@
 
 - type: markingPoints
   id: MobNeoMothMarkingLimits
-  onlyWhitelisted: true
+  #onlyWhitelisted: true # they can have hair now
   points:
     FaceCover:
       points: 1
