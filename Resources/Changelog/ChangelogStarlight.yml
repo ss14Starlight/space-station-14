@@ -1,11 +1,4 @@
 Entries:
-- author: Pickra
-  changes:
-  - message: Temporarily removed Peacekeeper bola option for now due to time constraints.
-    type: Remove
-  id: 408979
-  time: '2026-09-29T08:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6400
 - author: Scarlet Inanis Lightweaver
   changes:
   - message: Added a reptilian ethnicity trait! the Drakari.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409378
   time: '2026-10-11T18:40:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6640
+- author: neomoth
+  changes:
+  - message: Emergency shuttle no longer misinterprets 45 minutes as 45 seconds when resetting the timer after the first automatic shuttle call.
+    type: Fix
+  id: 409379
+  time: '2026-10-12T06:24:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6648
 Order: -1
