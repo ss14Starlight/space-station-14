@@ -59,6 +59,14 @@ namespace Content.Client.UserInterface.Systems.MenuBar.Widgets
         }
 
         #region Starlight
+
+        protected override void ExitedTree()
+        {
+            base.ExitedTree();
+            _cfg.UnsubValueChanged(StarlightCCVars.MenuBarLayout, layout => Bar.SetPlacements(BarLayout.Parse(layout)));
+            _cfg.UnsubValueChanged(StarlightCCVars.MenuBarKeyHints, mode => _keyHints = mode);
+        }
+
         protected override void FrameUpdate(FrameEventArgs args)
         {
             base.FrameUpdate(args);

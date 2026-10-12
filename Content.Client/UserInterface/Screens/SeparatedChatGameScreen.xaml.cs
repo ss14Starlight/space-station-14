@@ -42,13 +42,11 @@ public sealed partial class SeparatedChatGameScreen : InGameScreen
         //starlight end
     }
 
-    #region Starlight
     private void SetMinimumChatWidth(int width)
     {
         SeparatedChatPanel.MinWidth = width;
-        ScreenContainer.InvalidateMeasure();
+        ScreenContainer.InvalidateMeasure(); // Starlight-edit
     }
-    #endregion
 
     private void ResizeActionContainer()
     {

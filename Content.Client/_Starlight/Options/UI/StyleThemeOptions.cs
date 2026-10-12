@@ -86,7 +86,7 @@ public sealed class StyleThemePicker : GridContainer
 /// </summary>
 public sealed class AccentPicker : BoxContainer
 {
-    private static readonly Color[] _presets =
+    private static readonly Color[] _defaultPresets =
     [
         Color.FromHex("#D4D4D8"),
         Color.FromHex("#5B8DEF"),
@@ -130,7 +130,7 @@ public sealed class AccentPicker : BoxContainer
             OnPicked?.Invoke();
         };
         row.AddChild(_theme);
-        foreach (var color in _presets)
+        foreach (var color in _defaultPresets)
         {
             var button = new ContainerButton { ToggleMode = true, Group = _group };
             button.AddStyleClass(StyleThemePicker.StyleClassSwatchButton);
