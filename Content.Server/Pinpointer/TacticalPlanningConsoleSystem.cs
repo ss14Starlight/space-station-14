@@ -44,7 +44,10 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
     private void OnClosed(EntityUid uid, TacticalPlanningConsoleComponent component, BoundUIClosedEvent args)
     {
         component.Viewers.Remove(args.Actor);
-        component.LastSubmission.Remove(args.Actor);
+        // A quick reopen must not bypass the per-player edit interval.
+        if (component.LastSubmission.TryGetValue(args.Actor, out var last)
+            && _timing.CurTime - last >= SubmissionInterval)
+            component.LastSubmission.Remove(args.Actor);
         component.LastRejectionNotice.Remove(args.Actor);
     }
 
@@ -54,8 +57,9 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
             return;
 
         // Recheck without polling: nukie rules may start late, and a regular console may move grids.
-        _stationMap.EnsureTacticalPlanningTarget(uid);
-        _stationMap.EnsureNukeopsTarget(uid);
+        Entity<StationMapComponent?> map = (uid, CompOrNull<StationMapComponent>(uid));
+        _stationMap.EnsureTacticalPlanningTarget(map);
+        _stationMap.EnsureNukeopsTarget(map);
         var color = component.PlayerColors[actor];
 
         // A previously opened client only needs the difference from the current plan.

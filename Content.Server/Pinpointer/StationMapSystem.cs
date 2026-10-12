@@ -5,7 +5,9 @@ using Content.Server.Station.Components;
 using Content.Shared.PowerCell;
 using Content.Shared.Pinpointer;
 using Content.Shared.Station;
+using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Pinpointer;
 
@@ -45,7 +47,7 @@ public sealed partial class StationMapSystem : EntitySystem
         {
             if (HasComp<TacticalPlanningConsoleComponent>(ent))
             {
-                EnsureNukeopsTarget(ent.Owner);
+                EnsureNukeopsTarget((ent.Owner, (StationMapComponent?) ent.Comp));
                 return;
             }
 
@@ -62,7 +64,7 @@ public sealed partial class StationMapSystem : EntitySystem
 
         if (HasComp<TacticalPlanningConsoleComponent>(ent))
         {
-            EnsureTacticalPlanningTarget(ent.Owner);
+            EnsureTacticalPlanningTarget((ent.Owner, (StationMapComponent?) ent.Comp));
             return;
         }
         // Starlight-end
@@ -80,28 +82,30 @@ public sealed partial class StationMapSystem : EntitySystem
     /// Ordinary planning consoles show their own grid, whether it is a station, ship, or platform.
     /// Recheck on snapshot requests so a console moved to another grid follows its new location.
     /// </summary>
-    public void EnsureTacticalPlanningTarget(EntityUid uid)
+    public void EnsureTacticalPlanningTarget(Entity<StationMapComponent?> ent)
     {
-        if (!HasComp<TacticalPlanningConsoleComponent>(uid) || HasComp<NukeopsStationMapComponent>(uid)
-            || !TryComp<StationMapComponent>(uid, out var map))
+        if (!Resolve(ent, ref ent.Comp)
+            || !HasComp<TacticalPlanningConsoleComponent>(ent)
+            || HasComp<NukeopsStationMapComponent>(ent))
             return;
 
-        var grid = Transform(uid).GridUid;
-        if (map.TargetGrid == grid)
+        var grid = Transform(ent).GridUid;
+        if (ent.Comp.TargetGrid == grid)
             return;
 
-        map.TargetGrid = grid;
-        Dirty(uid, map);
+        ent.Comp.TargetGrid = grid;
+        Dirty(ent);
     }
 
     /// <summary>
     /// When there is no active nuke-ops target (for example in a sandbox test), use the
-    /// event-eligible main station rather than the off-station map under the console.
+    /// main station on the round's default map rather than the off-station map under the console.
     /// </summary>
-    public void EnsureNukeopsTarget(EntityUid uid)
+    public void EnsureNukeopsTarget(Entity<StationMapComponent?> ent)
     {
-        if (!HasComp<TacticalPlanningConsoleComponent>(uid) || !HasComp<NukeopsStationMapComponent>(uid)
-            || !TryComp<StationMapComponent>(uid, out var map))
+        if (!Resolve(ent, ref ent.Comp)
+            || !HasComp<TacticalPlanningConsoleComponent>(ent)
+            || !HasComp<NukeopsStationMapComponent>(ent))
             return;
 
         EntityUid? target = null;
@@ -116,22 +120,39 @@ public sealed partial class StationMapSystem : EntitySystem
 
         if (target == null)
         {
+            // MainGrids identifies grids loaded with a station; the largest such grid on
+            // DefaultMap distinguishes the round's station from later/off-map stations.
+            // Break equal-size ties by UID so station query order cannot affect the fallback.
+            var largestMainGrid = -1f;
             foreach (var station in _station.GetStations())
             {
-                if (!HasComp<StationEventEligibleComponent>(station))
+                if (!HasComp<StationEventEligibleComponent>(station)
+                    || !TryComp<StationDataComponent>(station, out var data))
                     continue;
 
-                target = station;
-                break;
+                foreach (var mainGrid in data.MainGrids)
+                {
+                    if (Transform(mainGrid).MapID != _gameTicker.DefaultMap
+                        || !TryComp<MapGridComponent>(mainGrid, out var mainGridComp))
+                        continue;
+
+                    var size = mainGridComp.LocalAABB.Size.LengthSquared();
+                    if (size < largestMainGrid
+                        || (size == largestMainGrid && target != null && station.CompareTo(target.Value) >= 0))
+                        continue;
+
+                    largestMainGrid = size;
+                    target = station;
+                }
             }
         }
 
         var grid = target == null ? null : _station.GetLargestGrid((target.Value, null));
-        if (map.TargetGrid == grid)
+        if (ent.Comp.TargetGrid == grid)
             return;
 
-        map.TargetGrid = grid;
-        Dirty(uid, map);
+        ent.Comp.TargetGrid = grid;
+        Dirty(ent);
     }
 
     #endregion
