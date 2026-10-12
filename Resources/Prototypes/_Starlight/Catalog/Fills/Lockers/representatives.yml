@@ -54,6 +54,7 @@
         - id: MagistrateUniformSuit
         - id: MagistrateUniformSkirt
         - id: ClothingOuterRobesMagistrate
+        - id: ClothingOuterHardsuitMagistrate
         - id: ClothingShoesBootsLaceup
         - id: ClothingHeadsetMagistrate
         - id: WeaponDisabler

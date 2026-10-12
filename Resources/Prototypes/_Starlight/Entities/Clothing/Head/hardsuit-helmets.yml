@@ -95,6 +95,27 @@
     - WhitelistChameleon
     - CorgiWearable
 
+#Magistrate Hardsuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsIntermediate ]
+  id: ClothingHeadHelmetHardsuitMagistrate
+  categories: [ HideSpawnMenu ]
+  name: magistrate's hardsuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/magistrate.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/magistrate.rsi
+  - type: PointLight
+    color: "#e6ecff"
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 10000
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
+
 #Clown Battlesuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsIntermediate ]
