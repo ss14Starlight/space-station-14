@@ -1,9 +1,9 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Contraband;
+namespace Content.Shared._Blimpuf.Contraband;
 
 /// <summary>
-/// This component allows you to see Contraband details on examine items
+/// Allows an equipped entity to show contraband details on examine.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 public sealed partial class ShowContrabandDetailsComponent : Component;
