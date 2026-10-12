@@ -58,3 +58,11 @@
         effectProto: StatusEffectSleepiness
         maximumSleepiness: 120s
         time: 6.67 # Always 10
+
+- type: !PartialOnly reagent
+  id: Tritium
+  contrabandTier: Tier1
+
+- type: !PartialOnly reagent
+  id: Frezon
+  contrabandTier: Tier1

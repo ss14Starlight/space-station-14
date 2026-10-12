@@ -576,14 +576,18 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
 
     private void OnApcBatteryChanged(Entity<StationAiCoreComponent> ent, ref ApcPowerReceiverBatteryChangedEvent args)
     {
+        // Starlight - start
         if (!args.Enabled)
+        {
+            _delayedEvent.Cancel(ent.Owner, AiPowerLossAlertEventId);
             return;
+        }
+        // Starlight - end
 
         if (!TryGetHeld((ent.Owner, ent.Comp), out var held))
             return;
 
-        var ev = new ChatNotificationEvent(_aiLosingPowerChatNotificationPrototype, ent);
-        RaiseLocalEvent(held.Value, ref ev);
+        _delayedEvent.Schedule(ent.Owner, AiPowerLossAlertEventId, _aiPowerLossAlertDelay); // Starlight
     }
 
     private void OnChargeChanged(Entity<StationAiCoreComponent> entity, ref ChargeChangedEvent args)

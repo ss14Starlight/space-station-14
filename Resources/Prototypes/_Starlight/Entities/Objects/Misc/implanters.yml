@@ -7,6 +7,8 @@
   description: A compact disposable syringe exclusively designed for the injection of subdermal implants.
   abstract: true
   components:
+    - type: Contraband # Blimpuf
+      tier: Tier3
     - type: Item
       sprite: Objects/Specific/Medical/syndi_implanter.rsi
       heldPrefix: implanter

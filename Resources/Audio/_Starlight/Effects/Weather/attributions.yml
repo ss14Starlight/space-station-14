@@ -17,3 +17,8 @@
   license: "CC-BY-SA-3.0"
   copyright: "Taken from Paradise Station (effects/wind), downmixed to mono"
   source: "https://github.com/ParadiseSS13/Paradise/tree/master/sound/effects/wind"
+
+- files: ["decompression1.ogg", "decompression2.ogg", "decompression3.ogg"]
+  license: "CC0-1.0"
+  copyright: "Starlight: synthesized filtered-noise hiss over a low thump made from Kenney's Impact Sounds (impactPunch_heavy, pitched down)"
+  source: "https://kenney.nl/assets/impact-sounds"
