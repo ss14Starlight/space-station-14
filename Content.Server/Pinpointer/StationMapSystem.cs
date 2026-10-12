@@ -99,7 +99,7 @@ public sealed partial class StationMapSystem : EntitySystem
 
     /// <summary>
     /// When there is no active nuke-ops target (for example in a sandbox test), use the
-    /// main station on the round's default map rather than the off-station map under the console.
+    /// main station grid on the round's default map rather than the off-station map under the console.
     /// </summary>
     public void EnsureNukeopsTarget(Entity<StationMapComponent?> ent)
     {
@@ -118,11 +118,12 @@ public sealed partial class StationMapSystem : EntitySystem
             }
         }
 
+        EntityUid? fallbackGrid = null;
         if (target == null)
         {
             // MainGrids identifies grids loaded with a station; the largest such grid on
             // DefaultMap distinguishes the round's station from later/off-map stations.
-            // Break equal-size ties by UID so station query order cannot affect the fallback.
+            // Break equal-size ties by grid UID so station query order cannot affect the fallback.
             var largestMainGrid = -1f;
             foreach (var station in _station.GetStations())
             {
@@ -138,16 +139,16 @@ public sealed partial class StationMapSystem : EntitySystem
 
                     var size = mainGridComp.LocalAABB.Size.LengthSquared();
                     if (size < largestMainGrid
-                        || (size == largestMainGrid && target != null && station.CompareTo(target.Value) >= 0))
+                        || (size == largestMainGrid && fallbackGrid != null && mainGrid.CompareTo(fallbackGrid.Value) >= 0))
                         continue;
 
                     largestMainGrid = size;
-                    target = station;
+                    fallbackGrid = mainGrid;
                 }
             }
         }
 
-        var grid = target == null ? null : _station.GetLargestGrid((target.Value, null));
+        var grid = target == null ? fallbackGrid : _station.GetLargestGrid((target.Value, null));
         if (ent.Comp.TargetGrid == grid)
             return;
 
