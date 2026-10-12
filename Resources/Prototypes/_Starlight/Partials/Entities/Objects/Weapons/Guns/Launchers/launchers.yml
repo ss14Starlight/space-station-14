@@ -42,7 +42,6 @@
   - type: ScanDetectable # major contra (I think this is valid?)
   - type: Contraband
     tier: Tier3
-    severity: !Remove
 
 - type: !PartialOnly entity
   id: WeaponLauncherRocket
