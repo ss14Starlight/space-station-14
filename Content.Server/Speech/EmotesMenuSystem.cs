@@ -53,12 +53,13 @@ public sealed partial class EmotesMenuSystem : EntitySystem
         if (!_prototypeManager.Resolve(msg.ProtoId, out var proto) || proto.ChatTriggers.Count == 0)
             return;
 
-        // Starlight - Reject binds for vocal emotes outside the entity's allowlist.
+        // Starlight-start
         if (proto.Category == EmoteCategory.Vocal &&
             TryComp<SpeechComponent>(player.Value, out var speech) &&
             speech.RestrictVocalEmotesToAllowed &&
             !speech.AllowedEmotes.Contains(proto.ID))
             return;
+        // Starlight-end
 
         var name = Loc.GetString(proto.Name);
 
