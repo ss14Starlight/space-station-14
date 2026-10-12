@@ -30,4 +30,4 @@
         conditions:
         - !type:ReagentCondition
           reagent: DoctorsDelight
-          min: 35
+          min: 30

@@ -188,3 +188,34 @@
   flavor: cinnamon
   color: "#7b330c"
   recognizable: true
+
+- type: reagent
+  id: StellibininSyrup
+  name: reagent-name-stellibininsyrup
+  group: Foods
+  desc: reagent-desc-stellibininsyrup
+  physicalDesc: reagent-physical-desc-starry-and-thick
+  flavor: sweet
+  color: "#616283"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.05
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -0.25
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: -3
+      - !type:AdjustReagent
+        reagent: Allicin
+        amount: -3
+      # Starlight-Start: Cyclorite Metabolism
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Stellibinin
+        amount: -0.05
+        # Starlight-End

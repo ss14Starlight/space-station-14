@@ -913,6 +913,7 @@
       damageCoefficient: 0.0 # 100% stamina resistance
     - type: Pierceable
       level: Rock
+    - type: WizardClothes
     - type: Armor
       modifiers:
         coefficients:

@@ -176,6 +176,7 @@ public sealed partial class InjectorSystem : EntitySystem
                     // we want to sort by size, not alphabetically by the verb text.
                     Priority = priority
                 };
+                priority -= 1; // Starlight: Sort unit selection properly
                 args.Verbs.Add(verb);
             }
         }

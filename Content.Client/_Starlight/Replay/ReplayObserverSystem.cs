@@ -61,6 +61,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         SubscribeLocalEvent<ReplaySpectatorComponent, ToggleGhostHearingActionEvent>(OnToggleHearing);
         SubscribeLocalEvent<ReplaySpectatorComponent, ReplayTogglePlayerOverlayActionEvent>(OnTogglePlayerOverlay);
         SubscribeLocalEvent<ReplaySpectatorComponent, ReplayToggleStatusIconsActionEvent>(OnToggleStatusIcons);
+        SubscribeLocalEvent<ReplaySpectatorComponent, ReplayToggleWeatherActionEvent>(OnToggleWeather);
 
         _replayPlayback.ReplayPlaybackStarted += OnPlaybackStarted;
         _replayPlayback.ReplayPlaybackStopped += OnPlaybackStopped;
@@ -87,6 +88,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
     {
         ShutdownPlayerOverlay();
         ResetActionsBarOffset();
+        RestoreWeather();
         ResetState();
     }
 
@@ -180,6 +182,8 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _actions.AddAction(uid, ref _statusIconsAction, _statusIconsActionProto);
         _actions.SetToggled(_statusIconsAction, _statusIconsEnabled);
         _statusIconsShown = false; // A fresh observer has none of the HUD components yet.
+
+        AddWeatherAction(uid);
 
         ApplyViewSettings(uid);
         _ghost.ToggleGhostVisibility(_ghostsVisible);

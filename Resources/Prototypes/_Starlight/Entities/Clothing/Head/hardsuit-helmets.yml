@@ -895,6 +895,7 @@
       visible: false
       shader: unshaded
       map: [ "light" ]
+  - type: WizardClothes
   - type: HandheldLight
     addPrefix: false
   - type: ToggleableVisuals
