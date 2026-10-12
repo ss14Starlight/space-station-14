@@ -25,7 +25,7 @@ public sealed partial class StarlightCCVars
     /// The theme of the interface.
     /// </summary>
     public static readonly CVarDef<string> StyleTheme =
-        CVarDef.Create("ui.style_theme", "Void", CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("ui.style_theme", "Nanotrasen", CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
     /// Accent color of the interface: window titles, headings, selected tabs, pressed buttons.
