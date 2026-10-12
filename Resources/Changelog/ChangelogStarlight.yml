@@ -1,11 +1,4 @@
 Entries:
-- author: qbrx
-  changes:
-  - message: Brute automender now heals instead of damage.
-    type: Fix
-  id: 408983
-  time: '2026-09-29T14:56:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6397
 - author: Rinary
   changes:
   - message: Fixed time requirements for NullLink playtime (try 2).
@@ -2883,4 +2876,11 @@ Entries:
   id: 409382
   time: '2026-10-12T10:43:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6651
+- author: Johnny
+  changes:
+  - message: Fixed Sextus.
+    type: Tweak
+  id: 409383
+  time: '2026-10-12T10:43:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6647
 Order: -1
