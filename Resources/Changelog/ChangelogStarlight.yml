@@ -1,20 +1,6 @@
 Entries:
 - author: redmushie
   changes:
-  - message: Air injectors now correctly show enabled/disabled state when initially spawned during mapping.
-    type: Fix
-  id: 408985
-  time: '2026-09-29T17:30:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6392
-- author: redmushie
-  changes:
-  - message: Reduced pipe volume by 50%.
-    type: Tweak
-  id: 408986
-  time: '2026-09-29T17:30:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6362
-- author: redmushie
-  changes:
   - message: Added GTS "Bellows" gas hauler shuttle.
     type: Add
   id: 408987
@@ -2883,4 +2869,18 @@ Entries:
   id: 409384
   time: '2026-10-12T10:44:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6644
+- author: Scarlet lightweaver, Sparlight.
+  changes:
+  - message: Added hide weather effect FOR ADMINS! - scarlet.
+    type: Add
+  id: 409385
+  time: '2026-10-12T11:33:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6636
+- author: Scarlet lightweaver, Sparlight.
+  changes:
+  - message: Added hide weather effect for replay - sparlight.
+    type: Add
+  id: 409386
+  time: '2026-10-12T11:33:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6636
 Order: -1
