@@ -1,6 +1,7 @@
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Interaction;
+using Content.Shared.Light;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using Content.Shared.Wires;
@@ -15,6 +16,9 @@ public sealed partial class LightFloorSystem : EntitySystem
     [Dependency] private SharedWiresSystem _wires = default!;
     [Dependency] private DamageOnInteractSystem _damageOnInteract = default!;
 
+    /// <summary>
+    /// Hooks the bulb interactions ahead of the powered light system so a closed cover can swallow them.
+    /// </summary>
     public override void Initialize()
     {
         base.Initialize();
@@ -22,6 +26,8 @@ public sealed partial class LightFloorSystem : EntitySystem
         SubscribeLocalEvent<LightFloorComponent, InteractHandEvent>(OnInteractHand,
             before: [typeof(SharedPoweredLightSystem), typeof(DamageOnInteractSystem)]);
         SubscribeLocalEvent<LightFloorComponent, InteractUsingEvent>(OnInteractUsing,
+            before: [typeof(SharedPoweredLightSystem)]);
+        SubscribeLocalEvent<LightFloorComponent, PoweredLightDoAfterEvent>(OnEjectDoAfter,
             before: [typeof(SharedPoweredLightSystem)]);
         SubscribeLocalEvent<LightFloorComponent, PanelChangedEvent>(OnPanelChanged);
         SubscribeLocalEvent<LightFloorComponent, GetLightFixtureLevelEvent>(OnGetLightLevel);
@@ -66,6 +72,15 @@ public sealed partial class LightFloorSystem : EntitySystem
         SetBurn(ent, false);
         args.Handled = true;
         args.InteractionParticle = false; // nothing happened, so don't show the hand
+    }
+
+    /// <summary>
+    /// Drops a bulb removal that was started on an open floor if the cover was screwed shut before it finished.
+    /// </summary>
+    private void OnEjectDoAfter(EntityUid uid, LightFloorComponent comp, PoweredLightDoAfterEvent args)
+    {
+        if (!args.Cancelled && !_wires.IsPanelOpen(uid))
+            args.Handled = true;
     }
 
     /// <summary>
