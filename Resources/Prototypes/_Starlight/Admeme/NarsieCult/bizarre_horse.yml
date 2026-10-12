@@ -54,17 +54,19 @@
   name: Bind
   description: Instantly bind someone's hands.
   components:
-  - type: Action
-    useDelay: 5
-    icon: Resources/Textures/Interface/Actions/web.png
-    itemIconStyle: BigAction
-  - type: TargetAction
-  - type: EntityTargetAction
-    canTargetSelf: false
-    whitelist:
-      components:
-      - Cuffable
-    event: !type:HorseRestrainActionEvent
+    - type: Action
+      useDelay: 5
+      icon:
+        sprite: Interface/Actions/actions_borg.rsi
+        state: security-unlethal-module
+      itemIconStyle: BigAction
+    - type: TargetAction
+    - type: EntityTargetAction
+      canTargetSelf: false
+      whitelist:
+        components:
+          - Cuffable
+      event: !type:HorseRestrainActionEvent
 
 # Real cuffs (so uncuffing and breaking out work as normal), spawned straight onto the target by Bind.
 # They break on removal, so nothing is left lying around.
@@ -129,14 +131,14 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      650: Critical
+      700: Critical
       750: Dead
   # The simple mob base slows mobs at 60/80 damage, which would cripple this creature almost immediately.
   - type: SlowOnDamage
     speedModifierThresholds:
       400: 0.9
-      500: 0.7
-      600: 0.5
+      600: 0.7
+      700: 0.5
 
   #Bleeds very little.
   - type: Bloodstream
@@ -164,3 +166,56 @@
     damage:
       types:
         Blunt: 22
+
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0
+    damageRecovery:
+      types:
+        Asphyxiation: 0
+    maxSaturation: 100
+    minSaturation: 100
+    saturation: 100
+    suffocationThreshold: -999
+
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0
+
+  - type: Temperature
+    heatDamageThreshold: 10000
+    coldDamageThreshold: -10000
+
+  - type: TemperatureDamage
+    heatDamageThreshold: 10000
+    coldDamageThreshold: -10000
+    heatDamage:
+      types:
+        Heat: 0
+    coldDamage:
+      types:
+        Cold: 0
+
+  - type: Hunger
+    baseDecayRate: 0
+    currentThreshold: Overfed
+
+  - type: Thirst
+    baseDecayRate: 0
+    currentThreshold: OverHydrated
+
+    # Just to be sure we dont have any more antag horses
+  - type: AntagImmune
+
+    #Thermal vision
+  - type: ThermalVision
+
+  - type: Prying
+    enabled: true
+    pryPowered: true
+    force: true
+    speedModifier: 10
+    useSound:
+      path: /Audio/Items/crowbar.ogg
