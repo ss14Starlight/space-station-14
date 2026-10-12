@@ -24,3 +24,5 @@ reagent-physical-desc-coated-lacerinol = crystalline and viscous
 
 
 reagent-physical-desc-sawian = artificial
+
+reagent-physical-desc-starry-and-thick = thick and starry
