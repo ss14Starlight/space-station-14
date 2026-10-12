@@ -9,6 +9,19 @@
   "states": [
     {
       "name": "icon"
+    },
+    {
+      "name": "rag"
+    },
+    {
+      "name": "lit",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
     }
   ]
 }
