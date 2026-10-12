@@ -61,7 +61,7 @@ public sealed partial class AirAlarmSystem
     /// <summary>
     /// Max number of tiles we'll walk away from the air alarm in search of stuff to link.
     /// </summary>
-    private int _maxDepth = 16;
+    private int _maxDepth = 32;
 
     private void SLInitialize()
     {
@@ -136,6 +136,10 @@ public sealed partial class AirAlarmSystem
                     // this prevents e.g. firelocks on top of airlocks from being skipped (as both are stopping conditions)
                     foreach (var x in entities)
                     {
+                        // don't link to other air alarms
+                        if (HasComp<AirAlarmComponent>(x))
+                            continue;
+
                         if (_whitelist.IsWhitelistPass(_linkableWhitelist, x) && TryComp<DeviceNetworkComponent>(x, out var devNetwork))
                         {
                             _deviceList.TryAddDeviceToList(
