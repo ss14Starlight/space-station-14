@@ -145,13 +145,29 @@
     - timer
 
 - type: entity
-  name: molotov's cocktail
+  name: molotov cocktail
+  description: The right hand of the free tider. Do not drink.
   parent: [ DrinkBaseMaterialGlass, BaseMajorContraband, BaseItem, SolutionNormal]
   id: Molotov
   components:
+  - type: Appearance
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Grenades/molotov.rsi
     state: icon
+    map: ["enum.ToggleableVisuals.Layer"]
+  - type: ItemToggleOnTrigger
+    canActivate: true
+    canDeactivate: false
+  - type: ItemToggle
+    onUse: false
+    onActivate: false
+    soundActivate: /Audio/Items/Flare/flare_on.ogg
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: "lit" }
+          False: { state: "icon" }
   - type: Item
     size: Normal
   - type: Tag
@@ -188,8 +204,6 @@
         Quantity: 120
   - type: Spillable
     solution: solution
-  - type: ToggleableVisuals
-    spriteLayer: lit
   - type: TriggerOnUse
   - type: AddComponentsOnTrigger
     targetUser: false
@@ -223,6 +237,10 @@
             transferForensics: true
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
+      - type: PointLight
+        color: "#FF8080"
+        radius: 4.0
+        energy: 10.0
 
 - type: entity
   name: burning rag
