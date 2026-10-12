@@ -6,6 +6,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client.Pinpointer.UI;
 
+#region Starlight
 /// <summary>
 /// Reconciles the server's shared plan with a small client cache and feeds the window.
 /// Drawing remains disabled until the server confirms the current snapshot.
@@ -54,11 +55,14 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         var metadata = EntMan.GetComponent<MetaDataComponent>(Owner);
         _window.Title = metadata.EntityName;
         // Set the initial tint before the map renders; the server snapshot confirms it later.
-        _window.SetSyndicatePalette(metadata.EntityPrototype?.ID == "TacticalPlanningConsoleNukeops");
+        _window.SetSyndicatePalette(EntMan.HasComponent<NukeopsStationMapComponent>(Owner));
         _window.AnnotationAdded += (kind, points) =>
         {
-            if (!_synchronizing && _window != null)
-                SendMessage(new TacticalPlanAddAnnotationMessage(kind, points, _window.InkColor));
+            if (_synchronizing || _window == null
+                || !TacticalPlanDrawingValidation.TryValidate(kind, points, _window.InkColor, out var color))
+                return;
+
+            SendMessage(new TacticalPlanAddAnnotationMessage(kind, points, color));
         };
         _window.AnnotationErased += id =>
         {
@@ -81,7 +85,7 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         _synchronizing = true;
         _snapshotAttempts = 0;
         _snapshotRetryCancellation = new CancellationTokenSource();
-        _window.SetConnectionStatus("Connecting to shared plan...", false);
+        _window.SetConnectionStatus(Loc.GetString("tactical-planning-console-connecting"), false);
         _cacheKey = EntMan.GetNetEntity(Owner);
         Cache.TryGetValue(_cacheKey, out _cache);
         if (_cache != null)
@@ -115,7 +119,7 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
                 return;
 
             if (_snapshotAttempts >= MaxSnapshotAttempts)
-                _window?.SetConnectionStatus("Could not sync the plan. Close and reopen the console.", false);
+                _window?.SetConnectionStatus(Loc.GetString("tactical-planning-console-sync-failed"), false);
             else
                 RequestSnapshot();
         }, _snapshotRetryCancellation.Token);
@@ -149,7 +153,7 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         _displayedGrid = gridUid;
         var stationName = gridUid != null && EntMan.TryGetComponent<MetaDataComponent>(gridUid, out var meta)
             ? meta.EntityName
-            : "Waiting for station target";
+            : Loc.GetString("tactical-planning-console-waiting-for-target");
         _window.Set(stationName, gridUid);
     }
 
@@ -245,3 +249,4 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         }
     }
 }
+#endregion

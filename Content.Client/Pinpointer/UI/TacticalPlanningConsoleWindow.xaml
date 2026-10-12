@@ -1,10 +1,11 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       xmlns:ui="clr-namespace:Content.Client.Pinpointer.UI"
-                      Title="Tactical Planning Console"
+                      Title="{Loc 'tactical-planning-console-title'}"
                       Resizable="True"
                       SetSize="1080 760"
                       MinSize="840 580">
+    <!-- Starlight-start -->
     <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
         <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True">
             <ui:TacticalPlanningMapControl Name="NavMapScreen" Margin="5 5" HorizontalExpand="True" VerticalExpand="True" />
@@ -12,34 +13,34 @@
             <BoxContainer Orientation="Vertical" SetWidth="340" Margin="0 0 10 10" VerticalExpand="True">
                 <controls:StripeBack>
                     <PanelContainer>
-                        <Label Name="StationName" Text="Unknown station" HorizontalAlignment="Center" Margin="0 5 0 3" />
+                        <Label Name="StationName" Text="{Loc 'station-map-unknown-station'}" HorizontalAlignment="Center" Margin="0 5 0 3" />
                     </PanelContainer>
                 </controls:StripeBack>
 
                 <TabContainer Name="PlanningTabs" VerticalExpand="True" HorizontalExpand="True" Margin="0 10 0 0">
                     <ScrollContainer HorizontalExpand="True">
                         <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="10 10 10 10">
-                            <Label Text="ACTIVE TOOL" StyleClasses="LabelBig" Margin="0 0 0 6" />
-                            <Button Name="SelectTool" Text="Select / inspect" HorizontalExpand="True" />
-                            <Button Name="DrawTool" Text="Draw stroke" HorizontalExpand="True" Margin="0 4 0 0" />
-                            <Button Name="EraseTool" Text="Erase annotation" HorizontalExpand="True" Margin="0 4 0 0" />
+                            <Label Text="{Loc 'tactical-planning-console-active-tool'}" StyleClasses="LabelBig" Margin="0 0 0 6" />
+                            <Button Name="SelectTool" Text="{Loc 'tactical-planning-console-select-tool'}" HorizontalExpand="True" />
+                            <Button Name="DrawTool" Text="{Loc 'tactical-planning-console-draw-tool'}" HorizontalExpand="True" Margin="0 4 0 0" />
+                            <Button Name="EraseTool" Text="{Loc 'tactical-planning-console-erase-tool'}" HorizontalExpand="True" Margin="0 4 0 0" />
 
                             <PanelContainer StyleClasses="LowDivider" Margin="0 14 0 9" />
-                            <Label Text="INK COLOR" StyleClasses="LabelBig" />
+                            <Label Text="{Loc 'tactical-planning-console-ink-color'}" StyleClasses="LabelBig" />
                             <BoxContainer Orientation="Horizontal" Margin="0 7 0 8">
                                 <PanelContainer Name="InkPreview" SetSize="24 24" />
-                                <Label Text="Current ink" Margin="8 4 0 0" />
+                                <Label Text="{Loc 'tactical-planning-console-current-ink'}" Margin="8 4 0 0" />
                                 <Label Name="InkHex" Text="#FF4500" HorizontalAlignment="Right" HorizontalExpand="True" Margin="0 4 0 0" />
                             </BoxContainer>
                             <BoxContainer Orientation="Horizontal" Margin="0 7 0 0">
-                                <Button Name="RedInk" Text="Red" HorizontalExpand="True" />
-                                <Button Name="BlueInk" Text="Blue" HorizontalExpand="True" />
+                                <Button Name="RedInk" Text="{Loc 'tactical-planning-console-red'}" HorizontalExpand="True" />
+                                <Button Name="BlueInk" Text="{Loc 'tactical-planning-console-blue'}" HorizontalExpand="True" />
                             </BoxContainer>
                             <BoxContainer Orientation="Horizontal" Margin="0 4 0 0">
-                                <Button Name="YellowInk" Text="Yellow" HorizontalExpand="True" />
-                                <Button Name="VioletInk" Text="Violet" HorizontalExpand="True" />
+                                <Button Name="YellowInk" Text="{Loc 'tactical-planning-console-yellow'}" HorizontalExpand="True" />
+                                <Button Name="VioletInk" Text="{Loc 'tactical-planning-console-violet'}" HorizontalExpand="True" />
                             </BoxContainer>
-                            <Label Text="CUSTOM COLOR" StyleClasses="LabelBig" Margin="0 13 0 5" />
+                            <Label Text="{Loc 'tactical-planning-console-custom-color'}" StyleClasses="LabelBig" Margin="0 13 0 5" />
                             <LayoutContainer HorizontalExpand="True">
                                 <ColorSelectorSliders Name="CustomColorPicker" IsAlphaVisible="False" />
                                 <!-- Covers the picker while the shared plan is still connecting. -->
@@ -49,23 +50,24 @@
                     </ScrollContainer>
                     <ScrollContainer HorizontalExpand="True">
                         <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="10 10 10 10">
-                            <Label Text="SELECTED ANNOTATION" StyleClasses="LabelBig" />
-                            <Label Name="Details" Text="Click a drawing to see its author." Margin="0 10 0 0" />
+                            <Label Text="{Loc 'tactical-planning-console-selected-annotation'}" StyleClasses="LabelBig" />
+                            <Label Name="Details" Text="{Loc 'tactical-planning-console-select-hint'}" Margin="0 10 0 0" />
                         </BoxContainer>
                     </ScrollContainer>
                 </TabContainer>
 
-                <Label Name="ConnectionStatus" Text="Connecting to shared plan..." Margin="8 9 0 0" />
-                <Label Name="AnnotationCount" Text="0 shared annotations" Margin="8 4 0 0" />
-                <controls:ConfirmButton Name="ResetPlan" Text="Reset full plan" ConfirmationText="Confirm: clear all drawings?"
+                <Label Name="ConnectionStatus" Text="{Loc 'tactical-planning-console-connecting'}" Margin="8 9 0 0" />
+                <Label Name="AnnotationCount" Text="{Loc 'tactical-planning-console-initial-count'}" Margin="8 4 0 0" />
+                <controls:ConfirmButton Name="ResetPlan" Text="{Loc 'tactical-planning-console-reset'}" ConfirmationText="{Loc 'tactical-planning-console-reset-confirm'}"
                                         Visible="False" Margin="8 5 0 0" />
             </BoxContainer>
         </BoxContainer>
 
         <PanelContainer StyleClasses="LowDivider" />
         <BoxContainer Orientation="Horizontal" Margin="10 3 10 2">
-            <Label Text="Shared tactical plan  •  Mouse 1: pan/inspect  •  Mouse 2: dot/draw  •  Wheel: zoom  •  Drawings show author"
+            <Label Text="{Loc 'tactical-planning-console-footer'}"
                    StyleClasses="WindowFooterText" />
         </BoxContainer>
     </BoxContainer>
+    <!-- Starlight-end -->
 </controls:FancyWindow>

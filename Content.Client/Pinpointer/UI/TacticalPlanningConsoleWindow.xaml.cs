@@ -8,6 +8,7 @@ using Robust.Client.UserInterface.XAML;
 
 namespace Content.Client.Pinpointer.UI;
 
+#region Starlight
 /// <summary>
 /// Owns the console controls and annotation selection; the bound UI owns synchronization.
 /// </summary>
@@ -28,8 +29,8 @@ public sealed partial class TacticalPlanningConsoleWindow : FancyWindow
     public TacticalPlanningConsoleWindow()
     {
         RobustXamlLoader.Load(this);
-        PlanningTabs.SetTabTitle(0, "Tools");
-        PlanningTabs.SetTabTitle(1, "Drawing details");
+        PlanningTabs.SetTabTitle(0, Loc.GetString("tactical-planning-console-tools-tab"));
+        PlanningTabs.SetTabTitle(1, Loc.GetString("tactical-planning-console-details-tab"));
         NavMapScreen.AnnotationAdded += (kind, points) => AnnotationAdded?.Invoke(kind, points);
         NavMapScreen.AnnotationErased += EraseAt;
         NavMapScreen.AnnotationInspected += SelectAt;
@@ -117,9 +118,10 @@ public sealed partial class TacticalPlanningConsoleWindow : FancyWindow
     private void RefreshAnnotations()
     {
         NavMapScreen.SetAnnotations(_annotations);
-        AnnotationCount.Text = _planFull
-            ? $"{_annotations.Count} shared annotations — plan full"
-            : $"{_annotations.Count} shared annotations";
+        AnnotationCount.Text = Loc.GetString(_planFull
+                ? "tactical-planning-console-count-full"
+                : "tactical-planning-console-count",
+            ("count", _annotations.Count));
 
         if (_selectedId != null)
         {
@@ -185,14 +187,18 @@ public sealed partial class TacticalPlanningConsoleWindow : FancyWindow
 
     private void ShowDetails(TacticalPlanAnnotation annotation)
     {
-        var kind = annotation.Kind == TacticalPlanAnnotationKind.Dot ? "Dot" : "Drawing";
-        Details.Text = $"{kind} #{annotation.Id}\nCreated by: {annotation.Author}";
+        var kind = Loc.GetString(annotation.Kind == TacticalPlanAnnotationKind.Dot
+            ? "tactical-planning-console-dot"
+            : "tactical-planning-console-drawing");
+        Details.Text = Loc.GetString("tactical-planning-console-details", ("kind", kind),
+            ("author", annotation.Author));
     }
 
     private void ClearSelection()
     {
         _selectedId = null;
         NavMapScreen.SelectAnnotation(null);
-        Details.Text = "Click a drawing to see its author.";
+        Details.Text = Loc.GetString("tactical-planning-console-select-hint");
     }
 }
+#endregion

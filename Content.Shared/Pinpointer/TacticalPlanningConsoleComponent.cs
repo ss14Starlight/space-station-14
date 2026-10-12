@@ -3,15 +3,18 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Pinpointer;
 
+#region Starlight
 /// <summary>
 /// Stores the server-authoritative annotations made through a tactical planning console.
 /// </summary>
 [RegisterComponent]
 public sealed partial class TacticalPlanningConsoleComponent : Component
 {
+    /// <summary>Maximum number of annotations retained by this console.</summary>
     [DataField]
     public int MaxAnnotations = 100;
 
+    /// <summary>Maximum combined number of points across its annotations.</summary>
     [DataField]
     public int MaxTotalPoints = 4096;
 
@@ -56,6 +59,55 @@ public enum TacticalPlanAnnotationKind : byte
 {
     Stroke,
     Dot,
+}
+
+/// <summary>
+/// Pure input validation shared by the client and server. The server still decides whether
+/// a valid drawing can be saved under the console's capacity and rate limits.
+/// </summary>
+public static class TacticalPlanDrawingValidation
+{
+    /// <summary>Maximum points allowed in one drawing message.</summary>
+    public const int MaxPointsPerStroke = 256;
+
+    /// <summary>Rejects malformed drawing input and normalizes valid ink to a visible color.</summary>
+    public static bool TryValidate(TacticalPlanAnnotationKind kind, IReadOnlyList<Vector2>? points, Color chosen,
+        out Color color)
+    {
+        color = default;
+        if (!Enum.IsDefined(kind) || points == null
+            || points.Count is < 1 or > MaxPointsPerStroke
+            || (kind == TacticalPlanAnnotationKind.Dot && points.Count != 1)
+            || (kind == TacticalPlanAnnotationKind.Stroke && points.Count < 2))
+            return false;
+
+        foreach (var point in points)
+        {
+            if (!float.IsFinite(point.X) || !float.IsFinite(point.Y)
+                || MathF.Abs(point.X) > 4096f || MathF.Abs(point.Y) > 4096f)
+                return false;
+        }
+
+        if (!float.IsFinite(chosen.R) || !float.IsFinite(chosen.G) || !float.IsFinite(chosen.B))
+            return false;
+
+        var r = Math.Clamp(chosen.R, 0f, 1f);
+        var g = Math.Clamp(chosen.G, 0f, 1f);
+        var b = Math.Clamp(chosen.B, 0f, 1f);
+        var brightest = MathF.Max(r, MathF.Max(g, b));
+        if (brightest < 0.35f)
+        {
+            var scale = 0.35f / MathF.Max(brightest, 0.01f);
+            r = Math.Clamp(r * scale, 0f, 1f);
+            g = Math.Clamp(g * scale, 0f, 1f);
+            b = Math.Clamp(b * scale, 0f, 1f);
+            if (brightest == 0f)
+                r = g = b = 0.35f;
+        }
+
+        color = new Color(r, g, b);
+        return true;
+    }
 }
 
 /// <summary>
@@ -124,3 +176,4 @@ public sealed class TacticalPlanResetMessage : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]
 public sealed class TacticalPlanClearedMessage : BoundUserInterfaceMessage;
+#endregion

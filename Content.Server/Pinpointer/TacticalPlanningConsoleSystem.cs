@@ -8,6 +8,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Pinpointer;
 
+#region Starlight
 /// <summary>
 /// Keeps annotations server-side and sends snapshots/deltas only to viewers of this console.
 /// </summary>
@@ -89,39 +90,9 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         if (args.Actor is not { Valid: true } actor || !TryRegisterViewer(uid, component, actor))
             return;
 
-        if (!Enum.IsDefined(args.Kind) || args.Points == null
-            || args.Points.Count is < 1 or > 256
-            || (args.Kind == TacticalPlanAnnotationKind.Dot && args.Points.Count != 1)
-            || (args.Kind == TacticalPlanAnnotationKind.Stroke && args.Points.Count < 2))
-            return;
-
-        foreach (var point in args.Points)
-        {
-            if (!float.IsFinite(point.X) || !float.IsFinite(point.Y)
-                || MathF.Abs(point.X) > 4096f || MathF.Abs(point.Y) > 4096f)
-                return;
-        }
-
         // Picker movement stays client-side; validate and save its color only with an accepted drawing.
-        var chosen = args.Color;
-        if (!float.IsFinite(chosen.R) || !float.IsFinite(chosen.G) || !float.IsFinite(chosen.B))
+        if (!TacticalPlanDrawingValidation.TryValidate(args.Kind, args.Points, args.Color, out var color))
             return;
-
-        var r = Math.Clamp(chosen.R, 0f, 1f);
-        var g = Math.Clamp(chosen.G, 0f, 1f);
-        var b = Math.Clamp(chosen.B, 0f, 1f);
-        var brightest = MathF.Max(r, MathF.Max(g, b));
-        if (brightest < 0.35f)
-        {
-            var scale = 0.35f / MathF.Max(brightest, 0.01f);
-            r = Math.Clamp(r * scale, 0f, 1f);
-            g = Math.Clamp(g * scale, 0f, 1f);
-            b = Math.Clamp(b * scale, 0f, 1f);
-            if (brightest == 0f)
-                r = g = b = 0.35f;
-        }
-
-        var color = new Color(r, g, b);
 
         if (IsFull(component) || component.TotalPoints + args.Points.Count > component.MaxTotalPoints)
         {
@@ -133,13 +104,13 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
                 SendToViewers(uid, component, new TacticalPlanCapacityReachedMessage());
             }
 
-            RejectDrawing(uid, component, actor, "Plan is full; drawing was not saved.");
+            RejectDrawing(uid, component, actor, Loc.GetString("tactical-planning-console-plan-full-rejection"));
             return;
         }
 
         if (!CanSubmit(component, actor))
         {
-            RejectDrawing(uid, component, actor, "Drawing too quickly; stroke was not saved.");
+            RejectDrawing(uid, component, actor, Loc.GetString("tactical-planning-console-rate-limit-rejection"));
             return;
         }
 
@@ -198,7 +169,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         component.Viewers.RemoveWhere(viewer => !_ui.IsUiOpen(uid, TacticalPlanningConsoleUiKey.Key, viewer));
         if (!component.Viewers.Contains(actor) && component.Viewers.Count >= MaxViewers)
         {
-            _popup.PopupEntity("Tactical planning console is at viewer capacity.", uid, actor);
+            _popup.PopupEntity(Loc.GetString("tactical-planning-console-viewer-capacity"), uid, actor);
             _ui.CloseUi(uid, TacticalPlanningConsoleUiKey.Key, actor);
             return false;
         }
@@ -249,3 +220,4 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
             _ui.ServerSendUiMessage(uid, TacticalPlanningConsoleUiKey.Key, message, viewer);
     }
 }
+#endregion

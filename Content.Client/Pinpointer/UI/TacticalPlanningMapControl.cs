@@ -7,6 +7,7 @@ using Robust.Shared.Physics.Components;
 
 namespace Content.Client.Pinpointer.UI;
 
+#region Starlight
 /// <summary>
 /// Adds planning ink to the station map while retaining its normal left-drag pan and wheel zoom.
 /// </summary>
@@ -17,7 +18,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
     protected override float TopPanelWidth => float.NaN;
 
     private const float InitialPointSpacing = 0.25f;
-    private const int MaxStrokePoints = 256;
+    private const int MaxStrokePoints = TacticalPlanDrawingValidation.MaxPointsPerStroke;
 
     private readonly List<TacticalPlanAnnotation> _annotations = new();
     private readonly List<Vector2> _pendingStroke = new();
@@ -299,3 +300,4 @@ public enum TacticalPlanTool : byte
     Draw,
     Erase,
 }
+#endregion

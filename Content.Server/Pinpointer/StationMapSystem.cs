@@ -37,13 +37,27 @@ public sealed partial class StationMapSystem : EntitySystem
         if (!ent.Comp.InitializeWithStation)
             return;
 
+        // Starlight-start
         // Planning consoles reuse StationMapComponent's target grid and the existing nav-map data.
-        // Choose that grid here before the client receives its first map: syndicate consoles
-        // show the operation's station, while ordinary consoles show the grid they are on.
+        // Keep the original handheld nuke map lookup and same-map fallback unchanged; only
+        // the tactical console needs a main-station fallback when no nuke rule is active.
         if (HasComp<NukeopsStationMapComponent>(ent))
         {
-            EnsureNukeopsTarget(ent.Owner);
-            return;
+            if (HasComp<TacticalPlanningConsoleComponent>(ent))
+            {
+                EnsureNukeopsTarget(ent.Owner);
+                return;
+            }
+
+            foreach (var rule in _gameTicker.GetActiveGameRules())
+            {
+                if (TryComp<NukeopsRuleComponent>(rule, out var nukeopsRule) && nukeopsRule.TargetStation != null)
+                {
+                    ent.Comp.TargetGrid = _station.GetLargestGrid((nukeopsRule.TargetStation.Value, null));
+                    Dirty(ent);
+                    return;
+                }
+            }
         }
 
         if (HasComp<TacticalPlanningConsoleComponent>(ent))
@@ -51,6 +65,7 @@ public sealed partial class StationMapSystem : EntitySystem
             EnsureTacticalPlanningTarget(ent.Owner);
             return;
         }
+        // Starlight-end
 
         var station = _station.GetStationInMap(_xform.GetMapId(ent.Owner));
         if (station != null)
@@ -60,6 +75,7 @@ public sealed partial class StationMapSystem : EntitySystem
         }
     }
 
+    #region Starlight
     /// <summary>
     /// Ordinary planning consoles show their own grid, whether it is a station, ship, or platform.
     /// Recheck on snapshot requests so a console moved to another grid follows its new location.
@@ -84,7 +100,8 @@ public sealed partial class StationMapSystem : EntitySystem
     /// </summary>
     public void EnsureNukeopsTarget(EntityUid uid)
     {
-        if (!HasComp<NukeopsStationMapComponent>(uid) || !TryComp<StationMapComponent>(uid, out var map))
+        if (!HasComp<TacticalPlanningConsoleComponent>(uid) || !HasComp<NukeopsStationMapComponent>(uid)
+            || !TryComp<StationMapComponent>(uid, out var map))
             return;
 
         EntityUid? target = null;
@@ -116,6 +133,8 @@ public sealed partial class StationMapSystem : EntitySystem
         map.TargetGrid = grid;
         Dirty(uid, map);
     }
+
+    #endregion
 
     private void OnStationMapClosed(EntityUid uid, StationMapComponent component, BoundUIClosedEvent args)
     {

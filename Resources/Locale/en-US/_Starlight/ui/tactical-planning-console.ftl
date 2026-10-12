@@ -1,0 +1,33 @@
+# Tactical planning console
+tactical-planning-console-title = Tactical Planning Console
+tactical-planning-console-tools-tab = Tools
+tactical-planning-console-details-tab = Drawing details
+tactical-planning-console-active-tool = ACTIVE TOOL
+tactical-planning-console-select-tool = Select / inspect
+tactical-planning-console-draw-tool = Draw stroke
+tactical-planning-console-erase-tool = Erase annotation
+tactical-planning-console-ink-color = INK COLOR
+tactical-planning-console-current-ink = Current ink
+tactical-planning-console-red = Red
+tactical-planning-console-blue = Blue
+tactical-planning-console-yellow = Yellow
+tactical-planning-console-violet = Violet
+tactical-planning-console-custom-color = CUSTOM COLOR
+tactical-planning-console-selected-annotation = SELECTED ANNOTATION
+tactical-planning-console-select-hint = Click a drawing to see its author.
+tactical-planning-console-connecting = Connecting to shared plan...
+tactical-planning-console-sync-failed = Could not sync the plan. Close and reopen the console.
+tactical-planning-console-waiting-for-target = Waiting for station target
+tactical-planning-console-initial-count = 0 shared annotations
+tactical-planning-console-count = {$count} shared annotations
+tactical-planning-console-count-full = {$count} shared annotations — plan full
+tactical-planning-console-reset = Reset full plan
+tactical-planning-console-reset-confirm = Confirm: clear all drawings?
+tactical-planning-console-footer = Shared tactical plan  •  Mouse 1: pan/inspect  •  Mouse 2: dot/draw  •  Wheel: zoom  •  Drawings show author
+tactical-planning-console-dot = Dot
+tactical-planning-console-drawing = Drawing
+tactical-planning-console-details = {$kind}
+    Created by: {$author}
+tactical-planning-console-plan-full-rejection = Plan is full; drawing was not saved.
+tactical-planning-console-rate-limit-rejection = Drawing too quickly; stroke was not saved.
+tactical-planning-console-viewer-capacity = Tactical planning console is at viewer capacity.
