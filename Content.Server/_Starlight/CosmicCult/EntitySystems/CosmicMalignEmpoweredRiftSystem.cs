@@ -1,6 +1,8 @@
+using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Humanoid;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Containers;
@@ -18,6 +20,7 @@ public sealed partial class CosmicMalignEmpoweredRiftSystem : EntitySystem
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TemperatureSystem _tempSys = default!;
+    [Dependency] private SharedCosmicCultSystem _cosmicCult = default!;
 
     public int StoredCorpseCount { get; private set; }
 
@@ -110,8 +113,8 @@ public sealed partial class CosmicMalignEmpoweredRiftSystem : EntitySystem
                 if (target == uid)
                     continue;
 
-                // Only humanoids can be absorbed.
-                if (!HasComp<HumanoidAppearanceComponent>(target))
+                // Only humanoids and convertible (has mind) non-humanoids can be absorbed. Non-humanoids require a mind to absorb.
+                if (!HasComp<HumanoidAppearanceComponent>(target) && (!_cosmicCult.IsConvertible(target) || !TryComp<MindContainerComponent>(target, out var mindContainer) || !mindContainer.HasMind))
                     continue;
 
                 // The humanoid must be critical or dead.

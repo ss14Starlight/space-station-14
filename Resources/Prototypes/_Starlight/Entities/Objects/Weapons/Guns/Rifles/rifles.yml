@@ -62,11 +62,16 @@
     containers:
       gun_magazine: !type:ContainerSlot
   - type: Gun
-    fireRate: 10
-    selectedMode: FullAuto
+    fireRate: 3.5
+    shotsPerBurst: 3
+    burstFireRate: 6
+    burstCooldown: 0.7
+    selectedMode: Burst
     availableModes:
       - SemiAuto
-      - FullAuto
+      - Burst
+    angleIncrease: 3
+    angleDecay: 8
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: MagazineVisuals
@@ -75,7 +80,7 @@
     zeroVisible: true
   - type: Appearance
   - type: GunHeat
-    heatPerShot: 1000
+    heatPerShot: 1600
 
 - type: entity
   name: IK-60 laser carbine

@@ -68,6 +68,51 @@
             "name": "equipped-HELMET-feroxi",
             "copyright": "A custom item by AftrLite (Github), sprites for vulps feroxis and harpies made by HTMLSystem (AftrLite edited the harpy one too)",
             "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-scurret",
+            "copyright": "Modified from syndicate.rsi equipped-OUTERCLOTHING by FairlySadPanda (Github), Tail sprites by Tiniest Shark (github), edited for cosmic cult by johnny012602",
+            "directions": 4
+        },
+        {
+            "name": "equipped-HELMET-scurret",
+            "copyright": "Modified from syndicate.rsi equipped-OUTERCLOTHING by FairlySadPanda (Github), Tail sprites by Tiniest Shark (github), edited for cosmic cult by johnny012602",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-monkey",
+            "copyright": "monkey/kobold state modified from coscult base by DocMoth",
+            "directions": 4
+        },
+        {
+            "name": "equipped-HELMET-monkey",
+            "copyright": "monkey/kobold state modified from coscult base by DocMoth",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-dog",
+            "copyright": "Made by Swonkus on github",
+            "directions": 4
+        },
+        {
+            "name": "equipped-HELMET-dog",
+            "copyright": "Made by Swonkus on github",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-light-monkey",
+            "copyright": "Made by .rhapsody (Discord)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-light-scurret",
+            "copyright": "Made by .rhapsody (Discord)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-light-dog",
+            "copyright": "Made by .rhapsody (Discord)",
+            "directions": 4
         }
     ]
 }

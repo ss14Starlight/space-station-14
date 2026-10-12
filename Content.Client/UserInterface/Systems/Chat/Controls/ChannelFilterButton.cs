@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Content.Client._Starlight.Stylesheets;
 using Content.Client.Resources;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.Controls;
@@ -47,6 +48,15 @@ public sealed class ChannelFilterButton : ChatPopupButton<ChannelFilterPopup>
     private void UpdateChildColors()
     {
         if (_textureRect == null) return;
+
+        // Starlight-start
+        if (TryGetStyleProperty<Color>(StarlightStyleProperty.IconColor, out var iconColor))
+        {
+            _textureRect.ModulateSelfOverride = iconColor;
+            return;
+        }
+        // Starlight-end
+
         switch (DrawMode)
         {
             case DrawModeEnum.Normal:
