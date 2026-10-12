@@ -4,8 +4,8 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/12/2026 04:51:12
-  entityCount: 28337
+  time: 10/12/2026 05:08:19
+  entityCount: 28338
 maps:
 - 1
 grids:
@@ -14621,7 +14621,7 @@ entities:
       parent: 2
       pos: 18.5,52.5
     - type: Door
-      secondsUntilStateChange: -214646.08
+      secondsUntilStateChange: -215670.38
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -14698,7 +14698,7 @@ entities:
       parent: 2
       pos: 73.5,-1.5
     - type: Door
-      secondsUntilStateChange: -298721.53
+      secondsUntilStateChange: -299745.84
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15031,7 +15031,7 @@ entities:
       parent: 2
       pos: -4.5,10.5
     - type: Door
-      secondsUntilStateChange: -414248.88
+      secondsUntilStateChange: -415273.2
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15048,7 +15048,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,10.5
     - type: Door
-      secondsUntilStateChange: -435237.6
+      secondsUntilStateChange: -436261.9
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15064,7 +15064,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.5,12.5
     - type: Door
-      secondsUntilStateChange: -257757.94
+      secondsUntilStateChange: -258782.23
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15139,7 +15139,7 @@ entities:
       parent: 2
       pos: -10.5,10.5
     - type: Door
-      secondsUntilStateChange: -408411.06
+      secondsUntilStateChange: -409435.38
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15487,7 +15487,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 92.5,29.5
     - type: Door
-      secondsUntilStateChange: -339451.44
+      secondsUntilStateChange: -340475.75
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: DeviceLinkSource
@@ -15520,7 +15520,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -63.5,-1.5
     - type: Door
-      secondsUntilStateChange: -387873.94
+      secondsUntilStateChange: -388898.25
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: DeviceLinkSource
@@ -15784,7 +15784,7 @@ entities:
       pos: 87.5,19.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -115878.63
+      secondsUntilStateChange: -116902.94
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15796,7 +15796,7 @@ entities:
       pos: 87.5,23.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -115878.1
+      secondsUntilStateChange: -116902.41
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15808,7 +15808,7 @@ entities:
       pos: 39.5,79.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -115870.7
+      secondsUntilStateChange: -116895.01
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15823,7 +15823,7 @@ entities:
       pos: -6.5,57.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -42883.492
+      secondsUntilStateChange: -43907.797
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15835,7 +15835,7 @@ entities:
       pos: -2.5,57.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -42883.992
+      secondsUntilStateChange: -43908.297
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15846,7 +15846,7 @@ entities:
       pos: 78.5,-9.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -24361.271
+      secondsUntilStateChange: -25385.574
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -16185,7 +16185,7 @@ entities:
       pos: 12.5,-14.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -115888.664
+      secondsUntilStateChange: -116912.97
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -16410,7 +16410,7 @@ entities:
       pos: 9.5,15.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -61016.297
+      secondsUntilStateChange: -62040.6
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -16795,7 +16795,7 @@ entities:
       parent: 2
       pos: 9.5,-4.5
     - type: Door
-      secondsUntilStateChange: -243712.8
+      secondsUntilStateChange: -244737.1
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -17320,7 +17320,7 @@ entities:
       parent: 2
       pos: 32.5,14.5
     - type: Door
-      secondsUntilStateChange: -367579.34
+      secondsUntilStateChange: -368603.66
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -17460,7 +17460,7 @@ entities:
       parent: 2
       pos: 9.5,48.5
     - type: Door
-      secondsUntilStateChange: -178669.14
+      secondsUntilStateChange: -179693.44
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -82089,7 +82089,7 @@ entities:
       pos: 15.5,2.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -135841.14
+      secondsUntilStateChange: -136865.44
   - uid: 12437
     components:
     - type: Transform
@@ -86191,7 +86191,7 @@ entities:
       pos: -0.5,-18.5
     - type: Door
       state: Closing
-      secondsUntilStateChange: -14049.732
+      secondsUntilStateChange: -15074.035
     - type: DeviceNetwork
       deviceLists:
       - 12551
@@ -146774,7 +146774,7 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 87.5,16.5
-  - uid: 28337
+  - uid: 28338
     components:
     - type: Transform
       parent: 1
@@ -164204,6 +164204,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 14.5,16.5
+  - uid: 28337
+    components:
+    - type: Transform
+      parent: 2
+      pos: 3.5,-32.5
 - proto: StationRadioRig
   entities:
   - uid: 23855
@@ -164218,6 +164223,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 4.5,-30.5
+    - type: DeviceLinkSource
+      linkedPorts:
+        23855:
+        - - StationRadioServerPort
+          - StationRadioRigPort
 - proto: StationRecordsComputerCircuitboard
   entities:
   - uid: 23857
@@ -171888,6 +171898,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 2.5,-31.5
+    - type: DeviceLinkSource
+      linkedPorts:
+        23855:
+        - - VinylPlayerPort
+          - StationRadioRigPort
   - uid: 24841
     components:
     - type: Transform
@@ -190029,7 +190044,7 @@ entities:
       parent: 2
       pos: 37.5,-17.5
     - type: Door
-      secondsUntilStateChange: -304091.72
+      secondsUntilStateChange: -305116.03
 - proto: WoodenBench
   entities:
   - uid: 28322
