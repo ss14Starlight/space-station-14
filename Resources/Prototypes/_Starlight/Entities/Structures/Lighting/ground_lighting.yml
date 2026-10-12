@@ -443,6 +443,9 @@
       state: light_off
     - type: Appearance
     - type: LightFloor # no panel or bulb, only used for the cover visuals and to drop the hover outline
+    - type: PointLight # no bulb to dim, so set the same reduced light by hand
+      radius: 4
+      energy: 1.5
     - type: Physics
       canCollide: false
 

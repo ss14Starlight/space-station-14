@@ -24,6 +24,16 @@ public sealed partial class LightFloorSystem : EntitySystem
         SubscribeLocalEvent<LightFloorComponent, InteractUsingEvent>(OnInteractUsing,
             before: [typeof(SharedPoweredLightSystem)]);
         SubscribeLocalEvent<LightFloorComponent, PanelChangedEvent>(OnPanelChanged);
+        SubscribeLocalEvent<LightFloorComponent, GetLightFixtureLevelEvent>(OnGetLightLevel);
+    }
+
+    /// <summary>
+    /// Dims and shortens the bulb's light, see <see cref="LightFloorComponent.EnergyMultiplier"/>.
+    /// </summary>
+    private void OnGetLightLevel(Entity<LightFloorComponent> ent, ref GetLightFixtureLevelEvent args)
+    {
+        args.LightEnergy *= ent.Comp.EnergyMultiplier;
+        args.LightRadius = Math.Min(args.LightRadius, ent.Comp.MaxRadius);
     }
 
     /// <summary>
