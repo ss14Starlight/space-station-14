@@ -24,7 +24,7 @@ public sealed partial class LightFloorVisualizerSystem : VisualizerSystem<LightF
 
         // No bulb state at all means an always powered floor, which is always lit.
         var lit = !AppearanceSystem.TryGetData<PoweredLightState>(uid, PoweredLightVisuals.BulbState, out var state, args.Component)
-                  || state == PoweredLightState.On;
+                || state == PoweredLightState.On;
 
         SpriteSystem.LayerSetVisible((uid, args.Sprite), LightFloorLayers.Cover, !open);
         SpriteSystem.LayerSetVisible((uid, args.Sprite), LightFloorLayers.CoverGlow, !open && lit);
