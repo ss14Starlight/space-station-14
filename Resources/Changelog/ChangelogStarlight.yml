@@ -1,11 +1,4 @@
 Entries:
-- author: Scarlet Inanis Lightweaver
-  changes:
-  - message: Added a reptilian ethnicity trait! the Drakari.
-    type: Add
-  id: 408980
-  time: '2026-09-29T08:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6403
 - author: Scarlet Lightweaver
   changes:
   - message: Changed the sec sop for CODE GREEN, Armory weapons must remain the armory and not the brig now.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409379
   time: '2026-10-12T06:24:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6648
+- author: SevenShades
+  changes:
+  - message: MedTak visors are now compatible with eye implants.
+    type: Tweak
+  id: 409380
+  time: '2026-10-12T10:09:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6653
 Order: -1
