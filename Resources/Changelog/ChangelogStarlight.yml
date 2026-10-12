@@ -1,11 +1,4 @@
 Entries:
-- author: Scarlet Lightweaver
-  changes:
-  - message: Changed the sec sop for CODE GREEN, Armory weapons must remain the armory and not the brig now.
-    type: Tweak
-  id: 408981
-  time: '2026-09-29T14:16:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6404
 - author: joshujo
   changes:
   - message: Air siphons, the active counterpart to the air injector!
@@ -2883,4 +2876,11 @@ Entries:
   id: 409380
   time: '2026-10-12T10:09:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6653
+- author: Johnny
+  changes:
+  - message: Added the Nanotrasen Theme (Mimics the old theme while still working with the theme update).
+    type: Add
+  id: 409381
+  time: '2026-10-12T10:09:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6652
 Order: -1
