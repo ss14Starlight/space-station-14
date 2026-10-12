@@ -20,7 +20,7 @@ public sealed partial class PollenSerumPerkComponent : Component
     public float Amount = 1f;
 
     [DataField]
-    public TimeSpan Interval = TimeSpan.FromSeconds(1);
+    public TimeSpan Interval = TimeSpan.FromSeconds(60);
 
     [AutoPausedField]
     public TimeSpan NextTick;

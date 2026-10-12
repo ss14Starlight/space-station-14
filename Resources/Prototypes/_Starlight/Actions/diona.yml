@@ -35,7 +35,7 @@
     icon:
       sprite: _Starlight/Interface/Actions/actions_diona.rsi
       state: bark_make_wood
-    useDelay: 30
+    useDelay: 60
   - type: ConfirmableAction
     popup: pollen-bark-make-wood-confirm
   - type: InstantAction
@@ -63,7 +63,7 @@
     icon:
       sprite: _Starlight/Interface/Actions/actions_diona.rsi
       state: mush_spore_cloud
-    useDelay: 60
+    useDelay: 720 # 12 minutes
   - type: InstantAction
     event: !type:PollenSporeCloudEvent {}
 
@@ -78,7 +78,7 @@
     icon:
       sprite: _Starlight/Interface/Actions/actions_diona.rsi
       state: mush_injection_phytovitalin
-    useDelay: 300 # 5 minutes
+    useDelay: 480 # 8 minutes
   - type: TargetAction
     interactOnMiss: false
   - type: EntityTargetAction

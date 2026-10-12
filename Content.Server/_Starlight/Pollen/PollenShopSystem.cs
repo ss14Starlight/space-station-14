@@ -73,7 +73,7 @@ public sealed partial class PollenShopSystem : EntitySystem
     /// </summary>
     private static readonly Dictionary<string, (ProtoId<ReagentPrototype> Reagent, float Amount, TimeSpan Interval)> _periodicReagentPerks = new()
     {
-        ["PollenTreeBarkT3SapSerum"] = (_phytovitalin, 1f, TimeSpan.FromSeconds(30)),
+        ["PollenTreeBarkT3SapSerum"] = (_phytovitalin, 1f, TimeSpan.FromSeconds(60)),
     };
 
     public override void Initialize()
@@ -282,7 +282,7 @@ public sealed partial class PollenShopSystem : EntitySystem
         }
 
         var selfDamage = new DamageSpecifier();
-        selfDamage.DamageDict.Add("Cellular", 5);
+        selfDamage.DamageDict.Add("Cellular", 16);
         selfDamage.DamageDict.Add("Bloodloss", 20);
         _damageable.TryChangeDamage(ent.Owner, selfDamage, ignoreResistances: true);
     }
