@@ -10,7 +10,7 @@ namespace Content.Shared._Starlight.Pollen.Components;
 /// based on which listing was bought - see _periodicReagentPerks.
 /// Server-only, not networked.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class PollenSerumPerkComponent : Component
 {
     [DataField]
@@ -22,5 +22,6 @@ public sealed partial class PollenSerumPerkComponent : Component
     [DataField]
     public TimeSpan Interval = TimeSpan.FromSeconds(1);
 
+    [AutoPausedField]
     public TimeSpan NextTick;
 }

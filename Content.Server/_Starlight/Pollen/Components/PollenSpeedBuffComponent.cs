@@ -7,10 +7,12 @@ namespace Content.Server._Starlight.Pollen.Components;
 /// Values are set at grant time from the triggering cloud's own tuning
 /// (PollenAdvancedPollenComponent), not from defaults here.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class PollenSpeedBuffComponent : Component
 {
     public float WalkModifier;
     public float SprintModifier;
+
+    [AutoPausedField]
     public TimeSpan ExpiresAt;
 }

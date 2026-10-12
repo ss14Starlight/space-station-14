@@ -2,7 +2,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared._Starlight.Pollen.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class PollenCollectorComponent : Component
 {
     /// <summary>
@@ -30,6 +30,7 @@ public sealed partial class PollenCollectorComponent : Component
     [DataField]
     public float InteractionChance = 1f;
 
+    [AutoPausedField]
     public TimeSpan NextCollection;
 
     public EntityUid? ObjectiveGrantedMind;

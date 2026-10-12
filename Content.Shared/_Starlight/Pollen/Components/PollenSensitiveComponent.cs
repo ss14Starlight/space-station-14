@@ -1,6 +1,6 @@
 namespace Content.Shared._Starlight.Pollen.Components;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class PollenSensitiveComponent : Component
 {
     [DataField]
@@ -21,7 +21,7 @@ public sealed partial class PollenSensitiveComponent : Component
     [DataField]
     public float HistamineAmount = 2f;
 
-    [DataField]
+    [DataField, AutoPausedField]
     public TimeSpan NextHistamine;
 
     [DataField]
@@ -41,9 +41,16 @@ public sealed partial class PollenSensitiveComponent : Component
 
     [DataField]
     public float AllergyStack;
+
+    [AutoPausedField]
     public TimeSpan NextInteraction;
+
+    [AutoPausedField]
     public TimeSpan NextAllergyUpdate;
+
+    [AutoPausedField]
     public TimeSpan NextSneeze;
+
     public bool NoseItchActive;
     public bool SneezingActive;
     public bool HistamineActive;

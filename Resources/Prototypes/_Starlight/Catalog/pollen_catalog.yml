@@ -43,7 +43,7 @@
   id: PollenTreeFloralT3AdvancedPollen
   name: pollen-floral-t3-name
   description: pollen-floral-t3-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: floral_alert_pollen }
+  icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: floral_advanced_pollen_icon }
   applyToMob: true
   cost:
     PollenPoints: 4

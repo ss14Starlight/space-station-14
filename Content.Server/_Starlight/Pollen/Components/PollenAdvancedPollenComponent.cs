@@ -1,6 +1,6 @@
 namespace Content.Server._Starlight.Pollen.Components;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class PollenAdvancedPollenComponent : Component
 {
     [DataField]
@@ -15,6 +15,7 @@ public sealed partial class PollenAdvancedPollenComponent : Component
     [DataField]
     public float MindChance = 0.1f;
 
+    [AutoPausedField]
     public TimeSpan NextCheck;
 
     [DataField]
@@ -30,5 +31,5 @@ public sealed partial class PollenAdvancedPollenComponent : Component
     public float SpeedSprintModifier = 1.1f;
 
     [DataField]
-    public TimeSpan SpeedBuffDuration = TimeSpan.FromSeconds(5);
+    public TimeSpan SpeedBuffDuration = TimeSpan.FromSeconds(3);
 }
