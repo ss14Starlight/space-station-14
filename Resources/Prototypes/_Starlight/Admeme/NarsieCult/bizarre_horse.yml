@@ -184,10 +184,6 @@
       types:
         Blunt: 0
 
-  - type: Temperature
-    heatDamageThreshold: 10000
-    coldDamageThreshold: -10000
-
   - type: TemperatureDamage
     heatDamageThreshold: 10000
     coldDamageThreshold: -10000
@@ -204,7 +200,6 @@
 
   - type: Thirst
     baseDecayRate: 0
-    currentThreshold: OverHydrated
 
     # Just to be sure we dont have any more antag horses
   - type: AntagImmune
