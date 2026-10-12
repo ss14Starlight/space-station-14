@@ -1,25 +1,4 @@
 Entries:
-- author: joshujo
-  changes:
-  - message: Air siphons, the active counterpart to the air injector!
-    type: Add
-  id: 408982
-  time: '2026-09-29T14:56:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6374
-- author: qbrx
-  changes:
-  - message: Brute automender now heals instead of damage.
-    type: Fix
-  id: 408983
-  time: '2026-09-29T14:56:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6397
-- author: Rinary
-  changes:
-  - message: Fixed time requirements for NullLink playtime (try 2).
-    type: Fix
-  id: 408984
-  time: '2026-09-29T17:00:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6361
 - author: redmushie
   changes:
   - message: Air injectors now correctly show enabled/disabled state when initially spawned during mapping.
@@ -2883,4 +2862,25 @@ Entries:
   id: 409381
   time: '2026-10-12T10:09:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6652
+- author: Caws
+  changes:
+  - message: Rule 5 (Antagonist MRP Logic) has been updated to explicitly list that both Eeeps (Electric Sheep) and the Entropic Colossus may "play openly" similar to Space Dragons, Rat Kings, Lone Ops, etc.
+    type: Tweak
+  id: 409382
+  time: '2026-10-12T10:43:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6651
+- author: Johnny
+  changes:
+  - message: Fixed Sextus.
+    type: Tweak
+  id: 409383
+  time: '2026-10-12T10:43:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6647
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed unit selection ordering on syringes so that it's sorted properly.
+    type: Fix
+  id: 409384
+  time: '2026-10-12T10:44:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6644
 Order: -1
