@@ -1,11 +1,4 @@
 Entries:
-- author: DocMoth
-  changes:
-  - message: Laspi regen returned to double baseline value.
-    type: Fix
-  id: 409021
-  time: '2026-09-29T20:42:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6386
 - author: Caws
   changes:
   - message: (CentComm SC17) Cecil (sea salt).
@@ -2883,4 +2876,11 @@ Entries:
   id: 409420
   time: '2026-10-13T05:57:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Scarlet.
+  changes:
+  - message: Removed old prototypes that arent used.
+    type: Remove
+  id: 409421
+  time: '2026-10-13T10:47:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6669
 Order: -1
