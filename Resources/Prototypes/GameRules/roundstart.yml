@@ -290,7 +290,7 @@
   parent: [BaseGameRule, BaseRoundstartAntagRule]
   components:
   - type: GameRule
-    minPlayers: 15
+    minPlayers: 20
     delay: # Starlight start
       min: 240 # Delay it so people can have some calm at the start.
       max: 420 # Starlight end

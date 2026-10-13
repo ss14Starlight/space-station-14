@@ -216,7 +216,7 @@
     - nukeops
   name: nukeops-title
   description: nukeops-description
-  minPlayers: 20
+  minPlayers: 20 # Starlight
   showInVote: true # Starlight
   rules:
   - Nukeops
@@ -235,7 +235,7 @@
     - revolutionaries
   name: rev-title
   description: rev-description
-  minPlayers: 15
+  minPlayers: 20 # Starlight
   showInVote: true # Starlight
   rules:
   # - DummyNonAntagChance # Starlight
