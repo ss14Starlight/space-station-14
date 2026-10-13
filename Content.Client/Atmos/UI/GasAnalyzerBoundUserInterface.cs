@@ -1,3 +1,4 @@
+using Content.Client._Starlight.Computers.RemoteControl;
 using Robust.Client.UserInterface;
 using Content.Shared.Atmos.Components;
 
@@ -17,6 +18,7 @@ public sealed class GasAnalyzerBoundUserInterface : BoundUserInterface
         base.Open();
 
         _window = this.CreateWindowCenteredLeft<GasAnalyzerWindow>();
+        EntMan.System<RemoteControlInterface>().TryEmbedWindow(_window); // Starlight
         _window.OnClose += Close;
     }
 
@@ -29,5 +31,18 @@ public sealed class GasAnalyzerBoundUserInterface : BoundUserInterface
             return;
 
         _window.Populate(cast);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        // Starlight - start
+        if (disposing && _window is { } window)
+        {
+            window.Parent?.RemoveChild(window);
+            _window = null;
+        }
+        // Starlight - end
     }
 }
