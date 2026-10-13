@@ -785,8 +785,8 @@ public sealed partial class LancerDiceOverlayControl : Control
 
         var sum = dice.Sum();
         roll.DamageResultText = dice.Length == 1
-            ? $"Damage: {sum}"
-            : $"Damage: {string.Join(" + ", dice)} = {sum}";
+            ? Loc.GetString("lancer-dice-damage", ("sum", sum))
+            : Loc.GetString("lancer-dice-damage-sum", ("dice", string.Join(" + ", dice)), ("sum", sum));
     }
 
     private float GetDieDrawSize(string kind) => (kind == "d20" ? D20Size : D6Size) * UIScale;

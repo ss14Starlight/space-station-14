@@ -1,0 +1,7 @@
+- type: alert
+  id: TrackingScent
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/scent.rsi
+    state: tracking
+  name: alerts-tracking-scent-name
+  description: alerts-tracking-scent-desc

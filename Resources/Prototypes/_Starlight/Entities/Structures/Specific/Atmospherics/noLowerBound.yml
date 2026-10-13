@@ -66,28 +66,43 @@
       Quinary: GasVentPumpNoLowerBoundAlt4
 
 - type: entity
+  parent: [AirSensorNoLowerBoundBase, GasVentPumpNoLowerBoundBase, GasVentPump]
+  id: GasVentPumpNoLowerBound
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentPumpNoLowerBound
+
+- type: entity
   parent: [AirSensorNoLowerBoundBase, GasVentPumpNoLowerBoundBase, GasVentPumpAlt1]
   id: GasVentPumpNoLowerBoundAlt1
   categories: [ HideSpawnMenu ]
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentPumpNoLowerBound
 
 - type: entity
   parent: [AirSensorNoLowerBoundBase, GasVentPumpNoLowerBoundBase, GasVentPumpAlt2]
   id: GasVentPumpNoLowerBoundAlt2
   categories: [ HideSpawnMenu ]
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentPumpNoLowerBound
 
 - type: entity
   parent: [AirSensorNoLowerBoundBase, GasVentPumpNoLowerBoundBase, GasVentPumpAlt3]
   id: GasVentPumpNoLowerBoundAlt3
   categories: [ HideSpawnMenu ]
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentPumpNoLowerBound
 
 - type: entity
   parent: [AirSensorNoLowerBoundBase, GasVentPumpNoLowerBoundBase, GasVentPumpAlt4]
   id: GasVentPumpNoLowerBoundAlt4
   categories: [ HideSpawnMenu ]
-
-- type: entity
-  parent: [AirSensorNoLowerBoundBase, GasVentPumpNoLowerBoundBase, GasVentPump]
-  id: GasVentPumpNoLowerBound
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentPumpNoLowerBound
 
 # Gas Scrubber
 
@@ -105,25 +120,40 @@
       Quinary: GasVentScrubberNoLowerBoundAlt4
 
 - type: entity
+  parent: [AirSensorNoLowerBoundBase, GasVentScrubberNoLowerBoundBase, GasVentScrubber]
+  id: GasVentScrubberNoLowerBound
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentScrubberNoLowerBound
+
+- type: entity
   parent: [AirSensorNoLowerBoundBase, GasVentScrubberNoLowerBoundBase, GasVentScrubberAlt1]
   id: GasVentScrubberNoLowerBoundAlt1
   categories: [ HideSpawnMenu ]
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentScrubberNoLowerBound
 
 - type: entity
   parent: [AirSensorNoLowerBoundBase, GasVentScrubberNoLowerBoundBase, GasVentScrubberAlt2]
   id: GasVentScrubberNoLowerBoundAlt2
   categories: [ HideSpawnMenu ]
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentScrubberNoLowerBound
 
 - type: entity
   parent: [AirSensorNoLowerBoundBase, GasVentScrubberNoLowerBoundBase, GasVentScrubberAlt3]
   id: GasVentScrubberNoLowerBoundAlt3
   categories: [ HideSpawnMenu ]
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentScrubberNoLowerBound
 
 - type: entity
   parent: [AirSensorNoLowerBoundBase, GasVentScrubberNoLowerBoundBase, GasVentScrubberAlt4]
   id: GasVentScrubberNoLowerBoundAlt4
   categories: [ HideSpawnMenu ]
-
-- type: entity
-  parent: [AirSensorNoLowerBoundBase, GasVentScrubberNoLowerBoundBase, GasVentScrubber]
-  id: GasVentScrubberNoLowerBound
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentScrubberNoLowerBound

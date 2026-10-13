@@ -18,6 +18,7 @@ public sealed partial class EnergyColorSystem : EntitySystem
     [Dependency] private SharedToolSystem _tool = default!;
     [Dependency] private IRobustRandom _rand = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IViewVariablesManager _vvm = default!;
 
     public override void Initialize()
     {
@@ -26,6 +27,34 @@ public sealed partial class EnergyColorSystem : EntitySystem
         SubscribeLocalEvent<EnergyColorComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<EnergyColorComponent, AfterAutoHandleStateEvent>(OnAfterAutoState);
         SubscribeLocalEvent<EnergyColorComponent, InteractUsingEvent>(OnInteractUsing);
+
+        // Direct VV field writes do not refresh the server's appearance data.
+        _vvm.GetTypeHandler<EnergyColorComponent>()
+            .AddPath(nameof(EnergyColorComponent.ActiveColor), (_, comp) => comp.ActiveColor, SetActiveColor);
+    }
+
+    public override void Shutdown()
+    {
+        _vvm.GetTypeHandler<EnergyColorComponent>()
+            .RemovePath(nameof(EnergyColorComponent.ActiveColor));
+
+        base.Shutdown();
+    }
+
+    /// <summary>
+    /// Sets <see cref="EnergyColorComponent.ActiveColor"/> and updates its networked appearance.
+    /// </summary>
+    /// <remarks>
+    /// Also updates appearance while inactive so character scripts can recolor newly spawned items.
+    /// </remarks>
+    public void SetActiveColor(EntityUid uid, Color? color, EnergyColorComponent? comp = null)
+    {
+        if (!Resolve(uid, ref comp))
+            return;
+
+        comp.ActiveColor = color;
+        Dirty(uid, comp);
+        UpdateAppearance(uid, comp);
     }
 
     private void OnMapInit(Entity<EnergyColorComponent> ent, ref MapInitEvent args)

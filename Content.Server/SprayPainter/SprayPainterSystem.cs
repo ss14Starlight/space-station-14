@@ -109,6 +109,9 @@ public sealed partial class SprayPainterSystem : SharedSprayPainterSystem
         }
 
         _audio.PlayPvs(ent.Comp.SpraySound, ent);
+
+        _charges.TryUseCharges((ent, charges), ent.Comp.DecalChargeCost);
+
         AdminLogger.Add(LogType.CrayonDraw, LogImpact.Low, $"{ToPrettyString(args.User):user} painted a {ent.Comp.SelectedDecal}");
     }
 

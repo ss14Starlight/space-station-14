@@ -69,8 +69,7 @@ public sealed partial class ScentSniffMenu : DefaultWindow
             content.AddChild(idLabel);
 
             var detailLabel = new RichTextLabel();
-            detailLabel.SetMarkup(Loc.GetString("scent-sniff-window-entry-detail",
-                ("species", entry.Species), ("freshness", GetFreshnessLabel(entry.Freshness)), ("color", color)));
+            detailLabel.SetMarkup(GetDetailMarkup(entry, color));
             content.AddChild(detailLabel);
 
             var row = new ContainerButton
@@ -86,6 +85,14 @@ public sealed partial class ScentSniffMenu : DefaultWindow
 
             Rows.AddChild(row);
         }
+    }
+
+    private static string GetDetailMarkup(ScentTraceEntry entry, Color color)
+    {
+        var freshness = GetFreshnessLabel(entry.Freshness);
+        return string.IsNullOrEmpty(entry.Species)
+            ? Loc.GetString("scent-sniff-window-entry-detail-no-species", ("freshness", freshness), ("color", color))
+            : Loc.GetString("scent-sniff-window-entry-detail", ("species", entry.Species), ("freshness", freshness), ("color", color));
     }
 
     private static string GetFreshnessLabel(ScentFreshness freshness) => Loc.GetString(freshness switch

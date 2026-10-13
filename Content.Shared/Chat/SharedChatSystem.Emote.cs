@@ -200,6 +200,8 @@ public abstract partial class SharedChatSystem
             }
             if (speech.AllowedEmotes.Contains(emote.ID))
                 return true;
+            if (speech.RestrictVocalEmotesToAllowed && emote.Category == EmoteCategory.Vocal)
+                return false;
             //#endregion starlight
         }
 

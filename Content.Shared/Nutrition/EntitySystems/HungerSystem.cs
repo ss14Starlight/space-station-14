@@ -185,7 +185,7 @@ public sealed partial class HungerSystem : EntitySystem
             return;
 
         if (component.CurrentThreshold >= component.PassiveDamageThreshold &&
-            _damageable.GetDamage((uid, dmgComp)).GetTotal() < component.PassiveDamageCap &&
+            _damageable.GetTotalDamage(uid) < component.PassiveDamageCap &&
             component.PassiveDamageSpecifier is { } passiveDamage && !_mobState.IsDead(uid))
             _damageable.TryChangeDamage(uid, passiveDamage, true, false);
         // Starlight end

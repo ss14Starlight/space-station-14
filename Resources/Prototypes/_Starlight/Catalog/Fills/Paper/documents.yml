@@ -439,6 +439,15 @@
     - type: Paper
       content: doc-text-printer-borgification-consent-form
 
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentMechAuthorizationForm
+  name: Mech Authorization Form
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-mech-authorization-form
+
 # OrdersAndInstructions
 
 - type: entity

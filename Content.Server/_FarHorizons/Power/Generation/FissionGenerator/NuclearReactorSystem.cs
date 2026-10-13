@@ -1,7 +1,6 @@
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Atmos.Piping.Components;
 using Content.Server.Audio;
 using Content.Server.Chat.Systems;
 using Content.Server.DeviceLinking.Systems;
@@ -14,6 +13,7 @@ using Content.Server.Station.Systems;
 using Content.Shared._FarHorizons.Materials.Systems;
 using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Construction.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage.Systems;

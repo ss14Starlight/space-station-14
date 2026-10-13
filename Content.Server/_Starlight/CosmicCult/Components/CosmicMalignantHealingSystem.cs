@@ -52,8 +52,8 @@ public sealed partial class CosmicMalignantHealingSystem : EntitySystem
 
             // Heal every damage type by up to HealAmount.
             var damage = new DamageSpecifier();
-
-            foreach (var (type, amount) in damageable.Damage.DamageDict)
+            var damageSpec = _damageable.GetAllDamage(uid);
+            foreach (var (type, amount) in damageSpec.DamageDict)
             {
                 if (amount > 0)
                     damage.DamageDict[type] = -healing.HealAmount;

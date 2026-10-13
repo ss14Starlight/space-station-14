@@ -84,8 +84,8 @@
     allowMovement: true
     allowSpeech: true
     makeSentient: true
-    name: red mouse!
-    description: "You are mouff leader. Your goal is to steal cheese from heads!"
+    name: ghost-role-information-mob-nyr-mouse-ops-name
+    description: ghost-role-information-mob-nyr-mouse-ops-description
     mindRoles:
     - MindRoleGhostRoleTeamAntagonist
     raffle:

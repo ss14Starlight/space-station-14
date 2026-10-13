@@ -1,12 +1,13 @@
 using System.Linq;
 using System.Text.Json.Serialization;
+using Content.Shared._Starlight.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
-using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Generic;
 
 namespace Content.Shared.Damage
 {
@@ -18,31 +19,13 @@ namespace Content.Shared.Damage
     ///     functions to apply resistance sets and supports basic math operations to modify this dictionary.
     /// </remarks>
     [DataDefinition, Serializable, NetSerializable]
-    public sealed partial class DamageSpecifier : IEquatable<DamageSpecifier>
+    public sealed partial class DamageSpecifier : IEquatable<DamageSpecifier>, IRobustCloneable<DamageSpecifier>
     {
-        // For the record I regret so many of the decisions i made when rewriting damageable
-        // Why is it just shitting out dictionaries left and right
-        // One day Arrays, stackalloc spans, and SIMD will save the day.
-        // TODO DAMAGEABLE REFACTOR
-
-        // These exist solely so the wiki works. Please do not touch them or use them.
-        [JsonPropertyName("types")]
-        [DataField("types")]
-        [UsedImplicitly]
-        private Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>? _damageTypeDictionary;
-
-        [JsonPropertyName("groups")]
-        [DataField("groups")]
-        [UsedImplicitly]
-        private Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2>? _damageGroupDictionary;
-
         /// <summary>
         ///     Main DamageSpecifier dictionary. Most DamageSpecifier functions exist to somehow modifying this.
         /// </summary>
-        [JsonIgnore]
-        [ViewVariables(VVAccess.ReadWrite)]
-        [IncludeDataField(customTypeSerializer: typeof(DamageSpecifierDictionarySerializer), readOnly: true)]
-        public Dictionary<string, FixedPoint2> DamageDict { get; set; } = new();
+        [DataField("types")]
+        public Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2> DamageDict { get; set; } = new();
 
         /// <summary>
         ///     Returns a sum of the damage values.
@@ -58,6 +41,17 @@ namespace Content.Shared.Damage
             {
                 total += value;
             }
+
+            #region Starlight
+            foreach (var value in DamageGroupDict.Values)
+            {
+                total += value;
+            }
+
+            if (MixMax != null)
+                total += MixMax.Value;
+            #endregion
+
             return total;
         }
 
@@ -74,6 +68,14 @@ namespace Content.Shared.Damage
                     return true;
             }
 
+            #region Starlight
+            foreach (var value in DamageGroupDict.Values)
+            {
+                if (value > FixedPoint2.Zero)
+                    return true;
+            }
+            #endregion
+
             return false;
         }
 
@@ -82,6 +84,11 @@ namespace Content.Shared.Damage
             var copy = new DamageSpecifier(this);
             foreach (var key in copy.DamageDict.Keys)
                 copy.DamageDict[key] *= -1;
+            #region Starlight
+            foreach (var key in copy.DamageGroupDict.Keys)
+                copy.DamageGroupDict[key] *= -1;
+            copy.MixMax?.Value *= -1;
+            #endregion
             return copy;
         }
 
@@ -89,11 +96,21 @@ namespace Content.Shared.Damage
         ///     Whether this damage specifier has any entries.
         /// </summary>
         [JsonIgnore]
-        public bool Empty => DamageDict.Count == 0;
+        public bool Empty => DamageDict.Count == 0 && DamageGroupDict.Count == 0 && MixMax == null; // Starlight
+
+        public DamageSpecifier Clone()
+        {
+            return new DamageSpecifier(this);
+        }
 
         public override string ToString()
         {
-            return "DamageSpecifier(" + string.Join("; ", DamageDict.Select(x => x.Key + ":" + x.Value)) + ")";
+            #region Starlight
+            var entries = DamageDict.Select(x => x.Key + ":" + x.Value)
+                .Concat(DamageGroupDict.Select(x => "group " + x.Key + ":" + x.Value));
+            var mixMax = MixMax == null ? string.Empty : $"; mixmax:{MixMax.Value}";
+            return "DamageSpecifier(" + string.Join("; ", entries) + mixMax + ")";
+            #endregion
         }
 
         #region constructors
@@ -108,6 +125,8 @@ namespace Content.Shared.Damage
         public DamageSpecifier(DamageSpecifier damageSpec)
         {
             DamageDict = new(damageSpec.DamageDict);
+            DamageGroupDict = new(damageSpec.DamageGroupDict); // Starlight
+            MixMax = damageSpec.MixMax?.Clone(); // Starlight
         }
 
         /// <summary>
@@ -146,10 +165,18 @@ namespace Content.Shared.Damage
         /// </remarks>
         public static DamageSpecifier ApplyModifierSet(DamageSpecifier damageSpec, DamageModifierSet modifierSet, float armorPenetration = 0f, bool canHeal = true) // Starlight
         {
+            if (damageSpec.DamageGroupDict.Count != 0) // Starlight
+                damageSpec = damageSpec.ResolveGroups(IoCManager.Resolve<IPrototypeManager>()); // Starlight
+
             // Make a copy of the given data. Don't modify the one passed to this function. I did this before, and weapons became
             // duller as you hit walls. Neat, but not FixedPoint2ended. And confusing, when you realize your fists don't work no
             // more cause they're just bloody stumps.
-            DamageSpecifier newDamage = new();
+            #region Starlight
+            DamageSpecifier newDamage = new()
+            {
+                MixMax = damageSpec.MixMax?.Clone(),
+            };
+            #endregion
             newDamage.DamageDict.EnsureCapacity(damageSpec.DamageDict.Count);
 
             foreach (var (key, value) in damageSpec.DamageDict)
@@ -213,6 +240,9 @@ namespace Content.Shared.Damage
         /// <returns></returns>
         public static DamageSpecifier ApplyModifierSets(DamageSpecifier damageSpec, IEnumerable<DamageModifierSet> modifierSets)
         {
+            if (damageSpec.DamageGroupDict.Count != 0) // Starlight
+                damageSpec = damageSpec.ResolveGroups(IoCManager.Resolve<IPrototypeManager>()); // Starlight
+
             bool any = false;
             DamageSpecifier newDamage = damageSpec;
             foreach (var set in modifierSets)
@@ -242,6 +272,14 @@ namespace Content.Shared.Damage
                     newDamage.DamageDict[key] = value;
             }
 
+            #region Starlight
+            foreach (var (key, value) in damageSpec.DamageGroupDict)
+            {
+                if (value > 0)
+                    newDamage.DamageGroupDict[key] = value;
+            }
+            #endregion Starlight
+
             return newDamage;
         }
 
@@ -258,6 +296,17 @@ namespace Content.Shared.Damage
                     newDamage.DamageDict[key] = value;
             }
 
+            #region Starlight
+            foreach (var (key, value) in damageSpec.DamageGroupDict)
+            {
+                if (value < 0)
+                    newDamage.DamageGroupDict[key] = value;
+            }
+
+            if (damageSpec.MixMax != null && damageSpec.MixMax.Value < 0)
+                newDamage.MixMax = damageSpec.MixMax.Clone();
+            #endregion
+
             return newDamage;
         }
 
@@ -273,6 +322,19 @@ namespace Content.Shared.Damage
                     DamageDict.Remove(key);
                 }
             }
+
+            #region Starlight
+            foreach (var (key, value) in DamageGroupDict)
+            {
+                if (value == 0)
+                {
+                    DamageGroupDict.Remove(key);
+                }
+            }
+
+            if (MixMax?.Value == 0)
+                MixMax = null;
+            #endregion
         }
 
         /// <summary>
@@ -300,6 +362,16 @@ namespace Content.Shared.Damage
                     DamageDict[key] = minValue;
                 }
             }
+
+            #region Starlight
+            foreach (var (key, value) in DamageGroupDict)
+            {
+                if (value < minValue)
+                {
+                    DamageGroupDict[key] = minValue;
+                }
+            }
+            #endregion
         }
 
         /// <summary>
@@ -315,6 +387,16 @@ namespace Content.Shared.Damage
                     DamageDict[key] = maxValue;
                 }
             }
+
+            #region Starlight
+            foreach (var (key, value) in DamageGroupDict)
+            {
+                if (value > maxValue)
+                {
+                    DamageGroupDict[key] = maxValue;
+                }
+            }
+            #endregion
         }
 
         /// <summary>
@@ -345,18 +427,17 @@ namespace Content.Shared.Damage
         /// </remarks>
         public bool TryGetDamageInGroup(DamageGroupPrototype group, out FixedPoint2 total)
         {
-            bool containsMemeber = false;
-            total = FixedPoint2.Zero;
+            var containsMember = DamageGroupDict.TryGetValue(group.ID, out total); // Starlight, why was this named Memeber before...?
 
             foreach (var type in group.DamageTypes)
             {
                 if (DamageDict.TryGetValue(type, out var value))
                 {
                     total += value;
-                    containsMemeber = true;
+                    containsMember = true; // Starlight
                 }
             }
-            return containsMemeber;
+            return containsMember; // Starlight
         }
 
         /// <summary>
@@ -368,20 +449,21 @@ namespace Content.Shared.Damage
         ///     total of each group. If no members of a group are present in this <see cref="DamageSpecifier"/>, the
         ///     group is not included in the resulting dictionary.
         /// </remarks>
-        public Dictionary<string, FixedPoint2> GetDamagePerGroup(IPrototypeManager protoManager)
+        public Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2> GetDamagePerGroup(IPrototypeManager protoManager)
         {
-            var dict = new Dictionary<string, FixedPoint2>();
+            var dict = new Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2>();
             GetDamagePerGroup(protoManager, dict);
             return dict;
         }
 
         /// <inheritdoc cref="GetDamagePerGroup(Robust.Shared.Prototypes.IPrototypeManager)"/>
-        public void GetDamagePerGroup(IPrototypeManager protoManager, Dictionary<string, FixedPoint2> dict)
+        public void GetDamagePerGroup(IPrototypeManager protoManager, Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2> dict)
         {
             dict.Clear();
+            var resolved = DamageGroupDict.Count == 0 ? this : ResolveGroups(protoManager); // Starlight
             foreach (var group in protoManager.EnumeratePrototypes<DamageGroupPrototype>())
             {
-                if (TryGetDamageInGroup(group, out var value))
+                if (resolved.TryGetDamageInGroup(group, out var value)) // Starlight
                     dict.Add(group.ID, value);
             }
         }
@@ -394,6 +476,17 @@ namespace Content.Shared.Damage
             {
                 newDamage.DamageDict.Add(entry.Key, entry.Value * factor);
             }
+            #region Starlight
+            foreach (var entry in damageSpec.DamageGroupDict)
+            {
+                newDamage.DamageGroupDict.Add(entry.Key, entry.Value * factor);
+            }
+            if (damageSpec.MixMax != null)
+            {
+                newDamage.MixMax = damageSpec.MixMax.Clone();
+                newDamage.MixMax.Value *= factor;
+            }
+            #endregion
             return newDamage;
         }
 
@@ -404,6 +497,17 @@ namespace Content.Shared.Damage
             {
                 newDamage.DamageDict.Add(entry.Key, entry.Value * factor);
             }
+            #region Starlight
+            foreach (var entry in damageSpec.DamageGroupDict)
+            {
+                newDamage.DamageGroupDict.Add(entry.Key, entry.Value * factor);
+            }
+            if (damageSpec.MixMax != null)
+            {
+                newDamage.MixMax = damageSpec.MixMax.Clone();
+                newDamage.MixMax.Value *= factor;
+            }
+            #endregion
             return newDamage;
         }
 
@@ -414,6 +518,17 @@ namespace Content.Shared.Damage
             {
                 newDamage.DamageDict.Add(entry.Key, entry.Value / factor);
             }
+            #region Starlight
+            foreach (var entry in damageSpec.DamageGroupDict)
+            {
+                newDamage.DamageGroupDict.Add(entry.Key, entry.Value / factor);
+            }
+            if (damageSpec.MixMax != null)
+            {
+                newDamage.MixMax = damageSpec.MixMax.Clone();
+                newDamage.MixMax.Value /= factor;
+            }
+            #endregion
             return newDamage;
         }
 
@@ -425,6 +540,17 @@ namespace Content.Shared.Damage
             {
                 newDamage.DamageDict.Add(entry.Key, entry.Value / factor);
             }
+            #region Starlight
+            foreach (var entry in damageSpec.DamageGroupDict)
+            {
+                newDamage.DamageGroupDict.Add(entry.Key, entry.Value / factor);
+            }
+            if (damageSpec.MixMax != null)
+            {
+                newDamage.MixMax = damageSpec.MixMax.Clone();
+                newDamage.MixMax.Value /= factor;
+            }
+            #endregion
             return newDamage;
         }
 
@@ -442,6 +568,14 @@ namespace Content.Shared.Damage
                     newDamage.DamageDict[entry.Key] += entry.Value;
                 }
             }
+            #region Starlight
+            foreach (var entry in damageSpecB.DamageGroupDict)
+            {
+                if (!newDamage.DamageGroupDict.TryAdd(entry.Key, entry.Value))
+                    newDamage.DamageGroupDict[entry.Key] += entry.Value;
+            }
+            MergeMixMax(newDamage, damageSpecB, 1);
+            #endregion
             return newDamage;
         }
 
@@ -458,6 +592,14 @@ namespace Content.Shared.Damage
                     newDamage.DamageDict[entry.Key] -= entry.Value;
                 }
             }
+            #region Starlight
+            foreach (var entry in damageSpecB.DamageGroupDict)
+            {
+                if (!newDamage.DamageGroupDict.TryAdd(entry.Key, -entry.Value))
+                    newDamage.DamageGroupDict[entry.Key] -= entry.Value;
+            }
+            MergeMixMax(newDamage, damageSpecB, -1);
+            #endregion
             return newDamage;
         }
 
@@ -471,7 +613,7 @@ namespace Content.Shared.Damage
 
         public bool Equals(DamageSpecifier? other)
         {
-            if (other == null || DamageDict.Count != other.DamageDict.Count)
+            if (other == null || DamageDict.Count != other.DamageDict.Count || DamageGroupDict.Count != other.DamageGroupDict.Count) // Starlight
                 return false;
 
             foreach (var (key, value) in DamageDict)
@@ -480,10 +622,16 @@ namespace Content.Shared.Damage
                     return false;
             }
 
-            return true;
-        }
+            #region Starlight
+            foreach (var (key, value) in DamageGroupDict)
+            {
+                if (!other.DamageGroupDict.TryGetValue(key, out var otherValue) || value != otherValue)
+                    return false;
+            }
 
-        public FixedPoint2 this[string key] => DamageDict[key];
-    }
+            return Equals(MixMax, other.MixMax);
+            #endregion
+        }
     #endregion
+}
 }

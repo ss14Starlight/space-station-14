@@ -10,7 +10,7 @@ using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
-using Robust.Shared.Prototypes; // 🌟Starlight🌟
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -42,9 +42,7 @@ public abstract partial class SharedGunSystem
     }
 
     private void OnBallisticRefillerMapInit(Entity<BallisticAmmoSelfRefillerComponent> entity, ref MapInitEvent _)
-    {
-        entity.Comp.NextAutoRefill = Timing.CurTime + entity.Comp.AutoRefillRate;
-    }
+        => entity.Comp.NextAutoRefill = Timing.CurTime + entity.Comp.AutoRefillRate;
 
     private void OnBallisticUse(Entity<BallisticAmmoProviderComponent> ent, ref UseInHandEvent args)
     {
@@ -119,11 +117,9 @@ public abstract partial class SharedGunSystem
             return;
         }
 
-        void SimulateInsertAmmo(EntityUid ammo, EntityUid ammoProvider, EntityCoordinates coordinates)
-        {
+        void SimulateInsertAmmo(EntityUid ammo, EntityUid ammoProvider, EntityCoordinates coordinates) =>
             // We call SharedInteractionSystem to raise contact events. Checks are already done by this point.
             _interaction.InteractUsing(args.User, ammo, ammoProvider, coordinates, checkCanInteract: false, checkCanUse: false);
-        }
 
         List<(EntityUid? Entity, IShootable Shootable)> ammo = new();
         var evTakeAmmo = new TakeAmmoEvent(1, ammo, Transform(uid).Coordinates, args.User);
@@ -261,9 +257,7 @@ public abstract partial class SharedGunSystem
     }
 
     protected int GetBallisticShots(BallisticAmmoProviderComponent component)
-    {
-        return component.Entities.Count + component.UnspawnedCount;
-    }
+        => component.Entities.Count + component.UnspawnedCount;
 
     private void OnBallisticTakeAmmo(Entity<BallisticAmmoProviderComponent> ent, ref TakeAmmoEvent args)
     {
@@ -297,7 +291,8 @@ public abstract partial class SharedGunSystem
             {
                 ent.Comp.UnspawnedCount--;
                 DirtyField(ent.AsNullable(), nameof(BallisticAmmoProviderComponent.UnspawnedCount));
-                ammoEntity = Spawn(ent.Comp.Proto, args.Coordinates);
+                // Starlight-edit
+                ammoEntity = PredictedSpawnAtPosition(ent.Comp.Proto, args.Coordinates);
                 ejected = true;
             }
 
@@ -354,19 +349,15 @@ public abstract partial class SharedGunSystem
     /// Returns true if the given <paramref name="entity"/>'s ballistic ammunition is full, false otherwise.
     /// </summary>
     public bool IsFull(Entity<BallisticAmmoProviderComponent> entity)
-    {
-        return GetBallisticShots(entity.Comp) >= entity.Comp.Capacity;
-    }
+        => GetBallisticShots(entity.Comp) >= entity.Comp.Capacity;
 
     /// <summary>
     /// Returns whether or not <paramref name="inserted"/> can be inserted into <paramref name="entity"/>, based on
     /// available space and whitelists.
     /// </summary>
     public bool CanInsertBallistic(Entity<BallisticAmmoProviderComponent> entity, EntityUid inserted)
-    {
-        return !_whitelistSystem.IsWhitelistFailOrNull(entity.Comp.Whitelist, inserted) &&
-               !IsFull(entity);
-    }
+        => !_whitelistSystem.IsWhitelistFailOrNull(entity.Comp.Whitelist, inserted)
+        && !IsFull(entity);
 
     /// <summary>
     /// Attempts to insert <paramref name="inserted"/> into <paramref name="entity"/> as ammunition. Returns true on

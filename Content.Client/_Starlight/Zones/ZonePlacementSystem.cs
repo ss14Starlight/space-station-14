@@ -321,14 +321,7 @@ public sealed partial class ZonePlacementSystem : EntitySystem
 
     [SubscribeNetworkEvent]
     private void OnRoomsSync(ZoneRoomsSyncEvent ev)
-    {
-        var view = new ZoneRoomView(ev.Zones);
-
-        foreach (var chunk in ev.Chunks)
-            view.Chunks[chunk.Origin] = chunk.Rooms;
-
-        _rooms[ev.Grid] = view;
-    }
+        => _rooms[ev.Grid] = new ZoneRoomView(ev.Zones, ev.Chunks, _proto);
 
     [SubscribeNetworkEvent]
     private void OnShapesSync(ZoneShapesSyncEvent ev)
@@ -346,14 +339,121 @@ public sealed partial class ZonePlacementSystem : EntitySystem
     #endregion
 }
 
-public sealed class ZoneRoomView(Dictionary<ushort, ProtoId<ZonePrototype>> zones)
+public sealed class ZoneRoomView
 {
     public readonly Dictionary<Vector2i, ushort[]> Chunks = [];
 
-    public readonly Dictionary<ushort, ProtoId<ZonePrototype>> Zones = zones;
+    /// <summary>
+    /// Zones of each room, highest priority first: the first fills the top-left band of the room, the last the
+    /// bottom-right one.
+    /// </summary>
+    public readonly Dictionary<ushort, List<ProtoId<ZonePrototype>>> Zones;
+
+    public readonly Dictionary<ushort, ZoneRoomLayout> Layouts = [];
+
+    public ZoneRoomView(
+        Dictionary<ushort, List<ProtoId<ZonePrototype>>> zones,
+        List<ZoneRoomChunk> chunks,
+        IPrototypeManager proto)
+    {
+        Zones = zones;
+
+        foreach (var list in zones.Values)
+        {
+            list.Sort((a, b) =>
+            {
+                var priority = Priority(proto, b).CompareTo(Priority(proto, a));
+                return priority != 0 ? priority : string.CompareOrdinal(a.Id, b.Id);
+            });
+        }
+
+        foreach (var chunk in chunks)
+            Chunks[chunk.Origin] = chunk.Rooms;
+
+        BuildLayouts();
+    }
+
+    private static int Priority(IPrototypeManager proto, ProtoId<ZonePrototype> zone)
+        => proto.TryIndex(zone, out var p) ? p.Priority : int.MinValue;
 
     public ushort RoomAt(Vector2i tile)
         => Chunks.TryGetValue(SharedZoneSystem.ChunkOrigin(tile), out var rooms)
             ? rooms[SharedZoneSystem.TileIndex(tile)]
             : SharedZoneSystem.NoRegion;
+
+    public static Vector2i TileAt(Vector2i origin, int index)
+        => (origin * SharedZoneSystem.ChunkSize) + new Vector2i(index >> 3, index & (SharedZoneSystem.ChunkSize - 1));
+
+    private void BuildLayouts()
+    {
+        var bounds = new Dictionary<ushort, Box2i>();
+
+        foreach (var (origin, rooms) in Chunks)
+        {
+            for (var i = 0; i < rooms.Length; i++)
+            {
+                if (rooms[i] == SharedZoneSystem.NoRegion)
+                    continue;
+
+                var tile = TileAt(origin, i);
+                var box = new Box2i(tile, tile + Vector2i.One);
+                bounds[rooms[i]] = bounds.TryGetValue(rooms[i], out var old) ? old.Union(box) : box;
+            }
+        }
+
+        foreach (var (room, box) in bounds)
+        {
+            var bands = Zones.TryGetValue(room, out var zones) ? Math.Max(1, zones.Count) : 1;
+            Layouts[room] = new ZoneRoomLayout(box, bands);
+        }
+
+        foreach (var (origin, rooms) in Chunks)
+        {
+            for (var i = 0; i < rooms.Length; i++)
+            {
+                if (rooms[i] != SharedZoneSystem.NoRegion)
+                    Layouts[rooms[i]].AddTile(TileAt(origin, i));
+            }
+        }
+    }
+}
+
+/// <summary>
+/// A room's bounds split into bands by lines parallel to its bottom-left to top-right diagonal, one band per zone.
+/// Positions along the split are measured by <see cref="Diagonal"/>: 1 at the top-left corner, -1 at the bottom-right.
+/// </summary>
+public sealed class ZoneRoomLayout(Box2i bounds, int bands)
+{
+    public readonly Box2i Bounds = bounds;
+
+    public readonly int Bands = bands;
+
+    private readonly Vector2[] _labelSums = new Vector2[bands];
+    private readonly int[] _labelCounts = new int[bands];
+
+    public float Diagonal(Vector2 point)
+        => ((point.Y - Bounds.Bottom) / Bounds.Height) - ((point.X - Bounds.Left) / Bounds.Width);
+
+    public int BandOf(float diagonal)
+        => Math.Clamp((int) MathF.Floor((1f - diagonal) / 2f * Bands), 0, Bands - 1);
+
+    /// <summary>
+    /// Diagonal range covered by a band.
+    /// </summary>
+    public (float Low, float High) BandRange(int band)
+        => (1f - ((2f * (band + 1)) / Bands), 1f - ((2f * band) / Bands));
+
+    public void AddTile(Vector2i tile)
+    {
+        var centre = tile + new Vector2(0.5f);
+        var band = BandOf(Diagonal(centre));
+        _labelSums[band] += centre;
+        _labelCounts[band]++;
+    }
+
+    /// <summary>
+    /// Where to write a band's zone name: the middle of its tiles, or null if no tile of the room falls in it.
+    /// </summary>
+    public Vector2? LabelPosition(int band)
+        => _labelCounts[band] > 0 ? _labelSums[band] / _labelCounts[band] : null;
 }

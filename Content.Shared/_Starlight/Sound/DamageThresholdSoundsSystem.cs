@@ -24,7 +24,7 @@ public sealed partial class DamageThresholdSoundsSystem : EntitySystem
         if (!TryComp<DamageableComponent>(uid, out var damageComp))
             return;
 
-        var damage = _damage.GetDamage((uid, damageComp)).GetTotal();
+        var damage = _damage.GetTotalDamage(uid);
         FixedPoint2 selectedThreshold = 0;
         ThresholdSoundData? selectedSound = null;
 

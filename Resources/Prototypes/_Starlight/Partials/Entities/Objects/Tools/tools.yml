@@ -1,0 +1,31 @@
+- type: !PartialOnly entity
+  id: Screwdriver
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/screwdriver_pickup.ogg
+
+
+- type: !PartialOnly entity
+  id: Wrench
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/wrench_pickup.ogg
+
+
+- type: !PartialOnly entity
+  id: Wirecutter
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/wirecutter_pickup.ogg
+
+
+- type: !PartialOnly entity
+  id: Multitool
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/multitool_pickup.ogg
+

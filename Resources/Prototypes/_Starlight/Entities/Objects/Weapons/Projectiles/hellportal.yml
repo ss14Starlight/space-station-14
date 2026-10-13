@@ -1,0 +1,14 @@
+- type: entity
+  parent: ChainSickle
+  id: MoffDemonicChainHook
+  categories: [ HideSpawnMenu ]
+  name: demonic chain hook
+  description: That looks painful.
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Mobs/Demons/harvester.rsi
+    state: hook
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10

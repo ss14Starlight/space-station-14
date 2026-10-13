@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: MobMcGriff
+  components:
+  - type: FirelockOpener
+
+- type: !PartialOnly entity
+  id: MobWalter
+  components:
+  - type: FirelockOpener

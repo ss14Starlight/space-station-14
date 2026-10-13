@@ -1,0 +1,38 @@
+- type: entity
+  parent: SolutionInjector
+  id: BorgHydrator
+  name: cyborg hydrator
+  description: A very very tiny applicator that continually fills with a single drop of water. Not used to hydrate cyborgs.
+  components:
+    - type: Solution
+      solution:
+        maxVol: 0.1
+    - type: Sprite
+      sprite: Objects/Specific/Chemistry/dropper.rsi
+      layers:
+        - state: borgdropper
+    - type: Item
+      sprite: Objects/Specific/Chemistry/dropper.rsi
+    - type: SolutionRegeneration
+      generated:
+        reagents:
+          - ReagentId: Water
+            Quantity: 0.1
+    - type: ExaminableSolution
+      solution: injector
+    - type: SolutionPurge
+      preserve:
+        - Water
+      quantity: 0.1
+    - type: Injector
+      ignoreMobs: true
+      ignoreClosed: true
+      activeModeProtoId: HydratorInjectMode
+      allowedModes:
+        - HydratorInjectMode
+
+- type: injectorMode
+  parent: BaseInjectMode
+  id: HydratorInjectMode
+  transferAmounts:
+    - 0.1

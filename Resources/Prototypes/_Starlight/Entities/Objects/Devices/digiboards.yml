@@ -1,7 +1,7 @@
 
 
 - type: entity
-  parent: BaseItem
+  parent: [PowerCellSlotMediumItem, BaseHandheldComputer]
   id: DigiboardMassMedia
   name: news manager digi-board
   description: Write your message to the world! Now portable!
@@ -29,22 +29,8 @@
         collection: Keyboard
       soundDeactivate:
         path: /Audio/Machines/button.ogg
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-    - type: PowerCellSlot
-      cellSlotId: cell_slot
-    - type: ItemSlots
-      slots:
-        cell_slot:
-          name: power-cell-slot-component-slot-name-default
-          startingItem: PowerCellMedium
-          whitelist:
-            tags:
-              - PowerCell
-              - PowerCellSmall
     - type: PowerCellDraw
-    - type: ActivatableUIRequiresPowerCell
+      drawRate: 1
     - type: NewsWriter
     - type: ActivatableUI
       key: enum.NewsWriterUiKey.Key

@@ -27,13 +27,13 @@
                     Name="ToggleViewButton"
                     MinWidth="64"
                     HorizontalAlignment="Right"
-                    Text="Grid" />
+                    Text="{Loc 'store-view-grid'}" />
             </BoxContainer>
             <LineEdit
                 Name="SearchBar"
                 Margin="4"
                 HorizontalExpand="True"
-                PlaceHolder="Search" />
+                PlaceHolder="{Loc 'store-search'}" />
             <PanelContainer VerticalExpand="True">
                 <PanelContainer.PanelOverride>
                     <gfx:StyleBoxFlat BackgroundColor="#000000FF" />

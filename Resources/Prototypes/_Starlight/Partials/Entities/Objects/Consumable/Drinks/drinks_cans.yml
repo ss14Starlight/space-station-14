@@ -391,3 +391,10 @@
       reagents:
       - ReagentId: Wine
         Quantity: 30
+
+- type: !PartialOnly entity
+  id: DrinkCanBaseFull
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: PlasticBottleSlosh

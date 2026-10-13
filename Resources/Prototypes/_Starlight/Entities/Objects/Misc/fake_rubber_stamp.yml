@@ -7,7 +7,7 @@
   abstract: true
   components:
   - type: Stamp
-    stampedName: "Fake"
+    stampedName: stamp-component-stamped-name-rubber-stamp-base-fake
     stampState: "paper_stamp-generic_fake"
     stampedColor: "#a23e3e"
     sound:

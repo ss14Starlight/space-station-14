@@ -50,64 +50,64 @@
 
 - type: storeCategory
   id: SLBrigmedic
-  name: Medical
+  name: store-category-slbrigmedic
 
 - type: storeCategory
   id: SLFashionSkirt
-  name: Luxury dresses
+  name: store-category-slfashion-skirt
 
 - type: storeCategory
   id: SLFashionSuit
-  name: Elegant suits
+  name: store-category-slfashion-suit
 
 - type: storeCategory
   id: SLFashionHead
-  name: Hats & Helmets
+  name: store-category-slfashion-head
 
 - type: storeCategory
   id: SLFashionOther
-  name: Other
+  name: store-category-slfashion-other
 
 # shuttle build uplink
 - type: storeCategory
   id: ShuttleUplinkEquipment
-  name: Space equipment
+  name: store-category-shuttle-uplink-equipment
   priority: 0
 
 - type: storeCategory
   id: ShuttleUplinkResources
-  name: Materials
+  name: store-category-shuttle-uplink-resources
   priority: 3
 
 - type: storeCategory
   id: ShuttleUplinkShipbuilding
-  name: Shuttle utilities
+  name: store-category-shuttle-uplink-shipbuilding
   priority: 4
 
 - type: storeCategory
   id: ShuttleUplinkMedicine
-  name: Medical utilities
+  name: store-category-shuttle-uplink-medicine
   priority: 6
 
 - type: storeCategory
   id: ShuttleUplinkExtra
-  name: Extra
+  name: store-category-shuttle-uplink-extra
   priority: 7
 
 # menacing shuttle build uplink
 - type: storeCategory
   id: MenacingShuttleUplinkEquipment
-  name: Syndicate equipment
+  name: store-category-menacing-shuttle-uplink-equipment
   priority: 1
 
 - type: storeCategory
   id: MenacingShuttleUplinkWeapons
-  name: Weaponry
+  name: store-category-menacing-shuttle-uplink-weapons
   priority: 2
 
 - type: storeCategory
   id: MenacingShuttleUplinkPirate
-  name: Pirate
+  name: store-category-menacing-shuttle-uplink-pirate
   priority: 5
 
 # agent uplink
@@ -119,62 +119,74 @@
 
 - type: storeCategory
   id: SalvageEquipment
-  name: Equipment
+  name: store-category-salvage-equipment
 
 - type: storeCategory
   id: SalvageWeapons
-  name: Weapons
+  name: store-category-salvage-weapons
 
 - type: storeCategory
   id: SalvageConsumeables
-  name: Consumeables
+  name: store-category-salvage-consumeables
 
 - type: storeCategory
   id: SalvageMercenaryEquipment
-  name: Scrapper
+  name: store-category-salvage-mercenary-equipment
+
+- type: storeCategory
+  id: SalvageBlueprints
+  name: store-category-salvage-blueprints
+
+- type: storeCategory
+  id: SalvageSurplus
+  name: store-category-salvage-surplus
 
 - type: storeCategory
   id: SalvageCybernetics
-  name: Cybernetics
+  name: store-category-salvage-cybernetics
 
 # mining
 - type: storeCategory
   id: MiningEquipment
-  name: Equipment
+  name: store-category-mining-equipment
 
 - type: storeCategory
   id: MiningConsumeables
-  name: Consumeables
+  name: store-category-mining-consumeables
 
 # USSP
 
 - type: storeCategory
   id: RevUplinkWeaponry
-  name: Armaments
+  name: store-category-ussp-armaments
 
 - type: storeCategory
-  id: RevUplinkPassive
-  name: GLOBAL
+  id: RevUplinkConversionRewards
+  name: store-category-ussp-global
 
 - type: storeCategory
   id: RevUplinkWearables
-  name: Wearables
+  name: store-category-ussp-wearables
 
 - type: storeCategory
   id: RevUplinkImplants
-  name: Implants
+  name: store-category-ussp-implants
 
 - type: storeCategory
   id: RevUplinkShuttle
-  name: Artillery
+  name: store-category-ussp-shuttle
 
 - type: storeCategory
   id: RevUplinkDeception
-  name: Deception
+  name: store-category-ussp-deception
 
 - type: storeCategory
   id: RevUplinkPointless
-  name: Glory
+  name: store-category-dagd
+
+- type: storeCategory
+  id: RevUplinkWar
+  name: store-category-ussp-war
 
 # Elf Cantrips
 

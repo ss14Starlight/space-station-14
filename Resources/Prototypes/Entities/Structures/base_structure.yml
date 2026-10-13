@@ -1,6 +1,5 @@
 - type: entity
   id: BaseStructure
-  parent: [SocialInteractionReceiverSimple] # Starlight
   abstract: true
   placement:
     mode: SnapgridCenter

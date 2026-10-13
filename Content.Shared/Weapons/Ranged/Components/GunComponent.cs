@@ -5,6 +5,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Weapons.Ranged.Components;
 
@@ -64,7 +65,8 @@ public sealed partial class GunComponent : Component
     /// Last time the gun fired.
     /// Used for recoil purposes.
     /// </summary>
-    [DataField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))] // Starlight
+    [AutoNetworkedField, AutoPausedField] // Starlight
     public TimeSpan LastFire = TimeSpan.Zero;
 
     [DataField]
@@ -269,7 +271,21 @@ public sealed partial class GunComponent : Component
     /// Firing direction for an item not being held (e.g. shuttle cannons, thrown guns still firing).
     /// </summary>
     [DataField]
-    public Vector2 DefaultDirection = new Vector2(0, -1);
+    public Vector2 DefaultDirection = new(0, -1);
+
+    #region Starlight
+    [DataField]
+    public float SprintSpreadModifier = 1f;
+
+    [DataField]
+    public float WalkSpreadModifier = 0.5f;
+
+    [DataField]
+    public Angle MovingMinAngle = Angle.Zero;
+
+    [ViewVariables, AutoNetworkedField]
+    public GameTick BurstTick;
+    #endregion
 }
 
 [Flags]
