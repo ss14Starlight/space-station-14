@@ -94,9 +94,30 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     private void OnStepOrganInsertComplete(Entity<SurgeryStepOrganInsertComponent> ent, ref SurgeryStepEvent args)
     {
         if (args.Tools.Count == 0
-            || !(args.Tools.FirstOrDefault() is var organId)
             || !TryComp<BodyPartComponent>(args.Part, out var bodyPart))
             return;
+
+        // Pick the held item that matches the step's required tool, not just any held item.
+        var organId = default(EntityUid);
+        if (TryComp<SurgeryStepComponent>(ent, out var stepComp) && stepComp.Tools is { } required)
+        {
+            foreach (var reg in required.Values)
+            {
+                organId = args.Tools.FirstOrDefault(x => HasComp(x, reg.Component.GetType()));
+                if (organId == default)
+                    break;
+            }
+        }
+        else
+        {
+            organId = args.Tools.First();
+        }
+
+        if (organId == default)
+        {
+            args.IsCancelled = true;
+            return;
+        }
 
         var containerId = SharedBodySystem.GetOrganContainerId(ent.Comp.Slot);
 
