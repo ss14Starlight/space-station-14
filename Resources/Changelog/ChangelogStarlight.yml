@@ -1,13 +1,6 @@
 Entries:
 - author: Rinary
   changes:
-  - message: Added spread bonus when you're holding pistol and shield in the same time.
-    type: Add
-  id: 409002
-  time: '2026-09-29T19:34:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6334
-- author: Rinary
-  changes:
   - message: Added tables flip, you can use this as cover.
     type: Add
   id: 409003
@@ -2883,4 +2876,11 @@ Entries:
   id: 409401
   time: '2026-10-12T21:24:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6457
+- author: Johnny
+  changes:
+  - message: Button no longer transparento.
+    type: Fix
+  id: 409402
+  time: '2026-10-13T04:51:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6663
 Order: -1
