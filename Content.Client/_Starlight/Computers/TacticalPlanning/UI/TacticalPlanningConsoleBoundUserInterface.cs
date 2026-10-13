@@ -65,6 +65,8 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
                 || !TacticalPlanDrawingValidation.TryValidate(kind, points, _window.InkColor, out var color))
                 return;
 
+            // Keep a rejection visible until this player tries another drawing.
+            _window.SetConnectionStatus(null, true);
             SendMessage(new TacticalPlanAddAnnotationMessage(kind, points, color));
         };
         _window.AnnotationErased += id =>
@@ -203,6 +205,12 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
                 _pending.Clear();
                 break;
             case TacticalPlanDrawingRejectedMessage rejected:
+                if (_synchronizing)
+                {
+                    _pending.Add(message);
+                    break;
+                }
+
                 _window?.SetConnectionStatus(rejected.Reason, true);
                 break;
             case TacticalPlanCapacityReachedMessage:
@@ -240,7 +248,9 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
                 _cache.Add(added.Annotation);
                 _window?.AddAnnotation(added.Annotation);
                 _window?.SetPlanFull(added.IsFull);
-                _window?.SetConnectionStatus(null, true);
+                break;
+            case TacticalPlanDrawingRejectedMessage rejected:
+                _window?.SetConnectionStatus(rejected.Reason, !_synchronizing);
                 break;
             case TacticalPlanAnnotationErasedMessage erased:
                 _cache.Annotations.RemoveAll(annotation => annotation.Id == erased.Id);
