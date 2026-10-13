@@ -48,8 +48,11 @@ public sealed partial class IgniterSystem : EntitySystem
         args.Handled = true;
     }
 
-    public void SetEnabled(Entity<IgniterComponent> ent, bool enabled, EntityUid? user = null)
+    public void SetEnabled(Entity<IgniterComponent?> ent, bool enabled, EntityUid? user = null)
     {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
         if (ent.Comp.Enabled == enabled)
             return;
 

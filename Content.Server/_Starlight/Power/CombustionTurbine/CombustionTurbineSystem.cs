@@ -128,8 +128,7 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
         if (chamberPressure <= inletPressure)
             return 0f;
 
-        var work = moles * Atmospherics.R * inletTemperature * MathF.Log(chamberPressure / inletPressure)
-                   * comp.CompressionWorkFactor;
+        var work = moles * Atmospherics.R * inletTemperature * MathF.Log(chamberPressure / inletPressure) * comp.CompressionWorkFactor;
         _atmosphere.AddHeat(comp.Air, work);
         return work;
     }
@@ -150,8 +149,7 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
         if (moles > 0f && heatCapacity > 0f)
         {
             var thermal = MathF.Tanh(MathF.Max(0f, temperature - Atmospherics.T20C) / comp.ThermalScale);
-            work = moles * Atmospherics.R * temperature * MathF.Log(chamberPressure / outletPressure)
-                   * comp.Efficiency * thermal;
+            work = moles * Atmospherics.R * temperature * MathF.Log(chamberPressure / outletPressure) * comp.Efficiency * thermal;
 
             work = MathF.Min(work, heatCapacity * (temperature - Atmospherics.TCMB));
             passing.Temperature = MathF.Max(Atmospherics.TCMB, temperature - (work / heatCapacity));
@@ -183,8 +181,7 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
 
         if (TryComp<PowerSupplierComponent>(ent, out var supplier))
         {
-            supplier.MaxSupply = (ent.Comp.PowerSmoothing * power)
-                                 + ((1f - ent.Comp.PowerSmoothing) * supplier.MaxSupply);
+            supplier.MaxSupply = (ent.Comp.PowerSmoothing * power) + ((1f - ent.Comp.PowerSmoothing) * supplier.MaxSupply);
         }
 
         var running = power >= ent.Comp.RunningVisualThreshold;
