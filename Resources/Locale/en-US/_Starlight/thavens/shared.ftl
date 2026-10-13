@@ -118,7 +118,7 @@ thaven-mood-department-of-the-day-desc = Today is dedicated to the achievements 
 thaven-mood-hall-monitor-name = Hall Monitor
 thaven-mood-hall-monitor-desc = The station's corridors must be kept orderly. Create a list of rules and punish any infraction by pinching.
 
-thaven-mood-honourable-ambushes-name = Honourable Ambushes
+thaven-mood-honourable-ambushes-name = Honorable Ambushes
 thaven-mood-honourable-ambushes-desc = Surprise attacks are an important sign of mutual respect amongst Thaven. Conduct them on Thaven as often as possible.
 
 thaven-mood-traders-name = Traders
