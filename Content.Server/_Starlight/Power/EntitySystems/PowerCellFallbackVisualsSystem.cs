@@ -54,8 +54,8 @@ public sealed partial class PowerCellFallbackVisualsSystem : EntitySystem
         UpdateBatteryAppearanceFromCell(ent.Owner);
 
     [SubscribeLocalEvent]
-    private void OnBatteryStateChanged(Entity<BatteryComponent> ent, ref BatteryStateChangedEvent args) =>
-        UpdateBatteryAppearanceFromCell(ent.Owner);
+    private void OnBatteryStateChanged(Entity<PowerCellFallbackVisualsComponent> ent, ref BatteryStateChangedEvent args) =>
+        UpdateBatteryAppearance(ent.Owner);
 
     private void UpdateBatteryAppearanceFromCell(EntityUid battery)
     {
