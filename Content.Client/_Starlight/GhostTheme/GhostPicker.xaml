@@ -1,14 +1,15 @@
 <ContainerButton xmlns="https://spacestation14.io"
-         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-         xmlns:style="clr-namespace:Content.Client.Stylesheets">
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <BoxContainer Orientation="Horizontal"
                   HorizontalExpand="True"
-                  SeparationOverride="0"
+                  SeparationOverride="8"
                   Name="InternalHBox">
-        <TextureRect TextureScale="2 2"
-                    Name="View"/>
+        <PanelContainer StyleClasses="SpritePreview" VerticalAlignment="Center">
+            <TextureRect TextureScale="2 2" Name="View" Stretch="KeepCentered" Margin="2" />
+        </PanelContainer>
         <Label Name="DescriptionLabel"
-               Access= "Public"
-               HorizontalExpand="True"/>
+               Access="Public"
+               HorizontalExpand="True"
+               VerticalAlignment="Center" />
     </BoxContainer>
 </ContainerButton>

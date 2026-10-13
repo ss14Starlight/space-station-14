@@ -97,6 +97,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     [Dependency] private ServerGlobalSoundSystem _sound = default!;
     [Dependency] private GibbingSystem _gibbing = default!;
     [Dependency] private SharedEyeSystem _eye = default!;
+    [Dependency] private SharedCosmicCultSystem _cosmicCult = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedRoleSystem _role = default!;
@@ -398,9 +399,11 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             if (spawnPoints.IsEmpty)
                 return;
 
-            var endQuery = EntityQueryEnumerator<HumanoidAppearanceComponent, MobStateComponent>();
-            while (endQuery.MoveNext(out var player, out _, out _))
+            var endQuery = EntityQueryEnumerator<MobStateComponent>();
+            while (endQuery.MoveNext(out var player, out _))
             {
+                if (!HasComp<HumanoidAppearanceComponent>(player) && !_cosmicCult.IsConvertible(player))
+                    continue;
                 var newSpawn = _rand.Pick(spawnPoints);
                 var spawnTgt = Transform(newSpawn.Uid).Coordinates;
 
@@ -628,7 +631,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         if (AssociatedGamerule(uid) is not { } cult)
             return;
 
-        cult.Comp.TotalCrew = _playerMan.Sessions.Count(session => session.Status == SessionStatus.InGame && HasComp<HumanoidAppearanceComponent>(session.AttachedEntity));
+        cult.Comp.TotalCrew = _playerMan.Sessions.Count(session => session.Status == SessionStatus.InGame && (HasComp<HumanoidAppearanceComponent>(session.AttachedEntity) || _cosmicCult.IsConvertible(session.AttachedEntity)));
 
 #if DEBUG
         if (cult.Comp.TotalCrew < 25)

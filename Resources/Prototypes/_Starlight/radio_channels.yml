@@ -17,6 +17,7 @@
   color: "#2253b5"
   longRange: true
 
+# Soviet
 - type: radioChannel
   id: Soviet
   name: chat-radio-soviet
@@ -28,6 +29,16 @@
     sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
     state: communist
 
+# Gorlex
+- type: radioChannel
+  id: Gorlex
+  name: chat-radio-gorlex
+  keycode: "0"
+  frequency: 9001
+  color: "#eb2e21"
+  longRange: true
+
+# Expeditions
 - type: radioChannel
   id: Expedition
   name: chat-radio-expedition
@@ -37,6 +48,7 @@
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
   longRange: true
 
+# Trans-Solar Federation
 - type: radioChannel
   id: TSF
   name: chat-radio-tsf
@@ -46,6 +58,7 @@
   longRange: true
   # For merchant-type admemes/events
 
+# Merchant
 - type: radioChannel
   id: Merchant
   name: chat-radio-merchant
@@ -54,6 +67,7 @@
   color: "#ffce2e"
   # For Blackstar mercenaries
 
+# Mercenary
 - type: radioChannel
   id: Blackstar
   name: chat-radio-blackstar

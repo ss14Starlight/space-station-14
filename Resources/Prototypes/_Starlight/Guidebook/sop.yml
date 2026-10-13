@@ -300,6 +300,7 @@
   - security-sop-dutyofficer
   - security-sop-detective
   - security-sop-brigmedic
+  - security-sop-k9
   - security-sop-warden
   - security-sop-headofsecurity
   - security-sop-prisonertreatment
@@ -395,6 +396,12 @@
   name: guide-entry-sl-security-sop-criminal-status
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/CriminalStatus.xml"
   priority: 12
+
+- type: guideEntry
+  id: security-sop-k9
+  name: guide-entry-sl-security-sop-k9
+  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/K9.xml"
+  priority: 13
 
 - type: guideEntry
   id: nano-trasen-employee-sop-intro

@@ -75,7 +75,7 @@ public sealed partial class CosmicColossusSystem : EntitySystem
                 Spawn(comp.CultBigVfx, Transform(ent).Coordinates);
                 if (!TryComp<DamageableComponent>(ent, out var damageable))
                     continue;
-                var damageSpec = _damage.GetPositiveDamage(ent!);
+                var damageSpec = _damage.GetPositiveDamage((ent, damageable));
                 _damage.TryChangeDamage(ent, damageSpec / 2 * -1, true);
             }
             if (comp.Timed && _timing.CurTime >= comp.DeathTimer)
@@ -150,8 +150,12 @@ public sealed partial class CosmicColossusSystem : EntitySystem
             return;
         }
 
+        if (ent.Comp.Hibernating)
+            _transform.Unanchor(ent);
+
         if (!TryComp<PhysicsComponent>(ent, out var physComp))
             return;
+
         ent.Comp.Hibernating = false;
         ent.Comp.Attacking = false;
         _appearance.SetData(ent, ColossusVisuals.Status, ColossusStatus.Dead);

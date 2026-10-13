@@ -1,5 +1,5 @@
 - type: entity
-  parent: CratePrivateSecure
+  parent: CrateSalvageContrabandStorageSecure
   id: CrateITGMedicalSurplus
   name: ITG Medical Surplus Crate
   description: A box containing medical supplies from the back of an ITG warehouse
@@ -49,7 +49,7 @@
     - id: JugDylovene
       weight: 1
     - id: JugPuncturase
-      weight: 0.01
+      weight: 1
     - id: JugBicaridine
       weight: 1
     - id: JugDermaline
@@ -57,17 +57,24 @@
     - id: JugDexalinPlus
       weight: 0.5
     - id: JugHyronalin
-      weight: 0.25
+      weight: 1
     - id: JugSaline
       weight: 1
     - id: JugWeldingFuel
       weight: 0.5
+    - id: ChemistryBottleOmnizine
+      weight: 0.5
+    - id: OpporozidoneBeakerLarge
+      weight: 0.1
+    - id: NecrosolBeakerLarge
+      weight: 0.1
 
 - type: entityTable
   id: MedicalSurplusGiftsEntityTable
   table: !type:GroupSelector
     children:
     - id: CigaretteOmnizine
+      amount: 10
       weight: 1
     - id: JetInjector
       weight: 0.5
@@ -76,26 +83,36 @@
     - id: BruteAutoInjector
       weight: 0.5
     - id: BurnAutoInjector
-      weight: .5
+      weight: 0.5
     - id: EmergencyMedipen
+      amount: 3
       weight: 1
     - id: CombatMedipen
-      weight: 0.1
+      amount: 3
+      weight: 0.25
     - id: DefibrillatorCompact
-      weight: 0.25
-    - id: ClothingEyesGlassesChemical
-      weight: .25
-    - id: GoldenJug
-      weight: 0.1
-    - id: LauncherSyringe
-      weight: 0.25
-    - id: CryostasisBeaker
-      weight: .2
-    - id: AdvancedJetInjector
       weight: 0.5
+    - id: ClothingEyesGlassesChemical
+      weight: 1
+    - id: GoldenJug
+      weight: 0.5
+    - id: LauncherSyringe
+      weight: 0.5
+    - id: CryostasisBeaker
+      weight: 0.5
+    - id: AdvancedJetInjector
+      weight: 1
+    - id: CrateChemistryP
+      weight: 1
+    - id: CrateChemistryS
+      weight: 1
+    - id: CrateChemistryD
+      weight: 1
+    - id: AmbrosiaDeusSeeds
+      weight: 1
 
 - type: entity
-  parent: CratePrivateSecure
+  parent: CrateSalvageContrabandStorageSecure
   id: CrateITGShotgunSurplus
   name: ITG Shotgun Surplus Crate
   description: A box containing weapons from the back of an ITG warehouse
@@ -126,7 +143,7 @@
     - id: WeaponShotgunEnforcer
       weight: 1
     - id: WeaponShotgunKammerer
-      weight: 1
+      weight: 2
     - id: WeaponShotgunCombat
       weight: 0.5
     - id: WeaponShotgunCycler
@@ -144,7 +161,7 @@
       weight: .25
 
 - type: entity
-  parent: CratePrivateSecure
+  parent: CrateSalvageContrabandStorageSecure
   id: CrateITGSurplus
   name: ITG Surplus Trading Crate
   description: A box containing good from the back of an ITG warehouse, meant to be pawned off to station side shmucks
@@ -167,19 +184,27 @@
   table: !type:GroupSelector
     children:
     - id: BZCanister
-      weight: .75
+      weight: 0.5
+    - id: TritiumCanister
+      weight: 0.5
+    - id: ZXACanister
+      weight: 0.5
+    - id: LiquidOxygenCanister
+      weight: 0.5
     - id: RCDAmmo
       amount: 3
       weight: 1
     - id: WeaponParticleDecelerator
-      weight: .25
+      weight: 0.25
     - id: PowerDrill
-      weight: .25
+      weight: 1
     - id: MetalFoamGrenade
       amount: 3
-      weight: .25
+      weight: 1
     - id: ElectrolyzerMachineCircuitboard
-      weight: .1
+      weight: 1
+    - id: HoloprojectorField
+      weight: 1
 
 - type: entityTable
   id: SecuritySurplusEntityTable
@@ -187,16 +212,29 @@
     children:
     - id: ClothingHandsGlovesCombat
       amount: 3
-      weight: .75
+      weight: 1
     - id: TrackingImplant
       amount: 3
       weight: 1
     - id: GrenadeStinger
       amount: 3
-      weight: .25
+      weight: 1
     - id: GrenadeFlashBang
       amount: 3
-      weight: .25
+      weight: 1
+    - id: ClothingUniformJumpskirtPrisoner
+      amount: 3
+      weight: 1
+    - id: ClothingUniformJumpsuitPrisoner
+      amount: 3
+      weight: 1
+    - id: ClothingHeadHelmetJustice
+      amount: 2
+      weight: 1
+    - id: BoxTearGas
+      weight: 1
+    - id: WeaponLauncherPeacekeeper
+      weight: 1
 
 - type: entityTable
   id: ServiceSurplusEntityTable
@@ -212,9 +250,25 @@
       amount: 3
       weight: 1
     - id: AssortedForgeParts
-      weight: .5
+      weight: 1
     - id: AdvMopItem
+      weight: 1
+    - id: FoolboxFilled
       weight: .5
+    - id: CrayonMagic
+      weight: 1
+    - id: MegaSprayBottle
+      weight: 1
+    - id: ClothingBackpackWaterTank
+      weight: 1
+    - id: WeaponSprayNozzle
+      weight: 1
+    - id: SuperSynthesizerInstrument
+      weight: 1
+    - id: CrateRadioHostVinyls
+      weight: 1
+    - id: WeaponSprayNozzle
+      weight: 1
 
 - type: entityTable
   id: FunSurplusEntityTable
@@ -233,14 +287,18 @@
       weight: .05
     - id: ClothingBackpackSyndicate
       weight: .15
+    - id: CigPackSyndicate
+      amount: 3
+      weight: .25
     - id: OrganVoxLiver
       amount: 5
-      weight: .25
+      weight: .15
     - id: PyrottonBol
       weight: .3
     - id: WeaponPistolCHIMP
       weight: .05
     - id: CannonBall
+      amount: 10
       weight: .25
     - id: WeaponPistolFlintlock
       weight: .15
@@ -261,3 +319,43 @@
       weight: .05
     - id: MobCarpHolo
       weight: .05
+    - id: Intellicard
+      weight: .08
+    - id: CrateStationAiCore
+      weight: .1
+    - id: SyndicatePersonalAI
+      weight: .15
+    - id: WeaponLauncherPirateCannon
+      weight: .25
+    - id: PowerCellMicroreactor
+      weight: .25
+    - id: CrateCargoGambling
+      weight: .25
+    - id: CrateITGSurplus
+      weight: .25
+    - id: MobGorillaRampaging
+      weight: .01
+    - id: DroneRogueShell
+      weight: .01
+    - id: ClothingUniformJumpskirtFormalITG
+      weight: .3
+    - id: ClothingUniformJumpsuitITGFormal
+      weight: .3
+    - id: WeaponForceGun
+      weight: .1
+    - id: WeaponTetherGun
+      weight: .1
+    - id: DeviceQuantumSpinInverter
+      amount: 2
+      weight: .05
+    - id: OreProcessorIndustrialMachineCircuitboard
+      weight: .25
+    - id: CargoTelepadMachineCircuitboard
+      weight: .1
+    - id: ShuttleGunKineticCircuitboard
+      weight: .25
+    - id: OreBagOfHolding
+      weight: .1
+    - id: ClothingOuterHardsuitITGLossPrevention
+      weight: .08
+

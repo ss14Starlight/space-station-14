@@ -1,0 +1,70 @@
+# Additional tier and authorization mixins. Upstream bases are customized by Starlight partials.
+
+- type: entity
+  id: BaseContrabandTier4
+  abstract: true
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: entity
+  id: BaseContrabandTier2
+  abstract: true
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: entity
+  id: BaseContrabandTier3
+  abstract: true
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3
+
+- type: entity
+  id: BaseSiliconContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments:
+    - Silicon
+
+- type: entity
+  id: BaseInternalAffairsContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs:
+    - IAA
+
+- type: entity
+  id: BaseBartenderContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs:
+    - Bartender
+
+
+- type: entity
+  id: BaseWardenContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs:
+    - Warden
+
+- type: entity
+  id: BaseDetectiveContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs:
+    - Detective
