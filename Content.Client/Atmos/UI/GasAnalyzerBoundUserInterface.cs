@@ -37,7 +37,12 @@ public sealed class GasAnalyzerBoundUserInterface : BoundUserInterface
     {
         base.Dispose(disposing);
 
-        if (disposing)
-            _window?.Dispose();
+        // Starlight - start
+        if (disposing && _window is { } window)
+        {
+            window.Parent?.RemoveChild(window);
+            _window = null;
+        }
+        // Starlight - end
     }
 }

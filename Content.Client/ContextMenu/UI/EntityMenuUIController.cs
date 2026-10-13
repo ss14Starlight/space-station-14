@@ -48,7 +48,7 @@ namespace Content.Client.ContextMenu.UI
         [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
         [Dependency] private IEyeManager _eyeManager = default!;
         #region Starlight
-        [UISystemDependency] private RemoteControlInterface _remoteControl = default!;
+        [UISystemDependency] private readonly RemoteControlInterface _remoteControl = default!; // Starlight
         #endregion
         [Dependency] private ContextMenuUIController _context = default!;
         [Dependency] private VerbMenuUIController _verb = default!;

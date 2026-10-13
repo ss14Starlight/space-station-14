@@ -13,6 +13,6 @@ public sealed partial class SimpleRadialMenu
         Measure(Vector2Helpers.Infinity);
         Parent?.RemoveChild(this);
         parent.AddChild(this);
-        LayoutContainer.SetPosition(this, position - DesiredSize / 2);
+        LayoutContainer.SetPosition(this, position - (DesiredSize / 2));
     }
 }

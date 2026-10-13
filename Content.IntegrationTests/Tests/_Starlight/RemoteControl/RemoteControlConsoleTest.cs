@@ -68,7 +68,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                     var consoleUid = SEntMan.SpawnEntity(null, new MapCoordinates(100, 0, mapId));
                     var console = SEntMan.AddComponent<RemoteControlConsoleComponent>(consoleUid);
                     console.RemoteBrain = remote;
-                    SetTestController(console, user);
+                    SetTestController(consoleUid, console, user);
                     console.Users.Add(user);
                 }
 
@@ -107,7 +107,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var consoleUid = SEntMan.SpawnEntity(null, new MapCoordinates(100, 0, mapId));
                 var console = SEntMan.AddComponent<RemoteControlConsoleComponent>(consoleUid);
                 console.RemoteBrain = remote;
-                SetTestController(console, user);
+                SetTestController(consoleUid, console, user);
                 console.Users.Add(user);
 
                 var playerManager = Server.ResolveDependency<IPlayerManager>();
@@ -185,7 +185,7 @@ public sealed class RemoteControlConsoleTest : GameTest
             var consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", controllerCoordinates);
             var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
             console.RemoteBrain = remoteEntity;
-            SetTestController(console, controller);
+            SetTestController(consoleUid, console, controller);
             console.Users.Add(controller);
 
             SEntMan.EventBus.RaiseLocalEvent(consoleUid, new RemoteControlInteractionMessage
@@ -220,7 +220,7 @@ public sealed class RemoteControlConsoleTest : GameTest
             var consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", testMap.GridCoords);
             var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
             console.RemoteBrain = remoteEntity;
-            SetTestController(console, controller);
+            SetTestController(consoleUid, console, controller);
             console.Users.Add(controller);
 
             SEntMan.EventBus.RaiseLocalEvent(consoleUid, new RemoteControlInventoryMessage
@@ -260,7 +260,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var consoleUid = SEntMan.SpawnEntity(null, coordinates);
                 var console = SEntMan.AddComponent<RemoteControlConsoleComponent>(consoleUid);
                 console.RemoteBrain = remoteEntity;
-                SetTestController(console, user);
+                SetTestController(consoleUid, console, user);
 
                 var key = BorgSwitchableTypeUiKey.SelectBorgType;
                 ui.OpenUi(target, key, user);
@@ -290,7 +290,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
                 var user = SEntMan.SpawnEntity(null, coordinates);
                 console.RemoteBrain = remoteEntity;
-                SetTestController(console, user);
+                SetTestController(consoleUid, console, user);
                 console.Users.Add(user);
 
                 var selectTypeKey = BorgSwitchableTypeUiKey.SelectBorgType;
@@ -304,7 +304,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 Assert.That(ui.IsUiOpen(remoteEntity, selectTypeKey, user), Is.False);
 
                 console.Users.Add(user);
-                SetTestController(console, user);
+                SetTestController(consoleUid, console, user);
                 ui.OpenUi(remoteEntity, selectTypeKey, user);
                 Assert.That(ui.IsUiOpen(remoteEntity, selectTypeKey, user), Is.True);
             }
@@ -352,7 +352,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
                 console.RemoteBrain = remote;
                 console.Users.Add(controller);
-                SetTestController(console, controller);
+                SetTestController(consoleUid, console, controller);
 
                 var inRangeCheck = new RemoteControlInteractionCheckEvent(controller, target);
                 SEntMan.EventBus.RaiseEvent(EventSource.Local, ref inRangeCheck);
@@ -436,9 +436,9 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
                 var observerConsole = SEntMan.GetComponent<RemoteControlConsoleComponent>(observerConsoleUid);
                 console.RemoteBrain = brainUid;
-                SetTestController(console, controller);
+                SetTestController(consoleUid, console, controller);
                 observerConsole.RemoteBrain = brainUid;
-                SetTestController(observerConsole, controller);
+                SetTestController(observerConsoleUid, observerConsole, controller);
 
                 SEntMan.EventBus.RaiseLocalEvent(consoleUid,
                     new BoundUIOpenedEvent(RemoteControlUIKey.Key, consoleUid, controller));
@@ -446,7 +446,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                     new BoundUIOpenedEvent(RemoteControlUIKey.Key, consoleUid, observer));
                 SEntMan.EventBus.RaiseLocalEvent(observerConsoleUid,
                     new BoundUIOpenedEvent(RemoteControlUIKey.Key, observerConsoleUid, observer));
-                SetTestController(observerConsole, null);
+                SetTestController(observerConsoleUid, observerConsole, null);
 
                 var switchable = SEntMan.GetComponent<BorgSwitchableTypeComponent>(chassisUid);
                 Assert.That(switchable.SelectTypeAction, Is.Not.Null);
@@ -605,7 +605,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var currentConsole = SEntMan.GetComponent<RemoteControlConsoleComponent>(currentConsoleUid);
                 var currentController = SEntMan.SpawnEntity(null, coordinates);
                 currentConsole.RemoteBrain = remoteEntity;
-                SetTestController(currentConsole, currentController);
+                SetTestController(currentConsoleUid, currentConsole, currentController);
                 currentConsole.Users.Add(currentController);
 
                 var takeoverConsoleUid = SEntMan.SpawnEntity(
@@ -662,7 +662,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var currentConsole = SEntMan.GetComponent<RemoteControlConsoleComponent>(currentConsoleUid);
                 var currentController = SEntMan.SpawnEntity(null, coordinates);
                 currentConsole.RemoteBrain = brain;
-                SetTestController(currentConsole, currentController);
+                SetTestController(currentConsoleUid, currentConsole, currentController);
                 currentConsole.Users.Add(currentController);
                 currentConsole.BorgActivatedByRemote = true;
 
@@ -723,7 +723,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
                 var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
                 console.RemoteBrain = scanner;
-                SetTestController(console, controller);
+                SetTestController(consoleUid, console, controller);
 
                 var remoteControl = Server.System<RemoteControlConsoleSystem>();
                 Assert.That(remoteControl.TryGetControllerForRemoteEntity(scanner, out var popupRecipient), Is.True);
@@ -795,7 +795,7 @@ public sealed class RemoteControlConsoleTest : GameTest
 
                 if (controlling)
                 {
-                    SetTestController(console, user);
+                    SetTestController(consoleUid, console, user);
                     console.PreviousRelayEntity = previousRelay ? originalRelay : null;
                     mover.SetRelay(user, chassis);
                 }
@@ -866,7 +866,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
                 console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
                 console.RemoteBrain = brain;
-                SetTestController(console, controller);
+                SetTestController(consoleUid, console, controller);
 
                 cellUid = SEntMan.SpawnEntity("PowerCellSmall", coordinates);
                 battery = SEntMan.GetComponent<BatteryComponent>(cellUid);
@@ -906,12 +906,12 @@ public sealed class RemoteControlConsoleTest : GameTest
         }
     }
 
-    private void SetTestController(RemoteControlConsoleComponent console, EntityUid? controller)
+    private void SetTestController(EntityUid consoleUid, RemoteControlConsoleComponent console, EntityUid? controller)
     {
         if (console.Controller is { } previous
             && SEntMan.TryGetComponent<RemoteControlControllerComponent>(previous, out var previousMapping))
         {
-            previousMapping.Consoles.Remove(console.Owner);
+            previousMapping.Consoles.Remove(consoleUid);
             if (previousMapping.Consoles.Count == 0)
                 SEntMan.RemoveComponent<RemoteControlControllerComponent>(previous);
         }
@@ -921,8 +921,8 @@ public sealed class RemoteControlConsoleTest : GameTest
             return;
 
         if (SEntMan.TryGetComponent<RemoteControlControllerComponent>(current, out var mapping))
-            mapping.Consoles.Add(console.Owner);
+            mapping.Consoles.Add(consoleUid);
         else
-            SEntMan.AddComponent<RemoteControlControllerComponent>(current).Consoles.Add(console.Owner);
+            SEntMan.AddComponent<RemoteControlControllerComponent>(current).Consoles.Add(consoleUid);
     }
 }

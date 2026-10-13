@@ -32,7 +32,7 @@ namespace Content.Client.Verbs.UI
         [Dependency] private ContextMenuUIController _context = default!;
 
         #region Starlight
-        [UISystemDependency] private RemoteControlInterface _remoteControl = default!;
+        [UISystemDependency] private readonly RemoteControlInterface _remoteControl = default!; // Starlight
         #endregion
 
         [UISystemDependency] private readonly CombatModeSystem _combatMode = default!;

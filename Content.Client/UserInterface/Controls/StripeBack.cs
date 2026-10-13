@@ -103,7 +103,7 @@ namespace Content.Client.UserInterface.Controls
             if (HasBottomEdge)
             {
                 centerBox += (0, 0, 0, -bottomInset); // Starlight
-                var bottomEdgeBottom = MathF.Max(centerBox.Bottom, PixelHeight - padSize * UIScale); // Starlight
+                var bottomEdgeBottom = MathF.Max(centerBox.Bottom, PixelHeight - (padSize * UIScale)); // Starlight
                 if (PixelWidth > 0 && bottomEdgeBottom > centerBox.Bottom) // Starlight
                     handle.DrawRect(new UIBox2(0, centerBox.Bottom, PixelWidth, bottomEdgeBottom), EdgeColor); // Starlight
             }

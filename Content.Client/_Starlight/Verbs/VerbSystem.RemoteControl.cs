@@ -64,8 +64,8 @@ public sealed partial class VerbSystem
         {
             // Only include the container contents when clicking near it.
             if (entities.Contains(container.Owner)
-                || _containers.TryGetOuterContainer(container.Owner, Transform(container.Owner), out var outer)
-                && entities.Contains(outer.Owner))
+                || (_containers.TryGetOuterContainer(container.Owner, Transform(container.Owner), out var outer)
+                    && entities.Contains(outer.Owner)))
             {
                 // The container itself might be in some other container, so it might not have been added by the
                 // sprite tree lookup.
