@@ -131,7 +131,7 @@
   group: Foods
   desc: reagent-desc-blindingstew
   physicalDesc: reagent-physical-desc-clumpy
-  contrabandSeverity: Major
+  contrabandTier: Tier2 # Blimpuf
   flavor: punishment
   color: "#7d7d3c" # ew
   metabolisms:

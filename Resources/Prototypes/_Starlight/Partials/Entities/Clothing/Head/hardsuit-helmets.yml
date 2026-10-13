@@ -1,0 +1,39 @@
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitSyndie
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitSyndieMedic
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitSyndieElite
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitSyndieCommander
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitCybersun
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+    contrabandType: Syndicate

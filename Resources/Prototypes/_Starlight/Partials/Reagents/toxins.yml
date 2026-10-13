@@ -1,0 +1,108 @@
+- type: !PartialOnly reagent
+  id: Toxin
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: CarpoToxin
+  contrabandTier: Tier1
+
+- type: !PartialOnly reagent
+  id: ChloralHydrate
+  contrabandTier: Tier1
+
+- type: !PartialOnly reagent
+  id: GastroToxin
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: PolytrinicAcid
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: FerrochromicAcid
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: FluorosulfuricAcid
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: SulfuricAcid
+  contrabandTier: Tier1
+
+- type: !PartialOnly reagent
+  id: UnstableMutagen
+  contrabandTier: Tier1
+
+- type: !PartialOnly reagent
+  id: HeartbreakerToxin
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Lexorin
+  contrabandTier: Tier3
+  contrabandType: Syndicate
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: MindbreakerToxin
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Amatoxin
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Romerol
+  contrabandTier: Tier4
+  contrabandType: Syndicate
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Pax
+  contrabandTier: Tier1
+
+- type: !PartialOnly reagent
+  id: Lead
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Bungotoxin
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Vestine
+  contrabandTier: Tier3
+  contrabandType: Syndicate
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Tazinide
+  contrabandTier: Tier3
+  contrabandType: Syndicate
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Lipolicide
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Mechanotoxin
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Hemorrhinol
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove

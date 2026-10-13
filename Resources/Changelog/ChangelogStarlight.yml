@@ -1,151 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Added covers system.
-    type: Add
-  id: 409000
-  time: '2026-09-29T19:34:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6334
-- author: Rinary
-  changes:
-  - message: Added 4 different barricades(more info about them in PR desc).
-    type: Add
-  id: 409001
-  time: '2026-09-29T19:34:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6334
-- author: Rinary
-  changes:
-  - message: Added spread bonus when you're holding pistol and shield in the same time.
-    type: Add
-  id: 409002
-  time: '2026-09-29T19:34:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6334
-- author: Rinary
-  changes:
-  - message: Added tables flip, you can use this as cover.
-    type: Add
-  id: 409003
-  time: '2026-09-29T19:34:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6334
-- author: Rinary
-  changes:
-  - message: Added vending machines flip, you can use this as cover.
-    type: Add
-  id: 409004
-  time: '2026-09-29T19:34:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6334
-- author: Rinary
-  changes:
-  - message: Added unlucky trait which makes you to flip vending machines on yourself with certain chance when you're bumping into them.
-    type: Add
-  id: 409005
-  time: '2026-09-29T19:34:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6334
-- author: Rinary
-  changes:
-  - message: Added a chance to flip vending machines on yourself when you're bumped into them while slipped.
-    type: Add
-  id: 409006
-  time: '2026-09-29T19:34:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6334
-- author: Rinary
-  changes:
-  - message: Added sandbag material.
-    type: Add
-  id: 409007
-  time: '2026-09-29T19:34:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6334
-- author: Rinary
-  changes:
-  - message: Added 12 sandbags to warden's locker(2 barricades).
-    type: Add
-  id: 409008
-  time: '2026-09-29T19:34:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6334
-- author: Rinary
-  changes:
-  - message: Added sandbags to cargo order system(30 for 1000).
-    type: Add
-  id: 409009
-  time: '2026-09-29T19:34:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6334
-- author: infiniteb1u3
-  changes:
-  - message: Edited contents of agrichemkit manual to be more readable.
-    type: Tweak
-  id: 409010
-  time: '2026-09-29T19:34:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6363
-- author: Light
-  changes:
-  - message: Fixed the health analyzer UI after upstream merge.
-    type: Fix
-  id: 409011
-  time: '2026-09-29T20:08:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6381
-- author: qbrx
-  changes:
-  - message: Fixed mechs becoming super laggy to pilot after firing their guns.
-    type: Fix
-  id: 409012
-  time: '2026-09-29T20:08:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6369
-- author: Arkanic
-  changes:
-  - message: Fix reagent fires not working.
-    type: Fix
-  id: 409013
-  time: '2026-09-29T20:08:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6372
-- author: Arkanic
-  changes:
-  - message: Fix atmos gases not igniting, and hypernob not moderating ignition.
-    type: Fix
-  id: 409014
-  time: '2026-09-29T20:08:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6372
-- author: Arkanic
-  changes:
-  - message: Prevent items in bags, containers, pockets, and hands from igniting puddles on the floor. Don't slip with a welder in your hand though!.
-    type: Fix
-  id: 409015
-  time: '2026-09-29T20:08:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6372
-- author: DocMoth
-  changes:
-  - message: Removed poison heal for Expi.
-    type: Remove
-  id: 409016
-  time: '2026-09-29T20:42:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6386
-- author: DocMoth
-  changes:
-  - message: Adjusted Expi healing to be split evenly between passive and the hunger regenerative factor.
-    type: Tweak
-  id: 409017
-  time: '2026-09-29T20:42:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6386
-- author: DocMoth
-  changes:
-  - message: The additional healing factor of Expis now stops once reaching critical state.
-    type: Tweak
-  id: 409018
-  time: '2026-09-29T20:42:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6386
-- author: DocMoth
-  changes:
-  - message: Expis now have 3 times increased thirst.
-    type: Tweak
-  id: 409019
-  time: '2026-09-29T20:42:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6386
-- author: DocMoth
-  changes:
-  - message: Expis are now harmed by acid.
-    type: Fix
-  id: 409020
-  time: '2026-09-29T20:42:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6386
 - author: DocMoth
   changes:
   - message: Laspi regen returned to double baseline value.
@@ -2883,4 +2736,151 @@ Entries:
   id: 409399
   time: '2026-10-12T12:50:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6612
+- author: wonderfulnewworld, Limerent-Sun
+  changes:
+  - message: Inspecting solutions with chemical goggles now reveals the contraband status of any reagents.
+    type: Add
+  id: 409400
+  time: '2026-10-12T21:24:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6457
+- author: wonderfulnewworld, Limerent-Sun
+  changes:
+  - message: Contraband system has been reworked into a 5-tiered system with independent types and authorizations.
+    type: Tweak
+  id: 409401
+  time: '2026-10-12T21:24:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6457
+- author: Johnny
+  changes:
+  - message: Button no longer transparento.
+    type: Fix
+  id: 409402
+  time: '2026-10-13T04:51:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6663
+- author: Wizden Team
+  changes:
+  - message: You can now throw banana cream pies at the station AI.
+    type: Add
+  id: 409403
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: Added a new uplink category for objective items.
+    type: Add
+  id: 409404
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: Removed Heavy footsteps.
+    type: Remove
+  id: 409405
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: Instead of disappearing, space dragons now burst into giblets if they go too long without summoning a rift.
+    type: Tweak
+  id: 409406
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: Player sell costs are now randomized when scanned with an appraisal tool.
+    type: Tweak
+  id: 409407
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: Cell rechargers, weapon rechargers and turbo rechargers can now be picked up to transport them when unanchored.
+    type: Tweak
+  id: 409408
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: Midround Wizards now show up on the end results screen.
+    type: Fix
+  id: 409409
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: Mail no longer goes all to one person per batch. (although I think we already have this).
+    type: Fix
+  id: 409410
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: Clockwork Glass is now grindable.
+    type: Fix
+  id: 409411
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: Singularity distortion effects now respect the reduced motion accessibility option.
+    type: Tweak
+  id: 409412
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: '"Reduce motion of visual effects" now works for drunk and blood loss status.'
+    type: Add
+  id: 409413
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: Hot gasses now have a visible distortion effect.
+    type: Add
+  id: 409414
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: Lathe machine interfaces now display their proper names.
+    type: Tweak
+  id: 409415
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: The value of tier 1 tech disks has been lowered.
+    type: Tweak
+  id: 409416
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: 'EXPERIMENTAL: Player-controlled spiders and slimes are now forced to attack if they are passive near enemies for too long.'
+    type: Tweak
+  id: 409417
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: 'Added a new objective for traitors: Hijack the Automated Trade Station. Your uplink will have a hijack beacon for you to use if you have this objective.'
+    type: Add
+  id: 409418
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: Humanoids can now break out of locked genpop lockers.
+    type: Tweak
+  id: 409419
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
+- author: Wizden Team
+  changes:
+  - message: 'Added a new objective for traitors: Hijack the Automated Trade Station. Your uplink will have a hijack beacon for you to use if you have this objective.'
+    type: Add
+  id: 409420
+  time: '2026-10-13T05:57:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6575
 Order: -1
