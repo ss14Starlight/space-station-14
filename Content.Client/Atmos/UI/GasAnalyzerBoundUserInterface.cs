@@ -32,7 +32,7 @@ public sealed class GasAnalyzerBoundUserInterface : BoundUserInterface
 
         _window.Populate(cast);
     }
-    
+
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
