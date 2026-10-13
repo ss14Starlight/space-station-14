@@ -1,4 +1,5 @@
-﻿using Content.Shared.Dataset;
+﻿using Content.Server.StationRecords.Systems;
+using Content.Shared.Dataset;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Station;
 using Content.Shared.StationRecords;
@@ -16,7 +17,7 @@ public sealed partial class IonLawSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedStationSystem _stationSystem = default!;
-    [Dependency] private SharedStationRecordsSystem _stationRecordsSystem = default!;
+    [Dependency] private StationRecordsSystem _stationRecordsSystem = default!;
     [Dependency] private ILogManager _logManager = default!;
 
     private ISawmill _sawmill = default!;

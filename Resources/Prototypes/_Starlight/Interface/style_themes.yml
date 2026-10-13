@@ -372,3 +372,5 @@
   text: "#FEFEFE"
   textMuted: "#7E7E7E"
   textDisabled: "#787878"
+  positive: "#3E9A5A"
+  negative: "#C24141"
