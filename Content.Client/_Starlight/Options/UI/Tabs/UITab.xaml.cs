@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Client.Options.UI;
 using Content.Client.UserInterface.Screens;
+using Content.Client.UserInterface.Systems.MenuBar.Widgets;
 using Content.Shared._Starlight.CombatMode;
 using Content.Shared.CCVar;
 using Content.Shared.HUD;
@@ -39,12 +40,6 @@ public sealed partial class UITab : Control
             themeEntries.Add(new OptionDropDownCVar<string>.ValueOption(gear.ID, Loc.GetString(gear.Name)));
         }
 
-        var styleThemeEntries = new List<OptionDropDownCVar<string>.ValueOption>();
-        foreach (var theme in _prototypeManager.EnumeratePrototypes<StyleThemePrototype>().OrderBy(t => t.Order))
-        {
-            styleThemeEntries.Add(new OptionDropDownCVar<string>.ValueOption(theme.ID, Loc.GetString(theme.Name)));
-        }
-
         var layoutEntries = new List<OptionDropDownCVar<string>.ValueOption>();
         foreach (var layout in Enum.GetValues(typeof(ScreenType)))
         {
@@ -75,12 +70,36 @@ public sealed partial class UITab : Control
 
         SightsOptionsHash.OnTextChanged += OnTextChanged;
 
-        Control.AddOptionDropDown(StarlightCCVars.StyleTheme, DropDownStyleTheme, styleThemeEntries);
-        Control.AddOptionCheckBox(StarlightCCVars.StyleCustomAccent, StyleCustomAccentCheckBox);
-        Control.AddOptionColorSlider(StarlightCCVars.StyleAccent, StyleAccentSlider);
+        Control.AddOption(new OptionStyleThemeCVar(Control, _cfg, ThemePicker));
+        Control.AddOption(new OptionAccentCVar(Control, _cfg, AccentPicker));
+        Control.AddOption(new OptionCustomAccentCVar(Control, _cfg, AccentPicker));
         Control.AddOptionDropDown(CVars.InterfaceTheme, DropDownHudTheme, themeEntries);
         Control.AddOptionDropDown(CCVars.UILayout, DropDownHudLayout, layoutEntries);
         Control.AddOptionSlider(StarlightCCVars.ChatSeparatedMinWidth, SeparatedChatWidthSlider, 300, 580);
+
+        Control.AddOptionDropDown(StarlightCCVars.MenuBarKeyHints, DropDownMenuBarKeyHints,
+        [
+            new OptionDropDownCVar<string>.ValueOption("Always", Loc.GetString("ui-options-menu-bar-key-hints-always")),
+            new OptionDropDownCVar<string>.ValueOption("Hold", Loc.GetString("ui-options-menu-bar-key-hints-hold")),
+            new OptionDropDownCVar<string>.ValueOption("Never", Loc.GetString("ui-options-menu-bar-key-hints-never")),
+        ]);
+        MenuBarLayoutEditor.SetEntries(GameTopMenuBar.LayoutEntries);
+        Control.AddOption(new OptionBarLayoutCVar(Control, _cfg, StarlightCCVars.MenuBarLayout, MenuBarLayoutEditor));
+        Control.AddOptionPercentSlider(CCVars.ChatWindowOpacity, ChatWindowOpacitySlider);
+        Control.AddOptionDropDown(
+            CVars.DisplayUIScale,
+            DropDownUIScale,
+            [
+                new OptionDropDownCVar<float>.ValueOption(
+                    0f,
+                    Loc.GetString("ui-options-scale-auto", ("scale", UserInterfaceManager.DefaultUIScale))),
+                new OptionDropDownCVar<float>.ValueOption(0.75f, Loc.GetString("ui-options-scale-75")),
+                new OptionDropDownCVar<float>.ValueOption(1.00f, Loc.GetString("ui-options-scale-100")),
+                new OptionDropDownCVar<float>.ValueOption(1.25f, Loc.GetString("ui-options-scale-125")),
+                new OptionDropDownCVar<float>.ValueOption(1.50f, Loc.GetString("ui-options-scale-150")),
+                new OptionDropDownCVar<float>.ValueOption(1.75f, Loc.GetString("ui-options-scale-175")),
+                new OptionDropDownCVar<float>.ValueOption(2.00f, Loc.GetString("ui-options-scale-200")),
+            ]);
         Control.AddOptionDropDown(StarlightCCVars.RangedSight, DropDownRangedSight, rangedSights);
         Control.AddOptionDropDown(StarlightCCVars.MeleeSight, DropDownMeleeSight, meleeSights);
         Control.AddOptionSlider(StarlightCCVars.RangedSightScale, RangedSightScaleSlider, 10, 100);

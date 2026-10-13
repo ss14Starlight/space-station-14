@@ -1,3 +1,4 @@
+using Content.Client._Starlight.Computers.RemoteControl;
 using Robust.Client.UserInterface;
 
 namespace Content.Client.Xenoarchaeology.Ui;
@@ -16,6 +17,7 @@ public sealed class NodeScannerBoundUserInterface(EntityUid owner, Enum uiKey) :
         base.Open();
 
         _scannerDisplay = this.CreateWindow<NodeScannerDisplay>();
+        EntMan.System<RemoteControlInterface>().TryEmbedWindow(_scannerDisplay); // Starlight
         _scannerDisplay.SetOwner(Owner);
     }
 

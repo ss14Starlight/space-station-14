@@ -19,6 +19,7 @@
     interfaces:
       enum.GasAnalyzerUiKey.Key:
         type: GasAnalyzerBoundUserInterface
+        requireInputValidation: false # Starlight, its checked otherwise
   - type: Appearance
   - type: GenericVisualizer
     visuals:
