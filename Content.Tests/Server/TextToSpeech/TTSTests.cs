@@ -9,6 +9,30 @@ namespace Content.Tests.Server.TextToSpeech;
 [TestFixture]
 public sealed class TTSTests
 {
+    [TestCase("0", "zero")]
+    [TestCase("999", "nine hundred ninety-nine")]
+    [TestCase("1000", "one thousand")]
+    [TestCase("12345", "twelve thousand three hundred forty-five")]
+    [TestCase("1000000", "one million")]
+    [TestCase("1,000", "one thousand")]
+    [TestCase("1,234,567", "one million two hundred thirty-four thousand five hundred sixty-seven")]
+    [TestCase("-1000", "negative one thousand")]
+    [TestCase("-1,000", "negative one thousand")]
+    [TestCase("1000.5", "one thousand point five")]
+    [TestCase("1,000.5", "one thousand point five")]
+    [TestCase("-1000.5", "negative one thousand point five")]
+    [TestCase("9223372036854775807", "nine quintillion two hundred twenty-three quadrillion three hundred seventy-two trillion thirty-six billion eight hundred fifty-four million seven hundred seventy-five thousand eight hundred seven")]
+    [TestCase("-9223372036854775808", "negative nine quintillion two hundred twenty-three quadrillion three hundred seventy-two trillion thirty-six billion eight hundred fifty-four million seven hundred seventy-five thousand eight hundred eight")]
+    [TestCase("9223372036854775808", "9223372036854775808")]
+    [TestCase("-9223372036854775809", "-9223372036854775809")]
+    [TestCase("9,223,372,036,854,775,808", "9,223,372,036,854,775,808")]
+    [TestCase("9223372036854775808.5", "9223372036854775808.5")]
+    [TestCase("We need 1000 credits, not 2000.", "We need one thousand credits, not two thousand.")]
+    public void TestCleanTextConvertsNumbers(string text, string expected)
+    {
+        Assert.That(TTSSystem.CleanText(text), Is.EqualTo(expected));
+    }
+
     /// <summary>
     /// Verifies that standard ASCII apostrophes (used in contractions, accents, or plurals) are preserved.
     /// </summary>

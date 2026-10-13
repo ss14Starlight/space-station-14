@@ -30,21 +30,24 @@ public static partial class NumberConverter
 
     public static string Convert(string numberStr)
     {
+        var originalNumber = numberStr;
         numberStr = numberStr.Replace(",", "");
 
         if (numberStr.Contains('.'))
         {
             var parts = numberStr.Split('.', 2);
-            var integerPart = string.IsNullOrEmpty(parts[0]) || parts[0] == "-"
-                ? "zero"
-                : NumberToText(long.Parse(parts[0]));
+            var integerText = string.IsNullOrEmpty(parts[0]) || parts[0] == "-" ? "0" : parts[0];
+            if (!long.TryParse(integerText, out var integer))
+                return originalNumber;
+
+            var integerPart = NumberToText(integer);
 
             var decimalPart = DecimalToText(parts[1]);
 
             return $"{integerPart} point {decimalPart}";
         }
 
-        return NumberToText(long.Parse(numberStr));
+        return long.TryParse(numberStr, out var number) ? NumberToText(number) : originalNumber;
     }
 
     private static string DecimalToText(string digits)
@@ -66,11 +69,20 @@ public static partial class NumberConverter
 
     public static string NumberToText(long number)
     {
+        if (number < 0)
+        {
+            // Negating long.MinValue directly overflows, so form its magnitude as an unsigned value.
+            var magnitude = (ulong)(-(number + 1)) + 1;
+            return "negative " + PositiveNumberToText(magnitude);
+        }
+
+        return PositiveNumberToText((ulong)number);
+    }
+
+    private static string PositiveNumberToText(ulong number)
+    {
         if (number == 0)
             return "zero";
-
-        if (number < 0)
-            return "negative " + NumberToText(-number);
 
         var words = new StringBuilder();
         var unit = 0;
@@ -131,6 +143,6 @@ public static partial class NumberConverter
         return result.ToString();
     }
 
-    [GeneratedRegex(@"-?\d{1,3}(,\d{3})*(\.\d+)?|-?\d+(\.\d+)?")]
+    [GeneratedRegex(@"-?\d{1,3}(,\d{3})+(\.\d+)?|-?\d+(\.\d+)?")]
     public static partial Regex NumberPattern();
 }
