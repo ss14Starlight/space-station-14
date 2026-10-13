@@ -1,17 +1,71 @@
 <Document>
-# Permit Acquisition
+# Equipment and Weapon Permits Guide
 
-- 1.\n
-Department heads are cleared to approve permits for equipment normally restricted to their department.\n\n
-1.1\n
-This should not be done without proper cause.\n\n
-- 2.\n
-Both the Warden and Head of Security may grant permits for minor contraband. \n\n
-2.2\n
-Captured enemy equipment, such as from the Syndicate, may be approved via Central Command decree if requested, but not on their own authority.
-- 3.\n
 The approval of permits is a privilege, not a right, and no head of a department is obligated to approve any permit.
-- 4.\n
-Permits are invalid if not kept on their owner's person.
+\nPermits are invalid if not kept on their owner's person.
+
+For the ease of your time and the time of others, please seek required permit approval in the following order;
+\nItem Orgin, [color=#fcdf03]Relevant Leader[/color], [color=#fcdf03]Captain[/color], [color=#86d420]Central Command[/color].
+
+A [bold][color=#fcdf03]Relevant Leader[/color][/bold] is the highest-ranking person of a department or corporation on station for a given approved group.
+\nWhen seeking a permit for contraband, you must always seek approval from the [color=#fcdf03]Relevant Leader[/color] where the item originated; otherwise, you may seek out any [color=#fcdf03]Relevant Leader[/color].
+
+<ColorBox Color="#00000040" OutlineColor="#00000040" OutlineThickness="1" Margin="2">
+	<Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
+		[bolditalic]E.G.[/bolditalic] [italic]You get insulated gloves from engineering, you'd need the [color=#ff733c]Chief Engineer[/color]'s stamp, but if you found an abandoned pair in maintenance you could seek a stamp from any of the following: [color=#ff733c]Chief Engineer[/color], [color=#ff4242]Head of Security[/color], [color=#fcdf03]Captain[/color], or [color=#b48b57]Quartermaster[/color], because this item is permitted for [color=#ff733c]Engineering[/color], [color=#ff4242]Security[/color], [color=#fcdf03]Command[/color], and [color=#b48b57]Mining[/color] respectively.[/italic]
+	</Box>
+</ColorBox>
+
+When choosing between NT-CC Consortium, Affiliated Corporations, or Rival Corporation, use the following guide.
+
+Any item that has at least one NT-CC Consortium Corporation or Department on it, you must seek at least one approval from them, and must seek approval from the item's origin if it has one.
+
+<ColorBox Color="#00000040" OutlineColor="#00000040" OutlineThickness="1" Margin="2">
+	<Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
+		[bolditalic]E.G.[/bolditalic] [italic]You bought a pair of insulated gloves from salvage, you must get the [color=#963dca]Salvage Lead[/color]'s stamp alongside a stamp from a NT-CC Consortium [color=#fcdf03]Relevant Leader[/color] see above example.[/italic]
+	</Box>
+</ColorBox>
+
+For items without at least one NT-CC Consortium Corporation or Department on it, you only need seek out approval from the [color=#fcdf03]Relevant Leader[/color].
+
+<ColorBox Color="#00000040" OutlineColor="#00000040" OutlineThickness="1" Margin="2">
+	<Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
+		[bolditalic]E.G.[/bolditalic] [italic]If you wanted a brown scavenger beret, you need only the [color=#963dca]Salvage Lead[/color]'s approval.[/italic]
+	</Box>
+</ColorBox>
+
+## NT-CC Consortium
+
+- [bold]Tier One:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color].
+- [bold]Tier Two:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color].
+- [bold]Tier Three:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color].
+- [bold]Tier Four:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color] and [color=#fcdf03]Captain[/color].
+- [bold]Tier Five:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color] and [color=#86d420]Central Command[/color].
+
+## Affiliated Corporations
+
+- [bold]Tier One:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color].
+- [bold]Tier Two:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color].
+- [bold]Tier Three:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color].
+- [bold]Tier Four:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color] and [color=#fcdf03]Captain[/color].
+- [bold]Tier Five:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color] and [color=#86d420]Central Command[/color].
+
+## Rival Corporations
+
+- [bold]Tier One:[/bold] Stamped approval from the [color=#ff4242]Warden[/color], or the below.
+- [bold]Tier Two:[/bold] Stamped approval from the [color=#ff4242]Warden[/color], or the below.
+- [bold]Tier Three:[/bold] Stamped approval from the [color=#ff4242]Head of Security[/color], or the below.
+- [bold]Tier Four:[/bold] Stamped approval from the [color=#fcdf03]Captain[/color], or the below.
+- [bold]Tier Five:[/bold] Stamped approval from the [color=#fcdf03]Captain[/color] and [color=#86d420]Central Command[/color].
+
+## Weapon Permits
+
+Weapon Permits follow Equipment Permits but need the following additional approvals.
+
+- [bold]Tier One:[/bold] Stamped approval from the [color=#ff4242]Warden[/color], or the below.
+- [bold]Tier Two:[/bold] Stamped approval from the [color=#ff4242]Warden[/color], or the below.
+- [bold]Tier Three:[/bold] Stamped approval from the [color=#ff4242]Head of Security[/color], or the below.
+- [bold]Tier Four:[/bold] Stamped approval from the [color=#ff4242]Head of Security[/color], or the below.
+- [bold]Tier Five:[/bold] Stamped approval from the [color=#fcdf03]Captain[/color] and [color=#ff4242]Head of Security[/color].
 
 </Document>
