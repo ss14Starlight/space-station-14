@@ -88,6 +88,7 @@ public sealed partial class UITab : Control
         Control.AddOption(new OptionBarLayoutCVar(Control, _cfg, StarlightCCVars.MenuBarLayout, MenuBarLayoutEditor));
         Control.AddOptionPercentSlider(CCVars.ChatWindowOpacity, ChatWindowOpacitySlider);
         Control.AddOptionCheckBox(StarlightCCVars.LobbyJobColumns, LobbyJobColumnsCheckBox);
+        Control.AddOptionPercentSlider(StarlightCCVars.LobbyOpacity, LobbyOpacitySlider, 0.5f);
 
         var backgrounds = new List<OptionDropDownCVar<string>.ValueOption>
         {

@@ -1,22 +1,12 @@
 <Control
     xmlns="https://spacestation14.io"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:profile="clr-namespace:Content.Client.Lobby.UI.ProfileEditorControls">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!-- Starlight-start -->
     <BoxContainer Name="VBox" Orientation="Vertical">
         <BoxContainer Name="Loaded" Orientation="Vertical" Visible="False" SeparationOverride="8">
-            <BoxContainer Orientation="Horizontal" SeparationOverride="10">
-                <PanelContainer StyleClasses="SpritePreview">
-                    <profile:ProfilePreviewSpriteView Name="ProfilePreviewSpriteView"
-                                                      OverrideDirection="South"
-                                                      Scale="3 3"
-                                                      SetSize="96 96"
-                                                      Access="Public" />
-                </PanelContainer>
-                <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Center">
-                    <Label Name="CharacterName" StyleClasses="LabelHeading" ClipText="True" />
-                    <Label Name="CharacterJob" StyleClasses="LabelSubText" ClipText="True" />
-                </BoxContainer>
+            <BoxContainer Orientation="Vertical">
+                <Label Name="HighJob" StyleClasses="LabelHeading" ClipText="True" />
+                <Label Name="CharacterCount" StyleClasses="LabelSubText" ClipText="True" />
             </BoxContainer>
             <BoxContainer Orientation="Horizontal" SeparationOverride="4">
                 <Button Name="CharacterSetup" Text="{Loc 'lobby-character-preview-panel-character-setup-button'}" HorizontalExpand="True" />

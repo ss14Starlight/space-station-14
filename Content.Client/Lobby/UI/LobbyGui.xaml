@@ -18,6 +18,8 @@
             <BoxContainer Orientation="Horizontal" Margin="12 4" SeparationOverride="4">
                 <Label Name="ServerName" Access="Public" StyleClasses="LabelHeading" VAlign="Center" Margin="0 0 8 0" />
                 <Label Name="StationTime" Access="Public" StyleClasses="LabelSubText" VAlign="Center" HorizontalExpand="True" />
+                <Button Name="RulesButton" Text="{Loc 'server-info-rules-button'}" StyleClasses="LobbyBarButton" />
+                <Button Name="GuidebookButton" Text="{Loc 'server-info-guidebook-button'}" StyleClasses="LobbyBarButton" />
                 <Button Name="AHelpButton" Access="Public" Text="{Loc 'ui-lobby-ahelp-button'}" StyleClasses="LobbyBarButton" />
                 <vote:VoteCallMenuButton Name="CallVoteButton" StyleClasses="LobbyBarButton" />
                 <sc:DropdownButton Name="LinksButton" Text="{Loc 'ui-lobby-links-button'}" StyleClasses="LobbyBarButton" />
@@ -26,9 +28,9 @@
             </BoxContainer>
         </PanelContainer>
 
-        <BoxContainer Orientation="Horizontal" VerticalExpand="True" Margin="12" SeparationOverride="12">
+        <BoxContainer Name="ColumnsBox" Orientation="Horizontal" VerticalExpand="True" Margin="12" SeparationOverride="4">
             <!-- Left -->
-            <BoxContainer Name="LeftSide" Orientation="Vertical" SetWidth="340">
+            <BoxContainer Name="LeftSide" Orientation="Vertical" SetWidth="340" Margin="0 0 8 0">
                 <Control Name="DefaultState" VerticalExpand="True">
                     <BoxContainer Orientation="Vertical" VerticalAlignment="Top" SeparationOverride="8">
                         <PanelContainer StyleClasses="LobbyCard">
@@ -51,10 +53,12 @@
                         <nulllink:Hub HorizontalAlignment="Stretch" Margin="0" />
                         <info:DevInfoBanner Name="DevInfoBanner" VerticalExpand="false" />
                     </BoxContainer>
-                    <BoxContainer Orientation="Vertical" VerticalAlignment="Bottom">
-                        <RichTextLabel Name="LobbySong" Access="Public" StyleClasses="LabelSubText" />
-                        <RichTextLabel Name="LobbyBackground" Access="Public" StyleClasses="LabelSubText" />
-                    </BoxContainer>
+                    <PanelContainer StyleClasses="LobbyCard" VerticalAlignment="Bottom">
+                        <BoxContainer Orientation="Vertical" Margin="8 4">
+                            <RichTextLabel Name="LobbySong" Access="Public" StyleClasses="LabelSubText" />
+                            <RichTextLabel Name="LobbyBackground" Access="Public" StyleClasses="LabelSubText" />
+                        </BoxContainer>
+                    </PanelContainer>
                 </Control>
                 <!-- Character setup state, injected on startup. The lobby opens the editor as a window now. -->
                 <Control Access="Public" Visible="False" Name="CharacterSetupState" VerticalExpand="True" />
@@ -67,8 +71,9 @@
                 <RichTextLabel Name="PlaytimeComment" Visible="False" Access="Public" HorizontalAlignment="Center" />
             </BoxContainer>
 
-            <!-- Right -->
-            <BoxContainer Orientation="Vertical" SeparationOverride="8" SetWidth="420">
+            <!-- Right, resized by dragging its left edge -->
+            <sc:ResizeHandle Name="ChatResizeHandle" />
+            <BoxContainer Name="ChatColumn" Orientation="Vertical" SeparationOverride="8">
                 <Control Name="RightSide" Access="Public" VerticalExpand="True">
                     <widgets:ChatBox Name="Chat" Access="Public" MinSize="0 0" />
                 </Control>

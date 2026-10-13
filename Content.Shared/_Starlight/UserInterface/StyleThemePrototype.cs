@@ -28,9 +28,6 @@ public sealed partial class StyleThemePrototype : IPrototype
     public bool Light;
 
     [DataField]
-    public bool Stock;
-
-    [DataField]
     public Color? Accent;
 
     [DataField]

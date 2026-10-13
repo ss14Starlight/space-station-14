@@ -52,12 +52,6 @@
   negative: "#B42F2F"
 
 - type: styleTheme
-  id: Classic
-  name: style-theme-classic
-  order: 3
-  stock: true
-
-- type: styleTheme
   id: Abyss
   name: style-theme-abyss
   order: 10

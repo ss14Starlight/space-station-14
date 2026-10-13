@@ -1,5 +1,14 @@
 lobby-character-preview-panel-job-priorities-button = Job priorities
-lobby-character-preview-panel-no-character = No character
+lobby-character-preview-panel-job-characters = {$count ->
+    [0] No enabled characters for this job
+    [one] 1 enabled character for this job
+   *[other] {$count} enabled characters for this job
+}
+lobby-character-preview-panel-enabled-characters = {$count ->
+    [0] No enabled characters
+    [one] 1 enabled character
+   *[other] {$count} enabled characters
+}
 lobby-character-preview-panel-high-job = High: {$job}
 lobby-character-preview-panel-no-high-job = No high priority job
 

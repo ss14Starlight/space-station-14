@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Client.Options.UI;
-using Content.Client.Stylesheets.Palette;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.UserInterface;
 using Robust.Client.Graphics;
@@ -46,9 +45,9 @@ public sealed class StyleThemePicker : GridContainer
                         Orientation = BoxContainer.LayoutOrientation.Horizontal,
                         Children =
                         {
-                            Swatch(theme.Stock ? Palettes.Navy.BackgroundDark : theme.Background, 22, 32),
-                            Swatch(theme.Stock ? Palettes.Navy.Background : theme.SurfaceRaised, 22, 32),
-                            Swatch(theme.Stock ? Palettes.Navy.HoveredElement : theme.ElementHovered, 22, 32),
+                            Swatch(theme.Background, 22, 32),
+                            Swatch(theme.SurfaceRaised, 22, 32),
+                            Swatch(theme.ElementHovered, 22, 32),
                         },
                     },
                     new Label { Text = Loc.GetString(theme.Name), HorizontalAlignment = HAlignment.Center },

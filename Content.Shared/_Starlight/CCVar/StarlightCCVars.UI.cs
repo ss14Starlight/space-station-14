@@ -49,6 +49,18 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("ui.lobby_background", "", CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
+    /// Width of the chat column in the lobby, dragged by its left edge.
+    /// </summary>
+    public static readonly CVarDef<int> LobbyChatWidth =
+        CVarDef.Create("ui.lobby_chat_width", 630, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Opacity of the lobby panels over the lobby art, 1 is fully opaque.
+    /// </summary>
+    public static readonly CVarDef<float> LobbyOpacity =
+        CVarDef.Create("ui.lobby_opacity", 0.95f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// Where each button of the top menu bar goes: <c>Name=Pinned|Auto|Menu|Hidden;...</c>, see BarLayout.
     /// Buttons left out are Auto: on the bar while it fits, in the "more" menu otherwise.
     /// </summary>

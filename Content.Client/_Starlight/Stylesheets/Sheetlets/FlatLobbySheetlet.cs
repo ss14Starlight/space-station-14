@@ -3,10 +3,12 @@ using Content.Client.Stylesheets.Colorspace;
 using Content.Client.Stylesheets.Fonts;
 using Content.Client.Stylesheets.Sheetlets;
 using Content.Client.Stylesheets.Stylesheets;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.UserInterface;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Configuration;
 using static Content.Client.Stylesheets.StylesheetHelpers;
 
 namespace Content.Client._Starlight.Stylesheets.Sheetlets;
@@ -23,7 +25,8 @@ public sealed class FlatLobbySheetlet : Sheetlet<NanotrasenStylesheet>
             return [];
 
         var proto = theme.Proto;
-        var translucent = proto.Background.WithAlpha(0.95f);
+        var opacity = IoCManager.Resolve<IConfigurationManager>().GetCVar(StarlightCCVars.LobbyOpacity);
+        var translucent = proto.Background.WithAlpha(Math.Clamp(opacity, 0f, 1f));
         var onAccent = theme.Accent.LabFromSrgb().X > 0.6f ? proto.Background : proto.Text;
 
         var rules = new List<StyleRule>
