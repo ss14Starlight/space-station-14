@@ -89,9 +89,8 @@ public sealed partial class MenuButton : ContainerButton
     private void UpdateKeyText()
     {
         var text = _function == null ? "" : BoundKeyHelper.ShortKeyName(_function.Value);
-        _buttonLabel!.Text = text;
-        if (_keyBadgeLabel != null)
-            _keyBadgeLabel.Text = text;
+        _buttonLabel?.Text = text;
+        _keyBadgeLabel?.Text = text;
     }
 
     public bool ShowName
