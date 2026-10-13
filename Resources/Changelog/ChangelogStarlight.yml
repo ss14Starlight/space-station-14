@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (CentComm SC17) Fixed a bunch of air alarms not being linked to anything.
-    type: Fix
-  id: 409030
-  time: '2026-09-29T21:06:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6385
 - author: TaserTheFox
   changes:
   - message: All librarians can now speak Classical sign.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409429
   time: '2026-10-13T20:34:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6660
+- author: Vincolan
+  changes:
+  - message: The horse.
+    type: Add
+  id: 409430
+  time: '2026-10-13T20:34:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6623
 Order: -1
