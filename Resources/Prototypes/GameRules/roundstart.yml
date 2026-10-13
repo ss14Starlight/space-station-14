@@ -199,7 +199,7 @@
       useTotalPlayerCount: true # Starlight
       range:
         min: 2 # Starlight
-        max: 6 # Starlight
+        max: 4 # Starlight
   - type: DynamicRuleCost
     cost: 200
 
