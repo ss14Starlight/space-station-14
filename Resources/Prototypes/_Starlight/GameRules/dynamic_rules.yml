@@ -386,7 +386,7 @@
   id: SLDynamicRuleLP
   components:
   - type: GameRule
-    minPlayers: 40
+    minPlayers: 30
   - type: DynamicRule
     startingBudgetMin: 200 # Beta can have a lower threshold.
     startingBudgetMax: 400

@@ -244,7 +244,7 @@
   name: dynamic-title
   showInVote: false # admin-only for now until we fix some bugs
   description: dynamic-description
-  minPlayers: 40
+  minPlayers: 30
   voteCooldown: 0 # This one actually can roll back to back.
   rules:
   - SLDynamicRuleLP
