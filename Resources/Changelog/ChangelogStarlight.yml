@@ -1,41 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (CentComm SC17) Cecil (sea salt).
-    type: Add
-  id: 409022
-  time: '2026-09-29T21:06:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6385
-- author: Caws
-  changes:
-  - message: (CentComm SC17) Fryers in the kitchen for CC chefs.
-    type: Add
-  id: 409023
-  time: '2026-09-29T21:06:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6385
-- author: Caws
-  changes:
-  - message: (CentComm SC17) Added way more biomass to cloning.
-    type: Add
-  id: 409024
-  time: '2026-09-29T21:06:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6385
-- author: Caws
-  changes:
-  - message: (CentComm SC17) Tripled the number of defibs in Medical.
-    type: Add
-  id: 409025
-  time: '2026-09-29T21:06:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6385
-- author: Caws
-  changes:
-  - message: (CentComm SC17) Tripled the number of battery chargers in Medical.
-    type: Add
-  id: 409026
-  time: '2026-09-29T21:06:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6385
-- author: Caws
-  changes:
   - message: (CentComm G24) Added Interdyne medical vendor for a certain debrief room.
     type: Add
   id: 409027
@@ -2883,4 +2848,39 @@ Entries:
   id: 409421
   time: '2026-10-13T10:47:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6669
+- author: Rinary
+  changes:
+  - message: Changed Settings && Ghost Themes && Votes UIs.
+    type: Tweak
+  id: 409422
+  time: '2026-10-13T11:37:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6611
+- author: Rinary
+  changes:
+  - message: Changed game top bar with buttons, now you can select what buttons you want to hide, pin, keep in "..." or use auto mode.
+    type: Tweak
+  id: 409423
+  time: '2026-10-13T11:37:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6611
+- author: Rinary
+  changes:
+  - message: Changed game top bar buttons, returned hotbinds hints, but now you can disable them, show only when holding "Alt" or show always.
+    type: Tweak
+  id: 409424
+  time: '2026-10-13T11:37:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6611
+- author: Rinary
+  changes:
+  - message: Changed AHELP top bar with buttons, now you can select what buttons you want to hide, pin, keep in "..." or use auto mode(same with check boxes).
+    type: Tweak
+  id: 409425
+  time: '2026-10-13T11:37:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6611
+- author: Rinary
+  changes:
+  - message: Fixed bug when chat width can't be saved between rounds or sessions.
+    type: Fix
+  id: 409426
+  time: '2026-10-13T11:37:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6611
 Order: -1
