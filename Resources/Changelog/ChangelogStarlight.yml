@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (CentComm G24) Re-added the small room at Debrief for admins to quietly spawn in their CC operators.
-    type: Add
-  id: 409028
-  time: '2026-09-29T21:06:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6385
-- author: Caws
-  changes:
   - message: (CentComm SC17) Reworked Debrief heavily, addinga  new side-corridor for a better debrief viewing experience. Shutters have been replaced with blast doors to reduce people being annoying with them.
     type: Tweak
   id: 409029
@@ -2883,4 +2876,11 @@ Entries:
   id: 409427
   time: '2026-10-13T17:12:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6643
+- author: wonderfulnewworld
+  changes:
+  - message: Secret will now actually count effective players rather than only readied players.
+    type: Fix
+  id: 409428
+  time: '2026-10-13T20:14:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6671
 Order: -1
