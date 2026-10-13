@@ -1,0 +1,50 @@
+<Document>
+  # Combustion Turbine
+
+  The combustion turbine makes power by pulling hot, high-pressure gas out of a burn chamber and letting it expand through its blades into a low-pressure exhaust.
+  The bigger the difference in pressure between the chamber and the exhaust, and the hotter the gas, the faster the rotor spins and the more power it puts into the [color=orange]HV[/color] network.
+
+  <Box>
+    <GuideEntityEmbed Entity="CombustionTurbineCompressor" Caption="compressor"/>
+    <GuideEntityEmbed Entity="CombustionTurbineGenerator" Caption="turbine"/>
+    <GuideEntityEmbed Entity="ComputerCombustionTurbine" Caption="control computer"/>
+    <GuideEntityEmbed Entity="IgniterFloor" Caption="igniter"/>
+  </Box>
+
+  ## Assembly
+
+  The turbine has two halves that sit back to back and act as an airtight wall:
+  - The [color=#a4885c]compressor[/color] faces the burn chamber and draws gas from the tile in front of it.
+  - The [color=#a4885c]turbine[/color] sits on the tile directly behind the compressor, facing the opposite way. It vents the spent gas out of its nozzle onto the tile in front of it, which should lead to space or into an exhaust pipe.
+
+  The turbine outputs over an [color=orange]HV wire[/color] under it. The compressor needs [color=green]APC power[/color] for its starter motor.
+  Examine either half to check that they are connected.
+
+  Link the [color=#a4885c]control computer[/color] to either half with a [color=#a4885c]multitool[/color].
+
+  ## Running it
+
+  1. Fill the burn chamber to 300-1000 kPa with a burn mix of about 3-5 parts oxygen to 1 part plasma.
+  2. Make sure the exhaust side is open to space or vented, otherwise pressure builds up there and the turbine stalls.
+  3. Light the mix with the [color=#a4885c]igniter[/color] in the chamber. Link it to a button, or toggle it by hand.
+  4. Turn the turbine on from the computer. The starter motor spins the rotor up, the compressor starts drawing gas, and the burn takes it from there.
+
+  The [color=#a4885c]intake regulator[/color] on the computer sets how many litres per second the compressor draws (up to 400 L/s). The same volume holds more gas at higher pressure, so a denser chamber gives more power for the same setting. At full output the turbine burns through roughly 10-12 mol/s, so feed the chamber about that fast to keep it steady.
+
+  Keep the burn mix at roughly [color=#a4885c]3-5 parts oxygen to 1 part plasma[/color] and keep feeding it. If the turbine draws gas about as fast as you feed it, the chamber stays close to the mix you feed in. If gas sits in the chamber too long, the plasma burns away and the oxygen-rich leftovers (over about 32:1) start making tritium, which burns much hotter.
+
+  Cold gas barely turns the rotor. You only get real power from burning.
+  Unburnt fuel passes straight through, so a filter on the exhaust can collect it to burn again.
+
+  ## Speed governor
+
+  The rotor never spins past its rated speed. As it gets close, a governor closes the intake on its own, so a very high-pressure chamber does not overspeed the turbine or waste fuel; it just holds the rated speed and maximum output.
+  The computer shows when the governor is holding the rotor back.
+
+  ## Damage
+
+  The only thing that damages the turbine is gas that is too hot: if the intake gas is hotter than the blades are rated for (shown on the computer), the rotor loses integrity, and engineering is warned over the radio once it drops.
+  Integrity slowly recovers while the gas is back within the rating.
+  [color=red]If integrity reaches zero, the rotor fails and explodes.[/color] The faster it was spinning, the bigger the explosion.
+  If the computer reports overheating, cool the burn down: feed less fuel, or mix in a buffer gas such as nitrogen.
+</Document>

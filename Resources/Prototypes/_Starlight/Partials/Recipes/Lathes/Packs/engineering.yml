@@ -1,0 +1,7 @@
+- type: !PartialOnly latheRecipePack
+  id: EngineeringBoardsStatic
+  recipes:
+  - CombustionTurbineCompressorMachineCircuitboard
+  - CombustionTurbineGeneratorMachineCircuitboard
+  - CombustionTurbineComputerCircuitboard
+  - IgniterMachineCircuitboard

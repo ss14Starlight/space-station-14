@@ -32,3 +32,18 @@
   parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
   id: ScrapperExoFabricatorMachineCircuitboard
   result: ScrapperExoFabricatorMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
+  id: CombustionTurbineCompressorMachineCircuitboard
+  result: CombustionTurbineCompressorMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
+  id: CombustionTurbineGeneratorMachineCircuitboard
+  result: CombustionTurbineGeneratorMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
+  id: IgniterMachineCircuitboard
+  result: IgniterMachineCircuitboard
