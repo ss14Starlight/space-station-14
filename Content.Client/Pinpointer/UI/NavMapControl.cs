@@ -66,11 +66,6 @@ public partial class NavMapControl : MapGridControl
     protected float FullWallInstep = 0.165f;
     protected float ThinWallThickness = 0.165f;
     protected float ThinDoorThickness = 0.30f;
-    #region Starlight
-    // Subclasses in resizable windows can opt out of the standard fixed-width map header.
-    protected virtual float TopPanelWidth => 650f;
-    #endregion
-
     // Local variables
     private float _updateTimer = 1.0f;
     private Dictionary<Color, Color> _sRGBLookUp = new();

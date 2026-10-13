@@ -1,13 +1,14 @@
 using System.Numerics;
+using Content.Client.Pinpointer.UI;
+using Content.Shared._Starlight.Computers.TacticalPlanning;
 using Content.Shared.Pinpointer;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Shared.Input;
 using Robust.Shared.Physics.Components;
 
-namespace Content.Client.Pinpointer.UI;
+namespace Content.Client._Starlight.Computers.TacticalPlanning.UI;
 
-#region Starlight
 /// <summary>
 /// Adds planning ink to the station map while retaining its normal left-drag pan and wheel zoom.
 /// </summary>
@@ -30,7 +31,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
     private int? _selectedId;
     private bool _syndicatePalette;
 
-    public TacticalPlanTool Tool = TacticalPlanTool.Select;
+    public TacticalPlanTool Tool = TacticalPlanTool.Draw;
     public bool CanEdit;
     public Color InkColor = Color.OrangeRed;
 
@@ -38,6 +39,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
     public event Action<TacticalPlanAnnotationKind, List<Vector2>>? AnnotationAdded;
     public event Action<Vector2>? AnnotationErased;
 
+    /// <summary>Enables a resizable map canvas with the normal console palette.</summary>
     public TacticalPlanningMapControl()
     {
         UseAvailableSize = true;
@@ -48,6 +50,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         BackgroundColor = Color.FromSrgb(TileColor.WithAlpha(BackgroundOpacity));
     }
 
+    /// <summary>Recolors the cached map for the syndicate console variant.</summary>
     public void SetSyndicatePalette(bool syndicate)
     {
         if (_syndicatePalette == syndicate)
@@ -61,6 +64,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         ForceNavMapUpdate();
     }
 
+    /// <summary>Draws shared ink above the inherited department labels.</summary>
     protected override void Draw(DrawingHandleScreen handle)
     {
         base.Draw(handle);
@@ -68,17 +72,20 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         DrawAnnotations(handle);
     }
 
+    /// <summary>Replaces the annotations rendered over the map.</summary>
     public void SetAnnotations(List<TacticalPlanAnnotation> annotations)
     {
         _annotations.Clear();
         _annotations.AddRange(annotations);
     }
 
+    /// <summary>Highlights one annotation when its details are inspected.</summary>
     public void SelectAnnotation(int? id)
     {
         _selectedId = id;
     }
 
+    /// <summary>Finds the topmost drawing close to a map position.</summary>
     public TacticalPlanAnnotation? FindAnnotation(Vector2 position)
     {
         var radius = 10f / MinimapScale;
@@ -114,6 +121,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         return null;
     }
 
+    /// <summary>Starts a right-click drawing or erasure without changing left-drag panning.</summary>
     protected override void KeyBindDown(GUIBoundKeyEventArgs args)
     {
         if (args.Function == EngineKeyFunctions.UIClick)
@@ -134,6 +142,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         base.KeyBindDown(args);
     }
 
+    /// <summary>Submits a completed right-click dot or stroke.</summary>
     protected override void KeyBindUp(GUIBoundKeyEventArgs args)
     {
         if (args.Function == EngineKeyFunctions.UIClick)
@@ -147,7 +156,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         if (args.Function == EngineKeyFunctions.UIRightClick)
         {
             _rightHeld = false;
-            if (!CanEdit && Tool != TacticalPlanTool.Select)
+            if (!CanEdit)
             {
                 _pendingStroke.Clear();
                 return;
@@ -175,9 +184,6 @@ public sealed class TacticalPlanningMapControl : NavMapControl
                 case TacticalPlanTool.Erase:
                     AnnotationErased?.Invoke(position);
                     break;
-                case TacticalPlanTool.Select:
-                    AnnotationInspected?.Invoke(position);
-                    break;
             }
             return;
         }
@@ -185,6 +191,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         base.KeyBindUp(args);
     }
 
+    /// <summary>Samples points while the right button is held for drawing.</summary>
     protected override void MouseMove(GUIMouseMoveEventArgs args)
     {
         base.MouseMove(args);
@@ -195,6 +202,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
             AddStrokePoint(position);
     }
 
+    /// <summary>Converts a pointer position into the map coordinates stored by the server.</summary>
     private bool TryGetMapPosition(Vector2 pointerPosition, out Vector2 position)
     {
         position = default;
@@ -213,6 +221,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         return true;
     }
 
+    /// <summary>Adds a spaced point without exceeding one message's stroke limit.</summary>
     private void AddStrokePoint(Vector2 position, bool force = false)
     {
         if (_pendingStroke.Count >= MaxStrokePoints)
@@ -231,6 +240,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
             _pendingStroke.Add(position);
     }
 
+    /// <summary>Renders accepted drawings and the active local stroke.</summary>
     private void DrawAnnotations(DrawingHandleScreen handle)
     {
         if (MapUid == null)
@@ -251,6 +261,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
             DrawAnnotation(handle, _pendingStroke, TacticalPlanAnnotationKind.Stroke, InkColor, offset, false);
     }
 
+    /// <summary>Renders one dot or connected stroke in the current map transform.</summary>
     private void DrawAnnotation(DrawingHandleScreen handle, List<Vector2> points,
         TacticalPlanAnnotationKind kind, Color color, Vector2 offset, bool selected)
     {
@@ -287,6 +298,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         }
     }
 
+    /// <summary>Projects a stored map point onto the resizable UI canvas.</summary>
     private Vector2 ToScreen(Vector2 position, Vector2 offset)
     {
         var relative = position - offset;
@@ -296,8 +308,6 @@ public sealed class TacticalPlanningMapControl : NavMapControl
 
 public enum TacticalPlanTool : byte
 {
-    Select,
     Draw,
     Erase,
 }
-#endregion

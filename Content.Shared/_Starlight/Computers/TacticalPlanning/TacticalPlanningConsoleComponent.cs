@@ -1,9 +1,8 @@
 using System.Numerics;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Pinpointer;
+namespace Content.Shared._Starlight.Computers.TacticalPlanning;
 
-#region Starlight
 /// <summary>
 /// Stores the server-authoritative annotations made through a tactical planning console.
 /// </summary>
@@ -176,4 +175,3 @@ public sealed class TacticalPlanResetMessage : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]
 public sealed class TacticalPlanClearedMessage : BoundUserInterfaceMessage;
-#endregion

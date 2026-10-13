@@ -51,13 +51,6 @@ public partial class MapGridControl : LayoutContainer
     public const int UIDisplayRadius = 320;
     protected const int MinimapMargin = 4;
 
-    #region Starlight
-    /// <summary>
-    /// Opt-in for maps embedded in resizable windows. Other map controls retain their fixed canvas.
-    /// </summary>
-    protected bool UseAvailableSize;
-    #endregion
-
     protected float WorldMinRange;
     protected float WorldMaxRange;
     public float WorldRange;

@@ -1,12 +1,12 @@
 using CancellationTokenSource = System.Threading.CancellationTokenSource;
+using Content.Shared._Starlight.Computers.TacticalPlanning;
 using Content.Shared.Pinpointer;
 using Robust.Client.UserInterface;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
-namespace Content.Client.Pinpointer.UI;
+namespace Content.Client._Starlight.Computers.TacticalPlanning.UI;
 
-#region Starlight
 /// <summary>
 /// Reconciles the server's shared plan with a small client cache and feeds the window.
 /// Drawing remains disabled until the server confirms the current snapshot.
@@ -26,6 +26,7 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         public readonly List<TacticalPlanAnnotation> Annotations = new();
         public Color? SelectedColor;
 
+        /// <summary>Merges a server annotation into this console's local cache.</summary>
         public void Add(TacticalPlanAnnotation annotation)
         {
             if (!Annotations.Exists(existing => existing.Id == annotation.Id))
@@ -43,10 +44,12 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
     private EntityUid? _displayedGrid;
     private bool _mapInitialized;
 
+    /// <summary>Connects this bound UI to its console entity.</summary>
     public TacticalPlanningConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
 
+    /// <summary>Opens the map with cached ink while requesting authoritative changes.</summary>
     protected override void Open()
     {
         base.Open();
@@ -97,12 +100,14 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         RequestSnapshot();
     }
 
+    /// <summary>Follows changes to the console's target grid while its UI is open.</summary>
     public override void Update()
     {
         base.Update();
         RefreshMapTarget();
     }
 
+    /// <summary>Requests a plan snapshot, retrying briefly if the server response is missed.</summary>
     private void RequestSnapshot()
     {
         // A missed opening message must not strand the UI in "Connecting". This one-shot
@@ -125,6 +130,7 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         }, _snapshotRetryCancellation.Token);
     }
 
+    /// <summary>Cancels outstanding snapshot retries when the UI closes.</summary>
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -137,6 +143,7 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         base.Dispose(disposing);
     }
 
+    /// <summary>Updates the displayed map only when the target grid changes.</summary>
     private void RefreshMapTarget()
     {
         if (_window == null)
@@ -157,6 +164,7 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         _window.Set(stationName, gridUid);
     }
 
+    /// <summary>Reconciles a snapshot before applying any queued live changes.</summary>
     protected override void ReceiveMessage(BoundUserInterfaceMessage message)
     {
         base.ReceiveMessage(message);
@@ -220,6 +228,7 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         }
     }
 
+    /// <summary>Applies one accepted server edit to the cache and visible map.</summary>
     private void ApplyDelta(BoundUserInterfaceMessage message)
     {
         if (_cache == null)
@@ -249,4 +258,3 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         }
     }
 }
-#endregion

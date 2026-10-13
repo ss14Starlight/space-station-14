@@ -1,14 +1,15 @@
 using System.Numerics;
 using Content.Server.Administration.Logs;
+using Content.Server.Pinpointer;
 using Content.Server.Popups;
+using Content.Shared._Starlight.Computers.TacticalPlanning;
 using Content.Shared.Database;
 using Content.Shared.Pinpointer;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Pinpointer;
+namespace Content.Server._Starlight.Computers.TacticalPlanning;
 
-#region Starlight
 /// <summary>
 /// Keeps annotations server-side and sends snapshots/deltas only to viewers of this console.
 /// </summary>
@@ -23,6 +24,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private IAdminLogManager _adminLog = default!;
 
+    /// <summary>Registers the console's bounded UI operations.</summary>
     public override void Initialize()
     {
         Subs.BuiEvents<TacticalPlanningConsoleComponent>(TacticalPlanningConsoleUiKey.Key, subs =>
@@ -36,11 +38,13 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         });
     }
 
+    /// <summary>Registers a newly opened viewer for targeted plan updates.</summary>
     private void OnOpened(EntityUid uid, TacticalPlanningConsoleComponent component, BoundUIOpenedEvent args)
     {
         TryRegisterViewer(uid, component, args.Actor);
     }
 
+    /// <summary>Removes a viewer without letting a quick reopen bypass the edit interval.</summary>
     private void OnClosed(EntityUid uid, TacticalPlanningConsoleComponent component, BoundUIClosedEvent args)
     {
         component.Viewers.Remove(args.Actor);
@@ -51,6 +55,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         component.LastRejectionNotice.Remove(args.Actor);
     }
 
+    /// <summary>Sends a full plan or only changes missing from the client's cache.</summary>
     private void OnRequestSnapshot(EntityUid uid, TacticalPlanningConsoleComponent component, TacticalPlanRequestSnapshotMessage args)
     {
         if (args.Actor is not { Valid: true } actor || !TryRegisterViewer(uid, component, actor))
@@ -89,6 +94,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
                 IsFull(component), HasComp<NukeopsStationMapComponent>(uid)), actor);
     }
 
+    /// <summary>Validates and stores a drawing, then sends it only to current viewers.</summary>
     private void OnAddAnnotation(EntityUid uid, TacticalPlanningConsoleComponent component, TacticalPlanAddAnnotationMessage args)
     {
         if (args.Actor is not { Valid: true } actor || !TryRegisterViewer(uid, component, actor))
@@ -126,6 +132,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         SendToViewers(uid, component, new TacticalPlanAnnotationAddedMessage(annotation, IsFull(component)));
     }
 
+    /// <summary>Erases an existing annotation under the same edit limits as drawing.</summary>
     private void OnEraseAnnotation(EntityUid uid, TacticalPlanningConsoleComponent component, TacticalPlanEraseAnnotationMessage args)
     {
         if (args.Actor is not { Valid: true } actor || !TryRegisterViewer(uid, component, actor))
@@ -144,6 +151,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         SendToViewers(uid, component, new TacticalPlanAnnotationErasedMessage(args.Id, IsFull(component)));
     }
 
+    /// <summary>Clears a full plan in one event while retaining its server-side audit record.</summary>
     private void OnReset(EntityUid uid, TacticalPlanningConsoleComponent component, TacticalPlanResetMessage args)
     {
         if (args.Actor is not { Valid: true } actor || !TryRegisterViewer(uid, component, actor)
@@ -159,10 +167,12 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         SendToViewers(uid, component, new TacticalPlanClearedMessage());
     }
 
+    /// <summary>Reports whether either annotation capacity has been reached.</summary>
     private static bool IsFull(TacticalPlanningConsoleComponent component) =>
         component.CapacityReached || component.Annotations.Count >= component.MaxAnnotations
             || component.TotalPoints >= component.MaxTotalPoints;
 
+    /// <summary>Admits an open-UI actor without exceeding the per-console viewer cap.</summary>
     private bool TryRegisterViewer(EntityUid uid, TacticalPlanningConsoleComponent component, EntityUid actor)
     {
         // The engine's open UI state is the authority. A missed snapshot must not leave an
@@ -185,6 +195,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         return true;
     }
 
+    /// <summary>Returns a throttled rejection notice without showing unaccepted ink.</summary>
     private void RejectDrawing(EntityUid uid, TacticalPlanningConsoleComponent component, EntityUid actor, string reason)
     {
         // Rejections are user-visible, but should not themselves become a message flood.
@@ -197,6 +208,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
             new TacticalPlanDrawingRejectedMessage(reason), actor);
     }
 
+    /// <summary>Enforces per-player timing and the console-wide submission budget.</summary>
     private bool CanSubmit(TacticalPlanningConsoleComponent component, EntityUid actor)
     {
         // Bound each player to one edit per 200 ms, then share a 12-edit/second token
@@ -217,6 +229,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         return true;
     }
 
+    /// <summary>Broadcasts a small plan delta only to users with this UI open.</summary>
     private void SendToViewers(EntityUid uid, TacticalPlanningConsoleComponent component, BoundUserInterfaceMessage message)
     {
         component.Viewers.RemoveWhere(viewer => !_ui.IsUiOpen(uid, TacticalPlanningConsoleUiKey.Key, viewer));
@@ -224,4 +237,3 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
             _ui.ServerSendUiMessage(uid, TacticalPlanningConsoleUiKey.Key, message, viewer);
     }
 }
-#endregion
