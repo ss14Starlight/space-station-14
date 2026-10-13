@@ -1,11 +1,18 @@
 using System.Numerics;
 using Content.Server.Administration.Logs;
-using Content.Server.Pinpointer;
+using Content.Server.GameTicking;
+using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Popups;
+using Content.Server.Station.Components;
 using Content.Shared._Starlight.Computers.TacticalPlanning;
 using Content.Shared.Database;
+using Content.Shared.Emag.Systems;
 using Content.Shared.Pinpointer;
+using Content.Shared.Station;
+using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Computers.TacticalPlanning;
@@ -15,18 +22,29 @@ namespace Content.Server._Starlight.Computers.TacticalPlanning;
 /// </summary>
 public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
 {
+    #region Variables
+
     private const int MaxViewers = 16;
     private static readonly TimeSpan SubmissionInterval = TimeSpan.FromMilliseconds(200);
 
     [Dependency] private UserInterfaceSystem _ui = default!;
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private StationMapSystem _stationMap = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private SharedStationSystem _station = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private EmagSystem _emag = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private IAdminLogManager _adminLog = default!;
+
+    #endregion
+
+    #region Methods
 
     /// <summary>Registers the console's bounded UI operations.</summary>
     public override void Initialize()
     {
+        SubscribeLocalEvent<TacticalPlanningConsoleComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<TacticalPlanningConsoleComponent, GotEmaggedEvent>(OnEmagged);
         Subs.BuiEvents<TacticalPlanningConsoleComponent>(TacticalPlanningConsoleUiKey.Key, subs =>
         {
             subs.Event<BoundUIOpenedEvent>(OnOpened);
@@ -36,6 +54,80 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
             subs.Event<TacticalPlanEraseAnnotationMessage>(OnEraseAnnotation);
             subs.Event<TacticalPlanResetMessage>(OnReset);
         });
+    }
+
+    /// <summary>Unlocks planning symbols only on the Syndicate variant, without changing ordinary consoles.</summary>
+    private void OnEmagged(Entity<TacticalPlanningConsoleComponent> ent, ref GotEmaggedEvent args)
+    {
+        if (!HasComp<NukeopsStationMapComponent>(ent)
+            || !_emag.CompareFlag(args.Type, EmagType.Interaction)
+            || _emag.CheckFlag(ent, EmagType.Interaction))
+            return;
+
+        args.Handled = true;
+        // EmagSystem records the flag after this event returns; notify existing viewers now.
+        SendToViewers(ent.Owner, ent.Comp, new TacticalPlanIconsUnlockedMessage());
+    }
+
+    /// <summary>Sets the initial map target without changing upstream station-map initialization.</summary>
+    private void OnMapInit(Entity<TacticalPlanningConsoleComponent> ent, ref MapInitEvent args)
+    {
+        UpdateTarget(ent);
+    }
+
+    /// <summary>Targets the console's current grid, or the nukies' station target when applicable.</summary>
+    private void UpdateTarget(Entity<TacticalPlanningConsoleComponent> ent)
+    {
+        if (!TryComp<StationMapComponent>(ent, out var map))
+            return;
+
+        // Refresh on snapshot as well as map init: consoles can move, and nukie rules can start later.
+        var grid = HasComp<NukeopsStationMapComponent>(ent)
+            ? GetNukeopsTargetGrid()
+            : Transform(ent).GridUid;
+        if (map.TargetGrid == grid)
+            return;
+
+        map.TargetGrid = grid;
+        Dirty(ent.Owner, map);
+    }
+
+    /// <summary>Uses an active nukie target, otherwise the main station grid on the round's map.</summary>
+    private EntityUid? GetNukeopsTargetGrid()
+    {
+        foreach (var rule in _gameTicker.GetActiveGameRules())
+        {
+            if (TryComp<NukeopsRuleComponent>(rule, out var nukeopsRule) && nukeopsRule.TargetStation != null)
+                return _station.GetLargestGrid((nukeopsRule.TargetStation.Value, null));
+        }
+
+        // MainGrids excludes auxiliary station grids; DefaultMap excludes off-station bases.
+        // Break equal-size ties by grid UID so station query order cannot affect the fallback.
+        EntityUid? fallbackGrid = null;
+        var largestMainGrid = -1f;
+        foreach (var station in _station.GetStations())
+        {
+            if (!HasComp<StationEventEligibleComponent>(station)
+                || !TryComp<StationDataComponent>(station, out var data))
+                continue;
+
+            foreach (var mainGrid in data.MainGrids)
+            {
+                if (Transform(mainGrid).MapID != _gameTicker.DefaultMap
+                    || !TryComp<MapGridComponent>(mainGrid, out var mainGridComp))
+                    continue;
+
+                var size = mainGridComp.LocalAABB.Size.LengthSquared();
+                if (size < largestMainGrid
+                    || (size == largestMainGrid && fallbackGrid != null && mainGrid.CompareTo(fallbackGrid.Value) >= 0))
+                    continue;
+
+                largestMainGrid = size;
+                fallbackGrid = mainGrid;
+            }
+        }
+
+        return fallbackGrid;
     }
 
     /// <summary>Registers a newly opened viewer for targeted plan updates.</summary>
@@ -62,9 +154,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
             return;
 
         // Recheck without polling: nukie rules may start late, and a regular console may move grids.
-        Entity<StationMapComponent?> map = (uid, CompOrNull<StationMapComponent>(uid));
-        _stationMap.EnsureTacticalPlanningTarget(map);
-        _stationMap.EnsureNukeopsTarget(map);
+        UpdateTarget((uid, component));
         var color = component.PlayerColors[actor];
 
         // A previously opened client only needs the difference from the current plan.
@@ -91,7 +181,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
 
         _ui.ServerSendUiMessage(uid, TacticalPlanningConsoleUiKey.Key,
             new TacticalPlanSnapshotMessage(component.CacheToken, full, annotations, removed, color,
-                IsFull(component), HasComp<NukeopsStationMapComponent>(uid)), actor);
+                IsFull(component), HasComp<NukeopsStationMapComponent>(uid), IconsUnlocked(uid)), actor);
     }
 
     /// <summary>Validates and stores a drawing, then sends it only to current viewers.</summary>
@@ -101,7 +191,8 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
             return;
 
         // Picker movement stays client-side; validate and save its color only with an accepted drawing.
-        if (!TacticalPlanDrawingValidation.TryValidate(args.Kind, args.Points, args.Color, out var color))
+        if (!TacticalPlanDrawingValidation.TryValidate(args.Kind, args.Points, args.Color, out var color, args.Icon)
+            || (args.Kind == TacticalPlanAnnotationKind.Icon && !IconsUnlocked(uid)))
             return;
 
         if (IsFull(component) || component.TotalPoints + args.Points.Count > component.MaxTotalPoints)
@@ -124,9 +215,10 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
             return;
         }
 
-        component.PlayerColors[actor] = color;
+        if (args.Kind != TacticalPlanAnnotationKind.Icon)
+            component.PlayerColors[actor] = color;
         var annotation = new TacticalPlanAnnotation(component.NextAnnotationId++, args.Kind, color,
-            new List<Vector2>(args.Points), MetaData(actor).EntityName);
+            new List<Vector2>(args.Points), MetaData(actor).EntityName, args.Icon);
         component.Annotations.Add(annotation);
         component.TotalPoints += annotation.Points.Count;
         SendToViewers(uid, component, new TacticalPlanAnnotationAddedMessage(annotation, IsFull(component)));
@@ -172,6 +264,10 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         component.CapacityReached || component.Annotations.Count >= component.MaxAnnotations
             || component.TotalPoints >= component.MaxTotalPoints;
 
+    /// <summary>Checks the server-side emag flag; the client never grants itself icon placement.</summary>
+    private bool IconsUnlocked(EntityUid uid) =>
+        HasComp<NukeopsStationMapComponent>(uid) && _emag.CheckFlag(uid, EmagType.Interaction);
+
     /// <summary>Admits an open-UI actor without exceeding the per-console viewer cap.</summary>
     private bool TryRegisterViewer(EntityUid uid, TacticalPlanningConsoleComponent component, EntityUid actor)
     {
@@ -190,7 +286,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
 
         component.Viewers.Add(actor);
         if (!component.PlayerColors.ContainsKey(actor))
-            component.PlayerColors[actor] = Color.FromHsv(new Vector4(Random.Shared.NextSingle(), 0.8f, 0.9f, 1f));
+            component.PlayerColors[actor] = Color.FromHsv(new Vector4(_random.NextFloat(), 0.8f, 0.9f, 1f));
 
         return true;
     }
@@ -236,4 +332,6 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         foreach (var viewer in component.Viewers)
             _ui.ServerSendUiMessage(uid, TacticalPlanningConsoleUiKey.Key, message, viewer);
     }
+
+    #endregion
 }

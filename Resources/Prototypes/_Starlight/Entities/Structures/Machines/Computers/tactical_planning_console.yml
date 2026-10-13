@@ -33,7 +33,9 @@
           East, West: { state: base }
   - type: StationMap
     showLocation: false
-    initializeWithStation: true
+    initializeWithStation: false
+  - type: Computer
+    board: TacticalPlanningConsoleCircuitboard
   - type: TacticalPlanningConsole
   - type: ActivatableUI
     key: enum.TacticalPlanningConsoleUiKey.Key
@@ -65,3 +67,5 @@
           East: { state: base }
           East, West: { state: base }
   - type: NukeopsStationMap
+  - type: Computer
+    board: TacticalPlanningConsoleNukeopsCircuitboard

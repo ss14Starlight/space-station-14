@@ -1,7 +1,6 @@
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
-using Content.Shared._Starlight.Computers.TacticalPlanning;
 using Content.Shared.PowerCell;
 using Content.Shared.Pinpointer;
 using Content.Shared.Station;
@@ -37,18 +36,9 @@ public sealed partial class StationMapSystem : EntitySystem
         if (!ent.Comp.InitializeWithStation)
             return;
 
-        // Starlight-start
-        // Planning consoles reuse StationMapComponent's target grid and the existing nav-map data.
-        // Keep the original handheld nuke map lookup and same-map fallback unchanged; only
-        // the tactical console needs a main-station fallback when no nuke rule is active.
+        // If we ever find a need to make more exceptions like this, just turn this into an event.
         if (HasComp<NukeopsStationMapComponent>(ent))
         {
-            if (HasComp<TacticalPlanningConsoleComponent>(ent))
-            {
-                EnsureNukeopsTarget((ent.Owner, (StationMapComponent?) ent.Comp));
-                return;
-            }
-
             foreach (var rule in _gameTicker.GetActiveGameRules())
             {
                 if (TryComp<NukeopsRuleComponent>(rule, out var nukeopsRule) && nukeopsRule.TargetStation != null)
@@ -59,13 +49,6 @@ public sealed partial class StationMapSystem : EntitySystem
                 }
             }
         }
-
-        if (HasComp<TacticalPlanningConsoleComponent>(ent))
-        {
-            EnsureTacticalPlanningTarget((ent.Owner, (StationMapComponent?) ent.Comp));
-            return;
-        }
-        // Starlight-end
 
         var station = _station.GetStationInMap(_xform.GetMapId(ent.Owner));
         if (station != null)

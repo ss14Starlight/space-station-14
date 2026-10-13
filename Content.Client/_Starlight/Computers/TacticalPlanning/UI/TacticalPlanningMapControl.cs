@@ -14,11 +14,15 @@ namespace Content.Client._Starlight.Computers.TacticalPlanning.UI;
 /// </summary>
 public sealed class TacticalPlanningMapControl : NavMapControl
 {
+    #region Variables
+
     // The tactical window owns its toolbar; the inherited fixed-width header should not
     // constrain this map when the window is resized.
     protected override float TopPanelWidth => float.NaN;
 
     private const float InitialPointSpacing = 0.25f;
+    private const float IconSize = 24f;
+    private const float IconHitPadding = 6f;
     private const int MaxStrokePoints = TacticalPlanDrawingValidation.MaxPointsPerStroke;
 
     private readonly List<TacticalPlanAnnotation> _annotations = new();
@@ -34,10 +38,16 @@ public sealed class TacticalPlanningMapControl : NavMapControl
     public TacticalPlanTool Tool = TacticalPlanTool.Draw;
     public bool CanEdit;
     public Color InkColor = Color.OrangeRed;
+    public TacticalPlanIcon SelectedIcon = TacticalPlanIcon.Nuke;
 
     public event Action<Vector2>? AnnotationInspected;
     public event Action<TacticalPlanAnnotationKind, List<Vector2>>? AnnotationAdded;
+    public event Action<Vector2, TacticalPlanIcon>? IconAdded;
     public event Action<Vector2>? AnnotationErased;
+
+    #endregion
+
+    #region Methods
 
     /// <summary>Enables a resizable map canvas with the normal console palette.</summary>
     public TacticalPlanningMapControl()
@@ -90,6 +100,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
     {
         var radius = 10f / MinimapScale;
         var maxDistanceSquared = radius * radius;
+        var iconHitRadius = (IconSize / 2f + IconHitPadding) / MinimapScale;
 
         for (var index = _annotations.Count - 1; index >= 0; index--)
         {
@@ -101,6 +112,15 @@ public sealed class TacticalPlanningMapControl : NavMapControl
             if (annotation.Kind == TacticalPlanAnnotationKind.Dot)
             {
                 if (Vector2.DistanceSquared(position, points[0]) <= maxDistanceSquared)
+                    return annotation;
+                continue;
+            }
+
+            if (annotation.Kind == TacticalPlanAnnotationKind.Icon)
+            {
+                // A padded square is much easier to select or erase than the sprite's opaque pixels.
+                var delta = position - points[0];
+                if (MathF.Abs(delta.X) <= iconHitRadius && MathF.Abs(delta.Y) <= iconHitRadius)
                     return annotation;
                 continue;
             }
@@ -184,6 +204,9 @@ public sealed class TacticalPlanningMapControl : NavMapControl
                 case TacticalPlanTool.Erase:
                     AnnotationErased?.Invoke(position);
                     break;
+                case TacticalPlanTool.Icons:
+                    IconAdded?.Invoke(position, SelectedIcon);
+                    break;
             }
             return;
         }
@@ -254,19 +277,37 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         foreach (var annotation in _annotations)
         {
             var selected = annotation.Id == _selectedId;
-            DrawAnnotation(handle, annotation.Points, annotation.Kind, annotation.Color, offset, selected);
+            DrawAnnotation(handle, annotation.Points, annotation.Kind, annotation.Color, annotation.Icon, offset, selected);
         }
 
         if (_pendingStroke.Count > 1)
-            DrawAnnotation(handle, _pendingStroke, TacticalPlanAnnotationKind.Stroke, InkColor, offset, false);
+            DrawAnnotation(handle, _pendingStroke, TacticalPlanAnnotationKind.Stroke, InkColor, TacticalPlanIcon.None, offset, false);
     }
 
     /// <summary>Renders one dot or connected stroke in the current map transform.</summary>
     private void DrawAnnotation(DrawingHandleScreen handle, List<Vector2> points,
-        TacticalPlanAnnotationKind kind, Color color, Vector2 offset, bool selected)
+        TacticalPlanAnnotationKind kind, Color color, TacticalPlanIcon icon, Vector2 offset, bool selected)
     {
         if (points.Count == 0)
             return;
+
+        if (kind == TacticalPlanAnnotationKind.Icon)
+        {
+            var center = ToScreen(points[0], offset);
+            var half = new Vector2(IconSize / 2f);
+            var box = new UIBox2(center - half, center + half);
+            if (selected)
+            {
+                handle.DrawLine(box.TopLeft, box.TopRight, Color.White);
+                handle.DrawLine(box.TopRight, box.BottomRight, Color.White);
+                handle.DrawLine(box.BottomRight, box.BottomLeft, Color.White);
+                handle.DrawLine(box.BottomLeft, box.TopLeft, Color.White);
+            }
+
+            handle.DrawTextureRectRegion(TacticalPlanIconTextures.Get(icon), box,
+                TacticalPlanIconTextures.GetMapRegion(icon));
+            return;
+        }
 
         if (kind == TacticalPlanAnnotationKind.Dot)
         {
@@ -304,10 +345,13 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         var relative = position - offset;
         return ScalePosition(new Vector2(relative.X, -relative.Y));
     }
+
+    #endregion
 }
 
 public enum TacticalPlanTool : byte
 {
     Draw,
     Erase,
+    Icons,
 }

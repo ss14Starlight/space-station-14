@@ -1,3 +1,4 @@
+using System.Numerics;
 using CancellationTokenSource = System.Threading.CancellationTokenSource;
 using Content.Shared._Starlight.Computers.TacticalPlanning;
 using Content.Shared.Pinpointer;
@@ -13,6 +14,8 @@ namespace Content.Client._Starlight.Computers.TacticalPlanning.UI;
 /// </summary>
 public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterface
 {
+    #region Variables
+
     // Bound UI instances are disposed on close, so keep a small per-client cache across openings.
     // The server token prevents a reused entity ID on another round/server from matching.
     private static readonly Dictionary<NetEntity, PlanCache> Cache = new();
@@ -22,9 +25,15 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
 
     private sealed class PlanCache(string token)
     {
+        #region Variables
+
         public readonly string Token = token;
         public readonly List<TacticalPlanAnnotation> Annotations = new();
         public Color? SelectedColor;
+
+        #endregion
+
+        #region Methods
 
         /// <summary>Merges a server annotation into this console's local cache.</summary>
         public void Add(TacticalPlanAnnotation annotation)
@@ -32,6 +41,8 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
             if (!Annotations.Exists(existing => existing.Id == annotation.Id))
                 Annotations.Add(annotation);
         }
+
+        #endregion
     }
 
     private TacticalPlanningConsoleWindow? _window;
@@ -43,6 +54,10 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
     private CancellationTokenSource? _snapshotRetryCancellation;
     private EntityUid? _displayedGrid;
     private bool _mapInitialized;
+
+    #endregion
+
+    #region Methods
 
     /// <summary>Connects this bound UI to its console entity.</summary>
     public TacticalPlanningConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
@@ -68,6 +83,17 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
             // Keep a rejection visible until this player tries another drawing.
             _window.SetConnectionStatus(null, true);
             SendMessage(new TacticalPlanAddAnnotationMessage(kind, points, color));
+        };
+        _window.IconAdded += (position, icon) =>
+        {
+            var points = new List<Vector2> { position };
+            if (_synchronizing || _window == null
+                || !TacticalPlanDrawingValidation.TryValidate(TacticalPlanAnnotationKind.Icon,
+                    points, Color.White, out var color, icon))
+                return;
+
+            _window.SetConnectionStatus(null, true);
+            SendMessage(new TacticalPlanAddAnnotationMessage(TacticalPlanAnnotationKind.Icon, points, color, icon));
         };
         _window.AnnotationErased += id =>
         {
@@ -193,6 +219,7 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
                     _cache.Add(annotation);
 
                 _window?.SetSyndicatePalette(snapshot.SyndicatePalette);
+                _window?.SetIconToolAvailable(snapshot.IconsUnlocked);
                 _window?.SetAnnotations(_cache.Annotations);
                 _window?.SetPlanFull(snapshot.IsFull);
                 _window?.SetInk(_cache.SelectedColor ?? snapshot.AssignedColor);
@@ -204,27 +231,12 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
                     ApplyDelta(pending);
                 _pending.Clear();
                 break;
-            case TacticalPlanDrawingRejectedMessage rejected:
-                if (_synchronizing)
-                {
-                    _pending.Add(message);
-                    break;
-                }
-
-                _window?.SetConnectionStatus(rejected.Reason, true);
-                break;
+            case TacticalPlanDrawingRejectedMessage:
             case TacticalPlanCapacityReachedMessage:
-                if (_synchronizing)
-                {
-                    _pending.Add(message);
-                    break;
-                }
-
-                ApplyDelta(message);
-                break;
-            case TacticalPlanAnnotationAddedMessage added:
-            case TacticalPlanAnnotationErasedMessage erased:
+            case TacticalPlanAnnotationAddedMessage:
+            case TacticalPlanAnnotationErasedMessage:
             case TacticalPlanClearedMessage:
+            case TacticalPlanIconsUnlockedMessage:
                 if (_synchronizing)
                 {
                     _pending.Add(message);
@@ -265,6 +277,11 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
             case TacticalPlanCapacityReachedMessage:
                 _window?.SetPlanFull(true);
                 break;
+            case TacticalPlanIconsUnlockedMessage:
+                _window?.SetIconToolAvailable(true);
+                break;
         }
     }
+
+    #endregion
 }
