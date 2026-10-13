@@ -1,53 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (CentComm G24) Re-added the small room at Debrief for admins to quietly spawn in their CC operators.
-    type: Add
-  id: 409028
-  time: '2026-09-29T21:06:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6385
-- author: Caws
-  changes:
-  - message: (CentComm SC17) Reworked Debrief heavily, addinga  new side-corridor for a better debrief viewing experience. Shutters have been replaced with blast doors to reduce people being annoying with them.
-    type: Tweak
-  id: 409029
-  time: '2026-09-29T21:06:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6385
-- author: Caws
-  changes:
-  - message: (CentComm SC17) Fixed a bunch of air alarms not being linked to anything.
-    type: Fix
-  id: 409030
-  time: '2026-09-29T21:06:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6385
-- author: TaserTheFox
-  changes:
-  - message: All librarians can now speak Classical sign.
-    type: Add
-  id: 409031
-  time: '2026-09-29T21:06:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6395
-- author: TaserTheFox
-  changes:
-  - message: Visiting librarians can now speak crew languages.
-    type: Fix
-  id: 409032
-  time: '2026-09-29T21:06:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6395
-- author: qbrx
-  changes:
-  - message: Fixed cheap lighter and forged omnitool fuel.
-    type: Fix
-  id: 409033
-  time: '2026-09-29T21:06:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6389
-- author: redmushie
-  changes:
-  - message: Vox once again have a chance to react to high O2 concentrations (this broke in an update).
-    type: Fix
-  id: 409034
-  time: '2026-09-29T21:37:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6407
 - author: redmushie
   changes:
   - message: Laspi have a chance to react to high water vapor concentrations.
@@ -2883,4 +2834,53 @@ Entries:
   id: 409427
   time: '2026-10-13T17:12:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6643
+- author: wonderfulnewworld
+  changes:
+  - message: Secret will now actually count effective players rather than only readied players.
+    type: Fix
+  id: 409428
+  time: '2026-10-13T20:14:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6671
+- author: Trosling
+  changes:
+  - message: Updates Corporate Law to match new contraband tier system.
+    type: Tweak
+  id: 409429
+  time: '2026-10-13T20:34:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6660
+- author: Vincolan
+  changes:
+  - message: The horse.
+    type: Add
+  id: 409430
+  time: '2026-10-13T20:34:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6623
+- author: Floximo
+  changes:
+  - message: Added true remote control.
+    type: Add
+  id: 409431
+  time: '2026-10-13T20:56:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6574
+- author: Floximo
+  changes:
+  - message: AI can now remote control every remote controllable thing that is not already controlled.
+    type: Add
+  id: 409432
+  time: '2026-10-13T20:56:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6574
+- author: Floximo
+  changes:
+  - message: AI can remote control AI interfaces.
+    type: Add
+  id: 409433
+  time: '2026-10-13T20:56:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6574
+- author: Floximo
+  changes:
+  - message: Drones are no longer shuntables and support the intellicard now.
+    type: Tweak
+  id: 409434
+  time: '2026-10-13T20:56:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6574
 Order: -1
