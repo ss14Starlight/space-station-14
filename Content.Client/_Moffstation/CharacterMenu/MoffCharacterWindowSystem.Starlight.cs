@@ -43,4 +43,17 @@ public sealed partial class MoffCharacterWindowSystem
         // Character profile text is plain text, even if it contains markup characters.
         return FormattedMessage.EscapeText(FormattedMessage.RemoveMarkupPermissive(description.Description));
     }
+
+    private CharacterRoleTypeInfo? GetFactionAndAlignment(EntityUid? entity)
+    {
+        if (!_mindQuery.TryComp(GetMind(entity), out var mind) ||
+            !ProtoMan.Resolve(mind.RoleType, out var roleType))
+            return null;
+
+        return new CharacterRoleTypeInfo(
+            mind.Subtype ?? roleType.Faction ?? "role-type-free-agent-name",
+            mind.SubtypeColor ?? roleType.Color,
+            roleType.Alignment ?? roleType.Name,
+            roleType.Color);
+    }
 }

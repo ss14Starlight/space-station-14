@@ -179,6 +179,7 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
             return;
 
         SetRoleType(Loc.GetString(roleType.Name), roleType.Color);
+        SetAlignment(roleType.Alignment, roleType.AlignmentColor); // Starlight
     }
 
     private void SetRoleType(string role, Color color) => _window!.RoleType.Text = Loc.GetString("character-info-role-type-format",

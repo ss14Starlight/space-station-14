@@ -55,17 +55,7 @@ public sealed partial class MoffCharacterWindowSystem : EntitySystem
     public string? GetDescription(EntityUid entity) => SLGetCharacterDescription(entity) ?? // Starlight profile descriptions.
             (_detailExaminableQuery.TryComp(entity, out var description) ? description.Content : null);
 
-    public CharacterRoleTypeInfo? GetRoleType(EntityUid? entity)
-    {
-        if (!_mindQuery.TryComp(GetMind(entity), out var mind) ||
-            !ProtoMan.Resolve(mind.RoleType, out var roleType))
-            return null;
-
-        if (mind.Subtype is { } subtype)
-            return new CharacterRoleTypeInfo(subtype, mind.SubtypeColor ?? roleType.Color);
-
-        return new CharacterRoleTypeInfo(roleType.Name, roleType.Color);
-    }
+    public CharacterRoleTypeInfo? GetRoleType(EntityUid? entity) => GetFactionAndAlignment(entity); // Starlight
 
     public bool CanPickObjectives(EntityUid? entity) => _potentialObjectivesQuery.TryComp(GetMind(entity), out var potential) && potential.ObjectiveOptions.Count > 0; // Starlight, ignore offers already consumed before deferred component removal.
 
@@ -75,5 +65,5 @@ public sealed partial class MoffCharacterWindowSystem : EntitySystem
 
     public readonly record struct CharacterProfileInfo(Gender Gender, int Age, string Species); // Starlight
 
-    public readonly record struct CharacterRoleTypeInfo(LocId Name, Color Color);
+    public readonly record struct CharacterRoleTypeInfo(LocId Name, Color Color, LocId Alignment, Color AlignmentColor); // Starlight
 }

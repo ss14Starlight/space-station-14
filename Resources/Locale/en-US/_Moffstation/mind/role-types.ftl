@@ -1,6 +1,6 @@
 character-info-acting-as-prefix = You are acting on behalf of
 
-role-type-crew-aligned-name = Nanotrasen
+role-type-crew-aligned-name = NanoTrasen
 role-type-free-agent-name = Unaligned
 
 role-subtype-faction-syndicate = Syndicate

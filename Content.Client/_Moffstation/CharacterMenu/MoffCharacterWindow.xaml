@@ -24,6 +24,11 @@
                         <RichTextLabel Name="RoleType"
                                        Access="Public"
                                        HorizontalAlignment="Center"/>
+                        <!-- Starlight - Start - Alignment beneath the faction. -->
+                        <RichTextLabel Name="AlignmentLabel"
+                                       Access="Public"
+                                       HorizontalAlignment="Center"/>
+                        <!-- Starlight - End -->
                         <PanelContainer StyleClasses="LowDivider"/>
                         <SpriteView Name="SpriteView"
                                     Access="Public"
