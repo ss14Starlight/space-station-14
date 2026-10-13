@@ -21,5 +21,4 @@ public sealed partial class GameTicker
         var unreadyPlayers = Math.Max(0, onlinePlayers - activePlayers);
         return activePlayers + (int) Math.Floor(unreadyPlayers * _unreadyPlayerMultiplier);
     }
-
 }
