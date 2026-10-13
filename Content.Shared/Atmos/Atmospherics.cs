@@ -170,40 +170,6 @@ namespace Content.Shared.Atmos
         /// </summary>
         public const float SpaceHeatCapacity = 7000f;
 
-        /// <summary>
-        ///     Dictionary of chemical abbreviations for <see cref="Gas"/>
-        /// </summary>
-        public static Dictionary<Gas, string> GasAbbreviations = new Dictionary<Gas, string>()
-        {
-            [Gas.Ammonia] = Loc.GetString("gas-ammonia-abbreviation"),
-            [Gas.CarbonDioxide] = Loc.GetString("gas-carbon-dioxide-abbreviation"),
-            [Gas.Frezon] = Loc.GetString("gas-frezon-abbreviation"),
-            [Gas.Nitrogen] = Loc.GetString("gas-nitrogen-abbreviation"),
-            [Gas.NitrousOxide] = Loc.GetString("gas-nitrous-oxide-abbreviation"),
-            [Gas.Oxygen] = Loc.GetString("gas-oxygen-abbreviation"),
-            [Gas.Plasma] = Loc.GetString("gas-plasma-abbreviation"),
-            [Gas.Tritium] = Loc.GetString("gas-tritium-abbreviation"),
-            [Gas.WaterVapor] = Loc.GetString("gas-water-vapor-abbreviation"),
-            // Funkystation Start: Funky atmos - /tg/ gases
-            [Gas.BZ] = Loc.GetString("gas-bz-abbreviation"),
-            [Gas.Healium] = Loc.GetString("gas-healium-abbreviation"),
-            [Gas.Nitrium] = Loc.GetString("gas-nitrium-abbreviation"),
-            [Gas.Pluoxium] = Loc.GetString("gas-pluoxium-abbreviation"),
-            [Gas.Hydrogen] = Loc.GetString("gas-hydrogen-abbreviation"),
-            [Gas.HyperNoblium] = Loc.GetString("gas-hyper-noblium-abbreviation"),
-            [Gas.ProtoNitrate] = Loc.GetString("gas-proto-nitrate-abbreviation"),
-            [Gas.Zauker] = Loc.GetString("gas-zauker-abbreviation"),
-            [Gas.Halon] = Loc.GetString("gas-halon-abbreviation"),
-            [Gas.Helium] = Loc.GetString("gas-helium-abbreviation"),
-            [Gas.AntiNoblium] = Loc.GetString("gas-anti-noblium-abbreviation"),
-            // Funkystation End: Funky atmos - /tg/ gases
-            #region Starlight
-            // Starlight gases!
-            [Gas.Ulnitranium] = Loc.GetString("gas-ulnitranium-abbreviation"),
-            [Gas.ZXA] = Loc.GetString("gas-zxa-abbreviation"),
-            #endregion
-        };
-
         #region Excited Groups
 
         /// <summary>
@@ -259,8 +225,8 @@ namespace Content.Shared.Atmos
         public const float SuperSaturationEnds = SuperSaturationThreshold / 3;
 
         public const float OxygenBurnRateBase = 1.4f;
-        public const float PlasmaMinimumBurnTemperature = (100f+T0C);
-        public const float PlasmaUpperTemperature = (1370f+T0C);
+        public const float PlasmaMinimumBurnTemperature = 100f + T0C;
+        public const float PlasmaUpperTemperature = 1370f + T0C;
         public const float PlasmaOxygenFullburn = 10f;
         public const float PlasmaBurnRateDelta = 9f;
         public const float HydrogenBurnRateDelta = 2f; // Funky atmos - /tg/ gases
