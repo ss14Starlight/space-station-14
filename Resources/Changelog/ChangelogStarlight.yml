@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (CentComm G24) Added Interdyne medical vendor for a certain debrief room.
-    type: Add
-  id: 409027
-  time: '2026-09-29T21:06:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6385
-- author: Caws
-  changes:
   - message: (CentComm G24) Re-added the small room at Debrief for admins to quietly spawn in their CC operators.
     type: Add
   id: 409028
@@ -2883,4 +2876,11 @@ Entries:
   id: 409426
   time: '2026-10-13T11:37:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6611
+- author: OmgDev
+  changes:
+  - message: Smile no longer pretends like they can scream.
+    type: Fix
+  id: 409427
+  time: '2026-10-13T17:12:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6643
 Order: -1
