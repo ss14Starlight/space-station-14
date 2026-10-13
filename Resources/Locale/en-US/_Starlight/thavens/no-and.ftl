@@ -193,10 +193,10 @@ thaven-mood-distrust-witnesses-name = Distrust Witnesses
 thaven-mood-distrust-witnesses-desc = Eyewitness accounts are unreliable and prone to error. Anyone claiming certainty is probably mistaken.
 
 thaven-mood-closed-doors-bad-name = Closed Doors Are Suspicious
-thaven-mood-closed-doors-bad-desc = Honest people have nothing to hide. Closed and locked doors make you deeply uneasy, keep open doors where possible.
+thaven-mood-closed-doors-bad-desc = Honest people have nothing to hide. Closed and locked doors make you deeply uneasy therefore you should keep open doors where possible.
 
 thaven-mood-whats-a-mood-name = What's A Mood?
 thaven-mood-whats-a-mood-desc = You don't understand the concept of Thaven moods. You are incapable of realizing when you're acting upon a mood, and will try to justify your actions to yourself with logic.
 
 thaven-mood-illiterate-name = Illiterate
-thaven-mood-illiterate-desc = Reading is difficult for you. You'd much rather avoid it. If you do have to read something, it helps to say some of it outloud and very slowly.
+thaven-mood-illiterate-desc = Reading is difficult for you. You'd much rather avoid it. If you do have to read something, it helps to say some of it out loud and very slowly.
