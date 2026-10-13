@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (CentComm SC17) Reworked Debrief heavily, addinga  new side-corridor for a better debrief viewing experience. Shutters have been replaced with blast doors to reduce people being annoying with them.
-    type: Tweak
-  id: 409029
-  time: '2026-09-29T21:06:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6385
-- author: Caws
-  changes:
   - message: (CentComm SC17) Fixed a bunch of air alarms not being linked to anything.
     type: Fix
   id: 409030
@@ -2883,4 +2876,11 @@ Entries:
   id: 409428
   time: '2026-10-13T20:14:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6671
+- author: Trosling
+  changes:
+  - message: Updates Corporate Law to match new contraband tier system.
+    type: Tweak
+  id: 409429
+  time: '2026-10-13T20:34:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6660
 Order: -1
