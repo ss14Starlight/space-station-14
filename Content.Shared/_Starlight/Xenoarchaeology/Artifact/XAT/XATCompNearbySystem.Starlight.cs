@@ -8,17 +8,11 @@ namespace Content.Shared.Xenoarchaeology.Artifact.XAT;
 public sealed partial class XATCompNearbySystem
 {
     [Dependency] private TagSystem _tag = default!;
-    [Dependency] private IGameTiming _timing = default!;
-
-    private static readonly TimeSpan CheckInterval = TimeSpan.FromSeconds(1);
-    private TimeSpan _nextCheck;
-
     public override void Update(float frameTime)
     {
-        if (_timing.CurTime < _nextCheck)
+        if (Timing.CurTick.Value % (uint) Timing.TickRate != 0)
             return;
 
-        _nextCheck = _timing.CurTime + CheckInterval;
         base.Update(frameTime);
     }
 
