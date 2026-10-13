@@ -94,8 +94,7 @@ public sealed partial class UITab : Control
         {
             new(string.Empty, Loc.GetString("ui-options-lobby-background-server")),
         };
-        foreach (var background in _prototypeManager.EnumeratePrototypes<LobbyBackgroundPrototype>()
-                     .OrderBy(b => Loc.GetString(b.Title)))
+        foreach (var background in _prototypeManager.EnumeratePrototypes<LobbyBackgroundPrototype>().OrderBy(b => Loc.GetString(b.Title)))
         {
             backgrounds.Add(new(background.ID, Loc.GetString(background.Title)));
         }
