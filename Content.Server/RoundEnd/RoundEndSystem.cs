@@ -86,7 +86,7 @@ namespace Content.Server.RoundEnd
         {
             AutoCallStartTime = _gameTiming.CurTime;
             // Starlight begin
-            AutoCallTime = _autoCalledBefore ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
+            AutoCallTime = _autoCalledBefore ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime) * 60
                 : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime) * 60;
             // Starlight end
         }

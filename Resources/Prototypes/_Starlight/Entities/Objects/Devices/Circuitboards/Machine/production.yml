@@ -1416,7 +1416,7 @@
 - type: entity
   id: NanoTrasenTechFabCircuitboard
   categories: [ DoNotMap ]
-  parent: [BaseMachineCircuitboard, BaseNanoTrasenContraband]
+  parent: [ BaseMachineCircuitboard, BaseNanoTrasenContraband ]
   name: NanoTrasen techfab machine board
   description: A machine printed circuit board for a NanoTrasen techfab.
   components:
