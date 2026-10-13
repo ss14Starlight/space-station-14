@@ -195,10 +195,9 @@
       proto: NukeopsMedic
     - !type:LinearAntagCount
       proto: NukeopsOperative
-      playerRatio: 15 # Starlight - tuned to fit smaller pop while still keeping same threat for high pop
-      useTotalPlayerCount: true # Starlight
+      playerRatio: 14 # Starlight - tuned to fit smaller pop while still keeping same threat for high pop
       range:
-        min: 2 # Starlight
+        min: 0 # Starlight
         max: 4 # Starlight
   - type: DynamicRuleCost
     cost: 200
