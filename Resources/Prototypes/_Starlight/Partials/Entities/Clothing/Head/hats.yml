@@ -5,3 +5,39 @@
     modifiers: { }
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.95
+
+- type: !PartialOnly entity
+  id: ClothingHeadPyjamaSyndicateBlack
+  components:
+  - type: Contraband
+    tier: Tier1
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingHeadPyjamaSyndicatePink
+  components:
+  - type: Contraband
+    tier: Tier1
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingHeadPyjamaSyndicateRed
+  components:
+  - type: Contraband
+    tier: Tier1
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatSyndie
+  components:
+  - type: Contraband
+    tier: Tier1
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatSyndieMAA
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+    contrabandType: Syndicate

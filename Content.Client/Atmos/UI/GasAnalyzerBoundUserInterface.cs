@@ -1,42 +1,43 @@
 using Content.Client._Starlight.Computers.RemoteControl;
 using Robust.Client.UserInterface;
-using static Content.Shared.Atmos.Components.GasAnalyzerComponent;
+using Content.Shared.Atmos.Components;
 
-namespace Content.Client.Atmos.UI
+namespace Content.Client.Atmos.UI;
+
+public sealed class GasAnalyzerBoundUserInterface : BoundUserInterface
 {
-    public sealed class GasAnalyzerBoundUserInterface : BoundUserInterface
+    [ViewVariables]
+    private GasAnalyzerWindow? _window;
+
+    public GasAnalyzerBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
-        [ViewVariables]
-        private GasAnalyzerWindow? _window;
+    }
 
-        public GasAnalyzerBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-        {
-        }
+    protected override void Open()
+    {
+        base.Open();
 
-        protected override void Open()
-        {
-            base.Open();
+        _window = this.CreateWindowCenteredLeft<GasAnalyzerWindow>();
+        EntMan.System<RemoteControlInterface>().TryEmbedWindow(_window); // Starlight
+        _window.OnClose += Close;
+    }
 
-            _window = this.CreateWindowCenteredLeft<GasAnalyzerWindow>();
-            EntMan.System<RemoteControlInterface>().TryEmbedWindow(_window); // Starlight
-            _window.OnClose += Close;
-        }
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        if (_window == null)
+            return;
 
-        protected override void ReceiveMessage(BoundUserInterfaceMessage message)
-        {
-            if (_window == null)
-                return;
-            if (message is not GasAnalyzerUserMessage cast)
-                return;
-            _window.Populate(cast);
-        }
+        if (message is not GasAnalyzerUserMessage cast)
+            return;
 
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
+        _window.Populate(cast);
+    }
+    
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
 
-            if (disposing)
-                _window?.Dispose();
-        }
+        if (disposing)
+            _window?.Dispose();
     }
 }
