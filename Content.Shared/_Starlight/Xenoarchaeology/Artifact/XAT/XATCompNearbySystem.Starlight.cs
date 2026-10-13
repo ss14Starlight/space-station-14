@@ -1,13 +1,13 @@
 // ReSharper disable CheckNamespace
 using Content.Shared.Tag;
 using Content.Shared.Xenoarchaeology.Artifact.XAT.Components;
-using Robust.Shared.Timing;
 
 namespace Content.Shared.Xenoarchaeology.Artifact.XAT;
 
 public sealed partial class XATCompNearbySystem
 {
     [Dependency] private TagSystem _tag = default!;
+
     public override void Update(float frameTime)
     {
         if (Timing.CurTick.Value % (uint) Timing.TickRate != 0)
