@@ -4,6 +4,8 @@
   name: old war uniform
   description: Relics of war, many of which have laid the foundation of the USSP. Wearing this may cause unsolicited war stories.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/soviet.rsi
   - type: Clothing
@@ -81,7 +83,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntrepnoble.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseBlueShieldContraband]
+  parent: [ ClothingUniformBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpsuitBlueShield
   name: blueshield suit
   description: The suit of a glorified bodyguard.
@@ -92,7 +94,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/blueshield.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseBlueShieldContraband]
+  parent: [ ClothingUniformBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpsuitEliteBlueShield
   name: elite blueshield suit
   description: The suit of an elite BSO. To reach such a level, you must have protected Command from [REDACTED].
@@ -103,7 +105,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/eliteblueshield.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseBlueShieldContraband]
+  parent: [ ClothingUniformBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpsuitBlueShieldShirt
   name: blueshield officer's shirt
   description: A collared shirt and pants for the blueshield officer who likes to keep it business casual.
@@ -654,7 +656,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/rd_classical.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseBlueShieldContraband]
+  parent: [ ClothingUniformBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpsuitFormalBlueShield
   name: formal blueshield officer suit
   description: A textile jumpsuit, reinforced with thick leather in some areas.
@@ -717,6 +719,8 @@
   name: soviet admiral jumpsuit
   description: They are one phone call away from ruining your life.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sovietadmiral.rsi
   - type: Clothing
@@ -739,6 +743,8 @@
   name: SSF marine combat fatigues
   description: Not one step back.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
   - type: Clothing
