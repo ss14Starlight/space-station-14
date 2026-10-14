@@ -22,7 +22,7 @@ public abstract partial class SharedMindSystem
         }
     }
 
-    private Entity<MindComponent> SLPickObjectiveTarget(IMindPool pool, HashSet<Entity<MindComponent>> candidates)
+    private Entity<MindComponent> PickObjectiveTarget(IMindPool pool, HashSet<Entity<MindComponent>> candidates)
     {
         if (pool is not (HighValueTargetsPool or WeightedAlivePool))
             return _random.Pick(candidates);

@@ -19,7 +19,6 @@
                                   SeparationOverride="4"
                                   Margin="0 0 15 0"
                                   MinWidth="130">
-                        <!-- Starlight - Start - Center each wrapped line of the role name and alignment. -->
                         <WrapContainer Name="RoleType"
                                        Access="Public"
                                        LayoutAxis="Horizontal"
@@ -34,7 +33,6 @@
                                        SeparationOverride="3"
                                        CrossSeparationOverride="0"
                                        HorizontalExpand="True"/>
-                        <!-- Starlight - End -->
                         <PanelContainer StyleClasses="LowDivider"/>
                         <SpriteView Name="SpriteView"
                                     Access="Public"
