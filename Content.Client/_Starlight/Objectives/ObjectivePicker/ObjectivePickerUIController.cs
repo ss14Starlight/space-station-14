@@ -76,17 +76,15 @@ public sealed partial class ObjectivePickerUIController : UIController, IOnState
         _window.OnSelectedChange += OnSelectedChange;
         _window.OnSubmitted += OnSubmitted;
         _window.OnRandomize += OnRandomize;
-        _window.OnClear += OnClear;
+        _window.OnClear += () =>
+        {
+            if (_window == null)
+                return;
+
+            _window.SelectedObjectives.Clear();
+            _window.UpdateState();
+        };
         _window.OnMulligan += OnMulligan;
-    }
-
-    private void OnClear()
-    {
-        if (_window == null)
-            return;
-
-        _window.SelectedObjectives.Clear();
-        _window.UpdateState();
     }
 
     public override void Initialize()

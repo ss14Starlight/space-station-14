@@ -26,13 +26,6 @@ public sealed partial class AntagRandomObjectivesSystem
     private static readonly EntProtoId _sLDieObjective = "DieObjective";
     private TimeSpan _slNextAvailability;
 
-    private void InitializePicker()
-    {
-        SubscribeNetworkEvent<ObjectivePickerMulligan>(OnMulligan);
-        SubscribeNetworkEvent<ObjectivePickerRequestAdditional>(OnRequestAdditionalObjectives);
-        SubscribeLocalEvent<PotentialObjectivesComponent, ComponentShutdown>(OnPickerShutdown);
-    }
-
     private void CreatePicker(Entity<AntagRandomObjectivesComponent> rule, ref AfterAntagEntitySelectedEvent args)
     {
         if (args.Session == null || !_mind.TryGetMind(args.Session, out var mindId, out var mind))

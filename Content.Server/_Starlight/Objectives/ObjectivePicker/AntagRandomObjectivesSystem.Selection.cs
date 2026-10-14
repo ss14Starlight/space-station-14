@@ -108,7 +108,13 @@ public sealed partial class AntagRandomObjectivesSystem
             {
                 var uid = GetEntity(id);
                 var prototype = Prototype(uid)?.ID;
-                RemoveOffer(offers, config, id);
+                offers.ObjectiveOptions.Remove(id);
+                offers.Difficulties.Remove(id);
+                offers.TargetPools.Remove(id);
+                offers.TargetConflicts.Remove(id);
+                config.DeferredTargets.Remove(id);
+                if (offers.RetainedObjective == id)
+                    offers.RetainedObjective = null;
                 Del(uid);
                 if (prototype != null && CreateOffer(mindId, mind, prototype, CountAssignedObjectives(mindId),
                         out var replacement, out var deferred))
@@ -228,17 +234,5 @@ public sealed partial class AntagRandomObjectivesSystem
                 : pick.Pool is HighValueTargetsPool ? HighValueTargetsPool.Weight(mind, EntityManager) : 1;
             return -Math.Log(1 - _random.NextDouble()) / weight;
         }).ToArray();
-    }
-
-    private static void RemoveOffer(PotentialObjectivesComponent offers,
-        ObjectivePickerConfigurationComponent config, NetEntity id)
-    {
-        offers.ObjectiveOptions.Remove(id);
-        offers.Difficulties.Remove(id);
-        offers.TargetPools.Remove(id);
-        offers.TargetConflicts.Remove(id);
-        config.DeferredTargets.Remove(id);
-        if (offers.RetainedObjective == id)
-            offers.RetainedObjective = null;
     }
 }

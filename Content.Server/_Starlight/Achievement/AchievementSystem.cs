@@ -650,7 +650,16 @@ public sealed partial class AchievementSystem : EntitySystem
 
     private void OnRoundEndText(RoundEndTextAppendEvent ev)
     {
-        CheckDifficultyAntagAchievements();
+        var query = EntityQueryEnumerator<MindComponent>();
+        while (query.MoveNext(out var mindId, out var antagMind))
+        {
+            if ((antagMind.OriginalOwnerUserId ?? antagMind.UserId) is not { } player ||
+                !_playerManager.TryGetSessionById(player, out var ownerSession))
+                continue;
+
+            foreach (var achievement in GetEligibleDifficultyAntagAchievements((mindId, antagMind)))
+                QueueUnlockAchievement(ownerSession, achievement.ID, antagMind.CharacterName);
+        }
 
         foreach (var session in _playerManager.Sessions)
         {
@@ -725,20 +734,6 @@ public sealed partial class AchievementSystem : EntitySystem
     #endregion
 
     #region Helpers
-
-    private void CheckDifficultyAntagAchievements()
-    {
-        var query = EntityQueryEnumerator<MindComponent>();
-        while (query.MoveNext(out var uid, out var mind))
-        {
-            if ((mind.OriginalOwnerUserId ?? mind.UserId) is not { } player ||
-                !_playerManager.TryGetSessionById(player, out var session))
-                continue;
-
-            foreach (var achievement in GetEligibleDifficultyAntagAchievements((uid, mind)))
-                QueueUnlockAchievement(session, achievement.ID, mind.CharacterName);
-        }
-    }
 
     /// <summary>
     /// Returns the configured antagonist difficulty awards earned by this mind in the current round.

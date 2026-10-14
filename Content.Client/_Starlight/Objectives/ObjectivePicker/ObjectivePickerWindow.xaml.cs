@@ -39,7 +39,23 @@ public sealed partial class ObjectivePickerWindow : FancyWindow
         _mind = _entity.System<SharedMindSystem>();
         _sprite = _entity.System<SpriteSystem>();
 
-        InitializePicker();
+        SubmitButton.Disabled = true;
+        RandomizeButton.Disabled = true;
+        MulliganButton.Disabled = true;
+        SubmitButton.OnPressed += args =>
+        {
+            if (_mind.TryGetMind(_players.LocalSession, out var uid, out _))
+                OnSubmitted?.Invoke(SelectedObjectives, _entity.GetNetEntity(uid));
+        };
+        ClearButton.OnPressed += _ => OnClear?.Invoke();
+        RandomizeButton.OnPressed += _ => OnRandomize?.Invoke();
+        MulliganButton.OnPressed += args =>
+        {
+            if (_mind.TryGetMind(_players.LocalSession, out var uid, out _))
+                OnMulligan?.Invoke(_entity.GetNetEntity(uid));
+        };
+        UpdateState();
+        UpdateTimer();
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
@@ -66,27 +82,6 @@ public sealed partial class ObjectivePickerWindow : FancyWindow
     public PotentialObjectivesComponent? Offers { get; private set; }
     private readonly Dictionary<NetEntity, Button> _slButtons = new();
     private bool _slSeenMulligan;
-
-    private void InitializePicker()
-    {
-        SubmitButton.Disabled = true;
-        RandomizeButton.Disabled = true;
-        MulliganButton.Disabled = true;
-        SubmitButton.OnPressed += args =>
-        {
-            if (_mind.TryGetMind(_players.LocalSession, out var uid, out _))
-                OnSubmitted?.Invoke(SelectedObjectives, _entity.GetNetEntity(uid));
-        };
-        ClearButton.OnPressed += _ => OnClear?.Invoke();
-        RandomizeButton.OnPressed += _ => OnRandomize?.Invoke();
-        MulliganButton.OnPressed += args =>
-        {
-            if (_mind.TryGetMind(_players.LocalSession, out var uid, out _))
-                OnMulligan?.Invoke(_entity.GetNetEntity(uid));
-        };
-        UpdateState();
-        UpdateTimer();
-    }
 
     public void SetPending(bool pending, string? message = null)
     {
