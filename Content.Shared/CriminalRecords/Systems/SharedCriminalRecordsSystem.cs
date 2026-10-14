@@ -7,7 +7,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.CriminalRecords.Systems;
 
-public abstract class SharedCriminalRecordsSystem : EntitySystem
+public abstract partial class SharedCriminalRecordsSystem : EntitySystem // Starlight-edit
 {
     /// <summary>
     /// Any entity that has a the name of the record that was just changed as their visible name will get their icon
@@ -19,7 +19,7 @@ public abstract class SharedCriminalRecordsSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var identity))
         {
-            if (!Identity.Name(uid, EntityManager).Equals(name))
+            if (!GetRecordName(uid).Equals(name)) // Starlight-edit: match records without name modifiers like "(739)"
                 continue;
 
             if (status == SecurityStatus.None)
