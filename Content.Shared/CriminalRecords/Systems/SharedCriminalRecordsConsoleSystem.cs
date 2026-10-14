@@ -21,7 +21,7 @@ public abstract partial class SharedCriminalRecordsConsoleSystem : EntitySystem
     /// </summary>
     public void CheckNewIdentity(EntityUid uid)
     {
-        var name = _criminalRecords.GetRecordName(uid); // Starlight-edit: match records without name modifiers like "(739)"
+        var name = Identity.Name(uid, EntityManager);
         var xform = Transform(uid);
 
         // TODO use the entity's station? Not the station of the map that it happens to currently be on?

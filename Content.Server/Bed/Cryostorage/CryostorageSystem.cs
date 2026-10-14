@@ -30,7 +30,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Content.Server._Starlight.Bed.Cryostorage;
 using Content.Shared.Anomaly.Components;
-using Content.Shared.NameModifier.EntitySystems; // Starlight
 
 namespace Content.Server.Bed.Cryostorage;
 
@@ -53,7 +52,6 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
     [Dependency] private StationRecordsSystem _stationRecords = default!;
     [Dependency] private TransformSystem _transform = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
-    [Dependency] private NameModifierSystem _nameModifier = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -236,7 +234,7 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
             return;
 
         var jobName = Loc.GetString("earlyleave-cryo-job-unknown");
-        var recordId = _stationRecords.GetRecordByName(station.Value, _nameModifier.GetBaseName(ent.Owner)); // Starlight-edit: records don't include name modifiers like "(739)"
+        var recordId = _stationRecords.GetRecordByName(station.Value, name);
         if (recordId != null)
         {
             var key = new StationRecordKey(recordId.Value, station.Value);
