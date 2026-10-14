@@ -410,6 +410,7 @@
   moodDesc: thaven-mood-confusing-perspective-desc
   conflicts:
   - Optimist
+  - Empath
 
 # Monster Hunter: Dangerous creatures lurk throughout the station. Determine what qualifies as a monster and find them.
 - type: thavenMood
