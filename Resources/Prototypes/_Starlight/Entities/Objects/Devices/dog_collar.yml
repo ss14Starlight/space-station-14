@@ -52,6 +52,8 @@
     range: 1200
   - type: StationLimitedNetwork 
   - type: SyncIdNameToWearer
+  - type: ActivatableUI
+    requiresComplex: false
   - type: Tag
     tags:
     - CorgiWearable

@@ -82,8 +82,18 @@ public abstract partial class InventorySystem
         if (eventArgs.SenderSession.AttachedEntity is not { Valid: true } actor)
             return;
 
-        if (!TryComp(actor, out InventoryComponent? inventory) || !TryComp<HandsComponent>(actor, out var hands))
+        if (!TryComp(actor, out InventoryComponent? inventory))
             return;
+
+        // Starlight-start: without hands, clicking an equipped item activates it (e.g. a K9 opening its collar).
+        if (!TryComp<HandsComponent>(actor, out var hands))
+        {
+            if (TryGetSlotEntity(actor, ev.Slot, out var equipped, inventory))
+                _interactionSystem.InteractionActivate(actor, equipped.Value);
+
+            return;
+        }
+        // Starlight-end
 
         var held = _handsSystem.GetActiveItem((actor, hands));
         TryGetSlotEntity(actor, ev.Slot, out var itemUid, inventory);

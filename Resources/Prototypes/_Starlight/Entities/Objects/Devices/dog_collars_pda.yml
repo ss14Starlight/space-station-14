@@ -14,6 +14,8 @@
   - type: WirelessNetworkConnection
     range: 1200
   - type: SyncIdNameToWearer
+  - type: ActivatableUI
+    requiresComplex: false
 
 - type: entity
   id: !type:CreateVariants
