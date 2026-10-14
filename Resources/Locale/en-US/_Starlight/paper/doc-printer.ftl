@@ -840,8 +840,6 @@ doc-text-printer-permission-equipment =
      Date and Time: [datetime]
     Document Compiler: [signature]
 
-    I, [signature], hereby swear that all information contained herein is true, accurate, and filled out strictly in accordance with official station permit standards under penalty of forgery.
-
     Permit Holder: [signature]
 
     Item: [form]
@@ -849,12 +847,12 @@ doc-text-printer-permission-equipment =
     Item Origin: [form]
 
     Item Tier Level: [form]
-    Weapon Permit Yes / No : [form]
+    Weapon or Combat Equipment Permit Yes / No : [form]
 
     Reason for Permit Issue: [form]
     Terms & Conditions of Use: [form]
 
-    I, [signature], accept the terms of use, restrictions, and legal responsibilities associated with possessing this item.
+    I, [signature], accept the terms of use, restrictions, and legal responsibilities associated with possessing this item, and hereby swear that all information contained herein is true, accurate, and filled out strictly in accordance with official station permit standards under penalty of forgery.
 
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
