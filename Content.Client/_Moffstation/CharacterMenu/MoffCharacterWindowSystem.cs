@@ -49,13 +49,13 @@ public sealed partial class MoffCharacterWindowSystem : EntitySystem
         if (!_humanoidProfileQuery.TryComp(entity, out var profile))
             return null;
 
-        return new CharacterProfileInfo(profile.Gender, profile.Age, SLGetSpeciesName(profile)); // Starlight, custom species names.
+        #region Starlight
+        var species = string.IsNullOrWhiteSpace(profile.CustomSpecieName)
+            ? Loc.GetString(ProtoMan.Index(profile.Species).Name)
+            : profile.CustomSpecieName;
+        return new CharacterProfileInfo(profile.Gender, profile.Age, species);
+        #endregion Starlight
     }
-
-    public string? GetDescription(EntityUid entity) => SLGetCharacterDescription(entity) ?? // Starlight profile descriptions.
-            (_detailExaminableQuery.TryComp(entity, out var description) ? description.Content : null);
-
-    public CharacterRoleTypeInfo? GetRoleType(EntityUid? entity) => GetFactionAndAlignment(entity); // Starlight
 
     public bool CanPickObjectives(EntityUid? entity) => _potentialObjectivesQuery.TryComp(GetMind(entity), out var potential) && potential.ObjectiveOptions.Count > 0; // Starlight, ignore offers already consumed before deferred component removal.
 

@@ -126,6 +126,7 @@ public abstract partial class SharedRoleSystem : EntitySystem
 
             jobRole.Value.Comp1.JobPrototype = jobPrototype;
             Dirty(jobRole.Value.Owner, jobRole.Value.Comp1); // Starlight
+            MindRolesUpdate((mindId, mind)); // Starlight
         }
         else
             MindAddRoleDo(mindId, "MindRoleJob", mind, silent, jobPrototype);
@@ -225,17 +226,6 @@ public abstract partial class SharedRoleSystem : EntitySystem
         // Moffstation - End
         return true;
     }
-
-    /// <summary>
-    ///     Return the most recently specified role type and subtype, or Neutral
-    /// </summary>
-    // Moffstation - Start - SubtypeColor (returns SubtypeColor as third element)
-    private (ProtoId<RoleTypePrototype>, LocId?, Color?) GetRoleTypeByTime(MindComponent mind)
-    {
-        var role = GetRoleCompByTime(mind);
-        return (role?.Comp?.RoleType ?? "Neutral", role?.Comp?.Subtype, role?.Comp?.SubtypeColor);
-    }
-    // Moffstation - End
 
     /// <summary>
     ///     Return the most recently specified role type's mind role entity, or null

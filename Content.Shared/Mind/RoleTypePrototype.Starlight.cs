@@ -9,6 +9,12 @@ public sealed partial class RoleTypePrototype
     public LocId? Faction;
 
     /// <summary>
+    /// Default faction color when the active mind role does not specify one.
+    /// </summary>
+    [DataField]
+    public Color? FactionColor;
+
+    /// <summary>
     /// Character menu alignment label, defaulting to the role type's name.
     /// </summary>
     [DataField]

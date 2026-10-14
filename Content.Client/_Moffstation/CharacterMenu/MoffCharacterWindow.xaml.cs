@@ -22,7 +22,14 @@ public sealed partial class MoffCharacterWindow : DefaultWindow
     public MoffCharacterWindow()
     {
         RobustXamlLoader.Load(this);
-        SLInitializeCharacterInfo(); // Starlight
+        #region Starlight
+        CharacterInfoTabs.SetTabTitle(0, Loc.GetString("character-info-objectives"));
+        CharacterInfoTabs.SetTabTitle(1, Loc.GetString("character-info-ic-ooc"));
+
+        // The overview already displays the character's sprite and identity.
+        InfoIC.CharacterView.Visible = false;
+        InfoOOC.CharacterView.Visible = false;
+        #endregion Starlight
     }
 
     protected override void FrameUpdate(FrameEventArgs args)

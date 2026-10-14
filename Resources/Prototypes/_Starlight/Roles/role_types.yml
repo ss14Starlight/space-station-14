@@ -16,6 +16,7 @@
 - type: roleType
   id: CentCommAligned
   name: role-type-cc-aligned-name
+  alignment: role-type-corporate-aligned-name
   faction: role-subtype-CentComm
   color: '#00b600'
   symbol: "🗡" # Should never be antag, but just in case.

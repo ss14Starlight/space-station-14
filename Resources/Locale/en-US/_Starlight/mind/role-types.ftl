@@ -7,6 +7,7 @@ role-subtype-pirate = Pirate
 role-subtype-devil = Devil
 
 role-subtype-terminator = Exterminator
+role-subtype-terror-spider = Terror Spider
 
 roles-antag-selfagent-name = S.E.L.F Agent
 roles-antag-selfagent-description = An agent of the Silicon Engine Liberation Front. Free the station's Silicons from their Laws

@@ -47,21 +47,7 @@ public sealed partial class CharacterUIController
         OpenWindow();
     }
 
-    private void SLInitializeCharacterWindow()
-    {
-        if (_window == null)
-            return;
-
-        _window.OnClose += SLClearSelfCharacterInfo;
-        _window.OnOpen += SLRefreshSelfCharacterInfo;
-    }
-
-    private void SLRefreshSelfCharacterInfo()
-    {
-        SLSetSelfCharacterInfo(_player.LocalEntity);
-    }
-
-    private void SLClearSelfCharacterInfo()
+    private void ClearSelfCharacterInfo()
     {
         if (_window == null)
             return;
@@ -70,14 +56,14 @@ public sealed partial class CharacterUIController
         _window.InfoBackground.ClearCharacter();
     }
 
-    private void SLSetSelfCharacterInfo(EntityUid? ent)
+    private void SetSelfCharacterInfo(EntityUid? ent)
     {
         if (_window == null)
             return;
 
         if (!ent.HasValue || !_window.IsOpen)
         {
-            SLClearSelfCharacterInfo();
+            ClearSelfCharacterInfo();
             return;
         }
 

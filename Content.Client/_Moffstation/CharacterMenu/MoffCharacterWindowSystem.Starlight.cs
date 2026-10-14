@@ -30,21 +30,19 @@ public sealed partial class MoffCharacterWindowSystem
         SubscribeNetworkEvent<OpenCharacterMenuEvent>(OnOpenCharacterMenu);
     }
 
-    private string SLGetSpeciesName(HumanoidAppearanceComponent profile) => string.IsNullOrWhiteSpace(profile.CustomSpecieName)
-            ? Loc.GetString(ProtoMan.Index(profile.Species).Name)
-            : profile.CustomSpecieName;
-
-    private string? SLGetCharacterDescription(EntityUid entity)
+    public string? GetDescription(EntityUid entity)
     {
-        if (!TryComp<CharacterDescriptionComponent>(entity, out var description) ||
-            string.IsNullOrWhiteSpace(description.Description))
-            return null;
+        if (TryComp<CharacterDescriptionComponent>(entity, out var description) &&
+            !string.IsNullOrWhiteSpace(description.Description))
+        {
+            // Character profile text is plain text, even if it contains markup characters.
+            return FormattedMessage.EscapeText(FormattedMessage.RemoveMarkupPermissive(description.Description));
+        }
 
-        // Character profile text is plain text, even if it contains markup characters.
-        return FormattedMessage.EscapeText(FormattedMessage.RemoveMarkupPermissive(description.Description));
+        return _detailExaminableQuery.TryComp(entity, out var details) ? details.Content : null;
     }
 
-    private CharacterRoleTypeInfo? GetFactionAndAlignment(EntityUid? entity)
+    public CharacterRoleTypeInfo? GetRoleType(EntityUid? entity)
     {
         if (!_mindQuery.TryComp(GetMind(entity), out var mind) ||
             !ProtoMan.Resolve(mind.RoleType, out var roleType))
@@ -52,7 +50,7 @@ public sealed partial class MoffCharacterWindowSystem
 
         return new CharacterRoleTypeInfo(
             mind.Subtype ?? roleType.Faction ?? "role-type-free-agent-name",
-            mind.SubtypeColor ?? roleType.Color,
+            mind.SubtypeColor ?? roleType.FactionColor ?? roleType.Color,
             roleType.Alignment ?? roleType.Name,
             roleType.Color);
     }

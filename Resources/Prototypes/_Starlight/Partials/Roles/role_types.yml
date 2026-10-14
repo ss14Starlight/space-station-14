@@ -8,6 +8,15 @@
 - type: !PartialOnly roleType
   id: FreeAgent
   alignment: character-info-alignment-free-agent
+  factionColor: "#D95F3D"
+
+- type: !PartialOnly roleType
+  id: SoloAntagonist
+  factionColor: "#D95F3D"
+
+- type: !PartialOnly roleType
+  id: TeamAntagonist
+  factionColor: "#D95F3D"
 
 - type: !PartialOnly roleType
   id: Silicon

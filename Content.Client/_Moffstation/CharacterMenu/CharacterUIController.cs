@@ -42,7 +42,8 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
 
         _window.OnClose += DeactivateButton;
         _window.OnOpen += ActivateButton;
-        SLInitializeCharacterWindow(); // Starlight
+        _window.OnClose += ClearSelfCharacterInfo; // Starlight
+        _window.OnOpen += () => SetSelfCharacterInfo(_player.LocalEntity); // Starlight
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.OpenCharacterMenu,
@@ -136,7 +137,7 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
 
         _window.Objectives.RemoveAllChildren();
         _window.Briefing.RemoveAllChildren();
-        SLSetSelfCharacterInfo(entity); // Starlight
+        SetSelfCharacterInfo(entity); // Starlight
 
         var canPickObjectives = _characterWindow.CanPickObjectives(_player.LocalEntity);
         _window.AddObjectiveButtons(objectives.Sum(group => group.Value.Count), canPickObjectives); // Starlight
@@ -152,10 +153,7 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
         if (briefing != null)
         {
             var briefingControl = new ObjectiveBriefingControl();
-            var text = new FormattedMessage();
-            text.PushColor(Color.Yellow);
-            text.AddText(briefing);
-            briefingControl.Label.SetMessage(text);
+            briefingControl.Label.SetMessage(FormattedMessage.FromMarkupPermissive(briefing), Color.Yellow); // Starlight
             _window.Briefing.AddChild(briefingControl);
         }
 
@@ -178,13 +176,13 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
             _characterWindow.GetRoleType(_player.LocalEntity) is not { } roleType)
             return;
 
-        SetRoleType(Loc.GetString(roleType.Name), roleType.Color);
-        SetAlignment(roleType.Alignment, roleType.AlignmentColor); // Starlight
+        #region Starlight
+        SetCenteredText(_window.RoleType, Loc.GetString(roleType.Name), roleType.Color,
+            "character-info-role-type-format", "role");
+        SetCenteredText(_window.AlignmentLabel, Loc.GetString(roleType.Alignment), roleType.AlignmentColor,
+            "character-info-alignment-format", "alignment");
+        #endregion Starlight
     }
-
-    private void SetRoleType(string role, Color color) => _window!.RoleType.Text = Loc.GetString("character-info-role-type-format",
-            ("color", color.ToHex()),
-            ("role", role));
 
     private static string TruncateWords(string text, int wordLimit)
     {
