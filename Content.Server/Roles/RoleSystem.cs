@@ -31,8 +31,10 @@ public sealed partial class RoleSystem : SharedRoleSystem
         string? latestBriefing = null;
         foreach (var role in mindComp.MindRoleContainer.ContainedEntities)
         {
-            var ev = new GetBriefingEvent();
-            ev.Mind = (mindId.Value, mindComp);
+            GetBriefingEvent ev = new()
+            {
+                Mind = (mindId.Value, mindComp),
+            };
             RaiseLocalEvent(role, ref ev);
             if (ev.Briefing != null)
                 latestBriefing = ev.Briefing;

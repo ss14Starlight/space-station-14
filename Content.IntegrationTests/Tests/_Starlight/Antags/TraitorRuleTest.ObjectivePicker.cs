@@ -1,11 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using Content.Client._Moffstation.CharacterMenu;
+using Content.IntegrationTests.Fixtures.Attributes;
 using Content.Server.Mind;
 using Content.Shared._Moffstation.Objectives;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.Character.Info;
 using Content.Shared._Starlight.Character.Info.Components;
 using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared.CCVar;
 using Content.Shared.Mind;
+using Content.Shared.Preferences;
 using Content.Shared.Tag;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -23,6 +28,9 @@ public sealed partial class TraitorRuleTest
 
     private async Task SLTestObjectivePicker(EntityUid mind, EntityUid player)
     {
+        await OverrideCVar(Side.Server, CCVars.FlavorText, true);
+        await OverrideCVar(Side.Server, StarlightCCVars.OOCNotes, true);
+
         Dictionary<NetEntity, EntityUid> candidates = null;
         EntityUid foreignMind = default;
         EntityUid foreignObjective = default;
@@ -35,14 +43,18 @@ public sealed partial class TraitorRuleTest
             candidates = SEntMan.GetComponent<PotentialObjectivesComponent>(mind).ObjectiveOptions.Keys
                 .ToDictionary(objective => objective, SEntMan.GetEntity);
 
-            // Starlight always contributes a Cards group, even without an active card.
             SEntMan.EnsureComponent<RailroadableComponent>(player);
-#pragma warning disable RA0002 // Allow direct component initialization in test setup.
-            SEntMan.AddComponent(player, new CharacterDescriptionComponent { Description = "Physical description" }, true);
-            SEntMan.AddComponent(mind, new CharacterDescriptionComponent { Description = "Personality description" }, true);
-            SEntMan.AddComponent(mind, new RoleplayInfoComponent { OOCNotes = "OOC notes" }, true);
-            SEntMan.AddComponent(mind, new MindSecretsComponent { PersonalNotes = "Personal notes" }, true);
-#pragma warning restore RA0002
+
+            // Replace existing notes before applying a profile through the owning system.
+            SEntMan.RemoveComponent<RoleplayInfoComponent>(mind);
+            SEntMan.RemoveComponent<MindSecretsComponent>(mind);
+            Server.System<SLSharedCharacterInfoSystem>().ApplyCharacterInfo(player, new HumanoidCharacterProfile
+            {
+                PhysicalDescription = "Physical description",
+                PersonalityDescription = "Personality description",
+                OOCNotes = "OOC notes",
+                PersonalNotes = "Personal notes",
+            });
             Server.System<TagSystem>().AddTag(player, _sLBackgroundTag);
 
             foreignMind = Server.System<MindSystem>().CreateMind(null);

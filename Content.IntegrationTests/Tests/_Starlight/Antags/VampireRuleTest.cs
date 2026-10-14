@@ -51,10 +51,10 @@ public sealed class VampireRuleTest : GameTest
             Assert.That(protoMan.TryIndex<EntityPrototype>(VampireGameRuleProtoId, out var gameRuleEnt),
             $"Failed to lookup vampire game rule entity prototype with ID \"{VampireGameRuleProtoId}\"!");
 
-            Assert.That(gameRuleEnt.TryGetComponent<GameRuleComponent>(out var gameRule, compFact),
+            Assert.That(gameRuleEnt.TryComp<GameRuleComponent>(out var gameRule, compFact),
             $"Game rule entity {VampireGameRuleProtoId} does not have a GameRuleComponent!");
 
-            Assert.That(gameRuleEnt.TryGetComponent<AntagRandomObjectivesComponent>(out _, compFact),
+            Assert.That(gameRuleEnt.TryComp<AntagRandomObjectivesComponent>(out _, compFact),
             $"Game rule entity {VampireGameRuleProtoId} does not have an AntagRandomObjectivesComponent!");
 
             minPlayers = gameRule.MinPlayers;
