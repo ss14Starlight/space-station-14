@@ -2,7 +2,6 @@ using Content.Client.CartridgeLoader;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.PDA;
-using Content.Shared.Silicons.StationAi;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
@@ -102,12 +101,6 @@ namespace Content.Client.PDA
 
             _menu.UpdateState(updateState);
 
-            // Starlight Start: keep the AI's required ID card in its virtual PDA by disabling the eject control.
-            var stationAiPda = EntMan.HasComponent<StationAiHeldComponent>(Owner);
-            _menu.EjectIdButton.Disabled = stationAiPda;
-            if (stationAiPda)
-                _menu.EjectIdButton.IsActive = false;
-            // Starlight End
         }
 
         protected override void AttachCartridgeUI(Control cartridgeUIFragment, string? title)
