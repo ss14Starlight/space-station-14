@@ -62,12 +62,3 @@
   id: AiHeldIntellicard
   # This bundle is attached dynamically during card upload and is not independent saved entity state.
   save: false
-  components:
-  - type: UserInterface
-    interfaces:
-      enum.PdaUiKey.Key:
-        type: PdaBoundUserInterface
-  - type: IntrinsicUI
-    uis:
-      enum.PdaUiKey.Key:
-        toggleAction: ActionStationAiOpenPDA
