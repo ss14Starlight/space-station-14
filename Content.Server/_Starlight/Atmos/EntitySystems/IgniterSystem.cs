@@ -21,22 +21,22 @@ public sealed partial class IgniterSystem : EntitySystem
 
     [SubscribeLocalEvent]
     private void OnMapInit(Entity<IgniterComponent> ent, ref MapInitEvent _)
-        => UpdateState(ent);
+        => UpdateState(ent.AsNullable());
 
     [SubscribeLocalEvent]
     private void OnSignalReceived(Entity<IgniterComponent> ent, ref SignalReceivedEvent args)
     {
         if (args.Port == ent.Comp.TogglePort)
-            SetEnabled(ent, !ent.Comp.Enabled, args.Trigger);
+            SetEnabled(ent.AsNullable(), !ent.Comp.Enabled, args.Trigger);
         else if (args.Port == ent.Comp.OnPort)
-            SetEnabled(ent, true, args.Trigger);
+            SetEnabled(ent.AsNullable(), true, args.Trigger);
         else if (args.Port == ent.Comp.OffPort)
-            SetEnabled(ent, false, args.Trigger);
+            SetEnabled(ent.AsNullable(), false, args.Trigger);
     }
 
     [SubscribeLocalEvent]
     private void OnPowerChanged(Entity<IgniterComponent> ent, ref PowerChangedEvent _)
-        => UpdateState(ent);
+        => UpdateState(ent.AsNullable());
 
     [SubscribeLocalEvent]
     private void OnActivate(Entity<IgniterComponent> ent, ref ActivateInWorldEvent args)
@@ -44,7 +44,7 @@ public sealed partial class IgniterSystem : EntitySystem
         if (args.Handled || !args.Complex)
             return;
 
-        SetEnabled(ent, !ent.Comp.Enabled, args.User);
+        SetEnabled(ent.AsNullable(), !ent.Comp.Enabled, args.User);
         args.Handled = true;
     }
 
@@ -68,8 +68,11 @@ public sealed partial class IgniterSystem : EntitySystem
         UpdateState(ent);
     }
 
-    private void UpdateState(Entity<IgniterComponent> ent)
+    private void UpdateState(Entity<IgniterComponent?> ent)
     {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
         var active = ent.Comp.Enabled && _receiver.IsPowered(ent.Owner);
         _ignition.SetIgnited(ent.Owner, active);
         _appearance.SetData(ent, IgniterVisuals.Active, active);
