@@ -27,21 +27,22 @@ public sealed partial class RoleSystem : SharedRoleSystem
             return null;
         }
 
-        // Moffstation - Start - only show the latest mind role's briefing
-        string? latestBriefing = null;
+        var ev = new GetBriefingEvent // Starlight, formatting
+        {
+            // This is on the event because while this Entity<T> is also present on every Mind Role Entity's MindRoleComp
+            // getting to there from a GetBriefing event subscription can be somewhat boilerplate
+            // and this needs to be looked up for the event anyway so why calculate it again later
+            Mind = (mindId.Value, mindComp)
+        };
+
+        // Briefing is no longer raised on the mind entity itself
+        // because all the components that briefings subscribe to should be on Mind Role Entities
         foreach (var role in mindComp.MindRoleContainer.ContainedEntities)
         {
-            GetBriefingEvent ev = new()
-            {
-                Mind = (mindId.Value, mindComp),
-            };
             RaiseLocalEvent(role, ref ev);
-            if (ev.Briefing != null)
-                latestBriefing = ev.Briefing;
         }
 
-        return latestBriefing;
-        // Moffstation - End
+        return ev.Briefing;
     }
 
     public void RoleUpdateMessage(MindComponent mind)
