@@ -13,15 +13,27 @@ namespace Content.Shared._Starlight.Pollen.Components;
 [RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class PollenSerumPerkComponent : Component
 {
+    /// <summary>
+    /// The reagent injected into the bloodstream.
+    /// </summary>
     [DataField]
     public ProtoId<ReagentPrototype> Reagent = "Phytovitalin";
 
+    /// <summary>
+    /// The amount of reagent injected per tick.
+    /// </summary>
     [DataField]
     public float Amount = 1f;
 
+    /// <summary>
+    /// The time between reagent injections.
+    /// </summary>
     [DataField]
     public TimeSpan Interval = TimeSpan.FromSeconds(60);
 
+    /// <summary>
+    /// The time when the next reagent injection is scheduled.
+    /// </summary>
     [AutoPausedField]
     public TimeSpan NextTick;
 }

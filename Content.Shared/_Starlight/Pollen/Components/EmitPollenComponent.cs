@@ -7,7 +7,8 @@ public sealed partial class EmitPollenComponent : Component
 {
     /// <summary>
     /// The pollen ID emitted by this entity.
-    /// If null, the entity's Produce SeedId is used.
+    /// If null, the ID is resolved from the entity's ProduceComponent.PlantProtoId
+    /// or inferred from a growing plant's product prototypes.
     /// </summary>
     [DataField]
     public string? PollenId;
