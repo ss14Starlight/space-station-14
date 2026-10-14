@@ -10,6 +10,7 @@
     - StationAiCore
     - StationAiHeld
     - StationAiCustomization
+    - NoObjectiveTarget
   effects:
   - !type:AddCompsEffect
     components:
