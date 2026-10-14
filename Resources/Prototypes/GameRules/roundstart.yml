@@ -350,7 +350,7 @@
   id: Wizard
   components:
   - type: GameRule
-    minPlayers: 40
+    minPlayers: 40 # Starlight
   - type: DynamicRuleCost
     cost: 150
 
