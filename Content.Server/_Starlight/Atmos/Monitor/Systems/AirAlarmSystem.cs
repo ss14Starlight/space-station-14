@@ -106,13 +106,6 @@ public sealed partial class AirAlarmSystem
             new SpriteSpecifier.Rsi(new("/Textures/Structures/Wallmounts/air_monitors.rsi"), "fire0"),
             ref ev);
 
-    /// <summary>
-    /// Links the alarm (air alarm or fire alarm) to atmos devices (air sensors, firelocks, etc.)
-    /// </summary>
-    /// <param name="ent">Entity we're going to link stuff to</param>
-    /// <param name="linkableWhitelist">Entities must have a component on this whitelist to be considered for linking</param>
-    /// <param name="text">Localization string for the admin verb</param>
-    /// <param name="icon">Icon for the admin verb</param>
     private void AddAutoLinkVerb(EntityUid ent, EntityWhitelist linkableWhitelist, string text, SpriteSpecifier icon, ref GetVerbsEvent<Verb> ev)
     {
         if (!TryComp(ev.User, out ActorComponent? actor))
