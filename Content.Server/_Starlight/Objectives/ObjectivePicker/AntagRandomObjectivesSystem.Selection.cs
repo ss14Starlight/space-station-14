@@ -83,7 +83,7 @@ public sealed partial class AntagRandomObjectivesSystem
             temporary.Add(uid);
         }
         foreach (var id in selected.Where(config.DeferredTargets.Contains)
-                     .OrderByDescending(id => Prototype(GetEntity(id))?.ID.EndsWith("HeadObjective") == true))
+                    .OrderByDescending(id => Prototype(GetEntity(id))?.ID.EndsWith("HeadObjective") == true))
         {
             var uid = GetEntity(id);
             initialized.Add(id);

@@ -53,8 +53,8 @@ public sealed partial class TraitorRuleTest
             foreach (var objective in offers.ObjectiveOptions.Keys.Select(SEntMan.GetEntity))
             {
                 if ((SEntMan.HasComponent<KillPersonConditionComponent>(objective) ||
-                     SEntMan.HasComponent<TeachALessonConditionComponent>(objective)) &&
-                    SEntMan.TryGetComponent<TargetObjectiveComponent>(objective, out var target))
+                        SEntMan.HasComponent<TeachALessonConditionComponent>(objective)) &&
+                            SEntMan.TryGetComponent<TargetObjectiveComponent>(objective, out var target))
                     Assert.That(target.Target, Is.Null, "Unconfirmed kill/lesson offers must not have targets.");
             }
             candidates = SEntMan.GetComponent<PotentialObjectivesComponent>(mind).ObjectiveOptions.Keys
