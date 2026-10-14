@@ -114,10 +114,6 @@ public sealed partial class StationAiSystem
             return;
         }
 
-        // PresetIdCard sets the title and access but not this prototype ID, which NanoChat identity and ejection checks need.
-        idCardComponent.JobPrototype = "StationAi";
-        Dirty(idCard, idCardComponent);
-
         if (_slots.TryInsert(ent.Owner, ent.Comp.IdSlot, idCard, null))
             return;
 

@@ -6,6 +6,9 @@
   - type: Sprite
     layers:
     - state: default
+  # Store the job prototype on the card so NanoChat and the ejection guard can identify this ID.
+  - type: IdCard
+    jobPrototype: StationAi
   - type: PresetIdCard
     job: StationAi
 
@@ -14,7 +17,6 @@
   # These component bundles are applied to an existing AI, not saved as standalone map entities.
   save: false
   components:
-  - type: Alerts
   - type: Pda
     id: StationAiIDCard
   - type: CartridgeLoader
