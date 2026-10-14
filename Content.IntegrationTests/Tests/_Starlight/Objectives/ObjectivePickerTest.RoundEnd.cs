@@ -36,10 +36,8 @@ public sealed partial class ObjectivePickerTest
 
             // Active-rule collection and picker fallback must not duplicate the same mind.
             SEntMan.AddComponent<Content.Shared.GameTicking.Components.ActiveGameRuleComponent>(rule);
-#pragma warning disable RA0002 // Seed the selection system's round-end identity record in this fixture.
-            SEntMan.GetComponent<AntagSelectionComponent>(rule).AssignedMinds.Add("Thief",
-                new() { (mind, "Picker participant") });
-#pragma warning restore RA0002
+            var assignedMinds = SEntMan.GetComponent<AntagSelectionComponent>(rule).AssignedMinds;
+            assignedMinds.Add("Thief", new() { (mind, "Picker participant") });
             var activeEnd = new RoundEndTextAppendEvent();
             SEntMan.EventBus.RaiseEvent(EventSource.Local, activeEnd);
             Assert.That(activeEnd.Text.Split("Picker participant"), Has.Length.EqualTo(2));
