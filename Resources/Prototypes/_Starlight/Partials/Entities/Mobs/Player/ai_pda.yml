@@ -42,22 +42,23 @@
       enum.PdaUiKey.Key:
         type: PdaBoundUserInterface
 
-# The core adds only its PDA action; keeping the data off this temporary bundle preserves it through transfer.
+# The AI core adds the PDA action, but its ID and cartridges stay on the persistent brain entity.
 - type: !PartialOnly entity
   id: AiHeld
   save: false
   components:
-  # AiHeld replaces the brain's UserInterface component while the core bundle is applied, so redeclare its PDA interface.
+  # AiHeld replacement removes the brain's interface component, so restore the PDA interface on the core-held entity.
   - type: UserInterface
     interfaces:
       enum.PdaUiKey.Key:
         type: PdaBoundUserInterface
+  # The action belongs to the core-held entity; shared Station AI checks prevent it being used after a mind transfer.
   - type: IntrinsicUI
     uis:
       enum.PdaUiKey.Key:
         toggleAction: ActionStationAiOpenPDA
 
-# Re-expose the brain's persistent PDA UI while the AI is uploaded to an intellicard.
+# Intentionally no PDA interface or action here: the brain retains its data in an intellicard, but cannot access it.
 - type: !PartialOnly entity
   id: AiHeldIntellicard
   # This bundle is attached dynamically during card upload and is not independent saved entity state.
