@@ -1,7 +1,9 @@
 using Content.Server.Administration.Logs;
 using Content.Shared._Starlight.Atmos.Components;
 using Content.Shared.Database;
+using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceLinking.Events;
+using Content.Shared.DeviceNetwork;
 using Content.Shared.IgnitionSource;
 using Content.Shared.Interaction;
 using Content.Shared.Power;
@@ -26,6 +28,11 @@ public sealed partial class IgniterSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnSignalReceived(Entity<IgniterComponent> ent, ref SignalReceivedEvent args)
     {
+        var state = SignalState.Momentary;
+        args.Data?.TryGetValue(DeviceNetworkConstants.LogicState, out state);
+        if (state is not (SignalState.High or SignalState.Momentary))
+            return;
+
         if (args.Port == ent.Comp.TogglePort)
             SetEnabled(ent.AsNullable(), !ent.Comp.Enabled, args.Trigger);
         else if (args.Port == ent.Comp.OnPort)
