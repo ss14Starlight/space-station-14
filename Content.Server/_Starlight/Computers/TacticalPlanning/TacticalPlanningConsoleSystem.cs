@@ -37,8 +37,6 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
     /// <summary>Registers the console's bounded UI operations.</summary>
     public override void Initialize()
     {
-        SubscribeLocalEvent<TacticalPlanningConsoleComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<TacticalPlanningConsoleComponent, GotEmaggedEvent>(OnEmagged);
         Subs.BuiEvents<TacticalPlanningConsoleComponent>(TacticalPlanningConsoleUiKey.Key, subs =>
         {
             subs.Event<BoundUIOpenedEvent>(OnOpened);
@@ -51,6 +49,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
     }
 
     /// <summary>Unlocks planning symbols only on the Syndicate variant, without changing ordinary consoles.</summary>
+    [SubscribeLocalEvent]
     private void OnEmagged(Entity<TacticalPlanningConsoleComponent> ent, ref GotEmaggedEvent args)
     {
         if (!HasComp<NukeopsStationMapComponent>(ent)
@@ -63,6 +62,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         SendToViewers(ent.Owner, ent.Comp, new TacticalPlanIconsUnlockedMessage());
     }
 
+    [SubscribeLocalEvent]
     private void OnMapInit(Entity<TacticalPlanningConsoleComponent> ent, ref MapInitEvent args)
         => UpdateTarget(ent);
 
