@@ -21,6 +21,11 @@
   equipment:
     gloves: ClothingHandsGlovesColorBlack
 
+- type: loadout
+  id: MagistratePaperworkGloves
+  equipment:
+    gloves: ClothingHandsGlovesHop
+
 #Outerwear
 - type: loadout
   id: MagistrateRobes
@@ -37,6 +42,11 @@
   id: MagistrateHeadPwig
   equipment:
     head: ClothingHeadHatPwig
+
+- type: loadout
+  id: MagistrateHeadBeret
+  equipment:
+    head: ClothingHeadHatBeretMagistrate
 
 #Eyewear
 - type: loadout

@@ -9,13 +9,9 @@
     sprite: Mobs/Species/Human/organs.rsi
   - type: StaticPrice
     price: 50
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganFoodMeat
   - type: FlavorProfile
     flavors:
       - chicken # everything kinda tastes like chicken
@@ -24,6 +20,7 @@
   - type: Tag
     tags:
       - Meat
+
 
 - type: entity
   id: OrganAnimalLungs
@@ -40,19 +37,14 @@
   - type: Metabolizer
     metabolizerTypes: [ Animal ]
     stages: [ Respiration ]
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      Lung:
-        maxVol: 100.0
-        canReact: false
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganFoodMeat
+    - SolutionOrganLung
   - type: Item
     size: Small
     heldPrefix: lungs
+
 
 - type: entity
   id: OrganAnimalStomach
@@ -63,15 +55,10 @@
   - type: Sprite
     state: stomach
   - type: Organ
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 40
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach40
   - type: Stomach
   - type: Metabolizer
     maxReagents: 3
@@ -81,23 +68,20 @@
     size: Small
     heldPrefix: stomach
 
+
 - type: entity
   id: OrganMouseStomach
   parent: OrganAnimalStomach
   categories: [ HideSpawnMenu ]
   components:
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 30
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach30
   - type: Item
     size: Small
     heldPrefix: stomach
+
 
 - type: entity
   id: OrganAnimalLiver

@@ -15,6 +15,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
 using Content.Shared._Starlight.Medical.Surgery.Components;
+using Content.Shared.Tag;
 
 namespace Content.Shared._Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -28,6 +29,8 @@ public abstract partial class SharedSurgerySystem
     {
         "CyberHandItem",
     };
+
+    private static readonly ProtoId<TagPrototype> _surgeryCompatibleTag = "SurgeryCompatibleArmor";
 
     private void InitializeSteps()
     {
@@ -61,7 +64,7 @@ public abstract partial class SharedSurgerySystem
         if (!_random.Prob(args.SuccessRate))
         {
             if (_net.IsClient) return;
-            _popup.PopupEntity("Because of a careless tool, your hand shook. You need to start this step all over again!", args.User, PopupType.SmallCaution);
+            _popup.PopupEntity(Loc.GetString("surgery-hand-shook"), args.User, PopupType.SmallCaution);
             return;
         }
 
@@ -89,6 +92,7 @@ public abstract partial class SharedSurgerySystem
         var progress = Comp<SurgeryProgressComponent>(args.Part);
         progress.CompletedSteps.Clear();
         progress.CompletedSurgeries.Clear();
+        progress.StartedSurgeries.Clear();
     }
     private void OnStepComplete(Entity<SurgeryStepComponent> ent, ref SurgeryStepCompleteEvent args)
     {
@@ -121,7 +125,7 @@ public abstract partial class SharedSurgerySystem
             var tool = args.Tools.FirstOrDefault(x => HasComp(x, reg.Component.GetType()));
             if (tool == default) return;
 
-            var specificToolComp = EntityManager.GetComponents(tool)
+            var specificToolComp = AllComps(tool)
                 .OfType<ISurgeryToolComponent>();
 
             SoundSpecifier? endSound = null;
@@ -201,14 +205,14 @@ public abstract partial class SharedSurgerySystem
             while (enumerator.MoveNext(out var con))
             {
                 total++;
-                if (con.ContainedEntity != null && !_tag.HasTag(con.ContainedEntity.Value, "SurgeryCompatibleArmor"))
+                if (con.ContainedEntity != null && !_tag.HasTag(con.ContainedEntity.Value, _surgeryCompatibleTag))
                     items++;
             }
 
             if (items > 0)
             {
                 args.Invalid = StepInvalidReason.Armor;
-                args.Popup = $"You need to take off armor from patient to perform this step!";
+                args.Popup = Loc.GetString("surgery-popup-remove-armor");
                 return;
             }
         }
@@ -224,7 +228,7 @@ public abstract partial class SharedSurgerySystem
                 args.Invalid = StepInvalidReason.MissingTool;
 
                 if (reg.Component is ISurgeryToolComponent toolComp)
-                    args.Popup = $"You need {toolComp.ToolName} to perform this step!";
+                    args.Popup = Loc.GetString("surgery-popup-need-tool", ("tool", Loc.GetString(toolComp.ToolName)));
 
                 return;
             }
@@ -233,7 +237,7 @@ public abstract partial class SharedSurgerySystem
                 args.Invalid = StepInvalidReason.DisabledTool;
 
                 if (reg.Component is ISurgeryToolComponent toolComp)
-                    args.Popup = $"You need enable {toolComp.ToolName} to perform this step!";
+                    args.Popup = Loc.GetString("surgery-popup-enable-tool", ("tool", Loc.GetString(toolComp.ToolName)));
 
                 return;
             }
@@ -246,7 +250,7 @@ public abstract partial class SharedSurgerySystem
             {
                 args.Invalid = StepInvalidReason.NotEnoughReagent;
                 if (reg.Component is ISurgeryToolComponent toolComp)
-                    args.Popup = $"You need at least {ent.Comp.ReagentQuantity}u of {ent.Comp.ReagentId} in {toolComp.ToolName} to perform this step!";
+                    args.Popup = Loc.GetString("surgery-popup-need-reagent", ("quantity", ent.Comp.ReagentQuantity), ("reagent", ProtoMan.Index(ent.Comp.ReagentId.Value).LocalizedName), ("tool", Loc.GetString(toolComp.ToolName)));
                 return;
             }
 
@@ -263,7 +267,7 @@ public abstract partial class SharedSurgerySystem
             return;
 
         args.Invalid = StepInvalidReason.MissingLimb;
-        args.Popup = $"You can't attach {Name(itemId)} as a limb!";
+        args.Popup = Loc.GetString("surgery-popup-cant-attach", ("item", Name(itemId)));
     }
 
     private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)
@@ -289,7 +293,7 @@ public abstract partial class SharedSurgerySystem
         if (_net.IsServer && TryComp(step, out MetaDataComponent? meta))
         {
             var surgeonName = MetaData(user).EntityName;
-            _popup.PopupEntity($"{surgeonName.ToLower()} starts {meta.EntityName.ToLower()}", part, PopupType.LargeCaution);
+            _popup.PopupEntity(Loc.GetString("surgery-step-start-popup", ("surgeon", surgeonName), ("step", meta.EntityName.ToLower())), part, PopupType.LargeCaution);
         }
 
         var duration = stepComp.Duration;
@@ -301,7 +305,7 @@ public abstract partial class SharedSurgerySystem
                 var toolSpeed = 1f;
                 var toolSuccessRate = 1f;
                 SoundSpecifier? startSound = null;
-                var specificToolComp = EntityManager.GetComponents(tool)
+                var specificToolComp = AllComps(tool)
                     .OfType<ISurgeryToolComponent>();
 
                 foreach(var usedTool in specificToolComp)

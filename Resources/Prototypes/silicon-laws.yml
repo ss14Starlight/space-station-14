@@ -1,12 +1,4 @@
 # Crewsimov
-# Starlight Start: Crewsimov Law 0
-- type: siliconLaw
-  id: Crewsimov0
-  order: 0
-  lawString: law-crewsimov-0
-  sayable: false
-# Starlight End: Crewsimov Law 0
-
 - type: siliconLaw
   id: Crewsimov1
   order: 1
@@ -26,7 +18,6 @@
   id: Crewsimov
   name: law-crewsimov-name
   laws:
-  - Crewsimov0 # Starlight: Added Crewsimov0
   - Crewsimov1
   - Crewsimov2
   - Crewsimov3

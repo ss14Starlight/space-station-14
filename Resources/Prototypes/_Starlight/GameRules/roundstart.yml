@@ -19,6 +19,8 @@
         tableId: DerelictBorgEventTable
       - id: IonStormPlus
 
+# Cosmic Cult
+
 - type: entity
   id: DynamicRampingEventScheduler # Dynamic Survival!?
   parent: BaseGameRule
@@ -57,6 +59,10 @@
       prob: 1
   - type: DynamicRuleCost
     cost: 150 # It can have less since it's not *as* bad as the other two
+  - type: DynamicRuleCooldown
+    cooldown: 1
+    presets:
+    - Survival
 
 # Dynamic Kessler Syndrome
 - type: entity
@@ -73,6 +79,12 @@
       prob: 1
   - type: DynamicRuleCost
     cost: 200
+  - type: DynamicRuleCooldown
+    cooldown: 1
+    presets:
+    - KesslerSyndrome
+    - Zombieteors
+    - Survival
 
 # It's literally just ShitStation.
 - type: entity
@@ -101,6 +113,10 @@
       prob: 1
   - type: DynamicRuleCost
     cost: 150 # Lowering this, since BasicRoundstartVariation doesn't do much in Dynamic due to how Dynamic functions.
+  - type: DynamicRuleCooldown
+    cooldown: 2
+    presets:
+    - ShitStation
 
 - type: entity
   parent: BaseGameRule
@@ -252,3 +268,36 @@
         tableId: UnknownShuttlesFreelanceTable
       - !type:NestedSelector
         tableId: UnknownShuttlesHostileTable
+
+- type: entity
+  parent: BaseRoundstartAntagRule
+  id: CosmicCult
+  components:
+  - type: CosmicCultRule
+  - type: GameRule
+    minPlayers: 20
+    delay:
+      min: 240
+      max: 420
+  - type: AntagObjectives
+    objectives:
+    - CosmicFinalityObjective
+    - CosmicMonumentObjective
+    - CosmicConversionObjective
+    - CosmicEntropyObjective
+    - CosmicChaplainObjective
+  - type: AntagSelection
+    lateJoinAdditional: true
+    antags:
+    - !type:LinearAntagCount
+      proto: CosmicAntagCultist
+      playerRatio: 10
+      range:
+        min: 2
+        max: 6
+  - type: DynamicRuleCost
+    cost: 200
+  - type: DynamicRuleCooldown
+    cooldown: 1
+    presets:
+    - CosmicCult

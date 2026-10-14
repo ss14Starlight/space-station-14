@@ -46,6 +46,7 @@ public abstract partial class SharedToolSystem
             return;
 
         SolutionContainerSystem.RemoveReagent(solutionComp.Value, entity.Comp.FuelReagent, entity.Comp.FuelLitCost);
+        entity.Comp.NextUpdate = _timing.CurTime + entity.Comp.WelderUpdateTimer; // Starlight, hmm, maybe don't consume infinite fuel a second
         AdminLogger.Add(LogType.InteractActivate, LogImpact.Low,
             $"{ToPrettyString(user):user} toggled {ToPrettyString(entity.Owner):welder} on");
 
@@ -61,9 +62,9 @@ public abstract partial class SharedToolSystem
         Dirty(entity, entity.Comp);
     }
 
-    public (FixedPoint2 fuel, FixedPoint2 capacity) GetWelderFuelAndCapacity(EntityUid uid, WelderComponent? welder = null, SolutionContainerManagerComponent? solutionContainer = null)
+    public (FixedPoint2 fuel, FixedPoint2 capacity) GetWelderFuelAndCapacity(EntityUid uid, WelderComponent? welder = null, SolutionManagerComponent? solutionContainer = null)
     {
-        if (!Resolve(uid, ref welder, ref solutionContainer))
+        if (!Resolve(uid, ref welder))
             return default;
 
         if (!SolutionContainerSystem.TryGetSolution(
@@ -125,7 +126,7 @@ public abstract partial class SharedToolSystem
         if (TryComp(target, out ReagentTankComponent? tank)
             && tank.TankType == ReagentTankType.Fuel
             && SolutionContainerSystem.TryGetDrainableSolution(target, out var targetSoln, out var targetSolution)
-            && SolutionContainerSystem.TryGetSolution(entity.Owner, entity.Comp.FuelSolutionName, out var solutionComp, out var welderSolution))
+            && SolutionContainerSystem.TryGetSolution(entity.Owner, entity.Comp.FuelSolutionName, out var solution, out var welderSolution))
         {
             // Starlight Start
             if (TryComp<RefillReagentFilterComponent>(entity.Owner, out var filter))
@@ -142,7 +143,7 @@ public abstract partial class SharedToolSystem
             if (trans > 0)
             {
                 var drained = SolutionContainerSystem.Drain(target, targetSoln.Value, trans);
-                SolutionContainerSystem.TryAddSolution(solutionComp.Value, drained);
+                SolutionContainerSystem.TryAddSolution(solution.Value, drained);
                 _audioSystem.PlayPredicted(entity.Comp.WelderRefill, entity, user: args.User);
                 _popup.PopupClient(Loc.GetString("welder-component-after-interact-refueled-message"), entity, args.User);
             }
@@ -234,20 +235,23 @@ public abstract partial class SharedToolSystem
 
     private void UpdateWelders()
     {
-        var query = EntityQueryEnumerator<WelderComponent, SolutionContainerManagerComponent>();
+        // TODO: Same as the other EntityQueryEnumerators...
+        // TODO: ActiveWelderComponent
+        var query = EntityQueryEnumerator<WelderComponent>();
         var curTime = _timing.CurTime;
-        while (query.MoveNext(out var uid, out var welder, out var solutionContainer))
+        while (query.MoveNext(out var uid, out var welder))
         {
             if (curTime < welder.NextUpdate)
                 continue;
 
-            welder.NextUpdate += welder.WelderUpdateTimer;
+            welder.NextUpdate = curTime + welder.WelderUpdateTimer; // Starlight, don't consume infinite fuel dude
             Dirty(uid, welder);
 
             if (!welder.Enabled)
                 continue;
 
-            if (!SolutionContainerSystem.TryGetSolution((uid, solutionContainer), welder.FuelSolutionName, out var solutionComp, out var solution))
+            // TODO: Relations
+            if (!SolutionContainerSystem.TryGetSolution(uid, welder.FuelSolutionName, out var solutionComp, out var solution))
                 continue;
 
             SolutionContainerSystem.RemoveReagent(solutionComp.Value, welder.FuelReagent, welder.FuelConsumption * welder.WelderUpdateTimer.TotalSeconds);

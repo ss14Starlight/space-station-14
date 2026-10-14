@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Player;
@@ -16,6 +17,9 @@ public abstract partial class SharedBorgSystem
     /// </summary>
     public bool CanActivate(Entity<BorgChassisComponent> chassis)
     {
+        if (HasComp<BorgLockdownComponent>(chassis)) // Starlight
+            return false; // Starlight
+
         if (!_powerCell.HasDrawCharge(chassis.Owner))
             return false;
 

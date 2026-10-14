@@ -11,3 +11,6 @@ trait-ethnicity-elf-dark-desc = As the generations passed, some of those lost in
 
 trait-ethnicity-elf-cave-name = Detar
 trait-ethnicity-elf-cave-desc = While the other kindreds of aielith squabbled over the event horizon of the Null Scar, your people settled on supposedly uninhabitable Dark Worlds, those orbiting weak suns or none at all, by delving deep into the rock and living on geothermal heat. There your people waited, adapting to the darkness, for your chance to grab ultimate power. Your native language, Felyaic, is very similar to Darktongue, but has its own unique qualities that only detarii and seirythii understand.
+
+trait-ethnicity-reptilian-drakari-name = Drakari
+trait-ethnicity-reptilian-drakari-desc = You descend from ancient reptilian clans whose traditions claim an ancestry stretching back to dragons themselves. Whether those stories are history or myth has been argued for centuries, but their influence upon your people is undeniable. Drakari culture values kinship, strength, hospitality, and the preservation of old stories, with many families maintaining traditions that predate humanity's arrival in the stars. Your native language is an archaic dialect of Sinta'Unathi (in other words, Draconic), though most Drakari speak Galactic Common fluently.

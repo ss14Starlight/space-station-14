@@ -44,6 +44,9 @@
         Slash: 0.9
         Piercing: 0.8
         Cold: 0.85
+  - type: Tag
+    tags:
+    - MonkeyWearable
 
 - type: entity
   parent: [ ClothingOuterBase, ClothingOuterBaseWinter, BaseNanoTrasenContraband, AllowSuitStorageClothingGasTanks ]
@@ -84,6 +87,9 @@
         Slash: 0.9
         Piercing: 0.8
         Cold: 0.85
+  - type: Tag
+    tags:
+    - MonkeyWearable
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatNtrep, BaseNanoTrasenContraband ]
@@ -107,6 +113,9 @@
       coefficients:
         Cold: 0.9
         Caustic: 0.75
+  - type: Tag
+    tags:
+    - MonkeyWearable
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorChemist]
@@ -228,6 +237,9 @@
     priceMultiplier: 0
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.50
+  - type: Tag
+    tags:
+    - MonkeyWearable
 # Fashion-O-Mat END
 
 
@@ -525,7 +537,7 @@
   - type: Item
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, ClothingOuterBaseWinter, BaseCommandContraband, AllowSuitStorageClothingGasTanks ]
+  parent: [ ClothingOuterStorageBase, ClothingOuterBaseWinter, BaseNanoTrasenContraband, AllowSuitStorageClothingGasTanks ]
   id: ClothingOuterCoatNCT
   name: nt career trainer's jacket
   description: A sharp black coat with beige trim around the cuffs and collar, offering a mix of professionalism and approachability.
@@ -598,3 +610,114 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/chef-centcomm.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/chef-centcomm.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterRockerHeartBomber
+  name: rocker's heart bomber
+  description: Been good to know ya...
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/rockersheartbomber.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/rockersheartbomber.rsi
+      clothingVisuals:
+        outerClothing:
+          - state: equipped-OUTERCLOTHING
+          - state: equipped-OUTERCLOTHING-unshaded
+            shader: unshaded
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterJohnnySamuraiJacket
+  name: johnny's samurai jacket
+  description: Never fade away...
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/johnnysamurai.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/johnnysamurai.rsi
+      clothingVisuals:
+        outerClothing:
+          - state: equipped-OUTERCLOTHING
+          - state: equipped-OUTERCLOTHING-unshaded
+            shader: unshaded
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterEdgerunnerJacket
+  name: edgerunner's jacket
+  description: I'm dead, just like disco
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/edgerunners.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/edgerunners.rsi
+      clothingVisuals:
+        outerClothing:
+          - state: equipped-OUTERCLOTHING
+          - state: equipped-OUTERCLOTHING-unshaded
+            shader: unshaded
+
+- type: entity
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
+  id: ClothingOuterCoatLeatherJacket
+  name: leather jacket # Alternative Clothing Catalog
+  description: A plain leather jacket, pairs well with a lit cigarette.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket.rsi
+
+- type: entity
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
+  id: ClothingOuterCoatLeatherJacketFiery
+  name: fiery leather jacket # Alternative Clothing Catalog
+  description: The cooler leather jacket, for the more fiery personalities.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_firey.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_firey.rsi
+
+- type: entity
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
+  id: ClothingOuterCoatLeatherJacketHellfire
+  name: hellfire leather jacket # Alternative Clothing Catalog
+  description: The COOLEST leather jacket, for the biggest of personalities.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_hellfire.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_hellfire.rsi
+
+- type: entity
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
+  id: ClothingOuterCoatLeatherEldritch
+  name: eldritch leather jacket # Alternative Clothing Catalog
+  description: You get the feeling it's watching you.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_eldritch.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/leather_jacket_eldritch.rsi
+      clothingVisuals:
+        outerClothing:
+          - state: equipped-OUTERCLOTHING
+          - state: equipped-OUTERCLOTHING-unshaded
+            shader: unshaded

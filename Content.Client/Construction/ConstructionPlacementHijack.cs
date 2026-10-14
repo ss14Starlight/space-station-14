@@ -8,7 +8,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Construction
 {
-    public sealed class ConstructionPlacementHijack : PlacementHijack
+    public sealed partial class ConstructionPlacementHijack : PlacementHijack
     {
         [Dependency] private IEntityManager _entityManager = default!; // Starlight
         private readonly SpriteSystem _spriteSystem; // Starlight

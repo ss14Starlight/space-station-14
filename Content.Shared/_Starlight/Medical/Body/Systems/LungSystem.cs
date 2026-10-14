@@ -18,7 +18,7 @@ public sealed partial class LungSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<LungComponent, ComponentInit>(OnComponentInit);
+        SubscribeLocalEvent<LungComponent, MapInitEvent>(OnMapInit, after: [typeof(SharedSolutionContainerSystem)]);
         SubscribeLocalEvent<BreathToolComponent, GotEquippedEvent>(OnGotEquipped);
         SubscribeLocalEvent<BreathToolComponent, GotUnequippedEvent>(OnGotUnequipped);
     }
@@ -42,13 +42,12 @@ public sealed partial class LungSystem : EntitySystem
         }
     }
 
-    private void OnComponentInit(Entity<LungComponent> entity, ref ComponentInit args)
+    private void OnMapInit(Entity<LungComponent> entity, ref MapInitEvent args)
     {
-        if (_solutionContainerSystem.EnsureSolution(entity.Owner, entity.Comp.SolutionName, out var solution))
-        {
-            solution.MaxVolume = 100.0f;
-            solution.CanReact = false; // No dexalin lungs
-        }
+        _solutionContainerSystem.EnsureSolution(entity.Owner, entity.Comp.SolutionName, out var solution);
+
+        solution.Comp.Solution.MaxVolume = 100.0f;
+        solution.Comp.Solution.CanReact = false; // No dexalin lungs
     }
 
     // TODO: JUST METABOLIZE GASES DIRECTLY DON'T CONVERT TO REAGENTS!!! (Needs Metabolism refactor :B)

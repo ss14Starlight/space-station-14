@@ -1,0 +1,60 @@
+- type: !PartialOnly reagent
+  id: NitrousOxide
+  metabolisms:
+    Respiration:
+      effects:
+      - !type:ModifySleepiness
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ]
+          inverted: true
+        - !type:ReagentCondition
+          reagent: NitrousOxide
+          min: 1
+          max: 2
+        effectProto: StatusEffectSleepiness
+        maximumSleepiness: 60s
+        time: 4 # Scales to 6
+      - !type:ModifySleepiness
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ]
+          inverted: true
+        - !type:ReagentCondition
+          reagent: NitrousOxide
+          min: 2
+        effectProto: StatusEffectSleepiness
+        maximumSleepiness: 60s
+        time: 5 # Always 7.5
+
+- type: !PartialOnly reagent
+  id: ZXA
+  metabolisms:
+    Respiration:
+      effects:
+      - !type:ModifySleepiness
+        conditions:
+        - !type:ReagentCondition
+          reagent: ZXA
+          min: 0.5
+          max: 1
+        effectProto: StatusEffectSleepiness
+        maximumSleepiness: 120s
+        time: 6.5 # Scales to 6.5
+      - !type:ModifySleepiness
+        conditions:
+        - !type:ReagentCondition
+          reagent: ZXA
+          min: 1
+          max: 1.5
+        effectProto: StatusEffectSleepiness
+        maximumSleepiness: 120s
+        time: 6 # Scales to 9
+      - !type:ModifySleepiness
+        conditions:
+        - !type:ReagentCondition
+          reagent: ZXA
+          min: 1.5
+        effectProto: StatusEffectSleepiness
+        maximumSleepiness: 120s
+        time: 6.67 # Always 10

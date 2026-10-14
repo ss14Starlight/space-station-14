@@ -1,9 +1,6 @@
 ﻿using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Mobs;
 

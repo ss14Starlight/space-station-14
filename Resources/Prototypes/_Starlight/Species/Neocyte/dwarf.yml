@@ -8,14 +8,12 @@
   dollPrototype: AppearanceNeoDwarf
   defaultSkinTone: "#666666"
   skinColoration: Hues
+  displacement: Dwarfism
   customName: true
   roundstartCyberwareCapacity: 6
   subspeciesOf: Neocyte
   subspeciesName: subspecies-name-neodwarf
   loadout: NeocyteLoadout
-  minWidth: 1.25
-  defaultWidth: 1.25
-  maxWidth: 1.5
   minHeight: 0.8
   defaultHeight: 0.8
   maxHeight: 0.85

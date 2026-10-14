@@ -1,122 +1,101 @@
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: BaseSheet
   id: SheetGlassBase
   name: glass
   description: A sheet of glass, used often on the station in various applications.
   components:
-    #Starlight start
-    - type: UserInterface
-      interfaces:
-        enum.StackCustomSplitUiKey.Key:
-          type: StackCustomSplitBoundUserInterface
-        enum.QuickConstructionUiKey.Key:
-          type: QuickConstructionBoundUserInterface
-    # Starlight end
-    - type: Sprite
-      sprite: Objects/Materials/Sheets/glass.rsi
-    - type: Item
-      sprite: Objects/Materials/Sheets/glass.rsi
-      size: Normal
-    - type: StaticPrice
-      price: 0
-    - type: Tag
-      tags:
-        - Sheet
-        - TiderAnvilParts #SL
-        - ConstructionMaterial
-    - type: Material
-    - type: Damageable
-      damageContainer: Inorganic
-      damageModifierSet: Glass
-    - type: Appearance
-    - type: Destructible
-      thresholds:
-        - trigger: !type:DamageTrigger
-            damage: 100
-          behaviors:
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
-        - trigger: !type:DamageTrigger
-            damage: 50
-          behaviors:
-            - !type:PlaySoundBehavior
-              sound:
-                collection: GlassBreak
-                params:
-                  volume: -4
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                ShardGlass:
-                  min: 1
-                  max: 1
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
-    - type: SolutionContainerManager
-      solutions:
-        glass:
-          canReact: false
+  - type: Tag # Starlight start
+    tags:
+    - Sheet
+    - TiderAnvilParts
+    - ConstructionMaterial # Starlight end
+  - type: Sprite
+    sprite: Objects/Materials/Sheets/glass.rsi
+  - type: Item
+    sprite: Objects/Materials/Sheets/glass.rsi
+  - type: Damageable
+    damageModifierSet: Glass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   parent: [SheetGlassBase, BaseQuickConstructionMaterial] # DEN add quick construction parent
   id: SheetGlass
   suffix: Full
   components:
-    - type: PhysicalComposition
-      materialComposition:
-        Glass: 100
-    - type: Stack
-      stackType: Glass
-      baseLayer: base
-      layerStates:
-        - glass
-        - glass_2
-        - glass_3
-    - type: Sprite
-      state: glass_3
-      layers:
-        - state: glass_3
-          map: ["base"]
-    - type: Item
-      heldPrefix: glass
-    - type: FloorTile
-      outputs:
-        - FloorGlass
-    - type: Construction
-      graph: Glass
-      node: SheetGlass
-    - type: Extractable
-      grindableSolutionName: glass
-    - type: SolutionContainerManager
-      solutions:
-        glass:
-          reagents:
-            - ReagentId: Silicon
-              Quantity: 10
-    - type: QuickConstructable # DEN quick construction
-      category: Glass
-#FH - Start
-    - type: ConditionalHealing
-      healingDefinitions:
-        - allowedTags: [ IPC, Neocyte, NeoArachnid, NeoAvali, NeoCyclorite, NeoDwarf, NeoDiona, NeoFelionoid, NeoHuman, NeoMoth, NeoReptilian, NeoResomi, NeoSlimePerson, NeoThaven, NeoVox, NeoVulpkanin, NeoKin, NeoElf, NeoLagomorph ] # Starlight
-          healing:
-            damageContainers:
-              - IPC # Starlight
-              - Hybrid # Starlight
-            damage: {}
-            delay: 2
-            adjustEyeDamage: -1 # 1 glass = 1 weld
-            healingBeginSound:
-              path: "/Audio/Items/Medical/ointment_begin.ogg"
-              params:
-                volume: 1.0
-                variation: 0.125
-            healingEndSound:
-              path: "/Audio/Items/Medical/ointment_end.ogg"
-              params:
-                volume: 1.0
-                variation: 0.125
-#FH - End
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 100
+  - type: Stack
+    stackType: Glass
+    baseLayer: base
+    layerStates:
+    - glass
+    - glass_2
+    - glass_3
+  - type: Sprite
+    state: glass_3
+    layers:
+    - state: glass_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: glass
+  - type: FloorTile
+    outputs:
+    - FloorGlass
+  - type: Construction
+    graph: Glass
+    node: SheetGlass
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Silicon
+        Quantity: 10
+  #FH - Start
+  - type: ConditionalHealing
+    healingDefinitions:
+      - allowedTags: [ IPC, Neocyte, NeoArachnid, NeoAvali, NeoCyclorite, NeoDwarf, NeoDiona, NeoFelionoid, NeoHuman, NeoMoth, NeoReptilian, NeoResomi, NeoSlimePerson, NeoThaven, NeoVox, NeoVulpkanin, NeoKin, NeoElf, NeoLagomorph ] # Starlight
+        healing:
+          damageContainers:
+            - IPC # Starlight
+            - Hybrid # Starlight
+          damage: {}
+          delay: 2
+          adjustEyeDamage: -1 # 1 glass = 1 weld
+          healingBeginSound:
+            path: "/Audio/Items/Medical/ointment_begin.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
+          healingEndSound:
+            path: "/Audio/Items/Medical/ointment_end.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
+  #FH - End
 
 - type: entity
   parent: SheetGlass
@@ -147,54 +126,63 @@
   description: A reinforced sheet of glass.
   suffix: Full
   components:
-    - type: PhysicalComposition
-      materialComposition:
-        ReinforcedGlass: 100
-    - type: Stack
-      stackType: ReinforcedGlass
-      baseLayer: base
-      layerStates:
-        - rglass
-        - rglass_2
-        - rglass_3
-    - type: Sprite
-      state: rglass_3
-      layers:
-        - state: rglass_3
-          map: ["base"]
-    - type: Item
-      heldPrefix: rglass
-    - type: FloorTile # starlight
-      outputs:
-        - FloorRGlass
-    - type: Construction
-      graph: Glass
-      node: SheetRGlass
-    - type: Destructible
-      thresholds:
-        - trigger: !type:DamageTrigger
-            damage: 100
-          behaviors:
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
-        - trigger: !type:DamageTrigger
-            damage: 50
-          behaviors:
-            - !type:PlaySoundBehavior
-              sound:
-                collection: GlassBreak
-                params:
-                  volume: -4
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                ShardGlassReinforced:
-                  min: 1
-                  max: 1
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
-    - type: QuickConstructable # DEN quick construction
-      category: ReinforcedGlass
-
+  - type: PhysicalComposition
+    materialComposition:
+      ReinforcedGlass: 100
+  - type: Stack
+    stackType: ReinforcedGlass
+    baseLayer: base
+    layerStates:
+    - rglass
+    - rglass_2
+    - rglass_3
+  - type: Sprite
+    state: rglass_3
+    layers:
+    - state: rglass_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: rglass
+  - type: FloorTile
+    outputs:
+    - FloorRGlass
+  - type: Construction
+    graph: Glass
+    node: SheetRGlass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Solution
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: Silicon
+        Quantity: 10
+      - ReagentId: Iron
+        Quantity: 4.5
+      - ReagentId: Carbon
+        Quantity: 0.5
 
 - type: entity
   parent: SheetRGlass
@@ -202,24 +190,11 @@
   name: reinforced glass
   suffix: Single
   components:
-    - type: Sprite
-      state: rglass
-    - type: Stack
-      stackType: ReinforcedGlass
-      count: 1
-    - type: Extractable
-      grindableSolutionName: rglass
-    - type: SolutionContainerManager
-      solutions:
-        rglass:
-          reagents:
-            - ReagentId: Silicon
-              Quantity: 10
-            - ReagentId: Iron
-              Quantity: 4.5
-            - ReagentId: Carbon
-              Quantity: 0.5
-          canReact: false
+  - type: Sprite
+    state: rglass
+  - type: Stack
+    stackType: ReinforcedGlass
+    count: 1
 
 - type: entity
   parent: [SheetGlassBase, BaseQuickConstructionMaterial] # DEN add quick construction parent
@@ -228,53 +203,58 @@
   description: A sheet of translucent plasma.
   suffix: Full
   components:
-    - type: PhysicalComposition
-      materialComposition:
-        PlasmaGlass: 100
-    - type: Stack
-      stackType: PlasmaGlass
-      baseLayer: base
-      layerStates:
-        - pglass
-        - pglass_2
-        - pglass_3
-    - type: Sprite
-      state: pglass_3
-      layers:
-        - state: pglass_3
-          map: ["base"]
-    - type: Item
-      heldPrefix: pglass
-    - type: FloorTile # starlight
-      outputs:
-        - FloorGlassPlasma
-    - type: Construction
-      graph: Glass
-      node: SheetPGlass
-    - type: Destructible
-      thresholds:
-        - trigger: !type:DamageTrigger
-            damage: 100
-          behaviors:
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
-        - trigger: !type:DamageTrigger
-            damage: 50
-          behaviors:
-            - !type:PlaySoundBehavior
-              sound:
-                collection: GlassBreak
-                params:
-                  volume: -4
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                ShardGlassPlasma:
-                  min: 1
-                  max: 1
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
-    - type: QuickConstructable # DEN quick construction
-      category: PlasmaGlass
+  - type: PhysicalComposition
+    materialComposition:
+      PlasmaGlass: 100
+  - type: Stack
+    stackType: PlasmaGlass
+    baseLayer: base
+    layerStates:
+    - pglass
+    - pglass_2
+    - pglass_3
+  - type: Sprite
+    state: pglass_3
+    layers:
+    - state: pglass_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: pglass
+  - type: Construction
+    graph: Glass
+    node: SheetPGlass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassPlasma:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Solution
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Silicon
+        Quantity: 10
+      - ReagentId: Plasma
+        Quantity: 10
 
 - type: entity
   parent: SheetPGlass
@@ -282,22 +262,11 @@
   name: plasma glass
   suffix: Single
   components:
-    - type: Sprite
-      state: pglass
-    - type: Stack
-      stackType: PlasmaGlass
-      count: 1
-    - type: Extractable
-      grindableSolutionName: pglass
-    - type: SolutionContainerManager
-      solutions:
-        pglass:
-          reagents:
-            - ReagentId: Silicon
-              Quantity: 10
-            - ReagentId: Plasma
-              Quantity: 10
-          canReact: false
+  - type: Sprite
+    state: pglass
+  - type: Stack
+    stackType: PlasmaGlass
+    count: 1
 
 - type: entity
   parent: [SheetPGlass, BaseQuickConstructionMaterial] # DEN add quick construction parent
@@ -306,46 +275,38 @@
   description: A reinforced sheet of translucent plasma.
   suffix: Full
   components:
-    - type: PhysicalComposition
-      materialComposition:
-        ReinforcedPlasmaGlass: 100
-    - type: Stack
-      stackType: ReinforcedPlasmaGlass
-      baseLayer: base
-      layerStates:
-        - rpglass
-        - rpglass_2
-        - rpglass_3
-    - type: Sprite
-      state: rpglass_3
-      layers:
-        - state: rpglass_3
-          map: ["base"]
-    - type: Item
-      heldPrefix: rpglass
-    - type: FloorTile # starlight
-      outputs:
-        - FloorGlassPlasmaReinforced
-    - type: Construction
-      graph: Glass
-      node: SheetRPGlass
-    - type: Extractable
-      grindableSolutionName: rpglass
-    - type: SolutionContainerManager
-      solutions:
-        rpglass:
-          reagents:
-            - ReagentId: Silicon
-              Quantity: 10
-            - ReagentId: Plasma
-              Quantity: 10
-            - ReagentId: Iron
-              Quantity: 4.5
-            - ReagentId: Carbon
-              Quantity: 0.5
-          canReact: false
-    - type: QuickConstructable # DEN quick construction
-      category: ReinforcedPlasmaGlass
+  - type: PhysicalComposition
+    materialComposition:
+      ReinforcedPlasmaGlass: 100
+  - type: Stack
+    stackType: ReinforcedPlasmaGlass
+    baseLayer: base
+    layerStates:
+    - rpglass
+    - rpglass_2
+    - rpglass_3
+  - type: Sprite
+    state: rpglass_3
+    layers:
+    - state: rpglass_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: rpglass
+  - type: Construction
+    graph: Glass
+    node: SheetRPGlass
+  - type: Solution
+    solution:
+      maxVol: 25
+      reagents:
+      - ReagentId: Silicon
+        Quantity: 10
+      - ReagentId: Plasma
+        Quantity: 10
+      - ReagentId: Iron
+        Quantity: 4.5
+      - ReagentId: Carbon
+        Quantity: 0.5
 
 - type: entity
   parent: SheetRPGlass
@@ -366,87 +327,81 @@
   description: A sheet of uranium glass.
   suffix: Full
   components:
-    - type: PhysicalComposition
-      materialComposition:
-        UraniumGlass: 100
-    - type: Stack
-      stackType: UraniumGlass
-      baseLayer: base
-      layerStates:
-        - uglass
-        - uglass_2
-        - uglass_3
-    - type: Sprite
-      state: uglass_3
-      layers:
-        - state: uglass_3
-          map: ["base"]
-    - type: Item
-      heldPrefix: uglass
-    - type: FloorTile # starlight
-      outputs:
-        - FloorGlassUranium
-    - type: Construction
-      graph: Glass
-      node: SheetUGlass
-    - type: Destructible
-      thresholds:
-        - trigger: !type:DamageTrigger
-            damage: 100
-          behaviors:
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
-        - trigger: !type:DamageTrigger
-            damage: 50
-          behaviors:
-            - !type:PlaySoundBehavior
-              sound:
-                collection: GlassBreak
-                params:
-                  volume: -4
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                ShardGlassUranium:
-                  min: 1
-                  max: 1
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
-    - type: Extractable
-      grindableSolutionName: uglass
-    - type: SolutionContainerManager
-      solutions:
-        uglass:
-          reagents:
-            - ReagentId: Silicon
-              Quantity: 10
-            - ReagentId: Uranium
-              Quantity: 10
-          canReact: false
-    - type: QuickConstructable # DEN quick construction
-      category: UraniumGlass
-    # Starlight start
-    - type: ConditionalHealing
-      healingDefinitions:
-        - allowedTags: [ Neocyte, NeoArachnid, NeoAvali, NeoCyclorite, NeoDwarf, NeoDiona, NeoFelionoid, NeoHuman, NeoMoth, NeoReptilian, NeoResomi, NeoSlimePerson, NeoThaven, NeoVox, NeoVulpkanin, NeoKin, NeoElf, NeoLagomorph ] # Starlight
-          healing:
-            damageContainers:
-              - Hybrid
-            delay: 2
-            damage:
-              types:
-                Cellular: -5
-                Poison: -5
-            healingBeginSound:
-              path: "/Audio/Items/Medical/ointment_begin.ogg"
-              params:
-                volume: 1.0
-                variation: 0.125
-            healingEndSound:
-              path: "/Audio/Items/Medical/ointment_end.ogg"
-              params:
-                volume: 1.0
-                variation: 0.125
-    # Starlight end
+  - type: PhysicalComposition
+    materialComposition:
+      UraniumGlass: 100
+  - type: Stack
+    stackType: UraniumGlass
+    baseLayer: base
+    layerStates:
+    - uglass
+    - uglass_2
+    - uglass_3
+  - type: Sprite
+    state: uglass_3
+    layers:
+    - state: uglass_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: uglass
+  - type: Construction
+    graph: Glass
+    node: SheetUGlass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassUranium:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Solution
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Silicon
+        Quantity: 10
+      - ReagentId: Uranium
+        Quantity: 10
+# Starlight start
+  - type: ConditionalHealing
+    healingDefinitions:
+      - allowedTags: [ Neocyte, NeoArachnid, NeoAvali, NeoCyclorite, NeoDwarf, NeoDiona, NeoFelionoid, NeoHuman, NeoMoth, NeoReptilian, NeoResomi, NeoSlimePerson, NeoThaven, NeoVox, NeoVulpkanin, NeoKin, NeoElf, NeoLagomorph ] # Starlight
+        healing:
+          damageContainers:
+            - Hybrid
+          delay: 2
+          damage:
+            types:
+              Cellular: -5
+              Poison: -5
+          healingBeginSound:
+            path: "/Audio/Items/Medical/ointment_begin.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
+          healingEndSound:
+            path: "/Audio/Items/Medical/ointment_end.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
+  # Starlight end
 
 - type: entity
   parent: SheetUGlass
@@ -466,69 +421,61 @@
   name: reinforced uranium glass
   description: A reinforced sheet of uranium.
   components:
-    - type: PhysicalComposition
-      materialComposition:
-        ReinforcedUraniumGlass: 100
-    - type: Stack
-      stackType: ReinforcedUraniumGlass
-      baseLayer: base
-      layerStates:
-        - ruglass
-        - ruglass_2
-        - ruglass_3
-    - type: Sprite
-      state: ruglass_3
-      layers:
-        - state: ruglass_3
-          map: ["base"]
-    - type: Item
-      heldPrefix: ruglass
-    - type: FloorTile # starlight
-      outputs:
-        - FloorGlassUraniumReinforced
-    - type: Construction
-      graph: Glass
-      node: SheetRUGlass
-    - type: Extractable
-      grindableSolutionName: ruglass
-    - type: SolutionContainerManager
-      solutions:
-        ruglass:
-          reagents:
-            - ReagentId: Silicon
-              Quantity: 10
-            - ReagentId: Uranium
-              Quantity: 10
-            - ReagentId: Iron
-              Quantity: 4.5
-            - ReagentId: Carbon
-              Quantity: 0.5
-          canReact: false
-    - type: QuickConstructable # DEN quick construction
-      category: ReinforcedUraniumGlass
-    # Starlight start
-    - type: ConditionalHealing
-      healingDefinitions:
-        - allowedTags: [ Neocyte, NeoArachnid, NeoAvali, NeoCyclorite, NeoDwarf, NeoDiona, NeoFelionoid, NeoHuman, NeoMoth, NeoReptilian, NeoResomi, NeoSlimePerson, NeoThaven, NeoVox, NeoVulpkanin, NeoKin, NeoElf, NeoLagomorph ] # Starlight
-          healing:
-            damageContainers:
-              - Hybrid
-            delay: 2
-            damage:
-              types:
-                Cellular: -10
-                Poison: -10
-            healingBeginSound:
-              path: "/Audio/Items/Medical/ointment_begin.ogg"
-              params:
-                volume: 1.0
-                variation: 0.125
-            healingEndSound:
-              path: "/Audio/Items/Medical/ointment_end.ogg"
-              params:
-                volume: 1.0
-                variation: 0.125
-    # Starlight end
+  - type: PhysicalComposition
+    materialComposition:
+      ReinforcedUraniumGlass: 100
+  - type: Stack
+    stackType: ReinforcedUraniumGlass
+    baseLayer: base
+    layerStates:
+    - ruglass
+    - ruglass_2
+    - ruglass_3
+  - type: Sprite
+    state: ruglass_3
+    layers:
+    - state: ruglass_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: ruglass
+  - type: Construction
+    graph: Glass
+    node: SheetRUGlass
+  - type: Solution
+    solution:
+      maxVol: 25
+      reagents:
+      - ReagentId: Silicon
+        Quantity: 10
+      - ReagentId: Uranium
+        Quantity: 10
+      - ReagentId: Iron
+        Quantity: 4.5
+      - ReagentId: Carbon
+        Quantity: 0.5
+  # Starlight start
+  - type: ConditionalHealing
+    healingDefinitions:
+      - allowedTags: [ Neocyte, NeoArachnid, NeoAvali, NeoCyclorite, NeoDwarf, NeoDiona, NeoFelionoid, NeoHuman, NeoMoth, NeoReptilian, NeoResomi, NeoSlimePerson, NeoThaven, NeoVox, NeoVulpkanin, NeoKin, NeoElf, NeoLagomorph ] # Starlight
+        healing:
+          damageContainers:
+            - Hybrid
+          delay: 2
+          damage:
+            types:
+              Cellular: -10
+              Poison: -10
+          healingBeginSound:
+            path: "/Audio/Items/Medical/ointment_begin.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
+          healingEndSound:
+            path: "/Audio/Items/Medical/ointment_end.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
+  # Starlight end
 
 - type: entity
   parent: SheetRUGlass
@@ -549,66 +496,60 @@
   description: A sheet of brass-hardened glass, primarily used by clockwork enthusiasts and remnants of Ratvarian cults.
   suffix: Full
   components:
-    - type: PhysicalComposition
-      materialComposition:
-        BrassGlass: 100
-    - type: Stack
-      stackType: ClockworkGlass
-      baseLayer: base
-      layerStates:
-        - cglass
-        - cglass_2
-        - cglass_3
-    - type: Sprite
-      state: cglass_3
-      layers:
-        - state: cglass_3
-          map: ["base"]
-    - type: Item
-      heldPrefix: cglass
-    - type: FloorTile # starlight
-      outputs:
-        - FloorGlassBronze
-    - type: Construction
-      graph: Glass
-      node: SheetClockworkGlass
-    - type: Destructible
-      thresholds:
-        - trigger: !type:DamageTrigger
-            damage: 100
-          behaviors:
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
-        - trigger: !type:DamageTrigger
-            damage: 50
-          behaviors:
-            - !type:PlaySoundBehavior
-              sound:
-                collection: GlassBreak
-                params:
-                  volume: -4
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                ShardGlassClockwork:
-                  min: 1
-                  max: 1
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
-    - type: Extractable
-      grindableSolutionName: brassglass
-    - type: SolutionContainerManager
-      solutions:
-        cglass:
-          reagents:
-            - ReagentId: Silicon
-              Quantity: 10
-            - ReagentId: Zinc
-              Quantity: 3.3
-            - ReagentId: Copper
-              Quantity: 6.7
-          canReact: false
-    - type: QuickConstructable # DEN quick construction
-      category: ClockworkGlass
+  - type: PhysicalComposition
+    materialComposition:
+      BrassGlass: 100
+  - type: Stack
+    stackType: ClockworkGlass
+    baseLayer: base
+    layerStates:
+    - cglass
+    - cglass_2
+    - cglass_3
+  - type: Sprite
+    state: cglass_3
+    layers:
+    - state: cglass_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: cglass
+  - type: Construction
+    graph: Glass
+    node: SheetClockworkGlass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassClockwork:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Solution
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Silicon
+        Quantity: 10
+      - ReagentId: Zinc
+        Quantity: 3.3
+      - ReagentId: Copper
+        Quantity: 6.7
 
 - type: entity
   parent: SheetClockworkGlass

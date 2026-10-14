@@ -50,6 +50,7 @@
     - VoiceMaskImplant
     - MindControlImplant #Starlight
     - CommandTrackingImplant #Starlight
+    - ITGTrackingImplant #Starlight
     deimplantFailureDamage:
       types:
         Cellular: 50

@@ -211,6 +211,7 @@
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
+  - BluespaceFireExtinguisher # Starlight
   technologyPrerequisites:
   - BluespaceManipulation
   radioChannels:

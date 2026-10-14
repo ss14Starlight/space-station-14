@@ -85,6 +85,10 @@ namespace Content.Server.RoundEnd
         private void SetAutoCallTime()
         {
             AutoCallStartTime = _gameTiming.CurTime;
+            // Starlight begin
+            AutoCallTime = _autoCalledBefore ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
+                : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime) * 60;
+            // Starlight end
         }
 
         private void Reset()
@@ -102,6 +106,7 @@ namespace Content.Server.RoundEnd
             }
 
             CantRecall = false;
+            _shuttleCallsEnabled = true; // Starlight // TODO: Make a CVar for the default state of this tbh :p
 
             LastCountdownStart = null;
             ExpectedCountdownEnd = null;
@@ -239,9 +244,12 @@ namespace Content.Server.RoundEnd
             ActivateCooldown();
             RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
 
-            var shuttle = _shuttle.GetShuttle();
-            if (shuttle != null && TryComp<DeviceNetworkComponent>(shuttle, out var net))
+            // Starlight begin
+            var shuttles = _shuttle.GetShuttles();
+            foreach (var shuttle in shuttles)
             {
+                if (shuttle is null || !TryComp<DeviceNetworkComponent>(shuttle, out var net)) continue;
+            // Starlight end
                 var payload = new NetworkPayload
                 {
                     [ShuttleTimerMasks.ShuttleMap] = shuttle,
@@ -292,9 +300,12 @@ namespace Content.Server.RoundEnd
 
             // remove active clientside evac shuttle timers by zeroing the target time
             var zero = TimeSpan.Zero;
-            var shuttle = _shuttle.GetShuttle();
-            if (shuttle != null && TryComp<DeviceNetworkComponent>(shuttle, out var net))
+            // Starlight begin
+            var shuttles = _shuttle.GetShuttles();
+            foreach (var shuttle in shuttles)
             {
+                if (shuttle is null || !TryComp<DeviceNetworkComponent>(shuttle, out var net)) continue;
+            // Starlight end
                 var payload = new NetworkPayload
                 {
                     [ShuttleTimerMasks.ShuttleMap] = shuttle,
@@ -386,13 +397,14 @@ namespace Content.Server.RoundEnd
         public override void Update(float frameTime)
         {
             // Check if we should auto-call.
-            int mins = _autoCalledBefore ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
-                                        : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
-            if (mins != 0 && _gameTiming.CurTime - AutoCallStartTime > TimeSpan.FromMinutes(mins))
+            // Starlight begin
+            // (removal here)
+            if (AutoCallTime != 0 && _gameTiming.CurTime - AutoCallStartTime > TimeSpan.FromSeconds(AutoCallTime))
+            // Starlight end
             {
-                if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null && _shuttleCallsEnabled) //Starlight-edit
+                if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
                 {
-                    StartCallVote(); // Starlight-edit
+                    if (_shuttleCallsEnabled) StartCallVote(); // Starlight-edit - Moved check down here so that when disabling shuttlecalls, it will use the extension time once it suppresses the first one.
                     _autoCalledBefore = true;
                 }
 
@@ -401,114 +413,9 @@ namespace Content.Server.RoundEnd
             }
         }
 
-        public TimeSpan TimeToCallShuttle()
-        {
-            var autoCalledBefore = _autoCalledBefore
-                ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
-                : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
-            return AutoCallStartTime + TimeSpan.FromMinutes(autoCalledBefore);
-        }
-
-        #region Starlight
-
-        /// <summary>
-        /// Cancels the round restart timer, allowing the round to stay in post-round indefinitely.
-        /// </summary>
-        /// <param name="canceller">The session that caused the timer to be canceled, if applicable.</param>
-        public void CancelRoundRestartTimer(ICommonSession? canceller = null)
-        {
-            if (_gameTicker.RunLevel != GameRunLevel.PostRound)
-                return;
-
-            if (_countdownTokenSource is null)
-                return;
-
-            _countdownTokenSource.Cancel();
-            _countdownTokenSource = null;
-            _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
-                $"Round restart timer was delayed{(canceller is not null ? $" by {canceller.Name}." : ".")}");
-            _chatManager.SendAdminAnnouncement(
-                $"Round restart timer was delayed{(canceller is not null ? $" by {canceller.Name}!" : "!")}");
-        }
-
-        /// <summary>
-        /// Starts the round restart timer, making the game return
-        /// to <see cref="GameRunLevel.PreRoundLobby"/> after it expires.
-        /// </summary>
-        public void StartRestartTimer(TimeSpan? countdownTime = null)
-        {
-            _countdownTokenSource?.Cancel();
-            _countdownTokenSource = new CancellationTokenSource();
-
-            countdownTime ??= TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.RoundRestartTime));
-            int time;
-            string unitsLocString;
-            if (countdownTime.Value.TotalDays >= 1)
-            {
-                time = (int) countdownTime.Value.TotalDays;
-                unitsLocString = "eta-units-days";
-            }
-            else if (countdownTime.Value.TotalHours >= 1)
-            {
-                time = (int) countdownTime.Value.TotalHours;
-                unitsLocString = "eta-units-hours";
-            }
-            else if (countdownTime.Value.TotalMinutes >= 1)
-            {
-                time = (int) countdownTime.Value.TotalMinutes;
-                unitsLocString = "eta-units-minutes";
-            }
-            else
-            {
-                time = (int) countdownTime.Value.TotalSeconds;
-                unitsLocString = "eta-units-seconds";
-            }
-
-            _chatManager.DispatchServerAnnouncement(
-                Loc.GetString(
-                    "round-end-system-round-restart-eta-announcement",
-                    ("time", time),
-                    ("units", Loc.GetString(unitsLocString))));
-            Timer.Spawn(countdownTime.Value, AfterEndRoundRestart, _countdownTokenSource.Token);
-        }
-
-        public bool IsRestartTimerActive() =>
-            _gameTicker.RunLevel == GameRunLevel.PostRound && _countdownTokenSource is not null;
-
-        private void StartCallVote()
-        {
-            var options = new VoteOptions() { DisplayVotes = false, Duration = TimeSpan.FromSeconds(30), VoterEligibility = VoteManager.VoterEligibility.NonAntag, Title = Loc.GetString("round-end-system-shuttle-auto-called-call-vote")};
-            options.SetInitiatorOrServer(null);
-            options.Options.Add(("Yes", 0));
-            options.Options.Add(("No", 1));
-
-            var vote = _voteManager.CreateVote(options);
-            vote.OnFinished += (_, args) =>
-            {
-                if (args.Winner == null)
-                {
-                    RequestRoundEnd(null, null, false, "round-end-system-shuttle-auto-called-announcement");
-                    return;
-                }
-
-                if ((int)args.Winner == 0)
-                {
-                    RequestRoundEnd(null, null, false, "round-end-system-shuttle-auto-called-announcement");
-                }
-                else
-                {
-                    _chatManager.DispatchServerAnnouncement(Loc.GetString("round-end-system-shuttle-auto-vote-result-no", ("minutes",_cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime))));
-                }
-            };
-        }
-
-        public void ToggleTimerOnEnd(bool state, ICommonSession? session = null)
-        {
-            StartTimerOnRestart = state;
-            _adminLogger.Add(LogType.AdminCommands, LogImpact.Medium, $"{session?.Name ?? "unknown"} toggled {(state ? "on" : "off")} the restart timer on round end.");
-        }
-
-        #endregion
+        // Starlight begin
+        public TimeSpan TimeToCallShuttle() => AutoCallStartTime + TimeSpan.FromSeconds(AutoCallTime);
+        // Starlight end
     }
 
     public sealed class RoundEndSystemChangedEvent : EntityEventArgs

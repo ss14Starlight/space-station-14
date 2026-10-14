@@ -12,7 +12,6 @@ using Content.Shared._Starlight.Railroading.Events;
 using Robust.Server.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
-using System.Linq;
 using Content.Shared.GameTicking;
 using Content.Shared._Starlight.Abstract;
 using Content.Shared._Starlight.Railroading.Components.Reward;

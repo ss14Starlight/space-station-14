@@ -1,7 +1,5 @@
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Administration;
-using System;
-using System.Collections.Generic;
 using Content.Shared.Security;
 using Content.Shared.StationRecords;
 using Content.Shared.CriminalRecords;
@@ -305,7 +303,7 @@ public sealed partial class CharacterRecordViewer : FancyWindow
                 break;
             case RecordConsoleType.Admin:
                 RecordFilterType.Visible = true;
-                Title = "Admin records console";
+                Title = Loc.GetString("ui-admin-records-console-title");
                 RecordEntryViewType.Visible = true;
 
                 break;

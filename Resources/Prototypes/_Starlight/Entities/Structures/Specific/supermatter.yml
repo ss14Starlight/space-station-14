@@ -39,6 +39,12 @@
   - type: PointLight
     enabled: true
     color: "#FFFB97"
+  - type: AmbientSound
+    enabled: false # Turned on by SupermatterSystem once the crystal is activated.
+    volume: -2
+    range: 10
+    sound:
+      path: /Audio/_Starlight/Ambience/Objects/supermatter_calm.ogg
   - type: Damageable
     damageModifierSet: RGlass
     damageContainer: StructuralInorganic

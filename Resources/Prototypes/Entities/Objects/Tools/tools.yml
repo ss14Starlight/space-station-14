@@ -9,7 +9,6 @@
       path: /Audio/Items/wirecutter_drop.ogg
   - type: Tag
     tags:
-    - PlantSampleTaker
     - Wirecutter
   - type: Sprite
     sprite: Objects/Tools/wirecutters.rsi
@@ -58,6 +57,7 @@
   - type: ItemPrice
     priceCategory: tool_basic
   # 🌟Starlight-end🌟
+  - type: BotanySampleTaker
 
 - type: entity
   name: screwdriver

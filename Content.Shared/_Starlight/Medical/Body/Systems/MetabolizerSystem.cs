@@ -17,8 +17,8 @@ using Content.Shared.EntityEffects.Effects.Body;
 using Content.Shared.EntityEffects.Effects.Solution;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Systems;
-using Robust.Shared.Collections;
-using Robust.Shared.Network;
+using Content.Shared.Random.Helpers;
+using Content.Shared._Starlight.EntityEffects.Effects.StatusEffects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -26,26 +26,24 @@ using Robust.Shared.Timing;
 namespace Content.Shared._Starlight.Medical.Body.Systems;
 
 /// <inheritdoc/>
-public sealed class MetabolizerSystem : EntitySystem
+public sealed partial class MetabolizerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private INetManager _net = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly SharedEntityConditionsSystem _entityConditions = default!;
-    [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private SharedEntityConditionsSystem _entityConditions = default!;
+    [Dependency] private SharedEntityEffectsSystem _entityEffects = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
 
     private EntityQuery<OrganComponent> _organQuery;
-    private EntityQuery<SolutionContainerManagerComponent> _solutionQuery;
+    private EntityQuery<SolutionManagerComponent> _solutionQuery;
 
     public override void Initialize()
     {
         base.Initialize();
 
         _organQuery = GetEntityQuery<OrganComponent>();
-        _solutionQuery = GetEntityQuery<SolutionContainerManagerComponent>();
+        _solutionQuery = GetEntityQuery<SolutionManagerComponent>();
 
         SubscribeLocalEvent<MetabolizerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<MetabolizerComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
@@ -54,36 +52,31 @@ public sealed class MetabolizerSystem : EntitySystem
     private void OnMapInit(Entity<MetabolizerComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.AdjustedUpdateInterval;
+        Dirty(ent);
     }
 
     private void OnApplyMetabolicMultiplier(Entity<MetabolizerComponent> ent,
         ref ApplyMetabolicMultiplierEvent args)
     {
         ent.Comp.UpdateIntervalMultiplier = args.Multiplier;
+        Dirty(ent);
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        if (!_net.IsServer)
-            return;
 
-        var metabolizers = new ValueList<(EntityUid Uid, MetabolizerComponent Component)>(Count<MetabolizerComponent>());
         var query = EntityQueryEnumerator<MetabolizerComponent>();
 
         while (query.MoveNext(out var uid, out var comp))
         {
-            metabolizers.Add((uid, comp));
-        }
-
-        foreach (var (uid, metab) in metabolizers)
-        {
             // Only update as frequently as it should
-            if (_gameTiming.CurTime < metab.NextUpdate)
+            if (_gameTiming.CurTime < comp.NextUpdate)
                 continue;
 
-            metab.NextUpdate += metab.AdjustedUpdateInterval;
-            TryMetabolize((uid, metab));
+            comp.NextUpdate += comp.AdjustedUpdateInterval;
+            TryMetabolize((uid, comp));
+            Dirty(uid, comp);
         }
     }
 
@@ -102,7 +95,7 @@ public sealed class MetabolizerSystem : EntitySystem
     }
 
     private bool LookupSolution(
-        Entity<MetabolizerComponent, OrganComponent?, SolutionContainerManagerComponent?> ent,
+        Entity<MetabolizerComponent, OrganComponent?, SolutionManagerComponent?> ent,
         MetabolismSolutionEntry solutionData,
         bool lookupTransfer,
         [NotNullWhen(true)] out Solution? solution,
@@ -121,28 +114,24 @@ public sealed class MetabolizerSystem : EntitySystem
 
         if (lookupTransfer ? solutionData.TransferSolutionOnBody : solutionData.SolutionOnBody)
         {
-            if (ent.Comp2?.Body is { } body)
-            {
-                if (!_solutionQuery.TryComp(body, out var bodySolution))
-                    return false;
-
-                solutionOwner = body;
-                return _solutionContainerSystem.TryGetSolution((body, bodySolution), solutionName, out solutionEntity, out solution);
-            }
-        }
-        else
-        {
-            if (!_solutionQuery.Resolve(ent, ref ent.Comp3, logMissing: false))
+            if (ent.Comp2?.Body is not { } body)
                 return false;
 
-            solutionOwner = ent;
-            return _solutionContainerSystem.TryGetSolution((ent, ent), solutionName, out solutionEntity, out solution);
+            if (!_solutionContainerSystem.TryGetSolution(body, solutionName, out solutionEntity, out solution))
+                return false;
+
+            solutionOwner = body;
+            return true;
         }
 
-        return false;
+        if (!_solutionContainerSystem.TryGetSolution((ent, ent.Comp3), solutionName, out solutionEntity, out solution))
+            return false;
+
+        solutionOwner = ent;
+        return true;
     }
 
-    private void TryMetabolizeStage(Entity<MetabolizerComponent, OrganComponent?, SolutionContainerManagerComponent?> ent, ProtoId<MetabolismStagePrototype> stage)
+    private void TryMetabolizeStage(Entity<MetabolizerComponent, OrganComponent?, SolutionManagerComponent?> ent, ProtoId<MetabolismStagePrototype> stage)
     {
         if (!ent.Comp1.Solutions.TryGetValue(stage, out var solutionData))
             return;
@@ -164,7 +153,8 @@ public sealed class MetabolizerSystem : EntitySystem
 
         // randomize the reagent list so we don't have any weird quirks
         // like alphabetical order or insertion order mattering for processing
-        _random.Shuffle(list);
+        var rand = SharedRandomExtensions.PredictedRandom(_gameTiming, GetNetEntity(ent), GetNetEntity(solutionOwner));
+        rand.Shuffle(list);
 
         var isDead = _mobStateSystem.IsDead(solutionOwner.Value);
         // Needed before the unknown-reagent branch so railroading observes every metabolized reagent.
@@ -227,31 +217,32 @@ public sealed class MetabolizerSystem : EntitySystem
             {
                 if (scale < effect.MinScale)
                     continue;
+                var effectScale = Math.Min(scale, effect.MaxScale ?? scale);
 
-                if (effect.Probability < 1.0f && !_random.Prob(effect.Probability))
+                if (rand.NextFloat() >= effect.Probability)
                     continue;
 
                 // See if conditions apply
                 if (effect.Conditions != null && !CanMetabolizeEffect(actualEntity, ent, solutionEntity.Value, effect.Conditions))
                     continue;
 
-                ApplyEffect(effect);
+                ApplyEffect(effect, effectScale);
 
             }
 
             // TODO: We should have to do this with metabolism. ReagentEffect struct needs refactoring and so does metabolism!
-            void ApplyEffect(EntityEffect effect)
+            void ApplyEffect(EntityEffect effect, float effectScale)
             {
                 switch (effect)
                 {
                     case ModifyLungGas:
-                        _entityEffects.ApplyEffect(ent, effect, scale);
+                        _entityEffects.ApplyEffect(ent, effect, effectScale);
                         break;
                     case AdjustReagent:
-                        _entityEffects.ApplyEffect(solutionEntity.Value, effect, scale);
+                        _entityEffects.ApplyEffect(solutionEntity.Value, effect, effectScale);
                         break;
                     default:
-                        _entityEffects.ApplyEffect(actualEntity, effect, scale);
+                        _entityEffects.ApplyEffect(actualEntity, effect, effectScale);
                         break;
                 }
             }
@@ -283,9 +274,10 @@ public sealed class MetabolizerSystem : EntitySystem
         }
     }
 
-    private void TryMetabolize(Entity<MetabolizerComponent, OrganComponent?, SolutionContainerManagerComponent?> ent)
+    private void TryMetabolize(Entity<MetabolizerComponent, OrganComponent?, SolutionManagerComponent?> ent)
     {
         _organQuery.Resolve(ent, ref ent.Comp2, logMissing: false);
+        _solutionQuery.Resolve(ent, ref ent.Comp3, logMissing: false);
 
         foreach (var stage in ent.Comp1.Stages)
         {

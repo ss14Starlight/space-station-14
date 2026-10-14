@@ -14,12 +14,7 @@
   - type: Absorbable
   - type: Speech
     speechVerb: Felionoid
-    allowedEmotes: ['Mew', 'Hisses', 'Meow', 'Growl', 'Purr', 'Trill']
   - type: Vocal
-    sounds:
-      Male: MaleFelionoid
-      Female: FemaleFelionoid
-      Unsexed: MaleFelionoid
   - type: Hunger
   - type: Thirst
   - type: Icon
@@ -41,7 +36,6 @@
       51: 0.7 # 60%
       68: 0.5 # 80%
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeat
       amount: 3

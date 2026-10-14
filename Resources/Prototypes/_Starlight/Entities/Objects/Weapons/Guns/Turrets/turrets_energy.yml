@@ -32,3 +32,20 @@
     transmitFrequencyId: Turret
   - type: StationAiWhitelist
     enabled: false
+
+- type: entity
+  parent: WeaponEnergyTurretStationBase
+  id: WeaponEnergyTurretITG
+  suffix: ITG
+  components:
+  - type: AccessReader
+    access: [["Salvage"], ["SalvageLead"]]
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - Salvage
+    - SalvageLead
+  - type: DeviceNetwork
+    receiveFrequencyId: TurretControl
+    transmitFrequencyId: Turret
+  - type: StationAiWhitelist
+    enabled: false

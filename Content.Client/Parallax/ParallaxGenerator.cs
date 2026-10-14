@@ -1,12 +1,8 @@
-using System;
 using System.Threading;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using Nett;
 using Robust.Client.Utility;
-using Robust.Shared.Log;
-using Robust.Shared.Maths;
 using Robust.Shared.Noise;
 using Robust.Shared.Random;
 using SixLabors.ImageSharp;
@@ -408,7 +404,8 @@ namespace Content.Client.Parallax
             private void GenPoints(Image<Rgba32> buffer)
             {
                 var o = PointSize - 1;
-                var random = new Random(Seed);
+                var random = new RobustRandom();
+                random.SetSeed(Seed);
                 var span = buffer.GetPixelSpan();
 
                 for (var i = 0; i < PointCount; i++)
@@ -435,7 +432,8 @@ namespace Content.Client.Parallax
             private void GenPointsMasked(Image<Rgba32> buffer)
             {
                 var o = PointSize - 1;
-                var random = new Random(Seed);
+                var random = new RobustRandom();
+                random.SetSeed(Seed);
                 var noise = new FastNoiseLite((int)MaskSeed);
                 noise.SetFractalType(MaskNoiseType);
                 noise.SetFractalLacunarity(MaskLacunarity);

@@ -18,12 +18,14 @@
   id: LeftArmCyber
   name: "left cyber arm"
   parent: [PartCyber, BaseLeftArm]
+  description: A surgically-installed cybernetic arm with no additional functionality.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLArm
         Rodentia: RodentiaCyberLArm
         Resomi: ResomiCyberLArm
+        Experiment: ExperimentCyberLArm
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_arm"
@@ -48,12 +50,14 @@
   id: RightArmCyber
   name: "right cyber arm"
   parent: [PartCyber, BaseRightArm]
+  description: A surgically-installed cybernetic arm with no additional functionality.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRArm
         Rodentia: RodentiaCyberRArm
         Resomi: ResomiCyberRArm
+        Experiment: ExperimentCyberRArm
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_arm"
@@ -78,12 +82,14 @@
   id: LeftHandCyber
   name: "left cyber hand"
   parent: [PartCyber, BaseLeftHand]
+  description: A surgically-installed cybernetic hand with no additional functionality.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLHand
         Rodentia: RodentiaCyberLHand
         Resomi: ResomiCyberLHand
+        Experiment: ExperimentCyberLHand
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_hand"
@@ -105,12 +111,14 @@
   id: RightHandCyber
   name: "right cyber hand"
   parent: [PartCyber, BaseRightHand]
+  description: A surgically-installed cybernetic hand with no additional functionality.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRHand
         Rodentia: RodentiaCyberRHand
         Resomi: ResomiCyberRHand
+        Experiment: ExperimentCyberRHand
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_hand"
@@ -132,6 +140,7 @@
   id: LeftLegCyberBase
   name: "left base cyber leg"
   parent: BaseLeftLeg
+  description: A surgically-installed cybernetic leg with no additional functionality.
   abstract: true
   components:
     - type: BaseLayerId
@@ -139,6 +148,7 @@
         Default: CyberLLeg
         Rodentia: RodentiaCyberLLeg
         Resomi: ResomiCyberLLeg
+        Experiment: ExperimentCyberLLeg
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_leg"
@@ -163,6 +173,7 @@
   id: LeftLegCyber
   name: "left cyber leg"
   parent: [PartCyber, LeftLegCyberBase]
+  description: A surgically-installed cybernetic leg that lets you move just a bit faster than its organic counterpart.
   components:
     - type: MovementBodyPart
       sprintSpeed : 4.725 # +5%
@@ -174,6 +185,7 @@
   id: LeftLegCyberBudget
   name: "left budget cyber leg"
   parent: [PartCyber, LeftLegCyberBase]
+  description: A shoddy, surgically-installed cybernetic leg with no additional functionality.
   components:
     - type: RoundstartImplantable
       cost: 2
@@ -192,6 +204,7 @@
   id: RightLegCyberBase
   name: "right base cyber leg"
   parent: BaseRightLeg
+  description: A surgically-installed cybernetic leg with no additional functionality.
   abstract: true
   components:
     - type: BaseLayerId
@@ -199,6 +212,7 @@
         Default: CyberRLeg
         Rodentia: RodentiaCyberRLeg
         Resomi: ResomiCyberRLeg
+        Experiment: ExperimentCyberRLeg
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_leg"
@@ -223,6 +237,7 @@
   id: RightLegCyber
   name: "right cyber leg"
   parent: [PartCyber, RightLegCyberBase]
+  description: A surgically-installed cybernetic leg that lets you move just a bit faster than its organic counterpart.
   components:
     - type: MovementBodyPart
       sprintSpeed : 4.725 # +5%
@@ -234,6 +249,7 @@
   id: RightLegCyberBudget
   name: "right budget cyber leg"
   parent: [PartCyber, RightLegCyberBase]
+  description: A shoddy, surgically-installed cybernetic leg with no additional functionality.
   components:
     - type: RoundstartImplantable
       cost: 2
@@ -252,12 +268,14 @@
   id: LeftFootCyber
   name: "left cyber foot"
   parent: [PartCyber, BaseLeftFoot]
+  description: A surgically-installed cybernetic foot with no additional functionality.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLFoot
         Rodentia: RodentiaCyberLFoot
         Resomi: ResomiCyberLFoot
+        Experiment: ExperimentCyberLFoot
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_foot"
@@ -281,12 +299,14 @@
   id: RightFootCyber
   name: "right cyber foot"
   parent: [PartCyber, BaseRightFoot]
+  description: A surgically-installed cybernetic foot with no additional functionality.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRFoot
         Rodentia: RodentiaCyberRFoot
         Resomi: ResomiCyberRFoot
+        Experiment: ExperimentCyberRFoot
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_foot"
@@ -311,13 +331,14 @@
   id: LeftLegCyberSpeed
   name: "left speed leg"
   parent: [PartCyber, LeftLegCyberBase]
-  description: Gotta Go Fast!
+  description: A surgically-installed cybernetic leg that significantly increases movement speed as long as you aren't wearing shoes.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLLegSpeed
         Rodentia: RodentiaCyberLLegSpeed
         Resomi: ResomiCyberLLegSpeed
+        Experiment: ExperimentCyberLLegSpeed
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
       state: "l_leg"
@@ -335,13 +356,14 @@
   id: RightLegCyberSpeed
   name: "right speed leg"
   parent: [PartCyber, RightLegCyberBase]
-  description: Gotta Go Fast!
+  description: A surgically-installed cybernetic leg that significantly increases movement speed as long as you aren't wearing shoes.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRLegSpeed
         Rodentia: RodentiaCyberRLegSpeed
         Resomi: ResomiCyberRLegSpeed
+        Experiment: ExperimentCyberRLegSpeed
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
       state: "r_leg"
@@ -360,13 +382,14 @@
   id: LeftArmCyberReaper
   name: "left reaper arm"
   parent: [PartCyber, BaseLeftArm]
-  description: Augmented arm for the surgeons of the modern age.
+  description: A surgically-installed cybernetic arm that allows for swift surgical operations via deployable surgical tools. It is significantly faster than its cousin, the ripperdoc arm.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLArmSilver
         Rodentia: RodentiaCyberLArmSilver
         Resomi: ResomiCyberLArmSilver
+        Experiment: ExperimentCyberLArmSilver
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_silver_arm"
@@ -381,18 +404,20 @@
   id: LeftHandCyberReaper
   name: "left reaper hand"
   parent: [PartCyber, BaseLeftHand]
-  description: Augmented hand for the surgeons of the modern age.
+  description: A surgically-installed cybernetic hand that allows for swift surgical operations via deployable surgical tools. It is significantly faster than its cousin, the ripperdoc hand.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLHandSilver
         Rodentia: RodentiaCyberLHandSilver
         Resomi: ResomiCyberLHandSilver
+        Experiment: ExperimentCyberLHandSilver
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandSilverReaper
         Rodentia: RodentiaCyberLHandSilverReaper
         Resomi: ResomiCyberLHandSilverReaper
+        Experiment: ExperimentCyberLHandSilverReaper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_silver_hand"
@@ -429,13 +454,14 @@
   id: RightArmCyberReaper
   name: "right reaper arm"
   parent: [PartCyber, BaseRightArm]
-  description: Augmented arm for the surgeons of the modern age.
+  description: A surgically-installed cybernetic arm that allows for swift surgical operations via deployable surgical tools. It is significantly faster than its cousin, the ripperdoc arm.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRArmSilver
         Rodentia: RodentiaCyberRArmSilver
         Resomi: ResomiCyberRArmSilver
+        Experiment: ExperimentCyberRArmSilver
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_silver_arm"
@@ -458,18 +484,20 @@
   id: RightHandCyberReaper
   name: "right reaper hand"
   parent: [PartCyber, BaseRightHand]
-  description: Augmented hand for the surgeons of the modern age.
+  description: A surgically-installed cybernetic hand that allows for swift surgical operations via deployable surgical tools. It is significantly faster than its cousin, the ripperdoc hand.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRHandSilver
         Rodentia: RodentiaCyberRHandSilver
         Resomi: ResomiCyberRHandSilver
+        Experiment: ExperimentCyberRHandSilver
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandSilverReaper
         Rodentia: RodentiaCyberRHandSilverReaper
         Resomi: ResomiCyberRHandSilverReaper
+        Experiment: ExperimentCyberRHandSilverReaper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_silver_hand"
@@ -499,13 +527,14 @@
   id: LeftArmCyberMechwright
   name: "left mechwright arm"
   parent: [PartCyber, BaseLeftArm]
-  description: Augmented arm for the tiders of the modern age.
+  description: A surgically-installed cybernetic arm that allows you to deploy a number of handy tools, including a wrench, screwdriver, crowbar, wirecutter, and welder.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLArmSteel
         Rodentia: RodentiaCyberLArmSteel
         Resomi: ResomiCyberLArmSteel
+        Experiment: ExperimentCyberLArmSteel
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_steel_arm"
@@ -528,18 +557,20 @@
   id: LeftHandCyberMechwright
   name: "left mechwright hand"
   parent: [PartCyber, BaseLeftHand]
-  description: Augmented hand for the tiders of the modern age.
+  description: A surgically-installed cybernetic hand that allows you to deploy a number of handy tools, including a wrench, screwdriver, crowbar, wirecutter, and welder.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLHandSteel
         Rodentia: RodentiaCyberLHandSteel
         Resomi: ResomiCyberLHandSteel
+        Experiment: ExperimentCyberLHandSteel
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandSteelMechwright
         Rodentia: RodentiaCyberLHandSteelMechwright
         Resomi: ResomiCyberLHandSteelMechwright
+        Experiment: ExperimentCyberLHandSteelMechwright
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_steel_hand"
@@ -565,13 +596,14 @@
   id: RightArmCyberMechwright
   name: "right mechwright arm"
   parent: [PartCyber, BaseRightArm]
-  description: Augmented arm for the tiders of the modern age.
+  description: A surgically-installed cybernetic arm that allows you to deploy a number of handy tools, including a wrench, screwdriver, crowbar, wirecutter, and welder.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRArmSteel
         Rodentia: RodentiaCyberRArmSteel
         Resomi: ResomiCyberRArmSteel
+        Experiment: ExperimentCyberRArmSteel
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_steel_arm"
@@ -593,19 +625,22 @@
 - type: entity
   id: RightHandCyberMechwright
   name: "right mechwright hand"
+  # DESC-REWRITE
   parent: [PartCyber, BaseRightHand]
-  description: Augmented hand for the tiders of the modern age.
+  description: A surgically-installed cybernetic hand that allows you to deploy a number of handy tools, including a wrench, screwdriver, crowbar, wirecutter, and welder.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRHandSteel
         Rodentia: RodentiaCyberRHandSteel
         Resomi: ResomiCyberRHandSteel
+        Experiment: ExperimentCyberRHandSteel
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandSteelMechwright
         Rodentia: RodentiaCyberRHandSteelMechwright
         Resomi: ResomiCyberRHandSteelMechwright
+        Experiment: ExperimentCyberRHandSteelMechwright
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_steel_hand"
@@ -631,14 +666,16 @@
 - type: entity
   id: LeftArmCyberEngineer
   name: "left engineer arm"
+  # DESC-REWRITE
   parent: [PartCyber, BaseLeftArm]
-  description: Augmented arm for the engineers of the modern age.
+  description: A surgically-installed cybernetic arm that allows you to deploy a number of handy tools, including a jaws of life, a power drill, an experimental welder, and an RCD.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLArmEngineer
         Rodentia: RodentiaCyberLArmEngineer
         Resomi: ResomiCyberLArmEngineer
+        Experiment: ExperimentCyberLArmEngineer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_engineer_arm"
@@ -652,19 +689,22 @@
 - type: entity
   id: LeftHandCyberEngineer
   name: "left engineer hand"
+  # DESC-REWRITE
   parent: [PartCyber, BaseLeftHand]
-  description: Augmented hand for the engineers of the modern age.
+  description: A surgically-installed cybernetic hand that allows you to deploy a number of handy tools, including a jaws of life, a power drill, an experimental welder, and an RCD.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLHandEngineer
         Rodentia: RodentiaCyberLHandEngineer
         Resomi: ResomiCyberLHandEngineer
+        Experiment: ExperimentCyberLHandEngineer
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandEngineerTools
         Rodentia: RodentiaCyberLHandEngineerTools
         Resomi: ResomiCyberLHandEngineerTools
+        Experiment: ExperimentCyberLHandEngineerTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_engineer_hand"
@@ -689,13 +729,14 @@
   id: RightArmCyberEngineer
   name: "right engineer arm"
   parent: [PartCyber, BaseRightArm]
-  description: Augmented arm for the engineers of the modern age.
+  description: A surgically-installed cybernetic arm that allows you to deploy a number of handy tools, including a jaws of life, a power drill, an experimental welder, and an RCD.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRArmEngineer
         Rodentia: RodentiaCyberRArmEngineer
         Resomi: ResomiCyberRArmEngineer
+        Experiment: ExperimentCyberRArmEngineer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_engineer_arm"
@@ -709,19 +750,22 @@
 - type: entity
   id: RightHandCyberEngineer
   name: "right engineer hand"
+  # DESC-REWRITE
   parent: [PartCyber, BaseRightHand]
-  description: Augmented hand for the engineers of the modern age.
+  description: A surgically-installed cybernetic hand that allows you to deploy a number of handy tools, including a jaws of life, a power drill, an experimental welder, and an RCD.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRHandEngineer
         Rodentia: RodentiaCyberRHandEngineer
         Resomi: ResomiCyberRHandEngineer
+        Experiment: ExperimentCyberRHandEngineer
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandEngineerTools
         Rodentia: RodentiaCyberRHandEngineerTools
         Resomi: ResomiCyberRHandEngineerTools
+        Experiment: ExperimentCyberRHandEngineerTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_engineer_hand"
@@ -747,12 +791,14 @@
   id: LeftArmCyberBulwark
   name: "left bulwark arm"
   parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
+  description: A surgically-installed cybernetic arm geared for security use, including a built-in energy shield and energy chainsword, perfect for when non-lethals aren't enough.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLArmBulwark
         Rodentia: RodentiaCyberLArmBulwark
         Resomi: ResomiCyberLArmBulwark
+        Experiment: ExperimentCyberLArmBulwark
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_bulwark_arm"
@@ -775,17 +821,20 @@
   id: LeftHandCyberBulwark
   name: "left bulwark hand"
   parent: [PartCyber, BaseLeftHand, BaseSecurityContraband]
+  description: A surgically-installed cybernetic hand geared for security use, including a built-in energy shield and energy chainsword, perfect for when non-lethals aren't enough.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLHandBulwark
         Rodentia: RodentiaCyberLHandBulwark
         Resomi: ResomiCyberLHandBulwark
+        Experiment: ExperimentCyberLHandBulwark
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandBulwarkToggled
         Rodentia: RodentiaCyberLHandBulwarkToggled
         Resomi: ResomiCyberLHandBulwarkToggled
+        Experiment: ExperimentCyberLHandBulwarkToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_bulwark_hand"
@@ -808,12 +857,14 @@
   id: RightArmCyberBulwark
   name: "right bulwark arm"
   parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
+  description: A surgically-installed cybernetic arm geared for security use, including a built-in energy shield and energy chainsword, perfect for when non-lethals aren't enough.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRArmBulwark
         Rodentia: RodentiaCyberRArmBulwark
         Resomi: ResomiCyberRArmBulwark
+        Experiment: ExperimentCyberRArmBulwark
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_bulwark_arm"
@@ -836,17 +887,20 @@
   id: RightHandCyberBulwark
   name: "right bulwark hand"
   parent: [PartCyber, BaseRightHand, BaseSecurityContraband]
+  description: A surgically-installed cybernetic hand geared for security use, including a built-in energy shield and energy chainsword, perfect for when non-lethals aren't enough.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRHandBulwark
         Rodentia: RodentiaCyberRHandBulwark
         Resomi: ResomiCyberRHandBulwark
+        Experiment: ExperimentCyberRHandBulwark
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandBulwarkToggled
         Rodentia: RodentiaCyberRHandBulwarkToggled
         Resomi: ResomiCyberRHandBulwarkToggled
+        Experiment: ExperimentCyberRHandBulwarkToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_bulwark_hand"
@@ -870,12 +924,14 @@
   id: LeftArmCyberMantisBlade
   name: "left mantis blade arm"
   parent: [PartCyber, BaseLeftArm, BaseSyndicateContraband]
+  description: A shady, surgically-installed cybernetic arm favored by syndicate operatives that favor discrete weaponry. Features a deployable mantis blade, specializing in breaking and prying.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLArmMantisBlade
         Rodentia: RodentiaCyberLArmMantisBlade
         Resomi: ResomiCyberLArmMantisBlade
+        Experiment: ExperimentCyberLArmMantisBlade
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_mantis_blade_arm"
@@ -898,17 +954,20 @@
   id: LeftHandCyberMantisBlade
   name: "left mantis blade hand"
   parent: [PartCyber, BaseLeftHand, BaseSyndicateContraband]
+  description: A shady, surgically-installed cybernetic hand favored by syndicate operatives that favor discrete weaponry. Features a deployable mantis blade, specializing in breaking and prying.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLHandMantisBlade
         Rodentia: RodentiaCyberLHandMantisBlade
         Resomi: ResomiCyberLHandMantisBlade
+        Experiment: ExperimentCyberLHandMantisBlade
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandMantisBladeToggled
         Rodentia: RodentiaCyberLHandMantisBladeToggled
         Resomi: ResomiCyberLHandMantisBladeToggled
+        Experiment: ExperimentCyberLHandMantisBladeToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_mantis_blade_hand"
@@ -930,12 +989,14 @@
   id: RightArmCyberMantisBlade
   name: "right mantis blade arm"
   parent: [PartCyber, BaseRightArm, BaseSyndicateContraband]
+  description: A shady, surgically-installed cybernetic arm favored by syndicate operatives that favor discrete weaponry. Features a deployable mantis blade, specializing in breaking and prying.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRArmMantisBlade
         Rodentia: RodentiaCyberRArmMantisBlade
         Resomi: ResomiCyberRArmMantisBlade
+        Experiment: ExperimentCyberRArmMantisBlade
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_mantis_blade_arm"
@@ -958,17 +1019,20 @@
   id: RightHandCyberMantisBlade
   name: "right mantis blade hand"
   parent: [PartCyber, BaseRightHand, BaseSyndicateContraband]
+  description: A shady, surgically-installed cybernetic hand favored by syndicate operatives that favor discrete weaponry. Features a deployable mantis blade, specializing in breaking and prying.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRHandMantisBlade
         Rodentia: RodentiaCyberRHandMantisBlade
         Resomi: ResomiCyberRHandMantisBlade
+        Experiment: ExperimentCyberRHandMantisBlade
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandMantisBladeToggled
         Rodentia: RodentiaCyberRHandMantisBladeToggled
         Resomi: ResomiCyberRHandMantisBladeToggled
+        Experiment: ExperimentCyberRHandMantisBladeToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_mantis_blade_hand"
@@ -991,13 +1055,14 @@
   id: LeftArmCyberRipper
   name: "left ripperdoc arm"
   parent: [PartCyber, BaseLeftArm]
-  description: Augmented arm for the surgeons of the modern age.
+  description: A shoddy, surgically-installed cybernetic arm that allows you to deploy a set of surgical tools on command, on par with the speed of normal surgical tools. Definitely not sterile.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLArmRipper
         Rodentia: RodentiaCyberLArmRipper
         Resomi: ResomiCyberLArmRipper
+        Experiment: ExperimentCyberLArmRipper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_ripper_arm"
@@ -1023,19 +1088,20 @@
   id: LeftHandCyberRipper
   name: "left ripperdoc hand"
   parent: [PartCyber, BaseLeftHand]
-  description: Augmented hand for the surgeons of the modern age.
-
+  description: A surgically-installed cybernetic hand that allows you to deploy a set of surgical tools on command, on par with the speed of normal surgical tools. Definitely not sterile.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLHandRipper
         Rodentia: RodentiaCyberLHandRipper
         Resomi: ResomiCyberLHandRipper
+        Experiment: ExperimentCyberLHandRipper
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandRipperRipping
         Rodentia: RodentiaCyberLHandRipperRipping
         Resomi: ResomiCyberLHandRipperRipping
+        Experiment: ExperimentCyberLHandRipperRipping
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_ripper_hand"
@@ -1064,13 +1130,14 @@
   id: RightArmCyberRipper
   name: "right ripperdoc arm"
   parent: [PartCyber, BaseRightArm]
-  description: Augmented arm for the surgeons of the modern age.
+  description: A surgically-installed cybernetic arm that allows you to deploy a set of surgical tools on command, on par with the speed of normal surgical tools. Definitely not sterile.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRArmRipper
         Rodentia: RodentiaCyberRArmRipper
         Resomi: ResomiCyberRArmRipper
+        Experiment: ExperimentCyberRArmRipper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_ripper_arm"
@@ -1096,18 +1163,20 @@
   id: RightHandCyberRipper
   name: "right ripperdoc hand"
   parent: [PartCyber, BaseRightHand]
-  description: Augmented hand for the surgeons of the modern age.
+  description: A surgically-installed cybernetic hand that allows you to deploy a set of surgical tools on command, on par with the speed of normal surgical tools. Definitely not sterile.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRHandRipper
         Rodentia: RodentiaCyberRHandRipper
         Resomi: ResomiCyberRHandRipper
+        Experiment: ExperimentCyberRHandRipper
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandRipperRipping
         Rodentia: RodentiaCyberRHandRipperRipping
         Resomi: ResomiCyberRHandRipperRipping
+        Experiment: ExperimentCyberRHandRipperRipping
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_ripper_hand"
@@ -1138,13 +1207,14 @@
   id: LeftArmCyberSpacer
   name: "left spacer arm"
   parent: [PartCyber, BaseLeftArm]
-  description: Augmented arm for the salvagers of the modern age.
+  description: A surgically-installed cybernetic arm with built-in tools made for salvaging, including a PKA, a grappling gun, and a crusher dagger.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLArmSpacer
         Rodentia: RodentiaCyberLArmSpacer
         Resomi: ResomiCyberLArmSpacer
+        Experiment: ExperimentCyberLArmSpacer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_spacer_arm"
@@ -1159,18 +1229,20 @@
   id: LeftHandCyberSpacer
   name: "left spacer hand"
   parent: [PartCyber, BaseLeftHand]
-  description: Augmented hand for the salvagers of the modern age.
+  description: A surgically-installed cybernetic hand with built-in tools made for salvaging, including a PKA, a grappling gun, and a crusher dagger.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLHandSpacer
         Rodentia: RodentiaCyberLHandSpacer
         Resomi: ResomiCyberLHandSpacer
+        Experiment: ExperimentCyberLHandSpacer
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandSpacerTools
         Rodentia: RodentiaCyberLHandSpacerTools
         Resomi: ResomiCyberLHandSpacerTools
+        Experiment: ExperimentCyberLHandSpacerTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_spacer_hand"
@@ -1194,13 +1266,14 @@
   id: RightArmCyberSpacer
   name: "right spacer arm"
   parent: [PartCyber, BaseRightArm]
-  description: Augmented arm for the salvagers of the modern age.
+  description: A surgically-installed cybernetic arm with built-in tools made for salvaging, including a PKA, a grappling gun, and a crusher dagger.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRArmSpacer
         Rodentia: RodentiaCyberRArmSpacer
         Resomi: ResomiCyberRArmSpacer
+        Experiment: ExperimentCyberRArmSpacer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_spacer_arm"
@@ -1215,18 +1288,20 @@
   id: RightHandCyberSpacer
   name: "right spacer hand"
   parent: [PartCyber, BaseRightHand]
-  description: Augmented hand for the salvagers of the modern age.
+  description: A surgically-installed cybernetic hand with built-in tools made for salvaging, including a PKA, a grappling gun, and a crusher dagger.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRHandSpacer
         Rodentia: RodentiaCyberRHandSpacer
         Resomi: ResomiCyberRHandSpacer
+        Experiment: ExperimentCyberRHandSpacer
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandSpacerTools
         Rodentia: RodentiaCyberRHandSpacerTools
         Resomi: ResomiCyberRHandSpacerTools
+        Experiment: ExperimentCyberRHandSpacerTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_spacer_hand"
@@ -1251,13 +1326,14 @@
   id: LeftArmCyberGorilla
   name: "left G.O.R.I.L.L.A arm"
   parent: [PartCyber, BaseLeftArm, BaseScienceContraband]
-  description: Augmented arm for the scientists of the modern age.
+  description: A surgically-installed cybernetic arm perfect for scientists hunting for anomalies, featuring a built-in G.O.R.I.L.L.A gauntlet, C.H.I.M.P handcannon, and an anomaly scanner.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLArmGorilla
         Rodentia: RodentiaCyberLArmGorilla
         Resomi: ResomiCyberLArmGorilla
+        Experiment: ExperimentCyberLArmGorilla
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_gorilla_arm"
@@ -1272,18 +1348,20 @@
   id: LeftHandCyberGorilla
   name: "left G.O.R.I.L.L.A hand"
   parent: [PartCyber, BaseLeftHand, BaseScienceContraband]
-  description: Augmented hand for the scientists of the modern age.
+  description: A surgically-installed cybernetic hand perfect for scientists hunting for anomalies, featuring a built-in G.O.R.I.L.L.A gauntlet, C.H.I.M.P handcannon, and an anomaly scanner.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLHandGorilla
         Rodentia: RodentiaCyberLHandGorilla
         Resomi: ResomiCyberLHandGorilla
+        Experiment: ExperimentCyberLHandGorilla
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandGorillaTools
         Rodentia: RodentiaCyberLHandGorillaTools
         Resomi: ResomiCyberLHandGorillaTools
+        Experiment: ExperimentCyberLHandGorillaTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_gorilla_hand"
@@ -1307,13 +1385,14 @@
   id: RightArmCyberGorilla
   name: "right G.O.R.I.L.L.A arm"
   parent: [PartCyber, BaseRightArm, BaseScienceContraband]
-  description: Augmented arm for the scientists of the modern age.
+  description: A surgically-installed cybernetic arm perfect for scientists hunting for anomalies, featuring a built-in G.O.R.I.L.L.A gauntlet, C.H.I.M.P handcannon, and an anomaly scanner.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRArmGorilla
         Rodentia: RodentiaCyberRArmGorilla
         Resomi: ResomiCyberRArmGorilla
+        Experiment: ExperimentCyberRArmGorilla
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_gorilla_arm"
@@ -1328,18 +1407,20 @@
   id: RightHandCyberGorilla
   name: "right G.O.R.I.L.L.A hand"
   parent: [PartCyber, BaseRightHand, BaseScienceContraband]
-  description: Augmented hand for the scientists of the modern age.
+  description: A surgically-installed cybernetic hand perfect for scientists hunting for anomalies, featuring a built-in G.O.R.I.L.L.A gauntlet, C.H.I.M.P handcannon, and an anomaly scanner.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRHandGorilla
         Rodentia: RodentiaCyberRHandGorilla
         Resomi: ResomiCyberRHandGorilla
+        Experiment: ExperimentCyberRHandGorilla
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandGorillaTools
         Rodentia: RodentiaCyberRHandGorillaTools
         Resomi: ResomiCyberRHandGorillaTools
+        Experiment: ExperimentCyberRHandGorillaTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_gorilla_hand"
@@ -1364,13 +1445,14 @@
   id: LeftArmCyberAngel
   name: "left angel arm"
   parent: [PartCyber, BaseLeftArm]
-  description: Augmented arm for the doctors of the modern age.
+  description: A surgically-installed cybernetic arm ideal for paramedics, including a deployable advanced jet injector, purpose-built autoinjectors for tricordrazine and inaprovaline, and a defibrillator.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLArmAngel
         Rodentia: RodentiaCyberLArmAngel
         Resomi: ResomiCyberLArmAngel
+        Experiment: ExperimentCyberLArmAngel
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_angel_arm"
@@ -1385,18 +1467,20 @@
   id: LeftHandCyberAngel
   name: "left angel hand"
   parent: [PartCyber, BaseLeftHand]
-  description: Augmented hand for the doctors of the modern age.
+  description: A surgically-installed cybernetic hand ideal for paramedics, including a deployable advanced jet injector, purpose-built autoinjectors for tricordrazine and inaprovaline, and a defibrillator.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLHandAngel
         Rodentia: RodentiaCyberLHandAngel
         Resomi: ResomiCyberLHandAngel
+        Experiment: ExperimentCyberLHandAngel
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandAngelTools
         Rodentia: RodentiaCyberLHandAngelTools
         Resomi: ResomiCyberLHandAngelTools
+        Experiment: ExperimentCyberLHandAngelTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_angel_hand"
@@ -1421,13 +1505,14 @@
   id: RightArmCyberAngel
   name: "right angel arm"
   parent: [PartCyber, BaseRightArm]
-  description: Augmented arm for the doctors of the modern age.
+  description: A surgically-installed cybernetic arm ideal for paramedics, including a deployable advanced jet injector, purpose-built autoinjectors for tricordrazine and inaprovaline, and a defibrillator.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRArmAngel
         Rodentia: RodentiaCyberRArmAngel
         Resomi: ResomiCyberRArmAngel
+        Experiment: ExperimentCyberRArmAngel
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_angel_arm"
@@ -1442,18 +1527,20 @@
   id: RightHandCyberAngel
   name: "right angel hand"
   parent: [PartCyber, BaseRightHand]
-  description: Augmented hand for the doctors of the modern age.
+  description: A surgically-installed cybernetic hand ideal for paramedics, including a deployable advanced jet injector, purpose-built autoinjectors for tricordrazine and inaprovaline, and a defibrillator.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRHandAngel
         Rodentia: RodentiaCyberRHandAngel
         Resomi: ResomiCyberRHandAngel
+        Experiment: ExperimentCyberRHandAngel
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandAngelTools
         Rodentia: RodentiaCyberRHandAngelTools
         Resomi: ResomiCyberRHandAngelTools
+        Experiment: ExperimentCyberRHandAngelTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_angel_hand"
@@ -1479,12 +1566,14 @@
   id: LeftArmCyberZeus
   name: "left zeus arm"
   parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
+  description: A surgically-installed cybernetic arm geared for security use, perfect for when you need some non-lethals. Includes a stun fist and an EMP fist, allowing for disabling of both organics and silicons.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLArmZeus
         Rodentia: RodentiaCyberLArmZeus
         Resomi: ResomiCyberLArmZeus
+        Experiment: ExperimentCyberLArmZeus
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_zeus_arm"
@@ -1499,17 +1588,20 @@
   id: LeftHandCyberZeus
   name: "left zeus hand"
   parent: [PartCyber, BaseLeftHand, BaseSecurityContraband]
+  description: A surgically-installed cybernetic hand geared for security use, perfect for when you need some non-lethals. Includes a stun fist and an EMP fist, allowing for disabling of both organics and silicons.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLHandZeus
         Rodentia: RodentiaCyberLHandZeus
         Resomi: ResomiCyberLHandZeus
+        Experiment: ExperimentCyberLHandZeus
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandZeus
         Rodentia: RodentiaCyberLHandZeus
         Resomi: ResomiCyberLHandZeus
+        Experiment: ExperimentCyberLHandZeus
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_zeus_hand"
@@ -1532,12 +1624,14 @@
   id: RightArmCyberZeus
   name: "right zeus arm"
   parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
+  description: A surgically-installed cybernetic arm geared for security use, perfect for when you need some non-lethals. Includes a stun fist and an EMP fist, allowing for disabling of both organics and silicons.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRArmZeus
         Rodentia: RodentiaCyberRArmZeus
         Resomi: ResomiCyberRArmZeus
+        Experiment: ExperimentCyberRArmZeus
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_zeus_arm"
@@ -1552,17 +1646,20 @@
   id: RightHandCyberZeus
   name: "right zeus hand"
   parent: [PartCyber, BaseRightHand, BaseSecurityContraband]
+  description: A surgically-installed cybernetic hand geared for security use, perfect for when you need some non-lethals. Includes a stun fist and an EMP fist, allowing for disabling of both organics and silicons.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRHandZeus
         Rodentia: RodentiaCyberRHandZeus
         Resomi: ResomiCyberRHandZeus
+        Experiment: ExperimentCyberRHandZeus
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandZeus
         Rodentia: RodentiaCyberRHandZeus
         Resomi: ResomiCyberRHandZeus
+        Experiment: ExperimentCyberRHandZeus
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_zeus_hand"
@@ -1586,13 +1683,14 @@
   id: LeftArmCyberRiplet
   name: "left riplet arm"
   parent: [PartCyber, BaseLeftArm]
-  description: Augmented arm for the cargo techs of the modern age.
+  description: A surgically-installed cybernetic arm that allows you to carry heavy things with its internal clamp, similar in function to a ripley. Not rated for use with the supermatter.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLArmRiplet
         Rodentia: RodentiaCyberLArmRiplet
         Resomi: ResomiCyberLArmRiplet
+        Experiment: ExperimentCyberLArmRiplet
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_riplet_arm"
@@ -1607,18 +1705,20 @@
   id: LeftHandCyberRiplet
   name: "left riplet hand"
   parent: [PartCyber, BaseLeftHand]
-  description: Augmented hand for the cargo techs of the modern age.
+  description: A surgically-installed cybernetic hand that allows you to carry heavy things with its internal clamp, similar in function to a ripley. Not rated for use with the supermatter.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLHandRiplet
         Rodentia: RodentiaCyberLHandRiplet
         Resomi: ResomiCyberLHandRiplet
+        Experiment: ExperimentCyberLHandRiplet
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandRipletTools
         Rodentia: RodentiaCyberLHandRipletTools
         Resomi: ResomiCyberLHandRipletTools
+        Experiment: ExperimentCyberLHandRipletTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_riplet_hand"
@@ -1640,13 +1740,14 @@
   id: RightArmCyberRiplet
   name: "right riplet arm"
   parent: [PartCyber, BaseRightArm]
-  description: Augmented arm for the cargo techs of the modern age.
+  description: A surgically-installed cybernetic arm that allows you to carry heavy things with its internal clamp, similar in function to a ripley. Not rated for use with the supermatter.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRArmRiplet
         Rodentia: RodentiaCyberRArmRiplet
         Resomi: ResomiCyberRArmRiplet
+        Experiment: ExperimentCyberRArmRiplet
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_riplet_arm"
@@ -1661,18 +1762,20 @@
   id: RightHandCyberRiplet
   name: "right riplet hand"
   parent: [PartCyber, BaseRightHand]
-  description: Augmented hand for the cargo techs of the modern age.
+  description: A surgically-installed cybernetic hand that allows you to carry heavy things with its internal clamp, similar in function to a ripley. Not rated for use with the supermatter.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRHandRiplet
         Rodentia: RodentiaCyberRHandRiplet
         Resomi: ResomiCyberRHandRiplet
+        Experiment: ExperimentCyberRHandRiplet
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandRipletTools
         Rodentia: RodentiaCyberRHandRipletTools
         Resomi: ResomiCyberRHandRipletTools
+        Experiment: ExperimentCyberRHandRipletTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_riplet_hand"
@@ -1695,12 +1798,14 @@
   id: LeftArmCyberPersephone
   name: "left persephone arm"
   parent: [PartCyber, BaseLeftArm]
+  description: A surgically-installed cybernetic arm made for botanists. It includes a mini hoe, plant clippers, a hydraulic pipette dropper, a hatchet, a scythe, a spade, and an integrated reagent grinder.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLArmPersephone
         Rodentia: RodentiaCyberLArmPersephone
         Resomi: ResomiCyberLArmPersephone
+        Experiment: ExperimentCyberLArmPersephone
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_persephone_arm"
@@ -1715,17 +1820,20 @@
   id: LeftHandCyberPersephone
   name: "left persephone hand"
   parent: [PartCyber, BaseLeftHand]
+  description: A surgically-installed cybernetic hand made for botanists. It includes a mini hoe, plant clippers, a hydraulic pipette dropper, a hatchet, a scythe, a spade, and an integrated reagent grinder.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLHandPersephone
         Rodentia: RodentiaCyberLHandPersephone
         Resomi: ResomiCyberLHandPersephone
+        Experiment: ExperimentCyberLHandPersephone
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandPersephoneTools
         Rodentia: RodentiaCyberLHandPersephoneTools
         Resomi: ResomiCyberLHandPersephoneTools
+        Experiment: ExperimentCyberLHandPersephoneTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_persephone_hand"
@@ -1753,12 +1861,14 @@
   id: RightArmCyberPersephone
   name: "right persephone arm"
   parent: [PartCyber, BaseRightArm]
+  description: A surgically-installed cybernetic arm made for botanists. It includes a mini hoe, plant clippers, a hydraulic pipette dropper, a hatchet, a scythe, a spade, and an integrated reagent grinder.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRArmPersephone
         Rodentia: RodentiaCyberRArmPersephone
         Resomi: ResomiCyberRArmPersephone
+        Experiment: ExperimentCyberRArmPersephone
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_persephone_arm"
@@ -1773,17 +1883,20 @@
   id: RightHandCyberPersephone
   name: "right persephone hand"
   parent: [PartCyber, BaseRightHand]
+  description: A surgically-installed cybernetic hand made for botanists. It includes a mini hoe, plant clippers, a hydraulic pipette dropper, a hatchet, a scythe, a spade, and an integrated reagent grinder.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRHandPersephone
         Rodentia: RodentiaCyberRHandPersephone
         Resomi: ResomiCyberRHandPersephone
+        Experiment: ExperimentCyberRHandPersephone
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandPersephoneTools
         Rodentia: RodentiaCyberRHandPersephoneTools
         Resomi: ResomiCyberRHandPersephoneTools
+        Experiment: ExperimentCyberRHandPersephoneTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_persephone_hand"
@@ -1812,13 +1925,14 @@
   id: LeftArmCyberScribe
   name: "left scribe arm"
   parent: [PartCyber, BaseLeftArm]
-  description: Augmented arm for the bureaucrats of the modern age.
+  description: A surgically-installed cybernetic arm great for paper pushers. It allows you to deploy a pen, stamp holder, integrated document printer, and a file keeper, which also serves as a decent weapon to swap away pests or desk hoppers.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLArmScribe
         Rodentia: RodentiaCyberLArmScribe
         Resomi: ResomiCyberLArmScribe
+        Experiment: ExperimentCyberLArmScribe
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_scribe_arm"
@@ -1833,18 +1947,20 @@
   id: LeftHandCyberScribe
   name: "left scribe hand"
   parent: [PartCyber, BaseLeftHand]
-  description: Augmented hand for the bureaucrats of the modern age.
+  description: A surgically-installed cybernetic hand great for paper pushers. It allows you to deploy a pen, stamp holder, integrated document printer, and a file keeper, which also serves as a decent weapon to swap away pests or desk hoppers.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLHandScribe
         Rodentia: RodentiaCyberLHandScribe
         Resomi: ResomiCyberLHandScribe
+        Experiment: ExperimentCyberLHandScribe
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandScribeTools
         Rodentia: RodentiaCyberLHandScribeTools
         Resomi: ResomiCyberLHandScribeTools
+        Experiment: ExperimentCyberLHandScribeTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_scribe_hand"
@@ -1869,13 +1985,14 @@
   id: RightArmCyberScribe
   name: "right scribe arm"
   parent: [PartCyber, BaseRightArm]
-  description: Augmented arm for the bureaucrats of the modern age.
+  description: A surgically-installed cybernetic arm great for paper pushers. It allows you to deploy a pen, stamp holder, integrated document printer, and a file keeper, which also serves as a decent weapon to swap away pests or desk hoppers.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRArmScribe
         Rodentia: RodentiaCyberRArmScribe
         Resomi: ResomiCyberRArmScribe
+        Experiment: ExperimentCyberRArmScribe
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_scribe_arm"
@@ -1890,18 +2007,20 @@
   id: RightHandCyberScribe
   name: "right scribe hand"
   parent: [PartCyber, BaseRightHand]
-  description: Augmented hand for the bureaucrats of the modern age.
+  description: A surgically-installed cybernetic hand great for paper pushers. It allows you to deploy a pen, stamp holder, integrated document printer, and a file keeper, which also serves as a decent weapon to swap away pests or desk hoppers.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRHandScribe
         Rodentia: RodentiaCyberRHandScribe
         Resomi: ResomiCyberRHandScribe
+        Experiment: ExperimentCyberRHandScribe
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandScribeTools
         Rodentia: RodentiaCyberRHandScribeTools
         Resomi: ResomiCyberRHandScribeTools
+        Experiment: ExperimentCyberRHandScribeTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_scribe_hand"
@@ -1927,12 +2046,14 @@
   id: LeftArmCyberHerakles
   name: "left herakles arm"
   parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
+  description: A surgically-installed cybernetic arm geared for security use, for when you need to force your way in. Includes a herakles fist that can pry open doors and knocks people back on hit, and a holographic restrainer that can restrain someone with holographic cuffs.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLArmHerakles
         Rodentia: RodentiaCyberLArmHerakles
         Resomi: ResomiCyberLArmHerakles
+        Experiment: ExperimentCyberLArmHerakles
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_bulwark_arm"
@@ -1947,17 +2068,20 @@
   id: LeftHandCyberHerakles
   name: "left herakles hand"
   parent: [PartCyber, BaseLeftHand, BaseSecurityContraband]
+  description: A surgically-installed cybernetic hand geared for security use, for when you need to force your way in. Includes a herakles fist that can pry open doors and knocks people back on hit, and a holographic restrainer that can restrain someone with holographic cuffs.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLHandHerakles
         Rodentia: RodentiaCyberLHandHerakles
         Resomi: ResomiCyberLHandHerakles
+        Experiment: ExperimentCyberLHandHerakles
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandHeraklesTools
         Rodentia: RodentiaCyberLHandHeraklesTools
         Resomi: ResomiCyberLHandHeraklesTools
+        Experiment: ExperimentCyberLHandHeraklesTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_bulwark_hand"
@@ -1980,12 +2104,14 @@
   id: RightArmCyberHerakles
   name: "right herakles arm"
   parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
+  description: A surgically-installed cybernetic arm geared for security use, for when you need to force your way in. Includes a herakles fist that can pry open doors and knocks people back on hit, and a holographic restrainer that can restrain someone with holographic cuffs.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRArmHerakles
         Rodentia: RodentiaCyberRArmHerakles
         Resomi: ResomiCyberRArmHerakles
+        Experiment: ExperimentCyberRArmHerakles
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_bulwark_arm"
@@ -2000,17 +2126,20 @@
   id: RightHandCyberHerakles
   name: "right herakles hand"
   parent: [PartCyber, BaseRightHand, BaseSecurityContraband]
+  description: A surgically-installed cybernetic hand geared for security use, for when you need to force your way in. Includes a herakles fist that can pry open doors and knocks people back on hit, and a holographic restrainer that can restrain someone with holographic cuffs.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRHandHerakles
         Rodentia: RodentiaCyberRHandHerakles
         Resomi: ResomiCyberRHandHerakles
+        Experiment: ExperimentCyberRHandHerakles
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandHeraklesTools
         Rodentia: RodentiaCyberRHandHeraklesTools
         Resomi: ResomiCyberRHandHeraklesTools
+        Experiment: ExperimentCyberRHandHeraklesTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_bulwark_hand"
@@ -2034,12 +2163,14 @@
   id: LeftArmCyberInvestigator
   name: "left investigator arm"
   parent: [PartCyber, BaseLeftArm, BaseScienceContraband]
+  description: A surgically-installed cybernetic arm great for scientists studying artifacts. Comes with a cybernetic radcaster, a freeze ray, a node scanner, and three vials. One of the vials passively generates water, and another passively generates blood.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLArmInvestigator
         Rodentia: RodentiaCyberLArmInvestigator
         Resomi: ResomiCyberLArmInvestigator
+        Experiment: ExperimentCyberLArmInvestigator
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_investigator_arm"
@@ -2054,17 +2185,20 @@
   id: LeftHandCyberInvestigator
   name: "left investigator hand"
   parent: [PartCyber, BaseLeftHand, BaseScienceContraband]
+  description: A surgically-installed cybernetic hand great for scientists studying artifacts. Comes with a cybernetic radcaster, a freeze ray, a node scanner, and three vials. One of the vials passively generates water, and another passively generates blood.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLHandInvestigator
         Rodentia: RodentiaCyberLHandInvestigator
         Resomi: ResomiCyberLHandInvestigator
+        Experiment: ExperimentCyberLHandInvestigator
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandInvestigatorTools
         Rodentia: RodentiaCyberLHandInvestigatorTools
         Resomi: ResomiCyberLHandInvestigatorTools
+        Experiment: ExperimentCyberLHandInvestigatorTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_investigator_hand"
@@ -2091,12 +2225,14 @@
   id: RightArmCyberInvestigator
   name: "right investigator arm"
   parent: [PartCyber, BaseRightArm, BaseScienceContraband]
+  description: A surgically-installed cybernetic arm great for scientists studying artifacts. Comes with a cybernetic radcaster, a freeze ray, a node scanner, and three vials. One of the vials passively generates water, and another passively generates blood.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRArmInvestigator
         Rodentia: RodentiaCyberRArmInvestigator
         Resomi: ResomiCyberRArmInvestigator
+        Experiment: ExperimentCyberRArmInvestigator
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_investigator_arm"
@@ -2111,17 +2247,20 @@
   id: RightHandCyberInvestigator
   name: "right investigator hand"
   parent: [PartCyber, BaseRightHand, BaseScienceContraband]
+  description: A surgically-installed cybernetic hand great for scientists studying artifacts. Comes with a cybernetic radcaster, a freeze ray, a node scanner, and three vials. One of the vials passively generates water, and another passively generates blood.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRHandInvestigator
         Rodentia: RodentiaCyberRHandInvestigator
         Resomi: ResomiCyberRHandInvestigator
+        Experiment: ExperimentCyberRHandInvestigator
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandInvestigatorTools
         Rodentia: RodentiaCyberRHandInvestigatorTools
         Resomi: ResomiCyberRHandInvestigatorTools
+        Experiment: ExperimentCyberRHandInvestigatorTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_investigator_hand"
@@ -2149,12 +2288,14 @@
   id: LeftLegCyberHydraulic
   name: "left hydraulic cyber leg"
   parent: [PartCyber, LeftLegCyberBase]
+  description: A surgically-installed cybernetic leg suitable for carrying and moving heavy loads at near-normal movement speed.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLLegHydraulic
         Rodentia: RodentiaCyberLLegHydraulic
         Resomi: ResomiCyberLLegHydraulic
+        Experiment: ExperimentCyberLLegHydraulic
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_leg_hydraulic"
@@ -2174,12 +2315,14 @@
   id: RightLegCyberHydraulic
   name: "right hydraulic cyber leg"
   parent: [PartCyber, RightLegCyberBase]
+  description: A surgically-installed cybernetic leg suitable for carrying and moving heavy loads at near-normal movement speed.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRLegHydraulic
         Rodentia: RodentiaCyberRLegHydraulic
         Resomi: ResomiCyberRLegHydraulic
+        Experiment: ExperimentCyberRLegHydraulic
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_leg_hydraulic"
@@ -2200,12 +2343,14 @@
   id: LeftLegCyberPilebunker
   name: "left pilebunker leg"
   parent: [PartCyber, LeftLegCyberBase]
+  description: A surgically-installed cybernetic leg that enables the user to jump short distances.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLLegPilebunker
         Rodentia: RodentiaCyberLLegPilebunker
         Resomi: ResomiCyberLLegPilebunker
+        Experiment: ExperimentCyberLLegPilebunker
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_leg_pilebunker"
@@ -2222,12 +2367,14 @@
   id: RightLegCyberPilebunker
   name: "right pilebunker leg"
   parent: [PartCyber, RightLegCyberBase]
+  description: A surgically-installed cybernetic leg that enables the user to jump short distances.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRLegPilebunker
         Rodentia: RodentiaCyberRLegPilebunker
         Resomi: ResomiCyberRLegPilebunker
+        Experiment: ExperimentCyberRLegPilebunker
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_leg_pilebunker"
@@ -2245,13 +2392,14 @@
   id: LeftLegCyberCargo
   name: "left cargo cyber leg"
   parent: [PartCyber, LeftLegCyberBase]
-  description: Wait a moment... This is just an older model of cyberleg someone strapped a pouch to!
+  description: A surgically-installed cybernetic leg that includes some built-in storage.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberLLegCargo
         Rodentia: RodentiaCyberLLegCargo
         Resomi: ResomiCyberLLegCargo
+        Experiment: ExperimentCyberLLegCargo
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_leg_cargo"
@@ -2298,13 +2446,14 @@
   id: RightLegCyberCargo
   name: "right cargo cyber leg"
   parent: [PartCyber, RightLegCyberBase]
-  description: Wait a moment... This is just an older model of cyberleg someone strapped a pouch to!
+  description: A surgically-installed cybernetic leg that includes some built-in storage.
   components:
     - type: BaseLayerId
       layers:
         Default: CyberRLegCargo
         Rodentia: RodentiaCyberRLegCargo
         Resomi: ResomiCyberRLegCargo
+        Experiment: ExperimentCyberRLegCargo
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_leg_cargo"

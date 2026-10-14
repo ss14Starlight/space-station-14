@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - GrenadeStinger
+    - GrenadeIncendiary
+    - GrenadeShrapnel
+  components:
+  - type: EorgPreventTrigger

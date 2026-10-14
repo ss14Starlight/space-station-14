@@ -59,7 +59,7 @@
 
 - type: material
   id: SalvageTicket
-  name: ticket
+  name: materials-salvage-ticket
   unit: materials-unit-credit
   stackEntity: SalvageTicket
   icon: { sprite: /Textures/_Starlight/Objects/Economy/salvage_ticket.rsi, state: icon }

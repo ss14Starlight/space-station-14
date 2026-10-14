@@ -3,6 +3,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.DoAfter;
 using Content.Server.Forensics;
 using Content.Server.Popups;
+using Content.Server._Funkystation.Stains;
 using Content.Server._Starlight.Scent.Components;
 using Content.Shared._Starlight.Scent;
 using Content.Shared._Starlight.Scent.Components;
@@ -21,6 +22,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
+using Content.Shared.Localizations;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
@@ -53,6 +55,7 @@ public sealed partial class ScentSystem : SharedScentSystem
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private TagSystem _tags = default!;
     [Dependency] private SharedStealthSystem _stealth = default!;
+    [Dependency] private StainSystem _stains = default!;
 
     private const string ScentMarkerPrototype = "ScentMarker";
     private const int ScentIdByteLength = 8;
@@ -139,14 +142,28 @@ public sealed partial class ScentSystem : SharedScentSystem
         var entries = new List<ScentTraceEntry>(trace?.Scents.Count ?? 0);
         if (trace != null)
         {
+            // Partial perceivers judge freshness against a shorter window than the real one,
+            // and can't perceive anything past it at all.
+            var effectiveLifetime = component.Perception == ScentPerception.Partial
+                ? trace.TraceLifetime * trace.PartialFreshnessFraction
+                : trace.TraceLifetime;
+
             foreach (var (scentId, info) in trace.Scents)
             {
-                var speciesName = Loc.GetString("scent-species-non-humanoid");
-                if (info.Species != null && _prototype.TryIndex<SpeciesPrototype>(info.Species, out var species))
-                    speciesName = Loc.GetString(species.Name);
-
                 var age = (float)(now - info.LastTouched).TotalSeconds;
-                entries.Add(new ScentTraceEntry(scentId, GetFreshness(age, trace.TraceLifetime), speciesName));
+                if (age > effectiveLifetime)
+                    continue;
+
+                // Partial perceivers can't make out species from a trace at all.
+                var speciesName = string.Empty;
+                if (component.Perception != ScentPerception.Partial)
+                {
+                    speciesName = Loc.GetString("scent-species-non-humanoid");
+                    if (info.Species != null && _prototype.TryIndex<SpeciesPrototype>(info.Species, out var species))
+                        speciesName = Loc.GetString(species.Name);
+                }
+
+                entries.Add(new ScentTraceEntry(scentId, GetFreshness(age, effectiveLifetime), speciesName));
             }
         }
 
@@ -199,13 +216,25 @@ public sealed partial class ScentSystem : SharedScentSystem
             return;
 
         var isOwnScent = TryComp<ScentComponent>(target, out var targetScent) && targetScent.ScentId == args.ScentId;
-        var isTracedScent = TryComp<ScentTraceComponent>(target, out var trace) && trace.Scents.ContainsKey(args.ScentId);
+
+        var isTracedScent = false;
+        if (TryComp<ScentTraceComponent>(target, out var trace))
+        {
+            PruneExpiredTraces(trace);
+            isTracedScent = trace.Scents.TryGetValue(args.ScentId, out var traceInfo) &&
+                IsWithinPerceivedLifetime(component, trace, traceInfo.LastTouched);
+        }
 
         if (!isOwnScent && !isTracedScent)
             return;
 
+        var isNewTrack = component.TrackedScentId != args.ScentId;
+
         SetTrackedScent((uid, component), args.ScentId, target);
         _popup.PopupEntity(Loc.GetString("scent-sniff-window-tracking-popup"), uid, uid);
+
+        if (isNewTrack)
+            SendScentSourcePing((uid, component), args.ScentId);
     }
 
     private void OnCleanAfterInteract(Entity<CleansScentComponent> ent, ref AfterInteractEvent args)
@@ -248,8 +277,9 @@ public sealed partial class ScentSystem : SharedScentSystem
         var hasForensics = TryComp<ForensicsComponent>(target, out var forensics) &&
                             (forensics.Fingerprints.Count + forensics.Fibers.Count > 0 ||
                              (forensics.DNAs.Count > 0 && forensics.CanDnaBeCleaned));
+        var hasStains = _stains.HasStains(target);
 
-        if (!hasScent && !hasForensics)
+        if (!hasScent && !hasForensics && !hasStains)
         {
             if (!HasComp<CleansForensicsComponent>(cleaner.Owner))
             {
@@ -262,13 +292,13 @@ public sealed partial class ScentSystem : SharedScentSystem
             return false;
         }
 
-        string evidence;
-        if (hasScent && hasForensics)
-            evidence = Loc.GetString("scent-evidence-both");
-        else if (hasScent)
-            evidence = Loc.GetString("scent-evidence-scent");
-        else
-            evidence = Loc.GetString("scent-evidence-forensics");
+        var evidence = new List<string>(3);
+        if (hasScent)
+            evidence.Add(Loc.GetString("scent-evidence-scent"));
+        if (hasForensics)
+            evidence.Add(Loc.GetString("scent-evidence-forensics"));
+        if (hasStains)
+            evidence.Add(Loc.GetString("scent-evidence-stains"));
 
         var doAfterArgs = new DoAfterArgs(EntityManager, user, cleaner.Comp.CleanDelay,
             new CleanScentDoAfterEvent(), cleaner, target: target, used: cleaner)
@@ -292,7 +322,8 @@ public sealed partial class ScentSystem : SharedScentSystem
         _doAfterSystem.TryStartDoAfter(doAfterArgs);
         _popup.PopupEntity(
             Loc.GetString(isSelf ? "scent-cleaning-self" : "scent-cleaning-other",
-                ("evidence", evidence), ("target", Identity.Entity(target, EntityManager))),
+                ("evidence", ContentLocalizationManager.FormatList(evidence)),
+                ("target", Identity.Entity(target, EntityManager))),
             user, user);
         return true;
     }
@@ -315,6 +346,8 @@ public sealed partial class ScentSystem : SharedScentSystem
             if (forensics.CanDnaBeCleaned)
                 forensics.DNAs.Clear();
         }
+
+        _stains.CleanStains(target);
 
         args.Handled = true;
     }
@@ -386,6 +419,16 @@ public sealed partial class ScentSystem : SharedScentSystem
 
         foreach (var scentId in expired)
             trace.Scents.Remove(scentId);
+    }
+
+    // Whether a Partial perceiver can perceive a trace this old at all. Full perceivers always can.
+    private bool IsWithinPerceivedLifetime(SmellerComponent component, ScentTraceComponent trace, TimeSpan lastTouched)
+    {
+        if (component.Perception != ScentPerception.Partial)
+            return true;
+
+        var age = (float)(_timing.CurTime - lastTouched).TotalSeconds;
+        return age <= trace.TraceLifetime * trace.PartialFreshnessFraction;
     }
 
     private static ScentFreshness GetFreshness(float age, float lifetime)

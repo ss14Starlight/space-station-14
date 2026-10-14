@@ -63,30 +63,45 @@
   placement:
     mode: AlignAtmosPipeLayers
   description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentPumpSauna
 
 - type: entity
   parent: [GasVentPumpSaunaBase, GasVentPumpAlt1]
   id: GasVentPumpSaunaAlt1
   categories: [ HideSpawnMenu ]
   description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentPumpSauna
 
 - type: entity
   parent: [GasVentPumpSaunaBase, GasVentPumpAlt2]
   id: GasVentPumpSaunaAlt2
   categories: [ HideSpawnMenu ]
   description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentPumpSauna
 
 - type: entity
   parent: [GasVentPumpSaunaBase, GasVentPumpAlt3]
   id: GasVentPumpSaunaAlt3
   categories: [ HideSpawnMenu ]
   description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentPumpSauna
 
 - type: entity
   parent: [GasVentPumpSaunaBase, GasVentPumpAlt4]
   id: GasVentPumpSaunaAlt4
   categories: [ HideSpawnMenu ]
   description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentPumpSauna
 
 # Gas Scrubber
 
@@ -131,30 +146,45 @@
   placement:
     mode: AlignAtmosPipeLayers
   description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentScrubberSauna
 
 - type: entity
   parent: [GasVentScrubberSaunaBase, GasVentScrubberAlt1]
   id: GasVentScrubberSaunaAlt1
   categories: [ HideSpawnMenu ]
   description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentScrubberSauna
 
 - type: entity
   parent: [GasVentScrubberSaunaBase, GasVentScrubberAlt2]
   id: GasVentScrubberSaunaAlt2
   categories: [ HideSpawnMenu ]
   description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentScrubberSauna
 
 - type: entity
   parent: [GasVentScrubberSaunaBase, GasVentScrubberAlt3]
   id: GasVentScrubberSaunaAlt3
   categories: [ HideSpawnMenu ]
   description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentScrubberSauna
 
 - type: entity
   parent: [GasVentScrubberSaunaBase, GasVentScrubberAlt4]
   id: GasVentScrubberSaunaAlt4
   categories: [ HideSpawnMenu ]
   description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
+  components:
+  - type: SandboxCopyOverride
+    override: GasVentScrubberSauna
 
 # Air Alarm
 

@@ -58,7 +58,7 @@ public sealed partial class AtmosMonitoringEntryContainer : BoxContainer
             NetworkNameLabel.Text = Loc.GetString("atmos-alerts-window-alarm-label", ("name", updatedData.EntityName), ("address", updatedData.Address));
 
         else
-            NetworkNameLabel.Text = Loc.GetString(updatedData.EntityName);
+            NetworkNameLabel.Text = updatedData.EntityName; // Starlight: no double translations!
 
         Data = updatedData;
 

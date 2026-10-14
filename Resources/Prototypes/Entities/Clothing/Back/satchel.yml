@@ -4,6 +4,12 @@
   name: satchel
   description: A trendy looking satchel.
   components:
+  #Starlight Begin
+  - type: Tag
+    tags:
+    - Backpack
+    - MonkeyWearable
+  #Starlight End
   - type: Sprite
     sprite: Clothing/Back/Satchels/satchel.rsi
   - type: Storage

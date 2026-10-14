@@ -58,3 +58,8 @@
   id: NanoTrasenRepresentativeCap
   equipment:
     head: ClothingHeadHatCapNtrep
+
+- type: loadout
+  id: NanoTrasenRepresentativeBeret
+  equipment:
+    head: ClothingHeadHatBeretNTR

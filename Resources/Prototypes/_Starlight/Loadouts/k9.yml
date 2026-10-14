@@ -6,7 +6,6 @@
   - K9Variant
   - K9OuterClothing
   - K9Eyes
-  - K9SuitStorage
   - K9Collar
 
 - type: loadoutGroup
@@ -81,26 +80,6 @@
   id: K9SecHudEyepatch
   equipment:
     eyes: ClothingEyesEyepatchHudSecurity
-
-# Suit storage
-- type: loadoutGroup
-  id: K9SuitStorage
-  name: loadout-group-k9-suitstorage
-  minLimit: 0
-  defaultSelected: 1
-  loadouts:
-  - K9DoubleEmergencyOxygenTank
-  - K9ExtendedEmergencyOxygenTank
-
-- type: loadout
-  id: K9DoubleEmergencyOxygenTank
-  equipment:
-    suitstorage: DoubleEmergencyOxygenTankFilled
-
-- type: loadout
-  id: K9ExtendedEmergencyOxygenTank
-  equipment:
-    suitstorage: ExtendedEmergencyOxygenTankFilled
 
 # Collar
 - type: loadoutGroup

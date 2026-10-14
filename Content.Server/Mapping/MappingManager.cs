@@ -14,6 +14,7 @@ namespace Content.Server.Mapping;
 
 public sealed partial class MappingManager : IPostInjectInit
 {
+#if !FULL_RELEASE
     [Dependency] private IAdminManager _admin = default!;
     [Dependency] private ILogManager _log = default!;
     [Dependency] private IServerNetManager _net = default!;
@@ -23,6 +24,7 @@ public sealed partial class MappingManager : IPostInjectInit
 
     private ISawmill _sawmill = default!;
     private ZStdCompressionContext _zstd = default!;
+#endif
 
     public void PostInject()
     {

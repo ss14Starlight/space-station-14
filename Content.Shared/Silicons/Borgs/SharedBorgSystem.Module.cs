@@ -6,14 +6,12 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Localizations;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Containers;
-#region Starlight
-using Content.Shared.Tag;
 using Content.Shared.Interaction;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
-using System.Linq;
 using Content.Shared._Starlight.Silicons;
-#endregion Starlight
+using Content.Shared._Starlight.Silicons.Borgs;
+using Content.Shared._Starlight.Sound;
 
 namespace Content.Shared.Silicons.Borgs;
 
@@ -229,16 +227,18 @@ public abstract partial class SharedBorgSystem
                     // Starlight edit end
                 }
             }
-            else if (hand.Item is { } itemProto)
+            else if (hand.Item is { } itemProto && !(IsDroppableHand(hand) && HasComp<BorgChassisResetComponent>(chassis))) // Starlight - a reset chassis gets no new items.
             {
                 item = PredictedSpawnAtPosition(itemProto, xform.Coordinates);
             }
 
             if (item is { } pickUp)
             {
+                EnsureComp<SilentPickupComponent>(pickUp); // Starlight: switching modules should not rattle every tool
                 _hands.DoPickup(chassis, handId, pickUp, hands);
+                RemComp<SilentPickupComponent>(pickUp); // Starlight
 
-                if (!hand.ForceRemovable && hand.Hand.Whitelist == null && hand.Hand.Blacklist == null)
+                if (!IsDroppableHand(hand)) // Starlight
                 {
                     _tag.AddTag(pickUp, module.Comp.ModuleItemTag); // Starlight
                     EnsureComp<UnremoveableComponent>(pickUp);
@@ -258,6 +258,8 @@ public abstract partial class SharedBorgSystem
         module.Comp.Spawned = true;
         Dirty(module);
     }
+
+    private static bool IsDroppableHand(BorgHand hand) => hand.ForceRemovable || hand.Hand.Whitelist != null || hand.Hand.Blacklist != null; // Starlight
 
     private void RemoveProvidedItems(Entity<BorgChassisComponent?> chassis, Entity<ItemBorgModuleComponent?> module)
     {

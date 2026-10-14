@@ -53,8 +53,7 @@ public abstract partial class SharedBorgSystem
 
         var metaData = MetaData(chassis);
 
-        // don't change the name if the value doesn't actually change
-        if (metaData.EntityName.Equals(name, StringComparison.InvariantCulture))
+        if (_nameModifier.GetBaseName(chassis.Owner).Equals(name, StringComparison.InvariantCulture)) // Starlight
             return;
 
         _adminLog.Add(LogType.Action, LogImpact.High, $"{args.Actor} set borg \"{chassis.Owner}\"'s name to: {name}");

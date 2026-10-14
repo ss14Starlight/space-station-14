@@ -16,7 +16,9 @@
         shader: unshaded
         color: '#FFFFFF'
         map: [ "blade" ]
-  - type: Sharp
+  - type: Tool
+    qualities:
+    - Slicing
   - type: DisarmMalus
     malus: 0.6
   - type: MeleeWeapon

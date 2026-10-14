@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: AmeController
+  components:
+  - type: AmbientSound
+    enabled: false # Switched on by code while the machine works.
+    range: 6
+    volume: -8
+    sound:
+      path: /Audio/_Starlight/Ambience/Objects/ame_reactor.ogg

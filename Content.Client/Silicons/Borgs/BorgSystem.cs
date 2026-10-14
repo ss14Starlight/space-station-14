@@ -11,6 +11,7 @@ using Robust.Shared.Timing;
 
 #region Starlight
 using Content.Client._Starlight.Alert;
+using Content.Shared._Starlight.Silicons.Borgs;
 #endregion
 
 namespace Content.Client.Silicons.Borgs;
@@ -36,7 +37,11 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
         SubscribeLocalEvent<BorgChassisComponent, AppearanceChangeEvent>(OnBorgAppearanceChanged);
         SubscribeLocalEvent<MMIComponent, AppearanceChangeEvent>(OnMMIAppearanceChanged);
+        SubscribeLocalEvent<BorgLockdownComponent, ComponentStartup>(OnLockdownUiRelevantChange); // Starlight
+        SubscribeLocalEvent<BorgLockdownComponent, ComponentRemove>(OnLockdownUiRelevantChange); // Starlight
     }
+
+    private void OnLockdownUiRelevantChange<T>(EntityUid uid, BorgLockdownComponent component, T args) => UpdateUI((uid, null)); // Starlight
 
     public override void UpdateUI(Entity<BorgChassisComponent?> chassis)
     {

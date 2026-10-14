@@ -1,0 +1,18 @@
+# Subfloor layers
+- type: !PartialOnly entity
+  id: CableBase
+  components:
+    - type: SubFloorHide
+      subfloorLayer: LV
+
+- type: !PartialOnly entity
+  id: CableHV
+  components:
+    - type: SubFloorHide
+      subfloorLayer: HV
+
+- type: !PartialOnly entity
+  id: CableMV
+  components:
+    - type: SubFloorHide
+      subfloorLayer: MV

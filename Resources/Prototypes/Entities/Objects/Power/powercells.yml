@@ -14,10 +14,9 @@
     intensitySlope: 1.5
   - type: Sprite
     sprite: Objects/Power/power_cells.rsi
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      battery:
-        maxVol: 5
+    - SolutionRiggable
   - type: InjectableSolution
     solution: battery
   - type: DrawableSolution
@@ -31,10 +30,6 @@
     tags:
       - PowerCell
   - type: Riggable
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    fallbackPrice: 10
-  # Starlight-end
   - type: Appearance
   - type: BatteryVisuals
   - type: GenericVisualizer
@@ -44,6 +39,16 @@
           Full: {visible: true, state: o2}
           Neither: {visible: true, state: o1}
           Empty: {visible: false}
+
+- type: entity
+  parent: Solution
+  id: SolutionRiggable
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: battery
+    solution:
+      maxVol: 5
 
 - type: entity
   name: potato battery
@@ -114,7 +119,7 @@
 
 - type: entity
   name: medium-capacity power cell
-  description: A rechargeable power cell. This is the kind of power cell you find in advanced machines. # Starlight-edit
+  description: A rechargeable power cell. This is the popular and reliable version.
   id: PowerCellMedium
   suffix: Full
   parent: BasePowerCell
@@ -149,7 +154,7 @@
 
 - type: entity
   name: high-capacity power cell
-  description: A rechargeable power cell. This premium brand stores up to 50% more energy than the competition. # Starlight-edit
+  description: A rechargeable standardized power cell. This premium brand stores up to 50% more energy than the competition.
   id: PowerCellHigh
   suffix: Full
   parent: BasePowerCell
@@ -199,12 +204,6 @@
   - type: Battery
     maxCharge: 1800
     startingCharge: 1800
-  # Starlight-start
-  - type: Tag
-    tags:
-      - PowerCell
-      - HighTierCell
-  # Starlight-end
 
 - type: entity
   id: PowerCellHyperPrinted
@@ -242,12 +241,6 @@
     startingCharge: 720
   - type: BatterySelfRecharger
     autoRechargeRate: 12 # takes 1 minute to charge itself back to full
-  # Starlight-start
-  - type: Tag
-    tags:
-      - PowerCell
-      - HighTierCell
-  # Starlight-end
 
 - type: entity
   parent: PowerCellMicroreactor
@@ -294,24 +287,35 @@
   - type: Item
     size: Ginormous
   - type: MultiHandedItem
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      battery:
-        maxVol: 15
+    - SolutionRiggableLarge
+  - type: Riggable
+    reagent:
+      ReagentId: Plasma
+      Quantity: 15
   - type: Extractable
     juiceSolution:
       reagents:
         - ReagentId: Zinc
           Quantity: 15
-  # Starlight-start: Power Cages need PowerCage tag
   - type: Tag
     tags:
       - PowerCage
-  # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
+
+- type: entity
+  parent: SolutionRiggable
+  id: SolutionRiggableLarge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: battery
+    solution:
+      maxVol: 15
 
 - type: entity
   id: PowerCageSmall
@@ -337,9 +341,6 @@
   name: medium-capacity power cage
   description: A rechargeable power cage for big devices. The gold standard of capacity and cost.
   components:
-  - type: Tag
-    tags:
-      - PowerCage
   - type: Sprite
     sprite: Objects/Power/power_cages.rsi
     layers:
@@ -358,9 +359,6 @@
   name: high-capacity power cage
   description: A rechargeable power cage for big devices. Increased capacity for increased power levels.
   components:
-  - type: Tag
-    tags:
-      - PowerCage
   - type: Sprite
     sprite: Objects/Power/power_cages.rsi
     layers:

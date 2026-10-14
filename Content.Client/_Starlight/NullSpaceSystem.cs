@@ -16,6 +16,7 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
     [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private NullSpaceOverlay _overlay = default!;
+    private static readonly ProtoId<ShaderPrototype> _nullSpaceShaderId = "NullSpaceShader";
 
     public override void Initialize()
     {
@@ -32,7 +33,7 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
         SubscribeLocalEvent<ShowNullSpaceComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<ShowNullSpaceComponent, GotEquippedEvent>(GotEquippedEvent);
 
-        _overlay = new(_prototypeManager.Index<ShaderPrototype>("NullSpaceShader"));
+        _overlay = new(_prototypeManager.Index(_nullSpaceShaderId));
     }
 
     private void OnInit(EntityUid uid, Component component, ComponentInit args)

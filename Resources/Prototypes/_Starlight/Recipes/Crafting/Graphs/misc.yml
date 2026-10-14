@@ -57,3 +57,33 @@
         doAfter: 4
   - node: projector
     entity: FalseShutterProjectorEmpty
+
+- type: constructionGraph
+  id: SilkWovenCuffs
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: cuffs
+      steps:
+      - material: WebSilk
+        amount: 8
+        doAfter: 20
+  - node: cuffs
+    entity: WebHandcuffs
+
+- type: constructionGraph
+  id: FoodBowlWooden
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: bowl
+      steps:
+      - material: WoodPlank
+        amount: 1
+        doAfter: 2
+      - tool: Slicing
+        doAfter: 2
+  - node: bowl
+    entity: FoodBowlWooden

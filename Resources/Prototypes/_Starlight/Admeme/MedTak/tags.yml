@@ -1,0 +1,17 @@
+- type: Tag
+  id: BoxHVA
+
+- type: Tag
+  id: MagazineMVA
+
+- type: Tag
+  id: MagazineLVA
+
+- type: Tag
+  id: RoundHVA
+
+- type: Tag
+  id: RoundMVA
+
+- type: Tag
+  id: RoundLVA

@@ -1,9 +1,6 @@
 using Content.Client._Starlight.UserInterface;
-using Content.Client.Shuttles.UI;
 using Content.Shared.Shuttles.BUIStates;
 using JetBrains.Annotations;
-using Robust.Client.GameObjects;
-using Robust.Client.UserInterface;
 using RadarConsoleWindow = Content.Client.Shuttles.UI.RadarConsoleWindow;
 using Content.Shared.Medical.CrewMonitoring;
 using Content.Shared.Silicons.StationAi;
@@ -13,7 +10,7 @@ using Robust.Shared.Player;
 namespace Content.Client.Shuttles.BUI;
 
 [UsedImplicitly]
-public sealed class RadarConsoleBoundUserInterface : BoundUserInterface
+public sealed partial class RadarConsoleBoundUserInterface : BoundUserInterface
 {
     #region Starlight
     [Dependency] private ISharedPlayerManager _playerManager = default!;

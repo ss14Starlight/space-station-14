@@ -1,0 +1,8 @@
+﻿- type: !PartialOnly entity
+  id: BaseAPC
+  components:
+  - type: Setup
+  - type: UserInterface
+    interfaces:
+      enum.SetupUiKey.Key:
+        type: SetupMenuBoundUi

@@ -25,7 +25,6 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
   - type: Butcherable
-    butcheringType: Spike
     spawned:
       - id: FoodBakedCookie #should be replaced with gingerbread sheets or something... provided you're willing to make a full spriteset of those.
         amount: 5
@@ -33,9 +32,9 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Sugar
-        Quantity: 100
-      - ReagentId: Butter
         Quantity: 200
+      - ReagentId: Butter
+        Quantity: 400
   - type: Fixtures
     fixtures:
       fix1:

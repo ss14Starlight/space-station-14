@@ -39,3 +39,11 @@
   targetNode: msdeadmansignaleradvanced
   category: construction-category-misc
   objectType: Item
+
+- type: construction
+  id: FoodBowlWooden
+  graph: FoodBowlWooden
+  startNode: start
+  targetNode: bowl
+  category: construction-category-misc
+  objectType: Item

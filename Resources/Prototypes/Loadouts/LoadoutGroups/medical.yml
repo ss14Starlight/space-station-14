@@ -14,7 +14,7 @@
   - MedicalDoctorBackpack
   - MedicalDoctorSatchel
   - MedicalDoctorDuffel
-  - LeatherSatchel # 🌟Starlight🌟
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: MedicalShoes
@@ -41,6 +41,7 @@
   - EmergencyNonBreatherMedical # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
   - EmergencyCheeseMedical # Starlight
+  - EmergencyOxygenMedicalBlood # Starlight
 
 
 # Chief Medical Officer

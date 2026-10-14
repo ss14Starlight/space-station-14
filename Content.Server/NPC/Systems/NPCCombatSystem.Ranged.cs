@@ -4,7 +4,6 @@ using Content.Shared.Interaction;
 using Content.Shared.Physics;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
-using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 
@@ -151,7 +150,7 @@ public sealed partial class NPCCombatSystem
                     collisionGroup = CollisionGroup.Opaque;
                 //🌟Starlight🌟 end
 
-                comp.TargetInLOS = _interaction.InRangeUnobstructed(uid, comp.Target, distance + 0.1f, collisionGroup);
+                comp.TargetInLOS = _hidingWitness.CanSee(uid, comp.Target, distance + 0.1f, collisionGroup); // Starlight-edit
             }
 
             if (!comp.TargetInLOS)
@@ -220,7 +219,7 @@ public sealed partial class NPCCombatSystem
                 return;
             }
 
-            _gun.AttemptShoot(uid, gun, targetCordinates, comp.Target);
+            _gun.AttemptShoot(uid, gun, targetCordinates, _hidingWitness.GetAttackTarget(uid, comp.Target)); // Starlight-edit: shoot the locker they hide in
         }
     }
 }

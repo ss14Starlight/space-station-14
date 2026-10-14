@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Server.Salvage.Expeditions;
-using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared.Chat;
 using Content.Shared.Humanoid;
@@ -13,7 +12,6 @@ using Content.Shared.Station.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Content.Server.NPC.HTN;
-using Content.Shared._Starlight.Shuttles.Components;
 
 namespace Content.Server.Salvage;
 

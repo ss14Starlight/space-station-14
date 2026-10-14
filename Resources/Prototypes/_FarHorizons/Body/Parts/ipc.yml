@@ -7,7 +7,7 @@
   - type: Extractable
     juiceSolution:
       reagents:
-      - ReagentId: Oil
+      - ReagentId: RefinedOil # Starlight
         Quantity: 10
 
 - type: entity
@@ -21,7 +21,7 @@
   - type: Extractable
     juiceSolution:
       reagents:
-      - ReagentId: Oil
+      - ReagentId: RefinedOil # Starlight
         Quantity: 20
 
 - type: entity
@@ -35,7 +35,7 @@
   - type: Extractable
     juiceSolution:
       reagents:
-      - ReagentId: Oil
+      - ReagentId: RefinedOil # Starlight
         Quantity: 10
 
 - type: entity

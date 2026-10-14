@@ -6,13 +6,7 @@
   suffix: Full
   description: Explosive cord for removing whatever is in your way.
   components:
-  # Starlight start
-  - type: UserInterface
-    interfaces:
-      enum.StackCustomSplitUiKey.Key:
-        type: StackCustomSplitBoundUserInterface
   - type: Stack
-  # Starlight end
     stackType: CableDet
     baseLayer: base
     layerStates:
@@ -34,16 +28,13 @@
       - ExCable
     overTile: true
   - type: Appearance
-  - type: Extractable
-    grindableSolutionName: excable
-  - type: SolutionContainerManager
-    solutions:
-      mvcable:
-        reagents:
-        - ReagentId: Thermite
-          Quantity: 3
-        - ReagentId: Charcoal
-          Quantity: 2
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Thermite
+        Quantity: 3
+      - ReagentId: Charcoal
+        Quantity: 2
   - type: Damageable
     damageContainer: StructuralInorganic
   - type: Destructible # should have the same general explosive behavior as in cables.yml & detonator.yml

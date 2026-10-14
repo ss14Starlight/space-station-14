@@ -9,7 +9,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Clothing.EntitySystems;
 
-public sealed class FleetingClothingSystem : EntitySystem
+public sealed partial class FleetingClothingSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!; // starlight edit: removed readonly
     [Dependency] private INetManager _net = default!; // starlight edit: removed readonly

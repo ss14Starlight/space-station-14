@@ -15,3 +15,13 @@
   materials:
     Steel: 1000
     Plastic: 300
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: BluespaceFireExtinguisher
+  result: BluespaceFireExtinguisher
+  completetime: 5
+  materials:
+    Steel: 1000
+    Plasma: 500
+    BluespaceCrystal: 100 # SL

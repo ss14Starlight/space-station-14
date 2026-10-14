@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
@@ -75,7 +76,7 @@ public sealed partial class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComp
         var deadSurvivors = 0;
         var aliveMarooned = 0;
         var aliveOnShuttle = 0;
-        var eShuttle = _eShuttle.GetShuttle();
+        var eShuttle = _eShuttle.GetShuttles();
 
         while (existingSurvivors.MoveNext(out _, out _, out var mindComp))
         {
@@ -94,7 +95,7 @@ public sealed partial class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComp
                 continue;
             }
 
-            if (eShuttle != null && eShuttle.Value.IsValid() && (Transform(eShuttle.Value).MapID == _xform.GetMapCoordinates(survivor).MapId))
+            if (eShuttle.Any(shuttle => shuttle is not null && Transform(shuttle.Value).MapID == Transform(survivor).MapID)) // Starlight edit
             {
                 aliveOnShuttle++;
                 continue;

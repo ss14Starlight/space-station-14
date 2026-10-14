@@ -123,7 +123,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponPistolAPS
+        - id: WeaponPistolStechkinAPS
         - id: MagazinePistol40SP
         - id: MagazinePistol40SP
 
@@ -137,6 +137,17 @@
         children:
         - id: WeaponLightMachineGunDP28
         - id: MagazineLightRifleMaxim
+
+- type: entity
+  id: ClothingBackpackDuffelAKMSBundle
+  parent: ClothingBackpackDuffelSSF
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleAk
+        - id: MagazineLightRifleSP
 
 - type: entity
   id: ClothingBackpackDuffelPPShBundle

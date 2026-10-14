@@ -272,6 +272,12 @@ namespace Content.Server.Atmos.EntitySystems
             _appearance.SetData(uid, FireVisuals.OnFire, flammable.OnFire, appearance);
             _appearance.SetData(uid, FireVisuals.FireStacks, flammable.FireStacks, appearance);
 
+            if (flammable.Displacement != null)
+                _appearance.SetData(uid, FireVisuals.FireDisplacement, flammable.Displacement.Value.Id, appearance);
+            // Starlight - RemoveData always dirties, only call it when there's something to remove.
+            else if (_appearance.TryGetData<string>(uid, FireVisuals.FireDisplacement, out _, appearance))
+                _appearance.RemoveData(uid, FireVisuals.FireDisplacement, appearance);
+
             // Also enable toggleable-light visuals
             // This is intended so that matches & candles can re-use code for un-shaded layers on in-hand sprites.
             // However, this could cause conflicts if something is ACTUALLY both a toggleable light and flammable.

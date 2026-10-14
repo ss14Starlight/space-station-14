@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Server._Starlight.StoreDiscount;
 using Content.Server.Store.Systems;
 using Content.Shared.FixedPoint;
@@ -64,6 +63,10 @@ public sealed partial class StoreDiscountSystem : EntitySystem
         }
 
         var discountComponent = EnsureComp<StoreDiscountComponent>(ev.Store);
+
+        if (discountComponent.Discounts.Count > 0) // Starlight prevents multiple rolls via admin antag, which lead to an servercrash.
+            return;
+
         var discounts = InitializeDiscounts(ev.Listings);
         ApplyDiscounts(ev.Listings, discounts);
         discountComponent.Discounts = discounts;

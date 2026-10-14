@@ -1,0 +1,108 @@
+# Configuration for procedural ruin chunk generation used by WreckSwarm.
+# Defaults in RuinChunkConfigPrototype are used when fields are omitted.
+
+- type: ruinChunkConfig
+  id: Default
+  floodFillPoints: 13
+  floodFillStages: 4
+  wallDestroyChance: 0.30
+  windowDamageChance: 0.10
+  floorToLatticeChance: 0.15
+  spawnMobs: true
+  wallCost: 20
+  windowCosts:
+    firelock: 10
+    windoorsecure: 10
+    windoor: 4
+    reinforceddirectional: 10
+    directional: 6
+    reinforceddiagonal: 8
+    diagonal: 6
+    reinforced: 8
+  defaultWindowCost: 4
+  tileCosts:
+    directionalglass: 8
+    reinforcedglass: 12
+    glass: 8
+    grille: 4
+  defaultTileCost: 1
+  spaceCost: 9999
+  wallTileIds:
+  - WallSolid
+  - WallReinforced
+  - WallReinforcedRust
+  - WallSolidRust
+  - WallSolidDiagonal
+  - WallReinforcedDiagonal
+  wallPrototypes:
+  - WallSolid
+  - WallReinforced
+  - WallReinforcedRust
+  - WallSolidRust
+  - WallSolidDiagonal
+  - WallReinforcedDiagonal
+  - WallShuttle
+  - WallShuttleDiagonal
+  - WallPlastitanium
+  - WallPlastitaniumDiagonal
+  - WallMiningDiagonal
+  - WallWood
+  windowPrototypes:
+  - Window
+  - WindowDirectional
+  - ReinforcedWindow
+  - WindowReinforcedDirectional
+  - WindowDiagonal
+  - ReinforcedWindowDiagonal
+  - TintedWindow
+  - WindowFrostedDirectional
+  - ShuttleWindow
+  - ShuttleWindowDiagonal
+  - PlastitaniumWindow
+  - PlastitaniumWindowDiagonal
+  - ReinforcedPlasmaWindow
+  - ReinforcedPlasmaWindowDiagonal
+  - PlasmaReinforcedWindowDirectional
+  - ReinforcedUraniumWindow
+  - ReinforcedUraniumWindowDiagonal
+  - UraniumReinforcedWindowDirectional
+  - Windoor
+  - WindoorSecure
+  - WindoorPlasma
+  - WindoorSecurePlasma
+  - WindoorClockwork
+  - Firelock
+  - FirelockGlass
+  - FirelockEdge
+  - FirelockFrame
+  - WindoorAssembly
+  - WindoorAssemblySecure
+  - WindoorAssemblyPlasma
+  - WindoorAssemblySecurePlasma
+
+- type: ruinChunkConfig
+  id: Small
+  floodFillPoints: 9
+  floodFillStages: 3
+  wallDestroyChance: 0.30
+  windowDamageChance: 0.10
+  floorToLatticeChance: 0.15
+  spawnMobs: true
+
+- type: ruinChunkConfig
+  id: Medium
+  floodFillPoints: 13
+  floodFillStages: 4
+  wallDestroyChance: 0.30
+  windowDamageChance: 0.10
+  floorToLatticeChance: 0.15
+  spawnMobs: true
+
+- type: ruinChunkConfig
+  id: Large
+  floodFillPoints: 22
+  floodFillStages: 4
+  wallDestroyChance: 0.25
+  windowDamageChance: 0.10
+  floorToLatticeChance: 0.12
+  spawnMobs: true

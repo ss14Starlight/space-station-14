@@ -41,7 +41,7 @@ public abstract class PopOutFancyWindow : FancyWindow, IPopOutWindow
         {
             StyleClasses = { PopOutExtensions.PopOutButtonStyleClass },
             VerticalAlignment = VAlignment.Center,
-            ToolTip = "Pop Out",
+            ToolTip = Loc.GetString("ui-pop-out"),
             Margin = new Thickness(0, 0, 6, 0),
         };
 

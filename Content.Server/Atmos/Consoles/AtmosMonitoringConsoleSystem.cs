@@ -1,7 +1,4 @@
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.Piping.Components;
-using Content.Server.DeviceNetwork.Components;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
@@ -80,7 +77,7 @@ public sealed partial class AtmosMonitoringConsoleSystem : SharedAtmosMonitoring
             return;
         }
 
-        _stationAiSystem.TryWarpEyeToCoordinates(actor, coordinates);
+        _stationAiSystem.TryWarpEyeToCoordinates((actor, null), coordinates);
     }
     #endregion
     #region Event handling

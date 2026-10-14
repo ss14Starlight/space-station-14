@@ -68,7 +68,7 @@ using Content.Shared._Starlight.VentCrawl.Components;
 using Content.Shared._Starlight.Revolutionary.Components;
 using Content.Shared._Starlight.Store.Events;
 using Content.Server._Starlight.Roles;
-using Content.Shared._Starlight.Medical;
+using Content.Shared._Starlight.Medical.HealthAnalyzer;
 
 namespace Content.Server._Starlight.Achievement;
 
@@ -88,8 +88,10 @@ public sealed partial class AchievementSystem : EntitySystem
     [Dependency] private PowerCellSystem _powerCell = default!;
     [Dependency] private TagSystem _tag = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
 
     private static readonly TimeSpan _achievementHydrationRetryDelay = TimeSpan.FromSeconds(3);
+    private static readonly ProtoId<TagPrototype> _arrowTag = "Arrow";
     private const int HauntedGhostFollowerThreshold = 20;
     private static readonly TimeSpan VentKillWindow = TimeSpan.FromSeconds(30);
     private const float HesDeadJimDamageThreshold = 2000f;
@@ -530,7 +532,7 @@ public sealed partial class AchievementSystem : EntitySystem
 
     private void OnProjectileHit(EntityUid uid, ProjectileComponent _, ref ProjectileHitEvent args)
     {
-        if (_tag.HasTag(uid, "Arrow")
+        if (_tag.HasTag(uid, _arrowTag.Id)
             && ResolvePlayerSessionFromParentChain(args.Target) is { } arrowSession)
         {
             QueueUnlockAchievement(arrowSession, "took_an_arrow_to_the_knee");
@@ -591,7 +593,7 @@ public sealed partial class AchievementSystem : EntitySystem
     private void OnDamageableChanged(EntityUid uid, DamageableComponent damageable, ref DamageChangedEvent args)
     {
         if (!_playerManager.TryGetSessionByEntity(uid, out var session)
-            || damageable.TotalDamage.Float() < HesDeadJimDamageThreshold
+            || _damageableSystem.GetTotalDamage(uid).Float() < HesDeadJimDamageThreshold
             || !HasRequiredDamageGroups(damageable))
         {
             return;
@@ -747,8 +749,8 @@ public sealed partial class AchievementSystem : EntitySystem
 
     private string GetCharacterName(ICommonSession session)
     {
-        if (session.AttachedEntity is { } attached && TryComp<MetaDataComponent>(attached, out var meta))
-            return meta.EntityName;
+        if (session.AttachedEntity is { } attached)
+            return MetaData(attached).EntityName;
 
         return session.Name;
     }
@@ -860,7 +862,7 @@ public sealed partial class AchievementSystem : EntitySystem
     {
         foreach (var groupId in HealthAnalyzerFormatting.DamageGroupOrder)
         {
-            if (!damageable.DamagePerGroup.TryGetValue(groupId, out var damage)
+            if (!_damageableSystem.GetDamagePerGroup(damageable.Owner).TryGetValue(groupId, out var damage)
                 || damage.Float() <= 0f)
             {
                 return false;

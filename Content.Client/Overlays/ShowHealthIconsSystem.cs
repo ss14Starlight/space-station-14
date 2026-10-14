@@ -76,8 +76,10 @@ public sealed partial class ShowHealthIconsSystem : EquipmentHudSystem<ShowHealt
         var result = new List<HealthIconPrototype>();
 
         // Here you could check health status, diseases, mind status, etc. and pick a good icon, or multiple depending on whatever.
+        /* Starlight - Respect icon display configuration
         if (damageableComponent?.DamageContainerID == "Biological")
         {
+        */
             if (TryComp<MobStateComponent>(entity, out var state))
             {
                 // Since there is no MobState for a rotting mob, we have to deal with this case first.
@@ -86,7 +88,9 @@ public sealed partial class ShowHealthIconsSystem : EquipmentHudSystem<ShowHealt
                 else if (damageableComponent.HealthIcons.TryGetValue(state.CurrentState, out var value) && _prototypeMan.Resolve(value, out var icon))
                     result.Add(icon);
             }
+        /* Starlight
         }
+        */
 
         return result;
     }

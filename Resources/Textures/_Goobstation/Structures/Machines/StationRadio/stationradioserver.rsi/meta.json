@@ -9,12 +9,22 @@
     "states": [
         {
             "name": "icon",
-            "copyright": "taken from goonstation at commit: https://github.com/goonstation/goonstation/blob/master/icons/obj/radiostation.dmi, 4-directional sprites by Huaqas (GitHub)",
+            "copyright": "taken from goonstation at commit: https://github.com/goonstation/goonstation/blob/master/icons/obj/radiostation.dmi, 4-directional sprites by Huaqas (GitHub). Edited by mack.wtf (GitHub)",
             "directions": 4
         },
         {
             "name": "unlit",
-            "copyright": "unlit sprites by Huaqas (GitHub)",
+            "copyright": "unlit sprites by Huaqas (GitHub). Edited by mack.wtf (GitHub)",
+            "directions": 4
+        },
+        {
+            "name": "mic_on",
+            "copyright": "mack.wtf (GitHub)",
+            "directions": 4
+        },
+        {
+            "name": "mic_off",
+            "copyright": "mack.wtf (GitHub)",
             "directions": 4
         }
     ]

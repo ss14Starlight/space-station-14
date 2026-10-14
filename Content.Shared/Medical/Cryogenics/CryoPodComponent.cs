@@ -45,7 +45,7 @@ public sealed partial class CryoPodComponent : Component
     /// (injection interval)
     /// </summary>
     [DataField]
-    public TimeSpan BeakerTransferTime = TimeSpan.FromSeconds(2);
+    public TimeSpan BeakerTransferTime = TimeSpan.FromSeconds(1); // Starlight-edit: 1u/1s
 
     /// <summary>
     /// The timestamp for the next injection.
@@ -132,19 +132,22 @@ public sealed class CryoPodUserMessage : BoundUserInterfaceMessage
     public FixedPoint2? BeakerCapacity;
     public List<ReagentQuantity>? Beaker;
     public List<ReagentQuantity>? Injecting;
+    public bool HasDamage;
 
     public CryoPodUserMessage(
         GasAnalyzerComponent.GasMixEntry gasMix,
         HealthAnalyzerUiState health,
         FixedPoint2? beakerCapacity,
         List<ReagentQuantity>? beaker,
-        List<ReagentQuantity>? injecting)
+        List<ReagentQuantity>? injecting,
+        bool hasDamage)
     {
         GasMix = gasMix;
         Health = health;
         BeakerCapacity = beakerCapacity;
         Beaker = beaker;
         Injecting = injecting;
+        HasDamage = hasDamage;
     }
 }
 

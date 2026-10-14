@@ -70,7 +70,7 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
 
     private void OnCosmicFragmentation(Entity<CosmicCultComponent> ent, ref EventCosmicFragmentation args)
     {
-        if (args.Handled || !ent.Comp.CosmicEmpowered || HasComp<ActiveNPCComponent>(args.Target) || _mobStateSystem.IsIncapacitated(args.Target))
+        if (args.Handled || !ent.Comp.CosmicEmpowered || HasComp<ActiveNPCComponent>(args.Target) || _mobStateSystem.IsDead(args.Target))
         {
             _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), ent, ent);
             return;

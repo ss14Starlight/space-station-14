@@ -1,10 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Logs;
-using Content.Server.Administration.Managers;
 using Content.Server.Ame.Components;
-using Content.Server.Chat.Managers;
-using Content.Server.NodeContainer;
 using Content.Server.Power.Components;
 using Content.Shared.Ame.Components;
 using Content.Shared.Containers.ItemSlots;
@@ -16,7 +13,6 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Ame.EntitySystems;
@@ -233,6 +229,7 @@ public sealed partial class AmeControllerSystem : EntitySystem
             return;
 
         controller.Injecting = value;
+        UpdateAmbience(uid, controller); // Starlight
         UpdateDisplay(uid, controller.Stability, controller);
         if (!value && TryComp<PowerSupplierComponent>(uid, out var powerOut))
             powerOut.MaxSupply = 0;
@@ -326,6 +323,7 @@ public sealed partial class AmeControllerSystem : EntitySystem
 
     private void OnPowerChanged(EntityUid uid, AmeControllerComponent comp, ref PowerChangedEvent args)
     {
+        UpdateAmbience(uid, comp); // Starlight
         UpdateUi(uid, comp);
     }
 

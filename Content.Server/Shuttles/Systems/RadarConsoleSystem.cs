@@ -1,11 +1,8 @@
 using System.Numerics;
-using Content.Server.Shuttles.Components; // _Starlight
-using Content.Server.UserInterface;
+// _Starlight
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
-using Content.Shared.PowerCell;
-using Content.Shared.Movement.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
@@ -67,7 +64,7 @@ public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem
             return;
         }
 
-        _stationAiSystem.TryWarpEyeToCoordinates(actor, coordinates);
+        _stationAiSystem.TryWarpEyeToCoordinates((actor, null), coordinates);
     }
     #endregion
 

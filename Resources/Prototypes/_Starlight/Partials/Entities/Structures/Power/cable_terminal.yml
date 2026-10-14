@@ -1,0 +1,6 @@
+# Subfloor layers
+- type: !PartialOnly entity
+  id: CableTerminal
+  components:
+    - type: SubFloorHide
+      subfloorLayer: [MV, HV]

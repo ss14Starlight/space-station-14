@@ -74,3 +74,7 @@
       electrify: true
     - !type:PowerWireAction
     - !type:AiInteractWireAction
+
+- type: wireLayout
+  parent: HighSec
+  id: AirlockNT

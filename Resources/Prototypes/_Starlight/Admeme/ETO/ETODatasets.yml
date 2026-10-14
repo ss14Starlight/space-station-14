@@ -1,0 +1,17 @@
+- type: localizedDataset
+  id: NamesETOLast
+  values:
+    prefix: names-eto-last-dataset-
+    count: 25
+
+- type: localizedDataset
+  id: NamesETOSpecialistLast
+  values:
+    prefix: names-eto-specialist-last-dataset-
+    count: 10
+
+- type: localizedDataset
+  id: NamesETOLeaderLast
+  values:
+    prefix: names-eto-leader-last-dataset-
+    count: 5

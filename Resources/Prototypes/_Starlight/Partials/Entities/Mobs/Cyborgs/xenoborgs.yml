@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: XenoborgEngi
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - IPC
+    - Hybrid
+    - MoffDemonInorganic

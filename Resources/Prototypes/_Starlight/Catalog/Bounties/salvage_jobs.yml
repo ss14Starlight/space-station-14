@@ -5,8 +5,8 @@
 
 - type: cargoBounty
   id: BountySalvageRawXenoMeat
-  reward: 7500
-  tickets: 500
+  reward: 50
+  tickets: 1000
   description: bounty-description-salvage-raw-xeno-meat
   group: SalvageJobTier1
   sprite:
@@ -21,8 +21,8 @@
 
 - type: cargoBounty
   id: BountySalvageAbyssiumOre
-  reward: 8500
-  tickets: 600
+  reward: 50
+  tickets: 1500
   description: bounty-description-salvage-abyssium-ore
   group: SalvageJobTier1
   sprite:
@@ -37,7 +37,7 @@
 
 - type: cargoBounty
   id: BountySalvageOldTreasure
-  reward: 10000
+  reward: 50
   tickets: 1000
   description: bounty-description-salvage-old-treasure
   group: SalvageJobTier1
@@ -53,8 +53,8 @@
 
 - type: cargoBounty
   id: BountySalvageSpaceBearHide
-  reward: 5000
-  tickets: 500
+  reward: 50
+  tickets: 800
   description: bounty-description-salvage-space-bear-hide
   group: SalvageJobTier1
   sprite:
@@ -71,8 +71,8 @@
 
 - type: cargoBounty
   id: BountySalvageBandolier
-  reward: 12500
-  tickets: 1000
+  reward: 50
+  tickets: 1200
   description: bounty-description-salvage-bandolier
   group: SalvageJobTier2
   sprite:
@@ -87,8 +87,8 @@
 
 - type: cargoBounty
   id: BountySalvageCommieID
-  reward: 12500
-  tickets: 1000
+  reward: 50
+  tickets: 1500
   description: bounty-description-salvage-commie-id
   group: SalvageJobTier2
   sprite:

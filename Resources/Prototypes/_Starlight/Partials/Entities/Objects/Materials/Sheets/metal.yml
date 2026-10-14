@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: SheetMetalBase
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/metal_pick_up.ogg
+

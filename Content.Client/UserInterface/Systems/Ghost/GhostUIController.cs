@@ -1,4 +1,3 @@
-using Content.Client.Gameplay;
 using Content.Client.Ghost;
 using Content.Client.Lobby; //🌟Starlight🌟
 using Content.Client.UserInterface.Systems.Gameplay;
@@ -66,6 +65,7 @@ public sealed partial class GhostUIController : UIController, IOnSystemChanged<G
 
         Gui.Visible = _system?.IsGhost ?? false;
         Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody);
+        StarlightUpdateGui(); //🌟Starlight🌟
     }
 
     private void OnPlayerRemoved(GhostComponent component)
@@ -108,12 +108,18 @@ public sealed partial class GhostUIController : UIController, IOnSystemChanged<G
 
     private void OnWarpClicked(NetEntity player)
     {
+        if (TryReplayWarp(player)) //🌟Starlight🌟
+            return; //🌟Starlight🌟
+
         var msg = new GhostWarpToTargetRequestEvent(player);
         _net.SendSystemNetworkMessage(msg);
     }
 
     private void OnGhostnadoClicked()
     {
+        if (TryReplayGhostnado()) //🌟Starlight🌟
+            return; //🌟Starlight🌟
+
         var msg = new GhostnadoRequestEvent();
         _net.SendSystemNetworkMessage(msg);
     }
@@ -158,6 +164,9 @@ public sealed partial class GhostUIController : UIController, IOnSystemChanged<G
 
     private void RequestWarps()
     {
+        if (TryReplayRequestWarps()) //🌟Starlight🌟
+            return; //🌟Starlight🌟
+
         _system?.RequestWarps();
         Gui?.TargetWindow.Populate();
         Gui?.TargetWindow.OpenCentered();

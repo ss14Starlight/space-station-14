@@ -1,0 +1,10 @@
+- type: dataset
+  id: CommandRoles
+  values:
+    - Captain
+    - Quartermaster
+    - Head of Security
+    - Head of Personnel
+    - Chief Engineer
+    - Chief Medical Officer
+    - Research Director

@@ -23,9 +23,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: ShowHealthBars
-    damageContainers: # Starlight start
-    - Biological
-    - Hybrid # Starlight end, Neocytes
   - type: ShowHealthIcons
 
 - type: entity
@@ -42,8 +39,6 @@
     damageContainers:
     - Inorganic
     - Silicon
-    - IPC # SL
-    - Hybrid # Starlight
   - type: ShowAccessReaderSettings
 
 - type: entity
@@ -118,8 +113,8 @@
     - Sunglasses # Starlight
 
 - type: entity
-  parent: ClothingEyesHudBase
-  id: ClothingEyesHudFriedOnion
+  parent: [SolutionFood, SolutionSmall, ClothingEyesHudBase]
+  id: ClothingEyesHudFriedOnion # It's been too long since I've had good onion rings...
   name: fried onion goggles
   description: Filler
   components:
@@ -129,13 +124,11 @@
     sprite: Clothing/Eyes/Hud/friedonion.rsi
   - type: ShowHungerIcons
   - type: Edible
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 3
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 30
   - type: FlavorProfile
     flavors:
       - onion
@@ -207,8 +200,6 @@
     damageContainers:
     - Biological
     - Inorganic
-    - IPC # SL
-    - Hybrid # Starlight
   - type: ShowSyndicateIcons
 
 - type: entity
@@ -225,8 +216,6 @@
     damageContainers:
     - Biological
     - Inorganic
-    - IPC # SL
-    - Hybrid # Starlight
   - type: ShowHungerIcons
   - type: ShowThirstIcons
   - type: ShowSyndicateIcons
@@ -259,10 +248,6 @@
     sprite: Clothing/Eyes/Hud/syndagent.rsi
   - type: ShowSyndicateIcons
   - type: ShowHealthBars
-    damageContainers: # Starlight start
-    - Biological
-    - Hybrid # Neocytes
-  - type: SolutionScanner # Starlight end
   - type: Tag
     tags:
     - PetWearable

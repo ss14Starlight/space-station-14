@@ -6,7 +6,8 @@ using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Server.Zombies;
-using Content.Server._Starlight.Language; // Starlight-start: zombie language
+using Content.Server._Starlight.Language;
+using Content.Server._Starlight.Statistics;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
@@ -32,11 +33,12 @@ public sealed partial class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponen
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private RoundEndSystem _roundEnd = default!;
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!; // Starlight
     [Dependency] private SharedMindSystem _mindSystem = default!;
     [Dependency] private SharedRoleSystem _roles = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private ZombieSystem _zombie = default!;
-    [Dependency] private LanguageSystem _language = default!; // Starlight-start: zombie language
+    [Dependency] private LanguageSystem _language = default!; // Starlight
 
     public override void Initialize()
     {
@@ -45,7 +47,7 @@ public sealed partial class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponen
         SubscribeLocalEvent<InitialInfectedRoleComponent, GetBriefingEvent>(OnGetBriefing);
         SubscribeLocalEvent<ZombieRoleComponent, GetBriefingEvent>(OnGetBriefing);
         SubscribeLocalEvent<IncurableZombieComponent, ZombifySelfActionEvent>(OnZombifySelf);
-        SubscribeLocalEvent<ZombieRuleComponent, AfterAntagEntitySelectedEvent>(OnInitialInfectedSelected); // Starlight-start: zombie language
+        SubscribeLocalEvent<ZombieRuleComponent, AfterAntagEntitySelectedEvent>(OnInitialInfectedSelected); // Starlight
     }
 
     // Starlight-start: zombie language
@@ -89,6 +91,9 @@ public sealed partial class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponen
             args.AddLine(Loc.GetString("zombie-round-end-amount-all"));
 
         var antags = _antag.GetAntagIdentifiers(uid).ToList();
+        _roundStatistics.RecordAntagOutcome(uid, "Zombie", fraction >= 1 ? "AllInfected" : "Contained"); // Starlight
+        _roundStatistics.RecordAntagOutcomeStat("Zombie", "infected_fraction", fraction); // Starlight
+        _roundStatistics.RecordAntagOutcomeStat("Zombie", "initial_infected", antags.Count); // Starlight
         args.AddLine(Loc.GetString("zombie-round-end-initial-count", ("initialCount", antags.Count)));
         foreach (var (_, data, entName) in antags)
         {

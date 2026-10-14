@@ -67,6 +67,7 @@
     <GuideEntityEmbed Entity="Airlock" Caption=""/>
     <GuideEntityEmbed Entity="AirlockCargo" Caption=""/>
     <GuideEntityEmbed Entity="AirlockCommand" Caption=""/>
+    <GuideEntityEmbed Entity="AirlockNT" Caption=""/>
     <GuideEntityEmbed Entity="AirlockEngineering" Caption=""/>
     <GuideEntityEmbed Entity="AirlockMedical" Caption=""/>
     <GuideEntityEmbed Entity="AirlockScience" Caption=""/>
@@ -76,6 +77,7 @@
     <GuideEntityEmbed Entity="AirlockGlass" Caption=""/>
     <GuideEntityEmbed Entity="AirlockCargoGlass" Caption=""/>
     <GuideEntityEmbed Entity="AirlockCommandGlass" Caption=""/>
+    <GuideEntityEmbed Entity="AirlockNTGlass" Caption=""/>
     <GuideEntityEmbed Entity="AirlockEngineeringGlass" Caption=""/>
     <GuideEntityEmbed Entity="AirlockMedicalGlass" Caption=""/>
     <GuideEntityEmbed Entity="AirlockScienceGlass" Caption=""/>

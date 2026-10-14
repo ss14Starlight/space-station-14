@@ -67,6 +67,7 @@
   name: combat knife
   parent: [ CombatKnife, BaseXenoborgContraband ]
   id: XenoKnife
+  suffix: Xenoborg
   description: A deadly knife intended for melee confrontations.
   components:
   - type: MeleeWeapon

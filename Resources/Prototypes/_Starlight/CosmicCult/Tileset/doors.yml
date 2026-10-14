@@ -31,8 +31,8 @@
     delay: 6
     fx: EffectRCDDeconstruct6
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
+    damageContainer: MalignStructure
+    damageModifierSet: StructuralMalignStone
   - type: Destructible
     thresholds:
     - trigger:

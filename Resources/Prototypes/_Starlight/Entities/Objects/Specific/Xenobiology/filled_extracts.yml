@@ -4,16 +4,16 @@
   abstract: true
   components:
     - type: FilledSlimeExtract
-    - type: SolutionContainerManager
-      solutions:
-        container:
-          reagents:
-            - ReagentId: Water
-              Quantity: 15
-            - ReagentId: Blood
-              Quantity: 15
-            - ReagentId: Plasma
-              Quantity: 15
+    - type: Solution
+      id: container
+      solution:
+        reagents:
+          - ReagentId: Water
+            Quantity: 15
+          - ReagentId: Blood
+            Quantity: 15
+          - ReagentId: Plasma
+            Quantity: 15
 
 - type: entity
   parent: [BaseSlimeExtractFilled, GraySlimeExtract]

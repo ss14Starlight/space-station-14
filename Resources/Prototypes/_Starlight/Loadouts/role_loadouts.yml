@@ -25,6 +25,7 @@
   - NanoTrasenRepresentativeJumpsuit
   - NanoTrasenRepresentativeEyewear
   - CommonBackpack
+  - PaperworkGloves
   - NanotrasenRepresentativeShoes
   - Trinkets
   - Scarves
@@ -40,6 +41,7 @@
   - IAANeck
   - IAAJumpsuit
   - CommonBackpack
+  - PaperworkGloves
   - IAAShoes
   - Trinkets
   - Scarves
@@ -212,6 +214,7 @@
   groups:
   - GroupTankHarness # for Vox
   - RoboticistHead
+  - RoboticistNeck
   - RoboticistGoggles
   - RoboticistJumpsuit
   - RoboticistGloves
@@ -358,3 +361,18 @@
   - SurvivalExtended
   - GroupSpeciesBreathTool
   - GroupTankHarness
+
+- type: roleLoadout
+  id: JobSalvageMedic
+  groups:
+  - GroupTankHarness
+  - SalvageSpecialistBackpack
+  - SalvageSpecialistOuterClothing
+  - SalvageSpecialistShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - GroupSpeciesBreathTool

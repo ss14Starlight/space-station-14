@@ -9,7 +9,6 @@ using Content.Server.GameTicking.Events;
 using Content.Server.Parallax;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
-using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
@@ -39,7 +38,6 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server._Starlight.Station; // Starlight
 using Content.Shared.Station.Components;
-using Content.Shared._Starlight.Shuttles.Components;
 using Content.Shared.Spawners.Components; // Starlight
 
 namespace Content.Server.Shuttles.Systems;

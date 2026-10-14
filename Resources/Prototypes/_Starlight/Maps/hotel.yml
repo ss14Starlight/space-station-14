@@ -29,7 +29,7 @@
             ServiceWorker: [ 2, 4 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
-            AtmosphericTechnician: [ 2, 2 ]
+            AtmosphericTechnician: [ 2, 3 ]
             StationEngineer: [ 4, 6 ]
             TechnicalAssistant: [ 3, 5 ]
             #medical
@@ -56,10 +56,12 @@
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
+            SalvageMedic: [ 1, 1 ]
             MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 6, 8 ]
             MailTech: [ 1, 2 ]
             #civilian
+            AssistantManager: [ 1, 1 ]
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]

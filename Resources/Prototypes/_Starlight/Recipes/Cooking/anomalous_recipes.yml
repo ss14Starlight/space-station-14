@@ -1,0 +1,25 @@
+- type: microwaveMealRecipe
+  id: RecipeDollEmptyInert
+  name: doll recipe
+  result: MobDollFresh
+  time: 30
+  group: Secret
+  deviceType: Oven
+  reagents:
+    Blood: 1000
+  solids:
+    FoodMeat: 8
+    AnomalyCoreFleshInert: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDollEmptyActive
+  name: doll recipe
+  result: MobDollFresh
+  time: 30
+  group: Secret
+  deviceType: Oven
+  reagents:
+    Blood: 100
+  solids:
+    FoodMeat: 4
+    AnomalyCoreFlesh: 1

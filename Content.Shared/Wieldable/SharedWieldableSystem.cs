@@ -22,6 +22,8 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable.Components;
+using Content.Shared._Starlight.Weapons.Ranged.Systems;
+using Content.Shared._Starlight.Wieldable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
 using Robust.Shared.Network;
@@ -42,12 +44,13 @@ public abstract partial class SharedWieldableSystem : EntitySystem
     [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private UseDelaySystem _delay = default!;
     [Dependency] private INetManager _net = default!; // Starlight
+    [Dependency] private GunShieldBraceSystem _shieldBrace = default!; // Starlight
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<WieldableComponent, UseInHandEvent>(OnUseInHand, before: [typeof(SharedGunSystem), typeof(BatteryWeaponFireModesSystem)]); //starlight fix
+        SubscribeLocalEvent<WieldableComponent, UseInHandEvent>(OnUseInHand, before: [typeof(BatteryWeaponFireModesSystem)]); //starlight fix
         SubscribeLocalEvent<WieldableComponent, ItemUnwieldedEvent>(OnItemUnwielded);
         SubscribeLocalEvent<WieldableComponent, GotUnequippedHandEvent>(OnItemLeaveHand);
         SubscribeLocalEvent<WieldableComponent, VirtualItemDeletedEvent>(OnVirtualItemDeleted);
@@ -127,11 +130,23 @@ public abstract partial class SharedWieldableSystem : EntitySystem
         if (TryComp(bonus, out WieldableComponent? wield) &&
             wield.Wielded)
         {
+            // Starlight-start: Add support for multiplicative bonuses
             args.MinAngle += bonus.Comp.MinAngle;
+            args.MinAngle /= bonus.Comp.MinAngleDivider;
             args.MaxAngle += bonus.Comp.MaxAngle;
+            args.MaxAngle /= bonus.Comp.MaxAngleDivider;
             args.AngleDecay += bonus.Comp.AngleDecay;
+            args.AngleDecay /= bonus.Comp.AngleDecayDivider;
             args.AngleIncrease += bonus.Comp.AngleIncrease;
+            args.AngleIncrease /= bonus.Comp.AngleIncreaseDivider;
+            // Starlight-end
         }
+        // Starlight-start: a shield in the other hand is worth a fraction of a proper two-handed grip.
+        else
+        {
+            _shieldBrace.ApplyBraceBonus(bonus, ref args);
+        }
+        // Starlight-end
     }
 
     private void OnSpeedModifierWielded(EntityUid uid, SpeedModifiedOnWieldComponent component, ItemWieldedEvent args)
@@ -165,6 +180,11 @@ public abstract partial class SharedWieldableSystem : EntitySystem
 
         if (component.WieldBonusExamineMessage != null)
             args.PushText(Loc.GetString(component.WieldBonusExamineMessage));
+
+        // Starlight-start
+        if (_shieldBrace.TryGetBraceExamineMessage((uid, component)) is { } braceMessage)
+            args.PushText(braceMessage);
+        // Starlight-end
     }
 
     private void AddToggleWieldVerb(EntityUid uid, WieldableComponent component, GetVerbsEvent<InteractionVerb> args)
@@ -197,6 +217,15 @@ public abstract partial class SharedWieldableSystem : EntitySystem
                 && chamber.BoltClosed == false
                 && _hands.GetEmptyHandCount(args.User) == 0)) // Starlight-end
             return;
+
+        // Starlight-start: a one-handed gun with several fire modes switches the mode on use.
+        // It is wielded through the verb, or on use if the player wields before racking (WieldOrderSystem).
+        if (!component.Wielded
+            && HasComp<UseBeforeWieldComponent>(uid)
+            && TryComp<BatteryWeaponFireModesComponent>(uid, out var fireModes)
+            && fireModes.FireModes.Count > 1)
+            return;
+        // Starlight-end
 
         if (!component.Wielded)
         {

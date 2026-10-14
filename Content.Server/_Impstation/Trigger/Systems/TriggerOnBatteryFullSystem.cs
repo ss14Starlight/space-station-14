@@ -1,5 +1,4 @@
 using Content.Server._Impstation.Trigger.Components.Triggers;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Trigger.Systems;
 using Content.Shared.Power;

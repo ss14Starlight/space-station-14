@@ -6,7 +6,6 @@
   id: BaseSword
   abstract: true
   components:
-  - type: Sharp
   - type: MeleeWeapon
     wideAnimationRotation: -135
   - type: Sprite
@@ -19,8 +18,6 @@
   - type: Tool
     qualities:
     - Slicing
-  - type: Engraveable # Starlight
-    engraveVerb: "engraving-verb-engrave"
 
 #Shortswords
 - type: entity

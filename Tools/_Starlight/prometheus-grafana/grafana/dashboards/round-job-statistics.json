@@ -1,0 +1,535 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "description": "Compare player job interest with assignments and actual spawns for completed rounds.",
+  "editable": true,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [
+    {
+      "title": "Round Antag Statistics",
+      "type": "link",
+      "url": "/d/round-antag-statistics/round-antag-statistics",
+      "keepTime": true,
+      "includeVars": true,
+      "targetBlank": false
+    }
+  ],
+  "panels": [
+    {
+      "id": 8,
+      "type": "text",
+      "title": "Reading guide",
+      "gridPos": {
+        "h": 3,
+        "w": 19,
+        "x": 0,
+        "y": 0
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "Interest counts each player's selected jobs; one player can select several. Assignment columns show actual placements. Counts add across completed rounds."
+      }
+    },
+    {
+      "id": 9,
+      "type": "stat",
+      "title": "Rounds",
+      "description": "Completed rounds included in the selected time range.",
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 19,
+        "y": 0
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 0,
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "sum(count_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"round_summary\" | round_id=~`${Round:raw}` [$__range]))",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "description": "Interested players counted once per job per round. A player can select several jobs, so interest and assignments are not directly interchangeable.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 0,
+          "min": 0
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 3
+      },
+      "id": 5,
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Interested players"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "sum by (job_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"job_preference\" | round_id=~`${Round:raw}` | unwrap players [$__range]))",
+          "legendFormat": "{{job_id}}",
+          "queryType": "instant",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "sum by (job_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"job_selection\" | round_id=~`${Round:raw}` | unwrap round_start_assignments [$__range]))",
+          "legendFormat": "{{job_id}}",
+          "queryType": "instant",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "sum by (job_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"job_selection\" | round_id=~`${Round:raw}` | unwrap late_join_assignments [$__range]))",
+          "legendFormat": "{{job_id}}",
+          "queryType": "instant",
+          "refId": "C"
+        }
+      ],
+      "title": "Job interest and assignments",
+      "type": "table",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "mode": "columns"
+          }
+        },
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "job_id",
+            "mode": "outer"
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "type": "include",
+            "match": "any",
+            "filters": [
+              {
+                "fieldName": "Value #A",
+                "config": {
+                  "id": "greater",
+                  "options": {
+                    "value": 0
+                  }
+                }
+              },
+              {
+                "fieldName": "Value #B",
+                "config": {
+                  "id": "greater",
+                  "options": {
+                    "value": 0
+                  }
+                }
+              },
+              {
+                "fieldName": "Value #C",
+                "config": {
+                  "id": "greater",
+                  "options": {
+                    "value": 0
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "renameByName": {
+              "job_id": "Job",
+              "Value #A": "Interested players",
+              "Value #B": "Assigned at start",
+              "Value #C": "Late joins"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "description": "Top 20 job and priority combinations selected by players. A job can appear at more than one priority.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 0,
+          "min": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Job"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 165
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Priority"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Players"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 85
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 11
+      },
+      "id": 6,
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Players"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "topk(20, sum by (job_id, priority) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"job_preference\" | round_id=~`${Round:raw}` | unwrap players [$__range])))",
+          "legendFormat": "{{job_id}} / {{priority}}",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Interest by priority",
+      "type": "table",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "mode": "columns"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "renameByName": {
+              "job_id": "Job",
+              "priority": "Priority",
+              "Value #A": "Players"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "description": "Top 20 combinations of job and species actually spawned, including round start and late joins.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlPu"
+          },
+          "decimals": 0,
+          "min": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Job"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 160
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Species"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 140
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Spawns"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 85
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 11
+      },
+      "id": 7,
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Spawns"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "topk(20, sum by (job_id, species_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"job_spawn\" | round_id=~`${Round:raw}` | unwrap count [$__range])))",
+          "legendFormat": "{{job_id}} / {{species_id}}",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Actual spawns by job and species",
+      "type": "table",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "mode": "columns"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "renameByName": {
+              "job_id": "Job",
+              "species_id": "Species",
+              "Value #A": "Spawns"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "description": "Raw job preference, assignment and species spawn records for the selected server, rounds and time range.",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 4,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": true,
+        "sortOrder": "Descending",
+        "wrapLogMessage": true
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "{App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=~\"job_.*\" | round_id=~`${Round:raw}`",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Raw job records",
+      "type": "logs"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [
+    "starlight",
+    "development",
+    "gameplay analytics",
+    "loki"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "local",
+          "value": "local"
+        },
+        "description": "Value configured by loki.name; regular expressions are accepted.",
+        "hide": 0,
+        "label": "Server",
+        "name": "Server",
+        "options": [],
+        "query": "local",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": ".*",
+          "value": ".*"
+        },
+        "description": "Enter an exact round number or .* for all rounds in the selected time range.",
+        "hide": 0,
+        "label": "Round",
+        "name": "Round",
+        "options": [],
+        "query": ".*",
+        "skipUrlSync": false,
+        "type": "textbox"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Round Job Statistics",
+  "uid": "round-job-statistics",
+  "version": 1
+}

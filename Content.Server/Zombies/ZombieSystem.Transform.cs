@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
@@ -12,7 +13,6 @@ using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Server.StationEvents.Components;
-using Content.Server.Speech.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification;
@@ -48,7 +48,6 @@ using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared._Starlight.Antags.Vampires.Components;
-using Content.Shared.Changeling;
 using Content.Shared.Changeling.Components;
 using Content.Server.Animals.Components;
 using Content.Shared.Animals;
@@ -180,6 +179,8 @@ public sealed partial class ZombieSystem
         RemComp<EggLayerComponent>(target); //Prevent infinite egg production
         RemComp<UdderComponent>(target); //Prevent infinite milk production
         RemComp<WoolyComponent>(target); //Prevent infinite wool production
+
+        DiscardShell(target);
         // Starlight-end
 
         //This is needed for stupid entities that fuck up combat mode component
@@ -293,7 +294,7 @@ public sealed partial class ZombieSystem
             // Capture all values before any writes; SetMobStateThreshold mutates the
             // dictionary in-place and could clobber the next state's key mid-loop.
             var boosts = new List<(FixedPoint2 NewValue, MobState State)>();
-            foreach (var state in new[] { MobState.Critical, MobState.Dead })
+            foreach (var state in Enum.GetValues<MobState>().Except([MobState.Alive, MobState.Invalid])) // Starlight edit: should work with AND without soft crit
             {
                 if (_mobThreshold.TryGetThresholdForState(target, state, out var cur, threshComp))
                     boosts.Add((cur.Value + zombiecomp.ThresholdBoost, state));

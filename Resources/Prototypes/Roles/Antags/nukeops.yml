@@ -166,7 +166,7 @@
     back: ClothingBackpackDuffelSyndicate
     mask: ClothingMaskGasSyndicate
     eyes: ClothingEyesHudSyndicate
-    ears: ClothingHeadsetAltSyndicate
+    ears: ClothingHeadsetAltGorlex # Starlight
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitSyndie
     shoes: ClothingShoesBootsCombatFilled
@@ -238,6 +238,7 @@
     - HandheldHealthAnalyzer
     - CombatMedipen
     - GearAcidifierImplanter # Starlight edit
+    - SyndicateBluespaceBeaker # Starlight
 
 - type: chameleonOutfit
   id: NukeopsMedicOutfit

@@ -1,10 +1,10 @@
 using Content.Server._Starlight.Objectives.Components;
 using Content.Server.Administration.Systems;
-using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Piping.EntitySystems;
 using Content.Server.Chat.Managers;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Managers;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Database;
 using Content.Shared.Verbs;
 using Robust.Shared.Map;
@@ -15,16 +15,16 @@ using static Content.Server.Administration.Systems.AdminVerbSystem;
 namespace Content.Server._Starlight.Administration.Systems;
 public sealed partial class AdminVerbSystem : EntitySystem
 {
-    [Dependency] private readonly AdminTestArenaSystem _adminTestArenaSystem = default!;
-    [Dependency] private readonly ISharedAdminManager _adminManager = default!;
-    [Dependency] private readonly IEntityManager _entities = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IEntitySystemManager _sys = default!;
+    [Dependency] private AdminTestArenaSystem _adminTestArenaSystem = default!;
+    [Dependency] private ISharedAdminManager _adminManager = default!;
+    [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IEntitySystemManager _sys = default!;
     public override void Initialize()
         => SubscribeLocalEvent<GetVerbsEvent<Verb>>(AddVerbs);
     private void AddVerbs(GetVerbsEvent<Verb> args)
     {
-        if (!EntityManager.TryGetComponent(args.User, out ActorComponent? actor))
+        if (!TryComp(args.User, out ActorComponent? actor))
             return;
 
         var player = actor.PlayerSession;
@@ -76,7 +76,7 @@ public sealed partial class AdminVerbSystem : EntitySystem
                     _chat.SendAdminAnnouncementMessage(player, $"Added NoObjectiveTarget component to the entity! ({args.Target})");
                 },
                 Impact = LogImpact.Low,
-                Message = "Prevents this entity from being targeted by other player's objectives. Will also prevent paraclones of this player.",
+                Message = Loc.GetString("admin-trick-prevent-objective-targeting-description"),
                 Priority = (int)TricksVerbPriorities.BlockObjectiveTargeting
             };
             if (HasComp<ActorComponent>(args.Target)) args.Verbs.Add(preventObjectiveTargeting);

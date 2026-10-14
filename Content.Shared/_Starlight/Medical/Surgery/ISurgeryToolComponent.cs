@@ -5,7 +5,7 @@ namespace Content.Shared._Starlight.Medical.Surgery;
 // https://github.com/RMC-14/RMC-14
 public interface ISurgeryToolComponent
 {
-    public string ToolName { get; }
+    public LocId ToolName { get; }
     // FarHorizons Start
     public string ToolType { get; }
     public float Speed { get; }

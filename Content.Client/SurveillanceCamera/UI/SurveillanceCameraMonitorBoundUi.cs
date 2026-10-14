@@ -2,7 +2,6 @@ using Content.Client._Starlight.UserInterface; // Starlight
 using Content.Client.Eye;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.SurveillanceCamera;
-using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.SurveillanceCamera.UI;

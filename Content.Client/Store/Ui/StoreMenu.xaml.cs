@@ -94,7 +94,7 @@ public sealed partial class StoreMenu : DefaultWindow
         ClearListings();
 
     var useGrid = _clientGridOverride ?? GridMode; // Starlight start
-    ToggleViewButton.Text = useGrid ? "Grid" : "List";
+    ToggleViewButton.Text = Loc.GetString(useGrid ? "store-view-grid" : "store-view-list");
     HoverDivider.Visible = useGrid;
     HoverPreview.Visible = useGrid;
     if (!useGrid)

@@ -31,4 +31,4 @@
     solution:
       reagents:
       - ReagentId: SpaceCleaner
-        Quantity: 30000
+        Quantity: 60000

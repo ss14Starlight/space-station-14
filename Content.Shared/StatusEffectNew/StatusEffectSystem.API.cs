@@ -218,7 +218,8 @@ public sealed partial class StatusEffectsSystem
     )
     {
         time = default;
-        if (!Resolve(uid, ref container))
+        // Starlight: Most entities do not have a status effect container.
+        if (container is null && !TryComp(uid, out container))
             return false;
 
         foreach (var effect in container.ActiveStatusEffects?.ContainedEntities ?? [])

@@ -148,12 +148,12 @@ public sealed partial class HemomancerSystem : EntitySystem
         var uid = args.Performer;
         var active = EnsureComp<ActiveVampireHemomancerClawsComponent>(uid);
 
-        if (active.SpawnedClaws != null && EntityManager.EntityExists(active.SpawnedClaws.Value))
+        if (active.SpawnedClaws != null && Exists(active.SpawnedClaws.Value))
         {
             var oldClaws = active.SpawnedClaws.Value;
             active.SpawnedClaws = null;
             RemComp<UnremoveableComponent>(oldClaws);
-            EntityManager.DeleteEntity(oldClaws);
+            Del(oldClaws);
         }
 
         if (TryComp<HandsComponent>(uid, out var handsComp))
@@ -164,7 +164,7 @@ public sealed partial class HemomancerSystem : EntitySystem
         }
 
         var coords = Transform(uid).Coordinates;
-        var claws = EntityManager.SpawnEntity("VampiricClawsItem", coords);
+        var claws = Spawn("VampiricClawsItem", coords);
         active.SpawnedClaws = claws;
 
         if (TryComp<VampireComponent>(uid, out var vampire))
@@ -184,7 +184,7 @@ public sealed partial class HemomancerSystem : EntitySystem
             }
 
             RemComp<UnremoveableComponent>(claws);
-            EntityManager.DeleteEntity(claws);
+            Del(claws);
             return;
         }
 
@@ -299,7 +299,7 @@ public sealed partial class HemomancerSystem : EntitySystem
                 || _vampire.IsTileBlockedByEntities(coords))
                 continue;
 
-            EntityManager.SpawnEntity(tendrilVisualId, coords);
+            Spawn(tendrilVisualId, coords);
         }
     }
 
@@ -354,7 +354,7 @@ public sealed partial class HemomancerSystem : EntitySystem
         foreach (var pos in successfulPositions)
         {
             var barrierCoords = tileCoords.WithPosition(pos);
-            var barrier = EntityManager.SpawnEntity(args.BarrierPrototype, barrierCoords);
+            var barrier = Spawn(args.BarrierPrototype, barrierCoords);
             var preventComp = EnsureComp<PreventCollideComponent>(barrier);
             preventComp.Uid = args.Performer;
             Dirty(barrier, preventComp);

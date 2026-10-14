@@ -9,10 +9,10 @@
     sprite: _Starlight/Objects/Specific/Medical/mender.rsi
   - type: Item
     sprite: _Starlight/Objects/Specific/Medical/mender.rsi
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 35
+  - type: Solution
+    id: injector
+    solution:
+      maxVol: 35
   - type: ExaminableSolution
     solution: injector
     exactVolume: true
@@ -61,8 +61,10 @@
       - Biological
       - Hybrid
     damage:
-      groups:
-        Brute: -2
+      types:
+        Blunt: -0.66
+        Piercing: -0.66
+        Slash: -0.66
     healingBeginSound:
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
     healingEndSound:
@@ -76,12 +78,12 @@
   parent: AutoMenderBrute
   id: AutoMenderBruteFilled
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        reagents:
-        - ReagentId: Bicaridine
-          Quantity: 35
+  - type: Solution
+    id: injector
+    solution:
+      reagents:
+      - ReagentId: Bicaridine
+        Quantity: 35
 
 - type: entity
   id: AutoMenderBurn
@@ -125,9 +127,9 @@
   parent: AutoMenderBurn
   id: AutoMenderBurnFilled
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        reagents:
-        - ReagentId: Dermaline
-          Quantity: 35
+  - type: Solution
+    id: injector
+    solution:
+      reagents:
+      - ReagentId: Dermaline
+        Quantity: 35

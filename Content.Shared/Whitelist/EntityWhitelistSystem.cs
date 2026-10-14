@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Item;
 using Content.Shared.Tag;
+using Content.Shared.Tools.Systems;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Whitelist;
@@ -8,6 +9,7 @@ namespace Content.Shared.Whitelist;
 public sealed partial class EntityWhitelistSystem : EntitySystem
 {
     [Dependency] private TagSystem _tag = default!;
+    [Dependency] private SharedToolSystem _tools = default!; // Starlight
 
     private EntityQuery<ItemComponent> _itemQuery;
 
@@ -68,6 +70,25 @@ public sealed partial class EntityWhitelistSystem : EntitySystem
             if (list.Sizes.Contains(itemComp.Size))
                 return true;
         }
+
+        #region Starlight
+        if (list.ToolQualities != null)
+        {
+            if (list.RequireAll)
+            {
+                if (!_tools.HasAllQualities(uid, list.ToolQualities))
+                    return false;
+            }
+            else
+            {
+                foreach (var quality in list.ToolQualities)
+                {
+                    if (_tools.HasQuality(uid, quality))
+                        return true;
+                }
+            }
+        }
+        #endregion
 
         if (list.Tags != null)
         {

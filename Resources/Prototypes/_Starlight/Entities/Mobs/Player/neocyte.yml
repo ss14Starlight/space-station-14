@@ -30,7 +30,7 @@
 
 - type: entity
   save: false
-  name: Urist McDuskin
+  name: Urist McShadowster
   parent: BaseMobNeoKin
   id: MobNeoKin
 
@@ -43,7 +43,6 @@
 - type: entity
   save: false
   name: Urist McScalester
-  suffix: Urisst' Mztosster
   parent: BaseMobNeoReptilian
   id: MobNeoReptilian
 
@@ -61,13 +60,13 @@
 
 - type: entity
   save: false
-  name: Urist McFelinster
+  name: Urist McMeowster
   parent: BaseMobNeoFelionoid
   id: MobNeoFelionoid
 
 - type: entity
   save: false
-  name: Urist McHandster The Neo-Dwarf
+  name: Urist McHandster the Neo-Dwarf
   parent: BaseMobNeoDwarf
   id: MobNeoDwarf
 
@@ -85,8 +84,7 @@
 
 - type: entity
   save: false
-  name: Urist McSpaceRaptorster
-  suffix: Urist McAvalister
+  name: Urist McAvalister
   parent: BaseMobNeoAvali
   id: MobNeoAvali
 

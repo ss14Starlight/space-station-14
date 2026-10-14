@@ -1,4 +1,3 @@
-using Content.Shared.Silicons.Laws;
 using Robust.Shared.GameStates;
 
 
@@ -23,11 +22,4 @@ public sealed partial class StationAIShuntComponent : Component
     [ViewVariables]
     [DataField, AutoNetworkedField]
     public EntityUid? ReturnAction = null;
-
-    /// <summary>
-    /// what was the lawset of the chassis before the AI shunted into it.
-    /// </summary>
-    [ViewVariables]
-    [DataField, AutoNetworkedField]
-    public SiliconLawset? OldLawset = null;
 }

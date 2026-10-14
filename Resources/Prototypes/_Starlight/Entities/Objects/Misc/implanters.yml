@@ -96,6 +96,50 @@
         map: [ "implantOnly" ]
 
 - type: entity
+  id: USSPDeathRattleImplanter
+  suffix: Death Rattle
+  parent: BaseImplantOnlyImplanterSyndi_StarLight
+  name: SKB death rattle implanter
+  description: A brittle disposable syringe exclusively designed for the injection of subdermal implants for SKB agents. Dissolves on use.
+  components:
+  - type: Implanter
+    implant: DeathRattleImplantUSSP
+    dissolveOnUse: true
+  - type: Item
+    sprite: _Starlight/Objects/Specific/USSP/SKB_implanter.rsi
+    heldPrefix: implanter
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/USSP/SKB_implanter.rsi
+    state: implanter1
+    layers:
+      - state: implanter0
+        map: [ "implantFull" ]
+        visible: true
+      - state: implanter1
+        map: [ "implantOnly" ]
+
+- type: entity
+  id: RadioImplanterUSSP
+  name: USSP radio implanter
+  parent: BaseImplantOnlyImplanterSyndi_StarLight
+  components:
+  - type: Implanter
+    implant: RadioImplantUSSP
+    dissolveOnUse: true
+  - type: Item
+    sprite: _Starlight/Objects/Specific/USSP/SKB_implanter.rsi
+    heldPrefix: implanter
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/USSP/SKB_implanter.rsi
+    state: implanter1
+    layers:
+      - state: implanter0
+        map: [ "implantFull" ]
+        visible: true
+      - state: implanter1
+        map: [ "implantOnly" ]
+
+- type: entity
   id: MagillitisSerumImplanter
   name: magillitis serum implanter
   parent: BaseImplantOnlyImplanterSyndi
@@ -118,6 +162,14 @@
   components:
   - type: Implanter
     implant: DeathRattleImplantTSF
+
+- type: entity
+  id: DeathRattleImplanterSalvage
+  name: Salvage death rattle implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+    - type: Implanter
+      implant: DeathRattleImplantSalvage
 
 - type: entity
   id: BluespaceImplanter
@@ -169,3 +221,12 @@
   components:
   - type: Implanter
     implant: CommandTrackingImplant
+
+#ITG
+- type: entity
+  id: ITGTrackerImplanter
+  name: ITG tracker implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+  - type: Implanter
+    implant: ITGTrackingImplant

@@ -1,5 +1,4 @@
 using Content.Shared.CartridgeLoader;
-using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.GPS.Components;
 using Content.Shared._Starlight.Astronav;
 

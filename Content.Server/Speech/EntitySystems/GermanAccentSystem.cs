@@ -12,7 +12,6 @@
 //public sealed class GermanAccentSystem : EntitySystem
 //{
 //    [Dependency] private readonly IRobustRandom _random = default!;
-//    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
 
 //    private static readonly Regex RegexTh = new(@"(?<=\s|^)th", RegexOptions.IgnoreCase);
 //    private static readonly Regex RegexThe = new(@"(?<=\s|^)the(?=\s|$)", RegexOptions.IgnoreCase);

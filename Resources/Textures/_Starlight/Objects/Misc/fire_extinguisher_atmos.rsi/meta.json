@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "fire_extinguisher_open",
+	  "copyright": "TG Station at commit 9bebd81ae0b0a7f952b59886a765c681205de31f, modified into atmos by wonderfulnewworld (GitHub)"
+    },
+    {
+      "name": "fire_extinguisher_closed",
+	  "copyright": "TG Station, wonderfulnewworld"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "TG Station, wonderfulnewworld"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "TG Station, wonderfulnewworld"
+    },
+    {
+      "name": "equipped-BACKPACK",
+      "directions": 4,
+	  "copyright": "Ubaser, wonderfulnewworld"
+    },
+    {
+      "name": "equipped-SUITSTORAGE",
+      "directions": 4,
+	  "copyright": "Ubaser, wonderfulnewworld"
+    },
+    {
+      "name": "equipped-SUITSTORAGE-dog",
+      "directions": 4,
+      "delays": [[1],[1],[1],[1]],
+	  "copyright": "Ubaser, wonderfulnewworld"
+    },
+    {
+      "name": "equipped-SUITSTORAGE-puppy",
+      "directions": 4,
+      "delays": [[1],[1],[1],[1]],
+	  "copyright": "Ubaser, wonderfulnewworld"
+    },
+    {
+      "name": "equipped-SUITSTORAGE-fox",
+      "directions": 4,
+      "delays": [[1],[1],[1],[1]],
+	  "copyright": "Ubaser, wonderfulnewworld"
+    },
+    {
+      "name": "equipped-SUITSTORAGE-cat",
+      "directions": 4,
+      "delays": [[1],[1],[1],[1]],
+	  "copyright": "Ubaser, wonderfulnewworld"
+    },
+    {
+      "name": "equipped-SUITSTORAGE-sloth",
+      "directions": 4,
+      "delays": [[1],[1],[1],[1]],
+	  "copyright": "Ubaser, wonderfulnewworld"
+    },
+    {
+      "name": "equipped-SUITSTORAGE-hamster",
+      "directions": 4,
+      "delays": [[1],[1],[1],[1]],
+	  "copyright": "Ubaser, wonderfulnewworld"
+    },
+    {
+      "name": "equipped-SUITSTORAGE-kangaroo",
+      "directions": 4,
+      "delays": [[1],[1],[1],[1]],
+	  "copyright": "Ubaser, wonderfulnewworld"
+    },
+    {
+      "name": "equipped-SUITSTORAGE-possum",
+      "directions": 4,
+      "delays": [[1],[1],[1],[1]],
+	  "copyright": "Ubaser, wonderfulnewworld"
+    },
+    {
+      "name": "equipped-SUITSTORAGE-pig",
+      "directions": 4,
+      "delays": [[1],[1],[1],[1]],
+	  "copyright": "Ubaser, wonderfulnewworld"
+    }
+  ]
+}

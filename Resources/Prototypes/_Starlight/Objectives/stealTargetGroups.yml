@@ -57,13 +57,6 @@
     state: cpu_supply
 
 - type: stealTargetGroup
-  id: SalvageShuttleConsoleCircuitboard
-  name: steal-target-groups-salvage-shuttle-console-circuitboard
-  sprite:
-    sprite: Objects/Misc/module.rsi
-    state: cpu_supply
-
-- type: stealTargetGroup
   id: HoPBoardSteal
   name: steal-target-groups-hopboard
   sprite:
@@ -89,13 +82,6 @@
   name: steal-target-groups-access-configurator
   sprite:
     sprite: Objects/Tools/access_configurator.rsi
-    state: icon
-
-- type: stealTargetGroup
-  id: EncryptionKeyHybrid
-  name: steal-target-groups-encryption-key-hybrid
-  sprite:
-    sprite: _Starlight/Objects/Misc/salvagekeystealobjective.rsi
     state: icon
 
 - type: stealTargetGroup
@@ -162,13 +148,6 @@
     state: icon
 
 - type: stealTargetGroup
-  id: SalvLeadHardsuit
-  name: steal-target-groups-clothing-outer-hardsuit-salvlead
-  sprite:
-    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/leadspatio.rsi
-    state: icon
-
-- type: stealTargetGroup
   id: CaptainHardsuit
   name: steal-target-groups-clothing-outer-hardsuit-captain
   sprite:
@@ -180,6 +159,13 @@
   name: steal-target-groups-clothing-outer-hardsuit-ntr
   sprite:
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntrepspace.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: EncryptionKeyHybrid
+  name: steal-target-groups-encryption-key-hybrid
+  sprite:
+    sprite: _Starlight/Objects/Misc/salvagekeystealobjective.rsi
     state: icon
 
 - type: stealTargetGroup
@@ -289,13 +275,6 @@
   sprite:
     sprite: _Starlight/Objects/Misc/bedsheets.rsi
     state: sheetbrigmedicstrange
-
-- type: stealTargetGroup
-  id: SalvLeadMantle
-  name: steal-target-groups-salvlead-mantle
-  sprite:
-    sprite: _Starlight/Clothing/Neck/Mantles/salvagemantle.rsi
-    state: icon
 
 - type: stealTargetGroup
   id: SpyglassCaptain

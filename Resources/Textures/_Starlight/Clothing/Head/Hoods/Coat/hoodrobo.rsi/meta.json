@@ -1,0 +1,20 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+			"copyright": "By Gotimanga for SS14, recolored into Roboticist by Cvlancer"
+        },
+        {
+            "name": "equipped-HELMET",
+            "directions": 4,
+			"copyright": "Gotimanga, Cvlancer"
+        }
+    ]
+}

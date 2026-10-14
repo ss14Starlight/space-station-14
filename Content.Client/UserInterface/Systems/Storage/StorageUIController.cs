@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Numerics;
 using Content.Client.Examine;
 using Content.Client.Hands.Systems;
 using Content.Client.Interaction;
@@ -105,7 +104,7 @@ public sealed partial class StorageUIController : UIController, IOnSystemChanged
             OnPieceUnpressed(args, window, piece);
         };
 
-        if (StaticStorageUIEnabled)
+        if (UsesDockedWindows()) // Starlight
         {
             var hotbar = UIManager.GetActiveUIWidgetOrNull<HotbarGui>();
             // this lambda handles the nested storage case
@@ -273,6 +272,9 @@ public sealed partial class StorageUIController : UIController, IOnSystemChanged
         }
         else if (args.Function == ContentKeyFunctions.ActivateItemInWorld)
         {
+            if (TryReplayActivateItem(args, control.Entity)) // Starlight
+                return; // Starlight
+
             EntityManager.RaisePredictiveEvent(
                 new InteractInventorySlotEvent(EntityManager.GetNetEntity(control.Entity), altInteract: false));
             args.Handle();

@@ -15,11 +15,10 @@
     - FoodSnack
     - ReptilianFood
     - ClothMade
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
+  - type: Solution
+    id: food
+    solution:
+      reagents:
         - ReagentId: Sugar
           Quantity: 10
   - type: FlavorProfile
@@ -95,11 +94,10 @@
   components:
   - type: Sprite
     color: "#3d3d3d"
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 25
-        reagents:
+  - type: Solution
+    id: food
+    solution:
+      reagents:
         - ReagentId: Sugar
           Quantity: 10
         - ReagentId: CarpoToxin
@@ -111,11 +109,10 @@
   components:
   - type: Sprite
     color: "#b30000"
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 25
-        reagents:
+  - type: Solution
+    id: food
+    solution:
+      reagents:
         - ReagentId: Sugar
           Quantity: 10
         - ReagentId: Omnizine

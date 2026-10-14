@@ -21,6 +21,7 @@ public sealed partial class MhelpControl : Control
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+        SettingsButton.SetContent(SettingsMenu);
 
         var uiController = _ui.GetUIController<MHelpUIController>();
         if (uiController.UIHelper is not MentorMHelpUIHandler helper)
@@ -89,6 +90,7 @@ public sealed partial class MhelpControl : Control
         UpdateButtons();
 
         MHelpHelper.HideAllPanels();
+        EmptyLabel.Visible = ticket == null;
         if (ticket != null)
         {
             var panel = MHelpHelper.EnsurePanel(ticket.Value);

@@ -19,6 +19,7 @@
 #    - id: RadioHandheld # Starlight - radio replaced with expedition radio
     - id: RadioHandheldExpedition # Starlight
     - id: AppraisalTool
+    - id: ITGTrackerImplanter # Starlight
     - id: FireExtinguisher
     - id: Flare
       prob: 0.3

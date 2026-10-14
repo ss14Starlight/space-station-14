@@ -61,8 +61,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: MagazineBoxRifleHP
-        - id: MagazineBoxRifleSP
+        - id: MagazineBoxVariableMedium
+          amount: 2
         - id: MagazineBoxPistol40SP
         - id: DrinkMREFlask
         - id: FoodSnackNutribrick
@@ -80,8 +80,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: MagazineBoxRifleHP
-        - id: MagazineBoxRifleSP
+        - id: MagazineBoxVariableMedium
+          amount: 2
         - id: MagazineBoxPistol40SP
         - id: DrinkMREFlask
         - id: FoodSnackNutribrick

@@ -27,3 +27,29 @@ health-analyzer-report-quantity-blood = {$blood}u
 health-analyzer-window-quantity-both = [color=#AAAAAA]({$stomach}u)[/color] {$blood}u
 health-analyzer-window-quantity-stomach = [color=#AAAAAA]({$stomach}u)[/color]
 health-analyzer-window-quantity-blood = {$blood}u
+
+## Custom UI
+starlight-health-analyzer-window-entity-status-text = Status
+starlight-health-analyzer-window-entity-temperature-text = Temperature
+starlight-health-analyzer-window-entity-blood-level-text = Blood Level
+starlight-health-analyzer-window-entity-damage-total-text = Total Damage
+
+starlight-health-analyzer-window-section-vitals = Vitals Overview
+starlight-health-analyzer-window-section-damage = Damage Breakdown
+starlight-health-analyzer-window-section-abnormalities = Abnormalities
+starlight-health-analyzer-window-section-chemicals = Chemical Analysis
+
+starlight-health-analyzer-window-damage-none = No damage
+
+starlight-health-analyzer-window-entity-rot-timer-text = Rot
+starlight-health-analyzer-window-time-justnow = Just now
+starlight-health-analyzer-window-time-under-minute = in <1 min
+starlight-health-analyzer-window-time-in-minutes = in ~{ $minutes } mins
+starlight-health-analyzer-window-time-since-minutes = since ~{ $minutes } mins
+
+starlight-health-analyzer-window-entity-unrevivable-text = [bold]Defib Ineligible[/bold]
+starlight-health-analyzer-abnormality-open-incisions = Open incisions
+starlight-health-analyzer-abnormality-missing-organs = Missing organs
+starlight-health-analyzer-abnormality-catatonic = [bold]Catatonic[/bold]
+starlight-health-analyzer-abnormality-hollow = [bold]Hollow[/bold]
+starlight-health-analyzer-abnormality-extreme-bleeding = Extreme bleeding

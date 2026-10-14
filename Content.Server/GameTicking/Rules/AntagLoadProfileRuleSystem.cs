@@ -87,7 +87,7 @@ public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoa
 
             args.Entity = Spawn(profile.ForcedPrototype, args.Coords);
             var resolvedEntity = args.Entity.Value;
-            var grammar = EntityManager.EnsureComponent<GrammarComponent>(resolvedEntity);
+            var grammar = EnsureComp<GrammarComponent>(resolvedEntity);
             _grammarSystem.SetGender((resolvedEntity, grammar), profile.Gender);
 
             _autolog.LogToDiscord(Loc.GetString("autolog-forcedprototype", ("character", profile.Name), ("prototype", profile.ForcedPrototype)));

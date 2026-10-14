@@ -1,10 +1,6 @@
-﻿using Content.Client.Beam.Components;
-using Content.Shared.Beam;
+﻿using Content.Shared.Beam;
 using Content.Shared.Beam.Components;
 using Robust.Client.GameObjects;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Toolshed.TypeParsers;
 
 namespace Content.Client.Beam;
 

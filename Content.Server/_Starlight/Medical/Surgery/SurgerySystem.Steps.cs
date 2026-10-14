@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared._Starlight.Medical.Surgery;
 using Content.Shared._Starlight.Medical.Surgery.Events;
 using Content.Shared.Body.Components;
@@ -90,6 +90,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     private void OnStepClampBleedComplete(Entity<SurgeryClampBleedEffectComponent> ent, ref SurgeryStepEvent args)
     {
     }
+
     private void OnStepOrganInsertComplete(Entity<SurgeryStepOrganInsertComponent> ent, ref SurgeryStepEvent args)
     {
         if (args.Tools.Count == 0
@@ -120,6 +121,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         var ev = new SurgeryOrganImplantationCompleted(body, part, organId);
         RaiseLocalEvent(organId, ref ev);
     }
+
     private void OnStepOrganExtractComplete(Entity<SurgeryStepOrganExtractComponent> ent, ref SurgeryStepEvent args)
     {
         if (ent.Comp.Organ?.Count != 1) return;
@@ -156,11 +158,16 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
     private void OnStepEmoteEffectComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
     {
+        var isNumb = _statusEffects.HasEffectComp<PainNumbnessStatusEffectComponent>(args.Body)
+            || HasComp<PainNumbnessStatusEffectComponent>(args.Body);
 
-        if (!HasComp<PainNumbnessStatusEffectComponent>(args.Body) && !HasComp<SleepingComponent>(args.Body))
+        if (isNumb)
+            return;
+
+        if (!HasComp<SleepingComponent>(args.Body))
             _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
         else
-            _sleeping.TryWaking(args.Body); // If the patient sleeping without n2o or reagents, wake them up.
+            _sleeping.TryWaking(args.Body); // If the patient is sleeping without n2o or reagents, wake them up.
     }
 
     private void OnStepSpawnComplete(Entity<SurgeryStepSpawnEffectComponent> ent, ref SurgeryStepEvent args)

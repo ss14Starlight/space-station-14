@@ -21,6 +21,7 @@
     edges:
     - to: start
       completed:
+      - !type:EmptyAllContainers # SL Edit - Don't delete boxes
       - !type:SpawnPrototype
         prototype: SheetSteel1
         amount: 5

@@ -1,7 +1,6 @@
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Client.IconSmoothing
 {
@@ -81,5 +80,10 @@ namespace Content.Client.IconSmoothing
         ///     Where this component contributes to our neighbors being calculated but we do not update our own sprite.
         /// </summary>
         NoSprite,
+
+        /// <summary>
+        ///     Starlight-edit: For things that only ever line up in a straight row, like flipped tables.
+        /// </summary>
+        Linear,
     }
 }

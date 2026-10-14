@@ -99,3 +99,20 @@
       - state: mag-1
         map: ["enum.GunVisualLayers.Mag"]
       - state: baton
+
+- type: entity
+  parent: BasePeacekeeperBox
+  id: BoxPeacekeeperBola
+  name: peacekeeper bola ammo box
+  description: A box of bola grenades for the Peacekeeper, to make tripping suspects even more fun!
+  components:
+    - type: BallisticAmmoProvider
+      proto: GrenadeBola
+      mayTransfer: true
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-1
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: bola

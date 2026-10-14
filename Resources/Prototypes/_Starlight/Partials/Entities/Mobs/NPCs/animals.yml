@@ -1,0 +1,47 @@
+- type: !PartialOnly entity
+  id: FoodEggChickenFertilized
+  components:
+  - type: TimedSpawner
+    allowContainerPlacement: true
+
+- type: !PartialOnly entity
+  id: FoodEggDuckFertilized
+  components:
+  - type: TimedSpawner
+    allowContainerPlacement: true
+
+- type: !PartialOnly entity
+  id: MobBat
+  components:
+  - type: FirelockOpener
+
+- type: !PartialOnly entity
+  id: MobChicken
+  components:
+  - type: FirelockOpener
+
+- type: !PartialOnly entity
+  id: MobDuckMallard
+  components:
+  - type: FirelockOpener
+
+- type: !PartialOnly entity
+  id: MobPig
+  components:
+  - type: FirelockOpener
+
+- type: !PartialOnly entity
+  id: MobBaseKobold
+  components:
+  - type: CosmicLapseForm # Kobolds inherit the monkey species ID, so lapse needs an explicit form
+    form: CosmicLapseMobKobold
+
+- type: !PartialOnly entity
+  id: MobCorgiSmart
+  components:
+  - type: CosmicStarMarkOffset
+    south: 0.03,-0.1
+    north: 0.03,-0.1
+    east: 0.2,-0.13
+    west: -0.2,-0.13
+  - type: CosmicCultConvertible

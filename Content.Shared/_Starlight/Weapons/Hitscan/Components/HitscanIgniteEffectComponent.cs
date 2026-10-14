@@ -13,4 +13,10 @@ public sealed partial class HitscanIgniteEffectComponent : Component
     /// </summary>
     [DataField]
     public float Temperature = 1050f;
+
+    /// <summary>
+    /// How many fire stacks are applied by this projectile
+    /// </summary>
+    [DataField]
+    public float FireStacks = 0.25f;
 }

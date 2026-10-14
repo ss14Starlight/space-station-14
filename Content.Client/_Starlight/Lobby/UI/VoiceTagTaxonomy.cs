@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using Content.Shared._Starlight.TextToSpeech;
-using Robust.Shared.Localization;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.Lobby.UI;

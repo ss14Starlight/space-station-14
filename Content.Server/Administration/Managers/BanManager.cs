@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Content.Server.Chat.Managers;
 using Content.Server.Database;
 using Content.Server.GameTicking;
-using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
@@ -21,16 +20,14 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using NullLinkAdminBan = Starlight.NullLink.AdminBan;
 
 #region Starlight
-using System.Net.Http.Json;
+
 using System.Net.Http;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using Content.Server.Discord;
 using Content.Server.Connection;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.Helpers;
@@ -40,7 +37,7 @@ using CCVars = Content.Shared.CCVar.CCVars;
 using Starlight.NullLink;
 using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
-using Content.Shared.Administration;
+
 #endregion Starlight
 
 namespace Content.Server.Administration.Managers;
@@ -126,8 +123,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         var netChannel = player.Channel;
         ImmutableArray<byte>? hwId = netChannel.UserData.HWId.Length == 0 ? null : netChannel.UserData.HWId;
         var modernHwids = netChannel.UserData.ModernHWIds;
-        var addr = _connectionManager.GetResolvedAddress(player.UserId)
-                   ?? netChannel.RemoteEndPoint.Address; // Starlight: prefer resolved IP
+        var addr = _connectionManager.GetPlayerAddress(player); // Starlight: resolved IP, never the SNAT address
         var roleBans = await _db.GetServerRoleBansAsync(addr, player.UserId, hwId, modernHwids, false);
 
         var userRoleBans = new List<ServerRoleBanDef>();
@@ -288,8 +284,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         var playerInfo = new BanMatcher.PlayerInfo
         {
             UserId = player.UserId,
-            Address = _connectionManager.GetResolvedAddress(player.UserId)
-                      ?? player.Channel.RemoteEndPoint.Address, // Starlight: prefer resolved IP
+            Address = _connectionManager.GetPlayerAddress(player), // Starlight: resolved IP, never the SNAT address
             HWId = player.Channel.UserData.HWId,
             ModernHWIds = player.Channel.UserData.ModernHWIds,
             // It's possible for the player to not have cached data loading yet due to coincidental timing.

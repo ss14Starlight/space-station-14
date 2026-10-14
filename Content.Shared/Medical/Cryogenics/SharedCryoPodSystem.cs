@@ -4,7 +4,6 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Climbing.Systems;
@@ -30,6 +29,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+
 namespace Content.Shared.Medical.Cryogenics;
 
 public abstract partial class SharedCryoPodSystem : EntitySystem
@@ -56,8 +56,6 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
     private EntityQuery<BloodstreamComponent> _bloodstreamQuery;
     private EntityQuery<ItemSlotsComponent> _itemSlotsQuery;
     private EntityQuery<FitsInDispenserComponent> _dispenserQuery;
-    private EntityQuery<SolutionContainerManagerComponent> _solutionContainerQuery;
-
 
     public override void Initialize()
     {
@@ -80,7 +78,7 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
         _bloodstreamQuery = GetEntityQuery<BloodstreamComponent>();
         _itemSlotsQuery = GetEntityQuery<ItemSlotsComponent>();
         _dispenserQuery = GetEntityQuery<FitsInDispenserComponent>();
-        _solutionContainerQuery = GetEntityQuery<SolutionContainerManagerComponent>();
+        //_solutionContainerQuery = GetEntityQuery<SolutionContainerManagerComponent>(); // Starlight - solution access now goes through SharedSolutionContainerSystem.
 
         InitializeInsideCryoPod();
 
@@ -115,9 +113,8 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
         var patient = entity.Comp.BodyContainer.ContainedEntity;
 
         if (patient == null
-            || !_solutionContainerQuery.TryComp(entity, out var podSolutionManager)
             || !_solutionContainer.TryGetSolution(
-                    (entity.Owner, podSolutionManager),
+                    entity.Owner,
                     CryoPodComponent.InjectionBufferSolutionName,
                     out var injectingSolution,
                     out _)
@@ -264,14 +261,14 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
 
     public bool InsertBody(EntityUid uid, EntityUid target, CryoPodComponent cryoPodComponent)
     {
-        if (cryoPodComponent.BodyContainer.ContainedEntity != null)
+        if (cryoPodComponent.BodyContainer.ContainedEntity != null && cryoPodComponent.BodyContainer.ContainedEntity != target) // Starlight edit
             return false;
 
         if (!HasComp<MobStateComponent>(target))
             return false;
 
         var xform = Transform(target);
-        _container.Insert((target, xform), cryoPodComponent.BodyContainer);
+        if (!HasComp<InsideCryoPodComponent>(target)) _container.Insert((target, xform), cryoPodComponent.BodyContainer); // Starlight edit
 
         EnsureComp<InsideCryoPodComponent>(target);
         _standingState.Stand(target, force: true); // Force-stand the mob so that the cryo pod sprite overlays it fully
@@ -356,14 +353,12 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
         if (beaker == null
             || !beaker.Value.Valid
             || !_dispenserQuery.TryComp(beaker, out var fitsInDispenserComponent)
-            || !_solutionContainerQuery.TryComp(beaker, out var beakerSolutionManager)
-            || !_solutionContainerQuery.TryComp(cryoPod, out var podSolutionManager)
             || !_solutionContainer.TryGetFitsInDispenser(
-                    (beaker.Value, fitsInDispenserComponent, beakerSolutionManager),
+                    (beaker.Value, fitsInDispenserComponent),
                     out var beakerSolution,
                     out _)
             || !_solutionContainer.TryGetSolution(
-                    (cryoPod.Owner, podSolutionManager),
+                    cryoPod.Owner,
                     CryoPodComponent.InjectionBufferSolutionName,
                     out var injectionSolutionComp,
                     out var injectionSolution))
@@ -381,9 +376,8 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
 
     public void ClearInjectionBuffer(Entity<CryoPodComponent> cryoPod)
     {
-        if (_solutionContainerQuery.TryComp(cryoPod, out var podSolutionManager)
-            && _solutionContainer.TryGetSolution(
-                    (cryoPod.Owner, podSolutionManager),
+        if (_solutionContainer.TryGetSolution(
+                    cryoPod.Owner,
                     CryoPodComponent.InjectionBufferSolutionName,
                     out var injectingSolution,
                     out _))
@@ -406,9 +400,8 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
         if (beaker == null
             || !beaker.Value.Valid
             || !_dispenserQuery.TryComp(beaker, out var fitsInDispenserComponent)
-            || !_solutionContainerQuery.TryComp(beaker, out var solutionContainerManagerComponent)
             || !_solutionContainer.TryGetFitsInDispenser(
-                    (beaker.Value, fitsInDispenserComponent, solutionContainerManagerComponent),
+                    (beaker.Value, fitsInDispenserComponent),
                     out var containerSolution,
                     out _))
             return (null, null);
@@ -423,9 +416,8 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
 
     protected List<ReagentQuantity>? GetInjectingReagents(Entity<CryoPodComponent> entity)
     {
-        if (!_solutionContainerQuery.TryComp(entity, out var solutionManager)
-            || !_solutionContainer.TryGetSolution(
-                    (entity.Owner, solutionManager),
+        if (!_solutionContainer.TryGetSolution(
+                    entity.Owner,
                     CryoPodComponent.InjectionBufferSolutionName,
                     out var injectingSolution,
                     out _))
@@ -509,6 +501,14 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
 
     private void OnBodyInserted(Entity<CryoPodComponent> cryoPod, ref EntInsertedIntoContainerMessage args)
     {
+        // Starlight begin
+        if (args.Container == cryoPod.Comp.BodyContainer && !HasComp<InsideCryoPodComponent>(args.Entity))
+        {
+            EnsureComp<InsideCryoPodComponent>(args.Entity); // Ensure here to avoid reinsert attempt. Unsure if that actually affects anything but better to be safe IMHO.
+            InsertBody(cryoPod, args.Entity, cryoPod);
+        }
+        // Starlight end
+
         if (args.Container.ID == CryoPodComponent.BodyContainerName)
         {
             UI.CloseUi(cryoPod.Owner, CryoPodUiKey.Key, args.Entity);

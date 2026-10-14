@@ -56,7 +56,7 @@
     effectsTable: !type:GroupSelector
       children:
       - !type:NestedSelector
-        tableId: XenoArtifactEffectsDefaultTable
+        tableId: SLXenoArtifactEffectsDefaultTable # Starlight, new table with Funky's effects + ours
         weight: 54
       - !type:NestedSelector
         tableId: XenoArtifactEffectsHandheldOnlyTable
@@ -129,13 +129,7 @@
         Quantity: 10
   - type: StaticPrice
     price: 0
-  # Starlight start
-  - type: UserInterface
-    interfaces:
-      enum.StackCustomSplitUiKey.Key:
-        type: StackCustomSplitBoundUserInterface
   - type: Stack
-  # Starlight end
     stackType: ArtifactFragment
   - type: GuideHelp
     guides:

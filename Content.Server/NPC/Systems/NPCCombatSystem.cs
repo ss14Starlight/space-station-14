@@ -1,11 +1,9 @@
+using Content.Server._Starlight.NPC.Systems;
 using Content.Server.Interaction;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Buckle;
 using Content.Shared.Weapons.Melee;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -26,6 +24,7 @@ public sealed partial class NPCCombatSystem : EntitySystem
     [Dependency] private SharedMeleeWeaponSystem _melee = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedBuckleSystem _buckle = default!;
+    [Dependency] private NPCHidingWitnessSystem _hidingWitness = default!; // Starlight
 
     /// <summary>
     /// If disabled we'll move into range but not attack.

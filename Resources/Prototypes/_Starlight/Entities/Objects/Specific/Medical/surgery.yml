@@ -15,10 +15,10 @@
   - type: Tag
     tags:
     - BoneGel
-  - type: SolutionContainerManager
-    solutions:
-      container:
-        maxVol: 30
+  - type: Solution
+    id: container
+    solution:
+      maxVol: 30
   - type: MixableSolution
     solution: container
   - type: SolutionTransfer
@@ -46,7 +46,6 @@
     sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
     state: abductor
   - type: SolutionRegeneration
-    solution: container
     generated:
       reagents:
       - ReagentId: BoneGel
@@ -94,7 +93,6 @@
   - type: BoneSaw
   - type: BoneSetter
   - type: SolutionRegeneration
-    solution: container
     generated:
       reagents:
       - ReagentId: BoneGel
@@ -238,8 +236,10 @@
     sprintModifier: 0.9
   - type: MeleeWeapon
     damage:
-      groups:
-        Brute: 0
+      types:
+        Blunt: 0
+        Piercing: 0
+        Slash: 0
   - type: Tag
     tags:
       - CyberHandItem
@@ -255,13 +255,13 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
     state: bone-gel
-  - type: SolutionContainerManager
-    solutions:
-      container:
-        maxVol: 30
-        reagents:
-        - ReagentId: BoneGel
-          Quantity: 30
+  - type: Solution
+    id: container
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: BoneGel
+        Quantity: 30
 
 - type: entity
   name: bone gel
@@ -407,8 +407,10 @@
   components:
   - type: MeleeWeapon
     damage:
-      groups:
-        Brute: 15
+      types:
+        Blunt: 5
+        Piercing: 5
+        Slash: 5
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi # Starlight
     state: advanced-setter

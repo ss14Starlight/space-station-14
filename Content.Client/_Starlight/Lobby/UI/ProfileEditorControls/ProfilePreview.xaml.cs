@@ -9,7 +9,6 @@ using Robust.Client.Utility;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Client.Lobby;
-using Content.Client.Lobby.UI;
 
 namespace Content.Client._Starlight.Lobby.UI.ProfileEditorControls;
 

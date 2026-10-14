@@ -4,7 +4,8 @@ using Robust.Client.UserInterface; // Starlight
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Timing;
 using Robust.Shared.Map; // Starlight
-using Robust.Shared.Localization; // Starlight
+
+// Starlight
 
 namespace Content.Client.Medical.CrewMonitoring;
 

@@ -296,6 +296,22 @@ public sealed partial class GameTicker
     }
 
     /// <summary>
+    /// Returns true if a game rule that passes the whitelist and blacklist has been added.
+    /// </summary>
+    /// <param name="ruleWhitelist">whitelist for the game rules</param>
+    /// <param name="ruleBlacklist">blacklist for the game rules</param>
+    public bool IsGameRuleAdded(EntityWhitelist? ruleWhitelist, EntityWhitelist? ruleBlacklist = null)
+    {
+        foreach (var ruleEntity in GetAddedGameRules())
+        {
+            if (_whitelist.CheckBoth(ruleEntity, ruleBlacklist, ruleWhitelist))
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
     ///     Returns true if a game rule with the given component is active..
     /// </summary>
     public bool IsGameRuleActive<T>()
@@ -321,6 +337,22 @@ public sealed partial class GameTicker
         foreach (var ruleEntity in GetActiveGameRules())
         {
             if (MetaData(ruleEntity).EntityPrototype?.ID == rule)
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Returns true if a game rule that passes the whitelist and blacklist is active.
+    /// </summary>
+    /// <param name="ruleWhitelist">whitelist for the game rules</param>
+    /// <param name="ruleBlacklist">blacklist for the game rules</param>
+    public bool IsGameRuleActive(EntityWhitelist? ruleWhitelist, EntityWhitelist? ruleBlacklist = null)
+    {
+        foreach (var ruleEntity in GetActiveGameRules())
+        {
+            if (_whitelist.CheckBoth(ruleEntity, ruleBlacklist, ruleWhitelist))
                 return true;
         }
 
@@ -392,9 +424,31 @@ public sealed partial class GameTicker
         if (args.Forced || args.Cancelled)
             return;
 
+        // Starlight - start
+        if (CurrentPreset is { MinPlayers: { } presetMinimumPlayers } preset)
+        {
+            var effectivePlayers = GetEffectivePlayerCountGameruleEligibility(args.Players.Length);
+            if (effectivePlayers < presetMinimumPlayers)
+            {
+                _chatManager.SendAdminAnnouncement(Loc.GetString("preset-not-enough-ready-players-sl",
+                    ("readyPlayersCount", effectivePlayers),
+                    ("minimumPlayers", presetMinimumPlayers),
+                    ("presetName", Loc.GetString(preset.ModeTitle))));
+                args.Cancel();
+                Log.Info($"Preset '{preset.ID}' requires {presetMinimumPlayers} players, but only {effectivePlayers} are effectively ready.");
+                return;
+            }
+        }
+        // Starlight - end
+
         var query = EntityQueryEnumerator<GameRuleComponent>();
         while (query.MoveNext(out var uid, out var gameRule))
         {
+            // Starlight - start
+            if (!IsGameRuleAdded(uid, gameRule))
+                continue;
+            // Starlight - end
+
             var minPlayers = gameRule.MinPlayers;
             var name = ToPrettyString(uid);
 

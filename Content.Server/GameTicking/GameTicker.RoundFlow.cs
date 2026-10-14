@@ -11,7 +11,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
 using Content.Shared.Players;
-using Content.Shared.Preferences;
 using Content.Shared.Roles.Components;
 using JetBrains.Annotations;
 using Prometheus;
@@ -27,6 +26,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Text.RegularExpressions;
 using Content.Server._Starlight.BugReports; // Starlight
+using Content.Server._Starlight.GameTicking;
 
 namespace Content.Server.GameTicking
 {
@@ -421,6 +421,9 @@ namespace Content.Server.GameTicking
                 _startingRound = false;
                 return;
             }
+
+            if (CurrentPreset is { } currentPreset) // Starlight
+                RaiseLocalEvent(new DynamicRuleCooldownRoundStartedEvent(currentPreset)); // Starlight
 
             // MapInitialize *before* spawning players, our codebase is too shit to do it afterwards...
             _map.InitializeMap(DefaultMap);
