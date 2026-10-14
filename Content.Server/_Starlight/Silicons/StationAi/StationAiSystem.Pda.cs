@@ -5,7 +5,6 @@ using Content.Server.Access.Systems;
 using Content.Shared._CD.CartridgeLoader.Cartridges;
 using Content.Shared._CD.NanoChat;
 using Content.Shared.CartridgeLoader;
-using Content.Shared.Containers.ItemSlots;
 using Content.Shared.GameTicking;
 using Content.Shared.PDA;
 using Content.Shared.Silicons.StationAi;
@@ -84,19 +83,6 @@ public sealed partial class StationAiSystem
         }
     }
 
-    // Keep the special ID card in the virtual PDA even if a client sends an eject request directly.
-    [SubscribeLocalEvent]
-    private void OnStationAiIdEjectAttempt(Entity<StationAiHeldComponent> ent, ref ItemSlotEjectAttemptEvent args)
-    {
-        if (args.SlotEntity == ent.Owner &&
-            args.Slot.ID == PdaComponent.PdaIdSlotId &&
-            TryComp<IdCardComponent>(args.Item, out var idCard) &&
-            idCard.JobPrototype == "StationAi")
-        {
-            args.Cancelled = true;
-        }
-    }
-
     // Spawn the configured ID after the PDA slot exists; an already-initialized AI does not populate PDA starting items.
     [SubscribeLocalEvent]
     private void OnAiPdaMapInit(Entity<PdaComponent> ent, ref MapInitEvent args)
@@ -114,7 +100,12 @@ public sealed partial class StationAiSystem
             return;
         }
 
-        if (_slots.TryInsert(ent.Owner, ent.Comp.IdSlot, idCard, null))
+        // The slot is locked by prototype so clients cannot eject the ID; unlock only for its initial insertion.
+        _slots.SetLock(ent.Owner, ent.Comp.IdSlot, false);
+        var inserted = _slots.TryInsert(ent.Owner, ent.Comp.IdSlot, idCard, null);
+        _slots.SetLock(ent.Owner, ent.Comp.IdSlot, true);
+
+        if (inserted)
             return;
 
         Log.Error($"Failed to insert Station AI ID card into PDA {ToPrettyString(ent)}.");
