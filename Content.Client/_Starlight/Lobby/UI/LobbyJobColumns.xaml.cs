@@ -118,9 +118,9 @@ public sealed partial class LobbyJobColumns : Control
         var counts = targets.Select(t => Math.Max(1, t.ContainedJobCount())).ToArray();
 
         var best = (Rows: int.MaxValue, Spread: int.MaxValue, Columns: (MinColumns, MinColumns, MinColumns));
-        for (var a = MinColumns; a <= TotalColumns - 2 * MinColumns; a++)
+        for (var a = MinColumns; a <= TotalColumns - (2 * MinColumns); a++)
         {
-            for (var b = MinColumns; b <= (TotalColumns - a) - MinColumns; b++)
+            for (var b = MinColumns; b <= TotalColumns - a - MinColumns; b++)
             {
                 var c = TotalColumns - a - b;
                 var rows = Math.Max((counts[0] - 1) / a, Math.Max((counts[1] - 1) / b, (counts[2] - 1) / c)) + 1;

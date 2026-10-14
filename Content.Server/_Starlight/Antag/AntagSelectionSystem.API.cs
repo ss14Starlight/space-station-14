@@ -18,10 +18,8 @@ public sealed partial class AntagSelectionSystem
     [Dependency] private INetConfigurationManager _netConfig = default!;
 
     private bool AntagsEnabled(ICommonSession session)
-    {
-        return session.Status == SessionStatus.Disconnected
+        => session.Status == SessionStatus.Disconnected
             || _netConfig.GetClientCVar(session.Channel, StarlightCCVars.AntagsEnabled);
-    }
 
     readonly int _effectivePlayerCutoff = 30; // The number of online players at which unready players start counting as effectively ready
     readonly double _unreadyPlayerMultiplier = 0.25; // The fraction of unready players that count as effectively ready when above the cutoff
@@ -105,9 +103,7 @@ public sealed partial class AntagSelectionSystem
         ICommonSession session,
         HumanoidCharacterProfile profile,
         ProtoId<AntagSpecifierPrototype> definition)
-    {
-        return Proto.Resolve(definition, out var antag) && IsProfileValidForAntag(session, profile, antag);
-    }
+        => Proto.Resolve(definition, out var antag) && IsProfileValidForAntag(session, profile, antag);
 
     /// <inheritdoc cref="IsProfileValidForAntag(ICommonSession,HumanoidCharacterProfile,ProtoId{AntagSpecifierPrototype})"/>
     [PublicAPI]

@@ -62,7 +62,6 @@ namespace Content.Client.Lobby
             _voteManager.SetPopupContainer(Lobby.VoteContainer);
             LayoutContainer.SetAnchorPreset(Lobby, LayoutContainer.LayoutPreset.Wide);
 
-
             // STARLIGHT-START
             //Lobby.ServerName.Text = string.IsNullOrEmpty(lobbyNameCvar)
             //    ? Loc.GetString("ui-lobby-title", ("serverName", serverName))
@@ -107,7 +106,7 @@ namespace Content.Client.Lobby
         }
 
         private Tooltip GetReadyButtonTooltip(Control sender) // Starlight-edit: Clarified tooltip instead of Control
-            => new Tooltip { Text = GetReadyButtonTooltipText() }; // Starlight-edit: Lambda
+            => new() { Text = GetReadyButtonTooltipText() }; // Starlight-edit: Lambda
 
         protected override void Shutdown()
         {

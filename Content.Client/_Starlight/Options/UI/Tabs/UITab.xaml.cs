@@ -96,7 +96,8 @@ public sealed partial class UITab : Control
         };
         foreach (var background in _prototypeManager.EnumeratePrototypes<LobbyBackgroundPrototype>().OrderBy(b => Loc.GetString(b.Title)))
         {
-            backgrounds.Add(new(background.ID, Loc.GetString(background.Title)));
+            if (!background.ExcludeFromMenu)
+                backgrounds.Add(new(background.ID, Loc.GetString(background.Title)));
         }
         Control.AddOptionDropDown(StarlightCCVars.LobbyBackground, DropDownLobbyBackground, backgrounds);
         Control.AddOptionDropDown(

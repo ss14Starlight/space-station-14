@@ -89,8 +89,7 @@ namespace Content.Client.Lobby.UI
                 return Math.Max(width, MinChatWidth);
 
             // The screen's own size: in Resized the columns aren't arranged yet.
-            var max = Width - ColumnsBox.Margin.SumHorizontal - LeftSide.SetWidth - LeftSide.Margin.SumHorizontal
-                      - ChatResizeHandle.MinWidth - MinMiddleWidth;
+            var max = Width - ColumnsBox.Margin.SumHorizontal - LeftSide.SetWidth - LeftSide.Margin.SumHorizontal - ChatResizeHandle.MinWidth - MinMiddleWidth;
             return Math.Clamp(width, MinChatWidth, Math.Max(MinChatWidth, max));
         }
 
