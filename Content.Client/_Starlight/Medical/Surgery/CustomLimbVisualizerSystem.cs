@@ -103,7 +103,7 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
             if (!ent.Comp.CachedLayers.Contains(layer))
             {
                 var index = sprite.LayerMapReserveBlank($"custom-{layer}");
-                sprite.LayerSetVisible(layer, false);
+                sprite.LayerSetVisible(index, false);
             }
     }
 }

@@ -315,6 +315,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
             // they are close enough to combine so just add total intensity and prevent queuing another one
             queued.TotalIntensity += totalIntensity;
+            AddExplosionCause(queued, cause); // Starlight
             return;
         }
 
@@ -329,6 +330,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             CanCreateVacuum = canCreateVacuum,
             Cause = cause
         };
+        AddExplosionCause(boom, cause); // Starlight
         _explosionQueue.Enqueue(boom);
         _queuedExplosions.Add(boom);
     }
@@ -408,6 +410,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             EntityManager,
             visualEnt,
             queued.Cause,
+            queued.InternalBodies, // Starlight
             _map,
             _damageableSystem,
             _tileHistoryQuery);
