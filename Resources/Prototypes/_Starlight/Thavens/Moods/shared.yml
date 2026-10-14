@@ -381,7 +381,7 @@
   id: HonourableAmbushes
   moodName: thaven-mood-honourable-ambushes-name
   moodDesc: thaven-mood-honourable-ambushes-desc
-  Conflicts:
+  conflicts:
   - ViolenceDistasteful
   - AngerProblems
 
