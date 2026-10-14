@@ -45,7 +45,7 @@
   id: MindRoleNinja
   components:
   - type: MindRole
-    subtypeColor: '#33cc00'
+    subtypeColor: '#62C837'
 
 - type: !PartialOnly entity
   id: MindRoleParadoxClone
@@ -83,7 +83,7 @@
   components:
   - type: MindRole
     subtype: 'role-type-free-agent-name'
-    subtypeColor: '#ffff00'
+    subtypeColor: '#C28463'
 
 - type: !PartialOnly entity
   id: MindRoleTraitor

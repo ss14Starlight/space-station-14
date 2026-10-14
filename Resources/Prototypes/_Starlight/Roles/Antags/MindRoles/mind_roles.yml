@@ -28,6 +28,7 @@
   - type: MindRole
     antagPrototype: Brighteye
     subtype: roles-antag-brighteye-name
+    subtypeColor: '#6B2F8A'
     exclusiveAntag: true
   - type: BrighteyeRole
 

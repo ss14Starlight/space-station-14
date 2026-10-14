@@ -22,7 +22,7 @@
   description: antag-category-outlaws-desc
   priority: 2
   accentColor: "#753c2f"
-  factionColor: "#C28463"
+  keepIndividualColors: true
   antags:
   - Brighteye
   - SpaceNinja

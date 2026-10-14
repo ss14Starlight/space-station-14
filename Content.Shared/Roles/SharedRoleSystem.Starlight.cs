@@ -37,7 +37,7 @@ public abstract partial class SharedRoleSystem
             subtype = role.CharacterMenuName ?? prototype.Name;
 
         foreach (var category in _prototypes.EnumeratePrototypes<AntagCategoryPrototype>()
-                     .OrderBy(c => c.Default).ThenBy(c => c.Priority).ThenBy(c => c.Name))
+                    .OrderBy(c => c.Default).ThenBy(c => c.Priority).ThenBy(c => c.Name))
         {
             if (!category.Antags.Contains(antag))
                 continue;
