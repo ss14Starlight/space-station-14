@@ -40,9 +40,6 @@ public enum TacticalPlanningConsoleUiKey : byte
     Key,
 }
 
-/// <summary>
-/// A persistent map annotation. The author is recorded server-side so every viewer can inspect it.
-/// </summary>
 [Serializable, NetSerializable]
 public sealed class TacticalPlanAnnotation(int id, TacticalPlanAnnotationKind kind, Color color, List<Vector2> points, string author,
     TacticalPlanIcon icon = TacticalPlanIcon.None)
@@ -63,7 +60,7 @@ public enum TacticalPlanAnnotationKind : byte
     Icon,
 }
 
-/// <summary>Small, server-approved planning symbols; never a client-supplied sprite path.</summary>
+/// <summary>Use fixed symbols instead of client-supplied sprite paths so icon requests can be validated safely.</summary>
 [Serializable, NetSerializable]
 public enum TacticalPlanIcon : byte
 {

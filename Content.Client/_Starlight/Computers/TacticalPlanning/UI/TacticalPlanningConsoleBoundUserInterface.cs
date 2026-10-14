@@ -14,8 +14,8 @@ namespace Content.Client._Starlight.Computers.TacticalPlanning.UI;
 /// </summary>
 public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterface
 {
-    // Bound UI instances are disposed on close, so keep a small per-client cache across openings.
-    // The server token prevents a reused entity ID on another round/server from matching.
+    // This cache must outlive each Bound UI instance so reopening requests only plan changes.
+    // The server token prevents a reused entity ID from reviving another round's annotations.
     private static readonly Dictionary<NetEntity, PlanCache> Cache = new();
     private const int MaxCachedConsoles = 16;
     private const int MaxSnapshotAttempts = 4;
@@ -45,12 +45,10 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
     private EntityUid? _displayedGrid;
     private bool _mapInitialized;
 
-    /// <summary>Connects this bound UI to its console entity.</summary>
     public TacticalPlanningConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
 
-    /// <summary>Opens the map with cached ink while requesting authoritative changes.</summary>
     protected override void Open()
     {
         base.Open();
@@ -121,7 +119,6 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         RefreshMapTarget();
     }
 
-    /// <summary>Requests a plan snapshot, retrying briefly if the server response is missed.</summary>
     private void RequestSnapshot()
     {
         // A missed opening message must not strand the UI in "Connecting". This one-shot
@@ -144,7 +141,6 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         }, _snapshotRetryCancellation.Token);
     }
 
-    /// <summary>Cancels outstanding snapshot retries when the UI closes.</summary>
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -157,7 +153,6 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         base.Dispose(disposing);
     }
 
-    /// <summary>Updates the displayed map only when the target grid changes.</summary>
     private void RefreshMapTarget()
     {
         if (_window == null)
@@ -178,7 +173,6 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         _window.Set(stationName, gridUid);
     }
 
-    /// <summary>Reconciles a snapshot before applying any queued live changes.</summary>
     protected override void ReceiveMessage(BoundUserInterfaceMessage message)
     {
         base.ReceiveMessage(message);
@@ -234,7 +228,6 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         }
     }
 
-    /// <summary>Applies one accepted server edit to the cache and visible map.</summary>
     private void ApplyDelta(BoundUserInterfaceMessage message)
     {
         if (_cache == null)

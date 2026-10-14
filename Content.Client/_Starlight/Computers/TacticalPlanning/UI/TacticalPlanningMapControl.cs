@@ -133,7 +133,6 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         return null;
     }
 
-    /// <summary>Starts a right-click drawing or erasure without changing left-drag panning.</summary>
     protected override void KeyBindDown(GUIBoundKeyEventArgs args)
     {
         if (args.Function == EngineKeyFunctions.UIClick)
@@ -154,7 +153,6 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         base.KeyBindDown(args);
     }
 
-    /// <summary>Submits a completed right-click dot or stroke.</summary>
     protected override void KeyBindUp(GUIBoundKeyEventArgs args)
     {
         if (args.Function == EngineKeyFunctions.UIClick)
@@ -206,7 +204,6 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         base.KeyBindUp(args);
     }
 
-    /// <summary>Samples points while the right button is held for drawing.</summary>
     protected override void MouseMove(GUIMouseMoveEventArgs args)
     {
         base.MouseMove(args);
@@ -217,7 +214,6 @@ public sealed class TacticalPlanningMapControl : NavMapControl
             AddStrokePoint(position);
     }
 
-    /// <summary>Converts a pointer position into the map coordinates stored by the server.</summary>
     private bool TryGetMapPosition(Vector2 pointerPosition, out Vector2 position)
     {
         position = default;
@@ -236,7 +232,6 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         return true;
     }
 
-    /// <summary>Adds a spaced point without exceeding one message's stroke limit.</summary>
     private void AddStrokePoint(Vector2 position, bool force = false)
     {
         if (_pendingStroke.Count >= MaxStrokePoints)
@@ -255,7 +250,6 @@ public sealed class TacticalPlanningMapControl : NavMapControl
             _pendingStroke.Add(position);
     }
 
-    /// <summary>Renders accepted drawings and the active local stroke.</summary>
     private void DrawAnnotations(DrawingHandleScreen handle)
     {
         if (MapUid == null)
@@ -276,7 +270,6 @@ public sealed class TacticalPlanningMapControl : NavMapControl
             DrawAnnotation(handle, _pendingStroke, TacticalPlanAnnotationKind.Stroke, InkColor, TacticalPlanIcon.None, offset, false);
     }
 
-    /// <summary>Renders one dot or connected stroke in the current map transform.</summary>
     private void DrawAnnotation(DrawingHandleScreen handle, List<Vector2> points,
         TacticalPlanAnnotationKind kind, Color color, TacticalPlanIcon icon, Vector2 offset, bool selected)
     {
@@ -331,7 +324,6 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         }
     }
 
-    /// <summary>Projects a stored map point onto the resizable UI canvas.</summary>
     private Vector2 ToScreen(Vector2 position, Vector2 offset)
     {
         var relative = position - offset;

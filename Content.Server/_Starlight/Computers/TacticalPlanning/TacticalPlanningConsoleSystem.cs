@@ -34,7 +34,6 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private IAdminLogManager _adminLog = default!;
 
-    /// <summary>Registers the console's bounded UI operations.</summary>
     public override void Initialize()
     {
         Subs.BuiEvents<TacticalPlanningConsoleComponent>(TacticalPlanningConsoleUiKey.Key, subs =>
@@ -48,7 +47,6 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         });
     }
 
-    /// <summary>Unlocks planning symbols only on the Syndicate variant, without changing ordinary consoles.</summary>
     [SubscribeLocalEvent]
     private void OnEmagged(Entity<TacticalPlanningConsoleComponent> ent, ref GotEmaggedEvent args)
     {
@@ -66,13 +64,14 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
     private void OnMapInit(Entity<TacticalPlanningConsoleComponent> ent, ref MapInitEvent args)
         => UpdateTarget(ent);
 
-    /// <summary>Targets the console's current grid, or the nukies' station target when applicable.</summary>
+    /// <summary>
+    /// Recheck the map target after initialization because consoles can move and nukie rules can start later.
+    /// </summary>
     private void UpdateTarget(Entity<TacticalPlanningConsoleComponent> ent)
     {
         if (!TryComp<StationMapComponent>(ent, out var map))
             return;
 
-        // Refresh on snapshot as well as map init: consoles can move, and nukie rules can start later.
         var grid = HasComp<NukeopsStationMapComponent>(ent)
             ? GetNukeopsTargetGrid()
             : Transform(ent).GridUid;
@@ -83,7 +82,9 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         Dirty(ent.Owner, map);
     }
 
-    /// <summary>Uses an active nukie target, otherwise the main station grid on the round's map.</summary>
+    /// <summary>
+    /// Without an active nukie rule, use a main grid on the round's map so a spawned base does not show an auxiliary grid.
+    /// </summary>
     private EntityUid? GetNukeopsTargetGrid()
     {
         foreach (var rule in _gameTicker.GetActiveGameRules())
@@ -121,11 +122,9 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         return fallbackGrid;
     }
 
-    /// <summary>Registers a newly opened viewer for targeted plan updates.</summary>
     private void OnOpened(EntityUid uid, TacticalPlanningConsoleComponent component, BoundUIOpenedEvent args)
         => TryRegisterViewer(uid, component, args.Actor);
 
-    /// <summary>Removes a viewer without letting a quick reopen bypass the edit interval.</summary>
     private void OnClosed(EntityUid uid, TacticalPlanningConsoleComponent component, BoundUIClosedEvent args)
     {
         component.Viewers.Remove(args.Actor);
@@ -136,7 +135,9 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         component.LastRejectionNotice.Remove(args.Actor);
     }
 
-    /// <summary>Sends a full plan or only changes missing from the client's cache.</summary>
+    /// <summary>
+    /// A matching cache token lets returning viewers receive only changes; a mismatch forces a full plan to prevent stale ink.
+    /// </summary>
     private void OnRequestSnapshot(EntityUid uid, TacticalPlanningConsoleComponent component, TacticalPlanRequestSnapshotMessage args)
     {
         if (args.Actor is not { Valid: true } actor || !TryRegisterViewer(uid, component, actor))
@@ -173,7 +174,9 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
                 IsFull(component), HasComp<NukeopsStationMapComponent>(uid), IconsUnlocked(uid)), actor);
     }
 
-    /// <summary>Validates and stores a drawing, then sends it only to current viewers.</summary>
+    /// <summary>
+    /// Only server-accepted ink becomes persistent or visible to other viewers; reject invalid and over-budget drawings first.
+    /// </summary>
     private void OnAddAnnotation(EntityUid uid, TacticalPlanningConsoleComponent component, TacticalPlanAddAnnotationMessage args)
     {
         if (args.Actor is not { Valid: true } actor || !TryRegisterViewer(uid, component, actor))
@@ -213,7 +216,6 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         SendToViewers(uid, component, new TacticalPlanAnnotationAddedMessage(annotation, IsFull(component)));
     }
 
-    /// <summary>Erases an existing annotation under the same edit limits as drawing.</summary>
     private void OnEraseAnnotation(EntityUid uid, TacticalPlanningConsoleComponent component, TacticalPlanEraseAnnotationMessage args)
     {
         if (args.Actor is not { Valid: true } actor || !TryRegisterViewer(uid, component, actor))
@@ -232,7 +234,6 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         SendToViewers(uid, component, new TacticalPlanAnnotationErasedMessage(args.Id, IsFull(component)));
     }
 
-    /// <summary>Clears a full plan in one event while retaining its server-side audit record.</summary>
     private void OnReset(EntityUid uid, TacticalPlanningConsoleComponent component, TacticalPlanResetMessage args)
     {
         if (args.Actor is not { Valid: true } actor || !TryRegisterViewer(uid, component, actor)
@@ -248,16 +249,13 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         SendToViewers(uid, component, new TacticalPlanClearedMessage());
     }
 
-    /// <summary>Reports whether either annotation capacity has been reached.</summary>
     private static bool IsFull(TacticalPlanningConsoleComponent component) =>
         component.CapacityReached || component.Annotations.Count >= component.MaxAnnotations
             || component.TotalPoints >= component.MaxTotalPoints;
 
-    /// <summary>Checks the server-side emag flag; the client never grants itself icon placement.</summary>
     private bool IconsUnlocked(EntityUid uid) =>
         HasComp<NukeopsStationMapComponent>(uid) && _emag.CheckFlag(uid, EmagType.Interaction);
 
-    /// <summary>Admits an open-UI actor without exceeding the per-console viewer cap.</summary>
     private bool TryRegisterViewer(EntityUid uid, TacticalPlanningConsoleComponent component, EntityUid actor)
     {
         // The engine's open UI state is the authority. A missed snapshot must not leave an
@@ -280,7 +278,6 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         return true;
     }
 
-    /// <summary>Returns a throttled rejection notice without showing unaccepted ink.</summary>
     private void RejectDrawing(EntityUid uid, TacticalPlanningConsoleComponent component, EntityUid actor, string reason)
     {
         // Rejections are user-visible, but should not themselves become a message flood.
@@ -293,7 +290,6 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
             new TacticalPlanDrawingRejectedMessage(reason), actor);
     }
 
-    /// <summary>Enforces per-player timing and the console-wide submission budget.</summary>
     private bool CanSubmit(TacticalPlanningConsoleComponent component, EntityUid actor)
     {
         // Bound each player to one edit per 200 ms, then share a 12-edit/second token
@@ -314,7 +310,6 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         return true;
     }
 
-    /// <summary>Broadcasts a small plan delta only to users with this UI open.</summary>
     private void SendToViewers(EntityUid uid, TacticalPlanningConsoleComponent component, BoundUserInterfaceMessage message)
     {
         component.Viewers.RemoveWhere(viewer => !_ui.IsUiOpen(uid, TacticalPlanningConsoleUiKey.Key, viewer));

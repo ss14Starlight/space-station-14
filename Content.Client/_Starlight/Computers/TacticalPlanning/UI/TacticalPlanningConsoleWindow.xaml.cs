@@ -90,7 +90,6 @@ public sealed partial class TacticalPlanningConsoleWindow : FancyWindow
             SetTool(NavMapScreen.Tool);
     }
 
-    /// <summary>Builds a compact grid using the same cached sprites drawn on the map.</summary>
     private void CreateIconPicker()
     {
         var group = new ButtonGroup();
@@ -173,7 +172,6 @@ public sealed partial class TacticalPlanningConsoleWindow : FancyWindow
         ResetPlan.Disabled = !canEdit;
     }
 
-    /// <summary>Redraws the plan count and keeps the selected details in sync.</summary>
     private void RefreshAnnotations()
     {
         NavMapScreen.SetAnnotations(_annotations);
@@ -192,7 +190,6 @@ public sealed partial class TacticalPlanningConsoleWindow : FancyWindow
         }
     }
 
-    /// <summary>Switches the active tool while respecting the connection state.</summary>
     private void SetTool(TacticalPlanTool tool)
     {
         if (tool == TacticalPlanTool.Icons && !_iconsUnlocked)
@@ -218,7 +215,6 @@ public sealed partial class TacticalPlanningConsoleWindow : FancyWindow
             CustomColorPicker.Color = color;
     }
 
-    /// <summary>Accepts a local color choice without sending a server message.</summary>
     private void ChooseInk(Color color, bool updatePicker = true)
     {
         if (!_canEdit)
@@ -229,7 +225,6 @@ public sealed partial class TacticalPlanningConsoleWindow : FancyWindow
         ColorSelected?.Invoke(color);
     }
 
-    /// <summary>Shows the author and details of the drawing under the cursor.</summary>
     private void SelectAt(Vector2 position)
     {
         var selected = NavMapScreen.FindAnnotation(position);
@@ -244,7 +239,6 @@ public sealed partial class TacticalPlanningConsoleWindow : FancyWindow
         ShowDetails(selected);
     }
 
-    /// <summary>Requests deletion of the drawing under the cursor.</summary>
     private void EraseAt(Vector2 position)
     {
         if (!_canEdit)
@@ -255,7 +249,6 @@ public sealed partial class TacticalPlanningConsoleWindow : FancyWindow
             AnnotationErased?.Invoke(selected.Id);
     }
 
-    /// <summary>Shows only the author when a map annotation is selected.</summary>
     private void ShowDetails(TacticalPlanAnnotation annotation)
     {
         Details.SetMessage(FormattedMessage.FromUnformatted(Loc.GetString("tactical-planning-console-details",
@@ -263,7 +256,6 @@ public sealed partial class TacticalPlanningConsoleWindow : FancyWindow
         SelectionDetails.Visible = true;
     }
 
-    /// <summary>Clears details when no annotation is selected.</summary>
     private void ClearSelection()
     {
         _selectedId = null;
