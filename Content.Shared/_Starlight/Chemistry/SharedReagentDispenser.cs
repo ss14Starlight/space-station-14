@@ -4,6 +4,7 @@ using Content.Shared.Storage;
 using Robust.Shared.Serialization;
 using Robust.Shared.Prototypes;
 
+// ReSharper disable CheckNamespace
 namespace Content.Shared.Chemistry;
 
 /// <summary>

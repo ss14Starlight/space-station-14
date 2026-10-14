@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Content.Client._Starlight.Chemistry.UI;
 
+// ReSharper disable CheckNamespace
 namespace Content.Client.Chemistry.UI;
 
 /// <summary>

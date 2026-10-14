@@ -2,6 +2,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using JetBrains.Annotations;
 using Content.Shared.Chemistry.Components;
 
+// ReSharper disable CheckNamespace
 namespace Content.Server.Chemistry.EntitySystems;
 
 /// <summary>

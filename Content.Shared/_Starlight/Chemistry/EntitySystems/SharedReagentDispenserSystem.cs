@@ -19,6 +19,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
+// ReSharper disable CheckNamespace
 namespace Content.Shared.Chemistry.EntitySystems;
 
 [UsedImplicitly]

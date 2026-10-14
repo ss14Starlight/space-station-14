@@ -7,6 +7,7 @@ using Content.Shared.Storage.EntitySystems;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 
+// ReSharper disable CheckNamespace
 namespace Content.Client.Chemistry.EntitySystems;
 
 /// <summary>
