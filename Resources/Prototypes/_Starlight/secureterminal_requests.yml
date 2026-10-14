@@ -39,9 +39,13 @@
       name: secure-terminal-security-leadership-name
       groups:
         - [Captain, HeadOfSecurity, Ntrep]
+        - [Captain, HeadOfSecurity, Ntrep]
+        - [Command, Ntrep]
     - id: Command
       name: secure-terminal-command-name
       groups:
+        - [Captain, HeadOfSecurity, Ntrep]
+        - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
   cooldownSecs: 3600
