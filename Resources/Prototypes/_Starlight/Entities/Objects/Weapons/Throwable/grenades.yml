@@ -151,6 +151,9 @@
   id: Molotov
   components:
   - type: Appearance
+  - type: Construction
+    graph: MolotovGraph
+    node: molotov
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Grenades/molotov.rsi
     state: icon
@@ -255,3 +258,36 @@
   - type: Sprite
     sprite: Effects/fire.rsi
     state: fire
+
+- type: entity
+  parent: [ DrinkBottleGlassBase, BaseMajorContraband ]
+  id: MolotovBottleEmpty
+  name: empty bottle
+  suffix: empty
+  description: An empty bottle ready to be filled with welding fuel.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Grenades/molotov.rsi
+    state: empty
+  - type: Construction
+    graph: MolotovGraph
+    node: empty
+
+- type: entity
+  parent: MolotovBottleEmpty
+  id: MolotovBottleFuel
+  name: molotov bottle
+  suffix: fuel
+  description: One step away from civil unrest.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Grenades/molotov.rsi
+    state: filled
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 120
+  - type: Construction
+    graph: MolotovGraph
+    node: fuel
