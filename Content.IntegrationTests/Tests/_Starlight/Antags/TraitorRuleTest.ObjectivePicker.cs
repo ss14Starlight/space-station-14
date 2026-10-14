@@ -104,14 +104,11 @@ public sealed partial class TraitorRuleTest
             Assert.That(SEntMan.GetComponent<MindComponent>(mind).Objectives, Is.Empty);
         });
 
-        await Client.WaitAssertion(() =>
+        await Client.WaitAssertion(() => Client.ResolveDependency<IEntityNetworkManager>().SendSystemNetworkMessage(new ObjectivePickerSelected
         {
-            Client.ResolveDependency<IEntityNetworkManager>().SendSystemNetworkMessage(new ObjectivePickerSelected
-            {
-                MindId = CEntMan.GetNetEntity(Client.System<SharedMindSystem>().GetMind(Client.User!.Value)!.Value),
-                SelectedObjectives = selected,
-            });
-        });
+            MindId = CEntMan.GetNetEntity(Client.System<SharedMindSystem>().GetMind(Client.User!.Value)!.Value),
+            SelectedObjectives = selected,
+        }));
         await Pair.RunTicksSync(5);
         await Pair.RunUntilSynced();
 
