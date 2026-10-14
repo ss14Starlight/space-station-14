@@ -185,10 +185,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             if (!removesSlot)
                 continue;
 
-            if (!progress.CompletedSurgeries.Remove(surgeryId))
-                continue;
-
-            changed = true;
+            changed |= progress.CompletedSurgeries.Remove(surgeryId);
             changed |= progress.StartedSurgeries.Remove(surgeryId);
             foreach (var stepId in surgeryComp.Steps)
                 changed |= progress.CompletedSteps.Remove($"{surgeryId}:{stepId}");
