@@ -19,7 +19,7 @@ namespace Content.IntegrationTests.Tests.GameRules;
 
 public sealed partial class TraitorRuleTest
 {
-    private static readonly ProtoId<TagPrototype> SLBackgroundTag = "CivilianTraitBackground";
+    private static readonly ProtoId<TagPrototype> _sLBackgroundTag = "CivilianTraitBackground";
 
     private async Task SLTestObjectivePicker(EntityUid mind, EntityUid player)
     {
@@ -43,7 +43,7 @@ public sealed partial class TraitorRuleTest
             SEntMan.AddComponent(mind, new RoleplayInfoComponent { OOCNotes = "OOC notes" }, true);
             SEntMan.AddComponent(mind, new MindSecretsComponent { PersonalNotes = "Personal notes" }, true);
 #pragma warning restore RA0002
-            Server.System<TagSystem>().AddTag(player, SLBackgroundTag);
+            Server.System<TagSystem>().AddTag(player, _sLBackgroundTag);
 
             foreignMind = Server.System<MindSystem>().CreateMind(null);
             foreignObjective = SEntMan.SpawnEntity(null, MapCoordinates.Nullspace);
