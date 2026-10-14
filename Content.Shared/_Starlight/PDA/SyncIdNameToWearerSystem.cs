@@ -5,9 +5,9 @@ using Content.Shared.Clothing;
 namespace Content.Shared._Starlight.PDA;
 
 /// <inheritdoc cref="SyncIdNameToWearerComponent"/>
-public sealed class SyncIdNameToWearerSystem : EntitySystem
+public sealed partial class SyncIdNameToWearerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedIdCardSystem _idCard = default!;
+    [Dependency] private SharedIdCardSystem _idCard = default!;
 
     public override void Initialize()
     {
