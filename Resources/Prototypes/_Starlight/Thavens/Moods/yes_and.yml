@@ -613,7 +613,7 @@
   id: FormalIntroductions
   moodName: thaven-mood-formal-introductions-name
   moodDesc: thaven-mood-formal-introductions-desc
-  Conflicts:
+  conflicts:
   - Unknown
 
 # Silence Means Agreement: A failure to object is a form of agreement. You naturally assume others agree unless they say otherwise.
