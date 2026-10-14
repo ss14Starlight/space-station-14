@@ -113,6 +113,7 @@
                                         VerticalAlignment="Top"/>
                                 <Button Name="CardsButton"
                                         Access="Public"
+                                        StyleClasses="OpenBoth"
                                         Text="{Loc 'character-info-cards-button'}"
                                         Margin="2 2 2 0"/>
                                 <Label Name="NoObjectivesLabel"
