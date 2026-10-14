@@ -1,11 +1,4 @@
 Entries:
-- author: JMxm5
-  changes:
-  - message: Plasma sheets can be inserted into electrolyzers again.
-    type: Fix
-  id: 409048
-  time: '2026-10-01T11:09:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6430
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: Fixed shadekin eye sprites being inconsistent depending on which direction they were facing.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409447
   time: '2026-10-14T06:55:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6666
+- author: 0warie
+  changes:
+  - message: Added Light Floors. They sit on the same layer as carpets and take light bulbs, so their colour changes with the bulb you put in. Light output is toned down compared to regular lights.
+    type: Add
+  id: 409448
+  time: '2026-10-14T14:23:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6657
 Order: -1
