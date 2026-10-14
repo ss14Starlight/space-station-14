@@ -31,43 +31,23 @@ namespace Content.Client.Chemistry.UI
             // Setup window layout/elements
             _window = this.CreateWindow<ReagentDispenserWindow>();
             _window.SetInfoFromEntity(EntMan, Owner);
+            _window.SetOwner(Owner);
 
             // Setup static button actions.
-            _window.EjectButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent(SharedReagentDispenser.OutputSlotName));
-            _window.ClearButton.OnPressed += _ => SendMessage(new ReagentDispenserClearContainerSolutionMessage());
+            _window.EjectButton.OnPressed += _ => SendPredictedMessage(new ItemSlotButtonPressedEvent(SharedReagentDispenser.OutputSlotName));
+            _window.ClearButton.OnPressed += _ => SendPredictedMessage(new ReagentDispenserClearContainerSolutionMessage());
 
-            _window.AmountGrid.OnButtonPressed += s => SendMessage(new ReagentDispenserSetDispenseAmountMessage(s));
+            _window.AmountGrid.OnButtonPressed += s => SendPredictedMessage(new ReagentDispenserSetDispenseAmountMessage(s));
 
-            _window.OnDispenseReagentButtonPressed += (data) => SendMessage(new ReagentDispenserDispenseReagentMessage(data)); // Starlight-edit
-            _window.OnEjectJugButtonPressed += (location) => SendMessage(new ReagentDispenserEjectContainerMessage(location));
-            _window.OnToggleValveButtonPressed += () => SendMessage(new ReagentDispenserToggleValveMessage()); // Starlight-edit: Plumbing valve
+            _window.OnDispenseReagentButtonPressed += (data) => SendPredictedMessage(new ReagentDispenserDispenseReagentMessage(data)); // Starlight-edit
+            _window.OnEjectJugButtonPressed += (location) => SendPredictedMessage(new ReagentDispenserEjectContainerMessage(location));
+            _window.OnToggleValveButtonPressed += () => SendPredictedMessage(new ReagentDispenserToggleValveMessage()); // Starlight-edit: Plumbing valve
         }
 
-        /// <summary>
-        /// Update the UI each time new state data is sent from the server.
-        /// </summary>
-        /// <param name="state">
-        /// Data of the <see cref="ReagentDispenserComponent"/> that this UI represents.
-        /// Sent from the server.
-        /// </param>
-        protected override void UpdateState(BoundUserInterfaceState state)
+        public override void Update()
         {
-            base.UpdateState(state);
-
-            var castState = (ReagentDispenserBoundUserInterfaceState) state;
-            _window?.UpdateState(castState); //Update window state
+            base.Update();
+            _window?.UpdateData();
         }
-
-        // Starlight start: Required for cell charging or UI flashes
-        protected override void ReceiveMessage(BoundUserInterfaceMessage message)
-        {
-            base.ReceiveMessage(message);
-
-            if (message is ReagentDispenserEnergyUpdateMessage energyUpdate)
-            {
-                _window?.UpdateEnergyDisplay(energyUpdate.EnergyAmount);
-            }
-        }
-        // Starlight end
     }
 }
