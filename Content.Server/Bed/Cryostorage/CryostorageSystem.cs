@@ -236,8 +236,7 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
             return;
 
         var jobName = Loc.GetString("earlyleave-cryo-job-unknown");
-        // Starlight-edit: records use the base name, without modifiers like a name identifier's "(739)".
-        var recordId = _stationRecords.GetRecordByName(station.Value, _nameModifier.GetBaseName(ent.Owner));
+        var recordId = _stationRecords.GetRecordByName(station.Value, _nameModifier.GetBaseName(ent.Owner)); // Starlight-edit: records don't include name modifiers like "(739)"
         if (recordId != null)
         {
             var key = new StationRecordKey(recordId.Value, station.Value);
