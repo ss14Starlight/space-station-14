@@ -1,9 +1,11 @@
 ﻿using Content.Shared.Actions;
 using Content.Shared.Chat;
+using Content.Shared.Chat.Prototypes;
 using Content.Shared.Popups;
 using Content.Server.Chat.Systems;
 using Content.Shared._Starlight.Actions.Events;
 using Content.Shared._Starlight.Chat;
+using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Speech;
@@ -50,6 +52,14 @@ public sealed partial class EmotesMenuSystem : EntitySystem
 
         if (!_prototypeManager.Resolve(msg.ProtoId, out var proto) || proto.ChatTriggers.Count == 0)
             return;
+
+        // Starlight-start
+        if (proto.Category == EmoteCategory.Vocal &&
+            TryComp<SpeechComponent>(player.Value, out var speech) &&
+            speech.RestrictVocalEmotesToAllowed &&
+            !speech.AllowedEmotes.Contains(proto.ID))
+            return;
+        // Starlight-end
 
         var name = Loc.GetString(proto.Name);
 

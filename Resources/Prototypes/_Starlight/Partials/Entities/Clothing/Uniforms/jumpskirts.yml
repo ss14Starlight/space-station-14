@@ -27,3 +27,15 @@
 - type: !PartialOnly entity
   id: ClothingUniformJumpskirtSecGrey
   description: A tactical relic of years past before NanoTrasen decided it was cheaper to dye the suits red instead of washing out the blood.
+
+- type: !PartialOnly entity
+  id: ClothingUniformJumpskirtOperative
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: ClothingUniformJumpskirtSyndieFormalDress
+  components:
+  - type: Contraband
+    contrabandType: Syndicate

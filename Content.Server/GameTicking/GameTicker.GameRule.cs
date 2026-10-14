@@ -16,9 +16,6 @@ namespace Content.Server.GameTicking;
 
 public sealed partial class GameTicker
 {
-    readonly int _effectivePlayerCutoff = 15; // Starlight, the number of online players at which unready players start counting as effectively ready
-    readonly double _unreadyPlayerMultiplier = 0.50; // Starlight, the fraction of unready players that count as effectively ready when above the cutoff
-
     /// <summary>
     /// Designated game rule that spawns a fake antagonist to discourage metagaming.
     /// Has to be a string since <see cref="EntProtoId"/> cannot be a const.
@@ -427,7 +424,7 @@ public sealed partial class GameTicker
         // Starlight - start
         if (CurrentPreset is { MinPlayers: { } presetMinimumPlayers } preset)
         {
-            var effectivePlayers = GetEffectivePlayerCountGameruleEligibility(args.Players.Length);
+            var effectivePlayers = GetEffectivePlayerCountGamerule(args.Players.Length);
             if (effectivePlayers < presetMinimumPlayers)
             {
                 _chatManager.SendAdminAnnouncement(Loc.GetString("preset-not-enough-ready-players-sl",
@@ -452,7 +449,7 @@ public sealed partial class GameTicker
             var minPlayers = gameRule.MinPlayers;
             var name = ToPrettyString(uid);
 
-            var effectivePlayers = GetEffectivePlayerCountGameruleEligibility(args.Players.Length); // Starlight, get effective players
+            var effectivePlayers = GetEffectivePlayerCountGamerule(args.Players.Length); // Starlight, get effective players
             if (effectivePlayers >= minPlayers) // Starlight, args.Players.Length -> effectivePlayers
                 continue;
 
@@ -472,20 +469,6 @@ public sealed partial class GameTicker
             }
         }
     }
-
-    #region Starlight
-    //Helper function for effective player count
-    private int GetEffectivePlayerCountGameruleEligibility(int activePlayers)
-    {
-        var onlinePlayers = PlayerGameStatuses.Count;
-
-        if (onlinePlayers < _effectivePlayerCutoff)
-            return activePlayers;
-
-        var unreadyPlayers = Math.Max(0, onlinePlayers - activePlayers);
-        return activePlayers + (int) Math.Floor(unreadyPlayers * _unreadyPlayerMultiplier);
-    }
-    #endregion
 
     #region Command Implementations
 

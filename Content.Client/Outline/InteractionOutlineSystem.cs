@@ -1,5 +1,6 @@
 using Content.Client.ContextMenu.UI;
 using Content.Client.Gameplay;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Client.Graphics;
 using Content.Client.Interactable.Components;
 using Content.Client.Viewport;
@@ -31,6 +32,11 @@ public sealed partial class InteractionOutlineSystem : EntitySystem
     [Dependency] private IStateManager _stateManager = default!;
     [Dependency] private IUserInterfaceManager _uiManager = default!;
     [Dependency] private SharedInteractionSystem _interactionSystem = default!;
+
+    #region Starlight
+    [Dependency] private RemoteControlInterface _remoteControl = default!;
+    #endregion
+
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private SpriteSystem _sprite = default!;
 
@@ -162,8 +168,11 @@ public sealed partial class InteractionOutlineSystem : EntitySystem
         }
 
         var inRange = false;
-        if (localSession.AttachedEntity != null && !Deleted(entityToClick))
-            inRange = _interactionSystem.InRangeUnobstructed(localSession.AttachedEntity.Value, entityToClick.Value);
+        // Starlight start
+        var interactionEntity = _remoteControl.ControlledEntity ?? localSession.AttachedEntity;
+        if (interactionEntity != null && !Deleted(entityToClick))
+            inRange = _interactionSystem.InRangeUnobstructed(interactionEntity.Value, entityToClick.Value);
+        // Starlight end
 
         InteractionOutlineComponent? outline;
 

@@ -31,6 +31,7 @@ public sealed partial class StoreSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private AccessReaderSystem _accessReader = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
 
     public override void Initialize()
     {
@@ -66,6 +67,10 @@ public sealed partial class StoreSystem : EntitySystem
         RefreshAllListings((uid, component));
         // Starlight-end
         component.StartingMap = Transform(uid).MapUid;
+
+        // Add the bui key if it does not exist already (the check is needed to make sure that we don't overwrite existing InterfaceData).
+        if (!_uiSystem.HasUi(uid, StoreUiKey.Key))
+            _uiSystem.SetUi(uid, StoreUiKey.Key, new InterfaceData("StoreBoundUserInterface"));
     }
 
     private void OnStartup(EntityUid uid, StoreComponent component, ComponentStartup args)
