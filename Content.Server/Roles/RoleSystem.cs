@@ -27,12 +27,12 @@ public sealed partial class RoleSystem : SharedRoleSystem
             return null;
         }
 
-        var ev = new GetBriefingEvent
+        var ev = new GetBriefingEvent // Starlight, formatting
         {
             // This is on the event because while this Entity<T> is also present on every Mind Role Entity's MindRoleComp
             // getting to there from a GetBriefing event subscription can be somewhat boilerplate
             // and this needs to be looked up for the event anyway so why calculate it again later
-            Mind = (mindId.Value, mindComp) // Starlight
+            Mind = (mindId.Value, mindComp)
         };
 
         // Briefing is no longer raised on the mind entity itself
