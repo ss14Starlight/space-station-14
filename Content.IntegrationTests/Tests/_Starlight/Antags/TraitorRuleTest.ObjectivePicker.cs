@@ -23,7 +23,6 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Localization;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Configuration;
 
 // ReSharper disable once CheckNamespace
 namespace Content.IntegrationTests.Tests.GameRules;
@@ -103,26 +102,36 @@ public sealed partial class TraitorRuleTest
         await Client.WaitAssertion(() =>
         {
             var window = FindControls<SLCharacterWindow>(ui.RootControl).Single();
-            Assert.That(window.CharacterInfoTabs.Children.Count, Is.EqualTo(2));
-            Assert.That(window.CharacterInfoTabs.CurrentTab, Is.Zero);
-            Assert.That(window.InfoIC.CharacterDesc.GetMessage(), Does.Contain("Physical description"));
-            Assert.That(window.InfoIC.CharacterDesc.GetMessage(), Does.Contain("Personality description"));
-            Assert.That(window.InfoOOC.OOCNotes.GetMessage(), Does.Contain("OOC notes"));
-            Assert.That(window.InfoOOC.PersonalNotes.GetMessage(), Does.Contain("Personal notes"));
-            Assert.That(window.InfoBackground.Background.GetMessage(), Does.Contain(Loc.GetString("trait-background-civilian-name")));
-            Assert.That(FindControls<Button>(window.ObjectivesWrapper).Select(button => button.Text),
+            var tabs = window.FindControl<TabContainer>("CharacterInfoTabs");
+            var characterDesc = window.FindControl<CharacterICInfoControl>("InfoIC")
+                .FindControl<RichTextLabel>("CharacterDesc");
+            var infoOOC = window.FindControl<CharacterOOCInfoControl>("InfoOOC");
+            var oocNotes = infoOOC.FindControl<RichTextLabel>("OOCNotes");
+            var personalNotes = infoOOC.FindControl<RichTextLabel>("PersonalNotes");
+            var background = window.FindControl<CharacterBackgroundInfoControl>("InfoBackground")
+                .FindControl<RichTextLabel>("Background");
+            var objectivesWrapper = window.FindControl<BoxContainer>("ObjectivesWrapper");
+            var cardsButton = window.FindControl<Button>("CardsButton");
+            Assert.That(tabs.Children.Count, Is.EqualTo(2));
+            Assert.That(tabs.CurrentTab, Is.Zero);
+            Assert.That(characterDesc.GetMessage(), Does.Contain("Physical description"));
+            Assert.That(characterDesc.GetMessage(), Does.Contain("Personality description"));
+            Assert.That(oocNotes.GetMessage(), Does.Contain("OOC notes"));
+            Assert.That(personalNotes.GetMessage(), Does.Contain("Personal notes"));
+            Assert.That(background.GetMessage(), Does.Contain(Loc.GetString("trait-background-civilian-name")));
+            Assert.That(FindControls<Button>(objectivesWrapper).Select(button => button.Text),
                 Does.Contain(Loc.GetString("objective-picker-button")),
                 "The empty Cards group must not hide the objective picker.");
-            Assert.That(window.CardsButton.Text, Is.EqualTo(Loc.GetString("character-info-cards-button")));
-            Assert.That(window.ObjectivesWrapper.Children.ElementAt(1), Is.SameAs(window.CardsButton));
+            Assert.That(cardsButton.Text, Is.EqualTo(Loc.GetString("character-info-cards-button")));
+            Assert.That(objectivesWrapper.Children.ElementAt(1), Is.SameAs(cardsButton));
 
-            window.CharacterInfoTabs.CurrentTab = 1;
+            tabs.CurrentTab = 1;
             window.Close();
-            Assert.That(window.InfoIC.CharacterDesc.GetMessage(), Is.Null);
-            Assert.That(window.InfoOOC.PersonalNotes.GetMessage(), Is.Null);
+            Assert.That(characterDesc.GetMessage(), Is.Null);
+            Assert.That(personalNotes.GetMessage(), Is.Null);
             ui.GetUIController<CharacterUIController>().OpenCharacterOverview();
-            Assert.That(window.CharacterInfoTabs.CurrentTab, Is.Zero);
-            Assert.That(window.InfoOOC.OOCNotes.GetMessage(), Does.Contain("OOC notes"));
+            Assert.That(tabs.CurrentTab, Is.Zero);
+            Assert.That(oocNotes.GetMessage(), Does.Contain("OOC notes"));
 
             ui.GetUIController<ObjectivePickerUIController>().EnsureWindow();
             var picker = FindControls<ObjectivePickerWindow>(ui.RootControl).Single();
@@ -226,9 +235,10 @@ public sealed partial class TraitorRuleTest
         await Client.WaitAssertion(() =>
         {
             var window = FindControls<SLCharacterWindow>(ui.RootControl).Single();
-            Assert.That(FindControls<Button>(window.ObjectivesWrapper).Select(button => button.Text),
+            var objectivesWrapper = window.FindControl<BoxContainer>("ObjectivesWrapper");
+            Assert.That(FindControls<Button>(objectivesWrapper).Select(button => button.Text),
                 Does.Contain(Loc.GetString("objective-picker-additional-button")));
-            Assert.That(window.ObjectivesWrapper.Children.ElementAt(1), Is.SameAs(window.CardsButton));
+            Assert.That(objectivesWrapper.Children.ElementAt(1), Is.SameAs(window.FindControl<Button>("CardsButton")));
             window.Close();
         });
     }
