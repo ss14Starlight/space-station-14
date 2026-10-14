@@ -419,7 +419,7 @@ public sealed partial class SurgeryBui : BoundUserInterface
                             stepName.AddMarkupOrThrow($" [color=red]{Loc.GetString("surgery-ui-step-disabled-tool")}[/color]");
                             break;
                         case StepInvalidReason.TooHigh:
-                            stepName.AddMarkupOrThrow($" [color=red]{Loc.GetString("surgery-ui-step-too-high")}[/color]");
+                            stepName.AddMarkupOrThrow($" [color=red]{Loc.GetString("surgery-ui-step-too-big")}[/color]");
                             break;
                         case StepInvalidReason.NotEnoughReagent:
                             stepName.AddMarkupOrThrow($" [color=red]{Loc.GetString("surgery-ui-step-missing-reagent")}[/color]");
