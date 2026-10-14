@@ -76,7 +76,7 @@ public sealed partial class DepartmentIdStealConditionSystem : EntitySystem
                 count++;
 
             // Include PDAs, pockets and bags, without counting another person's inventory inside a container.
-            if (uid != owner && HasComp<MindContainerComponent>(uid) ||
+            if ((uid != owner && HasComp<MindContainerComponent>(uid)) ||
                 !TryComp<ContainerManagerComponent>(uid, out var containers))
                 continue;
             foreach (var container in containers.Containers.Values)

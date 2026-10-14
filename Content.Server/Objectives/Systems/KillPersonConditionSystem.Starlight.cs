@@ -22,9 +22,9 @@ public sealed partial class KillPersonConditionSystem
             return true;
 
         // Disconnecting keeps UserId, and a visiting ghost keeps ownership of the recoverable body.
-        if (mind.UserId == null && mind.OriginalOwnerUserId != null ||
-            TryComp<MindExaminableComponent>(body, out var examine) &&
-            examine.State is MindState.Catatonic or MindState.Irrecoverable)
+        if ((mind.UserId == null && mind.OriginalOwnerUserId != null) ||
+            (TryComp<MindExaminableComponent>(body, out var examine) &&
+            examine.State is MindState.Catatonic or MindState.Irrecoverable))
             return true;
         if (TryComp<GhostComponent>(body, out var ghost))
             return !ghost.CanReturnToBody;
