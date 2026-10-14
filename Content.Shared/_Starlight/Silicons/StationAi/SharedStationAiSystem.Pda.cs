@@ -22,6 +22,7 @@ public abstract partial class SharedStationAiSystem
         // Ignore other intrinsic UIs and entities; the shared handler should only gate this virtual PDA.
         if (!Equals(args.Key, PdaUiKey.Key) ||
             !HasComp<PdaComponent>(args.User) ||
+            !_pdaTags.HasTag(args.User, _stationAiTag) ||
             CanUseStationAiPda(args.User))
             return;
 
