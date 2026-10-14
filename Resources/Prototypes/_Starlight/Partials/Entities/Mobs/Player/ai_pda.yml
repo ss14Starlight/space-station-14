@@ -12,13 +12,13 @@
     job: StationAi
 
 - type: !PartialOnly entity
-  id: AiHeld
-  save: false
+  id: StationAiBrain
   components:
+  # The brain outlives its temporary core/card bundles, so the PDA and NanoChat identity live here.
   - type: Pda
     id: StationAiIDCard
     idSlot:
-      # The AI must retain this ID; it is unlocked briefly in server setup to insert the card.
+      # The ID must stay installed through core/card transfers and cannot be ejected by the AI.
       locked: true
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
@@ -28,6 +28,41 @@
     - NanoChatCartridge
     cartridgeSlot:
       locked: true
+  # Declare every PDA container and its slot component here so component initialization does not mutate the brain prototype.
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      PDA-id: !type:ContainerSlot {}
+      PDA-pen: !type:ContainerSlot {}
+      PDA-pai: !type:ContainerSlot {}
+      Cartridge-Slot: !type:ContainerSlot {}
+      program-container: !type:Container
+  - type: UserInterface
+    interfaces:
+      enum.PdaUiKey.Key:
+        type: PdaBoundUserInterface
+
+# The core adds only its PDA action; keeping the data off this temporary bundle preserves it through transfer.
+- type: !PartialOnly entity
+  id: AiHeld
+  save: false
+  components:
+  # AiHeld replaces the brain's UserInterface component while the core bundle is applied, so redeclare its PDA interface.
+  - type: UserInterface
+    interfaces:
+      enum.PdaUiKey.Key:
+        type: PdaBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.PdaUiKey.Key:
+        toggleAction: ActionStationAiOpenPDA
+
+# Re-expose the brain's persistent PDA UI while the AI is uploaded to an intellicard.
+- type: !PartialOnly entity
+  id: AiHeldIntellicard
+  # This bundle is attached dynamically during card upload and is not independent saved entity state.
+  save: false
+  components:
   - type: UserInterface
     interfaces:
       enum.PdaUiKey.Key:
