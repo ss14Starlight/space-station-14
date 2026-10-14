@@ -9,8 +9,6 @@ namespace Content.Shared._Starlight.Computers.TacticalPlanning;
 [RegisterComponent]
 public sealed partial class TacticalPlanningConsoleComponent : Component
 {
-    #region Variables
-
     /// <summary>Maximum number of annotations retained by this console.</summary>
     [DataField]
     public int MaxAnnotations = 100;
@@ -34,8 +32,6 @@ public sealed partial class TacticalPlanningConsoleComponent : Component
     public float SubmissionTokens = 5f;
     public TimeSpan LastBudgetUpdate;
     public int NextAnnotationId;
-
-    #endregion
 }
 
 [Serializable, NetSerializable]
@@ -51,16 +47,12 @@ public enum TacticalPlanningConsoleUiKey : byte
 public sealed class TacticalPlanAnnotation(int id, TacticalPlanAnnotationKind kind, Color color, List<Vector2> points, string author,
     TacticalPlanIcon icon = TacticalPlanIcon.None)
 {
-    #region Variables
-
     public readonly int Id = id;
     public readonly TacticalPlanAnnotationKind Kind = kind;
     public readonly Color Color = color;
     public readonly List<Vector2> Points = points;
     public readonly string Author = author;
     public readonly TacticalPlanIcon Icon = icon;
-
-    #endregion
 }
 
 [Serializable, NetSerializable]
@@ -92,14 +84,8 @@ public enum TacticalPlanIcon : byte
 /// </summary>
 public static class TacticalPlanDrawingValidation
 {
-    #region Variables
-
     /// <summary>Maximum points allowed in one drawing message.</summary>
     public const int MaxPointsPerStroke = 256;
-
-    #endregion
-
-    #region Methods
 
     /// <summary>Rejects malformed drawing input and normalizes valid ink to a visible color.</summary>
     public static bool TryValidate(TacticalPlanAnnotationKind kind, IReadOnlyList<Vector2>? points, Color chosen,
@@ -142,8 +128,6 @@ public static class TacticalPlanDrawingValidation
         color = new Color(r, g, b);
         return true;
     }
-
-    #endregion
 }
 
 /// <summary>
@@ -153,20 +137,14 @@ public static class TacticalPlanDrawingValidation
 [Serializable, NetSerializable]
 public sealed class TacticalPlanRequestSnapshotMessage(string cacheToken, List<int> knownIds) : BoundUserInterfaceMessage
 {
-    #region Variables
-
     public readonly string CacheToken = cacheToken;
     public readonly List<int> KnownIds = knownIds;
-
-    #endregion
 }
 
 [Serializable, NetSerializable]
 public sealed class TacticalPlanSnapshotMessage(string cacheToken, bool full, List<TacticalPlanAnnotation> annotations,
     List<int> removedIds, Color assignedColor, bool isFull, bool syndicatePalette, bool iconsUnlocked) : BoundUserInterfaceMessage
 {
-    #region Variables
-
     public readonly string CacheToken = cacheToken;
     public readonly bool Full = full;
     public readonly List<TacticalPlanAnnotation> Annotations = annotations;
@@ -175,22 +153,16 @@ public sealed class TacticalPlanSnapshotMessage(string cacheToken, bool full, Li
     public readonly bool IsFull = isFull;
     public readonly bool SyndicatePalette = syndicatePalette;
     public readonly bool IconsUnlocked = iconsUnlocked;
-
-    #endregion
 }
 
 [Serializable, NetSerializable]
 public sealed class TacticalPlanAddAnnotationMessage(TacticalPlanAnnotationKind kind, List<Vector2> points, Color color,
     TacticalPlanIcon icon = TacticalPlanIcon.None) : BoundUserInterfaceMessage
 {
-    #region Variables
-
     public readonly TacticalPlanAnnotationKind Kind = kind;
     public readonly List<Vector2> Points = points;
     public readonly Color Color = color;
     public readonly TacticalPlanIcon Icon = icon;
-
-    #endregion
 }
 
 /// <summary>Reveals the icon tool to viewers already using a newly emagged Syndicate console.</summary>
@@ -200,11 +172,7 @@ public sealed class TacticalPlanIconsUnlockedMessage : BoundUserInterfaceMessage
 [Serializable, NetSerializable]
 public sealed class TacticalPlanDrawingRejectedMessage(string reason) : BoundUserInterfaceMessage
 {
-    #region Variables
-
     public readonly string Reason = reason;
-
-    #endregion
 }
 
 [Serializable, NetSerializable]
@@ -213,33 +181,21 @@ public sealed class TacticalPlanCapacityReachedMessage : BoundUserInterfaceMessa
 [Serializable, NetSerializable]
 public sealed class TacticalPlanAnnotationAddedMessage(TacticalPlanAnnotation annotation, bool isFull) : BoundUserInterfaceMessage
 {
-    #region Variables
-
     public readonly TacticalPlanAnnotation Annotation = annotation;
     public readonly bool IsFull = isFull;
-
-    #endregion
 }
 
 [Serializable, NetSerializable]
 public sealed class TacticalPlanAnnotationErasedMessage(int id, bool isFull) : BoundUserInterfaceMessage
 {
-    #region Variables
-
     public readonly int Id = id;
     public readonly bool IsFull = isFull;
-
-    #endregion
 }
 
 [Serializable, NetSerializable]
 public sealed class TacticalPlanEraseAnnotationMessage(int id) : BoundUserInterfaceMessage
 {
-    #region Variables
-
     public readonly int Id = id;
-
-    #endregion
 }
 
 [Serializable, NetSerializable]

@@ -16,8 +16,6 @@ namespace Content.Client._Starlight.Computers.TacticalPlanning.UI;
 [GenerateTypedNameReferences]
 public sealed partial class TacticalPlanningConsoleWindow : FancyWindow
 {
-    #region Variables
-
     private readonly List<TacticalPlanAnnotation> _annotations = new();
     private int? _selectedId;
     private bool _planFull;
@@ -31,10 +29,6 @@ public sealed partial class TacticalPlanningConsoleWindow : FancyWindow
     public event Action<Color>? ColorSelected;
     public event Action? PlanReset;
     public Color InkColor => NavMapScreen.InkColor;
-
-    #endregion
-
-    #region Methods
 
     /// <summary>Wires the drawing tools and local color controls.</summary>
     public TacticalPlanningConsoleWindow()
@@ -278,6 +272,4 @@ public sealed partial class TacticalPlanningConsoleWindow : FancyWindow
         NavMapScreen.SelectAnnotation(null);
         SelectionDetails.Visible = false;
     }
-
-    #endregion
 }

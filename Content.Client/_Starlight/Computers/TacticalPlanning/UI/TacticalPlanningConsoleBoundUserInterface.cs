@@ -14,8 +14,6 @@ namespace Content.Client._Starlight.Computers.TacticalPlanning.UI;
 /// </summary>
 public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterface
 {
-    #region Variables
-
     // Bound UI instances are disposed on close, so keep a small per-client cache across openings.
     // The server token prevents a reused entity ID on another round/server from matching.
     private static readonly Dictionary<NetEntity, PlanCache> Cache = new();
@@ -25,15 +23,9 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
 
     private sealed class PlanCache(string token)
     {
-        #region Variables
-
         public readonly string Token = token;
         public readonly List<TacticalPlanAnnotation> Annotations = new();
         public Color? SelectedColor;
-
-        #endregion
-
-        #region Methods
 
         /// <summary>Merges a server annotation into this console's local cache.</summary>
         public void Add(TacticalPlanAnnotation annotation)
@@ -41,8 +33,6 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
             if (!Annotations.Exists(existing => existing.Id == annotation.Id))
                 Annotations.Add(annotation);
         }
-
-        #endregion
     }
 
     private TacticalPlanningConsoleWindow? _window;
@@ -54,10 +44,6 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
     private CancellationTokenSource? _snapshotRetryCancellation;
     private EntityUid? _displayedGrid;
     private bool _mapInitialized;
-
-    #endregion
-
-    #region Methods
 
     /// <summary>Connects this bound UI to its console entity.</summary>
     public TacticalPlanningConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
@@ -282,6 +268,4 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
                 break;
         }
     }
-
-    #endregion
 }

@@ -22,8 +22,6 @@ namespace Content.Server._Starlight.Computers.TacticalPlanning;
 /// </summary>
 public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
 {
-    #region Variables
-
     private const int MaxViewers = 16;
     private static readonly TimeSpan SubmissionInterval = TimeSpan.FromMilliseconds(200);
 
@@ -35,10 +33,6 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
     [Dependency] private EmagSystem _emag = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private IAdminLogManager _adminLog = default!;
-
-    #endregion
-
-    #region Methods
 
     /// <summary>Registers the console's bounded UI operations.</summary>
     public override void Initialize()
@@ -332,6 +326,4 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         foreach (var viewer in component.Viewers)
             _ui.ServerSendUiMessage(uid, TacticalPlanningConsoleUiKey.Key, message, viewer);
     }
-
-    #endregion
 }

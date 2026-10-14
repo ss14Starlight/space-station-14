@@ -66,8 +66,7 @@ public partial class NavMapControl : MapGridControl
     protected float FullWallInstep = 0.165f;
     protected float ThinWallThickness = 0.165f;
     protected float ThinDoorThickness = 0.30f;
-    // Starlight: resizable tactical maps need to override the standard header width.
-    protected virtual float TopPanelWidth => 650f;
+    protected virtual float TopPanelWidth => 650f; // Starlight-edit: let tactical maps override the fixed header width.
 
     // Local variables
     private float _updateTimer = 1.0f;

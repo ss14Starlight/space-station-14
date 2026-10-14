@@ -14,8 +14,6 @@ namespace Content.Client._Starlight.Computers.TacticalPlanning.UI;
 /// </summary>
 public sealed class TacticalPlanningMapControl : NavMapControl
 {
-    #region Variables
-
     // The tactical window owns its toolbar; the inherited fixed-width header should not
     // constrain this map when the window is resized.
     protected override float TopPanelWidth => float.NaN;
@@ -44,10 +42,6 @@ public sealed class TacticalPlanningMapControl : NavMapControl
     public event Action<TacticalPlanAnnotationKind, List<Vector2>>? AnnotationAdded;
     public event Action<Vector2, TacticalPlanIcon>? IconAdded;
     public event Action<Vector2>? AnnotationErased;
-
-    #endregion
-
-    #region Methods
 
     /// <summary>Enables a resizable map canvas with the normal console palette.</summary>
     public TacticalPlanningMapControl()
@@ -345,8 +339,6 @@ public sealed class TacticalPlanningMapControl : NavMapControl
         var relative = position - offset;
         return ScalePosition(new Vector2(relative.X, -relative.Y));
     }
-
-    #endregion
 }
 
 public enum TacticalPlanTool : byte

@@ -10,13 +10,7 @@ namespace Content.Client._Starlight.Computers.TacticalPlanning.UI;
 /// <summary>Reuses existing RSI states for both the picker and placed map symbols.</summary>
 public static class TacticalPlanIconTextures
 {
-    #region Variables
-
     private static readonly Dictionary<TacticalPlanIcon, Texture> Cached = new();
-
-    #endregion
-
-    #region Methods
 
     /// <summary>Loads each approved icon once; map drawing only reads cached textures.</summary>
     public static Texture Get(TacticalPlanIcon icon)
@@ -55,6 +49,4 @@ public static class TacticalPlanIconTextures
         TacticalPlanIcon.Biohazard => UIBox2.FromDimensions(new Vector2(4f), new Vector2(24f)),
         _ => null,
     };
-
-    #endregion
 }
