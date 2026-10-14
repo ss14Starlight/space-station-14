@@ -42,7 +42,7 @@
   name: shitstation-title
   description: shitstation-description
   showInVote: true
-  minPlayers: 15
+  minPlayers: 0
   voteCooldown: 2
   rules:
     - ShitStationEventScheduler # It's all trash/shit/ion/derelict/minor critter event spawns. Should make the station feel sufficiently shitty.
@@ -66,7 +66,7 @@
   name: vampire-gamemode-title
   description: vampire-gamemode-description
   showInVote: True
-  minPlayers: 20
+  minPlayers: 25
   rules:
   - Vampire
   - SubGamemodesRuleNoVampires
@@ -83,7 +83,7 @@
   name: changeling-gamemode-title
   description: changeling-gamemode-description
   showInVote: false
-  minPlayers: 20
+  minPlayers: 25
   rules:
     - SLChangeling
     - SLChangelingLess
@@ -99,7 +99,7 @@
   name: traitorling-title
   description: traitorling-description
   showInVote: true
-  minPlayers: 20
+  minPlayers: 25
   rules:
     - SLChangeling
     - Traitor
@@ -225,7 +225,7 @@
   name: terrorspiders-gamemode-title
   description: terrorspiders-gamemode-description
   showInVote: True
-  minPlayers: 20
+  minPlayers: 50
   rules:
   - TerrorSpidersSpawn
   - SubGamemodesRuleNoChangelings

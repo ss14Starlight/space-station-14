@@ -43,8 +43,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 15
       # Major Rules
       - !type:GroupSelector
         conditions:
@@ -69,7 +67,7 @@
             rules:
             - VampireLess
           - !type:PlayerCountCondition
-            min: 20
+            min: 25
         - id: Nukeops
           weight: 10
           prob: 0.95 # Every main gamemode will have a very small chance to fail
@@ -85,7 +83,7 @@
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 20
+            min: 15
         - id: CosmicCult
           weight: 10
           prob: 0.95
@@ -112,7 +110,7 @@
             rules:
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
-            min: 25
+            min: 35
       # Minor Rules
       - !type:GroupSelector
         conditions:
@@ -132,7 +130,7 @@
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 20
+            min: 25
         - id: SiliconLiberation
           prob: 0.15
           conditions:
@@ -149,7 +147,7 @@
             rules:
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
-            min: 20
+            min: 40
         - id: Devil
           prob: 0.10
           conditions:
@@ -184,7 +182,7 @@
             rules:
             - Vampire
           - !type:PlayerCountCondition
-            min: 20
+            min: 25
         - id: NukeopsLate
           weight: 9
           prob: 0.40 # Have a 60% chance to fail to add the gamemode, even if it wins the roll. Mostly a failsafe so the actual midrounds can trigger, but also to stop them from always rolling even if cost rolls high. We don't want things to be predictable, no?
@@ -203,7 +201,7 @@
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 20
+            min: 15
         - id: CosmicCult
           weight: 9
           prob: 0.40
@@ -222,7 +220,7 @@
             rules:
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
-            min: 25
+            min: 35
         - id: ThiefLess
           weight: 8
           prob: 0.50
@@ -244,7 +242,7 @@
             rules:
             - SLChangeling # Don't double changelings
           - !type:PlayerCountCondition
-            min: 20
+            min: 25
         - id: SiliconLiberation
           weight: 8
           prob: 0.50
@@ -263,7 +261,7 @@
             rules:
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
-            min: 20
+            min: 40
         - id: Devil
           weight: 5
           prob: 0.50
@@ -342,7 +340,7 @@
             rules:
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
-            min: 20
+            min: 40
           - !type:RoundDurationCondition
             min: 1800 # 30 minutes
         - id: AbductorsSpawn
@@ -388,7 +386,7 @@
   id: SLDynamicRuleLP
   components:
   - type: GameRule
-    minPlayers: 20
+    minPlayers: 40
   - type: DynamicRule
     startingBudgetMin: 200 # Beta can have a lower threshold.
     startingBudgetMax: 400
@@ -428,8 +426,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 15
       # Major Rules, Beta
       - !type:GroupSelector
         conditions:
@@ -454,7 +450,7 @@
             rules:
             - VampireLess
           - !type:PlayerCountCondition
-            min: 20
+            min: 25
         - id: Nukeops
           weight: 7
           prob: 0.95 # Every main gamemode will have a very small chance to fail
@@ -470,7 +466,7 @@
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 20
+            min: 15
         - id: CosmicCult
           weight: 7
           prob: 0.95
@@ -497,7 +493,7 @@
             rules:
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
-            min: 25
+            min: 35
       # Minor Rules, Beta can keep the same as Alpha since these aren't split normally anyways
       - !type:GroupSelector
         conditions:
@@ -517,7 +513,7 @@
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 20
+            min: 25
         - id: SiliconLiberation
           prob: 0.15
           conditions:
@@ -534,7 +530,7 @@
             rules:
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
-            min: 20
+            min: 40
         - id: Devil
           prob: 0.10
           conditions:
@@ -569,7 +565,7 @@
             rules:
             - Vampire
           - !type:PlayerCountCondition
-            min: 20
+            min: 25
         - id: NukeopsLate
           weight: 6
           prob: 0.40
@@ -588,7 +584,7 @@
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 20
+            min: 15
         - id: CosmicCult
           weight: 6
           prob: 0.40
@@ -607,7 +603,7 @@
             rules:
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
-            min: 25
+            min: 35
         - id: ThiefLess
           weight: 8
           prob: 0.50
@@ -627,7 +623,7 @@
             rules:
             - SLChangeling # Don't double changelings
           - !type:PlayerCountCondition
-            min: 20
+            min: 25
         - id: SiliconLiberation
           weight: 8
           prob: 0.50
@@ -646,7 +642,7 @@
             rules:
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
-            min: 20
+            min: 40
         - id: Devil
           weight: 5
           prob: 0.50
@@ -725,7 +721,7 @@
             rules:
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
-            min: 20
+            min: 40
           - !type:RoundDurationCondition
             min: 1800 # 30 minutes
         - id: AbductorsSpawn

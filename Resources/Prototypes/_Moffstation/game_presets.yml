@@ -5,7 +5,7 @@
   - ThreeStooges
   name: wizard-duel-title
   description: wizard-duel-description
-  minPlayers: 25 # Starlight
+  minPlayers: 35
   voteCooldown: 2 # Starlight
   showInVote: false
   rules:
