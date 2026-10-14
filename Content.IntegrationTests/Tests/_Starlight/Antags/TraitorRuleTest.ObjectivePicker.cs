@@ -70,24 +70,34 @@ public sealed partial class TraitorRuleTest
         await Client.WaitAssertion(() =>
         {
             var window = SLFindControls<MoffCharacterWindow>(ui.RootControl).Single();
-            Assert.That(window.CharacterInfoTabs.Children.Count, Is.EqualTo(2));
-            Assert.That(window.CharacterInfoTabs.CurrentTab, Is.Zero);
-            Assert.That(window.InfoIC.CharacterDesc.GetMessage(), Does.Contain("Physical description"));
-            Assert.That(window.InfoIC.CharacterDesc.GetMessage(), Does.Contain("Personality description"));
-            Assert.That(window.InfoOOC.OOCNotes.GetMessage(), Does.Contain("OOC notes"));
-            Assert.That(window.InfoOOC.PersonalNotes.GetMessage(), Does.Contain("Personal notes"));
-            Assert.That(window.InfoBackground.Background.GetMessage(), Does.Contain(Loc.GetString("trait-background-civilian-name")));
-            Assert.That(SLFindControls<Button>(window.ObjectivesWrapper).Select(button => button.Text),
+
+            // Resolve the named XAML controls through the public lookup API.
+            var characterInfoTabs = window.FindControl<TabContainer>("CharacterInfoTabs");
+            var characterDescription = window.FindControl<Control>("InfoIC").FindControl<RichTextLabel>("CharacterDesc");
+            var oocInfo = window.FindControl<Control>("InfoOOC");
+            var oocNotes = oocInfo.FindControl<RichTextLabel>("OOCNotes");
+            var personalNotes = oocInfo.FindControl<RichTextLabel>("PersonalNotes");
+            var background = window.FindControl<Control>("InfoBackground").FindControl<RichTextLabel>("Background");
+            var objectivesWrapper = window.FindControl<BoxContainer>("ObjectivesWrapper");
+
+            Assert.That(characterInfoTabs.Children.Count, Is.EqualTo(2));
+            Assert.That(characterInfoTabs.CurrentTab, Is.Zero);
+            Assert.That(characterDescription.GetMessage(), Does.Contain("Physical description"));
+            Assert.That(characterDescription.GetMessage(), Does.Contain("Personality description"));
+            Assert.That(oocNotes.GetMessage(), Does.Contain("OOC notes"));
+            Assert.That(personalNotes.GetMessage(), Does.Contain("Personal notes"));
+            Assert.That(background.GetMessage(), Does.Contain(Loc.GetString("trait-background-civilian-name")));
+            Assert.That(SLFindControls<Button>(objectivesWrapper).Select(button => button.Text),
                 Does.Contain(Loc.GetString("objective-picker-button")),
                 "The empty Cards group must not hide the objective picker.");
 
-            window.CharacterInfoTabs.CurrentTab = 1;
+            characterInfoTabs.CurrentTab = 1;
             window.Close();
-            Assert.That(window.InfoIC.CharacterDesc.GetMessage(), Is.Null);
-            Assert.That(window.InfoOOC.PersonalNotes.GetMessage(), Is.Null);
+            Assert.That(characterDescription.GetMessage(), Is.Null);
+            Assert.That(personalNotes.GetMessage(), Is.Null);
             ui.GetUIController<CharacterUIController>().OpenCharacterOverview();
-            Assert.That(window.CharacterInfoTabs.CurrentTab, Is.Zero);
-            Assert.That(window.InfoOOC.OOCNotes.GetMessage(), Does.Contain("OOC notes"));
+            Assert.That(characterInfoTabs.CurrentTab, Is.Zero);
+            Assert.That(oocNotes.GetMessage(), Does.Contain("OOC notes"));
 
             // A client must not be able to submit for another mind.
             Client.ResolveDependency<IEntityNetworkManager>().SendSystemNetworkMessage(new ObjectivePickerSelected
