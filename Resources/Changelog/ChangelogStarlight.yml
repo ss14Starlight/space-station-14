@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Firebombs are craftable again.
-    type: Fix
-  id: 409041
-  time: '2026-10-01T09:39:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6416
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: Modified the description of almost every surgically-installed cybernetic and implant to clarify its function. If no description was present, one was added.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409440
   time: '2026-10-14T06:34:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6676
+- author: Floximo
+  changes:
+  - message: A lot of air alert values got changed to better reflect actual danger.
+    type: Tweak
+  id: 409441
+  time: '2026-10-14T06:34:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6659
 Order: -1
