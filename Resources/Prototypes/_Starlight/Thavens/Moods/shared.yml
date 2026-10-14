@@ -381,12 +381,17 @@
   id: HonourableAmbushes
   moodName: thaven-mood-honourable-ambushes-name
   moodDesc: thaven-mood-honourable-ambushes-desc
+  Conflicts:
+  - ViolenceDistasteful
+  - AngerProblems
 
 # Traders: You must regularly meet up and exchange high value items with other Thaven. Barter until agreeing on a fair deal.
 - type: thavenMood
   id: Traders
   moodName: thaven-mood-traders-name
   moodDesc: thaven-mood-traders-desc
+  conflicts:
+  - PossessiveOfProperty
 
 # The Collective: Thaven culture thrives through mutual understanding. You are compelled to follow and mimic the ideals of your other Thaven.
 - type: thavenMood
@@ -401,3 +406,6 @@
   moodDesc: thaven-mood-the-curtains-must-rise-for-all-desc
   conflicts:
   - TheCurtainsMustRise
+  - RadioOnly
+  - StationIsAlive
+  - PublicSector

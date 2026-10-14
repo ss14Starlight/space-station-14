@@ -422,6 +422,9 @@
   id: RespectThroughViolence
   moodName: thaven-mood-respect-through-violence-name
   moodDesc: thaven-mood-respect-through-violence-desc
+  Conflicts:
+  - ViolenceDistasteful
+  - AngerProblems
 
 # Spite: You want nothing more than to directly witness others not getting what they want.
 - type: thavenMood
