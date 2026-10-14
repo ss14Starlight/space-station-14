@@ -63,11 +63,8 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
         SendToViewers(ent.Owner, ent.Comp, new TacticalPlanIconsUnlockedMessage());
     }
 
-    /// <summary>Sets the initial map target without changing upstream station-map initialization.</summary>
     private void OnMapInit(Entity<TacticalPlanningConsoleComponent> ent, ref MapInitEvent args)
-    {
-        UpdateTarget(ent);
-    }
+        => UpdateTarget(ent);
 
     /// <summary>Targets the console's current grid, or the nukies' station target when applicable.</summary>
     private void UpdateTarget(Entity<TacticalPlanningConsoleComponent> ent)
@@ -126,9 +123,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
 
     /// <summary>Registers a newly opened viewer for targeted plan updates.</summary>
     private void OnOpened(EntityUid uid, TacticalPlanningConsoleComponent component, BoundUIOpenedEvent args)
-    {
-        TryRegisterViewer(uid, component, args.Actor);
-    }
+        => TryRegisterViewer(uid, component, args.Actor);
 
     /// <summary>Removes a viewer without letting a quick reopen bypass the edit interval.</summary>
     private void OnClosed(EntityUid uid, TacticalPlanningConsoleComponent component, BoundUIClosedEvent args)

@@ -85,9 +85,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
 
     /// <summary>Highlights one annotation when its details are inspected.</summary>
     public void SelectAnnotation(int? id)
-    {
-        _selectedId = id;
-    }
+        => _selectedId = id;
 
     /// <summary>Finds the topmost drawing close to a map position.</summary>
     public TacticalPlanAnnotation? FindAnnotation(Vector2 position)

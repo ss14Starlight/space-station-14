@@ -74,9 +74,7 @@ public sealed partial class TacticalPlanningConsoleWindow : FancyWindow
 
     /// <summary>Applies the console variant's map colors.</summary>
     public void SetSyndicatePalette(bool syndicate)
-    {
-        NavMapScreen.SetSyndicatePalette(syndicate);
-    }
+        => NavMapScreen.SetSyndicatePalette(syndicate);
 
     /// <summary>Reveals the icon tool only after the Syndicate console's emag unlock is confirmed.</summary>
     public void SetIconToolAvailable(bool unlocked)
