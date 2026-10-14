@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Client.Chemistry.Containers.EntitySystems;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
@@ -39,6 +40,8 @@ namespace Content.Client.Chemistry.UI
         private EntityUid _owner;
         private bool _dirty = true;
 
+        private List<ReagentInventoryItem> _currentInventory = [];
+
         /// <summary>
         /// Create and initialize the dispenser UI client-side. Creates the basic layout,
         /// actual data isn't filled in until the server sends data about the dispenser.
@@ -67,9 +70,15 @@ namespace Content.Client.Chemistry.UI
             if (ReagentList == null)
                 return;
 
-            ReagentList.Children.Clear();
             //Sort inventory by reagentLabel
             inventory.Sort((x, y) => x.ReagentLabel.CompareTo(y.ReagentLabel));
+
+            // only clear if changed
+            if (_currentInventory.SequenceEqual(inventory))
+                return;
+
+            _currentInventory = inventory;
+            ReagentList.Children.Clear();
 
             foreach (var item in inventory)
             {
@@ -127,7 +136,8 @@ namespace Content.Client.Chemistry.UI
                 ? "reagent-dispenser-window-valve-open"
                 : "reagent-dispenser-window-valve-closed");
 
-            AmountGrid.Selected = ((int)reagentDispenser.Comp.DispenseAmount).ToString();
+            var selectedAmount = ((int)reagentDispenser.Comp.DispenseAmount).ToString();
+            if (AmountGrid.Selected != selectedAmount) AmountGrid.Selected = selectedAmount;
         }
 
         private ContainerInfo? BuildOutputContainerInfo(EntityUid? container)

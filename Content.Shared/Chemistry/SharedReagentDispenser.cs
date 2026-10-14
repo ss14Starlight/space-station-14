@@ -134,47 +134,14 @@ namespace Content.Shared.Chemistry
     }
 
     [Serializable, NetSerializable]
-    public sealed class ReagentInventoryItem(ReagentDispenseData data, string reagentLabel, FixedPoint2 quantity, Color reagentColor, bool generatable) // Starlight-edit
+    public sealed record class ReagentInventoryItem(ReagentDispenseData Data, string ReagentLabel, FixedPoint2 Quantity, Color ReagentColor, bool Generatable) // Starlight-edit
     {
-        public ReagentDispenseData Data = data; // Starlight-edit
-        public string ReagentLabel = reagentLabel;
-        public FixedPoint2 Quantity = quantity;
-        public Color ReagentColor = reagentColor;
-        public bool Generatable = generatable; // Starlight-edit
-    }
-
-    [Serializable, NetSerializable]
-    public sealed class ReagentDispenserBoundUserInterfaceState : BoundUserInterfaceState
-    {
-        public readonly ContainerInfo? OutputContainer;
-
-        public readonly NetEntity? OutputContainerEntity;
-
-        /// <summary>
-        /// A list of the reagents which this dispenser can dispense.
-        /// </summary>
-        public readonly List<ReagentInventoryItem> Inventory;
-
-        public readonly ReagentDispenserDispenseAmount SelectedDispenseAmount;
-
-        public readonly bool ValveOpen; // Starlight-edit: Plumbing valve
-
-        public ReagentDispenserBoundUserInterfaceState(ContainerInfo? outputContainer, NetEntity? outputContainerEntity, List<ReagentInventoryItem> inventory, ReagentDispenserDispenseAmount selectedDispenseAmount, bool valveOpen) // Starlight-edit: Energy bar, Plumbing valve
-        {
-            OutputContainer = outputContainer;
-            OutputContainerEntity = outputContainerEntity;
-            Inventory = inventory;
-            SelectedDispenseAmount = selectedDispenseAmount;
-            ValveOpen = valveOpen; // Starlight-edit: Plumbing valve
-        }
     }
 
     // Starlight-start: Generatable reagents
     [Serializable, NetSerializable]
-    public sealed class ReagentDispenseData(ItemStorageLocation? storageLocation, ProtoId<ReagentPrototype>? reagentID)
+    public sealed record class ReagentDispenseData(ItemStorageLocation? StorageLocation, ProtoId<ReagentPrototype>? ReagentID)
     {
-        public ItemStorageLocation? StorageLocation = storageLocation;
-        public ProtoId<ReagentPrototype>? ReagentID = reagentID;
     }
     // Starlight-end
 
