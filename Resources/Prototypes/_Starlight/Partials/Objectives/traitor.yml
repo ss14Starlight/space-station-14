@@ -29,6 +29,8 @@
 - type: !PartialOnly entity
   id: KillRandomPersonObjective
   components:
+  - type: Objective
+    unique: true
   - type: PickRandomPerson
     pool: !type:WeightedAlivePool
       weightHighValue: true

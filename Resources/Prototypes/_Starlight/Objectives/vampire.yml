@@ -137,7 +137,7 @@
 - type: entity
   parent: [BaseVampireObjective, BaseLivingObjective]
   id: VampireEscapeObjective
-  name: Escape to centcomm alive and unrestrained.
+  name: Escape to CentComm alive and unrestrained.
   description: I need to escape on the evacuation shuttle. Undercover.
   components:
   - type: Objective
@@ -152,11 +152,11 @@
 - type: entity
   parent: [BaseVampireObjective, BaseKillObjective]
   id: VampireKillRandomPersonObjective
-  description: Do it however you like, just make sure they don't make it to centcomm.
+  description: Do it however you like, just make sure they don't make it to CentComm.
   components:
   - type: Objective
     difficulty: 0
-    unique: false
+    unique: true
   - type: TargetObjective
     title: objective-condition-kill-person-title
   - type: PickRandomPerson
