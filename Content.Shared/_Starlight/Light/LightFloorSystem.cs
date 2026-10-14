@@ -8,61 +8,32 @@ using Content.Shared.Wires;
 
 namespace Content.Shared._Starlight.Light;
 
-/// <summary>
-/// Stops the bulb of a <see cref="LightFloorComponent"/> being touched while the cover is screwed shut.
-/// </summary>
 public sealed partial class LightFloorSystem : EntitySystem
 {
     [Dependency] private SharedWiresSystem _wires = default!;
     [Dependency] private DamageOnInteractSystem _damageOnInteract = default!;
 
-    /// <summary>
-    /// Hooks the bulb interactions ahead of the powered light system so a closed cover can swallow them.
-    /// </summary>
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<LightFloorComponent, InteractHandEvent>(OnInteractHand,
-            before: [typeof(SharedPoweredLightSystem), typeof(DamageOnInteractSystem)]);
-        SubscribeLocalEvent<LightFloorComponent, InteractUsingEvent>(OnInteractUsing,
-            before: [typeof(SharedPoweredLightSystem)]);
-        SubscribeLocalEvent<LightFloorComponent, PoweredLightDoAfterEvent>(OnEjectDoAfter,
-            before: [typeof(SharedPoweredLightSystem)]);
-        SubscribeLocalEvent<LightFloorComponent, PanelChangedEvent>(OnPanelChanged);
-        SubscribeLocalEvent<LightFloorComponent, GetLightFixtureLevelEvent>(OnGetLightLevel);
-    }
-
-    /// <summary>
-    /// Dims and shortens the bulb's light, see <see cref="LightFloorComponent.EnergyMultiplier"/>.
-    /// </summary>
+    [SubscribeLocalEvent]
     private void OnGetLightLevel(Entity<LightFloorComponent> ent, ref GetLightFixtureLevelEvent args)
     {
         args.LightEnergy *= ent.Comp.EnergyMultiplier;
         args.LightRadius = Math.Min(args.LightRadius, ent.Comp.MaxRadius);
     }
 
-    /// <summary>
-    /// Restores the hand burn of a lit bulb once the cover is opened, see <see cref="OnInteractHand"/>.
-    /// </summary>
+    [SubscribeLocalEvent]
     private void OnPanelChanged(Entity<LightFloorComponent> ent, ref PanelChangedEvent args)
     {
         if (args.Open && TryComp<PoweredLightComponent>(ent, out var light))
             SetBurn(ent, light.CurrentLit);
     }
 
-    /// <summary>
-    /// Turns the hot-bulb hand burn on or off, if the light has one.
-    /// </summary>
     private void SetBurn(EntityUid uid, bool active)
     {
         if (TryComp<DamageOnInteractComponent>(uid, out var burn))
             _damageOnInteract.SetIsDamageActiveTo((uid, burn), active);
     }
 
-    /// <summary>
-    /// Swallows empty-hand clicks on a closed floor so the bulb is not ejected and the hand is not burned.
-    /// </summary>
+    [SubscribeLocalEvent(before: [typeof(SharedPoweredLightSystem), typeof(DamageOnInteractSystem)])]
     private void OnInteractHand(Entity<LightFloorComponent> ent, ref InteractHandEvent args)
     {
         if (_wires.IsPanelOpen(ent.Owner))
@@ -74,18 +45,14 @@ public sealed partial class LightFloorSystem : EntitySystem
         args.InteractionParticle = false; // nothing happened, so don't show the hand
     }
 
-    /// <summary>
-    /// Drops a bulb removal that was started on an open floor if the cover was screwed shut before it finished.
-    /// </summary>
+    [SubscribeLocalEvent(before: [typeof(SharedPoweredLightSystem)])]
     private void OnEjectDoAfter(EntityUid uid, LightFloorComponent comp, PoweredLightDoAfterEvent args)
     {
         if (!args.Cancelled && !_wires.IsPanelOpen(uid))
             args.Handled = true;
     }
 
-    /// <summary>
-    /// Swallows bulbs and light replacers used on a closed floor. Other items (tools, cables) pass through.
-    /// </summary>
+    [SubscribeLocalEvent(before: [typeof(SharedPoweredLightSystem)])]
     private void OnInteractUsing(Entity<LightFloorComponent> ent, ref InteractUsingEvent args)
     {
         if (_wires.IsPanelOpen(ent.Owner))

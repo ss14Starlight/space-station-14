@@ -6,15 +6,8 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._Starlight.Light;
 
-/// <summary>
-/// Draws the cover of a <see cref="LightFloorComponent"/> while its panel is closed, and only lets it be
-/// highlighted while the panel is open.
-/// </summary>
 public sealed partial class LightFloorVisualizerSystem : VisualizerSystem<LightFloorComponent>
 {
-    /// <summary>
-    /// Shows or hides the cover layers, tints the lit cover to the bulb's colour and toggles the hover outline.
-    /// </summary>
     protected override void OnAppearanceChange(EntityUid uid, LightFloorComponent comp, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)

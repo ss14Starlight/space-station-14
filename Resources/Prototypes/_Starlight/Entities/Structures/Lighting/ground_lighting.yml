@@ -1,5 +1,3 @@
-#Paradise Content - Floor Lights
-
 - type: entity
   id: FloorLight
   name: floor light
@@ -324,8 +322,6 @@
         Heat: 2
     popupText: powered-light-component-burn-hand
 
-#Paradise Content - Light Floors
-
 - type: entity
   id: LightFloorEmpty
   name: light floor
@@ -409,10 +405,10 @@
         - Plating
     - type: Stack
       stackType: FloorTileLight
-    - type: Construction # crafting deletes the result without this
+    - type: Construction
       graph: LightFloor
       node: lightTile
-    - type: SpawnAfterInteract # same placement pattern as upstream carpets
+    - type: SpawnAfterInteract
       prototype: LightFloorEmpty
       doAfter: 0.5
       removeOnInteract: true
@@ -442,8 +438,8 @@
           shader: unshaded
       state: light_off
     - type: Appearance
-    - type: LightFloor # no panel or bulb, only used for the cover visuals and to drop the hover outline
-    - type: PointLight # no bulb to dim, so set the same reduced light by hand
+    - type: LightFloor
+    - type: PointLight
       radius: 4
       energy: 1.5
     - type: Physics
@@ -652,7 +648,7 @@
   suffix: Random Color
   placement:
     mode: SnapgridCenter
-  components: # not a MarkerBase: markers are hidden by default, which blanks the spawn menu preview
+  components:
     - type: Transform
       anchored: true
     - type: Sprite
@@ -663,7 +659,7 @@
         - state: light_on
           shader: unshaded
     - type: RandomSpawner
-      offset: 0 # must land exactly on the tile
+      offset: 0
       prototypes:
         - LightFloorCyan
         - LightFloorBlue
