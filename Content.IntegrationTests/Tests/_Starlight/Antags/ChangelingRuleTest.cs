@@ -6,6 +6,7 @@ using Content.Server.Mind;
 using Content.Server.Objectives.Components;
 using Content.Server.Roles;
 using Content.Server._Starlight.Objectives.ObjectivePicker;
+using Content.Server._Starlight.Roles;
 using Content.Shared.Antag;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Roles.Components;
@@ -70,9 +71,13 @@ public sealed class ChangelingRuleTest : GameTest
                         Is.TypeOf<HighValueTargetsPool>());
             }
             Assert.That(mind.Comp.Objectives.All(uid => SEntMan.GetComponent<ObjectiveComponent>(uid).Difficulty == 0), Is.True);
-            // Check that the player has the correct changeling briefing.
-            Assert.That(roles.MindGetBriefing(mind), Is.EqualTo(Loc.GetString("changeling-role-greeting",
-                ("name", SEntMan.GetComponent<MetaDataComponent>(body).EntityName))));
+            // Check the changeling greeting is stored on its role and the crew briefing is preserved.
+            Assert.That(roles.MindHasRole<SLChangelingRoleComponent>(mind, out var changelingRole), Is.True);
+            Assert.That(SEntMan.GetComponent<RoleBriefingComponent>(changelingRole.Value.Owner).Briefing,
+                Is.EqualTo(Loc.GetString("changeling-role-greeting",
+                    ("name", SEntMan.GetComponent<MetaDataComponent>(body).EntityName))));
+            Assert.That(SEntMan.GetComponent<RoleBriefingComponent>(crew.Value.Owner).Briefing,
+                Is.EqualTo("Generic crew briefing"));
 
             // The player can decline all optional combat goals.
             Server.System<AntagRandomObjectivesSystem>().ApplySelectedObjectives(mind, []);
