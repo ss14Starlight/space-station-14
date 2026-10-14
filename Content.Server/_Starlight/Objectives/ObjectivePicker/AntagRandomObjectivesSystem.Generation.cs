@@ -267,9 +267,8 @@ public sealed partial class AntagRandomObjectivesSystem
     {
         var available = offers.ObjectiveOptions.Keys.Where(id => ObjectivePickerSelection.Available(offers, id)).ToArray();
         return ObjectivePickerSelection.Difficulty(offers, available) + ObjectivePickerSelection.Tolerance
-               >= 2 * offers.MinimumDifficulty &&
-               ObjectivePickerSelection.TryComplete(offers, available,
-                   retained is { } id ? new[] { id } : Array.Empty<NetEntity>(), out _);
+                >= 2 * offers.MinimumDifficulty && ObjectivePickerSelection.TryComplete(offers, available,
+                    retained is { } id ? new[] { id } : Array.Empty<NetEntity>(), out _);
     }
 
     private bool CreateOffer(EntityUid mindId, MindComponent mind, string prototype,
@@ -289,8 +288,8 @@ public sealed partial class AntagRandomObjectivesSystem
         }
 
         deferred = HasComp<TargetObjectiveComponent>(uid) &&
-                   (HasComp<KillPersonConditionComponent>(uid) || HasComp<TeachALessonConditionComponent>(uid) ||
-                    HasComp<HelpProgressConditionComponent>(uid) || HasComp<KeepAliveConditionComponent>(uid));
+                    (HasComp<KillPersonConditionComponent>(uid) || HasComp<TeachALessonConditionComponent>(uid) ||
+                        HasComp<HelpProgressConditionComponent>(uid) || HasComp<KeepAliveConditionComponent>(uid));
         if (deferred)
         {
             // Check eligibility without assigning a target or revealing their identity.
@@ -357,7 +356,7 @@ public sealed partial class AntagRandomObjectivesSystem
             return false;
 
         return Prototype(first)?.ID != Prototype(second)?.ID ||
-               (!Comp<ObjectiveComponent>(first).Unique && !Comp<ObjectiveComponent>(second).Unique);
+                (!Comp<ObjectiveComponent>(first).Unique && !Comp<ObjectiveComponent>(second).Unique);
     }
 
     private Dictionary<string, int> CountAssignedObjectives(EntityUid exceptMind)
@@ -369,14 +368,14 @@ public sealed partial class AntagRandomObjectivesSystem
             if (uid == exceptMind)
                 continue;
             foreach (var prototype in mind.Objectives.Where(Exists)
-                         .Select(objective => Prototype(objective)?.ID).OfType<string>().Distinct())
+                        .Select(objective => Prototype(objective)?.ID).OfType<string>().Distinct())
                 counts[prototype] = counts.GetValueOrDefault(prototype) + 1;
         }
         return counts;
     }
 
     private bool WithinObjectiveLimit(EntityUid uid, Dictionary<string, int> counts) => !TryComp<ObjectiveLimitComponent>(uid, out var limit) ||
-               (Prototype(uid) is { } prototype && counts.GetValueOrDefault(prototype.ID) < limit.Limit);
+                    (Prototype(uid) is { } prototype && counts.GetValueOrDefault(prototype.ID) < limit.Limit);
 
     private void UpdateOfferState(EntityUid mindId, MindComponent mind, PotentialObjectivesComponent offers,
         Dictionary<string, int> counts, ObjectivePickerConfigurationComponent? config = null)

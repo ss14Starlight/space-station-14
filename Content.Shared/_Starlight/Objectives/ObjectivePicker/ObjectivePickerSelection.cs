@@ -16,8 +16,8 @@ public static partial class ObjectivePickerSelection
         => offers.ObjectiveOptions.ContainsKey(id) && !offers.UnavailableObjectives.Contains(id);
 
     public static bool Compatible(PotentialObjectivesComponent offers, NetEntity id, IEnumerable<NetEntity> selected)
-        => (!offers.Conflicts.TryGetValue(id, out var conflicts) || !selected.Any(conflicts.Contains)) &&
-           TryAssignTargets(offers, selected.Append(id), out _);
+            => (!offers.Conflicts.TryGetValue(id, out var conflicts) || !selected.Any(conflicts.Contains)) &&
+                TryAssignTargets(offers, selected.Append(id), out _);
 
     public static bool Valid(PotentialObjectivesComponent offers, IReadOnlyCollection<NetEntity> selected,
         bool ignoreMulligan = false)
@@ -26,7 +26,7 @@ public static partial class ObjectivePickerSelection
             selected.Any(id => !Available(offers, id) || !Compatible(offers, id, selected)))
             return false;
         return Difficulty(offers, selected) + Tolerance >= offers.MinimumDifficulty ||
-               CanSelectUnderBudget(offers, ignoreMulligan);
+                CanSelectUnderBudget(offers, ignoreMulligan);
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ public static partial class ObjectivePickerSelection
     /// </summary>
     public static bool CanSelectUnderBudget(PotentialObjectivesComponent offers, bool ignoreMulligan = false)
         => (offers.MulliganUsed || ignoreMulligan) &&
-           !TryComplete(offers, offers.ObjectiveOptions.Keys, Array.Empty<NetEntity>(), out _);
+                !TryComplete(offers, offers.ObjectiveOptions.Keys, Array.Empty<NetEntity>(), out _);
 
     /// <summary>
     /// Finds a compatible completion, without imposing a maximum count or difficulty.
@@ -85,7 +85,7 @@ public static partial class ObjectivePickerSelection
             if (!bestEffort && difficulty + Tolerance >= offers.MinimumDifficulty)
                 return result.Count > 0 || offers.MinimumDifficulty <= Tolerance;
             if (bestEffort && (difficulty > bestDifficulty ||
-                              (difficulty == bestDifficulty && result.Count > best.Count)))
+                    (difficulty == bestDifficulty && result.Count > best.Count)))
             {
                 best = new HashSet<NetEntity>(result);
                 bestDifficulty = difficulty;
@@ -192,6 +192,6 @@ public static partial class ObjectivePickerSelection
 
         bool Conflicts(NetEntity a, NetEntity b)
             => (offers.TargetConflicts.TryGetValue(a, out var first) && first.Contains(b)) ||
-               (offers.TargetConflicts.TryGetValue(b, out var second) && second.Contains(a));
+                (offers.TargetConflicts.TryGetValue(b, out var second) && second.Contains(a));
     }
 }

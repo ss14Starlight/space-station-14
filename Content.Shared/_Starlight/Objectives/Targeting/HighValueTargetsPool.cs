@@ -23,13 +23,13 @@ public sealed partial class HighValueTargetsPool : IMindPool
 
     public static int Weight(Entity<MindComponent> mind, IEntityManager entMan)
         => mind.Comp.OwnedEntity is { } body && IsCommand(body, entMan) &&
-           entMan.HasComponent<MarkedForDeathComponent>(body) ? 2 : 1;
+            entMan.HasComponent<MarkedForDeathComponent>(body) ? 2 : 1;
 
     public static bool IsHighValue(Entity<MindComponent> mind, IEntityManager entMan)
         => mind.Comp.OwnedEntity is { } body &&
-           (IsCommand(body, entMan) || entMan.HasComponent<MarkedForDeathComponent>(body));
+            (IsCommand(body, entMan) || entMan.HasComponent<MarkedForDeathComponent>(body));
 
     private static bool IsCommand(EntityUid body, IEntityManager entMan)
         => entMan.ComponentFactory.TryGetRegistration("CommandStaff", out var registration) &&
-           entMan.HasComponent(body, registration.Type);
+            entMan.HasComponent(body, registration.Type);
 }
