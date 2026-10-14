@@ -1,22 +1,21 @@
-﻿using System.Linq;
-using System.Text;
-using Content.Server.Administration.BanList;
+﻿using Content.Server.Administration.BanList;
 using Content.Server.EUI;
-using Content.Server.Database;
 using Content.Shared.Administration;
-using Robust.Server.Player;
 using Robust.Shared.Console;
+using Content.Server.Administration.Managers; // NullLink-edit: move to general method at Manager
 
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Ban)]
-public sealed class RoleBanListCommand : IConsoleCommand
+public sealed partial class RoleBanListCommand : IConsoleCommand
 {
-    [Dependency] private readonly IServerDbManager _dbManager = default!;
+    //[Dependency] private readonly IServerDbManager _dbManager = default!; NullLink-edit: move to general method at Manager
 
-    [Dependency] private readonly EuiManager _eui = default!;
+    [Dependency] private EuiManager _eui = default!;
 
-    [Dependency] private readonly IPlayerLocator _locator = default!;
+    [Dependency] private IPlayerLocator _locator = default!;
+
+    [Dependency] private IBanManager _banManager = default!; // NullLink-edit: move to general method at Manager
 
     public string Command => "rolebanlist";
     public string Description => Loc.GetString("cmd-rolebanlist-desc");
@@ -48,7 +47,7 @@ public sealed class RoleBanListCommand : IConsoleCommand
         if (shell.Player is not { } player)
         {
 
-            var bans = await _dbManager.GetServerRoleBansAsync(data.LastAddress, data.UserId, data.LastLegacyHWId, data.LastModernHWIds, includeUnbanned);
+            var bans = await _banManager.GetServerRoleBansAsync(data.LastAddress, data.UserId, data.LastLegacyHWId, data.LastModernHWIds, includeUnbanned); // NullLink-edit: move to general method at Manager
 
             if (bans.Count == 0)
             {

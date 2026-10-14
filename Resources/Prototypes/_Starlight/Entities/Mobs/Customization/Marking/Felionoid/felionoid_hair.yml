@@ -2,7 +2,7 @@
   id: FelionoidHairCrestedQuills
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_hair:
@@ -16,7 +16,7 @@
   id: FelionoidHairFlowing
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_hair:
@@ -30,7 +30,7 @@
   id: FelionoidHairHawk
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_hair:
@@ -44,7 +44,7 @@
   id: FelionoidHairKeelQuills
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_hair:
@@ -58,7 +58,7 @@
   id: FelionoidHairKeetQuills
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_hair:
@@ -72,7 +72,7 @@
   id: FelionoidHairKingly
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_hair:
@@ -86,7 +86,7 @@
   id: FelionoidHairMange
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_hair:
@@ -100,7 +100,7 @@
   id: FelionoidHairNights
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_hair:

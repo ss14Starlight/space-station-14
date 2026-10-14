@@ -2,7 +2,7 @@
   id: BaseStationCryoTeleportation
   abstract: true
   components:
-  - type: StationCryoTeleportation
+    - type: StationCryoTeleportation
 
 - type: entity
   id: BaseStationAlertArmories
@@ -26,3 +26,9 @@
           announcementColor: "#34c3eb"
           recallAnnouncement: announcement-med-pod-recall
           recallAnnouncementColor: "#34c3eb"
+
+- type: entity
+  id: BaseStationSecureTerminal
+  abstract: true
+  components:
+    - type: SecureCommandTerminalStation

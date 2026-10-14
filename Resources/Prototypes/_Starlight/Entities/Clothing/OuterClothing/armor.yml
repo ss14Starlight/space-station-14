@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingOuterArmorBase, BaseBlueShieldContraband]
+  parent: [ BaseContrabandTier2, ClothingOuterArmorBase, BaseBlueShieldContraband ] # Blimpuf
   id: ClothingOuterArmorBlueShield
   name: blue shield bulletproof vest
   description: Much better than a standard Type 1 security vest. Try not to lose it, you won't get a second replacement.
@@ -44,7 +44,7 @@
       states:
         Stealth: !type:ItemSwitchState
           verb: Stealth
-          hiden: true
+          hidden: true
           sprite:
             sprite: _Starlight/Clothing/OuterClothing/Armor/abductor.rsi
             state: icon
@@ -66,7 +66,7 @@
 
         Combat: !type:ItemSwitchState
           verb: Combat
-          hiden: true
+          hidden: true
           sprite:
             sprite: _Starlight/Clothing/OuterClothing/Armor/abductor.rsi
             state: combat-icon
@@ -87,7 +87,39 @@
               damageCoefficient: 0.5
 
 - type: entity
-  parent: [ClothingOuterArmorBase, BaseSecurityContraband]
+  parent: ClothingOuterBaseLarge
+  id: ChangelingClothingOuterArmor
+  name: chitinous armor
+  description: An all-consuming chitinous mass of armor.
+  suffix: Unremoveable
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Armor/changeling.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Armor/changeling.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+    staminaModifier: 0.25
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: GroupExamine
+  - type: Unremoveable
+
+- type: entity
+  parent: [ BaseContrabandTier2, ClothingOuterArmorBase, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterArmorPlate
   name: plate carrier
   description: A standard Type II armored vest that provides good protection against bullets and lasers with the help of a plate inserted in the back and front, but not much else.
@@ -109,7 +141,7 @@
       damageCoefficient: 0.85
 
 - type: entity
-  parent: [ClothingOuterArmorBase, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, ClothingOuterArmorBase, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterArmorStab
   name: stabproof vest
   description: Contrary to it's name, it's just a Type II armored vest that provides good protection against stabs and punches, but not much else.
@@ -133,7 +165,7 @@
       - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingOuterArmorBase, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, ClothingOuterArmorBase, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterArmorHeatAbsorb
   name: heat absorbent vest
   description: Advanced vest designed to absorb heat rather than reflect it, but still has some reflective properties itself. Not good against bullets or blunt impacts due to the fragile material.
@@ -283,7 +315,7 @@
       reduction: 0.85
 
 - type: entity
-  parent: [BaseSalvageContraband, ClothingOuterVestWeb] #web vest so it should have some pockets for ammo
+  parent: [ BaseContrabandTier2, BaseSalvageContraband, ClothingOuterVestWeb ] #web vest so it should have some pockets for ammo; Blimpuf
   id: ClothingOuterVestWebSalvageMerc
   name: scrapper web vest
   description: A versatile armored vest, popular among salvagers for its protective yet lightweight design.
@@ -331,13 +363,13 @@
       states:
         inactive: !type:ItemSwitchState
           verb: Inactive
-          hiden: true
+          hidden: true
           sprite:
             sprite: _Starlight/Clothing/OuterClothing/Armor/reactive.rsi
             state: icon
         active: !type:ItemSwitchState
           verb: Active
-          hiden: true
+          hidden: true
           sprite:
             sprite: _Starlight/Clothing/OuterClothing/Armor/reactive.rsi
             state: active-icon
@@ -353,6 +385,8 @@
   name: soviet armor vest
   description: An old Soviet-era flak vest designed to mitigate damage from explosives, with minor penetration resistance. However, it's just a cheap reproduction model. quality may vary.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Pierceable
     level: Metal
   - type: Sprite
@@ -403,3 +437,54 @@
     sprite: _Starlight/Clothing/OuterClothing/Vests/retro_officer_hivis_vest.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Vests/retro_officer_hivis_vest.rsi
+
+# Greenshield Officer
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingOuterArmorRaid, ClothingOuterStorageBase ]
+  categories: [ DoNotMap ]
+  id: ClothingOuterVestGreenshield
+  name: greenshield vest
+  description: A protective vest worn by Greenshields. It even has pockets and a flashlight!
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Vests/greenshield_vest.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Vests/greenshield_vest.rsi
+    - type: Tag
+      tags:
+        - WhitelistChameleon
+    - type: ClothingSpeedModifier
+      walkModifier: 1 #Got to be able to keep up with the nice walk of the officials
+    - type: Storage
+      grid:
+        - 0,0,2,1
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+
+# Reporter armor vest
+- type: entity
+  parent: [ BaseContrabandTier2, BaseReporterContraband, ClothingOuterArmorBase ] # Blimpuf
+  id: ClothingOuterPressArmor
+  name: press armor
+  description: It has 'PRESS' written on it in white. It will help you stay alive while sniffing out ledes!
+  components:
+    - type: Item
+      size: Large
+      shape:
+      - 0, 0, 1, 1
+    - type: Pierceable
+      level: Metal
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Armor/reportersuit.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Armor/reportersuit.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.65
+          Slash: 0.65
+          Piercing: 0.65
+          Heat: 0.80
+    - type: ExplosionResistance
+      damageCoefficient: 0.85

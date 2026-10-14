@@ -42,6 +42,11 @@ namespace Content.Server.Atmos.Portable
             Gas.Helium,
             Gas.AntiNoblium,
             // Funkystation End: Funky atmos - /tg/ gases
+            #region Starlight
+            // Starlight gases
+            Gas.Ulnitranium,
+            Gas.ZXA,
+            #endregion
         };
 
         [ViewVariables(VVAccess.ReadWrite)]

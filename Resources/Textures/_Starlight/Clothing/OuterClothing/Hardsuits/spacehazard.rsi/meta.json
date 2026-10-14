@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a. Further modifications and derivate works (inhand-left and inhand-right) under same license, derivative monkey made by brainfood1183 (github) for ss14, reptilian made by kuro(388673708753027083), harpy by VMSolidus, equipped-OUTERCLOTHING-resomi made by svarshiksatanist (Discord), reptilian made by kuro(388673708753027083) (Taken from GoobStation). Avali state by DocMoth (Github).",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
@@ -12,37 +12,48 @@
     },
     {
       "name": "equipped-OUTERCLOTHING",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "TGstation at commit https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a"
     },
     {
       "name": "equipped-OUTERCLOTHING-monkey",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "Made by brainfood1183 (github)"
     },
     {
       "name": "equipped-OUTERCLOTHING-reptilian",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "Made by kuro(388673708753027083)"
     },
     {
       "name": "equipped-OUTERCLOTHING-avali",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "Made by DocMoth (Github)"
     },
 	{
 	  "name": "equipped-OUTERCLOTHING-dog",
       "directions": 4,
-	  "copyright": "Made by Sparlight (GitHub).",
-	  "license": "CC-BY-SA-3.0"
+	  "copyright": "Made by Sparlight (GitHub)"
 	},
     {
+     "name": "equipped-OUTERCLOTHING-vox",
+      "directions": 4,
+	  "copyright": "Made by Pastres (GitHub)"
+    },
+    {
       "name": "inhand-left",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "TGstation at commit https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a"
     },
     {
       "name": "inhand-right",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "TGstation at commit https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a"
     },
     {
       "name": "equipped-OUTERCLOTHING-resomi",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "Made by svarshiksatanist (Discord)"
     }
   ]
 }

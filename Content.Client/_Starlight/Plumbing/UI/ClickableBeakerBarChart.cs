@@ -10,11 +10,11 @@ public sealed class ClickableBeakerBarChart : ContainerButton
 {
     private const float StateLightnessShift = 0.10f;
 
-    private static readonly ColorPalette ButtonPalette = Palettes.Navy;
-    private static readonly Color IdleBackgroundColor = ButtonPalette.Element;
-    private static readonly Color ChartBackgroundColor = new(0.1f, 0.1f, 0.1f);
-    private static readonly Color HoverBackgroundColor = ButtonPalette.HoveredElement.NudgeLightness(StateLightnessShift);
-    private static readonly Color PressedBackgroundColor = ButtonPalette.PressedElement.NudgeLightness(StateLightnessShift);
+    private static readonly ColorPalette _buttonPalette = Palettes.Navy;
+    private static readonly Color _idleBackgroundColor = _buttonPalette.Element;
+    private static readonly Color _chartBackgroundColor = new(0.1f, 0.1f, 0.1f);
+    private static readonly Color _hoverBackgroundColor = _buttonPalette.HoveredElement.NudgeLightness(StateLightnessShift);
+    private static readonly Color _pressedBackgroundColor = _buttonPalette.PressedElement.NudgeLightness(StateLightnessShift);
 
     private readonly BeakerBarChart _chart;
 
@@ -47,7 +47,7 @@ public sealed class ClickableBeakerBarChart : ContainerButton
             HorizontalExpand = true,
             VerticalExpand = true,
             MouseFilter = MouseFilterMode.Ignore,
-            BackgroundColor = ChartBackgroundColor,
+            BackgroundColor = _chartBackgroundColor,
         };
 
         chartContainer.AddChild(_chart);
@@ -56,9 +56,7 @@ public sealed class ClickableBeakerBarChart : ContainerButton
     }
 
     public void Clear()
-    {
-        _chart.Clear();
-    }
+        => _chart.Clear();
 
     public void SetEntry(
         string uid,
@@ -90,9 +88,9 @@ public sealed class ClickableBeakerBarChart : ContainerButton
     {
         var backgroundColor = DrawMode switch
         {
-            DrawModeEnum.Pressed => PressedBackgroundColor,
-            DrawModeEnum.Hover => HoverBackgroundColor,
-            _ => IdleBackgroundColor,
+            DrawModeEnum.Pressed => _pressedBackgroundColor,
+            DrawModeEnum.Hover => _hoverBackgroundColor,
+            _ => _idleBackgroundColor,
         };
 
         StyleBoxOverride = new StyleBoxFlat

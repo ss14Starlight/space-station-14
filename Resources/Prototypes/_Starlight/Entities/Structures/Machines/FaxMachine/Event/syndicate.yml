@@ -1,0 +1,18 @@
+# Group already exists in ../syndicate.yml
+
+# Fax machines
+- type: entity
+  parent: FaxMachineSyndicateBase
+  id: FaxMachineSyndicate
+  suffix: "Syndicate"
+  categories: [ DoNotMap ]
+  components:
+    - type: FaxMachine
+      group: FaxGroupSyndicate
+      responsePings: false # Stealthy -- only visible from emagged fax machines.
+      intrinsicGroup: FaxGroupSyndicate
+      intrinsicLocked: false # This is the only event fax that allows impersonating by default.
+      name: "Syndicate"
+      order: 500
+    - type: Emagged # Emagged by default, meaning it can see other Syndicate faxes by default.
+      emagType: Interaction

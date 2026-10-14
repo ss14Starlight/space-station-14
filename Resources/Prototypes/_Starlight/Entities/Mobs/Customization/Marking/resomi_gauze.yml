@@ -3,7 +3,7 @@
   id: ResomiGauzeBlindfold
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , NeoResomi] # FH + Starlight
   coloring:
     default:
       type: null
@@ -21,7 +21,7 @@
   id: ResomiGauzeHead
   bodyPart: Head
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , NeoResomi] # FH + Starlight
   coloring:
     default:
       type: null
@@ -35,14 +35,12 @@
         colorSource: UniqueColor
   # Starlight end
 
-
-
 # Eyes
 - type: marking
   id: ResomiLeftEyePad
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , NeoResomi] # FH + Starlight
   coloring:
     default:
       type: null
@@ -60,7 +58,7 @@
   id: ResomiLeftEyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , NeoResomi] # FH + Starlight
   coloring:
     default:
       type: null
@@ -78,7 +76,7 @@
   id: ResomiRightEyePad
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , NeoResomi] # FH + Starlight
   coloring:
     default:
       type: null
@@ -96,7 +94,7 @@
   id: ResomiRightEyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , NeoResomi] # FH + Starlight
   coloring:
     default:
       type: null
@@ -110,14 +108,12 @@
         colorSource: UniqueColor
   # Starlight end
 
-
-
 # Chest
 - type: marking
   id: ResomiGauzeStomach
   bodyPart: Chest
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , NeoResomi] # FH + Starlight
   coloring:
     default:
       type: null
@@ -135,7 +131,7 @@
   id: ResomiGauzeShoulderRight
   bodyPart: Chest
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , NeoResomi] # FH + Starlight
   coloring:
     default:
       type: null
@@ -153,7 +149,7 @@
   id: ResomiGauzeShoulderLeft
   bodyPart: Chest
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , NeoResomi] # FH + Starlight
   coloring:
     default:
       type: null
@@ -167,14 +163,12 @@
         colorSource: UniqueColor
   # Starlight end
 
-
-
 # Arms
 - type: marking
   id: ResomiGauzeArm
   bodyPart: LArm
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , NeoResomi] # FH + Starlight
   coloring:
     default:
       type: null
@@ -197,7 +191,7 @@
   id: ResomiGauzeBoxerwrap
   bodyPart: LHand
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , NeoResomi] # FH + Starlight
   coloring:
     default:
       type: null
@@ -216,14 +210,11 @@
         colorSource: UniqueColor
   # Starlight end
 
-
-
-# Legs
 - type: marking
   id: ResomiGauzeLegs
   bodyPart: LLeg
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , NeoResomi] # FH + Starlight
   coloring:
     default:
       type: null
@@ -242,14 +233,11 @@
         colorSource: UniqueColor
   # Starlight end
 
-
-
-# Feet
 - type: marking
   id: ResomiGauzeFeet
   bodyPart: LFoot
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , NeoResomi] # FH + Starlight
   coloring:
     default:
       type: null

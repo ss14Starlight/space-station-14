@@ -1,0 +1,10 @@
+- type: microwaveMealRecipe
+  id: RecipeOilPack
+  name: oil pack recipe
+  result: OilPack1
+  time: 5
+  group: Medicinal
+  solids:
+    EmptyOilPack: 1
+  reagents:
+    WeldingFuel: 5

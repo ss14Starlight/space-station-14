@@ -3,7 +3,6 @@ using Content.Shared.Explosion.Components;
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -11,13 +10,13 @@ using Robust.Shared.Random;
 namespace Content.Client.Explosion;
 
 [UsedImplicitly]
-public sealed class ExplosionOverlay : Overlay
+public sealed partial class ExplosionOverlay : Overlay
 {
     private static readonly ProtoId<ShaderPrototype> UnshadedShader = "unshaded";
 
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly IEntityManager _entMan = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
+    [Dependency] private IEntityManager _entMan = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
     private readonly SharedTransformSystem _transformSystem;
     private SharedAppearanceSystem _appearance;
 

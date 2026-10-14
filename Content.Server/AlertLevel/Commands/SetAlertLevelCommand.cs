@@ -8,11 +8,11 @@ using Robust.Shared.Console;
 namespace Content.Server.AlertLevel.Commands
 {
     [AdminCommand(AdminFlags.Fun)]
-    public sealed class SetAlertLevelCommand : LocalizedEntityCommands
+    public sealed partial class SetAlertLevelCommand : LocalizedEntityCommands
     {
-        [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
-        [Dependency] private readonly StationSystem _stationSystem = default!;
-        [Dependency] private readonly AutoDiscordLogSystem _autoLog = default!; //Starlight
+        [Dependency] private AlertLevelSystem _alertLevelSystem = default!;
+        [Dependency] private StationSystem _stationSystem = default!;
+        [Dependency] private AutoDiscordLogSystem _autoLog = default!; //Starlight
 
         public override string Command => "setalertlevel";
 

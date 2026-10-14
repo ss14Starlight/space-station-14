@@ -2,10 +2,10 @@ using Content.Server.Popups;
 using Content.Shared._Starlight.CosmicCult.Components.Examine;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult;
-using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.Audio;
 using Robust.Shared.Audio;
@@ -14,18 +14,18 @@ using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Starlight.CosmicCult;
 
-public sealed class CosmicGlyphSystem : EntitySystem
+public sealed partial class CosmicGlyphSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedCosmicCultSystem _cosmicCult = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedCosmicCultSystem _cosmicCult = default!;
 
     private readonly HashSet<Entity<CosmicCultComponent>> _cultists = [];
-    private readonly HashSet<Entity<HumanoidAppearanceComponent>> _humanoids = [];
+    private readonly HashSet<EntityUid> _convertibles = [];
 
     public override void Initialize()
     {
@@ -91,20 +91,26 @@ public sealed class CosmicGlyphSystem : EntitySystem
     }
 
     /// <summary>
-    ///     Gets all the humanoids near a glyph.
+    ///     Gets all convertible entities near a glyph; humanoids, plus non-humanoids
+    ///     explicitly marked with <see cref="CosmicCultConvertibleComponent"/>.
     /// </summary>
     /// <param name="uid">The glyph.</param>
     /// <param name="range">Radius for a lookup.</param>
     /// <param name="exclude">Filter to exclude from return.</param>
-    public HashSet<Entity<HumanoidAppearanceComponent>> GetTargetsNearGlyph(EntityUid uid, float range, Predicate<Entity<HumanoidAppearanceComponent>>? exclude = null)
+    public HashSet<EntityUid> GetTargetsNearGlyph(EntityUid uid, float range, Predicate<EntityUid>? exclude = null)
     {
-        _humanoids.Clear();
-        _lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(Transform(uid).Coordinates, range, _humanoids);
+        _convertibles.Clear();
+        foreach (var entity in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, range))
+        {
+            if (!HasComp<HumanoidAppearanceComponent>(entity) && !_cosmicCult.IsConvertible(entity))
+                continue;
+            _convertibles.Add(entity);
+        }
         if (exclude != null)
-            _humanoids.RemoveWhere(exclude);
-        _humanoids.RemoveWhere(target => HasComp<CosmicBlankComponent>(target) || HasComp<CosmicLapseComponent>(target)); // We never want these.
+            _convertibles.RemoveWhere(exclude);
+        _convertibles.RemoveWhere(target => HasComp<CosmicBlankComponent>(target) || HasComp<CosmicLapseComponent>(target)); // We never want these.
 
-        return _humanoids;
+        return _convertibles;
     }
     #endregion
 }

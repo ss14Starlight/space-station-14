@@ -13,17 +13,16 @@ using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Client.Parallax;
 
-public sealed class ParallaxOverlay : Overlay
+public sealed partial class ParallaxOverlay : Overlay
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IParallaxManager _manager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private IParallaxManager _manager = default!;
     private readonly SharedMapSystem _mapSystem;
     private readonly ParallaxSystem _parallax;
     private readonly WeatherSystem _weather; // SL
@@ -76,7 +75,7 @@ public sealed class ParallaxOverlay : Overlay
             foreach (var (uid, parallax, status) in _parallaxSet)
             {
                 var alpha = _weather.GetWeatherPercent((uid, status));
-                foreach (var layer in _parallax.GetParallaxLayers(parallax.Parallax))
+                foreach (var layer in GetVisibleParallaxLayers(uid, parallax.Parallax))
                     Render(position, worldHandle, layer, realTime, args, Color.White.WithAlpha(alpha));
             }
         }

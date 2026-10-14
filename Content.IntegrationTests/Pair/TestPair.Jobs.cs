@@ -66,7 +66,7 @@ public sealed partial class TestPair
         await Server.WaitPost(() =>
         {
             var profile = prefMan.GetPreferences(player.UserId).Characters[0] as HumanoidCharacterProfile;
-            prefMan.SetProfile(player.UserId, 0, profile!.WithAntagPreferences(antagPreferences)).Wait();
+            prefMan.SetProfile(player.UserId, 0, profile!.WithAntagPreferences(antagPreferences).AsEnabled()).Wait(); // Starlight
         });
     }
 

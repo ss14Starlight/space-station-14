@@ -1,6 +1,6 @@
 using Content.Shared.EntityTable.EntitySelectors;
 
-namespace Content.Shared.GameTicking.Rules;
+namespace Content.Shared._Starlight.GameTicking.Rules;
 
 /// <summary>
 /// Gamerule which creates starts a number of other gamerules at once based on a budget

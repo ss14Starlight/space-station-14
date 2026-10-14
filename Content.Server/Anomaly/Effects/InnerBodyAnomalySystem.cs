@@ -24,19 +24,19 @@ namespace Content.Server.Anomaly.Effects;
 // Far Horizons - made partial
 public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    [Dependency] private readonly AnomalySystem _anomaly = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly JitteringSystem _jitter = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly StunSystem _stun = default!;
-    [Dependency] private readonly ActionGrantSystem _actionGrant = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private AnomalySystem _anomaly = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private JitteringSystem _jitter = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private StunSystem _stun = default!;
+    [Dependency] private ActionGrantSystem _actionGrant = default!;
 
     private readonly Color _messageColor = Color.FromSrgb(new Color(201, 22, 94));
 
@@ -87,6 +87,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         AddAnomalyToBody(ent);
     }
 
+/* // Starlight alteration
     private void AddAnomalyToBody(Entity<InnerBodyAnomalyComponent> ent)
     {
         if (!_proto.Resolve(ent.Comp.InjectionProto, out var injectedAnom))
@@ -96,8 +97,18 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
             return;
 
         ent.Comp.Injected = true;
+#region Starlight
+        if (ent.Comp.InjectionProto == "CosmicAnomalyInjection")
+        {
+            if (!_npcFaction.IsMember(ent.Owner, _cosmicCultFaction))
+            {
+                _npcFaction.AddFaction(ent.Owner, _cosmicCultFaction);
+                ent.Comp.AddedCosmicCultFaction = true;
+            }
+        }
 
-        AddComponents(ent, injectedAnom.Components); // Far Horizons
+        ProcessComponents(ent, injectedAnom.Components, true);
+#endregion
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
         _jitter.DoJitter(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration), true);
@@ -125,6 +136,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         }
         Dirty(ent);
     }
+*/
 
     private void OnAnomalyPulse(Entity<InnerBodyAnomalyComponent> ent, ref AnomalyPulseEvent args)
     {
@@ -132,14 +144,17 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         _jitter.DoJitter(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration / 2 * args.Severity), true);
     }
 
+/* // Starlight alteration
     private void OnAnomalySupercritical(Entity<InnerBodyAnomalyComponent> ent, ref AnomalySupercriticalEvent args)
     {
-        // Starlight
+        // Starlight Start
         if (!TryComp<BodyComponent>(ent, out var body))
             return;
+        // Starlight End
 
         _gibbing.Gib(ent.Owner);
     }
+*/
 
     private void OnSeverityChanged(Entity<InnerBodyAnomalyComponent> ent, ref AnomalySeverityChangedEvent args)
     {
@@ -209,13 +224,25 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         RemoveAnomalyFromBody(ent);
     }
 
+    /* // Starlight alteration
     private void RemoveAnomalyFromBody(Entity<InnerBodyAnomalyComponent> ent)
     {
         if (!ent.Comp.Injected)
             return;
 
+        // Starlight Start
+        ent.Comp.Injected = false;
+
+        if (ent.Comp.AddedCosmicCultFaction = true)
+        {
+            _npcFaction.RemoveFaction(ent.Owner, _cosmicCultFaction);
+            ent.Comp.AddedCosmicCultFaction = false;
+        }
+
+        Dirty(ent);
+        // Starlight End
         if (_proto.Resolve(ent.Comp.InjectionProto, out var injectedAnom))
-            RemoveComponents(ent, injectedAnom.Components); // Far Horizons
+            ProcessComponents(ent, injectedAnom.Components, false); // Starlight
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
 
@@ -239,31 +266,47 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
             _adminLog.Add(LogType.Anomaly, LogImpact.Medium,$"{ToPrettyString(ent)} is no longer a host for the anomaly.");
         }
 
-        ent.Comp.Injected = false;
-        RemCompDeferred<AnomalyComponent>(ent);
+        // ent.Comp.Injected = false; // Starlight Edit: Moved
+        // RemCompDeferred<AnomalyComponent>(ent); // Starlight Edit: Removed
     }
+    */
 
-    // FH - Start
-    private void AddComponents(EntityUid target, ComponentRegistry components)
+    /*
+    #region Starlight
+    private void ProcessComponents(
+        EntityUid target,
+        ComponentRegistry components,
+        bool add)
     {
         foreach (var comp in components)
         {
-            if (comp.Key == "ActionGrant" && comp.Value.Component is ActionGrantComponent actionGrantComp && TryComp<ActionGrantComponent>(target, out var oldComp))
-                _actionGrant.AddActions((target, oldComp), actionGrantComp.Actions);
-            else
-                EntityManager.AddComponent(target, comp.Value);
-        }
-    }
+            var componentType = comp.Value.Component.GetType();
+            if (add)
+            {
+                if (comp.Value.Component is ActionGrantComponent actionGrantComp &&
+                    TryComp<ActionGrantComponent>(target, out var oldComp))
+                {
+                    _actionGrant.AddActions((target, oldComp), actionGrantComp.Actions);
+                }
+                else
+                {
+                    EntityManager.AddComponent(target, comp.Value);
+                }
 
-    private void RemoveComponents(EntityUid target, ComponentRegistry components)
-    {
-        foreach (var comp in components)
-        {
-            if (comp.Key == "ActionGrant" && comp.Value.Component is ActionGrantComponent actionGrantComp && TryComp<ActionGrantComponent>(target, out var oldComp))
-                _actionGrant.RemoveActions((target, oldComp), actionGrantComp.Actions);
-            else
-                EntityManager.RemoveComponent(target, comp.Value.Component);
+                continue;
+            }
+
+            if (comp.Value.Component is ActionGrantComponent removeActionGrantComp &&
+                TryComp<ActionGrantComponent>(target, out var removeOldComp))
+            {
+                _actionGrant.RemoveActions((target, removeOldComp), removeActionGrantComp.Actions);
+                continue;
+            }
+
+            if (HasComp(target, componentType))
+                RemComp(target, componentType);
         }
     }
-    // FH - End
+    #endregion
+    */
 }

@@ -20,21 +20,6 @@
     head: ClothingHeadHelmetBasic
 
 - type: loadout
-  id: SecurityHelmetPlate
-  equipment:
-    head: ClothingHeadHelmetPlate
-
-- type: loadout
-  id: SecurityHelmetStabproof
-  equipment:
-    head: ClothingHeadHelmetStabproof
-
-- type: loadout
-  id: SecurityHelmetHeatAbsorbent
-  equipment:
-    head: ClothingHeadHelmetHeatAbsorbent
-
-- type: loadout
   id: SecurityHat
   equipment:
     head: ClothingHeadHatSecsoft
@@ -91,11 +76,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorOfficer
 
-- type: loadout
-  id: SecurityJumpsuitBlue
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitSecBlue
-
 # Back
 - type: loadout
   id: SecurityBackpack
@@ -135,29 +115,9 @@
     outerClothing: ClothingOuterArmorBasicSlim
 
 - type: loadout
-  id: ArmorVestPlate
-  equipment:
-    outerClothing: ClothingOuterArmorPlate
-
-- type: loadout
-  id: ArmorVestStab
-  equipment:
-    outerClothing: ClothingOuterArmorStab
-
-- type: loadout
-  id: ArmorVestHeatAbsorb
-  equipment:
-    outerClothing: ClothingOuterArmorHeatAbsorb
-
-- type: loadout
   id: SecurityOfficerWintercoat
   equipment:
     outerClothing: ClothingOuterWinterSec
-
-- type: loadout
-  id: WindbreakerSecurity
-  equipment:
-    outerClothing: ClothingOuterWindbreakerSecurity
 
 # Shoes
 - type: loadout
@@ -188,14 +148,3 @@
     proto: SeniorOfficer
   equipment:
     id: SeniorOfficerPDA
-
-# Misc
-- type: loadout
-  id: SecurityGlasses
-  equipment:
-    eyes: ClothingEyesGlassesSecurity
-
-- type: loadout
-  id: SecurityHud
-  equipment:
-    eyes: ClothingEyesHudSecurity

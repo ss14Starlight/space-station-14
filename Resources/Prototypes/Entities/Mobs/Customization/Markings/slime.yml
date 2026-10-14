@@ -2,7 +2,7 @@
   id: SlimeGradientArm
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [SlimePerson]
+  speciesRestriction: [SlimePerson, NeoSlimePerson, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -21,7 +21,7 @@
   id: SlimeGradientLeg
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [SlimePerson]
+  speciesRestriction: [SlimePerson, NeoSlimePerson, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -40,7 +40,7 @@
   id: SlimeGradientFoot
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [SlimePerson]
+  speciesRestriction: [SlimePerson, NeoSlimePerson, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_lFoot:
@@ -59,7 +59,7 @@
   id: SlimeGradientHand
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [SlimePerson]
+  speciesRestriction: [SlimePerson, NeoSlimePerson, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_lHand:
@@ -73,4 +73,3 @@
         state: gradient_r_hand
       colorSource: HumanSkinColor
   # Starlight end
-

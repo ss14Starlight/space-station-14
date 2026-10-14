@@ -1,5 +1,4 @@
 using Content.Server.DeviceLinking.Components;
-using Content.Server.DeviceNetwork;
 using Content.Shared.Interaction;
 using Content.Shared.Lock;
 using Robust.Shared.Audio;
@@ -7,11 +6,11 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.DeviceLinking.Systems;
 
-public sealed class SignalSwitchSystem : EntitySystem
+public sealed partial class SignalSwitchSystem : EntitySystem
 {
-    [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly LockSystem _lock = default!;
+    [Dependency] private DeviceLinkSystem _deviceLink = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private LockSystem _lock = default!;
 
     public override void Initialize()
     {

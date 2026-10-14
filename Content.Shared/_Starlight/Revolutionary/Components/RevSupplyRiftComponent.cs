@@ -1,9 +1,8 @@
 using Content.Shared.Dragon;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Shared.Revolutionary.Components;
+namespace Content.Shared._Starlight.Revolutionary.Components;
 
 /// <summary>
 /// Component for the revolutionary supply rift.
@@ -30,8 +29,8 @@ public sealed partial class RevSupplyRiftComponent : Component
     public int ChargePercentage = 0;
 
     /// <summary>
-    /// The name of the player who placed the rift.
+    /// The name of the player who placed the rift, or null if unknown.
     /// </summary>
     [DataField]
-    public string PlacedBy = "Unknown";
+    public string? PlacedBy;
 }

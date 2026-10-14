@@ -1,5 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._Starlight.GameTicking.Rules;
+using Content.Server._Starlight.Statistics;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking.Presets;
@@ -15,13 +17,18 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
+public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IChatManager _chatManager = default!; // Starlight
+    [Dependency] private GameTicker _ticker = default!;  // Starlight
+    [Dependency] private DynamicRuleCooldownSystem _dynamicRuleCooldown = default!;  // Starlight
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!;  // Starlight
 
+    private readonly Dictionary<string, int> _secretPresetCooldown = new();
     private string _ruleCompName = default!;
 
     public override void Initialize()
@@ -42,11 +49,18 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
             return;
         }
 
+        gameRule.MinPlayers = Math.Max(gameRule.MinPlayers, preset.MinPlayers ?? 0); // Starlight
+
         Log.Info($"Selected {preset.ID} as the secret preset.");
+        _roundStatistics.RecordResolvedPreset(preset.ID); // Starlight
+        if (_ticker.RunLevel == GameRunLevel.PreRoundLobby) _chatManager.SendAdminAnnouncement($"Round preset selected: Secret ({preset.ID})."); // Starlight
         _adminLogger.Add(LogType.EventStarted, $"Selected {preset.ID} as the secret preset.");
 
         foreach (var rule in preset.Rules)
         {
+            if (GameTicker.IsIgnored(rule))
+                continue;
+
             EntityUid ruleEnt;
 
             // if we're pre-round (i.e. will only be added)
@@ -73,40 +87,37 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
 
     private bool TryPickPreset(ProtoId<WeightedRandomPrototype> weights, [NotNullWhen(true)] out GamePresetPrototype? preset)
     {
-        var options = _prototypeManager.Index(weights).Weights.ShallowClone();
-        var players = GameTicker.ReadyPlayerCount();
+        // Starligth edit Start: Extra Logging and Cooldown
+        _dynamicRuleCooldown.EnsureRoundInitialized(dynamicRound: false);
+        var baseOptions = _prototypeManager.Index(weights).Weights.ShallowClone();
+        var players = GameTicker.GetEffectivePlayerCountGamerule(GameTicker.ReadyPlayerCount()); // Starlight
 
-        GamePresetPrototype? selectedPreset = null;
-        var sum = options.Values.Sum();
-        while (options.Count > 0)
+        Log.Info(
+            $"Secret roll pool: weights={weights}, players={players}, " +
+            $"optionCount={baseOptions.Count}, rawSum={baseOptions.Values.Sum()}, " +
+            $"cooldowns=[{string.Join(", ", _secretPresetCooldown.Select(x => $"{x.Key}:{x.Value}"))}], " +
+            $"options=[{string.Join(", ", baseOptions.OrderBy(x => x.Key).Select(x => $"{x.Key}:{x.Value}"))}]");
+
+        var options = baseOptions.ShallowClone();
+        RemovePresetCooldownOptions(options, includeSecretCooldowns: true);
+
+        if (TryPickPresetFromOptions(options, weights, players, out preset))
         {
-            var accumulated = 0f;
-            var rand = _random.NextFloat(sum);
-            foreach (var (key, weight) in options)
-            {
-                accumulated += weight;
-                if (accumulated < rand)
-                    continue;
-
-                if (!_prototypeManager.TryIndex(key, out selectedPreset))
-                    Log.Error($"Invalid preset {selectedPreset} in secret rule weights: {weights}");
-
-                options.Remove(key);
-                sum -= weight;
-                break;
-            }
-
-            if (CanPick(selectedPreset, players))
-            {
-                preset = selectedPreset;
-                return true;
-            }
-
-            if (selectedPreset != null)
-                Log.Info($"Excluding {selectedPreset.ID} from secret preset selection.");
+            UpdateSecretPresetCooldown(preset);
+            return true;
         }
 
-        preset = null;
+        Log.Warning("Preset cooldowns removed every valid option. Retrying without Secret's own cooldowns.");
+
+        options = baseOptions.ShallowClone();
+        RemovePresetCooldownOptions(options, includeSecretCooldowns: false);
+
+        if (TryPickPresetFromOptions(options, weights, players, out preset))
+        {
+            UpdateSecretPresetCooldown(preset);
+            return true;
+        }
+        // Starlight edit End
         return false;
     }
 
@@ -132,7 +143,7 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
     /// </summary>
     public bool CanPickAny(IEnumerable<ProtoId<GamePresetPrototype>> protos)
     {
-        var players = GameTicker.ReadyPlayerCount();
+        var players = GameTicker.GetEffectivePlayerCountGamerule(GameTicker.ReadyPlayerCount()); // Starlight
         foreach (var id in protos)
         {
             if (!_prototypeManager.TryIndex(id, out var selectedPreset))
@@ -153,19 +164,6 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
         if (selected == null)
             return false;
 
-        foreach (var ruleId in selected.Rules)
-        {
-            if (!_prototypeManager.TryIndex(ruleId, out EntityPrototype? rule)
-                || !rule.TryGetComponent(_ruleCompName, out GameRuleComponent? ruleComp))
-            {
-                Log.Error($"Encountered invalid rule {ruleId} in preset {selected.ID}");
-                return false;
-            }
-
-            if (ruleComp.MinPlayers > players && ruleComp.CancelPresetOnTooFewPlayers)
-                return false;
-        }
-
-        return true;
+        return players >= GameTicker.GetMinimumPlayerCount(selected);
     }
 }

@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: Jug
+  components:
+  - type: Item
+    size: Normal #revert container size ballooning

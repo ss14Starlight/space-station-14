@@ -8,7 +8,10 @@ using Robust.Shared.Timing;
 using Robust.Client.UserInterface.XAML;
 using Robust.Client.Input;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Input;
 using Robust.Shared.Prototypes;
+using Content.Client._Starlight.Computers.RemoteControl;
+using Robust.Client.Player;
 
 namespace Content.Client.UserInterface.Controls;
 
@@ -17,9 +20,9 @@ public sealed partial class SimpleRadialMenu : RadialMenu
 {
     private EntityUid? _attachMenuToEntity;
 
-    [Dependency] private readonly IClyde _clyde = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IInputManager _inputManager = default!;
+    [Dependency] private IClyde _clyde = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IInputManager _inputManager = default!;
 
     public SimpleRadialMenu()
     {
@@ -29,6 +32,19 @@ public sealed partial class SimpleRadialMenu : RadialMenu
 
     public void Track(EntityUid owner)
     {
+        // Starlight - start
+        var remoteControl = _entManager.System<RemoteControlInterface>();
+        if (remoteControl.ControlledEntity is not null)
+        {
+            // RemoteControl owners are off-screen, so use the local controller for carried devices
+            // and keep world-target menus at their initial local mouse position.
+            _attachMenuToEntity = remoteControl.GetRadialMenuTrackingEntity(
+                owner,
+                IoCManager.Resolve<IPlayerManager>().LocalEntity);
+            return;
+        }
+        // Starlight - end
+
         _attachMenuToEntity = owner;
     }
 
@@ -139,9 +155,17 @@ public sealed partial class SimpleRadialMenu : RadialMenu
 
         if (model is RadialMenuActionOptionBase actionOption)
         {
-            button.OnPressed += _ =>
+            //Starlight-edit Quite a big edit to allow for right click functionality
+            button.AllowRightClick = actionOption.OnAlternativePressed != null;
+            button.OnPressed += args =>
             {
-                actionOption.OnPressed?.Invoke();
+                // Starlight-start
+                if (args.Event.Function == EngineKeyFunctions.UIRightClick)
+                    actionOption.OnAlternativePressed?.Invoke();
+                else
+                    actionOption.OnPressed?.Invoke();
+                // Starlight-end
+
                 if (!haveNested)
                     Close();
             };
@@ -338,14 +362,27 @@ public abstract class RadialMenuOptionBase
 
 /// <summary> Base type for model of radial menu button with some action on button pressed. </summary>
 /// <param name="onPressed"></param>
-public abstract class RadialMenuActionOptionBase(Action onPressed) : RadialMenuOptionBase
+/// <param name="onAlternativePressed">Action to be executed on alternative (right) button press. Starlight-edit</param>
+public abstract class RadialMenuActionOptionBase(Action onPressed, Action? onAlternativePressed = null) : RadialMenuOptionBase
 {
     /// <summary> Action to be executed on button press. </summary>
     public Action OnPressed { get; } = onPressed;
+
+    /// <summary>
+    /// Starlight-edit
+    /// Action to be executed on alternative (right) button press.
+    /// </summary>
+    public Action? OnAlternativePressed { get; } = onAlternativePressed;
 }
 
 /// <summary> Strong-typed model for radial menu button with action, stores provided data to be used upon button press. </summary>
-public sealed class RadialMenuActionOption<T>(Action<T> onPressed, T data) : RadialMenuActionOptionBase(onPressed: () => onPressed(data));
+public sealed class RadialMenuActionOption<T>(
+    Action<T> onPressed,
+    T data,
+    Action<T>? onAlternativePressed = null
+) : RadialMenuActionOptionBase(
+    onPressed: () => onPressed(data),
+    onAlternativePressed: onAlternativePressed == null ? null : () => onAlternativePressed(data)); //Starlight edit
 
 /// <summary>
 /// Model for radial menu button that represents reference for next layer of radial buttons.

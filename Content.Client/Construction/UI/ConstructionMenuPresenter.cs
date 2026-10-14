@@ -21,16 +21,16 @@ namespace Content.Client.Construction.UI
     /// model. This is where the bulk of UI work is done, either calling functions in the model to change state, or collecting
     /// data out of the model to *present* to the screen though the UI framework.
     /// </summary>
-    internal sealed class ConstructionMenuPresenter : IDisposable
+    internal sealed partial class ConstructionMenuPresenter : IDisposable
     {
-        [Dependency] private readonly EntityManager _entManager = default!;
-        [Dependency] private readonly IEntitySystemManager _systemManager = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IPlacementManager _placementManager = default!;
-        [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
-        [Dependency] private readonly ILogManager _logManager = default!;
+        [Dependency] private EntityManager _entManager = default!;
+        [Dependency] private IEntitySystemManager _systemManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IPlacementManager _placementManager = default!;
+        [Dependency] private IUserInterfaceManager _uiManager = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private IClientPreferencesManager _preferencesManager = default!;
+        [Dependency] private ILogManager _logManager = default!;
 
         private readonly SpriteSystem _spriteSystem;
         private readonly ISawmill _sawmill;
@@ -124,6 +124,8 @@ namespace Content.Client.Construction.UI
 
             SetFavorites(_preferencesManager.Preferences?.ConstructionFavorites ?? []);
             OnViewPopulateRecipes(_constructionView, (string.Empty, string.Empty));
+
+            InitializeTemplates(); // Starlight
         }
 
         public void OnHudCraftingButtonToggled(BaseButton.ButtonToggledEventArgs args)
@@ -430,10 +432,20 @@ namespace Content.Client.Construction.UI
 
                 if (_selected.Type == ConstructionType.Item)
                 {
-                    _constructionSystem.TryStartItemConstruction(_selected.ID);
+                    if (!_entManager.System<Content.Client._Starlight.Computers.RemoteControl.RemoteControlInterface>()
+                        .TryRequestItemConstruction(_selected.ID))
+                        _constructionSystem.TryStartItemConstruction(_selected.ID);
                     _constructionView.BuildButtonPressed = false;
                     return;
                 }
+
+                // Starlight start
+                if (TryBeginRemotePlacement(_selected))
+                {
+                    _constructionView.BuildButtonPressed = true;
+                    return;
+                }
+                // Starlight end
 
                 _placementManager.BeginPlacing(new PlacementInformation
                     {
@@ -444,8 +456,10 @@ namespace Content.Client.Construction.UI
 
                 UpdateGhostPlacement();
             }
-            else
+            // Starlight start
+            else if (!StopRemotePlacement())
                 _placementManager.Clear();
+            // Starlight end
 
             _constructionView.BuildButtonPressed = pressed;
         }
@@ -457,9 +471,20 @@ namespace Content.Client.Construction.UI
 
             if (_selected.Type != ConstructionType.Structure)
             {
+                // Starlight start
+                StopRemotePlacement();
+                // Starlight end
                 _placementManager.Clear();
                 return;
             }
+
+            // Starlight start
+            if (TryBeginRemotePlacement(_selected))
+            {
+                _constructionView.BuildButtonPressed = true;
+                return;
+            }
+            // Starlight end
 
             var constructSystem = _systemManager.GetEntitySystem<ConstructionSystem>();
 

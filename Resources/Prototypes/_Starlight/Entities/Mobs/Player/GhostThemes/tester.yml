@@ -1,7 +1,7 @@
 - type: ghostTheme
   id: Bowmon
-  name: Bowmon
-  description: a cute bowmon.
+  name: ghost-theme-bowmon-name
+  description: ghost-theme-bowmon-desc
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
@@ -10,12 +10,12 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
-
+  category: Tester
 
 - type: ghostTheme
   id: Metroid
-  name: Metroid
-  description: a cute metroid.
+  name: ghost-theme-metroid-name
+  description: ghost-theme-metroid-desc
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
@@ -24,11 +24,12 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
+  category: Tester
 
 - type: ghostTheme
   id: Imp
-  name: Imp
-  description: a cute imp.
+  name: ghost-theme-imp-name
+  description: ghost-theme-imp-desc
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
@@ -37,11 +38,12 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
+  category: Tester
 
 - type: ghostTheme
   id: Revenant
-  name: Revenant
-  description: a cute revenant.
+  name: ghost-theme-revenant-name
+  description: ghost-theme-revenant-desc
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
@@ -50,11 +52,12 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
+  category: Tester
 
 - type: ghostTheme
   id: Ian
-  name: Ian
-  description: A pure dog.
+  name: ghost-theme-ian-name
+  description: ghost-theme-ian-desc
   colorizeable: true
   spriteSpecifier:
     sprite:
@@ -64,11 +67,12 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
+  category: Tester
 
 - type: ghostTheme
   id: IanCute
-  name: IanCute
-  description: A pure dog.
+  name: ghost-theme-ian-cute-name
+  description: ghost-theme-ian-cute-desc
   colorizeable: true
   spriteSpecifier:
     sprite:
@@ -78,11 +82,12 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
+  category: Tester
 
 - type: ghostTheme
   id: Skeleton
-  name: Skeleton
-  description: skeleton.
+  name: ghost-theme-skeleton-name
+  description: ghost-theme-skeleton-desc
   colorizeable: true
   spriteSpecifier:
     sprite:
@@ -92,11 +97,12 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
+  category: Tester
 
 - type: ghostTheme
   id: Sheet
-  name: Sheet
-  description: Cute sheet.
+  name: ghost-theme-sheet-name
+  description: ghost-theme-sheet-desc
   colorizeable: true
   spriteSpecifier:
     sprite:
@@ -106,11 +112,12 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
+  category: Tester
 
 - type: ghostTheme
   id: Cat
-  name: Cat
-  description: A cute little cat.
+  name: ghost-theme-cat-name
+  description: ghost-theme-cat-desc
   colorizeable: true
   spriteSpecifier:
     sprite:
@@ -120,3 +127,4 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
+  category: Tester

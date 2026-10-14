@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "See each state for copyright.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "box",
+            "copyright": "Box sprites by DocMoth (GitHub)."
+        },
+        {
+            "name": "box-trash",
+            "copyright": "Trash sprites by DocMoth (GitHub)."
+        },
+        {
+            "name": "brie",
+            "copyright": "Cheese sprites by DocMoth (GitHub)."
+        },
+        {
+            "name": "edam",
+            "copyright": "Cheese sprites by DocMoth (GitHub)."
+        },
+        {
+            "name": "gorgonzola",
+            "copyright": "Cheese sprites by DocMoth (GitHub)."
+        },
+        {
+            "name": "mozzarella-sticks",
+            "copyright": "Cheese sprites by DocMoth (GitHub)."
+        }
+    ]
+}

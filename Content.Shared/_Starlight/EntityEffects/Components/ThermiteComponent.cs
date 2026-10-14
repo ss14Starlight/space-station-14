@@ -1,4 +1,4 @@
-namespace Content.Shared.Starlight.EntityEffects.Components;
+namespace Content.Shared._Starlight.EntityEffects.Components;
 
 [RegisterComponent]
 public sealed partial class ThermiteComponent : Component

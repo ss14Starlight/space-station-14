@@ -7,7 +7,6 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
-using Robust.Shared.ContentPack;
 using Robust.Shared.Utility;
 using static Content.Client.Changelog.ChangelogManager;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
@@ -17,8 +16,8 @@ namespace Content.Client.Changelog;
 [GenerateTypedNameReferences]
 public sealed partial class ChangelogTab : Control
 {
-    [Dependency] private readonly ChangelogManager _changelog = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private ChangelogManager _changelog = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
 
     public bool AdminOnly;
 
@@ -161,6 +160,7 @@ public sealed partial class ChangelogTab : Control
             ChangelogLineType.Remove => ("minus.svg.192dpi.png", "#D16E6E"),
             ChangelogLineType.Fix => ("bug.svg.192dpi.png", "#D1BA6E"),
             ChangelogLineType.Tweak => ("wrench.svg.192dpi.png", "#6E96D1"),
+            ChangelogLineType.Unknown => ("unknown.svg.192dpi.png", "#ED0E0E"), // Starlight
             _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
         };
 

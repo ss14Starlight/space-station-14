@@ -30,6 +30,7 @@
     mail: AirlockMail
     brigmedic: AirlockBrigmed
     # Starlight End
+    plastitanium: PlastitaniumAirlock # Blimpuf
 
 - type: paintableGroup
   id: AirlockGlass

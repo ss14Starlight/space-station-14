@@ -6,6 +6,8 @@
   suffix: Empty
   description: Standard issued soviet-made jetpack for the kosmos.
   components:
+    - type: Contraband # Blimpuf
+      tier: Tier3
     - type: Item
       sprite: _Starlight/Objects/Tanks/Jetpacks/marine_jetpack.rsi
     - type: Sprite
@@ -16,12 +18,10 @@
         - Back
         - suitStorage
         - Belt
-#Starlight Start
     - type: ClothingSpeedModifier
       walkModifier: 1.0
       sprintModifier: 1.0
     - type: HeldSpeedModifier
-#Starlight End
 
 - type: entity
   id: JetpackSSFMarineFilled
@@ -141,7 +141,7 @@
 
 # NTNC borg
 - type: entity
-  parent: [ JetpackBlack, BaseCentcommContraband ]
+  parent: [ BaseCentcommContraband, JetpackBlack ] # Blimpuf
   id: JetpackCyborgCentcomm
   name: CentComm jetpack
   suffix: Cyborg, Infinite

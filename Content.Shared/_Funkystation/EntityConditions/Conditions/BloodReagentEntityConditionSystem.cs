@@ -15,7 +15,7 @@ namespace Content.Shared._Funkystation.EntityConditions.Conditions;
 /// <inheritdoc cref="EntityConditionSystem{T, TCondition}"/>
 public sealed partial class BloodReagentEntityConditionSystem : EntityConditionSystem<BloodstreamComponent, BloodReagentCondition>
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private SharedSolutionContainerSystem _solution = default!;
 
     protected override void Condition(Entity<BloodstreamComponent> entity, ref EntityConditionEvent<BloodReagentCondition> args)
     {
@@ -40,8 +40,8 @@ public sealed partial class BloodReagentCondition : EntityConditionBase<BloodRea
     [DataField]
     public FixedPoint2 Max = FixedPoint2.MaxValue;
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<ReagentPrototype>), required: true)]
-    public string Reagent = string.Empty;
+    [DataField(required: true)]
+    public ProtoId<ReagentPrototype> Reagent = string.Empty;
 
     public override string EntityConditionGuidebookText(IPrototypeManager prototype)
     {

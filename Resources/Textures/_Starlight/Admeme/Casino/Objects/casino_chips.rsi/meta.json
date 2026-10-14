@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "chips-0",
+      "copyright": "Glaud0283"
+    },
+    {
+      "name": "chips-1",
+      "copyright": "Glaud0283"
+    },
+    {
+      "name": "chips-2",
+      "copyright": "Glaud0283"
+    },
+    {
+      "name": "chips-3",
+      "copyright": "Glaud0283"
+    },
+    {
+      "name": "chips-4",
+      "copyright": "Glaud0283"
+    },
+    {
+      "name": "chips-5",
+      "copyright": "Glaud0283"
+    },
+    {
+      "name": "chips-6",
+      "copyright": "Glaud0283"
+    },
+    {
+      "name": "chips-7",
+      "copyright": "Glaud0283"
+    },
+    {
+      "name": "chips-8",
+      "copyright": "Glaud0283"
+    },
+    {
+      "name": "chips-9",
+      "copyright": "Glaud0283"
+    },
+    {
+      "name": "chips-10",
+      "copyright": "Glaud0283"
+    }
+  ]
+}

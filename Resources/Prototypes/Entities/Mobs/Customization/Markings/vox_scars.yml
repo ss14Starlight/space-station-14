@@ -2,7 +2,7 @@
   id: VoxScarEyeRight
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # Starlight start
   sprites:
     body_head:
@@ -16,7 +16,7 @@
   id: VoxScarEyeLeft
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # followSkinColor: true
   # Starlight start
   sprites:
@@ -31,7 +31,7 @@
   id: VoxScarTopSurgeryShort
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # followSkinColor: true
   # Starlight start
   sprites:
@@ -46,7 +46,7 @@
   id: VoxScarTopSurgeryLong
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # followSkinColor: true
   # Starlight start
   sprites:
@@ -61,7 +61,7 @@
   id: VoxScarChest
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # followSkinColor: true
   # Starlight start
   sprites:
@@ -76,7 +76,7 @@
   id: VoxScarNeck
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # followSkinColor: true
   # Starlight start
   sprites:
@@ -91,7 +91,7 @@
   id: VoxScarChestBullets
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # followSkinColor: true
   # Starlight start
   sprites:
@@ -106,7 +106,7 @@
   id: VoxScarStomachBullets
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # followSkinColor: true
   # Starlight start
   sprites:
@@ -121,7 +121,7 @@
   id: VoxScarFace1
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # followSkinColor: true
   # Starlight start
   sprites:
@@ -136,7 +136,7 @@
   id: VoxScarFace2
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # followSkinColor: true
   # Starlight start
   sprites:
@@ -151,7 +151,7 @@
   id: VoxScarEyeRightSmall
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # followSkinColor: true
   # Starlight start
   sprites:
@@ -166,7 +166,7 @@
   id: VoxScarEyeLeftSmall
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # followSkinColor: true
   # Starlight start
   sprites:

@@ -1,0 +1,119 @@
+## BASE SAFES
+
+- type: entity
+  id: GunSafeSL
+  parent: GunSafe
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/gunsafe.rsi
+    noRot: true
+    layers:
+    - state: gunsafe
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: gunsafe_doors
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: gunsafe
+    stateDoorOpen: gunsafe_open
+    stateDoorClosed: gunsafe_doors
+
+- type: entity
+  id: GunSafeBaseArmorySL
+  parent: GunSafeSL
+  suffix: Armory, Locked
+  components:
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: entity
+  id: GunSafeBaseSecuritySL
+  parent: GunSafeSL
+  suffix: Security, Locked
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: GunSafeBaseCommandSL
+  parent: GunSafeSL
+  suffix: Command, Locked
+  components:
+  - type: AccessReader
+    access: [["Command"]]
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/gunsafe.rsi
+    noRot: true
+    layers:
+    - state: command_gunsafe
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: command_gunsafe_doors
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: command_gunsafe
+    stateDoorOpen: command_gunsafe_open
+    stateDoorClosed: command_gunsafe_doors
+
+- type: entity
+  id: GunSafeBaseLawyerSL
+  parent: GunSafeSL
+  suffix: Lawyer, Locked
+  components:
+  - type: AccessReader
+    access: [["Lawyer"]]
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/gunsafe.rsi
+    noRot: true
+    layers:
+    - state: lawyer_gunsafe
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: lawyer_gunsafe_doors
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: lawyer_gunsafe
+    stateDoorOpen: lawyer_gunsafe_open
+    stateDoorClosed: lawyer_gunsafe_doors
+
+- type: entity
+  id: GunSafeBaseSyndicateSL
+  parent: GunSafeSL
+  suffix: Syndicate, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/gunsafe.rsi
+    noRot: true
+    layers:
+    - state: syndicate_gunsafe
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: syndicate_gunsafe_doors
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: syndicate_gunsafe
+    stateDoorOpen: syndicate_gunsafe_open
+    stateDoorClosed: syndicate_gunsafe_doors

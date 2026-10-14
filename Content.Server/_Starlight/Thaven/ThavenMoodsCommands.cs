@@ -1,9 +1,6 @@
 using System.Linq;
 using Content.Server.Administration;
-using Content.Server.Database;
-using Content.Server.Preferences.Managers;
 using Content.Shared._Starlight.Thaven;
-using Content.Shared._Starlight.Thaven.Components;
 using Content.Shared.Administration;
 using Content.Shared.Dataset;
 using Robust.Shared.Console;
@@ -13,9 +10,9 @@ using Robust.Shared.Toolshed;
 namespace Content.Server._Starlight.Thaven;
 
 [AdminCommand(AdminFlags.Admin)]
-internal sealed class ThavenSharedMoodsCommand : LocalizedCommands
+internal sealed partial class ThavenSharedMoodsCommand : LocalizedCommands
 {
-    [Dependency] private readonly IEntitySystemManager _entman = default!;
+    [Dependency] private IEntitySystemManager _entman = default!;
     private ThavenMoodsSystem? _moods;
     public override string Command => "thavenshared";
 
@@ -31,9 +28,9 @@ internal sealed class ThavenSharedMoodsCommand : LocalizedCommands
 }
 
 [AdminCommand(AdminFlags.Admin)]
-internal sealed class ThavenRerollMoodsCommand : LocalizedCommands
+internal sealed partial class ThavenRerollMoodsCommand : LocalizedCommands
 {
-    [Dependency] private readonly IEntitySystemManager _entman = default!;
+    [Dependency] private IEntitySystemManager _entman = default!;
     private ThavenMoodsSystem? _moods;
     public override string Command => "thavenreollshared";
 
@@ -107,9 +104,11 @@ public sealed class AdminMoodsCommand : ToolshedCommand
         if (TryComp<ThavenMoodsComponent>(input, out var moodsComponent))
         {
             var ent = (input, moodsComponent);
-            var mood = new ThavenMood();
-            mood.MoodName = title;
-            mood.MoodDesc = description;
+            var mood = new ThavenMood
+            {
+                MoodName = title,
+                MoodDesc = description
+            };
             _moods.AddMood(ent, mood);
         }
 

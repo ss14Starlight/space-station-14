@@ -1,7 +1,7 @@
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Damage
 {
@@ -19,10 +19,23 @@ namespace Content.Shared.Damage
     [Virtual]
     public partial class DamageModifierSet
     {
-        [DataField("coefficients", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<float, DamageTypePrototype>))]
-        public Dictionary<string, float> Coefficients = new();
+        [DataField]
+        public Dictionary<ProtoId<DamageTypePrototype>, float> Coefficients = new();
 
-        [DataField("flatReductions", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<float, DamageTypePrototype>))]
-        public Dictionary<string, float> FlatReduction = new();
+        [DataField]
+        public Dictionary<ProtoId<DamageTypePrototype>, float> FlatReductions = new();
+
+        // BEGIN STARLIGHT
+        public DamageModifierSet(DamageModifierSet dms)
+        {
+            // copying constructor for duplicating damage modifier sets
+            // some magic status effects can have variable or decaying damage modifiers
+            // therefore, we need a cheap and idiomatic way to create copies of DamageModifierSets that can be safely be modified
+            // (may also prevent memory leaks if the prototype that creates DamageModifierSets is generated at runtime)
+            Coefficients = new Dictionary<ProtoId<DamageTypePrototype>, float>(dms.Coefficients);
+            FlatReductions = new Dictionary<ProtoId<DamageTypePrototype>, float>(dms.FlatReductions);
+        }
+
+        // END STARLIGHT
     }
 }

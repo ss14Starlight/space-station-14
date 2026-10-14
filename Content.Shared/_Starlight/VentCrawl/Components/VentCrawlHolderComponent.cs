@@ -1,61 +1,124 @@
-using Content.Shared.VentCrawl.Components;
-using Robust.Shared.Audio;
-using Robust.Shared.Containers;
+using System.Numerics;
+using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
+using Content.Shared.Atmos.Components;
+using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
-namespace Content.Shared.VentCrawl.Components;
+namespace Content.Shared._Starlight.VentCrawl.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
 public sealed partial class VentCrawlHolderComponent : Component
 {
-    private Container? _container;
-    public Container Container
-    {
-        get => _container ?? throw new InvalidOperationException("Container not initialized");
-        set => _container = value;
-    }
+    #region State
 
     [ViewVariables]
-    public float StartingTime { get; set; }
+    [AutoNetworkedField]
+    public EntityUid ContainedEntity { get; set; }
 
-    [ViewVariables]
-    public float TimeLeft { get; set; }
-
+    [AutoNetworkedField]
     public bool IsMoving = false;
 
     [ViewVariables]
+    [AutoNetworkedField]
     public EntityUid? PreviousTube { get; set; }
 
     [ViewVariables]
+    [AutoNetworkedField]
     public EntityUid? NextTube { get; set; }
 
     [ViewVariables]
-    public Direction PreviousDirection { get; set; } = Direction.Invalid;
-
-    [ViewVariables]
+    [AutoNetworkedField]
     public EntityUid? CurrentTube { get; set; }
 
     [ViewVariables]
-    public bool FirstEntry { get; set; }
+    [AutoNetworkedField]
+    public Direction CurrentDirection { get; set; } = Direction.Invalid;
 
     [ViewVariables]
-    public Direction CurrentDirection { get; set; } = Direction.Invalid;
+    [AutoNetworkedField]
+    public Direction PreviousDirection { get; set; } = Direction.Invalid;
 
     [ViewVariables]
     public bool IsExitingVentCrawls { get; set; }
 
-    public static readonly TimeSpan CrawlDelay = TimeSpan.FromSeconds(0.5);
+    #endregion
 
+    #region CrawlInfo
+
+    [ViewVariables]
     public TimeSpan LastCrawl;
 
-    [DataField("crawlSound")]
-    public SoundCollectionSpecifier CrawlSound { get; set; } = new ("VentClaw", AudioParams.Default.WithVolume(5f));
+    [ViewVariables]
+    [AutoNetworkedField, AutoPausedField]
+    public TimeSpan MoveStartTime;
 
-    [DataField("speed")]
-    public float Speed = 0.15f;
+    [ViewVariables]
+    [AutoNetworkedField, AutoPausedField]
+    public TimeSpan MoveEndTime;
+
+    /// <summary>
+    /// World-space position at the start of the current move. Used for seamless interpolation.
+    /// </summary>
+    [AutoNetworkedField]
+    public Vector2 MoveFromWorldPos;
+
+    /// <summary>
+    /// World-space position at the end of the current move. Used for seamless interpolation.
+    /// </summary>
+    [AutoNetworkedField]
+    public Vector2 MoveToWorldPos;
+
+    #endregion
+
+    #region Action
+
+    public EntProtoId<ActionComponent> ActionProto = "VentCrawlExitAction";
+
+    [AutoNetworkedField]
+    public EntityUid? ProvidedAction;
+
+    #endregion
+
+    #region Manifold
+
+    /// <summary>
+    /// Current layer in manifold. Null if not in manifold.
+    /// </summary>
+    [ViewVariables]
+    [AutoNetworkedField]
+    public AtmosPipeLayer? ManifoldLayer;
+
+    /// <summary>
+    /// Previous layer in manifold.
+    /// </summary>
+    [ViewVariables]
+    [AutoNetworkedField]
+    public AtmosPipeLayer? PreviousManifoldLayer;
+
+    [ViewVariables]
+    [AutoNetworkedField, AutoPausedField]
+    public TimeSpan ManifoldTransitionStart;
+
+    [ViewVariables]
+    [AutoNetworkedField, AutoPausedField]
+    public TimeSpan ManifoldTransitionEnd;
+
+    /// <summary>
+    /// Duration of transition in manifold between layers.
+    /// </summary>
+    [ViewVariables]
+    [AutoNetworkedField]
+    public float ManifoldTransitionDuration = 0.15f;
+
+    public TimeSpan ManifoldLayerSelectionCooldown = TimeSpan.FromSeconds(0.5f);
+
+    [AutoNetworkedField, AutoPausedField]
+    public TimeSpan ManifoldLastLayerSelection;
+
+    #endregion
 }
 
-[ByRefEvent]
-public record struct VentCrawlExitEvent
+public sealed partial class ExitVentActionEvent : InstantActionEvent
 {
-    public TransformComponent? holderTransform;
 }

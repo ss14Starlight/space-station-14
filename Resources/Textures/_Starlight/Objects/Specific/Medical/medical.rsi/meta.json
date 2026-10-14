@@ -1,94 +1,183 @@
 {
 	"version": 1,
 	"license": "CC-BY-SA-3.0",
-    "copyright": "Starlight, Menders and Bandaid's taked from Paradise Station",
+    "copyright": "Base bruise pack/ointments taken from https://github.com/tgstation/tgstation/blob/a3568da5634e756d0849480104afda402c6f1c3c/icons/obj/medical/stack_medical.dmi, recolored by KillerTheFlareon for Starlight. Menders and Bandaid's taked from Paradise Station. Yellow brute packs and ointments by wonderfulnewworld (GitHub).",
 	"size": {
 		"x": 32,
 		"y": 32
 	},
 	"states": [
 		{
-			"name": "redbrutepack"
+			"name": "redbrutepack",
+			"copyright": "TG Station, KillerTheFlareon",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "redbrutepack2"
+			"name": "redbrutepack2",
+			"copyright": "TG Station, KillerTheFlareon",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "redbrutepack3"
+			"name": "redbrutepack3",
+			"copyright": "TG Station, KillerTheFlareon",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "puncturaseredbrutepack"
+			"name": "puncturaseredbrutepack",
+			"copyright": "TG Station, KillerTheFlareon",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "puncturaseredbrutepack2"
+			"name": "puncturaseredbrutepack2",
+			"copyright": "TG Station, KillerTheFlareon",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "puncturaseredbrutepack3"
+			"name": "puncturaseredbrutepack3",
+			"copyright": "TG Station, KillerTheFlareon",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "lacerinolbrutepack"
+			"name": "lacerinolbrutepack",
+			"copyright": "TG Station, KillerTheFlareon",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "lacerinolbrutepack2"
+			"name": "lacerinolbrutepack2",
+			"copyright": "TG Station, KillerTheFlareon",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "lacerinolbrutepack3"
+			"name": "lacerinolbrutepack3",
+			"copyright": "TG Station, KillerTheFlareon",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "bruizinebrutepack"
+			"name": "bruizinebrutepack",
+			"copyright": "TG Station, KillerTheFlareon",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "bruizinebrutepack2"
+			"name": "bruizinebrutepack2",
+			"copyright": "TG Station, KillerTheFlareon",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "bruizinebrutepack3"
+			"name": "bruizinebrutepack3",
+			"copyright": "TG Station, KillerTheFlareon",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "redointment"
+			"name": "redointment",
+			"copyright": "TG Station, KillerTheFlareon",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "redointment2"
+			"name": "redointment2",
+			"copyright": "TG Station, KillerTheFlareon",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "redointment3"
+			"name": "polypen",
+			"copyright": "Johnny",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "mender"
+			"name": "polypen_empty",
+			"copyright": "Johnny",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "mender1"
+			"name": "redointment3",
+			"copyright": "TG Station, KillerTheFlareon",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "mender2"
+			"name": "mender",
+			"copyright": "Paradise Station",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "mender3"
+			"name": "mender1",
+			"copyright": "Paradise Station",
+			"license": "CC-BY-SA-3.0"
+		},
+		{
+			"name": "mender2",
+			"copyright": "Paradise Station",
+			"license": "CC-BY-SA-3.0"
+		},
+		{
+			"name": "mender3",
+			"copyright": "Paradise Station",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
 			"name": "mender-inhand-left",
-            "directions": 4
+            "directions": 4,
+			"copyright": "Paradise Station",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
 			"name": "mender-inhand-right",
-            "directions": 4
+            "directions": 4,
+			"copyright": "Paradise Station",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "bandaid"
+			"name": "bandaid",
+			"copyright": "Paradise Station",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "bandaid-brute"
+			"name": "bandaid-brute",
+			"copyright": "Paradise Station",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "bandaid-burn"
+			"name": "bandaid-burn",
+			"copyright": "Paradise Station",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "bandaid-burn-small"
+			"name": "bandaid-burn-small",
+			"copyright": "Paradise Station",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "bandaid-clown"
+			"name": "bandaid-clown",
+			"copyright": "Paradise Station",
+			"license": "CC-BY-SA-3.0"
 		},
 		{
-			"name": "bandaid-med"
+			"name": "bandaid-med",
+			"copyright": "Paradise Station",
+			"license": "CC-BY-SA-3.0"
+		},
+		{
+			"name": "yellowbrutepack",
+			"copyright": "TG Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+		},
+		{
+			"name": "yellowbrutepack2",
+			"copyright": "TG Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+		},
+		{
+			"name": "yellowointment",
+			"copyright": "TG Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+		},
+		{
+			"name": "yellowointment2",
+			"copyright": "TG Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+		},
+		{
+			"name": "yellowointment3",
+			"copyright": "TG Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
 		}
     ]
 }

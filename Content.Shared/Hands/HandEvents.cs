@@ -128,16 +128,19 @@ namespace Content.Shared.Hands
         public readonly NetCoordinates InitialPosition;
         public readonly NetCoordinates FinalPosition;
         public readonly Angle InitialAngle;
+        public readonly NetEntity? User; // Starlight
 
         public PickupAnimationEvent(NetEntity itemUid,
             NetCoordinates initialPosition,
             NetCoordinates finalPosition,
-            Angle initialAngle)
+            Angle initialAngle,
+            NetEntity? user = null) // Starlight
         {
             ItemUid = itemUid;
             FinalPosition = finalPosition;
             InitialPosition = initialPosition;
             InitialAngle = initialAngle;
+            User = user; // Starlight
         }
     }
 
@@ -149,11 +152,13 @@ namespace Content.Shared.Hands
     {
         public EntityUid BlockingEntity;
         public EntityUid User;
+        public EntityUid VirtualItem; // Starlight
 
-        public VirtualItemDeletedEvent(EntityUid blockingEntity, EntityUid user)
+        public VirtualItemDeletedEvent(EntityUid blockingEntity, EntityUid user, EntityUid virtualItem) // Starlight edit
         {
             BlockingEntity = blockingEntity;
             User = user;
+            VirtualItem = virtualItem; // Starlight
         }
     }
 

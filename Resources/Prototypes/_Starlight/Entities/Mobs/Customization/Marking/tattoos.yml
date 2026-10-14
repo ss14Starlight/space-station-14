@@ -6,7 +6,7 @@
     layers:
       eye_left:
         type: !type:EyeColoring
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi, NeoResomi ]
   # Starlight start
   sprites:
     body_eyes:
@@ -24,7 +24,7 @@
     layers:
       eye_right:
         type: !type:EyeColoring
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi, NeoResomi ]
   # Starlight start
   sprites:
     body_eyes:
@@ -42,7 +42,7 @@
     layers:
       eye_left:
         type: !type:EyeColoring
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ]
   # Starlight start
   sprites:
     body_eyes:
@@ -60,7 +60,7 @@
     layers:
       eye_right:
         type: !type:EyeColoring
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ]
   # Starlight start
   sprites:
     body_eyes:

@@ -3,14 +3,14 @@ using Content.Shared.Administration;
 using Content.Shared.GameTicking;
 using Content.Shared.SSDIndicator;
 using Robust.Shared.Console;
-using Content.Shared.Starlight.CryoTeleportation;
+using Content.Shared._Starlight.CryoTeleportation;
 
-namespace Content.Shared._Starlight.Commands.SSDIndicator;
+namespace Content.Server._Starlight.Commands;
 
 [AnyCommand]
-public sealed class SSDIndicatorCommand : IConsoleCommand
+public sealed partial class SSDIndicatorCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntityManager _entities = default!;
+    [Dependency] private IEntityManager _entities = default!;
 
     public string Command => "ssd";
     public string Description => Loc.GetString("ssd-indicator-command-description");

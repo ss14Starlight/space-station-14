@@ -1,0 +1,54 @@
+<Document>
+    # Devil
+
+    <Box>
+        <GuideEntityEmbed Entity="InfernalContract" Caption=""/>
+    </Box>
+
+    A Field Agent has been dispatched from the [color=#d90b0b]8th Office for Soul Reclamation, Hell[/color], to keep soul harvesting quotas within quarterly margins.
+    You have been sufficiently equipped to blend in with the crew, so that you may [color=red]strike deals[/color] with members of the station.
+
+    ## The Infernal Contract
+    Your job is to convince crew to sign a legally binding contract for their soul. To convince them of this deal, we have given you financial delegation to issue lower class material desires to make the deal more desirable.
+    You can summon [color=purple]Infernal Contracts[/color], which is the skeleton agreement that your target client will sign. Contracts contain multiple [color=cyan]damnations[/color] which you choose.
+    Damnations are either [color=red]hellweighted[/color] meaning they benefit us, or [color=green]mortalsided[/color] which means they benefit the crewmember.
+    Hellweighted damnations have a negative "cost" associated with them, as they procure resources for us, and Mortalsided damnations have a positive cost.
+    In order to balance the books, the sum of damnations in a contract [color=yellow]must be zero or below[/color], so we make a profit.
+    <Box>
+        <GuideEntityEmbed Entity="PenQuillBurnt" Caption=""/>
+    </Box>
+
+    To strike a deal with a crewmember, first [bold]summon a contract and your quill with the actions on your toolbar[/bold].
+    Refer to your [bold]Book of the Damned[/bold] to see what damnations you are authorised to strike, and their associated cost. Liaise with your client to see what they seek, and what they are willing to give up.
+    Once determined, [bold]edit the contract using your pen[/bold] to add the names of the damnations to the list in the contract. Misspelled damnations or empty fields will be ignored, and trickery is encouraged.
+    Now hand the contract over to your client to sign. They can't edit the paper, and once they sign the requested damnations will take effect immediately.
+
+    ## Your True Name
+    But wait! on the contract is your [color=red]True name[/color], which is your fatal flaw! This is your real devilish name, and your main weakness.
+    If someone were to utter your true name and a verb like "stop" or "halt" in the same sentence, you will be greatly damaged and feel weak and sluggish. It only takes a few people chanting to secure your doom.
+
+    ## Objective and Abilities
+    Your primary objective is to reclaim souls, using the [color=purple]My Soul[/color] damnation. Upon the clients demise, their soul will be sent straight to the depths of the inferno, rendering them unrevivable.
+    As you slowly claim more souls, your demonic nature will become increasingly apparent. What might initially be ignored as a crewmember with unusually red eyes will soon turn into an unmistakable glow and.... is that a glowing halo...? really?
+
+    You inherently have access to a few different abilities relating to your job, like your ability to summon a quill, and create infernal contracts.
+    You also have access to our premium rejuvenation service, allowing you to heal damage other than genetic (that cover is too expensive), once every fifteen minutes. This should prevent your mortal coil from severing from the usual mechanisms.
+    Once you have signed off a few souls, you will gain access to your [color=red]Bident[/color], a suitably evil looking weapon to increase your devilish aura.
+
+    ## Tips
+    It isn't your job to get into fisticuffs with security or the crew! We want you to harvest souls, and you aren't very good at that if we are constantly paying insurance excess for your rejuvenation. Instead, try cause chaos indirectly by signing as many contracts off as possible, getting others to do the work for you!
+
+    ## Help how kill demon!
+    You have a devil problem? You have two surefire ways of stopping them in their tracks:
+
+    ### True Name
+    Announcing their true name, along with a word such as "halt" or "stop" in the same sentence will cause them genetic injuries, which they cannot heal! Have a few crew members chanting this and the devil will fall extremely fast.
+    You can find the devil's true name by reading a contract they have made.
+
+    ### Chaplain Execution
+    The Chaplain using their bible on a dead devil will rend it with enough genetic damage to prevent them from ever being able to return to life. Once this is done your devil problem is no longer. Damned crew will continue to have their effects, however, and must be dealt with case-by-case.
+
+    ## Help I been damned!
+    I hope it was worth it. While there are many damnations that negatively affect you, there are a few that are noticeably bad. If you have signed your soul away, upon your death you will be rendered unrevivable.
+    It won't do you well to utter the true name of the guy you struck your deal with, it will hurt you greatly. It doesn't pay to be a snitch!
+</Document>

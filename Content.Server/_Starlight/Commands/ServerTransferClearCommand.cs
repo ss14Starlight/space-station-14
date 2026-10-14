@@ -6,9 +6,9 @@ using Robust.Shared.Console;
 namespace Content.Server._Starlight.Commands;
 
 [AdminCommand(AdminFlags.Host)]
-public sealed class ServerTransferClearCommand : LocalizedCommands
+public sealed partial class ServerTransferClearCommand : LocalizedCommands
 {
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+    [Dependency] private IEntitySystemManager _entitySystemManager = default!;
 
     public override string Command => "servertransferclear";
     public override string Description => "Clears the server transfer target. Players will no longer be redirected at round end.";

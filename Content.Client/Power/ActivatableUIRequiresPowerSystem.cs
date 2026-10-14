@@ -3,17 +3,18 @@ using Content.Shared.Popups;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.UserInterface;
-using Content.Shared.Wires;
 
 namespace Content.Client.Power;
 
-public sealed class ActivatableUIRequiresPowerSystem : SharedActivatableUIRequiresPowerSystem
+public sealed partial class ActivatableUIRequiresPowerSystem : SharedActivatableUIRequiresPowerSystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     protected override void OnActivate(Entity<ActivatableUIRequiresPowerComponent> ent, ref ActivatableUIOpenAttemptEvent args)
     {
-        if (args.Cancelled || this.IsPowered(ent.Owner, EntityManager))
+        if (args.Cancelled ||
+            HasPowerCellFallback(ent.Owner, ent.Comp) || // Starlight
+            this.IsPowered(ent.Owner, EntityManager))
         {
             return;
         }
@@ -23,4 +24,6 @@ public sealed class ActivatableUIRequiresPowerSystem : SharedActivatableUIRequir
 
         args.Cancel();
     }
+
+    private partial bool HasPowerCellFallback(EntityUid uid, ActivatableUIRequiresPowerComponent component); // Starlight
 }

@@ -1,0 +1,65 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Mender originally from Paradise Station, re-sprites by Scrambledeggs00",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+      {
+        "name": "menderBrute",
+          "delays": [
+            [
+              0.2,
+              0.2,
+              0.2
+            ]
+          ]
+      },
+      {
+        "name": "menderBurn",
+        "delays": [
+          [
+            0.2,
+            0.2,
+            0.2
+          ]
+        ]
+      },
+    {
+      "name": "menderBrute-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "menderBrute-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "menderBurn-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "menderBurn-inhand-right",
+      "directions": 4
+    },
+    {
+			"name": "fillIndicator1"
+		},
+		{
+			"name": "fillIndicator2"
+		},
+		{
+			"name": "fillIndicator3"
+		},
+        {
+			"name": "fillIndicator4"
+		},
+		{
+			"name": "fillIndicator5"
+		},
+		{
+			"name": "fillIndicator6"
+		}
+    ]
+}

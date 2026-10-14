@@ -1,0 +1,37 @@
+- type: entity
+  id: BoxFunLizardPlushieBulk
+  parent: CardboardBoxLargeWeh
+  name: bulk lizard plushie box
+  description: A buncha soft lizard plushies. Throw them around and then wonder how you're gonna explain this purchase to NT.
+  components:
+  - type: StorageFill
+    contents:
+    - id: PlushieLizard
+      amount: 3
+    - id: PlushieSpaceLizard
+      amount: 3
+
+- type: entity
+  id: BoxFunSharkPlushieBulk
+  parent: CardboardBoxLargeWeh
+  name: bulk soft toy shark box
+  description: A crate filled with a variety of everyone's favorite finned friend. Rawr!
+  components:
+  - type: StorageFill
+    contents:
+    - id: PlushieSharkBlue
+      amount: 2
+    - id: PlushieSharkPink
+      amount: 2
+    - id: PlushieSharkGrey
+      amount: 2
+
+- type: entity
+  id: BoxFunArtSupplies
+  parent: CardboardBoxLarge
+  name: art supplies
+  description: Make some happy little accidents with lots of crayons!
+  components:
+  - type: StorageFill
+    contents:
+    - id: CrayonBox

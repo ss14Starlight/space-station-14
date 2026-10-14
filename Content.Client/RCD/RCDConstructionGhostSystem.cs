@@ -1,4 +1,5 @@
 using Content.Client.Hands.Systems;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared.Interaction;
 using Content.Shared.RCD;
 using Content.Shared.RCD.Components;
@@ -10,7 +11,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Input;
 using Content.Client._Starlight.RCD;
 using Robust.Shared.Input.Binding;
-using Content.Client.Atmos;
 using Content.Shared.Input;
 // Starlight End
 
@@ -19,21 +19,21 @@ namespace Content.Client.RCD;
 /// <summary>
 /// System for handling structure ghost placement in places where RCD can create objects.
 /// </summary>
-public sealed class RCDConstructionGhostSystem : EntitySystem
+public sealed partial class RCDConstructionGhostSystem : EntitySystem
 {
     private const string PlacementMode = nameof(AlignRCDConstruction);
     private const string RpdPlacementMode = nameof(AlignRPDAtmosPipeLayers); // Starlight RPD
 
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPlacementManager _placementManager = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IPlacementManager _placementManager = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private RemoteControlInterface _remoteControl = default!; // Starlight
 
     private Direction _placementDirection = default;
     private EntityUid? _lastHeldRcd; // Starlight Edit: RPD/RPLD held-tool rotation sync
     // Starlight Start: RPD
     private bool _useMirrorPrototype = false;
-    public event EventHandler? FlipConstructionPrototype;
 
     public override void Initialize()
     {
@@ -90,8 +90,10 @@ public sealed class RCDConstructionGhostSystem : EntitySystem
             return;
 
         // Determine if player is carrying an RCD in their active hand
-        if (_playerManager.LocalSession?.AttachedEntity is not { } player)
+        // Starlight start
+        if ((_remoteControl.ControlledEntity ?? _playerManager.LocalSession?.AttachedEntity) is not { } player)
             return;
+        // Starlight end
 
         var heldEntity = _hands.GetActiveItem(player);
 

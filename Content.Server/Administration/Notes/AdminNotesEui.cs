@@ -20,22 +20,23 @@ using Content.Shared.Players.PlayTimeTracking;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using AdminNote = Starlight.NullLink.AdminNote;
+using Content.Server._NullLink.Helpers;
 #endregion
 
 namespace Content.Server.Administration.Notes;
 
-public sealed class AdminNotesEui : BaseEui
+public sealed partial class AdminNotesEui : BaseEui
 {
-    [Dependency] private readonly IAdminManager _admins = default!;
-    [Dependency] private readonly IAdminNotesManager _notesMan = default!;
-    [Dependency] private readonly IPlayerLocator _locator = default!;
+    [Dependency] private IAdminManager _admins = default!;
+    [Dependency] private IAdminNotesManager _notesMan = default!;
+    [Dependency] private IPlayerLocator _locator = default!;
 
     #region Starlight
-    [Dependency] private readonly IEntityManager _entities = default!;
-    [Dependency] private readonly IActorRouter _actors = default!;
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly INullLinkEventBusManager _eventBus = default!;
+    [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private IActorRouter _actors = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private INullLinkEventBusManager _eventBus = default!;
     #endregion
 
     public AdminNotesEui()
@@ -47,7 +48,7 @@ public sealed class AdminNotesEui : BaseEui
     private string NotedPlayerName { get; set; } = string.Empty;
     private bool HasConnectedBefore { get; set; }
     private Dictionary<(int, NoteType), SharedAdminNote> Notes { get; set; } = new();
-    private Dictionary<(int, NoteType), SharedAdminNote> NetworkNotes { get; set; } = new(); // Starlight-edit
+    private Dictionary<(int, NoteType, string, string), SharedAdminNote> NetworkNotes { get; set; } = new(); // Starlight-edit
 
     public override async void Opened()
     {
@@ -232,8 +233,14 @@ public sealed class AdminNotesEui : BaseEui
         Notes = (from note in await _notesMan.GetAllAdminRemarks(NotedPlayer)
                  select note.ToShared())
             .ToDictionary(sharedNote => (sharedNote.Id, sharedNote.NoteType));
+        NetworkNotes = [];
         if (_actors.TryGetServerGrain(out var serverGrain))
+        {
             NetworkNotes = Convert(await serverGrain.RequestNotes(NotedPlayer) ?? []);
+            var bans = await serverGrain.RequestBans(NotedPlayer, null, null, null, true, false);
+            foreach (var kvp in bans.ToNoteDef())
+                NetworkNotes.TryAdd(kvp.Key, kvp.Value);
+        }
         StateDirty();
     }
 
@@ -261,7 +268,7 @@ public sealed class AdminNotesEui : BaseEui
         if (note.Player != NotedPlayer || !TryConvert(note, out var converted))
             return;
 
-        NetworkNotes[(converted.Id, converted.NoteType)] = converted;
+        NetworkNotes[(converted.Id, converted.NoteType, converted.ServerName ?? "", converted.ProjectName ?? "")] = converted;
         if (converted.ProjectName == _actors.Project && converted.ServerName == _actors.Server)
         {
             NoteModified(converted);
@@ -276,7 +283,7 @@ public sealed class AdminNotesEui : BaseEui
         if (note.Player != NotedPlayer || !Enum.TryParse<NoteType>(note.NoteType, true, out var type))
             return;
 
-        NetworkNotes.Remove((note.Id, type));
+        NetworkNotes.Remove((note.Id, type, note.ServerName ?? "", note.ProjectName ?? ""));
         if (note.ProjectName == _actors.Project && note.ServerName == _actors.Server)
         {
             Notes.Remove((note.Id, type));
@@ -285,16 +292,16 @@ public sealed class AdminNotesEui : BaseEui
         StateDirty();
     }
 
-    private Dictionary<(int, NoteType), SharedAdminNote> Convert(IEnumerable<AdminNote> notes)
+    private Dictionary<(int, NoteType, string, string), SharedAdminNote> Convert(IEnumerable<AdminNote> notes)
     {
-        Dictionary<(int, NoteType), SharedAdminNote> pairs = [];
+        Dictionary<(int, NoteType, string, string), SharedAdminNote> pairs = [];
 
         foreach (var note in notes)
         {
             if (!TryConvert(note, out var newNote))
                 continue;
 
-            pairs.Add((newNote.Id, newNote.NoteType), newNote);
+            pairs.Add((newNote.Id, newNote.NoteType, newNote.ServerName ?? "", newNote.ProjectName ?? ""), newNote);
         }
 
         return pairs;

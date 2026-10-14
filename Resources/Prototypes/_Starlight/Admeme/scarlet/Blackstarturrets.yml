@@ -1,0 +1,18 @@
+# Blackstar Mercenary Turret
+- type: entity
+  parent: [BaseWeaponBallisticTurret, BaseMajorContraband]
+  id: WeaponTurretBlackstar
+  name: Blackstar sentry turret
+  description: A high-cycle ballistic auto-turret deployed by Blackstar mercenary operatives.
+  suffix: Blackstar
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Blackstar
+  - type: Gun
+    fireRate: 3.5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg

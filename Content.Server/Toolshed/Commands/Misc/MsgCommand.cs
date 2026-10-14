@@ -14,7 +14,7 @@ using Robust.Shared.Toolshed;
 namespace Content.Server.Toolshed.Commands.Misc;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Fun)]
-public sealed class MsgCommand : ToolshedCommand
+public sealed partial class MsgCommand : ToolshedCommand
 {
     [Dependency] private IChatManager _chatManager = default!;
 
@@ -78,7 +78,7 @@ public sealed class MsgCommand : ToolshedCommand
     }
 
     [CommandImplementation("tippy")]
-    public IEnumerable<EntityUid> Tippy([PipedArgument] IEnumerable<EntityUid> targets, string message, EntProtoId prototype, float speakTime, float slideTime, float waddleInterval)
+    public IEnumerable<EntityUid> Tippy(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> targets, string message, EntProtoId prototype, float speakTime, float slideTime, float waddleInterval) //Starlight: include IInvocationCtx
     {
         _tips ??= GetSys<TipsSystem>();
         _autoLog ??= GetSys<AutoDiscordLogSystem>(); //Starlight
@@ -92,11 +92,11 @@ public sealed class MsgCommand : ToolshedCommand
 
             yield return ent;
         }
-        _autoLog.LogToDiscord(Loc.GetString("autolog-tippy", ("message", message), ("prototype", prototype))); //Starlight
+        _autoLog.LogToDiscord(Loc.GetString("autolog-tippy", ("message", message), ("prototype", prototype)), ctx.Session?.Name ?? "unknown"); //Starlight
     }
 
     [CommandImplementation("tippy")]
-    public IEnumerable<ICommonSession> Tippy([PipedArgument] IEnumerable<ICommonSession> targets, string message, EntProtoId prototype, float speakTime, float slideTime, float waddleInterval)
+    public IEnumerable<ICommonSession> Tippy(IInvocationContext ctx, [PipedArgument] IEnumerable<ICommonSession> targets, string message, EntProtoId prototype, float speakTime, float slideTime, float waddleInterval) //Starlight: include IInvocationCtx
     {
         _tips ??= GetSys<TipsSystem>();
         _autoLog ??= GetSys<AutoDiscordLogSystem>(); //Starlight
@@ -107,6 +107,6 @@ public sealed class MsgCommand : ToolshedCommand
 
             yield return session;
         }
-        _autoLog.LogToDiscord(Loc.GetString("autolog-tippy", ("message", message), ("prototype", prototype))); //Starlight
+        _autoLog.LogToDiscord(Loc.GetString("autolog-tippy", ("message", message), ("prototype", prototype)), ctx.Session?.Name ??  "unknown"); //Starlight
     }
 }

@@ -8,11 +8,11 @@ using Robust.Shared.Player;
 
 namespace Content.Server._CD.Engraving;
 
-public sealed class EngraveableSystem : SharedEngraveableSystem
+public sealed partial class EngraveableSystem : SharedEngraveableSystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly QuickDialogSystem _dialog = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private QuickDialogSystem _dialog = default!;
 
     public override void Initialize()
     {

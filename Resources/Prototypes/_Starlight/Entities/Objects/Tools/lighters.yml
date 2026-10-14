@@ -1,0 +1,11 @@
+- type: entity
+  abstract: true
+  parent: [SolutionWelder, SolutionToolVeryTiny]
+  id: SolutionDiscountDanLighter
+  components:
+  - type: Solution
+    solution:
+      maxVol: 3
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 3

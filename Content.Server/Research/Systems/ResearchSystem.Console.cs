@@ -1,8 +1,9 @@
 using Content.Server.Power.EntitySystems;
 using Content.Server.Research.Components;
+using Content.Server._Starlight.Achievement; // Starlight: Achievements
+using Content.Server.Station.Systems; // Starlight: Achievements
 using Content.Shared.UserInterface;
 using Content.Shared.Access.Components;
-using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Research.Components;
@@ -14,7 +15,9 @@ namespace Content.Server.Research.Systems;
 
 public sealed partial class ResearchSystem
 {
-    [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private EmagSystem _emag = default!;
+    [Dependency] private StationSystem _station = default!; // Starlight: Achievements
+    [Dependency] private AchievementSystem _achievements = default!; // Starlight: Achievements
 
     private void InitializeConsole()
     {
@@ -69,7 +72,16 @@ public sealed partial class ResearchSystem
                     }
                 }
         }
-
+        // Starlight start: Achievements
+        if (TryGetClientServer(uid, out var serverUid, out _)
+            && serverUid is { } server
+            && TryComp<TechnologyDatabaseComponent>(server, out var database)
+            && database.CurrentTechnologyCards.Count == 0
+            && _station.GetOwningStation(uid) is { } station)
+        {
+            _achievements.QueueUnlockAchievementForJobs("theory_of_everything", station, "ResearchDirector");
+        }
+        // Starlight end: Achievements
         SyncClientWithServer(uid);
         UpdateConsoleInterface(uid, component);
     }

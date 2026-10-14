@@ -1,0 +1,59 @@
+- type: entity
+  parent: GasPipeSensor
+  id: GasPipeSensorTEGFuel
+  suffix: TEG fuel
+  components:
+  - type: Label
+    currentLabel: gas-pipe-sensor-teg-fuel-loop
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasPipeSensorTEGFuel
+      Secondary: GasPipeSensorTEGFuelAlt1
+      Tertiary: GasPipeSensorTEGFuelAlt2
+      Quaternary: GasPipeSensorTEGFuelAlt3
+      Quinary: GasPipeSensorTEGFuelAlt4
+
+- type: entity
+  parent: GasPipeSensor
+  id: GasPipeSensorVoxAir
+  suffix: Vox air
+  components:
+  - type: Label
+    currentLabel: gas-pipe-sensor-vox-air-loop
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasPipeSensorVoxAir
+      Secondary: GasPipeSensorVoxAirAlt1
+      Tertiary: GasPipeSensorVoxAirAlt2
+      Quaternary: GasPipeSensorVoxAirAlt3
+      Quinary: GasPipeSensorVoxAirAlt4
+
+- type: entity
+  parent: GasPipeSensor
+  id: GasPipeSensorNuclearHot
+  suffix: Nuclear hot
+  components:
+  - type: Label
+    currentLabel: gas-pipe-sensor-nuclear-hot-loop
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasPipeSensorNuclearHot
+      Secondary: GasPipeSensorNuclearHotAlt1
+      Tertiary: GasPipeSensorNuclearHotAlt2
+      Quaternary: GasPipeSensorNuclearHotAlt3
+      Quinary: GasPipeSensorNuclearHotAlt4
+
+- type: entity
+  parent: GasPipeSensor
+  id: GasPipeSensorNuclearCold
+  suffix: Nuclear cold
+  components:
+  - type: Label
+    currentLabel: gas-pipe-sensor-nuclear-cold-loop
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasPipeSensorNuclearCold
+      Secondary: GasPipeSensorNuclearColdAlt1
+      Tertiary: GasPipeSensorNuclearColdAlt2
+      Quaternary: GasPipeSensorNuclearColdAlt3
+      Quinary: GasPipeSensorNuclearColdAlt4

@@ -1,0 +1,349 @@
+- type: entity
+  parent: BaseTree
+  id: BaseTreeConiferOld
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Decoration/Flora/flora_treesconifer.rsi
+    offset: 0,1.15
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.35,0.1,0.35"
+        density: 3500
+        layer:
+        - WallLayer
+
+- type: entity
+  parent: BaseTree
+  id: BaseTreeConiferSnow
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Decoration/Flora/tree_spruce_medium_snow.rsi
+    offset: 0,1.15
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.35,0.1,0.35"
+        density: 3500
+        layer:
+        - WallLayer
+
+- type: entity
+  parent: BaseTree
+  id: BaseTreeConiferSmall
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Decoration/Flora/tree_spruce_small.rsi
+    offset: 0,1.15
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.35,0.1,0.35"
+        density: 3500
+        layer:
+        - WallLayer
+
+- type: entity
+  parent: BaseTree
+  id: BaseTreeConiferBig
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Decoration/Flora/tree_spruce_big.rsi
+    offset: 0,1.15
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.35,0.1,0.35"
+        density: 3500
+        layer:
+        - WallLayer
+
+- type: entity
+  parent: BaseTree
+  id: BaseTreeBirchSmall
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Decoration/Flora/tree_birch_small.rsi
+    offset: 0,0.7
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,0.3"
+        density: 4000
+        layer:
+        - WallLayer
+
+- type: entity
+  parent: BaseTree
+  id: BaseTreeBirchMedium
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Decoration/Flora/tree_birch_medium.rsi
+    offset: 0,0.7
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,0.3"
+        density: 4000
+        layer:
+        - WallLayer
+
+- type: entity
+  parent: BaseTree
+  id: BaseTreeBirchBig
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Decoration/Flora/tree_birch_big.rsi
+    offset: 0,1.55
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.18,-0.35,0.18,0.35"
+        density: 2000
+        layer:
+        - WallLayer
+
+- type: entity
+  parent: BaseTree
+  id: BaseTreeDead
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Decoration/Flora/tree_died.rsi
+    offset: 0,0.7
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,0.3"
+        density: 4000
+        layer:
+        - WallLayer
+
+- type: entity
+  parent: BaseTree
+  id: BaseTreeDeadSmall
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Decoration/Flora/tree_died_small.rsi
+    offset: 0,0.7
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,0.3"
+        density: 4000
+        layer:
+        - WallLayer
+
+- type: entity
+  parent: BaseTree
+  id: BaseTreeVampire
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Decoration/Flora/tree_vampire.rsi
+    offset: 0,0.7
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,0.3"
+        density: 4000
+        layer:
+        - WallLayer
+
+#Trees
+
+- type: entity
+  parent: BaseTreeBirchBig
+  id: FloraBirchTreeLargeSL
+  name: large birch tree
+  components:
+  - type: Sprite
+    layers:
+    - state: tree01
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        tree01: ""
+        tree02: ""
+
+- type: entity
+  parent: BaseTreeBirchMedium
+  id: FloraBirchTreeMediumSL
+  name: medium birch tree
+  components:
+  - type: Sprite
+    layers:
+    - state: tree01
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        tree01: ""
+        tree02: ""
+
+- type: entity
+  parent: BaseTreeBirchSmall
+  id: FloraBirchTreeSmallSL
+  name: small birch tree
+  components:
+  - type: Sprite
+    layers:
+    - state: tree01
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        tree01: ""
+        tree02: ""
+
+- type: entity
+  parent: BaseTreeDead
+  id: FloraDeadTreeSL
+  name: dead tree
+  components:
+  - type: Sprite
+    layers:
+    - state: tree01
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        tree01: ""
+        tree02: ""
+        tree03: ""
+        tree04: ""
+
+- type: entity
+  parent: BaseTreeDeadSmall
+  id: FloraDeadTreeSmallSL
+  name: small dead tree
+  components:
+  - type: Sprite
+    layers:
+    - state: tree01
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        tree01: ""
+        tree02: ""
+        tree03: ""
+        tree04: ""
+
+- type: entity
+  parent: BaseTreeSnow
+  id: FloraSnowTreeSL
+  name: snowy tree
+  components:
+  - type: Sprite
+    layers:
+    - state: tree01
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        tree01: ""
+        tree02: ""
+        tree03: ""
+        tree04: ""
+        tree05: ""
+        tree06: ""
+
+- type: entity
+  parent: BaseTreeConifer
+  id: FloraTreeConiferMediumSL
+  name: medium conifer tree
+  components:
+  - type: Sprite
+    layers:
+    - state: tree01
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        tree01: ""
+        tree02: ""
+        tree03: ""
+        tree04: ""
+
+- type: entity
+  parent: BaseTreeConiferBig
+  id: FloraTreeConiferBigSL
+  name: medium conifer tree
+  components:
+  - type: Sprite
+    layers:
+    - state: tree01
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        tree01: ""
+        tree02: ""
+
+- type: entity
+  parent: BaseTreeConiferSmall
+  id: FloraTreeConiferSmallSL
+  name: small conifer tree
+  components:
+  - type: Sprite
+    layers:
+    - state: tree01
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        tree01: ""
+        tree02: ""
+        tree03: ""
+        tree04: ""
+        tree05: ""
+        tree06: ""
+
+- type: entity
+  parent: BaseTreeVampire
+  id: FloraTreeVampireSL
+  name: gulthias tree
+  components:
+  - type: Sprite
+    layers:
+    - state: 1
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        1: ""
+        2: ""
+        3: ""
+        4: ""
+        5: ""
+        6: ""

@@ -16,6 +16,8 @@ using Content.Shared.Spillable;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Shared._Funkystation.Fluids;
+using Content.Shared._Starlight.Chemistry.Components;
 using Robust.Shared.Player;
 
 namespace Content.Shared.Fluids;
@@ -23,7 +25,7 @@ namespace Content.Shared.Fluids;
 public abstract partial class SharedPuddleSystem
 {
     private static readonly FixedPoint2 MeleeHitTransferProportion = 0.25;
-    [Dependency] private readonly InjectorSystem _injectorSystem = default!;
+    [Dependency] private InjectorSystem _injectorSystem = default!;
 
     protected virtual void InitializeSpillable()
     {
@@ -32,6 +34,21 @@ public abstract partial class SharedPuddleSystem
         SubscribeLocalEvent<SpillableComponent, MeleeHitEvent>(SplashOnMeleeHit, after: [typeof(OpenableSystem)]);
         SubscribeLocalEvent<SpillableComponent, AttemptPacifiedThrowEvent>(OnAttemptPacifiedThrow);
     }
+
+    #region Starlight
+
+    [SubscribeLocalEvent]
+    private void OnShakeSpill(Entity<ShakeSpillableComponent> entity, ref ShakeEvent args)
+    {
+        if (Openable.IsClosed(entity.Owner)
+            || !_solutionContainerSystem.TryGetSolution(entity.Owner, entity.Comp.SolutionName, out var solutionEntity, out var solution)
+            || solution.Volume <= 0)
+            return;
+
+        var spilled = _solutionContainerSystem.SplitSolution(solutionEntity.Value, solution.Volume);
+        TrySplashSpillAt(entity.Owner, Transform(entity.Owner).Coordinates, spilled, out _);
+    }
+    #endregion
 
     private void OnExamined(Entity<SpillableComponent> entity, ref ExaminedEvent args)
     {
@@ -162,6 +179,14 @@ public abstract partial class SharedPuddleSystem
                 continue;
 
             var splitSolution = _solutionContainerSystem.SplitSolution(soln.Value, totalSplit / hitCount);
+
+            // Forky - Start - Stains
+            if (splitSolution.Volume > 0)
+            {
+                var stainEv = new SpilledOnEvent(entity.Owner, splitSolution.Clone());
+                RaiseLocalEvent(hit, stainEv);
+            }
+            // Forky - End
 
             AdminLogger.Add(LogType.MeleeHit,
                 $"{ToPrettyString(args.User):actor} "

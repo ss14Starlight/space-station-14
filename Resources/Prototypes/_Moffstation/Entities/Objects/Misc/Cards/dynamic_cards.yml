@@ -1,0 +1,52 @@
+# Dynamic entities - Used to make cards / decks / hands programmatically during gameplay.
+- type: entity
+  parent: BasePlayingCard
+  id: PlayingCardDynamic
+  name: playing card
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: joker # Dummy layer because the actual visuals are composed dynamically.
+      sprite: _Moffstation/Objects/Misc/Cards/card_black.rsi
+      visible: False
+  - type: PlayingCard
+    name: "dynamic-playing-card-error-name"
+    description: "dynamic-playing-card-error-description"
+    reverseName: "dynamic-playing-card-error-reverse"
+    obverseLayers: [ ]
+    reverseLayers: [ ]
+
+- type: entity
+  parent: BasePlayingCardDeck
+  id: PlayingCardDeckDynamic
+  name: deck of cards
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BaseItem
+  id: PlayingCardHandDynamic
+  categories: [ HideSpawnMenu ]
+  name: hand of cards
+  components:
+  - type: Sprite
+    layers:
+    - state: joker # Dummy layer because the actual visuals are composed dynamically.
+      sprite: _Moffstation/Objects/Misc/Cards/card_black.rsi
+      visible: False
+  - type: Item
+    size: Small
+  - type: Appearance
+  - type: HideInStripMenu
+    strategy: !type:HideInStripMenuWithDynamicStrategy
+  - type: PlayingCardHand
+    visualLimit: 5
+  - type: ContainerContainer
+    containers:
+      playing-card-stack-container: !type:Container
+  - type: UserInterface
+    interfaces:
+      enum.PlayingCardHandUiKey.Key:
+        type: PlayingCardHandMenuBoundUserInterface
+  - type: ActivatableUI
+    key: enum.PlayingCardHandUiKey.Key

@@ -6,16 +6,22 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Science
-      time: 5h
+      time: 10h
       inverted: true # stop playing intern if you're good at science!
   weight: -1
   startingGear: ResearchAssistantGear
   icon: "JobIconResearchAssistant"
   supervisors: job-supervisors-science
-  canBeAntag: false
   access:
   - Research
   - Maintenance
+# starlight-start
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: AntagImmune
+    - type: NoObjectiveTarget
+# starlight-end
 
 - type: startingGear
   id: ResearchAssistantGear

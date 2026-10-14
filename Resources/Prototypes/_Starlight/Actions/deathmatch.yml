@@ -1,0 +1,18 @@
+# Create a toolbox
+- type: entity
+  parent: BaseAction
+  id: ActionCreateRobustToolbox
+  name: Create toolbox
+  description: Creates a robust toolbox.
+  components:
+  - type: Action
+    useDelay: 60
+    icon:
+      sprite: Objects/Tools/Toolboxes/toolbox_red.rsi
+      state: icon
+    itemIconStyle: NoItem
+    priority: -10
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: WeaponMeleeToolboxRobustDeathmatch
+      requiresFreeHand: true

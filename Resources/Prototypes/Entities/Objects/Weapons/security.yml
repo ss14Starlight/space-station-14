@@ -1,16 +1,57 @@
 - type: entity
   name: stun baton
-  parent: [BaseItem, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, BaseStunbaton, BaseSecurityContraband ] # Blimpuf
   id: Stunbaton
   description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/stunbaton.rsi
+  #Starlight Start
     layers:
+    - state: stunbaton_on
+      visible: true
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_on" ]
     - state: stunbaton_off
-      map: [ "enum.ToggleableVisuals.Layer" ]
+      visible: false
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_off" ]
+    - state: stunbaton_nocell
+      visible: false
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_nocell" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.StunbatonVisuals.Stunbaton_on:
+        enum.StunbatonVisualLayers.Stunbaton_on:
+          True: { visible: true }
+          False: { visible: false }
+      enum.StunbatonVisuals.Stunbaton_off:
+        enum.StunbatonVisualLayers.Stunbaton_off:
+          True: { visible: true }
+          False: { visible: false }
+      enum.StunbatonVisuals.Stunbaton_nocell:
+        enum.StunbatonVisualLayers.Stunbaton_nocell:
+          True: { visible: true }
+          False: { visible: false }
   - type: Stunbaton
-    energyPerUse: 50
+    energyPerUse: 36 # from 50 to account for medium power cells. (720 charge with 36 per use = 20 hits)
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: PowerCellDraw
+    drawRate: 1.5
+  - type: ToggleCellDraw
+  #Starlight End
   - type: ItemToggle
     predictable: false
     soundActivate:
@@ -32,8 +73,6 @@
     activatedDamage:
       types:
         Blunt: 0
-    deactivatedSoundOnHit: #starlight
-      collection: GenericHit #starlight
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
@@ -42,8 +81,6 @@
     bluntStaminaDamageFactor: 2.0
     angle: 60
     animation: WeaponArcThrust
-    soundHit: #starlight
-      collection: GenericHit #starlight
   - type: StaminaDamageOnHit
     damage: 35
     sound: /Audio/Weapons/egloves.ogg
@@ -51,9 +88,9 @@
     damage: 35
     sound: /Audio/Weapons/egloves.ogg
   - type: LandAtCursor # it deals stamina damage when thrown
-  - type: Battery
-    maxCharge: 1000
-    startingCharge: 1000
+  # - type: Battery
+  #   maxCharge: 1000
+  #   startingCharge: 1000
   - type: UseDelay
   - type: Item
     heldPrefix: off
@@ -65,20 +102,12 @@
     - Belt
   - type: DisarmMalus
     malus: 0.225
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-     enum.ToggleableVisuals.Enabled:
-        enum.ToggleableVisuals.Layer:
-          True: {state: stunbaton_on}
-          False: {state: stunbaton_off}
   - type: StaticPrice
     price: 80
   - type: Riggable
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      battery:
-        maxVol: 5
+    - SolutionRiggable
   - type: InjectableSolution
     solution: battery
   - type: DrawableSolution
@@ -98,7 +127,7 @@
 
 - type: entity
   name: truncheon
-  parent: [BaseItem, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, BaseItem, BaseSecurityContraband ] # Blimpuf
   id: Truncheon
   description: A rigid, steel-studded baton, meant to harm.
   components:
@@ -135,7 +164,7 @@
 
 - type: entity
   name: flash
-  parent: [BaseItem, BaseSecurityScienceCommandContraband]
+  parent: [ BaseContrabandTier2, BaseItem, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband, BaseNanoTrasenContraband ] # Starlight
   id: Flash
   description: An ultrabright flashbulb with a trigger, which causes the victim to be dazed and lose their eyesight for a moment. Useless when burnt out.
   components:
@@ -191,7 +220,7 @@
 
 - type: entity
   name: portable flasher
-  parent: [BaseMachine, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, BaseMachine, BaseSecurityContraband ] # Blimpuf
   id: PortableFlasher
   description: An ultrabright flashbulb with a proximity trigger, useful for making an area security-only.
   components:

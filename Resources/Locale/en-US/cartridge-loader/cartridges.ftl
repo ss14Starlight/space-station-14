@@ -7,6 +7,7 @@ news-read-program-name = Station news
 
 crew-manifest-program-name = Crew manifest
 crew-manifest-cartridge-loading = Loading ...
+crew-manifest-cartridge-loading-failed = Failed to load crew manifest!
 
 net-probe-program-name = NetProbe
 net-probe-scan = Scanned {$device}!
@@ -62,7 +63,7 @@ nano-task-ui-new-task = New Task
 nano-task-ui-description-label = Description:
 nano-task-ui-description-placeholder = Get something important
 nano-task-ui-requester-label = Requester:
-nano-task-ui-requester-placeholder = John Nanotrasen
+nano-task-ui-requester-placeholder = John NanoTrasen
 nano-task-ui-item-title = Edit Task
 nano-task-printed-description = [bold]Description[/bold]: {$description}
 nano-task-printed-requester = [bold]Requester[/bold]: {$requester}

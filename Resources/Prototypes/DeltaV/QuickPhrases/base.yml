@@ -2,32 +2,32 @@
 
 - type: quickPhrase
   id: BaseCommonPhrase
-  tab: Common Phrases
+  tab: aac-tab-common #starlight
   abstract: true
 
 - type: quickPhrase
   id: BaseJobPhrase
-  tab: Jobs
+  tab: aac-tab-jobs #starlight
   abstract: true
 
 - type: quickPhrase
   id: BaseLocationPhrase
-  tab: Locations
+  tab: aac-tab-locations #starlight
   abstract: true
 
 - type: quickPhrase
   id: BaseSubjectPhrase
-  tab: Subjects
+  tab: aac-tab-subjects #starlight
   abstract: true
 
 - type: quickPhrase
   id: BaseThreatPhrase
-  tab: Safety
+  tab: aac-tab-safety #starlight
   abstract: true
 
 - type: quickPhrase
   id: BaseSpeciesPhrase
-  tab: Species
+  tab: aac-tab-species #starlight
   abstract: true
 
 # Departments

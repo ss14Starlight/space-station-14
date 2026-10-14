@@ -33,3 +33,7 @@
     helium: HeliumCanister
     anti-noblium: AntiNobliumCanister
     # Funkystation End: Funky atmos - /tg/ gases
+    # Starlight start, Starlight gases
+    ulnitranium: UlnitraniumCanister
+    zxa: ZXACanister
+    # Starlight end

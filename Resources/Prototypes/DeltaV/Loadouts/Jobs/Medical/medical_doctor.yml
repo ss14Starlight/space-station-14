@@ -1,0 +1,57 @@
+﻿#Head
+- type: loadout
+  id: BlackSurgeryCap
+  equipment:
+    head: ClothingHeadHatSurgcapBlack
+
+- type: loadout
+  id: CyanSurgeryCap
+  equipment:
+    head: ClothingHeadHatSurgcapCyan
+
+- type: loadout
+  id: PinkSurgeryCap
+  equipment:
+    head: ClothingHeadHatSurgcapPink
+
+- type: loadout
+  id: RainbowSurgeryCap
+  equipment:
+    head: ClothingHeadHatSurgcapRainbow
+
+- type: loadout
+  id: WhiteSurgeryCap
+  equipment:
+    head: ClothingHeadHatSurgcapWhite
+
+#Outer Clothing
+- type: loadout
+  id: RegularLabCoatLong
+  equipment:
+    outerClothing: ClothingOuterCoatLabLong
+
+#Jumpsuits
+- type: loadout
+  id: MedicalBlackScrubs
+  equipment:
+    jumpsuit: UniformScrubsColorBlack
+
+- type: loadout
+  id: MedicalCyanScrubs
+  equipment:
+    jumpsuit: UniformScrubsColorCyan
+
+- type: loadout
+  id: MedicalPinkScrubs
+  equipment:
+    jumpsuit: UniformScrubsColorPink
+
+- type: loadout
+  id: MedicalRainbowScrubs
+  equipment:
+    jumpsuit: UniformScrubsColorRainbow
+
+- type: loadout
+  id: MedicalWhiteScrubs
+  equipment:
+    jumpsuit: UniformScrubsColorWhite

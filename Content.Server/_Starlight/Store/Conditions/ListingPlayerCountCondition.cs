@@ -1,7 +1,7 @@
 using Content.Shared.Store;
 using Robust.Shared.Player;
 
-namespace Content.Server.Store.Conditions;
+namespace Content.Server._Starlight.Store.Conditions;
 
 /// <summary>
 /// Only allows a listing to be purchased if population is at a certain number.
@@ -23,13 +23,13 @@ public sealed partial class ListingPlayerCountCondition : ListingCondition
     [DataField]
     public int Maximum = 500;
 
-    private static ISharedPlayerManager? _playerManager;
+    private static ISharedPlayerManager? s_playerManager;
 
     public override bool Condition(ListingConditionArgs args)
     {
-        _playerManager ??= IoCManager.Resolve<ISharedPlayerManager>();
+        s_playerManager ??= IoCManager.Resolve<ISharedPlayerManager>();
 
-        var playerCount = _playerManager.PlayerCount;
+        var playerCount = s_playerManager.PlayerCount;
 
         return playerCount >= Minimum && playerCount <= Maximum;
     }

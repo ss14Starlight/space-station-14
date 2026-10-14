@@ -1,0 +1,17 @@
+- type: entity
+  parent: ToolboxMechanical
+  id: ToolboxOfHolding
+  name: strange toolbox
+  description: A strangely heavy toolbox. The inside appears incredibly spacious.
+  suffix: ARTIFACT
+  components:
+  - type: Storage
+    maxItemSize: Ginormous
+    grid:
+    - 0,0,11,5
+    storageOpenSound: /Audio/Items/toolbox_open.ogg
+    storageCloseSound: /Audio/Items/toolbox_close.ogg
+    storageInsertSound: /Audio/Items/toolbox_insert.ogg
+    storageRemoveSound: /Audio/Items/toolbox_remove.ogg
+  - type: StaticPrice
+    price: 5000

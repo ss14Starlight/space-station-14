@@ -1,0 +1,27 @@
+- type: entity
+  id: OrganNeoArachnidHeart
+  parent: [BaseNeocyteOrgan, OrganNeocyteHeart]
+  name: arachnid cybernetic heart
+  suffix: Neo-Arachnid
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Item
+    size: Small
+    heldPrefix: heart
+  - type: Metabolizer
+    updateInterval: 1.5
+    maxReagents: 2
+    metabolizerTypes: [ Arachnid, Neocyte ]
+    stages: [ Bloodstream ]
+
+- type: entity
+  id: OrganNeoArachnidTongue
+  parent: OrganNeocyteTongue
+  suffix: Neo-Arachnid
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: NeoArachnidMSounds
+      Female: NeoArachnidFSounds
+      Unsexed: NeoArachnidMSounds

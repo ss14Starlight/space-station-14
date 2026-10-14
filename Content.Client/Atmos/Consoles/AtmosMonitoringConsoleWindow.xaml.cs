@@ -29,12 +29,23 @@ public sealed partial class AtmosMonitoringConsoleWindow : FancyWindow
     private int? _focusNetId;
 
     private bool _autoScrollActive = false;
+    public event Action<EntityCoordinates>? MapClicked; // Starlight: go to clicked position for AI
 
     private readonly Color _unfocusedDeviceColor = Color.DimGray;
     private ProtoId<NavMapBlipPrototype> _navMapConsoleProtoId = "NavMapConsole";
     private ProtoId<NavMapBlipPrototype> _gasPipeSensorProtoId = "GasPipeSensor";
 
-    private readonly Vector2[] _pipeLayerOffsets = { new Vector2(0f, 0f), new Vector2(0.25f, 0.25f), new Vector2(-0.25f, -0.25f) };
+    // #region Starlight
+    // used for rendering the "map blips" when the 'Gas pipe sensors' is toggled on in the 'Toggle map overlays' on the Atmosheric Network Monitor.
+    private readonly Vector2[] _pipeLayerOffsets =
+    {
+        new Vector2(0f, 0f),           // primary    (middle pipe)
+        new Vector2(0.125f, 0.125f),   // secondary  (above middle pipe)
+        new Vector2(-0.125f, -0.125f), // tertiary   (below middle pipe)
+        new Vector2(0.25f, 0.25f),     // quaternary (top pipe)
+        new Vector2(-0.25f, -0.25f)    // quinary    (bottom pipe)
+    };
+    // #endregion Starlight
 
     public AtmosMonitoringConsoleWindow(AtmosMonitoringConsoleBoundUserInterface userInterface, EntityUid? owner)
     {
@@ -74,6 +85,8 @@ public sealed partial class AtmosMonitoringConsoleWindow : FancyWindow
 
         // Set trackable entity selected action
         NavMap.TrackedEntitySelectedAction += SetTrackedEntityFromNavMap;
+        NavMap.MapClickedAction += OnNavMapClicked; // Starlight: go to clicked position for AI
+        MapClicked += userInterface.SendMapClicked; // Starlight: go to clicked position for AI
 
         // Update nav map
         NavMap.ForceNavMapUpdate();
@@ -95,6 +108,13 @@ public sealed partial class AtmosMonitoringConsoleWindow : FancyWindow
         // Initalize
         UpdateUI(consoleCoords, Array.Empty<AtmosMonitoringConsoleEntry>());
     }
+
+    #region Starlight
+    private void OnNavMapClicked(EntityCoordinates coordinates)
+    {
+        MapClicked?.Invoke(coordinates);
+    }
+    #endregion
 
     #region Toggle handling
 

@@ -16,3 +16,13 @@
   id: Conversion
   displayName: "Total Conversions"
   canWithdraw: false
+
+- type: currency
+  id: BloodEssence
+  displayName: store-currency-display-blood-essence
+  canWithdraw: false
+
+- type: currency
+  id: EvolutionPoint
+  displayName: store-currency-display-evolutionpoints
+  canWithdraw: false

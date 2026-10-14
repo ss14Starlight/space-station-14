@@ -1,7 +1,7 @@
 using System.Numerics;
 using Robust.Shared.Map;
 
-namespace Content.Server.Shuttles.Components;
+namespace Content.Server._Starlight.Shuttles.Components;
 
 /// <summary>
 /// Placed on a hitscan shuttle gun (e.g. ShuttleGunApollo) to make it emit transient laser

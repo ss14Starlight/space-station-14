@@ -1,7 +1,7 @@
 using Content.Shared._Starlight.Combat.Ranged.Pierce;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Weapons.Hitscan.Components;
+namespace Content.Shared._Starlight.Weapons.Hitscan.Components;
 
 /// <summary>
 /// Hitscan entities that have this will be able to pierce through things like people which have PiercableComponent.

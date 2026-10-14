@@ -3,7 +3,7 @@
   bodyPart: FacialHair
   markingCategory: FacialHair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight. Not sure how much of this will be visible, but it's here in case we make different types of Neocyte heads in the future...
   # Starlight start
   sprites:
     body_facialHair:
@@ -18,7 +18,7 @@
   bodyPart: FacialHair
   markingCategory: FacialHair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -33,7 +33,7 @@
   bodyPart: FacialHair
   markingCategory: FacialHair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -48,7 +48,7 @@
   bodyPart: FacialHair
   markingCategory: FacialHair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -63,7 +63,7 @@
   bodyPart: FacialHair
   markingCategory: FacialHair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -78,7 +78,7 @@
   bodyPart: FacialHair
   markingCategory: FacialHair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -93,7 +93,7 @@
   bodyPart: FacialHair
   markingCategory: FacialHair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -102,4 +102,3 @@
           state: tuft_s
         colorSource: HumanFacialHairColor
   # Starlight end
-

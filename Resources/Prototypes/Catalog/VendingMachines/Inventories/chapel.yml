@@ -32,11 +32,13 @@
     Urn: 5
     Bible: 1
     CosmicCenser: 1 # Starlight: Cosmic Cult
+    TarotCardDeckBox: 1 # Moffstation - Add Tarot cards to the chapel vending machine.
   contrabandInventory:
     FoodBakedBunHotX: 2
     DrinkWineBottleFull: 1
     ToyFigurineChaplain: 1
     ClothingNeckScarfStripedBlack: 3
+    ClothingNeckScarfSolidBlack: 3 # Starlight
     #StarLight
     BibleBibble:  1
     #Endofstarlight

@@ -1,11 +1,6 @@
-﻿using Content.Client._Starlight.Antags.Abductor;
-using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared.Starlight.Economy.Atm;
+﻿using Content.Shared._Starlight.Economy.Atm;
 using JetBrains.Annotations;
-using Robust.Client.UserInterface.Controls;
-using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Utility;
-using static Content.Shared.Pinpointer.SharedNavMapSystem;
 
 namespace Content.Client._Starlight.Economy.Atm;
 
@@ -38,16 +33,14 @@ public sealed class ATMBui : BoundUserInterface
     }
 
     private void Update(ATMBuiState state)
-    {
-        RefreshUI(state);
-    }
+        => RefreshUI(state);
 
     private void TryInitWindow()
     {
         if (_window != null) return;
         _window = new ATMWindow();
         _window.OnClose += Close;
-        _window.Title = "Automated Teller Machine";
+        _window.Title = Loc.GetString("ui-atm-title");
 
         _window.WithdrawTabButton.OnPressed += _ =>
         {

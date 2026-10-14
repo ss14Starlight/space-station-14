@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretMedTak
+  name: MedTak beret
+  description: A beret bearing the MedTak logo.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Clothing/Head/Hats/beret_medtak.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/MedTak/Clothing/Head/Hats/beret_medtak.rsi
+  - type: Tag
+    tags:
+    - CorgiWearable

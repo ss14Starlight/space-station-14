@@ -53,7 +53,7 @@
         Blunt: 10
 
 - type: entity
-  parent: [ ClothingEyesBase, BaseEngineeringSalvageContraband ] #Starlight salvContra
+  parent: [ ClothingEyesBase, BaseEngineeringContraband, BaseSalvageContraband ] # Blimpuf salvContra
   id: ClothingEyesGlassesMeson
   name: engineering goggles #less confusion
   description: Green-tinted goggles using a proprietary polymer that provides protection from eye damage of all types.
@@ -144,6 +144,7 @@
     sprite: Clothing/Eyes/Glasses/sunglasses.rsi
   - type: Tag
     tags:
+    - CheapSunglasses #Starlight
     - HamsterWearable
     - PetWearable
     - WhitelistChameleon
@@ -161,6 +162,7 @@
     protectionTime: 5
   - type: Tag
     tags:
+    - CheapSunglasses #Starlight
     - Sunglasses
     - PetWearable
     - HamsterWearable
@@ -209,6 +211,7 @@
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
+  - type: ShowAccess # Starlight
   - type: Tag
     tags:
     - HamsterWearable
@@ -254,6 +257,7 @@
   - type: GroupExamine
   - type: IdentityBlocker
     coverage: EYES
+  - type: ThermalSight
 
 - type: entity
   parent: ClothingEyesBase
@@ -274,7 +278,7 @@
       - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingEyesBase, BaseHighlyIllegalContraband]
+  parent: [ BaseContrabandTier4, ClothingEyesBase ] # Blimpuf
   id: ClothingEyesVisorNinja
   name: ninja visor
   description: An advanced visor protecting a ninja's eyes from flashing lights.
@@ -303,27 +307,6 @@
     protectionTime: 5
   - type: StealTarget # Starlight
     stealGroup: MiscGlassesCollection # Starlight
-  - type: NoirOverlay
-  - type: Tag
-    tags:
-    - HamsterWearable
-    - WhitelistChameleon
-
-- type: entity
-  parent: ClothingEyesBase
-  id: ClothingEyesGlassesNoirAssistant
-  name: cheap noir-tech glasses
-  description: A pair of glasses that simulate what the world looked like before the invention of color.
-  components:
-  - type: Sprite
-    sprite: Clothing/Eyes/Glasses/noir.rsi
-  - type: Clothing
-    sprite: Clothing/Eyes/Glasses/sunglasses.rsi
-  - type: IdentityBlocker
-    coverage: EYES
-  - type: FlashImmunity
-  - type: EyeProtection
-    protectionTime: 5
   - type: NoirOverlay
   - type: Tag
     tags:

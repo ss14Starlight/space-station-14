@@ -6,7 +6,7 @@
   markingCategory: HeadSide
   # followSkinColor: true
   forcedColoring: true
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headSide@0:
@@ -27,7 +27,7 @@
   markingCategory: Tail
   # followSkinColor: true
   forcedColoring: true
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_tail:
@@ -43,7 +43,7 @@
   id: AvaliEarsStripeOne
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headSide@0:
@@ -82,7 +82,7 @@
   id: AvaliHeadStripeOne
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_head@0:
@@ -101,7 +101,7 @@
   id: AvaliTorsoStripeOne
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_chest@0:
@@ -120,7 +120,7 @@
   id: AvaliArmStripeOne
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm@0:
@@ -149,7 +149,7 @@
   id: AvaliHandStripeOne
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_lHand@0:
@@ -178,7 +178,7 @@
   id: AvaliLegStripeOne
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -197,7 +197,7 @@
   id: AvaliTailStripeOne
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -223,7 +223,7 @@
   id: AvaliEarsTrimOne
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headSide@0:
@@ -262,7 +262,7 @@
   id: AvaliHeadTrimOne
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_head@0:
@@ -281,7 +281,7 @@
   id: AvaliTorsoTrimOne
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_chest@0:
@@ -300,7 +300,7 @@
   id: AvaliArmTrimOne
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm@0:
@@ -329,7 +329,7 @@
   id: AvaliHandTrimOne
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_lHand@0:
@@ -358,7 +358,7 @@
   id: AvaliLegTrimOne
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg@0:
@@ -387,7 +387,7 @@
   id: AvaliTailTrimOne
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -413,7 +413,7 @@
   id: AvaliEarsTrimTwo
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headSide@0:
@@ -452,7 +452,7 @@
   id: AvaliHeadTrimTwo
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_head@0:
@@ -471,7 +471,7 @@
   id: AvaliTorsoTrimTwo
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_chest@0:
@@ -490,7 +490,7 @@
   id: AvaliArmTrimTwo
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm@0:
@@ -519,7 +519,7 @@
   id: AvaliHandTrimTwo
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_lHand@0:
@@ -548,7 +548,7 @@
   id: AvaliTailTrimTwo
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -574,7 +574,7 @@
   id: AvaliEarringOne
   bodyPart: HeadTop
   markingCategory: Overlay
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop@0:
@@ -598,7 +598,7 @@
   id: AvaliEarringTwo
   bodyPart: HeadTop
   markingCategory: Overlay
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop@0:
@@ -622,7 +622,7 @@
   id: AvaliEarringThree
   bodyPart: HeadTop
   markingCategory: Overlay
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop@0:
@@ -646,7 +646,7 @@
   id: AvaliEarringFour
   bodyPart: HeadTop
   markingCategory: Overlay
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop@0:
@@ -670,7 +670,7 @@
   id: AvaliEarringCombined
   bodyPart: HeadTop
   markingCategory: Overlay
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop@0:
@@ -694,7 +694,7 @@
   id: AvaliEarring
   bodyPart: HeadSide
   markingCategory: Overlay
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headSide:
@@ -710,7 +710,7 @@
   id: AvaliTailbandCombined
   bodyPart: Tail
   markingCategory: Overlay
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -734,7 +734,7 @@
   id: AvaliTailbandOne
   bodyPart: Tail
   markingCategory: Overlay
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -758,7 +758,7 @@
   id: AvaliTailbandTwo
   bodyPart: Tail
   markingCategory: Overlay
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -777,7 +777,7 @@
   id: AvaliTailbandThree
   bodyPart: Tail
   markingCategory: Overlay
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -803,7 +803,7 @@
   id: AvaliMultiwingHand
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_lHand@0:
@@ -862,7 +862,7 @@
   id: AvaliMultiwingTipsHand
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_lHand@0:
@@ -933,7 +933,7 @@
   id: AvaliBicoloredHand
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_lHand@0:
@@ -968,13 +968,11 @@
       colorSource: UniqueColor
   # Starlight end
 
-#Bicolored Wings with Tips
-
 - type: marking
   id: AvaliBicoloredTipsHand
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_lHand@0:
@@ -1019,13 +1017,11 @@
       colorSource: UniqueColor
   # Starlight end
 
-#Additional Tail Tips
-
 - type: marking
   id: AvaliPointedTailtip
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -1044,7 +1040,7 @@
   id: AvaliChevronTailtip
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:

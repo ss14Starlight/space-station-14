@@ -252,7 +252,7 @@
         treesnow06: ""
 
 - type: entity
-  parent: BaseTreeSnow
+  parent: BaseTreeConiferOld # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: FloraTreeStump
   name: tree stump
   components:
@@ -279,7 +279,7 @@
         treelarge06: ""
 
 - type: entity
-  parent: BaseTreeConifer
+  parent: BaseTreeConiferSnow # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: FloraTreeConifer
   name: snowy conifer
   components:
@@ -295,7 +295,7 @@
         treeconifer03: ""
 
 - type: entity
-  parent: BaseTreeConifer
+  parent: BaseTreeConiferOld # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: FloraTreeChristmas01
   name: christmas tree
   components:
@@ -303,7 +303,7 @@
     state: treechristmas01
 
 - type: entity
-  parent: BaseTreeConifer
+  parent: BaseTreeConiferOld # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: FloraTreeChristmas02
   suffix: Safe Presents
   name: christmas tree
@@ -351,7 +351,7 @@
         orGroup: present
 
 - type: entity
-  parent: BaseTreeConifer
+  parent: BaseTreeConiferOld # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: FloraTreeStumpConifer
   name: tree stump
   components:

@@ -11,11 +11,11 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Camera;
 
-public sealed class ScreenshakeSystem : EntitySystem
+public sealed partial class ScreenshakeSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     /// <summary>
     /// Cooldowns take a string key so that multiple systems can apply their shake effects without one shake effect blocking the other.
@@ -38,6 +38,7 @@ public sealed class ScreenshakeSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        var curTime = _timing.CurTime;
         var shakers = EntityQueryEnumerator<EyeComponent, ScreenshakeComponent>();
 
         while (shakers.MoveNext(out var uid, out var eye, out var shake))
@@ -48,11 +49,8 @@ public sealed class ScreenshakeSystem : EntitySystem
                 continue;
             }
 
-            foreach (var command in shake.Commands.ToList().Where(command => _timing.CurTime >= command.CalculatedEnd))
-            {
-                shake.Commands.Remove(command);
+            if (shake.Commands.RemoveWhere(command => curTime >= command.CalculatedEnd) > 0)
                 Dirty(uid, shake);
-            }
         }
     }
 

@@ -4,7 +4,6 @@ using Content.Shared.Beam;
 using Content.Shared.Beam.Components;
 using Content.Shared.Physics;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
@@ -14,13 +13,13 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Server.Beam;
 
-public sealed class BeamSystem : SharedBeamSystem
+public sealed partial class BeamSystem : SharedBeamSystem
 {
-    [Dependency] private readonly FixtureSystem _fixture = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedBroadphaseSystem _broadphase = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private FixtureSystem _fixture = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedBroadphaseSystem _broadphase = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
 
     public override void Initialize()
     {

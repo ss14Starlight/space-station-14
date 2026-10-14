@@ -2,7 +2,6 @@ using Content.Server.Administration;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
-using Content.Server.Radio.EntitySystems;
 using Content.Shared.Access.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Interaction;
@@ -11,19 +10,20 @@ using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Mentor;
 
-public sealed class NCTTerminalSystem : EntitySystem
+public sealed partial class NCTTerminalSystem : EntitySystem
 {
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly IdExaminableSystem _idExaminableSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private QuickDialogSystem _quickDialog = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private IdExaminableSystem _idExaminableSystem = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedPowerReceiverSystem _power = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -90,6 +90,7 @@ public sealed class NCTTerminalSystem : EntitySystem
     {
         var message = Loc.GetString("nctterminal-message", ("nameAndJob", nameAndJob), ("message", requestmessage));
         var speech = _chat.GetSpeechVerb(uid, message);
+        var title = Loc.GetString("nctterminal-title");
         var wrappedMessage = Loc.GetString("chat-radio-message-wrap-bold",
                 ("color", "#2681a5"),
                 ("languageColor", "#2681a5"),
@@ -97,7 +98,7 @@ public sealed class NCTTerminalSystem : EntitySystem
                 ("fontSize", speech.FontSize),
                 ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
                 ("channel", $"\\[CentComm\\]"),
-                ("name", $"[icon src=\"JobIconNanotrasenCareerTrainer\" tooltip=\"NCT Dispatch\"] NCT Dispatch"),
+                ("name", $"[icon src=\"JobIconNanotrasenCareerTrainer\" tooltip=\"{FormattedMessage.EscapeStringParameter(title)}\"] {FormattedMessage.EscapeText(title)}"),
                 ("message", message));
 
         var query = EntityQueryEnumerator<NCTAgentComponent>();

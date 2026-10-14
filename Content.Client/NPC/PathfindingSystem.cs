@@ -7,24 +7,23 @@ using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Enums;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Client.NPC
 {
-    public sealed class PathfindingSystem : SharedPathfindingSystem
+    public sealed partial class PathfindingSystem : SharedPathfindingSystem
     {
-        [Dependency] private readonly IEyeManager _eyeManager = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IInputManager _inputManager = default!;
-        [Dependency] private readonly IMapManager _mapManager = default!;
-        [Dependency] private readonly IOverlayManager _overlayManager = default!;
-        [Dependency] private readonly IResourceCache _cache = default!;
-        [Dependency] private readonly NPCSteeringSystem _steering = default!;
-        [Dependency] private readonly MapSystem _mapSystem = default!;
-        [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+        [Dependency] private IEyeManager _eyeManager = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IInputManager _inputManager = default!;
+        [Dependency] private SharedMapSystem _mapManager = default!;
+        [Dependency] private IOverlayManager _overlayManager = default!;
+        [Dependency] private IResourceCache _cache = default!;
+        [Dependency] private NPCSteeringSystem _steering = default!;
+        [Dependency] private MapSystem _mapSystem = default!;
+        [Dependency] private SharedTransformSystem _transformSystem = default!;
 
         public PathfindingDebugMode Modes
         {
@@ -137,7 +136,7 @@ namespace Content.Client.NPC
         private readonly IEntityManager _entManager;
         private readonly IEyeManager _eyeManager;
         private readonly IInputManager _inputManager;
-        private readonly IMapManager _mapManager;
+        private readonly SharedMapSystem _mapManager;
         private readonly PathfindingSystem _system;
         private readonly MapSystem _mapSystem;
         private readonly SharedTransformSystem _transformSystem;
@@ -151,7 +150,7 @@ namespace Content.Client.NPC
             IEntityManager entManager,
             IEyeManager eyeManager,
             IInputManager inputManager,
-            IMapManager mapManager,
+            SharedMapSystem mapManager,
             IResourceCache cache,
             PathfindingSystem system,
             MapSystem mapSystem,

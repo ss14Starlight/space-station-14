@@ -45,7 +45,7 @@
     enabled: false
     radius: 2.5
     softness: 5
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Tag
     tags:
@@ -98,15 +98,6 @@
     - type: StationLimitedNetwork
     - type: WirelessNetworkConnection
       range: 500
-    #region Starlight Tracker rattle
-    - type: TriggerOnMobstateChange
-      mobState:
-      - Critical
-      - Dead
-    - type: RattleOnTrigger
-      targetUser: true
-      radioChannel: Security
-    #endregion Starlight tracker rattle
 
 #Traitor implants
 
@@ -182,7 +173,6 @@
     interfaces:
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
-  - type: UplinkImplant # Starlight-edit: Uplink Implant discounts
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -249,14 +239,15 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: VoiceMaskImplant
-  name: voice mask implant
-  description: This implant allows you to change your voice at will.
+  name: identity mask implant
+  description: This implant allows you to change your identity at will.
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
     implantAction: ActionChangeVoiceMaskImplant
   - type: VoiceMask
     overrideIdentity: true
+    changeIDName: true
   - type: UserInterface
     interfaces:
       enum.VoiceMaskUIKey.Key:

@@ -3,7 +3,7 @@
   id: ResomiFluffHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_head:
@@ -17,7 +17,7 @@
   id: ResomiFluffHeadUp
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_head:
@@ -31,7 +31,7 @@
   id: ResomiForehead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_head:
@@ -45,7 +45,7 @@
   id: ResomiHeadWar
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_head:
@@ -59,7 +59,7 @@
   id: ResomiHeadStripes
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_head:
@@ -73,7 +73,7 @@
   id: ResomiHeadCoat
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_head:
@@ -88,7 +88,7 @@
   id: ResomiEars
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_headSide:
@@ -102,7 +102,7 @@
   id: ResomiUpperEars
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_headSide:
@@ -116,7 +116,7 @@
   id: ResomiUpperEarsShort
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_headSide:
@@ -130,7 +130,7 @@
   id: ResomiUpperEarsAlternate
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_headSide@0:
@@ -149,7 +149,7 @@
   id: ResomiLowerEars
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_headSide:
@@ -163,7 +163,7 @@
   id: ResomiHeadFluff
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_headSide:
@@ -177,7 +177,7 @@
   id: ResomiHeadFluffShort
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_headSide:
@@ -192,7 +192,7 @@
   id: ResomiHeadJewelleryOneRight
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_headTop:
@@ -206,7 +206,7 @@
   id: ResomiHeadJewelleryOneLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_headTop:
@@ -220,7 +220,7 @@
   id: ResomiHeadJewelleryTwoRight
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_headTop:
@@ -234,7 +234,7 @@
   id: ResomiHeadJewelleryTwoLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_headTop:
@@ -248,7 +248,7 @@
   id: ResomiHeadJewelleryThreeRight
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_headTop:
@@ -262,7 +262,7 @@
   id: ResomiHeadJewelleryThreeLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_headTop:
@@ -276,7 +276,7 @@
   id: ResomiHeadJewelleryFourRight
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_headTop:
@@ -290,7 +290,7 @@
   id: ResomiHeadJewelleryFourLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_headTop:
@@ -305,7 +305,7 @@
   id: ResomiFluff
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_chest:
@@ -319,7 +319,7 @@
   id: ResomiFluffGroin
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_chest:
@@ -333,7 +333,7 @@
   id: ResomiGroinStripes
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_chest:
@@ -347,7 +347,7 @@
   id: ResomiBodyCoat
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_chest:
@@ -361,7 +361,7 @@
   id: ResomiBodyStripes
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_chest:
@@ -375,7 +375,7 @@
   id: ResomiBodyRings
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_chest:
@@ -389,7 +389,7 @@
   id: ResomiBodyLines
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_chest:
@@ -403,7 +403,7 @@
   id: ResomiBelly
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_chest:
@@ -417,7 +417,7 @@
   id: ResomiBackPatch
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_chest:
@@ -431,7 +431,7 @@
   id: ResomiBackPatchFull
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_chest:
@@ -446,7 +446,7 @@
   id: ResomiArmFeathersComplex
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_lHand@0:
@@ -475,7 +475,7 @@
   id: ResomiArmFade
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_lHand:
@@ -494,7 +494,7 @@
   id: ResomiArmFeathers
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_lHand:
@@ -513,7 +513,7 @@
   id: ResomiRShoulderFade
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_rArm:
@@ -527,7 +527,7 @@
   id: ResomiLShoulderFade
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_lArm:
@@ -541,7 +541,7 @@
   id: ResomiArmCoat
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_lArm:
@@ -556,12 +556,11 @@
       colorSource: UniqueColor
   # Starlight end
 
-# Leg Markings
 - type: marking
   id: ResomiLegFeathers
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_lFoot:
@@ -580,7 +579,7 @@
   id: ResomiRFootFade
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_rFoot:
@@ -594,7 +593,7 @@
   id: ResomiLFootFade
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_rFoot:
@@ -608,7 +607,7 @@
   id: ResomiLegFeathersComplex
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_lFoot@0:
@@ -637,7 +636,7 @@
   id: ResomiLegFade
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_lLeg:
@@ -656,7 +655,7 @@
   id: ResomiLegStripes
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_lLeg:
@@ -675,7 +674,7 @@
   id: ResomiLegCoat
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_lLeg:

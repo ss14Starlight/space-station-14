@@ -5,29 +5,30 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
+using Content.IntegrationTests.Utility;
 using Content.Shared.Chemistry.EntitySystems;
 
 namespace Content.IntegrationTests.Tests.Chemistry
 {
     [TestFixture]
     [TestOf(typeof(ReactionPrototype))]
-    public sealed class TryAllReactionsTest
+    public sealed class TryAllReactionsTest : GameTest
     {
         [TestPrototypes]
         private const string Prototypes = @"
-- type: entity
-  id: TestSolutionContainer
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 50
-        canMix: true";
+    -   type: entity
+        id: TestSolutionContainer
+        components:
+        -   type: Solution
+            id: beaker
+            solution:
+                maxVol: 120";
 
         [Test]
         public async Task TryAllTest()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             var entityManager = server.ResolveDependency<IEntityManager>();
@@ -50,7 +51,7 @@ namespace Content.IntegrationTests.Tests.Chemistry
                     beaker = entityManager.SpawnEntity("TestSolutionContainer", coordinates);
                     Assert.That(solutionContainerSystem
                         .TryGetSolution(beaker, "beaker", out solutionEnt, out solution));
-                    solutionEnt.Value.Comp.Solution.CanReact = false;
+                    solutionContainerSystem.SetCanReact(solutionEnt.Value, false);
                     foreach (var (id, reactant) in reactionPrototype.Reactants)
                     {
 #pragma warning disable NUnit2045
@@ -84,9 +85,8 @@ namespace Content.IntegrationTests.Tests.Chemistry
                     }
 
                     //Now safe set the temperature and mix the reagents
-                    solutionEnt.Value.Comp.Solution.CanReact = true;
                     solutionContainerSystem.SetTemperature(solutionEnt.Value, reactionPrototype.MinimumTemperature);
-                    solutionContainerSystem.UpdateChemicals(solutionEnt.Value);
+                    solutionContainerSystem.SetCanReact(solutionEnt.Value, true);
 
                     if (reactionPrototype.MixingCategories != null)
                     {
@@ -119,7 +119,6 @@ namespace Content.IntegrationTests.Tests.Chemistry
                 });
 
             }
-            await pair.CleanReturnAsync();
         }
     }
 

@@ -2,6 +2,7 @@
   id: HumanFacialHairAbe
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -10,10 +11,12 @@
           state: abe
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairBrokenman
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -22,10 +25,12 @@
           state: brokenman
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairChin
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -34,10 +39,12 @@
           state: chin
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairDwarf
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -46,10 +53,12 @@
           state: dwarf
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairFullbeard
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -58,10 +67,12 @@
           state: fullbeard
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairCroppedfullbeard
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -70,10 +81,12 @@
           state: croppedfullbeard
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairGt
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -82,10 +95,12 @@
           state: gt
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairHip
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -94,10 +109,12 @@
           state: hip
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairJensen
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -106,10 +123,12 @@
           state: jensen
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairNeckbeard
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -118,10 +137,12 @@
           state: neckbeard
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairWise
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -130,10 +151,12 @@
           state: wise
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairMuttonmus
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -142,10 +165,12 @@
           state: muttonmus
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairMartialartist
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -154,10 +179,12 @@
           state: martialartist
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairChinlessbeard
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -166,10 +193,12 @@
           state: chinlessbeard
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairMoonshiner
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -178,10 +207,12 @@
           state: moonshiner
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairLongbeard
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -190,10 +221,12 @@
           state: longbeard
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairVolaju
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -202,10 +235,12 @@
           state: volaju
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHair3oclock
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -214,10 +249,12 @@
           state: 3oclock
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairFiveoclock
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -226,10 +263,12 @@
           state: fiveoclock
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHair5oclockmoustache
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -238,10 +277,12 @@
           state: 5oclockmoustache
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHair7oclock
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -250,10 +291,12 @@
           state: 7oclock
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHair7oclockmoustache
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -262,10 +305,12 @@
           state: 7oclockmoustache
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairMoustache
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -274,10 +319,12 @@
           state: moustache
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairPencilstache
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -286,10 +333,12 @@
           state: pencilstache
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairSmallstache
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -298,10 +347,12 @@
           state: smallstache
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairWalrus
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -310,10 +361,12 @@
           state: walrus
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairFumanchu
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -322,10 +375,12 @@
           state: fumanchu
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairHogan
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -334,10 +389,12 @@
           state: hogan
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairSelleck
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -346,10 +403,12 @@
           state: selleck
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairChaplin
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -358,10 +417,12 @@
           state: chaplin
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairVandyke
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -370,10 +431,12 @@
           state: vandyke
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairWatson
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -382,10 +445,12 @@
           state: watson
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairElvis
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -394,10 +459,12 @@
           state: elvis
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairMutton
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:
@@ -406,10 +473,12 @@
           state: mutton
         colorSource: HumanFacialHairColor
   # Starlight end
+
 - type: marking
   id: HumanFacialHairSideburn
   bodyPart: FacialHair
   markingCategory: FacialHair
+  canBeDisplaced: true # Starlight
   # Starlight start
   sprites:
     body_facialHair:

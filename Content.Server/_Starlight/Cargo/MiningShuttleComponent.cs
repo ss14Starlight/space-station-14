@@ -6,5 +6,4 @@ namespace Content.Server._Starlight.Cargo;
 [RegisterComponent]
 public sealed partial class MiningShuttleComponent : Component
 {
-
 }

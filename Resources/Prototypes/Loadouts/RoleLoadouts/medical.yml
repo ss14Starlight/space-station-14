@@ -7,17 +7,19 @@
   - ChiefMedicalOfficerHead
   - MedicalMask
   - ChiefMedicalOfficerJumpsuit
+  - MedicalGloves # Starlight
   - MedicalBackpack
   - ChiefMedicalOfficerOuterClothing
   - ChiefMedicalOfficerNeck
   - ChiefMedicalOfficerShoes
-  - Glasses
+  - MedicalEyewear # Starlight
+  # - Glasses Starlight
   - SurvivalMedical
   - Trinkets
   - Scarves # 🌟Starlight🌟
   - Pins # 🌟Starlight🌟
   - Pens # 🌟Starlight🌟
-  - ChiefMedicalOfficerJobTrinkets
+#  - ChiefMedicalOfficerJobTrinkets
   - GroupSpeciesBreathToolMedical
 
 - type: roleLoadout
@@ -27,17 +29,19 @@
   - MedicalDoctorHead
   - MedicalMask
   - MedicalDoctorJumpsuit
+  - MedicalGloves # Starlight
   - MedicalBackpack
   - MedicalDoctorOuterClothing
   - MedicalShoes
   - MedicalDoctorPDA
-  - Glasses
+  - MedicalEyewear # Starlight
+  # - Glasses Starlight
   - SurvivalMedical
   - Trinkets
   - Scarves # 🌟Starlight🌟
   - Pins # 🌟Starlight🌟
   - Pens # 🌟Starlight🌟
-  - MedicalDoctorJobTrinkets
+#  - MedicalDoctorJobTrinkets
   - GroupSpeciesBreathToolMedical
 
 - type: roleLoadout
@@ -46,20 +50,22 @@
   - GroupTankHarness
   - MedicalInternJumpsuit
   # 🌟Starlight🌟 start
+  - MedicalGloves
   - MedicalDoctorHead
   - MedicalMask
-  - MedicalDoctorJumpsuit
+#  - MedicalDoctorJumpsuit # Already have this
   - MedicalBackpack
   - MedicalDoctorOuterClothing
   - MedicalShoes
+  - MedicalEyewear
   # 🌟Starlight🌟 end
-  - Glasses
+  # - Glasses Starlight
   - SurvivalMedical
   - Trinkets
   - Scarves # 🌟Starlight🌟
   - Pins # 🌟Starlight🌟
   - Pens # 🌟Starlight🌟
-  - MedicalInternJobTrinkets
+#  - MedicalInternJobTrinkets
   - GroupSpeciesBreathToolMedical
 
 - type: roleLoadout
@@ -69,6 +75,7 @@
   - ChemistHead # 🌟Starlight🌟
   - MedicalMask
   - ChemistJumpsuit
+  - MedicalGloves # Starlight
   - ChemistBackpack
   - ChemistOuterClothing
   # 🌟Starlight🌟 start
@@ -86,7 +93,7 @@
   - Scarves # 🌟Starlight🌟
   - Pins # 🌟Starlight🌟
   - Pens # 🌟Starlight🌟
-  - ChemistJobTrinkets
+#  - ChemistJobTrinkets
   - GroupSpeciesBreathToolMedical
 
 - type: roleLoadout
@@ -96,15 +103,17 @@
   - ParamedicHead
   - MedicalMask
   - ParamedicJumpsuit
+  - MedicalGloves # Starlight
   - MedicalBackpack
   - ParamedicOuterClothing
   - ParamedicShoes
   - ParamedicPDA # 🌟Starlight🌟
-  - Glasses
+  - MedicalEyewear # Starlight
+  # - Glasses Starlight
   - SurvivalMedical
   - Trinkets
   - Scarves # 🌟Starlight🌟
   - Pins # 🌟Starlight🌟
   - Pens # 🌟Starlight🌟
-  - ParamedicJobTrinkets
+#  - ParamedicJobTrinkets
   - GroupSpeciesBreathToolMedical

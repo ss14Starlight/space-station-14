@@ -3,30 +3,36 @@
 
   NanoTrasen employs a variety of sapient species.
 
+<!-- Starlight start, reorganizing all of this alphabetically-->
   <Box>
   <GuideEntityEmbed Entity="AppearanceElf" Caption="Aelithii"/>
   <GuideEntityEmbed Entity="AppearanceArachnid" Caption="Arachnid"/>
+  <GuideEntityEmbed Entity="AppearanceAvali" Caption="Avali"/>
   <GuideEntityEmbed Entity="AppearanceCyclorite" Caption="Cyclorite"/>
   <GuideEntityEmbed Entity="AppearanceDiona" Caption="Diona"/>
   <GuideEntityEmbed Entity="AppearanceDwarf" Caption="Dwarf"/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="AppearanceDoll" Caption="Doll"/>
+  <GuideEntityEmbed Entity="GuideExpie" Caption="Experiment"/>
+  <GuideEntityEmbed Entity="AppearanceFelionoid" Caption="Felionoid"/>
   <GuideEntityEmbed Entity="AppearanceHuman" Caption="Human"/>
+  <GuideEntityEmbed Entity="AppearanceLagomorph" Caption="Lagomorph"/>
+  <GuideEntityEmbed Entity="AppearanceSlimePerson" Caption="Laspi"/>
   </Box>
   <Box>
   <GuideEntityEmbed Entity="AppearanceMoth" Caption="Moth Person"/>
+  <GuideEntityEmbed Entity="AppearanceResomi" Caption="Resomi"/>
   <GuideEntityEmbed Entity="AppearanceReptilian" Caption="Reptilian"/>
-  <GuideEntityEmbed Entity="AppearanceSlimePerson" Caption="Laspi"/>
-  <GuideEntityEmbed Entity="AppearanceVox" Caption="Vox"/>
-  <GuideEntityEmbed Entity="AppearanceVulpkanin" Caption="Vulpkanin"/>
-  <GuideEntityEmbed Entity="AppearanceCyclorite" Caption="Cyclorite"/>
+  <GuideEntityEmbed Entity="AppearanceRodentia" Caption="Rodentia"/>
+  <GuideEntityEmbed Entity="AppearanceShadekin" Caption="Shadekin"/>
+  <GuideEntityEmbed Entity="AppearanceThaven" Caption="Thaven"/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="AppearanceThaven" Caption="Thaven"/>
-  <GuideEntityEmbed Entity="AppearanceResomi" Caption="Resomi"/>
-  <GuideEntityEmbed Entity="AppearanceFelionoid" Caption="Felionoid"/>
-  <GuideEntityEmbed Entity="AppearanceAvali" Caption="Avali"/>
-  <GuideEntityEmbed Entity="AppearanceShadekin" Caption="Shadekin"/>
-  <GuideEntityEmbed Entity="AppearanceLagomorph" Caption="Lagomorph"/>
+  <GuideEntityEmbed Entity="AppearanceVox" Caption="Vox"/>
+  <GuideEntityEmbed Entity="AppearanceVulpkanin" Caption="Vulpkanin"/>
+  <GuideEntityEmbed Entity="AppearanceNeocyte" Caption="Neocyte"/> <!--FH-->
   <GuideEntityEmbed Entity="AppearanceIPC" Caption="IPC"/> <!--FH-->
   </Box>
-
+<!-- Starlight end, reorganizing all of this alphabetically-->
 </Document>

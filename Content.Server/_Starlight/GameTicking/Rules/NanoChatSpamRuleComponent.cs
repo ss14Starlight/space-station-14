@@ -1,29 +1,8 @@
-using Content.Server._Starlight.GameTicking.Rules;
-using Robust.Shared.Prototypes;
-
-namespace Content.Server.GameTicking.Rules.Components;
+namespace Content.Server._Starlight.GameTicking.Rules;
 
 [RegisterComponent, Access(typeof(NanoChatSpamRuleSystem))]
 public sealed partial class NanoChatSpamRuleComponent : Component
 {
-    /// <summary>
-    /// Minimum delay between spam messages (in seconds).
-    /// </summary>
-    [DataField]
-    public float MinDelay = 120f;
-
-    /// <summary>
-    /// Maximum delay between spam messages (in seconds).
-    /// </summary>
-    [DataField]
-    public float MaxDelay = 300f;
-
-    /// <summary>
-    /// Time until next spam message.
-    /// </summary>
-    [DataField]
-    public float NextSpamTime;
-
     /// <summary>
     /// Maximum number of recipients per spam message.
     /// </summary>

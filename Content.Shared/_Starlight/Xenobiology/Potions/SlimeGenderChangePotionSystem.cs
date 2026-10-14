@@ -6,11 +6,11 @@ using Robust.Shared.Enums;
 
 namespace Content.Shared._Starlight.Xenobiology.Potions;
 
-public sealed class SlimeGenderChangePotionSystem : EntitySystem
+public sealed partial class SlimeGenderChangePotionSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _sharedHumanoidAppearanceSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _sharedHumanoidAppearanceSystem = default!;
+    [Dependency] private SharedPopupSystem _sharedPopupSystem = default!;
 
     public override void Initialize()
     {
@@ -27,17 +27,17 @@ public sealed class SlimeGenderChangePotionSystem : EntitySystem
                 out var humanoidAppearanceComponent)) return;
         if (!ent.Comp.Gender.HasValue)
         {
-            _sharedPopupSystem.PopupPredicted("Please select a gender first.", args.User, args.User);
+            _sharedPopupSystem.PopupPredicted(Loc.GetString("slime-gender-select-first"), args.User, args.User);
             return;
         }
 
         if (ent.Comp.Gender.Value == humanoidAppearanceComponent.Gender)
         {
-            _sharedPopupSystem.PopupPredicted($"Target's gender is already {ent.Comp.Gender.Value}.", args.User, args.User);
+            _sharedPopupSystem.PopupPredicted(Loc.GetString($"comp-gender-change-potion-{ent.Comp.Gender.Value.ToString().ToLowerInvariant()}-set-already"), args.User, args.User);
             return;
         }
         _sharedHumanoidAppearanceSystem.SetGender((args.Target.Value, humanoidAppearanceComponent), ent.Comp.Gender.Value);
-        _sharedPopupSystem.PopupPredicted($"Target's gender set to {ent.Comp.Gender.Value}.", args.User, args.User);
+        _sharedPopupSystem.PopupPredicted(Loc.GetString($"comp-gender-change-potion-{ent.Comp.Gender.Value.ToString().ToLowerInvariant()}-set"), args.User, args.User);
         PredictedQueueDel(args.Used);
     }
 

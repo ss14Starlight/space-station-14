@@ -1,7 +1,7 @@
 using Content.Shared.Access;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Access.Components;
+namespace Content.Server._Starlight.Access;
 
 [RegisterComponent]
 public sealed partial class NCTDataChipComponent : Component

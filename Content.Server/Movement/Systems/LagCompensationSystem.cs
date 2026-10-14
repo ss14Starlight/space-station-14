@@ -1,5 +1,4 @@
 using Content.Server.Movement.Components;
-using Robust.Server.Player;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -10,9 +9,9 @@ namespace Content.Server.Movement.Systems;
 /// Stores a buffer of previous positions of the relevant entity.
 /// Can be used to check the entity's position at a recent point in time.
 /// </summary>
-public sealed class LagCompensationSystem : EntitySystem
+public sealed partial class LagCompensationSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     // I figured 500 ping is max, so 1.5 is 750.
     // Max ping I've had is 350ms from aus to spain.

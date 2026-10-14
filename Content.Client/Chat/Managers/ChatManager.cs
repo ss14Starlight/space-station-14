@@ -1,17 +1,15 @@
 using Content.Client.Administration.Managers;
-using Content.Client.Ghost;
-using Content.Shared.Administration;
 using Content.Shared.Chat;
 using Robust.Client.Console;
 using Robust.Shared.Utility;
 
 namespace Content.Client.Chat.Managers;
 
-internal sealed class ChatManager : IChatManager
+internal sealed partial class ChatManager : IChatManager
 {
-    [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
-    [Dependency] private readonly IClientAdminManager _adminMgr = default!;
-    [Dependency] private readonly IEntitySystemManager _systems = default!;
+    [Dependency] private IClientConsoleHost _consoleHost = default!;
+    [Dependency] private IClientAdminManager _adminMgr = default!;
+    [Dependency] private IEntitySystemManager _systems = default!;
 
     private ISawmill _sawmill = default!;
     public event Action? PermissionsUpdated;
@@ -77,10 +75,6 @@ internal sealed class ChatManager : IChatManager
 
             case ChatSelectChannel.Whisper:
                 _consoleHost.ExecuteCommand($"whisper \"{CommandParsing.Escape(str)}\"");
-                break;
-
-            case ChatSelectChannel.CollectiveMind:
-                _consoleHost.ExecuteCommand($"cmsay \"{CommandParsing.Escape(str)}\"");
                 break;
 
             default:

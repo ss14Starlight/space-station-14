@@ -1,2 +1,2 @@
 stack-plutonium = plutonium
-stack-oilpack = Oil Pack
+stack-oilpack = oil pack

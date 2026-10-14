@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Weapons.Hitscan.Components;
+namespace Content.Shared._Starlight.Weapons.Hitscan.Components;
 
 /// <summary>
 /// Hitscan entities that have this component will attempt to heat and ignite the target.
@@ -13,4 +13,10 @@ public sealed partial class HitscanIgniteEffectComponent : Component
     /// </summary>
     [DataField]
     public float Temperature = 1050f;
+
+    /// <summary>
+    /// How many fire stacks are applied by this projectile
+    /// </summary>
+    [DataField]
+    public float FireStacks = 0.25f;
 }

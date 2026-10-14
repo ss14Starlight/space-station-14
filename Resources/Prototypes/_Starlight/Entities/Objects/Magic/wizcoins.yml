@@ -12,13 +12,11 @@
   - type: Item
     sprite: _Starlight/Objects/Specific/wizcoin.rsi
     size: Tiny
-  # Starlight start
   - type: UserInterface
     interfaces:
       enum.StackCustomSplitUiKey.Key:
         type: StackCustomSplitBoundUserInterface
   - type: Stack
-  # Starlight end
     count: 20
     stackType: WizCoin
   - type: StaticPrice
@@ -56,3 +54,88 @@
   components:
   - type: Stack
     count: 10
+
+# Wizard Duelist medallions
+- type: entity
+  name: wizard duelist medallion
+  parent: [ClothingMiscBase, BaseMagicalContraband]
+  id: BaseWizardDuelistMedallion
+  abstract: true
+  description: It seems to be pulsing with magical energy.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/wizcoin.rsi
+    state: wizcoin
+  - type: Clothing
+    sprite: _Starlight/Objects/Specific/wizcoin.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/wizcoin.rsi
+    size: Tiny
+  - type: StealTarget
+    stealGroup: WizardMedallionCollection
+
+- type: entity
+  name: Grubulubalu medallion
+  parent: BaseWizardDuelistMedallion
+  id: RedWizardDuelistMedallion
+  description: Proof that the red wizards reign superior in the ways of the arcane.
+  components:
+  - type: Sprite
+    state: redwizcoin
+  - type: Clothing
+    equippedPrefix: red
+
+- type: entity
+  name: Broken Moon medallion
+  parent: BaseWizardDuelistMedallion
+  id: BlueWizardDuelistMedallion
+  description: Proof that the blue wizards are the masters of sorcery.
+  components:
+  - type: Sprite
+    state: bluewizcoin
+  - type: Clothing
+    equippedPrefix: blue
+
+- type: entity
+  name: Lunar Prophet medallion
+  parent: BaseWizardDuelistMedallion
+  id: YellowWizardDuelistMedallion
+  description: Proof that the yellow wizards can see all outcomes.
+  components:
+  - type: Sprite
+    state: yellowwizcoin
+  - type: Clothing
+    equippedPrefix: yellow
+
+- type: entity
+  name: Disciples of Evergrow medallion
+  parent: BaseWizardDuelistMedallion
+  id: GreenWizardDuelistMedallion
+  description: Proof that the green wizards are the wisest of all.
+  components:
+  - type: Sprite
+    state: greenwizcoin
+  - type: Clothing
+    equippedPrefix: green
+
+- type: entity
+  name: Mu'keiji medallion
+  parent: BaseWizardDuelistMedallion
+  id: PurpleWizardDuelistMedallion
+  description: Proof that the purple wizards shine in the court of battle.
+  components:
+  - type: Sprite
+    state: purplewizcoin
+  - type: Clothing
+    equippedPrefix: purple
+
+- type: entity
+  name: Transcendence Star medallion
+  parent: BaseWizardDuelistMedallion
+  id: OrangeWizardDuelistMedallion
+  description: Proof that the orange wizards are filled with indomitable curiosity.
+  components:
+  - type: Sprite
+    state: orangewizcoin
+  - type: Clothing
+    equippedPrefix: orange

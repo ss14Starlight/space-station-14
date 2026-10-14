@@ -11,12 +11,12 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Verbs
 {
-    public sealed class VerbSystem : SharedVerbSystem
+    public sealed partial class VerbSystem : SharedVerbSystem
     {
-        [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly HandsSystem _hands = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly IAdminManager _adminMgr = default!;
+        [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+        [Dependency] private HandsSystem _hands = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private IAdminManager _adminMgr = default!;
 
         public override void Initialize()
         {
@@ -35,7 +35,7 @@ namespace Content.Server.Verbs
                 return;
             }
 
-            if (player.AttachedEntity is not {} attached)
+            if (player.AttachedEntity is not { } attached)
             {
                 Log.Warning($"{nameof(HandleVerbRequest)} called by player {player} with no attached entity.");
                 return;
@@ -59,8 +59,9 @@ namespace Content.Server.Verbs
                     Log.Error($"Unknown verb type received: {key}");
             }
 
+            var verbUser = ResolveVerbUser(attached) ?? attached; // Starlight
             var response =
-                new VerbsResponseEvent(args.EntityUid, GetLocalVerbs(GetEntity(args.EntityUid), attached, verbTypes, force));
+                new VerbsResponseEvent(args.EntityUid, GetLocalVerbs(GetEntity(args.EntityUid), verbUser, verbTypes, force));
             RaiseNetworkEvent(response, player.Channel);
         }
 
@@ -109,12 +110,12 @@ namespace Content.Server.Verbs
             if (holding == null)
             {
                 _adminLogger.Add(LogType.Verb, verb.Impact,
-                        $"{ToPrettyString(user):user} {executionText} the [{verbText:verb}] verb targeting {ToPrettyString(target):target}");
+                        $"{ToPrettyString(user):user} {executionText} the [{verbText:verb}\\] verb targeting {ToPrettyString(target):target}"); //Starlight: escape brackets so admin logs work while remaining pretty
             }
             else
             {
                 _adminLogger.Add(LogType.Verb, verb.Impact,
-                       $"{ToPrettyString(user):user} {executionText} the [{verbText:verb}] verb targeting {ToPrettyString(target):target} while holding {ToPrettyString(holding.Value):held}");
+                        $"{ToPrettyString(user):user} {executionText} the [{verbText:verb}\\] verb targeting {ToPrettyString(target):target} while holding {ToPrettyString(holding.Value):held}"); //Starlight: escape brackets so admin logs work while remaining pretty
             }
         }
     }

@@ -7,16 +7,20 @@
   save: false # player entity, don't save this to maps
   components:
     - type: Speech
-      allowedEmotes: [ 'Mew', 'Hisses', 'Meow', 'Growl', 'Purr', 'Trill', 'Chitter', 'Squeak', 'FlapWings' ] # combine felionoid and moth emotes
+      allowedEmotes: [ 'Mew', 'Hisses', 'Meow', 'Thump', 'Marr', 'Growl', 'Purr', 'Trill', 'Chitter', 'Squeak', 'Flap' ] # combine felionoid and moth emotes
     - type: Vocal
       sounds:
         Male: UnisexCatMoth
         Female: UnisexCatMoth
         Unsexed: UnisexCatMoth
+    - type: BodyEmotes
+      soundsId: CatMothBodyEmotes
     - type: TextToSpeech
       voice: ICASSP48
     - type: Body
       prototype: CatMoth
+    - type: Loadout
+      postSpawnGear: [ KoniTrinkets ]
     - type: Icon
       sprite: Mobs/Species/Moth/parts.rsi
       state: full
@@ -191,7 +195,6 @@
     left foot:
       part: LeftFootFelionoid
 
-# Maybe this is a bit much but this would be more accurate to koni's diet. Fatass moth.
 - type: entity
   id: OrganCatMothStomach
   parent: OrganMothStomach
@@ -244,21 +247,25 @@
   baseSprite:
     sprite: _Starlight/Admeme/neomoth/bodyparts.rsi
     state: catmoth_torso
+
 - type: humanoidBaseSprite
   id: MobKoniTorsoMale
   baseSprite:
     sprite: _Starlight/Admeme/neomoth/bodyparts.rsi
     state: catmoth_torso
+
 - type: humanoidBaseSprite
   id: MobKoniTorsoFemale
   baseSprite:
     sprite: _Starlight/Admeme/neomoth/bodyparts.rsi
     state: catmoth_torso
+
 - type: humanoidBaseSprite
   id: MobCatmothLFoot
   baseSprite:
     sprite: _Starlight/Admeme/neomoth/bodyparts.rsi
     state: catmoth_l_foot
+
 - type: humanoidBaseSprite
   id: MobCatmothRFoot
   baseSprite:
@@ -322,3 +329,10 @@
           state: koni_ears
         colorSource: HumanSkinColor
   # Starlight end
+
+- type: startingGear
+  id: KoniTrinkets
+  storage:
+    back:
+      - PlushieSuperLizard
+      - ClothingNeckCloakTrans

@@ -20,15 +20,15 @@ using StarlightAdminNote = Starlight.NullLink.AdminNote;
 
 namespace Content.Server.Administration.Notes;
 
-public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
+public sealed partial class AdminNotesManager : IAdminNotesManager, IPostInjectInit
 {
-    [Dependency] private readonly IAdminManager _admins = default!;
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly EuiManager _euis = default!;
-    [Dependency] private readonly IEntitySystemManager _systems = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly INullLinkEventBusManager _eventBus = default!; // Starlight-edit
+    [Dependency] private IAdminManager _admins = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private EuiManager _euis = default!;
+    [Dependency] private IEntitySystemManager _systems = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private INullLinkEventBusManager _eventBus = default!; // Starlight-edit
 
     public const string SawmillId = "admin.notes";
 

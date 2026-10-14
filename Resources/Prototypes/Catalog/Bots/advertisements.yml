@@ -10,10 +10,3 @@
     prefix: advertisement-firebot-
     count: 4
 
-# Starlight start
-- type: localizedDataset
-  id: CleanbotAds
-  values:
-    prefix: advertisement-cleanbot-
-    count: 12
-# Starlight end

@@ -39,13 +39,14 @@
   minOreYield: 1
   maxOreYield: 3
 
-# Low yields
+#Starlight - moved plasma from low yield to medium yield
 - type: ore
   id: OrePlasma
   oreEntity: PlasmaOre1
   minOreYield: 1
-  maxOreYield: 2
+  maxOreYield: 3
 
+# Low yields
 - type: ore
   id: OreUranium
   oreEntity: UraniumOre1

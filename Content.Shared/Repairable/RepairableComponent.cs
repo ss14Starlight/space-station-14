@@ -49,7 +49,7 @@ public sealed partial class RepairableComponent : Component
     /// The base tool use delay (seconds). This will be modified by the tool's quality
     /// </summary>
     [DataField, AutoNetworkedField]
-    public int DoAfterDelay = 1;
+    public float DoAfterDelay = 1f; // Starlight, made into a float
 
     /// <summary>
     /// If true and after the repair there still damage, a new doafter starts automatically

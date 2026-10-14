@@ -2,7 +2,7 @@
   id: FelionoidFootPawMittensR
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_rFoot:
@@ -16,7 +16,7 @@
   id: FelionoidFootPawMittensL
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_lFoot:

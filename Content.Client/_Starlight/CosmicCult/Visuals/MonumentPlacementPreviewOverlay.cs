@@ -13,9 +13,9 @@ namespace Content.Client._Starlight.CosmicCult.Visuals;
 
 public sealed class MonumentPlacementPreviewOverlay : Robust.Client.Graphics.Overlay
 {
-    private static readonly ProtoId<ShaderPrototype> SaturationShaderId = "SaturationShuffle";
-    private static readonly ProtoId<ShaderPrototype> StarsShaderId = "MonumentPulse";
-    private static readonly ProtoId<ShaderPrototype> UnshadedShaderId = "unshaded";
+    private static readonly ProtoId<ShaderPrototype> _saturationShaderId = "SaturationShuffle";
+    private static readonly ProtoId<ShaderPrototype> _starsShaderId = "MonumentPulse";
+    private static readonly ProtoId<ShaderPrototype> _unshadedShaderId = "unshaded";
 
     private readonly IEntityManager _ent;
     private readonly IPlayerManager _player;
@@ -62,14 +62,14 @@ public sealed class MonumentPlacementPreviewOverlay : Robust.Client.Graphics.Ove
         _preview = _ent.System<MonumentPlacementPreviewSystem>();
         _timing = timing;
 
-        _saturationShader = protoMan.Index(SaturationShaderId).InstanceUnique();
+        _saturationShader = protoMan.Index(_saturationShaderId).InstanceUnique();
         _saturationShader.SetParameter("tileSize", new Vector2(96, 96));
         _saturationShader.SetParameter("hsv", new Vector3(1.0f, 0.25f, 0.2f));
 
-        _starsShader = protoMan.Index(StarsShaderId).InstanceUnique();
+        _starsShader = protoMan.Index(_starsShaderId).InstanceUnique();
         _starsShader.SetParameter("tileSize", new Vector2(96, 96));
 
-        _unshadedShader = protoMan.Index(UnshadedShaderId).Instance(); //doesn't need a unique instance
+        _unshadedShader = protoMan.Index(_unshadedShaderId).Instance(); //doesn't need a unique instance
 
         ZIndex = (int) Content.Shared.DrawDepth.DrawDepth.Mobs; //make the overlay render at the same depth as the actual sprite. might want to make it 1 lower if things get wierd with it.
 
@@ -116,11 +116,11 @@ public sealed class MonumentPlacementPreviewOverlay : Robust.Client.Graphics.Ove
                 FadingOut = false;
                 FadeOutProgress = FadeOutTime;
             }
-            Alpha = 1 - FadeOutProgress / FadeOutTime;
+            Alpha = 1 - (FadeOutProgress / FadeOutTime);
         }
 
         //have the outline's alpha slightly "breathe"
-        var outlineAlphaModulate = 0.75f + 0.25f * (float) Math.Sin(_timing.CurTime.TotalSeconds);
+        var outlineAlphaModulate = 0.75f + (0.25f * (float) Math.Sin(_timing.CurTime.TotalSeconds));
 
         //stuff to make the monument preview stick in place once the ability is confirmed
         Color color;

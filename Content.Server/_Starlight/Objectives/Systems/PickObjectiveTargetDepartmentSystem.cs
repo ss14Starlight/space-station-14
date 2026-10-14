@@ -8,10 +8,10 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Objectives.Systems;
 
-public sealed class PickObjectiveTargetDepartmentSystem : EntitySystem
+public sealed partial class PickObjectiveTargetDepartmentSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

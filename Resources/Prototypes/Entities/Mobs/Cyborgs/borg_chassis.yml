@@ -168,12 +168,25 @@
         collection: FootstepHoverBorg
         params:
           volume: -6
+    # Starlight BEGIN
+    - type: HealthAnalyzer
+      damageContainers:
+      - Biological
+      - Hybrid
+    - type: ActionGrant
+      actions:
+      - ActionMedTek
+    - type: UserInterface
+      interfaces:
+        enum.HealthAnalyzerUiKey.Key:
+          type: HealthAnalyzerBoundUserInterface
+    # Starlight END
 
 - type: entity
   id: BorgChassisSyndicateSaboteur
   parent: BaseBorgChassisSyndicate
   name: syndicate saboteur cyborg
-  description: A streamlined engineering cyborg, equipped with covert modules. Its chameleon projector lets it disguise itself as a Nanotrasen cyborg.
+  description: A streamlined engineering cyborg, equipped with covert modules. Its chameleon projector lets it disguise itself as a NanoTrasen cyborg. # SL
   components:
     - type: TextToSpeech
     - type: Sprite
@@ -416,6 +429,19 @@
     - Medical
     - Science
 #Starlight End
+  # Starlight BEGIN
+  - type: HealthAnalyzer
+    damageContainers:
+    - Biological
+    - Hybrid
+  - type: ActionGrant
+    actions:
+    - ActionMedTek
+  - type: UserInterface
+    interfaces:
+      enum.HealthAnalyzerUiKey.Key:
+        type: HealthAnalyzerBoundUserInterface
+  # Starlight END
 
 - type: entity
   parent: BaseBorgChassisDerelict
@@ -450,6 +476,7 @@
       tags:
       - BorgModuleGeneric
       - BorgModuleCargo
+      - BorgModuleMining #Starlight
     hasMindState: borg_e #Starlight ;-;
     noMindState: borg_e_r #Starlight ;-;
 # Starlight Start

@@ -7,7 +7,7 @@ namespace Content.Shared._Starlight.CoolingUnit;
 
 public abstract partial class SharedCoolingUnitSystem : EntitySystem
 {
-    [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
+    [Dependency] private ItemToggleSystem _itemToggle = default!;
 
     public override void Initialize()
     {

@@ -27,6 +27,14 @@
           steps:
             - tool: Welding
               doAfter: 2
+        # SL edit start
+        - to: reinforced_assembly
+          steps:
+            - material: Plasteel
+              amount: 1
+              doAfter: 1
+        # SL edit end
+
 
     - node: wired
       entity: SurveillanceCameraAssembly
@@ -41,6 +49,12 @@
     # to immediately deconstruct
     - node: camera
       entity: SurveillanceCameraConstructed
+      doNotReplaceInheritingEntities: true
+      # SL edit start
+      actions:
+        - !type:SetWiresPanelSecurity
+          wiresAccessible: true
+      # SL edit end
       edges:
         - to: start
           conditions:
@@ -54,4 +68,252 @@
           steps:
             - tool: Welding
               doAfter: 2
+        # SL edit start
+        - to: medSecurityUnfinished #
+          conditions:
+            - !type:WirePanel { }
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
 
+    - node: reinforced_assembly
+      entity: SurveillanceCameraReinforcedAssembly
+      edges:
+        - to: camera_reinforced_wired
+          steps:
+            - material: CableMV
+              amount: 1
+              doAfter: 1
+        - to: assembly
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPlasteel1
+              amount: 1
+          steps:
+            - tool : Welding
+              doAfter: 3
+
+    - node: camera_reinforced_wired
+      edges:
+        - to: camera_reinforced
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: camera_reinforced
+      entity: SurveillanceCameraReinforcedConstructed
+      doNotReplaceInheritingEntities: true
+      actions:
+        - !type:SetWiresPanelSecurity
+          wiresAccessible: true
+      edges:
+        - to: start
+          conditions:
+            - !type:AllWiresCut { }
+            - !type:WirePanel { }
+          completed:
+            - !type:GivePrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:GivePrototype
+              prototype: SheetPlasteel1
+              amount: 1
+            - !type:DeleteEntity { }
+          steps:
+            - tool: Welding
+              doAfter: 2
+
+        - to: medSecurityUnfinished
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+
+        - to: highSecurityUnfinished
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - material: Plasteel
+              amount: 2
+              doAfter: 2
+
+    - node: medSecurityUnfinished
+      actions:
+        - !type:SetWiresPanelSecurity
+          examine: wires-panel-component-on-examine-security-level1
+          wiresAccessible: false
+      edges:
+        - to: medSecurity
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - tool: Welding
+              doAfter: 3
+
+        - to: camera
+          completed:
+            - !type:GivePrototype
+              prototype: SheetSteel1
+              amount: 2
+          conditions:
+            - !type:WirePanel {}
+            - !type:HasTag
+              tag: Camera
+          steps:
+            - tool: Prying
+              doAfter: 4
+
+        - to: camera_reinforced
+          completed:
+            - !type:GivePrototype
+              prototype: SheetSteel1
+              amount: 2
+          conditions:
+            - !type:WirePanel {}
+            - !type:HasTag
+              tag: CameraReinforced
+          steps:
+            - tool: Prying
+              doAfter: 4
+
+    - node: medSecurity
+      actions:
+        - !type:SetWiresPanelSecurity
+          examine: wires-panel-component-on-examine-security-level2
+          wiresAccessible: false
+      edges:
+        - to: medSecurityUnfinished
+          conditions:
+            - !type:WirePanel { }
+          steps:
+            - tool: Welding
+              doAfter: 10
+
+    ## High security level: a layer of plasteel plating protects the internal wiring
+    - node: highSecurityUnfinished
+      actions:
+        - !type:SetWiresPanelSecurity
+          examine: wires-panel-component-on-examine-security-level3
+          wiresAccessible: false
+      edges:
+        - to: camera
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPlasteel1
+              amount: 2
+          conditions:
+            - !type:WirePanel {}
+            - !type:HasTag
+              tag: Camera
+          steps:
+            - tool: Prying
+              doAfter: 4
+
+        - to: camera_reinforced
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPlasteel1
+              amount: 2
+          conditions:
+            - !type:WirePanel {}
+            - !type:HasTag
+              tag: CameraReinforced
+          steps:
+            - tool: Prying
+              doAfter: 4
+        - to: highSecurity
+          conditions:
+            - !type:WirePanel {}
+          steps:
+          - tool: Welding
+            doAfter: 5
+
+    - node: highSecurity
+      actions:
+        - !type:SetWiresPanelSecurity
+          examine: wires-panel-component-on-examine-security-level4
+          wiresAccessible: false
+      edges:
+        - to: highSecurityUnfinished
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - tool: Welding
+              doAfter: 15
+
+        - to: maxSecurity
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - material: MetalRod
+              amount: 2
+              doAfter: 1
+
+    ## Max security level: an electric grill is added
+    - node: maxSecurity
+      actions:
+        - !type:SetWiresPanelSecurity
+          examine: wires-panel-component-on-examine-security-level5
+          wiresAccessible: false
+      edges:
+        - to: highSecurity
+          completed:
+            - !type:AttemptElectrocute
+            - !type:GivePrototype
+              prototype: PartRodMetal1
+              amount: 2
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - tool: Cutting
+              doAfter: 0.5
+
+        - to: superMaxSecurityUnfinished
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - material: Plasteel
+              amount: 2
+              doAfter: 2
+
+    ## Super max security level: an additional layer of plasteel is added
+    - node: superMaxSecurityUnfinished
+      actions:
+        - !type:SetWiresPanelSecurity
+          examine: wires-panel-component-on-examine-security-level6
+          wiresAccessible: false
+      edges:
+        - to: maxSecurity
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPlasteel1
+              amount: 2
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - tool: Prying
+              doAfter: 4
+
+        - to: superMaxSecurity
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - tool: Welding
+              doAfter: 5
+
+    - node: superMaxSecurity
+      actions:
+        - !type:SetWiresPanelSecurity
+          examine: wires-panel-component-on-examine-security-level7
+          wiresAccessible: false
+      edges:
+        - to: superMaxSecurityUnfinished
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - tool: Welding
+              doAfter: 15
+            # SL edit end

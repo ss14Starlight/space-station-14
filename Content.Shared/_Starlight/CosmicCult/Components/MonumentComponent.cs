@@ -112,6 +112,9 @@ public sealed partial class MonumentComponent : Component
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan? PhaseOutTimer;
+
+    [DataField]
+    public TimeSpan PhaseOutDelay = TimeSpan.FromSeconds(0.45);
 }
 
 [Serializable, NetSerializable]

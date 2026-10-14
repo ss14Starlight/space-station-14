@@ -1,0 +1,23 @@
+﻿# Narsian Harvester
+- type: htnCompound
+  id: MoffNarsieHarvesterCompound
+  branches:
+  - tasks:
+    - !type:HTNCompoundTask
+      task: MoffHarvesterHookCompound
+  - tasks:
+    - !type:HTNCompoundTask
+      task: MeleeCombatCompound
+  - tasks:
+    - !type:HTNCompoundTask
+      task: IdleCompound
+
+- type: htnCompound
+  id: MoffHarvesterHookCompound
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: MoffNearbyCritMeleeTargets
+    - !type:HTNCompoundTask
+      task: InnateRangedCombatCompound

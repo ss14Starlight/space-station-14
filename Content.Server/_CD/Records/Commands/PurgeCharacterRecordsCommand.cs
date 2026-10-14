@@ -1,4 +1,3 @@
-using System;
 using Content.Server.Administration;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
@@ -10,9 +9,9 @@ namespace Content.Server._CD.Records.Commands;
 /// Resets a player's record to the default blank template.
 /// </summary>
 [AdminCommand(AdminFlags.Ban)]
-public sealed class PurgeCharacterRecordsCommand : IConsoleCommand
+public sealed partial class PurgeCharacterRecordsCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     public string Command => "purgecharacterrecords";
 

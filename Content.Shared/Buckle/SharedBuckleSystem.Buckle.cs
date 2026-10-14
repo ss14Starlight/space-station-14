@@ -29,7 +29,7 @@ public abstract partial class SharedBuckleSystem
 {
     public static ProtoId<AlertCategoryPrototype> BuckledAlertCategory = "Buckled";
 
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
     private void InitializeBuckle()
     {
@@ -561,7 +561,7 @@ public abstract partial class SharedBuckleSystem
             return;
 
         if (TryComp<CuffableComponent>(args.Target, out var targetCuffableComp) && targetCuffableComp.CuffedHandCount > 0
-            || _mobState.IsIncapacitated(args.Target.Value))
+            || _mobState.IsIncapacitated(args.Target.Value) || _mobState.IsSoftCritical(args.Target.Value) ) //starlight change
         {
             ev.Cancel();
             TryBuckle(args.Target.Value, args.User, args.Used.Value, popup: false);

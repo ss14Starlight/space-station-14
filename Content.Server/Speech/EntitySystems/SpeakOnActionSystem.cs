@@ -13,9 +13,9 @@ namespace Content.Server.Speech.EntitySystems;
 /// As soon as the chat refactor moves to Shared
 /// the logic here can move to the shared <see cref="SharedSpeakOnActionSystem"/>
 /// </summary>
-public sealed class SpeakOnActionSystem : SharedSpeakOnActionSystem
+public sealed partial class SpeakOnActionSystem : SharedSpeakOnActionSystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private ChatSystem _chat = default!;
 
     public override void Initialize()
     {
@@ -40,6 +40,7 @@ public sealed class SpeakOnActionSystem : SharedSpeakOnActionSystem
         {
             Text = Loc.GetString(ent.Comp.Sentence),
             Tts = ent.Comp.Tts.HasValue ? Loc.GetString(ent.Comp.Tts) : Loc.GetString(ent.Comp.Sentence),
+            OriginalText = Loc.GetString(ent.Comp.Sentence),
             Modifier = ent.Comp.Modifier,
         };
 

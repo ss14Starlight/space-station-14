@@ -1,14 +1,15 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from Monke Station",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "nanotrasen_monke"
+      "name": "nanotrasen_monke",
+      "copyright": "Taken from Monke Station"
     }
   ]
 }

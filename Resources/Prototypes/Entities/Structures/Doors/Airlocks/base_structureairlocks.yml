@@ -81,7 +81,7 @@
     openSound:
       path: /Audio/Machines/airlock_open.ogg
     closeSound:
-      path: /Audio/Machines/airlock_close.ogg
+      path: /Audio/_ES/Machines/airlock_close.ogg # Ephemeral Space - better door timings
     denySound:
       path: /Audio/Machines/airlock_deny.ogg
   - type: ContainerContainer
@@ -155,7 +155,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 500
+        damage: 300 #SL
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -180,6 +180,8 @@
     tags:
       - Airlock
       # This tag is used to nagivate the Airlock construction graph. It's needed because the construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
+      - DoorRemoteWhitelist
+      # This tag is used by door remotes to allow or not a door remote to normally be able to interact with a door
   - type: PryUnpowered
   - type: BlockWeather
   - type: GuideHelp
@@ -187,6 +189,11 @@
     - Airlocks
     - WirePanels
     - Networking
+  # ES START
+  - type: ESSparkOnHit
+    prob: 0.25
+    count: 2
+  # ES END
   placement:
     mode: SnapgridCenter
 
@@ -239,3 +246,5 @@
     tags:
       - GlassAirlock
       # This tag is used to nagivate the Airlock construction graph. It's needed because the construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
+      - DoorRemoteWhitelist
+      # This tag is used by door remotes to allow or not a door remote to normally be able to interact with a door

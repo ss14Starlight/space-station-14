@@ -1,13 +1,17 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Content.Client.Markers;
 using Content.Client.Popups;
 using Content.Client.SubFloor;
+using Content.Shared.SubFloor;
 using Robust.Shared.Console;
 
 namespace Content.Client.Commands;
 
-internal sealed class ShowMarkersCommand : LocalizedEntityCommands
+internal sealed partial class ShowMarkersCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly MarkerSystem _markerSystem = default!;
+    [Dependency] private MarkerSystem _markerSystem = default!;
 
     public override string Command => "showmarkers";
 
@@ -17,21 +21,36 @@ internal sealed class ShowMarkersCommand : LocalizedEntityCommands
     }
 }
 
-internal sealed class ShowSubFloor : LocalizedEntityCommands
+internal sealed partial class ShowSubFloor : LocalizedEntityCommands
 {
-    [Dependency] private readonly SubFloorHideSystem _subfloorSystem = default!;
+    [Dependency] private SubFloorHideSystem _subfloorSystem = default!;
 
     public override string Command => "showsubfloor";
-
+    //Starlight start - Subfloor layers
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        _subfloorSystem.ShowAll ^= true;
+        if (args.Length == 0) return;
+
+        foreach (var layer in args)
+        {
+            if (Enum.TryParse<SubFloorVisibilityMask>(layer, out var mask))
+            {
+                _subfloorSystem.ToggleLayer(mask);
+            }
+        }
     }
+
+    public override ValueTask<CompletionResult> GetCompletionAsync(IConsoleShell shell, string[] args, string argStr,
+        CancellationToken cancel) =>
+        ValueTask.FromResult(CompletionResult.FromHintOptions(
+            Enum.GetNames<SubFloorVisibilityMask>(),
+            "<layer>"));
+    //Starlight end - Subfloor layers
 }
 
-internal sealed class NotifyCommand : LocalizedEntityCommands
+internal sealed partial class NotifyCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
 
     public override string Command => "notify";
 

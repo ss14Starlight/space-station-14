@@ -7,19 +7,25 @@
   roles:
   - Magistrate
   - IAA
+  - Lawyer
+  editorHidden: true
+  primary: false
 
 - type: department
   id: Representatives
-  name: department-Representatives
-  description: department-Representatives-description
+  name: department-NT
+  description: department-NT-description
   color: "#05255D"
   roles:
   - BlueShield
   - Magistrate
   - NanoTrasenRepresentative
+  - StationAi
+  - IAA
+  - NanotrasenCareerTrainer
   - Decimus
   - NanoTrasenSpecialForces
-  - NanotrasenCareerTrainer
+  - NTNCBlueShield
   primary: false
   weight: 50
 
@@ -34,4 +40,24 @@
   - TSFMCCrew
   - TSFMarine
   - TSFMarineElite
+  editorHidden: true
+
+- type: department
+  id: ITG
+  name: department-ITG
+  description: department-ITG-description
+  color: "#a34f18"
+  weight: -10
+  roles:
+  - SalvageLead
+  - SalvageSpecialist
+  - SalvageMedic
+  primary: false
+
+- type: department
+  id: Casino
+  name: department-Casino
+  description: department-Casino-description
+  color: "#c19a2b"
+  primary: false
   editorHidden: true

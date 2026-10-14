@@ -9,14 +9,15 @@ job-board-ui-window-title = Job Board
 job-board-ui-label-rank = [bold]Rank:[/bold]
 job-board-ui-label-items = Target: [color=red]{$item}[/color]
 
+# Starlight Tickets Addition, trade guild rewording
 job-board-label-text = [head=2]Salvage Job Shipment[/head]
     {"[italic]For use only on official off-station salvage shipments.[/italic]"}
 
     {"[bold]Target:[/bold]"} {$target}
     {"[bold]Reward:[/bold]"} ${$reward}
+    {"[bold]Tickets:[/bold]"} {$tickets}
 
-
-    {"[italic]Shipments are subject to inspection by the Donk corporation[/italic]"}
+    {"[italic]Shipments are subject to inspection by the Interstellar Trade Guild[/italic]"}
 
 salv-job-board-name-BountyTeethSpaceCarp = Space Carp
 salv-job-board-name-BountySalvageScrap = Deep-Space Debris

@@ -183,10 +183,10 @@
 - type: entity
   parent: DefaultStationBeaconSecurity
   id: DefaultStationBeaconBrigMed
-  suffix: Brig Med
+  suffix: Brigmedic # Starlight: "Brig Med" -> "Brigmedic"
   components:
   - type: NavMapBeacon
-    defaultText: station-beacon-brig-med
+    defaultText: station-beacon-brigmedic # Starlight: "Brig Med" -> "Brigmedic"
 
 - type: entity
   parent: DefaultStationBeaconSecurity
@@ -850,15 +850,6 @@
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-vox
-
-- type: entity
-  parent: DefaultStationBeacon
-  id: DefaultStationBeaconNCT
-  suffix: NCT
-  components:
-  - type: NavMapBeacon
-    defaultText: station-beacon-nct
-
 
 # Ghost Only Beacons
 - type: entity

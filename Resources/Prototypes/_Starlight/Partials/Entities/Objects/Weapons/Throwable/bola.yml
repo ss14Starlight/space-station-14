@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: Bola
+  components:
+  - type: Item
+    size: Small

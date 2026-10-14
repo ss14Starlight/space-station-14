@@ -30,11 +30,13 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
-        Heat: 0.8
+        Shock: 0.8 #SL - same as engi suit
+        Heat: 0.65 #SL
+        Caustic: 0.5 #SL - same as engi suit
         Radiation: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.7
-    sprintModifier: 0.7
+    walkModifier: 0.85 #SL
+    sprintModifier: 0.85 #SL
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitAtmos
@@ -72,8 +74,8 @@
         Caustic: 0.5
         Radiation: 0.2
   - type: ClothingSpeedModifier
-    walkModifier: 0.7
-    sprintModifier: 0.7
+    walkModifier: 0.85 #SL
+    sprintModifier: 0.85 #SL
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitEngineering
@@ -85,7 +87,7 @@
 
 #Spationaut Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCargoContraband]
+  parent: [ ClothingOuterHardsuitBase, BaseCargoContraband, BaseSalvageContraband ] # Starlight
   id: ClothingOuterHardsuitSpatio
   name: spationaut hardsuit
   description: A lightweight hardsuit designed for industrial EVA in zero gravity.
@@ -122,7 +124,7 @@
 
 #Salvage Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSalvageMiningContraband] # Starlight
+  parent: [ ClothingOuterHardsuitBase, BaseSalvageContraband, BaseMiningContraband ] # Blimpuf
   id: ClothingOuterHardsuitSalvage
   name: salvage hardsuit # Starlight - rename for mining hardsuit addition
   description: A special suit that protects against hazardous, low pressure environments. Has reinforced plating for wildlife encounters.
@@ -163,7 +165,7 @@
 
 #Goliath Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCargoContraband]
+  parent: [ ClothingOuterHardsuitBase, BaseCargoContraband, BaseSalvageContraband ] # Starlight
   id: ClothingOuterHardsuitGoliath
   name: goliath hardsuit
   description: A lightweight hardsuit, adorned with a patchwork of thick, chitinous goliath hide.
@@ -197,13 +199,13 @@
     node: hardsuitGoliath
   - type: Tag
     tags:
-    - CorgiWearable
+    - CorgiWearable #Starlight
     - Hardsuit
     - WhitelistChameleon
 
 # Hardsuit
 - type: entity
-  parent: [ ClothingOuterHardsuitBase, BaseSalvageContraband ] #Starlight salvContra
+  parent: [ ClothingOuterHardsuitBase, BaseSalvageContraband ] #Starlight
   id: ClothingOuterHardsuitMaxim
   name: salvager maxim hardsuit
   description: Fire. Heat. These things forge great weapons, they also forge great salvagers. #Has built-in battery-powered energy barrier technology.
@@ -270,7 +272,7 @@
 
 #Security Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, ClothingOuterHardsuitBase, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterHardsuitSecurity
   name: security hardsuit
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
@@ -309,7 +311,7 @@
 
 #Brigmedic Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, ClothingOuterHardsuitBase, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterHardsuitBrigmedic
   name: brigmedic hardsuit
   description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
@@ -354,7 +356,7 @@
 
 #Warden's Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, ClothingOuterHardsuitBase, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterHardsuitWarden
   name: warden's hardsuit
   description: A specialized, heavy riot suit geared to combat low pressure environments.
@@ -387,6 +389,11 @@
     clothingPrototype: ClothingHeadHelmetHardsuitWarden
   - type: StealTarget # Starlight
     stealGroup: WardenHardsuit # Starlight
+  - type: Tag
+    tags:
+    - Hardsuit
+    - CorgiWearable #Starlight
+    - WhitelistChameleon
 
 #Captain's Hardsuit
 - type: entity
@@ -460,8 +467,8 @@
         Radiation: 0.0
         Caustic: 0.7
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.9 #SL
+    sprintModifier: 0.9 #SL
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitEngineeringWhite
@@ -618,6 +625,12 @@
     delay: 10.0
   - type: StealTarget # Starlight
     stealGroup: HOSHardsuit # Starlight
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HighRiskItem
+    - CorgiWearable
+    - Hardsuit
 
 #Luxury Mining Hardsuit
 - type: entity
@@ -1054,6 +1067,7 @@
         Slash: 0.4
         Piercing: 0.3
         Heat: 0.2
+        Cold: 0.2
         Radiation: 0.01
         Caustic: 0.4
     # Starlight-end
@@ -1085,6 +1099,16 @@
     - Hardsuit
     - WhitelistChameleon
     - CorgiWearable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Cold: 0.2
+        Radiation: 0.5
+        Caustic: 0.5
 
 #ERT Engineer Hardsuit
 - type: entity
@@ -1121,6 +1145,30 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertmedical.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMedical
+  - type: ItemToggle
+    onUse: false
+    soundActivate:
+      path: /Audio/Items/flashlight_on.ogg
+    soundDeactivate:
+      path: /Audio/Items/flashlight_off.ogg
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Effects/Vehicle/ambulancesiren.ogg #not the best sound, but after looking through all of current freesound regarding sirens and ambulance, this was the best compromise
+      params:
+        volume: -4
+  - type: UseDelay
+    delay: 1.0
+  - type: ToggleClothing
+    action: ActionToggleParamedicSiren
+  - type: ItemTogglePointLight
+  - type: PointLight
+    enabled: false
+    radius: 2
+    energy: 2
+    color: blue
+    lightMask: ConeDouble
+  - type: RotatingLight
+    speed: 360
 #Starlight
   - type: Tag
     tags:
@@ -1153,6 +1201,7 @@
         Slash: 0.6
         Piercing: 0.6
         Heat: 0.5
+        Cold: 0.6
         Radiation: 0.5
         Caustic: 0.5
     staminaModifier: 0.3
@@ -1216,6 +1265,7 @@
         Slash: 0.1
         Piercing: 0.1
         Heat: 0.1
+        Cold: 0.1 #starlight
         Radiation: 0.1
         Caustic: 0.1
     # Starlight-start
@@ -1362,37 +1412,3 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSanta
-
-- type: entity
-  parent: [ ClothingOuterBaseLarge, AllowSuitStorageClothing ]
-  id: ChangelingClothingOuterHardsuit
-  name: organic space suit
-  description: A spaceworthy biomass of pressure and temperature resistant tissue.
-  suffix: Unremoveable
-  components:
-  - type: Sprite
-    sprite: Changeling/ling_spacesuit.rsi
-  - type: Clothing
-    sprite: Changeling/ling_spacesuit.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.225
-    lowPressureMultiplier: 1000
-  - type: TemperatureProtection
-    heatingCoefficient: 0.01
-    coolingCoefficient: 0.01
-  - type: ExplosionResistance
-    damageCoefficient: 0.2
-  - type: Pierceable
-    level: Flesh
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 1
-        Heat: 0.5
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: HeldSpeedModifier
-  - type: Unremoveable

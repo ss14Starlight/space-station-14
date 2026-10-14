@@ -12,6 +12,9 @@
   - type: IgnitionSource
     temperature: 800
   - type: IgniteOnTrigger
+    # ES START
+  - type: ESSparkOnTrigger
+    # ES END
   - type: EmitSoundOnTrigger
     sound:
       collection: WelderOn
@@ -30,7 +33,3 @@
   - type: Tag
     tags:
     - Igniter
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: tool_basic
-  # Starlight-end

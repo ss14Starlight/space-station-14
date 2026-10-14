@@ -1,5 +1,11 @@
+using Content.Shared._Starlight.Cargo.TamperSeal.Components;
 using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
+
+#region Starlight
+using Content.Shared.Access;
+#endregion
 
 namespace Content.Shared.Cargo.Prototypes;
 
@@ -42,4 +48,22 @@ public sealed partial class CargoAccountPrototype : IPrototype
     /// </summary>
     [DataField]
     public EntProtoId AcquisitionSlip;
+
+    #region Starlight
+    /// <summary>
+    /// The name of the recipient to use on tamper seal examination.
+    /// </summary>
+    [DataField] public LocId TamperSealName;
+
+    /// <summary>
+    /// The color to use for tamper seals.
+    /// </summary>
+    [DataField] public Color TamperSealColor;
+
+    /// <summary>
+    /// The access levels that can unseal orders that are bound to this account.
+    /// </summary>
+    [DataField]
+    public List<TamperSealAccessPattern> TamperSealAccesses = new();
+    #endregion
 }

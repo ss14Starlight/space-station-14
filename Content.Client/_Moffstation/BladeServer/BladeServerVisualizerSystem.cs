@@ -12,7 +12,7 @@ namespace Content.Client._Moffstation.BladeServer;
 /// </summary>
 public sealed partial class BladeServerVisualizerSystem : VisualizerSystem<BladeServerComponent>
 {
-    [Dependency] private readonly IReflectionManager _reflect = default!;
+    [Dependency] private IReflectionManager _reflect = default!;
 
     private string? _stripeKey;
     private string StripeKey => _stripeKey ??= _reflect.GetEnumReference(BladeServerVisuals.StripeLayer);

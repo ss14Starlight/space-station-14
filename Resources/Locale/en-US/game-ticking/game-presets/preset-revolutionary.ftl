@@ -51,7 +51,8 @@ rev-stalemate = All of the SKB agents and command have died. It's a draw.
 
 rev-reverse-stalemate = Both Command and SKB agents survived.
 
-central-command-revolution-announcement = Based on our scans from our long-range sensors, we believe the station has fallen under the control of hostile revolutionary forces. All heads of staff have been confirmed deceased or missing. All remaining crew members are to stand by for further instructions.
+# Starlight - added "or have abandoned the station" as a clarification for why revs may have won
+central-command-revolution-announcement = Based on our scans from our long-range sensors, we believe the station has fallen under the control of hostile revolutionary forces. All heads of staff have been confirmed deceased, missing, or have abandoned the station. All remaining crew members are to stand by for further instructions.
 
 soviet-commissariat-revolution-announcement = Long range communications array online. Motherland salutes you comrades, but the battle is not yet over. Your corporation will check if they can reclaim your station one last time, but do not worry! The SSF will arrive shorty. Glory to the USSP!
 

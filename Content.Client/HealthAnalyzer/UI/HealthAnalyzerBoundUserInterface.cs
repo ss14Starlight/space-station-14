@@ -1,4 +1,5 @@
 ﻿using Content.Shared.MedicalScanner;
+using Content.Client._Starlight.Computers.RemoteControl;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
@@ -9,7 +10,7 @@ namespace Content.Client.HealthAnalyzer.UI
     {
         [ViewVariables]
         private HealthAnalyzerWindow? _window;
-
+        private HealthAnalyzerScannedUserMessage? _pendingMessage; // Starlight-edit: data that arrived before the window existed
         public HealthAnalyzerBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
         }
@@ -19,12 +20,20 @@ namespace Content.Client.HealthAnalyzer.UI
             base.Open();
 
             _window = this.CreateWindow<HealthAnalyzerWindow>();
+            EntMan.System<RemoteControlInterface>().TryEmbedWindow(_window); // Starlight
             // Starlight-start: Printable health reports.
-            _window.SetPrintReportVisible(true);
             _window.PrintReportPressed += OnPrintReportPressed;
             // Starlight-end
 
             _window.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
+
+            // Starlight-start: Show data that arrived before the window existed.
+            if (_pendingMessage != null)
+            {
+                _window.Populate(_pendingMessage);
+                _pendingMessage = null;
+            }
+            // Starlight-end
         }
 
         // Starlight-start: Printable health reports.
@@ -36,13 +45,18 @@ namespace Content.Client.HealthAnalyzer.UI
 
         protected override void ReceiveMessage(BoundUserInterfaceMessage message)
         {
-            if (_window == null)
-                return;
-
+            // Starlight-start: Show data that arrived before the window existed.
             if (message is not HealthAnalyzerScannedUserMessage cast)
                 return;
 
-            _window.Populate(cast);
+            if (_window is not { Disposed: false } window)
+            {
+                _window = null;
+                _pendingMessage = cast;
+                return;
+            }
+            // Starlight-end
+            window.Populate(cast);
         }
     }
 }

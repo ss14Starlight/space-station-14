@@ -26,12 +26,12 @@ namespace Content.Server.Cloning;
 /// </remarks>
 public sealed partial class CloningSystem
 {
-    [Dependency] private readonly SharedStackSystem _stack = default!;
-    [Dependency] private readonly LabelSystem _label = default!;
-    [Dependency] private readonly ForensicsSystem _forensics = default!;
-    [Dependency] private readonly PaperSystem _paper = default!;
-    [Dependency] private readonly VocalSystem _vocal = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private SharedStackSystem _stack = default!;
+    [Dependency] private LabelSystem _label = default!;
+    [Dependency] private ForensicsSystem _forensics = default!;
+    [Dependency] private PaperSystem _paper = default!;
+    [Dependency] private VocalSystem _vocal = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
 
     public override void Initialize()
     {
@@ -53,7 +53,7 @@ public sealed partial class CloningSystem
         SubscribeLocalEvent<VocalComponent, CloningEvent>(OnCloneVocal);
         SubscribeLocalEvent<StorageComponent, CloningEvent>(OnCloneStorage);
         SubscribeLocalEvent<InventoryComponent, CloningEvent>(OnCloneInventory);
-        SubscribeLocalEvent<MovementSpeedModifierComponent, CloningEvent>(OnCloneInventory);
+        SubscribeLocalEvent<MovementSpeedModifierComponent, CloningEvent>(OnCloneMovementSpeedModifier);
     }
 
     private void OnCloneItemStack(Entity<StackComponent> ent, ref CloningItemEvent args)
@@ -120,7 +120,7 @@ public sealed partial class CloningSystem
         _inventory.CopyComponent(ent.AsNullable(), args.CloneUid);
     }
 
-    private void OnCloneInventory(Entity<MovementSpeedModifierComponent> ent, ref CloningEvent args)
+    private void OnCloneMovementSpeedModifier(Entity<MovementSpeedModifierComponent> ent, ref CloningEvent args)
     {
         if (!args.Settings.EventComponents.Contains(Factory.GetRegistration(ent.Comp.GetType()).Name))
             return;

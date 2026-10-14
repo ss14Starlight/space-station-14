@@ -5,9 +5,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Paper;
 
-public sealed class ActionsOnSignSystem : EntitySystem
+public sealed partial class ActionsOnSignSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {

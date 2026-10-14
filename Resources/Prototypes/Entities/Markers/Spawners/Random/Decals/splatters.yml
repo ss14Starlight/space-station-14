@@ -79,34 +79,6 @@
     - toilet
     - toolbox
     - uboa
-    # Starlight Start
-    - ussp
-    - bee
-    - borgsrogue
-    - crab
-    - lies
-    - skullsketch
-    - yip
-    - aurum
-    - devil
-    - gray
-    - heartarrow
-    - marsfall
-    - syndikat
-    - tspd
-    - usspsketch
-    - xenoborg
-    - youaredead
-    - tallyg
-    - gangshitg
-    - freeg
-    - followg
-    - dontopeng
-    - donotg
-    - deadinsideg
-    - dangerg
-    - aidg
-    # Starlight End
     radius: 0.5
     randomRotation: true
     maxDecals: 1

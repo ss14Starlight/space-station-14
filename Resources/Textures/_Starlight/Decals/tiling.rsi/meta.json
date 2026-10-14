@@ -77,28 +77,100 @@
       "name": "diagonal_overlay_corner_4"
     },
     {
-      "name": "diagonal_steel_1"
+      "name": "diagonal_overlay_large_1",
+      "copyright": "Base by Conflee, extended by SevenShades"
     },
     {
-      "name": "diagonal_steel_2"
+      "name": "diagonal_overlay_large_2",
+      "copyright": "Base by Conflee, extended by SevenShades"
     },
     {
-      "name": "diagonal_steel_3"
+      "name": "diagonal_overlay_large_3",
+      "copyright": "Base by Conflee, extended by SevenShades"
     },
     {
-      "name": "diagonal_steel_4"
+      "name": "diagonal_overlay_large_4",
+      "copyright": "Base by Conflee, extended by SevenShades"
     },
     {
-      "name": "diagonal_steel_corner_1"
+      "name": "diagonal_overlay_corner_large_1",
+      "copyright": "Base by Conflee, extended by SevenShades"
     },
     {
-      "name": "diagonal_steel_corner_2"
+      "name": "diagonal_overlay_corner_large_2",
+      "copyright": "Base by Conflee, extended by SevenShades"
     },
     {
-      "name": "diagonal_steel_corner_3"
+      "name": "diagonal_overlay_corner_large_3",
+      "copyright": "Base by Conflee, extended by SevenShades"
     },
     {
-      "name": "diagonal_steel_corner_4"
+      "name": "diagonal_overlay_corner_large_4",
+      "copyright": "Base by Conflee, extended by SevenShades"
+    },
+    {
+      "name": "diagonal_steel_large_1",
+      "Copyright": "Conflee, extended by SevenShades"
+    },
+    {
+      "name": "diagonal_steel_large_2",
+      "Copyright": "Conflee, extended by SevenShades"
+    },
+    {
+      "name": "diagonal_steel_large_3",
+      "Copyright": "Conflee, extended by SevenShades"
+    },
+    {
+      "name": "diagonal_steel_large_4",
+      "Copyright": "Conflee, extended by SevenShades"
+    },
+    {
+      "name": "diagonal_steel_corner_large_1",
+      "Copyright": "Conflee, extended by SevenShades"
+    },
+    {
+      "name": "diagonal_steel_corner_large_2",
+      "Copyright": "Conflee, extended by SevenShades"
+    },
+    {
+      "name": "diagonal_steel_corner_large_3",
+      "Copyright": "Conflee, extended by SevenShades"
+    },
+    {
+      "name": "diagonal_steel_corner_large_4",
+      "Copyright": "Conflee, extended by SevenShades"
+    },
+    {
+      "name": "diagonal_steel_1",
+      "Copyright": "Conflee, tiling edits by SevenShades"
+    },
+    {
+      "name": "diagonal_steel_2",
+      "Copyright": "Conflee, tiling edits by SevenShades"
+    },
+    {
+      "name": "diagonal_steel_3",
+      "Copyright": "Conflee, tiling edits by SevenShades"
+    },
+    {
+      "name": "diagonal_steel_4",
+      "Copyright": "Conflee, tiling edits by SevenShades"
+    },
+    {
+      "name": "diagonal_steel_corner_1",
+      "Copyright": "Conflee, tiling edits by SevenShades"
+    },
+    {
+      "name": "diagonal_steel_corner_2",
+      "Copyright": "Conflee, tiling edits by SevenShades"
+    },
+    {
+      "name": "diagonal_steel_corner_3",
+      "Copyright": "Conflee, tiling edits by SevenShades"
+    },
+    {
+      "name": "diagonal_steel_corner_4",
+      "Copyright": "Conflee, tiling edits by SevenShades"
     },
     {
       "name": "half_e_dark"

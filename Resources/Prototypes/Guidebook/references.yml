@@ -25,6 +25,7 @@
   - PizzaRecipes
   - SavoryRecipes
   - BreadRecipes
+  - DoughRecipes # Starlight-edit
   - BreakfastRecipes
   - MothRecipes
   - PastaRecipes
@@ -35,6 +36,7 @@
   - CakeRecipes
   - SaladRecipes
   - DeepFriedRecipes # Starlight-edit
+  - IceCreamRecipes # Starlight-edit
   - OtherRecipes
   - MedicinalRecipes
   - SecretRecipes

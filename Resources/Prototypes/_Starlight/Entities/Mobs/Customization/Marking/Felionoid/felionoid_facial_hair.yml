@@ -2,7 +2,7 @@
   id: FelionoidFacialHairBeard
   bodyPart: FacialHair
   markingCategory: FacialHair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_facialHair:
@@ -16,7 +16,7 @@
   id: FelionoidFacialHairColonel
   bodyPart: FacialHair
   markingCategory: FacialHair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_facialHair:
@@ -30,7 +30,7 @@
   id: FelionoidFacialHairFu
   bodyPart: FacialHair
   markingCategory: FacialHair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_facialHair:
@@ -44,7 +44,7 @@
   id: FelionoidFacialHairMane
   bodyPart: FacialHair
   markingCategory: FacialHair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_facialHair:
@@ -58,7 +58,7 @@
   id: FelionoidFacialHairNeck
   bodyPart: FacialHair
   markingCategory: FacialHair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_facialHair:

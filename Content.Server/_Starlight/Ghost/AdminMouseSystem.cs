@@ -5,17 +5,16 @@ using Content.Shared._NullLink;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Shared.Verbs;
-using Robust.Server.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Ghost;
 
-public sealed class AdminMouseSystem : EntitySystem
+public sealed partial class AdminMouseSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _playerRoles = default!;
-    [Dependency] private readonly IAdminManager _admin = default!;
-    [Dependency] private readonly PolymorphSystem _polymorphSystem = default!;
-    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!;
+    [Dependency] private ISharedNullLinkPlayerRolesReqManager _playerRoles = default!;
+    [Dependency] private IAdminManager _admin = default!;
+    [Dependency] private PolymorphSystem _polymorphSystem = default!;
+    [Dependency] private AutoDiscordLogSystem _autolog = default!;
     public override void Initialize()
     {
         base.Initialize();

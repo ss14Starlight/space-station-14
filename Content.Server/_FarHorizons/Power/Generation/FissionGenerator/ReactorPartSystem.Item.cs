@@ -2,6 +2,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Content.Shared.Atmos;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Nutrition;
 using Content.Shared.Radiation.Components;
@@ -10,10 +11,11 @@ namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 
 public sealed partial class ReactorPartSystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly SharedPointLightSystem _lightSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private SharedPointLightSystem _lightSystem = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
 
-    private float _burnDiv => (ReactorPartBurnTemp - ReactorPartHotTemp) / 5; // The 5 is how much heat damage insulated gloves protect from
+    private static float BurnDiv(ReactorPartComponent component) => (component.BurnTemp - component.HotTemp) / 5; // The 5 is how much heat damage insulated gloves protect from
 
     public override void Initialize()
     {
@@ -96,9 +98,9 @@ public sealed partial class ReactorPartSystem
                     break;
             }
 
-            if (comp.Temperature > Atmospherics.T0C + ReactorPartBurnTemp)
+            if (comp.Temperature > Atmospherics.T0C + comp.BurnTemp)
                 args.PushMarkup(Loc.GetString("reactor-part-burning"));
-            else if (comp.Temperature > Atmospherics.T0C + ReactorPartHotTemp)
+            else if (comp.Temperature > Atmospherics.T0C + comp.HotTemp)
                 args.PushMarkup(Loc.GetString("reactor-part-hot"));
         }
     }
@@ -110,11 +112,11 @@ public sealed partial class ReactorPartSystem
             return;
 
         var properties = comp.Properties;
-
-        if (!_entityManager.TryGetComponent<DamageableComponent>(args.Target, out var damageable) || damageable.Damage.DamageDict == null)
+        var damageSpec = _damageableSystem.GetAllDamage(args.Target);
+        if (damageSpec.Empty)
             return;
 
-        var dict = damageable.Damage.DamageDict;
+        var dict = damageSpec.DamageDict;
 
         var dmgKey = "Radiation";
         var dmg = (properties.NeutronRadioactivity * 20) + (properties.Radioactivity * 10) + (properties.FissileIsotopes * 5);
@@ -146,20 +148,21 @@ public sealed partial class ReactorPartSystem
         component.Temperature -= DeltaT;
         if (!gasMix.Immutable) // This prevents it from heating up space itself
             // This viloates COE, but if energy is conserved, then pulling out a hot rod will instantly turn the room into an oven
-            gasMix.Temperature += 0.1f * DeltaT * component.ThermalMass / _atmosphereSystem.GetHeatCapacity(gasMix, false);
+            gasMix.Temperature += component.SpaceHeatTransferRate * DeltaT * component.ThermalMass / _atmosphereSystem.GetHeatCapacity(gasMix, false);
 
         var burncomp = EnsureComp<DamageOnInteractComponent>(uid);
 
-        burncomp.IsDamageActive = component.Temperature > Atmospherics.T0C + ReactorPartHotTemp;
+        burncomp.Damage ??= new() { DamageDict = new() { { "Heat", 0 } } }; // Starlight: This can never be null due to failing serializer
+        burncomp.IsDamageActive = component.Temperature > Atmospherics.T0C + component.HotTemp;
 
         if (burncomp.IsDamageActive)
         {
-            var damage = Math.Max((component.Temperature - Atmospherics.T0C - ReactorPartHotTemp) / _burnDiv, 0);
+            var damage = Math.Min(Math.Max((component.Temperature - Atmospherics.T0C - component.HotTemp) / BurnDiv(component), 0),component.MaxBurnDamage);
 
             // Giant string of if/else that makes sure it will interfere only as much as it needs to
-            if (burncomp.Damage == null)
-                burncomp.Damage = new() { DamageDict = new() { { "Heat", damage } } };
-            else if (burncomp.Damage.DamageDict == null)
+            // if (burncomp.Damage == null)
+            //     burncomp.Damage = new() { DamageDict = new() { { "Heat", damage } } }; Starlight: Moved this upstairs
+            if (burncomp.Damage.DamageDict == null)
                 burncomp.Damage.DamageDict = new() { { "Heat", damage } };
             else if (!burncomp.Damage.DamageDict.ContainsKey("Heat"))
                 burncomp.Damage.DamageDict.Add("Heat", damage);

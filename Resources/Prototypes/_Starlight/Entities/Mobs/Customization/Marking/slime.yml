@@ -4,7 +4,7 @@
   id: bubble
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -18,7 +18,7 @@
   id: fishbowl
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest@0:
@@ -37,7 +37,7 @@
   id: SlimeBonechest
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -56,7 +56,7 @@
   id: SlimeCore
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   followSkinColor: false
   coloring:
     default:
@@ -75,7 +75,7 @@
   id: SlimeLungs
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   # followSkinColor: true
   # Starlight start
   sprites:
@@ -92,7 +92,7 @@
   id: FadingStars
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_head@0:
@@ -116,7 +116,7 @@
   id: fizz
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_head:
@@ -130,7 +130,7 @@
   id: SlimeBonehead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -149,7 +149,7 @@
   id: SlimeNose
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   forcedColoring: true
   # followSkinColor: true
   # Starlight start
@@ -165,7 +165,7 @@
   id: SlimeMouth
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   # followSkinColor: true
   # Starlight start
   sprites:
@@ -180,7 +180,7 @@
   id: SlimeBrain
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   # followSkinColor: true
   # Starlight start
   sprites:
@@ -193,13 +193,11 @@
 
 # Snout
 
-# Eyes
-
 - type: marking
   id: SlimeEyesDefault
   bodyPart: Eyes
   markingCategory: Eyes
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   forcedColoring: true
   coloring:
     default:
@@ -217,7 +215,7 @@
   id: SlimeEyesDroopy
   bodyPart: Eyes
   markingCategory: Eyes
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -235,7 +233,7 @@
   id: SlimeEyesCyclops
   bodyPart: Eyes
   markingCategory: Eyes
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -255,7 +253,7 @@
   id: SlimeBonearmright
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -276,7 +274,7 @@
   id: SlimeBonearmleft
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -297,7 +295,7 @@
   id: SlimeBonelegright
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -318,7 +316,7 @@
   id: SlimeBonelegleft
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -343,7 +341,7 @@
   id: SlimeBonefootleft
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -364,7 +362,7 @@
   id: SlimeBonefootright
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -385,7 +383,7 @@
   id: SlimeBonehandleft
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -406,7 +404,7 @@
   id: SlimeBonehandright
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -432,3 +430,20 @@
 # Tail
 
 # RArmExtension
+- type: marking
+  id: SlimeSnout
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ SlimePerson ]
+  forcedColoring: true
+  # followSkinColor: true
+  # Starlight start
+  sprites:
+    body_snout:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/snout.rsi
+        state: snout
+      colorSource: HumanSkinColor
+  # Starlight end
+
+# Eyes

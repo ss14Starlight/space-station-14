@@ -1,6 +1,4 @@
-﻿using Content.Shared.Damage;
-
-namespace Content.Server.Destructible;
+﻿namespace Content.Server.Destructible;
 
 public sealed partial class DestructibleSystem
 {

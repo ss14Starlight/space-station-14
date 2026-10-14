@@ -3,7 +3,7 @@
   bodyPart: Tail
   waggingId: FopsTailWag
   markingCategory: Tail
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -73,7 +73,7 @@
   id: FopsEar
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_headTop@0:
@@ -93,7 +93,7 @@
   bodyPart: Tail
   waggingId: PuppyTailWag
   markingCategory: Tail
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -164,7 +164,7 @@
   bodyPart: Tail
   markingCategory: Tail
   staticId: FopsTail
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -235,7 +235,7 @@
   bodyPart: Tail
   markingCategory: Tail
   staticId: PuppyTail
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -305,7 +305,7 @@
   id: FoxlikeEar
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_headTop@0:
@@ -324,7 +324,7 @@
   id: FoxlikeEarFade
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_headTop@0:
@@ -343,7 +343,7 @@
   id: FoxlikeEarSharp
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_headTop@0:
@@ -362,7 +362,7 @@
   id: FoxlikeEarWolf
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_headTop@0:
@@ -381,7 +381,7 @@
   id: FoxlikeEarFennec
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_headTop@0:
@@ -400,7 +400,7 @@
   id: FoxlikeEarFox
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_headTop:
@@ -414,7 +414,7 @@
   id: FoxlikeEarShock
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_headTop:
@@ -430,7 +430,7 @@
   bodyPart: Tail
   markingCategory: Tail
   waggingId: FoxlikeTailWag
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -501,7 +501,7 @@
   waggingId: FoxlikeTailTipWag
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -572,7 +572,7 @@
   bodyPart: Tail
   staticId: FoxlikeTail
   markingCategory: Tail
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -643,7 +643,7 @@
   bodyPart: Tail
   markingCategory: Tail
   staticId: FoxlikeTailTip
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -713,7 +713,7 @@
   id: FoxlikeTailAlt
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -783,7 +783,7 @@
   id: FoxlikeTailAltTip
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -853,7 +853,7 @@
   id: FoxlikeTailLong
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -924,7 +924,7 @@
   waggingId: FoxlikeTailFoxWag
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -995,7 +995,7 @@
   waggingId: FoxlikeTailFoxTipWag
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -1066,7 +1066,7 @@
   bodyPart: Tail
   markingCategory: Tail
   staticId: FoxlikeTailFox
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -1137,7 +1137,7 @@
   bodyPart: Tail
   markingCategory: Tail
   staticId: FoxlikeTailFoxTip
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -1208,7 +1208,7 @@
   bodyPart: Tail
   markingCategory: Tail
   waggingId: FoxlikeTailBushyWag
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail:
@@ -1274,7 +1274,7 @@
   bodyPart: Tail
   markingCategory: Tail
   staticId: FoxlikeTailBushy
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail:
@@ -1339,7 +1339,7 @@
   id: FoxlikeTailFox2
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail:
@@ -1404,7 +1404,7 @@
   id: FoxlikeTailFox3
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -1474,7 +1474,7 @@
   id: FoxlikeTailFennec
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail:
@@ -1539,7 +1539,7 @@
   id: FoxlikeTailFluffy
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte]
   # Starlight start
   sprites:
     body_tail:

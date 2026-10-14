@@ -1,17 +1,19 @@
 using System.Collections.Immutable;
 using Content.Server._Starlight.CosmicCult.Components;
 using Content.Server._Starlight.Bluespace;
-using Content.Server.Bible.Components;
+using Content.Server.NPC.Systems;
 using Content.Server.Popups;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Components.Examine;
-using Content.Shared._Starlight.NullSpace;
 using Content.Shared.DoAfter;
 using Content.Shared.Effects;
+using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Components;
 using Content.Shared.NPC;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
@@ -19,22 +21,25 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.NullSpace.Components;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
-public sealed class CosmicBlankSystem : EntitySystem
+public sealed partial class CosmicBlankSystem : EntitySystem
 {
-    [Dependency] private readonly CosmicCultSystem _cult = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly SharedCosmicCultSystem _cosmicCult = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private CosmicCultSystem _cult = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private SharedCosmicCultSystem _cosmicCult = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private NPCSystem _npc = default!;
 
     public override void Initialize()
     {
@@ -46,7 +51,12 @@ public sealed class CosmicBlankSystem : EntitySystem
 
     private void OnCosmicBlank(Entity<CosmicCultComponent> uid, ref EventCosmicBlank args)
     {
-        if (_cosmicCult.EntityIsCultist(args.Target) || HasComp<CosmicBlankComponent>(args.Target) || HasComp<BibleUserComponent>(args.Target) || HasComp<ActiveNPCComponent>(args.Target))
+        if (_cosmicCult.EntityIsCultist(args.Target)
+            || HasComp<CosmicBlankComponent>(args.Target)
+            || (HasComp<ActiveNPCComponent>(args.Target) && !_cosmicCult.IsConvertible(args.Target))
+            || !_mobState.IsAlive(args.Target)
+            || (_cosmicCult.IsConvertible(args.Target) && !_mind.TryGetMind(args.Target, out _, out _))
+            || (!HasComp<HumanoidAppearanceComponent>(args.Target) && !_cosmicCult.IsConvertible(args.Target)))
         {
             _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
             return;
@@ -95,6 +105,7 @@ public sealed class CosmicBlankSystem : EntitySystem
                     continue;
                 mind.PreventGhosting = false;
                 _mind.TransferTo(mindEnt, comp.OriginalBody);
+                EnsureComp<InputMoverComponent>(comp.OriginalBody);
                 RemComp<CosmicBlankComponent>(comp.OriginalBody);
                 RemComp<CosmicCultExamineComponent>(comp.OriginalBody);
                 _popup.PopupEntity(Loc.GetString("cosmicability-blank-return"), comp.OriginalBody, comp.OriginalBody);
@@ -122,7 +133,9 @@ public sealed class CosmicBlankSystem : EntitySystem
 
         _popup.PopupEntity(Loc.GetString("cosmicability-blank-success", ("target", Identity.Entity(target, EntityManager))), uid, uid);
         var tgtpos = Transform(target).Coordinates;
-        var mindEnt = mindContainer.Mind.Value;
+        if (mindContainer.Mind is not { } mindEnt)
+            return;
+
         var mind = Comp<MindComponent>(mindEnt);
         var comp = uid.Comp;
         mind.PreventGhosting = true;
@@ -141,10 +154,11 @@ public sealed class CosmicBlankSystem : EntitySystem
         inVoid.OriginalBody = target;
         inVoid.ExitVoidTime = _timing.CurTime + comp.CosmicBlankDuration;
         _mind.TransferTo(mindEnt, mobUid);
+        _npc.SleepNPC(target); // AI tries to take over when shunted, so we make sure it doesn't
         _stun.TryKnockdown(target, comp.CosmicBlankDuration + TimeSpan.FromSeconds(2), true);
         _popup.PopupEntity(Loc.GetString("cosmicability-blank-transfer"), mobUid, mobUid);
         _audio.PlayPvs(comp.BlankSFX, spawnTgt, AudioParams.Default.WithVolume(6f));
-        _color.RaiseEffect(Color.CadetBlue, new List<EntityUid>() { target }, Filter.Pvs(target, entityManager: EntityManager));
+        _color.RaiseEffect(Color.CadetBlue, [target], Filter.Pvs(target, entityManager: EntityManager));
         Spawn(comp.BlankVFX, spawnTgt);
         _cult.MalignEcho(uid);
     }

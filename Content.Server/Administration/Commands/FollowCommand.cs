@@ -1,21 +1,14 @@
-using Content.Server.GameTicking;
 using Content.Shared.Administration;
 using Content.Shared.Follower;
-using Content.Shared.Ghost;
-using Content.Shared.Mind;
-using Robust.Server.GameObjects;
 using Robust.Shared.Console;
 using Robust.Shared.Enums;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Localization;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class FollowCommand : LocalizedEntityCommands
+public sealed partial class FollowCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly FollowerSystem _followerSystem = default!;
+    [Dependency] private FollowerSystem _followerSystem = default!;
 
     public override string Command => "follow";
 

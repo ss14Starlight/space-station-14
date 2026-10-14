@@ -1,0 +1,10 @@
+﻿- type: entity
+  parent: [BaseNinjaObjective, BaseCodeObjective]
+  id: ExtractObjective
+  name: Extract off station
+  description: Use your gloves on an escape pod console to extract!
+  components:
+  - type: Objective
+    icon:
+      sprite: Clothing/Mask/ninja.rsi
+      state: icon

@@ -1,0 +1,12 @@
+- type: entity
+  id: SpawnPointRadioHost
+  parent: SpawnPointJobBase
+  name: SpawnPointRadioHost
+  components:
+  - type: SpawnPoint
+    job_id: RadioHost
+  - type: Sprite
+    sprite: _Goobstation/Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: radiohost

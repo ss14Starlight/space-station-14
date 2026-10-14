@@ -127,16 +127,3 @@
         id: StimpackMini
         amount: 6
 
-- type: entity #Starlight start
-  id: MedkitFilledParamed
-  suffix: Filled
-  parent: Medkit
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: Brutepack
-        - id: Ointment
-        - id: Gauze
-        - id: Bloodpack #Starlight end

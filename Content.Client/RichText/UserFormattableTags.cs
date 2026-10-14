@@ -1,5 +1,8 @@
 ﻿using Content.Client.UserInterface.RichText;
 using Robust.Client.UserInterface.RichText;
+#region Starlight
+using Content.Client._Starlight.UserInterface.RichText;
+#endregion
 
 namespace Content.Client.RichText;
 
@@ -24,10 +27,20 @@ public static class UserFormattableTags
         // Starlight start
         typeof(FormTagHandler),
         typeof(SignatureTagHandler),
-        typeof(LogoTag),
-        typeof(SyndieLogoTag),
-        typeof(CCLogoTag),
+        typeof(DateTimeTagHandler),
         typeof(CheckTagHandler),
+        typeof(DotsTagHandler),
+        typeof(DotHeadTagHandler),
+        typeof(MetaTagHandler),
         // Starlight end
+    ];
+
+    /// <summary>
+    /// Tags allowed in Silicon UIs. Extends from BaseAllowedTags.
+    /// </summary>
+    public static readonly Type[] SiliconAllowedTags =
+    [
+        ..BaseAllowedTags,
+        typeof(ScrambleTag)
     ];
 }

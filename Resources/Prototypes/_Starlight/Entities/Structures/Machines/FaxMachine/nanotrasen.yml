@@ -1,0 +1,89 @@
+# Group
+- type: faxGroup
+  id: FaxGroupNanoTrasen
+  name: fax-group-nanotrasen
+  color: "#2253b5"
+  order: 3000
+
+# Base fax
+- type: entity
+  abstract: true
+  parent: FaxMachineBase
+  id: FaxMachineNTBase
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#2253b5"
+
+# Fax machines
+- type: entity
+  parent: FaxMachineNTBase
+  id: FaxMachineNTRep
+  suffix: "NT: NTR"
+  components:
+    - type: FaxMachine
+      group: FaxGroupNanoTrasen
+      name: "NT Representative"
+      order: 100
+
+- type: entity
+  parent: FaxMachineNTBase
+  id: FaxMachineNTRepBSO
+  suffix: "NT: NTR & BSO"
+  components:
+    - type: FaxMachine
+      group: FaxGroupNanoTrasen
+      name: "NT Rep & BSO"
+      order: 100
+
+- type: entity
+  parent: FaxMachineNTBase
+  id: FaxMachineNTMagi
+  suffix: "NT: Magi"
+  components:
+    - type: FaxMachine
+      group: FaxGroupNanoTrasen
+      name: "Magistrate"
+      order: 200
+
+- type: entity
+  parent: FaxMachineNTBase
+  id: FaxMachineNTMagiInternalAffairs
+  suffix: "NT: Magi & IAA"
+  components:
+    - type: FaxMachine
+      group: FaxGroupNanoTrasen
+      name: "Magi & Internal Affairs"
+      order: 300
+
+- type: entity
+  parent: FaxMachineNTBase
+  id: FaxMachineNTInternalAffairs
+  suffix: "NT: IAA"
+  components:
+    - type: FaxMachine
+      group: FaxGroupNanoTrasen
+      name: "Internal Affairs"
+      order: 300
+
+- type: entity
+  parent: FaxMachineNTBase
+  id: FaxMachineNTBlueshield
+  suffix: "NT: BSO"
+  components:
+    - type: FaxMachine
+      group: FaxGroupNanoTrasen
+      name: "Blueshield Officer"
+      order: 600
+
+- type: entity
+  parent: FaxMachineNTBase
+  id: FaxMachineNTCareerTrainer
+  suffix: "NT: Career Trainer"
+  components:
+    - type: FaxMachine
+      group: FaxGroupNanoTrasen
+      name: "NT Career Trainer"
+      order: 700

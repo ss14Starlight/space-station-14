@@ -1,7 +1,7 @@
 using Content.Server.Chemistry.Components;
 using Content.Server.Popups;
 using Content.Server.Storage.EntitySystems;
-using Content.Shared._Starlight.Plumbing.Components; // Starlight-edit: Plumbing valve
+using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
@@ -9,10 +9,12 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
+using Content.Shared.DragDrop;
 using Content.Shared.FixedPoint;
+using Content.Shared.Labels.Components;
 using Content.Shared.Labels.EntitySystems;
 using Content.Shared.Storage;
-using Content.Shared.Tag; //Starlight-edit
+using Content.Shared.Tag;
 using JetBrains.Annotations;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
@@ -30,17 +32,17 @@ namespace Content.Server.Chemistry.EntitySystems
     /// <seealso cref="ChemMasterComponent"/>
     /// </summary>
     [UsedImplicitly]
-    public sealed class ChemMasterSystem : EntitySystem
+    public sealed partial class ChemMasterSystem : EntitySystem
     {
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly AudioSystem _audioSystem = default!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-        [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
-        [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
-        [Dependency] private readonly StorageSystem _storageSystem = default!;
-        [Dependency] private readonly LabelSystem _labelSystem = default!;
-        [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly TagSystem _tag = default!; //Starlight-edit
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private AudioSystem _audioSystem = default!;
+        [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+        [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
+        [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;
+        [Dependency] private StorageSystem _storageSystem = default!;
+        [Dependency] private LabelSystem _labelSystem = default!;
+        [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+        [Dependency] private TagSystem _tag = default!; //Starlight-edit
 
         private static readonly EntProtoId PillPrototypeId = "Pill";
         private static readonly EntProtoId PatchPrototypeId = "Patch"; //Starlight
@@ -51,7 +53,7 @@ namespace Content.Server.Chemistry.EntitySystems
             base.Initialize();
 
             SubscribeLocalEvent<ChemMasterComponent, ComponentStartup>(SubscribeUpdateUiState);
-            SubscribeLocalEvent<ChemMasterComponent, SolutionContainerChangedEvent>(SubscribeUpdateUiState);
+            SubscribeLocalEvent<ChemMasterComponent, SolutionChangedEvent>(SubscribeUpdateUiState);
             SubscribeLocalEvent<ChemMasterComponent, EntInsertedIntoContainerMessage>(SubscribeUpdateUiState);
             SubscribeLocalEvent<ChemMasterComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUiState);
             SubscribeLocalEvent<ChemMasterComponent, BoundUIOpenedEvent>(SubscribeUpdateUiState);
@@ -60,11 +62,14 @@ namespace Content.Server.Chemistry.EntitySystems
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterSortingTypeCycleMessage>(OnCycleSortingTypeMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterSetPillTypeMessage>(OnSetPillTypeMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterReagentAmountButtonMessage>(OnReagentButtonMessage);
+            SubscribeLocalEvent<ChemMasterComponent, ChemMasterReagentCustomAmountButtonMessage>(OnCustomReagentButtonMessage); // Starlight
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterCreatePillsMessage>(OnCreatePillsMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterCreatePatchesMessage>(OnCreatePatchesMessage); // Starlight
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterOutputToBottleMessage>(OnOutputToBottleMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterOutputDrawSourceMessage>(OnSetDrawSourceMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterToggleValveMessage>(OnToggleValveMessage); // Starlight-edit: Plumbing valve
+            SubscribeLocalEvent<ChemMasterComponent, ChemMasterSetTransferAmountMessage>(OnSetTransferAmountMessage); // TRIESTE
+            SubscribeLocalEvent<ChemMasterComponent, DragDropTargetEvent>(SubscribeUpdateUiState); // TRIESTE
         }
 
         private void SubscribeUpdateUiState<T>(Entity<ChemMasterComponent> ent, ref T ev)
@@ -86,7 +91,7 @@ namespace Content.Server.Chemistry.EntitySystems
             var valveOpen = TryComp<PlumbingOutletComponent>(owner, out var plumbingOutlet) && plumbingOutlet.Enabled; // Starlight-edit: Plumbing valve
             var state = new ChemMasterBoundUserInterfaceState(
                 chemMaster.Mode, chemMaster.SortingType, BuildInputContainerInfo(inputContainer), BuildOutputContainerInfo(outputContainer),
-                bufferReagents, bufferCurrentVolume, chemMaster.PillType, chemMaster.PillDosageLimit, chemMaster.PatchDosageLimit, updateLabel, chemMaster.DrawSource, valveOpen); // Starlight-edit - add patch limit, valveOpen
+                bufferReagents, bufferCurrentVolume, chemMaster.PillType, chemMaster.PillDosageLimit, chemMaster.PatchDosageLimit, updateLabel, chemMaster.DrawSource, valveOpen, chemMaster.TransferAmount); // Starlight-edit - add patch limit, valveOpen
 
             _userInterfaceSystem.SetUiState(owner, ChemMasterUiKey.Key, state);
         }
@@ -233,7 +238,14 @@ namespace Content.Server.Chemistry.EntitySystems
 
             if (!WithdrawFromSource(chemMaster, needed, user, out var withdrawal))
                 return;
-            _labelSystem.Label(container, message.Label);
+
+            // Starlight-start
+            var containerLabel = string.IsNullOrWhiteSpace(message.ContainerLabel)
+                ? message.Label
+                : message.ContainerLabel;
+            // Starlight-end
+
+            _labelSystem.Label(container, containerLabel); // Starlight: message.Label -> containerLabel
 
             for (var i = 0; i < message.Number; i++)
             {
@@ -241,71 +253,22 @@ namespace Content.Server.Chemistry.EntitySystems
                 _storageSystem.Insert(container, item, out _, user: user, storage);
                 _labelSystem.Label(item, message.Label);
 
-                _solutionContainerSystem.EnsureSolutionEntity(item,
-                    SharedChemMaster.PillSolutionName,
-                    out var itemSolution,
-                    message.Dosage);
-                if (!itemSolution.HasValue)
-                    return;
+                _solutionContainerSystem.EnsureSolution(item, SharedChemMaster.PillSolutionName, out var itemSolution);
+                itemSolution.Comp.Solution.MaxVolume = message.Dosage;
 
-                _solutionContainerSystem.TryAddSolution(itemSolution.Value, withdrawal.SplitSolution(message.Dosage));
+                _solutionContainerSystem.TryAddSolution(itemSolution, withdrawal.SplitSolution(message.Dosage));
 
                 var pill = EnsureComp<PillComponent>(item);
                 pill.PillType = chemMaster.Comp.PillType;
                 Dirty(item, pill);
 
                 // Log pill creation by a user
-                _adminLogger.Add(LogType.Action, LogImpact.Low,
-                    $"{ToPrettyString(user):user} printed {ToPrettyString(item):pill} {SharedSolutionContainerSystem.ToPrettyString(itemSolution.Value.Comp.Solution)}");
+                _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(user):user} printed {ToPrettyString(item):pill} {SharedSolutionContainerSystem.ToPrettyString(itemSolution.Comp.Solution)}");
             }
 
             UpdateUiState(chemMaster);
             ClickSound(chemMaster);
         }
-
-        //Starlight-start
-        private void OnCreatePatchesMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterCreatePatchesMessage message)
-        {
-            var user = message.Actor;
-            var maybeContainer = _itemSlotsSystem.GetItemOrNull(chemMaster, SharedChemMaster.OutputSlotName);
-            if (maybeContainer is not { Valid: true } container || !TryComp(container, out StorageComponent? storage))
-                return; // output can't fit pills
-
-            // Ensure the number is valid.
-            if (message.Number == 0 || !_storageSystem.HasSpace((container, storage)))
-                return;
-
-            // Ensure the amount is valid.
-            if (message.Dosage == 0 || message.Dosage > chemMaster.Comp.PillDosageLimit)
-                return;
-
-            // Ensure label length is within the character limit.
-            if (message.Label.Length > SharedChemMaster.LabelMaxLength)
-                return;
-
-            var needed = message.Dosage * message.Number;
-            if (!WithdrawFromSource(chemMaster, needed, user, out var withdrawal))
-                return;
-
-            _labelSystem.Label(container, message.Label);
-
-            for (var i = 0; i < message.Number; i++)
-            {
-                var item = Spawn(PatchPrototypeId, Transform(container).Coordinates);
-                _storageSystem.Insert(container, item, out _, user: user, storage);
-                _labelSystem.Label(item, message.Label);
-
-                _solutionContainerSystem.EnsureSolutionEntity(item, SharedChemMaster.PatchSolutionName,out var itemSolution, message.Dosage);
-                if (!itemSolution.HasValue)
-                    return;
-
-                _solutionContainerSystem.TryAddSolution(itemSolution.Value, withdrawal.SplitSolution(message.Dosage));
-            }
-
-            UpdateUiState(chemMaster);
-            ClickSound(chemMaster);
-        }
-        //Starlight-end
 
         private void OnOutputToBottleMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterOutputToBottleMessage message)
         {
@@ -450,6 +413,9 @@ namespace Content.Server.Chemistry.EntitySystems
                 return null;
 
             //Starlight-start
+            TryComp<LabelComponent>(container.Value, out var labelComp);
+            var existingLabel = labelComp?.CurrentLabel;
+
             var items = storage.Container.ContainedEntities.Select((Func<EntityUid, (string, FixedPoint2 quantity)>) (pill =>
             {
                 if (_solutionContainerSystem.TryGetSolution(pill, SharedChemMaster.PillSolutionName, out _, out var solution))
@@ -470,15 +436,19 @@ namespace Content.Server.Chemistry.EntitySystems
 
             if (_tag.HasTag(container.Value, PatchPackTag))
             {
-                return new ContainerInfo(name, _storageSystem.GetCumulativeItemAreas((container.Value, storage)) / 2, storage.Grid.GetArea() / 2)
+                return new ContainerInfo(name, _storageSystem.GetCumulativeItemAreas((container.Value, storage)), storage.Grid.GetArea())
                 {
-                    PatchEntities = items
+                    PatchEntities = items,
+                    ContainerLabel = existingLabel,
+                    Uid = GetNetEntity(container.Value)
                 };
             }
 
             return new ContainerInfo(name, _storageSystem.GetCumulativeItemAreas((container.Value, storage)), storage.Grid.GetArea())
             {
-                PillEntities = items
+                PillEntities = items,
+                ContainerLabel = existingLabel,
+                Uid = GetNetEntity(container.Value)
             };
             //Starlight-end
         }
@@ -490,18 +460,5 @@ namespace Content.Server.Chemistry.EntitySystems
                 Reagents = solution.Contents
             };
         }
-
-        // Starlight-start: Plumbing valve toggle
-        private void OnToggleValveMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterToggleValveMessage message)
-        {
-            if (!TryComp<PlumbingOutletComponent>(chemMaster.Owner, out var plumbingOutlet))
-                return;
-
-            plumbingOutlet.Enabled = !plumbingOutlet.Enabled;
-            Dirty(chemMaster.Owner, plumbingOutlet);
-            UpdateUiState(chemMaster);
-            ClickSound(chemMaster);
-        }
-        // Starlight-end
     }
 }

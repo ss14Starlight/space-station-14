@@ -3,16 +3,15 @@ using Content.Server.Silicons.Borgs;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Containers;
 using Content.Shared.Silicons.Borgs.Components;
-using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Silicons;
 
-public sealed class DefaultBorgModulesSystem : EntitySystem
+public sealed partial class DefaultBorgModulesSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly BorgSystem _borg = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private BorgSystem _borg = default!;
 
     public override void Initialize()
     {

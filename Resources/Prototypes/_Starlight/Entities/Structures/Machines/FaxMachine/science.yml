@@ -1,0 +1,44 @@
+# Group
+- type: faxGroup
+  id: FaxGroupScience
+  name: fax-group-science
+  order: 8000
+  color: "#cd7ccd"
+
+# Base
+- type: entity
+  abstract: true
+  parent: FaxMachineBase
+  id: FaxMachineScienceBase
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#cd7ccd"
+
+# Fax machines
+- type: entity
+  parent: FaxMachineScienceBase
+  id: FaxMachineScience
+  suffix: "SCI: Science"
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#cd7ccd"
+    - type: FaxMachine
+      group: FaxGroupScience
+      name: "Science"
+      order: 100
+
+- type: entity
+  parent: FaxMachineScienceBase
+  id: FaxMachineScienceRD
+  suffix: "SCI: RD"
+  components:
+    - type: FaxMachine
+      group: FaxGroupScience
+      name: "Research Director"
+      order: 200

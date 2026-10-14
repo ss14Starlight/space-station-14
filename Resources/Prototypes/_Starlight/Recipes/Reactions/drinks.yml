@@ -11,3 +11,37 @@
       amount: 1
   products:
     DraganSpecial: 3
+
+- type: reaction
+  id: Highlander
+  requiredMixerCategories:
+  - Shake
+  reactants:
+    BacchusBlessing:
+      amount: 2
+    AtomicBomb:
+      amount: 2
+    LongIslandIcedTea:
+      amount: 2
+    DoctorsDelight:
+      amount: 2
+    Omnizine:
+      amount: 1
+  products:
+    Highlander: 2
+
+- type: reaction
+  id: TheLastCall
+  requiredMixerCategories:
+  - Shake
+  reactants:
+    ToxinsSpecial:
+      amount: 1
+    PoisonWine:
+      amount: 1
+    Vampiro:
+      amount: 2
+    JackRose:
+      amount: 2
+  products:
+    TheLastCall: 6

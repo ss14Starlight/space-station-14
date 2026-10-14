@@ -7,20 +7,19 @@ using Content.Shared.Popups;
 using Content.Shared.Teleportation.Components;
 using Content.Shared.Teleportation.Systems;
 using Robust.Server.Audio;
-using Robust.Server.GameObjects;
 
 namespace Content.Server.Teleportation;
 
 /// <summary>
 /// This handles creating portals from a hand teleporter.
 /// </summary>
-public sealed class HandTeleporterSystem : EntitySystem
+public sealed partial class HandTeleporterSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly LinkedEntitySystem _link = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doafter = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private LinkedEntitySystem _link = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doafter = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

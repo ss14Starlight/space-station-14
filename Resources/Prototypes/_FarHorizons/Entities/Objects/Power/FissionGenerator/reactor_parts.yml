@@ -8,6 +8,7 @@
   - type: Sprite
     sprite: _FarHorizons/Objects/Power/FissionGenerator/reactor_parts.rsi
     state: default_rod
+  - type: Appearance
   - type: Item
     size: Huge
   - type: MultiHandedItem
@@ -43,15 +44,15 @@
       - metal
       - electrons
   - type: BadFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Uranium
-          Quantity: 800
-        - ReagentId: Radium
-          Quantity: 200
-        canReact: false
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Uranium
+        Quantity: 800
+      - ReagentId: Radium
+        Quantity: 200
+      canReact: false
   - type: StealTarget
     stealGroup: ReactorFuelRodSteal
   - type: SentienceTarget

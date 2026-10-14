@@ -12,8 +12,8 @@ namespace Content.Shared.Power.EntitySystems;
 /// </summary>
 public abstract partial class SharedBatterySystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {
@@ -103,12 +103,20 @@ public abstract partial class SharedBatterySystem : EntitySystem
         args.CurrentCharge += GetCharge(ent.AsNullable());
         args.MaxCharge += ent.Comp.MaxCharge;
     }
-
+    /// <summary>
+    /// When a power cell that has a non-zero AutoRechargePause; ensure that the pause is reset whenever this is called unless the pause is over, and it is not discharging.
+    /// </summary>
     private void OnRefreshChargeRate(Entity<BatterySelfRechargerComponent> ent, ref RefreshChargeRateEvent args)
     {
-        if (_timing.CurTime < ent.Comp.NextAutoRecharge)
-            return; // Still on cooldown
-
+        #region Starlight
+        if (ent.Comp.AutoRechargePauseTime > TimeSpan.Zero &&
+            (_timing.CurTime < ent.Comp.NextAutoRecharge ||
+             args.NewChargeRate < 0f)) // reset pause only for pause-enabled batteries
+        {
+            ent.Comp.NextAutoRecharge = _timing.CurTime + ent.Comp.AutoRechargePauseTime;
+            return;
+        }
+        #endregion
         args.NewChargeRate += ent.Comp.AutoRechargeRate;
     }
 

@@ -1,9 +1,4 @@
-﻿using Content.Shared.Access;
-using Content.Shared.Access.Components;
-using Content.Shared.Access.Systems;
-using Content.Shared.Emag.Components;
-using JetBrains.Annotations;
-using Robust.Shared.Network;
+﻿using JetBrains.Annotations;
 using Robust.Shared.Player;
 
 namespace Content.Shared._Starlight.Abstract.Conditions;
@@ -12,7 +7,7 @@ namespace Content.Shared._Starlight.Abstract.Conditions;
 [MeansImplicitUse]
 public abstract partial class BaseRequirement
 {
-    [Dependency] protected readonly IEntityManager Ent = default!;
+    [Dependency] protected IEntityManager Ent = default!;
 
     public virtual string GetRequirementDescription()
     {

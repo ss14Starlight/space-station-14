@@ -1,26 +1,19 @@
-using Content.Client.Eye.Blinding;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Eye.Blinding.Systems;
-using Content.Shared.Flash.Components;
-using Content.Shared.Inventory;
-using Content.Shared.Inventory.Events;
-using Content.Shared.Starlight.Overlay;
-using Robust.Client.GameObjects;
+using Content.Client._Starlight.Overlay.Overlays;
+using Content.Shared._Starlight.Overlay.Components;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client._Starlight.Overlay;
+namespace Content.Client._Starlight.Overlay.Systems;
 
-public sealed class CycloriteVisionSystem : EntitySystem
+public sealed partial class CycloriteVisionSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly TransformSystem _xformSys = default!;
-    [Dependency] private readonly FlashImmunitySystem _flashImmunity = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
     private CycloriteVisionOverlay _overlay = default!;
+    private const string CycloriteShaderPrototype = "CycloriteShader";
 
     public override void Initialize()
     {
@@ -32,28 +25,20 @@ public sealed class CycloriteVisionSystem : EntitySystem
         SubscribeLocalEvent<CycloriteVisionComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<CycloriteVisionComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
 
-        _overlay = new(_prototypeManager.Index<ShaderPrototype>("CycloriteShader"));
+        _overlay = new(_prototypeManager.Index<ShaderPrototype>(CycloriteShaderPrototype));
     }
 
     private void OnPlayerAttached(Entity<CycloriteVisionComponent> ent, ref LocalPlayerAttachedEvent args)
-    {
-        AttemptAddVision(ent.Owner);
-    }
+        => AttemptAddVision(ent.Owner);
 
     private void OnPlayerDetached(Entity<CycloriteVisionComponent> ent, ref LocalPlayerDetachedEvent args)
-    {
-        AttemptRemoveVision(ent.Owner, true);
-    }
+        => AttemptRemoveVision(ent.Owner, true);
 
     private void OnVisionInit(Entity<CycloriteVisionComponent> ent, ref ComponentInit args)
-    {
-        AttemptAddVision(ent.Owner);
-    }
+        => AttemptAddVision(ent.Owner);
 
     private void OnVisionShutdown(Entity<CycloriteVisionComponent> ent, ref ComponentShutdown args)
-    {
-        AttemptRemoveVision(ent.Owner);
-    }
+        => AttemptRemoveVision(ent.Owner);
 
     private void AttemptAddVision(EntityUid uid)
     {

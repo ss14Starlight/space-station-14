@@ -1,4 +1,4 @@
-namespace Content.Shared._Starlight.NullSpace;
+namespace Content.Shared._Starlight.NullSpace.Components;
 
 /// <summary>
 /// Will block and effects nullspace entities.

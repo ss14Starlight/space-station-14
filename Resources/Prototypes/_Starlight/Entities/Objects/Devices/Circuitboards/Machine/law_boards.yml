@@ -1,21 +1,6 @@
 - type: entity
-  id: SyndimovCircuitBoard
-  parent: [BaseElectronics, BaseSyndicateContraband]
-  name: law board (Syndimov)
-  components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
-  - type: SiliconLawProvider
-    laws: SyndimovLawset
-    lawUploadSound: /Audio/Ambience/Antag/silicon_lawboard_antimov.ogg
-    IsLawboard: true
-  - type: StaticPrice
-    price: 1000
-
-- type: entity
   id: PanicmovCircuitBoard
-  parent: [ BaseElectronics, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseElectronics, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Panicmov)
   components:
   - type: Sprite
@@ -29,7 +14,7 @@
 
 - type: entity
   id: GenieCircuitBoard
-  parent: [ BaseElectronics, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseElectronics, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Genie in a Core)
   components:
   - type: Sprite
@@ -43,7 +28,7 @@
 
 - type: entity
   id: ReporterCircuitBoard
-  parent: [ BaseElectronics, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseElectronics, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Reporter)
   components:
   - type: Sprite
@@ -57,7 +42,7 @@
 
 - type: entity
   id: JermovCircuitBoard
-  parent: [ BaseElectronics, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  parent: [ BaseElectronics, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Jermov)
   components:
   - type: Sprite
@@ -74,6 +59,8 @@
   parent: [BaseElectronics, BaseSovietContraband]
   name: law board (commiemov)
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Sprite
     sprite: Objects/Misc/module.rsi
     state: std_mod
@@ -83,5 +70,19 @@
     IsLawboard: true
     components:
     - type: Revolutionary # behold. you can now see revs.
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  id: JanimovCircuitBoard
+  parent: [ BaseElectronics, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  name: law board (Janimov)
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: JanimovLawset
+    IsLawboard: true
   - type: StaticPrice
     price: 1000

@@ -1,0 +1,56 @@
+- type: htnCompound
+  id: WebOrIdleCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: WebIdleCompound
+
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+
+# Picks a nearby tile that has a spider web on it and idles there.
+# Falls back to the "already waiting" branch if IdleTime is already set.
+- type: htnCompound
+  id: WebIdleCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:WaitOperator
+            key: IdleTime
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: IdleTime
+
+    - preconditions:
+        - !type:BuckledPrecondition
+          isBuckled: false
+        - !type:PulledPrecondition
+          isPulled: false
+
+      tasks:
+        # Pick an accessible tile that has a SpiderWeb entity on it.
+        - !type:HTNPrimitiveTask
+          operator: !type:PickWebTileOperator
+            rangeKey: IdleRange
+            tileEntityComponent: SpiderWebObject
+
+        # Move to the chosen tile.
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            pathfindInPlanning: false
+
+        # Roll a random idle duration between MinimumIdleTime and MaximumIdleTime.
+        - !type:HTNPrimitiveTask
+          operator: !type:RandomOperator
+            targetKey: IdleTime
+            minKey: MinimumIdleTime
+            maxKey: MaximumIdleTime
+
+        # Wait for the rolled duration.
+        - !type:HTNPrimitiveTask
+          operator: !type:WaitOperator
+            key: IdleTime
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: IdleTime

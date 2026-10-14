@@ -6,15 +6,16 @@ using Content.Shared.Database;
 using Content.Shared.NodeContainer;
 using Robust.Shared.Containers;
 using GasCanisterComponent = Content.Shared.Atmos.Piping.Unary.Components.GasCanisterComponent;
+using GasCanisterHoseSlotComponent = Content.Shared._Starlight.Atmos.Piping.Unary.Components.GasCanisterHoseSlotComponent;
 
 namespace Content.Shared.Atmos.Piping.Unary.Systems;
 
-public abstract class SharedGasCanisterSystem : EntitySystem
+public abstract partial class SharedGasCanisterSystem : EntitySystem
 {
-    [Dependency] protected readonly ISharedAdminLogManager AdminLogger = default!;
-    [Dependency] private   readonly ItemSlotsSystem _slots = default!;
-    [Dependency] private   readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] protected readonly SharedUserInterfaceSystem UI = default!;
+    [Dependency] protected ISharedAdminLogManager AdminLogger = default!;
+    [Dependency] private   ItemSlotsSystem _slots = default!;
+    [Dependency] private   SharedAppearanceSystem _appearance = default!;
+    [Dependency] protected SharedUserInterfaceSystem UI = default!;
 
     public override void Initialize()
     {
@@ -23,11 +24,26 @@ public abstract class SharedGasCanisterSystem : EntitySystem
         SubscribeLocalEvent<GasCanisterComponent, EntRemovedFromContainerMessage>(OnCanisterContainerModified);
         SubscribeLocalEvent<GasCanisterComponent, ItemSlotInsertAttemptEvent>(OnCanisterInsertAttempt);
         SubscribeLocalEvent<GasCanisterComponent, ComponentStartup>(OnCanisterStartup);
+        SubscribeLocalEvent<GasCanisterComponent, MapInitEvent>(OnCanisterMapInit);
+        SubscribeLocalEvent<GasCanisterComponent, BoundUIOpenedEvent>(OnCanisterUIOpened);
 
         // Bound UI subscriptions
         SubscribeLocalEvent<GasCanisterComponent, GasCanisterHoldingTankEjectMessage>(OnHoldingTankEjectMessage);
         SubscribeLocalEvent<GasCanisterComponent, GasCanisterChangeReleasePressureMessage>(OnCanisterChangeReleasePressure);
         SubscribeLocalEvent<GasCanisterComponent, GasCanisterChangeReleaseValveMessage>(OnCanisterChangeReleaseValve);
+    }
+
+    private void OnCanisterUIOpened(Entity<GasCanisterComponent> ent, ref BoundUIOpenedEvent args)
+    {
+        // Fixes all canisters not populating UI elements before MapInit. Mappers rejoice
+        // We still need to DirtyUI after MapInit because this has latency, bad UX for players.
+        DirtyUI(ent.Owner, ent);
+    }
+
+    private void OnCanisterMapInit(Entity<GasCanisterComponent> ent, ref MapInitEvent args)
+    {
+        // Fixes empty canisters not populating UI elements
+        DirtyUI(ent.Owner, ent);
     }
 
     private void OnCanisterStartup(Entity<GasCanisterComponent> ent, ref ComponentStartup args)
@@ -110,8 +126,17 @@ public abstract class SharedGasCanisterSystem : EntitySystem
 
     private void OnCanisterInsertAttempt(EntityUid uid, GasCanisterComponent component, ref ItemSlotInsertAttemptEvent args)
     {
-        if (args.Slot.ID != component.ContainerName || args.User == null)
+        if (args.Slot.ID != component.ContainerName) // Starlight: args.User == null is a shortcut that prevents our hose from working
             return;
+
+        // Starlight - start
+        // This prevents the normal interaction with gas tanks while the hose is attached (refilling ability)
+        if (TryComp<GasCanisterHoseSlotComponent>(uid, out var hoseSlot) && hoseSlot.HoseSlot.HasItem)
+        {
+            args.Cancelled = true;
+            return;
+        }
+        // Starlight - end
 
         // Could whitelist but we want to check if it's open so.
         if (!TryComp<GasTankComponent>(args.Item, out var gasTank) || gasTank.IsValveOpen)

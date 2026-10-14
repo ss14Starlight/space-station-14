@@ -1,5 +1,6 @@
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.FixedPoint;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
@@ -9,7 +10,6 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Zombies;
 
@@ -19,14 +19,14 @@ public sealed partial class ZombieComponent : Component
     /// <summary>
     /// The baseline infection chance you have if you have no protective gear
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public float BaseZombieInfectionChance = 0.75f;
 
     /// <summary>
     /// The minimum infection chance possible. This is simply to prevent
     /// being overly protected by bundling up.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public float MinZombieInfectionChance = 0.00f; // Starlight, since Biosuits now provide zombie immunity
 
     /// <summary>
@@ -42,19 +42,19 @@ public sealed partial class ZombieComponent : Component
         }
     };
 
-    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public float ZombieMovementSpeedDebuff = 0.80f; // Starlight-edit
 
     /// <summary>
     /// The skin color of the zombie
     /// </summary>
-    [DataField("skinColor")]
+    [DataField]
     public Color SkinColor = new(0.45f, 0.51f, 0.29f);
 
     /// <summary>
     /// The eye color of the zombie
     /// </summary>
-    [DataField("eyeColor")]
+    [DataField]
     public Color EyeColor = new(0.96f, 0.13f, 0.24f);
 
     /// <summary>
@@ -66,14 +66,14 @@ public sealed partial class ZombieComponent : Component
     /// <summary>
     /// The attack arc of the zombie
     /// </summary>
-    [DataField("attackArc", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string AttackAnimation = "WeaponArcBite";
+    [DataField("attackArc")]
+    public EntProtoId AttackAnimation = "WeaponArcBite";
 
     /// <summary>
     /// The role prototype of the zombie antag role
     /// </summary>
-    [DataField("zombieRoleId", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
-    public string ZombieRoleId = "Zombie";
+    [DataField]
+    public ProtoId<AntagPrototype> ZombieRoleId = "Zombie";
 
     /// <summary>
     /// The CustomBaseLayers of the humanoid to restore in case of cloning
@@ -96,7 +96,7 @@ public sealed partial class ZombieComponent : Component
     [DataField("emoteId")]
     public ProtoId<EmoteSoundsPrototype>? EmoteSoundsId = "Zombie";
 
-    [DataField("nextTick", customTypeSerializer:typeof(TimeOffsetSerializer))]
+    [DataField(customTypeSerializer:typeof(TimeOffsetSerializer))]
     public TimeSpan NextTick;
 
     [DataField("zombieStatusIcon")]
@@ -105,36 +105,41 @@ public sealed partial class ZombieComponent : Component
     /// <summary>
     /// Healing each second
     /// </summary>
-    [DataField("passiveHealing")]
+    [DataField]
     public DamageSpecifier PassiveHealing = new()
     {
+        // Starlight-start
         DamageDict = new ()
         {
-            { "Blunt", -0.7 }, // Starlight-edit
-            { "Slash", -0.5 }, // Starlight-edit
-            { "Piercing", -0.6 }, // Starlight-edit
-            { "Heat", -0.02 },
-            { "Shock", -0.05 } // Starlight-edit
+            { "Blunt", -0.7 },
+            { "Slash", -0.6 },
+            { "Piercing", -0.5 },
+            { "Heat", -0.2 },
+            { "Shock", -0.1 },
+            { "Bloodloss", -0.5 }
         }
+        // Starlight-end
     };
 
     /// <summary>
     /// A multiplier applied to <see cref="PassiveHealing"/> when the entity is in critical condition.
     /// </summary>
-    [DataField("passiveHealingCritMultiplier")]
+    [DataField]
     public float PassiveHealingCritMultiplier = 2f;
 
     /// <summary>
     /// Healing given when a zombie bites a living being.
     /// </summary>
-    [DataField("healingOnBite")]
+    [DataField]
     public DamageSpecifier HealingOnBite = new()
     {
         DamageDict = new()
         {
-            { "Blunt", -3 }, // Starlight-edit
-            { "Slash", -3 }, // Starlight-edit
-            { "Piercing", -3 } // Starlight-edit
+            // Starlight-start
+            { "Blunt", -3 },
+            { "Slash", -3 },
+            { "Piercing", -3 }
+            // Starlight-end
         }
     };
 
@@ -151,7 +156,32 @@ public sealed partial class ZombieComponent : Component
         }
     };
 
-    // starlight
+    /// <summary>
+    ///     Path to antagonist alert sound.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier GreetSoundNotification = new SoundPathSpecifier("/Audio/Ambience/Antag/zombie_start.ogg");
+
+    /// <summary>
+    ///     Hit sound on zombie bite.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier BiteSound = new SoundPathSpecifier("/Audio/Effects/bite.ogg");
+
+    /// <summary>
+    /// The blood reagents of the humanoid to restore in case of cloning
+    /// </summary>
+    [DataField]
+    public Solution BeforeZombifiedBloodReagents = new();
+
+    /// <summary>
+    /// The blood reagents to give the zombie. In case you want zombies that bleed milk, or something.
+    /// </summary>
+    [DataField]
+    public Solution NewBloodReagents = new([new("ZombieBlood", 1)]);
+
+    #region Starlight
+
     /// <summary>
     /// What bite damage should be assigned to this mob if it previously had a 0 damage attack (mice, moproaches, etc)
     /// </summary>
@@ -166,32 +196,16 @@ public sealed partial class ZombieComponent : Component
     };
 
     /// <summary>
-    ///     Starlight, this just makes zombies always attack at the same speed as a base human (and also the first C# code I did eheee :3)
+    /// This just makes zombies always attack at the same speed as a base human (and also the first C# code I did eheee :3)
     /// </summary>
     [DataField("BiteSpeed")]
     public float BiteSpeed = 1.0f;
 
     /// <summary>
-    ///     Path to antagonist alert sound.
+    /// Amount to increase Critical and Dead mob state thresholds upon zombification.
     /// </summary>
-    [DataField("greetSoundNotification")]
-    public SoundSpecifier GreetSoundNotification = new SoundPathSpecifier("/Audio/Ambience/Antag/zombie_start.ogg");
+    [DataField("thresholdBoost")]
+    public FixedPoint2 ThresholdBoost = 15;
 
-    /// <summary>
-    ///     Hit sound on zombie bite.
-    /// </summary>
-    [DataField]
-    public SoundSpecifier BiteSound = new SoundPathSpecifier("/Audio/Effects/bite.ogg");
-
-    /// <summary>
-    /// The blood reagents of the humanoid to restore in case of cloning
-    /// </summary>
-    [DataField("beforeZombifiedBloodReagents")]
-    public Solution BeforeZombifiedBloodReagents = new();
-
-    /// <summary>
-    /// The blood reagents to give the zombie. In case you want zombies that bleed milk, or something.
-    /// </summary>
-    [DataField("newBloodReagents")]
-    public Solution NewBloodReagents = new([new("ZombieBlood", 1)]);
+    #endregion
 }

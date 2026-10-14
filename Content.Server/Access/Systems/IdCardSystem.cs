@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
-using Content.Shared.Kitchen.Components; // Starlight
 using Content.Server.Popups;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
@@ -16,14 +15,14 @@ using Content.Server.Kitchen.EntitySystems;
 
 namespace Content.Server.Access.Systems;
 
-public sealed class IdCardSystem : SharedIdCardSystem
+public sealed partial class IdCardSystem : SharedIdCardSystem
 {
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly CookingDeviceSystem _microwave = default!; // Starlight-edit
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private CookingDeviceSystem _microwave = default!; // Starlight-edit
+    [Dependency] private ChatSystem _chat = default!;
 
     public override void Initialize()
     {

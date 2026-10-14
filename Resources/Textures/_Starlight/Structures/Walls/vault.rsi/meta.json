@@ -1,116 +1,143 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "alienvault"
+      "name": "alienvault",
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}"
     },
     {
       "name": "alienvault0",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}"
     },
     {
       "name": "alienvault1",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}"
     },
     {
       "name": "alienvault2",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}"
     },
     {
       "name": "alienvault3",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}"
     },
     {
       "name": "alienvault4",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}"
     },
     {
       "name": "alienvault5",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}"
     },
     {
       "name": "alienvault6",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}"
     },
     {
       "name": "alienvault7",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}"
     },
     {
-      "name": "rockvault"
+      "name": "rockvault",
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
-	{
+    {
       "name": "rockvault0",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
     {
       "name": "rockvault1",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
     {
       "name": "rockvault2",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
     {
       "name": "rockvault3",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
     {
       "name": "rockvault4",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
     {
       "name": "rockvault5",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
     {
       "name": "rockvault6",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
     {
       "name": "rockvault7",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
     {
-      "name": "sandstonevault"
+      "name": "sandstonevault",
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
-	{
+    {
       "name": "sandstonevault0",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
     {
       "name": "sandstonevault1",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
     {
       "name": "sandstonevault2",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
     {
       "name": "sandstonevault3",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
     {
       "name": "sandstonevault4",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
     {
       "name": "sandstonevault5",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
     {
       "name": "sandstonevault6",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     },
     {
       "name": "sandstonevault7",
-      "directions": 4
+      "directions": 4,
+      "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight"
     }
   ]
 }

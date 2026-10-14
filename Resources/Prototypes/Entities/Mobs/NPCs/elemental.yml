@@ -386,6 +386,7 @@
     solution: bloodstream
   - type: DrainableSolution
     solution: bloodstream
+  - type: ForceAttack
 
 - type: entity
   parent: MarkerBase
@@ -413,6 +414,7 @@
       - id: ReagentSlimeNorepinephricAcid
       - id: ReagentSlimeEphedrine
       - id: ReagentSlimeRobustHarvest
+      - id: ReagentSlimePhenylpiperidine # Starlight
 
 - type: entity
   id: ReagentSlimeBeer

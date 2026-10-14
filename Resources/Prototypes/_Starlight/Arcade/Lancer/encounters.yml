@@ -1,0 +1,1065 @@
+- type: lancerEncounter
+  id: tutorial-arena
+  name: lancer-encounter-tutorial-arena-name
+  description: lancer-encounter-tutorial-arena-desc
+  objectiveText: lancer-encounter-tutorial-arena-objective
+  objective: EliminateAll
+  playerDeployX: 5
+  playerDeployY: 9
+  hasRelay: false
+  terrains: []
+  enemies: []
+  narrativeChecks: []
+
+- type: lancerEncounter
+  id: ridge-pass-fight-1
+  name: lancer-encounter-ridge-pass-fight-1-name
+  description: lancer-encounter-ridge-pass-fight-1-desc
+  objectiveText: lancer-encounter-ridge-pass-fight-1-objective
+  objective: DefendRelay
+  playerDeployX: 2
+  playerDeployY: 10
+  hasRelay: true
+  relayX: 2
+  relayY: 5
+  terrains:
+  - x: 1
+    y: 5
+    terrain: RubbleSoft
+  - x: 3
+    y: 4
+    terrain: RubbleSoft
+  - x: 3
+    y: 6
+    terrain: RubbleSoft
+  - x: 4
+    y: 5
+    terrain: RubbleHard
+  - x: 5
+    y: 6
+    terrain: RubbleHard
+  - x: 6
+    y: 4
+    terrain: RubbleSoft
+  - x: 2
+    y: 7
+    terrain: RubbleSoft
+  enemies:
+  - kind: Grunt
+    x: 1
+    y: 3
+    tier: 1
+  - kind: Assault
+    x: 3
+    y: 3
+    tier: 1
+  - kind: Cutlass
+    x: 4
+    y: 2
+    tier: 2
+  narrativeChecks:
+  - label: lancer-narrative-spot-ambush-label
+    description: lancer-narrative-spot-ambush-desc
+    modifier: 2
+    dc: 10
+    bonus: FirstAttackAcc
+    bonusValue: 1
+  - label: lancer-narrative-sweep-ridge-label
+    description: lancer-narrative-sweep-ridge-desc
+    modifier: 1
+    dc: 8
+    bonus: ExtraHex
+    bonusValue: 1
+
+- type: lancerEncounter
+  id: ridge-pass-fight-2
+  name: lancer-encounter-ridge-pass-fight-2-name
+  description: lancer-encounter-ridge-pass-fight-2-desc
+  objectiveText: lancer-encounter-ridge-pass-fight-2-objective
+  objective: ReachCell
+  objectiveX: 4
+  objectiveY: 1
+  playerDeployX: 2
+  playerDeployY: 10
+  hasRelay: false
+  terrains:
+  - x: 2
+    y: 5
+    terrain: RubbleSoft
+  - x: 3
+    y: 4
+    terrain: RubbleSoft
+  - x: 4
+    y: 3
+    terrain: RubbleHard
+  - x: 5
+    y: 6
+    terrain: RubbleHard
+  - x: 5
+    y: 2
+    terrain: RubbleSoft
+  - x: 6
+    y: 5
+    terrain: RubbleSoft
+  - x: 3
+    y: 8
+    terrain: RubbleSoft
+  enemies:
+  - kind: Grunt
+    x: 2
+    y: 3
+    tier: 1
+  - kind: Grunt
+    x: 5
+    y: 2
+    tier: 1
+  - kind: Assault
+    x: 4
+    y: 4
+    tier: 1
+  - kind: Cutlass
+    x: 6
+    y: 3
+    tier: 1
+  - kind: Sniper
+    x: 7
+    y: 1
+    tier: 0
+  narrativeChecks:
+  - label: lancer-narrative-push-advance-label
+    description: lancer-narrative-push-advance-desc
+    modifier: 1
+    dc: 9
+    bonus: ExtraMove
+    bonusValue: 2
+  - label: lancer-narrative-sensor-sweep-label
+    description: lancer-narrative-sensor-sweep-desc
+    modifier: 2
+    dc: 10
+    bonus: ExtraHex
+    bonusValue: 1
+
+- type: lancerEncounter
+  id: ridge-pass-fight-3
+  name: lancer-encounter-ridge-pass-fight-3-name
+  description: lancer-encounter-ridge-pass-fight-3-desc
+  objectiveText: lancer-encounter-ridge-pass-fight-3-objective
+  objective: HoldCell
+  objectiveX: 2
+  objectiveY: 5
+  holdTurnsRequired: 3
+  playerDeployX: 2
+  playerDeployY: 10
+  hasRelay: true
+  relayX: 2
+  relayY: 5
+  terrains:
+  - x: 1
+    y: 4
+    terrain: RubbleSoft
+  - x: 3
+    y: 4
+    terrain: RubbleSoft
+  - x: 3
+    y: 6
+    terrain: RubbleHard
+  - x: 4
+    y: 5
+    terrain: RubbleSoft
+  - x: 5
+    y: 6
+    terrain: RubbleHard
+  - x: 5
+    y: 3
+    terrain: RubbleSoft
+  - x: 6
+    y: 5
+    terrain: RubbleSoft
+  enemies:
+  - kind: Cutlass
+    x: 4
+    y: 2
+    tier: 2
+  - kind: Grunt
+    x: 1
+    y: 4
+    tier: 1
+  - kind: Assault
+    x: 5
+    y: 4
+    tier: 1
+  - kind: Sniper
+    x: 3
+    y: 2
+    tier: 0
+  narrativeChecks:
+  - label: lancer-narrative-fortify-label
+    description: lancer-narrative-fortify-desc
+    modifier: 0
+    dc: 8
+    bonus: TempStructure
+    bonusValue: 1
+  - label: lancer-narrative-aggressive-label
+    description: lancer-narrative-aggressive-desc
+    modifier: 1
+    dc: 9
+    bonus: FightAcc
+    bonusValue: 1
+
+- type: lancerEncounter
+  id: deep-range-fight-1
+  name: lancer-encounter-deep-range-fight-1-name
+  description: lancer-encounter-deep-range-fight-1-desc
+  objectiveText: lancer-encounter-deep-range-fight-1-objective
+  objective: EliminateAll
+  # Killzone approach: staggered hostiles funnel toward deploy so Tortuga Sentinel
+  # can Overwatch multiple movers in one enemy phase (threat 3).
+  playerDeployX: 4
+  playerDeployY: 8
+  hasRelay: false
+  terrains:
+  - x: 3
+    y: 6
+    terrain: RubbleSoft
+  - x: 5
+    y: 6
+    terrain: RubbleSoft
+  - x: 2
+    y: 5
+    terrain: RubbleHard
+  - x: 6
+    y: 5
+    terrain: RubbleHard
+  - x: 3
+    y: 4
+    terrain: RubbleSoft
+  - x: 5
+    y: 4
+    terrain: RubbleSoft
+  - x: 4
+    y: 3
+    terrain: RubbleSoft
+  - x: 7
+    y: 7
+    terrain: RubbleSoft
+  enemies:
+  # Near wave — enter threat quickly and keep closing (preferred band 2).
+  - kind: Grunt
+    x: 3
+    y: 5
+    tier: 1
+  - kind: Grunt
+    x: 5
+    y: 5
+    tier: 1
+  - kind: Assault
+    x: 4
+    y: 4
+    tier: 1
+  # Mid wave — arrive a turn later for a second Overwatch window.
+  - kind: Grunt
+    x: 6
+    y: 3
+    tier: 1
+  - kind: Cutlass
+    x: 4
+    y: 2
+    tier: 1
+  - kind: Assault
+    x: 7
+    y: 4
+    tier: 1
+  - kind: Sniper
+    x: 8
+    y: 2
+    tier: 0
+  narrativeChecks:
+  - label: lancer-narrative-overwatch-label
+    description: lancer-narrative-overwatch-desc
+    modifier: 1
+    dc: 9
+    bonus: TempStructure
+    bonusValue: 1
+  - label: lancer-narrative-flank-label
+    description: lancer-narrative-flank-desc
+    modifier: 1
+    dc: 10
+    bonus: FirstAttackAcc
+    bonusValue: 1
+
+- type: lancerEncounter
+  id: deep-range-fight-2
+  name: lancer-encounter-deep-range-fight-2-name
+  description: lancer-encounter-deep-range-fight-2-desc
+  objectiveText: lancer-encounter-deep-range-fight-2-objective
+  objective: ReachCell
+  objectiveX: 8
+  objectiveY: 1
+  playerDeployX: 2
+  playerDeployY: 10
+  hasRelay: false
+  terrains:
+  - x: 2
+    y: 4
+    terrain: RubbleSoft
+  - x: 3
+    y: 6
+    terrain: RubbleSoft
+  - x: 4
+    y: 3
+    terrain: RubbleHard
+  - x: 5
+    y: 4
+    terrain: RubbleHard
+  - x: 6
+    y: 6
+    terrain: RubbleSoft
+  - x: 7
+    y: 2
+    terrain: RubbleSoft
+  - x: 8
+    y: 5
+    terrain: RubbleSoft
+  - x: 5
+    y: 8
+    terrain: RubbleSoft
+  enemies:
+  - kind: Cutlass
+    x: 6
+    y: 3
+    tier: 1
+  - kind: Assault
+    x: 5
+    y: 1
+    tier: 1
+  - kind: Grunt
+    x: 4
+    y: 2
+    tier: 1
+  - kind: Grunt
+    x: 7
+    y: 5
+    tier: 1
+  - kind: Sniper
+    x: 5
+    y: 4
+    tier: 0
+  - kind: Bombard
+    x: 10
+    y: 1
+    tier: 1
+  narrativeChecks:
+  - label: lancer-narrative-rush-label
+    description: lancer-narrative-rush-desc
+    modifier: 2
+    dc: 10
+    bonus: ExtraMove
+    bonusValue: 2
+  - label: lancer-narrative-jam-label
+    description: lancer-narrative-jam-desc
+    modifier: 1
+    dc: 9
+    bonus: ExtraHex
+    bonusValue: 1
+
+- type: lancerEncounter
+  id: deep-range-fight-3
+  name: lancer-encounter-deep-range-fight-3-name
+  description: lancer-encounter-deep-range-fight-3-desc
+  objectiveText: lancer-encounter-deep-range-fight-3-objective
+  objective: DefendRelay
+  playerDeployX: 2
+  playerDeployY: 10
+  hasRelay: true
+  relayX: 2
+  relayY: 5
+  terrains:
+  - x: 1
+    y: 6
+    terrain: RubbleSoft
+  - x: 3
+    y: 4
+    terrain: RubbleSoft
+  - x: 3
+    y: 7
+    terrain: RubbleHard
+  - x: 4
+    y: 5
+    terrain: RubbleSoft
+  - x: 5
+    y: 6
+    terrain: RubbleHard
+  - x: 6
+    y: 3
+    terrain: RubbleSoft
+  - x: 7
+    y: 5
+    terrain: RubbleSoft
+  - x: 6
+    y: 7
+    terrain: RubbleSoft
+  enemies:
+  - kind: Cutlass
+    x: 7
+    y: 3
+    tier: 1
+  - kind: Assault
+    x: 8
+    y: 4
+    tier: 1
+  - kind: Grunt
+    x: 4
+    y: 4
+    tier: 1
+  - kind: Grunt
+    x: 5
+    y: 2
+    tier: 1
+  - kind: Sniper
+    x: 3
+    y: 3
+    tier: 0
+  - kind: Bombard
+    x: 9
+    y: 2
+    tier: 1
+  narrativeChecks:
+  - label: lancer-narrative-bunker-label
+    description: lancer-narrative-bunker-desc
+    modifier: 0
+    dc: 8
+    bonus: TempStructure
+    bonusValue: 1
+  - label: lancer-narrative-focus-label
+    description: lancer-narrative-focus-desc
+    modifier: 1
+    dc: 9
+    bonus: FightAcc
+    bonusValue: 1
+
+- type: lancerEncounter
+  id: crown-signal-fight-1
+  name: lancer-encounter-crown-signal-fight-1-name
+  description: lancer-encounter-crown-signal-fight-1-desc
+  objectiveText: lancer-encounter-crown-signal-fight-1-objective
+  objective: EliminateAll
+  playerDeployX: 2
+  playerDeployY: 10
+  hasRelay: false
+  terrains:
+  - x: 3
+    y: 5
+    terrain: RubbleSoft
+  - x: 4
+    y: 5
+    terrain: RubbleSoft
+  - x: 5
+    y: 3
+    terrain: RubbleHard
+  - x: 6
+    y: 6
+    terrain: RubbleHard
+  - x: 7
+    y: 4
+    terrain: RubbleSoft
+  - x: 8
+    y: 4
+    terrain: RubbleSoft
+  - x: 8
+    y: 7
+    terrain: RubbleSoft
+  - x: 9
+    y: 5
+    terrain: RubbleHard
+  enemies:
+  - kind: Bombard
+    x: 9
+    y: 2
+    tier: 1
+  - kind: Sniper
+    x: 10
+    y: 4
+    tier: 0
+  - kind: Grunt
+    x: 5
+    y: 3
+    tier: 1
+  - kind: Assault
+    x: 7
+    y: 4
+    tier: 1
+  - kind: Cutlass
+    x: 8
+    y: 3
+    tier: 1
+  - kind: Grunt
+    x: 6
+    y: 4
+    tier: 1
+  narrativeChecks:
+  - label: lancer-narrative-counter-label
+    description: lancer-narrative-counter-desc
+    modifier: 2
+    dc: 10
+    bonus: CoreCharge
+    bonusValue: 1
+  - label: lancer-narrative-evade-label
+    description: lancer-narrative-evade-desc
+    modifier: 1
+    dc: 9
+    bonus: FreeRepair
+    bonusValue: 1
+
+- type: lancerEncounter
+  id: crown-signal-fight-2
+  name: lancer-encounter-crown-signal-fight-2-name
+  description: lancer-encounter-crown-signal-fight-2-desc
+  objectiveText: lancer-encounter-crown-signal-fight-2-objective
+  objective: HoldCell
+  objectiveX: 6
+  objectiveY: 5
+  holdTurnsRequired: 3
+  playerDeployX: 2
+  playerDeployY: 10
+  hasRelay: false
+  terrains:
+  - x: 4
+    y: 4
+    terrain: RubbleSoft
+  - x: 5
+    y: 5
+    terrain: RubbleSoft
+  - x: 5
+    y: 7
+    terrain: RubbleHard
+  - x: 6
+    y: 3
+    terrain: RubbleSoft
+  - x: 7
+    y: 6
+    terrain: RubbleHard
+  - x: 7
+    y: 4
+    terrain: RubbleSoft
+  - x: 8
+    y: 5
+    terrain: RubbleSoft
+  - x: 9
+    y: 6
+    terrain: RubbleHard
+  enemies:
+  - kind: Bombard
+    x: 9
+    y: 3
+    tier: 1
+  - kind: Cutlass
+    x: 10
+    y: 5
+    tier: 1
+  - kind: Grunt
+    x: 4
+    y: 4
+    tier: 1
+  - kind: Assault
+    x: 6
+    y: 4
+    tier: 1
+  - kind: Grunt
+    x: 3
+    y: 6
+    tier: 1
+  - kind: Sniper
+    x: 9
+    y: 4
+    tier: 0
+  narrativeChecks:
+  - label: lancer-narrative-overwatch-label
+    description: lancer-narrative-overwatch-desc
+    modifier: 0
+    dc: 8
+    bonus: TempStructure
+    bonusValue: 1
+  - label: lancer-narrative-assault-label
+    description: lancer-narrative-assault-desc
+    modifier: 1
+    dc: 9
+    bonus: FightAcc
+    bonusValue: 1
+
+- type: lancerEncounter
+  id: crown-signal-fight-3
+  name: lancer-encounter-crown-signal-fight-3-name
+  description: lancer-encounter-crown-signal-fight-3-desc
+  objectiveText: lancer-encounter-crown-signal-fight-3-objective
+  objective: EliminateAll
+  playerDeployX: 2
+  playerDeployY: 10
+  hasRelay: true
+  relayX: 2
+  relayY: 5
+  terrains:
+  - x: 2
+    y: 3
+    terrain: RubbleSoft
+  - x: 3
+    y: 4
+    terrain: RubbleSoft
+  - x: 4
+    y: 6
+    terrain: RubbleHard
+  - x: 5
+    y: 6
+    terrain: RubbleHard
+  - x: 6
+    y: 4
+    terrain: RubbleSoft
+  - x: 7
+    y: 3
+    terrain: RubbleSoft
+  - x: 7
+    y: 6
+    terrain: RubbleSoft
+  - x: 8
+    y: 5
+    terrain: RubbleHard
+  - x: 4
+    y: 2
+    terrain: RubbleSoft
+  enemies:
+  - kind: Cutlass
+    x: 8
+    y: 2
+    tier: 1
+  - kind: Bombard
+    x: 9
+    y: 4
+    tier: 1
+  - kind: Sniper
+    x: 10
+    y: 2
+    tier: 0
+  - kind: Assault
+    x: 6
+    y: 3
+    tier: 1
+  - kind: Grunt
+    x: 5
+    y: 5
+    tier: 1
+  - kind: Grunt
+    x: 4
+    y: 4
+    tier: 1
+  narrativeChecks:
+  - label: lancer-narrative-fortify-label
+    description: lancer-narrative-fortify-desc
+    modifier: 0
+    dc: 8
+    bonus: TempStructure
+    bonusValue: 1
+  - label: lancer-narrative-aggressive-label
+    description: lancer-narrative-aggressive-desc
+    modifier: 1
+    dc: 9
+    bonus: FightAcc
+    bonusValue: 1
+# Tokugawa-scaled encounter variants (same layouts/objectives; fewer shooters / softer elites).
+# Base encounters above remain the Tortuga / default path.
+
+- type: lancerEncounter
+  id: deep-range-fight-1-tokugawa
+  name: lancer-encounter-deep-range-fight-1-name
+  description: lancer-encounter-deep-range-fight-1-desc
+  objectiveText: lancer-encounter-deep-range-fight-1-objective
+  objective: EliminateAll
+  playerDeployX: 2
+  playerDeployY: 10
+  hasRelay: false
+  terrains:
+  - x: 3
+    y: 4
+    terrain: RubbleSoft
+  - x: 4
+    y: 5
+    terrain: RubbleSoft
+  - x: 5
+    y: 3
+    terrain: RubbleHard
+  - x: 6
+    y: 4
+    terrain: RubbleHard
+  - x: 7
+    y: 7
+    terrain: RubbleSoft
+  - x: 7
+    y: 2
+    terrain: RubbleSoft
+  - x: 8
+    y: 6
+    terrain: RubbleSoft
+  - x: 9
+    y: 4
+    terrain: RubbleHard
+  enemies:
+  - kind: Grunt
+    x: 5
+    y: 2
+    tier: 1
+  - kind: Assault
+    x: 7
+    y: 3
+    tier: 1
+  - kind: Grunt
+    x: 8
+    y: 5
+    tier: 1
+  - kind: Cutlass
+    x: 9
+    y: 2
+    tier: 1
+  narrativeChecks:
+  - label: lancer-narrative-flank-label
+    description: lancer-narrative-flank-desc
+    modifier: 1
+    dc: 10
+    bonus: FirstAttackAcc
+    bonusValue: 1
+  - label: lancer-narrative-supply-label
+    description: lancer-narrative-supply-desc
+    modifier: 0
+    dc: 8
+    bonus: FreeRepair
+    bonusValue: 1
+
+- type: lancerEncounter
+  id: deep-range-fight-2-tokugawa
+  name: lancer-encounter-deep-range-fight-2-name
+  description: lancer-encounter-deep-range-fight-2-desc
+  objectiveText: lancer-encounter-deep-range-fight-2-objective
+  objective: ReachCell
+  objectiveX: 8
+  objectiveY: 1
+  playerDeployX: 2
+  playerDeployY: 10
+  hasRelay: false
+  terrains:
+  - x: 2
+    y: 4
+    terrain: RubbleSoft
+  - x: 3
+    y: 6
+    terrain: RubbleSoft
+  - x: 4
+    y: 3
+    terrain: RubbleHard
+  - x: 5
+    y: 4
+    terrain: RubbleHard
+  - x: 6
+    y: 6
+    terrain: RubbleSoft
+  - x: 7
+    y: 2
+    terrain: RubbleSoft
+  - x: 8
+    y: 5
+    terrain: RubbleSoft
+  - x: 5
+    y: 8
+    terrain: RubbleSoft
+  enemies:
+  - kind: Cutlass
+    x: 6
+    y: 3
+    tier: 1
+  - kind: Sniper
+    x: 8
+    y: 2
+    tier: 1
+  - kind: Grunt
+    x: 4
+    y: 2
+    tier: 1
+  - kind: Assault
+    x: 7
+    y: 5
+    tier: 1
+  narrativeChecks:
+  - label: lancer-narrative-rush-label
+    description: lancer-narrative-rush-desc
+    modifier: 2
+    dc: 10
+    bonus: ExtraMove
+    bonusValue: 2
+  - label: lancer-narrative-jam-label
+    description: lancer-narrative-jam-desc
+    modifier: 1
+    dc: 9
+    bonus: ExtraHex
+    bonusValue: 1
+
+- type: lancerEncounter
+  id: deep-range-fight-3-tokugawa
+  name: lancer-encounter-deep-range-fight-3-name
+  description: lancer-encounter-deep-range-fight-3-desc
+  objectiveText: lancer-encounter-deep-range-fight-3-objective
+  objective: DefendRelay
+  playerDeployX: 2
+  playerDeployY: 10
+  hasRelay: true
+  relayX: 2
+  relayY: 5
+  terrains:
+  - x: 1
+    y: 6
+    terrain: RubbleSoft
+  - x: 3
+    y: 4
+    terrain: RubbleSoft
+  - x: 3
+    y: 7
+    terrain: RubbleHard
+  - x: 4
+    y: 5
+    terrain: RubbleSoft
+  - x: 5
+    y: 6
+    terrain: RubbleHard
+  - x: 6
+    y: 3
+    terrain: RubbleSoft
+  - x: 7
+    y: 5
+    terrain: RubbleSoft
+  - x: 6
+    y: 7
+    terrain: RubbleSoft
+  enemies:
+  - kind: Cutlass
+    x: 7
+    y: 3
+    tier: 2
+  - kind: Assault
+    x: 4
+    y: 4
+    tier: 1
+  - kind: Bombard
+    x: 9
+    y: 2
+    tier: 2
+  narrativeChecks:
+  - label: lancer-narrative-bunker-label
+    description: lancer-narrative-bunker-desc
+    modifier: 0
+    dc: 8
+    bonus: TempStructure
+    bonusValue: 1
+  - label: lancer-narrative-focus-label
+    description: lancer-narrative-focus-desc
+    modifier: 1
+    dc: 9
+    bonus: FightAcc
+    bonusValue: 1
+
+- type: lancerEncounter
+  id: crown-signal-fight-1-tokugawa
+  name: lancer-encounter-crown-signal-fight-1-name
+  description: lancer-encounter-crown-signal-fight-1-desc
+  objectiveText: lancer-encounter-crown-signal-fight-1-objective
+  objective: EliminateAll
+  playerDeployX: 2
+  playerDeployY: 10
+  hasRelay: false
+  terrains:
+  - x: 3
+    y: 5
+    terrain: RubbleSoft
+  - x: 4
+    y: 5
+    terrain: RubbleSoft
+  - x: 5
+    y: 3
+    terrain: RubbleHard
+  - x: 6
+    y: 6
+    terrain: RubbleHard
+  - x: 7
+    y: 4
+    terrain: RubbleSoft
+  - x: 8
+    y: 4
+    terrain: RubbleSoft
+  - x: 8
+    y: 7
+    terrain: RubbleSoft
+  - x: 9
+    y: 5
+    terrain: RubbleHard
+  enemies:
+  - kind: Sniper
+    x: 9
+    y: 2
+    tier: 0
+  - kind: Assault
+    x: 5
+    y: 3
+    tier: 1
+  - kind: Cutlass
+    x: 8
+    y: 3
+    tier: 1
+  - kind: Grunt
+    x: 7
+    y: 4
+    tier: 1
+  narrativeChecks:
+  - label: lancer-narrative-counter-label
+    description: lancer-narrative-counter-desc
+    modifier: 2
+    dc: 10
+    bonus: CoreCharge
+    bonusValue: 1
+  - label: lancer-narrative-evade-label
+    description: lancer-narrative-evade-desc
+    modifier: 1
+    dc: 9
+    bonus: FreeRepair
+    bonusValue: 1
+
+- type: lancerEncounter
+  id: crown-signal-fight-2-tokugawa
+  name: lancer-encounter-crown-signal-fight-2-name
+  description: lancer-encounter-crown-signal-fight-2-desc
+  objectiveText: lancer-encounter-crown-signal-fight-2-objective
+  objective: HoldCell
+  objectiveX: 6
+  objectiveY: 5
+  holdTurnsRequired: 3
+  playerDeployX: 2
+  playerDeployY: 10
+  hasRelay: false
+  terrains:
+  - x: 4
+    y: 4
+    terrain: RubbleSoft
+  - x: 5
+    y: 5
+    terrain: RubbleSoft
+  - x: 5
+    y: 7
+    terrain: RubbleHard
+  - x: 6
+    y: 3
+    terrain: RubbleSoft
+  - x: 7
+    y: 6
+    terrain: RubbleHard
+  - x: 7
+    y: 4
+    terrain: RubbleSoft
+  - x: 8
+    y: 5
+    terrain: RubbleSoft
+  - x: 9
+    y: 6
+    terrain: RubbleHard
+  enemies:
+  - kind: Bombard
+    x: 9
+    y: 3
+    tier: 1
+  - kind: Cutlass
+    x: 10
+    y: 5
+    tier: 1
+  - kind: Sniper
+    x: 8
+    y: 4
+    tier: 0
+  - kind: Assault
+    x: 4
+    y: 4
+    tier: 1
+  narrativeChecks:
+  - label: lancer-narrative-overwatch-label
+    description: lancer-narrative-overwatch-desc
+    modifier: 0
+    dc: 8
+    bonus: TempStructure
+    bonusValue: 1
+  - label: lancer-narrative-assault-label
+    description: lancer-narrative-assault-desc
+    modifier: 1
+    dc: 9
+    bonus: FightAcc
+    bonusValue: 1
+
+- type: lancerEncounter
+  id: crown-signal-fight-3-tokugawa
+  name: lancer-encounter-crown-signal-fight-3-name
+  description: lancer-encounter-crown-signal-fight-3-desc
+  objectiveText: lancer-encounter-crown-signal-fight-3-objective
+  objective: EliminateAll
+  playerDeployX: 2
+  playerDeployY: 10
+  hasRelay: true
+  relayX: 2
+  relayY: 5
+  terrains:
+  - x: 2
+    y: 3
+    terrain: RubbleSoft
+  - x: 3
+    y: 4
+    terrain: RubbleSoft
+  - x: 4
+    y: 6
+    terrain: RubbleHard
+  - x: 5
+    y: 6
+    terrain: RubbleHard
+  - x: 6
+    y: 4
+    terrain: RubbleSoft
+  - x: 7
+    y: 3
+    terrain: RubbleSoft
+  - x: 7
+    y: 6
+    terrain: RubbleSoft
+  - x: 8
+    y: 5
+    terrain: RubbleHard
+  - x: 4
+    y: 2
+    terrain: RubbleSoft
+  enemies:
+  - kind: Cutlass
+    x: 8
+    y: 2
+    tier: 1
+  - kind: Sniper
+    x: 9
+    y: 4
+    tier: 0
+  - kind: Assault
+    x: 6
+    y: 3
+    tier: 1
+  - kind: Grunt
+    x: 5
+    y: 5
+    tier: 1
+  narrativeChecks:
+  - label: lancer-narrative-fortify-label
+    description: lancer-narrative-fortify-desc
+    modifier: 0
+    dc: 8
+    bonus: TempStructure
+    bonusValue: 1
+  - label: lancer-narrative-aggressive-label
+    description: lancer-narrative-aggressive-desc
+    modifier: 1
+    dc: 9
+    bonus: FightAcc
+    bonusValue: 1

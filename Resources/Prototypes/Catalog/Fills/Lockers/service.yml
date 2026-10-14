@@ -1,5 +1,6 @@
 - type: entity
   id: LockerBoozeFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerBooze
   components:
@@ -25,6 +26,10 @@
       children:
       - id: BoxBeanbag
       - id: RagItem
+    - id: PlushieLizardJobBartender
+      prob: 0.02
+    - id: PlushieLizardJobServiceworker
+      prob: 0.02
 
 #- type: entity
 #  id: LockerFormalFilled
@@ -64,9 +69,14 @@
       children:
       - id: FoodCondimentPacketSalt
       - id: FoodCondimentPacketPepper
+    - id: PlushieLizardJobChef
+      prob: 0.02
+    - id: PlushieLizardJobServiceworker
+      prob: 0.02
 
 - type: entity
   id: ClosetJanitorFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: ClosetJanitor
   components:
@@ -103,6 +113,10 @@
       - id: Plunger
       - id: WireBrush
       - id: MoproachBox #Starlight
+    - id: WashingMachineFlatpack # Starlight
+    - id: BucketSmall # Starlight
+    - id: PlushieLizardJobJanitor
+      prob: 0.02
 
 - type: entity
   id: ClosetLegalFilled
@@ -121,9 +135,12 @@
     - id: BriefcaseBrownFilled
       prob: 0.80
     - id: ClothingOuterRobesJudge
+    - id: PlushieLizardJobLawyer
+      prob: 0.02
 
 - type: entity
   id: LockerBotanistFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerBotanist
   components:
@@ -149,6 +166,10 @@
     - id: ClothingUniformOveralls
     - id: ClothingHeadHatTrucker
       prob: 0.1
+    - id: PlushieLizardJobBotanist
+      prob: 0.02
+    - id: PlushieLizardJobServiceworker
+      prob: 0.02
 
 - type: entity
   id: LockerBotanistLoot

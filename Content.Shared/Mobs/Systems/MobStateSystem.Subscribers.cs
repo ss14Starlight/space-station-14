@@ -1,7 +1,6 @@
-﻿using Content.Shared.Bed.Sleep;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
 using Content.Shared.CombatMode.Pacification;
-using Content.Shared.Damage;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Emoting;
@@ -18,7 +17,7 @@ using Content.Shared.Speech;
 using Content.Shared.Standing;
 using Content.Shared.Strip.Components;
 using Content.Shared.Throwing;
-using Robust.Shared.Physics.Components;
+using Content.Shared.Tools.Systems;
 
 namespace Content.Shared.Mobs.Systems;
 
@@ -47,6 +46,7 @@ public partial class MobStateSystem
         SubscribeLocalEvent<MobStateComponent, CombatModeShouldHandInteractEvent>(OnCombatModeShouldHandInteract);
         SubscribeLocalEvent<MobStateComponent, AttemptPacifiedAttackEvent>(OnAttemptPacifiedAttack);
         SubscribeLocalEvent<MobStateComponent, DamageModifyEvent>(OnDamageModify);
+        SubscribeLocalEvent<MobStateComponent, AttemptToolRefineEvent>(OnAttemptToolRefine);
 
         SubscribeLocalEvent<MobStateComponent, UnbuckleAttemptEvent>(OnUnbuckleAttempt);
     }
@@ -79,6 +79,8 @@ public partial class MobStateSystem
 
     private void OnStateExitSubscribers(EntityUid target, MobStateComponent component, MobState state)
     {
+        if (SLOnStateExitSubscribers(target, component, state)) return; // Starlight hook
+
         switch (state)
         {
             case MobState.Alive:
@@ -106,7 +108,9 @@ public partial class MobStateSystem
         if (_timing.ApplyingState)
             return;
 
+
         _blocker.UpdateCanMove(target); //update movement anytime a state changes
+        if (SLStateEnteredSubscribers(target, component, state)) return; // Starlight hook
         switch (state)
         {
             case MobState.Alive:
@@ -140,6 +144,14 @@ public partial class MobStateSystem
         }
     }
 
+    private void OnAttemptToolRefine(Entity<MobStateComponent> ent, ref AttemptToolRefineEvent args)
+    {
+        if (!IsDead(ent, ent))
+        {
+            args = args with { IsCancelled = true, BlockCause = Loc.GetString("refined-slice-verb-target-isnt-dead") };
+        }
+    }
+
     #region Event Subscribers
 
     private void OnSleepAttempt(EntityUid target, MobStateComponent component, ref TryingToSleepEvent args)
@@ -151,6 +163,7 @@ public partial class MobStateSystem
     private void OnGettingStripped(EntityUid target, MobStateComponent component, BeforeGettingStrippedEvent args)
     {
         // Incapacitated or dead targets get stripped two or three times as fast. Makes stripping corpses less tedious.
+        SLOnGettingStripped(target, component, args); // SL hook
         if (IsDead(target, component))
             args.Multiplier /= 3;
         else if (IsCritical(target, component))
@@ -170,6 +183,8 @@ public partial class MobStateSystem
 
     private void CheckAct(EntityUid target, MobStateComponent component, CancellableEntityEventArgs args)
     {
+        if (SLCheckAct(target, component, args)) return; // Starlight Hook
+
         switch (component.CurrentState)
         {
             case MobState.Dead:
@@ -182,14 +197,14 @@ public partial class MobStateSystem
     private void OnEquipAttempt(EntityUid target, MobStateComponent component, IsEquippingAttemptEvent args)
     {
         // is this a self-equip, or are they being stripped?
-        if (args.Equipee == target)
+        if (args.User == target)
             CheckAct(target, component, args);
     }
 
     private void OnUnequipAttempt(EntityUid target, MobStateComponent component, IsUnequippingAttemptEvent args)
     {
         // is this a self-equip, or are they being stripped?
-        if (args.Unequipee == target)
+        if (args.User == target)
             CheckAct(target, component, args);
     }
 

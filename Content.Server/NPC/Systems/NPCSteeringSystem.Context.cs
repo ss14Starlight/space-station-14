@@ -1,9 +1,7 @@
 using System.Linq;
 using System.Numerics;
-using Content.Server.Examine;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Pathfinding;
-using Content.Shared.Climbing;
 using Content.Shared.Interaction;
 using Content.Shared.Movement.Components;
 using Content.Shared.NPC;
@@ -12,6 +10,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using ClimbingComponent = Content.Shared.Climbing.Components.ClimbingComponent;
+using Robust.Shared.Random;
 
 namespace Content.Server.NPC.Systems;
 

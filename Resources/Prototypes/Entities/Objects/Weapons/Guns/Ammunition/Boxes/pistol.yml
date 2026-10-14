@@ -56,36 +56,6 @@
 
 - type: entity
   parent: BaseMagazineBoxPistol
-  id: MagazineBoxPistolFMJ
-  name: ammunition box (.35 auto FMJ)
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgePistolFMJ
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: fmj
-
-- type: entity
-  parent: BaseMagazineBoxPistol
-  id: MagazineBoxPistolAP
-  name: ammunition box (.35 auto AP)
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgePistolAP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: ap
-
-- type: entity
-  parent: BaseMagazineBoxPistol
   id: MagazineBoxPistolPractice
   name: ammunition box (.35 auto practice)
   description: A cardboard box of .35 auto rounds. Intended to hold harmless practice ammunition.

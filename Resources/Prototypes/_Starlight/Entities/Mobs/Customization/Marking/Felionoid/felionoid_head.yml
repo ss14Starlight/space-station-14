@@ -2,7 +2,7 @@
   id: FelionoidHeadTiger
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_head:
@@ -16,7 +16,7 @@
   id: FelionoidHeadTabby
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_head:
@@ -30,7 +30,7 @@
   id: FelionoidHeadCalico
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_head@0:
@@ -49,7 +49,7 @@
   id: FelionoidHeadStripes
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_head:

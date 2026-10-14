@@ -1,6 +1,7 @@
 #nullable enable
 using Content.Shared.CCVar;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
+using Robust.Shared;
 
 namespace Content.IntegrationTests;
 
@@ -39,6 +40,7 @@ public static partial class PoolManager
         // Starlight start
         (StarlightCCVars.DisablePathfinding.Name, "true"),
         (StarlightCCVars.DisableLoadMapRule.Name, "true"),
+        (CVars.LogLevel.Name, "Warning"),
         // Starlight end
     };
 }

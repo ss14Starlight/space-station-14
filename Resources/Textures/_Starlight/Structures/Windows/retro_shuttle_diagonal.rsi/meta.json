@@ -5,13 +5,15 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "darkrell",
+    "copyright": "State based copyright",
     "states": [
         {
-            "name": "state0"
+            "name": "state0",
+            "copyright": "darkrell"
         },
         {
-            "name": "state1"
+            "name": "state1",
+            "copyright": "darkrell"
         }
     ]
 }

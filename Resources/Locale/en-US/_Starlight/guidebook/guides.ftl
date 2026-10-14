@@ -22,6 +22,8 @@ guide-entry-sl-rule-11 = Rule 11
 guide-entry-sl-rule-12 = Rule 12
 guide-entry-sl-rule-13 = Rule 13
 guide-entry-sl-rule-14 = Rule 14
+guide-entry-sl-rule-15 = Rule 15
+guide-entry-sl-rule-16 = Rule 16
 guide-entry-sl-metashield = Metashield
 
 guide-entry-sl-silicon-1 = Sil.Rule 1
@@ -55,6 +57,13 @@ guide-entry-sl-command-clarifications = Command Clarifications
 guide-entry-sl-general-command-staff = General Command Staff
 guide-entry-sl-captain = Captain
 guide-entry-sl-ai = AI
+guide-entry-sl-secure-terminal = Secure Terminal
+guide-entry-sl-secure-terminal-ert = ERT Teams
+guide-entry-sl-secure-terminal-alerts = Alert Levels
+guide-entry-sl-secure-terminal-armories = Armories & Pods
+guide-entry-sl-secure-terminal-misc = Misc
+
+guide-entry-sl-secure-terminal-guide = Secure Terminal
 
 guide-entry-sl-non-crew-policies = Non-crew Policies
 guide-entry-sl-docking-and-visitors = Docking and Visitors
@@ -73,6 +82,7 @@ guide-entry-sl-security-sop-securityofficer = Security Officer
 guide-entry-sl-security-sop-dutyofficer = Duty Officer
 guide-entry-sl-security-sop-detective = Detective
 guide-entry-sl-security-sop-brigmedic = Brigmedic
+guide-entry-sl-security-sop-k9 = K9 Unit
 guide-entry-sl-security-sop-warden = Warden
 guide-entry-sl-security-sop-headofsecurity = Head of Security
 guide-entry-sl-security-sop-prisonertreatment = Prisoner Treatment
@@ -81,14 +91,22 @@ guide-entry-sl-security-sop-permitacquisition = Permit Acquisiton
 guide-entry-sl-security-sop-specialsituations = Special Situations
 guide-entry-sl-security-sop-enemy-of-corporation = Enemies of the Corporation
 guide-entry-sl-security-sop-hostage-situations = Hostage Situations
+guide-entry-sl-security-sop-criminal-status = Criminal Status
+guide-entry-sl-security-ammo-types = Ammo Types
 
 guide-entry-rules-supernatural-entities = Supernatural Entities
+guide-entry-stirstir = Stir Stir
 
 guide-entry-sl-legal-sop-intro = Legal
 
 guide-entry-sl-engineering-sop-intro = Engineering
 guide-entry-sl-engineering-sop-genproc-intro = General Procedures
 guide-entry-sl-engineering-sop-power-generation = Power Generation
+guide-entry-sl-engineering-supermatter = Supermatter Crystal
+guide-entry-sl-engineering-supermatter-stability = Stability
+guide-entry-sl-engineering-supermatter-structural-recovery = Structural Recovery
+guide-entry-sl-engineering-supermatter-delamination = Delamination
+guide-entry-sl-engineering-supermatter-advanced-handling = Advanced Supermatter Handling
 guide-entry-sl-engineering-sop-station-damage = Station Damage
 guide-entry-sl-engineering-sop-staff-intro = Staff Procedures
 guide-entry-sl-engineering-sop-chief-engineer = Chief Engineer
@@ -120,7 +138,6 @@ guide-entry-sl-cargo-sop-genproc-intro = General Procedures
 guide-entry-sl-cargo-sop-cargotechnician = Cargo Technician
 guide-entry-sl-cargo-sop-mailtechnician = Mail Technician
 guide-entry-sl-cargo-sop-miningspecialist = Mining Specialist
-guide-entry-sl-cargo-sop-salvagespecialist = SalvageSpecialist
 guide-entry-sl-cargo-sop-quartermaster = Quartermaster
 guide-entry-sl-cargo-sop-staff-intro = Staff Procedures
 guide-entry-sl-cargo-sop-handlingorders = Handling Orders
@@ -131,14 +148,28 @@ guide-entry-sl-cargo-sop-handlingorders-science = Science Orders
 guide-entry-sl-cargo-sop-handlingorders-medical = Medical Orders
 guide-entry-sl-cargo-sop-handlingorders-service = Service Orders
 
+guide-entry-sl-salvage-sop-intro = Salvage
+guide-entry-sl-salvage-sop-salvagers = Salvage Crew
+
 guide-entry-sl-science-sop-intro = Science
+guide-entry-sl-science-sop-genproc-intro = General Procedures
+guide-entry-sl-science-sop-researchguidelines = Research Guidelines
+guide-entry-sl-science-sop-anomalyresearch = Anomaly Research
+guide-entry-sl-science-sop-artifactresearch = Artifact Research
+guide-entry-sl-science-sop-itemdistribution = Item Distribution
+guide-entry-sl-science-sop-staff-intro = Staff Procedures
+guide-entry-sl-science-sop-researchdirector = Research Director
+guide-entry-sl-science-sop-scientist = Scientist
+guide-entry-sl-science-sop-researchassistant = Research Assistant
+guide-entry-sl-science-sop-roboticist = Roboticist
+guide-entry-sl-science-sop-appendix = Appendix
 
 guide-entry-sl-nano-trasen-employee-sop-intro = NanoTrasen Employee
 guide-entry-sl-nano-trasen-employee-sop-genproc-intro = General Procedures
 guide-entry-sl-nano-trasen-employee-sop-safety-protocol = Safety Protocol
 guide-entry-sl-nano-trasen-employee-sop-staff-intro = Staff Procedures
 guide-entry-sl-nano-trasen-employee-sop-nt-rep = NanoTrasen Representative
-guide-entry-sl-nano-trasen-employee-sop-bso = BlueShield Officer
+guide-entry-sl-nano-trasen-employee-sop-bso = Blueshield Officer
 guide-entry-sl-nano-trasen-employee-sop-magistrate = Magistrate
 guide-entry-sl-nano-trasen-employee-sop-iaa = Internal Affairs Agent
 guide-entry-sl-nano-trasen-employee-sop-nct = NanoTrasen Career Trainer
@@ -148,11 +179,19 @@ guide-entry-sl-service-sop-genproc-intro = General Procedures
 guide-entry-sl-service-sop-staff-intro = Staff Procedures
 guide-entry-sl-service-sop-headofpersonnel = Head of Personnel
 guide-entry-sl-service-sop-lawyer = Lawyer
+guide-entry-sl-service-sop-reporter = Reporter
+
+guide-entry-sl-assistant-sop-staff-intro = Assistant
+guide-entry-sl-assistant-sop-assistantmanager = Assistant Manager
+guide-entry-sl-assistant = Assistant
 
 guide-entry-abductors = Abductors
 guide-entry-terror-spiders = Terror Spiders
+guide-entry-devil = Devil
 
 guide-entry-sl-deepfried-recipes = Deep Fried
+guide-entry-sl-dough-recipes = Dough
+guide-entry-sl-ice-cream-recipes = Ice Cream Maker
 
 # Plumbing guides
 guide-entry-plumbing = Plumbing
@@ -165,10 +204,31 @@ guide-entry-records = Character Records
 # Tools
 guide-entry-tools-combination-locks = Combination Locks
 
-
 # Roleplay
-guide-entry-roleplay-intro = Roleplay Guides
+guide-entry-roleplay-intro = How To Roleplay
 guide-entry-roleplay-01 = The Basics
 guide-entry-roleplay-02 = Collaborative Storytelling
 guide-entry-roleplay-03 = Losing Is Fun
 guide-entry-roleplay-04 = Acting With Mechanics
+
+# Corporate Law
+guide-entry-corporate-law = Corporate Law
+guide-entry-treatment-of-prisoners = Treatment of Prisoners
+guide-entry-search-and-seizure = Search and Seizure
+guide-entry-permits = Permits
+guide-entry-implantation = Implantation
+guide-entry-sentencing = Sentencing
+guide-entry-parole = Parole
+guide-entry-legal-representation = Legal Representation
+guide-entry-penal-code = Penal Code
+guide-entry-civil-code = Civil Code
+guide-entry-crime-list = Crime List
+guide-entry-jurisdiction = Jurisdiction
+guide-entry-petty-disputes = Petty Disputes
+guide-entry-plea-bargains = Plea Bargains
+# Engineering
+guide-entry-gasses = Mundane Gasses
+guide-entry-gasses2 = Key Gasses
+guide-entry-gasses3 = Utility Gasses
+guide-entry-gasses4 = Advanced Gasses
+guide-entry-gasses5 = Rare Gasses

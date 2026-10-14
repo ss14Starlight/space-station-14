@@ -8,12 +8,12 @@ using Content.Shared.DeviceNetwork.Components;
 
 namespace Content.Server.Medical.CrewMonitoring;
 
-public sealed class CrewMonitoringServerSystem : EntitySystem
+public sealed partial class CrewMonitoringServerSystem : EntitySystem
 {
-    [Dependency] private readonly SuitSensorSystem _sensors = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
-    [Dependency] private readonly SingletonDeviceNetServerSystem _singletonServerSystem = default!;
+    [Dependency] private SuitSensorSystem _sensors = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private DeviceNetworkSystem _deviceNetworkSystem = default!;
+    [Dependency] private SingletonDeviceNetServerSystem _singletonServerSystem = default!;
 
     private const float UpdateRate = 3f;
     private float _updateDiff;
@@ -128,6 +128,7 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
                 [DeviceNetworkConstants.Command] = DeviceNetworkConstants.CmdUpdatedState,
                 [SuitSensorConstants.NET_PAGING_SINCE] = pagingStatus.FirstSeen,
                 [SuitSensorConstants.NET_JOB_DEPARTMENTS] = sensor.JobDepartments,
+                [SuitSensorConstants.NET_FACTION] = sensor.Faction, // Starlight
             }, device: device);
         }
 

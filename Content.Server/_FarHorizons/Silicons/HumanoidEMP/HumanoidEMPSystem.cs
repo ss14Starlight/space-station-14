@@ -13,14 +13,14 @@ namespace Content.Server._FarHorizons.Silicons.HumanoidEMP;
 
 public sealed partial class HumanoidEMPSystem : EntitySystem
 {
-    [Dependency] private readonly BodySystem _body = default!;
-    [Dependency] private readonly StunSystem _stunSystem = default!;
-    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly GlitchingSystem _glitching = default!;
+    [Dependency] private BodySystem _body = default!;
+    [Dependency] private StunSystem _stunSystem = default!;
+    [Dependency] private MovementModStatusSystem _movementMod = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private GlitchingSystem _glitching = default!;
     public override void Initialize()
     {
         base.Initialize();

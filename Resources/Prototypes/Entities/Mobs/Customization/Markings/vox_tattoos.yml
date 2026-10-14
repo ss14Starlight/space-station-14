@@ -2,7 +2,7 @@
   id: TattooVoxHeartArm
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   coloring:
     default:
       type:
@@ -26,7 +26,7 @@
   id: TattooVoxHiveChest
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   coloring:
     default:
       type:
@@ -45,7 +45,7 @@
   id: TattooVoxNightlingChest
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   coloring:
     default:
       type:
@@ -64,7 +64,7 @@
   id: TattooVoxNightbelt
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   coloring:
     default:
       type:
@@ -83,7 +83,7 @@
   id: TattooVoxChestV
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   coloring:
     default:
       type:
@@ -107,7 +107,7 @@
   id: TattooVoxUnderbelly
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   coloring:
     default:
       type:
@@ -127,7 +127,7 @@
   # TODO // Looks off on some tails (i.e docked/amputated), if conditionals for markings ever get implemented this needs to be updated to account for those.
   bodyPart: Tail
   markingCategory: Overlay
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   coloring:
     default:
       type:
@@ -146,7 +146,7 @@
   id: TattooEyeVoxRight
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   coloring:
     default:
       type:
@@ -165,7 +165,7 @@
   id: TattooEyeVoxLeft
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   coloring:
     default:
       type:
@@ -189,7 +189,7 @@
   # some of these limitations could possibly be removed with better control over how the marking can be customized - possibly removing stacking, allowing recoloring & clamping higher-end colors for the eyeshadow, etc.
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   forcedColoring: true
   # Starlight start
   sprites:
@@ -204,7 +204,7 @@
   id: TattooEyeshadowVoxMedium
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   forcedColoring: true
   # Starlight start
   sprites:
@@ -219,7 +219,7 @@
   id: TattooEyeshadowVoxLarge
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   forcedColoring: true
   # Starlight start
   sprites:
@@ -234,7 +234,7 @@
   id: VoxTattooEyeliner
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_eyes:
@@ -246,14 +246,14 @@
 
 - type: marking
   id: VoxBeakCoverStripe
-  bodyPart: Snout
-  markingCategory: SnoutCover
+  bodyPart: Snout # Starlight, no visual nubody
+  markingCategory: SnoutCover # Starlight, no visual nubody
   coloring:
     default:
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_snout:
@@ -265,14 +265,14 @@
 
 - type: marking
   id: VoxBeakCoverTip
-  bodyPart: Snout
-  markingCategory: SnoutCover
+  bodyPart: Snout # Starlight, no visual nubody
+  markingCategory: SnoutCover # Starlight, no visual nubody
   coloring:
     default:
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_snout:
@@ -286,7 +286,7 @@
   id: TattooVoxArrowHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   coloring:
     default:
       type:
@@ -305,7 +305,7 @@
   id: TattooVoxNightlingHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   coloring:
     default:
       type:
@@ -324,7 +324,7 @@
   id: VoxVisage
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   coloring:
     default:
       type:
@@ -343,7 +343,7 @@
   id: VoxVisageL
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   coloring:
     default:
       type:
@@ -362,7 +362,7 @@
   id: VoxVisageR
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   coloring:
     default:
       type:
@@ -381,7 +381,7 @@
   id: VoxCheek
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   coloring:
     default:
       type:
@@ -395,4 +395,3 @@
         state: cheekblush
       colorSource: HumanSkinColor
   # Starlight end
-

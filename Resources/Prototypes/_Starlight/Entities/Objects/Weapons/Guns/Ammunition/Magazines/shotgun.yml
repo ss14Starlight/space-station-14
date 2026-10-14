@@ -4,7 +4,7 @@
   id: BaseMagazineShotgunToz
   name: magazine (20 gauge shells)
   description: "Piotr, what am I supposed to do with this? The magazine won't come out of the gun!"
-  parent: [ BaseItem, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseItem, BaseSecurityContraband ] # Blimpuf
   abstract: true
   components:
   - type: Tag
@@ -16,8 +16,6 @@
       tags:
       - ShellShotgunToz
     capacity: 2
-    soundRack:
-      path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
   - type: Item
     size: Small
     inhandVisuals:
@@ -94,3 +92,27 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineShotgunBreach
+  name: 12 gauge breaching drum
+  parent: BaseMagazineShotgun
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunBreaching
+  - type: Sprite
+    layers:
+    - state: breach
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#0096FF"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#0096FF"

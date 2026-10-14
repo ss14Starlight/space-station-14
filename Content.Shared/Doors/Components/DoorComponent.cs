@@ -15,11 +15,12 @@ namespace Content.Shared.Doors.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class DoorComponent : Component
 {
+    // Starlight: cref below updated for SetState's added optional user parameter
     /// <summary>
     /// The current state of the door -- whether it is open, closed, opening, or closing.
     /// </summary>
     /// <remarks>
-    /// This should never be set directly, use <see cref="SharedDoorSystem.SetState(EntityUid, DoorState, DoorComponent?)"/> instead.
+    /// This should never be set directly, use <see cref="SharedDoorSystem.SetState(EntityUid, DoorState, DoorComponent?, EntityUid?)"/> instead.
     /// </remarks>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField, AutoNetworkedField]
@@ -142,10 +143,19 @@ public sealed partial class DoorComponent : Component
 
     #region Graphics
 
+    public const string OpenKey = "door_animation_open";
+
+    public const string CloseKey = "door_animation_close";
+
     /// <summary>
-    /// The key used when playing door opening/closing/emagging/deny animations.
+    /// The key used when playing door deny animations.
     /// </summary>
-    public const string AnimationKey = "door_animation";
+    public const string DenyKey = "door_animation_deny";
+
+    /// <summary>
+    /// The key used when playing door emag animations.
+    /// </summary>
+    public const string EmagKey = "door_animation_emag";
 
     /// <summary>
     /// The sprite state used for the door when it's open.
@@ -228,6 +238,14 @@ public sealed partial class DoorComponent : Component
     /// The animation used when the door is emagged.
     /// </summary>
     public object EmaggingAnimation = default!;
+
+    #region Starlight
+    /// <summary>
+    /// Whether activating this door displays an interaction particle.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool ShowInteractionParticles = true;
+    #endregion
 
     #endregion Graphics
 

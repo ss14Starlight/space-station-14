@@ -1,4 +1,4 @@
-using Content.Shared.Interaction;
+﻿using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Silicons.Borgs;
@@ -11,11 +11,12 @@ namespace Content.Shared._Afterlight.Silicons.Borgs;
 /// Shared behaviour for borg switchable subtype logic.
 /// Essentially a reimplementation of <see cref="SharedBorgSwitchableTypeSystem"/> specifically for cosmetic functions.
 /// </summary>
-public abstract class SharedBorgSwitchableSubtypeSystem : EntitySystem
+public abstract partial class SharedBorgSwitchableSubtypeSystem : EntitySystem
 {
-    [Dependency] private readonly InteractionPopupSystem _interactionPopup = default!;
-    [Dependency] protected readonly IPrototypeManager Prototypes = default!;
-    [Dependency] protected readonly IComponentFactory ComponentFactory = default!;
+    [Dependency] private InteractionPopupSystem _interactionPopup = default!;
+    [Dependency] private SharedBorgSwitchableTypeSystem _switchableType = default!; // Starlight
+    [Dependency] protected IPrototypeManager Prototypes = default!;
+    [Dependency] protected IComponentFactory ComponentFactory = default!;
 
     public override void Initialize()
     {
@@ -79,12 +80,28 @@ public abstract class SharedBorgSwitchableSubtypeSystem : EntitySystem
         }
     }
 
-    private void SelectSubtypeMessageHandler(EntityUid uid, BorgSwitchableTypeComponent borgSwitchableTypeComponent, BorgSelectSubtypeMessage args)
+    #region Starlight
+    private void SelectSubtypeMessageHandler(Entity<BorgSwitchableTypeComponent> ent, ref BorgSelectSubtypeMessage args)
     {
-        if (!TryComp<BorgSwitchableSubtypeComponent>(uid, out var subtypeComp))
+        if (args.Subtype is { } requested && !Prototypes.HasIndex(requested))
             return;
 
+        if (!TryComp<BorgSwitchableSubtypeComponent>(ent, out var subtypeComp))
+        {
+            _switchableType.TrySelectBorgType(ent, args.BorgType);
+            return;
+        }
+
+        var previous = subtypeComp.BorgSubtype;
         subtypeComp.BorgSubtype = args.Subtype;
-        Dirty(uid, subtypeComp);
+
+        if (!_switchableType.TrySelectBorgType(ent, args.BorgType))
+        {
+            subtypeComp.BorgSubtype = previous;
+            return;
+        }
+
+        Dirty(ent.Owner, subtypeComp);
     }
+    #endregion
 }

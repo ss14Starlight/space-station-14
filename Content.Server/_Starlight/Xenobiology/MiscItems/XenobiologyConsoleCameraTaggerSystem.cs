@@ -8,11 +8,11 @@ using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.Xenobiology.MiscItems;
 
-public sealed class XenobiologyConsoleCameraTaggerSystem : EntitySystem
+public sealed partial class XenobiologyConsoleCameraTaggerSystem : EntitySystem
 {
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly StationAiSystem _stationAiSystem = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private StationAiSystem _stationAiSystem = default!;
 
     public override void Initialize()
     {
@@ -29,7 +29,7 @@ public sealed class XenobiologyConsoleCameraTaggerSystem : EntitySystem
         if (!_entityManager.TryGetComponent<ActorComponent>(args.User, out var actorComponent)) return;
 
         var channel = actorComponent.PlayerSession.Channel;
-        var message = "Connected camera to the Xenobiology Console network.";
+        var message = Loc.GetString("xenobiology-camera-tagger-connected");
         _chatManager.ChatMessageToOne(ChatChannel.Local, message, message, EntityUid.Invalid, false, channel);
         Dirty(args.Target.Value, stationAiVisionComponent);
     }

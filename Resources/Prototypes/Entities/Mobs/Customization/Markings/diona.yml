@@ -2,7 +2,7 @@
   id: DionaThornsHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -21,7 +21,7 @@
   id: DionaThornsBody
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -40,7 +40,7 @@
   id: DionaFlowersHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -59,7 +59,7 @@
   id: DionaFlowersBody
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -78,7 +78,7 @@
   id: DionaLeafCover
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -96,7 +96,7 @@
   id: DionaBloomHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -115,7 +115,7 @@
   id: DionaBracketHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -134,7 +134,7 @@
   id: DionaBrushHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -152,7 +152,7 @@
   id: DionaCornflowerHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -171,7 +171,7 @@
   id: DionaFicusHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -190,7 +190,7 @@
   id: DionaGarlandHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -209,7 +209,7 @@
   id: DionaKingHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -228,7 +228,7 @@
   id: DionaLaurelHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -247,7 +247,7 @@
   id: DionaLeafyHeadTop
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -266,7 +266,7 @@
   id: DionaLotusHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -285,7 +285,7 @@
   id: DionaMeadowHeadTop
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -304,7 +304,7 @@
   id: DionaOakHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -323,7 +323,7 @@
   id: DionaPalmHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -342,7 +342,7 @@
   id: DionaRootHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -361,7 +361,7 @@
   id: DionaRoseHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -380,7 +380,7 @@
   id: DionaRoseyHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -399,7 +399,7 @@
   id: DionaShrubHeadTop
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -418,7 +418,7 @@
   id: DionaSpinnerHeadSide
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -437,7 +437,7 @@
   id: DionaSproutHeadSide
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -456,7 +456,7 @@
   id: DionaVineHeadTop
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -475,7 +475,7 @@
   id: DionaVinelHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -494,7 +494,7 @@
   id: DionaVinesHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -513,7 +513,7 @@
   id: DionaWildflowerHead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:
@@ -532,7 +532,7 @@
   id: DionaVineOverlay
   bodyPart: LLeg
   markingCategory: Overlay
-  speciesRestriction: [Diona]
+  speciesRestriction: [Diona, NeoDiona, Neocyte] # FH + Starlight
   coloring:
     default:
       type:

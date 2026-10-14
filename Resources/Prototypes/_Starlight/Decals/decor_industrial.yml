@@ -106,3 +106,226 @@
   sprite:
     sprite: _Starlight/Decals/steel_beam.rsi
     state: steelbeam_southwest_corner
+
+# Drains
+
+- type: decal
+  id: drainbendne
+  tags: ["station", "markings", "metal", "drain"]
+  sprite:
+    sprite: _Starlight/Decals/drain.rsi
+    state: drain_bend_ne
+
+- type: decal
+  id: drainbendnw
+  tags: ["station", "markings", "metal", "drain"]
+  sprite:
+    sprite: _Starlight/Decals/drain.rsi
+    state: drain_bend_nw
+
+- type: decal
+  id: drainbendse
+  tags: ["station", "markings", "metal", "drain"]
+  sprite:
+    sprite: _Starlight/Decals/drain.rsi
+    state: drain_bend_se
+
+- type: decal
+  id: drainbendsw
+  tags: ["station", "markings", "metal", "drain"]
+  sprite:
+    sprite: _Starlight/Decals/drain.rsi
+    state: drain_bend_sw
+
+- type: decal
+  id: draincornerne
+  tags: ["station", "markings", "metal", "drain"]
+  sprite:
+    sprite: _Starlight/Decals/drain.rsi
+    state: drain_corner_ne
+
+- type: decal
+  id: draincornernw
+  tags: ["station", "markings", "metal", "drain"]
+  sprite:
+    sprite: _Starlight/Decals/drain.rsi
+    state: drain_corner_nw
+
+- type: decal
+  id: draincornerse
+  tags: ["station", "markings", "metal", "drain"]
+  sprite:
+    sprite: _Starlight/Decals/drain.rsi
+    state: drain_corner_se
+
+- type: decal
+  id: draincornersw
+  tags: ["station", "markings", "metal", "drain"]
+  sprite:
+    sprite: _Starlight/Decals/drain.rsi
+    state: drain_corner_sw
+
+- type: decal
+  id: draineast
+  tags: ["station", "markings", "metal", "drain"]
+  sprite:
+    sprite: _Starlight/Decals/drain.rsi
+    state: drain_east
+
+- type: decal
+  id: drainnorth
+  tags: ["station", "markings", "metal", "drain"]
+  sprite:
+    sprite: _Starlight/Decals/drain.rsi
+    state: drain_north
+
+- type: decal
+  id: drainsouth
+  tags: ["station", "markings", "metal", "drain"]
+  sprite:
+    sprite: _Starlight/Decals/drain.rsi
+    state: drain_south
+
+- type: decal
+  id: drainwest
+  tags: ["station", "markings", "metal", "drain"]
+  sprite:
+    sprite: _Starlight/Decals/drain.rsi
+    state: drain_west
+
+# Hatch
+
+- type: decal
+  id: steelhatchcenter
+  tags: ["station", "markings", "metal", "hatch"]
+  sprite:
+    sprite: _Starlight/Decals/hatch.rsi
+    state: steel_hatch_center
+
+- type: decal
+  id: steelhatchsmall
+  tags: ["station", "markings", "metal", "hatch"]
+  sprite:
+    sprite: _Starlight/Decals/hatch.rsi
+    state: steel_hatch_small
+
+- type: decal
+  id: steelhatchwall
+  tags: ["station", "markings", "metal", "hatch"]
+  sprite:
+    sprite: _Starlight/Decals/hatch.rsi
+    state: steel_hatch_wall
+
+# Steel Rim
+
+- type: decal
+  id: steelrimbendne
+  tags: ["station", "markings", "metal", "trim"]
+  sprite:
+    sprite: _Starlight/Decals/steelrim.rsi
+    state: steel_rim_bend_ne
+
+- type: decal
+  id: steelrimbendnw
+  tags: ["station", "markings", "metal", "trim"]
+  sprite:
+    sprite: _Starlight/Decals/steelrim.rsi
+    state: steel_rim_bend_nw
+
+- type: decal
+  id: steelrimbendse
+  tags: ["station", "markings", "metal", "trim"]
+  sprite:
+    sprite: _Starlight/Decals/steelrim.rsi
+    state: steel_rim_bend_se
+
+- type: decal
+  id: steelrimbendsw
+  tags: ["station", "markings", "metal", "trim"]
+  sprite:
+    sprite: _Starlight/Decals/steelrim.rsi
+    state: steel_rim_bend_sw
+
+- type: decal
+  id: steelrimcornerne
+  tags: ["station", "markings", "metal", "trim"]
+  sprite:
+    sprite: _Starlight/Decals/steelrim.rsi
+    state: steel_rim_corner_ne
+
+- type: decal
+  id: steelrimcornernw
+  tags: ["station", "markings", "metal", "trim"]
+  sprite:
+    sprite: _Starlight/Decals/steelrim.rsi
+    state: steel_rim_corner_nw
+
+- type: decal
+  id: steelrimcornerse
+  tags: ["station", "markings", "metal", "trim"]
+  sprite:
+    sprite: _Starlight/Decals/steelrim.rsi
+    state: steel_rim_corner_se
+
+- type: decal
+  id: steelrimcornersw
+  tags: ["station", "markings", "metal", "trim"]
+  sprite:
+    sprite: _Starlight/Decals/steelrim.rsi
+    state: steel_rim_corner_sw
+
+- type: decal
+  id: steelrimeast
+  tags: ["station", "markings", "metal", "trim"]
+  sprite:
+    sprite: _Starlight/Decals/steelrim.rsi
+    state: steel_rim_east
+
+- type: decal
+  id: steelrimnorth
+  tags: ["station", "markings", "metal", "trim"]
+  sprite:
+    sprite: _Starlight/Decals/steelrim.rsi
+    state: steel_rim_north
+
+- type: decal
+  id: steelrimsouth
+  tags: ["station", "markings", "metal", "trim"]
+  sprite:
+    sprite: _Starlight/Decals/steelrim.rsi
+    state: steel_rim_south
+
+- type: decal
+  id: steelrimwest
+  tags: ["station", "markings", "metal", "trim"]
+  sprite:
+    sprite: _Starlight/Decals/steelrim.rsi
+    state: steel_rim_west
+
+- type: decal
+  id: steelstepeast
+  tags: ["station", "markings", "metal", "trim"]
+  sprite:
+    sprite: _Starlight/Decals/steelrim.rsi
+    state: steel_step_east
+
+- type: decal
+  id: steelstepnorth
+  tags: ["station", "markings", "metal", "trim"]
+  sprite:
+    sprite: _Starlight/Decals/steelrim.rsi
+    state: steel_step_north
+
+- type: decal
+  id: steelstepsouth
+  tags: ["station", "markings", "metal", "trim"]
+  sprite:
+    sprite: _Starlight/Decals/steelrim.rsi
+    state: steel_step_south
+
+- type: decal
+  id: steelstepwest
+  tags: ["station", "markings", "metal", "trim"]
+  sprite:
+    sprite: _Starlight/Decals/steelrim.rsi
+    state: steel_step_west

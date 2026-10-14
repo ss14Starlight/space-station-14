@@ -4,16 +4,18 @@
     "x": 32,
     "y": 32
   },
-  "copyright": "Taken From VG Station",
+  "copyright": "State based copyright",
   "license": "CC-BY-SA-3.0",
   "states": [
     {
       "name": "offline",
-      "directions": 1
+      "directions": 1,
+      "copyright": "Taken From TG Station"
     },
     {
       "name": "unshaded",
-      "directions": 1
+      "directions": 1,
+      "copyright": "Taken From TG Station"
     }
   ]
 }

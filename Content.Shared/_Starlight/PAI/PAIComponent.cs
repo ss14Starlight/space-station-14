@@ -1,6 +1,6 @@
 using Content.Shared.Actions;
 
-namespace Content.Shared.PAI;
+namespace Content.Shared._Starlight.PAI;
 
 public sealed partial class PAIPDAActionEvent : InstantActionEvent
 {

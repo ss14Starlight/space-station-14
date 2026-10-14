@@ -1,64 +1,58 @@
 - type: entity
   name: riot shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgunAny, BaseGunWieldable, BaseSecurityContraband ] # Blimpuf
   id: WeaponShotgunRiot
-  description: A sturdy shotgun with a longer magazine and a fixed tactical stock designed for non-lethal riot control.
+  description: A sturdy shotgun with a longer magazine and a fixed tactical grip designed for non-lethal riot control.
   components:
   - type: Item
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot_inhands_64x.rsi
-  - type: Gun
-    spread: 20
-    pump: true
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    spread: 35
+    fireRate: .7
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot.rsi
   - type: GunRequiresWield
-  - type: BallisticAmmoProvider
-    capacity: 7
-  - type: Construction
-    graph: ShotgunRiotSawn
-    node: start
-    deconstructionTarget: null
-
-- type: entity
-  name: sawn-off riot shotgun
-  parent: [BaseWeaponShotgun, BaseSecurityContraband]
-  id: WeaponShotgunRiotSawn
-  description: Come with me if you want to live.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot_sawn.rsi
-  - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot_sawn.rsi
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot_sawn_inhands_64x.rsi
-  - type: Gun
-    spread: 30
-    pump: true
-  - type: BallisticAmmoProvider
-    capacity: 4
-  - type: Construction
-    graph: ShotgunRiotSawn
-    node: shotgunsawn
-    deconstructionTarget: null
-
-- type: entity
-  parent: [WeaponShotgunRiotSawn, BaseSecurityContraband]
-  id: WeaponShotgunRiotSawnEmpty
-  suffix: Empty
-  components:
-  - type: BallisticAmmoProvider
-    proto: null
-  - type: Construction
-    graph: ShotgunRiotSawn
-    node: shotgunsawn
-    deconstructionTarget: null
+# - type: Construction
+#   graph: ShotgunRiotSawn
+#   node: start
+#   deconstructionTarget: null
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: item-slot-component-slot-name-magazine
+        startingItem: MagazineShotgun
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineShotgun
+        whitelistFailPopup: gun-magazine-whitelist-fail
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # starlight
+  - type: ChamberMagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
 
 - type: entity
   name: combat shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband ] # Blimpuf
   id: WeaponShotgunCombat
   description: A semi automatic shotgun with tactical furniture and a seven-shell capacity underneath.
   components:
@@ -66,6 +60,8 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun_inhands_64x.rsi
   - type: Gun
     spread: 20
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/gun_shotgun_automatic.ogg
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun.rsi
   - type: Clothing
@@ -73,10 +69,12 @@
   - type: GunRequiresWield
   - type: BallisticAmmoProvider
     capacity: 7
+    soundRack:
+      collection: CockPumpAction
 
 - type: entity
   name: cycler shotgun
-  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecuritySalvageContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgunAny, BaseGunWieldable, BaseSecurityContraband, BaseSalvageContraband ] # Blimpuf
   id: WeaponShotgunCycler
   description: An advanced shotgun with two separate magazine tubes, allowing you to quickly toggle between ammo types.
   components:
@@ -110,7 +108,7 @@
 
 - type: entity
   name: Tkach Ya-Sui GA 12 revolver
-  parent: [BaseWeaponShotgunAny, BaseSecuritySalvageContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgunAny, BaseSecurityContraband, BaseSalvageContraband ] # Blimpuf
   id: WeaponShotgunGA12
   description: An outdated sidearm rarely seen in use by certain PMCs that operate throughout the frontier systems, featuring a three-shell cylinder. Thats right, shell, this one shoots twelve gauge.
   components:
@@ -155,7 +153,7 @@
 
 - type: entity
   name: "Tkach GA-6 'Fang'"
-  parent: [BaseWeaponShotgunAny, BaseSecuritySalvageContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgunAny, BaseSecurityContraband, BaseSalvageContraband ] # Blimpuf
   id: WeaponRevolverGA6Fang
   description: A heavier follow-up to the GA 12 line, featuring a six-shell cylinder and a hook spike for when shells run dry. Rare, and unpleasant to be on the wrong end of.
   components:
@@ -247,7 +245,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazineShotgun
         priority: 2
         whitelist:
@@ -287,14 +285,13 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/forged_shotgun.rsi
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/forged_shotgun.rsi
-  - type: GunRequiresWield
   - type: BallisticAmmoProvider
     capacity: 2
     proto: null
 
 - type: entity
   name: makeshift shotgun
-  parent: [WeaponFlareGunSecurity, BaseMinorContraband]
+  parent: [WeaponFlareGun, BaseMinorContraband]
   id: WeaponShotgunMakeshift
   description: A small hand-cannon that fires 12 gauge shotgun shells. Has no cloth to hold it together, so it has a high chance of falling apart with every shot.
   components:
@@ -309,6 +306,17 @@
   - type: Construction
     graph: MakeshiftShotgunGraph
     node: shotgun
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: item-slot-component-slot-name-chamber
+        priority: 1
+        whitelist:
+          tags:
+            - ShellShotgun
+  - type: Tag
+    tags:
+    - Sidearm
   - type: WeaponDismantleOnShoot
     dismantleChance: 0.50
     selfDamage:
@@ -337,9 +345,14 @@
     supportedPins: [ Makeshift, GunUpgrade ]
 
 # it's the TOZ!
+  - type: Gun
+    minAngle: 10
+    maxAngle: 24
+    angleIncrease: 5
+    angleDecay: 10
 - type: entity
   name: ZOZ-106
-  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSovietContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgunAny, BaseGunWieldable, BaseSovietContraband ] # Blimpuf
   id: WeaponShotgunToz106
   description: A cheap Soviet shotgun that received an indifferent welcome from hunters. Aim at the head and eyes for best results. Uses less-powerful 20 gauge shotgun shells.
   components:
@@ -373,6 +386,8 @@
     proto: ShellShotgunToz
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+    soundRack:
+      path: /Audio/_Starlight/Weapons/Guns/Cock/cycle_bolt.ogg
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -406,7 +421,7 @@
 # fully shitposted TOZ with no mag restrictions!
 - type: entity
   name: TOZ-106
-  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSovietContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgunAny, BaseGunWieldable, BaseSovietContraband ] # Blimpuf
   id: WeaponShotgunToz106Shitpost
   description: Piotr said his custom ZOZ-106 could accept ANY magazine. No one believed him until it was too late.
   suffix: Admeme, DO NOT MAP
@@ -456,3 +471,17 @@
   - type: Appearance
   - type: StaticPrice
     price: 1
+
+- type: entity
+  parent: BaseWeaponShotgunAny
+  id: BaseWeaponShotgun
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+    capacity: 7
+    proto: ShellShotgun
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg

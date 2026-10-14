@@ -1,16 +1,16 @@
+using Content.Server._Starlight.Light.Components;
 using Content.Server.DeviceLinking.Systems;
-using Content.Server.Light.Components;
 using Content.Shared.DeviceLinking.Events;
 
-namespace Content.Server.Light.EntitySystems;
+namespace Content.Server._Starlight.Light.EntitySystems;
 
 /// <summary>
 ///     Handles the logic between signals and toggling OccluderComponent
 /// </summary>
-public sealed class ToggleableOccluderSystem : EntitySystem
+public sealed partial class ToggleableOccluderSystem : EntitySystem
 {
-    [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
-    [Dependency] private readonly OccluderSystem _occluder = default!;
+    [Dependency] private DeviceLinkSystem _signalSystem = default!;
+    [Dependency] private OccluderSystem _occluder = default!;
 
     public override void Initialize()
     {

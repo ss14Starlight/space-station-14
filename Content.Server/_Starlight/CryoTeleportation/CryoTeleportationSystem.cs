@@ -1,14 +1,12 @@
-using System.Linq;
+using Content.Server._Starlight.Bed.Cryostorage;
 using Content.Server.Bed.Cryostorage;
-using Content.Server.GameTicking;
-using Content.Server.Mind;
 using Content.Shared._Starlight.Polymorph.Components;
-using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Bed.Cryostorage;
 using Content.Shared.GameTicking;
-using Content.Shared.Starlight.CryoTeleportation;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CryoTeleportation;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared.Inventory;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
@@ -22,39 +20,43 @@ using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Content.Shared.Station.Components;
+using Content.Shared.Clothing.Components;
 
-namespace Content.Server.Starlight.CryoTeleportation;
+namespace Content.Server._Starlight.CryoTeleportation;
 
-public sealed class CryoTeleportationSystem : EntitySystem
+public sealed partial class CryoTeleportationSystem : EntitySystem
 {
-    [Dependency] private readonly CryostorageSystem _cryostorage = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
-    [Dependency] private readonly IPlayerManager _playerMan = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private CryostorageSystem _cryostorage = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IEntityManager _entity = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private StationJobsSystem _stationJobs = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
+    [Dependency] private IPlayerManager _playerMan = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private InventorySystem _inventory = default!;
 
-    public TimeSpan NextTick = TimeSpan.Zero;
-    public TimeSpan RefreshCooldown = TimeSpan.FromSeconds(5);
+    public TimeSpan _nextTick = TimeSpan.Zero;
+    private readonly TimeSpan _refreshCooldown = TimeSpan.FromSeconds(5);
 
     public override void Initialize()
     {
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnCompleteSpawn);
         SubscribeLocalEvent<TargetCryoTeleportationComponent, PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<TargetCryoTeleportationComponent, PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<TargetCryoTeleportationComponent, MobStateChangedEvent>(OnMobStateChanged);
         _playerMan.PlayerStatusChanged += OnSessionStatus;
     }
 
     public override void Update(float delay)
     {
-        if (NextTick > _timing.CurTime)
+        if (_nextTick > _timing.CurTime)
             return;
 
-        NextTick += RefreshCooldown;
+        _nextTick += _refreshCooldown;
 
         var query = AllEntityQuery<TargetCryoTeleportationComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out var comp, out var mobStateComponent))
@@ -66,6 +68,7 @@ public sealed class CryoTeleportationSystem : EntitySystem
                 || mobStateComponent.CurrentState != MobState.Alive
                 || comp.ExitTime == null
                 || _timing.CurTime - comp.ExitTime - comp.TimeDelay < stationComp.TransferDelay
+                || IsHeldByCursedMask(uid)
                 || HasComp<CryostorageContainedComponent>(uid)
                 || HasComp<UncryoableComponent>(uid))
                 continue;
@@ -75,25 +78,30 @@ public sealed class CryoTeleportationSystem : EntitySystem
             if (stationGrid == null)
                 continue;
 
-            var cryoStorage = FindCryoStorage(Transform(stationGrid.Value));
+            var cryoStorageResult = FindCryoStorage(comp.Station.Value);
 
-            if (cryoStorage == null)
+            if (cryoStorageResult == null)
                 continue;
+
+            var (cryoStorage, container) = cryoStorageResult.Value;
 
             var containedComp = AddComp<CryostorageContainedComponent>(uid);
 
-            containedComp.Cryostorage = cryoStorage.Value;
+            containedComp.Cryostorage = cryoStorage;
             containedComp.GracePeriodEndTime = _timing.CurTime;
+
+            // Cryostorage finds the job via the body's mind, which is gone or orphaned here.
+            var abandoned = !_mind.TryGetMind(uid, out _, out var bodyMind) || bodyMind.UserId == null;
+            if (abandoned)
+                ReturnJobSlot(uid, comp);
 
             var portalCoordinates = _transformSystem.GetMapCoordinates(Transform(uid));
 
             var portalUid = _entity.SpawnEntity(stationComp.PortalPrototype, portalCoordinates);
             _audio.PlayPvs(stationComp.TransferSound, portalUid);
 
-            var container = _container.EnsureContainer<ContainerSlot>(cryoStorage.Value, "storage");
-
             if (!_container.Insert(uid, container))
-                _cryostorage.HandleEnterCryostorage((uid, containedComp), comp.UserId);
+                _cryostorage.HandleEnterCryostorage((uid, containedComp), abandoned ? null : comp.UserId);
         }
     }
 
@@ -108,6 +116,32 @@ public sealed class CryoTeleportationSystem : EntitySystem
         var targetComponent = EnsureComp<TargetCryoTeleportationComponent>(ev.Player.AttachedEntity.Value);
         targetComponent.Station = ev.Station;
         targetComponent.UserId = ev.Player.UserId;
+        targetComponent.Job = ev.JobId;
+        targetComponent.JobHolder = ev.Player.UserId;
+    }
+
+    private void OnMobStateChanged(EntityUid uid, TargetCryoTeleportationComponent comp, ref MobStateChangedEvent args)
+    {
+        // Player left while dead or crit, so the detach never started the timer.
+        if (args.NewMobState != MobState.Alive || HasComp<ActorComponent>(uid))
+            return;
+
+        comp.ExitTime = _timing.CurTime;
+    }
+
+    private void ReturnJobSlot(EntityUid body, TargetCryoTeleportationComponent comp)
+    {
+        if (comp.Station is not { } station
+            || comp.JobHolder is not { } holder
+            || comp.Job is not { } job)
+            return;
+
+        if (!_stationJobs.TryRemovePlayerJob(station, holder, job)
+            || !_stationJobs.TryAdjustJobSlot(station, job, 1, clamp: true))
+            return;
+
+        var slotReturned = new CryoSlotReturnedEvent(body, job);
+        RaiseLocalEvent(ref slotReturned);
     }
 
     private void OnPlayerDetached(EntityUid uid, TargetCryoTeleportationComponent comp, PlayerDetachedEvent ev)
@@ -117,7 +151,7 @@ public sealed class CryoTeleportationSystem : EntitySystem
             return;
         if (comp.ExitTime == null)
             comp.ExitTime = _timing.CurTime;
-        if (_mind.TryGetMind(uid, out var mindId, out var mind))
+        if (_mind.TryGetMind(uid, out var _, out var mind))
             comp.UserId = mind.UserId;
     }
 
@@ -125,7 +159,7 @@ public sealed class CryoTeleportationSystem : EntitySystem
     {
         if (comp.ExitTime != null)
             comp.ExitTime = null;
-        if (_mind.TryGetMind(uid, out var mindId, out var mind))
+        if (_mind.TryGetMind(uid, out var _, out var mind))
             comp.UserId = mind.UserId;
     }
 
@@ -142,12 +176,36 @@ public sealed class CryoTeleportationSystem : EntitySystem
         comp.UserId = args.Session.UserId;
     }
 
-    private EntityUid? FindCryoStorage(TransformComponent stationGridTransform)
+    /// <summary>
+    /// Finds an non-occupied cryo storage unit on the station's main grid.
+    /// </summary>
+    /// <param name="stationUid">station to be searched for cryo storage</param>
+    /// <returns>
+    /// An available cryo storage unit and its container slot, or null if no available cryo units were found.
+    /// Cryo units that are not on the station's main grid will not be returned, avoiding selecting cryo units off-station,
+    /// such as on the ATS, shuttles, etc., which may be unsafe for storing people or annoying for people to retrieve job equipment.
+    /// </returns>
+    private (EntityUid Uid, ContainerSlot Container)? FindCryoStorage(EntityUid stationUid)
     {
+        var stationData = EntityManager.GetComponentOrNull<StationDataComponent>(stationUid);
+
+        // if the whole station is gone, we're not putting anyone into cryo storage anyway
+        if(stationData == null)
+            return null;
+
+        // main station grid check. if the main grids is (somehow) empty, fallbackt o any grid in station data
+        var grids = stationData.MainGrids.Count > 0
+            ? stationData.MainGrids
+            : stationData.Grids;
+
         var query = AllEntityQuery<CryostorageComponent, TransformComponent>();
         while (query.MoveNext(out var cryoUid, out _, out var cryoTransform))
         {
-            if (stationGridTransform.MapUid != cryoTransform.MapUid)
+            if (cryoTransform.GridUid is not { } gridUid)
+                continue;
+
+            // skip any cryo storage that is not on the main station grids
+            if(!grids.Contains(gridUid))
                 continue;
 
             var container = _container.EnsureContainer<ContainerSlot>(cryoUid, "storage");
@@ -155,9 +213,24 @@ public sealed class CryoTeleportationSystem : EntitySystem
             if (container.ContainedEntities.Count > 0)
                 continue;
 
-            return cryoUid;
+            return (cryoUid, container);
         }
 
+        // if we couldn't find a cryo storage unit, return null
         return null;
+    }
+
+    /// <summary>
+    /// Checks if the target is wearing a cursed mask, which forces their mind out of the body.
+    /// </summary>
+    private bool IsHeldByCursedMask(EntityUid uid)
+    {
+        if (!_inventory.TryGetSlotEntity(uid, "mask", out var mask)
+            || !TryComp<CursedMaskComponent>(mask, out var cursed)
+            || cursed.StolenMind is not { } stolen)
+            return false;
+
+        // Victim took a new life or ghost role, so the old mind has no player.
+        return TryComp<MindComponent>(stolen, out var mind) && mind.UserId != null;
     }
 }

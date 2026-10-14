@@ -9,10 +9,14 @@
   - FloorTileItemDarkHerringbone
   - FloorTileItemDarkMini
   - FloorTileItemDarkMono
+  - FloorTileItemDarkSlatsContinuous
+  - FloorTileItemDarkVerticalSlatsBordered
+  - FloorTileItemDarkHorizontalSlatsBordered
   - FloorTileItemDarkPavement
   - FloorTileItemDarkPavementVertical
   - FloorTileItemDarkOffset
   - FloorTileItemDarkBitile # SL
+  - FloorTileItem3x3Black # SL
 
 - type: latheRecipePack
   id: FloorSteelTilesStatic
@@ -23,6 +27,9 @@
   - FloorTileItemSteelDiagonal
   - FloorTileItemSteelHerringbone
   - FloorTileItemSteelMini
+  - FloorTileItemSteelSlatsContinuous
+  - FloorTileItemSteelVerticalSlatsBordered
+  - FloorTileItemSteelHorizontalSlatsBordered
   - FloorTileItemSteelMono
   - FloorTileItemSteelPavement
   - FloorTileItemSteelPavementVertical
@@ -37,8 +44,16 @@
   - FloorTileItemMetalRed
   - FloorTileItemMetalGreen
   - FloorTileItemCarpetDeco
+  - FloorTileItemCarpetArt
   - FloorTileItemHierophant
   - FloorTileItemSepia
+  - FloorTileItem3x3Brown
+  - FloorTileItem3x3Steel
+  - FloorTileItemOrnate
+  - FloorTileItemRoughMetal
+  - FloorTileItemRustyMetal
+  - FloorTileItemSteelGrate
+  - FloorTileItemTechGreeb
   # Starlight End
 
 - type: latheRecipePack
@@ -51,9 +66,13 @@
   - FloorTileItemWhiteHerringbone
   - FloorTileItemWhiteMini
   - FloorTileItemWhiteMono
+  - FloorTileItemWhiteSlatsContinuous
+  - FloorTileItemWhiteVerticalSlatsBordered
+  - FloorTileItemWhiteHorizontalSlatsBordered
   - FloorTileItemWhitePavement
   - FloorTileItemWhitePavementVertical
   - FloorTileItemWhiteBitile #SL
+  - FloorTileItem3x3White #SL
 
 - type: latheRecipePack
   id: FloorMaintsTilesStatic
@@ -84,6 +103,7 @@
   - FloorTileItemWoodChessBlack
   - FloorTileItemWoodChessLight
   - FloorTileItemWoodChessRed
+  - FloorTileItemAstroDirt
   # Starlight End
 
 - type: latheRecipePack
@@ -101,6 +121,8 @@
   - FloorTileItemIronsandConcrete
   - FloorTileItemIronsandConcreteMono
   - FloorTileItemIronsandConcreteSmooth
+  - FloorTileItemOldConcreteBricks #SL
+  - FloorTileItemOldConcreteTile #SL
 
 - type: latheRecipePack
   id: CircuitFloorsStatic

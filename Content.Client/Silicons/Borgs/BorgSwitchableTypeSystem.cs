@@ -1,5 +1,4 @@
 ﻿using Content.Shared._Afterlight.Silicons.Borgs;
-using Content.Shared.Movement.Components;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Client.GameObjects;
@@ -13,12 +12,12 @@ namespace Content.Client.Silicons.Borgs;
 /// </summary>
 /// <seealso cref="SharedBorgSwitchableTypeSystem"/>
 /// <seealso cref="BorgSwitchableTypeComponent"/>
-public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
+public sealed partial class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
 {
-    [Dependency] private readonly BorgSystem _borgSystem = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private BorgSystem _borgSystem = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
 
     public override void Initialize()
     {
@@ -36,6 +35,7 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
     private void AfterStateHandler(Entity<BorgSwitchableTypeComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         UpdateEntityAppearance(ent);
+        _borgSystem.UpdateUI((ent.Owner, null)); // Starlight: refresh the reset-chassis button instead of polling every frame
     }
 
     protected override void UpdateEntityAppearance(
@@ -54,6 +54,9 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
                     out var res))
             {
                 sprite.BaseRSI = res.RSI;
+                _sprite.LayerSetRsi((entity.Owner, sprite), BorgVisualLayers.Body, rsi: null); // Starlight
+                _sprite.LayerSetRsi((entity.Owner, sprite), BorgVisualLayers.Light, rsi: null); // Starlight
+                _sprite.LayerSetRsi((entity.Owner, sprite), BorgVisualLayers.LightStatus, rsi: null); // Starlight
             }
             _sprite.LayerSetRsiState((entity, sprite), BorgVisualLayers.Body, prototype.SpriteBodyState);
             _sprite.LayerSetRsiState((entity, sprite), BorgVisualLayers.LightStatus, prototype.SpriteToggleLightState);

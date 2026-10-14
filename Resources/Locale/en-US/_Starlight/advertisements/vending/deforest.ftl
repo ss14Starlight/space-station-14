@@ -1,0 +1,9 @@
+advertisement-deforest-1 = Go save some lives!
+advertisement-deforest-2 = The best stuff for your medbay.
+advertisement-deforest-3 = Only the cleanest tools.
+advertisement-deforest-4 = High quality injectors!
+advertisement-deforest-5 = This stuff saves lives!
+advertisement-deforest-6 = Don't you want some?
+advertisement-deforest-7 = Beep!
+advertisement-deforest-8 = Make sure not to overdose people!
+advertisement-deforest-9 = Go overdose people!

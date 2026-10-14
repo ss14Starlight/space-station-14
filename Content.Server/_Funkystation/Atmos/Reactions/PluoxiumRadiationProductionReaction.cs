@@ -5,8 +5,6 @@ using Content.Shared.Atmos.Reactions;
 using JetBrains.Annotations;
 using Robust.Shared.Timing;
 using Content.Server.Radiation.Systems;
-using Robust.Shared.Map.Components;
-using Content.Server.Atmos.Components;
 using Content.Server.Radiation.Components;
 
 
@@ -146,8 +144,8 @@ public sealed partial class RadiationReceiverTimerComponent : Component
 
 public sealed partial class RadiationTimerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IEntityManager entityManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IEntityManager entityManager = default!;
 
     public override void Update(float frameTime)
     {

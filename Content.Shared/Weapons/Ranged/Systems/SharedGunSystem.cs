@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
-using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
@@ -36,47 +35,46 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.VentCrawl;
-
-#region Starlight
 using Content.Shared._Starlight.Weapons.DualWield;
 using Content.Shared.Mech.Components;
-using Content.Shared.Starlight.Utility;
+using Content.Shared._Starlight.Utility;
 using Content.Shared.Weapons.Hitscan.Events;
+using Content.Shared.Movement.Components;
 using Content.Shared._Starlight.Camera;
-#endregion Starlight
+using Content.Shared._Starlight.VentCrawl.Components;
+using Content.Shared._Starlight.Weapons.Hitscan.Events;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
 public abstract partial class SharedGunSystem : EntitySystem
 {
-    [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly ItemSlotsSystem _slots = default!;
-    [Dependency] private readonly RechargeBasicEntityAmmoSystem _recharge = default!;
-    [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
-    [Dependency] protected readonly DamageableSystem Damageable = default!;
-    [Dependency] protected readonly ExamineSystemShared Examine = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] protected readonly IMapManager MapManager = default!;
-    [Dependency] protected readonly IPrototypeManager ProtoManager = default!;
-    [Dependency] protected readonly IRobustRandom Random = default!;
-    [Dependency] protected readonly ISharedAdminLogManager Logs = default!;
-    [Dependency] protected readonly SharedActionsSystem Actions = default!;
-    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] protected readonly SharedContainerSystem Containers = default!;
-    [Dependency] protected readonly SharedPhysicsSystem Physics = default!;
-    [Dependency] protected readonly SharedPointLightSystem Lights = default!;
-    [Dependency] protected readonly SharedPopupSystem PopupSystem = default!;
-    [Dependency] protected readonly SharedProjectileSystem Projectiles = default!;
-    [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
-    [Dependency] protected readonly TagSystem TagSystem = default!;
-    [Dependency] protected readonly ThrowingSystem ThrowingSystem = default!;
-    [Dependency] private readonly ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
+    [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private ItemSlotsSystem _slots = default!;
+    [Dependency] private RechargeBasicEntityAmmoSystem _recharge = default!;
+    [Dependency] private SharedCombatModeSystem _combatMode = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!;
+    [Dependency] protected DamageableSystem Damageable = default!;
+    [Dependency] protected ExamineSystemShared Examine = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] protected SharedMapSystem MapManager = default!;
+    [Dependency] protected IPrototypeManager ProtoManager = default!;
+    [Dependency] protected IRobustRandom Random = default!;
+    [Dependency] protected ISharedAdminLogManager Logs = default!;
+    [Dependency] protected SharedActionsSystem Actions = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
+    [Dependency] protected SharedAudioSystem Audio = default!;
+    [Dependency] protected SharedContainerSystem Containers = default!;
+    [Dependency] protected SharedPhysicsSystem Physics = default!;
+    [Dependency] protected SharedPointLightSystem Lights = default!;
+    [Dependency] protected SharedPopupSystem PopupSystem = default!;
+    [Dependency] protected SharedProjectileSystem Projectiles = default!;
+    [Dependency] protected SharedTransformSystem TransformSystem = default!;
+    [Dependency] protected TagSystem TagSystem = default!;
+    [Dependency] protected ThrowingSystem ThrowingSystem = default!;
+    [Dependency] private ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
 
     /// <summary>
     /// Default projectile speed
@@ -164,27 +162,42 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
         }
 
-        // 🌟Starlight🌟 — in dual-wield mode, TryGetGun already picks the correct alternating gun;
-        // skip the gun-ID match check so the server fires the right gun even when the client's
-        // NextIsLeft state hasn't synced back yet.
+        // Starlight-start
         var isDualWield = TryComp<DualWieldComponent>(user.Value, out var dualWield) && dualWield.Active;
         if (!isDualWield && gun.Owner != GetEntity(msg.Gun))
             return;
 
-        if (TryComp(user, out VentCrawlerComponent? crawlerComp) //🌟Starlight🌟
+        if (TryComp(user, out VentCrawlerComponent? crawlerComp)
             && crawlerComp.InTube == true)
             return;
 
-        gun.Comp.ShootCoordinates = GetCoordinates(msg.Coordinates);
-        gun.Comp.Target = GetEntity(msg.Target);
-        var fired = AttemptShoot(user.Value, gun);
+        if (!gun.Comp.BurstActivated)
+        {
+            gun.Comp.ShootCoordinates = GetCoordinates(msg.Coordinates);
+            gun.Comp.Target = GetEntity(msg.Target);
+        }
 
-        // 🌟Starlight🌟 — dual-wield: only alternate after an actual shot so both guns stay in sync
+        bool fired;
+        _shotTick = GetBurstShotTick(gun.Comp) ?? GetRequestTick(msg.Tick);
+
+        try
+        {
+            fired = AttemptShoot(user.Value, gun);
+        }
+        finally
+        {
+            _shotTick = null;
+        }
+
+        if (msg.Continuous)
+            gun.Comp.ShotCounter = 0;
+
         if (isDualWield && fired)
         {
             dualWield!.NextIsLeft = !dualWield.NextIsLeft;
             Dirty(user.Value, dualWield);
         }
+        // Starlight-end
     }
 
     private void OnStopShootRequest(RequestStopShootEvent ev, EntitySessionEventArgs args)
@@ -278,8 +291,13 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
 
         ent.Comp.ShotCounter = 0;
-        ent.Comp.ShootCoordinates = null;
-        ent.Comp.Target = null;
+        // Starlight-start
+        if (!ent.Comp.BurstActivated)
+        {
+            ent.Comp.ShootCoordinates = null;
+            ent.Comp.Target = null;
+        }
+        // Starlight-end
         DirtyField(ent.AsNullable(), nameof(GunComponent.ShotCounter));
     }
 
@@ -350,7 +368,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         // First shot
         // Previously we checked shotcounter but in some cases all the bullets got dumped at once
         // curTime - fireRate is insufficient because if you time it just right you can get a 3rd shot out slightly quicker.
-        if (gun.Comp.NextFire < curTime - fireRate || gun.Comp.ShotCounter == 0 && gun.Comp.NextFire < curTime)
+        if (gun.Comp.NextFire < curTime - fireRate || (gun.Comp.ShotCounter == 0 && gun.Comp.NextFire < curTime))
             gun.Comp.NextFire = curTime;
 
         var shots = 0;
@@ -397,8 +415,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             {
                 PopupSystem.PopupClient(attemptEv.Message, gun, user);
             }
-            gun.Comp.BurstActivated = false;
-            gun.Comp.BurstShotsCount = 0;
+            SetBurst(gun, false, 0); // Starlight-edit
             gun.Comp.NextFire = TimeSpan.FromSeconds(Math.Max(lastFire.TotalSeconds + SafetyNextFire, gun.Comp.NextFire.TotalSeconds));
             return false;
         }
@@ -426,8 +443,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             var emptyGunShotEvent = new OnEmptyGunShotEvent(user);
             RaiseLocalEvent(gun, ref emptyGunShotEvent);
 
-            gun.Comp.BurstActivated = false;
-            gun.Comp.BurstShotsCount = 0;
+            SetBurst(gun, false, 0); // Starlight-edit
             gun.Comp.NextFire += TimeSpan.FromSeconds(gun.Comp.BurstCooldown);
 
             // Play empty gun sounds if relevant
@@ -446,24 +462,29 @@ public abstract partial class SharedGunSystem : EntitySystem
             return false;
         }
 
-        //Starlight start
+        // Starlight-start
         var NonEmptyGunShotEvent = new OnNonEmptyGunShotEvent(user, ev.Ammo);
         RaiseLocalEvent(gun, ref NonEmptyGunShotEvent);
-        //starlight end
 
         // Handle burstfire
-        if (gun.Comp.SelectedMode == SelectiveFire.Burst)
+        if (gun.Comp.SelectedMode == SelectiveFire.Burst || gun.Comp.BurstActivated)
         {
-            gun.Comp.BurstActivated = true;
-        }
-        if (gun.Comp.BurstActivated)
-        {
-            gun.Comp.BurstShotsCount += shots;
-            if (gun.Comp.BurstShotsCount >= gun.Comp.ShotsPerBurstModified)
+            var burstShots = gun.Comp.BurstShotsCount + shots;
+
+            if (!gun.Comp.BurstActivated)
+            {
+                gun.Comp.BurstTick = ShotTick;
+                DirtyField(gun.AsNullable(), nameof(GunComponent.BurstTick));
+            }
+
+            if (burstShots >= gun.Comp.ShotsPerBurstModified)
             {
                 gun.Comp.NextFire += TimeSpan.FromSeconds(gun.Comp.BurstCooldown);
-                gun.Comp.BurstActivated = false;
-                gun.Comp.BurstShotsCount = 0;
+                SetBurst(gun, false, 0);
+            }
+            else
+            {
+                SetBurst(gun, true, burstShots);
             }
         }
 
@@ -472,7 +493,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         var shotEv = new GunShotEvent(user, ev.Ammo);
         RaiseLocalEvent(gun, ref shotEv);
 
-        //Starlight begin | ES Screenshake
+        // ES Screenshake
         if (fired)
         {
             var gunShakeRotation = new ScreenshakeParameters()
@@ -483,7 +504,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             };
             _shake.Screenshake(user, null, gunShakeRotation);
         }
-        //Starlight end
+        // Starlight-end
 
         if (!userImpulse || !TryComp<PhysicsComponent>(user, out var userPhysics))
             return true;
@@ -525,7 +546,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         var physics = EnsureComp<PhysicsComponent>(uid);
         Physics.SetBodyStatus(uid, physics, BodyStatus.InAir);
 
-        var targetMapVelocity = gunVelocity + direction.Normalized() * speed;
+        var targetMapVelocity = gunVelocity + (direction.Normalized() * speed);
         var currentMapVelocity = Physics.GetMapLinearVelocity(uid, physics);
         var finalLinear = physics.LinearVelocity + targetMapVelocity - currentMapVelocity;
         Physics.SetLinearVelocity(uid, finalLinear, body: physics);
@@ -576,6 +597,126 @@ public abstract partial class SharedGunSystem : EntitySystem
     }
 
     #region Starlight
+
+    /// <summary>
+    /// Spread cone the next shot would have if fired at <paramref name="curTime"/>, including the movement penalty.
+    /// Does not modify the gun, so it is safe to call every frame (e.g. for the crosshair).
+    /// </summary>
+    public Angle PeekSpread(Entity<GunComponent?> gun, TimeSpan? curTime = null)
+    {
+        if (!Resolve(gun, ref gun.Comp, false))
+            return Angle.Zero;
+
+        var theta = GetNextShotTheta(gun.Comp, curTime ?? Timing.CurTime);
+        return new Angle(ApplyMovementSpread((gun, gun.Comp), theta));
+    }
+
+    /// <summary>
+    /// Fires a shot now: returns the spread this shot uses, then adds the shot's own recoil to
+    /// <see cref="GunComponent.CurrentAngle"/> for the shots after it.
+    /// Must only be called when the gun actually fires.
+    /// </summary>
+    public Angle UpdateCurrentAngle(Entity<GunComponent> gun, TimeSpan? curTime = null)
+    {
+        var shot = GetNextShotTheta(gun.Comp, curTime ?? Timing.CurTime);
+
+        gun.Comp.CurrentAngle = new Angle(MathHelper.Clamp(
+            shot + gun.Comp.AngleIncreaseModified.Theta,
+            gun.Comp.MinAngleModified.Theta,
+            gun.Comp.MaxAngleModified.Theta));
+        DirtyField(gun.AsNullable(), nameof(GunComponent.CurrentAngle));
+
+        return new Angle(shot);
+    }
+
+    private static double GetNextShotTheta(GunComponent comp, TimeSpan curTime)
+    {
+        // LastFire is set to NextFire, so it is in the future while the gun is cycling.
+        // Recoil only starts decaying once the gun could fire again.
+        var timeSinceLastFire = Math.Max(0, (curTime - comp.LastFire).TotalSeconds);
+        return MathHelper.Clamp(
+            comp.CurrentAngle.Theta - (comp.AngleDecayModified.Theta * timeSinceLastFire),
+            comp.MinAngleModified.Theta,
+            comp.MaxAngleModified.Theta);
+    }
+
+    /// <summary>
+    /// Multiplier applied to the spread while the holder is moving.
+    /// </summary>
+    public float GetMovementSpreadModifier(Entity<GunComponent> gun)
+    {
+        var holder = Transform(gun).ParentUid;
+        if (!TryComp<InputMoverComponent>(holder, out var mover) || !mover.CanMove || !mover.HasDirectionalMovement)
+            return 1f;
+
+        // Sprinting is the default (running) movement, walking is the slow one.
+        return 1f + (mover.Sprinting ? gun.Comp.SprintSpreadModifier : gun.Comp.WalkSpreadModifier);
+    }
+
+    /// <summary>
+    /// Applies the movement penalty to a spread.
+    /// </summary>
+    private double ApplyMovementSpread(Entity<GunComponent> gun, double theta)
+    {
+        var modifier = GetMovementSpreadModifier(gun);
+        if (modifier <= 1f)
+            return theta;
+
+        return Math.Max(theta, gun.Comp.MovingMinAngle.Theta) * modifier;
+    }
+
+    public Angle GetRecoilAngle(Entity<GunComponent> gun, Angle direction, TimeSpan? curTime = null)
+    {
+        var spread = ApplyMovementSpread(gun, UpdateCurrentAngle(gun, curTime).Theta);
+
+        // Convert it so angle can go either side.
+#pragma warning disable CS0618
+        var random = GetShotRandom(gun, RecoilSalt).NextFloat(-0.5f, 0.5f);
+#pragma warning restore CS0618
+        return new Angle(direction.Theta + (spread * random));
+    }
+
+    private void SetBurst(Entity<GunComponent> gun, bool activated, int shotsCount)
+    {
+        if (gun.Comp.BurstActivated != activated)
+        {
+            gun.Comp.BurstActivated = activated;
+            DirtyField(gun.AsNullable(), nameof(GunComponent.BurstActivated));
+        }
+
+        if (gun.Comp.BurstShotsCount != shotsCount)
+        {
+            gun.Comp.BurstShotsCount = shotsCount;
+            DirtyField(gun.AsNullable(), nameof(GunComponent.BurstShotsCount));
+        }
+    }
+
+    /// <summary>
+    ///   Continues a burst fire if the gun is still aimed at the same target. If not, stops the burst.
+    /// </summary>
+    public bool ContinueBurst(EntityUid user, Entity<GunComponent> gun)
+    {
+        if (gun.Comp.ShootCoordinates == null)
+        {
+            SetBurst(gun, false, 0);
+            return false;
+        }
+
+        var previous = _shotTick;
+        _shotTick = GetBurstShotTick(gun.Comp) ?? previous;
+        try
+        {
+            return AttemptShoot(user, gun);
+        }
+        finally
+        {
+            _shotTick = previous;
+        }
+    }
+
+    protected static readonly AudioParams EjectSoundParams =
+        AudioParams.Default.WithVariation(SharedContentAudioSystem.DefaultVariation).WithVolume(-1f);
+
     public bool IsChamberClosed(EntityUid gunEntity)
         => Appearance.TryGetData(gunEntity, AmmoVisuals.BoltClosed, out bool boltClosed) && boltClosed;
     #endregion
@@ -586,7 +727,8 @@ public abstract partial class SharedGunSystem : EntitySystem
     protected void EjectCartridge(
         EntityUid entity,
         Angle? angle = null,
-        bool playSound = true)
+        bool playSound = true,
+        EntityUid? user = null) // Starlight-edit: predicted the sound
     {
         // TODO: Sound limit version.
         var offsetPos = Random.NextVector2(EjectOffset);
@@ -608,7 +750,12 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
         if (playSound && TryComp<CartridgeAmmoComponent>(entity, out var cartridge))
         {
-            Audio.PlayPvs(cartridge.EjectSound, entity, AudioParams.Default.WithVariation(SharedContentAudioSystem.DefaultVariation).WithVolume(-1f));
+            // Starlight-edit: start
+            if (user != null)
+                Audio.PlayPredicted(cartridge.EjectSound, entity, user, EjectSoundParams);
+            else
+                Audio.PlayPvs(cartridge.EjectSound, entity, EjectSoundParams);
+            // Starlight-edit: end
         }
     }
 
@@ -654,6 +801,18 @@ public abstract partial class SharedGunSystem : EntitySystem
         const float impulseStrength = 25.0f;
         var impulseVector = shotDirection * impulseStrength;
         Physics.ApplyLinearImpulse(user, -impulseVector, body: user.Comp);
+    }
+
+    /// <summary>
+    /// Forces a gun into the specified available fire modes, also correcting SelectedMode if needed.
+    /// Used by defect systems that need to restrict modes without direct component write access.
+    /// </summary>
+    public void SetAvailableModes(Entity<GunComponent> gun, SelectiveFire modes)
+    {
+        gun.Comp.AvailableModes = modes;
+        if ((gun.Comp.SelectedMode & modes) == 0)
+            gun.Comp.SelectedMode = modes;
+        Dirty(gun, gun.Comp);
     }
 
     public void RefreshModifiers(Entity<GunComponent?> gun)
@@ -753,6 +912,20 @@ public abstract partial class SharedGunSystem : EntitySystem
         public SpriteSpecifier? ImpactFlash;
         public ExtendedSpriteSpecifier? Bullet;
         public required float Speed;
+        // Starlight-start
+        public NetEntity? Shooter;
+        public NetEntity? Gun;
+
+        /// <summary>
+        /// Seed of the shot this trace belongs to, lets the shooter match it to its predicted trace.
+        /// </summary>
+        public int? PredictionSeed;
+
+        /// <summary>
+        /// Prototype of the hitscan, so the shooter can play the impact sound the server leaves to it.
+        /// </summary>
+        public string? Prototype;
+        // Starlight-end
     }
 
     /// <summary>

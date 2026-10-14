@@ -82,6 +82,15 @@ public sealed partial class ItemToggleComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public SoundSpecifier? SoundFailToActivate;
+
+    #region Starlight
+
+    /// <summary>
+    /// Ignores wielding state.
+    /// </summary>
+    [DataField, AutoNetworkedField] public bool IgnoreWieldState;
+
+    #endregion
 }
 
 /// <summary>

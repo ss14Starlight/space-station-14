@@ -106,10 +106,9 @@
   - type: EmptyOnMachineDeconstruct
     containers:
       - scanner-body
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      injectionBuffer:
-        maxVol: 50
+    - SolutionCryoBuffer
   - type: CryoPod
   - type: CryoPodAir
   - type: Climbable # so that ejected bodies don't get stuck
@@ -119,6 +118,14 @@
   - type: GuideHelp
     guides:
     - Cryogenics
+
+- type: entity
+  parent: SolutionSmall
+  id: SolutionCryoBuffer
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: injectionBuffer
 
 - type: entity
   parent: BaseMachine
@@ -156,5 +163,9 @@
         acts: [ "Destruction" ]
   - type: PhysicalComposition
     materialComposition:
-      Steel: 2000 # 20 sheets
-      Glass: 1000 # 10 sheets
+      Steel: 500 # 5 sheets - Starlight
+      Glass: 300 # 3 sheets - Starlight
+  - type: Construction #Starlight - Makes the destroyed Cryo Pods Deconstrucable - start
+    graph: Machine
+    node: destroyedMachineFrame
+    #Starlight - End

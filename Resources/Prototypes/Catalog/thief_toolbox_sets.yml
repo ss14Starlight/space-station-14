@@ -6,11 +6,10 @@
     sprite: Objects/Devices/chameleon_projector.rsi
     state: icon
   content:
-  - ClothingBackpackChameleonFill
+  - ClothingBackpackChameleonFillAgent
   - ChameleonControllerImplanter # Starlight Adding the implanter manually now that it's no longer in the backpack fill.
   - ChameleonProjector
   - FakeMindShieldImplanter
-  - AgentIDCard
 
 - type: thiefBackpackSet
   id: ToolsSet

@@ -1,13 +1,11 @@
 ﻿using Content.Client._Starlight.Character.Info.UI;
-using Content.Shared._Starlight.Character.Info;
 
-// ReSharper disable CheckNamespace
+// ReSharper disable once CheckNamespace
 namespace Content.Client.UserInterface.Systems.Character;
 
 public sealed partial class CharacterUIController
 {
-    private Dictionary<EntityUid, CharacterInspectWindow> _openInspectionWindows = new();
-
+    private readonly Dictionary<EntityUid, CharacterInspectWindow> _openInspectionWindows = new();
 
     public void OpenInspectCharacterWindow(EntityUid target, EntityUid viewer)
     {
@@ -42,6 +40,24 @@ public sealed partial class CharacterUIController
 
         window.OnClose += () => _openInspectionWindows.Remove(target);
         window.Title = Loc.GetString("character-info-window-title", ("player", target));
+    }
+
+    /// <summary>
+    /// Opens the local player's character window on its overview tab.
+    /// </summary>
+    public void OpenCharacterOverview()
+    {
+        if (_window == null)
+            return;
+
+        _window.CharacterInfoTabs.CurrentTab = 0;
+        if (_window.IsOpen)
+            return;
+
+        CharacterButton?.SetClickPressed(true);
+        _characterInfo.RequestCharacterInfo();
+        SLSetSelfCharacterInfo();
+        _window.Open();
     }
 
     private void SLClearSelfCharacterInfo()

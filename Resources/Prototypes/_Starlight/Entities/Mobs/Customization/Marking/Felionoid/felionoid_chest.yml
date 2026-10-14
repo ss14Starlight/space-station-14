@@ -2,7 +2,7 @@
   id: FelionoidChestBelly
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_chest:
@@ -16,7 +16,7 @@
   id: FelionoidChestBrightBelly
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_chest:
@@ -30,7 +30,7 @@
   id: FelionoidChestStripes
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_chest:
@@ -44,7 +44,7 @@
   id: FelionoidChestTabby
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_chest:
@@ -58,7 +58,7 @@
   id: FelionoidChestCalico
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_chest@0:

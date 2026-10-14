@@ -3,7 +3,7 @@
   id: ResomiTailFeathered # This is the default tail for Resomi that comes with feathers.
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail@0:
@@ -22,7 +22,7 @@
   id: ResomiTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail:
@@ -36,7 +36,7 @@
   id: ResomiTailComplex
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail@0:
@@ -60,7 +60,7 @@
   id: ResomiTailDamaged
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail:
@@ -74,7 +74,7 @@
   id: ResomiTailDamagedFeathered
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail@0:
@@ -93,7 +93,7 @@
   id: ResomiTailStubby
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail:
@@ -107,7 +107,7 @@
   id: ResomiTailStubbyFeathered
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail@0:
@@ -127,7 +127,7 @@
   id: ResomiTailFeathers # Same as default tail but you can change the colors.
   bodyPart: Tail
   markingCategory: TailExtras
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail:
@@ -141,7 +141,7 @@
   id: ResomiTailFeathersComplex
   bodyPart: Tail
   markingCategory: TailExtras
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail@0:
@@ -170,7 +170,7 @@
   id: ResomiTailFeathersShort
   bodyPart: Tail
   markingCategory: TailExtras
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail:
@@ -184,7 +184,7 @@
   id: ResomiTailFeathersFledgling
   bodyPart: Tail
   markingCategory: TailExtras
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail:
@@ -198,7 +198,7 @@
   id: ResomiTailFeathersLarge
   bodyPart: Tail
   markingCategory: TailExtras
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail:
@@ -212,7 +212,7 @@
   id: ResomiTailFeathersStubby
   bodyPart: Tail
   markingCategory: TailExtras
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail:
@@ -226,7 +226,7 @@
   id: ResomiTailFeathersDamaged
   bodyPart: Tail
   markingCategory: TailExtras
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail:
@@ -241,7 +241,7 @@
   id: ResomiTailStripes
   bodyPart: Tail
   markingCategory: TailExtras
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail:
@@ -255,7 +255,7 @@
   id: ResomiTailSpots
   bodyPart: Tail
   markingCategory: TailExtras
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail:
@@ -269,7 +269,7 @@
   id: ResomiTailProstheticWood
   bodyPart: Tail
   markingCategory: TailExtras
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   coloring:
     layers:
       tail_prosthetic_wood:
@@ -288,7 +288,7 @@
   id: ResomiTailProstheticHighTech
   bodyPart: Tail
   markingCategory: TailExtras
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   coloring:
     layers:
       tail_prosthetic_hightech:
@@ -312,7 +312,7 @@
       tail_prosthetic_unbranded:
         type: !type:SimpleColoring
           color: white
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail:
@@ -331,7 +331,7 @@
       tail_band:
         type: !type:SimpleColoring
           color: white
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail:
@@ -353,7 +353,7 @@
       tail_band_multicolored_2:
         type: !type:SimpleColoring
           color: white
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail@0:
@@ -377,7 +377,7 @@
       tail_band_large:
         type: !type:SimpleColoring
           color: white
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail:
@@ -399,7 +399,7 @@
       tail_band_split_2:
         type: !type:SimpleColoring
           color: white
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_tail@0:

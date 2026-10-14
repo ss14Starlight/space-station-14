@@ -1,7 +1,5 @@
 using System.Linq;
-using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
-using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Content.Shared.Zombies;
 using Robust.Client.GameObjects;
@@ -9,10 +7,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Zombies;
 
-public sealed class ZombieSystem : SharedZombieSystem
+public sealed partial class ZombieSystem : SharedZombieSystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

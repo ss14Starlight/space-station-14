@@ -8,5 +8,4 @@ namespace Content.Shared._Starlight.CosmicCult.Components;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class MonumentCollisionComponent : Component
 {
-    // Starlight Edit: Changed this to an empty component with Comp Checks instead of a ``HasCollision`` bool
 }

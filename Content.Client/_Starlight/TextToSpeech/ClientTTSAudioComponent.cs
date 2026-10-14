@@ -1,14 +1,12 @@
-﻿using System.IO;
-using Content.Client._Starlight.TextToSpeech;
-using Robust.Shared.Audio;
+﻿using Robust.Shared.Audio;
 
-namespace Content.Client._Starlight.TTS;
+namespace Content.Client._Starlight.TextToSpeech;
 
 [RegisterComponent]
 [Access(typeof(TextToSpeechSystem))]
 public sealed partial class TTSAudioStreamComponent : Component
 {
-    public Queue<byte[]> Data { get; set; }
+    public Queue<byte[]> Data { get; set; } = new();
     public EntityUid? EntityUid { get; set; }
     public EntityUid? SourceUid { get; set; }
     public AudioParams? AudioParams { get; set; }

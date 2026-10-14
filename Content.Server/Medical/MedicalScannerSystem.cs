@@ -10,24 +10,26 @@ using Content.Server.Cloning.Components;
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared.DeviceLinking.Events;
 using Content.Server.Power.EntitySystems;
-using Content.Shared.Body.Components;
 using Content.Shared.Climbing.Systems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.Containers;
 using static Content.Shared.MedicalScanner.SharedMedicalScannerComponent; // Hmm...
+#region Starlight
+using Content.Shared.Body.Components;
+#endregion
 
 namespace Content.Server.Medical
 {
-    public sealed class MedicalScannerSystem : EntitySystem
+    public sealed partial class MedicalScannerSystem : EntitySystem
     {
-        [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
-        [Dependency] private readonly ActionBlockerSystem _blocker = default!;
-        [Dependency] private readonly ClimbSystem _climbSystem = default!;
-        [Dependency] private readonly CloningConsoleSystem _cloningConsoleSystem = default!;
-        [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-        [Dependency] private readonly ContainerSystem _containerSystem = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+        [Dependency] private DeviceLinkSystem _signalSystem = default!;
+        [Dependency] private ActionBlockerSystem _blocker = default!;
+        [Dependency] private ClimbSystem _climbSystem = default!;
+        [Dependency] private CloningConsoleSystem _cloningConsoleSystem = default!;
+        [Dependency] private MobStateSystem _mobStateSystem = default!;
+        [Dependency] private ContainerSystem _containerSystem = default!;
+        [Dependency] private SharedAppearanceSystem _appearance = default!;
 
         private const float UpdateRate = 1f;
         private float _updateDif;
@@ -196,10 +198,13 @@ namespace Content.Server.Medical
 
         private void UpdateAppearance(EntityUid uid, MedicalScannerComponent scannerComponent)
         {
+            // Starlight-start
+            var status = GetStatus(uid, scannerComponent);
+            UpdateAmbience(uid, status);
+
             if (TryComp<AppearanceComponent>(uid, out var appearance))
-            {
-                _appearance.SetData(uid, MedicalScannerVisuals.Status, GetStatus(uid, scannerComponent), appearance);
-            }
+                _appearance.SetData(uid, MedicalScannerVisuals.Status, status, appearance);
+            // Starlight-end
         }
 
         public override void Update(float frameTime)

@@ -1,6 +1,12 @@
 card-selection-window-title = CARD SELECTION
 cards = Cards
 
+card-selection-no-cards = No new cards available at this time.
+card-selection-restricted = Your last hand expired before you chose. You won't be offered any more cards this round.
+card-selection-timer = Choose within {$seconds}s or you will be locked out for the rest of the round.
+
+character-info-cards-button = View cards
+
 
 railroading-card-examined = ┌Active card:
     ├[color={$IconColor}][font="Icon"]{$Icon}[/font][/color] [color={$Color}]{$Title}[/color]
@@ -406,6 +412,9 @@ rr-whiskeysour-desc = Sweet, sour, and guaranteed to raise eyebrows.
 
 rr-bacchusblessing = Bacchus’s Blessing
 rr-bacchusblessing-desc = Wine, gods, and the promise of a very loud evening.
+
+rr-thelastcall = The Last Call
+rr-thelastcall-desc = There are no good or bad choices. Only consequences.
 
 # Mail
 rr-mail-open = Mail

@@ -6,9 +6,9 @@ using ActivatableUISystem = Content.Shared.UserInterface.ActivatableUISystem;
 
 namespace Content.Server.Power.EntitySystems;
 
-public sealed class ActivatableUIRequiresPowerSystem : SharedActivatableUIRequiresPowerSystem
+public sealed partial class ActivatableUIRequiresPowerSystem : SharedActivatableUIRequiresPowerSystem
 {
-    [Dependency] private readonly ActivatableUISystem _activatableUI = default!;
+    [Dependency] private ActivatableUISystem _activatableUI = default!;
 
     public override void Initialize()
     {
@@ -19,7 +19,9 @@ public sealed class ActivatableUIRequiresPowerSystem : SharedActivatableUIRequir
 
     protected override void OnActivate(Entity<ActivatableUIRequiresPowerComponent> ent, ref ActivatableUIOpenAttemptEvent args)
     {
-        if (args.Cancelled || this.IsPowered(ent.Owner, EntityManager))
+        if (args.Cancelled ||
+            HasPowerCellFallback(ent.Owner, ent.Comp) || // Starlight
+            this.IsPowered(ent.Owner, EntityManager))
         {
             return;
         }
@@ -29,7 +31,9 @@ public sealed class ActivatableUIRequiresPowerSystem : SharedActivatableUIRequir
 
     private void OnPowerChanged(EntityUid uid, ActivatableUIRequiresPowerComponent component, ref PowerChangedEvent args)
     {
-        if (!args.Powered)
+        if (!args.Powered && !HasPowerCellFallback(uid, component)) // Starlight
             _activatableUI.CloseAll(uid);
     }
+
+    private partial bool HasPowerCellFallback(EntityUid uid, ActivatableUIRequiresPowerComponent component); // Starlight
 }

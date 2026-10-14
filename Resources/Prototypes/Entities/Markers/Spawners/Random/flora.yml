@@ -8,13 +8,27 @@
       - state: red
       - sprite: Objects/Decoration/Flora/flora_trees.rsi
         state: tree01
-  - type: RandomSpawner
-    prototypes:
-      - FloraTreeLarge
-      - FloraTreeConifer
-      - FloraTreeSnow
-      - FloraTree
-    chance: 0.95
-    rarePrototypes:
-      - ShadowTree
-    rareChance: 0.05
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: ShadowTree
+      - id: FloraTreeVampireSL # Starlight
+        weight: 5
+      - !type:GroupSelector
+        weight: 95
+        prob: 0.95
+        children:
+        - id: FloraTreeLarge
+        #- id: FloraTreeConifer # Starlight
+        #- id: FloraTreeSnow # Starlight
+        - id: FloraTree
+        #Starlight Start
+        - id: FloraBirchTreeLargeSL
+        - id: FloraBirchTreeMediumSL
+        - id: FloraBirchTreeSmallSL
+        - id: FloraTreeConiferMediumSL
+        - id: FloraTreeConiferBigSL
+        - id: FloraTreeConiferSmallSL
+        - id: FloraDeadTreeSL
+        - id: FloraDeadTreeSmallSL
+        #Starlight End

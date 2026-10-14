@@ -1,7 +1,7 @@
 ## Belts that need/have visualizers
 
 - type: entity
-  parent: [ClothingBeltBase, ClothingSlotBase, BaseCommandContraband]
+  parent: [ClothingBeltBase, ClothingSlotBase, BaseCommandContraband, BaseSheatheWeapon]
   id: ClothingBeltSheath
   name: sabre sheath
   description: An ornate sheath designed to hold an officer's blade.
@@ -64,7 +64,7 @@
 ## Belts without visualizers
 
 - type: entity
-  parent: [ClothingBeltAmmoProviderBase, BaseSecurityBartenderContraband]
+  parent: [ ClothingBeltAmmoProviderBase, BaseSecurityContraband, BaseBartenderContraband ] # Blimpuf
   id: ClothingBeltBandolier
   name: bandolier
   description: A bandolier for holding shotgun ammunition.
@@ -110,7 +110,12 @@
   - type: Sprite
     sprite: Clothing/Belt/holster.rsi
   - type: Clothing
-    sprite: Clothing/Belt/holster.rsi
+    slots: # Starlight start
+    - BELT
+    - NECK
+    equipSound:
+      path: /Audio/Items/belt_equip.ogg
+    sprite: _Starlight/Clothing/Multiple/holster.rsi # Starlight end
   - type: Storage
     grid:
     - 0,0,3,1
@@ -220,7 +225,7 @@
     sprite: Clothing/Belt/militarywebbingmed.rsi
 
 - type: entity
-  parent: ClothingBeltMilitaryWebbing
+  parent: [ BaseCentcommContraband, ClothingBeltMilitaryWebbing ] # Blimpuf
   id: ClothingBeltMilitaryWebbingERT
   name: ERT chest rig
   description: A set of tactical webbing worn by Emergency Response Team operatives.

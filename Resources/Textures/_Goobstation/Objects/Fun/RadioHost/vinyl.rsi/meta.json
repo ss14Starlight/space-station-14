@@ -1,0 +1,87 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "default",
+            "copyright": "renamed from record, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "base-dark",
+            "copyright": "created by Huaqas (GitHub) using sprites from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "base-medium",
+            "copyright": "created by Huaqas (GitHub) using sprites from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "base-light",
+            "copyright": "created by Huaqas (GitHub) using sprites from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "base-shine",
+            "copyright": "created by Huaqas (GitHub) using sprites from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "label",
+            "copyright": "created by Huaqas (GitHub) using sprites from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "ai-vinyl-disc",
+            "copyright": "renamed from record_ai, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "broken-vinyl-disc",
+            "copyright": "taken from Goobstation commit: https://github.com/Goob-Station/Goob-Station/commit/a95c69ebe47243849dc01623408767d8f2d30c2b"
+        },
+        {
+            "name": "carrot-vinyl-disc",
+            "copyright": "renamed from record_carrot, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "devil-vinyl-disc",
+            "copyright": "renamed from record_penta, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "earth-vinyl-disc",
+            "copyright": "taken from Goobstation commit: https://github.com/Goob-Station/Goob-Station/commit/c6a2eb90492245d8351800a1a542bfe26ccc983"
+        },
+        {
+            "name": "floaty-vinyl-disc",
+            "copyright": "taken from Goobstation commit: https://github.com/Goob-Station/Goob-Station/commit/7b21da687067a88f835f56978d2895c9c9dda939"
+        },
+        {
+            "name": "forgotten-vinyl-disc",
+            "copyright": "taken from Goobstation commit: https://github.com/Goob-Station/Goob-Station/commit/a95c69ebe47243849dc01623408767d8f2d30c2b"
+        },
+        {
+            "name": "glossy-vinyl-disc",
+            "copyright": "renamed from record_glossy, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "nb-vinyl-disc",
+            "copyright": "renamed from record_nb, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "pizza-vinyl-disc",
+            "copyright": "renamed from record_fruit, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "pride-vinyl-disc",
+            "copyright": "renamed from record_pride, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "trans-vinyl-disc",
+            "copyright": "renamed from record_trans, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "ttd-vinyl-disc",
+            "copyright": "taken from Goobstation commit: https://github.com/Goob-Station/Goob-Station/commit/833fc7d9de69148c577b00b9985799a21a48d9c9"
+        }
+    ]
+}

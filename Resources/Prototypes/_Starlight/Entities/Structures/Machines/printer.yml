@@ -2,7 +2,7 @@
   parent: BaseLathe
   id: PrinterDoc
   name: document printer
-  description: Bureaucratic perfection. Stores a database of all Nanotrasen documents, and lets you print them as long as you have paper.
+  description: Bureaucratic perfection. Stores a database of all NanoTrasen documents, and lets you print them as long as you have paper.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Machines/printer.rsi

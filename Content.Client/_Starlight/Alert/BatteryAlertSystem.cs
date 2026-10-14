@@ -11,11 +11,11 @@ namespace Content.Client._Starlight.Alert;
 
 public sealed partial class BatteryAlertSystem : EntitySystem
 {
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedBatterySystem _battery = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedBatterySystem _battery = default!;
 
     // How often to update the battery alert.
     // Also gets updated instantly when switching bodies or a battery is inserted or removed.

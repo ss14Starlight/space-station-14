@@ -2,6 +2,7 @@ uniform sampler2D SCREEN_TEXTURE;
 
 uniform highp float ThermalBoost;
 uniform highp float ThermalIntensity;
+uniform highp float ThermalAlpha;
 
 const highp vec3 cBlack  = vec3(0.00, 0.00, 0.00);
 const highp vec3 cBlue   = vec3(0.00, 0.00, 0.65);
@@ -57,4 +58,5 @@ void fragment()
     highp vec3 thermalColor = getThermalColor(lum);
 
     COLOR.rgb = mix(COLOR.rgb, thermalColor, ThermalIntensity);
+    COLOR.a *= ThermalAlpha;
 }

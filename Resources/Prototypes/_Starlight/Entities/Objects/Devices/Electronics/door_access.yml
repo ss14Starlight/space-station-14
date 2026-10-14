@@ -1,11 +1,11 @@
 # NT Representative
 - type: entity
   parent: DoorElectronics
-  id: DoorElectronicsNtrep
-  suffix: Ntrep, Locked
+  id: DoorElectronicsNT
+  suffix: Nanotrasen, Locked
   components:
   - type: AccessReader
-    access: [["Ntrep"], ["BlueShield"]]
+    access: [["NTPersonnel"]]
 
 # Robotics
 - type: entity
@@ -79,6 +79,25 @@
   - type: AccessReader
     access: [["Lawyer"]]
 
+# Courtroom
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCourtroom
+  suffix: Security/Internal Affairs/Legal (Courtroom), Locked
+  components:
+  - type: AccessReader
+    access: [["Security"], ["IAA"], ["Lawyer"]]
+
+
+# Attorney
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsAttorney
+  suffix: Internal Affairs/Legal (Attorney), Locked
+  components:
+  - type: AccessReader
+    access: [["IAA"], ["Lawyer"]]
+
 #Brigmedic
 - type: entity
   parent: DoorElectronics
@@ -86,7 +105,7 @@
   suffix: Brigmed, Locked
   components:
     - type: AccessReader
-      access: [["Security"], ["Cadet"], ["Command"]]
+      access: [["Brig"], ["Brigmedic"]]
 
 #Brigmedic/Paramed
 - type: entity
@@ -95,7 +114,7 @@
   suffix: Brigmed/Paramedic, Locked
   components:
     - type: AccessReader
-      access: [["Security"], ["Cadet"], ["Command"], ["Paramedic"]]
+      access: [["Brig"], ["Brigmedic"], ["Paramedic"]]
 
 #Solgov
 - type: entity
@@ -133,11 +152,11 @@
     - type: AccessReader
       access: [["Blackstar"]]
 
-#MedTak
+#Visitor
 - type: entity
   parent: DoorElectronics
-  id: DoorElectronicsMedTak
-  suffix: MedTak, Locked
+  id: DoorElectronicsVisitor
+  suffix: Visitor, Locked
   components:
     - type: AccessReader
-      access: [["MedTak"]]
+      access: [["Visitor"]]

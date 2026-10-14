@@ -1,31 +1,27 @@
-using System.Numerics;
 using Content.Server._Starlight.Medical.Limbs;
-using Content.Server.Body.Components;
 using Content.Server.Ghost;
 using Content.Server.Humanoid;
 using Content.Shared._Starlight.Medical.Body.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
-using Content.Shared.Damage.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
-using Robust.Shared.Audio;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Medical.Body.Systems;
 
-public sealed class BodySystem : SharedBodySystem
+public sealed partial class BodySystem : SharedBodySystem
 {
-    [Dependency] private readonly GhostSystem _ghostSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly LimbSystem _limbSystem = default!;//🌟Starlight🌟
+    [Dependency] private GhostSystem _ghostSystem = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidSystem = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private LimbSystem _limbSystem = default!;
 
     public override void Initialize()
     {
@@ -77,7 +73,7 @@ public sealed class BodySystem : SharedBodySystem
         }
 
         if (TryComp<HumanoidAppearanceComponent>(bodyEnt, out var humanoid))
-            _limbSystem.AddLimbVisual((bodyEnt, humanoid), partEnt); //🌟Starlight🌟
+            _limbSystem.AddLimbVisual((bodyEnt, humanoid), partEnt);
     }
 
     protected override void RemovePart(

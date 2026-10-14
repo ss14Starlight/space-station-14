@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 96,
+        "y": 96
+    },
+    "states": [
+        {
+            "name": "tree01",
+			"copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/e00cae8d065f9cf520688cc0dd0e15ba5bef12a9"
+        },
+        {
+            "name": "tree02",
+			"copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/e00cae8d065f9cf520688cc0dd0e15ba5bef12a9"
+        },
+        {
+            "name": "tree03",
+			"copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/e00cae8d065f9cf520688cc0dd0e15ba5bef12a9"
+        },
+        {
+            "name": "tree04",
+			"copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/e00cae8d065f9cf520688cc0dd0e15ba5bef12a9"
+        },
+        {
+            "name": "tree05",
+			"copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/e00cae8d065f9cf520688cc0dd0e15ba5bef12a9"
+        },
+        {
+            "name": "tree06",
+			"copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/e00cae8d065f9cf520688cc0dd0e15ba5bef12a9"
+        }
+    ]
+}

@@ -3,21 +3,19 @@ using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
-using Robust.Shared.GameObjects;
-using Robust.Shared.IoC;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Traits.Assorted;
 
-public sealed class DamagedThroatSystem : EntitySystem
+public sealed partial class DamagedThroatSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {
@@ -32,7 +30,7 @@ public sealed class DamagedThroatSystem : EntitySystem
             return;
 
         // Don't damage if using excluded languages (languages that don't require verbal speech)
-        if (args.Language.SpeechOverride.RequireSpeech == false)
+        if (args.Language.Speech.RequireSpeech == false)
             return;
 
         // Don't damage if on cooldown

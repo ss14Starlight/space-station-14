@@ -3,7 +3,7 @@
   id: VulpHeadBlaze
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_head:
@@ -17,7 +17,7 @@
   id: VulpHeadMask
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_head:
@@ -31,7 +31,7 @@
   id: VulpPatch
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_head:
@@ -45,7 +45,7 @@
   id: VulpSlash
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_head:
@@ -59,7 +59,7 @@
   id: VulpStripes1
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_head:
@@ -73,7 +73,7 @@
   id: VulpStripes2
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_head:
@@ -87,7 +87,7 @@
   id: VulpVulpine
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_head:

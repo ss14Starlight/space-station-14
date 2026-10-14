@@ -11,7 +11,7 @@ namespace Content.Server._Starlight.EntityEffects.Effects.Atmos;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class AddHeatEntityEffectSystem : EntityEffectSystem<TransformComponent, AddHeat>
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
 
     protected override void Effect(Entity<TransformComponent> entity, ref EntityEffectEvent<AddHeat> args)
     {

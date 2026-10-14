@@ -2,7 +2,7 @@
   id: SlimeTailSquishyFox
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson] # FH + Starlight
   emotes:
     - emotePrototype: Yip
     - emotePrototype: Whine
@@ -20,7 +20,7 @@
   id: SlimeTailGlassleaf
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson] # FH + Starlight
   # Starlight start
   sprites:
     body_tail:
@@ -34,7 +34,7 @@
   id: SlimeTailGooeyDragon
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , NeoSlimePerson] # FH + Starlight
   # Starlight start
   sprites:
     body_tail:
@@ -48,7 +48,7 @@
   id: SlimeTailGummyCat
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson, NeoSlimePerson] # FH + Starlight
   emotes:
     - emotePrototype: Meow
     - emotePrototype: Mew
@@ -66,7 +66,7 @@
   id: SlimeTailHoppingSlime
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson, NeoSlimePerson] # FH + Starlight
   # Starlight start
   sprites:
     body_tail:
@@ -80,7 +80,7 @@
   id: SlimeTailNudibranchi
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson, NeoSlimePerson] # FH + Starlight
   # Starlight start
   sprites:
     body_tail:
@@ -94,7 +94,7 @@
   id: SlimeTailVulpish
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson, NeoSlimePerson] # FH + Starlight
   emotes:
     - emotePrototype: Yip
     - emotePrototype: Whine
@@ -112,7 +112,7 @@
   id: SlimeTailWaggableMass
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson, NeoSlimePerson] # FH + Starlight
   emotes:
     - emotePrototype: Yip
     - emotePrototype: Whine
@@ -130,7 +130,7 @@
   id: SlimeTailWaggableMassWag
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson, NeoSlimePerson] # FH + Starlight
   emotes:
     - emotePrototype: Yip
     - emotePrototype: Whine
@@ -148,7 +148,7 @@
   id: SlimeEarsBlades
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson, NeoSlimePerson] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -162,7 +162,7 @@
   id: SlimeEarsBunks
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson, NeoSlimePerson] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -176,7 +176,7 @@
   id: SlimeEarsCarblunkle
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson, NeoSlimePerson] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -190,7 +190,7 @@
   id: SlimeEarsFoxlike
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson, NeoSlimePerson] # FH + Starlight
   emotes:
     - emotePrototype: Yip
     - emotePrototype: Whine
@@ -208,7 +208,7 @@
   id: SlimeEarsHoppers
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson, NeoSlimePerson] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -222,7 +222,7 @@
   id: SlimeEarsStalks
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson, NeoSlimePerson] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -236,7 +236,7 @@
   id: SlimeEarsStalksSmall
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson, NeoSlimePerson] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -250,7 +250,7 @@
   id: SlimeEarsThorns
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson, NeoSlimePerson] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:

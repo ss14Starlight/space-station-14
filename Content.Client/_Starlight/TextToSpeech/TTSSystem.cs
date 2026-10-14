@@ -1,9 +1,8 @@
 ﻿using System.Collections.Concurrent;
 using System.IO;
 using Content.Client._Starlight.Radio.Systems;
-using Content.Client._Starlight.TextToSpeech;
-using Content.Shared.Starlight.CCVar;
-using Content.Shared.Starlight.TextToSpeech;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.TextToSpeech;
 using Robust.Client.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
@@ -13,21 +12,21 @@ using Robust.Shared.ContentPack;
 using Robust.Shared.Player;
 using Robust.Shared.Spawners;
 
-namespace Content.Client._Starlight.TTS;
+namespace Content.Client._Starlight.TextToSpeech;
 
 /// <summary>
 /// Plays TTS audio
 /// </summary>
-public sealed class TextToSpeechSystem : EntitySystem
+public sealed partial class TextToSpeechSystem : EntitySystem
 {
     protected override string SawmillName => "tts";
 
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly SharedAudioSystem _sharedAudio = default!;
-    [Dependency] private readonly IAudioManager _audioManager = default!;
-    [Dependency] private readonly RadioChimeSystem _chime = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private SharedAudioSystem _sharedAudio = default!;
+    [Dependency] private IAudioManager _audioManager = default!;
+    [Dependency] private RadioChimeSystem _chime = default!;
 
     private readonly ConcurrentQueue<(Queue<byte[]> data, SoundSpecifier? specifier, float volume)> _ttsQueue = [];
     private readonly MemoryContentRoot _contentRoot = new();

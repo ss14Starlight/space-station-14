@@ -16,13 +16,13 @@ using Robust.Shared.Physics.Systems; // Starlight-edit™
 
 namespace Content.Server.Weapons.Melee;
 
-public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
+public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly LagCompensationSystem _lag = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!; // Starlight-edit™
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!; // Starlight-edit™
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private LagCompensationSystem _lag = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private SharedMapSystem _map = default!; // Starlight-edit™
+    [Dependency] private SharedPhysicsSystem _physics = default!; // Starlight-edit™
 
     public override void Initialize()
     {
@@ -122,10 +122,10 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
         return targetTile == hitTile; // Starlight-edit-end™
     }
 
-    protected override void DoDamageEffect(List<EntityUid> targets, EntityUid? user, TransformComponent targetXform)
+    protected override void DoDamageEffect(HashSet<EntityUid> targets, EntityUid? user, TransformComponent targetXform)
     {
         var filter = Filter.Pvs(targetXform.Coordinates, entityMan: EntityManager).RemoveWhereAttachedEntity(o => o == user);
-        _color.RaiseEffect(Color.Red, targets, filter);
+        _color.RaiseEffect(Color.Red, targets.ToList(), filter);
     }
 
     public override void DoLunge(EntityUid user, EntityUid weapon, Angle angle, Vector2 localPos, string? animation, bool predicted = true)

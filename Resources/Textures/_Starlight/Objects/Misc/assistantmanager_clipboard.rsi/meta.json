@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "am_clipboard",
+      "copyright": "Clipboard sprites by Salem.uwu, modified by bynddark8 for tider manager"
+    },
+    {
+      "name": "am_clipboard_over",
+      "copyright": "Clipboard sprites by Salem.uwu, modified by bynddark8 for tider manager"
+    },
+    {
+      "name": "hop_clipboard_paper",
+      "copyright": "Clipboard sprites by Salem.uwu"
+    },
+    {
+      "name": "hop_clipboard_pen",
+      "copyright": "Clipboard sprites by Salem.uwu"
+    },
+    {
+      "name": "hop_clipboard_priv_id",
+      "copyright": "Clipboard sprites by Salem.uwu"
+    },
+    {
+      "name": "hop_clipboard_target_id",
+      "copyright": "Clipboard sprites by Salem.uwu"
+    },
+    {
+      "name": "inhand-hopboard-left",
+      "copyright": "Clipboard sprites by Salem.uwu",
+      "directions": 4
+    },
+    {
+      "name": "inhand-hopboard-right",
+      "copyright": "Clipboard sprites by Salem.uwu",
+      "directions": 4
+    }
+  ]
+}

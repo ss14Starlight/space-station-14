@@ -26,5 +26,4 @@ public sealed partial class TimeSystem : SharedTimeSystem
         Date = DateTime.UtcNow.AddYears(500);
         RaiseNetworkEvent(new RoundDateSetEvent(Date));
     }
-
 }

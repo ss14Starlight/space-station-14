@@ -9,22 +9,20 @@ using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Kitchen.EntitySystems;
 
-internal sealed class HandheldGrinderSystem : EntitySystem
+internal sealed partial class HandheldGrinderSystem : EntitySystem
 {
-    [Dependency] private readonly SharedReagentGrinderSystem _reagentGrinder = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-    [Dependency] private readonly SharedStackSystem _stackSystem = default!;
-    [Dependency] private readonly SharedDestructibleSystem _destructibleSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedPuddleSystem _puddle = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedReagentGrinderSystem _reagentGrinder = default!;
+    [Dependency] private SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private SharedStackSystem _stackSystem = default!;
+    [Dependency] private SharedDestructibleSystem _destructibleSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPuddleSystem _puddle = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -67,9 +65,6 @@ internal sealed class HandheldGrinderSystem : EntitySystem
         if (!_solution.ResolveSolution(ent.Owner, ent.Comp.SolutionName, ref ent.Comp.GrinderSolution))
             return;
 
-        if (_net.IsServer) // Cannot cancel predicted audio.
-            ent.Comp.AudioStream = _audio.PlayPvs(ent.Comp.Sound, ent)?.Entity;
-
         var doAfter = new DoAfterArgs(EntityManager, args.User, ent.Comp.DoAfterDuration, new HandheldGrinderDoAfterEvent(), ent, ent, item)
         {
             NeedHand = true,
@@ -79,7 +74,8 @@ internal sealed class HandheldGrinderSystem : EntitySystem
             BreakOnMove = true
         };
 
-        _doAfter.TryStartDoAfter(doAfter);
+        if (_doAfter.TryStartDoAfter(doAfter))
+            ent.Comp.AudioStream = _audio.PlayPredicted(ent.Comp.Sound, ent, args.User)?.Entity ?? ent.Comp.AudioStream;
     }
 
     private void OnHandheldDoAfter(Entity<HandheldGrinderComponent> ent, ref HandheldGrinderDoAfterEvent args)

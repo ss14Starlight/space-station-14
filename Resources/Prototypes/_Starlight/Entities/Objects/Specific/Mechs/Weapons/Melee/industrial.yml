@@ -1,6 +1,6 @@
 - type: entity
   id: WeaponMechMelleDrill
-  parent: [ BaseMechWeaponMelee, BaseCargoContraband ]
+  parent: [ BaseContrabandTier2, BaseMechWeaponMelee, BaseCargoContraband ] # Blimpuf
   name: exosuit drill
   suffix: Mech Weapon, Melee, Industrial
   description: Equipment for mining exosuits. This is the drill that'll pierce the rocks!
@@ -19,14 +19,15 @@
       path: "/Audio/Items/drill_hit.ogg"
     attackRate: 3.5
     damage:
-      groups:
-        Brute: 9
       types:
+        Blunt: 1.33
+        Piercing: 1.33
+        Slash: 1.33
         Structural: 40 # ~10 seconds for solid wall / ~21 secods for reinforced wall
 
 - type: entity
   id: WeaponMechMelleDrillDiamond
-  parent: [ BaseMechWeaponMelee, BaseCargoContraband ]
+  parent: [ BaseContrabandTier2, BaseMechWeaponMelee, BaseCargoContraband ] # Blimpuf
   name: diamond-tipped exosuit drill
   suffix: Mech Weapon, Melee, Industrial
   description: Equipment for mining exosuits. This is an upgraded version of the drill that'll pierce the rocks!
@@ -45,7 +46,8 @@
       path: "/Audio/Items/drill_hit.ogg"
     attackRate: 4
     damage:
-      groups:
-        Brute: 18
       types:
+        Blunt: 2
+        Piercing: 2
+        Slash: 2
         Structural: 60 # ~3 seconds for solid wall / 9 seconds for reinforced wall

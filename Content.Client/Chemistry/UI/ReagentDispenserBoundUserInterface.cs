@@ -1,9 +1,7 @@
-using Content.Client.Guidebook.Components;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Chemistry;
 using Content.Shared.Containers.ItemSlots;
 using JetBrains.Annotations;
-using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 
 namespace Content.Client.Chemistry.UI

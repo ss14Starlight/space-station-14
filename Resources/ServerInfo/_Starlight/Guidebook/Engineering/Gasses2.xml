@@ -1,0 +1,49 @@
+﻿<Document>
+  # Gasses 2
+  Useful gasses that are the bread and butter of what an experienced atmos is expected to work with.
+
+  ## Plasma
+  <Box>
+    <GuideEntityEmbed Entity="PlasmaCanister" Caption=""/>
+  </Box>
+  Gaseous phoron which is flammable but incredibly useful for industrial processes.
+
+  Burning it generates a lot of heat, producing carbon dioxide or tritium.  Combustion consumes less oxygen as temperature increases, capping roughly at 1643 K.
+
+  Plasma gas also has a good specific heat capacity, making it useful for moving heat around.
+
+  ## Tritium
+  <Box>
+    <GuideEntityEmbed Entity="TritiumCanister" Caption=""/>
+  </Box>
+  An extremely flammable radioactive gas.
+
+  Tritium is produced when burning plasma in a burn chamber with 97% or more oxygen, saturating plasma with pluoxium, or by damaging a supermatter.
+
+  ## Frezon
+  <Box>
+    <GuideEntityEmbed Entity="FrezonCanister" Caption=""/>
+  </Box>
+
+  A highly effective coolant and valuable export gas.
+
+  Frezon has a massive specific heat making it useful as a working fluid for heat transfer. Additionally combines with nitrogen above -250 C to create nitrous oxide, absorbing energy and massively cooling the mixture. Causes genetic degradation and hallucinations in living beings that inhale it.
+
+  Frezon is created by combining 1 tritium with 50 oxygen with a nitrogen catalyst to create 51 frezon. This reaction only occurs at roughly -200 C and below. Paradoxically, as the reaction gets colder a percentage of frezon that would be produced is instead replaced with nitrogen.
+
+  ## BZ
+  <Box>
+    <GuideEntityEmbed Entity="BZCanister" Caption=""/>
+  </Box>
+
+  An intermediate gas used in many advanced atmospheric reactions.
+
+  Although highly sought after, BZ on its own primarily acts as a sleeping agent and hallucinogenic for slime based organisms.
+
+  BZ is created by combining 1 nitrous oxide with 2 plasma, but has several quirks that make large scale production difficult.
+
+  BZ forms faster the lower the pressure is and requires large volume to produce in bulk.
+  BZ produces heat on formation, and only forms under 314 K.
+  When there is more than 2 plasma per 1 nitrous oxide a portion of nitrous oxide is decomposed instead being used to make BZ.
+
+</Document>

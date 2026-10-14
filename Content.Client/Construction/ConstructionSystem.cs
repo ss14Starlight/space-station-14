@@ -7,7 +7,7 @@ using Content.Shared.Examine;
 using Content.Shared.Input;
 using Content.Shared.Wall;
 // Starlight start
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 // Starlight end
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
@@ -20,7 +20,6 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
 namespace Content.Client.Construction
 {
@@ -28,16 +27,16 @@ namespace Content.Client.Construction
     /// The client-side implementation of the construction system, which is used for constructing entities in game.
     /// </summary>
     [UsedImplicitly]
-    public sealed class ConstructionSystem : SharedConstructionSystem
+    public sealed partial class ConstructionSystem : SharedConstructionSystem
     {
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
-        [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-        [Dependency] private readonly SpriteSystem _sprite = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        // Starlight-edit start
-        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-        // Starlight-edit end
+        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private ExamineSystemShared _examineSystem = default!;
+        [Dependency] private SharedTransformSystem _transformSystem = default!;
+        [Dependency] private SpriteSystem _sprite = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
+        #region Starlight
+        [Dependency] private IConfigurationManager _configurationManager = default!;
+        #endregion
 
         private readonly Dictionary<int, EntityUid> _ghosts = new();
         private readonly Dictionary<string, ConstructionGuide> _guideCache = new();
@@ -172,6 +171,8 @@ namespace Content.Client.Construction
             if (component.Prototype?.Name is null)
                 return;
 
+            _comment.Examine((uid, component), args); // Starlight-edit
+
             using (args.PushGroup(nameof(ConstructionGhostComponent)))
             {
                 args.PushMarkup(Loc.GetString(
@@ -279,6 +280,47 @@ namespace Content.Client.Construction
                 return false;
             }
 
+            return TrySpawnGhost(prototype, loc, dir, user, out ghost); // Starlight
+        }
+
+        #region Starlight
+        /// <summary>
+        ///     Attempts to create a construction ghost for the specified user.
+        /// </summary>
+        /// <param name="prototype">The construction prototype for the ghost.</param>
+        /// <param name="loc">The location where the ghost should be created.</param>
+        /// <param name="dir">The direction the ghost should face.</param>
+        /// <param name="user">The entity whose range and construction conditions are validated.</param>
+        /// <param name="ghost">The created ghost, or <see langword="null"/> if creation failed.</param>
+        /// <param name="showPopup">Whether to show a popup explaining a failed construction condition.</param>
+        /// <returns>True if a construction ghost was created; otherwise, false.</returns>
+        public bool TrySpawnGhost(
+            ConstructionPrototype prototype,
+            EntityCoordinates loc,
+            Direction dir,
+            EntityUid user,
+            [NotNullWhen(true)] out EntityUid? ghost,
+            bool showPopup = true)
+        {
+            if (!user.IsValid())
+            {
+                ghost = null;
+                return false;
+            }
+
+            return TrySpawnGhostForUser(prototype, loc, dir, user, out ghost, showPopup);
+        }
+        #endregion
+
+        private bool TrySpawnGhostForUser(
+            ConstructionPrototype prototype,
+            EntityCoordinates loc,
+            Direction dir,
+            EntityUid user,
+            [NotNullWhen(true)] out EntityUid? ghost,
+            bool showPopup) // Starlight: shared implementation for local and remote users.
+        {
+            ghost = null;
             if (!TryGetRecipePrototype(prototype.ID, out var targetProtoId) || !PrototypeManager.TryIndex(targetProtoId, out EntityPrototype? targetProto))
                 return false;
 
@@ -291,7 +333,7 @@ namespace Content.Client.Construction
             if (!_examineSystem.InRangeUnOccluded(user, loc, 20f, predicate: predicate))
                 return false;
 
-            if (!CheckConstructionConditions(prototype, loc, dir, user, showPopup: true))
+            if (!CheckConstructionConditions(prototype, loc, dir, user, showPopup)) // Starlight
                 return false;
 
             ghost = Spawn("constructionghost", loc);
@@ -302,7 +344,6 @@ namespace Content.Client.Construction
             _ghosts.Add(comp.GhostId, ghost.Value);
 
             var sprite = Comp<SpriteComponent>(ghost.Value);
-            _sprite.SetColor((ghost.Value, sprite), new Color(48, 255, 48, 128));
 
             if (targetProto.TryGetComponent(out IconComponent? icon, EntityManager.ComponentFactory))
             {
@@ -317,26 +358,19 @@ namespace Content.Client.Construction
                 var targetSprite = EnsureComp<SpriteComponent>(dummy);
                 EntityManager.System<AppearanceSystem>().OnChangeData(dummy, targetSprite);
 
-                for (var i = 0; i < targetSprite.AllLayers.Count(); i++)
+                _sprite.CopySprite((dummy, targetSprite), (ghost.Value, sprite));
+
+                for (var i = 0; i < sprite.AllLayers.Count(); i++)
                 {
-                    if (!targetSprite[i].Visible || !targetSprite[i].RsiState.IsValid)
-                        continue;
-
-                    var rsi = targetSprite[i].Rsi ?? targetSprite.BaseRSI;
-                    if (rsi is null || !rsi.TryGetState(targetSprite[i].RsiState, out var state) ||
-                        state.StateId.Name is null)
-                        continue;
-
-                    _sprite.AddBlankLayer((ghost.Value, sprite), i);
-                    _sprite.LayerSetSprite((ghost.Value, sprite), i, new SpriteSpecifier.Rsi(rsi.Path, state.StateId.Name));
                     sprite.LayerSetShader(i, "unshaded");
-                    _sprite.LayerSetVisible((ghost.Value, sprite), i, true);
                 }
 
                 Del(dummy);
             }
             else
                 return false;
+
+            _sprite.SetColor((ghost.Value, sprite), new Color(48, 255, 48, 128));
 
             if (prototype.CanBuildInImpassable)
                 EnsureComp<WallMountComponent>(ghost.Value).Arc = new(Math.Tau);
@@ -390,7 +424,7 @@ namespace Content.Client.Construction
         {
             // Count ghosts at the given location and allow up to the maximum allowed per tile
             var ghostCount = _ghosts.Values.Count(ghost =>
-                EntityManager.GetComponent<TransformComponent>(ghost).Coordinates.Equals(loc));
+                Comp<TransformComponent>(ghost).Coordinates.Equals(loc));
 
             return ghostCount >= _configurationManager.GetCVar(StarlightCCVars.ConstructionMaxGhostsPerTile);
         }

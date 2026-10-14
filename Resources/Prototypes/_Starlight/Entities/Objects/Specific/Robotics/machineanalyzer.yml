@@ -12,6 +12,8 @@
     damageContainers:
     - Silicon
     - IPC
+    - Hybrid
+    - MoffDemonInorganic
   - type: GuideHelp
     guides:
     - Robotics

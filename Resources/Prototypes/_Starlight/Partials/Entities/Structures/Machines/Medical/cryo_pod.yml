@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: CryoPod
+  components:
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -8
+    range: 3
+    sound:
+      path: /Audio/_Starlight/Ambience/Objects/cryo_bubbling.ogg

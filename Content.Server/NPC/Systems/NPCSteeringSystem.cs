@@ -53,25 +53,25 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
      * (though in their case it was for an F1 game so used context steering across the width of the road).
      */
 
-    [Dependency] private readonly IAdminManager _admin = default!;
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ClimbSystem _climb = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly PathfindingSystem _pathfindingSystem = default!;
-    [Dependency] private readonly PryingSystem _pryingSystem = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedMeleeWeaponSystem _melee = default!;
-    [Dependency] private readonly SharedMoverController _mover = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedCombatModeSystem _combat = default!;
+    [Dependency] private IAdminManager _admin = default!;
+    [Dependency] private IConfigurationManager _configManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ClimbSystem _climb = default!;
+    [Dependency] private DoAfterSystem _doAfter = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
+    [Dependency] private PathfindingSystem _pathfindingSystem = default!;
+    [Dependency] private PryingSystem _pryingSystem = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedMeleeWeaponSystem _melee = default!;
+    [Dependency] private SharedMoverController _mover = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedCombatModeSystem _combat = default!;
     // Starlight Start
-    [Dependency] private readonly GravitySystem _gravity = default!;
+    [Dependency] private GravitySystem _gravity = default!;
     // Starlight End
 
     private EntityQuery<FixturesComponent> _fixturesQuery;
@@ -99,6 +99,10 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
     private object _obstacles = new();
 
     private int _activeSteeringCount;
+
+    #region Starlight
+    private readonly List<(EntityUid, NPCSteeringComponent, InputMoverComponent, TransformComponent)> _steeringNpcs = new();
+    #endregion
 
     public override void Initialize()
     {
@@ -236,34 +240,35 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
         base.Update(frameTime);
 
         if (!_enabled)
+        {
+            _steeringNpcs.Clear();
             return;
+        }
 
         // Not every mob has the modifier component so do it as a separate query.
-        var npcs = new (EntityUid, NPCSteeringComponent, InputMoverComponent, TransformComponent)[Count<ActiveNPCComponent>()];
+        // Starlight-start: reuse a list and steer serially; Parallel.For was capped to one thread anyway.
+        var npcs = _steeringNpcs;
+        npcs.Clear();
 
         var query = EntityQueryEnumerator<ActiveNPCComponent, NPCSteeringComponent, InputMoverComponent, TransformComponent>();
-        var index = 0;
 
         while (query.MoveNext(out var uid, out _, out var steering, out var mover, out var xform))
         {
-            npcs[index] = (uid, steering, mover, xform);
-            index++;
+            npcs.Add((uid, steering, mover, xform));
         }
 
-        // Dependency issues across threads.
-        var options = new ParallelOptions
-        {
-            MaxDegreeOfParallelism = 1,
-        };
+        var index = npcs.Count;
         var curTime = _timing.CurTime;
 
         _activeSteeringCount = 0;
 
-        Parallel.For(0, index, options, i =>
+        // Dependency issues across threads.
+        for (var i = 0; i < index; i++)
         {
             var (uid, steering, mover, xform) = npcs[i];
             Steer(uid, steering, mover, xform, frameTime, curTime);
-        });
+        }
+        // Starlight-end
 
         ActiveSteeringGauge.Set(_activeSteeringCount);
 

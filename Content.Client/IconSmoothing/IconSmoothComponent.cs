@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.IconSmoothing
 {
@@ -38,8 +38,8 @@ namespace Content.Client.IconSmoothing
         [ViewVariables(VVAccess.ReadWrite), DataField("base")]
         public string StateBase { get; set; } = string.Empty;
 
-        [DataField("shader", customTypeSerializer:typeof(PrototypeIdSerializer<ShaderPrototype>))]
-        public string? Shader;
+        [DataField("shader")]
+        public ProtoId<ShaderPrototype>? Shader;
 
         /// <summary>
         ///     Mode that controls how the icon should be selected.
@@ -80,5 +80,10 @@ namespace Content.Client.IconSmoothing
         ///     Where this component contributes to our neighbors being calculated but we do not update our own sprite.
         /// </summary>
         NoSprite,
+
+        /// <summary>
+        ///     Starlight-edit: For things that only ever line up in a straight row, like flipped tables.
+        /// </summary>
+        Linear,
     }
 }

@@ -4,9 +4,9 @@ using Content.Shared._Starlight.Behaviors.Pack;
 
 namespace Content.Server._Starlight.Behaviors.Pack;
 
-public sealed class QuoremCheckSystem : SharedQuoremCheckSystem
+public sealed partial class QuoremCheckSystem : SharedQuoremCheckSystem
 {
-    [Dependency] private readonly NPCRetaliationSystem _retaliation = default!;
+    [Dependency] private NPCRetaliationSystem _retaliation = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -31,6 +31,4 @@ public sealed class QuoremCheckSystem : SharedQuoremCheckSystem
 
         }
     }
-
-
 }

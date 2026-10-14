@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: DevilBanishPhrases
+  values:
+    prefix: devil-banish-phrase-
+    count: 6

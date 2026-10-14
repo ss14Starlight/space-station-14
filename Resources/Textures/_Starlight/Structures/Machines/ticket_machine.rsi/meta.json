@@ -5,52 +5,67 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6",
+    "copyright": "State based copyright",
     "states": [
         {
-            "name": "base"
+            "name": "base",
+            "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6"
         },
         {
-            "name": "paper_empty"
+            "name": "paper_empty",
+            "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6"
         },
         {
-            "name": "paper_1"
+            "name": "paper_1",
+            "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6"
         },
         {
-            "name": "paper_2"
+            "name": "paper_2",
+            "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6"
         },
         {
-            "name": "paper_3"
+            "name": "paper_3",
+            "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6"
         },
         {
-            "name": "display_0"
+            "name": "display_0",
+            "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6"
         },
         {
-            "name": "display_1"
+            "name": "display_1",
+            "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6"
         },
         {
-            "name": "display_2"
+            "name": "display_2",
+            "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6"
         },
         {
-            "name": "display_3"
+            "name": "display_3",
+            "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6"
         },
         {
-            "name": "display_4"
+            "name": "display_4",
+            "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6"
         },
         {
-            "name": "display_5"
+            "name": "display_5",
+            "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6"
         },
         {
-            "name": "display_6"
+            "name": "display_6",
+            "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6"
         },
         {
-            "name": "display_7"
+            "name": "display_7",
+            "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6"
         },
         {
-            "name": "display_8"
+            "name": "display_8",
+            "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6"
         },
         {
-            "name": "display_9"
+            "name": "display_9",
+            "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6"
         }
-      ]
-    }
+    ]
+}

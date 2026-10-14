@@ -1,0 +1,41 @@
+# eeeplet
+- type: entity
+  id: EeepEvent
+  parent: BaseAntagGhostRoleRule # Starlight
+  components:
+  - type: StationEvent
+    weight: 2 #Starlight 3.5 -> 2, showing up almost every round gets tiring
+    earliestStart: 25
+    reoccurrenceDelay: 40
+    minimumPlayers: 30
+    duration: null
+  - type: BriefingRule
+    briefing: eeep-role-briefing
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: MobEeeplet
+  - type: AntagSelection
+    agentName: ghost-role-information-eeep-name
+    antags: # Starlight start
+    - !type:FixedAntagCount
+      proto: Eeeplet
+    #definitions:
+    #- spawnerPrototype: SpawnPointGhostEeeplet
+    #  min: 1
+    #  max: 1
+    #  pickPlayer: false
+    #  mindRoles:
+    #  - MindRoleGhostRoleTeamAntagonist
+  - type: DynamicRuleCost
+    cost: 75 # Starlight end
+
+# Starlight start, antag specifier
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: Eeeplet
+  spawnerPrototype: SpawnPointGhostEeeplet
+  pickPlayer: false
+  mindRoles:
+  - MindRoleGhostRoleTeamAntagonist
+# Starlight end

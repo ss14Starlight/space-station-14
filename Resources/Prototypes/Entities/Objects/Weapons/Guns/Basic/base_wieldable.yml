@@ -11,3 +11,16 @@
   - type: Gun
     minAngle: 21
     maxAngle: 32
+  # starlight start
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    damage:
+      types:
+        Blunt: 8
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: MeleeRequiresWield
+  - type: AltFireMelee
+  # starlight end

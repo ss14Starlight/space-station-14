@@ -8,14 +8,20 @@ using Content.Shared.Popups;
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Serialization;
 
+#region Starlight
+using Content.Shared.Body.Components;
+using Content.Shared._Starlight.Medical.Body.Systems;
+#endregion
+
 namespace Content.Shared.Repairable;
 
 public sealed partial class RepairableSystem : EntitySystem
 {
-    [Dependency] private readonly SharedToolSystem _toolSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedToolSystem _toolSystem = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!; // Starlight-edit
 
     public override void Initialize()
     {
@@ -28,7 +34,11 @@ public sealed partial class RepairableSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (!TryComp(ent.Owner, out DamageableComponent? damageable) || damageable.TotalDamage == 0)
+        if (!TryComp(ent.Owner, out DamageableComponent? damageable))
+            return;
+
+        var totalDamage = _damageableSystem.GetTotalDamage((ent.Owner, damageable));
+        if (totalDamage == 0)
             return;
 
         if (ent.Comp.DamageValue != null)
@@ -38,7 +48,9 @@ public sealed partial class RepairableSystem : EntitySystem
         else
             RepairAllDamage((ent, damageable), args.User);
 
-        args.Repeat = ent.Comp.AutoDoAfter && damageable.TotalDamage > 0;
+        totalDamage = _damageableSystem.GetTotalDamage((ent.Owner, damageable));
+
+        args.Repeat = ent.Comp.AutoDoAfter && totalDamage > 0;
         args.Args.Event.Repeat = args.Repeat;
         args.Handled = true;
 
@@ -94,8 +106,11 @@ public sealed partial class RepairableSystem : EntitySystem
         if (args.Handled)
             return;
 
-        // Only try repair the target if it is damaged
-        if (!TryComp<DamageableComponent>(ent.Owner, out var damageable) || damageable.TotalDamage == 0)
+        // Starlight-start: Only try repair the target if it is damaged or bleeding
+        bool isBleeding = TryComp<BloodstreamComponent>(ent, out var bloodstream) && bloodstream.BleedAmount > 0; //for beings that are repaired with the welder, but can bleed (like IPCs)
+
+        if (_damageableSystem.GetTotalDamage(ent.Owner) == 0 && !isBleeding)
+        // Starlight-end
             return;
 
         #region Starlight

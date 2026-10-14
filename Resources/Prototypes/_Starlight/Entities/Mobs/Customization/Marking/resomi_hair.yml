@@ -2,7 +2,7 @@
   id: HairResomiBackstrafe
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -16,7 +16,7 @@
   id: HairResomiBurstShort
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -30,7 +30,7 @@
   id: HairResomiDefault
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -44,7 +44,7 @@
   id: HairResomiDroopy
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -58,7 +58,7 @@
   id: HairResomiEars
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -72,7 +72,7 @@
   id: HairResomiFluffymohawk
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -86,7 +86,7 @@
   id: HairResomiHedge
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -100,7 +100,7 @@
   id: HairResomiLongway
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -114,7 +114,7 @@
   id: HairResomiMane
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -128,7 +128,7 @@
   id: HairResomiManeBeardless
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -142,7 +142,7 @@
   id: HairResomiMohawk
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -156,7 +156,7 @@
   id: HairResomiMushroom
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -170,7 +170,7 @@
   id: HairResomiNotree
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -184,7 +184,7 @@
   id: HairResomiSpiky
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -198,7 +198,7 @@
   id: HairResomiPointy
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -212,7 +212,7 @@
   id: HairResomiTwies
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -226,7 +226,7 @@
   id: HairResomiUpright
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:
@@ -240,7 +240,7 @@
   id: HairResomiLong
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   # Starlight start
   sprites:
     body_hair:

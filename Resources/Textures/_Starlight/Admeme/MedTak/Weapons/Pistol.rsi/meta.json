@@ -1,0 +1,37 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "copyright": "Taken from RU Paradise Station, additional in-hand sprites made by Way for Starlight, Edited by SevenShades"
+        },
+        {
+            "name": "base",
+            "copyright": "Taken from RU Paradise Station, additional in-hand sprites made by Way for Starlight, Edited by SevenShades"
+        },
+        {
+            "name": "bolt-open",
+            "copyright": "Taken from RU Paradise Station, additional in-hand sprites made by Way for Starlight, Edited by SevenShades"
+        },
+        {
+            "name": "mag-0",
+            "copyright": "Taken from RU Paradise Station, additional in-hand sprites made by Way for Starlight, Edited by SevenShades"
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4,
+            "copyright": "Taken from RU Paradise Station, additional in-hand sprites made by Way for Starlight, Edited by SevenShades"
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4,
+            "copyright": "Taken from RU Paradise Station, additional in-hand sprites made by Way for Starlight, Edited by SevenShades"
+        }
+    ]
+}

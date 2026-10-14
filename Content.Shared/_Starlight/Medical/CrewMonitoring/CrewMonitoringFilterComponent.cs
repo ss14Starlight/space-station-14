@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Medical.CrewMonitoring;
+namespace Content.Shared._Starlight.Medical.CrewMonitoring;
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class CrewMonitoringFilterComponent : Component
@@ -22,4 +22,10 @@ public sealed partial class CrewMonitoringFilterComponent : Component
     /// <summary>
     [DataField("onlyShowWoundedOrDead"), ViewVariables(VVAccess.ReadWrite)]
     public bool OnlyShowWoundedOrDead = false;
+
+    /// <summary>
+    ///     List of factions the console can see.
+    /// </summary>
+    [DataField("shownFactions"), ViewVariables(VVAccess.ReadWrite)]
+    public List<string> ShownFactions = new() { "crew" };
 }

@@ -5,7 +5,7 @@
 #Basic armor vest for inheritance
 - type: entity
   abstract: true
-  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterArmorBase
   name: armor vest
   description: A standard Type I armored vest that provides decent protection against most types of damage.
@@ -26,15 +26,26 @@
   - type: ExplosionResistance
     damageCoefficient: 0.90
   - type: ArmorSparkEffect #starlight
+  # Forky - Start - Clothing stains
+  - type: Stainable
+    clothingVisuals:
+      outerClothing:
+      - sprite: _Funkystation/Effects/blood.rsi
+        state: armorblood
+    iconVisuals:
+    - sprite: _Funkystation/Effects/blood.rsi
+      state: armorbloodicon
+  # Forky - End
 
 #Standard armor vest, allowed for security and bartenders
 - type: entity
-  parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBase]
+  parent: [ BaseContrabandTier2, BaseSecurityContraband, BaseBartenderContraband, ClothingOuterArmorBase ] # Blimpuf
   id: ClothingOuterArmorBasic
   components:
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
 
 #Alternate / slim basic armor vest
@@ -75,6 +86,7 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
 
 - type: entity
@@ -108,12 +120,13 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
     - ReflectiveArmorVest # STARLIGHT: Tag for set bonus system detection
 
 #Detective's vest
 - type: entity
-  parent: [ClothingOuterArmorBase, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, ClothingOuterArmorBase, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterVestDetective
   name: detective's vest
   description: A hard-boiled private investigator's armored vest.
@@ -124,7 +137,7 @@
     sprite: Clothing/OuterClothing/Vests/detvest.rsi
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  parent: [ ClothingOuterBaseMedium, AllowSuitStorageClothing ]
   id: ClothingOuterArmorBaseCarapace
   abstract: true
   components:
@@ -138,14 +151,10 @@
         Caustic: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.65
-  - type: ClothingSpeedModifier
-    walkModifier: 1.0
-    sprintModifier: 1.0
-  - type: HeldSpeedModifier
   - type: GroupExamine
 
 - type: entity
-  parent: [ClothingOuterArmorBaseCarapace, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, ClothingOuterArmorBaseCarapace, BaseCommandContraband ] # Blimpuf
   id: ClothingOuterArmorCaptainCarapace
   name: captain's carapace
   description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest.
@@ -157,6 +166,7 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
 
 - type: entity
@@ -173,12 +183,13 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
 # Starlight End
 
 #Web vest
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSyndicateContraband]
+  parent: [ClothingOuterArmorBase, ClothingOuterStorageBase, BaseSyndicateContraband]
   id: ClothingOuterVestWeb
   name: web vest
   description: A synthetic armor vest. This one has added webbing and ballistic plates.
@@ -199,8 +210,6 @@
     # Starlight-start
     staminaModifier: 0.55
     # Starlight-end
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
   - type: StaticPrice
     price: 1500
 
@@ -257,16 +266,14 @@
         Slash: 0.7
         Piercing: 0.5
         Heat: 0.9
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
 
 
 # Armor covering multiple body parts including limbs
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSyndicateContraband ]
+  parent: [ClothingOuterBaseLarge, ClothingOuterBaseWarm, AllowSuitStorageClothing, BaseSyndicateContraband ] # Starlight
   id: ClothingOuterArmorRaid
   name: syndicate raid suit
-  description: A flexible and well-armored suit, made for speed, with a powerful shoulder mounted flashlight manufactured in the Gorlex Marauder's iconic blood-red color scheme, it does not protect its wearer from space.
+  description: A flexible and well-armored suit, made for speed, with a powerful shoulder mounted flashlight manufactured in the Gorlex Marauder's iconic blood-red color scheme, it does not protect its wearer from space. # Starlight
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Armor/syndie-raid.rsi
@@ -279,6 +286,7 @@
     sprite: Clothing/OuterClothing/Armor/syndie-raid.rsi
   - type: Pierceable
     level: Metal
+    # Starlight-start
   - type: Armor
     modifiers:
       coefficients:
@@ -287,7 +295,6 @@
         Piercing: 0.35
         Heat: 0.3
         Caustic: 0.5
-    # Starlight-start
     staminaModifier: 0.1
     ignoreKnockdown: true
     # Starlight-end
@@ -298,8 +305,8 @@
   #   damageCoefficient: 0.45
   # Starlight-end
   - type: ClothingSpeedModifier
-    walkModifier: 1
-    sprintModifier: 1.1
+    walkModifier: 1.0   # Starlight #522 - buffed from 0.9
+    sprintModifier: 1.1 # Starlight #522 - buffed from 0.9
   #Shoulder mounted flashlight
   - type: ToggleableVisuals
     spriteLayer: light
@@ -324,7 +331,7 @@
     color: "#80ff80"
     radius: 5
     energy: 2
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
     netsync: false
   - type: LightBehaviour
@@ -355,9 +362,10 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, ClothingOuterBaseLarge, ClothingOuterBaseWarm, AllowSuitStorageClothing, BaseSecurityContraband ] # Starlight
   id: ClothingOuterArmorRiot
   name: riot suit
   description: A suit of semi-flexible polycarbonate body armor with heavy padding to protect against melee attacks. Perfect for fighting delinquents around the station.
@@ -383,10 +391,11 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
 
 - type: entity
-  parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
+  parent: [ ClothingOuterBaseLarge, ClothingOuterBaseWarm, BaseMajorContraband, AllowSuitStorageClothing ] # Starlight
   id: ClothingOuterArmorCult
   name: acolyte armor
   description: An evil-looking piece of cult armor, made of bones.
@@ -407,7 +416,7 @@
   - type: GroupExamine
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  parent: [ClothingOuterBaseLarge, ClothingOuterBaseWarm, AllowSuitStorageClothing] # Starlight
   id: ClothingOuterArmorHeavy
   name: heavy armor suit
   description: A heavily armored suit that protects against excessive damage.
@@ -506,7 +515,7 @@
     slots: WITHOUT_POCKET
 
 - type: entity
-  parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
+  parent: [ ClothingOuterBaseLarge, ClothingOuterBaseWarm, BaseMajorContraband, AllowSuitStorageClothing ] # Starlight
   id: ClothingOuterArmorBone
   name: bone armor
   description: Sits on you like a second skin.
@@ -537,7 +546,7 @@
     slots: WITHOUT_POCKET
 
 - type: entity
-  parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
+  parent: [ ClothingOuterBaseLarge, ClothingOuterBaseWarm, BaseMajorContraband, AllowSuitStorageClothing ] # Starlight
   id: ClothingOuterArmorPodWars
   name: ironclad II armor
   description: A repurposed suit of ironclad II armor, a relic of the pod wars.
@@ -577,35 +586,3 @@
     graph: cardArmour
     node: cardarmour
 
-
-#TODO: Move to _Starlight
-- type: entity
-  parent: ClothingOuterBaseLarge
-  id: ChangelingClothingOuterArmor
-  name: chitinous armor
-  description: An all-consuming chitinous mass of armor.
-  suffix: Unremoveable
-  components:
-  - type: Sprite
-    sprite: Changeling/ling_armor.rsi
-  - type: Clothing
-    sprite: Changeling/ling_armor.rsi
-  - type: Pierceable
-    level: Metal
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.5
-        Radiation: 0.5
-        Caustic: 0.5
-  - type: ClothingSpeedModifier
-    walkModifier: 0.7
-    sprintModifier: 0.65
-  - type: HeldSpeedModifier
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
-  - type: GroupExamine
-  - type: Unremoveable

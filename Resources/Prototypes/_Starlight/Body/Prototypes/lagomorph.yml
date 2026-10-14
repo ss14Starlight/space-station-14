@@ -1,4 +1,4 @@
-﻿- type: body
+- type: body
   id: Lagomorph
   name: "Lagomorph"
   root: torso
@@ -9,9 +9,10 @@
       - torso
       organs:
         brain: OrganHumanBrain
-        eyes: OrganHumanEyes
-        tongue: OrganHumanTongue
+        eyes: OrganLagomorphEyes
+        tongue: OrganLagomorphTongue
         eye_implant: null
+        nose_implant: null # 🌟Starlight🌟
         brain_implant: null
     torso:
       part: TorsoLagomorph

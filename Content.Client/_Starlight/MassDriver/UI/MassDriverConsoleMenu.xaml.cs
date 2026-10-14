@@ -21,10 +21,8 @@ public sealed partial class MassDriverConsoleMenu : DefaultWindow
     {
         RobustXamlLoader.Load(this);
 
-        LaunchButton.OnPressed += _ =>
-        {
-            OnLaunchButtonPressed?.Invoke();
-        };
+        LaunchButton.OnPressed += _
+            => OnLaunchButtonPressed?.Invoke();
 
         AutoModeButton.OnPressed += _ =>
         {

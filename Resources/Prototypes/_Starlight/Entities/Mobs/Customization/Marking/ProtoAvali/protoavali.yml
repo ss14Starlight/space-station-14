@@ -1,0 +1,83 @@
+#Armors
+- type: marking
+  id: NeoAvaliLightArmor
+  bodyPart: BodyCover
+  markingCategory: BodyCover
+  speciesRestriction: [NeoAvali]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-avali/body_armor.rsi
+    state: light
+
+#Visors
+- type: marking
+  id: NeoAvaliVisorLightless
+  bodyPart: FaceCover
+  markingCategory: FaceCover
+  speciesRestriction: [NeoAvali]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-avali/visor_shapes.rsi
+    state: visorlightless
+
+- type: marking
+  id: NeoAvaliVisorColorable
+  bodyPart: FaceCover
+  markingCategory: FaceCover
+  speciesRestriction: [NeoAvali]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-avali/visor_shapes.rsi
+    state: visorcolorable
+
+#LED Face Shapes
+- type: marking
+  id: NeoAvaliLEDFaceCircular
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
+  speciesRestriction: [NeoAvali]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-avali/led_shapes_face.rsi
+    state: circular
+
+- type: marking
+  id: NeoAvaliLEDFaceDiagonal
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
+  speciesRestriction: [NeoAvali]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-avali/led_shapes_face.rsi
+    state: diagonal
+
+- type: marking
+  id: NeoAvaliLEDFaceSquare
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
+  speciesRestriction: [NeoAvali]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-avali/led_shapes_face.rsi
+    state: square
+
+- type: marking
+  id: NeoAvaliLEDFaceStraight
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
+  speciesRestriction: [NeoAvali]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-avali/led_shapes_face.rsi
+    state: straight
+
+- type: marking
+  id: NeoAvaliLEDFaceSun
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
+  speciesRestriction: [NeoAvali]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-avali/led_shapes_face.rsi
+    state: sun
+
+- type: marking
+  id: NeoAvaliLEDFacePenta
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
+  speciesRestriction: [NeoAvali]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-avali/led_shapes_face.rsi
+    state: penta

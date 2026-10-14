@@ -6,16 +6,22 @@ loadout-group-roboticist-gloves = Roboticist gloves
 loadout-group-roboticist-goggles = Roboticist eyewear
 loadout-group-roboticist-backpack = Roboticist backpack
 loadout-group-roboticist-shoes = Roboticist shoes
+loadout-group-roboticist-neck = Roboticist neck
 
 # Civilian
 loadout-group-assistant-glasses = Assistant glasses
 loadout-group-assistant-head = Assistant head
 loadout-group-assistant-backpack = Assistant backpack
 
+loadout-group-assistantmanager-head = Assistant Manager head
+loadout-group-assistantmanager-jumpsuit = Assistant Manager jumpsuit
+loadout-group-assistantmanager-backpack = Assistant Manager backpack
+loadout-group-assistantmanager-gloves = Assistant Manager gloves
+loadout-group-assistantmanager-outerclothing = Assistant Manager outer clothing
+loadout-group-assistantmanager-shoes = Assistant Manager shoes
+
 loadout-group-boxer-jumpsuit = Boxer jumpsuit
 loadout-group-boxer-gloves = Boxer gloves
-
-loadout-group-reporter-head = Reporter head
 
 loadout-group-musician-head = Musician head
 
@@ -26,6 +32,7 @@ loadout-group-nanotrasenrepresentative-outerclothing = NanoTrasen representative
 loadout-group-nanotrasenrepresentative-jumpsuit = NanoTrasen representative jumpsuit
 loadout-group-nanotrasenrepresentative-eyewear = NanoTrasen representative eyewear
 loadout-group-nanotrasenrepresentative-shoes = NanoTrasen representative shoes
+loadout-group-nanotrasenrepresentative-neck = NanoTrasen representative neck
 
 loadout-group-captain-shoes = Captain shoes
 loadout-group-hop-shoes = Head of Personnel shoes
@@ -42,6 +49,7 @@ loadout-group-blueshield-id = Blueshield ID
 # Security
 loadout-group-security-tie = Security tie
 loadout-group-security-mask = Security mask
+loadout-group-security-mask-elite = Elite Security mask
 
 loadout-group-brigmedic-gloves = Brigmedic gloves
 loadout-group-security-non-lethal-weapon = Security Non-Lethal Weapon
@@ -56,17 +64,23 @@ loadout-group-dutyofficer-jumpsuit = Duty officer jumpsuit
 loadout-group-dutyofficer-outerclothing = Duty officer outer clothing
 loadout-group-dutyofficer-belt = Duty officer belt
 
+loadout-group-k9-variant = K9 coat
+loadout-group-k9-outerclothing = K9 armor
+loadout-group-k9-eyes = K9 eyewear
+
+loadout-group-detective-lethal = Detective lethal sidearm
 
 # Law
 loadout-group-magistrate-jumpsuit = Magistrate jumpsuit
 loadout-group-magistrate-eyewear = Magistrate eyewear
+loadout-group-magistrate-neck = Magistrate neck
 loadout-group-magistrate-shoes = Magistrate shoes
 loadout-group-iaa-jumpsuit = Internal Affairs Agent jumpsuit
 loadout-group-iaa-neck = Internal Affairs Agent neck
 loadout-group-iaa-shoes = Internal Affairs Agent shoes
-loadout-group-magistrate-outer = Magistrate Outer Clothing
-loadout-group-magistrate-headwear = Magistrate Head
-loadout-group-magistrate-hands = Magistrate Gloves
+loadout-group-magistrate-outer = Magistrate outer clothing
+loadout-group-magistrate-head = Magistrate head
+loadout-group-magistrate-gloves = Magistrate gloves
 
 # Civilian
 loadout-group-civilian-shoes = Shoes
@@ -102,7 +116,8 @@ loadout-group-chemist-beaker = Chemist beaker
 loadout-group-chemist-bag = Chemist bag
 loadout-group-chemist-labeler = Chemist labeler
 loadout-group-chemist-shoes = Chemist shoes
-
+loadout-group-medical-glasses = Medical glasses
+loadout-group-medical-gloves = Medical gloves
 # Service
 loadout-group-janitor-neck = Janitor neck
 
@@ -120,6 +135,7 @@ loadout-group-lawyer-shoes = Lawyer shoes
 loadout-group-scarves = Scarf
 loadout-group-pins = Pins
 loadout-group-pens = Pen
+loadout-group-ties = Ties
 
 # Brighteye
 loadout-group-brighteye-jumpsuit = Brighteye jumpsuit
@@ -127,10 +143,10 @@ Loadout-group-brighteye-neck = Brighteye neck
 loadout-group-brighteye-gloves = Brighteye gloves
 
 # NCT
-loadout-group-NanotrasenCareerTrainer-jumpsuit = Nanotrasen Career Trainer jumpsuit
-loadout-group-NanotrasenCareerTrainer-hat = Nanotrasen Career Trainer hat
-loadout-group-NanotrasenCareerTrainer-shoes = Nanotrasen Career Trainer shoes
-loadout-group-NanotrasenCareerTrainer-eyewear = Nanotrasen Career Trainer eyewear
+loadout-group-NanotrasenCareerTrainer-jumpsuit = NanoTrasen Career Trainer jumpsuit
+loadout-group-NanotrasenCareerTrainer-hat = NanoTrasen Career Trainer hat
+loadout-group-NanotrasenCareerTrainer-shoes = NanoTrasen Career Trainer shoes
+loadout-group-NanotrasenCareerTrainer-eyewear = NanoTrasen Career Trainer eyewear
 
 # Security
 loadout-group-warden-neck = Warden neck

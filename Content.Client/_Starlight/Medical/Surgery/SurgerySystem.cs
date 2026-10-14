@@ -1,4 +1,4 @@
-﻿using Content.Shared.Starlight.Medical.Surgery;
+﻿using Content.Shared._Starlight.Medical.Surgery;
 
 namespace Content.Client._Starlight.Medical.Surgery;
 // Based on the RMC14.

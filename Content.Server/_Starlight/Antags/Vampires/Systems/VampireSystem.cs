@@ -1,13 +1,10 @@
 using Content.Server.Actions;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 using Content.Shared._Starlight.Antags.Vampires.Prototypes;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Vampire.Components;
 using Content.Shared.Alert;
 using Content.Shared.Actions.Components;
 using Content.Shared.Damage;
@@ -21,8 +18,8 @@ using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
-using Content.Server.Body.Components;
 using Content.Server.GameTicking;
+using Content.Server.Body.Components;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
@@ -35,45 +32,42 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
-using Prometheus;
+using Content.Server._Starlight.Statistics;
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Overlay.Components;
+using Content.Server._Starlight.Objectives.Components;
+using Content.Shared._Starlight.Vampire.Components;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
 public sealed partial class VampireSystem : EntitySystem
 {
-    # region Starlight data collection
-    private static readonly Counter _vampireClasses = Metrics.CreateCounter(
-        "Vampire_Classes",
-        "Numbers of vampire classes chosen by players",
-        ["class"]
-    );
-    #endregion
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly BloodstreamSystem _blood = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly NumberObjectiveSystem _number = default!;
-    [Dependency] private readonly IRobustRandom _rand = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private BloodstreamSystem _blood = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private SharedStaminaSystem _stamina = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private NumberObjectiveSystem _number = default!;
+    [Dependency] private IRobustRandom _rand = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private ILogManager _log = default!;
     //[Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly FlammableSystem _flammable = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private FlammableSystem _flammable = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
 
     private ISawmill? _sawmill;
     private static readonly ProtoId<DamageGroupPrototype> _bruteGroupId = "Brute";
@@ -97,9 +91,16 @@ public sealed partial class VampireSystem : EntitySystem
         SubscribeLocalEvent<ActionsComponent, ComponentStartup>(OnActionsComponentStartup);
         SubscribeLocalEvent<VampireComponent, ComponentRemove>(OnComponentRemove);
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<VampireActionUseAttemptEvent>(OnVampireActionUseAttempt);
         InitializeAbilities();
         InitializeObjectives();
     }
+
+    private void OnVampireActionUseAttempt(ref VampireActionUseAttemptEvent args)
+    {
+        args.Allowed = CheckAndConsumeGrantedVampireAction(args.User, args.ActionEntity, args.BloodCost);
+    }
+
     private void OnPlayerAttached(PlayerAttachedEvent ev)
     {
         if (!TryComp(ev.Entity, out VampireComponent? vampire))
@@ -115,14 +116,22 @@ public sealed partial class VampireSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
+        var now = _timing.CurTime;
+
         var query = EntityQueryEnumerator<VampireComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (_timing.CurTime <= comp.NextUpdate)
+            if (now <= comp.NextUpdate)
                 continue;
 
-            comp.NextUpdate = _timing.CurTime + comp.UpdateDelay;
-            ProcessBloodDecay(uid, comp);
+            var elapsed = comp.LastUpdate == TimeSpan.Zero
+                ? (float) comp.UpdateDelay.TotalSeconds
+                : MathF.Max(0f, (float) (now - comp.LastUpdate).TotalSeconds);
+
+            comp.LastUpdate = now;
+            comp.NextUpdate = now + comp.UpdateDelay;
+
+            ProcessBloodDecay((uid, comp), elapsed);
             HandleHolyWater(uid, comp);
             HandleHolyPlace(uid, comp);
         }
@@ -135,6 +144,8 @@ public sealed partial class VampireSystem : EntitySystem
 
             HandleSpaceExposure(uid, vampire, sunlight, xform);
         }
+
+        ProcessActiveVampireEffects(now);
     }
 
     private void HandleSpaceExposure(EntityUid uid, VampireComponent vampire, VampireSunlightComponent sunlight, TransformComponent xform)
@@ -235,8 +246,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (drain <= 0)
             return;
 
-        vampire.DrunkBlood -= drain;
-        Dirty(uid, vampire);
+        TrySpendBlood(uid, vampire, drain, showPopup: false);
     }
 
     private bool ApplyGeneticSpaceDamage(EntityUid uid, VampireSunlightComponent sunlight)
@@ -246,10 +256,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         var spec = new DamageSpecifier(damageGroup, sunlight.GeneticDamagePerInterval);
         _damageableSystem.TryChangeDamage(uid, spec, true);
-
-        if (!TryComp(uid, out DamageableComponent? damageable) ||
-            damageable == null ||
-            !damageable.DamagePerGroup.TryGetValue(_geneticGroupId, out var geneticDamage))
+        if (!_damageableSystem.GetDamagePerGroup(uid).TryGetValue(_geneticGroupId, out var geneticDamage))
         {
             return true;
         }
@@ -303,16 +310,16 @@ public sealed partial class VampireSystem : EntitySystem
         if (max <= 0f)
             return true;
 
-        var current = damageable.TotalDamage.Float();
+        var current = _damageableSystem.GetTotalDamage(uid).Float();
         return current <= max * 0.5f;
     }
 
     private void DustEntity(EntityUid uid)
     {
         var coords = Transform(uid).Coordinates;
+        _popup.PopupEntity(Loc.GetString("admin-smite-turned-ash-other", ("name", uid)), uid, PopupType.LargeCaution);
         QueueDel(uid);
         Spawn("Ash", coords);
-        _popup.PopupEntity(Loc.GetString("admin-smite-turned-ash-other", ("name", uid)), uid, PopupType.LargeCaution);
     }
 
     private bool IsInSpace(TransformComponent xform)
@@ -329,15 +336,19 @@ public sealed partial class VampireSystem : EntitySystem
         return _turf.IsSpace(tileRef);
     }
 
-    private bool ProcessBloodDecay(EntityUid uid, VampireComponent comp)
+    private bool ProcessBloodDecay(Entity<VampireComponent> ent, float elapsed)
     {
+        var (uid, comp) = ent;
         var before = comp.BloodFullness;
         var wasStarving = before <= 0f;
         var changed = false;
+        var alive = !TryComp<MobStateComponent>(uid, out var mobState) ||
+                    mobState.CurrentState != Shared.Mobs.MobState.Dead; // No hunger while dead
 
-        if (before > 0f && _gameTicker.RunLevel < GameRunLevel.PostRound) // No hunger EOR
+        if (before > 0f && alive && _gameTicker.RunLevel < GameRunLevel.PostRound) // No hunger EOR
         {
-            comp.BloodFullness = MathF.Max(0f, before - comp.FullnessDecayPerSecond);
+            comp.StarvationDrunkBloodDrainAccumulator = 0f;
+            comp.BloodFullness = MathF.Max(0f, before - (comp.FullnessDecayPerSecond * elapsed));
             changed = !MathF.Abs(comp.BloodFullness - before).Equals(0f);
 
             if (changed)
@@ -354,10 +365,13 @@ public sealed partial class VampireSystem : EntitySystem
         // When blood fullness is empty, burn stored blood
         if (comp.BloodFullness <= 0f && comp.StarvationDrunkBloodDrainPerSecond > 0 && comp.DrunkBlood > 0)
         {
-            var drained = Math.Min(comp.DrunkBlood, comp.StarvationDrunkBloodDrainPerSecond);
-            comp.DrunkBlood -= drained;
-            Dirty(uid, comp);
-            UpdateVampireAlert(uid);
+            comp.StarvationDrunkBloodDrainAccumulator += comp.StarvationDrunkBloodDrainPerSecond * elapsed;
+            var drained = Math.Min(comp.DrunkBlood, (int) comp.StarvationDrunkBloodDrainAccumulator);
+            if (drained <= 0)
+                return changed;
+
+            comp.StarvationDrunkBloodDrainAccumulator -= drained;
+            TrySpendBlood(uid, comp, drained, showPopup: false);
             changed = true;
         }
 
@@ -462,7 +476,7 @@ public sealed partial class VampireSystem : EntitySystem
         {
             foreach (var connection in drainBeamComp.ActiveBeams.Values)
             {
-                var removeEvent = new VampireDrainBeamEvent(GetNetEntity(connection.Source), GetNetEntity(connection.Target), false);
+                var removeEvent = new VampireDrainBeamEvent(GetNetEntity(connection.Source), GetNetEntity(connection.Target), false, drainBeamComp.VisualPrototype);
                 RaiseNetworkEvent(removeEvent);
             }
             drainBeamComp.ActiveBeams.Clear();
@@ -474,6 +488,23 @@ public sealed partial class VampireSystem : EntitySystem
             umbrae.ShadowBoxingTarget = null;
             umbrae.ShadowBoxingEndTime = null;
             umbrae.ShadowBoxingLoopRunning = false;
+
+            if (umbrae.EternalDarknessAuraEntity is { } aura && Exists(aura))
+                QueueDel(aura);
+
+            if (umbrae.SpawnedShadowAnchorBeacon is { } beacon && Exists(beacon))
+                QueueDel(beacon);
+
+            foreach (var snare in umbrae.PlacedSnares.ToArray())
+            {
+                if (Exists(snare))
+                    QueueDel(snare);
+            }
+
+            umbrae.PlacedSnares.Clear();
+            umbrae.EternalDarknessAuraEntity = null;
+            umbrae.SpawnedShadowAnchorBeacon = null;
+            umbrae.ShadowAnchorAutoReturnTime = null;
         }
 
         if (_playerShadowSnares.TryGetValue(uid, out var snares))
@@ -503,8 +534,9 @@ public sealed partial class VampireSystem : EntitySystem
             return;
         }
 
-        var enabled = vamp.TotalBlood >= vac.BloodToUnlock &&
-             (vac.RequiredClass == null || ValidateVampireClass(owner, vamp, vac.RequiredClass));
+        var enabled = vamp.TotalBlood >= vac.BloodToUnlock
+             && (vac.RequiredClass == null || ValidateVampireClass(owner, vamp, vac.RequiredClass))
+             && (!vac.RequiresFullPower || vamp.FullPower);
 
         _actions.SetEnabled(action.AsNullable(), enabled);
     }
@@ -558,7 +590,6 @@ public sealed partial class VampireSystem : EntitySystem
         comp.ActionEntities.Clear();
         Dirty(uid, comp);
     }
-
 
     private int GetActionBloodThreshold(EntProtoId actionId)
     {
@@ -619,8 +650,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         if (comp.DrunkBlood > 0)
         {
-            comp.DrunkBlood = Math.Max(0, comp.DrunkBlood - 3);
-            Dirty(uid, comp);
+            TrySpendBlood(uid, comp, Math.Min(3, comp.DrunkBlood), showPopup: false);
 
             ApplyGroupDamage(uid, _bruteGroupId, 3f);
 
@@ -677,7 +707,7 @@ public sealed partial class VampireSystem : EntitySystem
             return false;
 
         var coords = Transform(uid).Coordinates;
-        foreach (var ent in _lookup.GetEntitiesInRange(coords, comp.HolyPlaceRange, LookupFlags.Static | LookupFlags.Dynamic | LookupFlags.Sundries))
+        foreach (var ent in _lookup.GetEntitiesInRange(coords, comp.HolyPlaceRange, LookupFlags.Static))
         {
             if (ent == uid)
                 continue;
@@ -706,10 +736,10 @@ public sealed partial class VampireSystem : EntitySystem
             || deadThreshold == null
             || deadThreshold.Value == FixedPoint2.Zero)
         {
-            return 100f - damageable.TotalDamage.Float();
+            return 100f - _damageableSystem.GetTotalDamage(uid).Float();
         }
 
-        return deadThreshold.Value.Float() - damageable.TotalDamage.Float();
+        return deadThreshold.Value.Float() - _damageableSystem.GetTotalDamage(uid).Float();
     }
 
     private void ApplyGroupDamage(EntityUid uid, ProtoId<DamageGroupPrototype> groupId, float amount)
@@ -745,13 +775,12 @@ public sealed partial class VampireSystem : EntitySystem
 
         var reg = _componentFactory.GetRegistration(classProto.ClassComponent, ignoreCase: true);
         var classComp = _componentFactory.GetComponent(reg.Type);
-        EntityManager.AddComponent(uid, classComp);
+        AddComp(uid, classComp);
 
-        if (classProto.ID == "Umbrae")
-            EnsureComp<NightVisionComponent>(uid);
+        EnsureComp<NightVisionComponent>(uid);
 
         comp.ChosenClassId = classProto.ID;
-        _vampireClasses.WithLabels(classProto.ID).Inc();
+        _roundStatistics.RecordAntagChoice("Vampire", "class", classProto.ID);
 
         var classSelectAction = comp.ClassSelectActionId;
         if (comp.ActionEntities.TryGetValue(classSelectAction, out var actionEntity))

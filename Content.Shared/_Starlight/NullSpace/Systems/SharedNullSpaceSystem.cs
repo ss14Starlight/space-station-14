@@ -11,12 +11,13 @@ using Content.Shared.Explosion;
 using Content.Shared.Stunnable;
 using Content.Shared.Movement.Events;
 using Content.Shared.Gravity;
+using Content.Shared._Starlight.NullSpace.Components;
 
-namespace Content.Shared._Starlight.NullSpace;
+namespace Content.Shared._Starlight.NullSpace.Systems;
 
 public abstract partial class SharedNullSpaceSystem : EntitySystem
 {
-    [Dependency] private readonly PullingSystem _pulling = default!;
+    [Dependency] private PullingSystem _pulling = default!;
     public EntProtoId _shadekinShadow = "ShadekinShadow";
 
     public override void Initialize()

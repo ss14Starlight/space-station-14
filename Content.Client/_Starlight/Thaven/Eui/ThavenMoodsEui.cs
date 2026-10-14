@@ -6,7 +6,7 @@ namespace Content.Client._Starlight.Thaven.Eui;
 
 public sealed class ThavenMoodsEui : BaseEui
 {
-    private ThavenMoodUi _thavenMoodUi;
+    private readonly ThavenMoodUi _thavenMoodUi;
     private NetEntity _target;
 
     public ThavenMoodsEui()
@@ -23,9 +23,7 @@ public sealed class ThavenMoodsEui : BaseEui
     }
 
     public override void Opened()
-    {
-        _thavenMoodUi.OpenCentered();
-    }
+        => _thavenMoodUi.OpenCentered();
 
     public override void HandleState(EuiStateBase state)
     {

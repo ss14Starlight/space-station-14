@@ -2,17 +2,16 @@ using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared._Starlight.ItemToggle.Components;
 using Content.Shared.Verbs;
-using Robust.Shared.Localization;
 
 namespace Content.Shared._Starlight.ItemToggle;
 
 /// <summary>
 /// A simple system to add alt verb action to toggle system
 /// </summary>
-public sealed class AltUseToggleSystem : EntitySystem
+public sealed partial class AltUseToggleSystem : EntitySystem
 {
-    [Dependency] private readonly ILocalizationManager _loc = default!;
-    [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
+    [Dependency] private ItemToggleSystem _itemToggle = default!;
 
     public override void Initialize()
     {

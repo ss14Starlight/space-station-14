@@ -1,14 +1,19 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Starlight.Eye.Blinding.Components;
+using Content.Shared._Starlight.Medical.Surgery.Components;
+using Content.Shared.Body.Components;
+using Content.Shared.Body.Organ;
+using Content.Shared.Body.Systems;
 using Content.Shared.Eye.Blinding.Systems;
 using Robust.Shared.Map.Components;
 
 namespace Content.Shared._Starlight.Eye.Blinding.Systems;
 
-public sealed class ChildBlockVisionSystem : EntitySystem
+public sealed partial class ChildBlockVisionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly BlindableSystem _blindable = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private BlindableSystem _blindable = default!;
+    [Dependency] private SharedBodySystem _bodySystem = default!;
 
     private EntityQuery<TransformComponent> _transformQuery;
     private EntityQuery<ChildBlockVisionComponent> _blockQuery;
@@ -31,6 +36,19 @@ public sealed class ChildBlockVisionSystem : EntitySystem
     {
         if (!ent.Comp.Enabled)
             return;
+
+        if (TryComp<BodyComponent>(ent.Owner, out var body))
+        {
+            var totalOrgans = _bodySystem.GetBodyOrganEntityComps<OrganComponent>((ent.Owner, body));
+            var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((ent.Owner, body));
+
+            if (_bodySystem.HasOrganSlot(ent.Owner, body, "eyes") && eyes.Count == 0)
+            {
+                args.Cancel();
+                return;
+            }
+
+        }
 
         var parent = _transform.GetParentUid(ent);
         if (parent.IsValid() && HaveBlockVisionParent(parent))

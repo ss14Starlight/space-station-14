@@ -90,13 +90,3 @@
   id: CaptainWintercoat
   equipment:
     outerClothing: ClothingOuterWinterCap
-
-- type: loadout
-  id: CaptainGlasses
-  equipment:
-    eyes: ClothingEyesGlassesCommand
-
-- type: loadout
-  id: CaptainHud
-  equipment:
-    eyes: ClothingEyesHudCommand

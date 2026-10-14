@@ -4,9 +4,9 @@ using Content.Shared.Weapons.Hitscan.Events;
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
 
-public sealed class HitscanBasicDamageSystem : EntitySystem
+public sealed partial class HitscanBasicDamageSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private DamageableSystem _damage = default!;
 
     public override void Initialize()
     {
@@ -20,7 +20,7 @@ public sealed class HitscanBasicDamageSystem : EntitySystem
         if (args.Data.HitEntity == null)
             return;
 
-        var dmg = ent.Comp.Damage * _damage.UniversalHitscanDamageModifier;
+        var dmg = ent.Comp.Damage * _damage.UniversalHitscanDamageModifier * GetFalloffMultiplier(ent, args.Data); // Starlight-edit: distance falloff
 
         // var damageDealt = _damage.TryChangeDamage(args.Data.HitEntity.Value, dmg, origin: args.Data.Gun); // Starlight - we redefine this
         // Starlight start

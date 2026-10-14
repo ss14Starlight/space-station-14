@@ -1,8 +1,9 @@
+# Generic Markings
 - type: marking
   id: GauzeLefteyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Arachnid, Elf] # Starlight Edit: Add Elf
+  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
   coloring:
     default:
       type:
@@ -21,7 +22,7 @@
   id: GauzeLefteyePad
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Elf] # Starlight Edit: Add Elf
+  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte, Vulpkanin] # Starlight Edit: Add Elf and Neocytes
   coloring:
     default:
       type:
@@ -40,7 +41,7 @@
   id: GauzeRighteyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Arachnid, Elf] # Starlight Edit: Add Elf
+  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
   coloring:
     default:
       type:
@@ -59,7 +60,7 @@
   id: GauzeRighteyePad
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Elf] # Starlight Edit: Add Elf
+  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte, Vulpkanin] # Starlight Edit: Add Elf and Neocytes
   coloring:
     default:
       type:
@@ -78,7 +79,7 @@
   id: GauzeBlindfold
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Arachnid, Elf] # Starlight Edit: Add Elf
+  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
   coloring:
     default:
       type:
@@ -97,7 +98,7 @@
   id: GauzeShoulder
   bodyPart: Chest
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Elf] # Starlight Edit: Add Elf
+  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
   coloring:
     default:
       type:
@@ -116,7 +117,7 @@
   id: GauzeStomach
   bodyPart: Chest
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Elf] # Starlight Edit: Add Elf
+  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
   coloring:
     default:
       type:
@@ -135,7 +136,7 @@
   id: GauzeUpperArmRight
   bodyPart: RArm
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Elf] # Starlight Edit: Add Elf
+  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
   coloring:
     default:
       type:
@@ -154,7 +155,7 @@
   id: GauzeLowerArmRight
   bodyPart: RArm
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Elf] # Starlight Edit: Add Elf
+  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
   coloring:
     default:
       type:
@@ -178,7 +179,7 @@
   id: GauzeLeftArm
   bodyPart: LArm
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Elf] # Starlight Edit: Add Elf
+  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
   coloring:
     default:
       type:
@@ -202,7 +203,7 @@
   id: GauzeLower
   bodyPart: LFoot
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Arachnid, Elf] # Starlight Edit: Add Elf
+  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
   coloring:
     default:
       type:
@@ -226,7 +227,7 @@
   id: GauzeUpper
   bodyPart: LLeg
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Elf] # Starlight Edit: Add Elf
+  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
   coloring:
     default:
       type:
@@ -250,7 +251,7 @@
   id: GauzeBoxerWrap
   bodyPart: LHand
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Elf] # Starlight Edit: Add Elf
+  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
   coloring:
     default:
       type:
@@ -274,7 +275,7 @@
   id: GauzeHead
   bodyPart: Head
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Moth, Elf] # Starlight Edit: Add Elf
+  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Moth, NeoMoth, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
   coloring:
     default:
       type:
@@ -294,7 +295,7 @@
   id: GauzeLizardLefteyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # Starlight, Neocytes
   coloring:
     default:
       type:
@@ -313,7 +314,7 @@
   id: GauzeLizardRighteyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # Starlight, Neocytes
   coloring:
     default:
       type:
@@ -332,7 +333,7 @@
   id: GauzeLizard
   bodyPart: LFoot
   markingCategory: Overlay
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # Starlight, Neocytes
   coloring:
     default:
       type:
@@ -356,7 +357,7 @@
   id: GauzeLizardBlindfold
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # Starlight, Neocytes
   coloring:
     default:
       type:
@@ -371,12 +372,12 @@
       colorSource: UniqueColor
   # Starlight end
 
-# Moth Specific Markings
+# Moth, NeoMoth Specific Markings
 - type: marking
   id: GauzeMothBlindfold
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # Starlight, Neocytes
   coloring:
     default:
       type:
@@ -395,7 +396,7 @@
   id: GauzeMothShoulder
   bodyPart: Chest
   markingCategory: Overlay
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # Starlight, Neocytes
   coloring:
     default:
       type:
@@ -414,7 +415,7 @@
   id: GauzeMothStomach
   bodyPart: Chest
   markingCategory: Overlay
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # Starlight, Neocytes
   coloring:
     default:
       type:
@@ -433,7 +434,7 @@
   id: GauzeMothLeftEyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # Starlight, Neocytes
   coloring:
     default:
       type:
@@ -452,7 +453,7 @@
   id: GauzeMothLeftEyePad
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # Starlight, Neocytes
   coloring:
     default:
       type:
@@ -471,7 +472,7 @@
   id: GauzeMothRightEyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # Starlight, Neocytes
   coloring:
     default:
       type:
@@ -490,7 +491,7 @@
   id: GauzeMothRightEyePad
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # Starlight, Neocytes
   coloring:
     default:
       type:
@@ -509,7 +510,7 @@
   id: GauzeMothUpperArms
   bodyPart: LArm
   markingCategory: Overlay
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # Starlight, Neocytes
   coloring:
     default:
       type:
@@ -533,7 +534,7 @@
   id: GauzeMothUpperLegs
   bodyPart: LLeg
   markingCategory: Overlay
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # Starlight, Neocytes
   coloring:
     default:
       type:
@@ -557,7 +558,7 @@
   id: GauzeMothLower
   bodyPart: LFoot
   markingCategory: Overlay
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # Starlight, Neocytes
   coloring:
     default:
       type:
@@ -574,5 +575,271 @@
       sprite:
         sprite: Mobs/Customization/gauze.rsi
         state: gauze_moth_lowerleg_r
+      colorSource: UniqueColor
+  # Starlight end
+
+- type: marking
+  id: GauzeVulpStomach
+  bodyPart: Chest
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_abdomen
+      colorSource: UniqueColor
+  # Starlight end
+
+- type: marking
+  id: GauzeVulpBlindfold
+  bodyPart: Eyes
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_blindfold
+      colorSource: UniqueColor
+  # Starlight end
+
+- type: marking
+  id: GauzeVulpBoxerwrapLeft
+  bodyPart: LHand
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_lHand:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_boxerwrap_l
+      colorSource: UniqueColor
+  # Starlight end
+
+- type: marking
+  id: GauzeVulpBoxerwrapRight
+  bodyPart: RHand
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_rHand:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_boxerwrap_r
+      colorSource: UniqueColor
+  # Starlight end
+
+- type: marking
+  id: GauzeVulpHead
+  bodyPart: Head
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_head
+      colorSource: UniqueColor
+  # Starlight end
+
+- type: marking
+  id: GauzeVulpLeftArm
+  bodyPart: LArm
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_lArm:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_leftarm
+      colorSource: UniqueColor
+  # Starlight end
+
+- type: marking
+  id: GauzeVulpLefteyePatch
+  bodyPart: Eyes
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_lefteye_2
+      colorSource: UniqueColor
+  # Starlight end
+
+- type: marking
+  id: GauzeVulpLowerArmRight
+  bodyPart: RHand
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_rHand:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_lowerarm_r
+      colorSource: UniqueColor
+  # Starlight end
+
+- type: marking
+  id: GauzeVulpLowerLegLeft
+  bodyPart: LFoot
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_lFoot:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_lowerleg_l
+      colorSource: UniqueColor
+  # Starlight end
+
+- type: marking
+  id: GauzeVulpLowerLegRight
+  bodyPart: RFoot
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_rFoot:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_lowerleg_r
+      colorSource: UniqueColor
+  # Starlight end
+
+- type: marking
+  id: GauzeVulpRighteyePatch
+  bodyPart: Eyes
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_righteye_2
+      colorSource: UniqueColor
+  # Starlight end
+
+- type: marking
+  id: GauzeVulpShoulder
+  bodyPart: Chest
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_shoulder
+      colorSource: UniqueColor
+  # Starlight end
+
+- type: marking
+  id: GauzeVulpUpperLegLeft
+  bodyPart: LLeg
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_lLeg:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_upperleg_l
+      colorSource: UniqueColor
+  # Starlight end
+
+- type: marking
+  id: GauzeVulpUpperLegRight
+  bodyPart: RLeg
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_rLeg:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_upperleg_r
       colorSource: UniqueColor
   # Starlight end

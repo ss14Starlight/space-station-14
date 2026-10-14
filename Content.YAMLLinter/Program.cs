@@ -1,29 +1,35 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Content.IntegrationTests;
+using Content.IntegrationTests.Utility;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Reflection;
 using Robust.Shared.Serialization.Markdown.Validation;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Robust.UnitTesting;
+using Robust.UnitTesting.Pool;
 
 namespace Content.YAMLLinter
 {
     internal static class Program
     {
+        private static readonly ExternalTestContext TestContext = new("YAML Linter", StreamWriter.Null);
+
         private static async Task<int> Main(string[] _)
         {
+            GameDataScrounger.NoScrounging = true; // Ugly hack for YAML Linter.
             PoolManager.Startup();
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
             var (errors, fieldErrors) = await RunValidation();
 
-            var count = errors.Count + fieldErrors.Count;
+            var count = errors.Sum(pair => pair.Value.Count) + fieldErrors.Count; // Starlight
 
             if (count == 0)
             {
@@ -38,24 +44,35 @@ namespace Content.YAMLLinter
                 {
                     // TODO YAML LINTER Fix inheritance
                     // If a parent/abstract prototype has na error, this will misreport the file name (but with the correct line/column).
-                    Console.WriteLine($"::error in {file}({errorNode.Node.Start.Line},{errorNode.Node.Start.Column})  {errorNode.ErrorReason}");
+                    Console.WriteLine($"{GetRepositoryPath(file)}:{errorNode.Node.Start.Line}:{errorNode.Node.Start.Column}: error: {errorNode.ErrorReason}");
                 }
             }
 
             foreach (var error in fieldErrors)
             {
-                Console.WriteLine(error);
+                Console.Error.WriteLine($"YAML field validation error: {error}"); // Starlight
             }
 
             Console.WriteLine($"{count} errors found in {(int) stopwatch.Elapsed.TotalMilliseconds} ms.");
             PoolManager.Shutdown();
-            return -1;
+            // Starlight begin
+            return fieldErrors.Count > 0 ? 2 : 1;
+        }
+
+        private static string GetRepositoryPath(string file)
+        {
+            var path = file.Replace('\\', '/').TrimStart('/');
+
+            return path.StartsWith("RobustToolbox/", StringComparison.Ordinal) || path.StartsWith("Resources/", StringComparison.Ordinal) ? path :
+                path.StartsWith("EnginePrototypes/", StringComparison.Ordinal) ? $"RobustToolbox/Resources/{path}" : $"Resources/{path}";
+
+            // Starlight End
         }
 
         private static async Task<(Dictionary<string, HashSet<ErrorNode>> YamlErrors, List<string> FieldErrors)>
             ValidateClient()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            await using var pair = await PoolManager.GetServerClient(testContext: TestContext);
             var client = pair.Client;
             var result = await ValidateInstance(client);
             await pair.CleanReturnAsync();
@@ -65,7 +82,7 @@ namespace Content.YAMLLinter
         private static async Task<(Dictionary<string, HashSet<ErrorNode>> YamlErrors, List<string> FieldErrors)>
             ValidateServer()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            await using var pair = await PoolManager.GetServerClient(testContext: TestContext);
             var server = pair.Server;
             var result = await ValidateInstance(server);
             await pair.CleanReturnAsync();
@@ -177,7 +194,7 @@ namespace Content.YAMLLinter
         private static async Task<(Assembly[] clientAssemblies, Assembly[] serverAssemblies)>
             GetClientServerAssemblies()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            await using var pair = await PoolManager.GetServerClient(testContext: TestContext);
 
             var result = (GetAssemblies(pair.Client), GetAssemblies(pair.Server));
 

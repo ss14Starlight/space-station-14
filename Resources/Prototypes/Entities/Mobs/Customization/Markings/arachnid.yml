@@ -3,7 +3,7 @@
   id: ArachnidCheliceraeDownwards
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headSide:
@@ -17,7 +17,7 @@
   id: ArachnidCheliceraeInwards
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headSide:
@@ -32,7 +32,7 @@
   id: ArachnidAppendagesDefault
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -51,7 +51,7 @@
   id: ArachnidAppendagesSharp
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -70,7 +70,7 @@
   id: ArachnidAppendagesStingers
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -89,7 +89,7 @@
   id: ArachnidAppendagesZigZag
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -108,7 +108,7 @@
   id: ArachnidAppendagesCurled
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -127,7 +127,7 @@
   id: ArachnidAppendagesChipped
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -146,7 +146,7 @@
   id: ArachnidAppendagesHarvest
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -165,7 +165,7 @@
   id: ArachnidAppendagesShort
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -184,7 +184,7 @@
   id: ArachnidAppendagesFreaky
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -204,7 +204,7 @@
   id: ArachnidTorsoStripes
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -222,7 +222,7 @@
   id: ArachnidTorsoSlashes
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -240,7 +240,7 @@
   id: ArachnidTorsoX
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -258,7 +258,7 @@
   id: ArachnidTorsoCross
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -276,7 +276,7 @@
   id: ArachnidTorsoHeart
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -294,7 +294,7 @@
   id: ArachnidTorsoHourglass
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -312,7 +312,7 @@
   id: ArachnidTorsoNailAndHammer
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -330,7 +330,7 @@
   id: ArachnidTorsoStar
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -348,7 +348,7 @@
   id: ArachnidTorsoArrows
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -366,7 +366,7 @@
   id: ArachnidTorsoCore
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -384,7 +384,7 @@
   id: ArachnidTorsoFiddleback
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -402,7 +402,7 @@
   id: ArachnidTorsoSkull
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -420,7 +420,7 @@
   id: ArachnidTorsoTarget
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -439,7 +439,7 @@
   id: ArachnidArmStripes
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -458,12 +458,11 @@
       type:
         !type:EyeColoring
 
-# Legs
 - type: marking
   id: ArachnidLegStripes
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -482,13 +481,12 @@
       type:
         !type:EyeColoring
 
-# Overlay
 - type: marking
   id: ArachnidOverlayFuzzy
   bodyPart: Chest
   markingCategory: Overlay
   forcedColoring: true
-  speciesRestriction: [Arachnid]
+  speciesRestriction: [Arachnid, NeoArachnid, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -497,4 +495,3 @@
         state: fuzzy
       colorSource: UniqueColor
   # Starlight end
-

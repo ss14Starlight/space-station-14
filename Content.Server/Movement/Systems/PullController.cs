@@ -1,16 +1,13 @@
 using System.Numerics;
 using Content.Server._Starlight.Physics;
 using Content.Server.Movement.Components;
-using Content.Server.Physics.Controllers;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Conveyor;
 using Content.Shared.Gravity;
 using Content.Shared.Input;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Events;
-using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Rotatable;
-using Robust.Server.Physics;
 using Robust.Shared.Containers;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
@@ -24,7 +21,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Movement.Systems;
 
-public sealed class PullController : VirtualController
+public sealed partial class PullController : VirtualController
 {
     /*
      * This code is awful. If you try to tweak this without refactoring it I'm gonna revert it.
@@ -56,11 +53,11 @@ public sealed class PullController : VirtualController
     // How much you must move for the puller movement check to actually hit.
     private const float MinimumMovementDistance = 0.005f;
 
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedGravitySystem _gravity = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
 
     /// <summary>
     ///     If distance between puller and pulled entity lower that this threshold,
@@ -119,7 +116,28 @@ public sealed class PullController : VirtualController
             return false;
         }
 
-        if (!_pullerQuery.TryComp(player, out var pullerComp))
+        return MovePulledObject(new Entity<PullerComponent?>(player, null), coords); // Starlight: because the rabbit wants it like that
+    }
+
+    #region Starlight
+    /// <summary>
+    ///     Moves the currently pulled entity toward the requested coordinates.
+    /// </summary>
+    /// <param name="puller">The entity pulling the object.</param>
+    /// <param name="coords">The requested destination for the pulled entity.</param>
+    /// <returns>Whether the pointer input command was handled.</returns>
+    /// <remarks>
+    ///     The normal pointer command and remote-control calls share this method and its throw-cooldown check.
+    /// </remarks>
+    public bool MovePulledObject(Entity<PullerComponent?> puller, EntityCoordinates coords)
+    {
+        if (!Resolve(puller, ref puller.Comp))
+            return false;
+
+        var pullerUid = puller.Owner;
+        var pullerComp = puller.Comp;
+
+        if (_timing.CurTime < pullerComp.NextThrow)
             return false;
 
         var pulled = pullerComp.Pulling;
@@ -133,15 +151,15 @@ public sealed class PullController : VirtualController
         if (!_pullableQuery.TryComp(pulled, out var pullable))
             return false;
 
-        if (_container.IsEntityInContainer(player))
+        if (_container.IsEntityInContainer(pullerUid))
             return false;
 
         pullerComp.NextThrow = _timing.CurTime + pullerComp.ThrowCooldown;
 
         // Cap the distance
         var range = 2f;
-        var fromUserCoords = _transformSystem.WithEntityId(coords, player);
-        var userCoords = new EntityCoordinates(player, Vector2.Zero);
+        var fromUserCoords = _transformSystem.WithEntityId(coords, pullerUid);
+        var userCoords = new EntityCoordinates(pullerUid, Vector2.Zero);
 
         if (!_transformSystem.InRange(coords, userCoords, range))
         {
@@ -150,14 +168,14 @@ public sealed class PullController : VirtualController
             // TODO: Joint API not ass
             // with that being said I think throwing is the way to go but.
             if (pullable.PullJointId != null &&
-                TryComp(player, out JointComponent? joint) &&
+                TryComp(pullerUid, out JointComponent? joint) &&
                 joint.GetJoints.TryGetValue(pullable.PullJointId, out var pullJoint) &&
                 pullJoint is DistanceJoint distance)
             {
                 range = MathF.Max(0.01f, distance.MaxLength - 0.01f);
             }
 
-            fromUserCoords = new EntityCoordinates(player, direction.Normalized() * (range - 0.01f));
+            fromUserCoords = new EntityCoordinates(pullerUid, direction.Normalized() * (range - 0.01f));
             coords = _transformSystem.WithEntityId(fromUserCoords, coords.EntityId);
         }
 
@@ -165,6 +183,7 @@ public sealed class PullController : VirtualController
         moving.MovingTo = coords;
         return false;
     }
+    #endregion
 
     private void OnPullerMove(EntityUid uid, ActivePullerComponent component, ref MoveEvent args)
     {

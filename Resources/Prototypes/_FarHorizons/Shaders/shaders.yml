@@ -11,3 +11,8 @@
     waveAmplitude: 0.001
     vignettePower: 1.3
     vignetteFalloff: 1.5
+
+- type: shader
+  id: HeatDistortionFH # stuck the "FH" on the end in case upstream decides to make a HeatDistortion shader
+  kind: source
+  path: "/Textures/_FarHorizons/Shaders/heat_distortion.swsl"

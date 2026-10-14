@@ -5,7 +5,7 @@
 #   id: VulpTailFennec
 #   bodyPart: Tail
 #   markingCategory: Tail
-#   speciesRestriction: [ Vulpkanin ]
+#   speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
 #   sprites:
 #     - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
 #       state: fennec
@@ -16,7 +16,7 @@
 #   id: VulpTailFluffy
 #   bodyPart: Tail
 #   markingCategory: Tail
-#   speciesRestriction: [ Vulpkanin ]
+#   speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
 #   sprites:
 #     - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
 #       state: fluffy
@@ -27,7 +27,7 @@
 #   id: VulpTailHusky
 #   bodyPart: Tail
 #   markingCategory: Tail
-#   speciesRestriction: [ Vulpkanin ]
+#   speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
 #   sprites:
 #     - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
 #       state: husky
@@ -40,7 +40,7 @@
 #   id: VulpTailLong
 #   bodyPart: Tail
 #   markingCategory: Tail
-#   speciesRestriction: [ Vulpkanin ]
+#   speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
 #   sprites:
 #     - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
 #       state: long
@@ -53,7 +53,7 @@
   id: VulpTailVulp
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -72,7 +72,7 @@
   id: VulpTailVulpFade
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -85,4 +85,148 @@
           sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
           state: vulp-fade
         colorSource: HumanSkinColor
+  # Starlight end
+
+# Starlight starrt
+#- type: marking
+#  id: VulpTailCoyote
+#  bodyPart: Tail
+#  groupWhitelist: [ Vulpkanin ]
+#  sprites:
+#  - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+#    state: coyote
+# Starlight end
+
+# Animated
+- type: marking
+  id: VulpTailFennecAnimated
+  bodyPart: Tail
+  markingCategory: Tail # Starlight
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
+  # Starlight start
+  sprites:
+    body_tail@0:
+      sprite:
+        sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+        state: fennec-wagging
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+        state: fennec-wagging-tip
+      colorSource: HumanSkinColor
+  # Starlight end
+
+- type: marking
+  id: VulpTailFluffyAnimated
+  bodyPart: Tail
+  markingCategory: Tail # Starlight
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
+  # Starlight start
+  sprites:
+    body_tail@0:
+      sprite:
+        sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+        state: fluffy-wagging
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+        state: fluffy-wagging-tip
+      colorSource: HumanSkinColor
+  # Starlight end
+
+- type: marking
+  id: VulpTailHuskyAnimated
+  bodyPart: Tail
+  markingCategory: Tail # Starlight
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
+  # Starlight start
+  sprites:
+    body_tail@0:
+      sprite:
+        sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+        state: husky-wagging
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+        state: husky-wagging-inner
+      colorSource: HumanSkinColor
+    body_tail@2:
+      sprite:
+        sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+        state: husky-wagging-outer
+      colorSource: HumanSkinColor
+  # Starlight end
+
+- type: marking
+  id: VulpTailLongAnimated
+  bodyPart: Tail
+  markingCategory: Tail # Starlight
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
+  # Starlight start
+  sprites:
+    body_tail@0:
+      sprite:
+        sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+        state: long-wagging
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+        state: long-wagging-tip
+      colorSource: HumanSkinColor
+  # Starlight end
+
+- type: marking
+  id: VulpTailVulpAnimated
+  bodyPart: Tail
+  markingCategory: Tail # Starlight
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
+  # Starlight start
+  sprites:
+    body_tail@0:
+      sprite:
+        sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+        state: vulp-wagging
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+        state: vulp-wagging-tip
+      colorSource: HumanSkinColor
+  # Starlight end
+
+- type: marking
+  id: VulpTailVulpFadeAnimated
+  bodyPart: Tail
+  markingCategory: Tail # Starlight
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
+  # Starlight start
+  sprites:
+    body_tail@0:
+      sprite:
+        sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+        state: vulp-wagging
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+        state: vulp-wagging-fade
+      colorSource: HumanSkinColor
+  # Starlight end
+
+- type: marking
+  id: VulpTailCoyoteAnimated
+  bodyPart: Tail
+  markingCategory: Tail # Starlight
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
+  # Starlight start
+  sprites:
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+        state: coyote-wagging
+      colorSource: HumanSkinColor
   # Starlight end

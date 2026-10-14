@@ -1,0 +1,6 @@
+# Subfloor layers
+- type: !PartialOnly entity
+  id: DefaultStationBeacon
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Other

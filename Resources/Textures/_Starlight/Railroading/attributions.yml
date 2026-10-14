@@ -1,9 +1,9 @@
-- files: ["apple-pie.png", "dumplings.png", "herb-salad.png", "sashimi.png", "stew.png", "smoking.png", "war.png"]
+- files: ["war.png"]
   license: "CC0-1.0"
   copyright: "starlight"
   source: "https://github.com/ss14Starlight/space-station-14/"
 
-- files: ["shadekin.png"]
-  license: "CC-BY-SA-4.0"
-  copyright: "conf"
+- files: ["food.png", "fish.png", "drink.png", "mail.png", "antag.png", "smoking.png", "shadekin.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "12tie"
   source: "https://github.com/ss14Starlight/space-station-14/"

@@ -10,7 +10,6 @@ using Content.Client.UserInterface.Systems.Inventory.Controls;
 using Content.Client.UserInterface.Systems.Inventory.Widgets;
 using Content.Client.UserInterface.Systems.Inventory.Windows;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Hands.Components;
 using Content.Shared.Input;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Storage;
@@ -26,10 +25,10 @@ using static Content.Client.Inventory.ClientInventorySystem;
 
 namespace Content.Client.UserInterface.Systems.Inventory;
 
-public sealed class InventoryUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>,
+public sealed partial class InventoryUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>,
     IOnSystemChanged<ClientInventorySystem>, IOnSystemChanged<HandsSystem>
 {
-    [Dependency] private readonly IEntityManager _entities = default!;
+    [Dependency] private IEntityManager _entities = default!;
 
     [UISystemDependency] private readonly ClientInventorySystem _inventorySystem = default!;
     [UISystemDependency] private readonly HandsSystem _handsSystem = default!;
@@ -147,7 +146,7 @@ public sealed class InventoryUIController : UIController, IOnStateEntered<Gamepl
             if (!container.TryGetButton(data.SlotName, out var button))
             {
                 button = CreateSlotButton(data);
-                container.AddButton(button);
+                container.TryAddButton(button);
             }
 
             var showStorage = _entities.HasComponent<StorageComponent>(data.HeldEntity);
@@ -373,7 +372,7 @@ public sealed class InventoryUIController : UIController, IOnStateEntered<Gamepl
             return;
 
         var button = CreateSlotButton(data);
-        slotGroup.AddButton(button);
+        slotGroup.TryAddButton(button);
     }
 
     private void RemoveSlot(SlotData data)
@@ -381,7 +380,7 @@ public sealed class InventoryUIController : UIController, IOnStateEntered<Gamepl
         if (!_slotGroups.TryGetValue(data.SlotGroup, out var slotGroup))
             return;
 
-        slotGroup.RemoveButton(data.SlotName);
+        slotGroup.TryRemoveButton(data.SlotName, out _);
     }
 
     public void ReloadSlots()

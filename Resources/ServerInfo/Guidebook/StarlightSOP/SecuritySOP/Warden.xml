@@ -3,7 +3,8 @@
 
 <GuideEntityEmbed Entity="ToyFigurineWarden" Caption="Warden"/>
 
-1 . Standard [color=#00a933]Code Green[/color] equipment is:
+### §1 Standard Code Green Equipment
+
 <Box>
 	<GuideEntityEmbed Entity="Stunbaton"/>
 	<GuideEntityEmbed Entity="WeaponPistolDP"/>
@@ -21,24 +22,54 @@
 </Box>
 <Box>
 	<GuideEntityEmbed Entity="GrenadeFlashBang"/>
-	or
 	<GuideEntityEmbed Entity="TearGasGrenade"/>
 </Box>
 <Box>
 	<GuideEntityEmbed Entity="Handcuffs"/>
-	or
 	<GuideEntityEmbed Entity="Zipties"/>
 </Box>
 
-2. The Warden may not perform normal Security Officer duties, or arrests, if sufficient numbers of Security Officers are active. This is waived on [color=#ff0000]Code Red[/color] or above.
+### §2 Stewardship of the Brig
+- 1.\n
+The Warden is responsible for the state of the brig, and must see to it that it is properly maintained.
+- 2.\n
+The Warden is responsible for the well-being of the prisoners inside the brig, and must see to it that they are treated properly.
+- 3.\n
+The Warden is responsible for the containment of said prisoners as well, including:\n\n
+3.1\n
+Confiscating weapons and break-out equipment from prisoners.\n\n
+3.2\n
+Restraining and subduing rioting prisoners as is necessary.
 
-3. The Warden may choose to hand out lethal weapons on [color=#2a6099]Code Blue[/color] with a permit, or [color=#ff0000]Code Red[/color] or above.
+### §3 Prosecution
+- 1.\n
+The Warden acts as security's primary prosecutor during normal sentencing.
+- 2.\n
+The Warden is cleared to confine sentenced criminals for up to [bold]20 minutes[/bold].
+- 3.\n
+The Warden is responsible for ensuring that Criminal Records are kept properly up to date and that Security Officers properly document their sentences.
+- 4.\n
+The Warden is to remain attentive to their radio at all times, as their approval is critical to sentencing.\n\n
+4.1\n
+The Warden must not have any disabilities or ailments preventing them from fulfilling this duty.
 
-4. The Warden may choose to hand out body armor on [color=#2a6099]Code Blue[/color] or above.
+### §4 Stewardship of the Armoury
+- 1.\n
+The Warden is responsible for the tidiness and organisation of the Armoury.
+- 2.\n
+The Warden is responsible for properly locking away contraband and returned weaponry.
+- 3.\n
+The Warden is responsible for the safety of the Armoury, such as the proper configuration of its internal turrets, and the maintenance of its structural integrity.
+- 4.\n
+The Warden is cleared to file and approve permits for the issuing of armoury equipment on [color=#2a6099]Code Blue[/color].
+- 5.\n
+The Warden may hand out armoury equipment freely on [color=#ff0000]Code Red[/color].
+- 6.\n
+The Warden is responsible for the retrieval of armoury equipment that is no longer needed once states of emergency end.
 
-4. Uncooperative prisoners, or those deemed to be a flight risk may be cuffed, straightjacketed, or have an electropack placed on them.
 
-5. Portable flashers and deployable barriers may be deployed on [color=#2a6099]Code Blue[/color] or above.
+### §5
+- 1.\n
+Paragraphs §2, §3 and §4 necessitate remaining in the Security Department, and the Warden should therefore not leave said department without permission from the Head of Security, or during emergencies.
 
-6. The Warden may appoint a Duty Officer to assist with prisoner keeping duties with permission from the HoS.
 </Document>

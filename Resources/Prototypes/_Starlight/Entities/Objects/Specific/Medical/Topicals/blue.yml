@@ -1,0 +1,106 @@
+## Bruise packs
+- type: entity
+  name: blue bruise pack
+  description: A therapeutic gel pack and bandages designed to treat blunt-force trauma.
+  parent: Brutepack
+  id: Bluebrutepack1
+  suffix: 1
+  components:
+  - type: Sprite
+    state: bluebrutepack
+  - type: Stack
+    stackType: Bluebrutepack
+    count: 1
+
+- type: entity
+  name: blue bruise pack
+  description: A therapeutic gel pack and bandages designed to treat blunt-force trauma.
+  parent: Brutepack1
+  id: Bluebrutepack10
+  suffix: 10
+  components:
+  - type: Sprite
+    state: bluebrutepack2
+  - type: Stack
+    stackType: Bluebrutepack
+    count: 10
+
+- type: entity
+  name: blue bruise pack
+  description: A therapeutic gel pack and bandages designed to treat blunt-force trauma.
+  parent: Brutepack1
+  id: Bluebrutepack20
+  suffix: 20
+  components:
+  - type: Sprite
+    state: bluebrutepack3
+  - type: Stack
+    stackType: Bluebrutepack
+    count: 20
+
+- type: stack
+  id: Bluebrutepack
+  name: stack-brutepack
+  icon: { sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: bluebrutepack }
+  spawn: Bluebrutepack1
+  maxCount: 20
+
+### Ointments
+- type: entity
+  name: blue ointment
+  description: Used to treat those nasty burns. Less effective on caustic burns.
+  parent: Ointment
+  id: Blueointment1
+  suffix: 1
+  components:
+  - type: Sprite
+    state: blueointment
+  - type: Item
+    storedSprite:
+      state: blueointment
+      sprite: Objects/Specific/Medical/medical.rsi
+  - type: Stack
+    stackType: Blueointment
+    count: 1
+
+- type: entity
+  name: blue ointment
+  description: Used to treat those nasty burns. Less effective on caustic burns.
+  parent: Ointment
+  id: Blueointment10
+  suffix: 10
+  components:
+  - type: Sprite
+    state: blueointment2
+  - type: Item
+    storedSprite:
+      state: blueointment2
+      sprite: Objects/Specific/Medical/medical.rsi
+  - type: Stack
+    stackType: Blueointment
+    count: 10
+
+- type: entity
+  name: blue ointment
+  description: Used to treat those nasty burns. Less effective on caustic burns.
+  parent: Ointment
+  id: Blueointment20
+  suffix: 20
+  components:
+  - type: Sprite
+    state: blueointment3
+  - type: Item
+    storedSprite:
+      state: blueointment3
+      sprite: Objects/Specific/Medical/medical.rsi
+  - type: Stack
+    stackType: Blueointment
+    count: 20
+
+
+- type: stack
+  id: Blueointment
+  name: stack-blueointment
+  icon: { sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: blueointment }
+  spawn: Blueointment1
+  maxCount: 20

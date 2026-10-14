@@ -2,6 +2,7 @@
 using JetBrains.Annotations;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Shared._Starlight.Abstract.Extensions;
 

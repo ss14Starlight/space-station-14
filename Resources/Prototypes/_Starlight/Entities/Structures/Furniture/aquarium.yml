@@ -68,15 +68,15 @@
             max: 3
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: SolutionContainerManager
-    solutions:
-      tank:
-        maxVol: 225
-        reagents:
-        - ReagentId: Water
-          Quantity: 100
-        - ReagentId: Mopwata
-          Quantity: 100
+  - type: Solution
+    id: tank
+    solution:
+      maxVol: 225
+      reagents:
+      - ReagentId: Water
+        Quantity: 100
+      - ReagentId: Mopwata
+        Quantity: 100
   - type: DrainableSolution
     solution: tank
   - type: ReagentTank

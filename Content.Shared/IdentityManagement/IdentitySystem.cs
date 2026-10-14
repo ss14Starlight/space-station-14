@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.IdentityManagement.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Clothing;
@@ -19,16 +20,16 @@ namespace Content.Shared.IdentityManagement;
 /// <summary>
 /// Responsible for updating the identity of an entity on init or clothing equip/unequip.
 /// </summary>
-public sealed class IdentitySystem : EntitySystem
+public sealed partial class IdentitySystem : EntitySystem
 {
-    [Dependency] private readonly GrammarSystem _grammarSystem = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedCriminalRecordsConsoleSystem _criminalRecordsConsole = default!;
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoid = default!;
-    [Dependency] private readonly SharedIdCardSystem _idCard = default!;
+    [Dependency] private GrammarSystem _grammarSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedCriminalRecordsConsoleSystem _criminalRecordsConsole = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _humanoid = default!;
+    [Dependency] private SharedIdCardSystem _idCard = default!;
 
     // The name of the container holding the identity entity
     private const string SlotName = "identity";
@@ -196,6 +197,9 @@ public sealed class IdentitySystem : EntitySystem
     /// </returns>
     private string GetIdentityName(EntityUid target, IdentityRepresentation representation)
     {
+        if (IsAlwaysIdentifiable(target)) // Starlight
+            return representation.ToStringKnown(true, null);
+
         var ev = new SeeIdentityAttemptEvent();
 
         RaiseLocalEvent(target, ev);
@@ -211,6 +215,7 @@ public sealed class IdentitySystem : EntitySystem
         var age = 18;
         var gender = Gender.Epicene;
         var species = SharedHumanoidAppearanceSystem.DefaultSpecies;
+        var isAnimal = TryComp<AnimalIdentityComponent>(target, out var animalIdentity); // Starlight
 
         // Always use their actual age and gender, since that can't really be changed by an ID.
         if (Resolve(target, ref target.Comp2, false))
@@ -219,11 +224,21 @@ public sealed class IdentitySystem : EntitySystem
             age = target.Comp2.Age;
             species = target.Comp2.Species;
         }
+        // Starlight Begin - no HumanoidAppearanceComponent to read gender from; fall back to Grammar
+        else if (isAnimal
+            && TryComp<GrammarComponent>(target, out var grammar)
+            && _grammarSystem.TryGet((target.Owner, grammar), "gender", out var genderStr)
+            && Enum.TryParse<Gender>(genderStr, out var parsedGender))
+        {
+            gender = parsedGender;
+        }
+        // Starlight End
 
-        var ageString = _humanoid.GetAgeRepresentation(species, age);
+        var ageString = isAnimal ? string.Empty : _humanoid.GetAgeRepresentation(species, age); // Starlight
+        var animalNoun = isAnimal ? Loc.GetString(animalIdentity!.NounId) : null; // Starlight
         var trueName = Name(target);
         if (!Resolve(target, ref target.Comp1, false))
-            return new(trueName, gender, ageString, string.Empty);
+            return new(trueName, gender, ageString, string.Empty, isAnimal: isAnimal, animalNoun: animalNoun); // Starlight
 
         string? presumedJob = null;
         string? presumedName = null;
@@ -236,7 +251,7 @@ public sealed class IdentitySystem : EntitySystem
         }
 
         // If it didn't find a job, that's fine.
-        return new(trueName, gender, ageString, presumedName, presumedJob);
+        return new(trueName, gender, ageString, presumedName, presumedJob, isAnimal, animalNoun); // Starlight
     }
 
     #endregion

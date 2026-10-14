@@ -3,7 +3,7 @@
   id: MothAntennasDefault
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -17,7 +17,7 @@
   id: MothAntennasCharred
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -31,7 +31,7 @@
   id: MothAntennasDbushy
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -45,7 +45,7 @@
   id: MothAntennasDcurvy
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -59,7 +59,7 @@
   id: MothAntennasDfan
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -73,7 +73,7 @@
   id: MothAntennasDpointy
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -87,7 +87,7 @@
   id: MothAntennasFeathery
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -101,7 +101,7 @@
   id: MothAntennasFirewatch
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -115,7 +115,7 @@
   id: MothAntennasGray
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -129,7 +129,7 @@
   id: MothAntennasJungle
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -143,7 +143,7 @@
   id: MothAntennasMoffra
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -157,7 +157,7 @@
   id: MothAntennasOakworm
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -171,7 +171,7 @@
   id: MothAntennasPlasmafire
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -185,7 +185,7 @@
   id: MothAntennasMaple
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -199,7 +199,7 @@
   id: MothAntennasRoyal
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -213,7 +213,7 @@
   id: MothAntennasStriped
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -227,7 +227,7 @@
   id: MothAntennasWhitefly
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -241,7 +241,7 @@
   id: MothAntennasWitchwing
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -255,7 +255,7 @@
   id: MothAntennasUnderwing
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop@0:
@@ -275,13 +275,18 @@
   id: MothWingsDefault
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
-    body_tail:
+    body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: default
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: default_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -289,13 +294,18 @@
   id: MothWingsCharred
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
-    body_tail:
+    body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: charred
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: charred_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -303,18 +313,23 @@
   id: MothWingsDbushy
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: dbushy_primary
       colorSource: HumanSkinColor
     body_tail@1:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: dbushy_secondary
+      colorSource: HumanSkinColor
+    body_tail@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: dbushy_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -322,18 +337,23 @@
   id: MothWingsDeathhead
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: deathhead_primary
       colorSource: HumanSkinColor
     body_tail@1:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: deathhead_secondary
+      colorSource: HumanSkinColor
+    body_tail@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: deathhead_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -341,13 +361,18 @@
   id: MothWingsFan
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
-    body_tail:
+    body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: fan
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: fan_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -355,13 +380,18 @@
   id: MothWingsDfan
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
-    body_tail:
+    body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: dfan
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: dfan_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -369,13 +399,18 @@
   id: MothWingsFeathery
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
-    body_tail:
+    body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: feathery
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: feathery_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -383,18 +418,23 @@
   id: MothWingsFirewatch
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: firewatch_primary
       colorSource: HumanSkinColor
     body_tail@1:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: firewatch_secondary
+      colorSource: HumanSkinColor
+    body_tail@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: firewatch_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -402,13 +442,18 @@
   id: MothWingsGothic
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
-    body_tail:
+    body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: gothic
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: gothic_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -416,13 +461,18 @@
   id: MothWingsJungle
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
-    body_tail:
+    body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: jungle
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: jungle_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -430,13 +480,18 @@
   id: MothWingsLadybug
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
-    body_tail:
+    body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: ladybug
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: ladybug_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -444,18 +499,23 @@
   id: MothWingsMaple
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: maple_primary
       colorSource: HumanSkinColor
     body_tail@1:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: maple_secondary
+      colorSource: HumanSkinColor
+    body_tail@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: maple_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -463,18 +523,23 @@
   id: MothWingsMoffra
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: moffra_primary
       colorSource: HumanSkinColor
     body_tail@1:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: moffra_secondary
+      colorSource: HumanSkinColor
+    body_tail@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: moffra_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -482,13 +547,18 @@
   id: MothWingsOakworm
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
-    body_tail:
+    body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: oakworm
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: oakworm_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -496,18 +566,23 @@
   id: MothWingsPlasmafire
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: plasmafire_primary
       colorSource: HumanSkinColor
     body_tail@1:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: plasmafire_secondary
+      colorSource: HumanSkinColor
+    body_tail@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: plasmafire_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -515,13 +590,18 @@
   id: MothWingsPointy
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
-    body_tail:
+    body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: pointy
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: pointy_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -529,18 +609,23 @@
   id: MothWingsRoyal
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: royal_primary
       colorSource: HumanSkinColor
     body_tail@1:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: royal_secondary
+      colorSource: HumanSkinColor
+    body_tail@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: royal_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -548,13 +633,18 @@
   id: MothWingsStellar
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
-    body_tail:
+    body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: stellar
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: stellar_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -562,13 +652,18 @@
   id: MothWingsStriped
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
-    body_tail:
+    body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: striped
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: striped_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -576,13 +671,18 @@
   id: MothWingsSwirly
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
-    body_tail:
+    body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: swirly
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: swirly_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -590,13 +690,18 @@
   id: MothWingsWhitefly
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
-    body_tail:
+    body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: whitefly
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: whitefly_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -604,13 +709,18 @@
   id: MothWingsWitchwing
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
-    body_tail:
+    body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: witchwing
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: witchwing_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -618,18 +728,23 @@
   id: MothWingsUnderwing
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: underwing_primary
       colorSource: HumanSkinColor
     body_tail@1:
       sprite:
-        sprite: Mobs/Customization/Moth/moth_wings.rsi
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
         state: underwing_secondary
+      colorSource: HumanSkinColor
+    body_tail@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+        state: underwing_fluff
       colorSource: HumanSkinColor
   # Starlight end
 
@@ -639,7 +754,7 @@
   id: MothChestCharred
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -653,7 +768,7 @@
   id: MothHeadCharred
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_head:
@@ -667,7 +782,7 @@
   id: MothLegCharred
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -686,7 +801,7 @@
   id: MothArmCharred
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -705,7 +820,7 @@
   id: MothChestDeathhead
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -719,7 +834,7 @@
   id: MothHeadDeathhead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_head:
@@ -733,7 +848,7 @@
   id: MothLegDeathhead
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -752,7 +867,7 @@
   id: MothArmDeathhead
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -771,7 +886,7 @@
   id: MothChestFan
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -785,7 +900,7 @@
   id: MothHeadFan
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_head:
@@ -799,7 +914,7 @@
   id: MothLegFan
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -818,7 +933,7 @@
   id: MothArmFan
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -837,7 +952,7 @@
   id: MothChestFirewatch
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -851,7 +966,7 @@
   id: MothHeadFirewatch
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_head:
@@ -865,7 +980,7 @@
   id: MothLegFirewatch
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -884,7 +999,7 @@
   id: MothArmFirewatch
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -903,7 +1018,7 @@
   id: MothChestGothic
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -917,7 +1032,7 @@
   id: MothHeadGothic
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_head:
@@ -931,7 +1046,7 @@
   id: MothLegGothic
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -950,7 +1065,7 @@
   id: MothArmGothic
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -969,7 +1084,7 @@
   id: MothChestJungle
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -983,7 +1098,7 @@
   id: MothHeadJungle
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_head:
@@ -997,7 +1112,7 @@
   id: MothLegJungle
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -1016,7 +1131,7 @@
   id: MothArmJungle
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -1035,7 +1150,7 @@
   id: MothChestMoonfly
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -1049,7 +1164,7 @@
   id: MothHeadMoonfly
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_head:
@@ -1063,7 +1178,7 @@
   id: MothLegMoonfly
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -1082,7 +1197,7 @@
   id: MothArmMoonfly
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -1101,7 +1216,7 @@
   id: MothChestOakworm
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -1115,7 +1230,7 @@
   id: MothHeadOakworm
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_head:
@@ -1129,7 +1244,7 @@
   id: MothLegOakworm
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -1148,7 +1263,7 @@
   id: MothArmOakworm
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -1167,7 +1282,7 @@
   id: MothChestPointy
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -1181,7 +1296,7 @@
   id: MothHeadPointy
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_head:
@@ -1195,7 +1310,7 @@
   id: MothLegPointy
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -1214,7 +1329,7 @@
   id: MothArmPointy
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -1233,7 +1348,7 @@
   id: MothChestRagged
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -1247,7 +1362,7 @@
   id: MothHeadRagged
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_head:
@@ -1261,7 +1376,7 @@
   id: MothLegRagged
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -1280,7 +1395,7 @@
   id: MothArmRagged
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -1299,7 +1414,7 @@
   id: MothChestRoyal
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -1313,7 +1428,7 @@
   id: MothHeadRoyal
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_head:
@@ -1327,7 +1442,7 @@
   id: MothLegRoyal
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -1346,7 +1461,7 @@
   id: MothArmRoyal
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -1365,7 +1480,7 @@
   id: MothChestWhitefly
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -1379,7 +1494,7 @@
   id: MothHeadWhitefly
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_head:
@@ -1393,7 +1508,7 @@
   id: MothLegWhitefly
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -1412,7 +1527,7 @@
   id: MothArmWhitefly
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -1431,7 +1546,7 @@
   id: MothChestWitchwing
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -1445,7 +1560,7 @@
   id: MothHeadWitchwing
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_head:
@@ -1459,7 +1574,7 @@
   id: MothLegWitchwing
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -1478,7 +1593,7 @@
   id: MothArmWitchwing
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, NeoMoth] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -1492,4 +1607,3 @@
         state: witchwing_r_arm
       colorSource: HumanSkinColor
   # Starlight end
-

@@ -28,20 +28,10 @@
     - BaseStationNanotrasen
     - BaseStationDeliveries
     - BaseStationCryoTeleportation #Starlight
+    - BaseStationSecureTerminal # Starlight
   categories: [ HideSpawnMenu ]
   components:
     - type: Transform
-
-# Starlight start
-- type: entity
-  id: StandardNanotrasenStation
-  parent:
-    - StandardNanotrasenStationTestOnly
-    - BaseStationAlertArmories
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: Transform
-# Starlight end
 
 - type: entity
   id: NanotrasenCentralCommand

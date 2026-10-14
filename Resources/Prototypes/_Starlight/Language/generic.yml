@@ -1,6 +1,6 @@
 - type: language
   id: Universal
-  chatPrefix: uni
+  chatPrefix: u
   obfuscation:
     !type:ReplacementObfuscation
     replacement:
@@ -11,7 +11,7 @@
 - type: language
   id: Machine
   icon: LanguageIconMachine
-  chatPrefix: eal
+  chatPrefix: m
   speech:
     color: "#6174ff"
     fontId: Octatrax
@@ -43,7 +43,7 @@
   id: Sign
   iconUnderstood: false
   iconNotUnderstood: false
-  chatPrefix: sgn
+  chatPrefix: s
   speech:
     allowRadio: false
     requireSpeech: false
@@ -66,21 +66,33 @@
     - a message
 
 - type: language
+  id: ClassicalSign
+  iconUnderstood: false
+  iconNotUnderstood: false
+  chatPrefix: csg
+  speech:
+    allowRadio: false
+    requireSpeech: false
+    requireSound: false
+    requireHands: true
+    color: "#e2cbb8"
+    messageWrapOverrides:
+      Speak: chat-sign-language-message-wrap
+      Whisper: chat-sign-language-whisper-wrap
+    speechVerbOverrides:
+    - chat-speech-verb-sign-1
+    - chat-speech-verb-sign-2
+    - chat-speech-verb-sign-3
+  obfuscation:
+    !type:ReplacementObfuscation
+    replacement:
+    - something
+    - a cryptic message
+    - a signal
+    - a message
+
+- type: language
   id: CodeSpeak
   icon: LanguageIconCodeSpeak
   chatPrefix: cde
   iconNotUnderstood: false
-
-- type: language
-  id: Cosmic
-  icon: LanguageIconCosmic
-  chatPrefix: cos
-  iconNotUnderstood: false
-  speech:
-    color: "#4cabb3"
-    fontId: Cosmic
-    obfuscationFont: true
-    radioChannel: CosmicRadio
-    chatTypeOverride: Whisper
-  obfuscation:
-    !type:RandomObfuscation

@@ -23,7 +23,6 @@
   - MagazineBoxRiflePractice
   - WeaponDisablerPractice
   - WeaponLaserCarbinePractice
-  - WeaponFlareGunSecurity
   - MagazineDMRPractice
 
 - type: latheRecipePack
@@ -116,8 +115,20 @@
   - SpeedLoaderShotgunEmpty
   - SpeedLoaderShotgunSlug
   - SpeedLoaderShotgunBeanbag
+# Bolt
+  - MagazineBoltRifleEmpty
+  - MagazineBoltRifle
+  - MagazineBoltPistolEmpty
+  - MagazineBoltPistol
+  - MagazineBoxBoltRifle
 # Battery
   - MagazineBatteryLr30
+# Peacekeeper
+  - BoxPeacekeeperGas
+  - BoxPeacekeeperStinger
+  - BoxPeacekeeperFlash
+  - BoxPeacekeeperBaton
+#  - BoxPeacekeeperBola
 ####################################################
 
 - type: latheRecipePack
@@ -166,7 +177,6 @@
   - GrenadeBaton
   - GrenadeBlast
   - GrenadeEMP
-  - GrenadeFlash
   - MagazineGrenadeEmpty
 
 # Shared between secfab and emagged protolathe
@@ -241,7 +251,6 @@
   - CartridgePistolRubber
 # Rifle
   - CartridgeRifleRubber
-####################################################
 
 - type: latheRecipePack
   id: StarlightSecurityWeapons
@@ -258,6 +267,8 @@
   - WeaponLaserSvalinn
   - WeaponTemperatureGun
   - FiringPinLaser
+  - FiringPinAdvancedLaserReplacement
+  - FiringPinSmartLMGReplacement
 
 - type: latheRecipePack
   id: StarlightSecurityMechsWeapons

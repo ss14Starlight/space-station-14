@@ -53,12 +53,15 @@ public abstract partial class SharedBorgSystem
 
         var metaData = MetaData(chassis);
 
-        // don't change the name if the value doesn't actually change
-        if (metaData.EntityName.Equals(name, StringComparison.InvariantCulture))
+        if (_nameModifier.GetBaseName(chassis.Owner).Equals(name, StringComparison.InvariantCulture)) // Starlight
             return;
 
         _adminLog.Add(LogType.Action, LogImpact.High, $"{args.Actor} set borg \"{chassis.Owner}\"'s name to: {name}");
-        _metaData.SetEntityName(chassis, name, metaData, false);
+        // Starlight-start: Keep the Borg brain synchronized with the chassis name.
+        _metaData.SetEntityName(chassis, name, metaData);
+        if (chassis.Comp.BrainEntity is { } brain)
+            _metaData.SetEntityName(brain, name);
+        // Starlight-end
     }
 
     private void OnRemoveModuleBuiMessage(Entity<BorgChassisComponent> chassis, ref BorgRemoveModuleBuiMessage args)

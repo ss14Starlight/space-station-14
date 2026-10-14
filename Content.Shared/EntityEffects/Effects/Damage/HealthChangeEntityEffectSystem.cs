@@ -15,7 +15,7 @@ namespace Content.Shared.EntityEffects.Effects.Damage;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class HealthChangeEntityEffectSystem : EntityEffectSystem<DamageableComponent, HealthChange>
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     protected override void Effect(Entity<DamageableComponent> entity, ref EntityEffectEvent<HealthChange> args)
     {
@@ -49,7 +49,7 @@ public sealed partial class HealthChange : EntityEffectBase<HealthChange>
         var heals = false;
         var deals = false;
 
-        var damageSpec = new DamageSpecifier(Damage);
+        var damageSpec = Damage.ResolveGroups(prototype); // Starlight
 
         var universalReagentDamageModifier = entSys.GetEntitySystem<DamageableSystem>().UniversalReagentDamageModifier;
         var universalReagentHealModifier = entSys.GetEntitySystem<DamageableSystem>().UniversalReagentHealModifier;
@@ -82,6 +82,28 @@ public sealed partial class HealthChange : EntityEffectBase<HealthChange>
                     ("deltasign", sign)
                 ));
         }
+
+        #region Starlight
+        if (damageSpec.MixMax != null && damageSpec.MixMax.Value < FixedPoint2.Zero)
+        {
+            heals = true;
+            var targets = new List<string>();
+
+            foreach (var group in damageSpec.MixMax.Groups)
+            {
+                targets.Add(prototype.Index<DamageGroupPrototype>(group).LocalizedName);
+            }
+
+            foreach (var type in damageSpec.MixMax.Types)
+            {
+                targets.Add(prototype.Index<DamageTypePrototype>(type).LocalizedName);
+            }
+
+            damages.Add(loc.GetString("health-change-mixmax-display",
+                ("amount", -damageSpec.MixMax.Value.Float() * universalReagentHealModifier),
+                ("targets", ContentLocalizationManager.FormatList(targets))));
+        }
+        #endregion
 
         var healsordeals = heals ? (deals ? "both" : "heals") : (deals ? "deals" : "none");
 

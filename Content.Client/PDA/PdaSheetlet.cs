@@ -1,4 +1,3 @@
-using Content.Client.PDA;
 using Content.Client.Stylesheets;
 using Content.Client.Stylesheets.Sheetlets;
 using Content.Client.Stylesheets.SheetletConfigs;

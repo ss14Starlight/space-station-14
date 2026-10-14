@@ -15,7 +15,7 @@ using SixLabors.ImageSharp.Formats.Webp;
 
 namespace Content.MapRenderer
 {
-    internal sealed class Program
+    internal sealed partial class Program // Starlight-edit: partial
     {
         private const string NoMapsChosenMessage = "No maps were chosen";
         private static readonly Func<string, string> ChosenMapIdNotIntMessage = id => $"The chosen id is not a valid integer: {id}";
@@ -29,7 +29,7 @@ namespace Content.MapRenderer
             var testContext = new ExternalTestContext("Content.MapRenderer", Console.Out);
 
             PoolManager.Startup();
-            if (arguments.Maps.Count == 0)
+            if (arguments.Maps.Count == 0 && arguments.Directories.Count == 0) // Starlight-edit
             {
                 Console.WriteLine("Didn't specify any maps to paint! Loading the map list...");
 
@@ -145,7 +145,7 @@ namespace Content.MapRenderer
                 {
                     Console.Write($"Following map files did not exist on disk directly, searching through prototypes: {string.Join(", ", lookupPrototypeFiles)}");
 
-                    await using var pair = await PoolManager.GetServerClient();
+                    await using var pair = await PoolManager.GetServerClient(testContext: testContext);
                     var mapPrototypes = pair.Server
                         .ResolveDependency<IPrototypeManager>()
                         .EnumeratePrototypes<GameMapPrototype>()
@@ -177,6 +177,16 @@ namespace Content.MapRenderer
                 }
             }
 
+            // Starlight-start
+            maps.AddRange(await CollectDirectoryMaps(arguments, testContext));
+            if (maps.Count == 0)
+            {
+                Console.WriteLine(NoMapsChosenMessage);
+                PoolManager.Shutdown();
+                return;
+            }
+            // Starlight-end
+
             await Run(arguments, maps, testContext);
             PoolManager.Shutdown();
         }
@@ -187,6 +197,14 @@ namespace Content.MapRenderer
             ExternalTestContext testContext)
         {
             Console.WriteLine($"Creating images for {toRender.Count} maps");
+
+            // Starlight-start
+            if (arguments.Tiles)
+            {
+                await RunViewerExport(arguments, toRender, testContext);
+                return;
+            }
+            // Starlight-end
 
             var parallaxOutput = arguments.OutputParallax ? new ParallaxOutput(arguments.OutputPath) : null;
 

@@ -3,42 +3,47 @@ using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Server.Containers;
 using Content.Server.StationRecords.Systems;
-using Content.Shared.Access.Components;
-using static Content.Shared.Access.Components.IdCardConsoleComponent;
-using Content.Shared.Access.Systems;
 using Content.Shared.Access;
+using Content.Shared.Access.Components;
+using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
+using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Construction;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
+using Content.Shared.Emag.Systems;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
+using Content.Shared.StatusIcon;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
+using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using static Content.Shared.Access.Components.IdCardConsoleComponent;
 
 namespace Content.Server.Access.Systems;
 
 [UsedImplicitly]
-public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
+public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly StationRecordsSystem _record = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly AccessSystem _access = default!;
-    [Dependency] private readonly IdCardSystem _idCard = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private IConfigurationManager _cfgManager = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private StationRecordsSystem _record = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private AccessSystem _access = default!;
+    [Dependency] private IdCardSystem _idCard = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private EmagSystem _emag = default!; // Starlight-edit
 
     public override void Initialize()
     {
@@ -54,17 +59,40 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         SubscribeLocalEvent<IdCardConsoleComponent, EntRemovedFromContainerMessage>(UpdateUserInterface);
         SubscribeLocalEvent<IdCardConsoleComponent, DamageChangedEvent>(OnDamageChanged);
 
+        // Starlight-edit: Start - emagging the console unlocks every job icon
+        SubscribeLocalEvent<IdCardConsoleComponent, GotEmaggedEvent>(OnGotEmagged);
+        // Starlight-edit: End
+
         // Intercept the event before anyone can do anything with it!
         SubscribeLocalEvent<IdCardConsoleComponent, MachineDeconstructedEvent>(OnMachineDeconstructed,
             before: [typeof(EmptyOnMachineDeconstructSystem), typeof(ItemSlotsSystem)]);
     }
+
+    // Starlight-edit: Start
+    private void OnGotEmagged(Entity<IdCardConsoleComponent> ent, ref GotEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (_emag.CheckFlag(ent, EmagType.Interaction))
+            return;
+
+        args.Handled = true;
+
+        _adminLogger.Add(LogType.Action,
+            $"{ToPrettyString(args.UserUid)} emagged {ToPrettyString(ent)}, unlocking every job icon");
+
+        // The EmaggedComponent flag isn't persisted until after this event returns, so CheckFlag would still report locked here - override it explicitly.
+        UpdateUserInterface(ent, ent.Comp, allIconsUnlockedOverride: true);
+    }
+    // Starlight-edit: End
 
     private void OnWriteToTargetIdMessage(EntityUid uid, IdCardConsoleComponent component, WriteToTargetIdMessage args)
     {
         if (args.Actor is not { Valid: true } player)
             return;
 
-        TryWriteToTargetId(uid, args.FullName, args.JobTitle, args.AccessList, args.JobPrototype, player, component);
+        TryWriteToTargetId(uid, args.FullName, args.JobTitle, args.AccessList, args.JobPrototype, args.JobIcon, player, component);
 
         UpdateUserInterface(uid, component, args);
     }
@@ -80,7 +108,10 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
 
     // Starlight-end
 
-    private void UpdateUserInterface(EntityUid uid, IdCardConsoleComponent component, EntityEventArgs args)
+    private void UpdateUserInterface(EntityUid uid, IdCardConsoleComponent component, EntityEventArgs args) =>
+        UpdateUserInterface(uid, component);
+
+    private void UpdateUserInterface(EntityUid uid, IdCardConsoleComponent component, bool? allIconsUnlockedOverride = null)
     {
         if (!component.Initialized)
             return;
@@ -156,6 +187,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         }
 
         var showGroups = availableGroups.Count > 1;
+        var allIconsUnlocked = allIconsUnlockedOverride ?? (component.AllIconsUnlocked || _emag.CheckFlag(uid, EmagType.Interaction));
         // Starlight-edit: End
 
         IdCardConsoleBoundUserInterfaceState newState;
@@ -175,7 +207,9 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 string.Empty,
                 // Starlight-edit: Start
                 currentGroup.HasValue ? currentGroup.Value : component.AccessGroups.FirstOrDefault(),
-                availableGroups);
+                availableGroups,
+                null,
+                allIconsUnlocked);
                 // Starlight-edit: End
         }
         else
@@ -204,7 +238,9 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 Name(targetId),
                 // Starlight-edit: Start
                 currentGroup.HasValue ? currentGroup.Value : component.AccessGroups.FirstOrDefault(),
-                availableGroups);
+                availableGroups,
+                targetIdComponent.JobIcon,
+                allIconsUnlocked);
                 // Starlight-edit: End
         }
 
@@ -219,7 +255,8 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         string newFullName,
         string newJobTitle,
         List<ProtoId<AccessLevelPrototype>> newAccessList,
-        ProtoId<JobPrototype> newJobProto,
+        ProtoId<JobPrototype>? newJobProto, // Starlight: Nullable
+        ProtoId<JobIconPrototype>? newJobIcon, // Starlight-edit
         EntityUid player,
         IdCardConsoleComponent? component = null)
     {
@@ -229,21 +266,42 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if (component.TargetIdSlot.Item is not { Valid: true } targetId || !PrivilegedIdIsAuthorized(uid, component, out var privilegedId))
             return;
 
+        // Limit name and job title lengths
+        var maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
+        var maxIdJobLength = _cfgManager.GetCVar(CCVars.MaxIdJobLength);
+
+        if (newFullName.Length > maxNameLength)
+            newFullName = newFullName[..maxNameLength];
+
+        if (newJobTitle.Length > maxIdJobLength)
+            newJobTitle = newJobTitle[..maxIdJobLength];
+
         _idCard.TryChangeFullName(targetId, newFullName, player: player);
         _idCard.TryChangeJobTitle(targetId, newJobTitle, player: player);
 
-        if (_prototype.Resolve(newJobProto, out var job)
-            && _prototype.Resolve(job.Icon, out var jobIcon))
-        {
-            _idCard.TryChangeJobIcon(targetId, jobIcon, player: player);
+        _prototype.Resolve(newJobProto, out var job);
+        if (job != null)
             _idCard.TryChangeJobDepartment(targetId, job);
-        }
 
-        UpdateStationRecord(uid, targetId, newFullName, newJobTitle, job);
+        // Starlight-edit: Start - A manually player set icon will always override a preset one. Sanity checks to prevent a client from applying an icon it can't access.
+        bool IconAllowed(JobIconPrototype icon) =>
+            icon.Tags.Overlaps(component.RequiredTags) || component.AllIconsUnlocked || _emag.CheckFlag(uid, EmagType.Interaction);
+
+        JobIconPrototype? jobIcon = null;
+        if (_prototype.Resolve(newJobIcon, out var explicitJobIcon) && IconAllowed(explicitJobIcon))
+            jobIcon = explicitJobIcon;
+        else if (_prototype.Resolve(job?.Icon, out var defaultJobIcon))
+            jobIcon = defaultJobIcon;
+
+        if (jobIcon != null)
+            _idCard.TryChangeJobIcon(targetId, jobIcon, player: player);
+        // Starlight-edit: End
+
+        UpdateStationRecord(uid, targetId, newFullName, newJobTitle, job, jobIcon);
         if ((!TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
             || keyStorage.Key is not { } key
             || !_record.TryGetRecord<GeneralStationRecord>(key, out _))
-            && newJobProto != string.Empty)
+            && newJobProto != null) // Starlight: Nullable instead
         {
             Comp<IdCardComponent>(targetId).JobPrototype = newJobProto;
         }
@@ -254,18 +312,21 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         var allGroupTags = new HashSet<ProtoId<AccessLevelPrototype>>();
         foreach (var group in component.AccessGroups.ToList())
         {
-            if (_prototype.TryIndex<AccessGroupPrototype>(group, out var groupPrototype))
+            if (_prototype.TryIndex(group, out var groupPrototype))
                 allGroupTags.UnionWith(groupPrototype.Tags);
         }
 
-        if (!newAccessList.TrueForAll(x => allGroupTags.Contains(x)))
+        var oldTags = _access.TryGetTags(targetId)?.ToHashSet() ?? new HashSet<ProtoId<AccessLevelPrototype>>();
+
+        // The UI includes existing tags outside the console's groups (e.g. EmergencyShuttleRepealAll).
+        // These are preserved below, so only reject out-of-group tags that the card does not already have.
+        if (!newAccessList.TrueForAll(x => allGroupTags.Contains(x) || oldTags.Contains(x)))
         // Starlight-edit: End
         {
             _sawmill.Warning($"User {ToPrettyString(uid)} tried to write unknown access tag.");
             return;
         }
 
-        var oldTags = _access.TryGetTags(targetId)?.ToHashSet() ?? new HashSet<ProtoId<AccessLevelPrototype>>(); // Starlight - keep oldTags as a hashset instead of a list
         // Starlight-edit: Start
         var privilegedPerms = _accessReader.FindAccessTags(privilegedId!.Value).ToHashSet();
         // For each group, update the tags for that group with the ones from newAccessList
@@ -317,7 +378,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         return _accessReader.IsAllowed(id.Value, uid, reader);
     }
 
-    private void UpdateStationRecord(EntityUid uid, EntityUid targetId, string newFullName, ProtoId<AccessLevelPrototype> newJobTitle, JobPrototype? newJobProto)
+    private void UpdateStationRecord(EntityUid uid, EntityUid targetId, string newFullName, ProtoId<AccessLevelPrototype> newJobTitle, JobPrototype? newJobProto, JobIconPrototype? newJobIcon) // Starlight-edit: newJobIcon
     {
         if (!TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
             || keyStorage.Key is not { } key
@@ -330,10 +391,10 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         record.JobTitle = newJobTitle;
 
         if (newJobProto != null)
-        {
             record.JobPrototype = newJobProto.ID;
-            record.JobIcon = newJobProto.Icon;
-        }
+
+        if (newJobIcon != null) // Starlight-edit
+            record.JobIcon = newJobIcon.ID;
 
         _record.Synchronize(key);
     }

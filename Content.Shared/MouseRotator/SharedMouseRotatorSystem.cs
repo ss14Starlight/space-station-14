@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Interaction;
 using Content.Shared.Mech.Components;
+using Content.Shared.Movement.Components;
 
 namespace Content.Shared.MouseRotator;
 
@@ -7,9 +8,9 @@ namespace Content.Shared.MouseRotator;
 /// This handles rotating an entity based on mouse location
 /// </summary>
 /// <see cref="MouseRotatorComponent"/>
-public abstract class SharedMouseRotatorSystem : EntitySystem
+public abstract partial class SharedMouseRotatorSystem : EntitySystem
 {
-    [Dependency] private readonly RotateToFaceSystem _rotate = default!;
+    [Dependency] private RotateToFaceSystem _rotate = default!;
 
     public override void Initialize()
     {
@@ -61,8 +62,21 @@ public abstract class SharedMouseRotatorSystem : EntitySystem
         if (args.SenderSession.AttachedEntity != GetEntity(msg.User))
             return;
 
-        if (args.SenderSession.AttachedEntity is not { } ent
-            || !TryComp<MouseRotatorComponent>(ent, out var rotator))
+        if (args.SenderSession.AttachedEntity is not { } ent)
+            return;
+
+        // Starlight-start: mouse rotation is relayed to the remotely controlled entity.
+        if (TryComp<RelayInputMoverComponent>(ent, out var relay)
+            && relay.RelayEntity is { } relayEntity
+            && TryComp<MouseRotatorComponent>(relayEntity, out var relayRotator))
+        {
+            relayRotator.GoalRotation = msg.Rotation;
+            Dirty(relayEntity, relayRotator);
+            return;
+        }
+        // Starlight-end
+
+        if (!TryComp<MouseRotatorComponent>(ent, out var rotator))
         {
             Log.Error($"User {args.SenderSession.Name} ({args.SenderSession.UserId}) tried setting local rotation directly without a valid mouse rotator component attached!");
             return;

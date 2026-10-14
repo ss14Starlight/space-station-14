@@ -1,0 +1,134 @@
+# Combined
+- type: entity
+  parent: MarkerBase
+  id: ESSpawnerRandomPeriodicals
+  name: Periodical Spawner
+  suffix: Magazines / Newspapers
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _ES/Markers/spawners.rsi
+        state: magazine
+  - type: RandomSpawner
+    prototypes:
+      - NewspaperBigWatermelon
+      - NewspaperSpores
+      - NewspaperGasLeaks
+      - NewspaperMaintenanceTar
+      - NewspaperWater
+      - NewspaperWeldingFuel
+      - NewspaperParasite
+      - NewspaperMining
+      - NewspaperMining2
+      - NewspaperMining3
+      - NewspaperForeshadowing
+      - MagazineCognitoWood
+      - MagazineCookingAndBotany
+      - MagazineWordsearch
+      - MagazineCrossword
+      - MagazineEarthNews
+      - MagazineMedicalScience
+      - MagazineFirearms
+      - MagazinePopularSpacepeople
+      - MagazinePopularSpacepeople2
+      - MagazinePopularSpacepeople3
+      - MagazinePopularSpacepeople4
+      - MagazineFashion
+      - MagazineFashion2
+      - MagazineFashion3
+      - MagazineFashion4
+      - MagazineFashion5
+      - MagazineFashion6
+      - MagazineFashion7
+      - MagazineFashion8
+      - MagazineEngineerNews
+      - MagazineEngineerNews2
+      - MagazineRevolutionary
+      - MagazineRevolutionary2
+      - MagazineRevolutionary3
+      - MagazineRevolutionary4
+      - MagazineRevolutionary5
+      - MagazineRevolutionary6
+      - MagazineRevolutionary7
+      - MagazineRevolutionary8
+      - MagazineConspiracy
+      - MagazineConspiracy2
+      - MagazineConspiracy3
+      - MagazineConspiracy4
+      - MagazineConspiracy5
+      - MagazineConspiracy6
+
+- type: entity
+  parent: MarkerBase
+  id: ESSpawnerRandomPeriodicalsLegit
+  name: Periodical Spawner
+  suffix: Magazines / Newspapers, Legit
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _ES/Markers/spawners.rsi
+        state: magazine
+  - type: RandomSpawner
+    prototypes:
+      - NewspaperBigWatermelon
+      - NewspaperSpores
+      - NewspaperGasLeaks
+      - NewspaperMaintenanceTar
+      - NewspaperWater
+      - NewspaperWeldingFuel
+      - NewspaperParasite
+      - NewspaperMining
+      - NewspaperMining2
+      - NewspaperMining3
+      - NewspaperForeshadowing
+      - MagazineCognitoWood
+      - MagazineCookingAndBotany
+      - MagazineWordsearch
+      - MagazineCrossword
+      - MagazineEarthNews
+      - MagazineMedicalScience
+      - MagazinePopularSpacepeople
+      - MagazinePopularSpacepeople2
+      - MagazinePopularSpacepeople3
+      - MagazinePopularSpacepeople4
+      - MagazineFashion
+      - MagazineFashion2
+      - MagazineFashion3
+      - MagazineFashion4
+      - MagazineFashion5
+      - MagazineFashion6
+      - MagazineFashion7
+      - MagazineFashion8
+      - MagazineEngineerNews
+      - MagazineEngineerNews2
+      - MagazineFirearms
+
+- type: entity
+  parent: MarkerBase
+  id: ESSpawnerRandomPeriodicalsContraband
+  name: Periodical Spawner
+  suffix: Magazines / Newspapers, Contraband
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _ES/Markers/spawners.rsi
+        state: magazine
+  - type: RandomSpawner
+    prototypes:
+      - MagazineRevolutionary
+      - MagazineRevolutionary2
+      - MagazineRevolutionary3
+      - MagazineRevolutionary4
+      - MagazineRevolutionary5
+      - MagazineRevolutionary6
+      - MagazineRevolutionary7
+      - MagazineRevolutionary8
+      - MagazineConspiracy
+      - MagazineConspiracy2
+      - MagazineConspiracy3
+      - MagazineConspiracy4
+      - MagazineConspiracy5
+      - MagazineConspiracy6

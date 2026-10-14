@@ -1,0 +1,29 @@
+- type: accessLevel
+  id: BorgCargo
+  name: id-card-access-level-borg-cargo
+  canAddToIdCard: false
+
+- type: accessLevel
+  id: BorgEngineering
+  name: id-card-access-level-borg-engineering
+  canAddToIdCard: false
+
+- type: accessLevel
+  id: BorgResearch
+  name: id-card-access-level-borg-research
+  canAddToIdCard: false
+
+- type: accessLevel
+  id: BorgSecurity
+  name: id-card-access-level-borg-security
+  canAddToIdCard: false
+
+- type: accessLevel
+  id: BorgService
+  name: id-card-access-level-borg-service
+  canAddToIdCard: false
+
+- type: accessLevel
+  id: BorgMedical
+  name: id-card-access-level-borg-medical
+  canAddToIdCard: false

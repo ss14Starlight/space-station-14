@@ -10,6 +10,7 @@
           state: afro
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairAfro2
   bodyPart: Hair
@@ -22,6 +23,7 @@
           state: afro2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBaby
   bodyPart: Hair
@@ -34,6 +36,7 @@
           state: baby
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBigafro
   bodyPart: Hair
@@ -46,6 +49,7 @@
           state: bigafro
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairAntenna
   bodyPart: Hair
@@ -58,6 +62,7 @@
           state: antenna
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBalding
   bodyPart: Hair
@@ -70,6 +75,7 @@
           state: e
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBedhead
   bodyPart: Hair
@@ -82,6 +88,7 @@
           state: bedhead
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBedheadv2
   bodyPart: Hair
@@ -94,6 +101,7 @@
           state: bedheadv2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBedheadv3
   bodyPart: Hair
@@ -106,6 +114,7 @@
           state: bedheadv3
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairCube
   bodyPart: Hair
@@ -118,6 +127,7 @@
           state: cube
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairPulato
   bodyPart: Hair
@@ -130,6 +140,7 @@
           state: pulato
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLongBedhead
   bodyPart: Hair
@@ -142,6 +153,7 @@
           state: long_bedhead
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLongBedhead2
   bodyPart: Hair
@@ -154,6 +166,7 @@
           state: long_bedhead2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairFloorlengthBedhead
   bodyPart: Hair
@@ -166,6 +179,7 @@
           state: floorlength_bedhead
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBeehive
   bodyPart: Hair
@@ -178,6 +192,7 @@
           state: beehive
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBeehivev2
   bodyPart: Hair
@@ -190,6 +205,7 @@
           state: beehivev2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBob
   bodyPart: Hair
@@ -202,6 +218,7 @@
           state: bob
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBob2
   bodyPart: Hair
@@ -214,6 +231,7 @@
           state: bob2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBobcut
   bodyPart: Hair
@@ -226,6 +244,7 @@
           state: bobcut
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBob4
   bodyPart: Hair
@@ -238,6 +257,7 @@
           state: bob4
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBob5
   bodyPart: Hair
@@ -250,6 +270,7 @@
           state: bob5
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBobcurl
   bodyPart: Hair
@@ -262,6 +283,7 @@
           state: bobcurl
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBoddicker
   bodyPart: Hair
@@ -274,6 +296,7 @@
           state: boddicker
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBowlcut
   bodyPart: Hair
@@ -286,6 +309,7 @@
           state: bowlcut
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBowlcut2
   bodyPart: Hair
@@ -298,6 +322,7 @@
           state: bowlcut2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBraid
   bodyPart: Hair
@@ -310,6 +335,7 @@
           state: braid
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBraided
   bodyPart: Hair
@@ -322,6 +348,7 @@
           state: braided
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBraidfront
   bodyPart: Hair
@@ -334,6 +361,7 @@
           state: braidfront
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBraid2
   bodyPart: Hair
@@ -346,6 +374,7 @@
           state: braid2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairHbraid
   bodyPart: Hair
@@ -358,6 +387,7 @@
           state: hbraid
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairShortbraid
   bodyPart: Hair
@@ -370,6 +400,7 @@
           state: shortbraid
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBraidtail
   bodyPart: Hair
@@ -382,6 +413,7 @@
           state: braidtail
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBun
   bodyPart: Hair
@@ -394,6 +426,7 @@
           state: bun
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBunhead2
   bodyPart: Hair
@@ -406,6 +439,7 @@
           state: bunhead2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBun3
   bodyPart: Hair
@@ -418,6 +452,7 @@
           state: bun3
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLargebun
   bodyPart: Hair
@@ -430,6 +465,7 @@
           state: largebun
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairManbun
   bodyPart: Hair
@@ -442,6 +478,7 @@
           state: manbun
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairTightbun
   bodyPart: Hair
@@ -454,6 +491,7 @@
           state: tightbun
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBusiness
   bodyPart: Hair
@@ -466,6 +504,7 @@
           state: business
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBusiness2
   bodyPart: Hair
@@ -478,6 +517,7 @@
           state: business2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBusiness3
   bodyPart: Hair
@@ -490,6 +530,7 @@
           state: business3
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBusiness4
   bodyPart: Hair
@@ -502,6 +543,7 @@
           state: business4
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBuzzcut
   bodyPart: Hair
@@ -514,6 +556,7 @@
           state: buzzcut
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairCia
   bodyPart: Hair
@@ -526,6 +569,7 @@
           state: cia
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairClassicAfro
   bodyPart: Hair
@@ -538,6 +582,7 @@
           state: classicafro
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairClassicBigAfro
   bodyPart: Hair
@@ -550,6 +595,7 @@
           state: classicbigafro
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairClassicBusiness
   bodyPart: Hair
@@ -562,6 +608,7 @@
           state: classicbusiness
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairClassicCia
   bodyPart: Hair
@@ -574,6 +621,7 @@
           state: classiccia
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairClassicCornrows2
   bodyPart: Hair
@@ -586,6 +634,7 @@
           state: classiccornrows2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairClassicFloorlengthBedhead
   bodyPart: Hair
@@ -598,6 +647,7 @@
           state: classicfloorlength_bedhead
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairClassicModern
   bodyPart: Hair
@@ -610,6 +660,7 @@
           state: classicmodern
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairClassicMulder
   bodyPart: Hair
@@ -622,6 +673,7 @@
           state: classicmulder
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairClassicWisp
   bodyPart: Hair
@@ -634,6 +686,7 @@
           state: classicwisp
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairCoffeehouse
   bodyPart: Hair
@@ -646,6 +699,7 @@
           state: coffeehouse
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairCombover
   bodyPart: Hair
@@ -658,6 +712,7 @@
           state: combover
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairCornrows
   bodyPart: Hair
@@ -670,6 +725,7 @@
           state: cornrows
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairCornrows2
   bodyPart: Hair
@@ -682,6 +738,7 @@
           state: cornrows2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairCornrowbun
   bodyPart: Hair
@@ -694,6 +751,7 @@
           state: cornrowbun
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairCornrowbraid
   bodyPart: Hair
@@ -706,6 +764,7 @@
           state: cornrowbraid
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairCornrowtail
   bodyPart: Hair
@@ -718,6 +777,7 @@
           state: cornrowtail
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairCrewcut
   bodyPart: Hair
@@ -730,6 +790,7 @@
           state: crewcut
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairCrewcut2
   bodyPart: Hair
@@ -742,6 +803,7 @@
           state: crewcut2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairCurls
   bodyPart: Hair
@@ -754,6 +816,7 @@
           state: curls
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairC
   bodyPart: Hair
@@ -766,6 +829,7 @@
           state: c
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairDandypompadour
   bodyPart: Hair
@@ -778,6 +842,7 @@
           state: dandypompadour
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairDevilock
   bodyPart: Hair
@@ -790,6 +855,7 @@
           state: devilock
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairDoublebun
   bodyPart: Hair
@@ -802,6 +868,7 @@
           state: doublebun
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairDoublebunLong
   bodyPart: Hair
@@ -814,6 +881,7 @@
         state: doublebun_long
       colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairDreads
   bodyPart: Hair
@@ -826,6 +894,7 @@
           state: dreads
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairDrillruru
   bodyPart: Hair
@@ -838,6 +907,7 @@
           state: drillruru
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairDrillhairextended
   bodyPart: Hair
@@ -850,6 +920,7 @@
           state: drillhairextended
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairEmo
   bodyPart: Hair
@@ -862,6 +933,7 @@
           state: emo
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairEmofringe
   bodyPart: Hair
@@ -874,6 +946,7 @@
           state: emofringe
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairNofade
   bodyPart: Hair
@@ -886,6 +959,7 @@
           state: nofade
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairHighfade
   bodyPart: Hair
@@ -898,6 +972,7 @@
           state: highfade
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairMedfade
   bodyPart: Hair
@@ -910,6 +985,7 @@
           state: medfade
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLowfade
   bodyPart: Hair
@@ -922,6 +998,7 @@
           state: lowfade
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBaldfade
   bodyPart: Hair
@@ -934,6 +1011,7 @@
           state: baldfade
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairFeather
   bodyPart: Hair
@@ -946,6 +1024,7 @@
           state: feather
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairFather
   bodyPart: Hair
@@ -958,6 +1037,7 @@
           state: father
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairSargeant
   bodyPart: Hair
@@ -970,6 +1050,7 @@
           state: sargeant
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairFlair
   bodyPart: Hair
@@ -982,6 +1063,7 @@
           state: flair
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBigflattop
   bodyPart: Hair
@@ -994,6 +1076,7 @@
           state: bigflattop
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairFlow
   bodyPart: Hair
@@ -1006,6 +1089,7 @@
           state: f
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairGelled
   bodyPart: Hair
@@ -1018,6 +1102,7 @@
           state: gelled
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairGentle
   bodyPart: Hair
@@ -1030,6 +1115,7 @@
           state: gentle
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairHalfbang
   bodyPart: Hair
@@ -1042,6 +1128,7 @@
           state: halfbang
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairHalfbang2
   bodyPart: Hair
@@ -1054,6 +1141,7 @@
           state: halfbang2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairHalfshaved
   bodyPart: Hair
@@ -1066,6 +1154,7 @@
           state: halfshaved
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairHedgehog
   bodyPart: Hair
@@ -1078,6 +1167,7 @@
           state: hedgehog
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairHimecut
   bodyPart: Hair
@@ -1090,6 +1180,7 @@
           state: himecut
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairHimecut2
   bodyPart: Hair
@@ -1102,6 +1193,7 @@
           state: himecut2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairShorthime
   bodyPart: Hair
@@ -1114,6 +1206,7 @@
           state: shorthime
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairHimeup
   bodyPart: Hair
@@ -1126,6 +1219,7 @@
           state: himeup
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairHitop
   bodyPart: Hair
@@ -1138,6 +1232,7 @@
           state: hitop
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairJade
   bodyPart: Hair
@@ -1150,6 +1245,7 @@
           state: jade
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairJensen
   bodyPart: Hair
@@ -1162,6 +1258,7 @@
           state: jensen
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairJoestar
   bodyPart: Hair
@@ -1174,6 +1271,7 @@
           state: joestar
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairKeanu
   bodyPart: Hair
@@ -1186,6 +1284,7 @@
           state: keanu
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairKusanagi
   bodyPart: Hair
@@ -1198,6 +1297,7 @@
           state: kusanagi
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLong
   bodyPart: Hair
@@ -1210,6 +1310,7 @@
           state: long
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLong2
   bodyPart: Hair
@@ -1222,6 +1323,7 @@
           state: long2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLong3
   bodyPart: Hair
@@ -1234,6 +1336,7 @@
           state: long3
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLongWithBundles
   bodyPart: Hair
@@ -1246,6 +1349,7 @@
           state: longbundled
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLongovereye
   bodyPart: Hair
@@ -1258,6 +1362,7 @@
           state: longovereye
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLbangs
   bodyPart: Hair
@@ -1270,6 +1375,7 @@
           state: lbangs
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLongemo
   bodyPart: Hair
@@ -1282,6 +1388,7 @@
           state: longemo
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLongfringe
   bodyPart: Hair
@@ -1294,6 +1401,7 @@
           state: longfringe
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLongsidepart
   bodyPart: Hair
@@ -1306,6 +1414,7 @@
           state: longsidepart
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairMegaeyebrows
   bodyPart: Hair
@@ -1318,6 +1427,7 @@
           state: megaeyebrows
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairMessy
   bodyPart: Hair
@@ -1330,6 +1440,7 @@
           state: messy
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairModern
   bodyPart: Hair
@@ -1342,6 +1453,7 @@
           state: modern
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairMohawk
   bodyPart: Hair
@@ -1354,6 +1466,7 @@
           state: d
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairNitori
   bodyPart: Hair
@@ -1366,6 +1479,7 @@
           state: nitori
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairReversemohawk
   bodyPart: Hair
@@ -1378,6 +1492,7 @@
           state: reversemohawk
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairUnshavenMohawk
   bodyPart: Hair
@@ -1390,6 +1505,7 @@
           state: unshaven_mohawk
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairMulder
   bodyPart: Hair
@@ -1402,6 +1518,7 @@
           state: mulder
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairOdango
   bodyPart: Hair
@@ -1414,6 +1531,7 @@
           state: odango
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairOmbre
   bodyPart: Hair
@@ -1426,6 +1544,7 @@
           state: ombre
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairOneshoulder
   bodyPart: Hair
@@ -1438,6 +1557,7 @@
           state: oneshoulder
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairShortovereye
   bodyPart: Hair
@@ -1450,6 +1570,7 @@
           state: shortovereye
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairOxton
   bodyPart: Hair
@@ -1462,6 +1583,7 @@
           state: oxton
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairParted
   bodyPart: Hair
@@ -1474,6 +1596,7 @@
           state: parted
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairPart
   bodyPart: Hair
@@ -1486,6 +1609,7 @@
           state: part
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairKagami
   bodyPart: Hair
@@ -1498,6 +1622,7 @@
           state: kagami
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairPigtails
   bodyPart: Hair
@@ -1510,6 +1635,7 @@
           state: pigtails
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairPigtails2
   bodyPart: Hair
@@ -1522,6 +1648,7 @@
           state: pigtails2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairPixie
   bodyPart: Hair
@@ -1534,6 +1661,7 @@
           state: pixie
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairPompadour
   bodyPart: Hair
@@ -1546,6 +1674,7 @@
           state: pompadour
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBigpompadour
   bodyPart: Hair
@@ -1558,6 +1687,7 @@
           state: bigpompadour
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairPonytail
   bodyPart: Hair
@@ -1570,6 +1700,7 @@
           state: ponytail
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairPonytail2
   bodyPart: Hair
@@ -1582,6 +1713,7 @@
           state: ponytail2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairPonytail3
   bodyPart: Hair
@@ -1594,6 +1726,7 @@
           state: ponytail3
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairPonytail4
   bodyPart: Hair
@@ -1606,6 +1739,7 @@
           state: ponytail4
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairPonytail5
   bodyPart: Hair
@@ -1618,6 +1752,7 @@
           state: ponytail5
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairPonytail6
   bodyPart: Hair
@@ -1630,6 +1765,7 @@
           state: ponytail6
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairPonytail7
   bodyPart: Hair
@@ -1642,6 +1778,7 @@
           state: ponytail7
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairHighponytail
   bodyPart: Hair
@@ -1654,6 +1791,7 @@
           state: highponytail
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairStail
   bodyPart: Hair
@@ -1666,6 +1804,7 @@
           state: stail
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLongstraightponytail
   bodyPart: Hair
@@ -1678,6 +1817,7 @@
           state: longstraightponytail
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairCountry
   bodyPart: Hair
@@ -1690,6 +1830,7 @@
           state: country
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairFringetail
   bodyPart: Hair
@@ -1702,6 +1843,7 @@
           state: fringetail
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairSidetail
   bodyPart: Hair
@@ -1714,6 +1856,7 @@
           state: sidetail
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairSidetail2
   bodyPart: Hair
@@ -1726,6 +1869,7 @@
           state: sidetail2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairSidetail3
   bodyPart: Hair
@@ -1738,6 +1882,7 @@
           state: sidetail3
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairSidetail4
   bodyPart: Hair
@@ -1750,6 +1895,7 @@
           state: sidetail4
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairSpikyponytail
   bodyPart: Hair
@@ -1762,6 +1908,7 @@
           state: spikyponytail
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairPoofy
   bodyPart: Hair
@@ -1774,6 +1921,7 @@
           state: poofy
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairQuiff
   bodyPart: Hair
@@ -1786,6 +1934,7 @@
           state: quiff
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairRonin
   bodyPart: Hair
@@ -1798,6 +1947,7 @@
           state: ronin
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairShaved
   bodyPart: Hair
@@ -1810,6 +1960,7 @@
           state: shaved
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairShavedpart
   bodyPart: Hair
@@ -1822,6 +1973,7 @@
           state: shavedpart
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairShortbangs
   bodyPart: Hair
@@ -1834,6 +1986,7 @@
           state: shortbangs
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairA
   bodyPart: Hair
@@ -1846,6 +1999,7 @@
           state: a
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairShorthair2
   bodyPart: Hair
@@ -1858,6 +2012,7 @@
           state: shorthair2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairShorthair3
   bodyPart: Hair
@@ -1870,6 +2025,7 @@
           state: shorthair3
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairD
   bodyPart: Hair
@@ -1882,6 +2038,7 @@
           state: d
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairE
   bodyPart: Hair
@@ -1894,6 +2051,7 @@
           state: e
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairF
   bodyPart: Hair
@@ -1906,6 +2064,7 @@
           state: f
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairShorthairg
   bodyPart: Hair
@@ -1918,6 +2077,7 @@
           state: shorthairg
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHair80s
   bodyPart: Hair
@@ -1930,6 +2090,7 @@
           state: 80s
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairRosa
   bodyPart: Hair
@@ -1942,6 +2103,7 @@
           state: rosa
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairB
   bodyPart: Hair
@@ -1954,6 +2116,7 @@
           state: b
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairSidecut
   bodyPart: Hair
@@ -1966,6 +2129,7 @@
           state: sidecut
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairSkinhead
   bodyPart: Hair
@@ -1978,6 +2142,7 @@
           state: skinhead
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairProtagonist
   bodyPart: Hair
@@ -1990,6 +2155,7 @@
           state: protagonist
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairSpikey
   bodyPart: Hair
@@ -2002,6 +2168,7 @@
           state: spikey
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairSpiky
   bodyPart: Hair
@@ -2014,6 +2181,7 @@
           state: spiky
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairSpiky2
   bodyPart: Hair
@@ -2026,6 +2194,7 @@
           state: spiky2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairSpookyLong
   bodyPart: Hair
@@ -2038,6 +2207,7 @@
           state: spookylong
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairSwept
   bodyPart: Hair
@@ -2050,6 +2220,7 @@
           state: swept
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairSwept2
   bodyPart: Hair
@@ -2062,6 +2233,7 @@
           state: swept2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairBAlt
   bodyPart: Hair
@@ -2074,6 +2246,7 @@
           state: b_alt
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairThinning
   bodyPart: Hair
@@ -2086,6 +2259,7 @@
           state: thinning
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairThinningfront
   bodyPart: Hair
@@ -2098,6 +2272,7 @@
           state: thinningfront
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairThinningrear
   bodyPart: Hair
@@ -2110,6 +2285,7 @@
           state: thinningrear
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairTopknot
   bodyPart: Hair
@@ -2122,6 +2298,7 @@
           state: topknot
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairTressshoulder
   bodyPart: Hair
@@ -2134,6 +2311,7 @@
           state: tressshoulder
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairTrimmed
   bodyPart: Hair
@@ -2146,6 +2324,7 @@
           state: trimmed
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairTrimflat
   bodyPart: Hair
@@ -2158,6 +2337,7 @@
           state: trimflat
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairTwintail
   bodyPart: Hair
@@ -2170,6 +2350,7 @@
           state: twintail
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairTwoStrands
   bodyPart: Hair
@@ -2182,6 +2363,7 @@
           state: twostrands
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairUndercut
   bodyPart: Hair
@@ -2194,6 +2376,7 @@
           state: undercut
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairUndercutleft
   bodyPart: Hair
@@ -2206,6 +2389,7 @@
           state: undercutleft
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairUndercutright
   bodyPart: Hair
@@ -2218,6 +2402,7 @@
           state: undercutright
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairUnkept
   bodyPart: Hair
@@ -2230,6 +2415,7 @@
           state: unkept
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairUpdo
   bodyPart: Hair
@@ -2242,6 +2428,7 @@
           state: updo
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairVlong
   bodyPart: Hair
@@ -2254,6 +2441,7 @@
           state: vlong
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLongest
   bodyPart: Hair
@@ -2266,6 +2454,7 @@
           state: longest
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLongest2
   bodyPart: Hair
@@ -2278,6 +2467,7 @@
           state: longest2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairVeryshortovereyealternate
   bodyPart: Hair
@@ -2290,6 +2480,7 @@
           state: veryshortovereyealternate
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairVlongfringe
   bodyPart: Hair
@@ -2302,6 +2493,7 @@
           state: vlongfringe
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairVolaju
   bodyPart: Hair
@@ -2314,6 +2506,7 @@
           state: volaju
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairWisp
   bodyPart: Hair
@@ -2326,6 +2519,7 @@
           state: wisp
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairUneven
   bodyPart: Hair
@@ -2338,6 +2532,7 @@
           state: uneven
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairTailed
   bodyPart: Hair
@@ -2350,6 +2545,7 @@
           state: tailed
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairClassicLong2
   bodyPart: Hair
@@ -2362,6 +2558,7 @@
           state: classiclong2
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairClassicLong3
   bodyPart: Hair
@@ -2374,6 +2571,7 @@
           state: classiclong3
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairShaped
   bodyPart: Hair
@@ -2386,6 +2584,7 @@
           state: shaped
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLongBow
   bodyPart: Hair
@@ -2398,6 +2597,7 @@
           state: longbow
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairLongWithBangs
   bodyPart: Hair
@@ -2410,6 +2610,7 @@
         state: longwithbangs
       colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairOverEyePigtail
   bodyPart: Hair
@@ -2435,6 +2636,7 @@
           state: lowpigtails
         colorSource: HumanHairColor
   # Starlight end
+
 - type: marking
   id: HumanHairGatheredLow
   bodyPart: Hair

@@ -1,7 +1,6 @@
 using Content.Shared.Destructible.Thresholds;
 using Content.Shared.Eui;
 using Robust.Shared.Serialization;
-using Robust.Shared.Utility;
 using static Robust.Shared.Utility.SpriteSpecifier;
 
 namespace Content.Shared._Starlight.Railroading;
@@ -10,6 +9,11 @@ namespace Content.Shared._Starlight.Railroading;
 public sealed class CardSelectionEuiState : EuiStateBase
 {
     public List<Card> Cards { get; set; } = [];
+
+    /// <summary>
+    /// Game time the selection expires at, or null when this hand does not expire.
+    /// </summary>
+    public TimeSpan? Deadline { get; set; }
 }
 [NetSerializable, Serializable]
 public sealed class Card

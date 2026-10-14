@@ -2,7 +2,7 @@
   id: FelionoidHandPawMittensR
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_rHand:
@@ -16,7 +16,7 @@
   id: FelionoidHandPawMittensL
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_lHand:

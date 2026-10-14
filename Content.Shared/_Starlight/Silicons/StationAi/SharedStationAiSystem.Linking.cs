@@ -1,6 +1,7 @@
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Silicons.Laws.Components;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Silicons.StationAi;
 
 public abstract partial class SharedStationAiSystem

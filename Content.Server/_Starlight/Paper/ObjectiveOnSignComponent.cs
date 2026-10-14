@@ -49,7 +49,6 @@ public sealed partial class ObjectiveOnSignComponent : Component
     [DataField]
     public EntityWhitelist? Blacklist = null;
 
-
     /// <summary>
     /// is the faxable component kept? this is for admeme protos
     /// </summary>

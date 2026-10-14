@@ -3,7 +3,6 @@ using Robust.Shared;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Replays;
 using Robust.Shared.Serialization.Manager;
-using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Value;
 using Robust.Shared.Utility;
@@ -12,9 +11,9 @@ namespace Content.Server.GameTicking;
 
 public sealed partial class GameTicker
 {
-    [Dependency] private readonly IReplayRecordingManager _replays = default!;
-    [Dependency] private readonly IResourceManager _resourceManager = default!;
-    [Dependency] private readonly ISerializationManager _serialman = default!;
+    [Dependency] private IReplayRecordingManager _replays = default!;
+    [Dependency] private IResourceManager _resourceManager = default!;
+    [Dependency] private ISerializationManager _serialman = default!;
 
 
     private ISawmill _sawmillReplays = default!;

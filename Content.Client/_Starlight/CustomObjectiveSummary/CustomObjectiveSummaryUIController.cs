@@ -4,9 +4,9 @@ using Robust.Shared.Network;
 
 namespace Content.Client._Starlight.CustomObjectiveSummary;
 
-public sealed class CustomObjectiveSummaryUIController : UIController
+public sealed partial class CustomObjectiveSummaryUIController : UIController
 {
-    [Dependency] private readonly IClientNetManager _net = default!;
+    [Dependency] private IClientNetManager _net = default!;
 
     private CustomObjectiveSummaryWindow? _window;
 
@@ -17,9 +17,7 @@ public sealed class CustomObjectiveSummaryUIController : UIController
     }
 
     private void OnCustomObjectiveSummaryOpen(CustomObjectiveSummaryOpenMessage msg, EntitySessionEventArgs args)
-    {
-        OpenWindow();
-    }
+        => OpenWindow();
 
     public void OpenWindow()
     {

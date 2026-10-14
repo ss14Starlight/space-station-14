@@ -1,7 +1,7 @@
 - type: ghostTheme
   id: jellyfish
-  name: jellyfish
-  description: jellyfish
+  name: ghost-theme-jellyfish-name
+  description: ghost-theme-jellyfish-desc
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/jellyfish.rsi
@@ -12,3 +12,4 @@
     server: TRIESTEPORT.main
     tracker: Overall
     time: 36000 # 10h
+  category: NullLink

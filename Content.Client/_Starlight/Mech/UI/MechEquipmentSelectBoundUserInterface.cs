@@ -12,11 +12,10 @@ namespace Content.Client._Starlight.Mech.UI;
 public sealed partial class MechEquipmentSelectBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     private SimpleRadialMenu? _menu;
-    private static readonly Color SelectedOptionBackground = Palettes.Green.Element.WithAlpha(128);
-    private static readonly Color SelectedOptionHoverBackground = Palettes.Green.HoveredElement.WithAlpha(128);
+    private static readonly Color _selectedOptionBackground = Palettes.Green.Element.WithAlpha(128);
+    private static readonly Color _selectedOptionHoverBackground = Palettes.Green.HoveredElement.WithAlpha(128);
 
     private readonly SpriteSpecifier.Texture _noEquipIcon = new (new ResPath("/Textures/Interface/Default/blocked.png"));
-
 
     protected override void Open()
     {
@@ -53,11 +52,10 @@ public sealed partial class MechEquipmentSelectBoundUserInterface(EntityUid owne
         {
             IconSpecifier = RadialMenuIconSpecifier.With(_noEquipIcon),
             ToolTip = Loc.GetString("mech-equipment-select-none-popup"),
-            BackgroundColor = !currentEquipment.HasValue ? SelectedOptionBackground : null,
-            HoverBackgroundColor = !currentEquipment.HasValue ? SelectedOptionHoverBackground : null
+            BackgroundColor = !currentEquipment.HasValue ? _selectedOptionBackground : null,
+            HoverBackgroundColor = !currentEquipment.HasValue ? _selectedOptionHoverBackground : null
         };
         buttons.Add(noEquipOption);
-
 
         foreach (var equipment in installedEquipment)
         {
@@ -72,8 +70,8 @@ public sealed partial class MechEquipmentSelectBoundUserInterface(EntityUid owne
             {
                 IconSpecifier = RadialMenuIconSpecifier.With(equipment),
                 ToolTip = metadata.EntityName,
-                BackgroundColor = (equipment == currentEquipment) ? SelectedOptionBackground : null,
-                HoverBackgroundColor = (equipment == currentEquipment) ? SelectedOptionHoverBackground : null
+                BackgroundColor = (equipment == currentEquipment) ? _selectedOptionBackground : null,
+                HoverBackgroundColor = (equipment == currentEquipment) ? _selectedOptionHoverBackground : null
             };
             buttons.Add(option);
         }
@@ -82,12 +80,8 @@ public sealed partial class MechEquipmentSelectBoundUserInterface(EntityUid owne
     }
 
     private void SendToolDeselect(NetEntity? equipmentId)
-    {
-        SendPredictedMessage(new MechActiveEquipmentSelectMessage(null));
-    }
+        => SendPredictedMessage(new MechActiveEquipmentSelectMessage(null));
 
     private void SendToolSelect(NetEntity equipmentId)
-    {
-        SendPredictedMessage(new MechActiveEquipmentSelectMessage(equipmentId));
-    }
+        => SendPredictedMessage(new MechActiveEquipmentSelectMessage(equipmentId));
 }

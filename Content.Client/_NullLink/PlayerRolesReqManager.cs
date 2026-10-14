@@ -5,10 +5,10 @@ using Robust.Shared.Player;
 
 namespace Content.Client._NullLink;
 
-public sealed class PlayerRolesReqManager : SharedPlayerRolesReqManager
+public sealed partial class PlayerRolesReqManager : SharedPlayerRolesReqManager
 {
-    [Dependency] private readonly INullLinkPlayerRolesManager _playerRolesManager = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private INullLinkPlayerRolesManager _playerRolesManager = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     public override bool IsAllRolesAvailable(EntityUid uid)
         => _player.LocalEntity == uid

@@ -1,6 +1,5 @@
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Atmos.Piping.Components;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Timing;
@@ -9,10 +8,10 @@ using Robust.Shared.Utility;
 namespace Content.Server.Atmos.Piping.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class AtmosDeviceSystem : EntitySystem
+    public sealed partial class AtmosDeviceSystem : EntitySystem
     {
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
+        [Dependency] private IGameTiming _gameTiming = default!;
+        [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
 
         private float _timer;
 
@@ -130,6 +129,7 @@ namespace Content.Server.Atmos.Piping.EntitySystems
             _timer -= _atmosphereSystem.AtmosTime;
 
             var time = _gameTiming.CurTime;
+
             var ev = new AtmosDeviceUpdateEvent(_atmosphereSystem.AtmosTime, null, null);
             foreach (var device in _joinedDevices)
             {

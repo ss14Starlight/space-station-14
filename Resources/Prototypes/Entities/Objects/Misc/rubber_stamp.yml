@@ -21,9 +21,6 @@
     size: Tiny
   - type: StealTarget
     stealGroup: Stamp
-  - type: Tag # Starlight start
-    tags:
-    - Stamp # Starlight end
 
 - type: entity
   name: alternate rubber stamp
@@ -42,7 +39,7 @@
 
 - type: entity
   name: captain's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampCaptain
   categories: [ DoNotMap ]
   components:
@@ -55,7 +52,7 @@
 
 - type: entity
   name: CentComm rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampCentcom
   categories: [ DoNotMap ]
   components:
@@ -70,7 +67,7 @@
   name: chaplain's rubber stamp
   parent: RubberStampBase
   id: RubberStampChaplain
-  # categories: [ DoNotMap ] # SL removal
+  categories: [ DoNotMap ]
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-chaplain
@@ -87,17 +84,16 @@
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-lawyer
-    stampedColor: "#496130" # Starlight, Lawyer is green now
-    stampState: "paper_stamp-lawyer-sl" # Starlight
+    stampedColor: "#233D57"
+    stampState: "paper_stamp-lawyer"
   - type: Sprite
-    sprite: _Starlight/Objects/Misc/stamps.rsi  # Starlight
     state: stamp-lawyer
 
 - type: entity
   name: clown's rubber stamp
   parent: RubberStampBase
   id: RubberStampClown
-  # categories: [ DoNotMap ] # SL removal
+  categories: [ DoNotMap ]
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-clown
@@ -108,7 +104,7 @@
 
 - type: entity
   name: chief engineer's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampCE
   categories: [ DoNotMap ]
   components:
@@ -121,7 +117,7 @@
 
 - type: entity
   name: chief medical officer's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampCMO
   categories: [ DoNotMap ]
   components:
@@ -134,7 +130,7 @@
 
 - type: entity
   name: head of personnel's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampHop
   categories: [ DoNotMap ]
   components:
@@ -147,7 +143,7 @@
 
 - type: entity
   name: head of security's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampHos
   categories: [ DoNotMap ]
   components:
@@ -162,7 +158,7 @@
   name: mime's rubber stamp
   parent: RubberStampBase
   id: RubberStampMime
-  # categories: [ DoNotMap ] # SL removal
+  categories: [ DoNotMap ]
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-mime
@@ -174,7 +170,7 @@
 
 - type: entity
   name: quartermaster's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampQm
   categories: [ DoNotMap ]
   components:
@@ -187,7 +183,7 @@
 
 - type: entity
   name: research director's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseCommandContraband ] # Blimpuf
   id: RubberStampRd
   categories: [ DoNotMap ]
   components:
@@ -212,7 +208,7 @@
 
 - type: entity
   name: syndicate rubber stamp
-  parent: [RubberStampBase, BaseMinorContraband] #SL Edit Syndie > Minor Contra
+  parent: [RubberStampBase, BaseMinorContraband] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: RubberStampSyndicate
   categories: [ DoNotMap ]
   components:
@@ -227,7 +223,7 @@
 
 - type: entity
   name: warden's rubber stamp
-  parent: [RubberStampBase, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseSecurityContraband ] # Blimpuf
   id: RubberStampWarden
   categories: [ DoNotMap ]
   components:
@@ -264,7 +260,7 @@
 
 - type: entity
   name: detective's rubber stamp
-  parent: [RubberStampBase, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseSecurityContraband ] # Blimpuf
   id: RubberStampDetective
   categories: [ DoNotMap ]
   components:
@@ -279,7 +275,7 @@
   name: psychologist's rubber stamp
   parent: RubberStampBase
   id: RubberStampPsychologist
-  # categories: [ DoNotMap ] # SL removal
+  categories: [ DoNotMap ]
   description: A rubber stamp for stamping important documents. Prescribe those treatments!
   components:
   - type: Stamp

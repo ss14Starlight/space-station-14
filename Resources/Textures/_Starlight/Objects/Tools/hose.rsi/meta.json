@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based Copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "Made by AegisShield (Discord: aegis_shield) for Starlight"
+    },
+    {
+      "name": "inhand-left",
+      "copyright": "Made by AegisShield (Discord: aegis_shield) for Starlight",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "copyright": "Made by AegisShield (Discord: aegis_shield) for Starlight",
+      "directions": 4
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Original by Conflee for Starlight, edit by OJG for Starlight",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "copyright": "done by OrangeJuiceGoose for Starlight",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4,
+            "copyright": "done by OrangeJuiceGoose for Starlight",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4,
+            "copyright": "done by OrangeJuiceGoose for Starlight",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "equipped-BACKPACK",
+            "directions": 4,
+            "copyright": "done by OrangeJuiceGoose for Starlight",
+			"license": "CC-BY-SA-3.0"
+        }
+    ]
+}

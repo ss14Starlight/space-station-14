@@ -6,7 +6,11 @@ namespace Content.Shared._Starlight.Antags.TerrorSpider;
 
 #region Events
 
-public sealed partial class EggInjectionEvent : EntityTargetActionEvent;
+public sealed partial class EggInjectionEvent : EntityTargetActionEvent
+{
+    [DataField]
+    public int InjectionDelay = 6;
+}
 
 [Serializable, NetSerializable]
 public sealed partial class EggInjectionDoAfterEvent : SimpleDoAfterEvent;

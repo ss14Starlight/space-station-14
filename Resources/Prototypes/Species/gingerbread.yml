@@ -35,83 +35,83 @@
 - type: humanoidBaseSprite
   id: MobGingerbreadHead
   baseSprite:
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi # Starlight
     state: head_m
 
 - type: humanoidBaseSprite
   id: MobGingerbreadHeadMale
   baseSprite:
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi # Starlight
     state: head_m
 
 - type: humanoidBaseSprite
   id: MobGingerbreadHeadFemale
   baseSprite:
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi # Starlight
     state: head_f
 
 - type: humanoidBaseSprite
   id: MobGingerbreadTorso
   baseSprite:
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi # Starlight
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobGingerbreadTorsoMale
   baseSprite:
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi # Starlight
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobGingerbreadTorsoFemale
   baseSprite:
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi # Starlight
     state: torso_f
 
 - type: humanoidBaseSprite
   id: MobGingerbreadLLeg
   baseSprite:
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi # Starlight
     state: l_leg
 
 - type: humanoidBaseSprite
   id: MobGingerbreadLHand
   baseSprite:
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi # Starlight
     state: l_hand
 
 - type: humanoidBaseSprite
   id: MobGingerbreadLArm
   baseSprite:
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi # Starlight
     state: l_arm
 
 - type: humanoidBaseSprite
   id: MobGingerbreadLFoot
   baseSprite:
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi # Starlight
     state: l_foot
 
 - type: humanoidBaseSprite
   id: MobGingerbreadRLeg
   baseSprite:
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi # Starlight
     state: r_leg
 
 - type: humanoidBaseSprite
   id: MobGingerbreadRHand
   baseSprite:
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi # Starlight
     state: r_hand
 
 - type: humanoidBaseSprite
   id: MobGingerbreadRArm
   baseSprite:
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi # Starlight
     state: r_arm
 
 - type: humanoidBaseSprite
   id: MobGingerbreadRFoot
   baseSprite:
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi # Starlight
     state: r_foot

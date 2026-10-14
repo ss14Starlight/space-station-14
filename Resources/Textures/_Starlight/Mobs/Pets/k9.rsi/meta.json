@@ -1,0 +1,31 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "k9-brown",
+            "copyright": "Created by ya314a (GitHub), modified by xxhotgirl69 (GitHub).",
+            "directions": 4
+        },
+        {
+            "name": "k9-black",
+            "copyright": "Created by ya314a (GitHub), modified by xxhotgirl69 (GitHub).",
+            "directions": 4
+        },
+        {
+            "name": "k9-tan",
+            "copyright": "Created by ya314a (GitHub), modified by xxhotgirl69 (GitHub).",
+            "directions": 4
+        },
+        {
+            "name": "k9-grey",
+            "copyright": "Created by ya314a (GitHub), modified by xxhotgirl69 (GitHub).",
+            "directions": 4
+        }
+    ]
+}

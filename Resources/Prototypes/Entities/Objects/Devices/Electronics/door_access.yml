@@ -90,7 +90,7 @@
 
 - type: entity
   parent: DoorElectronics
-  id: DoorElectronicsInternalAffairs # Starlight
+  id: DoorElectronicsInternalAffairs # Starlight: renamed from DoorElectronicsLawyer
   suffix: Internal Affairs, Locked # Starlight
   components:
   - type: AccessReader
@@ -226,7 +226,7 @@
   suffix: Security, Locked
   components:
   - type: AccessReader
-    access: [["Security"], ["Cadet"]] # Starlight: add cadet
+    access: [["Security"]]
 
 - type: entity
   parent: DoorElectronics
@@ -271,7 +271,7 @@
 
 # Syndicate
 - type: entity
-  parent: BaseDoorElectronicsSyndicate # Starlight edit
+  parent: BaseDoorElectronicsSyndicate # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: DoorElectronicsNukeop
   suffix: Nukeop, Locked
   components:
@@ -279,7 +279,7 @@
     access: [["NuclearOperative"]]
 
 - type: entity
-  parent: BaseDoorElectronicsSyndicate # Starlight edit
+  parent: BaseDoorElectronicsSyndicate # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: DoorElectronicsSyndicateAgent
   suffix: SyndicateAgent, Locked
   components:
@@ -288,7 +288,7 @@
 
 # Misc
 - type: entity
-  parent: BaseDoorElectronicsCentComm # Starlight edit
+  parent: BaseDoorElectronicsCentComm # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: DoorElectronicsCentralCommand
   suffix: CentralCommand, Locked
   components:
@@ -320,7 +320,7 @@
     access: [["Security"], ["Command"]]
 
 - type: entity
-  parent: BaseDoorElectronicsXenoborg
+  parent: BaseDoorElectronicsXenoborg # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: DoorElectronicsXenoborg
   suffix: Xenoborg, Locked
   components:

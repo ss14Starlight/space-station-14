@@ -1,5 +1,5 @@
+using Content.Client._Starlight.UserInterface; // Starlight
 using Content.Shared.StationRecords;
-using Robust.Client.UserInterface;
 
 namespace Content.Client.StationRecords;
 
@@ -16,7 +16,7 @@ public sealed class GeneralStationRecordConsoleBoundUserInterface : BoundUserInt
     {
         base.Open();
 
-        _window = this.CreateWindow<GeneralStationRecordConsoleWindow>();
+        _window = this.CreatePopOutableWindow<GeneralStationRecordConsoleWindow>(EntMan); // Starlight: popout support
         _window.OnKeySelected += key =>
             SendMessage(new SelectStationRecord(key));
         _window.OnFiltersChanged += (type, filterValue) =>
@@ -32,5 +32,14 @@ public sealed class GeneralStationRecordConsoleBoundUserInterface : BoundUserInt
             return;
 
         _window?.UpdateState(cast);
+    }
+
+    // Starlight: close the popout if exists
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        if (disposing)
+            _window?.DisposePopOut();
     }
 }

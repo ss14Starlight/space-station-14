@@ -12,14 +12,14 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
-public sealed class ShadowSnareSystem : EntitySystem
+public sealed partial class ShadowSnareSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedEnsnareableSystem _ensnare = default!;
-    [Dependency] private readonly SharedFlashSystem _flash = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly PoweredLightSystem _poweredLightSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private SharedEnsnareableSystem _ensnare = default!;
+    [Dependency] private SharedFlashSystem _flash = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private PoweredLightSystem _poweredLightSystem = default!;
 
     public override void Initialize()
     {

@@ -1,8 +1,8 @@
 - type: marking
   id: CatEars
-  bodyPart: Special
-  markingCategory: Special
-  speciesRestriction: [Human]
+  bodyPart: HeadTop #Starlight Edit
+  markingCategory: HeadTop #Starlight Edit
+  speciesRestriction: [Human, NeoHuman, Neocyte] # Starlight
   coloring:
     default:
       type:
@@ -33,7 +33,7 @@
   id: CatTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, NeoHuman, Neocyte] # Starlight
   coloring:
     default:
       type:

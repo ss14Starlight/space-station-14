@@ -8,7 +8,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Access.Components;
 
 [RegisterComponent, NetworkedComponent]
-[AutoGenerateComponentState]
+[AutoGenerateComponentState(true)]
 [Access(typeof(SharedIdCardSystem), typeof(SharedPdaSystem), typeof(SharedAgentIdCardSystem), Other = AccessPermissions.ReadWrite)]
 public sealed partial class IdCardComponent : Component
 {
@@ -31,7 +31,7 @@ public sealed partial class IdCardComponent : Component
     {
         set => _jobTitle = value;
         // Starlight: avoid Loc.GetString("") spam
-        get => _jobTitle ?? (string.IsNullOrEmpty(JobTitle) ? null : Loc.GetString(JobTitle));
+        get => _jobTitle ?? (string.IsNullOrEmpty(JobTitle) ? string.Empty : Loc.GetString(JobTitle));
     }
 
     /// <summary>

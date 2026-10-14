@@ -21,7 +21,6 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction FocusOOC = "FocusOOCWindow";
         public static readonly BoundKeyFunction FocusAdminChat = "FocusAdminChatWindow";
         public static readonly BoundKeyFunction FocusDeadChat = "FocusDeadChatWindow";
-        public static readonly BoundKeyFunction FocusCollectiveMindChat = "FocusCollectiveMindChatWindow";
         public static readonly BoundKeyFunction FocusConsoleChat = "FocusConsoleChatWindow";
         public static readonly BoundKeyFunction CycleChatChannelForward = "CycleChatChannelForward";
         public static readonly BoundKeyFunction CycleChatChannelBackward = "CycleChatChannelBackward";
@@ -136,7 +135,9 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction MappingCancelEraseDecal = "MappingCancelEraseDecal";
         public static readonly BoundKeyFunction MappingOpenContextMenu = "MappingOpenContextMenu";
 
-        // 🌟Starlight🌟
+        // Starlight Begin
         public static readonly BoundKeyFunction Jump = "Jump";
+        public static readonly BoundKeyFunction LatchStruggle = "LatchStruggle";
+        // Starlight End
     }
 }

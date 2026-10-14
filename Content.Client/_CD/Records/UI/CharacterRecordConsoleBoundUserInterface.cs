@@ -9,9 +9,9 @@ using Robust.Client.Player;
 namespace Content.Client._CD.Records.UI;
 
 [UsedImplicitly]
-public sealed class CharacterRecordConsoleBoundUserInterface : BoundUserInterface
+public sealed partial class CharacterRecordConsoleBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
     private readonly AccessReaderSystem _accessReader;
 
     [ViewVariables] private CharacterRecordViewer? _window;

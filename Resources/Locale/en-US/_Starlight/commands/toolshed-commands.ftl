@@ -69,10 +69,6 @@ command-description-vector2dataconstructor-add =
     Add a new Vector2 to the existing definition. Call vector2dataconstructor:new before using this.
 command-description-vector2dataconstructor-clean =
     Clean up an unused Vector2 list definition on the entity.
-command-description-job-set =
-    Changes the job of the piped entity.
-command-description-job-delset =
-    Changes the job of the piped entity by deleting then setting the job, so that the briefing plays.
 command-description-ccomp-ensure =
     Ensures that all clients add the component with the specified name to an entity, assuming it exists.
 command-description-ccomp-write =
@@ -261,3 +257,13 @@ command-description-markup-cleardesc =
     Clears all additional lines of markup text from the piped entity's description.
 command-description-markup-listdesc =
     Lists all description markup texts on the piped entity and their IDs.
+command-description-atmos-add =
+    Adds an atmosphere to a piped grid.
+command-description-atmos-fix =
+    Fix the atmosphere of a piped grid.
+command-description-atmos-rejoin =
+    Attempt to make a piped atmospherics device rejoin an atmosphere.
+command-description-jobs-makeunlimited =
+    Make a job slot unlimited.
+command-description-jobs-makelimited =
+    Make a job slot limited. Allows resetting to 0, or to whatever the midround count would be.

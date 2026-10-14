@@ -23,20 +23,20 @@ namespace Content.Shared.Polymorph.Systems;
 /// Handles disguise validation, disguising and revealing.
 /// Most appearance copying is done clientside.
 /// </summary>
-public abstract class SharedChameleonProjectorSystem : EntitySystem
+public abstract partial class SharedChameleonProjectorSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ISerializationManager _serMan = default!;
-    [Dependency] private readonly MetaDataSystem _meta = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
-    [Dependency] private readonly ItemToggleSystem _toggle = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private ISerializationManager _serMan = default!;
+    [Dependency] private MetaDataSystem _meta = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] private ItemToggleSystem _toggle = default!;
 
     public override void Initialize()
     {
@@ -46,6 +46,7 @@ public abstract class SharedChameleonProjectorSystem : EntitySystem
         SubscribeLocalEvent<ChameleonDisguiseComponent, DamageChangedEvent>(OnDisguiseDamaged);
         SubscribeLocalEvent<ChameleonDisguiseComponent, InsertIntoEntityStorageAttemptEvent>(OnDisguiseInsertAttempt);
         SubscribeLocalEvent<ChameleonDisguiseComponent, ComponentShutdown>(OnDisguiseShutdown);
+        SubscribeLocalEvent<ChameleonDisguiseComponent, BeforeGettingEquippedHandEvent>(OnDisguiseBeforeEquippedHand);
 
         SubscribeLocalEvent<ChameleonDisguisedComponent, EntGotInsertedIntoContainerMessage>(OnDisguisedInserted);
 
@@ -84,6 +85,12 @@ public abstract class SharedChameleonProjectorSystem : EntitySystem
     private void OnDisguiseShutdown(Entity<ChameleonDisguiseComponent> ent, ref ComponentShutdown args)
     {
         _actions.RemoveProvidedActions(ent.Comp.User, ent.Comp.Projector);
+    }
+
+    private void OnDisguiseBeforeEquippedHand(Entity<ChameleonDisguiseComponent> ent, ref BeforeGettingEquippedHandEvent args)
+    {
+        args.Cancelled = true;
+        TryReveal(ent.Comp.User);
     }
 
     #endregion
@@ -332,7 +339,7 @@ public abstract class SharedChameleonProjectorSystem : EntitySystem
     /// <summary>
     /// Try to get a single component from the source entity/prototype.
     /// </summary>
-    private bool GetSrcComp<T>(ChameleonDisguiseComponent comp, [NotNullWhen(true)] out T? src) where T : Component, new()
+    protected bool GetSrcComp<T>(ChameleonDisguiseComponent comp, [NotNullWhen(true)] out T? src) where T : Component, new()
     {
         if (TryComp(comp.SourceEntity, out src))
             return true;
@@ -344,6 +351,29 @@ public abstract class SharedChameleonProjectorSystem : EntitySystem
             return false;
 
         return proto.TryGetComponent(out src, EntityManager.ComponentFactory);
+    }
+
+    /// <summary>
+    /// Try to get a single component, paired with its owning entity, from the source entity/prototype.
+    /// </summary>
+    protected bool GetSrcEntity<T>(ChameleonDisguiseComponent comp, out Entity<T?> src) where T : Component, new()
+    {
+        if (TryComp<T>(comp.SourceEntity, out var liveComp))
+        {
+            src = (comp.SourceEntity, liveComp);
+            return true;
+        }
+
+        if (comp.SourceProto is { } protoId
+            && ProtoMan.TryIndex<EntityPrototype>(protoId, out var proto)
+            && proto.TryComp<T>(out var protoComp, EntityManager.ComponentFactory))
+        {
+            src = (EntityUid.Invalid, protoComp);
+            return true;
+        }
+
+        src = default;
+        return false;
     }
 }
 

@@ -4,10 +4,6 @@
   equipment:
     jumpsuit: MagistrateUniformSuit
 
-- type: loadout
-  id: MagistrateJumpsuitLongCoat
-  equipment:
-    jumpsuit: MagistrateUniformSuitLongcoat
 
 - type: loadout
   id: MagistrateJumpskirt
@@ -25,17 +21,32 @@
   equipment:
     gloves: ClothingHandsGlovesColorBlack
 
+- type: loadout
+  id: MagistratePaperworkGloves
+  equipment:
+    gloves: ClothingHandsGlovesHop
+
 #Outerwear
 - type: loadout
   id: MagistrateRobes
   equipment:
-    outerClothing: ClothingOuterRobesJudge
+    outerClothing: ClothingOuterRobesMagistrate
+
+- type: loadout
+  id: MagistrateLongcoat
+  equipment:
+    outerClothing: ClothingOuterCoatMagi
 
 #Headwear
 - type: loadout
   id: MagistrateHeadPwig
   equipment:
-    outerClothing: ClothingHeadHatPwig
+    head: ClothingHeadHatPwig
+
+- type: loadout
+  id: MagistrateHeadBeret
+  equipment:
+    head: ClothingHeadHatBeretMagistrate
 
 #Eyewear
 - type: loadout

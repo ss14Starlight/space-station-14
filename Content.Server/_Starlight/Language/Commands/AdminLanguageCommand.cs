@@ -5,8 +5,6 @@ using Content.Shared._Starlight.Language.Components;
 using Content.Shared._Starlight.Language.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
-using Robust.Shared.Toolshed.Syntax;
-using Robust.Shared.Toolshed.TypeParsers;
 using System.Linq;
 
 namespace Content.Server._Starlight.Language.Commands;

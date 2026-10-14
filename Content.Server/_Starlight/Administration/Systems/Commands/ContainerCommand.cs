@@ -4,7 +4,7 @@ using Content.Shared.Administration;
 using Robust.Shared.Containers;
 using Robust.Shared.Toolshed;
 
-namespace Content.Server._Starlight.Administration.Commands;
+namespace Content.Server._Starlight.Administration.Systems.Commands;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Fun)]
 public sealed class ContainerCommand : ToolshedCommand

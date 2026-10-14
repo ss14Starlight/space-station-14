@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._ST.Interaction;
 using Content.Shared._FarHorizons.Util;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
@@ -30,6 +31,7 @@ using Content.Shared.Timing;
 using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Content.Shared.Wall;
+using Content.Shared.Inventory.VirtualItem; // Stellar - interaction particles
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.Input;
@@ -54,27 +56,27 @@ namespace Content.Shared.Interaction
     [UsedImplicitly]
     public abstract partial class SharedInteractionSystem : EntitySystem
     {
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly IMapManager _mapManager = default!;
-        [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly ISharedChatManager _chat = default!;
-        [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-        [Dependency] private readonly EntityLookupSystem _lookup = default!;
-        [Dependency] private readonly SharedHandsSystem _hands = default!;
-        [Dependency] private readonly InventorySystem _inventory = default!;
-        [Dependency] private readonly PullingSystem _pullSystem = default!;
-        [Dependency] private readonly RotateToFaceSystem _rotateToFaceSystem = default!;
-        [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-        [Dependency] private readonly SharedMapSystem _map = default!;
-        [Dependency] private readonly SharedPhysicsSystem _broadphase = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
-        [Dependency] private readonly SharedVerbSystem _verbSystem = default!;
-        [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-        [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-        [Dependency] private readonly SharedStrippableSystem _strippable = default!;
-        [Dependency] private readonly SharedPlayerRateLimitManager _rateLimit = default!;
-        [Dependency] private readonly TagSystem _tagSystem = default!;
-        [Dependency] private readonly UseDelaySystem _useDelay = default!;
+        [Dependency] private IGameTiming _gameTiming = default!;
+        [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+        [Dependency] private ISharedChatManager _chat = default!;
+        [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
+        [Dependency] private EntityLookupSystem _lookup = default!;
+        [Dependency] private SharedHandsSystem _hands = default!;
+        [Dependency] private InventorySystem _inventory = default!;
+        [Dependency] private PullingSystem _pullSystem = default!;
+        [Dependency] private RotateToFaceSystem _rotateToFaceSystem = default!;
+        [Dependency] private SharedContainerSystem _containerSystem = default!;
+        [Dependency] private SharedMapSystem _map = default!;
+        [Dependency] private SharedPhysicsSystem _broadphase = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
+        [Dependency] private SharedVerbSystem _verbSystem = default!;
+        [Dependency] private SharedPopupSystem _popupSystem = default!;
+        [Dependency] private SharedUserInterfaceSystem _ui = default!;
+        [Dependency] private SharedStrippableSystem _strippable = default!;
+        [Dependency] private SharedPlayerRateLimitManager _rateLimit = default!;
+        [Dependency] private TagSystem _tagSystem = default!;
+        [Dependency] private UseDelaySystem _useDelay = default!;
+        [Dependency] private INetManager _net = default!; // Stellar - interaction particles
 
         private EntityQuery<IgnoreUIRangeComponent> _ignoreUiRangeQuery;
         private EntityQuery<FixturesComponent> _fixtureQuery;
@@ -180,11 +182,33 @@ namespace Content.Shared.Interaction
                     return;
                 }
             }
+            // Starlight - start
+            if (!_ui.TryGetInterfaceData(ent.Owner, ev.UiKey, out var interfaceData))
+            {
+                ev.Cancel();
+                return;
+            }
 
-            var range = _ui.GetUiRange(ev.Target, ev.UiKey);
+            var range = interfaceData.InteractionRange;
 
-            // As long as range>0, the UI frame updates should have auto-closed the UI if it is out of range.
-            DebugTools.Assert(range <= 0 || UiRangeCheck(ev.Actor, ev.Target, range));
+            if (range > 0)
+            {
+                // Use the same range overrides as the periodic UI checks, including remote control.
+                var checkRange = new BoundUserInterfaceCheckRangeEvent(
+                    (ev.Target, Transform(ev.Target)),
+                    ev.UiKey,
+                    interfaceData,
+                    (ev.Actor, Transform(ev.Actor)));
+                RaiseLocalEvent(ev.Target, ref checkRange, true);
+
+                if (checkRange.Result != BoundUserInterfaceRangeResult.Pass
+                    && !_ignoreUiRangeQuery.HasComp(ev.Actor))
+                {
+                    ev.Cancel();
+                    return;
+                }
+            }
+            // Starlight - end
 
             if (range <= 0 && !IsAccessible(ev.Actor, ev.Target))
             {
@@ -278,19 +302,27 @@ namespace Content.Shared.Interaction
                 return true;
             }
 
-            //is this user trying to pull themself?
-            if (userEntity.Value == uid)
-                return false;
-
-            if (Deleted(uid))
-                return false;
-
-            if (!InRangeUnobstructed(userEntity.Value, uid, popup: true))
-                return false;
-
-            _pullSystem.TogglePull(uid, userEntity.Value);
+            TryPullObject(userEntity.Value, uid);
             return false;
         }
+
+        #region Starlight
+        /// <summary>
+        ///     Attempts to toggle pulling <paramref name="uid"/> with <paramref name="user"/>.
+        /// </summary>
+        /// <param name="user">The entity initiating the pull.</param>
+        /// <param name="uid">The entity to pull.</param>
+        /// <remarks>
+        ///     Pulling is skipped for self-pulls, deleted targets, and targets outside unobstructed interaction range.
+        /// </remarks>
+        public void TryPullObject(EntityUid user, EntityUid uid)
+        {
+            if (user == uid || Deleted(uid) || !InRangeUnobstructed(user, uid, popup: true))
+                return;
+
+            _pullSystem.TogglePull(uid, user);
+        }
+        #endregion
 
         /// <summary>
         ///     Handles the event were a client uses an item in their inventory or in their hands, either by
@@ -402,10 +434,15 @@ namespace Content.Shared.Interaction
             bool checkAccess = true,
             bool checkCanUse = true)
         {
-            if (_relayQuery.TryComp(user, out var relay) && relay.RelayEntity is not null)
+            // Starlight: Activatable UIs must remain owned by the controller. Mouse interaction uses this path,
+            // while the direct activation key already bypasses the relay and uses the controller as the actor
+            if ((target is not { } activatableTarget || !_uiQuery.HasComp(activatableTarget))
+                && _relayQuery.TryComp(user, out var relay)
+                && relay.RelayEntity is not null)
             {
                 // TODO this needs to be handled better. This probably bypasses many complex can-interact checks in weird roundabout ways.
-                if (_actionBlockerSystem.CanInteract(user, target))
+                // Starlight: controller blockers are checked on the source and target checks run for the relay body
+                if (_actionBlockerSystem.CanInteract(user, null))
                 {
                     UserInteraction(relay.RelayEntity.Value,
                         coordinates,
@@ -535,7 +572,7 @@ namespace Content.Shared.Interaction
             RaiseLocalEvent(user, userMessage, true);
 
             _adminLogger.Add(LogType.InteractHand, LogImpact.Low, $"{user} interacted with {target}");
-            DoContactInteraction(user, target, message);
+            DoContactInteraction(user, target, null, true, message, interactionParticles: message.InteractionParticle); // Stellar - interaction particles
             if (message.Handled || userMessage.Handled)
                 return;
 
@@ -587,7 +624,7 @@ namespace Content.Shared.Interaction
                 RaiseLocalEvent(target.Value, rangedMsg, true);
 
                 // We contact the USED entity, but not the target.
-                DoContactInteraction(user, used, rangedMsg);
+                DoContactInteraction(user, used, null, true, rangedMsg); // Stellar - interaction particles
                 if (rangedMsg.Handled)
                     return;
             }
@@ -921,7 +958,7 @@ namespace Content.Shared.Interaction
                     ignoreAnchored = angleDelta < wallMount.Arc / 2 || Math.Tau - angleDelta < wallMount.Arc / 2;
                 }
 
-                if (ignoreAnchored && _mapManager.TryFindGridAt(targetCoords, out var gridUid, out var grid))
+                if (ignoreAnchored && _map.TryFindGridAt(targetCoords, out var gridUid, out var grid))
                     ignored.UnionWith(_map.GetAnchoredEntities((gridUid, grid), targetCoords));
             }
 
@@ -1027,7 +1064,7 @@ namespace Content.Shared.Interaction
                 return false;
 
             // We contact the USED entity, but not the target.
-            DoContactInteraction(user, used, ev);
+            DoContactInteraction(user, used, null, true, ev); // Stellar - interaction particles
             return ev.Handled;
         }
 
@@ -1085,8 +1122,8 @@ namespace Content.Shared.Interaction
             var userInteractUsingEvent = new UserInteractUsingEvent(user, used, target, clickLocation);
             RaiseLocalEvent(user, userInteractUsingEvent, true);
 
-            DoContactInteraction(user, used, interactUsingEvent);
-            DoContactInteraction(user, target, interactUsingEvent);
+            DoContactInteraction(user, used, null, true, interactUsingEvent, interactionParticles: interactUsingEvent.InteractionParticle); // Stellar - interaction particles
+            DoContactInteraction(user, target, used, true, interactUsingEvent, interactionParticles: interactUsingEvent.InteractionParticle); // Stellar - interaction particles
             // Contact interactions are currently only used for forensics, so we don't raise used -> target
             if (interactUsingEvent.Handled || userInteractUsingEvent.Handled)
                 return true;
@@ -1118,10 +1155,10 @@ namespace Content.Shared.Interaction
 
             var afterInteractEvent = new AfterInteractEvent(user, used, target, clickLocation, canReach);
             RaiseLocalEvent(used, afterInteractEvent);
-            DoContactInteraction(user, used, afterInteractEvent);
+            DoContactInteraction(user, used, null, true, afterInteractEvent, interactionParticles: afterInteractEvent.SpawnInteractionParticles); // Stellar/ES Interaction particles
             if (canReach)
             {
-                DoContactInteraction(user, target, afterInteractEvent);
+                DoContactInteraction(user, target, used, true, afterInteractEvent, interactionParticles: afterInteractEvent.SpawnInteractionParticles); // Stellar/ES Interaction particles
                 // Contact interactions are currently only used for forensics, so we don't raise used -> target
             }
 
@@ -1135,10 +1172,10 @@ namespace Content.Shared.Interaction
             var afterInteractUsingEvent = new AfterInteractUsingEvent(user, used, target, clickLocation, canReach);
             RaiseLocalEvent(target.Value, afterInteractUsingEvent);
 
-            DoContactInteraction(user, used, afterInteractUsingEvent);
+            DoContactInteraction(user, used, null, true, afterInteractUsingEvent, interactionParticles: afterInteractUsingEvent.SpawnInteractionParticles); // Stellar/ES Interaction particles
             if (canReach)
             {
-                DoContactInteraction(user, target, afterInteractUsingEvent);
+                DoContactInteraction(user, target, used, true, afterInteractUsingEvent, interactionParticles: afterInteractUsingEvent.SpawnInteractionParticles); // Stellar/ES Interaction particles
                 // Contact interactions are currently only used for forensics, so we don't raise used -> target
             }
 
@@ -1178,15 +1215,21 @@ namespace Content.Shared.Interaction
             bool checkDeletion = true)
         {
             if (checkDeletion && (IsDeleted(user) || IsDeleted(used)))
+            {
                 return false;
+            }
 
             DebugTools.Assert(!IsDeleted(user) && !IsDeleted(used));
             _delayQuery.TryComp(used, out var delayComponent);
             if (checkUseDelay && delayComponent != null && _useDelay.IsDelayed((used, delayComponent)))
+            {
                 return false;
+            }
 
             if (checkCanInteract && !_actionBlockerSystem.CanInteract(user, used))
+            {
                 return false;
+            }
 
             if (checkAccess && !InRangeUnobstructed(user, used))
                 return false;
@@ -1201,7 +1244,7 @@ namespace Content.Shared.Interaction
             RaiseLocalEvent(used, activateMsg, true);
             if (activateMsg.Handled)
             {
-                DoContactInteraction(user, used);
+                DoContactInteraction(user, used, null, true, interactionParticles: activateMsg.InteractionParticle); // Stellar - Interaction particles
                 if (!activateMsg.WasLogged)
                     _adminLogger.Add(LogType.InteractActivate, LogImpact.Low, $"{ToPrettyString(user):user} activated {ToPrettyString(used):used}");
 
@@ -1216,7 +1259,7 @@ namespace Content.Shared.Interaction
             if (!userEv.Handled)
                 return false;
 
-            DoContactInteraction(user, used);
+            DoContactInteraction(user, used, null, true); // ES - Interaction particles
             // Still need to call this even without checkUseDelay in case this gets relayed from Activate.
             if (delayComponent != null)
                 _useDelay.TryResetDelay(used, component: delayComponent);
@@ -1257,7 +1300,7 @@ namespace Content.Shared.Interaction
             RaiseLocalEvent(used, useMsg, true);
             if (useMsg.Handled)
             {
-                DoContactInteraction(user, used, useMsg);
+                DoContactInteraction(user, used, null, true, useMsg, interactionParticleType: StellarInteractionParticleType.InHand); // ES - Interaction particles
                 if (delayComponent != null && useMsg.ApplyDelay)
                     _useDelay.TryResetDelay((used, delayComponent));
                 return true;
@@ -1443,7 +1486,14 @@ namespace Content.Shared.Interaction
         /// <summary>
         ///     Simple convenience function to raise contact events (disease, forensics, etc).
         /// </summary>
-        public void DoContactInteraction(EntityUid uidA, EntityUid? uidB, HandledEntityEventArgs? args = null)
+        /// <param name="uidA">The entity doing the contacting.</param>
+        /// <param name="uidB">The entity being contacted.</param>
+        /// <param name="used">The entity used to contact <see cref="uidB"/>.</param>
+        /// <param name="predicted">Whether this interaction is predicted. <see cref="uidA"/> is assumed to be the client entity.</param>
+        /// <param name="args">Optional handleable entity event to check.</param>
+        /// <param name="interactionParticles">Whether to spawn interaction particles on this contact.</param>
+        /// <param name="interactionParticleType">The type of interaction particle to spawn for this event.</param>
+        public void DoContactInteraction(EntityUid uidA, EntityUid? uidB, EntityUid? used, bool predicted, HandledEntityEventArgs? args = null, bool interactionParticles = true, StellarInteractionParticleType interactionParticleType = StellarInteractionParticleType.Use) // Stellar/ES - interaction particles
         {
             if (uidB == null || args?.Handled == false)
                 return;
@@ -1463,12 +1513,58 @@ namespace Content.Shared.Interaction
 
             ev.Other = uidA;
             RaiseLocalEvent(uidB.Value, ev);
-        }
 
+            // Begin Stellar/ES Additions - Interaction particles
+            if (!interactionParticles || HasComp<VirtualItemComponent>(uidB))
+                return;
+
+            #region Starlight
+            var particleType = interactionParticleType; // Starlight
+
+            // Determine this at the source so the server knows that the event is private.
+            // The client system retains the same check as a fallback.
+            if (particleType != StellarInteractionParticleType.Pull &&
+                Transform(uidA).ParentUid != Transform(uidB.Value).ParentUid)
+            {
+                particleType = StellarInteractionParticleType.InHand;
+            }
+
+            var particleEvent = new StellarInteractionParticleEvent(GetNetEntity(uidA), GetNetEntity(used), GetNetEntity(uidB.Value), !_net.IsServer, particleType);
+            #endregion
+
+            if (_net.IsServer)
+            {
+
+                #region Starlight
+                if (particleType == StellarInteractionParticleType.InHand)
+                {
+                    // Predicted actions already produced the local client's particle.
+                    // For a non-predicted action, send it only to the actor.
+                    if (!predicted)
+                        RaiseNetworkEvent(particleEvent, Filter.Entities(uidA));
+
+                    return;
+                }
+                #endregion
+
+                var filter = predicted
+                    ? Filter.PvsExcept(uidA, entityManager: EntityManager)
+                    : Filter.Pvs(uidA, entityManager: EntityManager);
+
+                RaiseNetworkEvent(particleEvent, filter); // Starlight
+            }
+            else if (_gameTiming.IsFirstTimePredicted)
+            {
+                //var evt = new StellarInteractionParticleEvent(GetNetEntity(uidA), GetNetEntity(used), GetNetEntity(uidB.Value), true, interactionParticleType); // Starlight
+                RaiseLocalEvent(particleEvent); // Starlight
+            }
+            // End Stellar/ES Additions - Interaction particles
+        }
 
         private void HandleUserInterfaceRangeCheck(ref BoundUserInterfaceCheckRangeEvent ev)
         {
-            if (ev.Result == BoundUserInterfaceRangeResult.Fail)
+            // Starlight: Respect explicit range results from specialized UI handlers.
+            if (ev.Result != BoundUserInterfaceRangeResult.Default)
                 return;
 
             ev.Result = UiRangeCheck(ev.Actor!, ev.Target, ev.Data.InteractionRange)

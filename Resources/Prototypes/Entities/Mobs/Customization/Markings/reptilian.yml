@@ -2,7 +2,7 @@
   id: LizardFrillsAquatic
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headSide:
@@ -16,7 +16,7 @@
   id: LizardFrillsShort
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headSide:
@@ -30,7 +30,7 @@
   id: LizardFrillsSimple
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headSide:
@@ -44,7 +44,7 @@
   id: LizardFrillsDivinity
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headSide:
@@ -58,7 +58,7 @@
   id: LizardFrillsBig
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headSide:
@@ -72,7 +72,7 @@
   id: LizardFrillsAxolotl
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headSide:
@@ -86,7 +86,7 @@
   id: LizardFrillsHood
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headSide@0:
@@ -105,7 +105,7 @@
   id: LizardFrillsNeckfull
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headSide:
@@ -119,7 +119,7 @@
   id: LizardHornsAngler
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -133,7 +133,7 @@
   id: LizardHornsCurled
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -147,7 +147,7 @@
   id: LizardHornsRam
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -161,7 +161,7 @@
   id: LizardHornsShort
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -175,7 +175,7 @@
   id: LizardHornsSimple
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -189,7 +189,7 @@
   id: LizardHornsDouble
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -204,7 +204,7 @@
   bodyPart: Tail
   waggingId: LizardTailSmoothAnimated # Starlight
   markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -224,7 +224,7 @@
   bodyPart: Tail
   waggingId: LizardTailLargeAnimated # Starlight
   markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail:
@@ -239,7 +239,7 @@
   bodyPart: Tail
   waggingId: LizardTailSpikesAnimated # Starlight
   markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail:
@@ -254,7 +254,7 @@
   bodyPart: Tail
   waggingId: LizardTailLTigerAnimated # Starlight
   markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail:
@@ -269,7 +269,7 @@
   bodyPart: Tail
   waggingId: LizardTailDTigerAnimated # Starlight
   markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail:
@@ -284,7 +284,7 @@
   bodyPart: Tail
   waggingId: LizardTailAquaticAnimated # Starlight
   markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail:
@@ -299,7 +299,7 @@
   bodyPart: Snout
   markingCategory: Snout
   forcedColoring: true
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_snout:
@@ -314,7 +314,7 @@
   bodyPart: Snout
   markingCategory: Snout
   forcedColoring: true
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_snout:
@@ -328,7 +328,7 @@
   id: LizardSnoutSplotch
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_snout@0:
@@ -347,7 +347,7 @@
   id: LizardSnoutVisageRound
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_snout:
@@ -361,7 +361,7 @@
   id: LizardSnoutVisageSharp
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_snout:
@@ -375,7 +375,7 @@
   id: LizardChestTiger
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -389,7 +389,7 @@
   id: LizardHeadTiger
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_head:
@@ -403,7 +403,7 @@
   id: LizardArmTiger
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian] # FH + Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -422,7 +422,7 @@
   id: LizardLegTiger
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian] # FH + Starlight
   # Starlight start
   sprites:
     body_lLeg:
@@ -441,7 +441,7 @@
   id: LizardHornsArgali
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -455,7 +455,7 @@
   id: LizardHornsAyrshire
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -469,7 +469,7 @@
   id: LizardHornsMyrsore
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -483,7 +483,7 @@
   id: LizardHornsBighorn
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -497,7 +497,7 @@
   id: LizardHornsDemonic
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -511,7 +511,7 @@
   id: LizardHornsKoboldEars
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop:
@@ -525,7 +525,7 @@
   id: LizardHornsFloppyKoboldEars
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_headSide:
@@ -539,7 +539,7 @@
   id: LizardChestUnderbelly
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -553,7 +553,7 @@
   id: LizardChestBackspikes
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:
@@ -567,7 +567,7 @@
   id: LizardChestFin
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_chest:

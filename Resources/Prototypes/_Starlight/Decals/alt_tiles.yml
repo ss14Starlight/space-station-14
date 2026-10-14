@@ -104,6 +104,62 @@
     state: corner_4_white
 
 - type: decal
+  id: diagonalsteellarge1
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_large_1
+
+- type: decal
+  id: diagonalsteellarge2
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_large_2
+
+- type: decal
+  id: diagonalsteellarge3
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_large_3
+
+- type: decal
+  id: diagonalsteellarge4
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_large_4
+
+- type: decal
+  id: diagonalsteelcornerlarge1
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_corner_large_1
+
+- type: decal
+  id: diagonalsteelcornerlarge2
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_corner_large_2
+
+- type: decal
+  id: diagonalsteelcornerlarge3
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_corner_large_3
+
+- type: decal
+  id: diagonalsteelcornerlarge4
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_corner_large_4
+
+- type: decal
   id: diagonalsteel1
   tags: ["station", "markings"]
   sprite:
@@ -326,3 +382,89 @@
   sprite:
     sprite: _Starlight/Decals/tiling.rsi
     state: quarter_sw_white
+
+# Tech
+
+- type: decal
+  id: techfloorbendne
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_bend_ne
+
+- type: decal
+  id: techfloorbendnw
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_bend_nw
+
+- type: decal
+  id: techfloorbendse
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_bend_se
+
+- type: decal
+  id: techfloorbendsw
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_bend_sw
+
+- type: decal
+  id: techfloorcornerne
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_corner_ne
+
+- type: decal
+  id: techfloorcornernw
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_corner_nw
+
+- type: decal
+  id: techfloorcornerse
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_corner_se
+
+- type: decal
+  id: techfloorcornersw
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_corner_sw
+
+- type: decal
+  id: techflooreast
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_east
+
+- type: decal
+  id: techfloornorth
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_north
+
+- type: decal
+  id: techfloorsouth
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_south
+
+- type: decal
+  id: techfloorwest
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_west

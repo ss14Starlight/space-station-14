@@ -2,7 +2,7 @@
   id: LizardChestDragonwings
   bodyPart: Tail
   markingCategory: Chest
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   # Starlight start
   sprites:
     body_tail@0:
@@ -21,7 +21,7 @@
   id: SnakeLargeTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -40,7 +40,7 @@
   id: SnakeLargeTailAnimated
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
   # Starlight start
   sprites:
     body_tail@0:
@@ -60,7 +60,7 @@
   id: LizardSnoutEasternDragon
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
   # Starlight start
   sprites:
     body_snout@0:
@@ -79,7 +79,7 @@
   id: LizardSnoutEasternDragonUsiki
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
   # Starlight start
   sprites:
     body_snout@0:
@@ -103,7 +103,7 @@
   id: LizardHeadGuilmon
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
   # Starlight start
   sprites:
     body_snout:

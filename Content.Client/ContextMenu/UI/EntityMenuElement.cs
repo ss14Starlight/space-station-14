@@ -4,16 +4,15 @@ using Content.Client.Administration.Systems;
 using Content.Client.UserInterface;
 using Content.Shared.Administration;
 using Content.Shared.IdentityManagement;
-using Robust.Client.GameObjects;
 using Robust.Client.Player;
 
 namespace Content.Client.ContextMenu.UI
 {
     public sealed partial class EntityMenuElement : ContextMenuElement, IEntityControl
     {
-        [Dependency] private readonly IClientAdminManager _adminManager = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private IClientAdminManager _adminManager = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
 
         private AdminSystem _adminSystem;
 

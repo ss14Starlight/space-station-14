@@ -1,17 +1,18 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Content.Server._Starlight.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.Maps;
 using Content.Shared.CCVar;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Maps;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
+using Content.Shared.Database;
 
-#region Starlight
 using Content.Shared._Starlight.EntityTable;
-using Content.Shared.GameTicking.Components;
-#endregion Starlight
 
 namespace Content.Server.GameTicking;
 
@@ -60,16 +61,27 @@ public sealed partial class GameTicker
 
         if (_cfg.GetCVar(CCVars.GameLobbyFallbackEnabled))
         {
-            var fallbackPresets = _cfg.GetCVar(CCVars.GameLobbyFallbackPreset).Split(",");
+            // Starlight - start
+            var fallbackPresets = _cfg.GetCVar(CCVars.GameLobbyFallbackPreset)
+                .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            // Starlight - end
             var startFailed = true;
 
             _sawmill.Info($"Fallback - Failed to start round, attempting to start fallback presets.");
             foreach (var preset in fallbackPresets)
             {
+                // Starlight - start
+                if (!TryFindGamePreset(preset, out var fallbackPreset))
+                {
+                    _sawmill.Warning($"Fallback - Unknown preset '{preset}', skipping.");
+                    continue;
+                }
+                // Starlight - end
+
                 _sawmill.Info($"Fallback - Clearing up gamerules");
                 ClearGameRules();
                 _sawmill.Info($"Fallback - Attempting to start '{preset}'");
-                SetGamePreset(preset, resetDelay: 1);
+                SetGamePreset(fallbackPreset, resetDelay: 1); // Starlight
                 AddGamePresetRules();
                 StartGamePresetRules();
 
@@ -81,7 +93,7 @@ public sealed partial class GameTicker
                     _chatManager.SendAdminAnnouncement(
                         Loc.GetString("game-ticker-start-round-cannot-start-game-mode-fallback",
                             ("failedGameMode", presetTitle),
-                            ("fallbackMode", Loc.GetString(preset))));
+                            ("fallbackMode", Loc.GetString(fallbackPreset.ModeTitle)))); // Starlight
                     RefreshLateJoinAllowed();
                     startFailed = false;
                     break;
@@ -109,16 +121,16 @@ public sealed partial class GameTicker
     private void InitializeGamePreset()
     {
         SetGamePreset(LobbyEnabled ? _cfg.GetCVar(CCVars.GameLobbyDefaultPreset) : "sandbox");
-        //#region Starlight
-        SubscribeAllEvent<PresetConditionCheckEvent>(CheckPresetCondition);
+        //SubscribeAllEvent<PresetConditionCheckEvent>(CheckPresetCondition); // Starlight
     }
 
-        private void CheckPresetCondition(PresetConditionCheckEvent ev)
-        {
-            if (CurrentPreset != null)
-                ev.Valid = ev.Presets.Contains(CurrentPreset.ID);
-        }
-        //#endregion Starlight
+    #region Starlight
+    private void CheckPresetCondition(PresetConditionCheckEvent ev)
+    {
+        if (CurrentPreset != null)
+            ev.Valid = ev.Presets.Contains(CurrentPreset.ID);
+    }
+    #endregion
 
     public void SetGamePreset(GamePresetPrototype? preset, bool force = false, GamePresetPrototype? decoy = null, int? resetDelay = null)
     {
@@ -207,17 +219,34 @@ public sealed partial class GameTicker
         _gameMapManager.SelectMapRandom();
     }
 
-    [PublicAPI]
     private bool AddGamePresetRules()
     {
+        RoundStartTimeSpan = _gameTiming.CurTime; // Starlight - Ensure this value is set to *something* before adding gamerules, mainly because of SLDynamic.
+
         if (DummyTicker || Preset == null)
             return false;
 
         CurrentPreset = Preset;
+        RaiseLocalEvent(new DynamicRuleCooldownRoundInitializingEvent(Preset)); // Starlight
+        // Starlight - start
+        /*foreach (var rule in Preset.Rules)
+        {
+            AddFilteredGameRule(rule);
+        }*/
+        // Starlight - end
+
+        // Starlight begin - Notify admins of preset now that it is locked in.
+        if (Preset.ID != "Secret") _chatManager.SendAdminAnnouncement($"Round preset selected: {Preset.ID}.");
+        _adminLogger.Add(LogType.RoundstartRulesAdded, LogImpact.High, $"Round preset selected: {Preset.ID}.");
+        // Starlight end
+
+        // Starlight - start
+        //  Moved this here so you could see what subgamemodes roll if you're an admin.
         foreach (var rule in Preset.Rules)
         {
-            AddGameRule(rule);
+            AddFilteredGameRule(rule);
         }
+        // Starlight - end
 
         return true;
     }
@@ -279,6 +308,40 @@ public sealed partial class GameTicker
             _sawmill.Error($"Rule startup did not converge within {maxIterations} passes, continuing regardless - unstarted rules: {string.Join(", ", rules.Where(rule => !(HasComp<ActiveGameRuleComponent>(rule) || HasComp<EndedGameRuleComponent>(rule))).Select<EntityUid, string>(rule => ToPrettyString(rule)))}");
         }
         // Starlight end
+    }
+
+    /// <inhereitdoc cref="GetMinimumPlayerCount(GamePresetPrototype)"/>
+    [PublicAPI]
+    public int GetMinimumPlayerCount(ProtoId<GamePresetPrototype> proto)
+    {
+        if (!_prototypeManager.Resolve(proto, out var preset))
+            return 0;
+
+        return GetMinimumPlayerCount(preset);
+    }
+
+    /// <summary>
+    /// Gets the minimum number of players required for a game preset to start.
+    /// Checks both the preset itself, and all rules to find the minimum.
+    /// </summary>
+    /// <param name="proto">Game preset prototype we're checking.</param>
+    /// <returns>Minimum number of players required for the rule to start.</returns>
+    [PublicAPI]
+    public int GetMinimumPlayerCount(GamePresetPrototype proto)
+    {
+        var min = proto.MinPlayers ?? 0;
+        foreach (var entProto in proto.Rules)
+        {
+            if (!_prototypeManager.Resolve(entProto, out var ent))
+                continue;
+
+            if (!ent.TryGetComponent<GameRuleComponent>(out var rule, Factory))
+                continue;
+
+            min = Math.Max(min, rule.MinPlayers);
+        }
+
+        return min;
     }
 
     private void IncrementRoundNumber()

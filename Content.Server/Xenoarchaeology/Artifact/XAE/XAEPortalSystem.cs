@@ -1,25 +1,26 @@
 using Content.Server.Xenoarchaeology.Artifact.XAE.Components;
 using Content.Shared.Mind.Components;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Teleportation.Systems;
 using Content.Shared.Xenoarchaeology.Artifact;
 using Content.Shared.Xenoarchaeology.Artifact.XAE;
 using Robust.Shared.Collections;
 using Robust.Shared.Containers;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Xenoarchaeology.Artifact.XAE;
 
 /// <summary>
 /// System for xeno artifact effect that creates temporary portal between places on station.
 /// </summary>
-public sealed class XAEPortalSystem : BaseXAESystem<XAEPortalComponent>
+public sealed partial class XAEPortalSystem : BaseXAESystem<XAEPortalComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly LinkedEntitySystem _link = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private LinkedEntitySystem _link = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
 
     /// <inheritdoc />
     protected override void OnActivated(Entity<XAEPortalComponent> ent, ref XenoArtifactNodeActivatedEvent args)
@@ -27,10 +28,12 @@ public sealed class XAEPortalSystem : BaseXAESystem<XAEPortalComponent>
         var map = Transform(ent).MapID;
         var validMinds = new ValueList<EntityUid>();
         var mindQuery = EntityQueryEnumerator<MindContainerComponent, MobStateComponent, TransformComponent, MetaDataComponent>();
-        while (mindQuery.MoveNext(out var uid, out var mc, out _, out var xform, out var meta))
+        //while (mindQuery.MoveNext(out var uid, out var mc, out _, out var xform, out var meta))
+        while (mindQuery.MoveNext(out var uid,out var mc,out var mobState,out var xform,out var meta)) // Starlight: also check if dead or SSD
         {
             // check if the MindContainer has a Mind and if the entity is not in a container (this also auto excludes AI) and if they are on the same map
-            if (mc.HasMind && !_container.IsEntityOrParentInContainer(uid, meta: meta, xform: xform) && xform.MapID == map)
+            //if (mc.HasMind && !_container.IsEntityOrParentInContainer(uid, meta: meta, xform: xform) && xform.MapID == map)
+            if (mc.HasMind && mobState.CurrentState != MobState.Dead && HasComp<ActorComponent>(uid) && !_container.IsEntityOrParentInContainer(uid, meta: meta, xform: xform) && xform.MapID == map) // Starlight: also check if dead or SSD
             {
                 validMinds.Add(uid);
             }

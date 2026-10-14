@@ -6,7 +6,6 @@
   - type: Tag
     tags:
     - Knife
-  - type: Sharp
   - type: Utensil
     types:
       - Knife
@@ -20,26 +19,11 @@
   - type: Sprite
   - type: Item
     size: Small
-  - type: Tool # Starlight start
-    qualities: Slicing
-    speedModifier: 1
-  - type: MultipleTool
-    statusShowBehavior: true
-    entries:
-      - behavior: Slicing
-        useSound: /Audio/Items/Culinary/chop.ogg
-        SpeedModifier: 1
-      - behavior: Screwing
-        useSound: /Audio/Items/screwdriver.ogg
-        SpeedModifier: 0.05
-  - type: SurgeryTool
-  - type: Scalpel
-    successRate: 0.9
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
-# Starlight end
+  - type: Tool
+    qualities:
+      - Slicing
+    useSound:
+      path: /Audio/Items/Culinary/chop.ogg
 
 - type: entity
   parent: BaseKnife
@@ -67,10 +51,12 @@
       fix1:
         shape: !type:PolygonShape
           vertices:
-          - -0.475,-0.225
-          - -0.225,-0.475
-          - 0.525,0.275
-          - 0.275,0.525
+          # Starlight Start
+          - -0.455,-0.225
+          - -0.225,-0.455
+          - 0.475,0.275
+          - 0.275,0.475
+          # Starlight End
         density: 20 # derived from base_item
         mask:
         - ItemMask
@@ -108,10 +94,12 @@
       fix1:
         shape: !type:PolygonShape
           vertices:
-          - -0.58,-0.12
-          - -0.34,-0.55
-          - 0.6,-0.075
+          # Starlight Start
+          - -0.48,-0.12
+          - -0.34,-0.45
+          - 0.45,-0.075
           - 0.375,0.375
+          # Starlight End
         density: 20 # derived from base_item
         mask:
         - ItemMask
@@ -120,7 +108,7 @@
 
 - type: entity
   name: combat knife
-  parent: [BaseKnife, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, BaseKnife, BaseSecurityContraband ] # Blimpuf
   id: CombatKnife
   description: A deadly knife intended for melee confrontations.
   components:
@@ -171,7 +159,7 @@
 
 - type: entity
   name: survival knife
-  parent: [ BaseSecuritySalvageMiningContraband, CombatKnife ] #Starlight salvContra
+  parent: [ BaseContrabandTier3, BaseSecurityContraband, BaseSalvageContraband, BaseMiningContraband, CombatKnife ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: SurvivalKnife
   description: Weapon of first and last resort for combatting space carp.
   components:
@@ -186,7 +174,7 @@
 
 - type: entity
   name: kukri knife
-  parent: [BaseSecurityCargoContraband, CombatKnife]
+  parent: [ BaseContrabandTier3, BaseSecurityContraband, BaseCargoContraband, CombatKnife ] # Blimpuf
   id: KukriKnife
   description: Professionals have standards. Be polite. Be efficient. Have a plan to kill everyone you meet.
   components:
@@ -267,8 +255,6 @@
     sprite: Objects/Weapons/Melee/shiv.rsi
   - type: DisarmMalus
     malus: 0.225
-  - type: Scalpel #Starlight
-    successRate: 0.7
   - type: Fixtures
     fixtures:
       fix1:
@@ -384,10 +370,12 @@
         shape: !type:PolygonShape
           radius: 0.01
           vertices:
-          - -0.475,-0.225
-          - -0.225,-0.475
-          - 0.525,0.275
-          - 0.275,0.525
+          # Starlight Start
+          - -0.455,-0.225
+          - -0.225,-0.455
+          - 0.475,0.275
+          - 0.275,0.475
+          # Starlight End
         density: 20 # derived from base_item
         mask:
         - ItemMask
@@ -405,7 +393,6 @@
     components:
     - type: Execution
       #doAfterDuration: 4.0 # Starlight - commented out as our ExecutionComponent is somehow wildly different from upstream's
-    - type: Sharp
     - type: Utensil
       types:
       - Knife

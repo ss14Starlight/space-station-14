@@ -23,23 +23,25 @@ using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
+using Content.Shared.Power.EntitySystems;
 
 namespace Content.Server.Holopad;
 
-public sealed class HolopadSystem : SharedHolopadSystem
+public sealed partial class HolopadSystem : SharedHolopadSystem
 {
-    [Dependency] private readonly TelephoneSystem _telephoneSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
-    [Dependency] private readonly TransformSystem _xformSystem = default!;
-    [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly SharedPointLightSystem _pointLightSystem = default!;
-    [Dependency] private readonly SharedAmbientSoundSystem _ambientSoundSystem = default!;
-    [Dependency] private readonly SharedStationAiSystem _stationAiSystem = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly PvsOverrideSystem _pvs = default!;
+    [Dependency] private TelephoneSystem _telephoneSystem = default!;
+    [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;
+    [Dependency] private TransformSystem _xformSystem = default!;
+    [Dependency] private AppearanceSystem _appearanceSystem = default!;
+    [Dependency] private SharedPointLightSystem _pointLightSystem = default!;
+    [Dependency] private SharedAmbientSoundSystem _ambientSoundSystem = default!;
+    [Dependency] private SharedStationAiSystem _stationAiSystem = default!;
+    [Dependency] private AccessReaderSystem _accessReaderSystem = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private PvsOverrideSystem _pvs = default!;
+    [Dependency] private SharedPowerStateSystem _powerState = default!;
 
     private float _updateTimer = 1.0f;
     private const float UpdateTime = 1.0f;
@@ -103,6 +105,11 @@ public sealed class HolopadSystem : SharedHolopadSystem
         if (!TryComp<TelephoneComponent>(receiver, out var receiverTelephone))
             return;
 
+        // Starlight - start
+        if (HasComp<StationAiHeldComponent>(args.Actor) &&
+            !_stationAiSystem.CanAccessGrid((args.Actor, null), Transform(receiver).GridUid))
+            return;
+        // Starlight - end
         LinkHolopadToUser(source, args.Actor);
         _telephoneSystem.CallTelephone((source, sourceTelephone), (receiver, receiverTelephone), args.Actor);
     }
@@ -124,15 +131,6 @@ public sealed class HolopadSystem : SharedHolopadSystem
                 // Close any AI request windows
                 if (_stationAiSystem.TryGetCore(args.Actor, out var stationAiCore))
                     _userInterfaceSystem.CloseUi(receiver.Owner, HolopadUiKey.AiRequestWindow, args.Actor);
-
-                // Try to warn the AI if the source of the call is out of its range
-                if (TryComp<TelephoneComponent>(stationAiCore, out var stationAiTelephone) &&
-                    TryComp<TelephoneComponent>(source, out var sourceTelephone) &&
-                    !_telephoneSystem.IsSourceInRangeOfReceiver((stationAiCore.Owner, stationAiTelephone), (source.Value.Owner, sourceTelephone)))
-                {
-                    _popupSystem.PopupEntity(Loc.GetString("holopad-ai-is-unable-to-reach-holopad"), receiver, args.Actor);
-                    return;
-                }
 
                 ActivateProjector(source.Value, args.Actor);
             }
@@ -548,10 +546,14 @@ public sealed class HolopadSystem : SharedHolopadSystem
         {
             _telephoneSystem.SetSpeakerForTelephone((entity, entityTelephone), (hologramUid, hologramSpeech));
         }
+
+        _powerState.SetWorkingState(entity.Owner, true);
     }
 
     private void DeleteHologram(Entity<HolopadHologramComponent> hologram, Entity<HolopadComponent> attachedHolopad)
     {
+        _powerState.SetWorkingState(attachedHolopad.Owner, false);
+
         attachedHolopad.Comp.Hologram = null;
 
         QueueDel(hologram);
@@ -667,8 +669,18 @@ public sealed class HolopadSystem : SharedHolopadSystem
 
         var source = new Entity<TelephoneComponent>(stationAiCore, stationAiTelephone);
 
+        // Starlight - start
+        // We check if the AI has grid access. Normal projector call are range limited, not limited by grid access. The AI is special.
+        if (!_stationAiSystem.CanAccessGrid((user, userAiHeld), Transform(entity).GridUid))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("holopad-ai-is-unable-to-activate-projector"), receiver, user);
+            return;
+        }
+        // Starlight - end
+
         // Check if the AI is unable to activate the projector (unlikely this will ever pass; its just a safeguard)
-        if (!_telephoneSystem.IsSourceInRangeOfReceiver(source, receiver))
+        if (!_telephoneSystem.IsTelephonePowered(source) ||
+            !_telephoneSystem.IsTelephonePowered(receiver)) // Starlight: check replaced with sensible check based on power
         {
             _popupSystem.PopupEntity(Loc.GetString("holopad-ai-is-unable-to-activate-projector"), receiver, user);
             return;
@@ -679,6 +691,7 @@ public sealed class HolopadSystem : SharedHolopadSystem
 
         var callOptions = new TelephoneCallOptions()
         {
+            IgnoreRange = true, // Starlight: we do check things in advance and have safeguards in place
             ForceConnect = true,
             MuteReceiver = true
         };

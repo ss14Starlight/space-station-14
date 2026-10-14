@@ -5,20 +5,19 @@ using Content.Shared.Popups;
 using Content.Shared.Stunnable;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Starlight.CosmicCult.Abilities;
+namespace Content.Server._Starlight.CosmicCult.Abilities.Colossus;
 
-public sealed class CosmicHibernateSystem : EntitySystem
+public sealed partial class CosmicHibernateSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<CosmicColossusComponent, EventCosmicColossusHibernate>(OnColossusHibernate);
     }
 
@@ -26,11 +25,13 @@ public sealed class CosmicHibernateSystem : EntitySystem
     {
         if (ent.Comp.Attacking || ent.Comp.Hibernating || !_transform.AnchorEntity(ent))
             return;
-        args.Handled = true;
-        var comp = ent.Comp;
 
+        args.Handled = true;
+
+        var comp = ent.Comp;
         comp.Hibernating = true;
         comp.HibernationTimer = comp.HibernationWait + _timing.CurTime;
+
         _appearance.SetData(ent, ColossusVisuals.Status, ColossusStatus.Action);
         _appearance.SetData(ent, ColossusVisuals.Hibernation, ColossusAction.Running);
         _stun.TryAddStunDuration(ent.Owner, comp.HibernationWait);

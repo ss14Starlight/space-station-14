@@ -1,0 +1,31 @@
+- type: entity
+  name: Eeeplet Spawner
+  id: SpawnMobEeeplet
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: eeeplet
+      sprite: _Impstation/Mobs/Aliens/eeeplet.rsi
+    - state: eeeplet_glow
+      sprite: _Impstation/Mobs/Aliens/eeeplet.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobEeeplet
+
+- type: entity
+  id: SpawnPointGhostEeeplet
+  name: ghost role spawn point
+  suffix: eeeplet
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  components:
+  - type: GhostRole
+    name: ghost-role-information-eeeplet-name
+    description: ghost-role-information-eeeplet-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: default

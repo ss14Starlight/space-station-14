@@ -1,4 +1,3 @@
-using Content.Shared.Chemistry;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 

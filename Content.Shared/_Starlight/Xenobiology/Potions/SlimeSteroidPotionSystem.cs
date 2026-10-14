@@ -3,10 +3,10 @@ using Content.Shared.Popups;
 
 namespace Content.Shared._Starlight.Xenobiology.Potions;
 
-public sealed class SlimeSteroidPotionSystem : EntitySystem
+public sealed partial class SlimeSteroidPotionSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private SharedPopupSystem _sharedPopupSystem = default!;
 
     public override void Initialize()
     {
@@ -21,8 +21,7 @@ public sealed class SlimeSteroidPotionSystem : EntitySystem
         if (!_entityManager.TryGetComponent<SlimeComponent>(args.Target.Value,
                 out var slimeComponent)) return;
         slimeComponent.SlimeSteroidAmount += 1;
-        var plural = slimeComponent.SlimeSteroidAmount == 1 ? "" : "s";
-        _sharedPopupSystem.PopupPredicted($"{MetaData(args.Target.Value).EntityName} now creates {slimeComponent.SlimeSteroidAmount} extra extract{plural} when processed.", args.User, args.User);
+        _sharedPopupSystem.PopupPredicted(Loc.GetString("slime-potion-steroid-applied", ("target", MetaData(args.Target.Value).EntityName), ("amount", slimeComponent.SlimeSteroidAmount)), args.User, args.User);
         PredictedQueueDel(args.Used);
     }
 }

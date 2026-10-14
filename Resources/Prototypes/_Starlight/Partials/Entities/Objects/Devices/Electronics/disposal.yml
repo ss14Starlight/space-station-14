@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: MailingUnitElectronics
+  components:
+  - type: Tag
+    tags:
+    - RamChip # FH

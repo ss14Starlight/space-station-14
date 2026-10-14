@@ -5,10 +5,10 @@ using Robust.Shared.Network;
 
 namespace Content.Shared._Starlight.Actions.EntitySystems;
 
-public sealed class SpawnOnActionSystem : EntitySystem
+public sealed partial class SpawnOnActionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {

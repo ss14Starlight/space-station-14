@@ -145,7 +145,6 @@
     lightSoftness: 1
     BurningTemperature: 350 #LEDs are colder than incandescent bulbs
     PowerUse: 6 #LEDs are more power efficient than incandescent bulbs
-    dimmable: false # Starlight
   - type: Tag
     tags:
     - LightBulb
@@ -163,7 +162,6 @@
     lightEnergy: 0.5
     lightRadius: 5
     lightSoftness: 3
-    dimmable: false # Starlight
   - type: Tag
     tags:
     - LightBulb
@@ -252,7 +250,6 @@
     lightRadius: 10
     lightSoftness: 1
     PowerUse: 10
-    dimmable: false # Starlight
 
 - type: entity
   suffix: Broken
@@ -405,7 +402,6 @@
     color: "#363636"
     lightEnergy: 1
     lightRadius: 8
-  - type: DarkLight # Starlight
   - type: Construction
     graph: BlackLight
     node: icon
@@ -546,7 +542,6 @@
     color: "#363636"
     lightEnergy: 1
     lightRadius: 8
-  - type: DarkLight # Starlight
   - type: Construction
     graph: BlackLightBulb
     node: icon

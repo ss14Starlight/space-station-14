@@ -1,7 +1,5 @@
 using System.Numerics;
 using Content.Shared.Damage;
-using Content.Shared.FixedPoint;
-using Robust.Shared.Audio;
 
 namespace Content.Shared._Starlight.Weapons.Melee.Events;
 
@@ -19,7 +17,7 @@ public sealed class AfterMeleeHitEvent : HandledEntityEventArgs
     /// <summary>
     ///     A list containing every hit entity. Can be zero.
     /// </summary>
-    public IReadOnlyList<EntityUid> HitEntities;
+    public IReadOnlySet<EntityUid> HitEntities;
 
     /// <summary>
     /// The user who attacked with the melee weapon.
@@ -46,7 +44,7 @@ public sealed class AfterMeleeHitEvent : HandledEntityEventArgs
     /// </remarks>
     public bool IsHit = true;
 
-    public AfterMeleeHitEvent(List<EntityUid> hitEntities, EntityUid user, EntityUid weapon, DamageSpecifier dealedDamage, Vector2? direction)
+    public AfterMeleeHitEvent(HashSet<EntityUid> hitEntities, EntityUid user, EntityUid weapon, DamageSpecifier dealedDamage, Vector2? direction)
     {
         HitEntities = hitEntities;
         User = user;

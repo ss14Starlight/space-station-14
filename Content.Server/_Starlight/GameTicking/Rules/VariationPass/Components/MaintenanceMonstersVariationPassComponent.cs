@@ -1,5 +1,6 @@
 using Content.Shared.EntityTable.EntitySelectors;
-namespace Content.Server.GameTicking.Rules.VariationPass.Components;
+
+namespace Content.Server._Starlight.GameTicking.Rules.VariationPass.Components;
 
 [RegisterComponent]
 public sealed partial class MaintenanceMonstersVariationPassComponent : Component

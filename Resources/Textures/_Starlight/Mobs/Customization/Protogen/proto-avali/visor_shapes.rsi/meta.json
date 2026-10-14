@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "By Killer Tamashi (Discord)",
+    "size": {"x": 32, "y": 32},
+    "states": [
+        {
+            "name": "visorlightless",
+            "directions": 4,
+            "copyright": "Based off Killer Tamashi's (discord) work, edited by Spaghetti-Bit"
+        },
+        {
+            "name": "visorcolorable",
+            "directions": 4,
+            "copyright": "Based off Killer Tamashi's (discord) work, edited by Spaghetti-Bit"
+        }
+    ]
+}

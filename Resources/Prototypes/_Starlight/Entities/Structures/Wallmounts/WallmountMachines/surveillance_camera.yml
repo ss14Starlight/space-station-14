@@ -12,3 +12,193 @@
       networkSet: true
     - type: StationAiVision
       enabled: false
+
+- type: entity
+  parent: SurveillanceCameraAssembly
+  id: SurveillanceCameraReinforcedAssembly
+  name: reinforced camera
+  components:
+   - type: Construction
+     graph: SurveillanceCamera
+     node: reinforced_assembly
+   - type: Sprite
+     drawdepth: WallMountedItems
+     sprite: _Starlight/Structures/Wallmounts/camera_reinforced.rsi
+     layers:
+       - state: reinforced_camera_assembly
+   - type: Tag
+     tags:
+       - CameraReinforced
+
+- type: entity
+  abstract: true
+  parent: SurveillanceCameraBase
+  id: SurveillanceCameraReinforcedBase
+  name: reinforced camera
+  components:
+    - type: Construction
+      graph: SurveillanceCamera
+      node: camera_reinforced
+    - type: Sprite
+      drawdepth: WallMountedItems
+      sprite: _Starlight/Structures/Wallmounts/camera_reinforced.rsi
+      layers:
+        - map: [ "enum.SurveillanceCameraVisualsKey.Layer" ]
+          state: reinforced_camera
+          cycle: true
+    - type: SurveillanceCameraVisuals
+      sprites:
+        Active: reinforced_camera
+        Disabled: reinforced_camera_off
+        InUse: reinforced_camera_in_use
+    - type: WiresPanelSecurity
+      securityLevel: medSecurity
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 600
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 200
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+                params:
+                  volume: -8
+    - type: Tag
+      tags:
+        - CameraReinforced
+
+- type: entity
+  parent: SurveillanceCameraReinforcedBase
+  id: SurveillanceCameraReinforcedConstructed
+  name: reinforced camera
+  suffix: Constructed
+  components:
+    - type: WiresPanelSecurity
+      securityLevel: camera_reinforced
+    - type: DeviceNetwork
+      deviceNetId: Wired
+      transmitFrequencyId: SurveillanceCamera
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+        - SurveillanceCameraEngineering
+        - SurveillanceCameraSecurity
+        - SurveillanceCameraService
+        - SurveillanceCameraSupply
+        - SurveillanceCameraScience
+        - SurveillanceCameraGeneral
+        - SurveillanceCameraMedical
+        - SurveillanceCameraCommand
+
+
+- type: entity
+  parent: SurveillanceCameraReinforcedBase
+  id: SurveillanceCameraReinforcedEngineering
+  name: reinforced camera
+  suffix: Engineering
+  components:
+    - type: DeviceNetwork
+      deviceNetId: Wired
+      receiveFrequencyId: SurveillanceCameraEngineering
+      transmitFrequencyId: SurveillanceCamera
+    - type: SurveillanceCamera
+      networkSet: true
+
+- type: entity
+  parent: SurveillanceCameraReinforcedBase
+  id: SurveillanceCameraReinforcedSecurity
+  name: reinforced camera
+  suffix: Security
+  components:
+    - type: DeviceNetwork
+      deviceNetId: Wired
+      receiveFrequencyId: SurveillanceCameraSecurity
+      transmitFrequencyId: SurveillanceCamera
+    - type: SurveillanceCamera
+      networkSet: true
+
+- type: entity
+  parent: SurveillanceCameraReinforcedBase
+  id: SurveillanceCameraReinforcedScience
+  name: reinforced camera
+  suffix: Science
+  components:
+    - type: DeviceNetwork
+      deviceNetId: Wired
+      receiveFrequencyId: SurveillanceCameraScience
+      transmitFrequencyId: SurveillanceCamera
+    - type: SurveillanceCamera
+      networkSet: true
+
+- type: entity
+  parent: SurveillanceCameraReinforcedBase
+  id: SurveillanceCameraReinforcedSupply
+  name: reinforced camera
+  suffix: Supply
+  components:
+    - type: DeviceNetwork
+      deviceNetId: Wired
+      receiveFrequencyId: SurveillanceCameraSupply
+      transmitFrequencyId: SurveillanceCamera
+    - type: SurveillanceCamera
+      networkSet: true
+
+- type: entity
+  parent: SurveillanceCameraReinforcedBase
+  id: SurveillanceCameraReinforcedCommand
+  name: reinforced camera
+  suffix: Command
+  components:
+    - type: DeviceNetwork
+      deviceNetId: Wired
+      receiveFrequencyId: SurveillanceCameraCommand
+      transmitFrequencyId: SurveillanceCamera
+    - type: SurveillanceCamera
+      networkSet: true
+
+- type: entity
+  parent: SurveillanceCameraReinforcedBase
+  id: SurveillanceCameraReinforcedService
+  name: reinforced camera
+  suffix: Service
+  components:
+    - type: DeviceNetwork
+      deviceNetId: Wired
+      receiveFrequencyId: SurveillanceCameraService
+      transmitFrequencyId: SurveillanceCamera
+    - type: SurveillanceCamera
+      networkSet: true
+
+- type: entity
+  parent: SurveillanceCameraReinforcedBase
+  id: SurveillanceCameraReinforcedMedical
+  name: reinforced camera
+  suffix: Medical
+  components:
+    - type: DeviceNetwork
+      deviceNetId: Wired
+      receiveFrequencyId: SurveillanceCameraMedical
+      transmitFrequencyId: SurveillanceCamera
+    - type: SurveillanceCamera
+      networkSet: true
+
+- type: entity
+  parent: SurveillanceCameraReinforcedBase
+  id: SurveillanceCameraReinforcedGeneral
+  name: reinforced camera
+  suffix: General
+  components:
+    - type: DeviceNetwork
+      deviceNetId: Wired
+      receiveFrequencyId: SurveillanceCameraGeneral
+      transmitFrequencyId: SurveillanceCamera
+    - type: SurveillanceCamera
+      networkSet: true

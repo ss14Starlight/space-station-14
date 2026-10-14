@@ -10,8 +10,8 @@
     ClothingHeadsetService: 2
     ClothingOuterWinterJani: 2
     ClothingNeckScarfStripedPurple: 3
+    ClothingNeckScarfSolidPurple: 3 # Starlight
   contrabandInventory:
     ToyFigurineJanitor: 1
-  emaggedInventory:
     ClothingUniformJumpskirtJanimaid: 2
     ClothingUniformJumpskirtJanimaidmini: 1

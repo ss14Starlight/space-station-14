@@ -1,8 +1,6 @@
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Radio;
 using Robust.Shared.Random;
 using Content.Server.Light.EntitySystems;
-using Content.Server.Light.Components;
 using Content.Server.StationEvents.Components;
 using Content.Shared.Radio.Components;
 using Content.Shared.Doors.Components;
@@ -12,10 +10,10 @@ using Content.Shared.Light.Components;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class SolarFlareRule : StationEventSystem<SolarFlareRuleComponent>
+public sealed partial class SolarFlareRule : StationEventSystem<SolarFlareRuleComponent>
 {
-    [Dependency] private readonly PoweredLightSystem _poweredLight = default!;
-    [Dependency] private readonly SharedDoorSystem _door = default!;
+    [Dependency] private PoweredLightSystem _poweredLight = default!;
+    [Dependency] private SharedDoorSystem _door = default!;
 
     private float _effectTimer = 0;
 

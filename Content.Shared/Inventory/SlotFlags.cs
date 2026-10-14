@@ -27,6 +27,7 @@ public enum SlotFlags
     FEET = 1 << 14,
     SUITSTORAGE = 1 << 15,
     MISC = 1 << 16, // Starlight
+    OUTERCLOTHING2 = 1 << 17, // Starlight
     All = ~NONE,
 
     WITHOUT_POCKET = All & ~POCKET

@@ -1,7 +1,7 @@
 ﻿- type: entity
   name: basic slime
   id: BaseMobAdultSlimes
-  parent: [ SimpleMobBase, MobCombat ] #starlight Nubody will not pass.
+  parent: [ SimpleMobBase, MobCombat, BaseSlicingRefinable ] # Starlight Edit: Removed BaseMobSlimes
   abstract: true
   description: It looks so much like jelly. I wonder what it tastes like?
   components:
@@ -11,6 +11,7 @@
     speaks:
     - Bubblish
     understands:
+    - GalacticCommon
     - Bubblish
   # Starlight - End
   - type: VentCrawler
@@ -50,9 +51,8 @@
     tags:
     - FootstepSound
     - DoorBumpOpener
-  - type: Butcherable
-    butcheringType: Knife
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeatSlime
       amount: 2
   - type: Respirator
@@ -67,6 +67,7 @@
     damageContainer: Biological
     damageModifierSet: Slime
   - type: Bloodstream
+    bloodReagentColor: "#52b4e9" # Blimpuf edit
     bloodReferenceSolution:
       reagents:
       - ReagentId: Slime
@@ -185,6 +186,7 @@
       - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: short
+    - type: ForceAttack
 
 - type: entity
   name: green slime
@@ -201,6 +203,10 @@
           Base: green_adult_slime
         Dead:
           Base: green_adult_slime_dead
+    # Blimpuf start
+    - type: Bloodstream
+      bloodReagentColor: "#2cf274"
+    # Blimpuf end
     - type: MeleeWeapon
       damage:
         types:
@@ -225,6 +231,7 @@
       - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: short
+    - type: ForceAttack
 
 - type: entity
   name: yellow slime
@@ -241,6 +248,10 @@
           Base: yellow_adult_slime
         Dead:
           Base: yellow_adult_slime_dead
+    # Blimpuf start
+    - type: Bloodstream
+      bloodReagentColor: "#f4e65a"
+    # Blimpuf end
     - type: MeleeWeapon
       damage:
         types:
@@ -264,3 +275,4 @@
       - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: short
+    - type: ForceAttack

@@ -2,7 +2,7 @@
   id: FelionoidArmPawMittensL
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_lArm:
@@ -16,7 +16,7 @@
   id: FelionoidArmPawMittensR
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_rArm:
@@ -30,7 +30,7 @@
   id: FelionoidArmTabbyL
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_lArm:
@@ -44,7 +44,7 @@
   id: FelionoidArmTabbyR
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_rArm:
@@ -58,7 +58,7 @@
   id: FelionoidArmCalicoR
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_rArm:
@@ -72,7 +72,7 @@
   id: FelionoidArmCalicoL
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_lArm:
@@ -86,7 +86,7 @@
   id: FelionoidArmStripesR
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_rArm:
@@ -100,7 +100,7 @@
   id: FelionoidArmStripesL
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_lArm:

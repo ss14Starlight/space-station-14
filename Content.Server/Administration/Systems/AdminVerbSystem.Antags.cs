@@ -6,7 +6,6 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Speech.Components; // Starlight
 using Content.Server.Zombies;
-using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
@@ -18,16 +17,17 @@ using Robust.Shared.Audio; // Starlight
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Shadekin.Components; // Starlight
 
 namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly ZombieSystem _zombie = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly OutfitSystem _outfit = default!;
-    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!; //Starlight
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private ZombieSystem _zombie = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private OutfitSystem _outfit = default!;
+    [Dependency] private AutoDiscordLogSystem _autolog = default!; //Starlight
 
     private static readonly EntProtoId DefaultTraitorRule = "Traitor";
     private static readonly EntProtoId DefaultInitialInfectedRule = "Zombie";
@@ -40,8 +40,10 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultNinjaRule = "NinjaSpawn";
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
     private static readonly EntProtoId DefaultVampireRule = "Vampire"; //Starlight
-    private static readonly EntProtoId DefaultBrighteyeRule = "Brighteye"; //Starlight
+    private static readonly EntProtoId DefaultDevilRule = "Devil"; // starlight
+    private static readonly EntProtoId DefaultBrighteyeRule = "SubBrighteye"; //Starlight
 	private static readonly EntProtoId DefaultSELFRule = "SiliconLiberation"; //Starlight
+    private static readonly string _theDarkMap = "TheDarkMap";
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -250,7 +252,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = Loc.GetString("admin-verb-text-make-changeling"),
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Changeling/changeling_abilities.rsi"), "transform"),
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/Actions/actions_changeling.rsi"), "transform"),
             Act = () =>
             {
                 _antag.ForceMakeAntag<SLChangelingRuleComponent>(targetPlayer, "SLChangeling");
@@ -265,7 +267,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = Loc.GetString("admin-verb-text-make-vampire"),
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Vampire/actions_vampire.rsi"), "select_class"), // Starlight
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/Actions/actions_vampire.rsi"), "select_class"), // Starlight
             Act = () =>
             {
                 _antag.ForceMakeAntag<VampireRuleComponent>(targetPlayer, DefaultVampireRule);
@@ -292,16 +294,31 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(selfagent);
 
+        Verb devil = new()
+        {
+            Text = Loc.GetString("admin-verb-text-make-devil"),
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Effects/fire.rsi"), "fire"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<DevilRuleComponent>(targetPlayer, DefaultDevilRule);
+                _autolog.LogToDiscord(string.Join(": ", Loc.GetString("admin-verb-text-make-devil"), Loc.GetString("admin-verb-make-devil")), player.Name);
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-make-devil")
+        };
+        args.Verbs.Add(devil);
+
         if (HasComp<ShadekinComponent>(args.Target))
         {
             Verb brighteye = new()
             {
                 Text = Loc.GetString("admin-verb-text-make-brighteye"),
                 Category = VerbCategory.Antag,
-                Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/Actions/shadekin.rsi"), "rest"),
+                Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/Actions/actions_shadekin.rsi"), "rest"),
                 Act = () =>
                 {
-                    _gameTicker.StartGameRule("TheDarkMap"); // The Dark should always be spawned for any brighteye.
+                    _gameTicker.StartGameRule(_theDarkMap); // The Dark should always be spawned for any brighteye.
                     _antag.ForceMakeAntag<BrighteyeRuleComponent>(targetPlayer, DefaultBrighteyeRule);
                     _autolog.LogToDiscord(Loc.GetString("admin-verb-make-brighteye"), player.Name);
                 },
@@ -340,6 +357,6 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", pirateSLName, Loc.GetString("admin-verb-make-pirate-sl")),
         };
         args.Verbs.Add(pirateSL);
-/// Starlight END
+        // STARLIGHT END
     }
 }

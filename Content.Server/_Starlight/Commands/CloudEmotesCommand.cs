@@ -10,11 +10,11 @@ using Robust.Shared.Player;
 namespace Content.Server._Starlight.Commands;
 
 [UsedImplicitly, AnyCommand]
-public sealed class CloudEmoteCommand : LocalizedCommands
+public sealed partial class CloudEmoteCommand : LocalizedCommands
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntityNetworkManager _net = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityNetworkManager _net = default!;
     public override string Command => "cloudemote";
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)

@@ -113,7 +113,7 @@ JobMedicalIntern = Medical Intern
 JobMime = Mime
 JobMusician = Musician
 JobParamedic = Paramedic
-#JobPassenger = Passenger # Starlight - de-passenger
+# JobPassenger = Passenger # Starlight - de-passenger
 JobPsychologist = Psychologist
 JobQuartermaster = Quartermaster
 JobReporter = Reporter
@@ -129,3 +129,4 @@ JobStationEngineer = Station Engineer
 JobTechnicalAssistant = Technical Assistant
 JobVisitor = Visitor
 JobWarden = Warden
+

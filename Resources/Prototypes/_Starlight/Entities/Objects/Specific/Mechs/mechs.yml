@@ -1,9 +1,90 @@
-# Industrial Mechs
+- type: entity
+  id: CombatMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - CombatMech
+      - NonLethalMech
+
+- type: entity
+  id: IndustrialMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - IndustrialMech
+  - type: MeleeThrowOnHit
+    speed: 10
+    distance: 1
+
+- type: entity
+  id: SpecialMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - SpecialMech
+
+- type: entity
+  id: SmallMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - SmallMech
+
+- type: entity
+  id: NanotrasenMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    firstStart: true
+    lowPowerSound:
+      path: /Audio/Mecha/lowpowernano.ogg
+    nominalSound:
+      path: /Audio/Mecha/nominalnano.ogg
+
+- type: entity
+  id: SyndieMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    firstStart: true
+    lowPowerSound:
+      path: /Audio/Mecha/lowpowersyndi.ogg
+    nominalSound:
+      path: /Audio/Mecha/nominalsyndi.ogg
+    nominalLongSound:
+      path: /Audio/Mecha/longsyndiactivation.ogg
+    criticalDamageSound:
+      path: /Audio/Mecha/critdestrsyndi.ogg
+
+- type: entity
+  parent: MechHonkerBattery
+  id: MechHonkerFilled
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - WeaponMechSpecialBananaMortar
+      - WeaponMechSpecialMousetrapMortar
+      - MechEquipmentHorn
 
 # Ripley MK-II
 - type: entity
   id: MechRipley2
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
+  parent: [ BaseContrabandTier2, BaseMech, IndustrialMech, BaseCargoContraband ] # Blimpuf
   name: Ripley APLU MK-II
   description: The "MK-II" has a pressurized cabin for space operations, and stronger clamps are able to force doors open, but the added weight has slowed it down. # 🌟Starlight-Change
   components:
@@ -18,6 +99,7 @@
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
     - type: Mech
+      maxIntegrity: 250 # Plasteel armor grants this mech superior durability
       equipmentWhitelist:
         tags:
           - IndustrialMech
@@ -25,7 +107,7 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       pilotWhitelist:
         components:
@@ -35,16 +117,14 @@
       attackRate: 1
       damage:
         types:
-          #Starlight Start
           Blunt: 25 #brought in line with Ripley
     - type: MovementSpeedModifier
       baseWalkSpeed: 2 #All mechs walk at the same speed
       baseSprintSpeed: 3.0 #Mk II is still slower, but not unusably slow
-    #Starlight End
     - type: Damageable
       damageModifierSet: MediumArmorNT
     - type: PointLight
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       radius: 3
       energy: 5
@@ -53,10 +133,8 @@
       graph: PaddyUpgrade
       node: start
       defaultTarget: paddy
-    # 🌟Starlight-start🌟
     - type: Prying
       pryPowered: true
-# 🌟Starlight-end🌟
 
 - type: entity
   id: MechRipley2Battery
@@ -66,14 +144,14 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorHigh #Starlight - MechReactors
+          - MechReactorHigh
         mech-gas-tank-slot:
           - MechAirTankFilled
 
 # Paddy
 - type: entity
   id: MechPaddy
-  parent: [ BaseMech, CombatMech, IndustrialMech, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseMech, CombatMech, IndustrialMech, BaseSecurityContraband ] # Blimpuf
   name: Paddy
   description: Autonomous Power Loader Unit Subtype Paddy. A Modified MK-II Ripley design intended for light security use.
   components:
@@ -87,40 +165,44 @@
         - state: base-sirens
           map: [ "enum.MechVisualLayers.Siren" ]
           shader: unshaded
+          visible: false
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
     - type: Mech
       equipmentWhitelist:
         tags:
-          - PaddyMech
           - IndustrialMech
+          - NonLethalMech
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
-      maxEquipmentAmount: 4 # 🌟Starlight-Change
+      maxIntegrity: 250
+      maxEquipmentAmount: 4
       pilotWhitelist:
         components:
           - HumanoidAppearance
-      siren: true
+    - type: MechSiren
     - type: MeleeWeapon
       hidden: true
       attackRate: 1
-      bluntStaminaDamageFactor: 1.5 # 🌟Starlight-Change
+      bluntStaminaDamageFactor: 2 # Raised from 1.5 to give it more nonlethal capacity.
       damage:
         types:
-          Blunt: 30 #Decent for a loader, but without the high structural damage of a combat mech. #
+          Blunt: 20 # Lowered from 30 to 20 to emphasize it to be nonlethal and put it onpar with a truncheon.
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
+      baseWalkSpeed: 2
       baseSprintSpeed: 4
     - type: PointLight
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       radius: 5
       energy: 5
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechPaddyBattery
@@ -130,7 +212,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorHigh #Starlight - MechReactors
+          - MechReactorHigh
         mech-gas-tank-slot:
           - MechAirTankFilled
 
@@ -143,12 +225,11 @@
       startingEquipment:
         - WeaponMechCombatDisabler
         - WeaponMechCombatFlashbangLauncher
-#      - MechEquipmentSecGrabber
 
 # Clarke
 - type: entity
   id: MechClarke
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
+  parent: [ BaseContrabandTier2, BaseMech, IndustrialMech, BaseCargoContraband, BaseSalvageContraband ] # Blimpuf
   name: Clarke
   description: A special-purpose mech for heavy-duty mining operations. Outfitted with treads for stable locomotion in hazardous terrain.
   components:
@@ -166,7 +247,7 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       pilotWhitelist:
         components:
@@ -178,11 +259,11 @@
         types:
           Blunt: 26
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
+      baseWalkSpeed: 2
       baseSprintSpeed: 4.5
     - type: MechThrusters
     - type: PointLight
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       radius: 7
       energy: 6
@@ -196,7 +277,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorHigh #Starlight - MechReactors
+          - MechReactorHigh
         mech-gas-tank-slot:
           - MechAirTankFilled
 
@@ -205,7 +286,7 @@
 # Gygax
 - type: entity
   id: MechGygax
-  parent: [ BaseMech, CombatMech, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseMech, CombatMech, BaseSecurityContraband ] # Blimpuf
   name: Gygax
   description: While lightly armored, the Gygax has incredible mobility thanks to its ability that lets it smash through walls at high speeds.
   components:
@@ -223,7 +304,7 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 325
       pilotWhitelist:
@@ -236,25 +317,23 @@
         types:
           Blunt: 30 #THWACK
           Structural: 180
-    # STARLIGHT BEGIN
     - type: MeleeThrowOnHit
       speed: 15
       distance: 2.5
-    # STARLIGHT END
     - type: MovementSpeedModifier
-      # 🌟Starlight-start🌟
       baseWalkSpeed: 2 #All mechs walk at the same speed
       baseSprintSpeed: 4.0
-    # 🌟Starlight-end🌟
     - type: Damageable
       damageModifierSet: GygaxArmor
     - type: MechThrusters
     - type: PointLight
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       radius: 6
       energy: 5
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechGygaxBattery
@@ -264,14 +343,14 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorHigh #Starlight - MechReactors
+          - MechReactorHigh
         mech-gas-tank-slot:
           - MechAirTankFilled
 
 # Durand
 - type: entity
   id: MechDurand
-  parent: [ BaseMech, CombatMech, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseMech, CombatMech, BaseSecurityContraband ] # Blimpuf
   name: Durand
   description: A slow but beefy combat exosuit that is extra scary in confined spaces due to its punches. Xenos hate it!
   components:
@@ -289,7 +368,7 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 465
       pilotWhitelist:
@@ -302,23 +381,23 @@
         types:
           Blunt: 40
           Structural: 220
-    # STARLIGHT BEGIN
     - type: MeleeThrowOnHit
       speed: 18
       distance: 4
-    # STARLIGHT END
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
-      baseSprintSpeed: 2.8 #Starlight - No longer unusably slow
+      baseWalkSpeed: 2
+      baseSprintSpeed: 2.8
     - type: Damageable
       damageModifierSet: DurandArmor
     - type: MechThrusters
     - type: PointLight
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       radius: 7
       energy: 5
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechDurandBattery
@@ -328,11 +407,11 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorHigh #Starlight - MechReactors
+          - MechReactorHigh
         mech-gas-tank-slot:
           - MechAirTankFilled
 
-# Nanotrasen Combat Mechs
+# NanoTrasen Combat Mechs
 
 # Marauder
 - type: entity
@@ -355,7 +434,7 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 575
       maxEquipmentAmount: 4
@@ -369,12 +448,17 @@
         types:
           Blunt: 40
           Structural: 200
+    - type: MeleeThrowOnHit
+      speed: 20
+      distance: 5
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
-      baseSprintSpeed: 2.2 #Starlight - No longer unusably slow
+      baseWalkSpeed: 2
+      baseSprintSpeed: 2.2
     - type: Damageable
       damageModifierSet: HeavyArmorNT
     - type: MechThrusters
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechMarauderBattery
@@ -384,7 +468,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorHyper #Starlight - MechReactors
+          - MechReactorHyper
         mech-gas-tank-slot:
           - MechAirTankFilled
 
@@ -403,7 +487,7 @@
 # Seraph
 - type: entity
   id: MechSeraph
-  parent: [ BaseMech, CombatMech, BaseCentcommContraband, NanotrasenMech ]
+  parent: [ BaseMech, CombatMech, BaseNanoTrasenContraband, NanotrasenMech ]
   name: Seraph
   description: That's the last thing you'll see. # Death Squad mech
   components:
@@ -421,7 +505,7 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 700
       maxEquipmentAmount: 5
@@ -435,17 +519,17 @@
         types:
           Blunt: 60
           Structural: 400
-    # STARLIGHT BEGIN
     - type: MeleeThrowOnHit
       speed: 20
       distance: 5
-    # STARLIGHT END
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
+      baseWalkSpeed: 2
       baseSprintSpeed: 3.7
     - type: Damageable
       damageModifierSet: HeavyArmorNT
     - type: MechThrusters
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechSeraphBattery
@@ -455,7 +539,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorAntique #Starlight - MechReactors
+          - MechReactorAntique
         mech-gas-tank-slot:
           - MechAirTankFilled
 
@@ -495,7 +579,7 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 375
       maxEquipmentAmount: 4
@@ -509,23 +593,23 @@
         types:
           Blunt: 30
           Structural: 200
-    # STARLIGHT BEGIN
     - type: MeleeThrowOnHit
       speed: 15
       distance: 3
-    # STARLIGHT END
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
-      baseSprintSpeed: 4.5 # 🌟Starlight-Change - Faster than regular Gygax
+      baseWalkSpeed: 2
+      baseSprintSpeed: 4.5
     - type: Damageable
-      damageModifierSet: MediumArmorSyndi
+      damageModifierSet: DarkGygaxArmor
     - type: MechThrusters
     - type: PointLight
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       radius: 7
       energy: 6
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechGygaxSyndieBattery
@@ -535,7 +619,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorMicro #Starlight - MechReactors
+          - MechReactorMicro
         mech-gas-tank-slot:
           - MechAirTankFilled
 
@@ -572,7 +656,7 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 550
       maxEquipmentAmount: 5
@@ -586,24 +670,25 @@
         types:
           Blunt: 50
           Structural: 400
-    # STARLIGHT BEGIN
     - type: MeleeThrowOnHit
       speed: 20
       distance: 5
-    # STARLIGHT END
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
-      baseSprintSpeed: 2.2 #Starlight - No longer unusably slow
+      baseWalkSpeed: 2
+      baseSprintSpeed: 2.2
     - type: Damageable
       damageModifierSet: MaulerArmor
     - type: MechThrusters
+    - type: Magboots
     - type: PointLight
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       radius: 6
       energy: 5
       color: "#ff0000"
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechMaulerSyndieBattery
@@ -613,7 +698,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorMicro #Starlight - MechReactors
+          - MechReactorMicro
         mech-gas-tank-slot:
           - MechAirTankFilled
 
@@ -649,7 +734,6 @@
         collection: FootstepClown
         params:
           variation: 0.17
-    # STARLIGHT BEGIN
     - type: MeleeWeapon
       hidden: true
       attackRate: 1
@@ -661,18 +745,19 @@
     - type: MeleeThrowOnHit
       speed: 1
       distance: 4 # To be even more annoying
-    # STARLIGHT END
     - type: Mech
       baseState: dark
       openState: dark-open
       brokenState: dark-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      mechToPilotDamageMultiplier: 0.0
       maxIntegrity: 550
       maxEquipmentAmount: 5
       airtight: true # Space Honks is real.
       pilotWhitelist:
         components:
           - HumanoidAppearance
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   parent: MechHonkerDark
@@ -682,7 +767,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorMicro #Starlight - MechReactors
+          - MechReactorMicro
         mech-gas-tank-slot:
           - MechAirTankFilled
 
@@ -721,7 +806,7 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 250
       maxEquipmentAmount: 4
@@ -735,23 +820,23 @@
         types:
           Blunt: 20
           Structural: 150
-    # STARLIGHT BEGIN
     - type: MeleeThrowOnHit
       speed: 15
       distance: 3
-    # STARLIGHT END
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
-      baseSprintSpeed: 4.5 # 🌟Starlight-Change - Faster than regular Gygax
+      baseWalkSpeed: 2
+      baseSprintSpeed: 4.5
     - type: Damageable
       damageModifierSet: MediumArmorSyndi
     - type: MechThrusters
     - type: PointLight
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       radius: 7
       energy: 6
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   parent: MechMimeSyndie
@@ -773,3 +858,92 @@
     - type: Mech
       startingEquipment:
         - WeaponMechSniperMime
+
+- type: entity
+  parent: MechZleeb
+  id: MechZleebBattery
+  suffix: Battery
+  components:
+    - type: ContainerFill
+      containers:
+        mech-battery-slot:
+          - MechReactorHigh
+        mech-gas-tank-slot:
+          - MechAirTankFilled
+
+# Other faction mechs
+
+# USSP
+- type: entity
+  id: MechPobeda
+  parent: [ BaseMech, CombatMech, SpecialMech, BaseSovietContraband ]
+  name: Pobeda
+  description: A Soviet combat mech. It is slower and older than other mechs, but makes up for it with sheer durability and strength.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      noRot: true
+      sprite: _Starlight/Objects/Specific/Mechs/Mechs/pobeda.rsi
+      layers:
+        - map: [ "enum.MechVisualLayers.Base" ]
+          state: base
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/_Starlight/Effects/mass_driver_launching.ogg
+    - type: Mech
+      baseState: base
+      openState: base-open
+      brokenState: base-broken
+      mechToPilotDamageMultiplier: 0.0
+      airtight: true
+      maxIntegrity: 650
+      pilotWhitelist:
+        components:
+          - HumanoidAppearance
+    - type: MeleeWeapon
+      hidden: true
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 30 #THWACK
+          Structural: 180
+    - type: MeleeThrowOnHit
+      speed: 15
+      distance: 6
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2 #All mechs walk at the same speed
+      baseSprintSpeed: 2
+    - type: Damageable
+      damageModifierSet: DarkGygaxArmor
+    - type: MechThrusters
+    - type: PointLight
+      lightMask: ConeSingle
+      autoRot: true
+      radius: 6
+      energy: 5
+      enabled: false
+    - type: Prying
+      pryPowered: true
+
+- type: entity
+  id: MechPobedaBattery
+  parent: MechPobeda
+  suffix: Battery, Air
+  components:
+    - type: ContainerFill
+      containers:
+        mech-battery-slot:
+          - MechReactorBurnout
+        mech-gas-tank-slot:
+          - MechAirTankFilled
+
+- type: entity
+  id: MechPobedaFilled
+  parent: MechPobedaBattery
+  suffix: Battery, Filled
+  components:
+    - type: Mech
+      startingEquipment:
+        - WeaponMechCombatSolarisLaser
+        - WeaponMechCombatShotgun
+        - MechEquipmentSovietHorn

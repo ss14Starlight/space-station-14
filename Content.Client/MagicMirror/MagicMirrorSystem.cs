@@ -1,4 +1,4 @@
-using Content.Shared.MagicMirror;
+using Content.Shared._Starlight.MagicMirror;
 
 namespace Content.Client.MagicMirror;
 

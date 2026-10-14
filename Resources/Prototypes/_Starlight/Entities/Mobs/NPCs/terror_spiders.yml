@@ -1,18 +1,46 @@
 - type: entity
   name: terror spider
-  parent: [ SimpleMobBase, MobCombat ]
+  parent: [ SimpleSpaceMobBaseAntag, MobRespirator, BaseSlicingRefinable ]
   id: MobTerrorSpider
   description: a deadly hybrid of a giant spider and xenomorph.
   abstract: true
   components:
+  - type: Prying
+    pryPowered: false
+    force: true
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
+    playSoundOnDoafter: true
+  - type: WeaponArcVisuals
   - type: LanguageKnowledge
     speaks:
     - Chittin
-    - Darktongue
+    - Xenomind
     understands:
     - Chittin
-    - Darktongue
+    - Xenomind
   - type: ThermalVision
+    useAlternativeShader: true
+  - type: Barotrauma
+    maxDamage: 500
+    damage:
+      types:
+        Blunt: 0.2
+  - type: PressureProtection
+    highPressureModifier: 20
+    highPressureMultiplier: 1000
+  - type: TemperatureDamage
+    heatDamageThreshold: 400
+    coldDamageThreshold: 220
+    coldDamage:
+      types:
+        Cold: 0.1
+    heatDamage:
+      types:
+        Heat: 1.5
+  - type: TerrorSpider
   - type: OptionsVisualizer
     visuals:
       base:
@@ -48,8 +76,8 @@
         Base: dead
       Dead:
         Base: dead
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeatSpider
       amount: 4
   - type: CombatMode
@@ -61,7 +89,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      90: Dead
+      160: Dead
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -71,12 +99,11 @@
     damage:
       types:
         Piercing: 18
-  - type: SolutionContainerManager
-    solutions:
-      melee:
-        maxVol: 30
+  - type: Solution
+    id: melee
+    solution:
+      maxVol: 30
   - type: SolutionRegeneration
-    solution: melee
     generated:
       reagents:
       - ReagentId: Mechanotoxin
@@ -89,10 +116,12 @@
   - type: Spider
   - type: IgnoreSpiderWeb
   - type: Bloodstream
+    bleedReductionAmount: 1
+    bloodRefreshAmount: 3
     bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
-        Quantity: 150
+        Quantity: 300
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
@@ -108,24 +137,19 @@
     tags:
     - DoorBumpOpener
     - FootstepSound
-  - type: Prying # Open door from xeno.yml.
-    pryPowered: true
-    force: true
-    speedModifier: 1.5
-    useSound:
-      path: /Audio/Items/crowbar.ogg
-    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
-    playSoundOnDoafter: true
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 89
     damage:
       types:
         Poison: -0.07
-      groups:
-        Brute: -0.07
-        Burn: -0.07
+        Blunt: -0.02
+        Slash: -0.02
+        Piercing: -0.02
+        Heat: -0.02
+        Shock: -0.02
+        Cold: -0.02
+        Caustic: -0.02
   - type: NpcFactionMember
     factions:
       - Xeno
@@ -139,11 +163,15 @@
     name: ghost-role-terror-spider-name
     description: ghost-role-terror-spider-description
     rules: ghost-role-terror-spider-rules
+    mindRoles: [MindRoleGhostRoleTeamAntagonist]
     raffle:
       settings: short
   - type: GhostTakeoverAvailable
   - type: Puller
     needsHands: false
+  - type: ActionGrant
+    actions:
+    - ActionEntityWrap
 
 - type: entity
   name: terror red
@@ -151,24 +179,34 @@
   id: MobTerrorRedUnevolvable
   abstract: true
   components:
+  - type: Prying
+    pryPowered: true
+  - type: Bloodstream
+    bleedReductionAmount: 2
+    bloodRefreshAmount: 5
   - type: Spider
     webPrototype: SpiderWebStrong
   - type: VentCrawler
   - type: MobThresholds
     thresholds:
       0: Alive
-      140: Dead
+      210: Dead
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 139
+
     damage:
       types:
         Poison: -0.8
-      groups:
-        Brute: -0.8
-        Burn: -0.8
-        Airloss: -1.5
+        Blunt: -0.27
+        Slash: -0.27
+        Piercing: -0.27
+        Heat: -0.2
+        Shock: -0.2
+        Cold: -0.2
+        Caustic: -0.2
+        Asphyxiation: -0.75
+        Bloodloss: -0.75
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -225,18 +263,22 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Dead
+      120: Dead
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 79
     damage:
       types:
         Poison: -0.5
-      groups:
-        Brute: -0.5
-        Burn: -0.5
-        Airloss: -1.5
+        Blunt: -0.17
+        Slash: -0.17
+        Piercing: -0.17
+        Heat: -0.13
+        Shock: -0.13
+        Cold: -0.13
+        Caustic: -0.13
+        Asphyxiation: -0.75
+        Bloodloss: -0.75
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -246,14 +288,6 @@
     damage:
       types:
         Piercing: 11
-  - type: Prying
-    pryPowered: false
-    force: true
-    speedModifier: 1.5
-    useSound:
-      path: /Audio/Items/crowbar.ogg
-    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
-    playSoundOnDoafter: true
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.00
     baseSprintSpeed : 5
@@ -296,18 +330,23 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Dead
+      120: Dead
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 79
+
     damage:
       types:
         Poison: -0.5
-      groups:
-        Brute: -0.5
-        Burn: -0.5
-        Airloss: -1.5
+        Blunt: -0.17
+        Slash: -0.17
+        Piercing: -0.17
+        Heat: -0.13
+        Shock: -0.13
+        Cold: -0.13
+        Caustic: -0.13
+        Asphyxiation: -0.75
+        Bloodloss: -0.75
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -320,14 +359,6 @@
   - type: MeleeChemicalInjector
     transferAmount: 2.75
     solution: melee
-  - type: Prying
-    pryPowered: false
-    force: true
-    speedModifier: 1.5
-    useSound:
-      path: /Audio/Items/crowbar.ogg
-    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
-    playSoundOnDoafter: true
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.00
     baseSprintSpeed : 4.75
@@ -378,18 +409,45 @@
     webPrototype: SpiderWebPoison
     hasBuilding: true
     buildingActionProto: ActionSpiderBuildingPole
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      180: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+
+    damage:
+      types:
+        Poison: -0.5
+        Blunt: -0.17
+        Slash: -0.17
+        Piercing: -0.17
+        Heat: -0.13
+        Shock: -0.13
+        Cold: -0.13
+        Caustic: -0.13
+        Asphyxiation: -0.75
+        Bloodloss: -0.75
 
 - type: entity
   name: terror black
   parent: MobTerrorBlackUnevolvable
   id: MobTerrorBlack
+  components:
+  - type: Evolving
+    evolveTo: MobTerrorMother
+    conditions:
+    - !type:SpiderWebCondition
+      targetWebAmount: 36
 
 # Purple
 
 - type: entity
   name: terror purple
   parent: MobTerrorRedUnevolvable
-  id: MobTerrorPurple
+  id: MobTerrorPurpleUnevolvable
+  abstract: true
   components:
   - type: OptionsVisualizer
     visuals:
@@ -409,6 +467,39 @@
   - type: ActionGrant
     actions:
     - ActionSpiderEMPScream
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      315: Dead
+  - type: Spider
+    webPrototype: SpiderWebStrongThick
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+
+    damage:
+      types:
+        Poison: -0.8
+        Blunt: -0.27
+        Slash: -0.27
+        Piercing: -0.27
+        Heat: -0.2
+        Shock: -0.2
+        Cold: -0.2
+        Caustic: -0.2
+        Asphyxiation: -0.75
+        Bloodloss: -0.75
+
+- type: entity
+  name: terror purple
+  parent: MobTerrorPurpleUnevolvable
+  id: MobTerrorPurple
+  components:
+  - type: Evolving
+    evolveTo: MobTerrorPrince
+    conditions:
+    - !type:SpiderWebCondition
+      targetWebAmount: 36
 
 # White
 
@@ -418,6 +509,8 @@
   id: MobTerrorWhiteUnevolvable
   abstract: true
   components:
+  - type: Prying
+    pryPowered: true
   - type: Spider
     hasBuilding: true
     buildingActionProto: ActionSpiderBuildingCocoon
@@ -436,6 +529,10 @@
             sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/terror_white.rsi
             map: ["enum.DamageStateVisualLayers.Base", "movement"]
             state: alive
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      180: Dead
   - type: BatteryAmmoProvider
     proto: BulletAcidHitscan
     fireCost: 50
@@ -451,11 +548,33 @@
     availableModes:
       - Burst
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+
+    damage:
+      types:
+        Poison: -0.5
+        Blunt: -0.17
+        Slash: -0.17
+        Piercing: -0.17
+        Heat: -0.13
+        Shock: -0.13
+        Cold: -0.13
+        Caustic: -0.13
+        Asphyxiation: -0.75
+        Bloodloss: -0.75
 
 - type: entity
   name: terror white
   parent: MobTerrorWhiteUnevolvable
   id: MobTerrorWhite
+  components:
+  - type: Evolving
+    evolveTo: MobTerrorPrincess
+    conditions:
+    - !type:EggsInjectCondition
+      targetEggsAmount: 6
 
 # Tier 3
 
@@ -463,7 +582,7 @@
 
 - type: entity
   name: prince of terror
-  parent: MobTerrorRedUnevolvable
+  parent: MobTerrorPurpleUnevolvable
   id: MobTerrorPrince
   components:
   - type: OptionsVisualizer
@@ -484,8 +603,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      125: Critical
-      150: Dead
+      350: Critical
+      475: Dead
   - type: MeleeWeapon
     damage:
       types:
@@ -494,13 +613,17 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 149
+
     damage:
       types:
         Poison: -0.1
-      groups:
-        Brute: -0.1
-        Burn: -0.1
+        Blunt: -0.03
+        Slash: -0.03
+        Piercing: -0.03
+        Heat: -0.03
+        Shock: -0.03
+        Cold: -0.03
+        Caustic: -0.03
 
 # Princess
 
@@ -509,6 +632,8 @@
   parent: MobTerrorSpider
   id: MobTerrorPrincess
   components:
+  - type: Prying
+    pryPowered: true
   - type: OptionsVisualizer
     visuals:
       base:
@@ -524,22 +649,33 @@
             sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/terror_princess.rsi
             map: ["enum.DamageStateVisualLayers.Base", "movement"]
             state: alive
+  - type: Spider
+    webPrototype: SpiderWebAirtight
+    hasBuilding: true
+    buildingActionProto: ActionSpiderBuildingGenerator
   - type: VentCrawler
   - type: MobThresholds
     thresholds:
       0: Alive
-      160: Dead
+      200: Critical
+      270: Dead
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 179
+    - Critical
+
     damage:
       types:
         Poison: -1
-      groups:
-        Brute: -1
-        Burn: -1
-        Airloss: -2
+        Blunt: -0.33
+        Slash: -0.33
+        Piercing: -0.33
+        Heat: -0.25
+        Shock: -0.25
+        Cold: -0.25
+        Caustic: -0.25
+        Asphyxiation: -1
+        Bloodloss: -1
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -552,21 +688,12 @@
   - type: MeleeChemicalInjector
     transferAmount: 3.75
     solution: melee
-  - type: Prying
-    pryPowered: true
-    force: true
-    speedModifier: 1.5
-    useSound:
-      path: /Audio/Items/crowbar.ogg
-    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
-    playSoundOnDoafter: true
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.00
     baseSprintSpeed : 3.75
   - type: TerrorPrincess
   - type: ActionGrant
     actions:
-    - ActionEggsLaying
     - ActionAcidVent
   - type: UserInterface
     interfaces:
@@ -580,6 +707,8 @@
   parent: MobTerrorBlackUnevolvable
   id: MobTerrorMother
   components:
+  - type: Prying
+    pryPowered: true
   - type: OptionsVisualizer
     visuals:
       base:
@@ -600,3 +729,24 @@
   - type: SpawnOnAction
     action: ActionRoyalJelly
     entityToSpawn: SpiderJelly
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      270: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damage:
+      types:
+        Poison: -1
+        Blunt: -0.33
+        Slash: -0.33
+        Piercing: -0.33
+        Heat: -0.25
+        Shock: -0.25
+        Cold: -0.25
+        Caustic: -0.25
+        Asphyxiation: -1
+        Bloodloss: -1

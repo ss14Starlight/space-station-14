@@ -37,3 +37,23 @@
   cost: 1000
   category: cargoproduct-category-name-armory
   group: market
+
+- type: cargoProduct
+  id: ArmoryCommandTrackingImplants
+  icon:
+    sprite: Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+  product: CrateCommandTrackingImplants
+  cost: 1000
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: ArmoryMeleeArmory
+  icon:
+    sprite: _Starlight/Objects/Weapons/Melee/ares.rsi
+    state: icon
+  product: CrateArmoryMelee
+  cost: 4500
+  category: cargoproduct-category-name-armory
+  group: market

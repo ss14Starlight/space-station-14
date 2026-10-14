@@ -1,0 +1,109 @@
+- type: species
+  id: NeoFelionoid
+  name: subspecies-name-neofelionoid
+  roundStart: true
+  prototype: MobNeoFelionoid
+  sprites: MobNeoFelionoidSprites
+  defaultSkinTone: "#666666"
+  markingLimits: MobNeoFelionoidMarkingLimits
+  dollPrototype: AppearanceNeoFelionoid
+  skinColoration: Hues
+  customName: true
+  roundstartCyberwareCapacity: 6
+  subspeciesOf: Neocyte
+  subspeciesName: subspecies-name-neofelionoid
+  loadout: NeocyteLoadout
+  maleFirstNames: names_felionoid_prefix
+  femaleFirstNames: names_felionoid_prefix
+  lastNames: names_felionoid_suffix
+  naming: PrefixSuffix
+  minHeight: 0.8
+  defaultHeight: 0.8
+  maxHeight: 0.9
+  standardSize: 170
+  standardWeight: 48
+  standardDensity: 45
+  profileMigration:
+    oldSpecies:
+    - ProtoFelionoid
+
+- type: speciesBaseSprites
+  id: MobNeoFelionoidSprites
+  sprites:
+    Eyes: MobNeocyteEyes
+    Head: MobFelionoidHead
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Hair: MobHumanoidAnyMarking
+    Chest: MobFelionoidTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    LArm: MobFelionoidLArm
+    RArm: MobFelionoidRArm
+    LHand: MobFelionoidLHand
+    RHand: MobFelionoidRHand
+    LLeg: MobFelionoidLLeg
+    RLeg: MobFelionoidRLeg
+    LFoot: MobFelionoidLFoot
+    RFoot: MobFelionoidRFoot
+    FaceCover: MobHumanoidAnyMarking
+    FaceCoverCover: MobHumanoidAnyMarking
+    BodyCover: MobHumanoidAnyMarking
+    BodyCoverCover: MobHumanoidAnyMarking
+
+- type: markingPoints
+  id: MobNeoFelionoidMarkingLimits
+  onlyWhitelisted: true
+  points:
+    FaceCover:
+      points: 1
+      required: true
+      defaultMarkings: [ NeoFelionoidVisor ]
+    FaceCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ NeoFelionoidLEDFace ]
+    BodyCover:
+      points: 1
+      required: true
+      defaultMarkings: [ NeoFelionoidMediumArmor ]
+    BodyCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ NeoFelionoidLights ]
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Snout:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ FelionoidTailAnimated ]
+    HeadTop:
+      points: 2
+      required: false
+    Head:
+      points: 2
+      required: false
+    Chest:
+      points: 2
+      required: false
+    Legs:
+      points: 4
+      required: false
+    Arms:
+      points: 4
+      required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false

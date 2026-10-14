@@ -12,6 +12,7 @@
         eyes: OrganShadekinEyes
         tongue: OrganShadekinTongue
         eye_implant: null
+        nose_implant: null # 🌟Starlight🌟
         brain_implant: null
     torso:
       part: TorsoShadekin

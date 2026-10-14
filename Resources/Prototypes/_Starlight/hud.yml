@@ -1,0 +1,5 @@
+- type: hudTheme
+  id: SLMPurpTheme
+  name: ui-options-hud-theme-mpurp
+  path: MPurp
+  order: 10

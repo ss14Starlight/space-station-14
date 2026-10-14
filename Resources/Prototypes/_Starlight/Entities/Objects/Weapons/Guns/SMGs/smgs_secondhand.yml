@@ -1,0 +1,43 @@
+# Second-hand (worn/damaged) SMG variants for the Second Hand uplink tab.
+
+# Worn C-20r: worn bolt carrier, clogged gas system, less wield benefit.
+- type: entity
+  parent: WeaponSubMachineGunC20r
+  id: WeaponSubMachineGunC20rWorn
+  suffix: Second Hand
+  components:
+  - type: RandomDefects
+  - type: Gun
+    fireRate: 5
+    shotsPerBurst: 5
+    availableModes:
+    - Burst
+    - FullAuto
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 2.5
+    maxAngleDivider: 2.2
+    angleIncreaseDivider: 2.5
+  - type: GunJamDefect
+    prob: 0.30
+    jamChance: 0.10
+  - type: GunBurstVarianceDefect
+    prob: 0.25
+    minShots: 2
+    maxShots: 7
+  - type: GunSpreadDefect
+    prob: 0.30
+    minAngleMin: 12
+    minAngleMax: 18
+    maxAngleMin: 30
+    maxAngleMax: 40
+  - type: BackfireDefect
+    prob: 0.10
+    backfireChance: 0.025
+    totalIntensity: 0.4
+    maxIntensity: 0.25
+  - type: BentSwitchDefect

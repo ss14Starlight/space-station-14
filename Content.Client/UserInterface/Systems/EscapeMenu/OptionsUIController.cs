@@ -6,9 +6,9 @@ using Robust.Shared.Console;
 namespace Content.Client.UserInterface.Systems.EscapeMenu;
 
 [UsedImplicitly]
-public sealed class OptionsUIController : UIController
+public sealed partial class OptionsUIController : UIController
 {
-    [Dependency] private readonly IConsoleHost _con = default!;
+    [Dependency] private IConsoleHost _con = default!;
 
     public override void Initialize()
     {
@@ -30,7 +30,7 @@ public sealed class OptionsUIController : UIController
             return;
         }
 
-        _optionsWindow.Tabs.CurrentTab = tab;
+        _optionsWindow.Sections.CurrentSection = tab; // Starlight-edit
     }
 
     private OptionsMenu _optionsWindow = default!;

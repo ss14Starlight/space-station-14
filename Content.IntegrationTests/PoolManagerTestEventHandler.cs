@@ -11,7 +11,7 @@ public sealed class PoolManagerTestEventHandler
     [OneTimeSetUp]
     public async Task Setup()
     {
-        RsiLoadingPatch.Apply(); // Starlight
+        // RsiLoadingPatch.Apply(); // Starlight Breaks ClickableTest
 
         PoolManager.Startup();
 

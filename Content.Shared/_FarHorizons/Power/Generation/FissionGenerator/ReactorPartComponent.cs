@@ -19,7 +19,6 @@ namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 public sealed partial class ReactorPartComponent : Component
 {
     [Dependency] private IPrototypeManager _proto = default!;
-    [Dependency] private IEntityManager _entMan = default!;
 
     /// <summary>
     /// Icon of this component as it shows in the UIs.
@@ -47,6 +46,94 @@ public sealed partial class ReactorPartComponent : Component
         ControlRod = 1 << 1, // 2 Can change its NeutronCrossSection according to control rod setting
         GasChannel = 1 << 2, // 4 Can process gas
     }
+
+    #region Reaction tuning
+    /// <summary>
+    /// Multiplier for the overall rate of reaction events for this part.
+    /// </summary>
+    [DataField]
+    public float ReactionRate = 10f;
+
+    /// <summary>
+    /// Changes the likelyhood of neutron interactions for this part.
+    /// </summary>
+    [DataField]
+    public float NeutronReactionBias = 1f;
+
+    /// <summary>
+    /// The amount of a property consumed by a reaction on this part.
+    /// </summary>
+    [DataField]
+    public float ReactionReactant = 0.01f;
+
+    /// <summary>
+    /// The amount of a property resultant from a reaction on this part.
+    /// </summary>
+    [DataField]
+    public float ReactionProduct = 0.005f;
+
+    /// <summary>
+    /// Multiplier for heating from neutron stimulated reactions on this part.
+    /// </summary>
+    [DataField]
+    public float StimulatedHeatingFactor = 2.5f;
+
+    /// <summary>
+    /// Multiplier for heating from spontaneous reactions on this part.
+    /// </summary>
+    [DataField]
+    public float SpontaneousHeatingFactor = 0.35f;
+
+    /// <summary>
+    /// Multiplier for how much reactant/product is consumed/produced in spontaneous reactions on this part.
+    /// </summary>
+    [DataField]
+    public float SpontaneousReactionConsumptionMultiplier = 1f;
+
+    /// <summary>
+    /// Temperature (in C) when people's bare hands can be burnt by this part.
+    /// </summary>
+    [DataField]
+    [GuidebookData]
+    public float HotTemp = 80f;
+
+    /// <summary>
+    /// Temperature (in C) when insulated gloves can no longer protect against this part.
+    /// </summary>
+    [DataField]
+    [GuidebookData]
+    public float BurnTemp = 400f;
+
+    /// <summary>
+    /// Ratio of product to reactant for reactions on this part.
+    /// </summary>
+    [GuidebookData]
+    public float ReactionRatio => ReactionReactant != 0 ? (ReactionProduct / ReactionReactant) : 0;
+
+    /// <summary>
+    /// Base heat added by neutron stimulated emission.
+    /// </summary>
+    [DataField]
+    public float NeutronStimulatedHeating = 50f;
+
+    /// <summary>
+    /// Base heat added by stimulated emission.
+    /// </summary>
+    [DataField]
+    public float StimulatedHeating = 25f;
+
+    /// <summary>
+    /// Base heat added by spontaneous neutron reactions.
+    /// </summary>
+    [DataField]
+    public float SpontaneousNeutronHeating = 20f;
+
+    /// <summary>
+    /// Base heat added by spontaneous reactions.
+    /// </summary>
+    [DataField]
+    public float SpontaneousHeating = 10f;
+    #endregion
 
     #region Variables
     /// <summary>
@@ -110,9 +197,16 @@ public sealed partial class ReactorPartComponent : Component
     /// </summary>
     [DataField]
     public float ThermalMass = 420 * 250; //specific heat capacity of steel (420 J/KgK) * mass of component (Kg)
+
+    [DataField]
+    public float SpaceHeatTransferRate = 0.1f;
+
+    [DataField]
+    public float MaxBurnDamage = 100f;
+
     #endregion
 
-    [DataField("material")]
+    [DataField]
     public ProtoId<MaterialPrototype> Material = "Steel";
 
     public MaterialProperties Properties
@@ -158,6 +252,16 @@ public sealed partial class ReactorPartComponent : Component
         IconStateCap = source.IconStateCap;
         RodType = source.RodType;
 
+        ReactionRate = source.ReactionRate;
+        NeutronReactionBias = source.NeutronReactionBias;
+        ReactionReactant = source.ReactionReactant;
+        ReactionProduct = source.ReactionProduct;
+        StimulatedHeatingFactor = source.StimulatedHeatingFactor;
+        SpontaneousHeatingFactor = source.SpontaneousHeatingFactor;
+        SpontaneousReactionConsumptionMultiplier = source.SpontaneousReactionConsumptionMultiplier;
+        HotTemp = source.HotTemp;
+        BurnTemp = source.BurnTemp;
+
         Temperature = source.Temperature;
         ThermalCrossSection = source.ThermalCrossSection;
         NeutronCrossSection = source.NeutronCrossSection;
@@ -184,63 +288,22 @@ public sealed partial class ReactorPartComponent : Component
     public double GuidebookThermalTransferValue => Math.Round(MaterialSystem.CalculateHeatTransferCoefficient(Properties, Properties), 1);
 
     [GuidebookData]
-    public string GuidebookNeutronInteractChance => FormatPercent(!TryResolveEntman()
-            ? 0
-            : (Properties.Density * _entMan.System<SharedReactorPartSystem>().ReactionRate * _entMan.System<SharedReactorPartSystem>().NeutronReactionBias));
+    public string GuidebookNeutronInteractChance => FormatPercent(Properties.Density * ReactionRate * NeutronReactionBias);
 
     [GuidebookData]
-    public string GuidebookNeutronStimulatedEmmissionChance => FormatPercent(!TryResolveEntman()
-            ? 0
-            : Properties.NeutronRadioactivity * _entMan.System<SharedReactorPartSystem>().ReactionRate * _entMan.System<SharedReactorPartSystem>().NeutronReactionBias);
+    public string GuidebookNeutronStimulatedEmmissionChance => FormatPercent(Properties.NeutronRadioactivity * ReactionRate * NeutronReactionBias);
 
     [GuidebookData]
-    public string GuidebookStimulatedEmmissionChance => FormatPercent(!TryResolveEntman()
-            ? 0
-            : Properties.Radioactivity * _entMan.System<SharedReactorPartSystem>().ReactionRate * _entMan.System<SharedReactorPartSystem>().NeutronReactionBias);
+    public string GuidebookStimulatedEmmissionChance => FormatPercent(Properties.Radioactivity * ReactionRate * NeutronReactionBias);
 
     [GuidebookData]
-    public string GuidebookNeutronDecayChance => FormatPercent(!TryResolveEntman()
-            ? 0
-            : Properties.NeutronRadioactivity * _entMan.System<SharedReactorPartSystem>().ReactionRate);
+    public string GuidebookNeutronDecayChance => FormatPercent(Properties.NeutronRadioactivity * ReactionRate);
 
     [GuidebookData]
-    public string GuidebookDecayChance => FormatPercent(!TryResolveEntman()
-            ? 0
-            : Properties.Radioactivity * _entMan.System<SharedReactorPartSystem>().ReactionRate);
+    public string GuidebookDecayChance => FormatPercent(Properties.Radioactivity * ReactionRate);
 
     [GuidebookData]
-    public string GuidebookReflectChance => FormatPercent(!TryResolveEntman()
-            ? 0
-            : Properties.Hardness * _entMan.System<SharedReactorPartSystem>().ReactionRate);
-
-    [GuidebookData]
-    public float GuidebookHotTemp => !TryResolveEntman()
-            ? 0
-            : _entMan.System<SharedReactorPartSystem>().ReactorPartHotTemp;
-
-    [GuidebookData]
-    public float GuidebookBurnTemp => !TryResolveEntman()
-            ? 0
-            : _entMan.System<SharedReactorPartSystem>().ReactorPartBurnTemp;
-
-    /// <summary>
-    /// Attempts to resolve the entity manager.
-    /// </summary>
-    /// <remarks>During prototype loading this may fail, but it will pass during runtime when it matters.</remarks>
-    /// <returns>If the entity manager is resolved.</returns>
-    private bool TryResolveEntman()
-    {
-        try // The try-catch is because sometimes IoCManager.Resolve() will throw an exception
-        {
-            IoCManager.Resolve(ref _entMan);
-        }
-        catch
-        {
-            return false;
-        }
-
-        return _entMan != null;
-    }
+    public string GuidebookReflectChance => FormatPercent(Properties.Hardness * ReactionRate);
 
     private static string FormatPercent(double value) => value <= 0 ? "" : Math.Round(value, 1).ToString() + "%";
     #endregion

@@ -1,7 +1,7 @@
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Starlight.CryoTeleportation;
+namespace Content.Shared._Starlight.CryoTeleportation;
 
 [RegisterComponent]
 public sealed partial class StationCryoTeleportationComponent : Component

@@ -1,16 +1,16 @@
 meta:
   format: 7
-  category: Grid
+  category: Map
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/09/2026 04:36:05
-  entityCount: 796
-maps: []
+  time: 04/26/2026 19:29:00
+  entityCount: 797
+maps:
+- 1
 grids:
 - 2
-orphans:
-- 2
+orphans: []
 nullspace: []
 tilemap:
   0: Space
@@ -34,12 +34,22 @@ tilemap:
 entities:
 - proto: ""
   entities:
+  - uid: 1
+    components:
+    - type: MetaData
+      name: Map Entity
+    - type: Transform
+    - type: Map
+      mapPaused: True
+    - type: GridTree
+    - type: Broadphase
+    - type: OccluderTree
   - uid: 2
     components:
     - type: MetaData
     - type: Transform
       pos: 0.3842575,0.4217209
-      parent: invalid
+      parent: 1
     - type: MapGrid
       chunks:
         -1,-1:
@@ -2107,10 +2117,10 @@ entities:
       parent: 2
 - proto: EncryptionKeyWinds
   entities:
-  - uid: 469
+  - uid: 797
     components:
     - type: Transform
-      pos: 1.7563674,-0.4060959
+      pos: 1.7532794,-0.33838692
       parent: 2
 - proto: FaxMachineSyndie
   entities:
@@ -5003,10 +5013,10 @@ entities:
       parent: 2
 - proto: WizardPersonalAI
   entities:
-  - uid: 1
+  - uid: 469
     components:
     - type: Transform
-      pos: 1.5688674,-1.0310959
+      pos: 1.4821775,-1.0258869
       parent: 2
 - proto: WoodblockInstrument
   entities:

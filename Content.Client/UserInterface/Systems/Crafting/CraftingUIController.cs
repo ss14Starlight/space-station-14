@@ -1,6 +1,5 @@
 using Content.Client.Construction.UI;
 using Content.Client.Gameplay;
-using Content.Client.UserInterface.Controls;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;

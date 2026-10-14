@@ -1,13 +1,12 @@
 - type: entity
   name: fireaxe
-  parent: [BaseItem, BaseEngineeringSalvageContraband] #Starlight salvContra
+  parent: [ BaseContrabandTier2, BaseItem, BaseEngineeringContraband, BaseSalvageContraband ] # Blimpuf salvContra
   id: FireAxe
   description: Truly, the weapon of a madman. Who would think to fight fire with an axe?
   components:
   - type: Tag
     tags:
     - FireAxe
-  - type: Sharp
   - type: Sprite
     sprite: Objects/Weapons/Melee/fireaxe.rsi
     state: icon
@@ -39,8 +38,12 @@
     - suitStorage
   - type: Tool
     qualities:
-      - Prying
+    - Prying
+    - Slicing
+    - Sawing
+    - Tearing # Starlight
   - type: ToolTileCompatible
+    delay: 6 # Starlight
   - type: Prying
     useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
     playSoundOnDoafter: true #SL
@@ -80,3 +83,6 @@
     slots:
     - back
     - suitStorage
+  - type: Tool # Ronstation start
+    qualities:
+      - Prying # Ronstation end

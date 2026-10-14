@@ -1,0 +1,14 @@
+﻿- type: loadout
+  id: DutyOfficerJumpsuitOrange
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDutyOfficerOrange
+
+- type: loadout
+  id: DutyOfficerJumpskirtOrange
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtDutyOfficerOrange
+
+- type: loadout
+  id: DutyOfficerHeadOrange
+  equipment:
+    head: ClothingHeadHatDutyOfficerOrange

@@ -1,14 +1,12 @@
 ﻿using Content.Shared.Body.Part;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Humanoid;
 using System.Linq;
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
-using Content.Shared.Starlight.Medical.Surgery.Events;
-using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
+using Content.Shared._Starlight.Medical.Surgery.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared._Starlight.Medical.Body.Part;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 
-namespace Content.Shared.Starlight.Medical.Surgery;
+namespace Content.Shared._Starlight.Medical.Surgery;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
 public abstract partial class SharedSurgerySystem
@@ -36,7 +34,7 @@ public abstract partial class SharedSurgerySystem
             return; // nothing to check
 
         foreach (var comp in (ent.Comp.Component ?? []).Values)
-            if (!EntityManager.HasComponent(args.Body, comp.Component.GetType()))
+            if (!HasComp(args.Body, comp.Component.GetType()))
             {
                 args.Cancelled = true;
                 return;
@@ -133,7 +131,7 @@ public abstract partial class SharedSurgerySystem
     }
     private void OnSpeciesConditionValid(Entity<SurgerySpeciesConditionComponent> ent, ref SurgeryValidEvent args)
     {
-        if (!EntityManager.TryGetComponent<HumanoidAppearanceComponent>(args.Body, out var humanoidAppearanceComponent))
+        if (!TryComp<HumanoidAppearanceComponent>(args.Body, out var humanoidAppearanceComponent))
         {
             args.Cancelled = true;
             return;

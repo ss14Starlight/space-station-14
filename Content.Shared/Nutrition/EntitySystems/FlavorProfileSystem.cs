@@ -1,20 +1,22 @@
 using System.Linq;
-using Content.Server._Starlight.Cybernetics.Components; // Starlight
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Nutrition.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
+#region Starlight
+using Content.Shared._Starlight.Cybernetics.Components;
+#endregion
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
 /// <summary>
 ///     Deals with flavor profiles when you eat something.
 /// </summary>
-public sealed class FlavorProfileSystem : EntitySystem
+public sealed partial class FlavorProfileSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IConfigurationManager _configManager = default!;
 
     private const string BackupFlavorMessage = "flavor-profile-unknown";
     private const string BlandFlavorMessage = "flavor-profile-bland"; // Starlight-edit

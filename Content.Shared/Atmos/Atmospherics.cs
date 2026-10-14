@@ -20,6 +20,11 @@ namespace Content.Shared.Atmos
         public const float OneAtmosphere = 101.325f;
 
         /// <summary>
+        /// Global Atmospherics epsilon. Used for all general floating-point comparisons.
+        /// </summary>
+        public const float Epsilon = 0.5f;
+
+        /// <summary>
         ///     Maximum external pressure (in kPA) a gas miner will, by default, output to.
         ///     This is used to initialize roundstart atmos rooms.
         /// </summary>
@@ -159,38 +164,11 @@ namespace Content.Shared.Atmos
         public const float MinimumHeatCapacity = 0.0003f;
 
         /// <summary>
-        ///     For the purposes of making space "colder"
+        /// Allows Atmospherics to cool down rooms during spacing
+        /// by assigning a fake heat capacity to space,
+        /// making space "actually cold" for gameplay reasons.
         /// </summary>
         public const float SpaceHeatCapacity = 7000f;
-
-        /// <summary>
-        ///     Dictionary of chemical abbreviations for <see cref="Gas"/>
-        /// </summary>
-        public static Dictionary<Gas, string> GasAbbreviations = new Dictionary<Gas, string>()
-        {
-            [Gas.Ammonia] = Loc.GetString("gas-ammonia-abbreviation"),
-            [Gas.CarbonDioxide] = Loc.GetString("gas-carbon-dioxide-abbreviation"),
-            [Gas.Frezon] = Loc.GetString("gas-frezon-abbreviation"),
-            [Gas.Nitrogen] = Loc.GetString("gas-nitrogen-abbreviation"),
-            [Gas.NitrousOxide] = Loc.GetString("gas-nitrous-oxide-abbreviation"),
-            [Gas.Oxygen] = Loc.GetString("gas-oxygen-abbreviation"),
-            [Gas.Plasma] = Loc.GetString("gas-plasma-abbreviation"),
-            [Gas.Tritium] = Loc.GetString("gas-tritium-abbreviation"),
-            [Gas.WaterVapor] = Loc.GetString("gas-water-vapor-abbreviation"),
-            // Funkystation Start: Funky atmos - /tg/ gases
-            [Gas.BZ] = Loc.GetString("gas-bz-abbreviation"),
-            [Gas.Healium] = Loc.GetString("gas-healium-abbreviation"),
-            [Gas.Nitrium] = Loc.GetString("gas-nitrium-abbreviation"),
-            [Gas.Pluoxium] = Loc.GetString("gas-pluoxium-abbreviation"),
-            [Gas.Hydrogen] = Loc.GetString("gas-hydrogen-abbreviation"),
-            [Gas.HyperNoblium] = Loc.GetString("gas-hyper-noblium-abbreviation"),
-            [Gas.ProtoNitrate] = Loc.GetString("gas-proto-nitrate-abbreviation"),
-            [Gas.Zauker] = Loc.GetString("gas-zauker-abbreviation"),
-            [Gas.Halon] = Loc.GetString("gas-halon-abbreviation"),
-            [Gas.Helium] = Loc.GetString("gas-helium-abbreviation"),
-            [Gas.AntiNoblium] = Loc.GetString("gas-anti-noblium-abbreviation"),
-            // Funkystation End: Funky atmos - /tg/ gases
-        };
 
         #region Excited Groups
 
@@ -219,13 +197,19 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 20; // Funkystation Edit: 9 -> 20
+        public const int TotalNumberOfGases = 22; // Starlight Edit: 9 -> 22
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
         ///     Set to the closest multiple of 4 relative to <see cref="TotalNumberOfGases"/> for SIMD reasons.
         /// </summary>
         public const int AdjustedNumberOfGases = ((TotalNumberOfGases + 3) / 4) * 4;
+
+        #region Starlight
+        public const float AmmoniaProductionEnergyReleased = 67e3f;
+        public const float AmmoniaNegativeDeltaEnthalpyOverR = 11089.4f;
+        public const float AmmoniaDeltaEntropyOverR = -20.838f;
+        #endregion
 
         /// <summary>
         ///     Amount of heat released per mole of burnt hydrogen or tritium (hydrogen isotope)
@@ -241,8 +225,8 @@ namespace Content.Shared.Atmos
         public const float SuperSaturationEnds = SuperSaturationThreshold / 3;
 
         public const float OxygenBurnRateBase = 1.4f;
-        public const float PlasmaMinimumBurnTemperature = (100f+T0C);
-        public const float PlasmaUpperTemperature = (1370f+T0C);
+        public const float PlasmaMinimumBurnTemperature = 100f + T0C;
+        public const float PlasmaUpperTemperature = 1370f + T0C;
         public const float PlasmaOxygenFullburn = 10f;
         public const float PlasmaBurnRateDelta = 9f;
         public const float HydrogenBurnRateDelta = 2f; // Funky atmos - /tg/ gases
@@ -394,6 +378,12 @@ namespace Content.Shared.Atmos
         public const float ProtoNitrateBZConversionEnergy = -10000f;
 
         /// <summary>
+        ///     Starlight, based on Funky Atmos
+        ///     The amount of energy 1 mol of Ulnitranium forming releases.
+        /// </summary>
+        public const float UlnitraniumProductionEnergy = 350;
+
+        /// <summary>
         ///     Determines at what pressure the ultra-high pressure red icon is displayed.
         /// </summary>
         public const float HazardHighPressure = 550f;
@@ -454,7 +444,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     The default pressure at which pumps and powered equipment max out at, in kPa.
         /// </summary>
-        public const float MaxOutputPressure = 9000; ///Starlight edit
+        public const float MaxOutputPressure = 4500;
 
         /// <summary>
         ///     The default maximum speed powered equipment can work at, in L/s.
@@ -492,5 +482,10 @@ namespace Content.Shared.Atmos
         Helium = 18,
         AntiNoblium = 19,
         // Funkystation End: Funky atmos - /tg/ gases
+        #region Starlight
+        // Starlight gases!
+        Ulnitranium = 20,
+        ZXA = 21,
+        #endregion
     }
 }

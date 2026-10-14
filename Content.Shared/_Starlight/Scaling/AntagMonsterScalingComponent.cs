@@ -1,7 +1,7 @@
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 
-namespace Content.Shared._Starlight.Scaling.Components;
+namespace Content.Shared._Starlight.Scaling;
 
 [RegisterComponent]
 public sealed partial class AntagMonsterScalingComponent : Component
@@ -11,6 +11,9 @@ public sealed partial class AntagMonsterScalingComponent : Component
     /// </summary>
     [DataField]
     public double MaximumHealthScaling = 0.50;
+
+    [DataField]
+    public double MinimumHealthScaling = -0.50;
 
     [DataField]
     public bool IsScaled = false;

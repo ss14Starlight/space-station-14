@@ -16,7 +16,7 @@ namespace Content.Client._FarHorizons.Power.UI;
 [GenerateTypedNameReferences]
 public sealed partial class NuclearReactorWindow : FancyWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = null!;
+    [Dependency] private IEntityManager _entityManager = null!;
     private readonly LockSystem _lock;
 
     private readonly Dictionary<Vector2i, StyleBoxFlat> _reactorGrid = [];
@@ -31,7 +31,6 @@ public sealed partial class NuclearReactorWindow : FancyWindow
     private int _gridWidth = 0;
     private int _gridHeight = 0;
 
-    private float _reactionRatio = 0.5f;
 
     private byte _displayMode = 1<<0;
     private double _targetPulse = 0;
@@ -54,9 +53,12 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
     private int _targetX = 0;
     private int _targetY = 0;
+    private bool _hasItem;
+    private bool _hasTarget;
 
     public event Action<Vector2i>? ItemActionButtonPressed;
     public event Action? EjectButtonPressed;
+    public event Action? AckButtonPressed;
 
     public event Action<float>? ControlRodModify;
 
@@ -86,6 +88,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         YDecrement.OnPressed += _ => MoveTarget(0, -1);
         ItemAction.OnPressed += _ => ItemActionButtonPressed?.Invoke(new(_targetY, _targetX));
         EjectItem.OnPressed += _ => EjectButtonPressed?.Invoke();
+        AlarmAck.OnPressed += _ => AckButtonPressed?.Invoke();
 
         ControlRodsInsertLarge.OnPressed += _ => AdjustControlRods(0.1f);
         ControlRodsInsertLarge.OnButtonDown += _ => _repeatQueue.Add(ControlRodsInsertLarge, _repeatDelay);
@@ -109,13 +112,12 @@ public sealed partial class NuclearReactorWindow : FancyWindow
     public void Update(NuclearReactorBuiState msg)
     {
         _data = msg.SlotData;
-        _reactionRatio = msg.ReactionRatio;
 
         ReactorTempValue.Text = FormatTemperature(msg.ReactorTemp);
         ReactorTempBar.Value = msg.ReactorTemp;
         _temperatureBar.BackgroundColor = GetColor(Atmospherics.T20C, ReactorTempBar.MaxValue * 0.75, msg.ReactorTemp);
 
-        ReactorRadsValue.Text = msg.ReactorRads <= msg.ReactorRadsMax ? Math.Round(msg.ReactorRads, 1).ToString() : "OVERLOAD";
+        ReactorRadsValue.Text = msg.ReactorRads <= msg.ReactorRadsMax ? Math.Round(msg.ReactorRads, 1).ToString() : Loc.GetString("comp-nuclear-reactor-ui-overload");
         ReactorRadsBar.Value = msg.ReactorRads;
         _radiationBar.BackgroundColor = GetColor(0, ReactorRadsBar.MaxValue * 0.5, msg.ReactorRads);
 
@@ -127,17 +129,21 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         ControlRodsActual.Value = msg.ControlRodActual;
         ControlRodsSet.Value = msg.ControlRodSet;
 
+        AlarmAck.Disabled = !msg.AckAvailable;
+
         var locktarget = _isMonitor ? _monitor : _reactor;
 
         ControlRodsButtons.Visible = !_lock.IsLocked(locktarget);
         ItemAction.Visible = !_lock.IsLocked(_reactor) && !_isMonitor;
+        AlarmAck.Visible = !_lock.IsLocked(locktarget);
 
         ItemActionLock.Visible = _lock.IsLocked(_reactor) && !_isMonitor;
         ControlRodsLock.Visible = _lock.IsLocked(locktarget);
+        AlarmAckLock.Visible = _lock.IsLocked(locktarget);
 
         Shelf.Visible = !_isMonitor;
 
-        ItemName.Text = msg.ItemName ?? "empty";
+        SetItemName(msg.ItemName);
     }
 
     public void SetEntity(EntityUid reactor, EntityUid? monitor = null)
@@ -245,7 +251,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
                     : Color.Black;
 
                 _reactorButton[vect].ToolTip = exists && (_data[vect].SpentFuel > 0 || _data[vect].Radioactivity > 0 || _data[vect].NeutronRadioactivity > 0)
-                    ? "Fuel Level: " + (int)Math.Round(GetFuelLevel(_data[vect]) * 100) + "%"
+                    ? Loc.GetString("comp-nuclear-reactor-ui-fuel-level", ("level", (int)Math.Round(GetFuelLevel(_data[vect]) * 100)))
                     : "";
             }
         }
@@ -343,12 +349,15 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         var vect = new Vector2i(_targetY,  _targetX);
         if(!_data.TryGetValue(vect, out var value))
         {
-            TargetName.Text = "empty";
+            _hasTarget = false;
+            TargetName.Text = Loc.GetString("comp-nuclear-reactor-ui-empty");
             TargetTemperatureGrid.Visible = TargetNRadiationGrid.Visible = TargetRadiationGrid.Visible = TargetSpentGrid.Visible = false;
             return;
         }
 
-        TargetName.Text = value.PartName;
+        // Slots with only neutrons have no part in them
+        _hasTarget = value.PartName != null;
+        TargetName.Text = value.PartName ?? Loc.GetString("comp-nuclear-reactor-ui-empty");
 
         TargetTemperatureGrid.Visible = value.Temperature > 0;
         TargetTemperature.Text = FormatTemperature(value.Temperature);
@@ -365,7 +374,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
     private void UpdateItemAction()
     {
-        if(ItemName.Text == "empty" == (TargetName.Text == "empty"))
+        if(_hasItem == _hasTarget)
         {
             ItemAction.Disabled = true;
             return;
@@ -373,7 +382,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         else
             ItemAction.Disabled = false;
 
-        ItemAction.Text = TargetName.Text != "empty"
+        ItemAction.Text = _hasTarget
             ? Loc.GetString("comp-nuclear-reactor-ui-remove-button")
             : Loc.GetString("comp-nuclear-reactor-ui-insert-button");
     }
@@ -395,11 +404,15 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         YDecrement.Disabled = _targetY <= 0;
     }
 
-    public void SetItemName(string? itemName) => ItemName.Text = itemName ?? "empty";
+    public void SetItemName(string? itemName)
+    {
+        _hasItem = itemName != null;
+        ItemName.Text = itemName ?? Loc.GetString("comp-nuclear-reactor-ui-empty");
+    }
 
     private static string FormatPower(float power) => Loc.GetString("comp-nuclear-reactor-ui-therm-format", ("power", power));
 
-    private double GetFuelLevel(ReactorSlotBUIData data) => Math.Max(1 - (data.SpentFuel / (data.SpentFuel + (data.Radioactivity * _reactionRatio) + (data.NeutronRadioactivity * _reactionRatio * _reactionRatio))), 0);
+    private static double GetFuelLevel(ReactorSlotBUIData data) => Math.Max(1 - (data.SpentFuel / (data.SpentFuel + (data.Radioactivity * data.ReactionRatio) + (data.NeutronRadioactivity * data.ReactionRatio * data.ReactionRatio))), 0);
 
     private void AdjustControlRods(float amount) => ControlRodModify?.Invoke(amount);
 }

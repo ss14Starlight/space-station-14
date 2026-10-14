@@ -3,7 +3,7 @@
   id: UndergarmentTopBinderAvali
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [Avali]
+  speciesRestriction: [Avali, NeoAvali]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -21,7 +21,7 @@
   id: UndergarmentTopBraAvali
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [Avali]
+  speciesRestriction: [Avali, NeoAvali]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -35,12 +35,11 @@
       colorSource: UndergarmentColor
   # Starlight end
 
-
 - type: marking
   id: UndergarmentTopSportsbraAvali
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [Avali]
+  speciesRestriction: [Avali, NeoAvali]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -58,7 +57,7 @@
   id: UndergarmentTopTanktopAvali
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [Avali]
+  speciesRestriction: [Avali, NeoAvali]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -76,7 +75,7 @@
   id: UndergarmentTopTanktopResomi
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -90,12 +89,11 @@
       colorSource: UndergarmentColor
   # Starlight end
 
-# Bottom Undergarments
 - type: marking
   id: UndergarmentBottomBriefsAvali
   bodyPart: UndergarmentBottom
   markingCategory: UndergarmentBottom
-  speciesRestriction: [Avali]
+  speciesRestriction: [Avali, NeoAvali]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -113,7 +111,7 @@
   id: UndergarmentBottomSatinAvali
   bodyPart: UndergarmentBottom
   markingCategory: UndergarmentBottom
-  speciesRestriction: [Avali]
+  speciesRestriction: [Avali, NeoAvali]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -131,7 +129,7 @@
   id: UndergarmentBottomBoxersAvali
   bodyPart: UndergarmentBottom
   markingCategory: UndergarmentBottom
-  speciesRestriction: [Avali]
+  speciesRestriction: [Avali, NeoAvali]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -149,7 +147,7 @@
   id: UndergarmentBottomBoxersResomi
   bodyPart: UndergarmentBottom
   markingCategory: UndergarmentBottom
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -167,7 +165,7 @@
   id: UndergarmentBottomThongResomi
   bodyPart: UndergarmentBottom
   markingCategory: UndergarmentBottom
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, NeoResomi]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -178,5 +176,132 @@
       sprite:
         sprite: _Starlight/Mobs/Customization/undergarments.rsi
         state: thong_resomi
+      colorSource: UndergarmentColor
+  # Starlight end
+
+- type: marking
+  id: UndergarmentTopBinderRodentia
+  bodyPart: UndergarmentTop
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Rodentia]
+  coloring:
+    default:
+      type: !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: binder_rodentia
+      colorSource: UndergarmentColor
+  # Starlight end
+
+- type: marking
+  id: UndergarmentTopBraRodentia
+  bodyPart: UndergarmentTop
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Rodentia]
+  coloring:
+    default:
+      type: !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: classic_rodentia
+      colorSource: UndergarmentColor
+  # Starlight end
+
+- type: marking
+  id: UndergarmentTopSportsbraRodentia
+  bodyPart: UndergarmentTop
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Rodentia]
+  coloring:
+    default:
+      type: !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: sports_rodentia
+      colorSource: UndergarmentColor
+  # Starlight end
+
+- type: marking
+  id: UndergarmentTopTanktopRodentia
+  bodyPart: UndergarmentTop
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Rodentia]
+  coloring:
+    default:
+      type: !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: tanktop_rodentia
+      colorSource: UndergarmentColor
+  # Starlight end
+
+# Bottom Undergarments
+- type: marking
+  id: UndergarmentBottomBriefsRodentia
+  bodyPart: UndergarmentBottom
+  markingCategory: UndergarmentBottom
+  speciesRestriction: [Rodentia]
+  coloring:
+    default:
+      type: !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_undergarmentBottom:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: briefs_rodentia
+      colorSource: UndergarmentColor
+  # Starlight end
+
+- type: marking
+  id: UndergarmentBottomSatinRodentia
+  bodyPart: UndergarmentBottom
+  markingCategory: UndergarmentBottom
+  speciesRestriction: [Rodentia]
+  coloring:
+    default:
+      type: !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_undergarmentBottom:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: satin_rodentia
+      colorSource: UndergarmentColor
+  # Starlight end
+
+- type: marking
+  id: UndergarmentBottomBoxersRodentia
+  bodyPart: UndergarmentBottom
+  markingCategory: UndergarmentBottom
+  speciesRestriction: [Rodentia]
+  coloring:
+    default:
+      type: !type:SimpleColoring
+        color: "#FFFFFF"
+  # Starlight start
+  sprites:
+    body_undergarmentBottom:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: boxers_rodentia
       colorSource: UndergarmentColor
   # Starlight end

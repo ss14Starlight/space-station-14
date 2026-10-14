@@ -1,4 +1,5 @@
-﻿using Content.Client.Resources;
+﻿using Content.Client._Starlight.UserInterface; // Starlight
+using Content.Client.Resources;
 using Content.Client.Stylesheets.Fonts;
 using Content.Client.Stylesheets.Palette;
 using Content.Client.Stylesheets.SheetletConfigs;
@@ -49,6 +50,7 @@ public sealed class WindowSheetlet<T> : Sheetlet<T>
         };
         borderedBackgroundBox.SetPatchMargin(StyleBox.Margin.All, 2);
         var closeButtonTex = sheet.GetTextureOr(iconCfg.CrossIconPath, NanotrasenStylesheet.TextureRoot);
+        var popOutButtonTex = ResCache.GetTexture("/Textures/_Starlight/Interface/Nano/pop_out.svg.png"); // Starlight
 
         var leftPanel = StyleBoxHelpers.OpenLeftStyleBox(sheet);
         leftPanel.SetPadding(StyleBox.Margin.All, 0.0f);
@@ -101,6 +103,24 @@ public sealed class WindowSheetlet<T> : Sheetlet<T>
                 .PseudoDisabled()
                 .Modulate(Palettes.Red.DisabledElement),
 
+            // Starlight begin
+            E<TextureButton>()
+                .Class(PopOutExtensions.PopOutButtonStyleClass)
+                .Prop(TextureButton.StylePropertyTexture, popOutButtonTex)
+                .Margin(3),
+            E<TextureButton>()
+                .Class(PopOutExtensions.PopOutButtonStyleClass)
+                .PseudoNormal()
+                .Modulate(Palettes.Neutral.Element),
+            E<TextureButton>()
+                .Class(PopOutExtensions.PopOutButtonStyleClass)
+                .PseudoHovered()
+                .Modulate(Palettes.Neutral.HoveredElement),
+            E<TextureButton>()
+                .Class(PopOutExtensions.PopOutButtonStyleClass)
+                .PseudoPressed()
+                .Modulate(Palettes.Neutral.PressedElement),
+            // Starlight end
             // Title
             E<Label>()
                 .Class("FancyWindowTitle") // TODO: hardcoding class name

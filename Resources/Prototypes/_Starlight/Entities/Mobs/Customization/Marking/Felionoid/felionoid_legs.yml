@@ -2,7 +2,7 @@
   id: FelionoidLegPawMittensL
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_lLeg:
@@ -16,7 +16,7 @@
   id: FelionoidLegPawMittensR
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_rLeg:
@@ -30,7 +30,7 @@
   id: FelionoidLegTabbyL
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_lLeg:
@@ -44,7 +44,7 @@
   id: FelionoidLegTabbyR
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_rLeg:
@@ -58,7 +58,7 @@
   id: FelionoidLegCalicoL
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_lLeg@0:

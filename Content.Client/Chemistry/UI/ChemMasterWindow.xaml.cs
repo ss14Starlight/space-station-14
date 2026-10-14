@@ -23,8 +23,11 @@ namespace Content.Client.Chemistry.UI
     [GenerateTypedNameReferences]
     public sealed partial class ChemMasterWindow : FancyWindow
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
+        private NetEntity? _lastOutputContainer; // Starlight
+        private bool _containerLabelManuallySet; // Starlight
+        private bool _settingContainerLabelProgrammatically; // Starlight
 
         private readonly SpriteSystem _sprite;
 
@@ -95,6 +98,14 @@ namespace Content.Client.Chemistry.UI
 
             // Ensure label length is within the character limit.
             LabelLineEdit.IsValid = s => s.Length <= SharedChemMaster.LabelMaxLength;
+            // Starlight-start
+            ContainerLabelLineEdit.IsValid = s => s.Length <= SharedChemMaster.LabelMaxLength; // Starlight
+            ContainerLabelLineEdit.OnTextChanged += _ =>
+            {
+                if (!_settingContainerLabelProgrammatically)
+                    _containerLabelManuallySet = true;
+            };
+            // Starlight-end
 
             Tabs.SetTabTitle(0, Loc.GetString("chem-master-window-input-tab"));
             Tabs.SetTabTitle(1, Loc.GetString("chem-master-window-output-tab"));
@@ -127,10 +138,10 @@ namespace Content.Client.Chemistry.UI
                 ("10", ChemMasterReagentAmount.U10, StyleClass.ButtonOpenBoth),
                 ("15", ChemMasterReagentAmount.U15, StyleClass.ButtonOpenBoth),
                 ("20", ChemMasterReagentAmount.U20, StyleClass.ButtonOpenBoth),
-                ("25", ChemMasterReagentAmount.U25, StyleClass.ButtonOpenBoth),
                 ("30", ChemMasterReagentAmount.U30, StyleClass.ButtonOpenBoth),
-                ("50", ChemMasterReagentAmount.U50, StyleClass.ButtonOpenBoth),
-                ("100", ChemMasterReagentAmount.U100, StyleClass.ButtonOpenBoth),
+                ("40", ChemMasterReagentAmount.U40, StyleClass.ButtonOpenBoth),
+                ("60", ChemMasterReagentAmount.U60, StyleClass.ButtonOpenBoth),
+                ("120", ChemMasterReagentAmount.U120, StyleClass.ButtonOpenBoth),
                 (Loc.GetString("chem-master-window-buffer-all-amount"), ChemMasterReagentAmount.All, StyleClass.ButtonOpenLeft),
             };
 
@@ -155,6 +166,22 @@ namespace Content.Client.Chemistry.UI
 
             if (castState.UpdateLabel)
                 LabelLine = GenerateLabel(castState);
+
+            // Starlight-start
+            var currentContainer = castState.OutputContainerInfo?.Uid;
+            if (currentContainer != _lastOutputContainer)
+            {
+                _lastOutputContainer = currentContainer;
+                _containerLabelManuallySet = false;
+                ContainerLabelLine = "";
+            }
+
+            if (castState.OutputContainerInfo is not null && !_containerLabelManuallySet)
+            {
+                var existingLabel = castState.OutputContainerInfo?.ContainerLabel;
+                ContainerLabelLine = !string.IsNullOrEmpty(existingLabel) ? existingLabel : LabelLine;
+            }
+            // Starlight-end
 
             // Ensure the Panel Info is updated, including UI elements for Buffer Volume, Output Container and so on
             UpdatePanelInfo(castState);
@@ -478,6 +505,18 @@ namespace Content.Client.Chemistry.UI
             get => LabelLineEdit.Text;
             set => LabelLineEdit.Text = value;
         }
+        // Starlight Start
+        public string ContainerLabelLine
+        {
+            get => ContainerLabelLineEdit.Text;
+            set
+            {
+                _settingContainerLabelProgrammatically = true;
+                ContainerLabelLineEdit.Text = value;
+                _settingContainerLabelProgrammatically = false;
+            }
+        }
+        // Starlight end
 
         private void SetBufferText(FixedPoint2? volume, string text)
         {

@@ -9,6 +9,8 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 using Robust.Shared.Utility;
+using Robust.Shared.Maths; // Monolith
+using System.Numerics; // Monolith
 
 namespace Content.Shared.Maps
 {
@@ -41,16 +43,30 @@ namespace Content.Shared.Maps
         [DataField("isSubfloor")] public bool IsSubFloor { get; private set; }
 
         [DataField("baseTurf")]
-        public string BaseTurf { get; private set; } = string.Empty;
+        public ProtoId<ContentTileDefinition>? BaseTurf { get; private set; }
+
+        /// <summary>
+        /// On what tiles this tile can be placed on. BaseTurf is already included.
+        /// </summary>
+        [DataField]
+        public List<ProtoId<ContentTileDefinition>> BaseWhitelist { get; private set; } = new();
 
         [DataField]
-        public PrototypeFlags<ToolQualityPrototype> DeconstructTools { get; set; } = new();
+        public HashSet<ProtoId<ToolQualityPrototype>> DeconstructTools = new();
 
         /// <summary>
         /// Effective mass of this tile for grid impacts.
         /// </summary>
         [DataField]
         public float Mass = 800f;
+
+        // <Monolith>
+        /// <summary>
+        /// Vertices for drawing purposes. Has to be a convex shape.
+        /// </summary>
+        [DataField]
+        public List<Vector2> Vertices = new() { Vector2.Zero, new Vector2(0, 1), new Vector2(1, 1), new Vector2(1, 0) };
+        // </Monolith>
 
         /// <remarks>
         /// Legacy AF but nice to have.
@@ -89,8 +105,8 @@ namespace Content.Shared.Maps
         // Heat capacity is opt-in, not opt-out.
         [DataField("heatCapacity")] public float HeatCapacity = Atmospherics.MinimumHeatCapacity;
 
-        [DataField("itemDrop", customTypeSerializer:typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string ItemDropPrototypeName { get; private set; } = "FloorTileItemSteel";
+        [DataField("itemDrop")]
+        public EntProtoId ItemDropPrototypeName { get; private set; } = "FloorTileItemSteel";
 
         // TODO rename data-field in yaml
         /// <summary>
@@ -121,6 +137,11 @@ namespace Content.Shared.Maps
         /// Is this tile immune to RCD deconstruct.
         /// </summary>
         [DataField("indestructible")] public bool Indestructible = false;
+
+        /// <summary>
+        ///     Hide this tile in the tile placement editor.
+        /// </summary>
+        [DataField] public bool EditorHidden { get; private set; } = false;
 
         public void AssignTileId(ushort id)
         {

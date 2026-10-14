@@ -1,20 +1,18 @@
-using Content.Server.Ghost;
+using Content.Shared.Ghost;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using AlertLevelDimmedLightComponent = Content.Shared._Starlight.Light.AlertLevelDimmedLightComponent;
 
 #region Starlight
-using Content.Server.Administration.Logs;
+
 using Content.Server.AlertLevel;
-using Content.Server.DeviceLinking.Systems;
 using Content.Shared.Station.Components; // Starlight
-using Content.Server.DeviceNetwork;
-using Content.Server.DeviceNetwork.Systems;
-using Content.Server._Starlight.GameTicking.Rules.Components; // SL
-using Content.Shared.GameTicking.Components; // SL
+// SL
+// SL
 using Content.Server.GameTicking; // SL
 using Content.Server.Chat.Systems; // SL
-using Robust.Shared.Player; // SL
+
+// SL
 #endregion Starlight
 
 namespace Content.Server.Light.EntitySystems;
@@ -22,11 +20,11 @@ namespace Content.Server.Light.EntitySystems;
 /// <summary>
 ///     System for the PoweredLightComponents
 /// </summary>
-public sealed class PoweredLightSystem : SharedPoweredLightSystem
+public sealed partial class PoweredLightSystem : SharedPoweredLightSystem
 {
-    [Dependency] private readonly GameTicker _gameTicker = default!; // SL
-    [Dependency] private readonly ChatSystem _chat = default!; // SL
-    [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // SL
+    [Dependency] private GameTicker _gameTicker = default!; // SL
+    [Dependency] private ChatSystem _chat = default!; // SL
+    [Dependency] private AlertLevelSystem _alertLevel = default!; // SL
 
     public override void Initialize()
     {
@@ -39,24 +37,19 @@ public sealed class PoweredLightSystem : SharedPoweredLightSystem
 
     private void OnGhostBoo(EntityUid uid, PoweredLightComponent light, GhostBooEvent args)
     {
-        if (light.IgnoreGhostsBoo)
-            return;
+        if (light.IgnoreGhostsBoo || HasComp<BlinkingPoweredLightComponent>(uid))
+            return; // The light is immune or already blinking.
 
         // check cooldown first to prevent abuse
-        var time = GameTiming.CurTime;
-        if (light.LastGhostBlink != null)
-        {
-            if (time <= light.LastGhostBlink + light.GhostBlinkingCooldown)
-                return;
-        }
+        var curTime = GameTiming.CurTime;
+        if (light.LastGhostBlink != null && curTime <= light.LastGhostBlink + light.GhostBlinkingCooldown)
+            return;
 
-        light.LastGhostBlink = time;
+        light.LastGhostBlink = curTime;
 
-        ToggleBlinkingLight(uid, light, true);
-        uid.SpawnTimer(light.GhostBlinkingTime, () =>
-        {
-            ToggleBlinkingLight(uid, light, false);
-        });
+        var blinkingComp = EnsureComp<BlinkingPoweredLightComponent>(uid);
+        blinkingComp.StopBlinkingTime = curTime + light.GhostBlinkingTime;
+        Dirty(uid, blinkingComp);
 
         args.Handled = true;
     }
@@ -66,7 +59,7 @@ public sealed class PoweredLightSystem : SharedPoweredLightSystem
         // TODO: Use ContainerFill dog
         if (light.HasLampOnSpawn != null)
         {
-            var entity = EntityManager.SpawnEntity(light.HasLampOnSpawn, EntityManager.GetComponent<TransformComponent>(uid).Coordinates);
+            var entity = Spawn(light.HasLampOnSpawn, Comp<TransformComponent>(uid).Coordinates);
             ContainerSystem.Insert(entity, light.LightBulbContainer);
         }
         // need this to update visualizers

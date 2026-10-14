@@ -9,14 +9,14 @@ using System.Numerics;
 
 namespace Content.Client.StatusIcon;
 
-public sealed class StatusIconOverlay : Overlay
+public sealed partial class StatusIconOverlay : Overlay
 {
     private static readonly ProtoId<ShaderPrototype> UnshadedShader = "unshaded";
 
-    [Dependency] private readonly IEntityManager _entity = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly Robust.Shared.Configuration.IConfigurationManager _cfg = default!; // Starlight
+    [Dependency] private IEntityManager _entity = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private Robust.Shared.Configuration.IConfigurationManager _cfg = default!; // Starlight
 
     private readonly SpriteSystem _sprite;
     private readonly TransformSystem _transform;
@@ -101,7 +101,7 @@ public sealed class StatusIconOverlay : Overlay
                         countL++;
                     }
                     yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float)(accOffsetL - proto.Offset) / EyeManager.PixelsPerMeter;
-                    xOffset = -(bounds.Width + sprite.Offset.X) / 2f;
+                    xOffset = -(bounds.Width + sprite.Offset.X) / 2f + (float)proto.OffsetHorizontal / EyeManager.PixelsPerMeter;
 
                 }
                 else
@@ -114,7 +114,7 @@ public sealed class StatusIconOverlay : Overlay
                         countR++;
                     }
                     yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float)(accOffsetR - proto.Offset) / EyeManager.PixelsPerMeter;
-                    xOffset = (bounds.Width + sprite.Offset.X) / 2f - (float)texture.Width / EyeManager.PixelsPerMeter;
+                    xOffset = (bounds.Width + sprite.Offset.X) / 2f - (float)(texture.Width - proto.OffsetHorizontal) / EyeManager.PixelsPerMeter;
 
                 }
 

@@ -26,6 +26,7 @@ public sealed class NuclearReactorBuiState : BoundUserInterfaceState
     public float ControlRodSet = 0;
 
     public float ReactionRatio = 0.5f;
+    public bool AckAvailable = false;
 }
 
 [Serializable, NetSerializable, DataDefinition]
@@ -34,11 +35,12 @@ public sealed partial class ReactorSlotBUIData
     public float Temperature = 0f;
     public int NeutronCount = 0;
     public string IconName = "base";
-    public string PartName = "empty";
+    public string? PartName;
 
     public float NeutronRadioactivity = 0f;
     public float Radioactivity = 0f;
     public float SpentFuel = 0f;
+    public float ReactionRatio;
 }
 
 [Serializable, NetSerializable]
@@ -55,3 +57,6 @@ public sealed class ReactorControlRodModifyMessage(float change) : BoundUserInte
 {
     public float Change { get; } = change;
 }
+
+[Serializable, NetSerializable]
+public sealed class ReactorAlarmAckMessage() : BoundUserInterfaceMessage;

@@ -84,3 +84,60 @@
     sprite: _Starlight/Clothing/Neck/Misc/tsf_badge.rsi
   - type: Item
     size: Tiny
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckBunnyGang
+  name: Bunny Gang Scarf
+  description: The scarf of a secretive group of bunny mercenaries.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Neck/Misc/bunnygang.rsi
+      state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/Neck/Misc/bunnygang.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckFoxfire
+  name: Foxfire Charm
+  description: Flittering ghostly flames have started following you upon donning this around your neck.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Misc/foxfire.rsi
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+        shader: unshaded
+      neck-resomi:
+      - state: equipped-NECK-resomi
+        shader: unshaded
+      neck-cyclorite:
+      - state: equipped-NECK-cyclorite
+        shader: unshaded
+      neck-rodentia:
+      - state: equipped-NECK-rodentia
+        shader: unshaded
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckLittleAngelWings
+  name: little angel wings # Alternative Clothing Catalog
+  description: Fluffy costume angel wings, matches with the rest of the set!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Misc/little_angel_wings.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Misc/little_angel_wings.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckLittleDevilWings
+  name: little devil wings # Alternative Clothing Catalog
+  description: Velvety costume devil wings, matches with the rest of the set!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Misc/little_devil_wings.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Misc/little_devil_wings.rsi

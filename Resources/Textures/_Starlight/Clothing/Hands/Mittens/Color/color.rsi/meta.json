@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e and modified by Flareguy for Space Station 14. Inhand sprites by SeamLesss (Github). Converted into mittens with winterbits added by wonderfulnewworld (GitHub).",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "TG Station, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+	{
+      "name": "winterbits-icon",
+	  "copyright": "wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+	{
+      "name": "dark-winterbits-icon",
+	  "copyright": "wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "equipped-HAND",
+      "directions": 4,
+	  "copyright": "TG Station, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+	{
+      "name": "winterbits-equipped-HAND",
+      "directions": 4,
+	  "copyright": "wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+	{
+      "name": "dark-winterbits-equipped-HAND",
+      "directions": 4,
+	  "copyright": "wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "TG Station, SeamLesss, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+	{
+      "name": "winterbits-inhand-left",
+      "directions": 4,
+	  "copyright": "wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+	{
+      "name": "dark-winterbits-inhand-left",
+      "directions": 4,
+	  "copyright": "wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "TG Station, SeamLesss, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+	{
+      "name": "winterbits-inhand-right",
+      "directions": 4,
+	  "copyright": "wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+	{
+      "name": "dark-winterbits-inhand-right",
+      "directions": 4,
+	  "copyright": "wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    }
+  ]
+}

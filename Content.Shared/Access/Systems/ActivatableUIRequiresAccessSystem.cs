@@ -1,12 +1,13 @@
 using Content.Shared.Popups;
 using Content.Shared.UserInterface;
 using Content.Shared.Access.Components;
+using Content.Shared.Lock;
 
 namespace Content.Shared.Access.Systems;
-public sealed class ActivatableUIRequiresAccessSystem : EntitySystem
+public sealed partial class ActivatableUIRequiresAccessSystem : EntitySystem
 {
-    [Dependency] private readonly AccessReaderSystem _access = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private AccessReaderSystem _access = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -19,7 +20,12 @@ public sealed class ActivatableUIRequiresAccessSystem : EntitySystem
     {
         if (args.Cancelled)
             return;
-
+        // Starlight-start
+        if (TryComp<LockComponent>(activatableUI, out var lockComponent)
+            && activatableUI.Comp.AllowUnlocking
+            && !lockComponent.Locked)
+            return;
+        // Starlight-end
         if (!_access.IsAllowed(args.User, activatableUI))
         {
             args.Cancel();

@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ BaseCartridge, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseCartridge, BaseSecurityContraband ] # Blimpuf
   id: BaseCartridgeLightRifleSP
   name: cartridge (.30 rifle SP)
   components:
@@ -31,51 +31,6 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#3F47DB"
-
-- type: entity
-  id: CartridgeLightRifleHP
-  name: cartridge (.30 rifle HP)
-  parent: BaseCartridgeLightRifleSP
-  components:
-  - type: CartridgeAmmo
-    proto: BulletLightRifleTraceHP
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#000000"
-
-- type: entity
-  id: CartridgeLightRifleFMJ
-  name: cartridge (.30 rifle FMJ)
-  parent: BaseCartridgeLightRifleSP
-  components:
-  - type: CartridgeAmmo
-    proto: BulletLightRifleTraceFMJ
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#B68F0E"
-
-- type: entity
-  id: CartridgeLightRifleAP
-  name: cartridge (.30 rifle AP)
-  parent: BaseCartridgeLightRifleSP
-  components:
-  - type: CartridgeAmmo
-    proto: BulletLightRifleTraceAP
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#1A8C1A"
 
 - type: entity
   parent: BaseCartridgeLightRifleSP

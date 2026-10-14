@@ -4,44 +4,50 @@
     "x": 32,
     "y": 32
   },
-  "copyright": "Taken From TG Station at https://github.com/tgstation/tgstation/commit/63e2f45ed3d5a9f736c4b0d23ecf0f33b1afbf1b",
+  "copyright": "State based copyright",
   "license": "CC-BY-SA-3.0",
   "states": [
     {
-      "name": "base"
+      "name": "base",
+      "copyright": "Taken From TG Station at https://github.com/tgstation/tgstation/commit/63e2f45ed3d5a9f736c4b0d23ecf0f33b1afbf1b"
     },
     {
-      "name": "base_black"
+      "name": "base_black",
+      "copyright": "Taken From TG Station at https://github.com/tgstation/tgstation/commit/63e2f45ed3d5a9f736c4b0d23ecf0f33b1afbf1b"
     },
     {
-      "name": "panel"
+      "name": "panel",
+      "copyright": "Taken From TG Station at https://github.com/tgstation/tgstation/commit/63e2f45ed3d5a9f736c4b0d23ecf0f33b1afbf1b"
     },
     {
       "name": "idle",
       "delays": [
         [
-            0.5,
-            0.5
+          0.5,
+          0.5
         ]
-      ]
+      ],
+      "copyright": "Taken From TG Station at https://github.com/tgstation/tgstation/commit/63e2f45ed3d5a9f736c4b0d23ecf0f33b1afbf1b"
     },
     {
       "name": "scan_success",
       "delays": [
         [
-            0.5,
-            0.5
+          0.5,
+          0.5
         ]
-      ]
+      ],
+      "copyright": "Taken From TG Station at https://github.com/tgstation/tgstation/commit/63e2f45ed3d5a9f736c4b0d23ecf0f33b1afbf1b"
     },
     {
       "name": "scan_fail",
       "delays": [
         [
-            0.5,
-            0.5
+          0.5,
+          0.5
         ]
-      ]
+      ],
+      "copyright": "Taken From TG Station at https://github.com/tgstation/tgstation/commit/63e2f45ed3d5a9f736c4b0d23ecf0f33b1afbf1b"
     }
   ]
 }

@@ -1,0 +1,32 @@
+[mono]
+MedTak Client Coverage Contract
+ ┌────────────────────────┐
+ Date and Time: [datetime]
+ Signatory Party:      [signature]
+ Authorized Personnel: [signature]
+ └────────────────────────┘
+ MedTak Interstellar guarantees
+ emergency response, stabilization,
+ and revival to its clients, subject
+ but not limited to the exceptions
+ listed below¹:
+ - Unpaid Fees
+ - Hostile actions taken towards
+   MedTak personnel
+ - Misrepresentation of client
+   identity or status
+ ┌────────────────────────┐
+ Plan² |Bronze|Silver|Gold|:
+ [form]
+ Surgery Preauthorization:
+ [/mono][check][mono]
+ └────────────────────────┘
+
+[color=#e6e6e6]
+1: Refer to form 18b for full list of
+   exceptions and conditions.
+2: Coverage and fees vary per plan.
+
+MedTak Interstellar reserves the right to
+amend coverage terms.[/color]
+[/mono]

@@ -3,7 +3,6 @@
   id: BaseClaws
   abstract: true
   components:
-  - type: Sharp
   - type: MeleeWeapon
     mustBeEquippedToUse: true
     wideAnimationRotation: 90
@@ -34,7 +33,7 @@
 
 - type: entity
   name: advanced claws
-  parent: [ BaseClaws, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseClaws, BaseSecurityContraband ] # Blimpuf
   id: AdvancedClaws
   description: Sharp, retractable plasteel claws, embedded in your hand.
   components:

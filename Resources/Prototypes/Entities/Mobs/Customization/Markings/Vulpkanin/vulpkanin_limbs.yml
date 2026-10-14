@@ -2,7 +2,7 @@
   id: VulpClawsHands
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_lHand:
@@ -26,7 +26,7 @@
   id: VulpClawsFeet
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_lFoot:
@@ -50,7 +50,7 @@
   id: VulpPointsCrestFeet
   markingCategory: Legs
   bodyPart: LFoot
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_lFoot:
@@ -74,7 +74,7 @@
   id: VulpPointsCrestHands
   markingCategory: Arms
   bodyPart: LHand
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_lHand:
@@ -100,7 +100,7 @@
   id: VulpPointsFadeFeet
   markingCategory: Legs
   bodyPart: LFoot
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_lFoot:
@@ -124,7 +124,7 @@
   id: VulpPointsFadeHands
   markingCategory: Arms
   bodyPart: LHand
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_lHand:
@@ -150,7 +150,7 @@
   id: VulpPointsSharpLong
   markingCategory: Arms
   bodyPart: LArm
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_lArm:
@@ -174,7 +174,7 @@
   id: VulpPointsSharpFeet
   markingCategory: Legs
   bodyPart: LFoot
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_lFoot:
@@ -198,7 +198,7 @@
   id: VulpPointsSharpHands
   markingCategory: Arms
   bodyPart: LHand
-  speciesRestriction: [ Vulpkanin ]
+  speciesRestriction: [ Vulpkanin, NeoVulpkanin , Neocyte] # Starlight
   # Starlight start
   sprites:
     body_lHand:
@@ -219,4 +219,3 @@
           color: "#e5e3d1"
 
 ## Right Side
-

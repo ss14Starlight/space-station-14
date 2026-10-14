@@ -6,13 +6,14 @@
   startingGear: MailTechGear
   icon: "JobIconMailTech"
   supervisors: job-supervisors-qm
+  displayWeight: 2
   access:
   - Cargo
   - Mail
   - Maintenance
   extendedAccess:
-  - Salvage
   - Mining
+  - Shuttle
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: BoxingDay

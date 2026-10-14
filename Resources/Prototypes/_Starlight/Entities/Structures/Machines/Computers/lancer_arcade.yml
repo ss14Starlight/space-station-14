@@ -1,0 +1,39 @@
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: LancerArcadeComputerCircuitboard
+  name: Lancer Solo Strike arcade board
+  description: A computer printed circuit board for a Lancer Solo Strike arcade cabinet.
+  components:
+  - type: ComputerBoard
+    prototype: LancerArcade
+
+- type: entity
+  id: LancerArcade
+  name: Lancer Solo Strike
+  description: An arcade cabinet running Lancer Solo Strike.
+  parent: ArcadeBase
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/arcade.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: arcade
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/arcade.rsi
+      state: screen_lancer
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: panel
+      visible: false
+  - type: LancerArcade
+  - type: ActivatableUI
+    key: enum.LancerArcadeUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: StationAiWhitelist
+  - type: UserInterface
+    interfaces:
+      enum.LancerArcadeUiKey.Key:
+        type: LancerArcadeBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: LancerArcadeComputerCircuitboard

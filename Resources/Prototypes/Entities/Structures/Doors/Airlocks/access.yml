@@ -11,17 +11,6 @@
     layoutId: AirlockService
 
 - type: entity
-  parent: Airlock # Starlight
-  id: AirlockInternalAffairsLocked # Starlight
-  suffix: Internal Affairs, Locked # Starlight
-  components:
-  - type: Wires # Starlight
-    layoutId: AirlockSecurity # Starlight
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsInternalAffairs ] # Starlight
-
-- type: entity
   parent: AirlockServiceLocked
   id: AirlockTheatreLocked
   suffix: Theatre, Locked
@@ -464,7 +453,7 @@
     layoutId: AirlockService
 
 - type: entity
-  parent: AirlockGlass # Starlight
+  parent: AirlockNTGlass # Starlight
   id: AirlockInternalAffairsGlassLocked # Starlight
   suffix: Internal Affairs, Locked # Starlight
   components:
@@ -973,13 +962,6 @@
     sprite: Structures/Doors/Airlocks/Standard/maint.rsi
 
 - type: entity
-  parent: AirlockInternalAffairsLocked # Starlight
-  id: AirlockMaintInternalAffairsLocked # Starlight
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
-
-- type: entity
   parent: AirlockServiceLocked
   id: AirlockMaintServiceLocked
   components:
@@ -1245,7 +1227,7 @@
   # Starlight start
   - type: RandomGridFill
     pathWeights:
-      "/Maps/Shuttles/escape_pod_small.yml": 40
+      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_small.yml": 40
       "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_cheap.yml": 2
       "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_toilet.yml": 1
       "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_library.yml": 2

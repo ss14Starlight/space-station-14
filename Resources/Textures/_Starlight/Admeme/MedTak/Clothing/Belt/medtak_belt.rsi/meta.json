@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "Sprited by SevenShades"
+    },
+    {
+      "name": "equipped-BELT",
+      "directions": 4,
+      "copyright": "Sprited by SevenShades"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+      "copyright": "Sprited by SevenShades"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+      "copyright": "Sprited by SevenShades"
+    }
+  ]
+}

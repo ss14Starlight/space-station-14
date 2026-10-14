@@ -3,16 +3,15 @@ using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Systems;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Shared.Starlight.Restrict;
+namespace Content.Shared._Starlight.Restrict;
 
 public abstract partial class SharedRestrictSystem : EntitySystem
 {
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     private const string BypassUserTagChecks = "BypassUserTagChecks";
 

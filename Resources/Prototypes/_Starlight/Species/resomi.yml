@@ -12,10 +12,10 @@
   naming: FirstLast
   dollPrototype: AppearanceResomi
   skinColoration: Hues
-  minAge: 23
-  youngAge: 103
-  oldAge: 257
-  maxAge: 430
+  minAge: 20
+  youngAge: 100
+  oldAge: 250
+  maxAge: 300
   customName: true # Starlight
   standardSize: 150
   standardWeight: 40

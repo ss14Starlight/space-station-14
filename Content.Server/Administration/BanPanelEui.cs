@@ -12,14 +12,14 @@ using Robust.Shared.Network;
 
 namespace Content.Server.Administration;
 
-public sealed class BanPanelEui : BaseEui
+public sealed partial class BanPanelEui : BaseEui
 {
-    [Dependency] private readonly IBanManager _banManager = default!;
-    [Dependency] private readonly IEntityManager _entities = default!;
-    [Dependency] private readonly ILogManager _log = default!;
-    [Dependency] private readonly IPlayerLocator _playerLocator = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IAdminManager _admins = default!;
+    [Dependency] private IBanManager _banManager = default!;
+    [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private ILogManager _log = default!;
+    [Dependency] private IPlayerLocator _playerLocator = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IAdminManager _admins = default!;
 
     private readonly ISawmill _sawmill;
 
@@ -158,7 +158,7 @@ public sealed class BanPanelEui : BaseEui
                         .Select(entry => entry.ToString())
                 )
                 .ToList();
-            _banManager.WebhookUpdateRoleBans(targetUid, ban.Target, Player.UserId, addressRange, targetHWid, roles, ban.BanDurationMinutes, ban.Severity, ban.Reason, now);
+            _ = _banManager.WebhookUpdateRoleBans(targetUid, ban.Target, Player.UserId, addressRange, targetHWid, roles, ban.BanDurationMinutes, ban.Severity, ban.Reason, now);
             // Starlight end - construct a list of role strings and send to webhook
 
             Close();
@@ -179,7 +179,7 @@ public sealed class BanPanelEui : BaseEui
             }
         }
 
-        _banManager.CreateServerBan(
+        _ = _banManager.CreateServerBan(
             targetUid,
             ban.Target,
             Player.UserId,

@@ -1,0 +1,11 @@
+﻿# Demonic essence from hellportals
+- type: entity
+  parent: Ash
+  id: MoffDemonicEssence
+  name: demonic essence
+  description: Smoldering remains, faintly emanating a dark presence.
+  components: #TODO: give chaplains an interaction using this material
+  - type: Sprite
+    sprite: _Moffstation/Objects/Materials/demonic_essence.rsi
+    layers:
+    - state: demonic_essence

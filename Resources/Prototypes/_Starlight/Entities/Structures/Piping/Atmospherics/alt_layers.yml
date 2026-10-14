@@ -151,6 +151,94 @@
     graph: GasUnaryStarlight
     node: outletinjectorAlt2
 
+- type: entity
+  parent: [GasPipeLayerAlt1, GasInletSiphon]
+  id: GasInletSiphonAlt1
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: FloorObjects
+      sprite: _Starlight/Structures/Piping/Atmospherics/gasinletsiphon.rsi
+      layers:
+        - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+          state: pipeUnaryConnectors
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: siphon
+          map: [ "enum.SubfloorLayers.FirstLayer" ]
+        - state: siphon-unshaded
+          shader: unshaded
+          map: [ "enum.LightLayers.Unshaded" ]
+          color: "#430000"
+    - type: Construction
+      graph: GasUnaryStarlight
+      node: gasinletsiphonAlt1
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasInletSiphon]
+  id: GasInletSiphonAlt2
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: FloorObjects
+      sprite: _Starlight/Structures/Piping/Atmospherics/gasinletsiphon.rsi
+      layers:
+        - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+          state: pipeUnaryConnectors
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: siphon
+          map: [ "enum.SubfloorLayers.FirstLayer" ]
+        - state: siphon-unshaded
+          shader: unshaded
+          map: [ "enum.LightLayers.Unshaded" ]
+          color: "#430000"
+    - type: Construction
+      graph: GasUnaryStarlight
+      node: gasinletsiphonAlt2
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasInletSiphon]
+  id: GasInletSiphonAlt3
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: FloorObjects
+      sprite: _Starlight/Structures/Piping/Atmospherics/gasinletsiphon.rsi
+      layers:
+        - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+          state: pipeUnaryConnectors
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: siphon
+          map: [ "enum.SubfloorLayers.FirstLayer" ]
+        - state: siphon-unshaded
+          shader: unshaded
+          map: [ "enum.LightLayers.Unshaded" ]
+          color: "#430000"
+    - type: Construction
+      graph: GasUnaryStarlight
+      node: gasinletsiphonAlt3
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasInletSiphon]
+  id: GasInletSiphonAlt4
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: FloorObjects
+      sprite: _Starlight/Structures/Piping/Atmospherics/gasinletsiphon.rsi
+      layers:
+        - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+          state: pipeUnaryConnectors
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: siphon
+          map: [ "enum.SubfloorLayers.FirstLayer" ]
+        - state: siphon-unshaded
+          shader: unshaded
+          map: [ "enum.LightLayers.Unshaded" ]
+          color: "#430000"
+    - type: Construction
+      graph: GasUnaryStarlight
+      node: gasinletsiphonAlt4
+
 
 # region binary
 - type: entity
@@ -485,3 +573,283 @@
       map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
   - type: Construction
     node: inline_filterAlt4
+
+# GasPipeTEGFuel
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeSensorTEGFuel]
+  id: GasPipeSensorTEGFuelAlt1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt1.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipeStraight
+    - map: ["base"]
+      state: base
+    - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      state: lights
+      shader: unshaded
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeSensorTEGFuel]
+  id: GasPipeSensorTEGFuelAlt2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt2.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipeStraight
+    - map: ["base"]
+      state: base
+    - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      state: lights
+      shader: unshaded
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeSensorTEGFuel]
+  id: GasPipeSensorTEGFuelAlt3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt3.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipeStraight
+    - map: ["base"]
+      state: base
+    - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      state: lights
+      shader: unshaded
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeSensorTEGFuel]
+  id: GasPipeSensorTEGFuelAlt4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt4.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipeStraight
+    - map: ["base"]
+      state: base
+    - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      state: lights
+      shader: unshaded
+
+# GasPipeVoxAir
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeSensorVoxAir]
+  id: GasPipeSensorVoxAirAlt1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt1.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipeStraight
+    - map: ["base"]
+      state: base
+    - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      state: lights
+      shader: unshaded
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeSensorVoxAir]
+  id: GasPipeSensorVoxAirAlt2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt2.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipeStraight
+    - map: ["base"]
+      state: base
+    - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      state: lights
+      shader: unshaded
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeSensorVoxAir]
+  id: GasPipeSensorVoxAirAlt3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt3.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipeStraight
+    - map: ["base"]
+      state: base
+    - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      state: lights
+      shader: unshaded
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeSensorVoxAir]
+  id: GasPipeSensorVoxAirAlt4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt4.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipeStraight
+    - map: ["base"]
+      state: base
+    - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      state: lights
+      shader: unshaded
+
+# GasPipeSensorNuclearHot
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeSensorNuclearHot]
+  id: GasPipeSensorNuclearHotAlt1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt1.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipeStraight
+    - map: ["base"]
+      state: base
+    - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      state: lights
+      shader: unshaded
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeSensorNuclearHot]
+  id: GasPipeSensorNuclearHotAlt2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt2.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipeStraight
+    - map: ["base"]
+      state: base
+    - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      state: lights
+      shader: unshaded
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeSensorNuclearHot]
+  id: GasPipeSensorNuclearHotAlt3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt3.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipeStraight
+    - map: ["base"]
+      state: base
+    - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      state: lights
+      shader: unshaded
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeSensorNuclearHot]
+  id: GasPipeSensorNuclearHotAlt4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt4.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipeStraight
+    - map: ["base"]
+      state: base
+    - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      state: lights
+      shader: unshaded
+
+# GasPipeSensorNuclearCold
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeSensorNuclearCold]
+  id: GasPipeSensorNuclearColdAlt1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt1.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipeStraight
+    - map: ["base"]
+      state: base
+    - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      state: lights
+      shader: unshaded
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeSensorNuclearCold]
+  id: GasPipeSensorNuclearColdAlt2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt2.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipeStraight
+    - map: ["base"]
+      state: base
+    - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      state: lights
+      shader: unshaded
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeSensorNuclearCold]
+  id: GasPipeSensorNuclearColdAlt3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt3.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipeStraight
+    - map: ["base"]
+      state: base
+    - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      state: lights
+      shader: unshaded
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeSensorNuclearCold]
+  id: GasPipeSensorNuclearColdAlt4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt4.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipeStraight
+    - map: ["base"]
+      state: base
+    - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      state: lights
+      shader: unshaded

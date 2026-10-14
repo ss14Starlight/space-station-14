@@ -1,18 +1,15 @@
 using Content.Shared.Interaction;
-using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
-using Content.Shared.NameModifier.Components;
-using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Popups;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Xenobiology.Potions;
 
-public sealed class SlimeNameChangePotionSystem : EntitySystem
+public sealed partial class SlimeNameChangePotionSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private SharedPopupSystem _sharedPopupSystem = default!;
 
     public override void Initialize()
     {
@@ -30,8 +27,8 @@ public sealed class SlimeNameChangePotionSystem : EntitySystem
         var oldName = MetaData(args.Target.Value).EntityName;
         _metaDataSystem.SetEntityName(args.Target.Value, ent.Comp.AssignedName);
         if (args.User != args.Target.Value)
-            _sharedPopupSystem.PopupPredicted($"{oldName} is now named {MetaData(args.Target.Value).EntityName}.", args.User, args.User);
-        _sharedPopupSystem.PopupPredicted($"You are now named {MetaData(args.Target.Value).EntityName}.", args.Target.Value, args.Target.Value);
+            _sharedPopupSystem.PopupPredicted(Loc.GetString("slime-potion-name-changed", ("old", oldName), ("new", MetaData(args.Target.Value).EntityName)), args.User, args.User);
+        _sharedPopupSystem.PopupPredicted(Loc.GetString("slime-potion-name-changed-self", ("new", MetaData(args.Target.Value).EntityName)), args.Target.Value, args.Target.Value);
         PredictedQueueDel(args.Used);
     }
 

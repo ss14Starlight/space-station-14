@@ -327,3 +327,153 @@
   sprite:
     sprite: _Starlight/Decals/12tie.rsi
     state: square
+
+- type: decal
+  id: khainite1
+  tags: ["crayon", "square", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti-2.rsi
+    state: kh-1
+
+- type: decal
+  id: khainite2
+  tags: ["crayon", "square", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti-2.rsi
+    state: kh-2
+
+- type: decal
+  id: khainite3
+  tags: ["crayon", "square", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti-2.rsi
+    state: kh-3
+
+- type: decal
+  id: khainite4
+  tags: ["crayon", "square", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti-2.rsi
+    state: kh-4
+
+- type: decal
+  id: khainite5
+  tags: ["crayon", "square", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti-2.rsi
+    state: kh-5
+
+- type: decal
+  id: khainite6
+  tags: ["crayon", "square", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti-2.rsi
+    state: kh-6
+
+- type: decal
+  id: khainite7
+  tags: ["crayon", "square", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti-2.rsi
+    state: kh-7
+
+- type: decal
+  id: khainite8
+  tags: ["crayon", "square", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti-2.rsi
+    state: kh-8
+
+- type: decal
+  id: khainite9
+  tags: ["crayon", "square", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti-2.rsi
+    state: kh-9
+
+- type: decal
+  id: khainiteHarGaneth
+  tags: ["crayon", "square", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti-2.rsi
+    state: kh-har-ganeth
+
+- type: decal
+  id: khainiteNagarythe
+  tags: ["crayon", "square", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti-2.rsi
+    state: kh-nagarythe
+
+- type: decal
+  id: merge
+  tags: ["crayon", "square", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti-2.rsi
+    state: merge
+
+- type: decal
+  id: robotgang
+  tags: ["crayon", "square", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti-2.rsi
+    state: robot-gang
+
+- type: decal
+  id: slimecrime
+  tags: ["crayon", "square", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti-2.rsi
+    state: slime-crime
+
+- type: decal
+  id: slimetime
+  tags: ["crayon", "square", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti-2.rsi
+    state: slime-time

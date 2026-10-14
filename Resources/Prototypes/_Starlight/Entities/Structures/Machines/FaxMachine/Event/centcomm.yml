@@ -1,0 +1,19 @@
+# For group and base prototype, see ../centcomm.yml.
+
+- type: entity
+  parent: FaxMachineCentralCommandBase
+  id: FaxMachineCentralCommand
+  suffix: "CC"
+  categories: [ DoNotMap ]
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#00b700"
+    - type: FaxMachine
+      group: FaxGroupCentralCommand
+      intrinsicGroup: FaxGroupCentralCommand
+      intrinsicLocked: true
+      name: "CentComm" # Intentionally different from the "normal" version's "Central Command".
+      order: 500

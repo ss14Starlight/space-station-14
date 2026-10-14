@@ -55,7 +55,7 @@
   - type: Storage
     grid:
     - 0,0,3,3
-    maxItemSize: Normal
+    maxItemSize: Large
   - type: Item
     shape:
     - 0,0,3,3

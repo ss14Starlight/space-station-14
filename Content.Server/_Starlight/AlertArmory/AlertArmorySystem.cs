@@ -1,5 +1,6 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Pinpointer;
+using Robust.Shared.Audio.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
@@ -19,20 +20,21 @@ using Content.Shared.Popups;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Configuration;
 
-namespace Content.Server.Starlight.AlertArmory;
+namespace Content.Server._Starlight.AlertArmory;
 
-public sealed class AlertArmorySystem : EntitySystem
+public sealed partial class AlertArmorySystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly MetaDataSystem _meta = default!;
-    [Dependency] private readonly MapLoaderSystem _loader = default!;
-    [Dependency] private readonly ShuttleSystem _shuttles = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly NavMapSystem _nav = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private MetaDataSystem _meta = default!;
+    [Dependency] private MapLoaderSystem _loader = default!;
+    [Dependency] private ShuttleSystem _shuttles = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private NavMapSystem _nav = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     private EntityQuery<PendingClockInComponent> _pendingQuery;
     private EntityQuery<ArrivalsBlacklistComponent> _blacklistQuery;
@@ -41,7 +43,7 @@ public sealed class AlertArmorySystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<AlertArmoryStationComponent, StationPostInitEvent>(InitializeAlertArmoryStation);
-        SubscribeLocalEvent<AlertArmoryStationComponent, ComponentShutdown>(OnShutdown); // Starlight
+        SubscribeLocalEvent<AlertArmoryStationComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<AlertArmoryShuttleComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<AlertArmoryShuttleComponent, FTLStartedEvent>(OnFTLStart);
         SubscribeLocalEvent<AlertArmoryShuttleComponent, FTLTagEvent>(SetShuttleTag);
@@ -112,7 +114,6 @@ public sealed class AlertArmorySystem : EntitySystem
     ///</summary>
     private void OnStartup(EntityUid uid, AlertArmoryShuttleComponent comp, ComponentStartup ev) => EnsureComp<PreventPilotComponent>(uid);
 
-    // Starlight Start
     /// <summary>
     /// remove armories if parent station is deleted
     /// </summary>
@@ -120,7 +121,6 @@ public sealed class AlertArmorySystem : EntitySystem
     {
         foreach (var grid in comp.Grids.Values) QueueDel(grid);
     }
-    // Starlight End
     private void OnFTLStart(Entity<AlertArmoryShuttleComponent> ent, ref FTLStartedEvent ev)
     {
         if (ev.FromMapUid != ent.Comp.ArmorySpaceUid) //if we are not coming from armory space. drop people. this allows including eg: ERT on a armory if you want.
@@ -219,6 +219,14 @@ public sealed class AlertArmorySystem : EntitySystem
         // Check if already in armory space
         if (xform.MapUid == shuttleComp.ArmorySpaceUid)
             return false;
+
+        // Clean up any lingering FTLComponent (which tracks the active cooldown) and stop FTL audio streams so that FTL can start immediately if recalled.
+        if (TryComp<FTLComponent>(shuttle, out var ftl))
+        {
+            _audio.Stop(ftl.StartupStream);
+            _audio.Stop(ftl.TravelStream);
+            RemComp<FTLComponent>(shuttle);
+        }
 
         _shuttles.FTLToCoordinates(
             shuttle,

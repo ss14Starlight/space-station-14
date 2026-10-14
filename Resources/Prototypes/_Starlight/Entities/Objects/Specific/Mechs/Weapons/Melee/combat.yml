@@ -1,6 +1,6 @@
 - type: entity
   id: WeaponMechChainSword
-  parent: [ BaseMechWeaponMelee, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseMechWeaponMelee, CombatMechEquipment, BaseSecurityContraband ] # Blimpuf
   name: exosuit chainsword
   suffix: Mech Weapon, Melee, Combat
   description: Equipment for combat exosuits. This is the mechanical chainsword that'll pierce the heavens!
@@ -18,8 +18,3 @@
       types:
         Structural: 35
         Slash: 15
-  # region starlight
-  - type: Tag
-    tags:
-    - PaddyMech
-  # end region

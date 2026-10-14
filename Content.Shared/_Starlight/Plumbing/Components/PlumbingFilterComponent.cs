@@ -14,42 +14,36 @@ namespace Content.Shared._Starlight.Plumbing.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
 public sealed partial class PlumbingFilterComponent : Component
 {
-    public const int MaxFilteredReagents = 4;
+    public const int MaxFilteredReagents = 10;
 
     /// <summary>
     ///     Name of the filter outlet node - only filtered reagents can be pulled here.
     /// </summary>
-    [DataField]
-    public string FilterNodeName = "outletFilter";
+    [DataField] public string FilterNodeName = "outletFilter";
 
     /// <summary>
     ///     Name of the passthrough outlet node - only non-filtered reagents can be pulled here.
     /// </summary>
-    [DataField]
-    public string PassthroughNodeName = "outletPassthrough";
+    [DataField] public string PassthroughNodeName = "outletPassthrough";
 
     /// <summary>
     ///     Name of the solution lane that holds filtered reagents.
     /// </summary>
-    [DataField]
-    public string FilteredSolutionName = "bufferFiltered";
+    [DataField] public string FilteredSolutionName = "bufferFiltered";
 
     /// <summary>
     ///     Name of the solution lane that holds passthrough reagents.
     /// </summary>
-    [DataField]
-    public string PassthroughSolutionName = "buffer";
+    [DataField] public string PassthroughSolutionName = "buffer";
 
     /// <summary>
     ///     Whether the filter is currently enabled.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool Enabled = true;
+    [DataField, AutoNetworkedField] public bool Enabled = true;
 
     /// <summary>
     ///     The reagent IDs to filter out to the filter port.
     ///     Multiple reagents can be filtered simultaneously.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public HashSet<ProtoId<ReagentPrototype>> FilteredReagents = new();
+    [DataField, AutoNetworkedField] public HashSet<ProtoId<ReagentPrototype>> FilteredReagents = new();
 }

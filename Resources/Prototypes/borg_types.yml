@@ -13,6 +13,7 @@
     - BorgModuleScience #until sciborgs are added
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleInflatable
   - BorgModuleArtifact
@@ -28,6 +29,16 @@
   petSuccessString: petting-success-generic-cyborg
   petFailureString: petting-failure-generic-cyborg
 
+  # Starlight BEGIN
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgResearch
+        - ResearchDirector
+  # Starlight END
 
 # Engineering borg
 - type: borgType
@@ -44,6 +55,7 @@
     - BorgModuleEngineering
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleConstruction
   - BorgModuleRCD
@@ -52,16 +64,6 @@
   radioChannels:
   - Engineering
   - Science
-
-  # Starlight start: Engiborg hud
-  addComponents:
-  - type: ShowHealthBars
-    damageContainers:
-    - Inorganic
-    - Silicon
-    - IPC
-  - type: ShowAccessReaderSettings
-  # Starlight end
 
   # Visual
   inventoryTemplateId: borgShort
@@ -95,6 +97,7 @@
     - BorgModuleMining #STARLIGHT
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleMining
   - BorgModuleTraversal
@@ -119,6 +122,15 @@
   - !type:DepartmentTimeRequirement
     department: Cargo
     time: 5400 # 1 hour 30 minutes in Cargo
+
+  addComponents:
+  - type: Access
+    groups:
+      - CyborgAllAccess
+    tags:
+      - Borg
+      - BorgCargo
+      - Quartermaster
   # Starlight-end
 
 
@@ -137,6 +149,7 @@
     - BorgModuleJanitor
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool # Starlight
   - BorgModuleCleaning
   - BorgModuleCustodial
@@ -154,6 +167,16 @@
   petSuccessString: petting-success-janitor-cyborg
   petFailureString: petting-failure-janitor-cyborg
 
+  # Starlight BEGIN
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgService
+  # Starlight END
+
 
 # Medical borg
 - type: borgType
@@ -170,6 +193,7 @@
     - BorgModuleMedical
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool # Starlight
   - BorgModuleChemical
   - BorgModuleTopicals
@@ -184,9 +208,41 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
+    - Hybrid # Starlight, doesn't work with partials
+    - MoffDemonBiological # Starlight, doesn't work with partials
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+    - Hybrid # Starlight, doesn't work with partials
+    - MoffDemonBiological # Starlight, doesn't work with partials
+  - type: Access # Starlight BEGIN
+    groups:
+      - CyborgAllAccess
+    tags:
+      - Borg
+      - BorgMedical
+      - ChiefMedicalOfficer # Starlight END
+  - type: HealthAnalyzer # Starlight BEGIN
+    damageContainers:
+    - Biological
+    - Hybrid
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+    - ActionMedTek
+  - type: UserInterface
+    interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+      enum.BorgUiKey.Key:
+        type: BorgBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.BorgSwitchableTypeUiKey.SelectBorgType:
+        type: BorgSelectTypeUserInterface
+      enum.HealthAnalyzerUiKey.Key:
+        type: HealthAnalyzerBoundUserInterface # Starlight END
 
   # Visual
   inventoryTemplateId: borgDutch
@@ -224,11 +280,13 @@
     - BorgModuleService
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool # Starlight
   - BorgModuleMusique
   # Starlight start
   - BorgModuleBartending
   - BorgModuleCooking
+  - BorgModuleButcher
   - BorgModuleBotany
   - BorgModuleBooks
   # Starlight end
@@ -245,3 +303,13 @@
   # Pet
   petSuccessString: petting-success-service-cyborg
   petFailureString: petting-failure-service-cyborg
+
+  # Starlight BEGIN
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgService
+  # Starlight END

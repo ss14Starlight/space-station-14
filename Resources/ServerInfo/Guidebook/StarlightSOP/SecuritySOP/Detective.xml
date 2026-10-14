@@ -3,7 +3,10 @@
 
 <GuideEntityEmbed Entity="ToyFigurineDetective" Caption="Detective"/>
 
-1 . Standard [color=#00a933]Code Green[/color] equipment is:
+- 1.\n
+Standard [color=#00a933]Code Green[/color] equipment is:
+
+
 <Box>
 	<GuideEntityEmbed Entity="ClothingHandsGlovesForensic"/>
 	<GuideEntityEmbed Entity="ForensicScanner"/>
@@ -24,11 +27,18 @@
 	<GuideEntityEmbed Entity="ClothingShoesBootsJack"/>
 </Box>
 
-2. The Detective is permitted to patrol with a Security Officer on all alert levels, but should focus on collecting of evidence and investigations at all times.
-
-3. When acting as a Security Officer, the Detective must follow all Security Officer guidelines listed above.
-
-4. The Detective is permitted to wear non-security uniforms for undercover investigations, with approval from the Head of Security. The Detective's security ID should be on their person at all times, however.
-
-5. The Detective is permitted to interrogate detained suspects, however any detainment must be subtracted from their overall arrest time.
+- 2.\n
+The Detective inherits their duties, clearances and responsibilities from the Security Officer when their own SOP does not apply.
+- 3.\n
+The Detective is responsible for the investigation of crime-scenes.
+- 4.\n
+The Detective is responsible for interrogation of prisoners and detainees if necessary.\n\n
+4.1\n
+Any time spent in interrogation is to be subtracted from the subject's confinement time.
+- 5.\n
+The Detective is permitted to ignore the Uniform Requirements in Security SOP §2 with approval from the Head of Security.\n\n
+5.1\n
+This is only allowed for purposes of undercover investigation.\n\n
+5.2\n
+The Detective's real ID must remain somewhere on their person at all times despite this.
 </Document>

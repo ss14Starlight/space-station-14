@@ -2,7 +2,7 @@
   id: FelionoidSnout
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_snout:

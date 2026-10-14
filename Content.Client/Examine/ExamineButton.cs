@@ -2,7 +2,6 @@ using Content.Shared.Verbs;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
-using Robust.Client.Utility;
 using Robust.Shared.Utility;
 
 namespace Content.Client.Examine;

@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+    "states": [
+        {
+            "name": "icon",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "base",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "bolt-open",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "mag-0",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "mag-1",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "mag-2",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "mag-3",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4,
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4,
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "wielded-inhand-left",
+            "directions": 4,
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "wielded-inhand-right",
+            "directions": 4,
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "equipped-BACKPACK",
+            "directions": 4,
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "equipped-SUITSTORAGE",
+            "directions": 4,
+            "copyright": "SevenShades"
+        }
+    ]
+}

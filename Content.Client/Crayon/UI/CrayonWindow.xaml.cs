@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Content.Client.Stylesheets;
@@ -10,9 +9,6 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
-using Robust.Client.Utility;
-using Robust.Shared.Graphics;
-using Robust.Shared.Maths;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 
@@ -21,7 +17,7 @@ namespace Content.Client.Crayon.UI
     [GenerateTypedNameReferences]
     public sealed partial class CrayonWindow : DefaultWindow
     {
-        [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
+        [Dependency] private IEntitySystemManager _entitySystem = default!;
         private readonly SpriteSystem _spriteSystem = default!;
 
         private Dictionary<string, List<(string Name, Texture Texture)>>? _decals;

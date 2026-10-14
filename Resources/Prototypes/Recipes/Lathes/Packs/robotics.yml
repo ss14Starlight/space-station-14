@@ -12,6 +12,7 @@
   - MechThruster
   - AiInterfaceCube
   - MechReactorStandard
+  - EmptyOilPack
   # Starlight-end
 
 - type: latheRecipePack
@@ -23,6 +24,7 @@
   - BorgModuleInflatable
   - BorgModuleArtistry
   - BorgModuleUppies # Starlight
+  - BorgModuleGaming # Starlight
 
 - type: latheRecipePack
   id: BorgLimbsStatic
@@ -40,6 +42,7 @@
   id: Robotics
   recipes:
   - ProximitySensor
+  - DroneShell # Starlight
 
 - type: latheRecipePack
   id: BorgModules

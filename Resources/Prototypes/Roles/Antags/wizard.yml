@@ -12,6 +12,7 @@
   antagonist: true
   setPreference: true # Starlight. reenabled to allow for preferences to work on midround wizard
   objective: roles-antag-wizard-objective # TODO: maybe give random objs and stationary ones from AntagObjectives and AntagRandomObjectives
+  roleLoadout: [ AntagWizard ] # Starlight
   requirements: # I hate time locked roles but this should be enough time for someone to be acclimated
   - !type:OverallPlaytimeRequirement
     time: 48h # Starlight. You've got the potential to mass grief.
@@ -21,5 +22,39 @@
   guides: [ Wizard ]
   previewStartingGear: WizardBlueGear
   playTimeTracker: AntagWizard # Starlight
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: Wizard
+  prefRoles: # Starlight
+  - Wizard # Starlight
+  spawnerPrototype: SpawnPointGhostWizard
+  startingGear: WizardBlueGear
+  roleLoadout:
+  - AntagWizard # Starlight
+  briefing:
+    text: wizard-role-greeting
+    color: Turquoise
+    # TODO: Need Wizard Start sound
+    #sound: "/Audio/Ambience/Antag/wizard_start.ogg"
+  # TODO: WizardComp as needed
+  allowNonHumans: true # Starlight start
+  blacklist:
+    components:
+    - AntagImmune
+  tags:
+    - Wizard
+    - CantBecomeRevolutionary # Starlight end
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Wizard
+  - type: RandomMetadata
+    nameSegments:
+    - NamesWizardFirst
+    - NamesWizardLast
+    nameFormat: name-format-wizard
+  mindRoles:
+  - MindRoleWizard
 
 # See wizard_startinggear for wiz start gear options

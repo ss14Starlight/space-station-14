@@ -1,19 +1,20 @@
-using Robust.Shared.Containers;
+using Robust.Shared.GameStates;
 
-namespace Content.Shared.VentCrawl.Tube.Components;
+namespace Content.Shared._Starlight.VentCrawl.Components;
 
 /// <summary>
 /// A component representing a vent that you can crawl through
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class VentCrawlTubeComponent : Component
 {
-    public string ContainerId { get; set; } = "VentCrawlTube";
+    [AutoNetworkedField]
+    public List<EntityUid> ContainedHolders = new();
 
     public bool Connected;
 
-    [ViewVariables]
-    public Container Contents { get; set; } = null!;
+    [DataField]
+    public bool BlocksVision = true;
 }
 
 [ByRefEvent]

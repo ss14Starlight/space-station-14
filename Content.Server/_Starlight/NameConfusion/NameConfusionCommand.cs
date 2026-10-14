@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._Starlight.Commands;
 using Content.Server.Administration;
 using Content.Shared._Starlight.NameConfusion;
 using Content.Shared.Administration;
@@ -141,7 +142,7 @@ public sealed class NameConfusionCommand : ToolshedCommand
         if (!EnsureWorkable(ctx, uid, out var comp)) return uid;
         if (Math.Sign(seconds) < 0)
         {
-            ctx.WriteMarkup("[color=red]Seconds cannot be negative.[/color]");
+            CommandMarkup.Error(ctx, "Seconds cannot be negative.");
             return uid;
         }
         _conf?.SetConfusedIntervalTime(uid, TimeSpan.FromSeconds(seconds), comp);
@@ -227,19 +228,18 @@ public sealed class NameConfusionCommand : ToolshedCommand
         [PipedArgument] IEnumerable<EntityUid> uid, float prob) =>
         uid.Select(x => SetRestoreProbability(ctx, x, prob));
 
-
     private bool EnsureWorkable(IInvocationContext ctx, EntityUid uid, [NotNullWhen(true)] out NameConfusionComponent? comp)
     {
         comp = null;
         _conf = EntitySystemManager.GetEntitySystem<NameConfusionSystem>();
         if (!TryComp(uid, out comp))
         {
-            ctx.WriteMarkup($"[color=red]Entity {uid} has no {nameof(NameConfusionComponent)}. Run [color=yellow]nconf:addname[/color] first.[/color]");
+            CommandMarkup.Error(ctx, $"Entity {uid} has no {nameof(NameConfusionComponent)}. Run {CommandMarkup.Highlight("nconf:addname")} first.");
             return false;
         }
 
         if (comp.Names.Count != 0) return true;
-        ctx.WriteMarkup($"[color=red]Entity {uid} has no names to pick from. Run [color=yellow]nconf:addname[/color] first.[/color]");
+        CommandMarkup.Error(ctx, $"Entity {uid} has no names to pick from. Run {CommandMarkup.Highlight("nconf:addname")} first.");
         return false;
     }
 }

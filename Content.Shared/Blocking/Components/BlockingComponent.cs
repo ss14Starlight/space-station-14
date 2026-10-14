@@ -76,4 +76,13 @@ public sealed partial class BlockingComponent : Component
     /// </summary>
     [DataField]
     public float ActiveBlockFraction = 1.0f;
+
+    #region Starlight
+    /// <summary>
+    /// How much energy will be spent from the battery per unit of damage taken by the shield.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float DamageEnergyDraw = 10f;
+
+    #endregion
 }

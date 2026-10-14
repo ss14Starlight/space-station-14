@@ -1,19 +1,15 @@
 using System.Linq;
-using System.Reflection;
+using Content.Server.Administration;
 using Content.Shared._Starlight.Radio;
 using Content.Shared.Administration;
-using Content.Shared.Implants.Components;
-using Content.Shared.Radio.Components;
 using Robust.Shared.Toolshed;
 
-namespace Content.Server.Administration.Commands;
+namespace Content.Server._Starlight.Administration.Systems.Commands;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Fun)]
 public sealed class RadioCommand : ToolshedCommand
 {
-    [Dependency] private readonly IComponentFactory _factory = default!;
-
-    private static Type[] _parsers = [typeof(ISupportsCustomChannelsTypeParser)];
+    private static readonly Type[] _parsers = [typeof(ISupportsCustomChannelsTypeParser)];
     public override Type[] TypeParameterParsers => _parsers;
 
     [CommandImplementation("addcustom")]
@@ -53,7 +49,7 @@ public sealed class RadioCommand : ToolshedCommand
     }
 
     [CommandImplementation("remcustom")]
-    public IEnumerable<EntityUid> Delete<T>([PipedArgument] IEnumerable<EntityUid> uid, Type componentType, string id)
+    public IEnumerable<EntityUid> Delete<T>([PipedArgument] IEnumerable<EntityUid> uid, Type _, string id)
         where T : ISupportsCustomChannels, IComponent =>
         uid.Select(x => Delete<T>(x, id));
 }

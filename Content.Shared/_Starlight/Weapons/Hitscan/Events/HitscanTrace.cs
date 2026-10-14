@@ -1,8 +1,7 @@
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Weapons.Hitscan.Events;
+namespace Content.Shared._Starlight.Weapons.Hitscan.Events;
 
 [Serializable, NetSerializable]
 public struct HitscanTrace

@@ -2,7 +2,7 @@
   id: FelionoidEars
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_headTop:
@@ -16,7 +16,7 @@
   id: FelionoidEarsRound
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   # Starlight start
   sprites:
     body_headTop:

@@ -1,0 +1,9 @@
+- files: ["gun_boomslang_lever.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from cmss13"
+  source: "https://github.com/cmss13-devs/cmss13/blob/41a9b4198368b478eb611f74e810142d2761aa10/sound/weapons/handling/gun_boomslang_lever.ogg"
+
+- files: ["pump_action_1.ogg", "pump_action_2.ogg", "pump_action_3.ogg", "pump_action_4.ogg"]
+  license: "CC0-1.0"
+  copyright: "Created by awrmacd, edited by CawsForConcern (GitHub)"
+  source: "https://freesound.org/people/awrmacd/sounds/387190/"

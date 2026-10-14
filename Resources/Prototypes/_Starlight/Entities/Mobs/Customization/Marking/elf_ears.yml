@@ -4,7 +4,7 @@
   markingCategory: HeadTop
   forcedColoring: true
   # followSkinColor: true
-  speciesRestriction: [Elf]
+  speciesRestriction: [Elf, NeoElf, Neocyte]
   # Starlight start
   sprites:
     body_headTop:
@@ -20,7 +20,7 @@
   markingCategory: HeadTop
   forcedColoring: true
   # followSkinColor: true
-  speciesRestriction: [Elf]
+  speciesRestriction: [Elf, NeoElf, Neocyte]
   # Starlight start
   sprites:
     body_headTop:
@@ -36,7 +36,7 @@
   markingCategory: HeadTop
   forcedColoring: true
   # followSkinColor: true
-  speciesRestriction: [Elf]
+  speciesRestriction: [Elf, NeoElf, Neocyte]
   # Starlight start
   sprites:
     body_headTop:
@@ -52,7 +52,7 @@
   markingCategory: HeadTop
   forcedColoring: true
   # followSkinColor: true
-  speciesRestriction: [Elf]
+  speciesRestriction: [Elf, NeoElf, Neocyte]
   # Starlight start
   sprites:
     body_headTop:
@@ -68,7 +68,7 @@
   markingCategory: HeadTop
   forcedColoring: true
   # followSkinColor: true
-  speciesRestriction: [Elf]
+  speciesRestriction: [Elf, NeoElf, Neocyte]
   # Starlight start
   sprites:
     body_headTop:
@@ -84,7 +84,7 @@
   markingCategory: HeadTop
   forcedColoring: true
   # followSkinColor: true
-  speciesRestriction: [Elf]
+  speciesRestriction: [Elf, NeoElf, Neocyte]
   # Starlight start
   sprites:
     body_headTop:

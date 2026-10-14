@@ -5,11 +5,11 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "disposal bins by EmoGarbage404 (github) edted by ShadesMars.",
+    "copyright": "State based copyright",
     "states": [
         {
             "name": "red",
-            "directions": 1
+            "copyright": "disposal bins by EmoGarbage404 (github) edted by ShadesMars."
         }
     ]
 }

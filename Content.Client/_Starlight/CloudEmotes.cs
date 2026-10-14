@@ -9,11 +9,11 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._Starlight;
 
-public sealed class ClouldEmotesSystem : EntitySystem
+public sealed partial class ClouldEmotesSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private SpriteSpecifier EmoteStart = new SpriteSpecifier.Rsi(new ResPath("_Starlight/Effects/cloud_emotes.rsi"), "emote_start");
     private SpriteSpecifier EmoteEnd = new SpriteSpecifier.Rsi(new ResPath("_Starlight/Effects/cloud_emotes.rsi"), "emote_end");

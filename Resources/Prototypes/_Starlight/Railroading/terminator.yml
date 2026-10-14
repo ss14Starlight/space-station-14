@@ -8,7 +8,7 @@
     icon: ""
     iconColor: "#fd3f3f" # Antag
     color: "#6c15ae"
-    image: /Textures/_Starlight/Railroading/terminate.png
+    image: /Textures/_Starlight/Railroading/antag.png
     description: rr-terminate-desc
   - type: RailroadMessageOnChosen
     messages:

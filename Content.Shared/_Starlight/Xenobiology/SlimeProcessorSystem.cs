@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Jittering;
 using Content.Shared.Power;
@@ -14,12 +15,12 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Xenobiology;
 
-public sealed class SlimeProcessorSystem : EntitySystem
+public sealed partial class SlimeProcessorSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly SharedJitteringSystem _jitteringSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private SharedJitteringSystem _jitteringSystem = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
 
     public override void Initialize()
     {
@@ -104,11 +105,11 @@ public sealed class SlimeProcessorSystem : EntitySystem
     }
 }
 
-public sealed class ActiveSlimeProcessorSystem : EntitySystem
+public sealed partial class ActiveSlimeProcessorSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
 
     public override void Update(float frameTime)
     {
@@ -145,12 +146,13 @@ public sealed class ActiveSlimeProcessorSystem : EntitySystem
     }
 }
 
-public sealed class CollectingSlimeProcessorSystem : EntitySystem
+public sealed partial class CollectingSlimeProcessorSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookupSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private EntityLookupSystem _entityLookupSystem = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     public override void Update(float frameTime)
     {
@@ -171,8 +173,7 @@ public sealed class CollectingSlimeProcessorSystem : EntitySystem
             foreach (var entity in _entityLookupSystem.GetEntitiesInRange<SlimeComponent>(Transform(uid).Coordinates, 1F))
             {
                 if (_container.IsEntityOrParentInContainer(entity.Owner)) continue;
-                if (!_entityManager.TryGetComponent(entity, out DamageableComponent? damageableComponent)) continue;
-                if (damageableComponent.TotalDamage >= 200)
+                if (_damageable.GetTotalDamage(entity.Owner) >= 200)
                 {
                     _container.Insert(entity.Owner, slimeProcessorComponent.SlimeContainer);
                     collectingSlimeProcessorComponent.SlimeAcquireMoment = _gameTiming.CurTime + slimeProcessorComponent.SlimeAcquireCooldown;

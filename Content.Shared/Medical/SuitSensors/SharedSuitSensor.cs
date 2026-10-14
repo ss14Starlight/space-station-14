@@ -24,6 +24,7 @@ public sealed class SuitSensorStatus
     public string Job;
     public string JobIcon;
     public List<string> JobDepartments;
+    public string Faction = "crew"; // Starlight - adding factions to sensors
     public bool IsAlive;
     public int? TotalDamage;
     public int? TotalDamageThreshold;
@@ -84,6 +85,7 @@ public static class SuitSensorConstants
     public const string NET_JOB = "job";
     public const string NET_JOB_ICON = "jobIcon";
     public const string NET_JOB_DEPARTMENTS = "jobDepartments";
+    public const string NET_FACTION = "faction"; // Starlight - adding factions to sensors
     public const string NET_IS_ALIVE = "alive";
     public const string NET_TOTAL_DAMAGE = "vitals";
     public const string NET_TOTAL_DAMAGE_THRESHOLD = "vitalsThreshold";

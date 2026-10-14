@@ -1,0 +1,84 @@
+﻿- type: entity
+  id: BaseMailBoxMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Base Mailbox Machine Circuitboard
+  description: Looks like you could use a screwdriver to change the board's configuration.
+  abstract: true
+  components:
+    - type: MachineBoard
+      prototype: BaseMailBox
+      stackRequirements:
+        Manipulator: 2
+    - type: Construction
+      graph: MailboxBoard
+      deconstructionTarget: null
+
+- type: entity
+  id: CargoMailBoxMachineCircuitboard
+  name: Cargo Mailbox Machine Circuitboard
+  parent: BaseMailBoxMachineCircuitboard
+  components:
+    - type: MachineBoard
+      prototype: CargoMailBox
+    - type: Construction
+      node: cargo
+
+- type: entity
+  id: CommandMailBoxMachineCircuitboard
+  name: Command Mailbox Machine Circuitboard
+  parent: BaseMailBoxMachineCircuitboard
+  components:
+    - type: MachineBoard
+      prototype: CommandMailBox
+    - type: Construction
+      node: command
+
+- type: entity
+  id: EngineeringMailBoxMachineCircuitboard
+  name: Engineering Mailbox Machine Circuitboard
+  parent: BaseMailBoxMachineCircuitboard
+  components:
+    - type: MachineBoard
+      prototype: EngineeringMailBox
+    - type: Construction
+      node: engineering
+
+- type: entity
+  id: MedicalMailBoxMachineCircuitboard
+  name: Medical Mailbox Machine Circuitboard
+  parent: BaseMailBoxMachineCircuitboard
+  components:
+    - type: MachineBoard
+      prototype: MedicalMailBox
+    - type: Construction
+      node: medical
+
+- type: entity
+  id: ScienceMailBoxMachineCircuitboard
+  name: Science Mailbox Machine Circuitboard
+  parent: BaseMailBoxMachineCircuitboard
+  components:
+    - type: MachineBoard
+      prototype: ScienceMailBox
+    - type: Construction
+      node: science
+
+- type: entity
+  id: SecurityMailBoxMachineCircuitboard
+  name: Security Mailbox Machine Circuitboard
+  parent: BaseMailBoxMachineCircuitboard
+  components:
+    - type: MachineBoard
+      prototype: SecurityMailBox
+    - type: Construction
+      node: security
+
+- type: entity
+  id: ServiceMailBoxMachineCircuitboard
+  name: Service Mailbox Machine Circuitboard
+  parent: BaseMailBoxMachineCircuitboard
+  components:
+    - type: MachineBoard
+      prototype: ServiceMailBox
+    - type: Construction
+      node: service

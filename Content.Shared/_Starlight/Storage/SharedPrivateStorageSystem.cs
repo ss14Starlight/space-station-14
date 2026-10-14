@@ -6,7 +6,6 @@ using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Strip;
 using Content.Shared.Verbs;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Storage;
@@ -14,12 +13,12 @@ namespace Content.Shared._Starlight.Storage;
 /// <summary>
 /// Modifies access to internal storage depending on whether the user initiating it is the owner of the storage.
 /// </summary>
-public abstract class SharedPrivateStorageSystem : EntitySystem
+public abstract partial class SharedPrivateStorageSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStorageSystem _storage = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SharedStorageSystem _storage = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {

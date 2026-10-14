@@ -3,7 +3,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -18,7 +18,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -33,7 +33,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -48,7 +48,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -63,7 +63,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -78,7 +78,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -93,7 +93,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -108,7 +108,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -123,7 +123,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -138,7 +138,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -153,7 +153,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -168,7 +168,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -183,7 +183,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -198,7 +198,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -213,7 +213,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -228,7 +228,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -243,7 +243,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -258,7 +258,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -273,7 +273,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -288,7 +288,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -303,7 +303,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -318,7 +318,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -333,7 +333,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -348,7 +348,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -363,7 +363,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -378,7 +378,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -393,7 +393,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -408,7 +408,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:
@@ -423,7 +423,7 @@
   bodyPart: Hair
   markingCategory: Hair
   canBeDisplaced: false
-  speciesRestriction: [Vox]
+  speciesRestriction: [Vox, NeoVox] # FH + Starlight
   # Starlight start
   sprites:
     body_hair:

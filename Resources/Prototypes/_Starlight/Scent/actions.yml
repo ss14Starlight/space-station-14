@@ -1,0 +1,39 @@
+# Sneeze and Smell Target are granted/revoked dynamically, not at MapInit - see SharedScentSystem.
+- type: entity
+  parent: BaseAction
+  id: ActionToggleSniff
+  name: Toggle Smelling
+  description: Start or stop actively smelling, letting you see lingering scent trails in the world.
+  components:
+  - type: Action
+    useDelay: 0.5
+    icon: { sprite: _Starlight/Interface/Actions/actions_scent.rsi, state: smell-off }
+    iconOn: { sprite: _Starlight/Interface/Actions/actions_scent.rsi, state: smell-on }
+  - type: InstantAction
+    event: !type:ToggleSniffActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionSneeze
+  name: Sneeze
+  description: Clear your nose of whatever scent you were tracking.
+  components:
+  - type: Action
+    useDelay: 2
+    icon: { sprite: _Starlight/Interface/Actions/actions_scent.rsi, state: sneeze }
+  - type: InstantAction
+    event: !type:SneezeActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionSniffObject
+  name: Smell Target
+  description: Smell a target to identify the scents left on it.
+  components:
+  - type: Action
+    useDelay: 0.5
+    icon: { sprite: _Starlight/Interface/Actions/actions_scent.rsi, state: smell-target }
+    itemIconStyle: BigAction
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:SniffObjectActionEvent

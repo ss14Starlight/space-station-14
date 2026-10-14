@@ -1,0 +1,30 @@
+- type: entity
+  id: ActionInstantRejuvenate
+  parent: BaseAction
+  name: Rejuvenate Self
+  description: Restore your body to its original condition. Single use.
+  components:
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false # can use while crit/dead
+    icon:
+      sprite: Objects/Specific/Medical/medical.rsi
+      state: gauze
+  - type: InstantAction
+    event: !type:RejuvenateInstantActionEvent
+  - type: LimitedCharges
+    maxCharges: 1
+
+- type: entity
+  id: ActionDevilRejuvenate
+  parent: BaseAction
+  name: Rejuvenate Self
+  description: Restore your body. Package does not include the SureRevive (tm) SuperCell (R) cellular damage cover. Fifteen minute cooldown.
+  components:
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
+    icon: { sprite: Objects/Specific/Medical/medical.rsi, state: gauze }
+    useDelay: 900 # 15 minutes
+  - type: InstantAction
+    event: !type:RejuvenateInstantActionEvent { preserveDamageTypes: [ Cellular ] }

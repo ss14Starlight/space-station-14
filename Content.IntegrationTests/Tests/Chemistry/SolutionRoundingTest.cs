@@ -1,3 +1,4 @@
+using Content.IntegrationTests.Fixtures;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
@@ -9,7 +10,7 @@ namespace Content.IntegrationTests.Tests.Chemistry;
 
 [TestFixture]
 [TestOf(typeof(ChemicalReactionSystem))]
-public sealed class SolutionRoundingTest
+public sealed class SolutionRoundingTest : GameTest
 {
     // This test tests two things:
     // * A rounding error in reaction code while I was making chloral hydrate
@@ -17,52 +18,52 @@ public sealed class SolutionRoundingTest
 
     [TestPrototypes]
     private const string Prototypes = @"
-- type: entity
-  id: SolutionRoundingTestContainer
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 100
+    -   type: entity
+        id: SolutionRoundingTestContainer
+        components:
+        -   type: Solution
+            id: beaker
+            solution:
+                maxVol: 100
 
-# This is the Chloral Hydrate recipe fyi.
-- type: reagent
-  id: SolutionRoundingTestReagentA
-  name: reagent-name-nothing
-  desc: reagent-desc-nothing
-  physicalDesc: reagent-physical-desc-nothing
+    # This is the Chloral Hydrate recipe fyi.
+    -   type: reagent
+        id: SolutionRoundingTestReagentA
+        name: reagent-name-nothing
+        desc: reagent-desc-nothing
+        physicalDesc: reagent-physical-desc-nothing
 
-- type: reagent
-  id: SolutionRoundingTestReagentB
-  name: reagent-name-nothing
-  desc: reagent-desc-nothing
-  physicalDesc: reagent-physical-desc-nothing
+    -   type: reagent
+        id: SolutionRoundingTestReagentB
+        name: reagent-name-nothing
+        desc: reagent-desc-nothing
+        physicalDesc: reagent-physical-desc-nothing
 
-- type: reagent
-  id: SolutionRoundingTestReagentC
-  name: reagent-name-nothing
-  desc: reagent-desc-nothing
-  physicalDesc: reagent-physical-desc-nothing
+    -   type: reagent
+        id: SolutionRoundingTestReagentC
+        name: reagent-name-nothing
+        desc: reagent-desc-nothing
+        physicalDesc: reagent-physical-desc-nothing
 
-- type: reagent
-  id: SolutionRoundingTestReagentD
-  name: reagent-name-nothing
-  desc: reagent-desc-nothing
-  physicalDesc: reagent-physical-desc-nothing
+    -   type: reagent
+        id: SolutionRoundingTestReagentD
+        name: reagent-name-nothing
+        desc: reagent-desc-nothing
+        physicalDesc: reagent-physical-desc-nothing
 
-- type: reaction
-  id: SolutionRoundingTestReaction
-  impact: Medium
-  reactants:
-    SolutionRoundingTestReagentA:
-      amount: 3
-    SolutionRoundingTestReagentB:
-      amount: 1
-    SolutionRoundingTestReagentC:
-      amount: 1
-  products:
-    SolutionRoundingTestReagentD: 1
-";
+    -   type: reaction
+        id: SolutionRoundingTestReaction
+        impact: Medium
+        reactants:
+            SolutionRoundingTestReagentA:
+                amount: 3
+            SolutionRoundingTestReagentB:
+                amount: 1
+            SolutionRoundingTestReagentC:
+                amount: 1
+        products:
+            SolutionRoundingTestReagentD: 1
+    ";
 
     private const string SolutionRoundingTestReagentA = "SolutionRoundingTestReagentA";
     private const string SolutionRoundingTestReagentB = "SolutionRoundingTestReagentB";
@@ -72,7 +73,7 @@ public sealed class SolutionRoundingTest
     [Test]
     public async Task Test()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
         var testMap = await pair.CreateTestMap();
 
@@ -121,7 +122,5 @@ public sealed class SolutionRoundingTest
                     Is.EqualTo((FixedPoint2) 30));
             });
         });
-
-        await pair.CleanReturnAsync();
     }
 }

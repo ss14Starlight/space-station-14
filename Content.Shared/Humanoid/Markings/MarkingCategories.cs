@@ -23,7 +23,11 @@ namespace Content.Shared.Humanoid.Markings
         Feet, // Starlight
         Tail,
         TailExtras, // Starlight
-        Overlay
+        Overlay,
+        FaceCover, // Far Horizons
+        FaceCoverCover, // Far Horizons
+        BodyCover, // Far Horizons
+        BodyCoverCover // Far Horizons
     }
 
     public static class MarkingCategoriesConversion
@@ -52,6 +56,10 @@ namespace Content.Shared.Humanoid.Markings
                 HumanoidVisualLayers.LFoot => MarkingCategories.Feet, // Starlight
                 HumanoidVisualLayers.RFoot => MarkingCategories.Feet, // Starlight
                 HumanoidVisualLayers.TailExtras => MarkingCategories.TailExtras, // Starlight
+                HumanoidVisualLayers.FaceCover => MarkingCategories.FaceCover, // Far Horizons
+                HumanoidVisualLayers.FaceCoverCover => MarkingCategories.FaceCoverCover, // Far Horizons
+                HumanoidVisualLayers.BodyCover => MarkingCategories.BodyCover, // Far Horizons
+                HumanoidVisualLayers.BodyCoverCover => MarkingCategories.BodyCoverCover, // Far Horizons
                 HumanoidVisualLayers.Tail => MarkingCategories.Tail,
                 _ => MarkingCategories.Overlay
             };

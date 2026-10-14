@@ -15,6 +15,7 @@
     sprite: Structures/Wallmounts/barsign.rsi
     state: empty
   - type: BarSign
+    emped: EmpBarSign
   - type: AccessReader
     access: [["Bar"]]
   - type: ActivatableUIRequiresPower
@@ -287,7 +288,16 @@
   parent: BaseBarSign
   id: BarSignWhiskeyEchoes
   name: Whiskey Echoes
-  description: An elite bar for elite oper-wait, this is a Nanotrasen station. Why's this sign in the database?
+  description: An elite bar for elite oper-wait, this is a NanoTrasen station. Why's this sign in the database? # SL
   components:
   - type: BarSign
     current: WhiskeyEchoes
+
+- type: entity
+  parent: BaseBarSign
+  id: BarSignEmped
+  name: glitchy bar sign
+  description: You imagine a good smack might fix it.
+  components:
+  - type: BarSign
+    current: EmpBarSign

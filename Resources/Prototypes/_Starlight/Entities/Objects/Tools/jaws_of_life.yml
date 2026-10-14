@@ -15,7 +15,7 @@
 
 - type: entity
   name: medical jaws of life
-  parent: [ BaseItem, BaseMedicalSecurityContraband ]
+  parent: [ BaseContrabandTier2, BaseItem, BaseMedicalContraband, BaseSecurityContraband ] # Blimpuf
   id: JawsOfLifeMed
   description: A set of jaws of life, for pulling the injured out of whatever mess they put themselves in.
   components:
@@ -48,13 +48,13 @@
   - type: MultipleTool
     statusShowBehavior: true
     entries:
-      - behavior: Prying
+      - behavior: [ Prying ]
         sprite:
           sprite: _Starlight/Objects/Tools/jaws_of_life.rsi
           state: jaws_pry
         useSound: /Audio/Items/jaws_pry.ogg
         changeSound: /Audio/Items/change_jaws.ogg
-      - behavior: Cutting
+      - behavior: [ Cutting ]
         sprite:
           sprite: _Starlight/Objects/Tools/jaws_of_life.rsi
           state: jaws_cutter

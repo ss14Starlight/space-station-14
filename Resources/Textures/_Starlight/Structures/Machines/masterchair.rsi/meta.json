@@ -4,16 +4,18 @@
     "x": 32,
     "y": 32
   },
-  "copyright": "conf",
+  "copyright": "State based copyright",
   "license": "CC-BY-SA-4.0",
   "states": [
     {
       "name": "base",
-      "directions": 4
+      "directions": 4,
+      "copyright": "conf"
     },
     {
       "name": "overlay",
-      "directions": 4
+      "directions": 4,
+      "copyright": "conf"
     }
   ]
 }

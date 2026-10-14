@@ -1,0 +1,10 @@
+﻿- type: loadout
+  id: NanoTrasenRepresentativeCloak
+  equipment:
+    neck: ClothingNeckCloakNtr
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobNanoTrasenRepresentative
+        time: 144000 # 40hr

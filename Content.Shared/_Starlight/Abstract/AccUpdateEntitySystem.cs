@@ -1,4 +1,4 @@
-﻿namespace Content.Shared.Abilities.Goliath;
+﻿namespace Content.Shared._Starlight.Abstract;
 
 public abstract class AccUpdateEntitySystem : EntitySystem
 {

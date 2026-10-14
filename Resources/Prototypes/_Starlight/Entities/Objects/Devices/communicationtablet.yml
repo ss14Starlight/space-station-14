@@ -1,0 +1,112 @@
+- type: entity
+  id: BaseCommunicationTablet
+  parent: [PowerCellSlotMediumItem, BaseHandheldComputer, BaseCommandContraband]
+  abstract: true
+  categories: [ DoNotMap ]
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/communication_tablet.rsi
+      layers:
+      - state: communications_tablet # Default state
+        map: ["enum.CommandTabletLayers.Frame"]
+      - state: powered
+        shader: unshaded
+        map: ["enum.CommandTabletLayers.Powered"]
+        visible: false
+    - type: Item
+      inhandVisuals:
+        left:
+        - state: aac-inhand-left
+        - state: aac_screen-inhand-left
+          shader: unshaded
+        right:
+        - state: aac-inhand-right
+        - state: aac_screen-inhand-right
+          shader: unshaded
+    - type: Appearance
+    - type: BatteryVisuals
+    - type: GenericVisualizer
+      visuals:
+        enum.BatteryVisuals.State:
+          enum.CommandTabletLayers.Powered:
+            Full: { visible: true, shader: unshaded }
+            Neither: { visible: true, shader: unshaded }
+            Empty: { visible: false }
+    - type: ItemToggle
+      predictable: false
+      soundActivate:
+        collection: Keyboard
+      soundDeactivate:
+        path: /Audio/Machines/button.ogg
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+    - type: PowerCellDraw
+      drawRate: 0.1 # Optimized drawRate (lower than your 1.5)
+    - type: ToggleCellDraw
+    - type: ActivatableUIRequiresPowerCell
+    - type: CommunicationsConsole
+      title: comms-console-announcement-title-command
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      canBroadcast: true
+      canShuttle: false
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      transmitFrequencyId: ShuttleTimer
+    - type: ActivatableUI
+      key: enum.CommunicationsConsoleUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.CommunicationsConsoleUiKey.Key:
+          type: CommunicationsConsoleBoundUserInterface
+
+
+- type: entity
+  name: Captain's Management Tablet
+  parent: BaseCommunicationTablet
+  id: CommunicationTablet
+  description: A portable announcement computer reserved for the station's head honcho.
+  components:
+    - type: AccessReader
+      access: [[ "Captain" ]]
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellMedium
+          blacklist:
+            tags: [ MechReactor ]
+    - type: StealTarget
+      stealGroup: CaptainTablet
+
+
+- type: entity
+  name: Central Command Tablet
+  parent: [BaseCentcommContraband, BaseCommunicationTablet]
+  id: CentCommCommunicationTablet
+  description: The older, more narcistic brother of the Captain's Management Tablet. Comes with a fancy self recharging power cell.
+  components:
+    - type: Sprite
+      layers:
+      - state: cc_tablet
+        map: ["enum.CommandTabletLayers.Frame"]
+      - state: cc_powered
+        shader: unshaded
+        map: ["enum.CommandTabletLayers.Powered"]
+        visible: false
+    - type: AccessReader
+      access: [[ "CentralCommand" ]]
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellAntiqueProto
+          blacklist:
+            tags: [ MechReactor ]
+    - type: CommunicationsConsole
+      title: comms-console-announcement-title-centcom
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      canBroadcast: true
+      canShuttle: true

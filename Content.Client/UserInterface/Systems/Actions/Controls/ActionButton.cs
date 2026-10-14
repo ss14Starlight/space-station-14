@@ -2,12 +2,9 @@ using System.Numerics;
 using Content.Client.Actions;
 using Content.Client.Actions.UI;
 using Content.Client.Cooldown;
-using Content.Client.Stylesheets;
 using Content.Shared.Actions.Components;
-using Content.Shared.Charges.Systems;
 using Content.Shared.Examine;
 using Robust.Client.GameObjects;
-using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -20,12 +17,12 @@ using Direction = Robust.Shared.Maths.Direction;
 
 // Starlight-start
 using Robust.Client.UserInterface.Themes;
-using static Robust.Client.UserInterface.Controls.AnimatedTextureRect;
+
 // Starlight-end
 
 namespace Content.Client.UserInterface.Systems.Actions.Controls;
 
-public sealed class ActionButton : Control, IEntityControl
+public sealed partial class ActionButton : Control, IEntityControl
 {
     public const string StyleClassActionHighlightRect = "ActionHighlightRect";
 
@@ -367,7 +364,14 @@ public sealed class ActionButton : Control, IEntityControl
             Cooldown.FromTime(cooldown.Start, cooldown.End);
 
         if (_toggled != action.Toggled)
+        {
             _toggled = action.Toggled;
+            // Starlight - start
+            // Remote action buttons must refresh their visual state after server-side toggles.
+            UpdateIcons();
+            DrawModeChanged();
+            // Starlight - end
+        }
     }
 
     protected override void MouseEntered()
@@ -429,7 +433,7 @@ public sealed class ActionButton : Control, IEntityControl
         }
 
         // if it's toggled on, always show the toggled on style (currently same as depressed style)
-        if (action.Toggled || _controller.SelectingTargetFor == Action?.Owner)
+        if (action.Toggled || RemoteSelected || _controller.SelectingTargetFor == Action?.Owner) // Starlight: RemoteControl selection
         {
             // when there's a toggle sprite, we're showing that sprite instead of highlighting this slot
             SetOnlyStylePseudoClass(action.IconOn != null

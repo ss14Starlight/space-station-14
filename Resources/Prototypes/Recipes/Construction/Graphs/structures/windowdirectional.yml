@@ -61,6 +61,70 @@
             - tool: Anchoring
               doAfter: 2
 
+        # Starlight Start
+
+        - to: windowReinforcedDirectional
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 1
+          steps:
+            - material: ReinforcedGlass
+              amount: 1
+              doAfter: 3
+
+        - to: plasmaWindowDirectional
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 1
+          steps:
+            - material: PlasmaGlass
+              amount: 1
+              doAfter: 3
+
+        - to: plasmaReinforcedWindowDirectional
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 1
+          steps:
+            - material: ReinforcedPlasmaGlass
+              amount: 1
+              doAfter: 3
+
+        - to: uraniumWindowDirectional
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 1
+          steps:
+            - material: UraniumGlass
+              amount: 1
+              doAfter: 3
+
+        - to: uraniumReinforcedWindowDirectional
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 1
+          steps:
+            - material: ReinforcedUraniumGlass
+              amount: 1
+              doAfter: 3
+
+        - to: windowClockworkDirectional
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 1
+          steps:
+            - material: ClockworkGlass
+              amount: 1
+              doAfter: 3
+
+        # Starlight End
+
     - node: windowReinforcedDirectional
       entity: WindowReinforcedDirectional
       edges:
@@ -80,6 +144,50 @@
             - tool: Anchoring
               doAfter: 2
 
+        # Starlight Start
+
+        - to: plasmaWindowDirectional
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRGlass1
+              amount: 1
+          steps:
+            - material: PlasmaGlass
+              amount: 1
+              doAfter: 3
+
+        - to: plasmaReinforcedWindowDirectional
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRGlass1
+              amount: 1
+          steps:
+            - material: ReinforcedPlasmaGlass
+              amount: 1
+              doAfter: 3
+
+        - to: uraniumWindowDirectional
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRGlass1
+              amount: 1
+          steps:
+            - material: UraniumGlass
+              amount: 1
+              doAfter: 3
+
+        - to: uraniumReinforcedWindowDirectional
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRGlass1
+              amount: 1
+          steps:
+            - material: ReinforcedUraniumGlass
+              amount: 1
+              doAfter: 3
+
+        # Starlight End
+
     - node: plasmaWindowDirectional
       entity: PlasmaWindowDirectional
       edges:
@@ -98,6 +206,40 @@
               doAfter: 2
             - tool: Anchoring
               doAfter: 3
+
+        # Starlight Start
+
+        - to: plasmaReinforcedWindowDirectional
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPGlass1
+              amount: 1
+          steps:
+            - material: ReinforcedPlasmaGlass
+              amount: 1
+              doAfter: 3
+
+        - to: uraniumWindowDirectional
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPGlass1
+              amount: 1
+          steps:
+            - material: UraniumGlass
+              amount: 1
+              doAfter: 3
+
+        - to: uraniumReinforcedWindowDirectional
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPGlass1
+              amount: 1
+          steps:
+            - material: ReinforcedUraniumGlass
+              amount: 1
+              doAfter: 3
+
+        # Starlight End
 
     - node: windowClockworkDirectional
       entity: WindowClockworkDirectional
@@ -136,6 +278,31 @@
               doAfter: 2
             - tool: Anchoring
               doAfter: 3
+
+        # Starlight Start
+
+        - to: uraniumWindowDirectional
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRPGlass1
+              amount: 1
+          steps:
+            - material: UraniumGlass
+              amount: 1
+              doAfter: 3
+
+        - to: uraniumReinforcedWindowDirectional
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRPGlass1
+              amount: 1
+          steps:
+            - material: ReinforcedUraniumGlass
+              amount: 1
+              doAfter: 3
+
+        # Starlight End
+
     - node: uraniumWindowDirectional
       entity: UraniumWindowDirectional
       edges:
@@ -154,6 +321,20 @@
               doAfter: 2
             - tool: Anchoring
               doAfter: 3
+
+        # Starlight Start
+
+        - to: uraniumReinforcedWindowDirectional
+          completed:
+            - !type:GivePrototype
+              prototype: SheetUGlass1
+              amount: 1
+          steps:
+            - material: ReinforcedUraniumGlass
+              amount: 1
+              doAfter: 3
+
+        # Starlight End
 
     - node: uraniumReinforcedWindowDirectional
       entity: UraniumReinforcedWindowDirectional

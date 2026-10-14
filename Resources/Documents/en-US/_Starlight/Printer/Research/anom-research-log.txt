@@ -1,0 +1,23 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+               [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+ ────────────────────────────────────────
+                            ⠀[bold]ANOMALY RESEARCH LOG[/bold]
+ ────────────────────────────────────────
+ Date and Time: [datetime]
+ Document Compiler: [signature]
+
+ I, [signature], hereby acknowledge that all information in this form is true at the current time of compiling it. I also confirm that all standard operating procedures were followed while containing this anomaly.
+
+ Type of Anomaly: [form]
+
+ Stability of Anomaly: [form]
+
+ Location of Anomaly: [form]
+
+ Mutations of Anomaly: [form]
+
+ Assigned Scientist: [signature]
+
+   ────────────────────────────────────────
+  ⠀                      [italic]Place for Stamps and/or Signatures[/italic]

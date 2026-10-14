@@ -14,10 +14,9 @@
   startingGear: NanotrasenCareerTrainerGear
   icon: JobIconNanotrasenCareerTrainer
   rules: job-rules-corporate-aligned
-  supervisors: job-supervisors-captain
-  weight: -1
-  overrideConsoleVisibility: false
-  canBeAntag: false
+  supervisors: job-supervisors-nt-personnel
+  displayWeight: 2
+# overrideConsoleVisibility: false # what if an NCT ID is stolen? then a new one cannot be remade with the same Icon and whatnot.
   joinNotifyCrew: true
   access:
     - Lawyer
@@ -28,10 +27,12 @@
     - External
     - Engineering
     - Research
-    - Security
+    - Brig
     - Cargo
     - Medical
     - IAA
+    - NTPersonnel
+  # - Debrief # We don't need this many people in Debrief.
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]
@@ -43,7 +44,7 @@
 - type: startingGear
   id: NanotrasenCareerTrainerGear
   equipment:
-    id: NanotrasenCareerTrainerPDA
+    id: NanoTrasenCareerTrainerPDA
     ears: ClothingHeadsetNCT
     neck: Whistle
     pocket1: nctdatachip
@@ -51,7 +52,9 @@
     belt: BoxFolderNanoTrasenClipboard
     gloves: ClothingHandsGlovesColorWhite
     outerClothing: ClothingOuterCoatNCT
-    suitstorage: Flash
+  storage:
+    back:
+    - Flash
 
 - type: chameleonOutfit
   id: NanotrasenCareerTrainerChameleonOutfit

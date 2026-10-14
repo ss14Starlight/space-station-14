@@ -1,7 +1,7 @@
 using System.Linq;
 using Content.Client.Gameplay;
+using Content.Shared.CCVar;
 using Content.Shared.Effects;
-using Content.Shared.Physics; // Starlight-edit™
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
@@ -11,31 +11,53 @@ using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.State;
+using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components; // Starlight-edit™
-using Robust.Shared.Physics.Systems; // Starlight-edit™
 using Robust.Shared.Player;
-using Robust.Shared.Physics; // Starlight-edit™
+
+#region Starlight
+using Content.Shared.Physics;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Systems;
+using Robust.Shared.Physics;
+using Content.Shared.Humanoid;
+using System.Numerics;
+using Robust.Client.Animations;
+using Robust.Shared.Animations;
+#endregion
 
 namespace Content.Client.Weapons.Melee;
 
 public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 {
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly IInputManager _inputManager = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IStateManager _stateManager = default!;
-    [Dependency] private readonly AnimationPlayerSystem _animation = default!;
-    [Dependency] private readonly InputSystem _inputSystem = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!; // Starlight-edit™
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private IInputManager _inputManager = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IStateManager _stateManager = default!;
+    [Dependency] private AnimationPlayerSystem _animation = default!;
+    [Dependency] private InputSystem _inputSystem = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    #region Starlight
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    #endregion
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
 
     private const string MeleeLungeKey = "melee-lunge";
+    private const string HitRecoilAnimationKey = "hit-recoil"; // Starlight-edit
+
+    #region Starlight
+    private const float HitRecoilDuration = 0.25f;
+    private const float HitRecoilPushMagnitude = 0.06f;
+    private const float HitRecoilShakeMagnitude = 0.02f;
+    private const float HitRecoilPushFrame = 0.15f;
+    private const float HitRecoilShakeFrame = 0.40f;
+    private const float HitRecoilSettleFrame = 0.65f;
+    #endregion
 
     public override void Initialize()
     {
@@ -77,7 +99,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         var useDown = _inputSystem.CmdStates.GetState(EngineKeyFunctions.Use);
         var altDown = _inputSystem.CmdStates.GetState(EngineKeyFunctions.UseSecondary);
 
-        if (weapon.AutoAttack || useDown != BoundKeyState.Down && altDown != BoundKeyState.Down)
+        if (weapon.AutoAttack || useDown != BoundKeyState.Down && altDown != BoundKeyState.Down || _cfg.GetCVar(CCVars.ControlHoldToAttackMelee))
         {
             if (weapon.Attacking)
             {
@@ -204,11 +226,76 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         return targetTile == hitTile; // Starlight-edit-end™
     }
 
-    protected override void DoDamageEffect(List<EntityUid> targets, EntityUid? user, TransformComponent targetXform)
+    protected override void DoDamageEffect(HashSet<EntityUid> targets, EntityUid? user, TransformComponent targetXform)
     {
         // Server never sends the event to us for predictiveeevent.
-        _color.RaiseEffect(Color.Red, targets, Filter.Local());
+        _color.RaiseEffect(Color.Red, targets.ToList(), Filter.Local());
+        DoHitRecoilEffect(targets, user); // Starlight-edit
     }
+
+    #region Starlight
+
+    /// <summary>
+    /// Plays recoil animation for targets.
+    /// </summary>
+    private void DoHitRecoilEffect(HashSet<EntityUid> targets, EntityUid? user)
+    {
+        foreach (var target in targets)
+        {
+            if (!TryComp(target, out SpriteComponent? sprite))
+                continue;
+
+            if (!HasComp<HumanoidAppearanceComponent>(target))
+                continue;
+
+            var pushDir = Vector2.Zero;
+            if (user != null)
+            {
+                var worldDelta = TransformSystem.GetWorldPosition(target) - TransformSystem.GetWorldPosition(user.Value);
+                if (worldDelta.LengthSquared() > 0.001f)
+                {
+                    var targetWorldRot = TransformSystem.GetWorldRotation(target);
+                    pushDir = (-targetWorldRot).RotateVec(worldDelta.Normalized());
+                }
+            }
+
+            if (pushDir == Vector2.Zero)
+                pushDir = Vector2.UnitY;
+
+            _animation.Stop(target, HitRecoilAnimationKey);
+            _animation.Play(target, GetHitRecoilAnimation(pushDir), HitRecoilAnimationKey);
+        }
+    }
+
+    private Animation GetHitRecoilAnimation(Vector2 pushDir)
+    {
+        var push = pushDir * HitRecoilPushMagnitude;
+        var shake = pushDir * HitRecoilShakeMagnitude;
+
+        return new Animation
+        {
+            Length = TimeSpan.FromSeconds(HitRecoilDuration),
+            AnimationTracks =
+            {
+                new AnimationTrackComponentProperty
+                {
+                    ComponentType = typeof(SpriteComponent),
+                    Property = nameof(SpriteComponent.Offset),
+                    InterpolationMode = AnimationInterpolationMode.Linear,
+                    KeyFrames =
+                    {
+                        new AnimationTrackProperty.KeyFrame(Vector2.Zero, 0f),
+                        new AnimationTrackProperty.KeyFrame(push, HitRecoilDuration * HitRecoilPushFrame),
+                        new AnimationTrackProperty.KeyFrame(-shake, HitRecoilDuration * HitRecoilShakeFrame),
+                        new AnimationTrackProperty.KeyFrame(shake * 0.5f, HitRecoilDuration * HitRecoilSettleFrame),
+                        new AnimationTrackProperty.KeyFrame(Vector2.Zero, HitRecoilDuration),
+                    }
+                }
+            }
+        };
+    }
+
+    #endregion
 
     /// <summary>
     /// Raises a heavy attack event with the relevant attacked entities.
@@ -217,27 +304,29 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     private void ClientHeavyAttack(EntityUid user, EntityCoordinates coordinates, EntityUid meleeUid, MeleeWeaponComponent component)
     {
         // Only run on first prediction to avoid the potential raycast entities changing.
-        if (!_xformQuery.TryGetComponent(user, out var userXform) ||
-            !Timing.IsFirstTimePredicted)
-        {
+        if (!Timing.IsFirstTimePredicted) // Starlight edit
             return;
-        }
+
+        // Starlight - Mech wideswing handling
+        var originUid = GetOriginEntity(user);
+        if (!TryComp(originUid, out TransformComponent? originXform))
+            return;
 
         var targetMap = TransformSystem.ToMapCoordinates(coordinates);
 
-        if (targetMap.MapId != userXform.MapID)
+        if (targetMap.MapId != originXform.MapID) // Starlight edit
             return;
 
-        var userPos = TransformSystem.GetWorldPosition(userXform);
-        var direction = targetMap.Position - userPos;
+        var originPos = TransformSystem.GetWorldPosition(originXform); // Starlight edit
+        var direction = targetMap.Position - originPos; // Starlight edit
         var distance = MathF.Min(component.Range, direction.Length());
-
-        var ignoreUid = GetOriginEntity(user); // Starlight - Mech wideswing handling
 
         // This should really be improved. GetEntitiesInArc uses pos instead of bounding boxes.
         // Server will validate it with InRangeUnobstructed.
-        var entities = GetNetEntityList(ArcRayCast(userPos, direction.ToWorldAngle(), component.Angle, distance, userXform.MapID, ignoreUid).ToList()); // Starlight
-        RaisePredictiveEvent(new HeavyAttackEvent(GetNetEntity(meleeUid), entities.GetRange(0, Math.Min(MaxTargets, entities.Count)), GetNetCoordinates(coordinates)));
+        var entities = GetNetEntitySet(ArcRayCast(originPos, direction.ToWorldAngle(), component.Angle, distance, originXform.MapID, originUid)); // Starlight edit
+        entities.Remove(GetNetEntity(user)); // Starlight edit
+        entities = entities.Take(Math.Min(MaxTargets, entities.Count)).ToHashSet();
+        RaisePredictiveEvent(new HeavyAttackEvent(GetNetEntity(meleeUid), entities, GetNetCoordinates(coordinates)));
     }
 
     private void ClientDisarm(EntityUid attacker, MapCoordinates mousePos, EntityCoordinates coordinates)

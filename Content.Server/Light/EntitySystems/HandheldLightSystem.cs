@@ -8,9 +8,6 @@ using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell;
 using Content.Shared.Rounding;
 using Content.Shared.Toggleable;
-using JetBrains.Annotations;
-using Robust.Server.GameObjects;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
@@ -18,16 +15,16 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Light.EntitySystems
 {
-    public sealed class HandheldLightSystem : SharedHandheldLightSystem
+    public sealed partial class HandheldLightSystem : SharedHandheldLightSystem
     {
-        [Dependency] private readonly ActionsSystem _actions = default!;
-        [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
-        [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly PowerCellSystem _powerCell = default!;
-        [Dependency] private readonly SharedBatterySystem _battery = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly SharedPointLightSystem _lights = default!;
+        [Dependency] private ActionsSystem _actions = default!;
+        [Dependency] private ActionContainerSystem _actionContainer = default!;
+        [Dependency] private PopupSystem _popup = default!;
+        [Dependency] private PowerCellSystem _powerCell = default!;
+        [Dependency] private SharedBatterySystem _battery = default!;
+        [Dependency] private SharedAppearanceSystem _appearance = default!;
+        [Dependency] private SharedAudioSystem _audio = default!;
+        [Dependency] private SharedPointLightSystem _lights = default!;
 
         // TODO: Ideally you'd be able to subscribe to power stuff to get events at certain percentages.. or something?
         // But for now this will be better anyway.

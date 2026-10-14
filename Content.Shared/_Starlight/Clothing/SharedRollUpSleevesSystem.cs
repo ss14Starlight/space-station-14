@@ -1,16 +1,15 @@
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
-using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Starlight.Clothing;
+namespace Content.Shared._Starlight.Clothing;
 
 public sealed partial class SharedRollUpSleevesSystem : EntitySystem
 {
-    [Dependency] private readonly ClothingSystem _clothingSystem = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private ClothingSystem _clothingSystem = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {

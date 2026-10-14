@@ -10,9 +10,9 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
-public sealed class CosmicCorruptingSystem : EntitySystem
+public sealed partial class CosmicCorruptingSystem : EntitySystem
 {
-    [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private MapSystem _map = default!;
 
     private readonly HashSet<Vector2i> _neighbourPositions =
     [
@@ -27,26 +27,22 @@ public sealed class CosmicCorruptingSystem : EntitySystem
         new(1, -1),
     ];
 
-    [Dependency] private readonly IRobustRandom _rand = default!;
-    [Dependency] private readonly TileSystem _tile = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefinition = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly TurfSystem _turfs = default!;
+    [Dependency] private IRobustRandom _rand = default!;
+    [Dependency] private TileSystem _tile = default!;
+    [Dependency] private ITileDefinitionManager _tileDefinition = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private TurfSystem _turfs = default!;
 
     /// <remarks>
     ///     this system is a mostly generic way of replacing tiles around an entity. the only hardcoded behaviour is secret
     ///     walls -> malign doors, but that shouldn't be too hard to fix if this is needed for smth else later.
     /// </remarks>
     public override void Initialize()
-    {
-        SubscribeLocalEvent<CosmicCorruptingComponent, MapInitEvent>(OnMapInit);
-    }
+        => SubscribeLocalEvent<CosmicCorruptingComponent, MapInitEvent>(OnMapInit);
 
     //when the entity spawns, add all neighbouring tiles to the corruptable list
     private void OnMapInit(Entity<CosmicCorruptingComponent> ent, ref MapInitEvent args)
-    {
-        RecalculateStartingTiles(ent);
-    }
+        => RecalculateStartingTiles(ent);
 
     public override void Update(float frameTime)
     {
@@ -113,18 +109,21 @@ public sealed class CosmicCorruptingSystem : EntitySystem
                 }
 
                 //corrupt anything that can be corrupted
-                foreach (var convertedEnt in _map.GetAnchoredEntities((gridUid, mapGrid), pos).ToList())
+                if (ent.Comp.ConvertEntities)
                 {
-                    var proto = Prototype(convertedEnt);
-                    if (ent.Comp.EntityConversionDict.TryGetValue(proto?.ID!, out var conversion))
+                    foreach (var convertedEnt in _map.GetAnchoredEntities((gridUid, mapGrid), pos).ToList())
                     {
-                        Spawn(conversion, Transform(convertedEnt).Coordinates);
-                        QueueDel(convertedEnt);
-                    }
-                    else if (TryComp<CosmicCorruptibleComponent>(convertedEnt, out var corruptible))
-                    {
-                        Spawn(corruptible.ConvertTo, Transform(convertedEnt).Coordinates);
-                        QueueDel(convertedEnt);
+                        var proto = Prototype(convertedEnt);
+                        if (ent.Comp.EntityConversionDict.TryGetValue(proto?.ID!, out var conversion))
+                        {
+                            Spawn(conversion, Transform(convertedEnt).Coordinates);
+                            QueueDel(convertedEnt);
+                        }
+                        else if (TryComp<CosmicCorruptibleComponent>(convertedEnt, out var corruptible))
+                        {
+                            Spawn(corruptible.ConvertTo, Transform(convertedEnt).Coordinates);
+                            QueueDel(convertedEnt);
+                        }
                     }
                 }
 
@@ -139,10 +138,8 @@ public sealed class CosmicCorruptingSystem : EntitySystem
 
     #region API
 
-    public void SetCorruptionTime(Entity<CosmicCorruptingComponent> ent, TimeSpan time)
-    {
-        ent.Comp.CorruptionSpeed = time;
-    }
+    public static void SetCorruptionTime(Entity<CosmicCorruptingComponent> ent, TimeSpan time)
+        => ent.Comp.CorruptionSpeed = time;
 
     public void Enable(Entity<CosmicCorruptingComponent> ent, bool recalculate = true)
     {
@@ -151,6 +148,9 @@ public sealed class CosmicCorruptingSystem : EntitySystem
         if (recalculate)
             RecalculateStartingTiles(ent);
     }
+
+    public void Disable(Entity<CosmicCorruptingComponent> ent)
+    => ent.Comp.Enabled = false;
 
     public void RecalculateStartingTiles(Entity<CosmicCorruptingComponent> ent)
     {

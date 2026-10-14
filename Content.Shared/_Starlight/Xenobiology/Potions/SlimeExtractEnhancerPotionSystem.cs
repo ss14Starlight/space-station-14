@@ -3,10 +3,10 @@ using Content.Shared.Popups;
 
 namespace Content.Shared._Starlight.Xenobiology.Potions;
 
-public sealed class SlimeExtractEnhancerPotionSystem : EntitySystem
+public sealed partial class SlimeExtractEnhancerPotionSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private SharedPopupSystem _sharedPopupSystem = default!;
 
     public override void Initialize()
     {
@@ -21,8 +21,7 @@ public sealed class SlimeExtractEnhancerPotionSystem : EntitySystem
         if (!_entityManager.TryGetComponent<SlimeExtractComponent>(args.Target.Value,
                 out var slimeExtractComponent)) return;
         slimeExtractComponent.RemainingUses += 1;
-        var plural = slimeExtractComponent.RemainingUses == 1 ? "s" : "";
-        _sharedPopupSystem.PopupPredicted($"{MetaData(args.Target.Value).EntityName} now has {slimeExtractComponent.RemainingUses} use{plural} remaining.", args.User, args.User);
+        _sharedPopupSystem.PopupPredicted(Loc.GetString("slime-potion-enhancer-applied", ("target", MetaData(args.Target.Value).EntityName), ("uses", slimeExtractComponent.RemainingUses)), args.User, args.User);
         PredictedQueueDel(args.Used);
     }
 }

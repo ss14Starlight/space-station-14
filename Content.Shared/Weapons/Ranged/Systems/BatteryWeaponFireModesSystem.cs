@@ -7,45 +7,30 @@ using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Prototypes;
-
-#region Starlight
 using System.Linq;
 using Content.Shared._Starlight.Weapons.Ranged.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
 using Content.Shared.Lock;
-using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Network;
-using Robust.Shared.Player;
-#endregion Starlight
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
-public sealed class BatteryWeaponFireModesSystem : EntitySystem
+public sealed partial class BatteryWeaponFireModesSystem : EntitySystem
 {
-    [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly SharedGunSystem _gun = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private AccessReaderSystem _accessReaderSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private SharedGunSystem _gun = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
 
 #region Starlight
-    [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private SharedItemSystem _item = default!;
+    [Dependency] private INetManager _net = default!;
 #endregion Starlight
 
-    public override void Initialize()
-    {
-        base.Initialize();
 
-        SubscribeLocalEvent<BatteryWeaponFireModesComponent, UseInHandEvent>(OnUseInHandEvent);
-        SubscribeLocalEvent<BatteryWeaponFireModesComponent, GetVerbsEvent<Verb>>(OnGetVerb);
-        SubscribeLocalEvent<BatteryWeaponFireModesComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<BatteryWeaponFireModesComponent, ActivateInWorldEvent>(OnInteractHandEvent); // Starlight-edit
-        SubscribeLocalEvent<BatteryWeaponFireModesComponent, AttemptShootEvent>(OnShootAttempt); // Starlight-edit
-        SubscribeLocalEvent<GunFireModeSoundsComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers); // Starlight-edit
-    }
-
+    [SubscribeLocalEvent] // Starlight-edit
     private void OnExamined(Entity<BatteryWeaponFireModesComponent> ent, ref ExaminedEvent args)
     {
         if (ent.Comp.FireModes.Count < 2)
@@ -67,10 +52,9 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
     }
 
     private BatteryWeaponFireMode GetMode(BatteryWeaponFireModesComponent component)
-    {
-        return component.FireModes[component.CurrentFireMode];
-    }
+        => component.FireModes[component.CurrentFireMode]; // Starlight-edit
 
+    [SubscribeLocalEvent] // Starlight-edit
     private void OnGetVerb(EntityUid uid, BatteryWeaponFireModesComponent component, GetVerbsEvent<Verb> args)
     {
         if (!args.CanAccess || !args.CanInteract || args.Hands == null)
@@ -120,6 +104,7 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         }
     }
 
+    [SubscribeLocalEvent] // Starlight-edit
     private void OnUseInHandEvent(Entity<BatteryWeaponFireModesComponent> ent, ref UseInHandEvent args)
     {
         if (args.Handled)
@@ -154,10 +139,11 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
     private void SetFireMode(Entity<BatteryWeaponFireModesComponent> ent, int index, EntityUid? user = null)
     {
         // Starlight-start
-        if (_net.IsClient)
-            return; // Why? Conditions is server side only, we can't fully move this to server, so we just drop client here
-
         var fireMode = ent.Comp.FireModes[index];
+
+        // Conditions only exist on the server, so the client predicts only the modes without them.
+        if (_net.IsClient && fireMode.ServerOnly)
+            return;
 
         if (fireMode.Conditions != null && user != null)
         {
@@ -211,7 +197,16 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         // Starlight-end
     }
 
-    # region Starlight
+    #region Starlight
+
+    [SubscribeLocalEvent]
+    private void OnMapInit(Entity<BatteryWeaponFireModesComponent> ent, ref MapInitEvent args)
+    {
+        foreach (var mode in ent.Comp.FireModes)
+            mode.ServerOnly = mode.Conditions is { Count: > 0 };
+
+        Dirty(ent);
+    }
 
     private bool TryGetAmmoProvider(EntityUid uid, out object? ammoProvider)
     {
@@ -226,6 +221,7 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         return false;
     }
 
+    [SubscribeLocalEvent]
     private void OnShootAttempt(Entity<BatteryWeaponFireModesComponent> ent, ref AttemptShootEvent args)
     {
 
@@ -241,6 +237,7 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnInteractHandEvent(Entity<BatteryWeaponFireModesComponent> ent, ref ActivateInWorldEvent args)
     {
         if (!args.Complex)
@@ -262,9 +259,7 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         SetFireMode(ent, index, user);
     }
 
-    # endregion Starlight
-
-    // Starlight-start
+    [SubscribeLocalEvent]
     private void OnGunRefreshModifiers(Entity<GunFireModeSoundsComponent> ent, ref GunRefreshModifiersEvent args)
     {
         if (!TryComp<BatteryWeaponFireModesComponent>(ent, out var fireModes))
@@ -273,5 +268,6 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         if (ent.Comp.Sounds.TryGetValue(fireModes.CurrentFireMode, out var sound))
             args = args with { SoundGunshot = sound };
     }
-    // Starlight-end
+
+    #endregion Starlight
 }

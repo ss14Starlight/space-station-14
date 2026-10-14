@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: MaterialBase
   id: PartBase
   components:
   - type: Sprite
@@ -11,24 +11,24 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: FlimsyMetallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: Tag
     tags:
     - ConstructionMaterial
 
 - type: entity
-  parent: PartBase
+  parent: [PartBase, BaseQuickConstructionMaterial] # DEN add quick construction parent
   id: PartRodMetal
   name: metal rod
   suffix: Full
   components:
+  #Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+      enum.QuickConstructionUiKey.Key:
+        type: QuickConstructionBoundUserInterface
+  # Starlight end
   - type: PhysicalComposition
     materialComposition:
       Steel: 50 #Half of a regular steel sheet to reflect the crafting recipe
@@ -47,12 +47,10 @@
     - state: rods_5
       map: ["base"]
   - type: Item
-    size: Normal
     heldPrefix: rods
   - type: Construction
     graph: MetalRod
     node: MetalRod
-  - type: Appearance
   - type: FloorTile
     outputs:
     - Lattice
@@ -61,19 +59,18 @@
     price: 0
   - type: StackPrice
     price: 7.5
-  - type: Extractable
-    grindableSolutionName: rod
-  - type: SolutionContainerManager
-    solutions:
-      rod:
-        reagents:
-        - ReagentId: Iron
-          Quantity: 4.5
-        - ReagentId: Carbon
-          Quantity: 0.5
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Iron
+        Quantity: 4.5
+      - ReagentId: Carbon
+        Quantity: 0.5
   - type: GuideHelp
     guides:
     - ExpandingRepairingStation
+  - type: QuickConstructable # DEN quick construction
+    category: MetalRod
 
 - type: entity
   parent: PartRodMetal

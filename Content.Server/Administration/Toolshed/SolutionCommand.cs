@@ -1,12 +1,9 @@
-﻿using Content.Server.Chemistry.Containers.EntitySystems;
-using Content.Shared.Administration;
+﻿using Content.Shared.Administration;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Toolshed;
-using Robust.Shared.Toolshed.Syntax;
-using Robust.Shared.Toolshed.TypeParsers;
 using System.Linq;
 using Robust.Shared.Prototypes;
 using Content.Shared.Chemistry.Components.SolutionManager; // Starlight
@@ -113,10 +110,9 @@ public sealed class SolutionCommand : ToolshedCommand
     public SolutionRef? Create([PipedArgument] EntityUid uid, string name)
     {
         _solutionContainer ??= GetSys<SharedSolutionContainerSystem>();
-        var sMgr = EnsureComp<SolutionContainerManagerComponent>(uid);
-        if(_solutionContainer.EnsureSolutionEntity((uid, sMgr), name, out var ent))
-            return new SolutionRef(ent.Value);
-        return null;
+        var sMgr = EnsureComp<SolutionManagerComponent>(uid); // Starlight
+        _solutionContainer.EnsureSolution((uid, sMgr), name, out var ent); // Starlight
+        return new SolutionRef(ent); // Starlight
     }
 
     [CommandImplementation("delete")]

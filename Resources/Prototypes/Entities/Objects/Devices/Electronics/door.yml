@@ -11,17 +11,6 @@
       tags:
         - DoorElectronics
     - type: DoorElectronics
-      # Starlight Start
-      accessGroups:
-      - General
-      - Security
-      - Cargo
-      - Command
-      - Research
-      - Medical
-      - Service
-      - Engineering
-      # Starlight End
     - type: AccessReader
     - type: ActivatableUI
       key: enum.DoorElectronicsConfigurationUiKey.Key

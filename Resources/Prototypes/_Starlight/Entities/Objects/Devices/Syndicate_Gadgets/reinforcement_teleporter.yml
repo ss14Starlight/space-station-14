@@ -10,8 +10,7 @@
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
       important: true # SL
-      mindRoles:
-      - MindRoleGhostRoleSilicon
+      mindRoles: [MindRoleGhostRoleSiliconAntagonist]
       raffle:
         settings: default
     - type: GhostRoleMobSpawner
@@ -29,8 +28,7 @@
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
       important: true # SL
-      mindRoles:
-      - MindRoleGhostRoleSilicon
+      mindRoles: [MindRoleGhostRoleSiliconAntagonist]
       raffle:
         settings: default
     - type: GhostRoleMobSpawner
@@ -48,9 +46,80 @@
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
       important: true # SL
-      mindRoles:
-      - MindRoleGhostRoleSilicon
+      mindRoles: [MindRoleGhostRoleSiliconAntagonist]
       raffle:
         settings: default
     - type: GhostRoleMobSpawner
       prototype: PlayerBorgSyndicateStealthBattery
+
+- type: entity # funkystation, with different description and id card for us
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledSyndicateCyborgAssault
+  name: Syndicate Assault Cyborg bundle
+  description: Radio in a syndicate assault cyborg, equipped with a modified L6, a double esword and basic hacking tools. Comes bundled with a few Syndicate IDs for you and your buddies, just to make sure you're on the Cyborg's good side.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ReinforcementRadioSyndicateCyborgAssault
+    - id: SyndiOperativeIDCard
+    - id: SyndicateFootsoldierIDCard
+    - id: SyndicateFootsoldierIDCard
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledSyndicateCyborgMedical
+  name: Syndicate Medical Cyborg bundle
+  description: A medical borg, with syndicate variants of items where applicable. Comes with basic weapons. Comes bundled with a few Syndicate IDs for you and your buddies, just to make sure you're on the Cyborg's good side.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ReinforcementRadioSyndicateCyborgMedical
+    - id: SyndiOperativeIDCard
+    - id: SyndicateFootsoldierIDCard
+    - id: SyndicateFootsoldierIDCard
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledSyndicateCyborgSaboteur
+  name: Syndicate Saboteur Cyborg bundle
+  description: A saboteur cyborg, complete with syndicate advanced tools, standard hacking equipment and basic weapons. Comes bundled with a few Syndicate IDs for you and your buddies, just to make sure you're on the Cyborg's good side.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ReinforcementRadioSyndicateCyborgSaboteur
+    - id: SyndiOperativeIDCard
+    - id: SyndicateFootsoldierIDCard
+    - id: SyndicateFootsoldierIDCard
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledSyndicateCyborgStealth
+  name: Syndicate Stealth Cyborg bundle
+  description: A stealth cyborg. Whilst it is incapable of fighting, it has the ability to disguise, go invisible and move through vents. Comes bundled with a few Syndicate IDs for you and your buddies, just to make sure you're on the Cyborg's good side.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ReinforcementRadioSyndicateCyborgStealth
+    - id: SyndiOperativeIDCard
+    - id: SyndicateFootsoldierIDCard
+    - id: SyndicateFootsoldierIDCard
+
+- type: entity
+  parent: ReinforcementRadio
+  id: ReinforcementRadioSyndicateMothroach
+  name: syndicate mobroach reinforcement radio
+  description: Calls in a specially trained mobroach.
+  components:
+    - type: GhostRole
+      name: ghost-role-information-syndicate-mothroach-reinforcement-name
+      description: ghost-role-information-syndicate-mothroach-reinforcement-description
+      rules: ghost-role-information-syndicate-reinforcement-rules
+      important: true
+      mindRoles:
+        - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: GhostRoleMobSpawner
+      prototype: MobMobroach
+    - type: EmitSoundOnUse
+      sound: /Audio/Voice/Moth/moth_chitter.ogg

@@ -62,3 +62,13 @@
   id: CowboyBootsWhiteFilled
   equipment:
     shoes: ClothingShoesBootsCowboyWhiteFilled
+
+- type: loadout
+  id: AnkleBootsBlack
+  equipment:
+    shoes: ClothingShoesBlackAnkleBoots
+
+- type: loadout
+  id: AnkleBootsWhite
+  equipment:
+    shoes: ClothingShoesWhiteAnkleBoots

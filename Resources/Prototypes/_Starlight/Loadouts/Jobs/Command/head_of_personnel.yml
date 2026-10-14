@@ -13,3 +13,25 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorCommand
+
+# Hands # this may seem redundant but is needed for other roles to get these gloves
+- type: loadout
+  id: HopGloves
+  equipment:
+    gloves: ClothingHandsGlovesHop
+
+# Bags
+- type: loadout
+  id: HoPBackpack
+  equipment:
+    back: ClothingBackpackHoP
+
+- type: loadout
+  id: HoPSatchel
+  equipment:
+    back: ClothingBackpackSatchelHoP
+
+- type: loadout
+  id: HoPDuffel
+  equipment:
+    back: ClothingBackpackDuffelHoP

@@ -6,15 +6,14 @@
   flavor: medicine
   color: "#9d42d5"
   metabolisms:
-    Food:
+    Digestion:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         damage:
-          groups:
-            Brute: -2
-            Burn: -2
-            Toxin: -2
-            Genetic: -2
+          Brute: -2
+          Burn: -2
+          Toxin: -2
+          Genetic: -2
 
 # basically the same as protein, but having a separate chemical allows us to extract it from peas
 - type: reagent
@@ -26,16 +25,27 @@
   flavor: chalky
   color: "#94622d" # medium brown
   metabolisms:
-    Food:
+    Digestion:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         probability: 0.25
         damage:
-          groups:
-            Brute: -0.8
+          Brute: -0.8
       - !type:ModifyBloodLevel
         amount: 1
+      # Starlight edit start - Make food 50% less effective for dwarfs
       - !type:SatiateHunger
+        factor: 0.75
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+      - !type:SatiateHunger
+        factor: 1.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      # Starlight edit end
   plantMetabolism:
   - !type:PlantAdjustNutrition
     amount: 1.5
@@ -53,13 +63,25 @@
   flavor: lemonlimecranberrysoda # 'like Christmas'
   color: "#700620" # dark red, erring on pinkish
   viscosity: 0.55 #Start using syrup to attach your remote recievers to your microwaves!
+  viscosityMin: 1
   tileReactions:
     - !type:SpillTileReaction
   metabolisms:
-    Food:
+    Digestion:
       effects:
+      # Starlight edit start - Make food 50% less effective for dwarfs
+      - !type:SatiateHunger
+        factor: 3.0
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
       - !type:SatiateHunger
         factor: 6.0
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      # Starlight edit end
   pricePerUnit: 5
   footstepSound:
     collection: FootstepSlime
@@ -76,14 +98,25 @@
   flavor: greasy
   color: "#643205" # yup, another generic medium brown
   metabolisms:
-    Food:
+    Digestion:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         probability: 0.25
         damage:
-          groups:
-            Brute: -0.4
+          Brute: -0.4
+      # Starlight edit start - Make food 50% less effective for dwarfs
       - !type:SatiateHunger
+        factor: 0.75
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+      - !type:SatiateHunger
+        factor: 1.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      # Starlight edit end
   pricePerUnit: 3
   footstepSound:
     collection: FootstepSlime
@@ -98,11 +131,11 @@
   group: Foods
   desc: reagent-desc-blindingstew
   physicalDesc: reagent-physical-desc-clumpy
-  contrabandSeverity: Major
+  contrabandTier: Tier2 # Blimpuf
   flavor: punishment
   color: "#7d7d3c" # ew
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:PopupMessage
         type: Local
@@ -135,3 +168,54 @@
     params:
       volume: 6
 
+- type: reagent
+  id: MintExtract
+  name: reagent-name-juice-mint-extract
+  group: Foods
+  parent: BaseJuice
+  desc: reagent-desc-juice-mint-extract
+  physicalDesc: reagent-physical-desc-mint-extract
+  flavor: minty
+  color: "#b4fbd0"
+  recognizable: true
+
+- type: reagent
+  id: Cinnamon
+  name: reagent-name-cinnamon
+  group: Foods
+  desc: reagent-desc-cinnamon
+  physicalDesc: reagent-physical-desc-cinnamon
+  flavor: cinnamon
+  color: "#7b330c"
+  recognizable: true
+
+- type: reagent
+  id: StellibininSyrup
+  name: reagent-name-stellibininsyrup
+  group: Foods
+  desc: reagent-desc-stellibininsyrup
+  physicalDesc: reagent-physical-desc-starry-and-thick
+  flavor: sweet
+  color: "#616283"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.05
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -0.25
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: -3
+      - !type:AdjustReagent
+        reagent: Allicin
+        amount: -3
+      # Starlight-Start: Cyclorite Metabolism
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Stellibinin
+        amount: -0.05
+        # Starlight-End

@@ -1,4 +1,4 @@
-namespace Content.Shared.Economy
+namespace Content.Shared._Starlight.Economy
 {
     [RegisterComponent]
     public sealed partial class ItemPriceComponent : Component

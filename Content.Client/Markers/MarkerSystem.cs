@@ -1,11 +1,10 @@
 using Robust.Client.GameObjects;
-using Robust.Shared.GameObjects;
 
 namespace Content.Client.Markers;
 
-public sealed class MarkerSystem : EntitySystem
+public sealed partial class MarkerSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     private bool _markersVisible;
 

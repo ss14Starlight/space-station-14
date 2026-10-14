@@ -1,0 +1,27 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "smell-on",
+            "copyright": "Made by Sparlight (GitHub) for Space Station 14."
+        },
+        {
+            "name": "smell-off",
+            "copyright": "Made by Sparlight (GitHub) for Space Station 14."
+        },
+        {
+            "name": "smell-target",
+            "copyright": "Made by Sparlight (GitHub) for Space Station 14."
+        },
+        {
+            "name": "sneeze",
+            "copyright": "Made by Sparlight (GitHub) for Space Station 14."
+        }
+    ]
+}

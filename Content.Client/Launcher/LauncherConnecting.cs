@@ -1,26 +1,23 @@
-using System;
 using Robust.Client;
 using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
-using Robust.Shared.IoC;
-using Robust.Shared.Log;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Client.Launcher
 {
-    public sealed class LauncherConnecting : Robust.Client.State.State
+    public sealed partial class LauncherConnecting : Robust.Client.State.State
     {
-        [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
-        [Dependency] private readonly IClientNetManager _clientNetManager = default!;
-        [Dependency] private readonly IGameController _gameController = default!;
-        [Dependency] private readonly IBaseClient _baseClient = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IClipboardManager _clipboard = default!;
-        [Dependency] private readonly ILogManager _logManager = default!;
+        [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
+        [Dependency] private IClientNetManager _clientNetManager = default!;
+        [Dependency] private IGameController _gameController = default!;
+        [Dependency] private IBaseClient _baseClient = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private IClipboardManager _clipboard = default!;
+        [Dependency] private ILogManager _logManager = default!;
 
         private LauncherConnectingGui? _control;
         private ISawmill _sawmill = default!;

@@ -14,13 +14,14 @@
   parent: [BaseTerminatorObjective, BaseKillObjective]
   id: TerminatorExterminateObjective
   name: Secure our future.
-  description: Follow your programming and kill the target. Ensure the future doesn't have them in it.
+  description: Follow your programming and kill the target. Ensure the future does not have this iteration of them in it. Minimise causing temporal flux through unnecessary casualties.
   components:
   - type: PickSpecificPerson
   - type: KillPersonCondition
     requireDead: true
+    requireMaroon: true
   - type: TargetObjective
-    title: objective-condition-kill-head-title
+    title: objective-condition-kill-maroon-title
 
 - type: entity
   parent: BaseTerminatorObjective

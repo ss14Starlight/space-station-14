@@ -1,4 +1,3 @@
-using Content.Server.NodeContainer;
 using Content.Server.Power.Components;
 using Content.Server.Power.NodeGroups;
 using Content.Server.Tools;
@@ -13,11 +12,11 @@ using Robust.Shared.Utility;
 namespace Content.Server.Power.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class CableMultitoolSystem : EntitySystem
+    public sealed partial class CableMultitoolSystem : EntitySystem
     {
-        [Dependency] private readonly ToolSystem _toolSystem = default!;
-        [Dependency] private readonly PowerNetSystem _pnSystem = default!;
-        [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
+        [Dependency] private ToolSystem _toolSystem = default!;
+        [Dependency] private PowerNetSystem _pnSystem = default!;
+        [Dependency] private ExamineSystemShared _examineSystem = default!;
 
         public override void Initialize()
         {

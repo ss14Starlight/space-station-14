@@ -9,26 +9,6 @@
   description: crafting-menu-text-FDB
 
 - type: construction
-  name: crafting-menu-name-MP
-  id: WeaponPistolMakeshiftCrafted
-  graph: MakeshiftPistolCraftedGraph
-  startNode: start
-  targetNode: shotgun
-  category: construction-category-weapons
-  objectType: Item
-  description: crafting-menu-text-MP
-
-- type: construction
-  name: crafting-menu-name-IP
-  id: WeaponPistolImprovised
-  graph: ImprovisedPistolGraph
-  startNode: start
-  targetNode: shotgun
-  category: construction-category-weapons
-  objectType: Item
-  description: crafting-menu-text-IP
-
-- type: construction
   name: crafting-menu-name-FP
   id: WeaponPistolForged
   graph: ForgedPistolGraph
@@ -167,26 +147,6 @@
   category: construction-category-weapons
   objectType: Item
   description: crafting-menu-text-ISM
-
-- type: construction
-  name: crafting-menu-name-MRR
-  id: WeaponSniperMakeshift
-  graph: MakeshiftSniperGraph
-  startNode: start
-  targetNode: shotgun
-  category: construction-category-weapons
-  objectType: Item
-  description: crafting-menu-text-MRR
-
-- type: construction
-  name: crafting-menu-name-IRR
-  id: WeaponSniperImprovised
-  graph: ImprovisedSniperGraph
-  startNode: start
-  targetNode: shotgun
-  category: construction-category-weapons
-  objectType: Item
-  description: crafting-menu-text-IRR
 
 - type: construction
   name: crafting-menu-name-FRR

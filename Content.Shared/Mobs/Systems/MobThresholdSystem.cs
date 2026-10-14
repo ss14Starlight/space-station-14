@@ -8,13 +8,15 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Events;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Mobs.Systems;
 
-public sealed class MobThresholdSystem : EntitySystem
+public sealed partial class MobThresholdSystem : EntitySystem
 {
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     public override void Initialize()
     {
@@ -51,6 +53,12 @@ public sealed class MobThresholdSystem : EntitySystem
         component.TriggersAlerts = state.TriggersAlerts;
         component.CurrentThresholdState = state.CurrentThresholdState;
         component.AllowRevives = state.AllowRevives;
+        // Starlight Start
+        // OnGetState sends all 6 fields; this only applied 4. StateAlertDict
+        // and ShowOverlays were silently dropped on every state update.
+        component.StateAlertDict = new Dictionary<MobState, ProtoId<AlertPrototype>>(state.StateAlertDict);
+        component.ShowOverlays = state.ShowOverlays;
+        // Starlight End
     }
 
     #region Public API
@@ -270,7 +278,7 @@ public sealed class MobThresholdSystem : EntitySystem
         if (!TryGetThresholdForState(target2, MobState.Dead, out var ent2DeadThreshold, threshold2))
             ent2DeadThreshold = 0;
 
-        damage = (oldDamage.Damage / ent1DeadThreshold.Value) * ent2DeadThreshold.Value;
+        damage = (_damageable.GetAllDamage((target1, oldDamage)) / ent1DeadThreshold.Value) * ent2DeadThreshold.Value;
         return true;
     }
 
@@ -278,8 +286,8 @@ public sealed class MobThresholdSystem : EntitySystem
     /// Set a MobState Threshold or create a new one if it doesn't exist
     /// </summary>
     /// <param name="target">Target Entity</param>
-    /// <param name="damage">Damageable Component owned by the target</param>
-    /// <param name="mobState">MobState Component owned by the target</param>
+    /// <param name="damage">Damage level for the new threshold</param> // Starlight
+    /// <param name="mobState">MobState of the threshold to set</param> // Starlight
     /// <param name="threshold">MobThreshold Component owned by the target</param>
     public void SetMobStateThreshold(EntityUid target, FixedPoint2 damage, MobState mobState,
         MobThresholdsComponent? threshold = null)
@@ -330,6 +338,22 @@ public sealed class MobThresholdSystem : EntitySystem
         VerifyThresholds(uid, component);
     }
 
+    // Starlight Start
+    /// <summary>
+    /// Overrides the per-state alert and refreshes the current one.
+    /// </summary>
+    public void SetStateAlertDict(EntityUid target, Dictionary<MobState, ProtoId<AlertPrototype>> dict,
+        MobThresholdsComponent? threshold = null)
+    {
+        if (!Resolve(target, ref threshold))
+            return;
+
+        threshold.StateAlertDict = dict;
+        Dirty(target, threshold);
+        VerifyThresholds(target, threshold);
+    }
+    // Starlight End
+
     #endregion
 
     #region Private Implementation
@@ -339,7 +363,7 @@ public sealed class MobThresholdSystem : EntitySystem
     {
         foreach (var (threshold, mobState) in thresholdsComponent.Thresholds.Reverse())
         {
-            if (damageableComponent.TotalDamage < threshold)
+            if (_damageable.GetTotalDamage((target, damageableComponent)) < threshold)
                 continue;
 
             TriggerThreshold(target, mobState, mobStateComponent, thresholdsComponent, origin);
@@ -405,7 +429,7 @@ public sealed class MobThresholdSystem : EntitySystem
             }
 
             if (TryGetNextState(target, currentMobState, out var nextState, threshold) &&
-                TryGetPercentageForState(target, nextState.Value, damageable.TotalDamage, out var percentage))
+                TryGetPercentageForState(target, nextState.Value, _damageable.GetTotalDamage((target, damageable)), out var percentage))
             {
                 percentage = FixedPoint2.Clamp(percentage.Value, 0, 1);
 

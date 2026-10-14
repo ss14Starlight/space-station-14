@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Generated via Autosprite for BPL14",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "rifle_flash"
+    },
+    {
+      "name": "amr_impact"
+    },
+    {
+      "name": "knife_slash"
+    },
+    {
+      "name": "hex_blast"
+    }
+  ]
+}

@@ -10,11 +10,11 @@ using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.Xenobiology.MiscItems;
 
-public sealed class SlimeScannerSystem : EntitySystem
+public sealed partial class SlimeScannerSystem : EntitySystem
 {
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly HungerSystem _hungerSystem = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private HungerSystem _hungerSystem = default!;
 
     public override void Initialize()
     {
@@ -55,7 +55,7 @@ public sealed class SlimeScannerSystem : EntitySystem
         var channel = actor.PlayerSession.Channel;
         var name = metaData.EntityName;
         var nutrition = FixedPoint2.New(_hungerSystem.GetHunger(hunger));
-        var message = $"Name:\t[Bold]{name}[/Bold]\nNutrition:\t[Bold]{nutrition}[/Bold]\nMutation Chance:\t[Bold]{slime.MutationChance * 100F}%[/Bold]";
+        var message = Loc.GetString("slime-scanner-info", ("name", name), ("nutrition", nutrition), ("chance", slime.MutationChance * 100F));
         _chatManager.ChatMessageToOne(ChatChannel.Local, message, message, EntityUid.Invalid, false, channel);
     }
 }

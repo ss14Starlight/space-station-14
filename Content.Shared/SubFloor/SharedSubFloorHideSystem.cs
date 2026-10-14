@@ -17,14 +17,14 @@ namespace Content.Shared.SubFloor
     ///     Entity system backing <see cref="SubFloorHideComponent"/>.
     /// </summary>
     [UsedImplicitly]
-    public abstract class SharedSubFloorHideSystem : EntitySystem
+    public abstract partial class SharedSubFloorHideSystem : EntitySystem
     {
-        [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
-        [Dependency] private readonly SharedAmbientSoundSystem _ambientSoundSystem = default!;
-        [Dependency] protected readonly SharedMapSystem Map = default!;
-        [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
-        [Dependency] private readonly SharedVisibilitySystem _visibility = default!;
-        [Dependency] protected readonly SharedPopupSystem _popup = default!;
+        [Dependency] private ITileDefinitionManager _tileDefinitionManager = default!;
+        [Dependency] private SharedAmbientSoundSystem _ambientSoundSystem = default!;
+        [Dependency] protected SharedMapSystem Map = default!;
+        [Dependency] protected SharedAppearanceSystem Appearance = default!;
+        [Dependency] private SharedVisibilitySystem _visibility = default!;
+        [Dependency] protected SharedPopupSystem _popup = default!;
 
         private EntityQuery<SubFloorHideComponent> _hideQuery;
 
@@ -51,7 +51,8 @@ namespace Content.Shared.SubFloor
             // No teleporting entities through floor tiles when anchoring them.
             var xform = Transform(uid);
 
-            if (TryComp<MapGridComponent>(xform.GridUid, out var grid)
+            if (!component.AllowAnchoringUnderCover // Starlight
+                && TryComp<MapGridComponent>(xform.GridUid, out var grid)
                 && HasFloorCover(xform.GridUid.Value, grid, Map.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates)))
             {
                 _popup.PopupClient(Loc.GetString("subfloor-anchor-failure", ("entity", uid)), args.User);
@@ -63,7 +64,7 @@ namespace Content.Shared.SubFloor
         {
             // No un-anchoring things under the floor. Only required for something like vents, which are still interactable
             // despite being partially under the floor.
-            if (component.IsUnderCover)
+            if (!component.AllowAnchoringUnderCover && component.IsUnderCover) // Starlight
             {
                 _popup.PopupClient(Loc.GetString("subfloor-unanchor-failure", ("entity", uid)), args.User);
                 args.Cancel();
@@ -233,6 +234,7 @@ namespace Content.Shared.SubFloor
     [Serializable, NetSerializable]
     public enum SubfloorLayers : byte
     {
-        FirstLayer
+        FirstLayer, // Starlight
+        SecondLayer // Starlight
     }
 }

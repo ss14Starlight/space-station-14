@@ -56,7 +56,7 @@ internal static class SystemTimingPatch
             return [];
 
         using var mem = new MemoryStream();
-        var task = (Task?)_exportMethod.Invoke(registry, [mem, CancellationToken.None]);
+        var task = (Task)_exportMethod.Invoke(registry, [mem, CancellationToken.None]);
         if (task != null)
             await task;
 

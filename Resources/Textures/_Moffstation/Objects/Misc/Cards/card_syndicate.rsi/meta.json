@@ -1,0 +1,169 @@
+{
+    "version": 1,
+    "copyright": "Cards Sprites were originally from Paradise Station (https://github.com/ParadiseSS13/Paradise) and modified by VictorJob and Huaqas (GitHub). Boxes are from VictorJob.",
+    "license": "CC-BY-SA-3.0",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "empty",
+            "copyright": "Blank sprite"
+        },
+        {
+            "name": "background",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "suit_diamonds",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "suit_hearts",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "suit_clubs",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "suit_spades",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "ace_diamonds",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "ace_hearts",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "ace_clubs",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "ace_spades",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num2_red",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num3_red",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num4_red",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num5_red",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num6_red",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num7_red",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num8_red",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num9_red",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num10_red",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "numJ_red",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "numQ_red",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "numK_red",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num2_black",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num3_black",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num4_black",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num5_black",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num6_black",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num7_black",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num8_black",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num9_black",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "num10_black",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "numJ_black",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "numQ_black",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "numK_black",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "joker",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)",
+            "delays": [
+            [
+            0.5,
+            0.5
+            ]
+        ]
+        },
+        {
+            "name": "singlecard_down",
+            "copyright": "Taken from Paradise Station https://github.com/ParadiseSS13/Paradise modified by VictorJob and Huaqas (GitHub)"
+        },
+        {
+            "name": "box",
+            "copyright": "Made by VictorJob"
+        },
+        {
+            "name": "box_open",
+            "copyright": "Made by VictorJob"
+        }
+    ]
+}

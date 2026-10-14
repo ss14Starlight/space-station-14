@@ -6,11 +6,9 @@ using Content.Shared.Mind.Components;
 
 #region Starlight
 using Content.Shared._Starlight.Language.Components;
-using Content.Shared._Starlight.Language.Events;
-using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.Language.Systems;
 using Content.Server._Starlight.Language;
-using Content.Shared.Chat;
+
 #endregion Starlight
 
 namespace Content.Server.EntityEffects.Effects;
@@ -27,7 +25,8 @@ public sealed partial class MakeSentientEntityEffectSystem : EntityEffectSystem<
         // Let affected entities speak normally to make this effect different from, say, the "random sentience" event
         // This also works on entities that already have a mind
         // We call this before the mind check to allow things like player-controlled mice to be able to benefit from the effect
-        if (args.Effect.AllowSpeech)
+        // Starlight - skip language grant for LanguageGrantImmuneComponent entities
+        if (args.Effect.AllowSpeech && !HasComp<LanguageGrantImmuneComponent>(entity))
         {
             RemComp<ReplacementAccentComponent>(entity);
             // TODO: Make MonkeyAccent a replacement accent and remove MonkeyAccent code-smell.
@@ -39,11 +38,11 @@ public sealed partial class MakeSentientEntityEffectSystem : EntityEffectSystem<
             var knowledge = EnsureComp<LanguageKnowledgeComponent>(entity);
             var fallback = SharedLanguageSystem.FallbackLanguagePrototype;
 
-            if (!knowledge.UnderstoodLanguages.Contains(fallback))
-                knowledge.UnderstoodLanguages.Add(fallback);
+            if (!knowledge.Understands.Contains(fallback))
+                knowledge.Understands.Add(fallback);
 
-            if (!knowledge.SpokenLanguages.Contains(fallback))
-                knowledge.SpokenLanguages.Add(fallback);
+            if (!knowledge.Speaks.Contains(fallback))
+                knowledge.Speaks.Add(fallback);
 
             IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<LanguageSystem>().UpdateEntityLanguages((entity, speaker));
             // Starlight - End

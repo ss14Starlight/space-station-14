@@ -3,9 +3,9 @@ using Content.Shared._Starlight.Weather;
 
 namespace Content.Client._Starlight.Parallax;
 
-public sealed class ParallaxStatusEffectSystem : EntitySystem
+public sealed partial class ParallaxStatusEffectSystem : EntitySystem
 {
-    [Dependency] private readonly IParallaxManager _parallax = default!;
+    [Dependency] private IParallaxManager _parallax = default!;
 
     public override void Initialize()
     {

@@ -3,12 +3,10 @@ using Content.Shared.Body.Part;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
-using Content.Shared.Starlight;
 using Content.Shared._Starlight.Cybernetics;
 using Content.Shared._Starlight.Cybernetics.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
-using static Content.Server._Starlight.Actions.EntitySystems.SLActionSystem;
 
 namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class CyberLimbSystem : EntitySystem

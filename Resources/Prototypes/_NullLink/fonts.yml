@@ -1,0 +1,5 @@
+# shared icon font (game-icons.net). lives in NullLink because it's the more general, isolated module,
+# but it's consumed by both NullLink and Starlight via the "Icon" prototype id.
+- type: font
+  id: Icon
+  path: /Fonts/_NullLink/GameIcons/game-icons.ttf

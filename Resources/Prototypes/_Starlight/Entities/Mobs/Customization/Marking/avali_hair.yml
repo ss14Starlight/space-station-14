@@ -2,7 +2,7 @@
   id: AvaliHairBigPonytail
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop@0:
@@ -26,7 +26,7 @@
   id: AvaliHairCockatiel
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop@0:
@@ -45,7 +45,7 @@
   id: AvaliHairCockatoo
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop@0:
@@ -64,7 +64,7 @@
   id: AvaliHairDuelFeather
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop@0:
@@ -83,7 +83,7 @@
   id: AvaliHairHooked
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop@0:
@@ -102,7 +102,7 @@
   id: AvaliHairJay
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop@0:
@@ -121,7 +121,7 @@
   id: AvaliHairLongFeather
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop@0:
@@ -140,7 +140,7 @@
   id: AvaliHairPunk
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, NeoAvali ] # FH + Starlight
   # Starlight start
   sprites:
     body_headTop@0:

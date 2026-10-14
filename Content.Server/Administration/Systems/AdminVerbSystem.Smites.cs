@@ -4,7 +4,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Electrocution;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.GhostKick;
-using Content.Server.Nutrition.EntitySystems;
+using Content.Server._Starlight.Nutrition.EntitySystems;
 using Content.Server.Physics.Components;
 using Content.Server.Pointing.Components;
 using Content.Server.Polymorph.Systems;
@@ -17,9 +17,7 @@ using Content.Server.Tabletop.Components;
 using Content.Shared.Actions;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Components;
-using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos.Components;
-using Content.Shared.Alert; //Starlight
 using Content.Shared.Body.Components;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clumsy;
@@ -54,7 +52,6 @@ using Content.Shared.Trigger; // Starlight
 using Content.Shared.Trigger.Components.Effects; // Starlight
 using Content.Shared.NPC.Prototypes; // Starlight
 using Content.Shared.NPC.Systems; // Starlight
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -66,8 +63,10 @@ using Robust.Shared.Spawners;
 using Robust.Shared.Utility;
 using Timer = Robust.Shared.Timing.Timer;
 using Content.Server._Starlight.Terminator;
+using Content.Shared._Starlight.Medical.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Server._Starlight.Speech.Components;
 
 namespace Content.Server.Administration.Systems;
 
@@ -77,35 +76,36 @@ public sealed partial class AdminVerbSystem
     private readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
     private readonly ProtoId<PolymorphPrototype> Felionoidsmite = "AdminFelioSmite"; // Starlight edit
 
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!;
-    [Dependency] private readonly CreamPieSystem _creamPieSystem = default!;
-    [Dependency] private readonly ElectrocutionSystem _electrocutionSystem = default!;
-    [Dependency] private readonly EntityStorageSystem _entityStorageSystem = default!;
-    [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
-    [Dependency] private readonly FixtureSystem _fixtures = default!;
-    [Dependency] private readonly FlammableSystem _flammableSystem = default!;
-    [Dependency] private readonly GhostKickManager _ghostKickManager = default!;
-    [Dependency] private readonly SharedGodmodeSystem _sharedGodmodeSystem = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
-    [Dependency] private readonly PolymorphSystem _polymorphSystem = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly RoleSystem _role = default!;
-    [Dependency] private readonly TabletopSystem _tabletopSystem = default!;
-    [Dependency] private readonly VomitSystem _vomitSystem = default!;
-    [Dependency] private readonly WeldableSystem _weldableSystem = default!;
-    [Dependency] private readonly SharedContentEyeSystem _eyeSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly SuperBonkSystem _superBonkSystem = default!;
-    [Dependency] private readonly SlipperySystem _slipperySystem = default!;
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
-    [Dependency] private readonly TerminatorSystem _terminator = default!; // starlight
-    [Dependency] private readonly NpcFactionSystem _npcFactionSmite = default!; // starlight
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private CreamPieSystem _creamPieSystem = default!;
+    [Dependency] private ElectrocutionSystem _electrocutionSystem = default!;
+    [Dependency] private EntityStorageSystem _entityStorageSystem = default!;
+    [Dependency] private ExplosionSystem _explosionSystem = default!;
+    [Dependency] private FixtureSystem _fixtures = default!;
+    [Dependency] private FlammableSystem _flammableSystem = default!;
+    [Dependency] private GhostKickManager _ghostKickManager = default!;
+    [Dependency] private SharedGodmodeSystem _sharedGodmodeSystem = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
+    [Dependency] private PolymorphSystem _polymorphSystem = default!;
+    [Dependency] private MobThresholdSystem _mobThresholdSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private RoleSystem _role = default!;
+    [Dependency] private TabletopSystem _tabletopSystem = default!;
+    [Dependency] private VomitSystem _vomitSystem = default!;
+    [Dependency] private WeldableSystem _weldableSystem = default!;
+    [Dependency] private SharedContentEyeSystem _eyeSystem = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Dependency] private SuperBonkSystem _superBonkSystem = default!;
+    [Dependency] private SlipperySystem _slipperySystem = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private TerminatorSystem _terminator = default!; // starlight
+    [Dependency] private NpcFactionSystem _npcFactionSmite = default!; // starlight
 
     private readonly EntProtoId _actionViewLawsProtoId = "ActionViewLaws";
     private readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";
@@ -244,6 +244,7 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Clothing/Hands/Gloves/Color/yellow.rsi"), "icon"),
                 Act = () =>
                 {
+                    var totalDamage = _damageable.GetTotalDamage((args.Target, damageable));
                     int damageToDeal;
                     if (!_mobThresholdSystem.TryGetThresholdForState(args.Target, MobState.Critical, out var criticalThreshold))
                     {
@@ -251,11 +252,11 @@ public sealed partial class AdminVerbSystem
                         if (!_mobThresholdSystem.TryGetThresholdForState(args.Target, MobState.Dead,
                                 out var deadThreshold))
                             return;// whelp.
-                        damageToDeal = deadThreshold.Value.Int() - (int)damageable.TotalDamage;
+                        damageToDeal = deadThreshold.Value.Int() - (int)totalDamage;
                     }
                     else
                     {
-                        damageToDeal = criticalThreshold.Value.Int() - (int)damageable.TotalDamage;
+                        damageToDeal = criticalThreshold.Value.Int() - (int)totalDamage;
                     }
 
                     if (damageToDeal <= 0)
@@ -291,7 +292,7 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Consumable/Food/Baked/pie.rsi"), "plain-slice"),
                 Act = () =>
                 {
-                    _creamPieSystem.SetCreamPied(args.Target, creamPied, true);
+                    _creamPieSystem.SetCreamPied((args.Target, creamPied), true);
                 },
                 Impact = LogImpact.Extreme,
                 Message = string.Join(": ", creamPieName, Loc.GetString("admin-smite-creampie-description"))
@@ -322,7 +323,6 @@ public sealed partial class AdminVerbSystem
             args.Verbs.Add(bloodRemoval);
         }
 
-        // bobby...
         if (TryComp<BodyComponent>(args.Target, out var body))
         {
             var vomitOrgansName = Loc.GetString("admin-smite-vomit-organs-name").ToLowerInvariant();
@@ -334,14 +334,14 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     _vomitSystem.Vomit(args.Target, -1000, -1000); // You feel hollow!
-                    var organs = _bodySystem.GetBodyOrganEntityComps<TransformComponent>((args.Target, body)); // Starlight
+                    var organs = _bodySystem.GetBodyOrganEntityComps<TransformComponent>((args.Target, body)); // Starlight Edit: Reverted NuBody
                     var baseXform = Transform(args.Target);
                     foreach (var organ in organs)
                     {
                         if (HasComp<BrainComponent>(organ.Owner) || HasComp<EyeComponent>(organ.Owner))
                             continue;
 
-                        _transformSystem.PlaceNextTo((organ.Owner, organ.Comp1), (args.Target, baseXform));
+                        _transformSystem.PlaceNextTo((organ.Owner, organ.Comp1), (args.Target, baseXform)); // Starlight Edit: Comp -> Comp1
                     }
 
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-vomit-organs-self"), args.Target,
@@ -363,9 +363,9 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     var baseXform = Transform(args.Target);
-                    foreach (var part in _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Hand)) // Starlight
+                    foreach (var part in _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Hand)) // Starlight Edit: Reverted NuBody
                     {
-                        _transformSystem.AttachToGridOrMap(part.Id); // Starlight
+                        _transformSystem.AttachToGridOrMap(part.Id); // Starlight Edit: organ -> part.Id
                     }
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-remove-hands-self"), args.Target,
                         args.Target, PopupType.LargeCaution);
@@ -386,9 +386,9 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     var baseXform = Transform(args.Target);
-                    foreach (var part in _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Hand, body)) // Starlight
+                    foreach (var part in _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Hand, body)) // Starlight Edit: Reverted NuBody
                     {
-                        _transformSystem.AttachToGridOrMap(part.Id);  // Starlight
+                        _transformSystem.AttachToGridOrMap(part.Id); // Starlight Edit: organ -> part.Id
                         break;
                     }
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-remove-hands-self"), args.Target,
@@ -409,7 +409,7 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Mobs/Species/Human/organs.rsi"), "stomach"),
                 Act = () =>
                 {
-                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<StomachComponent>((args.Target, body))) // Starlight
+                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<StomachComponent>((args.Target, body))) // Starlight Edit: Reverted NuBody
                     {
                         QueueDel(entity.Owner);
                     }
@@ -430,7 +430,7 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Mobs/Species/Human/organs.rsi"), "lung-r"),
                 Act = () =>
                 {
-                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<LungComponent>((args.Target, body))) // Starlight
+                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<LungComponent>((args.Target, body))) // Starlight Edit: Reverted NuBody
                     {
                         QueueDel(entity.Owner);
                     }
@@ -1223,7 +1223,9 @@ public sealed partial class AdminVerbSystem
         // I would do it now but theres a massive rod rewrite, and I don't wanna poke it for this.
         // find reasonable spawn location (use gamerule and find rod?) but respect map not on grid etc etc
 
-        var offset = new Random(target.Id).NextAngle().RotateVec(new Vector2(distance, 0));
+        var random = new RobustRandom() as IRobustRandom;
+        random.SetSeed(target.Id);
+        var offset = random.NextAngle().RotateVec(new Vector2(distance, 0));
         var spawnCoords = _transformSystem.GetMapCoordinates(target).Offset(offset);
         var rod = Spawn(proto, spawnCoords);
         // Here we abuse the ChasingWalkComp by making it skip targetting logic and dialling its frequency up

@@ -5,6 +5,8 @@
   suffix: 20 TB
   description: Outdated tickets printed with a microcrystalline pattern, used to summon supplies via an old radio uplink, the old way. "DO NOT EAT!" — Boris
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Sprite
     sprite: _Starlight/Objects/Specific/USSP/telebond.rsi
     state: telebond
@@ -39,21 +41,21 @@
     - metallic
     - chemical
   - type: BadFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 16
-        reagents:
-        - ReagentId: Razorium
-          Quantity: 2
-        - ReagentId: Ephedrine
-          Quantity: 3
-        - ReagentId: Silicon
-          Quantity: 4
-        - ReagentId: Vodka
-          Quantity: 5
-        - ReagentId: Tazinide
-          Quantity: 2
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 16
+      reagents:
+      - ReagentId: Razorium
+        Quantity: 2
+      - ReagentId: Ephedrine
+        Quantity: 3
+      - ReagentId: Silicon
+        Quantity: 4
+      - ReagentId: Vodka
+        Quantity: 5
+      - ReagentId: Tazinide
+        Quantity: 2
 
 - type: entity
   parent: Telebond

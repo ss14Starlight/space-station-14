@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: TegCenter
+  components:
+    - type: AmbientSound
+      sound:
+        path: /Audio/_Starlight/Ambience/Objects/generator_hum.ogg

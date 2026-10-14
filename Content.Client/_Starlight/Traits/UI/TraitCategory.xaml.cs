@@ -16,7 +16,7 @@ public sealed partial class TraitCategory : BoxContainer
 
     private readonly TraitCategoryPrototype _category;
     private readonly List<TraitPrototype> _allTraits;
-    private readonly Dictionary<ProtoId<TraitPrototype>, TraitEntry> _traitEntries = new();
+    private readonly Dictionary<ProtoId<TraitPrototype>, TraitEntry> _traitEntries = [];
 
     private bool _isExpanded;
 

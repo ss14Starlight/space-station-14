@@ -10,10 +10,10 @@ using Robust.Shared.Player;
 namespace Content.Client.RoundEnd;
 
 [UsedImplicitly]
-public sealed class RoundEndSummaryUIController : UIController,
+public sealed partial class RoundEndSummaryUIController : UIController,
     IOnSystemLoaded<ClientGameTicker>
 {
-    [Dependency] private readonly IInputManager _input = default!;
+    [Dependency] private IInputManager _input = default!;
 
     private RoundEndSummaryWindow? _window;
 
@@ -48,4 +48,14 @@ public sealed class RoundEndSummaryUIController : UIController,
         _input.SetInputCommand(ContentKeyFunctions.ToggleRoundEndSummaryWindow,
             InputCmdHandler.FromDelegate(ToggleScoreboardWindow));
     }
+
+    #region Starlight
+
+    public void DeleteRoundEndSummaryWindow()
+    {
+        _window?.Close();
+        _window = null;
+    }
+
+    #endregion
 }

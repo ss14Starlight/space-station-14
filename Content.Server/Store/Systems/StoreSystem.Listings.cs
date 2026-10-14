@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Starlight.Store.Conditions;
 using Content.Shared.Mind;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
@@ -12,10 +13,10 @@ public sealed partial class StoreSystem
     /// Refreshes all listings on a store.
     /// Do not use if you don't know what you're doing.
     /// </summary>
-    /// <param name="component">The store to refresh</param>
-    public void RefreshAllListings(StoreComponent component)
+    /// <param name="ent">The store to refresh</param>
+    public void RefreshAllListings(Entity<StoreComponent> ent)
     {
-        var previousState = component.FullListingsCatalog;
+        var previousState = ent.Comp.FullListingsCatalog;
         var newState = GetAllListings();
         // if we refresh list with existing cost modifiers - they will be removed,
         // need to restore them
@@ -36,11 +37,13 @@ public sealed partial class StoreSystem
             }
         }
 
-        component.FullListingsCatalog = newState;
+        // Starlight-start
+        ent.Comp.FullListingsCatalog = newState;
 
         // STARLIGHT: Check if a rift has been destroyed and update the listing accordingly
         // This ensures the rift listing remains unavailable even after reopening the uplink
-        _revSupplyRift.CheckRiftDestroyedAndUpdateListing(component);
+        _revSupplyRift.CheckRiftDestroyedAndUpdateListing(ent);
+        // Starlight-end
     }
 
     /// <summary>
@@ -132,7 +135,7 @@ public sealed partial class StoreSystem
                 // First pass: check if this listing has a StockLimitedListingCondition
                 foreach (var condition in listing.Conditions)
                 {
-                    if (condition is Content.Shared.Store.Conditions.StockLimitedListingCondition)
+                    if (condition is StockLimitedListingCondition)
                     {
                         hasStockLimitedCondition = true;
                         break;
@@ -145,7 +148,7 @@ public sealed partial class StoreSystem
                     if (!condition.Condition(args))
                     {
                         // If this is a StockLimitedListingCondition, we want to show the item but mark it as unavailable
-                        if (condition is Content.Shared.Store.Conditions.StockLimitedListingCondition)
+                        if (condition is StockLimitedListingCondition)
                         {
                             listing.Unavailable = true;
                         }

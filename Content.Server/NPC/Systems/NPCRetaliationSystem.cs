@@ -1,6 +1,5 @@
 using Content.Server.NPC.Components;
 using Content.Shared.CombatMode;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.NPC.Components;
@@ -13,10 +12,10 @@ namespace Content.Server.NPC.Systems;
 /// <summary>
 ///     Handles NPC which become aggressive after being attacked.
 /// </summary>
-public sealed class NPCRetaliationSystem : EntitySystem
+public sealed partial class NPCRetaliationSystem : EntitySystem
 {
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     /// <inheritdoc />
     public override void Initialize()

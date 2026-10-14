@@ -1,5 +1,6 @@
+﻿using Content.Server._Starlight.NewLife;
+using Content.Server._Starlight.Station.Systems;
 using Content.Server.Administration.Managers;
-using Content.Server.Ghost.Roles;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
@@ -13,15 +14,15 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.GameTicking.Commands
 {
     [AnyCommand]
-    sealed class JoinGameCommand : IConsoleCommand
+    sealed partial class JoinGameCommand : IConsoleCommand
     {
-        [Dependency] private readonly IEntityManager _entManager = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IAdminManager _adminManager = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly ILogManager _logManager = default!;
+        [Dependency] private IEntityManager _entManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IAdminManager _adminManager = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private ILogManager _logManager = default!;
 
-        [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!; // Starlight
+        [Dependency] private IServerPreferencesManager _preferencesManager = default!; // Starlight
 
         private readonly ISawmill _sawmill;
 
@@ -88,6 +89,7 @@ namespace Content.Server.GameTicking.Commands
 
                 var station = _entManager.GetEntity(new NetEntity(sid));
                 var jobPrototype = _prototypeManager.Index<JobPrototype>(id);
+                _entManager.System<ContainerSpawnJobSlotSystem>().RefreshJobSlots(); // Starlight
                 if(stationJobs.TryGetJobSlot(station, jobPrototype, out var slots) == false || slots == 0)
                 {
                     shell.WriteLine($"{jobPrototype.LocalizedName} has no available slots.");

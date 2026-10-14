@@ -21,6 +21,7 @@ research-technology-civilian-cyberlimbs = Civilian cyberlimbs
 research-technology-engineering-cyberlimbs = Engineering cyberlimbs
 research-technology-nightvision-eyes = Night Vision Cyber Eyes
 research-technology-thermalvision-eyes = Thermal Vision Cyber Eyes
+research-technology-olfactory-nose = Olfactory Implant
 
 research-technology-ion-weaponry = Ion Weaponry
 research-technology-declone-technology = Declone Technology
@@ -41,5 +42,3 @@ research-technology-bluespace-manipulation = Bluespace Manipulation
 research-technology-darkbreacher = Dark Breacher
 
 research-technology-basic-xenobiology = Basic Xenobiology
-
-research-technology-exotic-reactor = Exosuit Exotic Reactors

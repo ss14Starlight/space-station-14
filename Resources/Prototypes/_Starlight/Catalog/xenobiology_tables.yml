@@ -345,6 +345,7 @@
       - id: DrinkHoochGlass
       - id: DrinkBeepskySmashGlass
       - id: DrinkBacchusBlessing
+      - id: DrinkTheLastCall
       - !type:NestedSelector
         tableId: RandomCommonAlcoholTable
       - !type:NestedSelector

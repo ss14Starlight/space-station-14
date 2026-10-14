@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: FigurinesRoboticist
+  values:
+    prefix: figurines-roboticist-
+    count: 9

@@ -54,6 +54,12 @@
     - BassGuitarInstrument
 
 - type: loadout
+  id: FretlessBassGuitar
+  storage:
+    back:
+    - FretlessBassGuitarInstrument
+
+- type: loadout
   id: RockGuitar
   storage:
     back:
@@ -166,16 +172,3 @@
   storage:
     back:
     - BagpipeInstrument
-#Starlight-Start - SuperSynth as special instrument
-- type: loadout
-  id: SuperSynth
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobMusician
-      time: 90000 # 25hr
-  storage:
-    back:
-    - SuperSynthesizerInstrument
-#Starlight-End

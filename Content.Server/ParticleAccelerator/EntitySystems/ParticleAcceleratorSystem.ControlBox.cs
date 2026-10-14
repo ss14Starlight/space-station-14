@@ -18,8 +18,8 @@ namespace Content.Server.ParticleAccelerator.EntitySystems;
 
 public sealed partial class ParticleAcceleratorSystem
 {
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     private void InitializeControlBoxSystem()
     {
@@ -125,6 +125,7 @@ public sealed partial class ParticleAcceleratorSystem
             return;
 
         comp.Powered = true;
+        UpdateAmbience(uid, comp); // Starlight
         UpdatePowerDraw(uid, comp);
         UpdateFiring(uid, comp);
         UpdatePartVisualStates(uid, comp);
@@ -139,6 +140,7 @@ public sealed partial class ParticleAcceleratorSystem
             return;
 
         comp.Powered = false;
+        UpdateAmbience(uid, comp); // Starlight
         UpdatePowerDraw(uid, comp);
         UpdateFiring(uid, comp);
         UpdatePartVisualStates(uid, comp);

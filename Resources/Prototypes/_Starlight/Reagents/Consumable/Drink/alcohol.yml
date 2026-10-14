@@ -6,6 +6,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: draganspecial
   color: "#610e20"
+  flammability: 4
   metamorphicSprite:
     sprite: _Starlight/Objects/Consumable/Drinks/dragan_special.rsi
     state: icon_empty
@@ -13,22 +14,34 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 3
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.45
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Bloodsucker ]
         damage:
-          groups:
-            Brute: -3
-            Burn: -1.25
-    Alcohol:
+          Brute: -3
+          Burn: -1.25
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: UncookedAnimalProteins
+        amount: 0.5
+      - !type:EvenHealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          Brute: -0.75
+          Burn: -0.375
+    Metabolites:
       effects:
       - !type:Drunk
         boozePower: 5
@@ -42,7 +55,7 @@
         damage:
           types:
             Poison: 0.4
-    Poison:
+    Bloodstream:
       metabolismRate: 0.5
       effects:
       # Enhanced screaming for higher doses
@@ -76,8 +89,7 @@
         - !type:MetabolizerTypeCondition
           type: [ Vox ]
           inverted: true
-    Narcotic:
-      effects:
+      # Narcotic
       - !type:MovementSpeedModifier
         walkSpeedModifier: 1.20
         sprintSpeedModifier: 1.20
@@ -102,3 +114,85 @@
         component: SeeingRainbows
         type: Add
         time: 120
+
+- type: reagent
+  id: Highlander
+  name: reagent-name-highlander
+  parent: BaseAlcohol
+  desc: reagent-desc-highlander
+  physicalDesc: reagent-physical-desc-highlander
+  flavor: highlander
+  color: "#95530f"
+  flammability: 5
+  selfOxidizing: true
+  metamorphicSprite:
+    sprite: _Starlight/Objects/Consumable/Drinks/highlander.rsi
+    state: empty
+  metamorphicMaxFillLevels: 1
+  metamorphicFillBaseName: full-
+  metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.3
+      - !type:ModifyStatusEffect
+        effectProto: MobThresholdsTheHighlander # raise crit to 219
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+      - !type:SpawnAttachedTo
+        entity: EffectDwarfCourage
+        number: 1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+
+- type: reagent
+  id: TheLastCall
+  name: reagent-name-the-last-call
+  parent: BaseAlcohol
+  desc: reagent-desc-the-last-call
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: thelastcall
+  color: "#9450c7"
+  flammability: 2
+  metamorphicSprite:
+    sprite: _Starlight/Objects/Consumable/Drinks/thelastcall.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 2
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: TheLastCall
+          min: 6
+        - !type:MetabolizerTypeCondition
+          type: [Animal]
+          inverted: true
+        damage:
+          types:
+            Poison: 0.04
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: TheLastCall
+          min: 6
+        - !type:MetabolizerTypeCondition
+          type: [Animal]
+        damage:
+          types:
+            Poison: 0.02

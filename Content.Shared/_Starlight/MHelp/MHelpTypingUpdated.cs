@@ -1,8 +1,7 @@
 ﻿#nullable enable
-using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Starlight.MHelp;
+namespace Content.Shared._Starlight.MHelp;
 
 [Serializable, NetSerializable]
 public sealed class MHelpTypingUpdated() : EntityEventArgs

@@ -17,13 +17,13 @@ namespace Content.Server.StationEvents.Events;
 ///     Greytide Virus event
 ///     This will open and bolt airlocks and unlock lockers from randomly selected access groups.
 /// </summary>
-public sealed class GreytideVirusRule : StationEventSystem<GreytideVirusRuleComponent>
+public sealed partial class GreytideVirusRule : StationEventSystem<GreytideVirusRuleComponent>
 {
-    [Dependency] private readonly AccessReaderSystem _access = default!;
-    [Dependency] private readonly SharedDoorSystem _door = default!;
-    [Dependency] private readonly LockSystem _lock = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private AccessReaderSystem _access = default!;
+    [Dependency] private SharedDoorSystem _door = default!;
+    [Dependency] private LockSystem _lock = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     protected override void Added(EntityUid uid, GreytideVirusRuleComponent virusComp, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
@@ -81,7 +81,7 @@ public sealed class GreytideVirusRule : StationEventSystem<GreytideVirusRuleComp
             // the AreAccessTagsAllowed function is a little weird because it technically has support for certain tags to be locked out of opening something
             // which might have unintened side effects (see the comments in the function itself)
             // but no one uses that yet, so it is fine for now
-            if (!_access.AreAccessTagsAllowed(accessIds, accessComp) || _access.AreAccessTagsAllowed(virusComp.Blacklist, accessComp))
+            if (!_access.AreAccessTagsAllowed(accessIds, (lockUid, accessComp)) || _access.AreAccessTagsAllowed(virusComp.Blacklist, (lockUid, accessComp))) // Starlight-edit
                 continue;
 
             // open lockers
@@ -104,7 +104,7 @@ public sealed class GreytideVirusRule : StationEventSystem<GreytideVirusRuleComp
                 continue;
 
             // check access
-            if (!_access.AreAccessTagsAllowed(accessIds, accessEnt.Value.Comp) || _access.AreAccessTagsAllowed(virusComp.Blacklist, accessEnt.Value.Comp))
+            if (!_access.AreAccessTagsAllowed(accessIds, accessEnt.Value) || _access.AreAccessTagsAllowed(virusComp.Blacklist, accessEnt.Value)) // Starlight-edit
                 continue;
 
             // open and bolt airlocks

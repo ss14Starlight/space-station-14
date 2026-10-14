@@ -1,34 +1,36 @@
-using System.Linq;
 using System.Numerics;
-using Content.Client._Starlight.NewLife;
 using Content.Client._Starlight.UI;
 using Content.Client.Eui;
-using Content.Client.Lobby;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared.Eui;
-using Content.Shared.Starlight.NewLife;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared;
-using static Robust.Client.Input.Mouse;
-using static Robust.Client.UserInterface.Controls.LayoutContainer;
 
 namespace Content.Client._Starlight.Railroading;
 
 [UsedImplicitly]
 public sealed class CardSelectionEui : BaseEui
 {
-    private List<IDisposable> _disposables = [];
     private static readonly Vector2 _cardSize = new(264, 370);
     private static readonly Vector2 _cardContentSize = new(254, 200);
     private static readonly Vector2 _cardDescSize = new(255, 160);
-    private SLWindow _window;
+    private static readonly Vector2 _menuBarMinSize = new(14, 12);
+    private const float TimerHeight = 26;
+    private const float BannerMinWidth = 30;
+    private readonly SLWindow _window;
+    private readonly CardCountdown _countdown = new();
+
+    private bool _closing;
 
     public CardSelectionEui()
     {
         _window = new SLWindow();
-        _window.OnClose += ()=> SendMessage(new CardSelectionClosedMessage());
+        _window.OnClose += () =>
+        {
+            if (!_closing)
+                SendMessage(new CardSelectionClosedMessage());
+        };
     }
 
     public override void Opened()
@@ -39,6 +41,7 @@ public sealed class CardSelectionEui : BaseEui
 
     public override void Closed()
     {
+        _closing = true;
         base.Closed();
         _window.Close();
     }
@@ -50,7 +53,15 @@ public sealed class CardSelectionEui : BaseEui
         if (baseState is not CardSelectionEuiState state)
             return;
 
-        var size = new Vector2((_cardSize.X * state.Cards.Count) + (6 * state.Cards.Count), _cardSize.Y);
+        if (state.Cards.Count == 0)
+        {
+            CardWindow.RenderEmpty(_window, restricted: false);
+            return;
+        }
+
+        _countdown.Deadline = state.Deadline;
+
+        var size = new Vector2((_cardSize.X * state.Cards.Count) + (6 * state.Cards.Count), _cardSize.Y + TimerHeight);
         _window.Resizable = false;
         _window.Contents.SetSize = size;
         _window.Contents.MinSize = size;
@@ -62,8 +73,11 @@ public sealed class CardSelectionEui : BaseEui
         _window
             .Box
             (
-                BoxContainer.LayoutOrientation.Horizontal,
-                box =>
+                BoxContainer.LayoutOrientation.Vertical,
+                outer =>
+                {
+                    outer.Add(_countdown);
+                    outer.Box(BoxContainer.LayoutOrientation.Horizontal, box =>
                 {
                     box.Align = BoxContainer.AlignMode.Center;
                     state
@@ -102,6 +116,7 @@ public sealed class CardSelectionEui : BaseEui
                             });
 
                     }));
+                });
                 }
             );
     }
@@ -119,11 +134,12 @@ public sealed class CardSelectionEui : BaseEui
                     .Modulate(card.Color));
                 if (card.Icon is not null)
                     box.Panel(panel => panel
+                        .WithMinWidth(BannerMinWidth)
                         .WithMargin(new Thickness(0, 5, 5, 0))
                         .AddClass("CardBanner")
                         .Modulate(card.Color)
                         .Label(x => x.WithText(card.Icon)
-                                    .WithFont("/Fonts/_Starlight/GameIcons/game-icons.ttf", 32)
+                                    .WithFont("/Fonts/_NullLink/GameIcons/game-icons.ttf", 32)
                                     .WithMargin(new Thickness(-7, 0, -11, -4))
                                     .WithMouseFilter(Control.MouseFilterMode.Pass)
                                     .WhenMouseEntered(_ => panel.Modulate(Color.ForestGreen))
@@ -137,11 +153,12 @@ public sealed class CardSelectionEui : BaseEui
             box.Panel(panel =>
                 {
                     panel.AddClass("MenuBar");
+                    panel.MinSize = _menuBarMinSize;
                     panel.Modulate(card.Color);
 
                     if (card.CreditReward is { } creditReward)
                         box.Label(x => x.WithText("")
-                                .WithFont("/Fonts/_Starlight/GameIcons/game-icons.ttf", 24)
+                                .WithFont("/Fonts/_NullLink/GameIcons/game-icons.ttf", 24)
                                 .WithMouseFilter(Control.MouseFilterMode.Pass)
                                 .WithTooltip(Loc.GetString("rr-credit-reward", ("Min", creditReward.Min), ("Max", creditReward.Max)))
                                 .WhenMouseEntered(_ => x.Modulate(Color.Cyan))
@@ -150,7 +167,7 @@ public sealed class CardSelectionEui : BaseEui
 
                     if (card.HasSecretAccess)
                         box.Label(x => x.WithText("")
-                                .WithFont("/Fonts/_Starlight/GameIcons/game-icons.ttf", 24)
+                                .WithFont("/Fonts/_NullLink/GameIcons/game-icons.ttf", 24)
                                 .WithMouseFilter(Control.MouseFilterMode.Pass)
                                 .WithTooltip(Loc.GetString("rr-secret-access-hint"))
                                 .WhenMouseEntered(_ => x.Modulate(Color.Cyan))

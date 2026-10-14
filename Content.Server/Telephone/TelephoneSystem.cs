@@ -30,21 +30,21 @@ using Content.Server.Chat.Managers;
 
 namespace Content.Server.Telephone;
 
-public sealed class TelephoneSystem : SharedTelephoneSystem
+public sealed partial class TelephoneSystem : SharedTelephoneSystem
 {
-    [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly InteractionSystem _interaction = default!;
-    [Dependency] private readonly IdCardSystem _idCardSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IReplayRecordingManager _replay = default!;
+    [Dependency] private AppearanceSystem _appearanceSystem = default!;
+    [Dependency] private InteractionSystem _interaction = default!;
+    [Dependency] private IdCardSystem _idCardSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IReplayRecordingManager _replay = default!;
     // Starlight Start
-    [Dependency] private readonly LanguageSystem _language = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private IChatManager _chatManager = default!;
     // Starlight End
 
     // Has set used to prevent telephone feedback loops

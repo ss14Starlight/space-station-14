@@ -9,14 +9,11 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Utility;
-using Robust.Client.UserInterface.RichText;
-using Content.Client.UserInterface.RichText;
 using Robust.Shared.Input;
 
 #region Starlight
 using Robust.Client.UserInterface;
-using Robust.Shared.IoC;
-using static Content.Shared.Paper.PaperComponent;
+using Content.Client._Starlight.UserInterface.RichText;
 #endregion Starlight
 
 namespace Content.Client.Paper.UI
@@ -26,10 +23,13 @@ namespace Content.Client.Paper.UI
     {
         private PaperComponent.PaperBoundUserInterfaceState _currentState = default!;
         private string _currentRawText = string.Empty;
-        [Dependency] private readonly IInputManager _inputManager = default!;
-        [Dependency] private readonly IResourceCache _resCache = default!;
+        [Dependency] private IInputManager _inputManager = default!;
+        [Dependency] private IResourceCache _resCache = default!;
 
         private static Color DefaultTextColor = new(25, 25, 25);
+
+        // Default color for text which hasn't been changed using markup
+        private Color _writtenTextColor = DefaultTextColor;
 
         // Size of resize handles around the paper
         private const int DRAG_MARGIN_SIZE = 16;
@@ -51,6 +51,7 @@ namespace Content.Client.Paper.UI
 
         public event Action<string>? OnSaved;
         public event Action<int>? OnSignatureRequested;
+        public event Action<int>? OnDateTimeRequested;
 
         private int _MaxInputLength = -1;
         public int MaxInputLength
@@ -160,7 +161,7 @@ namespace Content.Client.Paper.UI
                     visuals.FooterMargin.Right, visuals.FooterMargin.Bottom);
 
             PaperContent.ModulateSelfOverride = visuals.ContentImageModulate;
-            FillStatus.ModulateSelfOverride = visuals.FontAccentColor;
+            _writtenTextColor = visuals.DefaultTextColor ?? DefaultTextColor;
 
             var contentImage = visuals.ContentImagePath != null ? _resCache.GetResource<TextureResource>(visuals.ContentImagePath) : null;
             if (contentImage != null)
@@ -228,6 +229,7 @@ namespace Content.Client.Paper.UI
                 // Set the font line height in tag handlers so buttons match text height
                 FormTagHandler.FontLineHeight = fontLineHeight;
                 SignatureTagHandler.FontLineHeight = fontLineHeight;
+                DateTimeTagHandler.FontLineHeight = fontLineHeight;
                 CheckTagHandler.FontLineHeight = fontLineHeight;
 
                 // Position the background texture so font baseline aligns with texture lines
@@ -252,7 +254,7 @@ namespace Content.Client.Paper.UI
         /// <summary>
         /// Populate the paper window with content based on the current paper state.
         /// Handles both editing mode (showing text input) and reading mode (showing formatted text).
-        /// Processes markup tags like [form] and [signature] for interactive elements.
+        /// Processes markup tags like [form], [signature], and [datetime] for interactive elements.
         /// </summary>
         /// <param name="state">Current paper state containing text, mode, and stamp information</param>
         public void Populate(PaperComponent.PaperBoundUserInterfaceState state)
@@ -294,13 +296,14 @@ namespace Content.Client.Paper.UI
             FormTagHandler.SetFormText(state.Text);
             FormTagHandler.ResetFormCounter();
             SignatureTagHandler.ResetSignatureCounter();
+            DateTimeTagHandler.ResetDateTimeCounter();
             CheckTagHandler.ResetCheckCounter();
 
             // Display text with markup processing (forms, signatures, colors, etc.)
             // The markup system converts [form] and [signature] tags into interactive buttons
             var fm = new FormattedMessage();
             fm.AddMarkupPermissive(state.Text);
-            WrittenTextLabel.SetMessage(fm, UserFormattableTags.BaseAllowedTags, DefaultTextColor);
+            WrittenTextLabel.SetMessage(fm, UserFormattableTags.BaseAllowedTags, _writtenTextColor);
 
             // Add extra bottom margin based on tag count to prevent cutoff (only in read mode)
             var tagCount = CountTags(state.Text);
@@ -380,14 +383,14 @@ namespace Content.Client.Paper.UI
         }
 
         /// <summary>
-        /// Removes any unfilled [form] and [signature] tags from the paper text.
+        /// Removes any unfilled [form], [signature], and [datetime] tags from the paper text.
         /// Called when the paper is stamped to finalize the document.
         /// </summary>
         /// <param name="text">The paper text to clean</param>
         /// <returns>Text with unfilled tags removed</returns>
         public static string CleanUnfilledTags(string text)
         {
-            return text.Replace("[form]", string.Empty).Replace("[signature]", string.Empty);
+            return text.Replace("[form]", string.Empty).Replace("[signature]", string.Empty).Replace("[datetime]", string.Empty);
         }
 
         /// <summary>
@@ -403,7 +406,7 @@ namespace Content.Client.Paper.UI
                 formButton.ModulateSelfOverride = Color.LightBlue;
 
             // Create the popup dialog structure
-            var popup = new Popup();
+            var popup = new Popup { CloseOnClick = false }; // Starlight
             var vbox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(10) };
             var editContainer = new PanelContainer { StyleClasses = { "TransparentBorderedWindowPanel" } };
             var edit = new LineEdit { MinSize = new Vector2(200, 0), Margin = new Thickness(5) };
@@ -462,6 +465,15 @@ namespace Content.Client.Paper.UI
         public void SendSignatureRequest(int signatureIndex)
         {
             OnSignatureRequested?.Invoke(signatureIndex);
+        }
+
+        /// <summary>
+        /// Sends a datetime request to the server to handle datetime with proper identity system.
+        /// </summary>
+        /// <param name="dateTimeIndex">Zero-based index of which [datetime] tag to replace</param>
+        public void SendDateTimeRequest(int dateTimeIndex)
+        {
+            OnDateTimeRequested?.Invoke(dateTimeIndex);
         }
 
         /// <summary>
@@ -582,9 +594,9 @@ namespace Content.Client.Paper.UI
             var vbox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(10) };
             var hbox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal };
 
-            var blankBtn = new Button { Text = "☐ Blank", MinWidth = 80 };
-            var checkBtn = new Button { Text = "✔ Check", MinWidth = 80 };
-            var crossBtn = new Button { Text = "✖ Cross", MinWidth = 80 };
+            var blankBtn = new Button { Text = Loc.GetString("paper-check-blank-button"), MinWidth = 80 };
+            var checkBtn = new Button { Text = Loc.GetString("paper-check-check-button"), MinWidth = 80 };
+            var crossBtn = new Button { Text = Loc.GetString("paper-check-cross-button"), MinWidth = 80 };
 
             blankBtn.OnPressed += _ => {
                 var newText = ReplaceNthCheckTag(_currentRawText, checkIndex, "☐");
@@ -728,8 +740,9 @@ namespace Content.Client.Paper.UI
         {
             var formCount = CountOccurrences(text, "[form]");
             var signatureCount = CountOccurrences(text, "[signature]");
+            var dateTimeCount = CountOccurrences(text, "[datetime]");
             var checkCount = CountOccurrences(text, "[check]");
-            return formCount + signatureCount + checkCount;
+            return formCount + signatureCount + checkCount + dateTimeCount;
         }
 
         /// <summary>

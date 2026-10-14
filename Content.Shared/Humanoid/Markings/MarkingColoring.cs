@@ -40,10 +40,13 @@ public static class MarkingColoring
         // Coloring from default properties
         var defaultColor = prototype.Coloring.Default.GetColor(skinColor, eyeColor, markingSet);
 
+        // Starlight - markings can expose fewer color slots than sprite layers.
+        var colorSlotCount = prototype.ColorSlotCount;
+
         if (prototype.Coloring.Layers == null)
         {
             // If layers is not specified, then every layer must be default
-            for (var i = 0; i < prototype.Sprites.Count; i++)
+            for (var i = 0; i < colorSlotCount; i++)
             {
                 colors.Add(defaultColor);
             }
@@ -51,9 +54,22 @@ public static class MarkingColoring
         }
         else
         {
+            for (var i = 0; i < colorSlotCount; i++)
+            {
+                colors.Add(defaultColor);
+            }
+
+            var coloredSlots = new bool[colorSlotCount];
+
             // If some layers are specified.
             foreach (var bodySprite in prototype.Sprites.Values) // Starlight
             {
+                // Starlight start - multiple sprite layers can share one color slot.
+                var colorIndex = prototype.GetColorIndex(i);
+                if (colorIndex >= colorSlotCount || coloredSlots[colorIndex])
+                    continue;
+                // Starlight end
+
                 // Getting layer name
                 string? name = bodySprite.Sprite switch // Starlight
                 {
@@ -62,20 +78,15 @@ public static class MarkingColoring
                     _ => null
                 };
                 if (name == null)
-                {
-                    colors.Add(defaultColor);
                     continue;
-                }
 
                 // All specified layers must be colored separately, all unspecified must depend on default coloring
                 if (prototype.Coloring.Layers.TryGetValue(name, out var layerColoring))
                 {
                     var marking_color = layerColoring.GetColor(skinColor, eyeColor, markingSet);
-                    colors.Add(marking_color);
-                }
-                else
-                {
-                    colors.Add(defaultColor);
+                    // Starlight edit - assign layer coloring to its shared color slot.
+                    colors[colorIndex] = marking_color;
+                    coloredSlots[colorIndex] = true;
                 }
             }
             return colors;

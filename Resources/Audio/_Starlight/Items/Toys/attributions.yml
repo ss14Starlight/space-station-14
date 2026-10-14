@@ -1,13 +1,3 @@
-- files: ["deerplush_nun.ogg"]
-  license: "CC0-1.0"
-  copyright: "Original sound by Cerzix"
-  source: "https://github.com/Cerzix"
-
-- files: ["yippie.ogg"]
-  license: "CC0-1.0"
-  copyright: "Original sound by CipherForbid"
-  source: "https://www.youtube.com/watch?v=-jySY1QC7dc"
-
 - files: ["gnome_hahe.ogg"]
   license: "CC0-1.0"
   copyright: "Original sound by Radio TV Solutions"
@@ -37,3 +27,8 @@
   license: "Custom"
   copyright: "tonsil5 (Freesound)"
   source: "https://pixabay.com/sound-effects/cartoon-scream-1-6835/"
+
+- files: ["yippie.ogg"]
+  license: "CC0-1.0"
+  copyright: "Original sound by CipherForbid"
+  source: "https://www.youtube.com/watch?v=-jySY1QC7dc"
