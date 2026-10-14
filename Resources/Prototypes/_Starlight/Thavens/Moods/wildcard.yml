@@ -423,7 +423,7 @@
   id: RespectThroughViolence
   moodName: thaven-mood-respect-through-violence-name
   moodDesc: thaven-mood-respect-through-violence-desc
-  Conflicts:
+  conflicts:
   - ViolenceDistasteful
   - AngerProblems
 
