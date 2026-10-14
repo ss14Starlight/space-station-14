@@ -12,8 +12,8 @@ namespace Content.Server.Antag;
 
 public sealed partial class AntagSelectionSystem
 {
-    readonly int _effectivePlayerCutoff = 15; // The number of online players at which unready players start counting as effectively ready
-    readonly double _unreadyPlayerMultiplier = 0.5; // The fraction of unready players that count as effectively ready when above the cutoff
+    readonly int _effectivePlayerCutoff = 30; // The number of online players at which unready players start counting as effectively ready
+    readonly double _unreadyPlayerMultiplier = 0.25; // The fraction of unready players that count as effectively ready when above the cutoff
     private int GetEffectivePlayerCountPlayerRatio(int activePlayers)
     {
         var onlinePlayers = _playerManager.Sessions.Length;
