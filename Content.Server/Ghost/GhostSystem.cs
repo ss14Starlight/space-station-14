@@ -15,7 +15,6 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
-using Content.Shared.Examine;
 using Content.Shared.Eye;
 using Content.Shared.FixedPoint;
 using Content.Shared.Follower;
@@ -91,8 +90,6 @@ namespace Content.Server.Ghost
             SubscribeLocalEvent<GhostComponent, ComponentStartup>(OnGhostStartup);
             SubscribeLocalEvent<GhostComponent, MapInitEvent>(OnMapInit);
             SubscribeLocalEvent<GhostComponent, ComponentShutdown>(OnGhostShutdown);
-
-            SubscribeLocalEvent<GhostComponent, ExaminedEvent>(OnGhostExamine);
 
             SubscribeLocalEvent<GhostComponent, MindRemovedMessage>(OnMindRemovedMessage);
             SubscribeLocalEvent<GhostComponent, MindUnvisitedMessage>(OnMindUnvisitedMessage);
@@ -209,8 +206,10 @@ namespace Content.Server.Ghost
             }
 
             _eye.RefreshVisibilityMask(uid);
-            var time = _gameTiming.CurTime;
+            var time = _gameTiming.RealTime;
             component.TimeOfDeath = time;
+
+            Dirty(uid, component);
         }
 
         private void OnGhostShutdown(EntityUid uid, GhostComponent component, ComponentShutdown args)
@@ -239,16 +238,6 @@ namespace Content.Server.Ghost
             _actions.AddAction(uid, ref component.ToggleLightingActionEntity, component.ToggleLightingAction);
             _actions.AddAction(uid, ref component.ToggleFoVActionEntity, component.ToggleFoVAction);
             _actions.AddAction(uid, ref component.ToggleGhostsActionEntity, component.ToggleGhostsAction);
-        }
-
-        private void OnGhostExamine(EntityUid uid, GhostComponent component, ExaminedEvent args)
-        {
-            var timeSinceDeath = _gameTiming.RealTime.Subtract(component.TimeOfDeath);
-            var deathTimeInfo = timeSinceDeath.Minutes > 0
-                ? Loc.GetString("comp-ghost-examine-time-minutes", ("minutes", timeSinceDeath.Minutes))
-                : Loc.GetString("comp-ghost-examine-time-seconds", ("seconds", timeSinceDeath.Seconds));
-
-            args.PushMarkup(deathTimeInfo);
         }
 
         #region Ghost Deletion

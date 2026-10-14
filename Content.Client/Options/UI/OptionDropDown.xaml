@@ -1,6 +1,11 @@
 ﻿<Control xmlns="https://spacestation14.io">
+    <!-- Starlight-start -->
     <BoxContainer Orientation="Horizontal">
-        <Label Name="NameLabel" MinWidth="400" />
-        <OptionButton Name="Button" Access="Public" />
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Center">
+            <Label Name="NameLabel" />
+            <Label Name="DescriptionLabel" StyleClasses="LabelSubText" Visible="False" />
+        </BoxContainer>
+        <OptionButton Name="Button" Access="Public" MinWidth="240" VerticalAlignment="Center" />
     </BoxContainer>
+	<!-- Starlight-end -->
 </Control>
