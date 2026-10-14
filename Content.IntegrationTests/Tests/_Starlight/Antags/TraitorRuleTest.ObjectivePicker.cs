@@ -37,10 +37,12 @@ public sealed partial class TraitorRuleTest
 
             // Starlight always contributes a Cards group, even without an active card.
             SEntMan.EnsureComponent<RailroadableComponent>(player);
+#pragma warning disable RA0002 // Allow direct component initialization in test setup.
             SEntMan.AddComponent(player, new CharacterDescriptionComponent { Description = "Physical description" }, true);
             SEntMan.AddComponent(mind, new CharacterDescriptionComponent { Description = "Personality description" }, true);
             SEntMan.AddComponent(mind, new RoleplayInfoComponent { OOCNotes = "OOC notes" }, true);
             SEntMan.AddComponent(mind, new MindSecretsComponent { PersonalNotes = "Personal notes" }, true);
+#pragma warning restore RA0002
             Server.System<TagSystem>().AddTag(player, SLBackgroundTag);
 
             foreignMind = Server.System<MindSystem>().CreateMind(null);
