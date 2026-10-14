@@ -50,7 +50,6 @@ namespace Content.Server.Ghost
         [Dependency] private IAdminLogManager _adminLog = default!;
         [Dependency] private SharedEyeSystem _eye = default!;
         [Dependency] private FollowerSystem _followerSystem = default!;
-        [Dependency] private IGameTiming _gameTiming = default!;
         [Dependency] private JobSystem _jobs = default!;
         [Dependency] private EntityLookupSystem _lookup = default!;
         [Dependency] private MindSystem _minds = default!;
