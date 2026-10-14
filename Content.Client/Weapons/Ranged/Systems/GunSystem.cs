@@ -403,17 +403,23 @@ public sealed partial class GunSystem : SharedGunSystem
     {
         base.Update(frameTime);
 
+        // Starlight-start: predict gun burst fire for all held guns
+        if (_player.LocalEntity is not EntityUid entity) return;
+
+        foreach (var heldGun in EnumerateGuns(entity))
+        {
+            if (heldGun.Comp.NextFire <= Timing.CurTime && heldGun.Comp.BurstActivated)
+                ContinueBurst(entity, heldGun);
+        }
+
         if (!Timing.IsFirstTimePredicted)
             return;
 
-        var entityNull = _player.LocalEntity;
-
-        if (entityNull == null || !TryComp<CombatModeComponent>(entityNull, out var combat) || !combat.IsInCombatMode)
+        if (!TryComp<CombatModeComponent>(entity, out var combat) || !combat.IsInCombatMode)
         {
             return;
         }
-
-        var entity = entityNull.Value;
+        // Starlight-end
 
         if (TryComp<MechPilotComponent>(entity, out var mechPilot))
         {
@@ -427,7 +433,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
         var useKey = gun.Comp.UseKey ? EngineKeyFunctions.Use : EngineKeyFunctions.UseSecondary;
 
-        if (_inputSystem.CmdStates.GetState(useKey) != BoundKeyState.Down && !gun.Comp.BurstActivated)
+        if (_inputSystem.CmdStates.GetState(useKey) != BoundKeyState.Down) // Starlight-edit
         {
             if (gun.Comp.ShotCounter != 0)
                 RaisePredictiveEvent(new RequestStopShootEvent { Gun = GetNetEntity(gun) });
