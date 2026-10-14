@@ -13,7 +13,9 @@ public abstract partial class SharedRoleSystem
         foreach (var uid in mind.MindRoleContainer.ContainedEntities)
         {
             if (TryComp<MindRoleComponent>(uid, out var role)
-                && _prototypes.Resolve(role.JobPrototype, out var job))
+                && role.JobPrototype is { } jobId
+                && !string.IsNullOrEmpty(jobId.Id)
+                && _prototypes.TryIndex(jobId, out var job))
                 return job.RoleType;
         }
 

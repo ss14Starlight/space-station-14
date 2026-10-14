@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
+using Content.Server.Antag.Components;
 using Content.Server._Moffstation.Objectives.Components;
 using Content.Shared._Moffstation.Objectives;
 using Content.Server.GameTicking;
@@ -12,7 +13,6 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Mind;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
-using Content.Server._Starlight.GameTicking.Rules;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 
 namespace Content.IntegrationTests.Tests._Starlight.Antags;
@@ -44,8 +44,9 @@ public sealed class VampireRuleTest : GameTest
         var mindSys = server.System<MindSystem>();
         var roleSys = server.System<RoleSystem>();
 
-        // Look up the minimum player count for the game rule.
+        // Look up the minimum player count and fixed objectives for the game rule.
         var minPlayers = 1;
+        var fixedObjectiveIds = Array.Empty<string>();
         await server.WaitAssertion(() =>
         {
             Assert.That(protoMan.TryIndex<EntityPrototype>(VampireGameRuleProtoId, out var gameRuleEnt),
@@ -57,7 +58,11 @@ public sealed class VampireRuleTest : GameTest
             Assert.That(gameRuleEnt.TryComp<AntagRandomObjectivesComponent>(out _, compFact),
             $"Game rule entity {VampireGameRuleProtoId} does not have an AntagRandomObjectivesComponent!");
 
+            Assert.That(gameRuleEnt.TryComp<AntagObjectivesComponent>(out var fixedObjectives, compFact),
+            $"Game rule entity {VampireGameRuleProtoId} does not have an AntagObjectivesComponent!");
+
             minPlayers = gameRule.MinPlayers;
+            fixedObjectiveIds = fixedObjectives.Objectives.Select(objective => objective.Id).ToArray();
         });
 
         // Initially in the lobby
@@ -127,10 +132,13 @@ public sealed class VampireRuleTest : GameTest
         Assert.That(ruleComp.VampireMinds.Contains(mind),
             "The player who opted in should be selected as vampire");
 
-        // Objectives are offered for selection before they are assigned.
+        // Fixed vampire objectives are assigned immediately, additional offers wait for selection.
         Assert.That(entMan.TryGetComponent<MindComponent>(mind, out var mindComp));
-        Assert.That(mindComp.Objectives, Is.Empty, "Objectives must wait for the player's selection.");
+        Assert.That(mindComp.Objectives.Select(objective => entMan.GetComponent<MetaDataComponent>(objective).EntityPrototype?.ID),
+            Is.EquivalentTo(fixedObjectiveIds), "Only fixed vampire objectives should be assigned before selection.");
         Assert.That(entMan.TryGetComponent<PotentialObjectivesComponent>(mind, out var potential));
         Assert.That(potential.ObjectiveOptions, Is.Not.Empty, "No potential objectives offered!");
+        Assert.That(potential.ObjectiveOptions.Keys.Select(objective => entMan.GetEntity(objective)).Intersect(mindComp.Objectives),
+            Is.Empty, "Offered objectives must wait for the player's selection.");
     }
 }
