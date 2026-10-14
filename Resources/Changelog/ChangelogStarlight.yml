@@ -1,18 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Modified the description of almost every surgically-installed cybernetic and implant to clarify its function. If no description was present, one was added.
-    type: Tweak
-  id: 409042
-  time: '2026-10-01T09:39:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6415
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Modified the description of the warden's neural link disruptor to make it clear what it actually does (when you use it on someone it retracts their cybernetic limbs and locks them out for ten minutes).
-    type: Tweak
-  id: 409043
-  time: '2026-10-01T09:39:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6415
 - author: Musiklie
   changes:
   - message: Fixed Chemmaster1k not working.
@@ -2883,4 +2869,18 @@ Entries:
   id: 409441
   time: '2026-10-14T06:34:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6659
+- author: WNP78
+  changes:
+  - message: Fixed burst fire guns having sticky triggers.
+    type: Fix
+  id: 409442
+  time: '2026-10-14T06:34:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6677
+- author: WNP78
+  changes:
+  - message: Fixed burst fire guns not predicting burst shots after the trigger is released.
+    type: Fix
+  id: 409443
+  time: '2026-10-14T06:34:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6677
 Order: -1
