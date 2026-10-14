@@ -44,6 +44,6 @@ public abstract partial class SharedStationAiSystem
 
     // AiHeld is applied only while the brain is in a core; Inhabited is set while shunted into another body.
     private bool CanUseStationAiPda(EntityUid ai) => HasComp<StationAiHeldComponent>(ai) &&
-                                                     TryComp<StationAIShuntableComponent>(ai, out var shuntable) &&
-                                                     shuntable.Inhabited == null;
+                                                    TryComp<StationAIShuntableComponent>(ai, out var shuntable) &&
+                                                    shuntable.Inhabited == null;
 }
