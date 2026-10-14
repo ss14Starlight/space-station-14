@@ -24,6 +24,8 @@ namespace Content.Server._Starlight.Medical.HealthAnalyzer;
 /// </summary>
 public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
 {
+    private static readonly EntProtoId _sleepinessStatusEffect = "StatusEffectSleepiness";
+
     [Dependency] private BodySystem _body = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private MindExamineSystem _mindExamine = default!;
@@ -200,7 +202,7 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
             return;
 
         var remainingSleepiness = TimeSpan.Zero;
-        if (_statusEffects.TryGetTime(patient, "StatusEffectSleepiness", out var sleepinessEffect)
+        if (_statusEffects.TryGetTime(patient, _sleepinessStatusEffect, out var sleepinessEffect)
             && sleepinessEffect.EndEffectTime is { } endTime)
         {
             remainingSleepiness = endTime - _timing.CurTime;

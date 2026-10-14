@@ -732,7 +732,9 @@ sealed class Explosion
     public readonly EntityUid VisualEnt;
 
     public readonly EntityUid? Cause;
-    public readonly HashSet<EntityUid> InternalBodies; // Starlight
+    #region Starlight
+    public readonly HashSet<EntityUid> InternalBodies;
+    #endregion
 
     /// <summary>
     ///     Initialize a new instance for processing

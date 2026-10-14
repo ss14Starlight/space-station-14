@@ -8,7 +8,7 @@ namespace Content.Server.Explosion.EntitySystems;
 
 public sealed partial class ExplosionSystem
 {
-    private void AddExplosionCause(QueuedExplosion explosion, EntityUid? cause)
+    private void AddExplosionCause(QueuedExplosion explosion, EntityUid? cause, EntityUid? internalBody)
     {
         if (cause is not { } causeUid)
             return;
@@ -16,9 +16,16 @@ public sealed partial class ExplosionSystem
         if (!explosion.Causes.Contains(causeUid))
             explosion.Causes.Add(causeUid);
 
-        // Capture body ownership before TriggerExplosive queues the cause for deletion.
-        if (FindContainingBody(causeUid) is { } body)
+        if (internalBody is { } body)
             explosion.InternalBodies.Add(body);
+    }
+
+    private static bool HasSameInternalBodies(HashSet<EntityUid> internalBodies, EntityUid? internalBody)
+    {
+        if (internalBody is { } body)
+            return internalBodies.Count == 1 && internalBodies.Contains(body);
+
+        return internalBodies.Count == 0;
     }
 
     private EntityUid? FindContainingBody(EntityUid cause)
