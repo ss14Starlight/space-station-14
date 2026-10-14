@@ -4,6 +4,8 @@
   name: soviet desk flag
   description: Belikov. Have you dug up my mole yet?
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Sprite
     sprite: _Starlight/Objects/Misc/soviet_desk_flag.rsi
     state: icon
@@ -17,6 +19,8 @@
   description: A towering revolutionary banner that makes you an easy target. A makarov in the other hand is recommended.
   parent: [BaseItem, BaseSovietContraband]
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Sprite
     sprite: _Starlight/Objects/Misc/rev_flag.rsi
     state: icon

@@ -34,13 +34,13 @@ public sealed partial class MenuButton : ContainerButton
         set
         {
             _function = value;
-            _buttonLabel!.Text = _function == null ? "" : BoundKeyHelper.ShortKeyName(_function.Value);
+            UpdateKeyText(); // Starlight-edit
         }
     }
 
     public BoxContainer ButtonRoot => _root;
 
-    // Starlight-start
+    #region Starlight
     public Vector2 IconScale { set => _buttonIcon!.TextureScale = value; }
 
     /// <summary>
@@ -57,6 +57,41 @@ public sealed partial class MenuButton : ContainerButton
     } = true;
 
     private Label? _nameLabel;
+
+    public const string StyleClassKeyBadge = "MenuButtonKeyBadge";
+
+    private PanelContainer? _keyBadge;
+    private Label? _keyBadgeLabel;
+
+    public bool KeyHint
+    {
+        get => _keyBadge?.Visible ?? false;
+        set
+        {
+            if (value && _keyBadge == null)
+            {
+                _keyBadgeLabel = new Label { StyleClasses = { StyleClassLabelTopButton } };
+                _keyBadge = new PanelContainer
+                {
+                    HorizontalAlignment = HAlignment.Right,
+                    VerticalAlignment = VAlignment.Bottom,
+                    StyleClasses = { StyleClassKeyBadge },
+                    Children = { _keyBadgeLabel },
+                };
+                AddChild(_keyBadge);
+                UpdateKeyText();
+            }
+
+            _keyBadge?.Visible = value && !ShowName && _function != null;
+        }
+    }
+
+    private void UpdateKeyText()
+    {
+        var text = _function == null ? "" : BoundKeyHelper.ShortKeyName(_function.Value);
+        _buttonLabel?.Text = text;
+        _keyBadgeLabel?.Text = text;
+    }
 
     public bool ShowName
     {
@@ -80,7 +115,7 @@ public sealed partial class MenuButton : ContainerButton
             _buttonLabel!.Visible = value || ShowKey;
         }
     }
-    // Starlight-end
+    #endregion
 
     public MenuButton()
     {
@@ -131,14 +166,10 @@ public sealed partial class MenuButton : ContainerButton
 
 
     private void OnKeyBindingChanged(IKeyBinding obj)
-    {
-        _buttonLabel!.Text = _function == null ? "" : BoundKeyHelper.ShortKeyName(_function.Value);
-    }
+        => UpdateKeyText(); // Starlight-edit
 
     private void OnKeyBindingChanged()
-    {
-        _buttonLabel!.Text = _function == null ? "" : BoundKeyHelper.ShortKeyName(_function.Value);
-    }
+        => UpdateKeyText(); // Starlight-edit
 
     protected override void StylePropertiesChanged()
     {

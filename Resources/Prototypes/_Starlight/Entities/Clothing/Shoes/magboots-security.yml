@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingShoesBootsMagBase, BaseSecurityContraband, ClothingShoesMilitaryBase]
+  parent: [ BaseContrabandTier2, ClothingShoesBootsMagBase, BaseSecurityContraband, ClothingShoesMilitaryBase ] # Blimpuf
   id: ClothingShoesBootsMagSec
   name: security magboots
   description: A pair of standard magnetic boots, issued alongside the Security Hardsuit.

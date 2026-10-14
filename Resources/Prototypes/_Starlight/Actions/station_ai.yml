@@ -2,6 +2,19 @@
 
 - type: entity
   parent: BaseMentalAction
+  id: ActionStationAiOpenPDA
+  name: Open PDA
+  description: Opens your personal data assistant.
+  components:
+  - type: Action
+    icon:
+      { sprite: _Starlight/Interface/Actions/actions_aipda.rsi, state: icon }
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.PdaUiKey.Key }
+
+- type: entity
+  parent: BaseMentalAction
   id: ActionAIShunt
   name: Shunt
   description: Shunt into a borg chassis with a AI interface installed.
@@ -23,6 +36,26 @@
         components:
           - StationAIShunt
       event: !type:AIShuntActionEvent
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionAIRemoteControl
+  name: Remote Control
+  description: Remotely control a shuntable chassis or interface without shunting into it.
+  components:
+    - type: Action
+      useDelay: 1
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_shunt.rsi
+        state: icon
+      itemIconStyle: BigAction
+    - type: TargetAction
+    - type: EntityTargetAction
+      canTargetSelf: false
+      whitelist:
+        components:
+          - StationAIShunt
+      event: !type:AIRemoteControlActionEvent
 
 - type: entity
   parent: BaseMentalAction

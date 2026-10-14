@@ -44,6 +44,8 @@
   name: syndicate trunk
   description: Huge, metal, and stylish. All the other syndicates will want to get their hands on this trunk.
   components:
+  - type: Contraband # Blimpuf
+    contrabandType: Syndicate
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Trunks/syndicate.rsi
   - type: ExplosionResistance

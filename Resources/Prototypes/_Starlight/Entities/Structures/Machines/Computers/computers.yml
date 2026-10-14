@@ -222,6 +222,37 @@
     - CantInteract
 
 - type: entity
+  parent: BaseComputerAiAccess
+  id: RemoteControlConsole
+  name: remote control console
+  description: Enables operators to view and control a linked robotic body over virtually any distance, with minimal loss of control precision.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shuttle
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: generic_panel_open
+  - type: RemoteControlConsole
+  - type: DeviceLinkSource
+    ports:
+    - RemoteControl
+  - type: ActivatableUI
+    key: enum.RemoteControlUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.RemoteControlUIKey.Key:
+        type: RemoteControlConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: entity
   parent: BaseComputerShuttle
   id: CompuerShuttleSalvage
   name: remote salvage shuttle console

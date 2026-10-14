@@ -269,6 +269,14 @@
   conditions:
     - !type:TileNotBlocked
 
+- type: construction
+  id: TileLight
+  graph: LightFloor
+  startNode: start
+  targetNode: lightTile
+  category: construction-category-tiles
+  objectType: Item
+
 #Cell Bars
 - type: construction
   id: CellBarsStraight
