@@ -1,11 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: Laspi have a chance to react to high water vapor concentrations.
-    type: Add
-  id: 409035
-  time: '2026-09-29T21:37:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6407
 - author: Hot Mic
   changes:
   - message: "Update Shipyard Shuttle: ISM \"Honeybee\" Mini-Flores. ISM has changed the interior design of the shuttle and now it's better, and the galaxy can see your well-grown plants."
@@ -2883,4 +2876,11 @@ Entries:
   id: 409434
   time: '2026-10-13T20:56:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6574
+- author: Tjmaxmillion
+  changes:
+  - message: Recalling NRT now needs any two of the Captain, HOS and NTR and one command; any one of the Captain, HOS and NTR and three command.
+    type: Tweak
+  id: 409435
+  time: '2026-10-14T05:22:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6635
 Order: -1
