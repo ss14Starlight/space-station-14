@@ -1,9 +1,9 @@
-# Traitor
+﻿# Traitor
 - type: weightedRandom
   id: TraitorObjectiveGroupFate
   weights:
-    EscapeShuttleObjective: 73.5
-    TraitorAchieveObjectivesObjective: 24.5
+    EscapeShuttleObjective: 74
+    TraitorAchieveObjectivesObjective: 24
     DieObjective: 2
 
 - type: weightedRandom
