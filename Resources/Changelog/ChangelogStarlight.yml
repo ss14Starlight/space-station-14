@@ -1,11 +1,4 @@
 Entries:
-- author: Hot Mic
-  changes:
-  - message: "Update Shipyard Shuttle: ISM \"Honeybee\" Mini-Flores. ISM has changed the interior design of the shuttle and now it's better, and the galaxy can see your well-grown plants."
-    type: Tweak
-  id: 409036
-  time: '2026-09-29T21:55:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6360
 - author: ItsCharles
   changes:
   - message: Add public Enabled field for Dual Wielding.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409435
   time: '2026-10-14T05:22:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6635
+- author: Maxim
+  changes:
+  - message: Virtual PDA for the Station AI.
+    type: Add
+  id: 409436
+  time: '2026-10-14T05:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6637
 Order: -1
