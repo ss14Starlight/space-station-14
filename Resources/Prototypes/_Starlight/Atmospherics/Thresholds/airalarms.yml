@@ -103,6 +103,56 @@
 - type: alarmThreshold
   id: stationZXA
   upperBound: !type:AlarmThresholdSetting
-    threshold: 0.1
+    threshold: 0.016 # Danger at 1.6%; warning at 0.8%, just before inhalation effects.
   upperWarnAround: !type:AlarmThresholdSetting
-    threshold: 0.08
+    threshold: 0.5
+
+# Gas thresholds use fractions of the mixture and warn at half the danger limit.
+- type: alarmThreshold
+  id: stationFrezon
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.02 # Danger at 2%; warning at 1%, before respiratory damage.
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5
+
+- type: alarmThreshold
+  id: stationNitrium
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.08 # Strong effects that are positive and negativ
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5
+
+- type: alarmThreshold
+  id: stationHydrogen
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.04 # Approximate lower flammability limit.
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5
+
+- type: alarmThreshold
+  id: stationProtoNitrate
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.1 # Volatile but has no direct inhalation damage defined.
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5
+
+- type: alarmThreshold
+  id: stationZauker
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.01 # Danger at 1%; warning at 0.5%, before toxic effects.
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5
+
+- type: alarmThreshold
+  id: stationHalon
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.2 # Fire suppressant: oxygen depletion is monitored separately.
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5
+
+- type: alarmThreshold
+  id: stationAntiNoblium
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.1 # No defined dangerous effect: ignore trace concentrations.
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5

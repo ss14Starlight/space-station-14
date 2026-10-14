@@ -10,7 +10,7 @@ namespace Content.Shared.Ghost;
 /// Handles limiting interactions, using ghost abilities, ghost visibility, and ghost warping.
 /// </summary>
 [RegisterComponent, NetworkedComponent] // Starlight-edit: Remove access parameter. Corporeal command needs to access.
-[AutoGenerateComponentState(true), AutoGenerateComponentPause]
+[AutoGenerateComponentState(true)]
 public sealed partial class GhostComponent : Component
 {
     // Actions

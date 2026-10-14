@@ -1,172 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (CentComm G24) Added Interdyne medical vendor for a certain debrief room.
-    type: Add
-  id: 409027
-  time: '2026-09-29T21:06:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6385
-- author: Caws
-  changes:
-  - message: (CentComm G24) Re-added the small room at Debrief for admins to quietly spawn in their CC operators.
-    type: Add
-  id: 409028
-  time: '2026-09-29T21:06:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6385
-- author: Caws
-  changes:
-  - message: (CentComm SC17) Reworked Debrief heavily, addinga  new side-corridor for a better debrief viewing experience. Shutters have been replaced with blast doors to reduce people being annoying with them.
-    type: Tweak
-  id: 409029
-  time: '2026-09-29T21:06:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6385
-- author: Caws
-  changes:
-  - message: (CentComm SC17) Fixed a bunch of air alarms not being linked to anything.
-    type: Fix
-  id: 409030
-  time: '2026-09-29T21:06:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6385
-- author: TaserTheFox
-  changes:
-  - message: All librarians can now speak Classical sign.
-    type: Add
-  id: 409031
-  time: '2026-09-29T21:06:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6395
-- author: TaserTheFox
-  changes:
-  - message: Visiting librarians can now speak crew languages.
-    type: Fix
-  id: 409032
-  time: '2026-09-29T21:06:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6395
-- author: qbrx
-  changes:
-  - message: Fixed cheap lighter and forged omnitool fuel.
-    type: Fix
-  id: 409033
-  time: '2026-09-29T21:06:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6389
-- author: redmushie
-  changes:
-  - message: Vox once again have a chance to react to high O2 concentrations (this broke in an update).
-    type: Fix
-  id: 409034
-  time: '2026-09-29T21:37:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6407
-- author: redmushie
-  changes:
-  - message: Laspi have a chance to react to high water vapor concentrations.
-    type: Add
-  id: 409035
-  time: '2026-09-29T21:37:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6407
-- author: Hot Mic
-  changes:
-  - message: "Update Shipyard Shuttle: ISM \"Honeybee\" Mini-Flores. ISM has changed the interior design of the shuttle and now it's better, and the galaxy can see your well-grown plants."
-    type: Tweak
-  id: 409036
-  time: '2026-09-29T21:55:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6360
-- author: ItsCharles
-  changes:
-  - message: Add public Enabled field for Dual Wielding.
-    type: Add
-  id: 409037
-  time: '2026-10-01T08:41:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6308
-- author: ItsCharles
-  changes:
-  - message: Enable dual wielding on the cap gun.
-    type: Tweak
-  id: 409038
-  time: '2026-10-01T08:41:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6308
-- author: Johnny
-  changes:
-  - message: ERT Loadouts now use the partials system.
-    type: Tweak
-  id: 409039
-  time: '2026-10-01T09:08:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6359
-- author: mikeysaurus
-  changes:
-  - message: Adds lslaws command for admins to easily view Silicon laws, like they can with objectives.
-    type: Add
-  id: 409040
-  time: '2026-10-01T09:08:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6371
-- author: wonderfulnewworld
-  changes:
-  - message: Firebombs are craftable again.
-    type: Fix
-  id: 409041
-  time: '2026-10-01T09:39:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6416
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Modified the description of almost every surgically-installed cybernetic and implant to clarify its function. If no description was present, one was added.
-    type: Tweak
-  id: 409042
-  time: '2026-10-01T09:39:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6415
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Modified the description of the warden's neural link disruptor to make it clear what it actually does (when you use it on someone it retracts their cybernetic limbs and locks them out for ten minutes).
-    type: Tweak
-  id: 409043
-  time: '2026-10-01T09:39:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6415
-- author: Musiklie
-  changes:
-  - message: Fixed Chemmaster1k not working.
-    type: Fix
-  id: 409044
-  time: '2026-10-01T09:39:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6417
-- author: JMxm5
-  changes:
-  - message: 'The following machine boards can be flatpacked again: point defense battery, sentry turret, substation, SMES, advanced SMES, hyper advanced SMES.'
-    type: Fix
-  id: 409045
-  time: '2026-10-01T10:13:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6424
-- author: qbrx
-  changes:
-  - message: Fixed news manager digi-board.
-    type: Fix
-  id: 409046
-  time: '2026-10-01T10:45:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6420
-- author: VBlankFF
-  changes:
-  - message: Vampire blood fullness no longer drains while dead.
-    type: Tweak
-  id: 409047
-  time: '2026-10-01T10:45:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6423
-- author: JMxm5
-  changes:
-  - message: Plasma sheets can be inserted into electrolyzers again.
-    type: Fix
-  id: 409048
-  time: '2026-10-01T11:09:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6430
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Fixed shadekin eye sprites being inconsistent depending on which direction they were facing.
-    type: Fix
-  id: 409049
-  time: '2026-10-01T11:32:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6427
-- author: JMxm5
-  changes:
-  - message: (Hotel) Increased the number of atmos tech latejoin slots (2 -> 3) to match the number of lockers.
-    type: Fix
-  id: 409050
-  time: '2026-10-01T12:01:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6421
 - author: Johnny
   changes:
   - message: (Evac Raven) Pipe dock standard, weeee.
@@ -2883,4 +2715,172 @@ Entries:
   id: 409426
   time: '2026-10-13T11:37:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6611
+- author: OmgDev
+  changes:
+  - message: Smile no longer pretends like they can scream.
+    type: Fix
+  id: 409427
+  time: '2026-10-13T17:12:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6643
+- author: wonderfulnewworld
+  changes:
+  - message: Secret will now actually count effective players rather than only readied players.
+    type: Fix
+  id: 409428
+  time: '2026-10-13T20:14:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6671
+- author: Trosling
+  changes:
+  - message: Updates Corporate Law to match new contraband tier system.
+    type: Tweak
+  id: 409429
+  time: '2026-10-13T20:34:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6660
+- author: Vincolan
+  changes:
+  - message: The horse.
+    type: Add
+  id: 409430
+  time: '2026-10-13T20:34:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6623
+- author: Floximo
+  changes:
+  - message: Added true remote control.
+    type: Add
+  id: 409431
+  time: '2026-10-13T20:56:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6574
+- author: Floximo
+  changes:
+  - message: AI can now remote control every remote controllable thing that is not already controlled.
+    type: Add
+  id: 409432
+  time: '2026-10-13T20:56:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6574
+- author: Floximo
+  changes:
+  - message: AI can remote control AI interfaces.
+    type: Add
+  id: 409433
+  time: '2026-10-13T20:56:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6574
+- author: Floximo
+  changes:
+  - message: Drones are no longer shuntables and support the intellicard now.
+    type: Tweak
+  id: 409434
+  time: '2026-10-13T20:56:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6574
+- author: Tjmaxmillion
+  changes:
+  - message: Recalling NRT now needs any two of the Captain, HOS and NTR and one command; any one of the Captain, HOS and NTR and three command.
+    type: Tweak
+  id: 409435
+  time: '2026-10-14T05:22:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6635
+- author: Maxim
+  changes:
+  - message: Virtual PDA for the Station AI.
+    type: Add
+  id: 409436
+  time: '2026-10-14T05:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6637
+- author: wonderfulnewworld, Killer Tamashi
+  changes:
+  - message: Neocytes no longer get stunned by EMPs, only knocked down.
+    type: Tweak
+  id: 409437
+  time: '2026-10-14T06:08:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6658
+- author: wonderfulnewworld, Killer Tamashi
+  changes:
+  - message: Reduced EMP knockdown on IPCs.
+    type: Tweak
+  id: 409438
+  time: '2026-10-14T06:08:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6658
+- author: wonderfulnewworld, Killer Tamashi
+  changes:
+  - message: Neo-Moths can now have hair.
+    type: Fix
+  id: 409439
+  time: '2026-10-14T06:08:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6658
+- author: Floximo
+  changes:
+  - message: Syndicats can now fit in pet carriers.
+    type: Fix
+  id: 409440
+  time: '2026-10-14T06:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6676
+- author: Floximo
+  changes:
+  - message: A lot of air alert values got changed to better reflect actual danger.
+    type: Tweak
+  id: 409441
+  time: '2026-10-14T06:34:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6659
+- author: WNP78
+  changes:
+  - message: Fixed burst fire guns having sticky triggers.
+    type: Fix
+  id: 409442
+  time: '2026-10-14T06:34:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6677
+- author: WNP78
+  changes:
+  - message: Fixed burst fire guns not predicting burst shots after the trigger is released.
+    type: Fix
+  id: 409443
+  time: '2026-10-14T06:34:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6677
+- author: chaoticevii, RodTheRick, Bibbs, Nzuno
+  changes:
+  - message: Added 9 Shared Thaven Moods.
+    type: Add
+  id: 409444
+  time: '2026-10-14T06:55:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6666
+- author: chaoticevii, RodTheRick, Bibbs, Nzuno
+  changes:
+  - message: Added 9 Yes And Thaven Moods.
+    type: Add
+  id: 409445
+  time: '2026-10-14T06:55:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6666
+- author: chaoticevii, RodTheRick, Bibbs, Nzuno
+  changes:
+  - message: Added 6 No And Thaven Moods.
+    type: Add
+  id: 409446
+  time: '2026-10-14T06:55:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6666
+- author: chaoticevii, RodTheRick, Bibbs, Nzuno
+  changes:
+  - message: Added 5 Wildcard Thaven Moods.
+    type: Add
+  id: 409447
+  time: '2026-10-14T06:55:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6666
+- author: 0warie
+  changes:
+  - message: Added Light Floors. They sit on the same layer as carpets and take light bulbs, so their colour changes with the bulb you put in. Light output is toned down compared to regular lights.
+    type: Add
+  id: 409448
+  time: '2026-10-14T14:23:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6657
+- author: enerjak
+  changes:
+  - message: Buffed the spyglass and captain's spyglass to match the binoculars.
+    type: Tweak
+  id: 409449
+  time: '2026-10-14T14:23:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6664
+- author: Talirson
+  changes:
+  - message: Lowered reaction priority for Ulnitranium/Pluoxium radiation reactions.
+    type: Tweak
+  id: 409450
+  time: '2026-10-14T15:34:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6678
 Order: -1

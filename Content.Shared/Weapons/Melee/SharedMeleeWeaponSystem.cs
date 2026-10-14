@@ -657,7 +657,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
         // Validate client
         entities.RemoveWhere(entity => TerminatingOrDeleted(entity) ||
-                                       !ArcRaySuccessful(entity,
+            !ArcRaySuccessful(entity,
                                         userPos,
                                         direction.ToWorldAngle(),
                                         component.Angle,

@@ -1,5 +1,6 @@
 using Content.Client.Popups;
 using Content.Client.UserInterface.Controls;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared.RCD;
 using Content.Shared.RCD.Components;
 using JetBrains.Annotations;
@@ -59,11 +60,16 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
             return;
 
         _menu = this.CreateWindow<SimpleRadialMenu>();
-        _menu.Track(Owner);
         var models = ConvertToButtons(rcd.AvailablePrototypes);
         _menu.SetButtons(models);
 
-        _menu.OpenOverMouseScreenPosition();
+        // Starlight start
+        if (!EntMan.System<RemoteControlInterface>().OpenRemoteRadialMenu(_menu))
+        {
+            _menu.Track(Owner);
+            _menu.OpenOverMouseScreenPosition();
+        }
+        // Starlight end
     }
 
     private IEnumerable<RadialMenuOptionBase> ConvertToButtons(HashSet<ProtoId<RCDPrototype>> prototypes)
@@ -128,7 +134,6 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
         // A predicted message cannot be used here as the RCD UI is closed immediately
         // after this message is sent, which will stop the server from receiving it
         SendMessage(new RCDSystemMessage(proto.ID));
-
 
         if (_playerManager.LocalSession?.AttachedEntity == null)
             return;
