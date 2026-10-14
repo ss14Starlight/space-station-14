@@ -7,72 +7,167 @@ Please really think before changing this SOP if it is actually needed, or if it 
 <Document>
 # Equipment and Weapon Permits Guide
 
-The approval of permits is a privilege, not a right, and no one is obligated to approve any permit.
-\nPermits are invalid if not kept on their owner's person.
+[italic]Permit approval is a privilege, not a right. No one is obligated to sign, and permits are void if not kept on your person.[/italic]
 
-For the ease of your time and the time of others, please seek required permit approval in the following order;
-\nItem Origin, [color=#fcdf03]Relevant Leader[/color], [color=#fcdf03]Captain[/color], [color=#86d420]Central Command[/color].
+## Approval Process
 
-A [bold][color=#fcdf03]Relevant Leader[/color][/bold] is the highest-ranking person of a department or corporation on station for a given approved group.
-\nWhen seeking a permit for contraband, you must always seek approval from the [color=#fcdf03]Relevant Leader[/color] where the item originated; otherwise, you may seek out any [color=#fcdf03]Relevant Leader[/color].
+- [bold]Order of Approval:[/bold] Seek stamps in the following order: Item Origin, [color=#fce742]Relevant Leader[/color], [color=#fcdf03]Captain[/color], [color=#86d420]Central Command[/color].
+- [bold]Relevant Leader:[/bold] The officially recognized highest-ranking person on station for a department or corporation listed on an item's approved list, such as the department head or interim department head.
+- [bold]Item Origin:[/bold] If an item physically originates from a specific department or corporation, approval must come from that department's [color=#fce742]Relevant Leader[/color]. Items without a departmental origin (such as items found in maintenance) can be approved by any [color=#fce742]Relevant Leader[/color].
+- [bold]NT-CC Consortium Items:[/bold] Any item approved for at least one NT-CC Consortium department or corporation must have a stamp from at least one of their [color=#fce742]Relevant Leaders[/color] (in addition to its origin, if applicable). Items not approved for any NT-CC department or corporation only require approval from their [color=#fce742]Relevant Leader[/color], barring weapons which still need the below additional approval.
+- [bold]Weapons & Security Gear:[/bold] Weapons follow equipment permits but require additional Security approval per the table below. Further the [color=#ff6666]Warden[/color] may authorize security gear or weapons where listed in the table without the [color=#ff4242]Head of Security[/color], acting as the [color=#fce742]Relevant Leader[/color].
 
-<ColorBox Color="#00000040" OutlineColor="#00000040" OutlineThickness="1" Margin="2">
-	<Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
-		[bolditalic]E.G.[/bolditalic] [italic]If you obtain a survival knife from [color=#b48b57]Cargo[/color], you need the [color=#b48b57]Quartermaster[/color]'s stamp, and the [color=#ff4242]Warden[/color] or [color=#ff4242]Head of Security[/color]'s stamp because it's a weapon (the [color=#ff4242]Warden[/color] only works in this case because it is Tier Three or below and [color=#ff4242]Security[/color] approved).\nBut if you find the item in maintenance, you could get it approved with only the [color=#ff4242]Head of Security[/color]'s stamp, as they can cover both the department and weapon permit.[/italic]
-	</Box>
-</ColorBox>
-
-When choosing between NT-CC Consortium, Affiliated Corporations, or Rival Corporation, use the following guide.
-
-Any item that has at least one NT-CC Consortium Corporation or Department on it, you must seek at least one approval from them, and must seek approval from the item's origin if it has one.
-
-<ColorBox Color="#00000040" OutlineColor="#00000040" OutlineThickness="1" Margin="2">
-	<Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
-		[bolditalic]E.G.[/bolditalic] [italic]If you buy a survival knife from salvage, you need the [color=#963dca]Salvage Lead[/color]'s stamp for its origin, the [color=#b48b57]Quartermaster[/color] or [color=#ff4242]Head of Security[/color]'s stamp because they are a listed NT-CC Consortium department, and the [color=#ff4242]Warden[/color] or [color=#ff4242]Head of Security[/color]'s stamp because it's a weapon (the [color=#ff4242]Warden[/color] only works in this case because it is Tier Three or below and [color=#ff4242]Security[/color] approved).[/italic]
-	</Box>
-</ColorBox>
-
-For items without at least one NT-CC Consortium Corporation or Department on it, you only need seek out approval from the [color=#fcdf03]Relevant Leader[/color].
-
-<ColorBox Color="#00000040" OutlineColor="#00000040" OutlineThickness="1" Margin="2">
-	<Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
-		[bolditalic]E.G.[/bolditalic] [italic]If you wanted a brown scavenger beret, you need only the [color=#963dca]Salvage Lead[/color]'s approval.[/italic]
-	</Box>
-</ColorBox>
-
-## NT-CC Consortium
-
-- [bold]Tier One:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color].
-- [bold]Tier Two:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color].
-- [bold]Tier Three:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color].
-- [bold]Tier Four:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color] and [color=#fcdf03]Captain[/color].
-- [bold]Tier Five:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color] and [color=#86d420]Central Command[/color].
-
-## Affiliated Corporations
-
-- [bold]Tier One:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color].
-- [bold]Tier Two:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color].
-- [bold]Tier Three:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color].
-- [bold]Tier Four:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color] and [color=#fcdf03]Captain[/color].
-- [bold]Tier Five:[/bold] Stamped approval from the [color=#fcdf03]Relevant Leader[/color] and [color=#86d420]Central Command[/color].
-
-## Rival Corporations
-
-- [bold]Tier One:[/bold] Stamped approval from the [color=#ff4242]Warden[/color], or the below examples.
-- [bold]Tier Two:[/bold] Stamped approval from the [color=#ff4242]Warden[/color], or the below examples.
-- [bold]Tier Three:[/bold] Stamped approval from the [color=#ff4242]Head of Security[/color], or the below examples.
-- [bold]Tier Four:[/bold] Stamped approval from the [color=#fcdf03]Captain[/color] and [color=#86d420]Central Command[/color].
-- [bold]Tier Five:[/bold] Stamped approval from the [color=#fcdf03]Captain[/color] and [color=#86d420]Central Command[/color].
-
-## Weapon Permits and Security Gear
-
-Weapon Permits follow Equipment Permits but need the following additional approvals.
-\nThe [color=#ff4242]Warden[/color] can authorize any Tier [color=#ff4242]Security Gear[/color] or [color=#ff4242]Security Weapons[/color] where they are listed below without the [color=#ff4242]Head of Security[/color]'s stamp.
-
-- [bold]Tier One:[/bold] Stamped approval from the [color=#ff4242]Warden[/color], or the below examples.
-- [bold]Tier Two:[/bold] Stamped approval from the [color=#ff4242]Warden[/color], or the below examples.
-- [bold]Tier Three:[/bold] Stamped approval from the [color=#ff4242]Warden[/color], or the below examples.
-- [bold]Tier Four:[/bold] Stamped approval from the [color=#ff4242]Head of Security[/color], or the below examples.
-- [bold]Tier Five:[/bold] Stamped approval from the [color=#fcdf03]Captain[/color] and [color=#ff4242]Head of Security[/color].
+  <Table Columns="5">
+    <ColorBox>
+      <Box Margin="2">
+        [bold]Tier[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="2">
+        [bold]NT-CC Consortium[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="2">
+        [bold]Affiliated Corporations[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="2">
+        [bold]Rival Corporations[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="2">
+        [bold]Weapon Permits[/bold]\n[bold]Security Gear[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
+        [bold]Tier 1[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#786341">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#786341">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#784a4a">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Warden
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#784a4a">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Warden
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
+        [bold]Tier 2[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#786341">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#786341">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#784a4a">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Warden
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#784a4a">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Warden
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
+        [bold]Tier 3[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#786341">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#786341">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#6e2d2d">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Head of Security
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#784a4a">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Warden
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
+        [bold]Tier 4[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#725225">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader and Captain
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#725225">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader and Captain
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#2d5234">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Captain and Central Command
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#6e2d2d">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Head of Security
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
+        [bold]Tier 5[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#2d5234">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader and Central Command
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#2d5234">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader and Central Command
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#2d5234">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Captain and Central Command
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#725225">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Head of Security and Captain
+      </Box>
+    </ColorBox>
+  </Table>
 
 </Document>
