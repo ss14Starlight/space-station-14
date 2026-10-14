@@ -39,7 +39,11 @@
     strippingWindowPos: 2,4
     displayName: ID
     # Starlight Begin
+    # Unlike K9s, smart corgis can also wear a normal PDA or ID, e.g. after a corgium polymorph.
     whitelist:
+      components:
+      - Pda
+      - IdCard
       tags:
       - CorgiWearable
     # Starlight End
