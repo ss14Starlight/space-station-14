@@ -1,4 +1,4 @@
-# Departmental abstracts
+﻿# Departmental abstracts
 - type: entity
   abstract: true
   parent: BaseTraitorStealObjective
@@ -681,7 +681,7 @@
 # Achieve your Objectives
 - type: entity
   parent: BaseTraitorObjective
-  id: TraitorAchieveObjectivesObjective
+  id: TraitorAchieveObjective
   name: Achieve your objectives.
   description: Fulfill the objectives assigned to you. How you finish the shift is up to you.
   components:
