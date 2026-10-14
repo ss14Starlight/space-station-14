@@ -54,11 +54,6 @@ public abstract partial class SharedReagentDispenserSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ReagentDispenserComponent, ComponentStartup>(SubscribeUpdateUi);
-        SubscribeLocalEvent<ReagentDispenserComponent, SolutionChangedEvent>(SubscribeUpdateUi);
-        SubscribeLocalEvent<ReagentDispenserComponent, EntInsertedIntoContainerMessage>(SubscribeUpdateUi, after: [typeof(SharedStorageSystem)]);
-        SubscribeLocalEvent<ReagentDispenserComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUi, after: [typeof(SharedStorageSystem)]);
-
         SubscribeLocalEvent<ReagentDispenserComponent, ReagentDispenserSetDispenseAmountMessage>(OnSetDispenseAmountMessage);
         SubscribeLocalEvent<ReagentDispenserComponent, ReagentDispenserDispenseReagentMessage>(OnDispenseReagentMessage);
         SubscribeLocalEvent<ReagentDispenserComponent, ReagentDispenserEjectContainerMessage>(OnEjectReagentMessage);
@@ -71,14 +66,16 @@ public abstract partial class SharedReagentDispenserSystem : EntitySystem
         SubscribeLocalEvent<ReagentDispenserComponent, PowerCellSlotEmptyEvent>(OnPowerCellSlotEmpty);
         SubscribeLocalEvent<ReagentDispenserComponent, ReagentDispenserToggleValveMessage>(OnToggleValveMessage);
         SubscribeLocalEvent<ReagentDispenserComponent, RefreshChargeRateEvent>(OnRefreshChargeRate);
-        SubscribeLocalEvent<ReagentDispenserComponent, BoundUIOpenedEvent>(SubscribeUpdateUi);
-        SubscribeLocalEvent<ReagentDispenserComponent, BoundUIClosedEvent>(SubscribeUpdateUi);
-        SubscribeLocalEvent<ReagentDispenserComponent, PowerChangedEvent>(SubscribeUpdateUi);
+        SubscribeLocalEvent<ReagentDispenserComponent, BoundUIOpenedEvent>(SubscribeRefreshBattery);
+        SubscribeLocalEvent<ReagentDispenserComponent, BoundUIClosedEvent>(SubscribeRefreshBattery);
+
         // Starlight End
     }
 
     // Starlight Start: Reagent Dispensers use cells
     #region Starlight
+
+    private void SubscribeRefreshBattery<T>(Entity<ReagentDispenserComponent> ent, ref T ev) => RefreshBatteryChargeRate(ent);
 
     private void OnRefreshChargeRate(Entity<ReagentDispenserComponent> ent, ref RefreshChargeRateEvent args)
     {
@@ -121,8 +118,6 @@ public abstract partial class SharedReagentDispenserSystem : EntitySystem
     }
     #endregion
     // Starlight End
-
-    private void SubscribeUpdateUi<T>(Entity<ReagentDispenserComponent> ent, ref T ev) => UpdateUi(ent);
 
     protected virtual void UpdateUi(Entity<ReagentDispenserComponent> reagentDispenser)
     {

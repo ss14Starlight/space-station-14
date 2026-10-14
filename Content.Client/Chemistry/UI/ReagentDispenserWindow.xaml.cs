@@ -29,15 +29,15 @@ namespace Content.Client.Chemistry.UI
     {
         [Dependency] private IPrototypeManager _prototypeManager = default!;
         [Dependency] private IEntityManager _entityManager = default!;
-        public event Action<ReagentDispenseData>? OnDispenseReagentButtonPressed; // Starlight-edit
+        public event Action<ReagentDispenseData>? OnDispenseReagentButtonPressed;
         public event Action<ItemStorageLocation>? OnEjectJugButtonPressed;
-        public event Action? OnToggleValveButtonPressed; // Starlight-edit: Plumbing valve
-        private readonly SharedBatterySystem _battery; // Starlight
-        private readonly PowerCellSystem _powercell; // Starlight
-        private readonly ItemSlotsSystem _itemSlotsSystem; // Starlight
-        private readonly SharedSolutionContainerSystem _solutionContainerSystem; // Starlight
-        private EntityUid _owner; // Starlight
-        private bool _dirty = true; // Starlight
+        public event Action? OnToggleValveButtonPressed;
+        private readonly SharedBatterySystem _battery;
+        private readonly PowerCellSystem _powercell;
+        private readonly ItemSlotsSystem _itemSlotsSystem;
+        private readonly SharedSolutionContainerSystem _solutionContainerSystem;
+        private EntityUid _owner;
+        private bool _dirty = true;
 
         /// <summary>
         /// Create and initialize the dispenser UI client-side. Creates the basic layout,
@@ -53,7 +53,7 @@ namespace Content.Client.Chemistry.UI
             _itemSlotsSystem = _entityManager.System<ItemSlotsSystem>();
             _solutionContainerSystem = _entityManager.System<SolutionContainerSystem>();
 
-            ValveButton.OnPressed += _ => OnToggleValveButtonPressed?.Invoke(); // Starlight-edit: Plumbing valve
+            ValveButton.OnPressed += _ => OnToggleValveButtonPressed?.Invoke();
         }
 
         public void SetOwner(EntityUid owner) => _owner = owner;
@@ -80,8 +80,6 @@ namespace Content.Client.Chemistry.UI
             }
         }
 
-        // Starlight Start
-        // Update only the energy display bar and text without refreshing the entire UI.
         public void UpdateData() => _dirty = true;
 
         private void UpdateEnergyDisplay()
@@ -91,7 +89,7 @@ namespace Content.Client.Chemistry.UI
                 energyAmount = _battery.GetChargeLevel(battery.Value.AsNullable());
 
             EnergyDisplayBar.Value = energyAmount;
-            EnergyDisplay.Text = Loc.GetString("mech-energy-display", ("amount", (int)MathF.Round(energyAmount * 100))); // Starlight: Use MathF
+            EnergyDisplay.Text = Loc.GetString("mech-energy-display", ("amount", (int)MathF.Round(energyAmount * 100)));
         }
 
         protected override void FrameUpdate(FrameEventArgs args)
@@ -123,13 +121,11 @@ namespace Content.Client.Chemistry.UI
             // Disable the Clear & Eject button if no beaker
             ClearButton.Disabled = EjectButton.Disabled = outputContainerInfo is null;
 
-            // Starlight-start
             // Update valve button
             var valveOpen = _entityManager.TryGetComponent<PlumbingOutletComponent>(reagentDispenser.Owner, out var plumbingOutlet) && plumbingOutlet.Enabled;
             ValveButton.Text = Loc.GetString(valveOpen
                 ? "reagent-dispenser-window-valve-open"
                 : "reagent-dispenser-window-valve-closed");
-            // Starlight-end
 
             AmountGrid.Selected = ((int)reagentDispenser.Comp.DispenseAmount).ToString();
         }
@@ -179,11 +175,10 @@ namespace Content.Client.Chemistry.UI
                     reagentColor = sol.GetColor(_prototypeManager);
                 }
 
-                var data = new ReagentDispenseData(storageLocation, null); // Starlight-edit
-                inventory.Add(new ReagentInventoryItem(data, reagentLabel, quantity, reagentColor, false)); // Starlight-edit
+                var data = new ReagentDispenseData(storageLocation, null);
+                inventory.Add(new ReagentInventoryItem(data, reagentLabel, quantity, reagentColor, false));
             }
 
-            // Starlight-start: Generatable Reagents
             foreach (var (reagent, powerDrain) in reagentDispenser.Comp.GeneratableReagents)
             {
                 if (_prototypeManager.TryIndex(reagent, out var reagentPrototype))
@@ -193,14 +188,11 @@ namespace Content.Client.Chemistry.UI
                     inventory.Add(new ReagentInventoryItem(data, reagentPrototype.LocalizedName, quantity, reagentPrototype.SubstanceColor, true));
                 }
             }
-            // Starlight-end
 
             return inventory;
         }
 
         private string GetName(EntityUid uid) => _entityManager.GetComponent<MetaDataComponent>(uid).EntityName;
-
-        // Starlight End
 
         /// <summary>
         /// Update the fill state and list of reagents held by the current reagent container, if applicable.

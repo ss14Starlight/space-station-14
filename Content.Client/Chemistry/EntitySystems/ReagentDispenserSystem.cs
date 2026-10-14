@@ -1,8 +1,11 @@
-﻿using Content.Shared.Chemistry;
+﻿using Content.Shared._Starlight.Plumbing.Components;
+using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Power;
+using Content.Shared.Storage.EntitySystems;
 using JetBrains.Annotations;
-using Robust.Client.GameObjects;
+using Robust.Shared.Containers;
 
 namespace Content.Client.Chemistry.EntitySystems;
 
@@ -16,10 +19,23 @@ public sealed partial class ReagentDispenserSystem : SharedReagentDispenserSyste
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<ReagentDispenserComponent, AfterAutoHandleStateEvent>(OnAutoState);
+
+        SubscribeLocalEvent<ReagentDispenserComponent, ComponentStartup>(SubscribeUpdateUi);
+        SubscribeLocalEvent<ReagentDispenserComponent, SolutionChangedEvent>(SubscribeUpdateUi);
+        SubscribeLocalEvent<ReagentDispenserComponent, EntInsertedIntoContainerMessage>(SubscribeUpdateUi, after: [typeof(SharedStorageSystem)]);
+        SubscribeLocalEvent<ReagentDispenserComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUi, after: [typeof(SharedStorageSystem)]);
+        SubscribeLocalEvent<ReagentDispenserComponent, PowerChangedEvent>(SubscribeUpdateUi);
+        SubscribeLocalEvent<ReagentDispenserComponent, AfterAutoHandleStateEvent>(SubscribeUpdateUi);
+        SubscribeLocalEvent<PlumbingOutletComponent, AfterAutoHandleStateEvent>(OnPlumbingOutputState);
     }
 
-    private void OnAutoState(Entity<ReagentDispenserComponent> ent, ref AfterAutoHandleStateEvent args) => UpdateUi(ent);
+    private void SubscribeUpdateUi<T>(Entity<ReagentDispenserComponent> ent, ref T ev) => UpdateUi(ent);
+
+    private void OnPlumbingOutputState(Entity<PlumbingOutletComponent> ent, ref AfterAutoHandleStateEvent ev)
+    {
+        if (TryComp<ReagentDispenserComponent>(ent, out var comp))
+            UpdateUi((ent, comp));
+    }
 
     protected override void UpdateUi(Entity<ReagentDispenserComponent> entity)
     {
