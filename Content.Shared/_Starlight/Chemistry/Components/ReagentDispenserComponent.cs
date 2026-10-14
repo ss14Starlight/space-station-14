@@ -1,9 +1,9 @@
-using Content.Shared.Chemistry.EntitySystems; // Starlight-edit
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes; // Starlight-edit
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Chemistry.Components;
 

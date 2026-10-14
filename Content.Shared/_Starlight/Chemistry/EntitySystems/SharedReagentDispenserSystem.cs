@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Destructible;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Labels.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Power;
-using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell;
-using Content.Shared.PowerCell.Components;
 using Content.Shared.Storage;
-using Content.Shared.Storage.EntitySystems;
 using Content.Shared.UserInterface;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
@@ -32,23 +24,20 @@ namespace Content.Shared.Chemistry.EntitySystems;
 [UsedImplicitly]
 public abstract partial class SharedReagentDispenserSystem : EntitySystem
 {
+    [Dependency] protected IPrototypeManager _prototypeManager = default!;
+    [Dependency] protected IGameTiming _timing = default!;
     [Dependency] protected SharedAudioSystem _audioSystem = default!;
+    [Dependency] protected SharedBatterySystem _battery = default!;
+    [Dependency] protected SharedContainerSystem _container = default!;
+    [Dependency] protected SharedHandsSystem _handsSystem = default!;
+    [Dependency] protected ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] protected OpenableSystem _openable = default!;
+    [Dependency] protected SharedPopupSystem _popup = default!;
+    [Dependency] protected PowerCellSystem _powercell = default!;
+    [Dependency] protected SharedPowerReceiverSystem _powerReceiver = default!;
     [Dependency] protected SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] protected SolutionTransferSystem _solutionTransferSystem = default!;
-    [Dependency] protected ItemSlotsSystem _itemSlotsSystem = default!;
     [Dependency] protected SharedUserInterfaceSystem _userInterfaceSystem = default!;
-    [Dependency] protected IPrototypeManager _prototypeManager = default!;
-    [Dependency] protected OpenableSystem _openable = default!;
-    [Dependency] protected SharedHandsSystem _handsSystem = default!;
-
-    // Starlight-start
-    [Dependency] protected SharedPowerReceiverSystem _powerReceiver = default!;
-    [Dependency] protected PowerCellSystem _powercell = default!;
-    [Dependency] protected SharedContainerSystem _container = default!;
-    [Dependency] protected SharedPopupSystem _popup = default!;
-    [Dependency] protected SharedBatterySystem _battery = default!;
-    [Dependency] protected IGameTiming _timing = default!;
-    // Starlight-end
 
     public override void Initialize()
     {
@@ -58,9 +47,7 @@ public abstract partial class SharedReagentDispenserSystem : EntitySystem
         SubscribeLocalEvent<ReagentDispenserComponent, ReagentDispenserDispenseReagentMessage>(OnDispenseReagentMessage);
         SubscribeLocalEvent<ReagentDispenserComponent, ReagentDispenserEjectContainerMessage>(OnEjectReagentMessage);
         SubscribeLocalEvent<ReagentDispenserComponent, ReagentDispenserClearContainerSolutionMessage>(OnClearContainerSolutionMessage);
-
         SubscribeLocalEvent<ReagentDispenserComponent, MapInitEvent>(OnMapInit, before: new[] { typeof(ItemSlotsSystem) });
-        // Starlight Start
         SubscribeLocalEvent<ReagentDispenserComponent, PowerCellChangedEvent>(OnPowerCellChanged);
         SubscribeLocalEvent<ReagentDispenserComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<ReagentDispenserComponent, PowerCellSlotEmptyEvent>(OnPowerCellSlotEmpty);
@@ -68,67 +55,30 @@ public abstract partial class SharedReagentDispenserSystem : EntitySystem
         SubscribeLocalEvent<ReagentDispenserComponent, RefreshChargeRateEvent>(OnRefreshChargeRate);
         SubscribeLocalEvent<ReagentDispenserComponent, BoundUIOpenedEvent>(SubscribeRefreshBattery);
         SubscribeLocalEvent<ReagentDispenserComponent, BoundUIClosedEvent>(SubscribeRefreshBattery);
-
-        // Starlight End
     }
 
-    // Starlight Start: Reagent Dispensers use cells
-    #region Starlight
-
-    private void SubscribeRefreshBattery<T>(Entity<ReagentDispenserComponent> ent, ref T ev) => RefreshBatteryChargeRate(ent);
-
-    private void OnRefreshChargeRate(Entity<ReagentDispenserComponent> ent, ref RefreshChargeRateEvent args)
+    protected virtual void UpdateUi(Entity<ReagentDispenserComponent> reagentDispenser)
     {
-        if (_powerReceiver.IsPowered(ent.Owner))
-            args.NewChargeRate += 5f;
-        else if (_userInterfaceSystem.IsUiOpen(ent.Owner, ReagentDispenserUiKey.Key))
-            args.NewChargeRate -= 5f;
+    }
+
+    private void ClickSound(Entity<ReagentDispenserComponent> reagentDispenser, EntityUid? user) =>
+        _audioSystem.PlayPredicted(reagentDispenser.Comp.ClickSound, reagentDispenser, user, AudioParams.Default.WithVolume(-2f));
+
+    private void OnClearContainerSolutionMessage(Entity<ReagentDispenserComponent> reagentDispenser, ref ReagentDispenserClearContainerSolutionMessage message)
+    {
+        var outputContainer = _itemSlotsSystem.GetItemOrNull(reagentDispenser, SharedReagentDispenser.OutputSlotName);
+        if (outputContainer is not { Valid: true } || !_solutionContainerSystem.TryGetFitsInDispenser(outputContainer.Value, out var solution, out _))
+            return;
+
+        _solutionContainerSystem.RemoveAllSolution(solution.Value);
+        UpdateUi(reagentDispenser);
+        ClickSound(reagentDispenser, message.Actor);
     }
 
     private void OnDestruction(EntityUid uid, ReagentDispenserComponent component, DestructionEventArgs args)
     {
         if (TryComp<StorageComponent>(uid, out var storage))
             _container.EmptyContainer(storage.Container, destination: Transform(uid).Coordinates);
-    }
-
-    private void OnPowerCellChanged(Entity<ReagentDispenserComponent> ent, ref PowerCellChangedEvent args)
-    {
-        if (!args.Ejected)
-            return;
-
-        UpdateUi(ent);
-    }
-
-    private void RefreshBatteryChargeRate(Entity<ReagentDispenserComponent> ent)
-    {
-        if (_timing.ApplyingState)
-            return;
-
-        if (_powercell.TryGetBatteryFromSlot(ent.Owner, out var battery))
-            _battery.RefreshChargeRate((battery.Value.Owner, battery.Value.Comp));
-    }
-
-    private void OnPowerCellSlotEmpty(Entity<ReagentDispenserComponent> ent, ref PowerCellSlotEmptyEvent args)
-    {
-        UpdateUi(ent);
-
-        // Close the UI when cell is ejected
-        if (TryComp<ActivatableUIComponent>(ent.Owner, out var activatable) && activatable.Key != null)
-            _userInterfaceSystem.CloseUi(ent.Owner, activatable.Key);
-    }
-    #endregion
-    // Starlight End
-
-    protected virtual void UpdateUi(Entity<ReagentDispenserComponent> reagentDispenser)
-    {
-    }
-
-    private void OnSetDispenseAmountMessage(Entity<ReagentDispenserComponent> reagentDispenser, ref ReagentDispenserSetDispenseAmountMessage message)
-    {
-        reagentDispenser.Comp.DispenseAmount = message.ReagentDispenserDispenseAmount;
-        Dirty(reagentDispenser);
-        UpdateUi(reagentDispenser);
-        ClickSound(reagentDispenser, message.Actor);
     }
 
     private void OnDispenseReagentMessage(Entity<ReagentDispenserComponent> reagentDispenser, ref ReagentDispenserDispenseReagentMessage message)
@@ -138,7 +88,6 @@ public abstract partial class SharedReagentDispenserSystem : EntitySystem
             return;
         }
 
-        // Starlight Start
         var outputContainer = _itemSlotsSystem.GetItemOrNull(reagentDispenser, SharedReagentDispenser.OutputSlotName);
         if (outputContainer is not { Valid: true })
         {
@@ -150,22 +99,15 @@ public abstract partial class SharedReagentDispenserSystem : EntitySystem
 
         if (!_solutionContainerSystem.TryGetFitsInDispenser(outputContainer.Value, out var solution, out _))
             return;
-        // Starlight End
 
         // Ensure that the reagent is something this reagent dispenser can dispense.
         var storageLocation = message.Data.StorageLocation; // Starlight-edit
         var storedContainer = storage.StoredItems.FirstOrDefault(kvp => kvp.Value == storageLocation).Key;
         if (storedContainer != EntityUid.Invalid)
-        { // Starlight-edit
-            // Starlight edit Start: Moved
-            // var outputContainer = _itemSlotsSystem.GetItemOrNull(reagentDispenser, SharedReagentDispenser.OutputSlotName);
-            // if (outputContainer is not { Valid: true } || !_solutionContainerSystem.TryGetFitsInDispenser(outputContainer.Value, out var solution, out _))
-            //     return;
-            // Starlight edit End
+        {
             if (_solutionContainerSystem.TryGetDrainableSolution(storedContainer, out var src, out _) &&
                 _solutionContainerSystem.TryGetRefillableSolution(outputContainer.Value, out var dst, out var dstSolution)) // Starlight edit
             {
-                // Starlight Start
                 var transferAmount = FixedPoint2.New((int)reagentDispenser.Comp.DispenseAmount);
                 if (dstSolution.AvailableVolume < transferAmount)
                 {
@@ -176,7 +118,6 @@ public abstract partial class SharedReagentDispenserSystem : EntitySystem
                     ClickSound(reagentDispenser, message.Actor);
                     return;
                 }
-                // Starlight End
 
                 // force open container, if applicable, to avoid confusing people on why it doesn't dispense
                 _openable.SetOpen(storedContainer, true);
@@ -187,7 +128,6 @@ public abstract partial class SharedReagentDispenserSystem : EntitySystem
             }
         }
 
-        // Starlight-start: Generatable Reagents
         if (message.Data.ReagentID is { } reagentID && reagentDispenser.Comp.GeneratableReagents.TryGetValue(reagentID, out var powerDrain))
         {
             if (!_solutionContainerSystem.TryGetRefillableSolution(outputContainer.Value, out var dst, out var dstSolution))
@@ -237,7 +177,6 @@ public abstract partial class SharedReagentDispenserSystem : EntitySystem
 
         UpdateUi(reagentDispenser);
         ClickSound(reagentDispenser, message.Actor);
-        // Starlight-end
     }
 
     private void OnEjectReagentMessage(Entity<ReagentDispenserComponent> reagentDispenser, ref ReagentDispenserEjectContainerMessage message)
@@ -255,18 +194,42 @@ public abstract partial class SharedReagentDispenserSystem : EntitySystem
         _handsSystem.TryPickupAnyHand(message.Actor, storedContainer);
     }
 
-    private void OnClearContainerSolutionMessage(Entity<ReagentDispenserComponent> reagentDispenser, ref ReagentDispenserClearContainerSolutionMessage message)
+    private void OnMapInit(Entity<ReagentDispenserComponent> ent, ref MapInitEvent args) =>
+        _itemSlotsSystem.AddItemSlot(ent.Owner, SharedReagentDispenser.OutputSlotName, ent.Comp.BeakerSlot);
+
+    private void OnPowerCellChanged(Entity<ReagentDispenserComponent> ent, ref PowerCellChangedEvent args)
     {
-        var outputContainer = _itemSlotsSystem.GetItemOrNull(reagentDispenser, SharedReagentDispenser.OutputSlotName);
-        if (outputContainer is not { Valid: true } || !_solutionContainerSystem.TryGetFitsInDispenser(outputContainer.Value, out var solution, out _))
+        if (!args.Ejected)
             return;
 
-        _solutionContainerSystem.RemoveAllSolution(solution.Value);
+        UpdateUi(ent);
+    }
+
+    private void OnPowerCellSlotEmpty(Entity<ReagentDispenserComponent> ent, ref PowerCellSlotEmptyEvent args)
+    {
+        UpdateUi(ent);
+
+        // Close the UI when cell is ejected
+        if (TryComp<ActivatableUIComponent>(ent.Owner, out var activatable) && activatable.Key != null)
+            _userInterfaceSystem.CloseUi(ent.Owner, activatable.Key);
+    }
+
+    private void OnRefreshChargeRate(Entity<ReagentDispenserComponent> ent, ref RefreshChargeRateEvent args)
+    {
+        if (_powerReceiver.IsPowered(ent.Owner))
+            args.NewChargeRate += 5f;
+        else if (_userInterfaceSystem.IsUiOpen(ent.Owner, ReagentDispenserUiKey.Key))
+            args.NewChargeRate -= 5f;
+    }
+
+    private void OnSetDispenseAmountMessage(Entity<ReagentDispenserComponent> reagentDispenser, ref ReagentDispenserSetDispenseAmountMessage message)
+    {
+        reagentDispenser.Comp.DispenseAmount = message.ReagentDispenserDispenseAmount;
+        Dirty(reagentDispenser);
         UpdateUi(reagentDispenser);
         ClickSound(reagentDispenser, message.Actor);
     }
 
-    // Starlight-start: Plumbing valve toggle
     private void OnToggleValveMessage(Entity<ReagentDispenserComponent> reagentDispenser, ref ReagentDispenserToggleValveMessage message)
     {
         if (!TryComp<PlumbingOutletComponent>(reagentDispenser.Owner, out var plumbingOutlet))
@@ -277,16 +240,15 @@ public abstract partial class SharedReagentDispenserSystem : EntitySystem
         UpdateUi(reagentDispenser);
         ClickSound(reagentDispenser, message.Actor);
     }
-    // Starlight-end
 
-    private void ClickSound(Entity<ReagentDispenserComponent> reagentDispenser, EntityUid? user) =>
-        _audioSystem.PlayPredicted(reagentDispenser.Comp.ClickSound, reagentDispenser, user, AudioParams.Default.WithVolume(-2f));
-
-    /// <summary>
-    /// Initializes the beaker slot
-    /// </summary>
-    private void OnMapInit(Entity<ReagentDispenserComponent> ent, ref MapInitEvent args)
+    private void RefreshBatteryChargeRate(Entity<ReagentDispenserComponent> ent)
     {
-        _itemSlotsSystem.AddItemSlot(ent.Owner, SharedReagentDispenser.OutputSlotName, ent.Comp.BeakerSlot);
+        if (_timing.ApplyingState)
+            return;
+
+        if (_powercell.TryGetBatteryFromSlot(ent.Owner, out var battery))
+            _battery.RefreshChargeRate((battery.Value.Owner, battery.Value.Comp));
     }
+
+    private void SubscribeRefreshBattery<T>(Entity<ReagentDispenserComponent> ent, ref T ev) => RefreshBatteryChargeRate(ent);
 }
