@@ -7,6 +7,7 @@ namespace Content.Server._Starlight.Objectives.ObjectivePicker;
 
 public sealed partial class AntagRandomObjectivesSystem
 {
+    private readonly float _unlockRequirement = .75f; // The fraction of objectives that need to be completed before unlocking the next batch.
     private void RecordConfirmedBatch(EntityUid mindId, ObjectivePickerConfigurationComponent config,
         IEnumerable<NetEntity> selected)
     {
@@ -38,7 +39,7 @@ public sealed partial class AntagRandomObjectivesSystem
                     config.CompletedObjectives.Add(objective);
             }
             var completed = config.CurrentBatch.Count(config.CompletedObjectives.Contains);
-            if (completed * 5 < config.CurrentBatch.Count * 3)
+            if ((float)completed / config.CurrentBatch.Count < _unlockRequirement)
                 continue;
 
             config.BatchUnlocked = true;
