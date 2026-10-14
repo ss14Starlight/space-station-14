@@ -1,11 +1,4 @@
 Entries:
-- author: mikeysaurus
-  changes:
-  - message: Adds lslaws command for admins to easily view Silicon laws, like they can with objectives.
-    type: Add
-  id: 409040
-  time: '2026-10-01T09:08:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6371
 - author: wonderfulnewworld
   changes:
   - message: Firebombs are craftable again.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409439
   time: '2026-10-14T06:08:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6658
+- author: Floximo
+  changes:
+  - message: Syndicats can now fit in pet carriers.
+    type: Fix
+  id: 409440
+  time: '2026-10-14T06:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6676
 Order: -1
