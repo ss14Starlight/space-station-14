@@ -1,11 +1,4 @@
 Entries:
-- author: JMxm5
-  changes:
-  - message: (Hotel) Increased the number of atmos tech latejoin slots (2 -> 3) to match the number of lockers.
-    type: Fix
-  id: 409050
-  time: '2026-10-01T12:01:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6421
 - author: Johnny
   changes:
   - message: (Evac Raven) Pipe dock standard, weeee.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409449
   time: '2026-10-14T14:23:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6664
+- author: Talirson
+  changes:
+  - message: Lowered reaction priority for Ulnitranium/Pluoxium radiation reactions.
+    type: Tweak
+  id: 409450
+  time: '2026-10-14T15:34:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6678
 Order: -1
