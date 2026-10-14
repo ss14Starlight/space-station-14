@@ -3,35 +3,30 @@
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Felionoid, NeoFelionoid]
-  # Starlight start
   sprites:
     body_head:
         sprite:
           sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
           state: Tiger_stripes_face
         colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: FelionoidHeadTabby
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Felionoid, NeoFelionoid]
-  # Starlight start
   sprites:
     body_head:
         sprite:
           sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
           state: Tabby_head
         colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: FelionoidHeadCalico
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Felionoid, NeoFelionoid]
-  # Starlight start
   sprites:
     body_head@0:
         sprite:
@@ -43,18 +38,15 @@
           sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
           state: calico2_head
         colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: FelionoidHeadStripes
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Felionoid, NeoFelionoid]
-  # Starlight start
   sprites:
     body_head:
         sprite:
           sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
           state: head_stripes
         colorSource: UniqueColor
-  # Starlight end

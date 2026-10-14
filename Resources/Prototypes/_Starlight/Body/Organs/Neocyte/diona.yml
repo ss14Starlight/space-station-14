@@ -59,8 +59,8 @@
   description: Contains the stomach of a formerly fully-formed Neo-Diona. It doesn't taste any better for it.
   components:
   - type: IsDeadIC
-  - type: Body
-    prototype: AnimalProtoNymphStomach
+  - type: SLBody
+    prefab: AnimalProtoNymphStomach
 
 - type: entity
   id: OrganNeoDionaLungsNymph
@@ -82,8 +82,8 @@
   description: Contains the lungs of a formerly fully-formed Neo-Diona. Breathtaking.
   components:
   - type: IsDeadIC
-  - type: Body
-    prototype: AnimalProtoNymphLungs
+  - type: SLBody
+    prefab: AnimalProtoNymphLungs
 
 - type: entity
   id: OrganNeoDionaTongue

@@ -1,3 +1,7 @@
+using Robust.Shared.Prototypes;
+using Content.Shared._Starlight.Body.Systems;
+using Content.Shared._Starlight.Body.Prototypes;
+using Content.Shared._Starlight.Body.Components;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Administration;
 using Content.Shared.Administration;
@@ -34,9 +38,7 @@ public sealed partial class AddMechanismCommand : IConsoleCommand
             return;
         }
 
-        var bodySystem = _entManager.System<BodySystem>();
-
-        if (bodySystem.AddOrganToFirstValidSlot(partId.Value, organId.Value))
+        if (TryAddToFreeOrganSocket(partId.Value, organId.Value))
         {
             shell.WriteLine($@"Added {organId} to {partId}.");
         }
@@ -44,5 +46,26 @@ public sealed partial class AddMechanismCommand : IConsoleCommand
         {
             shell.WriteError($@"Could not add {organId} to {partId}.");
         }
+    }
+
+    private bool TryAddToFreeOrganSocket(EntityUid partId, EntityUid organId)
+    {
+        if (!_entManager.TryGetComponent<SLBodyPartComponent>(partId, out var part)
+            || !_entManager.TryGetComponent<SLBodyPartComponent>(organId, out var organ))
+            return false;
+
+        var slBody = _entManager.System<SLBodySystem>();
+        var protoMan = IoCManager.Resolve<IPrototypeManager>();
+        foreach (var (socketId, socketType) in part.Sockets)
+        {
+            if (protoMan.Index(socketType).Internal && slBody.TryAttachPart((partId, part), socketId, (organId, organ)))
+                return true;
+        }
+
+        var extra = 0;
+        while (part.Sockets.ContainsKey($"Extra{extra}"))
+            extra++;
+        slBody.AddSocket((partId, part), $"Extra{extra}", BodyPrefabPrototype.DefaultInternalSocket);
+        return slBody.TryAttachPart((partId, part), $"Extra{extra}", (organId, organ));
     }
 }

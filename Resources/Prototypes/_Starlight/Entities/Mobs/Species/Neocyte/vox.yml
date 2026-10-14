@@ -16,8 +16,8 @@
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Vox/parts.rsi
     state: full
-  - type: Body
-    prototype: NeoVox
+  - type: SLBody
+    prefab: NeoVox
     requiredLegs: 2
   - type: Butcherable
     spawned:
@@ -271,8 +271,8 @@
       sprite: Objects/Misc/handcuffs.rsi
       state: body-overlay-2
       visible: false
-  - type: Body
-    prototype: NeoVox
+  - type: SLBody
+    prefab: NeoVox
   - type: Inventory
     speciesId: vox
     templateId: neocyte

@@ -2,8 +2,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
-using Content.Shared._CD.Records; // Cosmatic Drift Record System
-using Content.Shared._Starlight.Body.Editor; // Starlight body editor
+using Content.Shared._CD.Records;
+using Content.Shared._Starlight.Body.Editor;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences.Loadouts;
@@ -17,11 +17,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
-#region Starlight
 using Content.Shared._Starlight.Traits;
 using Content.Shared._Starlight.Humanoid;
 using Content.Shared._Starlight.CCVar;
-#endregion
 
 namespace Content.Shared.Preferences
 {
@@ -97,10 +95,10 @@ namespace Content.Shared.Preferences
         [DataField("cosmaticDriftCharacterRecords")]
         public PlayerProvidedCharacterRecords? CDCharacterRecords { get; private set; } = PlayerProvidedCharacterRecords.DefaultRecords();
 
-        // Starlight: hierarchical body editor profile. Null until first save under the new editor schema;
-        // converted from legacy <see cref="Appearance"/> markings on demand.
+        #region Starlight
         [DataField("bodyEditorProfile")]
         public BodyProfile? BodyEditorProfile { get; private set; }
+        #endregion
 
         /// <summary>
         /// When spawning into a round what's the preferred spot to spawn.
@@ -126,16 +124,18 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile(
             string name,
             string voice,
-            string siliconVoice, // 🌟Starlight🌟
-            string physicalDesc,// Starlight
-            string personalityDesc,// Starlight
-            string personalNotes,// Starlight
-            string oocNotes,// Starlight
-            string secrets, //Starlight
-            string exploitableInfo, //Starlight
+            // Starlight-start
+            string siliconVoice,
+            string physicalDesc,
+            string personalityDesc,
+            string personalNotes,
+            string oocNotes,
+            string secrets,
+            string exploitableInfo,
             string species,
-            string customspeciename, // Starlight
-            string forcedPrototype, // Starlight
+            string customspeciename,
+            string forcedPrototype,
+            // Starlight-end
             int age,
             Sex sex,
             Gender gender,
@@ -151,16 +151,18 @@ namespace Content.Shared.Preferences
         {
             Name = name;
             Voice = voice;
-            SiliconVoice = siliconVoice; // 🌟Starlight🌟
-            PhysicalDescription = physicalDesc;//Starlight
-            PersonalityDescription = personalityDesc;//Starlight
-            PersonalNotes = personalNotes;//Starlight
-            OOCNotes = oocNotes;//Starlight
-            Secrets = secrets; //Starlight
-            ExploitableInfo = exploitableInfo; //Starlight
-            Species = species;//Starlight
-            CustomSpecieName = customspeciename; // Starlight
-            ForcedPrototype = forcedPrototype; // Starlight
+            // Starlight-start
+            SiliconVoice = siliconVoice;
+            PhysicalDescription = physicalDesc;
+            PersonalityDescription = personalityDesc;
+            PersonalNotes = personalNotes;
+            OOCNotes = oocNotes;
+            Secrets = secrets;
+            ExploitableInfo = exploitableInfo;
+            Species = species;
+            CustomSpecieName = customspeciename;
+            ForcedPrototype = forcedPrototype;
+            // Starlight-end
             Age = age;
             Sex = sex;
             Gender = gender;
@@ -179,15 +181,17 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile(HumanoidCharacterProfile other)
             : this(other.Name,
                 other.Voice,
-                other.SiliconVoice, // 🌟Starlight🌟
-                other.PhysicalDescription,//Starlight
-                other.PersonalityDescription, //Starlight
-                other.PersonalNotes,//Starlight
-                other.OOCNotes,//Starlight
+                // Starlight-start
+                other.SiliconVoice,
+                other.PhysicalDescription,
+                other.PersonalityDescription, 
+                other.PersonalNotes,
+                other.OOCNotes,
+                // Starlight-end
                 other.Secrets,
                 other.ExploitableInfo,
                 other.Species,
-                other.CustomSpecieName, // Starlight
+                other.CustomSpecieName, // Starlight-edit
                 other.ForcedPrototype,
                 other.Age,
                 other.Sex,
@@ -198,7 +202,7 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
-                other.Cybernetics, // Starlight
+                other.Cybernetics, // Starlight-edit
                 other.Enabled,
                 other.SpeciesLoadout) // Far Horizons
         {
@@ -208,7 +212,7 @@ namespace Content.Shared.Preferences
                 : PlayerProvidedCharacterRecords.DefaultRecords();
             CDCharacterRecords.EnsureValid();
             // Cosmatic Drift Record System-end
-            BodyEditorProfile = other.BodyEditorProfile?.Clone(); // Starlight
+            BodyEditorProfile = other.BodyEditorProfile?.Clone(); // Starlight-edit
         }
 
         /// <summary>
@@ -358,6 +362,11 @@ namespace Content.Shared.Preferences
             return new(this) { Species = species };
         }
 
+        public HumanoidCharacterProfile WithBodyEditorProfile(BodyProfile? profile)
+        {
+            return new HumanoidCharacterProfile(this) { BodyEditorProfile = profile?.Clone() };
+        }
+
         // Starlight - End
         public HumanoidCharacterProfile WithCharacterAppearance(HumanoidCharacterAppearance appearance)
         {
@@ -370,12 +379,6 @@ namespace Content.Shared.Preferences
             var copy = new PlayerProvidedCharacterRecords(records);
             copy.EnsureValid();
             return new HumanoidCharacterProfile(this) { CDCharacterRecords = copy };
-        }
-
-        // Starlight replace the hierarchical body editor profile (pass null to clear).
-        public HumanoidCharacterProfile WithBodyEditorProfile(BodyProfile? profile)
-        {
-            return new HumanoidCharacterProfile(this) { BodyEditorProfile = profile?.Clone() };
         }
         // Cosmatic Drift Record System-end
 

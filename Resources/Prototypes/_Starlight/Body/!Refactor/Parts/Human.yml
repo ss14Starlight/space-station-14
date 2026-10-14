@@ -5,30 +5,7 @@
   abstract: true
   components:
   - type: SLBodyPart
-    partType: HumanoidGeneric
-
-- type: entity
-  id: SLPartHumanEyes
-  parent: SLPartHumanBase
-  name: "human eyes"
-  components:
-  - type: SLBodyPart
-    partType: HumanoidEye
-  - type: BodyPartVisualizer
-    bodyVisualLayers:
-      body_eyes:
-        sprite:
-          sprite: Mobs/Customization/eyes.rsi
-          state: eyes
-        colorSource: HumanEyeColor
-      body_other:
-        sprite:
-          sprite: Mobs/Species/Human/organs.rsi
-          state: eyeball-l
-        colorSource: HumanSkinColor
-    socketLayers:
-      root: [ body_other ]
-      Eyes: [ body_eyes ]
+    partType: Other
 
 - type: entity
   id: SLPartHumanTorso
@@ -36,16 +13,7 @@
   name: "human torso"
   components:
   - type: SLBodyPart
-    partType: HumanoidTorso
-    sockets:
-      Head: HumanoidHeadSocket
-      LeftArm: HumanoidArmSocket
-      RightArm: HumanoidArmSocket
-      LeftLeg: HumanoidLegSocket
-      RightLeg: HumanoidLegSocket
-      RightWing: HumanoidWingSocket
-      LeftWing: HumanoidWingSocket
-      Tail: HumanoidTailSocket
+    partType: Torso
   - type: BodyPartVisualizer
     markingSets:
     - HumanChest
@@ -65,7 +33,7 @@
   name: "human head"
   components:
   - type: SLBodyPart
-    partType: HumanoidHead
+    partType: Head
   - type: BodyPartVisualizer
     markingSets:
     - HumanHair
@@ -95,9 +63,7 @@
   name: "human arm"
   components:
   - type: SLBodyPart
-    partType: HumanoidArm
-    sockets:
-      Hand: HumanoidHandSocket
+    partType: Arm
   - type: BodyPartVisualizer
     markingSets:
     - HumanArms
@@ -122,7 +88,7 @@
   name: "human hand"
   components:
   - type: SLBodyPart
-    partType: HumanoidHand
+    partType: Hand
   - type: BodyPartVisualizer
     markingSets:
     - HumanHands
@@ -147,9 +113,7 @@
   name: "human leg"
   components:
   - type: SLBodyPart
-    partType: HumanoidLeg
-    sockets:
-      Foot: HumanoidFootSocket
+    partType: Leg
   - type: BodyPartVisualizer
     markingSets:
     - HumanLegs
@@ -174,7 +138,7 @@
   name: "human foot"
   components:
   - type: SLBodyPart
-    partType: HumanoidFoot
+    partType: Foot
   - type: BodyPartVisualizer
     markingSets:
     - HumanFeet

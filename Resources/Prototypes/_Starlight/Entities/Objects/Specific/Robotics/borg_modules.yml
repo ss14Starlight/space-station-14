@@ -973,7 +973,7 @@
           - Organ
           - OrganDamage
           - FunctionalOrgan
-          - BodyPart
+          - SLBodyPart
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: surgery-module }
 

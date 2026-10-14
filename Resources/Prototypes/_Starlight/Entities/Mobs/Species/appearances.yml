@@ -32,8 +32,8 @@
   components:
   - type: HumanoidAppearance
     species: Cyclorite
-  - type: Body
-    prototype: Cyclorite
+  - type: SLBody
+    prefab: Cyclorite
 
 - type: entity
   parent: [BaseSpeciesDummy, BaseInventoryDiona]
@@ -78,8 +78,8 @@
   components:
   - type: HumanoidAppearance
     species: Felionoid
-  - type: Body
-    prototype: Felionoid
+  - type: SLBody
+    prefab: Felionoid
 
 - type: entity
   parent: [BaseSpeciesDummy, BaseInventoryFemaleJumpsuit]
@@ -101,8 +101,8 @@
   components:
   - type: HumanoidAppearance
     species: Lagomorph
-  - type: Body
-    prototype: Lagomorph
+  - type: SLBody
+    prefab: Lagomorph
 
 - type: entity
   parent: [BaseSpeciesDummy, BaseInventoryMoth]
@@ -192,8 +192,8 @@
           32:
             sprite: Mobs/Species/Vox/displacement.rsi
             state: hair
-  - type: Body
-    prototype: Vox
+  - type: SLBody
+    prefab: Vox
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -250,8 +250,8 @@
   components:
   - type: HumanoidAppearance
     species: Experiment
-  - type: Body
-    prototype: Experiment
+  - type: SLBody
+    prefab: Experiment
 
 - type: entity
   id: GuideExpie

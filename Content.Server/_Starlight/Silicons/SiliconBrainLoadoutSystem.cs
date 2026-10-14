@@ -8,6 +8,8 @@ using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 
+using Content.Shared._Starlight.Body.Components;
+
 namespace Content.Server._Starlight.Silicons;
 // Todo
 // Make this encompass AI too, Posi/MMI/Thaven Currently make no difference as you cant remove them from the core
@@ -68,21 +70,14 @@ public sealed partial class SiliconBrainLoadoutSystem : EntitySystem
         if (brainProto == null && profile != null &&
             _proto.TryIndex(profile.Species, out var species) &&
             _proto.TryIndex<EntityPrototype>(species.Prototype, out var entityProto) &&
-            entityProto.TryGetComponent<BodyComponent>(out var bodyComp, _compFactory) &&
-            bodyComp.Prototype != null &&
-            _proto.TryIndex(bodyComp.Prototype.Value, out var body))
+            entityProto.TryGetComponent<SLBodyComponent>(out var bodyComp, _compFactory) &&
+            _proto.TryIndex(bodyComp.Prefab, out var prefab) &&
+            prefab.TryFindPart("Brain", out var organProto))
         {
-            foreach (var (_, slot) in body.Slots)
-            {
-                if (slot.Organs.TryGetValue("brain", out var organProto) && organProto != null)
-                {
-                    brainProto = organProto;
-                    // Check if brain has BorgBrain component
-                    if (brainProto != null && _proto.TryIndex<EntityPrototype>(brainProto.Value, out var brainEnt))
-                        useMMI = !brainEnt.Components.ContainsKey(_compFactory.GetComponentName(typeof(BorgBrainComponent)));
-                    break;
-                }
-            }
+            brainProto = organProto.Id;
+            // Check if brain has BorgBrain component
+            if (_proto.TryIndex<EntityPrototype>(organProto.Id, out var brainEnt))
+                useMMI = !brainEnt.Components.ContainsKey(_compFactory.GetComponentName(typeof(BorgBrainComponent)));
         }
 
         if (brainProto == null)

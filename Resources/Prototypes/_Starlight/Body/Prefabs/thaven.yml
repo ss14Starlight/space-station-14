@@ -1,0 +1,54 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Thaven
+  root:
+    bodyPart: TorsoThaven
+    containedParts:
+      Heart:
+        bodyPart: OrganHumanHeart
+      Lungs:
+        bodyPart: OrganHumanLungs
+      Stomach:
+        bodyPart: OrganHumanStomach
+      Liver:
+        bodyPart: OrganHumanLiver
+      Kidneys:
+        bodyPart: OrganHumanKidneys
+    attachedParts:
+      Head:
+        bodyPart: HeadThaven
+        containedParts:
+          Brain:
+            bodyPart: OrganThavenBrain
+          Tongue:
+            bodyPart: OrganThavenTongue
+        attachedParts:
+          Eyes:
+            bodyPart: OrganThavenEyes
+        sockets:
+          EyeImplant: OrganSocket
+          NoseImplant: OrganSocket
+          BrainImplant: OrganSocket
+      RightArm:
+        bodyPart: RightArmThaven
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandThaven
+      LeftArm:
+        bodyPart: LeftArmThaven
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandThaven
+      RightLeg:
+        bodyPart: RightLegThaven
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootThaven
+      LeftLeg:
+        bodyPart: LeftLegThaven
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootThaven
+    sockets:
+      Cavity: OrganSocket

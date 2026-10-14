@@ -1571,7 +1571,7 @@
   - type: WhitelistTriggerCondition
     userWhitelist:
       components:
-      - Body
+      - SLBody
 
 - type: entity
   id: PointDefenseBeam

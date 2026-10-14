@@ -38,40 +38,37 @@ public sealed partial class SingleMarkingPicker : BoxContainer
     /// </summary>
     public Action<(int slot, Marking marking)>? OnColorChanged;
 
-    public Action<(int slot, Marking marking)>? OnGlowingChanged; //starlight
+    public Action<(int slot, Marking marking)>? OnGlowingChanged;
 
     // current selected slot
-    private int _slot = -1;
-    private int Slot
+    public int Slot
     {
         get
         {
             if (_markings == null || _markings.Count == 0)
             {
-                _slot = -1;
+                field = -1;
             }
-            else if (_slot == -1)
+            else if (field == -1)
             {
-                _slot = 0;
+                field = 0;
             }
 
-            return _slot;
+            return field;
         }
         set
         {
             if (_markings == null || _markings.Count == 0)
             {
-                _slot = -1;
+                field = -1;
                 return;
             }
 
-            _slot = value;
+            field = value;
             _ignoreItemSelected = true;
 
             foreach (var item in MarkingList)
-            {
-                item.Selected = (string) item.Metadata! == _markings[_slot].MarkingId;
-            }
+                item.Selected = (string) item.Metadata! == _markings[field].MarkingId;
 
             _ignoreItemSelected = false;
             PopulateColors();
@@ -83,19 +80,16 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 
     private bool _ignoreItemSelected;
 
-    private MarkingCategories _category;
     public MarkingCategories Category
     {
-        get => _category;
+        get;
         set
         {
-            _category = value;
-            CategoryName.Text = Loc.GetString($"markings-category-{_category}");
+            field = value;
+            CategoryName.Text = Loc.GetString($"markings-category-{field}");
 
             if (!string.IsNullOrEmpty(_species))
-            {
                 PopulateList(Search.Text);
-            }
         }
     }
     private IReadOnlyDictionary<string, MarkingPrototype>? _markingPrototypeCache;
@@ -103,25 +97,9 @@ public sealed partial class SingleMarkingPicker : BoxContainer
     private string? _species;
     private List<Marking>? _markings;
 
-    private int PointsLeft
-    {
-        get
-        {
-            if (_markings == null)
-            {
-                return 0;
-            }
+    private int _pointsLeft => _markings == null ? 0 : _totalPoints < 0 ? -1 : _totalPoints - _markings.Count;
 
-            if (_totalPoints < 0)
-            {
-                return -1;
-            }
-
-            return _totalPoints - _markings.Count;
-        }
-    }
-
-    private int PointsUsed => _markings?.Count ?? 0;
+    private int _pointsUsed => _markings?.Count ?? 0;
 
     public SingleMarkingPicker()
     {
@@ -130,27 +108,14 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 
         _sprite = _entityManager.System<SpriteSystem>();
         MarkingList.OnItemSelected += SelectMarking;
-        AddButton.OnPressed += _ =>
-        {
-            OnSlotAdd!();
-        };
+        AddButton.OnPressed += _ => OnSlotAdd!();
 
-        SlotSelector.OnItemSelected += args =>
-        {
-            Slot = args.Button.SelectedId;
-        };
+        SlotSelector.OnItemSelected += args => Slot = args.Button.SelectedId;
 
-        RemoveButton.OnPressed += _ =>
-        {
-            OnSlotRemove!(_slot);
-        };
+        RemoveButton.OnPressed += _ => OnSlotRemove!(Slot);
 
-        Search.OnTextChanged += args =>
-        {
-            PopulateList(args.Text);
-        };
+        Search.OnTextChanged += args => PopulateList(args.Text);
 
-        //starlight start
         Glowing.OnToggled += args =>
         {
             if (_markings == null
@@ -162,9 +127,8 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 
             var marking = _markings[Slot];
             marking.IsGlowing = args.Pressed;
-            OnGlowingChanged!((_slot, marking));
+            OnGlowingChanged!((Slot, marking));
         };
-        //starlight end
     }
 
     public void UpdateData(List<Marking> markings, string species, int totalPoints)
@@ -204,13 +168,13 @@ public sealed partial class SingleMarkingPicker : BoxContainer
         MarkingList.Clear();
 
         var sortedMarkings = _markingPrototypeCache.Where(m =>
-            m.Key.ToLower().Contains(filter.ToLower()) ||
-            GetMarkingName(m.Value).ToLower().Contains(filter.ToLower())
+            m.Key.Contains(filter, StringComparison.CurrentCultureIgnoreCase) ||
+            GetMarkingName(m.Value).Contains(filter, StringComparison.CurrentCultureIgnoreCase)
         ).OrderBy(p => Loc.GetString($"marking-{p.Key}"));
 
         foreach (var (id, marking) in sortedMarkings)
         {
-            var item = MarkingList.AddItem(Loc.GetString($"marking-{id}"), _sprite.Frame0(marking.Sprites.Values.First().Sprite)); // Starlight
+            var item = MarkingList.AddItem(Loc.GetString($"marking-{id}"), _sprite.Frame0(marking.Sprites.Values.First().Sprite));
             item.Metadata = marking.ID;
 
             if (_markings[Slot].MarkingId == id)
@@ -235,7 +199,6 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 
         ColorSelectorContainer.RemoveAllChildren();
 
-        // Starlight start - normalize old sprite-layer colors into shared color slots.
         if (marking.MarkingColors.Count != proto.ColorSlotCount)
         {
             marking = new Marking(marking.MarkingId, proto.GetColorSlotColors(marking.MarkingColors), marking.IsGlowing)
@@ -245,28 +208,27 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             };
             _markings[Slot] = marking;
         }
-        // Starlight end
 
         for (var i = 0; i < marking.MarkingColors.Count; i++)
         {
             var selector = new ColorSelectorSliders
             {
-                HorizontalExpand = true
+                HorizontalExpand = true,
+                Color = marking.MarkingColors[i],
+                SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv // defaults color selector to HSV
             };
-            selector.Color = marking.MarkingColors[i];
-            selector.SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv; // defaults color selector to HSV
 
             var colorIndex = i;
             selector.OnColorChanged += color =>
             {
                 marking.SetColor(colorIndex, color);
-                OnColorChanged!((_slot, marking));
+                OnColorChanged!((Slot, marking));
             };
 
             ColorSelectorContainer.AddChild(selector);
         }
 
-        Glowing.Pressed = marking.IsGlowing; //starlight
+        Glowing.Pressed = marking.IsGlowing;
     }
 
     private void SelectMarking(ItemList.ItemListSelectedEventArgs args)
@@ -292,7 +254,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 
         PopulateColors();
 
-        OnMarkingSelect!((_slot, id));
+        OnMarkingSelect!((Slot, id));
     }
 
     // Slot logic
@@ -303,28 +265,22 @@ public sealed partial class SingleMarkingPicker : BoxContainer
         Search.Visible = Slot >= 0;
         AddButton.HorizontalExpand = Slot < 0;
         RemoveButton.HorizontalExpand = Slot < 0;
-        AddButton.Disabled = PointsLeft == 0 && _totalPoints > -1 ;
-        RemoveButton.Disabled = PointsUsed == 0;
+        AddButton.Disabled = _pointsLeft == 0 && _totalPoints > -1 ;
+        RemoveButton.Disabled = _pointsUsed == 0;
         SlotSelector.Clear();
 
         if (Slot < 0)
-        {
             return;
-        }
 
-        for (var i = 0; i < PointsUsed; i++)
+        for (var i = 0; i < _pointsUsed; i++)
         {
             SlotSelector.AddItem(Loc.GetString("marking-slot", ("number", $"{i + 1}")), i);
 
-            if (i == _slot)
-            {
+            if (i == Slot)
                 SlotSelector.SelectId(i);
-            }
         }
     }
 
-    private string GetMarkingName(MarkingPrototype marking)
-    {
-        return Loc.GetString($"marking-{marking.ID}");
-    }
+    private static string GetMarkingName(MarkingPrototype marking)
+        => Loc.GetString($"marking-{marking.ID}");
 }

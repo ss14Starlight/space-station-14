@@ -1,6 +1,6 @@
+using Content.Shared._Starlight.Body.Components;
 using System.Linq;
 using Content.Shared._Starlight.Medical.Body.Part;
-using Content.Shared.Body.Part;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Content.Shared._Starlight.Medical.Limbs;
@@ -53,8 +53,8 @@ namespace Content.Shared._Starlight.Humanoid
         }
 
         // Gets supported HumanoidVisualLayer for sprite layer updates
-        public static HumanoidVisualLayers LayerFromBodypart(BodyPartComponent part) {
-            switch ((part.PartType, part.Symmetry))
+        public static HumanoidVisualLayers LayerFromBodypart(SLBodyPartComponent part) {
+            switch ((part.Kind, part.Symmetry))
             {
                 case (BodyPartType.Arm, BodyPartSymmetry.Left):
                     return HumanoidVisualLayers.LArm;
@@ -78,7 +78,7 @@ namespace Content.Shared._Starlight.Humanoid
         }
 
         // Gets slot id for limb system
-        public static string SlotIDFromBodypart(BodyPartComponent part){
+        public static string SlotIDFromBodypart(SLBodyPartComponent part){
             string slot = "";
             switch (part.Symmetry){
                 case BodyPartSymmetry.None:
@@ -90,7 +90,7 @@ namespace Content.Shared._Starlight.Humanoid
                     slot += "right ";
                     break;
             }
-            switch (part.PartType){
+            switch (part.Kind){
                 case BodyPartType.Arm:
                     slot += "arm";
                     break;

@@ -11,18 +11,18 @@ namespace Content.Shared.Humanoid.Markings
         Head,
         HeadTop,
         HeadSide,
-        Eyes, // Starlight
+        Eyes, // Starlight-edit
         Snout,
         SnoutCover,
         Chest,
         UndergarmentTop,
         UndergarmentBottom,
         Arms,
-        Hands, // Starlight
+        Hands, // Starlight-edit
         Legs,
-        Feet, // Starlight
+        Feet, // Starlight-edit
         Tail,
-        TailExtras, // Starlight
+        TailExtras, // Starlight-edit
         Overlay,
         FaceCover, // Far Horizons
         FaceCoverCover, // Far Horizons
@@ -42,20 +42,20 @@ namespace Content.Shared.Humanoid.Markings
                 HumanoidVisualLayers.Head => MarkingCategories.Head,
                 HumanoidVisualLayers.HeadTop => MarkingCategories.HeadTop,
                 HumanoidVisualLayers.HeadSide => MarkingCategories.HeadSide,
-                HumanoidVisualLayers.Eyes => MarkingCategories.Eyes, // Starlight
+                HumanoidVisualLayers.Eyes => MarkingCategories.Eyes, // Starlight-edit
                 HumanoidVisualLayers.Snout => MarkingCategories.Snout,
                 HumanoidVisualLayers.Chest => MarkingCategories.Chest,
                 HumanoidVisualLayers.UndergarmentTop => MarkingCategories.UndergarmentTop,
                 HumanoidVisualLayers.UndergarmentBottom => MarkingCategories.UndergarmentBottom,
                 HumanoidVisualLayers.RArm => MarkingCategories.Arms,
                 HumanoidVisualLayers.LArm => MarkingCategories.Arms,
-                HumanoidVisualLayers.RHand => MarkingCategories.Hands, // Starlight
-                HumanoidVisualLayers.LHand => MarkingCategories.Hands, // Starlight
+                HumanoidVisualLayers.RHand => MarkingCategories.Hands, // Starlight-edit
+                HumanoidVisualLayers.LHand => MarkingCategories.Hands, // Starlight-edit
                 HumanoidVisualLayers.LLeg => MarkingCategories.Legs,
                 HumanoidVisualLayers.RLeg => MarkingCategories.Legs,
-                HumanoidVisualLayers.LFoot => MarkingCategories.Feet, // Starlight
-                HumanoidVisualLayers.RFoot => MarkingCategories.Feet, // Starlight
-                HumanoidVisualLayers.TailExtras => MarkingCategories.TailExtras, // Starlight
+                HumanoidVisualLayers.LFoot => MarkingCategories.Feet, // Starlight-edit
+                HumanoidVisualLayers.RFoot => MarkingCategories.Feet, // Starlight-edit
+                HumanoidVisualLayers.TailExtras => MarkingCategories.TailExtras, // Starlight-edit
                 HumanoidVisualLayers.FaceCover => MarkingCategories.FaceCover, // Far Horizons
                 HumanoidVisualLayers.FaceCoverCover => MarkingCategories.FaceCoverCover, // Far Horizons
                 HumanoidVisualLayers.BodyCover => MarkingCategories.BodyCover, // Far Horizons

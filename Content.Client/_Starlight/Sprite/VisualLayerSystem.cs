@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2026 Starlight Network
 // SPDX-License-Identifier: MIT
 
-using Content.Server.Administration.Systems;
+using Content.Shared._Starlight;
 using Content.Shared._Starlight.Abstract;
 using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Body.Prototypes;
@@ -12,11 +12,11 @@ using static Robust.Client.GameObjects.SpriteComponent;
 
 namespace Content.Client._Starlight.Sprite;
 
-public sealed class VisualLayerSystem : EntitySystem
+public sealed partial class VisualLayerSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly StarlightEntitySystem _sl = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private StarlightEntitySystem _sl = default!;
 
     private readonly Dictionary<string, int> _layerOrder = [];
     private readonly List<(VisualLayerKey Key, string Str, int Order)> _scratch = [];
@@ -34,10 +34,7 @@ public sealed class VisualLayerSystem : EntitySystem
     public int CompareLayers(VisualLayerKey a, VisualLayerKey b)
     {
         var c = GetLayerOrder(a).CompareTo(GetLayerOrder(b));
-        if (c != 0)
-            return c;
-
-        return CompareLayerKeyTieBreakers(a, b);
+        return c != 0 ? c : CompareLayerKeyTieBreakers(a, b);
     }
 
     public override void Initialize()
@@ -67,12 +64,10 @@ public sealed class VisualLayerSystem : EntitySystem
         foreach (var key in keys)
             _scratch.Add((key, key.ToString(), GetLayerOrder(key)));
 
-        _scratch.Sort(static (a, b) =>
-        {
-            return a.Order != b.Order
+        _scratch.Sort(static (a, b)
+                => a.Order != b.Order
                 ? a.Order.CompareTo(b.Order)
-                : CompareLayerKeyTieBreakers(a.Key, b.Key);
-        });
+                : CompareLayerKeyTieBreakers(a.Key, b.Key));
 
         if (IsOrdered(ent!))
             return;
@@ -124,10 +119,7 @@ public sealed class VisualLayerSystem : EntitySystem
         var ai = a.Index ?? int.MinValue;
         var bi = b.Index ?? int.MinValue;
         var c = ai.CompareTo(bi);
-        if (c != 0)
-            return c;
-
-        return b.Displacement.CompareTo(a.Displacement);
+        return c != 0 ? c : b.Displacement.CompareTo(a.Displacement);
     }
 
     private void BuildLayerOrderCache()

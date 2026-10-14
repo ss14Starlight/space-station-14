@@ -3,67 +3,57 @@
   bodyPart: FacialHair
   markingCategory: FacialHair
   speciesRestriction: [Felionoid, NeoFelionoid]
-  # Starlight start
   sprites:
     body_facialHair:
         sprite:
           sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
           state: beard_s
         colorSource: HumanFacialHairColor
-  # Starlight end
 
 - type: marking
   id: FelionoidFacialHairColonel
   bodyPart: FacialHair
   markingCategory: FacialHair
   speciesRestriction: [Felionoid, NeoFelionoid]
-  # Starlight start
   sprites:
     body_facialHair:
         sprite:
           sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
           state: colonel_s
         colorSource: HumanFacialHairColor
-  # Starlight end
 
 - type: marking
   id: FelionoidFacialHairFu
   bodyPart: FacialHair
   markingCategory: FacialHair
   speciesRestriction: [Felionoid, NeoFelionoid]
-  # Starlight start
   sprites:
     body_facialHair:
         sprite:
           sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
           state: fu_s
         colorSource: HumanFacialHairColor
-  # Starlight end
 
 - type: marking
   id: FelionoidFacialHairMane
   bodyPart: FacialHair
   markingCategory: FacialHair
   speciesRestriction: [Felionoid, NeoFelionoid]
-  # Starlight start
   sprites:
     body_facialHair:
         sprite:
           sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
           state: mane_s
         colorSource: HumanFacialHairColor
-  # Starlight end
 
 - type: marking
   id: FelionoidFacialHairNeck
   bodyPart: FacialHair
   markingCategory: FacialHair
   speciesRestriction: [Felionoid, NeoFelionoid]
-  # Starlight start
   sprites:
     body_facialHair:
         sprite:
           sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
           state: neck_s
         colorSource: HumanFacialHairColor
-  # Starlight end

@@ -229,8 +229,8 @@
           color: "#8adaff"
           shader: unshaded
     # Starlight - start
-    - type: Body
-      prototype: Primate
+    - type: SLBody
+      prefab: Primate
     # Starlight - end
     - type: Tag
       tags:

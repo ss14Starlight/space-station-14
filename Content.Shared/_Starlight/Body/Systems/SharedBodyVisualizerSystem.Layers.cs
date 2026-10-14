@@ -1,10 +1,10 @@
-// SPDX-FileCopyrightText: 2026 Starlight Network
+﻿// SPDX-FileCopyrightText: 2026 Starlight Network
 // SPDX-License-Identifier: MIT
 
 using System.Numerics;
 using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Body.Prototypes;
-using Content.Shared.Starlight.Utility;
+using Content.Shared._Starlight.Utility;
 
 namespace Content.Shared._Starlight.Body.Systems;
 
@@ -37,7 +37,7 @@ public abstract partial class SharedBodyVisualizerSystem
         if (!TryComp<BodyVisualizerComponent>(part.Body, out var bodyVis))
             return;
 
-        SetLayer(part.Body, layerId, specifier, bodyVis);
+        SetLayer(part.Body.Value, layerId, specifier, bodyVis);
     }
 
     /// <summary>
@@ -64,7 +64,7 @@ public abstract partial class SharedBodyVisualizerSystem
         if (!TryComp<BodyVisualizerComponent>(part.Body, out var bodyVis))
             return;
 
-        RemoveLayer(part.Body, layerId, bodyVis);
+        RemoveLayer(part.Body.Value, layerId, bodyVis);
     }
 
     /// <summary>
@@ -97,7 +97,6 @@ public abstract partial class SharedBodyVisualizerSystem
 
         component.LayerData[layerId] = specifier;
         component.LayerKeys.Add(layerId);
-        component.LayerModifiedTicks[layerId] = _timing.CurTick;
         Dirty(uid, component);
     }
 
@@ -113,7 +112,6 @@ public abstract partial class SharedBodyVisualizerSystem
             return;
 
         component.LayerKeys.Remove(layerId);
-        component.LayerModifiedTicks.Remove(layerId);
         Dirty(uid, component);
     }
 }

@@ -18,10 +18,9 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
-#region Starlight
 using Content.Shared._Starlight.Medical.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Systems;
-#endregion
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Shared.Medical;
 
@@ -45,7 +44,7 @@ public sealed partial class VomitSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BodyComponent, TryVomitEvent>(TryBodyVomitSolution); // Starlight Edit: StomachComponent -> BodyComponent, Removed BodyRelayedEvent, TryVomitSolution -> TryBodyVomitSolution
+        SubscribeLocalEvent<SLBodyComponent, TryVomitEvent>(TryBodyVomitSolution); // Starlight Edit: StomachComponent -> SLBodyComponent, Removed BodyRelayedEvent, TryVomitSolution -> TryBodyVomitSolution
     }
 
     private const float ChemMultiplier = 0.1f;
@@ -58,9 +57,8 @@ public sealed partial class VomitSystem : EntitySystem
         AudioParams.Default.WithVariation(0.2f).WithVolume(-4f));
 
     // Starlight edit Start: Reverted NuBody
-    private void TryBodyVomitSolution(Entity<BodyComponent> ent, ref TryVomitEvent args)
+    private void TryBodyVomitSolution(Entity<SLBodyComponent> ent, ref TryVomitEvent args)
     {
-        // Starlight start
         if (args.Handled)
             return;
 
@@ -74,8 +72,7 @@ public sealed partial class VomitSystem : EntitySystem
         {
             if (_solutionContainer.ResolveSolution(stomach.Owner, StomachSystem.DefaultSolutionName, ref stomach.Comp1.Solution, out var sol))
             {
-                // _solutionContainer.TryTransferSolution(stomach.Comp1.Solution.Value, args.Sol, sol.AvailableVolume); // Starlight
-                args.Sol.AddSolution(_solutionContainer.SplitSolution(stomach.Comp1.Solution.Value, sol.Volume), _proto); // Starlight
+                args.Sol.AddSolution(_solutionContainer.SplitSolution(stomach.Comp1.Solution.Value, sol.Volume), _proto);
             }
         }
 

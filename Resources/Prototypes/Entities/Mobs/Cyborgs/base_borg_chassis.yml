@@ -149,7 +149,7 @@
           - MechReactor
         #Starlight End
   # Starlight - start
-  - type: Body
+  - type: SLBody
   # Starlight - end
   - type: StatusEffects
     allowed:

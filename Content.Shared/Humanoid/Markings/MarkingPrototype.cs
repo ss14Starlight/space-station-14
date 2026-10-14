@@ -1,5 +1,5 @@
-using Content.Shared._Starlight.Markings; //#Starlight
-using Content.Shared._Starlight.Body.Prototypes; // Starlight
+using Content.Shared._Starlight.Markings;
+using Content.Shared._Starlight.Body.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -31,7 +31,7 @@ namespace Content.Shared.Humanoid.Markings
         [DataField("forcedColoring")]
         public bool ForcedColoring { get; private set; } = false;
 
-        [DataField] // Starlight
+        [DataField] // Starlight-edit
         public bool ForcedGlowing = false;
 
         [DataField("coloring")]
@@ -44,15 +44,13 @@ namespace Content.Shared.Humanoid.Markings
         [DataField]
         public bool CanBeDisplaced { get; private set; } = true;
 
-        // Starlight start
+        #region Starlight
         [DataField("sprites", required: true)]
         public Dictionary<VisualLayerKey, BodySpriteSpecifier> Sprites { get; private set; } = default!;
-        // Starlight end
 
-        //# region starlight
         [DataField("emotes")]
         public List<MarkingEmoteData>? Emotes = null;
-        //# endregion starlight
+        #endregion
 
         public Marking AsMarking()
         {

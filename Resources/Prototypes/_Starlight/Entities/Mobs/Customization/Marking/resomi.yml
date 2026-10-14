@@ -4,84 +4,72 @@
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_head:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: fluff_head
       colorSource: ResomiSkinColor
-  # Starlight end
 
 - type: marking
   id: ResomiFluffHeadUp
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_head:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: fluff_head_up
       colorSource: ResomiSkinColor
-  # Starlight end
 
 - type: marking
   id: ResomiForehead
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_head:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: forehead
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiHeadWar
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_head:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: head_war
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiHeadStripes
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_head:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: head_stripes
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiHeadCoat
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_head:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: head_coat
       colorSource: UniqueColor
-  # Starlight end
 
 # Ear Markings
 - type: marking
@@ -89,49 +77,42 @@
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_headSide:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: resomi_ears
       colorSource: ResomiSkinColor
-  # Starlight end
 
 - type: marking
   id: ResomiUpperEars
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_headSide:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: upper_ear
       colorSource: ResomiSkinColor
-  # Starlight end
 
 - type: marking
   id: ResomiUpperEarsShort
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_headSide:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: resomi_ears_short
       colorSource: ResomiSkinColor
-  # Starlight end
 
 - type: marking
   id: ResomiUpperEarsAlternate
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_headSide@0:
       sprite:
@@ -143,49 +124,42 @@
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: upper_ear_alternate_earring
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiLowerEars
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_headSide:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: lower_ear
       colorSource: ResomiSkinColor
-  # Starlight end
 
 - type: marking
   id: ResomiHeadFluff
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_headSide:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: head_fluff
       colorSource: ResomiSkinColor
-  # Starlight end
 
 - type: marking
   id: ResomiHeadFluffShort
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_headSide:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: head_fluff_short
       colorSource: ResomiSkinColor
-  # Starlight end
 
 # Head Jewellery
 - type: marking
@@ -193,112 +167,96 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_headTop:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: resomi_earring_1_1
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiHeadJewelleryOneLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_headTop:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: resomi_earring_1_2
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiHeadJewelleryTwoRight
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_headTop:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: resomi_earring_2_1
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiHeadJewelleryTwoLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_headTop:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: resomi_earring_2_2
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiHeadJewelleryThreeRight
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_headTop:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: resomi_earring_3_1
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiHeadJewelleryThreeLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_headTop:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: resomi_earring_3_2
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiHeadJewelleryFourRight
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_headTop:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: resomi_earring_4_1
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiHeadJewelleryFourLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_headTop:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_head_markings.rsi
         state: resomi_earring_4_2
       colorSource: UniqueColor
-  # Starlight end
 
 # Chest Markings
 - type: marking
@@ -306,140 +264,120 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_chest:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_markings.rsi
         state: fluff
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiFluffGroin
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_chest:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_markings.rsi
         state: fluff_groin
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiGroinStripes
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_chest:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_markings.rsi
         state: groin_stripes
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiBodyCoat
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_chest:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_markings.rsi
         state: body_coat
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiBodyStripes
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_chest:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_markings.rsi
         state: body_stripes
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiBodyRings
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_chest:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_markings.rsi
         state: body_rings
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiBodyLines
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_chest:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_markings.rsi
         state: body_lines
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiBelly
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_chest:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_markings.rsi
         state: belly
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiBackPatch
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_chest:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_markings.rsi
         state: back_patch
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiBackPatchFull
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_chest:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_markings.rsi
         state: back_patch_full
       colorSource: UniqueColor
-  # Starlight end
 
 # Arm Markings
 - type: marking
@@ -447,7 +385,6 @@
   bodyPart: LHand
   markingCategory: Arms
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_lHand@0:
       sprite:
@@ -469,14 +406,12 @@
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_arm_markings.rsi
         state: r_hand_feathers_secondary
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiArmFade
   bodyPart: LHand
   markingCategory: Arms
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_lHand:
       sprite:
@@ -488,14 +423,12 @@
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_arm_markings.rsi
         state: r_arm_fade
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiArmFeathers
   bodyPart: LHand
   markingCategory: Arms
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_lHand:
       sprite:
@@ -507,42 +440,36 @@
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_arm_markings.rsi
         state: r_hand_feathers
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiRShoulderFade
   bodyPart: RArm
   markingCategory: Arms
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_rArm:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_arm_markings.rsi
         state: r_shoulder_fade
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiLShoulderFade
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_lArm:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_arm_markings.rsi
         state: l_shoulder_fade
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiArmCoat
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_lArm:
       sprite:
@@ -554,14 +481,12 @@
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_arm_markings.rsi
         state: r_arm_coat
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiLegFeathers
   bodyPart: LFoot
   markingCategory: Legs
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_lFoot:
       sprite:
@@ -573,42 +498,36 @@
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_leg_markings.rsi
         state: r_foot_feathers
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiRFootFade
   bodyPart: RFoot
   markingCategory: Legs
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_rFoot:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_leg_markings.rsi
         state: r_foot_fade
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiLFootFade
   bodyPart: RFoot
   markingCategory: Legs
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_rFoot:
       sprite:
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_leg_markings.rsi
         state: l_foot_fade
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiLegFeathersComplex
   bodyPart: LFoot
   markingCategory: Legs
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_lFoot@0:
       sprite:
@@ -630,14 +549,12 @@
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_leg_markings.rsi
         state: r_foot_feathers_secondary
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiLegFade
   bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_lLeg:
       sprite:
@@ -649,14 +566,12 @@
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_leg_markings.rsi
         state: r_leg_fade
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiLegStripes
   bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_lLeg:
       sprite:
@@ -668,14 +583,12 @@
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_leg_markings.rsi
         state: r_leg_stripes
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ResomiLegCoat
   bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [Resomi, NeoResomi]
-  # Starlight start
   sprites:
     body_lLeg:
       sprite:
@@ -687,4 +600,3 @@
         sprite: _Starlight/Mobs/Customization/Resomi/resomi_leg_markings.rsi
         state: r_leg_coat
       colorSource: UniqueColor
-  # Starlight end

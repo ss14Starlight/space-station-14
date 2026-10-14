@@ -3,8 +3,6 @@ using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.Utility;
 using Robust.Shared.Graphics.RSI;
-using Robust.Shared.Serialization.TypeSerializers.Implementations;
-using Robust.Shared.Utility;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
@@ -74,43 +72,6 @@ namespace Content.Client.Clickable
             return SampleClickMap(clickMap, pos, clickMap.Size, Vector2i.Zero);
         }
 
-        // Starlight start
-        public bool IsOccluding(SpriteSpecifier sprite, Vector2i pos, int clickRadius, RsiDirection? direction = null)
-        {
-            switch (sprite)
-            {
-                case SpriteSpecifier.Rsi rsi:
-                {
-                    var rsiPath = SpriteSpecifierSerializer.TextureRoot / rsi.RsiPath;
-                    if (!_resourceCache.TryGetResource<RSIResource>(rsiPath, out var resource))
-                        return false;
-
-                    return IsOccluding(resource.RSI, rsi.RsiState, direction ?? RsiDirection.South, 0, pos, clickRadius);
-                }
-                case SpriteSpecifier.Texture texture:
-                {
-                    var texturePath = SpriteSpecifierSerializer.TextureRoot / texture.TexturePath;
-                    if (!_resourceCache.TryGetResource<TextureResource>(texturePath, out var resource))
-                        return false;
-
-                    return IsOccluding(resource.Texture, pos, clickRadius);
-                }
-                default:
-                    return false;
-            }
-        }
-
-        public bool IsOccluding(Texture texture, Vector2i pos, int clickRadius)
-        {
-            if (!_textureMaps.TryGetValue(texture, out var clickMap))
-            {
-                return false;
-            }
-
-            return SampleClickMap(clickMap, pos, clickMap.Size, Vector2i.Zero, clickRadius);
-        }
-        // Starlight end
-
         public bool IsOccluding(RSI rsi, RSI.StateId state, RsiDirection dir, int frame, Vector2i pos)
         {
             if (!_rsiMaps.TryGetValue(rsi, out var rsiData))
@@ -133,42 +94,12 @@ namespace Content.Client.Clickable
             return SampleClickMap(rsiData.ClickMap, pos, rsi.Size, offset);
         }
 
-        // Starlight start
-        public bool IsOccluding(RSI rsi, RSI.StateId state, RsiDirection dir, int frame, Vector2i pos, int clickRadius)
-        {
-            if (!_rsiMaps.TryGetValue(rsi, out var rsiData))
-            {
-                return false;
-            }
-
-            if (!rsiData.Offsets.TryGetValue(state, out var stateDat) || stateDat.Length <= (int) dir)
-            {
-                return false;
-            }
-
-            var dirDat = stateDat[(int) dir];
-            if (dirDat.Length <= frame)
-            {
-                return false;
-            }
-
-            var offset = dirDat[frame];
-            return SampleClickMap(rsiData.ClickMap, pos, rsi.Size, offset, clickRadius);
-        }
-        // Starlight end
-
         private static bool SampleClickMap(ClickMap map, Vector2i pos, Vector2i bounds, Vector2i offset)
-        {
-            return SampleClickMap(map, pos, bounds, offset, ClickRadius);
-        }
-
-        // Starlight start
-        private static bool SampleClickMap(ClickMap map, Vector2i pos, Vector2i bounds, Vector2i offset, int clickRadius)
         {
             var (width, height) = bounds;
             var (px, py) = pos;
 
-            for (var x = -clickRadius; x <= clickRadius; x++)
+            for (var x = -ClickRadius; x <= ClickRadius; x++)
             {
                 var ox = px + x;
                 if (ox < 0 || ox >= width)
@@ -176,7 +107,7 @@ namespace Content.Client.Clickable
                     continue;
                 }
 
-                for (var y = -clickRadius; y <= clickRadius; y++)
+                for (var y = -ClickRadius; y <= ClickRadius; y++)
                 {
                     var oy = py + y;
 
@@ -194,7 +125,6 @@ namespace Content.Client.Clickable
 
             return false;
         }
-        // Starlight end
 
         private sealed class RsiClickMapData
         {
@@ -282,11 +212,5 @@ namespace Content.Client.Clickable
         public bool IsOccluding(Texture texture, Vector2i pos);
 
         public bool IsOccluding(RSI rsi, RSI.StateId state, RsiDirection dir, int frame, Vector2i pos);
-
-        // Starlight start
-        public bool IsOccluding(SpriteSpecifier sprite, Vector2i pos, int clickRadius, RsiDirection? direction = null);
-        public bool IsOccluding(Texture texture, Vector2i pos, int clickRadius);
-        public bool IsOccluding(RSI rsi, RSI.StateId state, RsiDirection dir, int frame, Vector2i pos, int clickRadius);
-        // Starlight end
     }
 }

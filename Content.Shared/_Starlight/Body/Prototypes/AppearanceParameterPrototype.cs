@@ -8,6 +8,7 @@ namespace Content.Shared._Starlight.Body.Prototypes;
 /// <summary>
 /// Abstract base for any tunable appearance parameter exposed by body part layers
 /// </summary>
+[ImplicitDataDefinitionForInheritors]
 public abstract partial class AppearanceParameterPrototype : IPrototype
 {
     [IdDataField]

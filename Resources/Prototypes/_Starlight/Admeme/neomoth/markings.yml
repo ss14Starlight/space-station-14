@@ -3,11 +3,9 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: []
-  # Starlight start
   sprites:
     body_headTop:
         sprite:
           sprite: _Starlight/Admeme/neomoth/markings.rsi
           state: generic_cat_ears
         colorSource: HumanSkinColor
-  # Starlight end

@@ -4,8 +4,8 @@
   name: Urist McBnuuy
   abstract: true
   components:
-  - type: Body
-    prototype: Lagomorph
+  - type: SLBody
+    prefab: Lagomorph
     requiredLegs: 2
   - type: Absorbable
   - type: LanguageKnowledge

@@ -4,7 +4,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-namespace Content.Server.Administration.Systems;
+namespace Content.Shared._Starlight;
 
 public sealed partial class StarlightEntitySystem
 {

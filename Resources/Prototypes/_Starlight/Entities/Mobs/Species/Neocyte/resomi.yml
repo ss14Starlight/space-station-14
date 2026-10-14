@@ -71,8 +71,8 @@
   - type: Icon
     sprite: _Starlight/Mobs/Species/Proto-Resomi/parts.rsi
     state: full
-  - type: Body
-    prototype: NeoResomi
+  - type: SLBody
+    prefab: NeoResomi
     requiredLegs: 2
   - type: Butcherable
     spawned:

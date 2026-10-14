@@ -1,16 +1,18 @@
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Changeling;
-using Content.Shared._Starlight.Medical.Body.Prototypes;
 using Content.Shared._Starlight.Medical.HealthAnalyzer;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
-using Content.Shared.Body.Systems;
 using Content.Shared.Damage.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Content.Shared._Starlight.Body.Components;
+using Content.Shared._Starlight.Body.Prototypes;
+using Content.Shared._Starlight.Body.Systems;
+using Content.Shared.Body.Organ;
+using Content.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Medical.HealthAnalyzer;
 
@@ -20,21 +22,18 @@ namespace Content.Server._Starlight.Medical.HealthAnalyzer;
 public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
 {
     [Dependency] private BodySystem _body = default!;
+    [Dependency] private SLBodySystem _slBody = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private MindExamineSystem _mindExamine = default!;
     [Dependency] private IPrototypeManager _prototypes = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<DamageableComponent, CollectHealthAnalyzerExtensionsEvent>(OnCollect);
-    }
 
+    [SubscribeLocalEvent]
     private void OnCollect(Entity<DamageableComponent> patient, ref CollectHealthAnalyzerExtensionsEvent args)
     {
-        if (TryComp<BodyComponent>(patient, out var body))
+        if (HasComp<SLBodyComponent>(patient))
         {
-            foreach (var (part, _) in _body.GetBodyChildren(patient, body))
+            foreach (var (part, _) in _body.GetBodyChildren(patient))
             {
                 if (!HasComp<IncisionOpenComponent>(part) && (!TryComp<SurgeryProgressComponent>(part, out var surgery) || surgery.StartedSurgeries.Count == 0))
                     continue;
@@ -43,7 +42,7 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
                 break;
             }
 
-            if (HasMissingOrgan(patient, body))
+            if (TryComp<SLBodyComponent>(patient, out var slBody) && HasMissingOrgan((patient, slBody)))
                 Add(args.Abnormalities, "starlight-health-analyzer-abnormality-missing-organs", "#F7784A");
         }
 
@@ -62,39 +61,43 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
             Add(args.Abnormalities, "starlight-health-analyzer-abnormality-extreme-bleeding", "#C94406");
     }
 
-    private bool HasMissingOrgan(EntityUid patient, BodyComponent body)
+    private bool HasMissingOrgan(Entity<SLBodyComponent> body)
     {
-        if (body.Prototype is not { } prototypeId || !_prototypes.TryIndex(prototypeId, out var prototype) || _body.GetRootPartOrNull(patient, body) is not { } root)
+        if (!_prototypes.TryIndex(body.Comp.Prefab, out var prefab)
+            || body.Comp.RootPartEntity is not { } root
+            || !TryComp<SLBodyPartComponent>(root, out var rootComp))
             return false;
 
-        return HasMissingOrgan(root.Entity, root.BodyPart, prototype, prototype.Root);
+        return HasMissingOrgan((root, rootComp), prefab.Root);
     }
 
-    private bool HasMissingOrgan(EntityUid part, BodyPartComponent partComp, BodyPrototype prototype, string slotId)
+    private bool HasMissingOrgan(Entity<SLBodyPartComponent> part, BodyPartDef def)
     {
-        if (!prototype.Slots.TryGetValue(slotId, out var template))
-            return false;
-
-        foreach (var (organSlot, organProto) in template.Organs)
+        if (def.ContainedParts != null)
         {
-            if (organProto == "null")
-                continue;
-
-            if (!_containers.TryGetContainer(part, SharedBodySystem.GetOrganContainerId(organSlot), out var organContainer)
-                || organContainer.ContainedEntities.Count == 0)
-                return true;
-        }
-
-        foreach (var childSlot in partComp.Children.Keys)
-        {
-            if (!_containers.TryGetContainer(part, SharedBodySystem.GetPartSlotContainerId(childSlot), out var partContainer))
-                continue;
-
-            foreach (var child in partContainer.ContainedEntities)
+            foreach (var socket in def.ContainedParts.Keys)
             {
-                if (TryComp<BodyPartComponent>(child, out var childComp) && HasMissingOrgan(child, childComp, prototype, childSlot))
+                if (!_slBody.TryGetPartInSocket(part, socket, out _))
                     return true;
             }
+        }
+
+        if (def.AttachedParts == null)
+            return false;
+
+        foreach (var (socket, childDef) in def.AttachedParts)
+        {
+            if (_slBody.TryGetPartInSocket(part, socket, out var child))
+            {
+                if (HasMissingOrgan(child, childDef))
+                    return true;
+            }
+            else if (_prototypes.Index(childDef.BodyPart).HasComponent<OrganComponent>(Factory))
+            {
+                // External organs (eyes)
+                return true;
+            }
+            // A missing limb is not a missing organ.
         }
 
         return false;

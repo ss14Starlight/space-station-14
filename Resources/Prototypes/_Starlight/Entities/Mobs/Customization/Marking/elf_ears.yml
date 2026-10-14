@@ -5,14 +5,12 @@
   forcedColoring: true
   # followSkinColor: true
   speciesRestriction: [Elf, NeoElf, Neocyte]
-  # Starlight start
   sprites:
     body_headTop:
       sprite:
         sprite: _Starlight/Mobs/Customization/elf_ears.rsi
         state: long_ears_standard
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ElfLongEarsWide
@@ -21,14 +19,12 @@
   forcedColoring: true
   # followSkinColor: true
   speciesRestriction: [Elf, NeoElf, Neocyte]
-  # Starlight start
   sprites:
     body_headTop:
       sprite:
         sprite: _Starlight/Mobs/Customization/elf_ears.rsi
         state: long_ears_wide
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ElfLongEarsSmall
@@ -37,14 +33,12 @@
   forcedColoring: true
   # followSkinColor: true
   speciesRestriction: [Elf, NeoElf, Neocyte]
-  # Starlight start
   sprites:
     body_headTop:
       sprite:
         sprite: _Starlight/Mobs/Customization/elf_ears.rsi
         state: long_ears_small
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ElfLongEarsUpwards
@@ -53,14 +47,12 @@
   forcedColoring: true
   # followSkinColor: true
   speciesRestriction: [Elf, NeoElf, Neocyte]
-  # Starlight start
   sprites:
     body_headTop:
       sprite:
         sprite: _Starlight/Mobs/Customization/elf_ears.rsi
         state: long_ears_upwards
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ElfLongEarsTall
@@ -69,14 +61,12 @@
   forcedColoring: true
   # followSkinColor: true
   speciesRestriction: [Elf, NeoElf, Neocyte]
-  # Starlight start
   sprites:
     body_headTop:
       sprite:
         sprite: _Starlight/Mobs/Customization/elf_ears.rsi
         state: long_ears_tall
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ElfLongEarsThin
@@ -85,11 +75,9 @@
   forcedColoring: true
   # followSkinColor: true
   speciesRestriction: [Elf, NeoElf, Neocyte]
-  # Starlight start
   sprites:
     body_headTop:
       sprite:
         sprite: _Starlight/Mobs/Customization/elf_ears.rsi
         state: long_ears_thin
       colorSource: UniqueColor
-  # Starlight end

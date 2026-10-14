@@ -47,11 +47,11 @@ using Content.Shared.Tabletop.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
 using Content.Shared.CombatMode.Pacification;
-using Content.Shared._Starlight.Gnome; // starlight
-using Content.Shared.Trigger; // Starlight
-using Content.Shared.Trigger.Components.Effects; // Starlight
-using Content.Shared.NPC.Prototypes; // Starlight
-using Content.Shared.NPC.Systems; // Starlight
+using Content.Shared._Starlight.Gnome;
+using Content.Shared.Trigger;
+using Content.Shared.Trigger.Components.Effects;
+using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -67,6 +67,7 @@ using Content.Shared._Starlight.Medical.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server._Starlight.Speech.Components;
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Server.Administration.Systems;
 
@@ -74,7 +75,7 @@ public sealed partial class AdminVerbSystem
 {
     private readonly ProtoId<PolymorphPrototype> LizardSmite = "AdminLizardSmite";
     private readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
-    private readonly ProtoId<PolymorphPrototype> Felionoidsmite = "AdminFelioSmite"; // Starlight edit
+    private readonly ProtoId<PolymorphPrototype> Felionoidsmite = "AdminFelioSmite"; // Starlight-edit
 
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -323,7 +324,7 @@ public sealed partial class AdminVerbSystem
             args.Verbs.Add(bloodRemoval);
         }
 
-        if (TryComp<BodyComponent>(args.Target, out var body))
+        if (HasComp<SLBodyComponent>(args.Target)) // Starlight-edit: SLBody
         {
             var vomitOrgansName = Loc.GetString("admin-smite-vomit-organs-name").ToLowerInvariant();
             Verb vomitOrgans = new()
@@ -334,7 +335,7 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     _vomitSystem.Vomit(args.Target, -1000, -1000); // You feel hollow!
-                    var organs = _bodySystem.GetBodyOrganEntityComps<TransformComponent>((args.Target, body)); // Starlight Edit: Reverted NuBody
+                    var organs = _bodySystem.GetBodyOrganEntityComps<TransformComponent>((args.Target, null)); // Starlight Edit: Reverted NuBody
                     var baseXform = Transform(args.Target);
                     foreach (var organ in organs)
                     {
@@ -386,7 +387,7 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     var baseXform = Transform(args.Target);
-                    foreach (var part in _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Hand, body)) // Starlight Edit: Reverted NuBody
+                    foreach (var part in _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Hand)) // Starlight Edit: Reverted NuBody
                     {
                         _transformSystem.AttachToGridOrMap(part.Id); // Starlight Edit: organ -> part.Id
                         break;
@@ -409,7 +410,7 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Mobs/Species/Human/organs.rsi"), "stomach"),
                 Act = () =>
                 {
-                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<StomachComponent>((args.Target, body))) // Starlight Edit: Reverted NuBody
+                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<StomachComponent>((args.Target, null))) // Starlight Edit: Reverted NuBody
                     {
                         QueueDel(entity.Owner);
                     }
@@ -430,7 +431,7 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Mobs/Species/Human/organs.rsi"), "lung-r"),
                 Act = () =>
                 {
-                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<LungComponent>((args.Target, body))) // Starlight Edit: Reverted NuBody
+                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<LungComponent>((args.Target, null))) // Starlight Edit: Reverted NuBody
                     {
                         QueueDel(entity.Owner);
                     }

@@ -1,7 +1,7 @@
+using Content.Shared._Starlight.Body.Components;
 using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
-using Content.Shared.Body.Part;
 using Content.Shared._Starlight.Medical.Surgery;
 using Content.Shared._Starlight.Medical.Surgery.Events;
 using Content.Shared.Interaction;
@@ -49,7 +49,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             return;
 
         var surgeries = new Dictionary<NetEntity, List<(EntProtoId, string suffix, bool isCompleted)>>();
-        if (HasComp<BodyPartComponent>(body))
+        if (HasComp<SLBodyPartComponent>(body))
         {
             AddSurgeries(body, body, surgeries);
         }

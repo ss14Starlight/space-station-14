@@ -13,12 +13,6 @@ public sealed partial class BodyPartVisualizerComponent : Component
     [DataField(required: true), AutoNetworkedField]
     public Dictionary<VisualLayerKey, BodySpriteSpecifier> BodyVisualLayers = [];
 
-    /// <summary>
-    /// Maps socket name to the set of layer keys
-    /// that should be applied when the part is attached to that socket.
-    /// Layers not listed for the current socket are skipped.
-    /// If empty or missing, all layers are applied unconditionally.
-    /// </summary>
     [DataField, AutoNetworkedField]
     public Dictionary<string, List<VisualLayerKey>> SocketLayers = [];
 

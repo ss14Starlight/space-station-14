@@ -1460,7 +1460,6 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.ToTable("player_data", (string)null);
                 });
-            // Starlight
             modelBuilder.Entity("Content.Server.Database.StarLightModel+StarLightProfile", b =>
                 {
                     b.Property<int>("Id")

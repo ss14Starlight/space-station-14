@@ -1,0 +1,281 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/4657875a140bf9b49416a154fe4bc4cd364ce925/icons/mob/screen_gen.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "dead"
+    },
+    {
+      "name": "outline"
+    },
+    {
+      "name": "chest0"
+    },
+    {
+      "name": "chest1"
+    },
+    {
+      "name": "chest2"
+    },
+    {
+      "name": "chest3"
+    },
+    {
+      "name": "chest4"
+    },
+    {
+      "name": "chest5",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "groin0"
+    },
+    {
+      "name": "groin1"
+    },
+    {
+      "name": "groin2"
+    },
+    {
+      "name": "groin3"
+    },
+    {
+      "name": "groin4"
+    },
+    {
+      "name": "groin5",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "head0"
+    },
+    {
+      "name": "head1"
+    },
+    {
+      "name": "head2"
+    },
+    {
+      "name": "head3"
+    },
+    {
+      "name": "head4"
+    },
+    {
+      "name": "head5",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "l_arm0"
+    },
+    {
+      "name": "l_arm1"
+    },
+    {
+      "name": "l_arm2"
+    },
+    {
+      "name": "l_arm3"
+    },
+    {
+      "name": "l_arm4"
+    },
+    {
+      "name": "l_arm5",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "l_foot0"
+    },
+    {
+      "name": "l_foot1"
+    },
+    {
+      "name": "l_foot2"
+    },
+    {
+      "name": "l_foot3"
+    },
+    {
+      "name": "l_foot4"
+    },
+    {
+      "name": "l_foot5",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "l_hand0"
+    },
+    {
+      "name": "l_hand1"
+    },
+    {
+      "name": "l_hand2"
+    },
+    {
+      "name": "l_hand3"
+    },
+    {
+      "name": "l_hand4"
+    },
+    {
+      "name": "l_hand5",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "l_leg0"
+    },
+    {
+      "name": "l_leg1"
+    },
+    {
+      "name": "l_leg2"
+    },
+    {
+      "name": "l_leg3"
+    },
+    {
+      "name": "l_leg4"
+    },
+    {
+      "name": "l_leg5",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "r_arm0"
+    },
+    {
+      "name": "r_arm1"
+    },
+    {
+      "name": "r_arm2"
+    },
+    {
+      "name": "r_arm3"
+    },
+    {
+      "name": "r_arm4"
+    },
+    {
+      "name": "r_arm5",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "r_foot0"
+    },
+    {
+      "name": "r_foot1"
+    },
+    {
+      "name": "r_foot2"
+    },
+    {
+      "name": "r_foot3"
+    },
+    {
+      "name": "r_foot4"
+    },
+    {
+      "name": "r_foot5",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "r_hand0"
+    },
+    {
+      "name": "r_hand1"
+    },
+    {
+      "name": "r_hand2"
+    },
+    {
+      "name": "r_hand3"
+    },
+    {
+      "name": "r_hand4"
+    },
+    {
+      "name": "r_hand5",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "r_leg0"
+    },
+    {
+      "name": "r_leg1"
+    },
+    {
+      "name": "r_leg2"
+    },
+    {
+      "name": "r_leg3"
+    },
+    {
+      "name": "r_leg4"
+    },
+    {
+      "name": "r_leg5",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    }
+  ]
+}

@@ -49,6 +49,6 @@
 - type: !PartialOnly entity
   id: MobShark
   components:
-  - type: Body
-    prototype: Bloodsucker
+  - type: SLBody
+    prefab: Bloodsucker
     requiredLegs: 1

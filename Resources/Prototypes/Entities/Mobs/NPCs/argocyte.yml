@@ -38,8 +38,8 @@
       types:
         Slash: 5
   # Starlight - start
-  - type: Body
-    prototype: Animal
+  - type: SLBody
+    prefab: Animal
   # Starlight - end
   - type: Flammable
     fireSpread: true

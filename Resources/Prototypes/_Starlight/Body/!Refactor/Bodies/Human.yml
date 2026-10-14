@@ -5,6 +5,10 @@
   components:
   - type: SLBody
     prefab: SLHumanBodyPrefab
+    requiredLegs: 2
+  - type: Hands
+  - type: MovementSpeedModifier
+  - type: StandingState
   - type: BodyVisualizer
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi

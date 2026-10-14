@@ -202,8 +202,8 @@
     - hand_left
   - type: ComplexInteraction
   - type: Puller
-  - type: Body
-    prototype: Mouse
+  - type: SLBody
+    prefab: Mouse
   - type: Speech
     speechSounds: Squeak
     speechVerb: SmallMob

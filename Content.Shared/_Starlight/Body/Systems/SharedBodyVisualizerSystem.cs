@@ -6,29 +6,23 @@ using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Body.Editor;
 using Content.Shared._Starlight.Body.Events;
 using Content.Shared._Starlight.Body.Prototypes;
-using Content.Shared.Starlight.Utility;
+using Content.Shared._Starlight.Utility;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Markdown.Mapping;
-using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Body.Systems;
 
 public abstract partial class SharedBodyVisualizerSystem : EntitySystem
 {
-    private static readonly Dictionary<VisualLayerKey, ExtendedSpriteSpecifier> _emptyModified = [];
-
     public static ComponentRegistry CreateAppearanceOverride(BodyProfile? appearance)
     {
         return new ComponentRegistry
         {
             ["BodyVisualizer"] = new EntityPrototype.ComponentRegistryEntry(
-                new BodyVisualizerComponent { Appearance = appearance?.Clone() },
-                [])
+                new BodyVisualizerComponent { Appearance = appearance?.Clone() })
         };
     }
-
-    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -53,7 +47,7 @@ public abstract partial class SharedBodyVisualizerSystem : EntitySystem
         {
             if (!IsLayerAllowed(layerId, allowed))
                 continue;
-            SetLayer(part.Body, layerId, specifier, bodyVis);
+            SetLayer(part.Body.Value, layerId, specifier, bodyVis);
         }
     }
 
@@ -70,14 +64,10 @@ public abstract partial class SharedBodyVisualizerSystem : EntitySystem
         {
             if (!IsLayerAllowed(layerId, allowed))
                 continue;
-            RemoveLayer(part.Body, layerId, bodyVis);
+            RemoveLayer(part.Body.Value, layerId, bodyVis);
         }
     }
 
-    /// <summary>
-    /// Returns the set of allowed layer keys for this part based on its socket,
-    /// or null if no symmetry component is present (meaning all layers are allowed).
-    /// </summary>
     private List<VisualLayerKey>? GetAllowedLayers(BodyPartVisualizerComponent vis, SLBodyPartComponent part)
     {
         if (vis.SocketLayers.Count == 0)
@@ -90,10 +80,6 @@ public abstract partial class SharedBodyVisualizerSystem : EntitySystem
         return vis.SocketLayers.TryGetValue(socketId, out var layers) ? layers : null;
     }
 
-    /// <summary>
-    /// Checks if the given layer is allowed based on the socket symmetry rules.
-    /// Ignores the Index part of the key, only base layer ID is checked.
-    /// </summary>
     private bool IsLayerAllowed(VisualLayerKey layerId, List<VisualLayerKey>? allowed)
     {
         if (allowed == null)
@@ -119,25 +105,9 @@ public abstract partial class SharedBodyVisualizerSystem : EntitySystem
 
     private void OnGetState(EntityUid uid, BodyVisualizerComponent component, ref ComponentGetState args)
     {
-        if (args.FromTick <= component.CreationTick)
-        {
-            args.State = new BodyVisualizerFullState(component.Offset, component.LayerData);
-            return;
-        }
-
-        Dictionary<VisualLayerKey, ExtendedSpriteSpecifier>? modifiedLayers = null;
-        foreach (var (key, tick) in component.LayerModifiedTicks)
-        {
-            if (tick < args.FromTick)
-                continue;
-
-            if (!component.LayerData.TryGetValue(key, out var value))
-                continue;
-
-            (modifiedLayers ??= [])[key] = value;
-        }
-
-        args.State = new BodyVisualizerDeltaState(component.Offset, modifiedLayers ?? _emptyModified, component.LayerKeys);
+        // Always a full state: the component usually comes from the entity prototype, whose CreationTick is
+        // cleared to zero, so a FromTick/CreationTick delta check would send a delta as the very first state.
+        args.State = new BodyVisualizerFullState(component.Offset, component.LayerData);
     }
 
     internal void SetPartLayerColor(Entity<SLBodyComponent, BodyVisualizerComponent> bodyVis, Entity<SLBodyPartComponent, BodyPartVisualizerComponent> partVis, VisualLayerKey key, Color color)

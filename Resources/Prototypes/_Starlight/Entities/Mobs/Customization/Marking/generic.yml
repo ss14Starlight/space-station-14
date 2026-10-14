@@ -9,7 +9,6 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
-  # Starlight start
   sprites:
     body_head@0:
       sprite:
@@ -21,7 +20,6 @@
         sprite: _Starlight/Mobs/Customization/Generic/head.rsi
         state: head_heavy2
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: HeadEarrings
@@ -35,7 +33,6 @@
       type:
         !type:SimpleColoring
           color: "#ffc833"
-  # Starlight start
   sprites:
     body_headTop@0:
       sprite:
@@ -47,7 +44,6 @@
         sprite: _Starlight/Mobs/Customization/Generic/head_top.rsi
         state: head_earrings2
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: HeadEarringsDrop
@@ -61,7 +57,6 @@
       type:
         !type:SimpleColoring
           color: "#ffc833"
-  # Starlight start
   sprites:
     body_headTop@0:
       sprite:
@@ -73,7 +68,6 @@
         sprite: _Starlight/Mobs/Customization/Generic/head_top.rsi
         state: head_earrings_drop2
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: HeadEarringsWeights
@@ -87,7 +81,6 @@
       type:
         !type:SimpleColoring
           color: "#ffc833"
-  # Starlight start
   sprites:
     body_headTop@0:
       sprite:
@@ -99,7 +92,6 @@
         sprite: _Starlight/Mobs/Customization/Generic/head_top.rsi
         state: head_earrings_weights2
       colorSource: UniqueColor
-  # Starlight end
 
 # Snout
 - type: marking
@@ -114,14 +106,12 @@
       type:
         !type:SimpleColoring
           color: "#ffc833"
-  # Starlight start
   sprites:
     body_snout:
       sprite:
         sprite: _Starlight/Mobs/Customization/Generic/snout.rsi
         state: head_septum
       colorSource: UniqueColor
-  # Starlight end
 
 # Chest
 - type: marking
@@ -136,14 +126,12 @@
       type:
         !type:SimpleColoring
           color: "#ffc833"
-  # Starlight start
   sprites:
     body_chest:
       sprite:
         sprite: _Starlight/Mobs/Customization/Generic/chest.rsi
         state: chest_necklace
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ChestCutHere
@@ -155,14 +143,12 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
-  # Starlight start
   sprites:
     body_chest:
       sprite:
         sprite: _Starlight/Mobs/Customization/Generic/chest.rsi
         state: chest_cuthere
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ChestHeavyTattoos
@@ -174,7 +160,6 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
-  # Starlight start
   sprites:
     body_chest@0:
       sprite:
@@ -191,35 +176,30 @@
         sprite: _Starlight/Mobs/Customization/Generic/chest.rsi
         state: chest_heavy3
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: BodyHairChest
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Arachnid, NeoArachnid, SlimePerson, NeoSlimePerson, Elf, Neocyte]
-  # Starlight start
   sprites:
     body_chest:
         sprite:
           sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
           state: hair_chest
         colorSource: HumanSkinColor
-  # Starlight end
 
 - type: marking
   id: BodyHairBack
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Arachnid, NeoArachnid, SlimePerson, NeoSlimePerson, Neocyte]
-  # Starlight start
   sprites:
     body_chest:
         sprite:
           sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
           state: hair_back
         colorSource: HumanSkinColor
-  # Starlight end
 
 # Arms
 - type: marking
@@ -234,7 +214,6 @@
       type:
         !type:SimpleColoring
           color: "#ffc833"
-  # Starlight start
   sprites:
     body_lHand:
       sprite:
@@ -246,7 +225,6 @@
         sprite: _Starlight/Mobs/Customization/Generic/arms.rsi
         state: r_hand_bracelet
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: HandRings
@@ -260,7 +238,6 @@
       type:
         !type:SimpleColoring
           color: "#ffc833"
-  # Starlight start
   sprites:
     body_lHand@0:
       sprite:
@@ -282,7 +259,6 @@
         sprite: _Starlight/Mobs/Customization/Generic/arms.rsi
         state: r_hand_rings2
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ArmDollJointsTattoo
@@ -294,7 +270,6 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
-  # Starlight start
   sprites:
     body_lArm:
       sprite:
@@ -306,7 +281,6 @@
         sprite: _Starlight/Mobs/Customization/Generic/arms.rsi
         state: r_arm_doll
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: HandDollJointsTattoo
@@ -318,7 +292,6 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
-  # Starlight start
   sprites:
     body_lHand:
       sprite:
@@ -330,7 +303,6 @@
         sprite: _Starlight/Mobs/Customization/Generic/arms.rsi
         state: r_hand_doll
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ArmHeavyTattoos
@@ -342,7 +314,6 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
-  # Starlight start
   sprites:
     body_lArm@0:
       sprite:
@@ -364,7 +335,6 @@
         sprite: _Starlight/Mobs/Customization/Generic/arms.rsi
         state: r_arm_heavy2
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: HandHeavyTattoos
@@ -376,7 +346,6 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
-  # Starlight start
   sprites:
     body_lHand@0:
       sprite:
@@ -398,14 +367,12 @@
         sprite: _Starlight/Mobs/Customization/Generic/arms.rsi
         state: r_hand_heavy2
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: BodyHairArm
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Arachnid, NeoArachnid, SlimePerson, NeoSlimePerson, Neocyte]
-  # Starlight start
   sprites:
     body_lArm:
         sprite:
@@ -417,7 +384,6 @@
           sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
           state: hair_right_arm
         colorSource: HumanSkinColor
-  # Starlight end
 
 - type: marking
   id: LegDollJointsTattoo
@@ -429,7 +395,6 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
-  # Starlight start
   sprites:
     body_lLeg:
       sprite:
@@ -441,7 +406,6 @@
         sprite: _Starlight/Mobs/Customization/Generic/legs.rsi
         state: r_leg_doll
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: FootDollJointsTattoo
@@ -453,7 +417,6 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
-  # Starlight start
   sprites:
     body_lFoot:
       sprite:
@@ -465,7 +428,6 @@
         sprite: _Starlight/Mobs/Customization/Generic/legs.rsi
         state: r_foot_doll
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: LegHeavyTattoos
@@ -477,7 +439,6 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
-  # Starlight start
   sprites:
     body_lLeg@0:
       sprite:
@@ -499,7 +460,6 @@
         sprite: _Starlight/Mobs/Customization/Generic/legs.rsi
         state: r_leg_heavy2
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: FootHeavyTattoos
@@ -511,7 +471,6 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
-  # Starlight start
   sprites:
     body_lFoot@0:
       sprite:
@@ -533,14 +492,12 @@
         sprite: _Starlight/Mobs/Customization/Generic/legs.rsi
         state: r_foot_heavy2
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: BodyHairLeg
   bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Arachnid, NeoArachnid, SlimePerson, NeoSlimePerson, Neocyte]
-  # Starlight start
   sprites:
     body_lLeg:
         sprite:
@@ -552,7 +509,6 @@
           sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
           state: hair_right_leg
         colorSource: HumanSkinColor
-  # Starlight end
 
 - type: marking
   id: HeadScarLeft
@@ -560,14 +516,12 @@
   markingCategory: Head
   speciesRestriction: [Human, Dwarf, Reptilian, SlimePerson]
   # followSkinColor: true
-  # Starlight start
   sprites:
     body_head:
       sprite:
         sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
         state: scar-head-l
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: HeadScarRight
@@ -575,14 +529,12 @@
   markingCategory: Head
   speciesRestriction: [Human, Dwarf, Reptilian, SlimePerson]
   # followSkinColor: true
-  # Starlight start
   sprites:
     body_head:
       sprite:
         sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
         state: scar-head-r
       colorSource: UniqueColor
-  # Starlight end
 
 # Head Top
 - type: marking
@@ -590,28 +542,24 @@
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
-  # Starlight start
   sprites:
     body_lArm:
       sprite:
         sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
         state: scar-arm-l
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: ScarRightArm
   bodyPart: RArm
   markingCategory: Arms
   speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
-  # Starlight start
   sprites:
     body_rArm:
       sprite:
         sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
         state: scar-arm-r
       colorSource: UniqueColor
-  # Starlight end
 
 # Legs
 - type: marking
@@ -619,25 +567,21 @@
   bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
-  # Starlight start
   sprites:
     body_lLeg:
       sprite:
         sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
         state: scar-leg-l
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: LegScarRight
   bodyPart: RLeg
   markingCategory: Legs
   speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
-  # Starlight start
   sprites:
     body_rLeg:
       sprite:
         sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
         state: scar-leg-r
       colorSource: UniqueColor
-  # Starlight end

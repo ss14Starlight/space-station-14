@@ -5,9 +5,8 @@ using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Rejuvenate;
 using JetBrains.Annotations;
-#region Starlight
 using Content.Shared._Starlight.Medical.Surgery.Components;
-#endregion
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Shared.Eye.Blinding.Systems;
 
@@ -58,11 +57,11 @@ public sealed partial class BlindableSystem : EntitySystem
         var old = blindable.Comp.IsBlind;
 
         var forceBlind = false;
-        if (TryComp<BodyComponent>(blindable.Owner, out var body))
+        if (HasComp<SLBodyComponent>(blindable.Owner)) // Starlight-edit: SLBody
         {
-            var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((blindable.Owner, body));
+            var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((blindable.Owner, null)); // Starlight-edit: SLBody
 
-            forceBlind = eyes.Count == 0 && _bodySystem.HasOrganSlot(blindable.Owner, body, "eyes");
+            forceBlind = eyes.Count == 0 && _bodySystem.HasOrganSlot(blindable.Owner, "eyes"); // Starlight-edit: SLBody
         }
 
         // Don't bother raising an event if the eye is too damaged.

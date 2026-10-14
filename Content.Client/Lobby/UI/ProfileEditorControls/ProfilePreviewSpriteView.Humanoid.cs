@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Body.Components;
 using System.Linq;
 using Content.Client.Station;
 using Content.Shared.Clothing;
@@ -9,13 +10,10 @@ using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Content.Shared.Body.Part;
-#region Starlight
 using Content.Shared._Starlight.Medical.Limbs;
 using Content.Client._Starlight.Humanoid;
 using Content.Shared._Starlight.Humanoid;
 using Content.Shared._Starlight.Roles;
-#endregion
 
 namespace Content.Client.Lobby.UI.ProfileEditorControls;
 
@@ -368,15 +366,15 @@ public sealed partial class ProfilePreviewSpriteView
         }
     }
 
-    /// Starlight
+    #region Starlight
     /// <summary>
     /// Extracts cybernetics IDs from humanoid profile, returns all their visual layers
     /// </summary>
     private Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo> GetCyberneticsLayers(HumanoidCharacterProfile humanoid) => humanoid.Cybernetics.Select(p =>
     {
         var _cyberneticEnt = _prototypeManager.Index<EntityPrototype>(p);
-        if (_cyberneticEnt.TryGetComponent<BodyPartComponent>(out var part, EntMan.ComponentFactory) &&
-           _cyberneticEnt.TryGetComponent<BaseLayerIdComponent>(out var layer, EntMan.ComponentFactory))
+        if (_cyberneticEnt.TryComp<SLBodyPartComponent>(out var part, EntMan.ComponentFactory) &&
+           _cyberneticEnt.TryComp<BaseLayerIdComponent>(out var layer, EntMan.ComponentFactory))
         {
             return (CyberneticImplant.LayerFromBodypart(part), new(
                 !layer.Layers.TryGetValue(humanoid.Species, out var baseLayer) ? // Get layer value by species
@@ -384,5 +382,6 @@ public sealed partial class ProfilePreviewSpriteView
                 ));
         }
         else { return (HumanoidVisualLayers.Special, new CustomBaseLayerInfo()); }
-    }).Where(p => p.Item1 != HumanoidVisualLayers.Special).ToDictionary();
+    }).Where(p => p.Special != HumanoidVisualLayers.Special).ToDictionary();
+    #endregion
 }

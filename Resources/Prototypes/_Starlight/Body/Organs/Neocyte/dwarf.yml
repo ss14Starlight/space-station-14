@@ -29,6 +29,8 @@
     sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
     state: stomach
   - type: Organ
+  - type: SLBodyPart
+    partType: Organ
   - type: SolutionManager
     solutions:
     - SolutionOrganFoodMeat

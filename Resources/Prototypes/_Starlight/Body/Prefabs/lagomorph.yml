@@ -1,0 +1,58 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Lagomorph
+  root:
+    bodyPart: TorsoLagomorph
+    containedParts:
+      Heart:
+        bodyPart: OrganLagomorphHeart
+      Lungs:
+        bodyPart: OrganHumanLungs
+      Stomach:
+        bodyPart: OrganLagomorphStomach
+      Liver:
+        bodyPart: OrganHumanLiver
+      Kidneys:
+        bodyPart: OrganHumanKidneys
+    attachedParts:
+      Head:
+        bodyPart: HeadLagomorph
+        containedParts:
+          Brain:
+            bodyPart: OrganHumanBrain
+          Tongue:
+            bodyPart: OrganLagomorphTongue
+        attachedParts:
+          Eyes:
+            bodyPart: OrganLagomorphEyes
+        sockets:
+          EyeImplant: OrganSocket
+          NoseImplant: OrganSocket
+          BrainImplant: OrganSocket
+      RightArm:
+        bodyPart: RightArmLagomorph
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandLagomorph
+            sockets:
+              HandImplant: OrganSocket
+      LeftArm:
+        bodyPart: LeftArmLagomorph
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandLagomorph
+            sockets:
+              HandImplant: OrganSocket
+      RightLeg:
+        bodyPart: RightLegLagomorph
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootLagomorph
+      LeftLeg:
+        bodyPart: LeftLegLagomorph
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootLagomorph
+    sockets:
+      Cavity: OrganSocket

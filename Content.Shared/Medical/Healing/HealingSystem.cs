@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Medical.PartDamage;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
 using System.Linq;
@@ -42,6 +43,9 @@ public sealed partial class HealingSystem : EntitySystem
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private ConditionalHealingSystem _conditionalHealing = default!; // Far Horizons
     [Dependency] private BlindableSystem _blindable = default!; // Far Horizons
+    #region Starlight
+    [Dependency] private BodyPartDamageSystem _partDamage = default!;
+    #endregion
 
     public override void Initialize()
     {
@@ -99,8 +103,14 @@ public sealed partial class HealingSystem : EntitySystem
         if (healing.AdjustEyeDamage != 0 && TryComp(target, out BlindableComponent? blindable))
             _blindable.AdjustEyeDamage((target, blindable), healing.AdjustEyeDamage);
 
-        if (!_damageable.TryChangeDamage(target.Owner, healing.Damage * _damageable.UniversalTopicalsHealModifier, out var healed, true, origin: args.Args.User) && healing.BloodlossModifier != 0)
-            return;
+        // Starlight-start
+        DamageSpecifier? healed;
+        using (_partDamage.Target(target.Owner, BodyDamageTargeting.MostDamaged))
+        {
+            if (!_damageable.TryChangeDamage(target.Owner, healing.Damage * _damageable.UniversalTopicalsHealModifier, out healed, true, origin: args.Args.User) && healing.BloodlossModifier != 0)
+                return;
+        }
+        // Starlight-end
 
         if (healed == null && healing.BloodlossModifier != 0 && healing.AdjustEyeDamage != 0) // Far Horizons - added eye healing
             return;

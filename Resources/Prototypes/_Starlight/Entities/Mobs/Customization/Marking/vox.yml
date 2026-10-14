@@ -4,8 +4,11 @@
   markingCategory: Snout
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: voxbeakcolor
+    body_snout:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: voxbeakcolor
+      colorSource: UniqueColor
 
 - type: marking
   # The cere is the base of the top part of the beak, the cere on this beak, is a square.
@@ -14,8 +17,11 @@
   markingCategory: Snout
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: voxbeaksquarecolor
+    body_snout:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: voxbeaksquarecolor
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxBeakShavedColor
@@ -23,8 +29,11 @@
   markingCategory: Snout
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: voxbeakshavedcolor
+    body_snout:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: voxbeakshavedcolor
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxBeakHookedColor
@@ -32,8 +41,11 @@
   markingCategory: Snout
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: voxbeakhookedcolor
+    body_snout:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: voxbeakhookedcolor
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxColorableLeftHand
@@ -41,8 +53,11 @@
   markingCategory: Arms
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: lefthand
+    body_lHand:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: lefthand
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxColorableRightHand
@@ -50,8 +65,11 @@
   markingCategory: Arms
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: righthand
+    body_rHand:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: righthand
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxColorableLeftFoot
@@ -59,8 +77,11 @@
   markingCategory: Legs
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: leftfoot
+    body_lFoot:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: leftfoot
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxColorableRightFoot
@@ -68,8 +89,11 @@
   markingCategory: Legs
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: rightfoot
+    body_rFoot:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: rightfoot
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxFeatheredLegLeft
@@ -77,8 +101,11 @@
   markingCategory: Legs
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: leftlegfeathered
+    body_lLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: leftlegfeathered
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxFeatheredLegRight
@@ -86,8 +113,11 @@
   markingCategory: Legs
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: rightlegfeathered
+    body_rLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: rightlegfeathered
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxColorableLeftArm
@@ -95,8 +125,11 @@
   markingCategory: Arms
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: leftarm
+    body_lArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: leftarm
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxColorableRightArm
@@ -104,8 +137,11 @@
   markingCategory: Arms
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: rightarm
+    body_rArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: rightarm
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxColorableRightLeg
@@ -113,8 +149,11 @@
   markingCategory: Legs
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: rightleg
+    body_rLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: rightleg
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxColorableLeftLeg
@@ -122,8 +161,11 @@
   markingCategory: Legs
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: leftleg
+    body_lLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: leftleg
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxShaggyTail
@@ -131,8 +173,11 @@
   markingCategory: Tail
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: voxshaggytail
+    body_tail:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: voxshaggytail
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxPlumage
@@ -140,8 +185,11 @@
   markingCategory: Tail
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: voxplumage
+    body_tail:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: voxplumage
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxBushTail
@@ -149,8 +197,11 @@
   markingCategory: Tail
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: bushtail
+    body_tail:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: bushtail
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxAllSeeing
@@ -158,10 +209,16 @@
   markingCategory: Overlay
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: allseeingeyes
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: allseeingface
+    body_eyes@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: allseeingeyes
+      colorSource: UniqueColor
+    body_eyes@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: allseeingface
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxThirdEye
@@ -169,8 +226,11 @@
   markingCategory: Overlay
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: thirdeye
+    body_eyes:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: thirdeye
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxPeafowlTail
@@ -178,10 +238,16 @@
   markingCategory: Tail
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: peafowltailbase
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: peafowltaileyes
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: peafowltailbase
+      colorSource: UniqueColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: peafowltaileyes
+      colorSource: UniqueColor
 
 - type: marking
   id: VoxSeveredTail
@@ -189,5 +255,9 @@
   markingCategory: Tail
   speciesRestriction: [Vox, NeoVox]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/vox.rsi
-    state: severedtail
+    body_tail:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/vox.rsi
+        state: severedtail
+      colorSource: UniqueColor
+

@@ -1,0 +1,29 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Skeleton
+  root:
+    bodyPart: TorsoSkeleton
+    attachedParts:
+      Head:
+        bodyPart: HeadSkeleton
+      RightArm:
+        bodyPart: RightArmSkeleton
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandSkeleton
+      LeftArm:
+        bodyPart: LeftArmSkeleton
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandSkeleton
+      RightLeg:
+        bodyPart: RightLegSkeleton
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootSkeleton
+      LeftLeg:
+        bodyPart: LeftLegSkeleton
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootSkeleton

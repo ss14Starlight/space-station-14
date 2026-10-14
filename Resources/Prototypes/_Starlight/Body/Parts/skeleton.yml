@@ -7,7 +7,7 @@
   components:
   - type: Damageable
     damageContainer: Biological
-  - type: BodyPart
+  - type: SLBodyPart
   - type: ContainerContainer
     containers:
       bodypart: !type:Container
@@ -29,7 +29,7 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "torso_m"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Torso
 
 - type: entity
@@ -52,7 +52,7 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "skull_icon"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Head
     - type: BlockMovement
     - type: Input
@@ -92,9 +92,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "l_arm"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Arm
-      symmetry: Left
+      side: Left
 
 - type: entity
   id: RightArmSkeleton
@@ -107,9 +107,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "r_arm"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Arm
-      symmetry: Right
+      side: Right
 
 - type: entity
   id: LeftHandSkeleton
@@ -122,9 +122,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "l_hand"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Hand
-      symmetry: Left
+      side: Left
 
 - type: entity
   id: RightHandSkeleton
@@ -137,9 +137,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "r_hand"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Hand
-      symmetry: Right
+      side: Right
 
 - type: entity
   id: LeftLegSkeleton
@@ -152,9 +152,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "l_leg"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Leg
-      symmetry: Left
+      side: Left
     - type: MovementBodyPart
 
 - type: entity
@@ -168,9 +168,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "r_leg"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Leg
-      symmetry: Right
+      side: Right
     - type: MovementBodyPart
 
 - type: entity
@@ -184,9 +184,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "l_foot"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Foot
-      symmetry: Left
+      side: Left
 
 - type: entity
   id: RightFootSkeleton
@@ -199,6 +199,6 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Skeleton/parts.rsi
       state: "r_foot"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Foot
-      symmetry: Right
+      side: Right

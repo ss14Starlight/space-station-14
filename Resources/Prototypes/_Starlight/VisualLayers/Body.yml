@@ -41,11 +41,11 @@
     - body_lFoot
     - body_rFoot
 
-# - type: visualLayer
-#   id: body_undergarmentBottom
-#   aboveLayers:
-#     - body_lLeg
-#     - body_rLeg
+- type: visualLayer
+  id: body_undergarmentBottom
+  aboveLayers:
+    - body_lLeg
+    - body_rLeg
 
 - type: visualLayer
   id: body_chest
@@ -53,10 +53,10 @@
     - body_lLeg
     - body_rLeg
 
-# - type: visualLayer
-#   id: body_undergarmentTop
-#   aboveLayers:
-#     - body_chest
+- type: visualLayer
+  id: body_undergarmentTop
+  aboveLayers:
+    - body_chest
 
 - type: visualLayer
   id: body_lArm

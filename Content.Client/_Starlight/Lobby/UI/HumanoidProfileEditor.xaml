@@ -267,8 +267,7 @@
                     <humanoid:MarkingPicker Name="Markings" IgnoreCategories="Hair,FacialHair" />
                 </ScrollContainer>
             </BoxContainer>
-            <!--  Starlight start  -->
-            <ui1:BodyTab Name="BodyTab" />
+            <!--  Starlight  -->
             <BoxContainer
                 Name="CyberneticsTab"
                 Margin="10"
@@ -280,6 +279,7 @@
                     <!-- Starlight edit End -->
                 </ScrollContainer>
             </BoxContainer>
+            <!--  Starlight start  -->
             <BoxContainer
                 Name="ICInfoTab"
                 Margin="10"

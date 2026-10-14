@@ -10,4 +10,5 @@ public readonly record struct CollectHealthAnalyzerExtensionsEvent()
 {
     public readonly List<HealthAnalyzerVitalsBlockData> Vitals = new();
     public readonly List<HealthAnalyzerAbnormalityData> Abnormalities = new();
+    public readonly List<HealthAnalyzerDollPart> Doll = new();
 }

@@ -3,7 +3,6 @@
   bodyPart: Tail
   markingCategory: Chest
   speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
-  # Starlight start
   sprites:
     body_tail@0:
       sprite:
@@ -15,14 +14,12 @@
         sprite: _Starlight/Mobs/Customization/reptilian.rsi
         state: body_dragonwings_membrane
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: SnakeLargeTail
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
-  # Starlight start
   sprites:
     body_tail@0:
       sprite:
@@ -34,14 +31,12 @@
         sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
         state: snake_large_overlay
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: SnakeLargeTailAnimated
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
-  # Starlight start
   sprites:
     body_tail@0:
       sprite:
@@ -53,7 +48,6 @@
         sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
         state: snake_large_wagging_overlay
       colorSource: UniqueColor
-  # Starlight end
 
 # Eastern Dragon Snout Markings
 - type: marking
@@ -61,7 +55,6 @@
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
-  # Starlight start
   sprites:
     body_snout@0:
       sprite:
@@ -73,14 +66,12 @@
         sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
         state: eastern_dragon_overlay
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: LizardSnoutEasternDragonUsiki
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
-  # Starlight start
   sprites:
     body_snout@0:
       sprite:
@@ -97,18 +88,15 @@
         sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
         state: eastern_dragon_usiki
       colorSource: UniqueColor
-  # Starlight end
 
 - type: marking
   id: LizardHeadGuilmon
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
-  # Starlight start
   sprites:
     body_snout:
       sprite:
         sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
         state: guilmon
       colorSource: ReptilianSkinColor
-  # Starlight end

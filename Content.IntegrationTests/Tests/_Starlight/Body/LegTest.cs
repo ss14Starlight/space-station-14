@@ -1,9 +1,9 @@
-﻿using System.Numerics;
+﻿using Content.Shared._Starlight.Body.Components;
+using System.Numerics;
 using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
 using Content.Shared.Rotation;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -11,8 +11,8 @@ using Robust.Shared.Map;
 namespace Content.IntegrationTests.Tests._Starlight.Body
 {
     [TestFixture]
-    [TestOf(typeof(BodyPartComponent))]
-    [TestOf(typeof(BodyComponent))]
+    [TestOf(typeof(SLBodyPartComponent))]
+    [TestOf(typeof(SLBodyComponent))]
     public sealed class LegTest : GameTest
     {
         [TestPrototypes]
@@ -22,8 +22,8 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
   id: HumanBodyAndAppearanceDummy
   components:
   - type: Appearance
-  - type: Body
-    prototype: Human
+  - type: SLBody
+    prefab: Human
   - type: StandingState
 ";
 
@@ -44,7 +44,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
 
             await server.WaitAssertion(() =>
             {
-                BodyComponent body = null;
+                SLBodyComponent body = null;
 
                 human = entityManager.SpawnEntity("HumanBodyAndAppearanceDummy",
                     new MapCoordinates(Vector2.Zero, map.MapId));
@@ -58,7 +58,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
                 Assert.That(!appearanceSystem.TryGetData(human, RotationVisuals.RotationState, out RotationState _, appearance));
 
                 var bodySystem = entityManager.System<BodySystem>();
-                var legs = bodySystem.GetBodyChildrenOfType(human, BodyPartType.Leg, body);
+                var legs = bodySystem.GetBodyChildrenOfType(human, BodyPartType.Leg);
 
                 foreach (var leg in legs)
                 {

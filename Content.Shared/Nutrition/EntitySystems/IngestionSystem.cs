@@ -1,6 +1,7 @@
 using Content.Shared.Administration.Logs;
 using Content.Shared.Body;
 using Content.Shared.Body.Components;
+using Content.Shared._Starlight.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
@@ -25,12 +26,10 @@ using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
-#region Starlight
 using Content.Shared.Body.Organ;
 using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared._Starlight.Medical.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Systems;
-#endregion
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
@@ -85,8 +84,8 @@ public sealed partial class IngestionSystem : EntitySystem
         SubscribeLocalEvent<EdibleComponent, FullyEatenEvent>(OnFullyEaten);
 
         // Body Component eating handler
-        SubscribeLocalEvent<BodyComponent, AttemptIngestEvent>(OnTryIngest);
-        SubscribeLocalEvent<BodyComponent, EatingDoAfterEvent>(OnEatingDoAfter);
+        SubscribeLocalEvent<SLBodyComponent, AttemptIngestEvent>(OnTryIngest); // Starlight-edit: SLBody
+        SubscribeLocalEvent<SLBodyComponent, EatingDoAfterEvent>(OnEatingDoAfter); // Starlight-edit: SLBody
 
         // Verbs
         SubscribeLocalEvent<EdibleComponent, GetVerbsEvent<AlternativeVerb>>(AddEdibleVerbs);
@@ -245,12 +244,12 @@ public sealed partial class IngestionSystem : EntitySystem
         return false;
     }
 
-    private void OnTryIngest(Entity<BodyComponent> entity, ref AttemptIngestEvent args)
+    private void OnTryIngest(Entity<SLBodyComponent> entity, ref AttemptIngestEvent args) // Starlight-edit: SLBody
     {
         var food = args.Ingested;
         var forceFed = args.User != entity.Owner;
 
-        if (!_body.TryGetOrgansWithComponent<StomachComponent>(entity!, out var stomachs))
+        if (!_body.TryGetOrgansWithComponent<StomachComponent>((entity.Owner, null), out var stomachs)) // Starlight-edit
             return;
 
         // Can we digest the specific item we're trying to eat?
@@ -299,7 +298,7 @@ public sealed partial class IngestionSystem : EntitySystem
         }
     }
 
-    private void OnEatingDoAfter(Entity<BodyComponent> entity, ref EatingDoAfterEvent args)
+    private void OnEatingDoAfter(Entity<SLBodyComponent> entity, ref EatingDoAfterEvent args) // Starlight-edit: SLBody
     {
         if (args.Cancelled || args.Handled || entity.Comp.Deleted || args.Target == null)
             return;
@@ -315,7 +314,7 @@ public sealed partial class IngestionSystem : EntitySystem
         if (!CanConsume(args.User, entity, food, out var solution, out _))
             return;
 
-        if (!_body.TryGetOrgansWithComponent<StomachComponent>(entity!, out var stomachs))
+        if (!_body.TryGetOrgansWithComponent<StomachComponent>((entity.Owner, null), out var stomachs)) // Starlight-edit
             return;
 
         var forceFed = args.User != entity.Owner;

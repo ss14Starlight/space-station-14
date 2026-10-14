@@ -1,7 +1,6 @@
 // SPDX-FileCopyrightText: 2026 Starlight Network
 // SPDX-License-Identifier: MIT
 
-using Content.Server.Administration.Systems;
 using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Body.Editor;
 using Content.Shared._Starlight.Body.Preferences;
@@ -14,32 +13,31 @@ namespace Content.Shared._Starlight.Body.Systems;
 
 public sealed class BodyPartVisualizerSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly MarkingManager _markings = default!;
-    [Dependency] private readonly StarlightEntitySystem _sl = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private MarkingManager _markings = default!;
 
     public void BakeAppearance(
         Entity<SLBodyComponent> body,
         Entity<SLBodyPartComponent> part,
         BodyPartAddress address)
     {
-        if (!_sl.TryEntity<SLBodyComponent, BodyVisualizerComponent>(body, out var bodyVis))
+        if (!TryComp<BodyVisualizerComponent>(body, out var bodyVisComp))
             return;
 
-        if (!_sl.TryEntity<SLBodyPartComponent, BodyPartVisualizerComponent>(part, out var partVis))
+        if (!TryComp<BodyPartVisualizerComponent>(part, out var partVisComp))
             return;
 
-        var appearance = bodyVis.Comp2.Appearance;
+        var appearance = bodyVisComp.Appearance;
         if (appearance == null)
             return;
 
         if (TryGetPreference(appearance.Root, address, out var preference))
-            BakeMarkings(partVis.Comp2, preference);
+            BakeMarkings(partVisComp, preference);
 
-        foreach (var layer in partVis.Comp2.BodyVisualLayers)
-            partVis.Comp2.BodyVisualLayers[layer.Key] = WithColor(layer.Value, appearance, address);
+        foreach (var layer in partVisComp.BodyVisualLayers)
+            partVisComp.BodyVisualLayers[layer.Key] = WithColor(layer.Value, appearance, address);
 
-        Dirty(part, partVis.Comp2);
+        Dirty(part, partVisComp);
     }
 
     private void BakeMarkings(BodyPartVisualizerComponent partVis, BodyPartPreference preference)
@@ -49,9 +47,11 @@ public sealed class BodyPartVisualizerSystem : EntitySystem
             if (!marking.Visible || !_markings.TryGetMarking(marking, out var prototype))
                 continue;
 
-            var colorIndex = 0;
+            var spriteIndex = 0;
             foreach (var (key, sprite) in prototype.Sprites)
             {
+                // Several sprites may share one color slot (spriteColorIndexes).
+                var colorIndex = prototype.GetColorIndex(spriteIndex++);
                 var baked = new BodySpriteSpecifier
                 {
                     Sprite = sprite.Sprite,
@@ -62,7 +62,6 @@ public sealed class BodyPartVisualizerSystem : EntitySystem
                     ColorSource = sprite.ColorSource,
                 };
                 partVis.BodyVisualLayers[GetMarkingLayerKey(partVis, key)] = baked;
-                colorIndex++;
             }
         }
     }

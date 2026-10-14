@@ -36,8 +36,8 @@
     - type: Icon
       sprite: _FarHorizons/Mobs/Species/Proto-Avali/parts.rsi
       state: full
-    - type: Body
-      prototype: NeoAvali
+    - type: SLBody
+      prefab: NeoAvali
       requiredLegs: 2
     - type: Butcherable
       spawned:

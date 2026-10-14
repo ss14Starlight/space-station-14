@@ -6,7 +6,7 @@
   components:
   - type: Damageable
     damageContainer: Biological
-  - type: BodyPart
+  - type: SLBodyPart
   - type: ContainerContainer
     containers:
       bodypart: !type:Container
@@ -35,7 +35,7 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
       state: "torso"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Torso
     - type: Extractable
       juiceSolution:
@@ -56,9 +56,8 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
       state: "head"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Head
-      vital: true
     - type: Input
       context: "ghost"
     - type: Tag
@@ -83,9 +82,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
       state: "l_arm"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Arm
-      symmetry: Left
+      side: Left
 
 - type: entity
   id: RightArmExperiment
@@ -98,9 +97,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
       state: "r_arm"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Arm
-      symmetry: Right
+      side: Right
 
 - type: entity
   id: LeftHandExperiment
@@ -113,9 +112,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
       state: "l_hand"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Hand
-      symmetry: Left
+      side: Left
 
 - type: entity
   id: RightHandExperiment
@@ -128,9 +127,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
       state: "r_hand"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Hand
-      symmetry: Right
+      side: Right
 
 - type: entity
   id: LeftLegExperiment
@@ -143,9 +142,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
       state: "l_leg"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Leg
-      symmetry: Left
+      side: Left
     - type: MovementBodyPart
       sprintSpeed : 5.625
       maxDensity: 55
@@ -161,9 +160,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
       state: "r_leg"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Leg
-      symmetry: Right
+      side: Right
     - type: MovementBodyPart
       sprintSpeed : 5.625
       maxDensity: 55
@@ -179,9 +178,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
       state: "l_foot"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Foot
-      symmetry: Left
+      side: Left
 
 - type: entity
   id: RightFootExperiment
@@ -194,6 +193,6 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
       state: "r_foot"
-    - type: BodyPart
+    - type: SLBodyPart
       partType: Foot
-      symmetry: Right
+      side: Right

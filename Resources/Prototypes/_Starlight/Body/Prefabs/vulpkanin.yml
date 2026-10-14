@@ -1,0 +1,58 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Vulpkanin
+  root:
+    bodyPart: TorsoVulpkanin
+    containedParts:
+      Heart:
+        bodyPart: OrganVulpkaninHeart
+      Lungs:
+        bodyPart: OrganVulpkaninLungs
+      Stomach:
+        bodyPart: OrganVulpkaninStomach
+      Liver:
+        bodyPart: OrganVulpkaninLiver
+      Kidneys:
+        bodyPart: OrganVulpkaninKidneys
+    attachedParts:
+      Head:
+        bodyPart: HeadVulpkanin
+        containedParts:
+          Brain:
+            bodyPart: OrganHumanBrain
+          Tongue:
+            bodyPart: OrganVulpkaninTongue
+        attachedParts:
+          Eyes:
+            bodyPart: OrganVulpkaninEyes
+        sockets:
+          EyeImplant: OrganSocket
+          NoseImplant: OrganSocket
+          BrainImplant: OrganSocket
+      RightArm:
+        bodyPart: RightArmVulpkanin
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandVulpkanin
+            sockets:
+              HandImplant: OrganSocket
+      LeftArm:
+        bodyPart: LeftArmVulpkanin
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandVulpkanin
+            sockets:
+              HandImplant: OrganSocket
+      RightLeg:
+        bodyPart: RightLegVulpkanin
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootVulpkanin
+      LeftLeg:
+        bodyPart: LeftLegVulpkanin
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootVulpkanin
+    sockets:
+      Cavity: OrganSocket
