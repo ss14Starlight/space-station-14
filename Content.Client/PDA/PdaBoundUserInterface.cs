@@ -100,7 +100,6 @@ namespace Content.Client.PDA
             }
 
             _menu.UpdateState(updateState);
-
         }
 
         protected override void AttachCartridgeUI(Control cartridgeUIFragment, string? title)
