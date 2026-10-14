@@ -42,7 +42,6 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         SubscribeLocalEvent<SurgeryStepAttachLimbEffectComponent, SurgeryStepEvent>(OnStepAttachComplete);
         SubscribeLocalEvent<SurgeryStepAmputationEffectComponent, SurgeryStepEvent>(OnStepAmputationComplete);
 
-        SubscribeLocalEvent<CustomLimbMarkerComponent, EntityTerminatingEvent>(OnCustomLimbTerminating);
         SubscribeLocalEvent<CustomLimbMarkerComponent, ComponentRemove>(CustomLimbRemoved);
 
         SubscribeLocalEvent<SurgeryRemoveAccentComponent, SurgeryStepEvent>(OnRemoveAccent);
@@ -337,7 +336,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         if (changed)
             Dirty(part, progress);
     }
-
+    [SubscribeLocalEvent]
     private void OnCustomLimbTerminating(Entity<CustomLimbMarkerComponent> ent, ref EntityTerminatingEvent args)
         => RemoveCustomLimb(ent);
 
