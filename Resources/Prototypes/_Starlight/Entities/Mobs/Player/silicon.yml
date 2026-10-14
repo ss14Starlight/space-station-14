@@ -93,7 +93,6 @@
   - type: ArmorSparkEffect
     alwaysSparks: true
   - type: CyborgSparkEffect
-  - type: StationAIShunt # If you somehow get a shunt into one, sure.
   - type: HealthExaminable
     examinableTypes:
       - Blunt

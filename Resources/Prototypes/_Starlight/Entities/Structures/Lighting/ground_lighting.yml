@@ -1,5 +1,3 @@
-#Paradise Content - Floor Lights
-
 - type: entity
   id: FloorLight
   name: floor light
@@ -323,3 +321,350 @@
       types:
         Heat: 2
     popupText: powered-light-component-burn-hand
+
+- type: entity
+  id: LightFloorEmpty
+  name: light floor
+  description: "A walking surface that doubles as area lighting. Unscrew the cover to change the bulb."
+  suffix: Empty
+  parent: PoweredFloorLightEmpty
+  components:
+    - type: Sprite
+      sprite: _Paradise/Tiles/light_floor.rsi
+      drawdepth: FloorTiles
+      layers:
+        - map: ["enum.PoweredLightLayers.Base"]
+          state: light_open
+        - map: ["enum.PoweredLightLayers.Glow"]
+          state: light_open_bulb_glow
+          shader: unshaded
+          visible: false
+        - map: ["enum.LightFloorLayers.Cover"]
+          state: light_off
+          visible: false
+        - map: ["enum.LightFloorLayers.CoverGlow"]
+          state: light_on
+          shader: unshaded
+          visible: false
+      state: light_open
+    - type: Construction
+      graph: LightFloor
+      node: lightFloor
+    - type: PoweredLightVisuals
+      spriteStateMap:
+        empty: light_open
+        off: light_open_bulb
+        on: light_open_bulb
+        broken: light_open_bulb_broken
+        burned: light_open_bulb_burned
+    - type: WiresPanel
+      open: true
+    - type: LightFloor
+    - type: Physics
+      canCollide: false
+
+- type: entity
+  id: LightFloor
+  suffix: ""
+  parent: LightFloorEmpty
+  components:
+    - type: Sprite
+      layers:
+        - map: ["enum.PoweredLightLayers.Base"]
+          state: light_open_bulb
+        - map: ["enum.PoweredLightLayers.Glow"]
+          state: light_open_bulb_glow
+          shader: unshaded
+          visible: false
+        - map: ["enum.LightFloorLayers.Cover"]
+          state: light_off
+        - map: ["enum.LightFloorLayers.CoverGlow"]
+          state: light_on
+          shader: unshaded
+          visible: false
+    - type: PointLight
+      enabled: true
+    - type: PoweredLight
+      hasLampOnSpawn: LightBulb
+    - type: WiresPanel
+      open: false
+
+- type: entity
+  id: FloorTileItemLight
+  name: light floor tile
+  description: "A wired glass tile. Lay it on a floor, fit a light bulb, then screw the cover shut."
+  parent: FloorTileItemBase
+  components:
+    - type: Sprite
+      sprite: _Paradise/Tiles/light_floor.rsi
+      state: tile
+    - type: Item
+      heldPrefix: white
+    - type: FloorTile
+      outputs:
+        - Plating
+    - type: Stack
+      stackType: FloorTileLight
+    - type: Construction
+      graph: LightFloor
+      node: lightTile
+    - type: SpawnAfterInteract
+      prototype: LightFloorEmpty
+      doAfter: 0.5
+      removeOnInteract: true
+
+- type: stack
+  parent: BaseTileStack
+  id: FloorTileLight
+  name: stack-light-tile
+  icon: { sprite: /Textures/_Paradise/Tiles/light_floor.rsi, state: tile }
+  spawn: FloorTileItemLight
+
+- type: entity
+  id: LightFloorAlwaysPowered
+  name: light floor
+  description: "A walking surface that doubles as area lighting. This one is sealed and never goes out."
+  suffix: Always Powered
+  parent: FloorLight
+  components:
+    - type: Sprite
+      sprite: _Paradise/Tiles/light_floor.rsi
+      drawdepth: FloorTiles
+      layers:
+        - map: ["enum.LightFloorLayers.Cover"]
+          state: light_off
+        - map: ["enum.LightFloorLayers.CoverGlow"]
+          state: light_on
+          shader: unshaded
+      state: light_off
+    - type: Appearance
+    - type: LightFloor
+    - type: PointLight
+      radius: 4
+      energy: 1.5
+    - type: Physics
+      canCollide: false
+
+- type: entity
+  id: LightFloorLed
+  suffix: LED
+  parent: LightFloor
+  components:
+    - type: PointLight
+      enabled: true
+      radius: 8
+      energy: 1
+      softness: 1
+      color: "#EEEEFF"
+    - type: PoweredLight
+      hasLampOnSpawn: LedLightBulb
+    - type: DamageOnInteract
+      damage:
+        types:
+          Heat: 1
+      popupText: powered-light-component-burn-hand
+
+- type: entity
+  id: LightFloorWarm
+  suffix: Warm
+  parent: LightFloor
+  components:
+    - type: PointLight
+      enabled: true
+      radius: 6
+      energy: 1
+      softness: 3
+      color: "#FF8A0C"
+    - type: PoweredLight
+      hasLampOnSpawn: WarmLightBulb
+
+- type: entity
+  id: LightFloorDim
+  suffix: Dim
+  parent: LightFloor
+  components:
+    - type: PointLight
+      enabled: true
+      radius: 5
+      energy: 0.5
+      softness: 3
+      color: "#ba473f"
+    - type: PoweredLight
+      hasLampOnSpawn: DimLightBulb
+    - type: DamageOnInteract
+      damage:
+        types:
+          Heat: 1
+      popupText: powered-light-component-burn-hand
+
+# Colored Lights
+- type: entity
+  id: LightFloorCyan
+  suffix: Cyan
+  parent: LightFloor
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalCyan
+  - type: PointLight
+    radius: 8
+    energy: 2.5
+    softness: 0.8
+    color: "#5ae8ed"
+  - type: DamageOnInteract
+    damage:
+      types:
+        Heat: 2
+    popupText: powered-light-component-burn-hand
+
+- type: entity
+  id: LightFloorBlue
+  suffix: Blue
+  parent: LightFloor
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalBlue
+  - type: PointLight
+    radius: 8
+    energy: 2.5
+    softness: 0.8
+    color: "#4ca1eb"
+  - type: DamageOnInteract
+    damage:
+      types:
+        Heat: 2
+    popupText: powered-light-component-burn-hand
+
+- type: entity
+  id: LightFloorYellow
+  suffix: Yellow
+  parent: LightFloor
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalYellow
+  - type: PointLight
+    radius: 8
+    energy: 2.5
+    softness: 0.8
+    color: "#edd25a"
+  - type: DamageOnInteract
+    damage:
+      types:
+        Heat: 2
+    popupText: powered-light-component-burn-hand
+
+- type: entity
+  id: LightFloorPink
+  suffix: Pink
+  parent: LightFloor
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalPink
+  - type: PointLight
+    radius: 8
+    energy: 2.5
+    softness: 0.8
+    color: "#f075c7"
+  - type: DamageOnInteract
+    damage:
+      types:
+        Heat: 2
+    popupText: powered-light-component-burn-hand
+
+- type: entity
+  id: LightFloorOrange
+  suffix: Orange
+  parent: LightFloor
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalOrange
+  - type: PointLight
+    radius: 8
+    energy: 2.5
+    softness: 0.8
+    color: "#ea863e"
+  - type: DamageOnInteract
+    damage:
+      types:
+        Heat: 2
+    popupText: powered-light-component-burn-hand
+
+- type: entity
+  id: LightFloorBlack
+  suffix: Black
+  parent: LightFloor
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalBlack
+  - type: PointLight
+    radius: 8
+    energy: 1
+    softness: 0.8
+    color: "#4d4d4d"
+  - type: DamageOnInteract
+    damage:
+      types:
+        Heat: 2
+    popupText: powered-light-component-burn-hand
+
+- type: entity
+  id: LightFloorRed
+  suffix: Red
+  parent: LightFloor
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalRed
+  - type: PointLight
+    radius: 8
+    energy: 2.5
+    softness: 0.8
+    color: "#ec5555"
+  - type: DamageOnInteract
+    damage:
+      types:
+        Heat: 2
+    popupText: powered-light-component-burn-hand
+
+- type: entity
+  id: LightFloorGreen
+  suffix: Green
+  parent: LightFloor
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalGreen
+  - type: PointLight
+    radius: 8
+    energy: 2.5
+    softness: 0.8
+    color: "#7eeb4c"
+  - type: DamageOnInteract
+    damage:
+      types:
+        Heat: 2
+    popupText: powered-light-component-burn-hand
+
+- type: entity
+  id: LightFloorRandomColor
+  name: light floor
+  suffix: Random Color
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Transform
+      anchored: true
+    - type: Sprite
+      sprite: _Paradise/Tiles/light_floor.rsi
+      drawdepth: FloorTiles
+      layers:
+        - state: light_off
+        - state: light_on
+          shader: unshaded
+    - type: RandomSpawner
+      offset: 0
+      prototypes:
+        - LightFloorCyan
+        - LightFloorBlue
+        - LightFloorYellow
+        - LightFloorPink
+        - LightFloorOrange
+        - LightFloorRed
+        - LightFloorGreen
