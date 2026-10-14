@@ -1,25 +1,4 @@
 Entries:
-- author: ItsCharles
-  changes:
-  - message: Add public Enabled field for Dual Wielding.
-    type: Add
-  id: 409037
-  time: '2026-10-01T08:41:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6308
-- author: ItsCharles
-  changes:
-  - message: Enable dual wielding on the cap gun.
-    type: Tweak
-  id: 409038
-  time: '2026-10-01T08:41:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6308
-- author: Johnny
-  changes:
-  - message: ERT Loadouts now use the partials system.
-    type: Tweak
-  id: 409039
-  time: '2026-10-01T09:08:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6359
 - author: mikeysaurus
   changes:
   - message: Adds lslaws command for admins to easily view Silicon laws, like they can with objectives.
@@ -2883,4 +2862,25 @@ Entries:
   id: 409436
   time: '2026-10-14T05:41:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6637
+- author: wonderfulnewworld, Killer Tamashi
+  changes:
+  - message: Neocytes no longer get stunned by EMPs, only knocked down.
+    type: Tweak
+  id: 409437
+  time: '2026-10-14T06:08:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6658
+- author: wonderfulnewworld, Killer Tamashi
+  changes:
+  - message: Reduced EMP knockdown on IPCs.
+    type: Tweak
+  id: 409438
+  time: '2026-10-14T06:08:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6658
+- author: wonderfulnewworld, Killer Tamashi
+  changes:
+  - message: Neo-Moths can now have hair.
+    type: Fix
+  id: 409439
+  time: '2026-10-14T06:08:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6658
 Order: -1
