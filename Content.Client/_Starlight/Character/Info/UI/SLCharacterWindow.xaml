@@ -19,9 +19,22 @@
                                   SeparationOverride="4"
                                   Margin="0 0 15 0"
                                   MinWidth="130">
-                        <RichTextLabel Name="RoleType"
+                        <!-- Starlight - Start - Center each wrapped line of the role name and alignment. -->
+                        <WrapContainer Name="RoleType"
                                        Access="Public"
-                                       HorizontalAlignment="Center"/>
+                                       LayoutAxis="Horizontal"
+                                       Justification="Center"
+                                       SeparationOverride="4"
+                                       CrossSeparationOverride="4"
+                                       HorizontalExpand="True"/>
+                        <WrapContainer Name="AlignmentLabel"
+                                       Access="Public"
+                                       LayoutAxis="Horizontal"
+                                       Justification="Center"
+                                       SeparationOverride="3"
+                                       CrossSeparationOverride="0"
+                                       HorizontalExpand="True"/>
+                        <!-- Starlight - End -->
                         <PanelContainer StyleClasses="LowDivider"/>
                         <SpriteView Name="SpriteView"
                                     Access="Public"

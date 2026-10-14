@@ -146,3 +146,33 @@
   path: "/Textures/_Starlight/Shaders/gun_heat.swsl"
   params:
     heat: 0
+
+- type: shader
+  id: GunHeatInhand
+  kind: source
+  path: "/Textures/_Starlight/Shaders/gun_heat_inhand.swsl"
+  params:
+    heat: 0
+    displaced: 0
+
+- type: shader
+  id: GunHeatInhandDisplaced
+  kind: source
+  path: "/Textures/_Starlight/Shaders/gun_heat_inhand.swsl"
+  params:
+    heat: 0
+    displaced: 1
+    displacementSize: 127
+
+- type: shader
+  id: GunHeatInhandDisplacedStencil
+  kind: source
+  path: "/Textures/_Starlight/Shaders/gun_heat_inhand.swsl"
+  stencil:
+    ref: 1
+    op: Keep
+    func: NotEqual
+  params:
+    heat: 0
+    displaced: 1
+    displacementSize: 127

@@ -95,7 +95,7 @@
 
 - type: entity
   name: riot shield
-  parent: [ BaseRepairableShield, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier2, BaseRepairableShield, BaseSecurityContraband ] # Blimpuf
   id: RiotShield
   description: A large tower shield. Good for controlling crowds.
   components:
@@ -116,7 +116,7 @@
 
 - type: entity
   name: laser shield
-  parent: [ BaseRepairableShield, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier2, BaseRepairableShield, BaseSecurityContraband ] # Blimpuf
   id: RiotLaserShield
   description: A shield built for withstanding lasers, but not much else.
   components:
@@ -136,7 +136,7 @@
 
 - type: entity
   name: ballistic shield
-  parent: [ BaseRepairableShield, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier2, BaseRepairableShield, BaseSecurityContraband ] # Blimpuf
   id: RiotBulletShield
   description: A shield built for protecting against ballistics, but not much else.
   components:

@@ -1,5 +1,6 @@
 - type: job
   id: BlueShield
+  roleType: CorporateAligned
   name: job-name-blueshield
   description: job-description-blueshield
   playTimeTracker: JobBlueShield

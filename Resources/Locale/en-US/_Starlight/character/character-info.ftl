@@ -19,3 +19,8 @@ character-info-description = Description:
 character-info-hidden = Hidden Info
 character-info-exploitable = Exploitable Info:
 character-info-secrets = Secrets:
+
+character-info-alignment-crew = Crew Aligned
+character-info-alignment-free-agent = Free Agent
+character-info-faction-tsf = Trans-Solar Federation
+character-info-alignment-format = [font size=12][color={$color}]{$alignment}[/color][/font]

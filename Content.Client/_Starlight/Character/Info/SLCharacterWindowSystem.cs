@@ -1,44 +1,44 @@
-using Content.Client._Starlight.Character.Info.UI;
+using Content.Shared._Moffstation.CharacterMenu;
+using Content.Shared._Moffstation.Objectives;
 using Content.Shared.DetailExaminable;
 using Content.Shared.Humanoid;
-using Content.Shared.Mind.Components;
 using Content.Shared.Mind;
-using Content.Shared.Roles.Jobs;
+using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
-using Content.Shared._Starlight.Character.Info.Components;
-using Content.Shared._Starlight.Character.Info;
-using Content.Shared._Starlight.Objectives.ObjectivePicker;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
-namespace Content.Client._Starlight.Character.Info;
+namespace Content.Client._Moffstation.CharacterMenu;
 
 /// <summary>
-/// Supplies character details and opens the local character window.
+/// Joe Biden please help me open this window
 /// </summary>
-public sealed partial class SLCharacterWindowSystem : EntitySystem
+public sealed partial class MoffCharacterWindowSystem : EntitySystem
 {
     [Dependency] private IUserInterfaceManager _ui = default!;
     [Dependency] private SpriteSystem _sprite = default!;
-    [Dependency] private SharedJobSystem _jobs = default!;
 
+    #region Starlight
+    //not dependencies
     private EntityQuery<DetailExaminableComponent> _detailExaminableQuery;
     private EntityQuery<HumanoidAppearanceComponent> _humanoidProfileQuery;
     private EntityQuery<MindComponent> _mindQuery;
     private EntityQuery<MindContainerComponent> _mindContainerQuery;
     private EntityQuery<PotentialObjectivesComponent> _potentialObjectivesQuery;
+    #endregion
 
+    // Starlight, no subscription needed here since we initialize now
     private void OnRoleTypeChanged(MindRoleTypeChangedEvent ev, EntitySessionEventArgs _) => _ui.GetUIController<CharacterUIController>().UpdateRoleType();
 
+    // Starlight
     private void OnOpenCharacterMenu(OpenCharacterMenuEvent ev, EntitySessionEventArgs _) => _ui.GetUIController<CharacterUIController>().OpenWindow();
 
-    public CharacterJobInfo? GetJobInfo(EntityUid entity)
+    public CharacterJobInfo? GetJobInfo(EntityUid entity) // Starlight, job title, not prototype ID.
     {
-        if (!_jobs.MindTryGetJob(GetMind(entity), out var job))
+        if (!_jobs.MindTryGetJob(GetMind(entity), out var job)) // Starlight, get job from mind
             return null;
 
         return new CharacterJobInfo(job.Name, _sprite.Frame0(ProtoMan.Index(job.Icon).Icon));
@@ -49,62 +49,21 @@ public sealed partial class SLCharacterWindowSystem : EntitySystem
         if (!_humanoidProfileQuery.TryComp(entity, out var profile))
             return null;
 
-        return new CharacterProfileInfo(profile.Gender, profile.Age, GetSpeciesName(profile));
+        #region Starlight
+        var species = string.IsNullOrWhiteSpace(profile.CustomSpecieName)
+            ? Loc.GetString(ProtoMan.Index(profile.Species).Name)
+            : profile.CustomSpecieName;
+        return new CharacterProfileInfo(profile.Gender, profile.Age, species);
+        #endregion Starlight
     }
 
-    public string? GetDescription(EntityUid entity) => GetCharacterDescription(entity) ??
-            (_detailExaminableQuery.TryComp(entity, out var description) ? description.Content : null);
-
-    public CharacterRoleTypeInfo? GetRoleType(EntityUid? entity)
-    {
-        if (!_mindQuery.TryComp(GetMind(entity), out var mind) ||
-            !ProtoMan.Resolve(mind.RoleType, out var roleType))
-            return null;
-
-        if (mind.Subtype is { } subtype)
-            return new CharacterRoleTypeInfo(subtype, mind.SubtypeColor ?? roleType.Color);
-
-        return new CharacterRoleTypeInfo(roleType.Name, roleType.Color);
-    }
-
-    public bool CanPickObjectives(EntityUid? entity) => _potentialObjectivesQuery.TryComp(GetMind(entity), out var potential) && potential.ObjectiveOptions.Count > 0;
-
-    public bool CanPickMoreObjectives(EntityUid? entity) =>
-        TryComp<ObjectivePickerProgressComponent>(GetMind(entity), out var progress) && progress.CanPickMore;
+    public bool CanPickObjectives(EntityUid? entity) => _potentialObjectivesQuery.TryComp(GetMind(entity), out var potential) && potential.ObjectiveOptions.Count > 0; // Starlight, ignore offers already consumed before deferred component removal.
 
     private EntityUid? GetMind(EntityUid? entity) => _mindContainerQuery.TryComp(entity, out var container) ? container.Mind : null;
 
     public readonly record struct CharacterJobInfo(LocId Name, Texture Icon);
 
-    public readonly record struct CharacterProfileInfo(Gender Gender, int Age, string Species);
+    public readonly record struct CharacterProfileInfo(Gender Gender, int Age, string Species); // Starlight
 
-    public readonly record struct CharacterRoleTypeInfo(LocId Name, Color Color);
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        _detailExaminableQuery = GetEntityQuery<DetailExaminableComponent>();
-        _humanoidProfileQuery = GetEntityQuery<HumanoidAppearanceComponent>();
-        _mindQuery = GetEntityQuery<MindComponent>();
-        _mindContainerQuery = GetEntityQuery<MindContainerComponent>();
-        _potentialObjectivesQuery = GetEntityQuery<PotentialObjectivesComponent>();
-
-        SubscribeNetworkEvent<MindRoleTypeChangedEvent>(OnRoleTypeChanged);
-        SubscribeNetworkEvent<OpenCharacterMenuEvent>(OnOpenCharacterMenu);
-    }
-
-    private string GetSpeciesName(HumanoidAppearanceComponent profile) => string.IsNullOrWhiteSpace(profile.CustomSpecieName)
-            ? Loc.GetString(ProtoMan.Index(profile.Species).Name)
-            : profile.CustomSpecieName;
-
-    private string? GetCharacterDescription(EntityUid entity)
-    {
-        if (!TryComp<CharacterDescriptionComponent>(entity, out var description) ||
-            string.IsNullOrWhiteSpace(description.Description))
-            return null;
-
-        // Character profile text is plain text, even if it contains markup characters.
-        return FormattedMessage.EscapeText(FormattedMessage.RemoveMarkupPermissive(description.Description));
-    }
+    public readonly record struct CharacterRoleTypeInfo(LocId Name, Color Color, LocId Alignment, Color AlignmentColor); // Starlight
 }
