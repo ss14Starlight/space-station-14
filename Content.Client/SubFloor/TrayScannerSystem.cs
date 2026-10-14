@@ -3,6 +3,7 @@ using Content.Client.Items.UI;
 using Content.Client.Message;
 using Content.Client.Power.Visualizers;
 using Content.Client.Stylesheets;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Disposal.Tube;
@@ -33,6 +34,7 @@ public sealed partial class TrayScannerSystem : SharedTrayScannerSystem
     [Dependency] private IInputManager _inputManager = default!; // starlight edit: removed readonly
     [Dependency] private EntityQuery<TrayScannerComponent> _trayScannerQuery = default!; // starlight edit: removed readonly
     [Dependency] private EntityQuery<SubFloorHideComponent> _subFloorHideQuery = default!; // starlight edit: removed readonly
+    [Dependency] private RemoteControlInterface _remoteControl = default!; // Starlight
 
     private const string TRayAnimationKey = "trays";
     private const double AnimationLength = 0.3;
@@ -53,7 +55,7 @@ public sealed partial class TrayScannerSystem : SharedTrayScannerSystem
             return;
 
         // TODO: Multiple viewports or w/e
-        var player = _player.LocalEntity;
+        var player = _remoteControl.ControlledEntity ?? _player.LocalEntity; // Starlight
 
         if (!TryComp(player, out TransformComponent? playerXform))
             return;

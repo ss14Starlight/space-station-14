@@ -3,27 +3,35 @@
          xmlns:ui="clr-namespace:Content.Client.Options.UI">
     <BoxContainer Orientation="Vertical">
         <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
-            <BoxContainer Orientation="Vertical" Margin="8">
-                <Label Text="{Loc 'ui-options-accessability-header-visuals'}"
-                       StyleClasses="LabelKeyText"/>
-                <CheckBox Name="ReducedMotionCheckBox" Text="{Loc 'ui-options-reduced-motion'}" />
-                <CheckBox Name="EnableColorNameCheckBox" Text="{Loc 'ui-options-enable-color-name'}" />
-                <CheckBox Name="ColorblindFriendlyCheckBox" Text="{Loc 'ui-options-colorblind-friendly'}" />
-                <ui:OptionSlider Name="ScreenShakeIntensitySlider" Title="{Loc 'ui-options-screen-shake-intensity'}" />
-                <ui:OptionSlider Name="ChatWindowOpacitySlider" Title="{Loc 'ui-options-chat-window-opacity'}" />
-                <ui:OptionSlider Name="SpeechBubbleTextOpacitySlider" Title="{Loc 'ui-options-speech-bubble-text-opacity'}" />
-                <ui:OptionSlider Name="SpeechBubbleSpeakerOpacitySlider" Title="{Loc 'ui-options-speech-bubble-speaker-opacity'}" />
-                <ui:OptionSlider Name="SpeechBubbleBackgroundOpacitySlider" Title="{Loc 'ui-options-speech-bubble-background-opacity'}" />
-                <CheckBox Name="AutoFillHighlightsCheckBox" Text="{Loc 'ui-options-auto-fill-highlights'}" />
-                <ui:OptionColorSlider Name="HighlightsColorSlider"
-                    Title="{Loc 'ui-options-highlights-color'}"
-                    Example="{Loc 'ui-options-highlights-color-example'}"/>
-                <Label Text="{Loc 'ui-options-accessability-header-content'}"
-                       StyleClasses="LabelKeyText"/>
-                <CheckBox Name="CensorNudityCheckBox" Text="{Loc 'ui-options-censor-nudity'}" />
-                <CheckBox Name="ArachnophobiaCheckBox" Text="{Loc 'ui-options-arachnophobia'}" /> <!-- Starlight -->
-                <CheckBox Name="DisableJobIconAnimationCheckBox" Text="{Loc 'ui-options-disable-job-icon-animation'}" /> <!-- Starlight -->
+            <!-- Starlight-start -->
+            <BoxContainer Orientation="Vertical" Margin="0 0 8 8">
+                <Label Text="{Loc 'ui-options-accessability-header-visuals'}" StyleClasses="LabelKeyText" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
+                    <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
+                        <CheckBox Name="ReducedMotionCheckBox" Text="{Loc 'ui-options-reduced-motion'}" />
+                        <CheckBox Name="EnableColorNameCheckBox" Text="{Loc 'ui-options-enable-color-name'}" />
+                        <CheckBox Name="ColorblindFriendlyCheckBox" Text="{Loc 'ui-options-colorblind-friendly'}" />
+                        <ui:OptionSlider Name="ScreenShakeIntensitySlider" Title="{Loc 'ui-options-screen-shake-intensity'}" />
+                        <ui:OptionSlider Name="SpeechBubbleTextOpacitySlider" Title="{Loc 'ui-options-speech-bubble-text-opacity'}" />
+                        <ui:OptionSlider Name="SpeechBubbleSpeakerOpacitySlider" Title="{Loc 'ui-options-speech-bubble-speaker-opacity'}" />
+                        <ui:OptionSlider Name="SpeechBubbleBackgroundOpacitySlider" Title="{Loc 'ui-options-speech-bubble-background-opacity'}" />
+                        <CheckBox Name="AutoFillHighlightsCheckBox" Text="{Loc 'ui-options-auto-fill-highlights'}" />
+                        <ui:OptionColorSlider Name="HighlightsColorSlider"
+                            Title="{Loc 'ui-options-highlights-color'}"
+                            Example="{Loc 'ui-options-highlights-color-example'}"/>
+                    </BoxContainer>
+                </PanelContainer>
+
+                <Label Text="{Loc 'ui-options-accessability-header-content'}" StyleClasses="LabelKeyText" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel">
+                    <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
+                        <CheckBox Name="CensorNudityCheckBox" Text="{Loc 'ui-options-censor-nudity'}" />
+                        <CheckBox Name="ArachnophobiaCheckBox" Text="{Loc 'ui-options-arachnophobia'}" /> <!-- Starlight -->
+                        <CheckBox Name="DisableJobIconAnimationCheckBox" Text="{Loc 'ui-options-disable-job-icon-animation'}" /> <!-- Starlight -->
+                    </BoxContainer>
+                </PanelContainer>
             </BoxContainer>
+			<!-- Starlight-end -->
         </ScrollContainer>
         <ui:OptionsTabControlRow Name="Control" Access="Public" />
     </BoxContainer>
