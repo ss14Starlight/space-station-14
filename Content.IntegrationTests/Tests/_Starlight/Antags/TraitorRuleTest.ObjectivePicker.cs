@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Content.Client._Starlight.Character.Info.UI;
 using Content.Client._Starlight.Objectives.ObjectivePicker;
+using Content.IntegrationTests.Fixtures.Attributes;
 using Content.Server.Mind;
 using Content.Server.Objectives.Components;
 using Content.Server._Starlight.Objectives.Components;
@@ -33,6 +34,9 @@ public sealed partial class TraitorRuleTest
 
     private async Task TestObjectivePicker(EntityUid mind, EntityUid player)
     {
+        await OverrideCVar(Side.Server, CCVars.FlavorText, true);
+        await OverrideCVar(Side.Server, StarlightCCVars.OOCNotes, true);
+
         Dictionary<NetEntity, EntityUid> candidates = null;
         HashSet<NetEntity> selected = null;
         EntityUid forced = default;
@@ -60,12 +64,9 @@ public sealed partial class TraitorRuleTest
             candidates = SEntMan.GetComponent<PotentialObjectivesComponent>(mind).ObjectiveOptions.Keys
                 .ToDictionary(objective => objective, SEntMan.GetEntity);
 
-            // Starlight always contributes a Cards group, even without an active card.
             SEntMan.EnsureComponent<RailroadableComponent>(player);
-#pragma warning disable RA0002 // Allow direct component initialization in test setup.
-            var config = Server.ResolveDependency<IConfigurationManager>();
-            config.SetCVar(CCVars.FlavorText, true);
-            config.SetCVar(StarlightCCVars.OOCNotes, true);
+
+            // Replace existing notes before applying a profile through the owning system.
             SEntMan.RemoveComponent<RoleplayInfoComponent>(mind);
             SEntMan.RemoveComponent<MindSecretsComponent>(mind);
             Server.System<SLSharedCharacterInfoSystem>().ApplyCharacterInfo(player, new HumanoidCharacterProfile
@@ -75,7 +76,6 @@ public sealed partial class TraitorRuleTest
                 OOCNotes = "OOC notes",
                 PersonalNotes = "Personal notes",
             });
-#pragma warning restore RA0002
             Server.System<TagSystem>().AddTag(player, _sLBackgroundTag);
 
             foreignMind = Server.System<MindSystem>().CreateMind(null);

@@ -21,7 +21,7 @@ namespace Content.Client.Atmos.Overlays;
 /// <summary>
 ///     Overlay responsible for rendering heat distortion shader.
 /// </summary>
-public sealed class GasTileHeatBlurOverlay : Overlay
+public sealed partial class GasTileHeatBlurOverlay : Overlay
 {
     public override bool RequestScreenTexture { get; set; } = true;
     private static readonly ProtoId<ShaderPrototype> UnshadedShader = "unshaded";
