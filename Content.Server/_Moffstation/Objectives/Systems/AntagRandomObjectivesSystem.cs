@@ -45,19 +45,32 @@ public sealed partial class AntagRandomObjectivesSystem : EntitySystem
             potentialObjectives.AutoSelectionTime = _timing.CurTime + ent.Comp.SelectionDelay;
         }
 
+        #region Starlight
+        // MaxOptions caps the entire offer, including options from earlier sets.
         foreach (var set in ent.Comp.Sets)
         {
+            if (potentialObjectives.ObjectiveOptions.Count >= ent.Comp.MaxOptions)
+                break;
+
             if (!_random.Prob(set.Prob))
                 continue;
 
-            foreach (var objective in _objectives.GetRandomObjectives(mindId, mind, set.Groups, float.MaxValue).Take(ent.Comp.MaxOptions))
+            foreach (var objective in _objectives.GetRandomObjectives(mindId, mind, set.Groups, float.MaxValue))
             {
                 if (_objectives.GetInfo(objective, mindId, mind) is not { } info)
+                {
+                    TryQueueDel(objective);
                     continue;
+                }
 
                 potentialObjectives.ObjectiveOptions.Add(GetNetEntity(objective), info);
+
+                // Stop before the generator creates another objective.
+                if (potentialObjectives.ObjectiveOptions.Count >= ent.Comp.MaxOptions)
+                    break;
             }
         }
+        #endregion
 
         #region Starlight
         // Empty offers cannot be selected, and fewer offers reduce the selection limit.
