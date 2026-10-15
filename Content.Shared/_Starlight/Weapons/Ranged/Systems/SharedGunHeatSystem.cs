@@ -51,7 +51,9 @@ public abstract partial class SharedGunHeatSystem : EntitySystem
 
         if (!ent.Comp.Jammed)
         {
-            if (_gun.GetShotRandom(ent, JamSalt).Prob(GetJamChance(ent.Comp, ent.Comp.Temperature)))
+            var random = new RobustRandom();
+            random.SetSeed(_gun.GetShotSeed(ent, JamSalt));
+            if (random.Prob(GetJamChance(ent.Comp, ent.Comp.Temperature)))
             {
                 ent.Comp.Jammed = true;
                 Audio.PlayPredicted(ent.Comp.JamSound, ent, args.User);
