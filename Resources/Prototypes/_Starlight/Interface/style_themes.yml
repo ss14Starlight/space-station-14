@@ -360,10 +360,12 @@
   id: Nanotrasen
   name: style-theme-nanotrasen
   order: 21
-  accent: "#A88B5E"
-  borderThickness: 5
   classicDecor: true
-  rawStatusColors: true
+  rawColors: true
+  accent: "#A88B5E"
+  secondaryAccent: "#126128"
+  accentTint: 1
+  borderThickness: 0
   windowBackground: "#252632"
   background: "#252632"
   surface: "#2F2F3B"

@@ -16,6 +16,8 @@ public sealed class StyleTheme
 
     public readonly Color Accent;
 
+    public readonly Color SecondaryAccent;
+
     /// <summary>
     /// An element tinted with the accent: pressed buttons, selected list items.
     /// </summary>
@@ -46,11 +48,16 @@ public sealed class StyleTheme
     /// </summary>
     public readonly ColorPalette Negative;
 
-    public StyleTheme(StyleThemePrototype proto, Color accent)
+    public StyleTheme(StyleThemePrototype proto, Color accent, Color? secondaryAccent = null)
     {
         Proto = proto;
         Accent = Readable(accent.WithAlpha(1f), proto.Light);
-        ElementActive = proto.Element.OkBlend(Accent, proto.AccentTint);
+        SecondaryAccent = Readable((secondaryAccent ?? accent).WithAlpha(1f), proto.Light);
+
+        var activeBase = proto.RawColors
+            ? (secondaryAccent ?? accent).WithAlpha(1f)
+            : SecondaryAccent;
+        ElementActive = proto.Element.OkBlend(activeBase, proto.AccentTint);
 
         Primary = new ColorPalette(
             Base: proto.Element,
@@ -88,10 +95,10 @@ public sealed class StyleTheme
             Text: Accent,
             TextDark: Accent.OkBlend(proto.TextMuted, 0.5f));
 
-        Positive = proto.RawStatusColors
+        Positive = proto.RawColors
             ? RawStatusPalette(proto, proto.Positive)
             : StatusPalette(proto, proto.Positive);
-        Negative = proto.RawStatusColors
+        Negative = proto.RawColors
             ? RawStatusPalette(proto, proto.Negative)
             : StatusPalette(proto, proto.Negative);
     }

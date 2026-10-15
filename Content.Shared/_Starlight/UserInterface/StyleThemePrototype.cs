@@ -30,6 +30,10 @@ public sealed partial class StyleThemePrototype : IPrototype
     [DataField]
     public bool Stock;
 
+    /// <summary>
+    /// Primary accent color, controlling header text. 
+    /// If secondaryAccent is not specified, falls back to Accent.
+    /// </summary>
     [DataField]
     public Color? Accent;
 
@@ -108,10 +112,17 @@ public sealed partial class StyleThemePrototype : IPrototype
     public Color? WindowBackground;
 
     /// <summary>
-    /// When true, the Positive and Negative palettes use the prototype colors
-    /// directly instead of blending with the theme base colors.
+    /// When true, display most colors directly without any further filtering.
+    /// </summary>
     [DataField]
-    public bool RawStatusColors;
+    public bool RawColors;
+
+    /// <summary>
+    /// Secondary accent color, for pressed and selected buttons.
+    /// If secondaryAccent is not specified, falls back to Accent.
+    /// </summary>
+    [DataField]
+    public Color? SecondaryAccent;
 }
 
 [DataDefinition]
