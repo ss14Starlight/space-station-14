@@ -48,7 +48,7 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
 
         var sliderFillTex = sheet.GetTextureOr(sliderCfg.SliderFillPath, NanotrasenStylesheet.TextureRoot);
         var sliderBack = SliderBox(sliderFillTex, proto.Background);
-        var sliderFill = SliderBox(sliderFillTex, theme.Accent);
+        var sliderFill = SliderBox(sliderFillTex, theme.SecondaryAccent);
         var sliderFore = SliderBox(sheet.GetTextureOr(sliderCfg.SliderOutlinePath, NanotrasenStylesheet.TextureRoot),
             proto.Border);
         var sliderGrab = SliderBox(sheet.GetTextureOr(sliderCfg.SliderGrabber, NanotrasenStylesheet.TextureRoot),
