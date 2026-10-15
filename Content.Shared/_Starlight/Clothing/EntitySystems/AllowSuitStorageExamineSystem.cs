@@ -16,16 +16,16 @@ public sealed partial class AllowSuitStorageExamineSystem : EntitySystem
         if (!HasComp<ClothingComponent>(ent))
             return;
 
-        if (TryGetSuitSlotExamine(component, out var msg))
-        {
-            _examine.AddHoverExamineVerb(
-                args,
-                component,
-                Loc.GetString("allow-suit-storage-examine-verb"),
-                msg.ToMarkup(),
-                "/Textures/Interface/VerbIcons/buckle.svg.192dpi.png"
-            );
-        }
+        if (!TryGetSuitSlotExamine(component, out var msg))
+            return;
+
+        _examine.AddHoverExamineVerb(
+            args,
+            component,
+            Loc.GetString("allow-suit-storage-examine-verb"),
+            msg.ToMarkup(),
+            "/Textures/Interface/VerbIcons/buckle.svg.192dpi.png"
+        );
     }
 
     private bool TryGetSuitSlotExamine(AllowSuitStorageComponent component, out FormattedMessage msg)
