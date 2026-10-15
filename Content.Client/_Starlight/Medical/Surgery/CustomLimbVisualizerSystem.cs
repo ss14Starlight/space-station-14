@@ -10,6 +10,8 @@ namespace Content.Client._Starlight.Medical.Surgery;
 
 public sealed class CustomLimbVisualizerSystem : EntitySystem
 {
+    [Dependency] private SpriteSystem _sprite = null!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -88,7 +90,7 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
 
                 sprite.LayerSetState(index, rsiState.StateId, layerSprite.BaseRSI);
                 sprite.LayerSetOffset(index, offset);
-                sprite.LayerSetVisible(index, true);
+                _sprite.LayerSetVisible((ent.Owner, sprite), index, true);
                 ent.Comp.CachedLayers.Add(item.Key);
             }
 
@@ -103,7 +105,7 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
             if (!ent.Comp.CachedLayers.Contains(layer))
             {
                 var index = sprite.LayerMapReserveBlank($"custom-{layer}");
-                sprite.LayerSetVisible(index, false);
+                _sprite.LayerSetVisible((ent.Owner, sprite), index, false);
             }
     }
 }

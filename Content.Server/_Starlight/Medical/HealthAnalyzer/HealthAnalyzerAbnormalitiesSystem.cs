@@ -57,15 +57,17 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
                 break;
             }
 
-            var bodyAbnormalities = GetBodyAbnormalities(patient, body);
-            if (bodyAbnormalities.MissingOrgans)
+            // Why do i have to write something like this? This feels horrible, thanks reviewdog.
+            var (missingOrgans, abnormalOrgans, bodyHasImplants, bodyHasForeignBodies) =
+                GetBodyAbnormalities(patient, body);
+            if (missingOrgans)
                 Add(args.Abnormalities, "starlight-health-analyzer-abnormality-missing-organs", "#F7784A");
 
-            if (bodyAbnormalities.AbnormalOrgans)
+            if (abnormalOrgans)
                 Add(args.Abnormalities, "starlight-health-analyzer-abnormality-abnormal-organs", "#F7784A");
 
-            hasImplants |= bodyAbnormalities.HasImplants;
-            hasForeignBodies |= bodyAbnormalities.HasForeignBodies;
+            hasImplants |= bodyHasImplants;
+            hasForeignBodies |= bodyHasForeignBodies;
         }
 
         if (hasImplants)
@@ -175,11 +177,12 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
                 if (!TryComp<BodyPartComponent>(child, out var childComp))
                     continue;
 
-                var childResults = GetBodyAbnormalities(child, childComp, prototype, childSlot);
-                missing |= childResults.MissingOrgans;
-                abnormal |= childResults.AbnormalOrgans;
-                hasImplants |= childResults.HasImplants;
-                hasForeignBodies |= childResults.HasForeignBodies;
+                var (childMissingOrgans, childAbnormalOrgans, childHasImplants, childHasForeignBodies) =
+                    GetBodyAbnormalities(child, childComp, prototype, childSlot);
+                missing |= childMissingOrgans;
+                abnormal |= childAbnormalOrgans;
+                hasImplants |= childHasImplants;
+                hasForeignBodies |= childHasForeignBodies;
             }
         }
 

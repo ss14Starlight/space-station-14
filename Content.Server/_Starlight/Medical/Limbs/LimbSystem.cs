@@ -123,7 +123,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
         if (!itemId.IsValid() || TerminatingOrDeleted(itemId))
         {
             if (itemId.IsValid()
-                && TryComp<MetaDataComponent>(itemId, out var metadata)
+                && TryComp(itemId, out MetaDataComponent? metadata)
                 && metadata.EntityLifeStage == EntityLifeStage.Terminating
                 && _containers.TryGetContainer(bodyId, handId, out var handContainer)
                 && handContainer.Contains(itemId))

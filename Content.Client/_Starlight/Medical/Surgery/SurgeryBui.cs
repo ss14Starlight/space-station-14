@@ -223,8 +223,8 @@ public sealed partial class SurgeryBui : BoundUserInterface
         if (actionEnd < 0)
             return defaultName;
 
-        var action = defaultName.Substring(0, actionEnd);
-        var defaultItemName = defaultName.Substring(actionEnd + 1);
+        var action = defaultName[..actionEnd];
+        var defaultItemName = defaultName[(actionEnd + 1)..];
         foreach (var stepId in surgery.Comp.Steps)
         {
             if (!_entitySystem.TryGetSingleton(stepId, out var step)
@@ -249,7 +249,7 @@ public sealed partial class SurgeryBui : BoundUserInterface
                 continue;
 
             var capitalizedFirstCharacter = char.ToUpperInvariant(itemMetadata.EntityName[0]).ToString();
-            var itemName = string.Concat(capitalizedFirstCharacter, itemMetadata.EntityName.Substring(1));
+            var itemName = string.Concat(capitalizedFirstCharacter, itemMetadata.EntityName[1..]);
             return Loc.GetString("surgery-ui-surgery-action-item", ("action", action), ("item", itemName));
         }
 
