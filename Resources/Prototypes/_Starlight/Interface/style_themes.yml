@@ -362,6 +362,7 @@
   order: 21
   accent: "#A88B5E"
   borderThickness: 2
+  classicDecor: true
   background: "#252632"
   surface: "#2F2F3B"
   surfaceRaised: "#343541"

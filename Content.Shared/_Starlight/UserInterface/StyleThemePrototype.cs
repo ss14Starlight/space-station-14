@@ -46,6 +46,12 @@ public sealed partial class StyleThemePrototype : IPrototype
     public StyleThemeBox? Button;
 
     /// <summary>
+    /// When true, the theme keeps the classic textured window, panel, and button borders.
+    /// </summary>
+    [DataField]
+    public bool ClassicDecor;
+
+    /// <summary>
     /// Theme for the in-game HUD screen, if it should differ from this one. HUD textures are dark, so light themes
     /// keep a dark HUD and only restyle windows and menus.
     /// </summary>

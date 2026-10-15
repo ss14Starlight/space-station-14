@@ -16,6 +16,15 @@ public sealed class FlatButtonSheetlet : Sheetlet<NanotrasenStylesheet>
         if (sheet.Theme is not { } theme)
             return [];
 
+        if (theme.Proto.ClassicDecor)
+        {
+            return
+            [
+                CButton().PseudoDisabled().ParentOf(E<Label>()).FontColor(theme.Proto.TextDisabled),
+                CButton().PseudoDisabled().ParentOf(E()).ParentOf(E<Label>()).FontColor(theme.Proto.TextDisabled),
+            ];
+        }
+
         var decor = theme.Proto.Button;
         var baseBox = Box(decor, 14);
         var openLeftBox = Box(decor, 14).WithContentMargin(StyleBox.Margin.Left, 8);
