@@ -123,6 +123,12 @@ public sealed partial class StyleThemePrototype : IPrototype
     /// </summary>
     [DataField]
     public Color? SecondaryAccent;
+
+    /// <summary>
+    /// Tooltip body text color. if textTooltip is not specified, falls back to text.
+    /// </summary>
+    [DataField]
+    public Color? TextTooltip;
 }
 
 [DataDefinition]
