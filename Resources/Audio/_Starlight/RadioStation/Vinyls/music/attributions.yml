@@ -67,3 +67,8 @@
   license: "CC-BY-SA-4.0"
   copyright: "Beptol Corporation Acoustics"
   source: "https://pastebin.com/tMv0U86J"
+
+- files: ["hit_em.ogg"]
+  license: "CC-BY-4.0" # As confirmed via email
+  copyright: "CrayZGamR"
+  source: "https://www.youtube.com/watch?v=fORzS8OYJmU"
