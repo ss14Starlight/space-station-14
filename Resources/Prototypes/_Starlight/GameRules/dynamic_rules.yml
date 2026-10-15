@@ -130,7 +130,7 @@
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 25
+            min: 20
         - id: SiliconLiberation
           prob: 0.15
           conditions:
@@ -242,7 +242,7 @@
             rules:
             - SLChangeling # Don't double changelings
           - !type:PlayerCountCondition
-            min: 25
+            min: 20
         - id: SiliconLiberation
           weight: 8
           prob: 0.50
@@ -513,7 +513,7 @@
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 25
+            min: 20
         - id: SiliconLiberation
           prob: 0.15
           conditions:
@@ -623,7 +623,7 @@
             rules:
             - SLChangeling # Don't double changelings
           - !type:PlayerCountCondition
-            min: 25
+            min: 20
         - id: SiliconLiberation
           weight: 8
           prob: 0.50

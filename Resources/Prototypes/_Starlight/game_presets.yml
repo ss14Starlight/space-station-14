@@ -83,7 +83,7 @@
   name: changeling-gamemode-title
   description: changeling-gamemode-description
   showInVote: false
-  minPlayers: 25
+  minPlayers: 20
   rules:
     - SLChangeling
     - SLChangelingLess
@@ -99,7 +99,7 @@
   name: traitorling-title
   description: traitorling-description
   showInVote: true
-  minPlayers: 25
+  minPlayers: 20
   rules:
     - SLChangeling
     - Traitor
