@@ -364,6 +364,7 @@
   borderThickness: 5
   classicDecor: true
   rawStatusColors: true
+  windowBackground: "#252632"
   background: "#252632"
   surface: "#2F2F3B"
   surfaceRaised: "#343541"

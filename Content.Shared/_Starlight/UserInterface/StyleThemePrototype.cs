@@ -101,6 +101,13 @@ public sealed partial class StyleThemePrototype : IPrototype
     public float AccentTint = 0.35f;
 
     /// <summary>
+    /// Background for FancyWindow bodies. When null, window bodies
+    /// keep the shared BackgroundPanel styling.
+    /// </summary>
+    [DataField]
+    public Color? WindowBackground;
+
+    /// <summary>
     /// When true, the Positive and Negative palettes use the prototype colors
     /// directly instead of blending with the theme base colors.
     [DataField]

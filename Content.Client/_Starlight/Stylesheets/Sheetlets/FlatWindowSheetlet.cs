@@ -7,6 +7,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using static Content.Client.Stylesheets.StylesheetHelpers;
+using static Robust.Client.UserInterface.StylesheetHelpers;
 
 namespace Content.Client._Starlight.Stylesheets.Sheetlets;
 
@@ -46,6 +47,15 @@ public sealed class FlatWindowSheetlet : Sheetlet<NanotrasenStylesheet>
                     .WithContentMargin(StyleBox.Margin.Right, 8)),
                 E<PanelContainer>().Class("BackgroundDark").Panel(FlatBox.Fill(proto.Background)),
             ]);
+        }
+
+        if (proto.WindowBackground is {} windowBackground)
+        {
+            rules.Add(Child()
+                .Parent(E<FancyWindow>())
+                .Child(E<PanelContainer>().Class(StyleClass.BackgroundPanel))
+                .Panel(FlatBox.Fill(windowBackground))
+                .Modulate(Color.White));
         }
 
         rules.AddRange([
