@@ -26,7 +26,7 @@ namespace Content.Server._Starlight.Medical.HealthAnalyzer;
 public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
 {
     private static readonly EntProtoId _sleepinessStatusEffect = "StatusEffectSleepiness";
-
+    private static readonly bool _enableImplantDisplay = false;
     [Dependency] private BodySystem _body = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private MindExamineSystem _mindExamine = default!;
@@ -71,7 +71,7 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
             hasForeignBodies |= bodyHasForeignBodies;
         }
 
-        if (hasImplants)
+        if (_enableImplantDisplay && hasImplants)
             Add(args.Abnormalities, "starlight-health-analyzer-abnormality-implants", "#7EA9D8");
 
         if (hasForeignBodies)
@@ -217,7 +217,8 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
         if (!_statusEffects.TryGetTime(patient, _sleepinessStatusEffect, out var sleepinessEffect)
             || sleepinessEffect.EndEffectTime is not { } endTime)
         {
-            return; // This case should not exist, I refuse to do more than catch it
+            Add(abnormalities, "starlight-health-analyzer-abnormality-unconscious", "#3900AA");
+            return;
         }
 
         var remainingSleepiness = endTime - _timing.CurTime;
@@ -226,10 +227,8 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
 
         if (remainingSleepiness <= TimeSpan.FromSeconds(30))
             Add(abnormalities, "starlight-health-analyzer-abnormality-sleeping", "#7B38FF");
-        else if (remainingSleepiness <= TimeSpan.FromSeconds(60))
-            Add(abnormalities, "starlight-health-analyzer-abnormality-deep-sleep", "#4D00E6");
         else
-            Add(abnormalities, "starlight-health-analyzer-abnormality-unconscious", "#3900AA");
+            Add(abnormalities, "starlight-health-analyzer-abnormality-anesthetized", "#4D00E6");
     }
 
     private void Add(List<HealthAnalyzerAbnormalityData> abnormalities, string description, string color) =>
