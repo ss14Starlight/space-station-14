@@ -104,7 +104,8 @@ public sealed partial class RailroadingDeliveryRewardSystem : AccUpdateEntitySys
 
         var delivery = Spawn(ent.Comp.Delivery, Transform(spawner.Value).Coordinates);
         var subjectName = trackedMind.CharacterName!;
-        var recordID = _records.GetRecordByName(station, subjectName);
+        // Records use the name on the ID card, which can differ from the character name (e.g. a custom clown name).
+        var recordID = _records.GetRecordByName(station, subjectName) ?? _records.GetRecordByName(station, Name(subject));
 
         if (ent.Comp.Dataset != null && _playerManager.TryGetSessionByEntity(subject, out var session))
         {
