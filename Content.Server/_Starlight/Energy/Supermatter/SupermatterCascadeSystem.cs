@@ -1,6 +1,5 @@
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Directions;
-using Content.Shared.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
@@ -12,14 +11,10 @@ public sealed partial class SupermatterCascadeSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedMapSystem _map = default!;
-    [Dependency] private TurfSystem _turf = default!;
 
     private readonly LinkedList<Branch> _branches = [];
     private LinkedListNode<Branch>? _node;
     private readonly string[] _prototypes = ["Cascad1", "Cascad2", "Cascad3", "Cascad4", "Cascad5", "Cascad6"];
-    public override void Initialize()
-    {
-    }
 
     public override void Update(float frameTime)
     {
@@ -72,8 +67,7 @@ public sealed partial class SupermatterCascadeSystem : EntitySystem
         branch.Coordinates = branch.Coordinates.Offset(branch.Direction);
         if (_transform.GetGrid(branch.Coordinates) is not { } grid
             || !TryComp<MapGridComponent>(grid, out var gridComp)
-            || !_map.TryGetTileRef(grid, gridComp, branch.Coordinates, out var tileRef)
-            || _turf.IsSpace(tileRef))
+            || !_map.TryGetTileRef(grid, gridComp, branch.Coordinates, out var tileRef))
         {
             _branches.Remove(_node);
             _node = nextNode;
@@ -88,7 +82,7 @@ public sealed partial class SupermatterCascadeSystem : EntitySystem
 
     public void StartCascade(EntityCoordinates coordinates)
     {
-        for (int i = 0; i < 8; i += 2)
+        for (var i = 0; i < 8; i += 2)
             _branches.AddLast(new Branch
             {
                 Coordinates = coordinates,
