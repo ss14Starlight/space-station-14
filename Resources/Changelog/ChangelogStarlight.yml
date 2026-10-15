@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Oasis) Added a clean bot to gen pop island.
-    type: Add
-  id: 409063
-  time: '2026-10-01T12:44:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6411
-- author: Cvlancer
-  changes:
   - message: (Oasis) Added a supply bot to gen pop island.
     type: Add
   id: 409064
@@ -2883,4 +2876,11 @@ Entries:
   id: 409462
   time: '2026-10-15T07:03:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6670
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: The syndicate chameleon projector module, printable from an emagged exosuit fabricator, can now fit in any model of cyborg chassis, like the description indicated it should.
+    type: Fix
+  id: 409463
+  time: '2026-10-15T07:03:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6684
 Order: -1
