@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: NamesFireDragon
+  values:
+    prefix: names-fire-dragon-dataset-
+    count: 6

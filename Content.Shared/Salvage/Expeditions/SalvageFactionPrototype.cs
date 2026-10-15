@@ -14,6 +14,12 @@ public sealed partial class SalvageFactionPrototype : IPrototype
     [ViewVariables(VVAccess.ReadWrite), DataField("entries", required: true)]
     public List<SalvageMobEntry> MobGroups = new();
 
+    /// <summary>
+    /// Optional boss spawned once before the faction's budgeted mobs.
+    /// </summary>
+    [DataField]
+    public EntProtoId? Megafauna;
+
     // 🌟Starlight🌟
     [DataField("biomes")]
     public List<ProtoId<SalvageBiomeModPrototype>>? Biomes { get; private set; } = null;

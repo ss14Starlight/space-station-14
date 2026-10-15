@@ -227,6 +227,10 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         var faction = _prototypeManager.Index<SalvageFactionPrototype>(mission.Faction);
         var randomSystem = _entManager.System<RandomSystem>();
 
+        // Reserve one placement for the faction's boss before spending the support mob budget.
+        if (faction.Megafauna is { } megafauna)
+            await SpawnRandomEntry((mapUid, grid), new SalvageMobEntry { Proto = megafauna }, dungeon, random);
+
         foreach (var entry in faction.MobGroups)
         {
             budgetEntries.Add(entry);

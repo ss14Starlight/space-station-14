@@ -1,0 +1,17 @@
+- type: alert
+  id: PredatorHunt
+  icons:
+  - sprite: _Starlight/Interface/Misc/status_icons.rsi
+    state: evil_dragon
+  alertViewEntity: AlertPredatorHuntSpriteView
+  name: alerts-predator-hunt-name
+  description: alerts-predator-hunt-desc
+
+- type: entity
+  parent: AlertSpriteView
+  id: AlertPredatorHuntSpriteView
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    # The alert UI draws at 2x; keep this 32px icon at a 16px native display size.
+    scale: 0.5, 0.5

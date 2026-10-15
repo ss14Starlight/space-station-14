@@ -64,6 +64,24 @@
     Piercing: 2
 
 - type: damageModifierSet
+  id: FireDragonResistances
+  coefficients:
+    Asphyxiation: 0.5
+    Bloodloss: 0
+    Blunt: 0.5
+    Cellular: 0.5
+    Caustic: 0.5
+    Cold: 0.5
+    Heat: 0.1
+    Piercing: 0.4
+    Poison: 0.5
+    Radiation: 0.5
+    Shock: 0.5
+    Slash: 0.65
+    Structural: 0.5
+    Holy: 0.5
+
+- type: damageModifierSet
   id: DragonCarpResistances
   coefficients:
     Piercing: 0.65
