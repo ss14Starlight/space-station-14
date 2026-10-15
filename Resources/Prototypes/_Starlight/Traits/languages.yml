@@ -581,7 +581,10 @@
     - !type:TraitsRequirement
       traits:
         - Scratch
-    - !type:TraitsRequirement
-      traits:
-        - CaveElf
+    - !type:SpeciesRequirement
+      species:
+        - Avali
+        - Resomi
+        - NeoAvali
+        - NeoResomi
       inverted: true
