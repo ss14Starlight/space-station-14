@@ -71,7 +71,8 @@ public sealed class StationPowerTests : GameTest
         "StarlightStationBuilding",
         "StarlightPlasma",
         "StarlightSepultum",
-        "StarlightRemix"
+        "StarlightRemix",
+        "StarlightDownpour"
         #endregion
     ];
 
