@@ -1,11 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: (Evac Raven) NT Has funded gravity for this evacuation shuttle.
-    type: Fix
-  id: 409052
-  time: '2026-10-01T12:24:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6413
 - author: Cvlancer
   changes:
   - message: (Ming) Added a disposal chute, hand labeler, mini plasma vial, variety instrument collection to nct classroom.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409451
   time: '2026-10-15T06:38:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6687
+- author: CrazyPhantom
+  changes:
+  - message: Supermatter Cascades now spread to spaced tiles.
+    type: Tweak
+  id: 409452
+  time: '2026-10-15T07:03:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6686
 Order: -1
