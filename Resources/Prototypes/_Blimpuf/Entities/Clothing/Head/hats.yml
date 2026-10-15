@@ -1,0 +1,34 @@
+- type: entity
+  parent: ClothingHeadHatBowlerHat
+  id: ClothingHeadHatSyndicateBowlerHat
+  name: syndicate bowler hat
+  description: A stylish bowler hat made from red velvet. The rim of it feels excessively sharp.
+  components:
+  - type: Contraband # Blimpuf
+    tier: Tier2
+    contrabandType: Syndicate
+  - type: Sprite
+    sprite: _Blimpuf/Clothing/Head/Hats/syndicate_bowler_hat.rsi
+  - type: Clothing
+    sprite: _Blimpuf/Clothing/Head/Hats/syndicate_bowler_hat.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        density: 5
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+  - type: LandAtCursor
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 12

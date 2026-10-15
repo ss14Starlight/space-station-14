@@ -21,7 +21,7 @@
   contrabandInventory:
     ToyFigurineResearchDirector: 1
   emaggedInventory: # Blimpuf
-    ClothingHeadHatSyndie: 1 # Blimpuf
-    ClothingOuterWinterSyndieCap: 1 # Blimpuf
-    ClothingUniformJumpskirtOperative: 1 # Blimpuf
-    ClothingUniformJumpsuitOperative: 1 # Blimpuf
+    ClothingMaskGasSyndicate: 1 # Blimpuf
+    ClothingOuterCoatRndSyndicate: 1 # Blimpuf
+    ClothingUniformJumpsuitScienceSyndie: 1 # Blimpuf
+    ClothingUniformJumpskirtScienceSyndie: 1 # Blimpuf

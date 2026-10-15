@@ -356,9 +356,9 @@
   description: A hat used by chefs to keep their hair out of your food. It's nice and roomy, you won't have to worry about your hair getting messed up in this one.
   components:
     - type: Sprite
-      sprite: Clothing/Head/Hats/chefhat.rsi
+      sprite: _Blimpuf/Clothing/Head/Hats/largechefhat.rsi
     - type: Clothing
-      sprite: Clothing/Head/Hats/chefhat.rsi
+      sprite: _Blimpuf/Clothing/Head/Hats/largechefhat.rsi
     - type: Storage
       grid:
         - 0,0,1,2

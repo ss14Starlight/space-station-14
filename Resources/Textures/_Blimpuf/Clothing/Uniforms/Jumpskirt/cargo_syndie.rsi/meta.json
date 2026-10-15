@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "Syndicate variants by ItsMaitake for Blimpuf Station. Base by @Vordenburg, recolored for Starlight by wonderfulnewworld (Github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "Vordenburg, wonderfulnewworld, ItsMaitake",
+	  "license": "CC-BY-SA-4.0"
+    },
+    {
+      "name": "equipped-INNERCLOTHING",
+      "directions": 4,
+	  "copyright": "Vordenburg, wonderfulnewworld, ItsMaitake",
+	  "license": "CC-BY-SA-4.0"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "Vordenburg, wonderfulnewworld, ItsMaitake",
+	  "license": "CC-BY-SA-4.0"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "Vordenburg, wonderfulnewworld, ItsMaitake",
+	  "license": "CC-BY-SA-4.0"
+    }
+  ]
+}

@@ -20,6 +20,7 @@
   emaggedInventory: # Blimpuf
     ClothingEyesGlassesChemical: 1 # Blimpuf
     ClothingOuterWinterSyndieCap: 1 # Blimpuf
-    ClothingUniformJumpskirtOperative: 1 # Blimpuf
-    ClothingUniformJumpsuitOperative: 1 # Blimpuf
-    ClothingNeckScarfStripedSyndieGreen: 1 # Blimpuf
+    ClothingUniformJumpsuitHydroponicsSyndie: 1 # Blimpuf
+    ClothingUniformJumpskirtHydroponicsSyndie: 1 # Blimpuf
+    ClothingOuterApronSyndicate: 1 # Blimpuf
+    ClothingNeckScarfStripedSyndieRed: 1 # Blimpuf
