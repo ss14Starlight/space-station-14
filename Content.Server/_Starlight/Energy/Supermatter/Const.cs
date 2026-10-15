@@ -37,8 +37,8 @@ internal static class Const
         new (0.1f, 3.0f, 3.0f, 0f, -.5f, -0.25f, 0f), // Halon (horrible cooland, but great rad protection, flooding SM makes it stop fire anyways.)
         new (0.45f, 0.4f, 1.3f, 0f, -0.1f, 0f, 0f), // Helium (good thermal conductivity, heats quickly to molar mass)
         new (0.10f, 4.0f, 1.1f, -0.2f, 5.0f, 0.5f, 0f), // AntiNoblium (HyNoB stable, thus "anti" highly unstable) //END FUNKY
-        new (0.25f, 1.2f, 3.0f, 0f, 0f, 0f, 0f), // Ulnitranium (close to ploux) //STARLIGHT GASES
-        new (0.35f, 1.0f, 2.0f, 1.0f, -0.2f, 0f, 0f), // ZXA (another support gas) //END STARLIGHT
+        new (0.25f, 1.2f, 3.0f, 0f, 0f, 0f, 0f), // Ulnitranium (close to ploux)
+        new (0.35f, 1.0f, 2.0f, 1.0f, -0.2f, 0f, 0f), // ZXA (another support gas)
     ];
 
     /*Cooling gases: Frezon, HyperNob
