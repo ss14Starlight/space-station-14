@@ -93,7 +93,7 @@ Must not be called during a War Declaration.
 
 [bold]Called by: Any two of:[/bold] [color=#fcdf03]Captain[/color], [color=#ff4242]Head of Security[/color], or [color=#2253b5]NanoTrasen Representative[/color] [bold]OR any three[/bold] [color=#fcdf03]Command[/color] members.
 
-[bold]Arrival time:[/bold] 30 minutes.
+[bold]Arrival time:[/bold] 50 minutes.
 
 [bold]Conditions:[/bold] A War Declaration has been made against the station.
 
@@ -103,5 +103,5 @@ Only available after war has been declared.
 
 [bold]Rescinded when:[/bold] The war threat has been repelled or the situation no longer requires additional security personnel.
 
-[bold]Rescinded by: Any one of:[/bold] [color=#fcdf03]Captain[/color], [color=#ff4242]Head of Security[/color], or [color=#2253b5]NanoTrasen Representative[/color] [bold]OR any two[/bold] [color=#fcdf03]Command[/color] members.
+[bold]Rescinded by: Any two of:[/bold] [color=#fcdf03]Captain[/color], [color=#ff4242]Head of Security[/color], [color=#2253b5]NanoTrasen Representative[/color] and one [color=#fcdf03]Command[/color] member [bold]OR Any one of:[/bold] [color=#fcdf03]Captain[/color], [color=#ff4242]Head of Security[/color], [color=#2253b5]NanoTrasen Representative[/color] and three [color=#fcdf03]Command[/color] members.
 </Document>

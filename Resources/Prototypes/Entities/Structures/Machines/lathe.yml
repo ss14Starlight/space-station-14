@@ -426,6 +426,7 @@
     runningState: building
     staticPacks:
     - FriendlyCubesStatic
+    - StarlightFriendlyCubesStatic # Starlight
     dynamicPacks:
     - StarlightBiofabricatorLootable
   - type: EmagLatheRecipes
@@ -680,6 +681,7 @@
     staticPacks:
     - BioGenIngredientsStatic
     - BioGenMaterialsStatic
+    - StarlightBioGenIngredientsStatic # Starlight
   - type: EmagLatheRecipes
     emagStaticPacks:
     - BioGenEmagStatic
