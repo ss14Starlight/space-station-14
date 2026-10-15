@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (Evac Raven) Pipe dock standard, weeee.
-    type: Tweak
-  id: 409051
-  time: '2026-10-01T12:24:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6413
-- author: Johnny
-  changes:
   - message: (Evac Raven) NT Has funded gravity for this evacuation shuttle.
     type: Fix
   id: 409052
@@ -2883,4 +2876,11 @@ Entries:
   id: 409450
   time: '2026-10-14T15:34:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6678
+- author: Johnny
+  changes:
+  - message: Nuclear reactor can do bigger boom boom.
+    type: Tweak
+  id: 409451
+  time: '2026-10-15T06:38:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6687
 Order: -1
