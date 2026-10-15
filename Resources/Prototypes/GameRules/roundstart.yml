@@ -350,7 +350,7 @@
   id: Wizard
   components:
   - type: GameRule
-    minPlayers: 40 # Starlight
+    minPlayers: 20 # Starlight
   - type: DynamicRuleCost
     cost: 150
 
@@ -410,7 +410,7 @@
   id: Xenoborgs
   components:
   - type: GameRule
-    minPlayers: 30
+    minPlayers: 20
 
 # This rule makes the chosen players unable to get other antag rules, as a way to prevent metagaming job rolls.
 # Put this before antags assigned to station jobs, but after non-job antags (NukeOps/Wiz).
