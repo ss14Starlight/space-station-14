@@ -12,7 +12,7 @@ namespace Content.Server.Anomaly.Effects;
 /// </summary>
 public sealed class GravityAnomalySystem : SharedGravityAnomalySystem
 {
-    [Dependency] private readonly RadiationSystem _radiation = default!;
+    [Dependency] private RadiationSystem _radiation = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
