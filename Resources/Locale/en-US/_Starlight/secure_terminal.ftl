@@ -126,7 +126,7 @@ secure-terminal-security-name = Security
 secure-terminal-warops-security-name = Nuclear Response Team
 secure-terminal-warops-security-desc = Deploys an ERT Security detail specialized for War Ops. Only available during War Ops.
                                        Use when the station is under direct armed assault during a declared War Ops.
-secure-terminal-warops-security-announcement = An Emergency Response Team — Security Specialized detail — has been authorized and is en route. Estimated arrival: 30 minutes.
+secure-terminal-warops-security-announcement = An Emergency Response Team — Security Specialized detail — has been authorized and is en route. Estimated arrival: 50 minutes.
 
 secure-terminal-ert-security-name = ERT Security
 secure-terminal-ert-security-desc = Deploys an ERT Security detail.

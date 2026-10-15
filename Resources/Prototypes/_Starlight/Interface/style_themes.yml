@@ -355,3 +355,22 @@
   textDisabled: "#6A5A3E"
   positive: "#7FA84A"
   negative: "#C9503A"
+
+- type: styleTheme
+  id: Nanotrasen
+  name: style-theme-nanotrasen
+  order: 21
+  accent: "#A88B5E"
+  borderThickness: 2
+  background: "#252632"
+  surface: "#2F2F3B"
+  surfaceRaised: "#343541"
+  element: "#424665"
+  elementHovered: "#4F5376"
+  elementDisabled: "#2B2D40"
+  border: "#3F4159"
+  text: "#FEFEFE"
+  textMuted: "#7E7E7E"
+  textDisabled: "#787878"
+  positive: "#3E9A5A"
+  negative: "#C24141"

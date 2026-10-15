@@ -222,7 +222,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/hos_parade.rsi
 
 - type: entity
-  parent: [ClothingUniformSkirtBase, BaseCommandManagerContraband] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
+  parent: [ ClothingUniformSkirtBase, BaseCommandContraband, BaseAssistantManagerContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: ClothingUniformJumpskirtCommandGeneric
   name: command jumpskirt
   description: A generic Command-colored jumpsuit not associated with any particular department.
@@ -490,7 +490,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/capformaldress.rsi
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: [ BaseCentcommContraband, ClothingUniformSkirtBase ] # Blimpuf
   id: ClothingUniformJumpskirtCentcomFormalDress
   name: central command formal dress
   description: A dress for special occasions.

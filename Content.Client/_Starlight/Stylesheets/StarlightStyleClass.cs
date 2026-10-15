@@ -9,6 +9,11 @@ public static class StarlightStyleClass
     /// A bordered surface for lists and logs, so they stand apart from the window body.
     /// </summary>
     public const string InsetPanel = "InsetPanel";
+
+    /// <summary>
+    /// A style class for a preview of a sprite, which is a small image or icon that represents an object or character in the game.
+    /// </summary>
+    public const string SpritePreview = "SpritePreview";
 }
 
 /// <summary>

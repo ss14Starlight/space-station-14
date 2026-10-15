@@ -110,7 +110,7 @@
   - type: IngestionBlocker
 
 - type: entity
-  parent: [ClothingMaskGas, BaseCargoSalvageContraband] #starlight
+  parent: [ ClothingMaskGas, BaseCargoContraband, BaseSalvageContraband ] # Starlight
   id: ClothingMaskGasExplorer
   name: explorer gas mask
   description: A military-grade gas mask that can be connected to an air supply.
@@ -429,7 +429,7 @@
   #endregion Starlight
 
 - type: entity
-  parent: [ ClothingMaskGas, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier2, ClothingMaskGas, BaseSecurityContraband ] # Blimpuf
   id: ClothingMaskGasSwat
   name: swat gas mask
   description: A elite issue Security gas mask.
