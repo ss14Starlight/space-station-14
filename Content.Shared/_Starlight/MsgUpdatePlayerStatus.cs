@@ -9,6 +9,8 @@ public sealed class MsgUpdatePlayerStatus : NetMessage
     public override MsgGroups MsgGroup => MsgGroups.Command;
 
     public PlayerData? Player;
+    public Dictionary<string, double> Resources = [];
+
     public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
     {
         if (buffer.ReadBoolean())
@@ -29,11 +31,11 @@ public sealed class MsgUpdatePlayerStatus : NetMessage
             var title = buffer.ReadString();
             var ghostTheme = buffer.ReadString();
 
+            Resources = resources;
             Player = new PlayerData
             {
                 Title = title,
                 GhostTheme = ghostTheme,
-                Resources = resources,
             };
         }
     }
@@ -46,7 +48,7 @@ public sealed class MsgUpdatePlayerStatus : NetMessage
 
         buffer.WritePadBits();
 
-        var resources = Player.Resources ?? [];
+        var resources = Resources;
         buffer.Write(resources.Count);
 
         foreach (var (key, value) in resources)

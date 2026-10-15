@@ -1,3 +1,5 @@
+using System.Linq;
+using Content.Shared.Body.Part;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
@@ -30,6 +32,7 @@ public abstract partial class SharedBodySystem : EntitySystem
     public const string OrganSlotContainerIdPrefix = "body_organ_slot_";
 
     [Dependency] private   IGameTiming _timing = default!;
+    [Dependency] private   IViewVariablesManager _vvm = default!;
     [Dependency] protected IPrototypeManager Prototypes = default!;
     [Dependency] protected DamageableSystem Damageable = default!;
     [Dependency] protected MovementSpeedModifierSystem Movement = default!;
@@ -43,6 +46,24 @@ public abstract partial class SharedBodySystem : EntitySystem
 
         InitializeBody();
         InitializeParts();
+
+        // Debug-only VV paths. The component path supplies the owning entity ID.
+        _vvm.GetTypeHandler<BodyPartComponent>()
+            .AddPath("BodyPartSlotsVV", (uid, part) => part.Children.Keys
+                .Select(slotId => (ContainerSlot) Containers.GetContainer(uid, GetPartSlotContainerId(slotId)))
+                .ToList())
+            .AddPath("OrganSlotsVV", (uid, part) => part.Organs.Keys
+                .Select(slotId => (ContainerSlot) Containers.GetContainer(uid, GetOrganContainerId(slotId)))
+                .ToList());
+    }
+
+    public override void Shutdown()
+    {
+        _vvm.GetTypeHandler<BodyPartComponent>()
+            .RemovePath("BodyPartSlotsVV")
+            .RemovePath("OrganSlotsVV");
+
+        base.Shutdown();
     }
 
     /// <summary>

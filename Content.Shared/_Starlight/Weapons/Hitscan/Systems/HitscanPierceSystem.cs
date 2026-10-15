@@ -75,7 +75,12 @@ public sealed partial class PierceSystem : EntitySystem
         if (hitscan.Comp.Chance <= 0)
             return false;
 
-        var random = seed is { } value ? new System.Random(SharedRandomExtensions.HashCodeCombine(value, PierceSalt)) : null;
+        IRobustRandom? random = null;
+        if (seed is { } value)
+        {
+            random = new RobustRandom();
+            random.SetSeed(SharedRandomExtensions.HashCodeCombine(value, PierceSalt));
+        }
 
         if (hitscan.Comp.Chance < 1 && !(random?.Prob(hitscan.Comp.Chance) ?? _rand.Prob(hitscan.Comp.Chance)))
             return false;

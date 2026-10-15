@@ -101,9 +101,18 @@ internal static class Const
     public static FixedPoint2 MaxDamagePerSecond = (100f / 180f) + RegenerationPerSecond; // Ensures it takes at least 3 minutes to deplete
     public static FixedPoint2 RegenerationPerSecond = 0.3f;
 
-    public static string[] AudioCrack = ["/Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg", "/Audio/_Starlight/Effects/supermatter/crystal_crack_2.ogg"];
-    public static string[] AudioBurn = ["/Audio/_Starlight/Effects/supermatter/burning_1.ogg", "/Audio/_Starlight/Effects/supermatter/burning_2.ogg", "/Audio/_Starlight/Effects/supermatter/burning_3.ogg"];
-    public static string AudioEvaporate = "/Audio/_Starlight/Effects/supermatter/emitter2.ogg";
+    public static readonly SoundSpecifier[] AudioCrack =
+    [
+        new SoundPathSpecifier("/Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg"),
+        new SoundPathSpecifier("/Audio/_Starlight/Effects/supermatter/crystal_crack_2.ogg")
+    ];
+    public static readonly SoundSpecifier[] AudioBurn =
+    [
+        new SoundPathSpecifier("/Audio/_Starlight/Effects/supermatter/burning_1.ogg"),
+        new SoundPathSpecifier("/Audio/_Starlight/Effects/supermatter/burning_2.ogg"),
+        new SoundPathSpecifier("/Audio/_Starlight/Effects/supermatter/burning_3.ogg")
+    ];
+    public static readonly SoundSpecifier AudioEvaporate = new SoundPathSpecifier("/Audio/_Starlight/Effects/supermatter/emitter2.ogg");
 
     public static readonly SoundSpecifier AmbienceCalm = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Objects/supermatter_calm.ogg");
     public static readonly SoundSpecifier AmbienceDelam = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Objects/supermatter_delam.ogg");

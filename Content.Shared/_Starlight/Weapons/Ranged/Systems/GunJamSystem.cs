@@ -45,7 +45,9 @@ public sealed partial class GunJamSystem : EntitySystem
         if (ent.Comp.IsJammed)
             return;
 
-        if (!_gun.GetShotRandom(ent, JamSalt).Prob(ent.Comp.JamChance))
+        var random = new RobustRandom();
+        random.SetSeed(_gun.GetShotSeed(ent, JamSalt));
+        if (!random.Prob(ent.Comp.JamChance))
             return;
 
         ent.Comp.IsJammed = true;
