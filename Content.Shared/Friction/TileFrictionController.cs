@@ -123,10 +123,10 @@ namespace Content.Shared.Friction
                      */
                     // Starlight - start
                     var isInteractiveKinematicGhost = body.BodyType == BodyType.Kinematic &&
-                                                      TryComp<GhostComponent>(uid, out var ghost) &&
-                                                      ghost.CanGhostInteract;
+                        TryComp<GhostComponent>(uid, out var ghost) &&
+                        ghost.CanGhostInteract;
                     DebugTools.Assert(!_moverQuery.HasComp(uid) || _blockMoverQuery.HasComp(uid) ||
-                                      isInteractiveKinematicGhost,
+                        isInteractiveKinematicGhost,
                         $"Input mover: {ToPrettyString(uid)} in TileFrictionController is not the correct BodyType, BodyType found: {body.BodyType}, expected: KinematicController.");
                     // Starlight - end
                     continue;
