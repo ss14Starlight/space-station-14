@@ -35,3 +35,10 @@
   components:
   - type: RattleOnTrigger
     radioChannel: [CentCom] # List
+
+- type: !PartialOnly entity
+  id: FreedomImplant
+  description: This implant lets the user break out of hand restraints and bolas up to three times before ceasing to function anymore.
+  components:
+  - type: RemoveBolaOnTrigger
+    targetUser: true
