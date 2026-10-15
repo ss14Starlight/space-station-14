@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Changeling;
 using Content.Shared._Starlight.Medical.Body.Prototypes;
@@ -58,13 +59,13 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
             }
 
             // Why do i have to write something like this? This feels horrible, thanks reviewdog.
-            var (missingOrgans, abnormalOrgans, bodyHasImplants, bodyHasForeignBodies) =
-                GetBodyAbnormalities(patient, body);
+            var (missingOrgans, abnormalOrgans, bodyHasImplants, bodyHasForeignBodies) = GetBodyAbnormalities(patient, body);
+
             if (missingOrgans)
-                Add(args.Abnormalities, "starlight-health-analyzer-abnormality-missing-organs", "#F7784A");
+                Add(args.Abnormalities, "starlight-health-analyzer-abnormality-missing-organs", "#F74D4A");
 
             if (abnormalOrgans)
-                Add(args.Abnormalities, "starlight-health-analyzer-abnormality-abnormal-organs", "#F7784A");
+                Add(args.Abnormalities, "starlight-health-analyzer-abnormality-abnormal-organs", "#F7CE4A");
 
             hasImplants |= bodyHasImplants;
             hasForeignBodies |= bodyHasForeignBodies;
@@ -74,7 +75,7 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
             Add(args.Abnormalities, "starlight-health-analyzer-abnormality-implants", "#7EA9D8");
 
         if (hasForeignBodies)
-            Add(args.Abnormalities, "starlight-health-analyzer-abnormality-foreign-bodies", "#7EA9D8");
+            Add(args.Abnormalities, "starlight-health-analyzer-abnormality-foreign-bodies", "#9D4AF7");
 
         AddSleepAbnormality(patient, args.Abnormalities);
 
@@ -87,11 +88,11 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
         }
 
         if (HasComp<AbsorbedComponent>(patient))
-            Add(args.Abnormalities, "starlight-health-analyzer-abnormality-hollow", "#F74A4A");
+            Add(args.Abnormalities, "starlight-health-analyzer-abnormality-hollow", "#8A8A8A");
 
         if (TryComp<BloodstreamComponent>(patient, out var blood)
             && blood.BleedAmount > blood.MaxBleedAmount * 0.75f)
-            Add(args.Abnormalities, "starlight-health-analyzer-abnormality-extreme-bleeding", "#C94406");
+            Add(args.Abnormalities, "starlight-health-analyzer-abnormality-extreme-bleeding", "#CB0629");
     }
 
     private (bool MissingOrgans, bool AbnormalOrgans, bool HasImplants, bool HasForeignBodies)
@@ -120,8 +121,7 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
         {
             if (organSlot == "cavity")
             {
-                if (_containers.TryGetContainer(part, SharedBodySystem.GetOrganContainerId(organSlot),
-                        out var cavityContainer)
+                if (_containers.TryGetContainer(part, SharedBodySystem.GetOrganContainerId(organSlot), out var cavityContainer)
                     && cavityContainer.ContainedEntities.Count > 0)
                     hasForeignBodies = true;
 
@@ -130,8 +130,7 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
 
             if (organSlot.EndsWith("_implant", StringComparison.Ordinal))
             {
-                if (_containers.TryGetContainer(part, SharedBodySystem.GetOrganContainerId(organSlot),
-                        out var implantContainer)
+                if (_containers.TryGetContainer(part, SharedBodySystem.GetOrganContainerId(organSlot), out var implantContainer)
                     && implantContainer.ContainedEntities.Count > 0)
                     hasImplants = true;
 
@@ -139,7 +138,18 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
             }
 
             if (organProto == "null")
+            {
+                if (_containers.TryGetContainer(part, SharedBodySystem.GetOrganContainerId(organSlot),
+                        out var optionalOrganContainer))
+                {
+                    if (optionalOrganContainer.ContainedEntities.Any(containedEntity => !HasComp<OrganComponent>(containedEntity)))
+                    {
+                        hasForeignBodies = true;
+                    }
+                }
+
                 continue;
+            }
 
             if (!_containers.TryGetContainer(part, SharedBodySystem.GetOrganContainerId(organSlot),
                     out var organContainer))
@@ -204,21 +214,22 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
         if (!HasComp<SleepingComponent>(patient))
             return;
 
-        var remainingSleepiness = TimeSpan.Zero;
-        if (_statusEffects.TryGetTime(patient, _sleepinessStatusEffect, out var sleepinessEffect)
-            && sleepinessEffect.EndEffectTime is { } endTime)
+        if (!_statusEffects.TryGetTime(patient, _sleepinessStatusEffect, out var sleepinessEffect)
+            || sleepinessEffect.EndEffectTime is not { } endTime)
         {
-            remainingSleepiness = endTime - _timing.CurTime;
-            if (remainingSleepiness < TimeSpan.Zero)
-                remainingSleepiness = TimeSpan.Zero;
+            return; // This case should not exist, I refuse to do more than catch it
         }
 
+        var remainingSleepiness = endTime - _timing.CurTime;
+        if (remainingSleepiness < TimeSpan.Zero)
+            remainingSleepiness = TimeSpan.Zero;
+
         if (remainingSleepiness <= TimeSpan.FromSeconds(30))
-            Add(abnormalities, "starlight-health-analyzer-abnormality-sleeping", "#8ECDF2");
+            Add(abnormalities, "starlight-health-analyzer-abnormality-sleeping", "#7B38FF");
         else if (remainingSleepiness <= TimeSpan.FromSeconds(60))
-            Add(abnormalities, "starlight-health-analyzer-abnormality-deep-sleep", "#6B99DC");
+            Add(abnormalities, "starlight-health-analyzer-abnormality-deep-sleep", "#4D00E6");
         else
-            Add(abnormalities, "starlight-health-analyzer-abnormality-unconscious", "#BA91E8");
+            Add(abnormalities, "starlight-health-analyzer-abnormality-unconscious", "#3900AA");
     }
 
     private void Add(List<HealthAnalyzerAbnormalityData> abnormalities, string description, string color) =>
