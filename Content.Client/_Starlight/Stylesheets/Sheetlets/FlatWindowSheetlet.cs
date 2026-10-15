@@ -1,5 +1,6 @@
 using Content.Client._Starlight.UserInterface;
 using Content.Client.Stylesheets;
+using Content.Client.Stylesheets.Sheetlets;
 using Content.Client.Stylesheets.Stylesheets;
 using Content.Client.UserInterface.Controls;
 using Robust.Client.Graphics;
@@ -54,8 +55,8 @@ public sealed class FlatWindowSheetlet : Sheetlet<NanotrasenStylesheet>
             rules.Add(Child()
                 .Parent(E<FancyWindow>())
                 .Child(E<PanelContainer>().Class(StyleClass.BackgroundPanel))
-                .Panel(FlatBox.Fill(windowBackground))
-                .Modulate(Color.White));
+                .Prop(PanelContainer.StylePropertyPanel, StyleBoxHelpers.BaseStyleBox(sheet))
+                .Modulate(windowBackground));
         }
 
         rules.AddRange([
