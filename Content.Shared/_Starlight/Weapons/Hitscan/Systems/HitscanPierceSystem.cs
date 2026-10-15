@@ -75,14 +75,11 @@ public sealed partial class PierceSystem : EntitySystem
         if (hitscan.Comp.Chance <= 0)
             return false;
 
-        IRobustRandom? random = null;
-        if (seed is { } value)
-        {
-            random = new RobustRandom();
-            random.SetSeed(SharedRandomExtensions.HashCodeCombine(value, PierceSalt));
-        }
+        var random = seed is { } value ? new System.Random(SharedRandomExtensions.HashCodeCombine(value, PierceSalt)) : null;
 
-        if (hitscan.Comp.Chance < 1 && !(random?.Prob(hitscan.Comp.Chance) ?? _rand.Prob(hitscan.Comp.Chance)))
+        if (hitscan.Comp.Chance < 1 && !(random != null
+                ? random.NextDouble() < hitscan.Comp.Chance
+                : _rand.Prob(hitscan.Comp.Chance)))
             return false;
 
         // If we're at our maximum recursion depth, don't try to pierce

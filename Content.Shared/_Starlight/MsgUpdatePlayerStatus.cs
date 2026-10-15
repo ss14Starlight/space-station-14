@@ -9,7 +9,7 @@ public sealed class MsgUpdatePlayerStatus : NetMessage
     public override MsgGroups MsgGroup => MsgGroups.Command;
 
     public PlayerData? Player;
-    public Dictionary<string, double> Resources = [];
+    public Dictionary<string, double>? Resources;
 
     public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
     {
@@ -49,12 +49,15 @@ public sealed class MsgUpdatePlayerStatus : NetMessage
         buffer.WritePadBits();
 
         var resources = Resources;
-        buffer.Write(resources.Count);
+        buffer.Write(resources?.Count ?? 0);
 
-        foreach (var (key, value) in resources)
+        if (resources != null)
         {
-            buffer.Write(key);
-            buffer.Write(value);
+            foreach (var (key, value) in resources)
+            {
+                buffer.Write(key);
+                buffer.Write(value);
+            }
         }
 
         buffer.Write(Player.Title);

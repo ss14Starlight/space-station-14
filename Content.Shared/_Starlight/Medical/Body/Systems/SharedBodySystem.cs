@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Movement.Systems;
@@ -49,12 +48,20 @@ public abstract partial class SharedBodySystem : EntitySystem
 
         // Debug-only VV paths. The component path supplies the owning entity ID.
         _vvm.GetTypeHandler<BodyPartComponent>()
-            .AddPath("BodyPartSlotsVV", (uid, part) => part.Children.Keys
-                .Select(slotId => (ContainerSlot) Containers.GetContainer(uid, GetPartSlotContainerId(slotId)))
-                .ToList())
-            .AddPath("OrganSlotsVV", (uid, part) => part.Organs.Keys
-                .Select(slotId => (ContainerSlot) Containers.GetContainer(uid, GetOrganContainerId(slotId)))
-                .ToList());
+            .AddPath("BodyPartSlotsVV", (uid, part) =>
+            {
+                var slots = new List<ContainerSlot>(part.Children.Count);
+                foreach (var slotId in part.Children.Keys)
+                    slots.Add((ContainerSlot) Containers.GetContainer(uid, GetPartSlotContainerId(slotId)));
+                return slots;
+            })
+            .AddPath("OrganSlotsVV", (uid, part) =>
+            {
+                var slots = new List<ContainerSlot>(part.Organs.Count);
+                foreach (var slotId in part.Organs.Keys)
+                    slots.Add((ContainerSlot) Containers.GetContainer(uid, GetOrganContainerId(slotId)));
+                return slots;
+            });
     }
 
     public override void Shutdown()

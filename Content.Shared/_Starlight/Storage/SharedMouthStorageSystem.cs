@@ -1,5 +1,3 @@
-using System.Numerics;
-using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
@@ -8,15 +6,11 @@ using Content.Shared.Standing;
 using Content.Shared.Storage;
 using Content.Shared.Throwing;
 using Robust.Shared.Containers;
-using Robust.Shared.Random;
-using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Storage;
 
 public abstract partial class SharedMouthStorageSystem : EntitySystem
 {
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private ThrowingSystem _throwing = default!;
     [Dependency] private SharedContainerSystem _container = default!;
 
@@ -81,12 +75,9 @@ public abstract partial class SharedMouthStorageSystem : EntitySystem
             return;
 
         var dumpQueue = _container.EmptyContainer(storage.Container, true, Transform(uid).Coordinates);
-        var rand = _random.GetPredictedRandom(_gameTiming, GetNetEntity(uid).Id);
 
         foreach (var entity in dumpQueue)
         {
-            var angle = rand.NextAngle().RotateVec(new Vector2(rand.NextFloat(), 0));
-
             var ev = new FellDownThrowAttemptEvent(entity);
             RaiseLocalEvent(entity, ref ev);
 

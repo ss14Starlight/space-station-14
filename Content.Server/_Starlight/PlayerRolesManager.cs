@@ -76,10 +76,8 @@ public sealed partial class PlayerRolesManager : IPlayerRolesManager, IPostInjec
         };
 
         _players.Add(session, new PlayerReg(session, data));
-        _playerResources.TrySetResources(session, new Dictionary<string, double>
-        {
-            ["credits"] = dbData.Balance
-        });
+        if (_playerResources.TryGetResources(session, out var resources))
+            resources["credits"] = dbData.Balance;
 
         UpdatePlayerStatus(session);
     }

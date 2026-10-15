@@ -40,8 +40,8 @@ public sealed partial class ClientPlayerManager : IClientPlayerRolesManager, IPo
         var host = IoCManager.Resolve<IClientConsoleHost>();
 
         _playerData = message.Player;
-        if (_playerData != null && _player.LocalSession is { } session)
-            _nullLinkResourcesManager.TrySetResources(session, message.Resources);
+        if (_playerData != null && _player.LocalSession is { } session && message.Resources is { } resources)
+            _nullLinkResourcesManager.TrySetResources(session, resources);
 
         _sawmill.Info("Updated player status");
 

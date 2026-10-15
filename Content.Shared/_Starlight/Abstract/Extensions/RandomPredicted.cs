@@ -2,7 +2,7 @@
 using JetBrains.Annotations;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
+using System.Linq;
 
 namespace Content.Shared._Starlight.Abstract.Extensions;
 
@@ -13,7 +13,7 @@ namespace Content.Shared._Starlight.Abstract.Extensions;
 public static class RandomPredicted
 {
     /// <summary>
-    /// Get a predictable <see cref="IRobustRandom"/> instance seeded with the current tick.
+    /// Get a predictable Random instance seeded with the current tick.
     /// This ensures identical random sequences on both client and server.
     /// </summary>
     /// <param name="random">The <see cref="IRobustRandom"/> instance.</param>
@@ -24,13 +24,11 @@ public static class RandomPredicted
     /// do NOT use this for sensitive applications.
     /// </remarks>
     [PublicAPI]
-    public static IRobustRandom GetPredictedRandom(this IRobustRandom random, IGameTiming timing, int seed = 0)
+    public static System.Random GetPredictedRandom(this IRobustRandom random, IGameTiming timing, int seed = 0)
     {
         var tickValue = (int) timing.CurTick.Value;
         var combinedSeed = SharedRandomExtensions.HashCodeCombine(tickValue, seed);
-        var predictedRandom = new RobustRandom();
-        predictedRandom.SetSeed(combinedSeed);
-        return predictedRandom;
+        return new System.Random(combinedSeed);
     }
 
     /// <summary>
@@ -197,8 +195,7 @@ public static class RandomPredicted
     [PublicAPI]
     public static Angle NextAnglePredicted(this IRobustRandom random, IGameTiming timing, Angle minValue, Angle maxValue, int seed = 0)
     {
-        DebugTools.Assert(minValue < maxValue);
-        return minValue + (maxValue - minValue) * random.GetPredictedRandom(timing, seed).NextDouble();
+        return random.GetPredictedRandom(timing, seed).NextAngle(minValue, maxValue);
     }
 
     /// <summary>
