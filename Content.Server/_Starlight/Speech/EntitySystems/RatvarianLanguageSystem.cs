@@ -4,7 +4,6 @@ using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Content.Shared.Speech.EntitySystems;
 using Content.Shared.StatusEffectNew;
-using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Speech.EntitySystems;
@@ -55,7 +54,7 @@ public sealed partial class RatvarianLanguageSystem : SharedRatvarianLanguageSys
         // Activate before other modifications so translation works properly
         var before = new[] { typeof(StatusEffectsSystem), typeof(SharedSlurredSystem), typeof(SharedStutteringSystem) };
         SubscribeLocalEvent<RatvarianLanguageComponent, AccentGetEvent>(OnAccent, before: before);
-        SubscribeLocalEvent<StatusEffectContainerComponent, AccentGetEvent>(OnStatusAccent, before: before);
+        SubscribeLocalEvent<RatvarianLanguageComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnStatusAccent, before: before);
     }
 
     public override void DoRatvarian(EntityUid uid, TimeSpan time, bool refresh)
@@ -69,13 +68,12 @@ public sealed partial class RatvarianLanguageSystem : SharedRatvarianLanguageSys
     private void OnAccent(EntityUid uid, RatvarianLanguageComponent component, AccentGetEvent args)
         => args.Message.Text = Translate(args.Message.Text);
 
-    private void OnStatusAccent(Entity<StatusEffectContainerComponent> entity, ref AccentGetEvent args)
+    private void OnStatusAccent(Entity<RatvarianLanguageComponent> entity, ref StatusEffectRelayedEvent<AccentGetEvent> args)
     {
-        // Translate before status effects relay to other accents, and only once for innate Ratvarian speakers.
-        if (HasComp<RatvarianLanguageComponent>(entity) || !_statusEffects.HasStatusEffect(entity, _ratvarianKey))
+        if (HasComp<RatvarianLanguageComponent>(args.Args.Entity))
             return;
 
-        args.Message.Text = Translate(args.Message.Text);
+        args.Args.Message.Text = Translate(args.Args.Message.Text);
     }
 
     private static string Translate(string message)
