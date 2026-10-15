@@ -13,6 +13,7 @@ using Robust.Shared.Prototypes;
 using SixLabors.ImageSharp.PixelFormats;
 using Robust.Shared.Graphics.RSI;
 using Content.Client.Weapons.Ranged.Systems;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Client._Starlight.Weapons.Ranged;
 
 namespace Content.Client.CombatMode;
@@ -32,6 +33,7 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
     private readonly HandsSystem _hands = default!;
 
     #region Starlight
+    private readonly RemoteControlInterface _remoteControl;
     private readonly IClyde _clyde = default!;
     private readonly SightPrototype? _gunSight;
     private readonly SightPrototype? _gunBoltSight;
@@ -64,6 +66,7 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
         _eye = eye;
         _combat = combatSys;
         _hands = hands;
+        _remoteControl = entMan.System<RemoteControlInterface>(); // Starlight
         // Starlight-start: replace Texture to Proto
         _gunSight = gunSight;
         _meleeSight = meleeSight;
@@ -86,17 +89,19 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
     protected override void Draw(in OverlayDrawArgs args)
     {
         var mouseScreenPosition = _inputManager.MouseScreenPosition;
-        var mousePosMap = _eye.PixelToMap(mouseScreenPosition);
+        var eye = _remoteControl.ControlledEye ?? _eye.CurrentEye; // Starlight
+        var mousePosMap = _remoteControl.RemoteMousePosition ?? _eye.PixelToMap(mouseScreenPosition); // Starlight
         if (mousePosMap.MapId != args.MapId)
             return;
 
-        var handEntity = _hands.GetActiveHandEntity();
+        var handEntity = _remoteControl.ControlledEntity ?? _hands.GetActiveHandEntity(); // Starlight
         var isHandGunItem = _entMan.TryGetComponent<GunComponent>(handEntity, out var gun); // Starlight-edit
         var isGunBolted = true;
         if (_entMan.TryGetComponent(handEntity, out ChamberMagazineAmmoProviderComponent? chamber))
             isGunBolted = chamber.BoltClosed ?? true;
 
-        var mousePos = mouseScreenPosition.Position;
+        var remoteViewport = _remoteControl.ControlledViewport; // Starlight
+        var mousePos = remoteViewport?.WorldToScreen(mousePosMap.Position) ?? mouseScreenPosition.Position; // Starlight
         var uiScale = (args.ViewportControl as Control)?.UIScale ?? 1f;
         var limitedScale = uiScale > 1.25f ? 1.25f : uiScale;
 
@@ -116,8 +121,8 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
         // Spread originates from the shooter, not from the (possibly offset) eye.
         var originMap = handEntity != null
             ? _entMan.System<SharedTransformSystem>().GetMapCoordinates(handEntity.Value)
-            : _eye.CurrentEye.Position;
-        var originScreen = _eye.MapToScreen(originMap).Position;
+            : eye.Position; // Starlight
+        var originScreen = remoteViewport?.WorldToScreen(originMap.Position) ?? _eye.MapToScreen(originMap).Position; // Starlight
         var rot = MathF.Atan2(originScreen.Y - mousePos.Y, originScreen.X - mousePos.X);
         rot -= MathF.PI / 2f;
         var rsiState = spriteSys.RsiStateLike(sight.Sprite);
@@ -165,6 +170,21 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
     #region Starlight
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
+        // Starlight-start
+        if (_remoteControl.ControlledEntity is not null)
+        {
+            if (!_combat.IsInCombatMode()
+                || args.ViewportControl != _remoteControl.ControlledViewport
+                || _remoteControl.RemoteMousePosition is null)
+            {
+                UpdateCursor(null, false);
+                return false;
+            }
+
+            return base.BeforeDraw(in args);
+        }
+        // Starlight-end
+
         if (!_combat.IsInCombatMode())
         {
             UpdateCursor(null, false);
