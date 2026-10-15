@@ -52,10 +52,28 @@
   negative: "#B42F2F"
 
 - type: styleTheme
-  id: Classic
-  name: style-theme-classic
+  id: NanoTrasen
+  name: style-theme-nanotrasen
   order: 3
-  stock: true
+  classicDecor: true
+  rawColors: true
+  accent: "#A88B5E"
+  secondaryAccent: "#126128"
+  accentTint: 1
+  borderThickness: 0
+  windowBackground: "#252632"
+  background: "#252632"
+  surface: "#2F2F3B"
+  surfaceRaised: "#343541"
+  element: "#424665"
+  elementHovered: "#4F5376"
+  elementDisabled: "#2B2D40"
+  border: "#3F4159"
+  text: "#FEFEFE"
+  textMuted: "#7E7E7E"
+  textDisabled: "#ABACAE"
+  positive: "#3E9A5A"
+  negative: "#9A1C1C"
 
 - type: styleTheme
   id: Abyss
@@ -357,25 +375,7 @@
   negative: "#C9503A"
 
 - type: styleTheme
-  id: Nanotrasen
-  name: style-theme-nanotrasen
+  id: Classic
+  name: style-theme-classic
   order: 21
-  classicDecor: true
-  rawColors: true
-  accent: "#A88B5E"
-  secondaryAccent: "#126128"
-  accentTint: 1
-  borderThickness: 0
-  windowBackground: "#252632"
-  background: "#252632"
-  surface: "#2F2F3B"
-  surfaceRaised: "#343541"
-  element: "#424665"
-  elementHovered: "#4F5376"
-  elementDisabled: "#2B2D40"
-  border: "#3F4159"
-  text: "#FEFEFE"
-  textMuted: "#7E7E7E"
-  textDisabled: "#ABACAE"
-  positive: "#3E9A5A"
-  negative: "#9A1C1C"
+  stock: true
