@@ -43,6 +43,8 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 15
       # Major Rules
       - !type:GroupSelector
         conditions:
@@ -426,6 +428,8 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 15
       # Major Rules, Beta
       - !type:GroupSelector
         conditions:
