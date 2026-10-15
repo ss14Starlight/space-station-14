@@ -62,7 +62,7 @@
   accentTint: 1
   borderThickness: 0
   windowBackground: "#252632"
-  background: "#252632"
+  background: "#24242B"
   surface: "#2F2F3B"
   surfaceRaised: "#343541"
   element: "#424665"
