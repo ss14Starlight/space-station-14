@@ -1,4 +1,5 @@
-allow-suit-storage-examine-text = You can attach {$itemList} to suit storage when wearing this.
+allow-suit-storage-examine-verb = Storage
+allow-suit-storage-examine-description = This item allows attaching {$itemList} to suit storage.
 
 # Items
 allow-suit-storage-item-something = something

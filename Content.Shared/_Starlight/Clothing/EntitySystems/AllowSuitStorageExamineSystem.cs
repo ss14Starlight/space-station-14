@@ -1,23 +1,30 @@
 ﻿using Content.Shared.Armor;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Examine;
+using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Clothing.EntitySystems;
 
 public sealed partial class AllowSuitStorageExamineSystem : EntitySystem
 {
-    [SubscribeLocalEvent]
-    private void OnExamined(Entity<AllowSuitStorageComponent> ent, ref ExaminedEvent args)
-    {
-        var component = ent.Comp;
+    [Dependency] private ExamineSystemShared _examine = default!;
 
+    [SubscribeLocalEvent]
+    private void OnDetailedExamine(EntityUid ent, AllowSuitStorageComponent component, ref GetVerbsEvent<ExamineVerb> args)
+    {
         if (!HasComp<ClothingComponent>(ent))
             return;
 
         if (TryGetSuitSlotExamine(component, out var msg))
         {
-            args.PushMarkup(msg.ToMarkup());
+            _examine.AddHoverExamineVerb(
+                args,
+                component,
+                Loc.GetString("allow-suit-storage-examine-verb"),
+                msg.ToMarkup(),
+                "/Textures/Interface/VerbIcons/buckle.svg.192dpi.png"
+            );
         }
     }
 
@@ -28,7 +35,7 @@ public sealed partial class AllowSuitStorageExamineSystem : EntitySystem
             return false;
         
         var supportedItems = GetSupportedItemsString(component.Whitelist.Components);
-        var st = Loc.GetString("allow-suit-storage-examine-text", ("itemList", supportedItems));
+        var st = Loc.GetString("allow-suit-storage-examine-description", ("itemList", supportedItems));
         msg.AddMarkupOrThrow(st);
 
         return true;
