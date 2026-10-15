@@ -1,76 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Ming) Added a disposal chute, hand labeler, mini plasma vial, variety instrument collection to nct classroom.
-    type: Add
-  id: 409053
-  time: '2026-10-01T12:44:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6411
-- author: Cvlancer
-  changes:
-  - message: (Ming) Added a togglable door holder to keep the classroom open.
-    type: Add
-  id: 409054
-  time: '2026-10-01T12:44:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6411
-- author: Cvlancer
-  changes:
-  - message: (Ming) Added a laundry machine to a maints bathroom area.
-    type: Add
-  id: 409055
-  time: '2026-10-01T12:44:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6411
-- author: Cvlancer
-  changes:
-  - message: (Ming) Added a ton of toilet paper and other bathroom decorations around station.
-    type: Add
-  id: 409056
-  time: '2026-10-01T12:44:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6411
-- author: Cvlancer
-  changes:
-  - message: (Ming) Added a little lounge area for mining to replace lost salvage stuff.
-    type: Add
-  id: 409057
-  time: '2026-10-01T12:44:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6411
-- author: Cvlancer
-  changes:
-  - message: (Ming) Fixed surgery and paramedic doors being the wrong access.
-    type: Fix
-  id: 409058
-  time: '2026-10-01T12:44:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6411
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added a shell to construct a shuttle near shuttle construction bay.
-    type: Add
-  id: 409059
-  time: '2026-10-01T12:44:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6411
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added a bit more room to maints shop.
-    type: Add
-  id: 409060
-  time: '2026-10-01T12:44:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6411
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added a laundry machine to security, science storage room, morgue, bathroom, nuclear reactor suit up, gen pop island.
-    type: Add
-  id: 409061
-  time: '2026-10-01T12:44:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6411
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added a laundromat near dorms.
-    type: Add
-  id: 409062
-  time: '2026-10-01T12:44:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6411
-- author: Cvlancer
-  changes:
   - message: (Oasis) Added a clean bot to gen pop island.
     type: Add
   id: 409063
@@ -2883,4 +2813,74 @@ Entries:
   id: 409452
   time: '2026-10-15T07:03:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6686
+- author: Caws
+  changes:
+  - message: Fixed a bunch of gamemodes that had an impractically high minPlayers of 40-50 players (e.g. Vampire, Traitorling, Zombieteors, and Vamptraitorling). These gamemodes now have a more reasonable minPlayers of 20-25.
+    type: Fix
+  id: 409453
+  time: '2026-10-15T07:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6670
+- author: Caws
+  changes:
+  - message: Both Beta and Epsilon should have a better variety of gamemodes (instead of constantly rolling Shitstation).
+    type: Tweak
+  id: 409454
+  time: '2026-10-15T07:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6670
+- author: Caws
+  changes:
+  - message: Non-ready players now count as 1/2 of a Ready player for roundstart gamemode rolling.
+    type: Tweak
+  id: 409455
+  time: '2026-10-15T07:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6670
+- author: Caws
+  changes:
+  - message: (Beta/Epsilon) PvP gamemodes (NukeOps, Revs, Cultists, Zombies) now make up 30% of rounds (up from effectively 18.9%).
+    type: Tweak
+  id: 409456
+  time: '2026-10-15T07:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6670
+- author: Caws
+  changes:
+  - message: (Beta/Epsilon) PvE gamemodes (Survival, Kessler) now make up 10% of rounds (up from effectively 5.6%).
+    type: Tweak
+  id: 409457
+  time: '2026-10-15T07:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6670
+- author: Caws
+  changes:
+  - message: (Beta/Epsilon) Traitor-Like gamemodes (Traitors, Vampires, Changelings) now make up 30% of rounds (down from effectively 35.7%).
+    type: Tweak
+  id: 409458
+  time: '2026-10-15T07:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6670
+- author: Caws
+  changes:
+  - message: (Beta/Epsilon) Dynamic's gamemode weight increased from effectively 21% to 25%.
+    type: Tweak
+  id: 409459
+  time: '2026-10-15T07:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6670
+- author: Caws
+  changes:
+  - message: (Beta/Epsilon) Shitstation weight reduced from effectively 5.6% to 3%.
+    type: Tweak
+  id: 409460
+  time: '2026-10-15T07:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6670
+- author: Caws
+  changes:
+  - message: (Beta/Epsilon) Wizard Duel weight increased from effectively 1.4% to 2%.
+    type: Tweak
+  id: 409461
+  time: '2026-10-15T07:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6670
+- author: Caws
+  changes:
+  - message: "(Beta/Epsilon) Extended can no longer roll as a primary gamemode - it's back to being a back-up / failsafe. If you hate any of the above gamemode tweaks after trying it, make your voice heard in #suggestions."
+    type: Remove
+  id: 409462
+  time: '2026-10-15T07:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6670
 Order: -1
