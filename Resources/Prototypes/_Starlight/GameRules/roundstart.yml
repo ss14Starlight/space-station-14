@@ -4,7 +4,7 @@
   parent: BaseGameRule
   components:
   - type: GameRule
-    minPlayers: 15
+    minPlayers: 0
   - type: BasicStationEventScheduler
     scheduledGameRules: !type:NestedSelector
       tableId: ShitGameRulesTable
@@ -92,7 +92,7 @@
   id: DynamicShitStationEventScheduler
   components:
   - type: GameRule
-    minPlayers: 15
+    minPlayers: 0
   - type: SubGamemodes
     rules:
     - id: ShitStationEventScheduler
