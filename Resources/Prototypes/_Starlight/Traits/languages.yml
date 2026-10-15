@@ -574,9 +574,9 @@
   effects:
     - !type:LanguageEffect
       languagesSpoken:
-        - Felyaic
+        - Nexus
       languagesUnderstood:
-        - Felyaic
+        - Nexus
   requirements:
     - !type:TraitsRequirement
       traits:
