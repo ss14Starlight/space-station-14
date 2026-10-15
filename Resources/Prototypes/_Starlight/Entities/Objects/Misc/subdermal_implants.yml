@@ -248,7 +248,7 @@
   id: USSPUplinkImplant
   name: USSP uplink implant
   description: A subdermal implant containing the USSP uplink radio.
-  parent: [ BaseSubdermalImplant, StorePresetUSSP ]
+  parent: BaseSubdermalImplant
   categories: [ HideSpawnMenu ]
   components:
     - type: SubdermalImplant
@@ -256,9 +256,7 @@
       whitelist:
         components:
           - Hands
-    - type: Store
-      balance:
-        Telebond: 0
+    - type: RemoteStore
     - type: UserInterface
       interfaces:
         enum.StoreUiKey.Key:
