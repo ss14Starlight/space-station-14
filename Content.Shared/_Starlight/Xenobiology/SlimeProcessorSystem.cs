@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Shared._Starlight.Genetics.Genes.Components;
 using Content.Shared._Starlight.Genetics.Genes.Systems;
@@ -15,15 +16,15 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+// ReSharper disable UseCollectionExpression
 
 namespace Content.Shared._Starlight.Xenobiology;
 
 public sealed partial class SlimeProcessorSystem : EntitySystem
 {
-    [Dependency] private EntityManager _entityManager = default!;
-    [Dependency] private SharedJitteringSystem _jitteringSystem = default!;
-    [Dependency] private IGameTiming _gameTiming = default!;
-    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedJitteringSystem _jitteringSystem = null!;
+    [Dependency] private IGameTiming _gameTiming = null!;
+    [Dependency] private SharedAudioSystem _audioSystem = null!;
 
     public override void Initialize()
     {
@@ -61,12 +62,12 @@ public sealed partial class SlimeProcessorSystem : EntitySystem
 
     private void EnableProcessingWrapper(Entity<SlimeProcessorComponent> ent)
     {
-        EnableProcessing(ent, _entityManager, _gameTiming);
+        EnableProcessing(ent);
         _jitteringSystem.AddJitter(ent.Owner, -10, 100);
         _audioSystem.PlayPredicted(new SoundPathSpecifier("/Audio/Machines/blender.ogg"), ent.Owner, null);
     }
 
-    private bool CanActivate(Entity<SlimeProcessorComponent> ent) => ent.Comp.SlimeContainer.ContainedEntities.Count > 0 && !_entityManager.HasComponent<ActiveSlimeProcessorComponent>(ent.Owner);
+    private bool CanActivate(Entity<SlimeProcessorComponent> ent) => ent.Comp.SlimeContainer.ContainedEntities.Count > 0 && !HasComp<ActiveSlimeProcessorComponent>(ent.Owner);
 
     private void OnPowerChanged(Entity<SlimeProcessorComponent> ent, ref PowerChangedEvent args)
     {
@@ -81,40 +82,36 @@ public sealed partial class SlimeProcessorSystem : EntitySystem
         }
         else
         {
-            EnableCollecting(ent, _entityManager, _gameTiming);
+            EnableCollecting(ent);
         }
     }
 
-    public static void EnableCollecting(Entity<SlimeProcessorComponent> ent, EntityManager entityManager, IGameTiming gameTiming)
+    public void EnableCollecting(Entity<SlimeProcessorComponent> ent)
     {
-        if (!entityManager.HasComponent<CollectingSlimeProcessorComponent>(ent.Owner))
-        {
-            if (entityManager.HasComponent<ActiveSlimeProcessorComponent>(ent))
-                entityManager.RemoveComponentDeferred<ActiveSlimeProcessorComponent>(ent);
-            var collectingSlimeProcessorComponent = entityManager.AddComponent<CollectingSlimeProcessorComponent>(ent.Owner);
-            collectingSlimeProcessorComponent.SlimeAcquireMoment = gameTiming.CurTime + ent.Comp.SlimeAcquireCooldown;
-        }
+        if (HasComp<CollectingSlimeProcessorComponent>(ent.Owner)) return;
+        if (HasComp<ActiveSlimeProcessorComponent>(ent))
+            RemCompDeferred<ActiveSlimeProcessorComponent>(ent);
+        var collectingSlimeProcessorComponent = EnsureComp<CollectingSlimeProcessorComponent>(ent.Owner);
+        collectingSlimeProcessorComponent.SlimeAcquireMoment = _gameTiming.CurTime + ent.Comp.SlimeAcquireCooldown;
     }
 
-    public static void EnableProcessing(Entity<SlimeProcessorComponent> ent, EntityManager entityManager, IGameTiming gameTiming)
+    public void EnableProcessing(Entity<SlimeProcessorComponent> ent)
     {
-        if (!entityManager.HasComponent<ActiveSlimeProcessorComponent>(ent.Owner))
-        {
-            if (entityManager.HasComponent<CollectingSlimeProcessorComponent>(ent))
-                entityManager.RemoveComponentDeferred<CollectingSlimeProcessorComponent>(ent);
-            var activeSlimeProcessorComponent = entityManager.AddComponent<ActiveSlimeProcessorComponent>(ent);
-            activeSlimeProcessorComponent.ProcessingFinishedMoment = gameTiming.CurTime + ent.Comp.ProcessingTime;
-        }
+        if (HasComp<ActiveSlimeProcessorComponent>(ent.Owner)) return;
+        if (HasComp<CollectingSlimeProcessorComponent>(ent))
+            RemCompDeferred<CollectingSlimeProcessorComponent>(ent);
+        var activeSlimeProcessorComponent = EnsureComp<ActiveSlimeProcessorComponent>(ent);
+        activeSlimeProcessorComponent.ProcessingFinishedMoment = _gameTiming.CurTime + ent.Comp.ProcessingTime;
     }
 }
 
 public sealed partial class ActiveSlimeProcessorSystem : EntitySystem
 {
-    [Dependency] private EntityManager _entityManager = default!;
-    [Dependency] private IGameTiming _gameTiming = default!;
-    [Dependency] private IRobustRandom _robustRandom = default!;
-    [Dependency] private GenesSystem _genesSystem = default!;
-    [Dependency] private IndividualGeneSystem _individualGeneSystem = default!;
+    [Dependency] private GenesSystem _genesSystem = null!;
+    [Dependency] private SlimeProcessorSystem _processing = null!;
+    [Dependency] private IndividualGeneSystem _iGene = null!;
+    [Dependency] private IGameTiming _gameTiming = null!;
+    [Dependency] private IRobustRandom _robustRandom = null!;
 
     public override void Update(float frameTime)
     {
@@ -123,7 +120,7 @@ public sealed partial class ActiveSlimeProcessorSystem : EntitySystem
         var query = EntityQueryEnumerator<ActiveSlimeProcessorComponent>();
         while (query.MoveNext(out var uid, out var activeSlimeProcessorComponent))
         {
-            if (!_entityManager.TryGetComponent(uid, out SlimeProcessorComponent? slimeProcessorComponent)) continue;
+            if (!TryComp(uid, out SlimeProcessorComponent? slimeProcessorComponent)) continue;
             if (!activeSlimeProcessorComponent.ProcessingFinishedMoment.HasValue)
             {
                 activeSlimeProcessorComponent.ProcessingFinishedMoment = _gameTiming.CurTime + slimeProcessorComponent.ProcessingTime;
@@ -133,7 +130,7 @@ public sealed partial class ActiveSlimeProcessorSystem : EntitySystem
             if (activeSlimeProcessorComponent.ProcessingFinishedMoment.Value > _gameTiming.CurTime) continue;
             foreach (var entity in slimeProcessorComponent.SlimeContainer.ContainedEntities)
             {
-                if (_entityManager.TryGetComponent(entity, out SlimeComponent? slimeComponent))
+                if (TryComp(entity, out SlimeComponent? slimeComponent))
                 {
                     for (var i = 0;
                          i < slimeProcessorComponent.YieldMultiplier + slimeComponent.SlimeSteroidAmount;
@@ -142,21 +139,21 @@ public sealed partial class ActiveSlimeProcessorSystem : EntitySystem
                         var randomOffset =
                             new Vector2(_robustRandom.NextFloat(-0.2F, 0.2F), _robustRandom.NextFloat(-0.2F, 0.2F));
                         var ec = new EntityCoordinates(uid, uid.ToCoordinates().Position + randomOffset);
-                        _entityManager.PredictedSpawnAtPosition(slimeComponent.Extract, ec);
+                        PredictedSpawnAtPosition(slimeComponent.Extract, ec);
                     }
 
                     PredictedQueueDel(entity);
                 }
-                else if (_entityManager.TryGetComponent(entity, out GeneticSlimeComponent? geneticSlimeComponent))
+                else if (TryComp(entity, out GeneticSlimeComponent? geneticSlimeComponent))
                 {
-                    if (!_entityManager.TryGetComponent<GenesComponent>(entity, out var slimeGenesComponent)) continue;
+                    if (!TryComp<GenesComponent>(entity, out var slimeGenesComponent)) continue;
 
                     var randomOffset =
                         new Vector2(_robustRandom.NextFloat(-0.2F, 0.2F), _robustRandom.NextFloat(-0.2F, 0.2F));
                     var ec = new EntityCoordinates(uid, uid.ToCoordinates().Position + randomOffset);
-                    var extract = _entityManager.PredictedSpawnAtPosition(geneticSlimeComponent.ExtractEntity, ec);
-                    _entityManager.EnsureComponent<GenesComponent>(extract, out var extractGenesComponent);
-                    extractGenesComponent.Genes = new HashSet<EntityUid>(slimeGenesComponent.Genes);
+                    var extract = PredictedSpawnAtPosition(geneticSlimeComponent.ExtractEntity, ec);
+                    EnsureComp<GenesComponent>(extract, out var extractGenesComponent);
+                    extractGenesComponent.Genes = _iGene.Clone(slimeGenesComponent.Genes.ToList()).ToHashSet();
                     _genesSystem.UpdateTraits((extract, extractGenesComponent));
 
                     PredictedQueueDel(entity);
@@ -165,18 +162,17 @@ public sealed partial class ActiveSlimeProcessorSystem : EntitySystem
 
             RemCompDeferred<JitteringComponent>(uid);
             RemCompDeferred<ActiveSlimeProcessorComponent>(uid);
-            SlimeProcessorSystem.EnableCollecting((uid, slimeProcessorComponent), _entityManager, _gameTiming);
+            _processing.EnableCollecting((uid, slimeProcessorComponent));
         }
     }
 }
 
 public sealed partial class CollectingSlimeProcessorSystem : EntitySystem
 {
-    [Dependency] private EntityManager _entityManager = default!;
-    [Dependency] private EntityLookupSystem _entityLookupSystem = default!;
-    [Dependency] private IGameTiming _gameTiming = default!;
-    [Dependency] private SharedContainerSystem _container = default!;
-    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private DamageableSystem _damageable = null!;
+    [Dependency] private EntityLookupSystem _entityLookupSystem = null!;
+    [Dependency] private SharedContainerSystem _container = null!;
+    [Dependency] private IGameTiming _gameTiming = null!;
 
     public override void Update(float frameTime)
     {
@@ -185,7 +181,7 @@ public sealed partial class CollectingSlimeProcessorSystem : EntitySystem
         var query = EntityQueryEnumerator<CollectingSlimeProcessorComponent>();
         while (query.MoveNext(out var uid, out var collectingSlimeProcessorComponent))
         {
-            if (!_entityManager.TryGetComponent(uid, out SlimeProcessorComponent? slimeProcessorComponent)) continue;
+            if (!TryComp(uid, out SlimeProcessorComponent? slimeProcessorComponent)) continue;
             slimeProcessorComponent.SlimeContainer = _container.EnsureContainer<Container>(uid, SlimeProcessorComponent.SlimeContainerName);
             if (!collectingSlimeProcessorComponent.SlimeAcquireMoment.HasValue)
             {
@@ -196,11 +192,9 @@ public sealed partial class CollectingSlimeProcessorSystem : EntitySystem
             if (collectingSlimeProcessorComponent.SlimeAcquireMoment.Value > _gameTiming.CurTime) continue;
             var slimesInRange = _entityLookupSystem.GetEntitiesInRange<SlimeComponent>(Transform(uid).Coordinates, 1F);
             var successfulPickup = PickupSlime(slimesInRange, slimeProcessorComponent, collectingSlimeProcessorComponent);
-            if (!successfulPickup)
-            {
-                var geneticSlimesInRange = _entityLookupSystem.GetEntitiesInRange<GeneticSlimeComponent>(Transform(uid).Coordinates, 1F);
-                PickupSlime(geneticSlimesInRange, slimeProcessorComponent, collectingSlimeProcessorComponent);
-            }
+            if (successfulPickup) continue;
+            var geneticSlimesInRange = _entityLookupSystem.GetEntitiesInRange<GeneticSlimeComponent>(Transform(uid).Coordinates, 1F);
+            PickupSlime(geneticSlimesInRange, slimeProcessorComponent, collectingSlimeProcessorComponent);
         }
     }
 
@@ -210,16 +204,13 @@ public sealed partial class CollectingSlimeProcessorSystem : EntitySystem
     private bool PickupSlime<T>(HashSet<Entity<T>> slimesInRange, SlimeProcessorComponent slimeProcessorComponent,
         CollectingSlimeProcessorComponent collectingSlimeProcessorComponent) where T : IComponent
     {
-        foreach (var entity in slimesInRange)
+        foreach (var entity in slimesInRange.Where(entity => !_container.IsEntityOrParentInContainer(entity.Owner)))
         {
-            if (_container.IsEntityOrParentInContainer(entity.Owner)) continue;
-            if (!_entityManager.TryGetComponent(entity, out DamageableComponent? damageableComponent)) continue;
-            if (_damageable.GetTotalDamage(entity.Owner) >= 200)
-            {
-                _container.Insert(entity.Owner, slimeProcessorComponent.SlimeContainer);
-                collectingSlimeProcessorComponent.SlimeAcquireMoment = _gameTiming.CurTime + slimeProcessorComponent.SlimeAcquireCooldown;
-                return true;
-            }
+            if (!TryComp(entity, out DamageableComponent? damageableComponent)) continue;
+            if (_damageable.GetTotalDamage(entity.Owner) < 200) continue;
+            _container.Insert(entity.Owner, slimeProcessorComponent.SlimeContainer);
+            collectingSlimeProcessorComponent.SlimeAcquireMoment = _gameTiming.CurTime + slimeProcessorComponent.SlimeAcquireCooldown;
+            return true;
         }
 
         return false;

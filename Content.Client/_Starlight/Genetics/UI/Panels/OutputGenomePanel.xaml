@@ -11,11 +11,17 @@
 		</controls:StripeBack>
 		<ScrollContainer VerticalExpand="True" HorizontalExpand="True"
 		                 VScrollEnabled="True" HScrollEnabled="False">
-			<BoxContainer VerticalExpand="True" Orientation="Vertical" SeparationOverride="5"/>
+			<BoxContainer Name="TraitSelectors" VerticalExpand="True" Orientation="Vertical" SeparationOverride="5"/>
 		</ScrollContainer>
 		<customControls:HSeparator Margin="0 5 0 5"/>
-		<HBox Name="OutputPanelButtons">
-			<Button Text="{Loc 'xenobiology-ui-panel-output-button-write'}"/>
-		</HBox>
+		<VBox HorizontalExpand="True" SizeFlagsStretchRatio="0.1">
+			<HBox Margin="4">
+				<Label Text="{Loc 'xenobiology-ui-panel-output-name-label'}" Margin="0 0 5 0" />
+				<LineEdit Name="GeneName" PlaceHolder="{Loc 'xenobiology-ui-panel-output-name-edit-placeholder'}" HorizontalExpand="True"/>
+			</HBox>
+			<HBox>
+				<Button Text="{Loc 'xenobiology-ui-panel-output-button-write'}"/>
+			</HBox>
+		</VBox>
 	</BoxContainer>
 </Control>

@@ -1,3 +1,4 @@
+using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
@@ -27,7 +28,14 @@ public sealed partial class GeneSamplerComponent : Component
     /// The genes in this sampler.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public HashSet<EntityUid> Genes = new();
+    public HashSet<EntityUid> Genes = [];
+
+    public const string GeneContainerId = "genes";
+
+    /// <summary>
+    /// The actual container for the gene entities.
+    /// </summary>
+    [ViewVariables] public Container GeneContainer;
 }
 
 [Serializable, NetSerializable]

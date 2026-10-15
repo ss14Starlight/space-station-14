@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Genetics.GeneticTraits.Prototypes;
+using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -11,7 +12,14 @@ public sealed partial class GenesComponent : Component
     /// The list of genes that this entity currently has.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public HashSet<EntityUid> Genes = new();
+    public HashSet<EntityUid> Genes = [];
+
+    public const string GeneContainerId = "genes";
+
+    /// <summary>
+    /// The actual container the gene entities live in.
+    /// </summary>
+    [ViewVariables] public Container GeneContainer = null!;
 
     /// <summary>
     /// The traits that can be pulled from to make a gene.

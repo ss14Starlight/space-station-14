@@ -11,17 +11,20 @@
 				</controls:StripeBack>
 				<VBox Name="SelectedGeneDataDisplay">
 					<HBox>
-						<Label Text="{Loc 'xenobiology-ui-panel-selected-gene-name'}" HorizontalExpand="True"/>
+						<Label Text="{Loc 'xenobiology-ui-panel-selected-gene-name'}" HorizontalExpand="True"
+						       Margin="0 0 5 0"/>
 						<Label Name="SelectedGeneNameField"
 							   Text="{Loc 'xenobiology-ui-panel-selected-gene-name-placeholder'}"/>
 					</HBox>
 					<HBox>
-						<Label Text="{Loc 'xenobiology-ui-panel-selected-gene-identifier'}" HorizontalExpand="True"/>
+						<Label Text="{Loc 'xenobiology-ui-panel-selected-gene-identifier'}" HorizontalExpand="True"
+						       Margin="0 0 5 0"/>
 						<Label Name="SelectedGeneIdentifierField"
 							   Text="{Loc 'xenobiology-ui-panel-selected-gene-identifier-placeholder'}"/>
 					</HBox>
 					<HBox>
-						<Label Text="{Loc 'xenobiology-ui-panel-selected-gene-sequence'}" HorizontalExpand="True"/>
+						<Label Text="{Loc 'xenobiology-ui-panel-selected-gene-sequence'}" HorizontalExpand="True"
+						       Margin="0 0 5 0"/>
 						<Label Name="SelectedGeneSequenceField"
 						       Text="{Loc 'xenobiology-ui-panel-selected-gene-sequence-placeholder'}"/>
 					</HBox>
@@ -36,13 +39,14 @@
 				</ScrollContainer>
 				<customControls:HSeparator Margin="0 5 0 5"/>
 				<HBox Name="SelectionPanelButtons">
-					<Button Name="SelectionPanelRenameButton" Text="{Loc 'xenobiology-ui-panel-selected-button-rename'}"
-					        StyleClasses="OpenRight"/>
+					<Button Name="RenameButton" Text="{Loc 'xenobiology-ui-panel-selected-button-rename'}"
+					        StyleClasses="OpenRight" Disabled="True"/>
 					<controls:ConfirmButton
-						Name="SelectionPanelDeleteButton"
+						Name="DeleteButton"
 						Text="{Loc 'xenobiology-ui-panel-selected-button-delete'}"
 						StyleClasses="negative OpenLeft"
-						ConfirmationText="{Loc 'xenobiology-ui-panel-selected-button-delete-confirm'}"/>
+						ConfirmationText="{Loc 'xenobiology-ui-panel-selected-button-delete-confirm'}"
+						Disabled="True"/>
 				</HBox>
 			</BoxContainer>
 </Control>

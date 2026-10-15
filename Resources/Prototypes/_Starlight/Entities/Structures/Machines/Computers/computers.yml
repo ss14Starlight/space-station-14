@@ -1125,4 +1125,11 @@
     - type: GeneticsConsole
       defaultGenes:
         - startingSlimeGene
-        - debugGene
+        - debugGene0
+        - debugGene1
+        - debugGene2
+        - debugGene3
+        - debugGene4
+      samplerPrototype: GeneSampler
+      samplerDispensePopup: xenobiology-sampler-dispense-popup
+      samplerInsertPopup: xenobiology-sampler-insert-popup

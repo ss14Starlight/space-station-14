@@ -7,8 +7,6 @@ namespace Content.Client._Starlight.Genetics.UI.Widgets;
 [GenerateTypedNameReferences]
 public sealed partial class SortButton : Control
 {
-    private GeneticsConsoleWindow _window = null!;
-
     public SortButton()
     {
         RobustXamlLoader.Load(this);
@@ -18,7 +16,5 @@ public sealed partial class SortButton : Control
         Button.AddItem(Loc.GetString("xenobiology-ui-widgets-sort-button-z-a"), 2);
         Button.SelectId(0);
     }
-
-    public void Initialize(GeneticsConsoleWindow window) => _window = window;
 }
 

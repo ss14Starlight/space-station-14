@@ -84,10 +84,41 @@
   name: Base Slime Gene
 
 - type: sampleGene
-  id: debugGene
+  id: debugGene0
   traits:
     traits:
       SteelSpawnSlow: 0.7
   technicalName: D3bG
   name: Debug Gene
 
+- type: sampleGene
+  id: debugGene1
+  traits:
+    traits:
+      SteelSpawnRapid: 3.7
+  technicalName: B3bG2
+  name: Bebug Gene
+
+- type: sampleGene
+  id: debugGene2
+  traits:
+    traits:
+      SteelSpawnSlow: 1.3
+  technicalName: Z3bG
+  name: Zebug Gene
+
+- type: sampleGene
+  id: debugGene3
+  traits:
+    traits:
+      SteelSpawnNormal: 4.4
+  technicalName: G3bG
+  name: Gebug Gene
+
+- type: sampleGene
+  id: debugGene4
+  traits:
+    traits:
+      SteelAndGlassSpawn: 2.1
+  technicalName: P3bG
+  name: Pebug Gene

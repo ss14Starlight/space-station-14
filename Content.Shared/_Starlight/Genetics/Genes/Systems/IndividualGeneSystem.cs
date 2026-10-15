@@ -1,25 +1,26 @@
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Content.Shared._Starlight.Abstract.Extensions;
-using Content.Shared._Starlight.Genetics.Components;
 using Content.Shared._Starlight.Genetics.Genes.Components;
 using Content.Shared._Starlight.Genetics.Genes.Prototypes;
 using Content.Shared._Starlight.Genetics.GeneticTraits.Prototypes;
 using Content.Shared.GameTicking;
 using Content.Shared.Random.Helpers;
+using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Shared._Starlight.Genetics.Genes.Systems;
 
 public sealed partial class IndividualGeneSystem : EntitySystem
 {
-    [Dependency] private IPrototypeManager _proto = null!;
-    [Dependency] private IRobustRandom _random = null!;
+    [Dependency] private MetaDataSystem _meta = null!;
     [Dependency] private IGameTiming _timing = null!;
-
-    // private readonly Dictionary<ProtoId<SampleGenePrototype>, Entity<IndividualGeneComponent>> _geneSingletons = new();
+    [Dependency] private IRobustRandom _random = null!;
+    [Dependency] private IPrototypeManager _proto = null!;
 
     /// <summary>
     /// Keeps track of genes that were generated this round, associating generated
@@ -27,47 +28,37 @@ public sealed partial class IndividualGeneSystem : EntitySystem
     /// </summary>
     private readonly Dictionary<string, string> _existingGenes = [];
 
-    private TimeSpan _nextGC = TimeSpan.Zero;
+    /// <summary>
+    /// Collection of genes that were previously removed from a container have yet to be inserted into a new one.
+    /// If any gene entities are in this state and thus present in this collection for more than 20 seconds, they
+    /// are deleted to avoid unnecessary entities being piled up until round restart.
+    /// </summary>
+    private readonly Dictionary<EntityUid, CancellationTokenSource> _unparentedGenes = [];
+
+    private const int GarbageCheckInterval = 20;
 
     [SubscribeLocalEvent]
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent args) => _existingGenes.Clear();
 
-    public override void Update(float frameTime)
+    [SubscribeLocalEvent]
+    private void OnContainerRemove(Entity<IndividualGeneComponent> ent, ref EntGotRemovedFromContainerMessage args)
     {
-        base.Update(frameTime);
-        CleanUnusedGenes();
+        var source = new CancellationTokenSource();
+        _unparentedGenes.Add(ent, source);
+        Timer.Spawn(TimeSpan.FromSeconds(GarbageCheckInterval), () =>
+        {
+            if (!_unparentedGenes.Remove(ent)) return;
+            Log.Info(
+                $"Genome entity {ToPrettyString(ent)} being cleaned up due to not being in any container for 20 seconds.");
+            PredictedQueueDel(ent);
+        }, source.Token);
     }
 
-    private void CleanUnusedGenes()
+    [SubscribeLocalEvent]
+    private void OnContainerInsert(Entity<IndividualGeneComponent> ent, ref EntGotInsertedIntoContainerMessage args)
     {
-        if (_timing.CurTime <= _nextGC) return;
-        // Practically an implementation of mark-and-sweep
-        // Specifically, we go over each gene, identify the ones that are held, and discard all the one that aren't
-        var allGenes = new HashSet<EntityUid>();
-        var ge = EntityQueryEnumerator<IndividualGeneComponent>();
-        while (ge.MoveNext(out var uid, out _)) allGenes.Add(uid);
-        var geneUsers = EntityQueryEnumerator<GenesComponent>();
-        while (geneUsers.MoveNext(out _, out var genesComponent))
-            foreach (var gene in genesComponent.Genes.Where(allGenes.Contains))
-                allGenes.Remove(gene);
-        var geneConsoles = EntityQueryEnumerator<GeneticsConsoleComponent>();
-        while (geneConsoles.MoveNext(out _, out var geneticsConsoleComponent))
-            foreach (var gene in geneticsConsoleComponent.Genes.Where(allGenes.Contains))
-                allGenes.Remove(gene);
-        var geneSamplers = EntityQueryEnumerator<GeneSamplerComponent>();
-        while (geneSamplers.MoveNext(out _, out var geneSamplerComponent))
-            foreach (var gene in geneSamplerComponent.Genes.Where(allGenes.Contains))
-                allGenes.Remove(gene);
-
-        foreach (var gene in allGenes)
-        {
-            // if (TryComp<IndividualGeneComponent>(gene, out var geneComponent))
-            //     if (geneComponent.Prototype != null)
-            //         _geneSingletons.Remove(geneComponent.Prototype.Value);
-            PredictedQueueDel(gene);
-        }
-
-        _nextGC = _timing.CurTime + TimeSpan.FromMinutes(10);
+        if (!_unparentedGenes.Remove(ent, out var source)) return;
+        source.Cancel();
     }
 
     /// <summary>
@@ -179,21 +170,27 @@ public sealed partial class IndividualGeneSystem : EntitySystem
         individualGene.TechnicalName = technicalName.ToString();
         individualGene.Name = null;
         individualGene.Sequence = GetDnaSequence(technicalName.ToString());
+        _meta.SetEntityName(newGene, technicalName.ToString());
         Dirty(newGene, individualGene);
 
         return (newGene, individualGene);
     }
 
-    public Entity<IndividualGeneComponent> GeneFromSample(ProtoId<SampleGenePrototype> protoId)
+    public Entity<IndividualGeneComponent>? GeneFromSample(ProtoId<SampleGenePrototype> protoId)
     {
-        // if (_geneSingletons.TryGetValue(protoId, out var sample)) return sample;
-        var proto = _proto.Index(protoId);
+        if (!_proto.TryIndex(protoId, out var proto)) return null;
+        return GeneFromSample(proto);
+    }
+
+    public Entity<IndividualGeneComponent> GeneFromSample(SampleGenePrototype proto)
+    {
         var newGene = PredictedSpawn("Gene");
         EnsureComp<IndividualGeneComponent>(newGene, out var individualGene);
         individualGene.Traits = proto.Traits;
         individualGene.TechnicalName = proto.TechnicalName;
         individualGene.Name = proto.Name;
-        individualGene.Prototype = protoId;
+        individualGene.Prototype = proto.ID;
+        _meta.SetEntityName(newGene, $"{proto.Name} ({proto.TechnicalName})");
         if (proto.Sequence is not null)
         {
             individualGene.Sequence = proto.Sequence;
@@ -235,4 +232,40 @@ public sealed partial class IndividualGeneSystem : EntitySystem
         _existingGenes.Add(techName, sequence);
         return sequence;
     }
+
+    /// <summary>
+    /// Clones the data of one genome to a new genome instance.
+    /// </summary>
+    public Entity<IndividualGeneComponent> Clone(Entity<IndividualGeneComponent> ent)
+    {
+        // if cloning a base gene that exists as a prototype and doesn't have any changes, just do the other method
+        if (ent.Comp.Prototype is not null)
+        {
+            var sampled = GeneFromSample(ent.Comp.Prototype.Value);
+            if (sampled is null)
+                throw new NullReferenceException(
+                    "Attempted to clone a gene with a set prototype but came back as null.");
+            return sampled.Value;
+        }
+        var clone = PredictedSpawn();
+        var comp = EnsureComp<IndividualGeneComponent>(clone);
+        comp.Name = ent.Comp.Name;
+        comp.TechnicalName = ent.Comp.TechnicalName;
+        comp.Sequence = ent.Comp.Sequence;
+        comp.Traits = new TraitDict { Traits = ent.Comp.Traits.Traits.ToDictionary() };
+        return (clone, comp);
+    }
+
+    public IEnumerable<Entity<IndividualGeneComponent>> Clone(IEnumerable<Entity<IndividualGeneComponent>> entities) =>
+        entities.Select(Clone);
+
+    public IEnumerable<EntityUid> Clone(IEnumerable<EntityUid> uids) =>
+        uids.Select(uid =>
+            !TryComp<IndividualGeneComponent>(uid, out var gene)
+                ? throw new Exception($"Tried to clone entity {ToPrettyString(uid)}, which was not a gene.")
+                : Clone((uid, gene))).Select(ent => ent.Owner);
+
+    // Technically doesn't check if they're truly identical, just checks if the tech names are since those are generated once and only ever copied.
+    public bool IsIdentical(Entity<IndividualGeneComponent> ent1, Entity<IndividualGeneComponent> ent2) =>
+        ent1.Comp.TechnicalName == ent2.Comp.TechnicalName;
 }

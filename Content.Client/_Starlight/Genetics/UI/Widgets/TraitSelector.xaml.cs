@@ -13,11 +13,18 @@ public sealed partial class TraitSelector : Control
 {
     private GeneticsConsoleWindow _window = null!;
     public (GeneticTraitPrototype proto, FixedPoint2 accumulated)? Trait;
+    public TraitSource Source { get; private set; } = TraitSource.None;
     private bool _isSelected;
 
     public TraitSelector()
     {
         RobustXamlLoader.Load(this);
+    }
+
+    public void Select()
+    {
+        Button.Pressed = true;
+        _isSelected = true;
     }
 
     public void Deselect()
@@ -26,7 +33,11 @@ public sealed partial class TraitSelector : Control
         _isSelected = false;
     }
 
-    public void Initialize(GeneticsConsoleWindow window) => _window = window;
+    public void Initialize(GeneticsConsoleWindow window, TraitSource source)
+    {
+        _window = window;
+        Source = source;
+    }
 
     protected override void EnteredTree()
     {
@@ -52,4 +63,11 @@ public sealed partial class TraitSelector : Control
             _window.SelectTrait(this, args);
         };
     }
+}
+
+public enum TraitSource : byte
+{
+    None,
+    Genome,
+    Output,
 }

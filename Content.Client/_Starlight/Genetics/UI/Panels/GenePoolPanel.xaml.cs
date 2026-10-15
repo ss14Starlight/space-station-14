@@ -18,7 +18,7 @@ public sealed partial class GenePoolPanel : Control
     private ContainerSystem? _container;
 
     private GeneticsConsoleWindow _window = null!;
-    public readonly HashSet<Entity<IndividualGeneComponent>> Pool = [];
+    private readonly List<Entity<IndividualGeneComponent>> _pool = [];
 
     public GenePoolPanel()
     {
@@ -29,47 +29,54 @@ public sealed partial class GenePoolPanel : Control
     public void Initialize(GeneticsConsoleWindow window)
     {
         _window = window;
-        SortWidget.Button.OnItemSelected += args => _window.SetGenePoolSort(args.Id);
+        SortWidget.Button.OnItemSelected += args =>
+        {
+            SortWidget.Button.SelectId(args.Id);
+            _window.SetGenePoolSort(args.Id);
+        };
+
+        DispenseSamplerButton.OnPressed += _ => _window.DispenseSampler();
     }
 
-    public void UpdatePool()
+    private void UpdatePool()
     {
         _container ??= _sys.GetEntitySystem<ContainerSystem>();
-        Pool.Clear();
+        _pool.Clear();
         SortWidget.Button.SelectId(_window.Entity.Comp.GenePoolSortIndex);
         var container = _container.GetContainer(_window.Entity, GeneticsConsoleComponent.GenePoolContainerId);
         foreach (var gene in container.ContainedEntities)
         {
             if (!_ent.TryGetComponent<IndividualGeneComponent>(gene, out var comp)) continue;
-            Pool.Add((gene, comp));
+            if (_ent.IsQueuedForDeletion(gene)) continue;
+            _pool.Add((gene, comp));
         }
 
         // Sort
-        if (SortWidget.Button.SelectedId > 0)
+        if (SortWidget.Button.SelectedId <= 0) return;
         {
-            var orig = Pool.ToList();
-            Pool.Clear();
+            var orig = _pool.ToList();
+            _pool.Clear();
 
             if (SortWidget.Button.SelectedId == 1)
             {
                 orig = orig.OrderBy(x => _ent.GetComponent<MetaDataComponent>(x).EntityName).ToList();
-                foreach (var gene in orig) Pool.Add(gene);
+                foreach (var gene in orig) _pool.Add(gene);
             }
             else
             {
                 orig = orig.OrderByDescending(x => _ent.GetComponent<MetaDataComponent>(x).EntityName).ToList();
-                foreach (var gene in orig) Pool.Add(gene);
+                foreach (var gene in orig) _pool.Add(gene);
             }
         }
-
-        RefreshUI();
     }
 
     public void RefreshUI()
     {
+        UpdatePool();
+
         var selected = _window.SelectedGeneButton?.Gene;
         GeneSelectors.RemoveAllChildren();
-        foreach (var gene in Pool)
+        foreach (var gene in _pool)
         {
             var selector = new GeneSelector { Gene = gene };
             selector.Initialize(_window);

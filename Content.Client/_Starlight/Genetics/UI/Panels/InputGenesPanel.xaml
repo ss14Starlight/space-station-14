@@ -17,8 +17,8 @@
 			              Orientation="Vertical" SeparationOverride="5"/>
 		</ScrollContainer>
 		<customControls:HSeparator Margin="0 5 0 5"/>
-		<HBox Name="InputPanelButtons">
-			<Button Text="{Loc 'xenobiology-ui-panel-input-button-clear'}"/>
+		<HBox>
+			<Button Name="ClearInputsButton" Text="{Loc 'xenobiology-ui-panel-input-button-clear'}"/>
 		</HBox>
 	</BoxContainer>
 </Control>

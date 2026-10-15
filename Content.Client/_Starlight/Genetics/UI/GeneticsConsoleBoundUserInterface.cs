@@ -23,17 +23,18 @@ public sealed partial class GeneticsConsoleBoundUserInterface : BoundUserInterfa
         _window.OnUnstage += uid => SendPredictedMessage(new GeneticsConsoleUnstageGeneMessage(_ent.GetNetEntity(uid)));
         _window.OnSetGenePoolSort += index => SendPredictedMessage(new GeneticsConsoleSetSortIndex(0, index));
         _window.OnSetInputGenesSort += index => SendPredictedMessage(new GeneticsConsoleSetSortIndex(1, index));
+        _window.OnRenameGene += (uid, newName) =>
+            SendPredictedMessage(new GeneticsConsoleRenameGeneMessage(_ent.GetNetEntity(uid), newName));
+        _window.OnClearInputs += () => SendPredictedMessage(new GeneticsConsoleClearInputsMessage());
+        _window.OnDeleteGene += uid => SendPredictedMessage(new GeneticsConsoleDeleteGeneMessage(_ent.GetNetEntity(uid)));
+        _window.OnDispenseSampler += () => SendPredictedMessage(new GeneticsConsoleDispenseSamplerMessage());
     }
 
+    // Upon receiving any kind of message just refresh the whole UI.
     protected override void ReceiveMessage(BoundUserInterfaceMessage message)
     {
         base.ReceiveMessage(message);
-        if (_window is null) return;
-        switch (message)
-        {
-            case GeneticsConsoleRefreshUIMessage:
-                _window.RefreshUI();
-                return;
-        }
+        if (message is not GeneticsConsoleRefreshUiMessage) return;
+        _window?.RefreshUI();
     }
 }

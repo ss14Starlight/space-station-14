@@ -10,12 +10,9 @@ namespace Content.Client._Starlight.Genetics.UI.Panels;
 [GenerateTypedNameReferences]
 public sealed partial class SelectedTraitPanel : Control
 {
-    public (GeneticTraitPrototype proto, FixedPoint2 accumulated)? SelectedTrait;
+    private (GeneticTraitPrototype proto, FixedPoint2 accumulated)? SelectedTrait;
 
-    public SelectedTraitPanel()
-    {
-        RobustXamlLoader.Load(this);
-    }
+    public SelectedTraitPanel() => RobustXamlLoader.Load(this);
 
     public void SelectTrait((GeneticTraitPrototype proto, FixedPoint2 accumulated) trait)
     {
@@ -39,7 +36,7 @@ public sealed partial class SelectedTraitPanel : Control
             SelectedTraitAccumulatedField.Text =
                 Loc.GetString("xenobiology-ui-panel-selected-trait-accumulated-placeholder");
             SelectedTraitDescriptionField.Text =
-                Loc.GetString("xenobiology-ui-panel-selected-trait-accumulated-placeholder");
+                Loc.GetString("xenobiology-ui-panel-selected-trait-description-placeholder");
             SelectedTraitTexture.TexturePath = GeneticTraitPrototype.GenericTraitIcon;
             return;
         }

@@ -20,8 +20,8 @@
 			</BoxContainer>
 		</ScrollContainer>
 		<customControls:HSeparator Margin="0 5 0 5"/>
-		<HBox Name="GenePoolPanelButtons">
-			<Button Text="{Loc 'xenobiology-ui-panel-pool-button-sampler'}"/>
+		<HBox>
+			<Button Name="DispenseSamplerButton" Text="{Loc 'xenobiology-ui-panel-pool-button-sampler'}"/>
 		</HBox>
 	</BoxContainer>
 </Control>
