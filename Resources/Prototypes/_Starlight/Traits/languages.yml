@@ -580,11 +580,7 @@
   requirements:
     - !type:TraitsRequirement
       traits:
-        - Darktongue
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+        - Scratch
     - !type:TraitsRequirement
       traits:
         - CaveElf
