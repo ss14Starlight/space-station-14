@@ -92,6 +92,13 @@ public sealed partial class StyleThemePrototype : IPrototype
     [DataField]
     public Color TextDisabled;
 
+    /// <summary>
+    /// Placeholder text color for text inputs. 
+    /// If textPlaceholder is not specified, falls back to TextDisabled.
+    /// </summary>
+    [DataField]
+    public Color? TextPlaceholder;
+
     [DataField]
     public Color Positive;
 
@@ -125,7 +132,7 @@ public sealed partial class StyleThemePrototype : IPrototype
     public Color? SecondaryAccent;
 
     /// <summary>
-    /// Tooltip body text color. if textTooltip is not specified, falls back to text.
+    /// Tooltip text color. If textTooltip is not specified, falls back to text.
     /// </summary>
     [DataField]
     public Color? TextTooltip;

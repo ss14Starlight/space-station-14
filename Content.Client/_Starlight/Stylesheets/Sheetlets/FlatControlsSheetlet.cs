@@ -59,7 +59,6 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
             E<Label>().FontColor(proto.Text),
             E<Label>().Class(StyleClass.LabelSubText).FontColor(proto.TextMuted),
             E<Label>().Class(StyleClass.LabelWeak).FontColor(proto.TextMuted),
-            E<RichTextLabel>().FontColor(proto.Text),
 
             E<TextureRect>()
                 .Class(CheckBox.StyleClassCheckBox)
@@ -74,8 +73,8 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
             E<LineEdit>().Prop(LineEdit.StylePropertyStyleBox, lineEditBox),
             E<LineEdit>().Prop("font-color", proto.Text),
             E<LineEdit>().Class(LineEdit.StyleClassLineEditNotEditable).Prop("font-color", proto.TextMuted),
-            E<LineEdit>().Pseudo(LineEdit.StylePseudoClassPlaceholder).Prop("font-color", proto.TextDisabled),
-            E<TextEdit>().Pseudo(TextEdit.StylePseudoClassPlaceholder).Prop("font-color", proto.TextDisabled),
+            E<LineEdit>().Pseudo(LineEdit.StylePseudoClassPlaceholder).Prop("font-color", proto.TextPlaceholder ?? proto.TextDisabled),
+            E<TextEdit>().Pseudo(TextEdit.StylePseudoClassPlaceholder).Prop("font-color", proto.TextPlaceholder ?? proto.TextDisabled),
 
             E<TabContainer>()
                 .Prop(TabContainer.StylePropertyPanelStyleBox, FlatBox.Bordered(proto.Surface, proto.Border))
