@@ -99,6 +99,12 @@ public sealed partial class StyleThemePrototype : IPrototype
     /// </summary>
     [DataField]
     public float AccentTint = 0.35f;
+
+    /// <summary>
+    /// When true, the Positive and Negative palettes use the prototype colors
+    /// directly instead of blending with the theme base colors.
+    [DataField]
+    public bool RawStatusColors;
 }
 
 [DataDefinition]

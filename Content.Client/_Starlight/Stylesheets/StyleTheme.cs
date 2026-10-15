@@ -88,9 +88,28 @@ public sealed class StyleTheme
             Text: Accent,
             TextDark: Accent.OkBlend(proto.TextMuted, 0.5f));
 
-        Positive = StatusPalette(proto, proto.Positive);
-        Negative = StatusPalette(proto, proto.Negative);
+        Positive = proto.RawStatusColors
+            ? RawStatusPalette(proto, proto.Positive)
+            : StatusPalette(proto, proto.Positive);
+        Negative = proto.RawStatusColors
+            ? RawStatusPalette(proto, proto.Negative)
+            : StatusPalette(proto, proto.Negative);
     }
+
+    private static ColorPalette RawStatusPalette(StyleThemePrototype proto, Color color)
+        => new(
+            Base: color,
+            LightnessShift: 0f,
+            ChromaShift: 0f,
+            Element: color,
+            HoveredElement: color.NudgeLightness(0.06f),
+            PressedElement: color.NudgeLightness(-0.06f),
+            DisabledElement: proto.ElementDisabled,
+            Background: color.NudgeLightness(-0.18f),
+            BackgroundLight: color.NudgeLightness(-0.12f),
+            BackgroundDark: color.NudgeLightness(-0.24f),
+            Text: color,
+            TextDark: color.NudgeLightness(-0.06f));
 
     private static Color Readable(Color accent, bool light)
     {
