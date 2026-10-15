@@ -67,7 +67,7 @@
             rules:
             - VampireLess
           - !type:PlayerCountCondition
-            min: 25
+            min: 20
         - id: Nukeops
           weight: 10
           prob: 0.95 # Every main gamemode will have a very small chance to fail
@@ -182,7 +182,7 @@
             rules:
             - Vampire
           - !type:PlayerCountCondition
-            min: 25
+            min: 20
         - id: NukeopsLate
           weight: 9
           prob: 0.40 # Have a 60% chance to fail to add the gamemode, even if it wins the roll. Mostly a failsafe so the actual midrounds can trigger, but also to stop them from always rolling even if cost rolls high. We don't want things to be predictable, no?
@@ -450,7 +450,7 @@
             rules:
             - VampireLess
           - !type:PlayerCountCondition
-            min: 25
+            min: 20
         - id: Nukeops
           weight: 7
           prob: 0.95 # Every main gamemode will have a very small chance to fail
@@ -565,7 +565,7 @@
             rules:
             - Vampire
           - !type:PlayerCountCondition
-            min: 25
+            min: 20
         - id: NukeopsLate
           weight: 6
           prob: 0.40
