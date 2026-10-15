@@ -369,7 +369,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         _blindable.AdjustEyeDamage((target, blindable), 2);
         var timeSpan = TimeSpan.FromSeconds(5f);
-        _statusEffect.TryAddStatusEffectDuration(target, "StatusEffectBlindness", timeSpan);
+        _statusEffect.TryAddStatusEffectDuration(target, "StatusEffectTemporaryBlindness", timeSpan);
     }
 
     private void OnStingChem(Entity<ChangelingComponent> ent, ref StingChemEvent ev) => TryReagentSting(ent.Owner, ent.Comp, ev, ev.Chems);

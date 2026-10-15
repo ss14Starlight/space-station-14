@@ -73,7 +73,7 @@ public sealed partial class DragonRiftSystem
                             FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString((uid, xform)))),
                         ("station", MetaData(closestStation.Owner).EntityName));
                     _chat.DispatchGlobalAnnouncement(msg, playSound: false, colorOverride: Color.Red);
-                    _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Misc/notice1.ogg"), Filter.Broadcast(), true);
+                    _audio.PlayGlobal(new ResolvedPathSpecifier("/Audio/Misc/notice1.ogg"), Filter.Broadcast(), true);
                     _navMap.SetBeaconEnabled(uid, true);
                 }
 
