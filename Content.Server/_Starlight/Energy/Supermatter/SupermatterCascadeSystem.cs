@@ -1,5 +1,6 @@
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Directions;
+using Content.Shared.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
@@ -11,6 +12,7 @@ public sealed partial class SupermatterCascadeSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     private readonly LinkedList<Branch> _branches = [];
     private LinkedListNode<Branch>? _node;
@@ -67,7 +69,8 @@ public sealed partial class SupermatterCascadeSystem : EntitySystem
         branch.Coordinates = branch.Coordinates.Offset(branch.Direction);
         if (_transform.GetGrid(branch.Coordinates) is not { } grid
             || !TryComp<MapGridComponent>(grid, out var gridComp)
-            || !_map.TryGetTileRef(grid, gridComp, branch.Coordinates, out var tileRef))
+            || !_map.TryGetTileRef(grid, gridComp, branch.Coordinates, out var tileRef)
+            || tileRef.Tile.IsEmpty)
         {
             _branches.Remove(_node);
             _node = nextNode;
