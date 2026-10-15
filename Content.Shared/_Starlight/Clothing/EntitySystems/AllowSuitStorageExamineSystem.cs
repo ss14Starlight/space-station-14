@@ -33,7 +33,7 @@ public sealed partial class AllowSuitStorageExamineSystem : EntitySystem
         msg = new FormattedMessage();
         if (component.Whitelist.Components == null || component.Whitelist.Components.Length == 0)
             return false;
-        
+
         var supportedItems = GetSupportedItemsString(component.Whitelist.Components);
         var st = Loc.GetString("allow-suit-storage-examine-description", ("itemList", supportedItems));
         msg.AddMarkupOrThrow(st);
