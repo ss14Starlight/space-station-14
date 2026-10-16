@@ -161,7 +161,7 @@ public sealed partial class BloodBrotherRuleSystem : GameRuleSystem<BloodBrother
             PopupType.LargeCaution);
 
         if (entity.Comp.ConvertStunTime != null)
-            _stunSystem.TryUpdateParalyzeDuration(args.Target, entity.Comp.ConvertStunTime.Value); // Starlight
+            _stunSystem.TryAddParalyzeDuration(args.Target, entity.Comp.ConvertStunTime.Value);
 
         // Cleanup the data
         RemCompDeferred<InitialBloodBrotherComponent>(entity);
