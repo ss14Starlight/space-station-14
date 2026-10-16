@@ -300,10 +300,12 @@
   id: VendorSalvageWeaponBoltRifle
   productEntity: WeaponRifleBolt
   cost:
-    SalvageTicket: 1500
+    SalvageTicket: 1800
   categories:
   - SalvageWeapons
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
   - !type:BuyerAccessCondition
 
 - type: listing
@@ -320,10 +322,12 @@
   id: VendorSalvageWeaponBoltPistol
   productEntity: WeaponPistolBolt
   cost:
-    SalvageTicket: 750
+    SalvageTicket: 900
   categories:
   - SalvageWeapons
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
   - !type:BuyerAccessCondition
 
 - type: listing
@@ -502,7 +506,7 @@
   id: VendorSalvageMagazineBoltRifle
   productEntity: MagazineBoltRifle
   cost:
-    SalvageTicket: 250
+    SalvageTicket: 300
   categories:
   - SalvageConsumeables
   conditions:
@@ -512,7 +516,7 @@
   id: VendorSalvageMagazineBoltPistol
   productEntity: MagazineBoltPistol
   cost:
-    SalvageTicket: 150
+    SalvageTicket: 180
   categories:
   - SalvageConsumeables
   conditions:

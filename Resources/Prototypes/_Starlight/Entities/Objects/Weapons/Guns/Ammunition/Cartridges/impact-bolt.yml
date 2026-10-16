@@ -18,6 +18,7 @@
     - state: base
       map:
       - "enum.AmmoVisualLayers.Base"
+    scale: 0.5, 0.5
   - type: Explosive
     explosionType: ImpactBolt
     maxIntensity: 1
