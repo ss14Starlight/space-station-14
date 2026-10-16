@@ -1,60 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Added the `Palpate` Social Interaction. Animals with antennae can sniff anything that's nearby with their antennae.
-    type: Add
-  id: 409131
-  time: '2026-10-04T10:52:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6478
-- author: Caws
-  changes:
-  - message: (Social Interactions) Boop is now Lore Accurate (meaning its flavour text now respects whether or not your species has a nose).
-    type: Fix
-  id: 409132
-  time: '2026-10-04T10:52:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6478
-- author: Caws
-  changes:
-  - message: (Social Interactions) You can Look at anything now.
-    type: Fix
-  id: 409133
-  time: '2026-10-04T10:52:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6478
-- author: Caws
-  changes:
-  - message: (Social Interactions) You can Wave at anything now.
-    type: Fix
-  id: 409134
-  time: '2026-10-04T10:52:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6478
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Added a scrollbar to the ghost role rules window so that you don't have to stretch the window to read the rules and press the Request button.
-    type: Tweak
-  id: 409135
-  time: '2026-10-04T11:39:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6458
-- author: Xale
-  changes:
-  - message: Examine ID now works for IDs and PDAs in the belt slot.
-    type: Tweak
-  id: 409136
-  time: '2026-10-04T12:11:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6340
-- author: anytap
-  changes:
-  - message: Edited the Metashield page in the guidebook to match the wiki.
-    type: Tweak
-  id: 409137
-  time: '2026-10-04T12:11:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6408
-- author: Conflee
-  changes:
-  - message: 'Added a new pamphlet to the Magazine/Newspaper pools. "CentComm Pamphlet: PSO Cloning Insurance" which describes the PSO Cloning system.'
-    type: Add
-  id: 409138
-  time: '2026-10-04T12:11:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6342
 - author: Conflee
   changes:
   - message: Changed the description of the 'Unclonable' Trait to reflect PSO Cloning lore properly. Some people have unique genetic makeup that makes cloning their clones impossible. Like a copy of a copy in a photocopier.
@@ -2883,4 +2827,60 @@ Entries:
   id: 409530
   time: '2026-10-16T12:53:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6708
+- author: Teddiousbear
+  changes:
+  - message: Veteran Salv Med Mantle.
+    type: Add
+  id: 409531
+  time: '2026-10-16T12:53:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6706
+- author: Teddiousbear
+  changes:
+  - message: Veteran Salv PDA.
+    type: Add
+  id: 409532
+  time: '2026-10-16T12:53:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6706
+- author: Teddiousbear
+  changes:
+  - message: Salvage Medic Jumpsuits/skirts.
+    type: Add
+  id: 409533
+  time: '2026-10-16T12:53:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6706
+- author: Teddiousbear
+  changes:
+  - message: Medical Glasses loadout option to Salv Med.
+    type: Add
+  id: 409534
+  time: '2026-10-16T12:53:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6706
+- author: Teddiousbear
+  changes:
+  - message: PKA Upgrade BP to Ticketbox.
+    type: Add
+  id: 409535
+  time: '2026-10-16T12:53:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6706
+- author: Teddiousbear
+  changes:
+  - message: Added missing ammo types to ammobp.
+    type: Tweak
+  id: 409536
+  time: '2026-10-16T12:53:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6706
+- author: Teddiousbear
+  changes:
+  - message: Salvage Tickets no longer sellable.
+    type: Tweak
+  id: 409537
+  time: '2026-10-16T12:53:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6706
+- author: Teddiousbear
+  changes:
+  - message: Blueprint ID Typos.
+    type: Fix
+  id: 409538
+  time: '2026-10-16T12:53:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6706
 Order: -1
