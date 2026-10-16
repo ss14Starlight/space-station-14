@@ -167,7 +167,7 @@ public sealed partial class SharedVentCrawlSystem
         holder.ManifoldLayer ??= AtmosPipeLayer.Primary;
         DirtyField(uid, holder, nameof(VentCrawlHolderComponent.ManifoldLayer));
 
-        var rotation = Transform(manifoldUid).WorldRotation;
+        var rotation = _xformSystem.GetWorldRotation(manifoldUid);
 
         var right = rotation.RotateVec(Vector2.UnitX);
         var forward = rotation.RotateVec(Vector2.UnitY);
