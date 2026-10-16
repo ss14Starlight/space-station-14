@@ -1,11 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Changed the Introduction section of the New Player page in the Guidebook to give a more useful basic lore introduction to the server, front loading the fact that NanoTrasen and CentComm are two distinct companies, and a brief mention of PSO, early. These are two important lore things unique to Starlight that cause confusion often.
-    type: Tweak
-  id: 409140
-  time: '2026-10-04T12:11:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6342
 - author: Johnny
   changes:
   - message: Removed the fake shield from revolutionary uplink.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409539
   time: '2026-10-16T13:19:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6703
+- author: Johnny
+  changes:
+  - message: Removed of the two tiny evac pod visitation ships.
+    type: Remove
+  id: 409540
+  time: '2026-10-16T14:20:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6711
 Order: -1
