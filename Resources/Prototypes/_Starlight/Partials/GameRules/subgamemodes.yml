@@ -13,3 +13,4 @@
   components:
   - type: AntagRandomObjectives
     forcedObjectiveGroup: ThiefObjectiveGroupFate
+    storyObjectiveGroup: ThiefObjectiveOpenEnded

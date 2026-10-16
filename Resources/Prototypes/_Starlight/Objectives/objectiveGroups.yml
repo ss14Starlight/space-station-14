@@ -42,6 +42,14 @@
     PanicObjective: 1
     RumorObjective: 1
     SyndielandObjective: 1
+    # Moffstation open-ended objectives
+    DisruptDepartmentObjective: 1
+    SabotageObjective: 1
+    InfiltrateObjective: 1
+    JailbreakObjective: 1
+    TeachLessonObjective: 1
+    LeaveCallingCardObjective: 1
+    LeaveCallingCardOnPersonObjective: 1
 
 # Vampire
 - type: weightedRandom

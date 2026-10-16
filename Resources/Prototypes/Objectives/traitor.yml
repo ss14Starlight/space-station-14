@@ -71,7 +71,6 @@
       components:
       - EscapeShuttleCondition
       - StealCondition
-      - GreytextObjective # Moffstaion - Remove overlap with greytext objectives
   - type: DieCondition
   - type: ObjectiveLimit #Starlight edit
     limit: 3 # Starlight

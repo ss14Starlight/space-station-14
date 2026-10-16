@@ -1,12 +1,12 @@
-objective-condition-disrupt-department = Disrupt the {$targetName} department
-objective-condition-sabotage-department = Sabotage the {$targetName} department
-objective-condition-infiltrate-department = Infiltrate the {$targetName} department
+objective-condition-disrupt-department = Disrupt the {$department} department
+objective-condition-sabotage-department = Sabotage the {$department} department
+objective-condition-infiltrate-department = Infiltrate the {$department} department
 objective-condition-jailbreak = Jailbreak prisoners
 objective-condition-distract-sec = Distract Security
 objective-condition-teach-lesson = Teach {$targetName}, {CAPITALIZE($job)} a lesson
 objective-condition-incriminate = Incriminate {$targetName}, {CAPITALIZE($job)}
 objective-condition-steal-everything = Steal everything of value.
 objective-condition-steal-money = Steal money.
-objective-condition-rob-department = Steal from the {$targetName} department
+objective-condition-rob-department = Steal from the {$department} department
 objective-condition-leave-card = Leave a calling card.
 objective-condition-leave-card-on-person = Leave a calling card on {$targetName}, {CAPITALIZE($job)}.
