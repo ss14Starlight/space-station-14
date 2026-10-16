@@ -4,6 +4,7 @@
   components:
   - type: GameRule
     minPlayers: 10
+    cancelPresetOnTooFewPlayers: false # Moffstation
     delay:
       min: 240
       max: 420
