@@ -19,6 +19,8 @@ namespace Content.Client._Starlight.Stylesheets.Sheetlets;
 [StarlightSheetlet]
 public sealed class FlatLobbySheetlet : Sheetlet<NanotrasenStylesheet>
 {
+    private static readonly Color PriorityMediumColor = Color.FromHex("#D4A72C");
+
     public override StyleRule[] GetRules(NanotrasenStylesheet sheet, object config)
     {
         if (sheet.Theme is not { } theme)
@@ -55,7 +57,9 @@ public sealed class FlatLobbySheetlet : Sheetlet<NanotrasenStylesheet>
 
             E<PanelContainer>().Class(StarlightStyleClass.PriorityBar).Panel(FlatBox.Fill(proto.Border)),
             E<PanelContainer>().Class(StarlightStyleClass.JobDropHighlight).Panel(FlatBox.Fill(theme.ElementActive)),
-            E<PanelContainer>().Class(StarlightStyleClass.PriorityBarFilled).Panel(FlatBox.Fill(theme.Accent)),
+            E<PanelContainer>().Class(StarlightStyleClass.PriorityHigh).Panel(FlatBox.Fill(proto.Positive)),
+            E<PanelContainer>().Class(StarlightStyleClass.PriorityMedium).Panel(FlatBox.Fill(PriorityMediumColor)),
+            E<PanelContainer>().Class(StarlightStyleClass.PriorityLow).Panel(FlatBox.Fill(proto.Negative)),
         };
 
         var bigBox = FlatBox.Fill(Color.White)

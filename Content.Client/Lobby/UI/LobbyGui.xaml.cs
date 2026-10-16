@@ -1,5 +1,7 @@
+using Content.Client.Changelog;
 using Content.Client.Info;
 using Content.Client.Message;
+using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.EscapeMenu;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared._Starlight.CCVar;
@@ -17,6 +19,7 @@ namespace Content.Client.Lobby.UI
     {
         [Dependency] private IClientConsoleHost _consoleHost = default!;
         [Dependency] private IConfigurationManager _configurationManager = default!;
+        [Dependency] private ChangelogManager _changelog = default!; // Starlight
 
         public LobbyGui()
         {
@@ -64,6 +67,27 @@ namespace Content.Client.Lobby.UI
         }
 
         #region Starlight
+        protected override void EnteredTree()
+        {
+            base.EnteredTree();
+            _changelog.NewChangelogEntriesChanged += UpdateLinksHighlight;
+            UpdateLinksHighlight();
+        }
+
+        protected override void ExitedTree()
+        {
+            base.ExitedTree();
+            _changelog.NewChangelogEntriesChanged -= UpdateLinksHighlight;
+        }
+
+        private void UpdateLinksHighlight()
+        {
+            if (_changelog.NewChangelogEntries)
+                LinksButton.AddStyleClass(StyleClass.Negative);
+            else
+                LinksButton.RemoveStyleClass(StyleClass.Negative);
+        }
+
         private const float MinChatWidth = 300;
 
         /// <summary>

@@ -52,7 +52,13 @@ public static class StarlightStyleClass
     public const string JobCardHigh = "JobCardHigh";
 
     public const string PriorityBar = "PriorityBar";
-    public const string PriorityBarFilled = "PriorityBarFilled";
+
+    /// <summary>
+    /// Color markers of a job priority: high is green, medium yellow, low red.
+    /// </summary>
+    public const string PriorityHigh = "PriorityHigh";
+    public const string PriorityMedium = "PriorityMedium";
+    public const string PriorityLow = "PriorityLow";
 
     /// <summary>
     /// A style class for a job drop highlight, which is a visual effect that indicates that a job or role has been dropped or removed from the selection, and is used to draw attention to the change in the job list.

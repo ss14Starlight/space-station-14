@@ -18,7 +18,6 @@ job-priorities-window-hint = Click to raise a priority, right click to lower it.
 job-priorities-window-filter-all = All
 job-priorities-window-filter-selected = Selected
 job-priorities-window-selected = {$count} selected
-job-priorities-window-locked = Locked
 job-priorities-window-no-character = No character
 job-priorities-window-none = none
 job-priorities-window-summary = High: {$high} · medium {$medium} · low {$low}

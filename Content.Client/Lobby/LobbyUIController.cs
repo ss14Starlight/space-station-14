@@ -282,11 +282,6 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         var (characterGui, _) = EnsureGui();
 
-        // reload these, the lobby button does this so we do it aswell
-        characterGui.ReloadCharacterPickers();
-        _profileEditor?.ResetToDefault();
-        _jobPriorityEditor?.LoadJobPriorities();
-
         // detach the gui from it's parent (Most of the time the lobby)
         characterGui.Orphan();
 
@@ -297,6 +292,11 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         window.MinSize = window.SetSize = new Vector2(1400, 700); // Might need adjusting but felt good to me
 
         window.Contents.AddChild(characterGui);
+
+        // reload these, the lobby button does this so we do it aswell.
+        characterGui.ReloadCharacterPickers();
+        _profileEditor?.ResetToDefault();
+        _jobPriorityEditor?.LoadJobPriorities();
 
         // when the window closes, detach the gui from it so the gui isn't cleaned up with the window.
         window.OnFinalClose += () =>
@@ -398,7 +398,8 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
             _profileEditor.Visible = true;
             // begin starlight
             // we borrow the gui from the lobby, so we need to make sure we return it aswell.
-            if (_stateManager.CurrentState is LobbyState lobbyState
+            if (_characterSetupWindow == null
+                && _stateManager.CurrentState is LobbyState lobbyState
                 && lobbyState.Lobby?.CharacterSetupState is { } container
                 && _characterSetup.Parent != container)
             {
