@@ -1,0 +1,46 @@
+# Veteran Time
+- type: loadoutEffectGroup
+  id: VeteranSalvageMedic
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSalvageMedic
+      time: 216000 # 60 hrs
+
+#Uniform
+- type: loadout
+  id: SalvageMedicJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageMedic
+
+- type: loadout
+  id: SalvageMedicJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSalvageMedic
+
+- type: loadout
+  id: SalvageMedicPDA
+  equipment:
+    id: SalvageMedicPDA
+
+- type: loadout
+  id: VeteranSalvageMedicPDA
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: VeteranSalvageMedic
+  equipment:
+    id: VeteranSalvageMedicPDA
+
+- type: loadout
+  id: SalvageMedicMantle
+  equipment:
+    neck: ClothingNeckMantleMedic
+
+- type: loadout
+  id: VeteranSalvageMedicMantle
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: VeteranSalvageMedic
+  equipment:
+    neck: ClothingNeckMantleVeteranMedic
