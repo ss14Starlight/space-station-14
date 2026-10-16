@@ -20,7 +20,7 @@ public sealed partial class SiliconBrainLoadoutSystem : EntitySystem
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private IComponentFactory _compFactory = default!;
 
-    private static readonly EntProtoId FallbackBrain = "OrganHumanBrain";
+    private static readonly EntProtoId _fallbackBrain = "OrganHumanBrain";
 
     public override void Initialize()
     {
@@ -70,7 +70,7 @@ public sealed partial class SiliconBrainLoadoutSystem : EntitySystem
         if (brainProto == null && profile != null &&
             _proto.TryIndex(profile.Species, out var species) &&
             _proto.TryIndex<EntityPrototype>(species.Prototype, out var entityProto) &&
-            entityProto.TryGetComponent<SLBodyComponent>(out var bodyComp, _compFactory) &&
+            entityProto.TryComp<SLBodyComponent>(out var bodyComp, _compFactory) &&
             _proto.TryIndex(bodyComp.Prefab, out var prefab) &&
             prefab.TryFindPart("Brain", out var organProto))
         {
@@ -82,7 +82,7 @@ public sealed partial class SiliconBrainLoadoutSystem : EntitySystem
 
         if (brainProto == null)
         {
-            brainProto = FallbackBrain;
+            brainProto = _fallbackBrain;
             useMMI = true;
         }
 

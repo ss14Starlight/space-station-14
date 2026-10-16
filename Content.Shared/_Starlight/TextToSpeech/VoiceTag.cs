@@ -23,10 +23,10 @@ public readonly struct VoiceTag : IEquatable<VoiceTag>
         return $"tts-tag-{Value.Replace(" ", "-")}";
     }
 
-    public string ToDisplayName()
+    public string ToDisplayName(ILocalizationManager localization)
     {
         // Check for custom localization key first
-        if (Loc.TryGetString(ToLocalizationKey(), out var localized))
+        if (localization.TryGetString(ToLocalizationKey(), out var localized))
             return localized;
 
         // Fallback to title casing
