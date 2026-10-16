@@ -1,13 +1,6 @@
 Entries:
 - author: Conflee
   changes:
-  - message: Changed the description of the 'Unclonable' Trait to reflect PSO Cloning lore properly. Some people have unique genetic makeup that makes cloning their clones impossible. Like a copy of a copy in a photocopier.
-    type: Tweak
-  id: 409139
-  time: '2026-10-04T12:11:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6342
-- author: Conflee
-  changes:
   - message: Changed the Introduction section of the New Player page in the Guidebook to give a more useful basic lore introduction to the server, front loading the fact that NanoTrasen and CentComm are two distinct companies, and a brief mention of PSO, early. These are two important lore things unique to Starlight that cause confusion often.
     type: Tweak
   id: 409140
@@ -2883,4 +2876,11 @@ Entries:
   id: 409538
   time: '2026-10-16T12:53:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6706
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Refined the NanoTrasen theme to better reflect the Classic theme, in anticipation of its eventual removal. If you were using the Classic theme, you will need to re-select the NanoTrasen theme.
+    type: Tweak
+  id: 409539
+  time: '2026-10-16T13:19:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6703
 Order: -1
