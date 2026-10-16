@@ -37,8 +37,17 @@ public sealed partial class StyleThemePrototype : IPrototype
     [DataField]
     public Color? Accent;
 
+    /// <summary>
+    /// Border width for tooltips/context menus.
+    /// </summary>
     [DataField]
     public float BorderThickness = 1f;
+
+    /// <summary>
+    /// Border width for text inputs and inset panels.
+    /// </summary>
+    [DataField]
+    public float SecondaryBorderThickness = 1f;
 
     [DataField]
     public StyleThemeBox? Window;
@@ -67,6 +76,13 @@ public sealed partial class StyleThemePrototype : IPrototype
 
     [DataField]
     public Color Surface;
+
+    /// <summary>
+    /// Inspection menu background.
+    /// If not specified, falls back to surface.
+    /// </summary>
+    [DataField]
+    public Color? SurfaceInspect;
 
     [DataField]
     public Color SurfaceRaised;

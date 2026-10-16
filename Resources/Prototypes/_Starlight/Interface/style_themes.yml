@@ -60,10 +60,12 @@
   accent: "#A88B5E"
   secondaryAccent: "#126128"
   accentTint: 1
-  borderThickness: 0
+  borderThickness: 2
+  secondaryBorderThickness: 2
   windowBackground: "#252632"
   background: "#24242B"
   surface: "#2F2F3B"
+  surfaceInspect: "#1B1B1F"
   surfaceRaised: "#343541"
   element: "#424665"
   elementHovered: "#4F5376"
