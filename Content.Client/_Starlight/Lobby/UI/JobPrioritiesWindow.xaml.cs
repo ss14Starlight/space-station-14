@@ -220,8 +220,7 @@ public sealed partial class JobPrioritiesWindow : DefaultWindow
     {
         var priority = GetPriority(job);
         var allowed = _requirements.IsAllowed(job, null, out var reason);
-        var noCharacter = priority != JobPriority.Never
-                          && _preferences.Preferences?.GetAllEnabledProfilesForJob(job.ID).Count is null or 0;
+        var noCharacter = priority != JobPriority.Never && _preferences.Preferences?.GetAllEnabledProfilesForJob(job.ID).Count is null or 0;
 
         var card = new ContainerButton
         {
