@@ -237,7 +237,7 @@
       color: "#d1382f"
   - type: Vinyl
     song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/Music/Cathode.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/Cathode.ogg
 
 - type: entity
   parent: BaseVinylDisc
@@ -252,4 +252,4 @@
       color: "#35ffff"
   - type: Vinyl
     song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/Music/hit_em.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/hit_em.ogg
