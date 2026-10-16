@@ -1,6 +1,6 @@
 #CCNT Consortium BSOs
 - type: entity
-  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitERTLeader] #sl Change
+  parent: [ BaseNanoTrasenContraband, ClothingOuterHardsuitERTLeader ] #NTNC from syndie lead -> ERT lead <3
   id: ClothingOuterHardsuitNTNCConsortium
   name: NanoTrasen navy marine hardsuit
   description: A protective hardsuit worn by NanoTrasen Navy Marines.
@@ -11,7 +11,7 @@
       sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitNTNCConsortium
-    - type: Armor
+    - type: Armor # teh.saint update start
       modifiers:
         coefficients:
           Blunt: 0.40
@@ -19,7 +19,6 @@
           Piercing: 0.40
           Radiation: 0.65
           Caustic: 0.6
-          Explosion: 70
       staminaModifier: 0.3
     - type: FootstepModifier
       footstepSoundcollection:
@@ -34,10 +33,11 @@
     - type: PressureProtection
       highPressureMultiplier: 0.02
       lowPressureMultiplier: 1000
+      # teh.saint update end
         
 
 - type: entity
-  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitERTMedic] #sl Change
+  parent: [ BaseNanoTrasenContraband, ClothingOuterHardsuitSyndieMedic ] #teh.saint change NTNC medic -> SyndieMedic
   id: ClothingOuterHardsuitNTNCConsortiumMedic
   name: NanoTrasen navy marine medic hardsuit
   description: A protective hardsuit worn by NanoTrasen Navy Marine medical personnel.
@@ -52,7 +52,7 @@
       tags:
         - Hardsuit
         - WhitelistChameleon
-    - type: ItemToggle
+    - type: ItemToggle #teh.saint update start
       onUse: false
       soundActivate:
         path: /Audio/Items/flashlight_on.ogg
@@ -60,7 +60,7 @@
         path: /Audio/Items/flashlight_off.ogg
     - type: ItemToggleActiveSound
       activeSound:
-        path: /Audio/Effects/Vehicle/ambulancesiren.ogg #not the best sound, but after looking through all of current freesound regarding sirens and ambulance, this was the best compromise
+        path: /Audio/Effects/Vehicle/ambulancesiren.ogg
         params:
           volume: -4
     - type: UseDelay
@@ -76,4 +76,5 @@
       lightMask: ConeDouble
     - type: RotatingLight
       speed: 360
-      # stolen from the ERT Medic hardsuit, for the
+      # stolen from the ERT Medic hardsuit, for the lols. 
+      # teh.saint update end
