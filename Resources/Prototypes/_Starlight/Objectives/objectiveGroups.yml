@@ -44,7 +44,9 @@
     SyndielandObjective: 1
     # from Moff Station
     SabotageObjective: 1
-    InfiltrateObjective: 1
+    TrashRoomObjective: 1
+    ClaimLocationObjective: 1
+    GatherIntelObjective: 1
     JailbreakObjective: 1
     LeaveCallingCardOnPersonObjective: 1
 
@@ -125,7 +127,6 @@
   id: ThiefObjectiveOpenEnded
   weights:
     RobDepartmentObjective: 1
-    InfiltrateObjective: 1
 
 - type: weightedRandom
   id: ThiefObjectiveGroupOuter # We use this to roll for thief objectives, similar to how traitors do it. Technically, we lose some control over it doing it this way (maxPicks), but I think the long term benefits of being able to add more variants to objectives without having to make 2 whole layers of objectives is worth the tradeoff.
@@ -149,3 +150,17 @@
     ChangelingKillRandomHeadObjective: 1
     ChangelingTeachRandomPersonObjective: 1
     ChangelingTeachRandomHeadObjective: 1
+
+# Blood Bound
+- type: weightedRandom
+  id: BloodBrotherObjectiveGroupOpenEnded
+  weights:
+    BloodBrotherDisruptDepartmentObjective: 1
+    BloodBrotherJailbreakObjective: 0.5
+    BloodBrotherTrashRoomObjective: 1
+    BloodBrotherClaimLocationObjective: 1
+    BloodBrotherLeaveCallingCardObjective: 0.2
+    BloodBrotherRobDepartmentObjective: 1
+    BloodBrotherLoudRobDepartmentObjective: 1
+    BloodBrotherSabotageObjective: 0.5
+

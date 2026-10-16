@@ -370,22 +370,20 @@
 
 
 - type: entity
-  parent: BaseStoryObjective
+  parent: BaseDepartmentStoryObjective
   id: FrameObjective
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: DepartmentObjective
       title: objective-framing
-    - type: PickRandomDepartment
 
 - type: entity
-  parent: BaseStoryObjective
+  parent: BaseDepartmentStoryObjective
   id: FalseUprisingObjective
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: DepartmentObjective
       title: objective-false-uprising
-    - type: PickRandomDepartment
 
 - type: entity
   parent: BaseStoryObjective
@@ -418,58 +416,52 @@
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
 
 - type: entity
-  parent: BaseStoryObjective
+  parent: BaseDepartmentStoryObjective
   id: StalkingObjective
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: DepartmentObjective
       title: objective-stalking
-    - type: PickRandomDepartment
 
 - type: entity
-  parent: BaseStoryObjective
+  parent: BaseDepartmentStoryObjective
   id: DisgraceObjective
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: DepartmentObjective
       title: objective-disgrace
-    - type: PickRandomDepartment
 
 - type: entity
-  parent: BaseStoryObjective
+  parent: BaseDepartmentStoryObjective
   id: HarassObjective
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: DepartmentObjective
       title: objective-harass
-    - type: PickRandomDepartment
 
 - type: entity
-  parent: BaseStoryObjective
+  parent: BaseDepartmentStoryObjective
   id: ImpersonateObjective
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: DepartmentObjective
       title: objective-impersonate
-    - type: PickRandomDepartment
 
 - type: entity
-  parent: BaseStoryObjective
+  parent: BaseDepartmentStoryObjective
   id: FeudObjective
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: DepartmentObjective
       title: objective-feud
-    - type: PickRandomDepartment
 
 - type: entity
-  parent: BaseStoryObjective
+  parent: BaseDepartmentStoryObjective
   id: WasteObjective
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: DepartmentObjective
       title: objective-waste
-    - type: PickRandomDepartment
 
 - type: entity
   parent: BaseStoryObjective

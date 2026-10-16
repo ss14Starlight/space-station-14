@@ -31,3 +31,29 @@
     icon:
       sprite: _Starlight/Interface/Misc/objective_icons.rsi
       state: rp
+
+- type: entity
+  abstract: true
+  parent: BaseStoryObjective
+  id: BaseLocationStoryObjective
+  components:
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      components:
+      - DieCondition
+      - DepartmentObjective
+      - LocationObjective
+
+- type: entity
+  abstract: true
+  parent: BaseLocationStoryObjective
+  id: BaseDepartmentStoryObjective
+  components:
+  - type: PickRandomDepartment
+
+- type: entity
+  abstract: true
+  parent: BaseLocationStoryObjective
+  id: BaseRoomStoryObjective
+  components:
+  - type: PickRoomObjective

@@ -8,6 +8,10 @@ objective-feud = Falsify aggression and increase hostilities between {$departmen
 objective-waste = Waste {$department}'s resources this shift, in any way you deem satisfactory
 
 objective-condition-sabotage-department = Sabotage the {$department} department
-objective-condition-infiltrate-department = Infiltrate the {$department} department
 objective-condition-rob-department = Steal from the {$department} department
+objective-condition-loud-rob-department = Rob the {$department} department
+objective-condition-trash-room = Trash the {$targetName} room
+objective-condition-claim-room = Claim the {$targetName} room for the Syndicate
+objective-condition-bb-claim-room = Claim the {$targetName} room for the brotherhood
+objective-condition-gather-intel = Gather intel on {$targetName}, {CAPITALIZE($job)}
 objective-condition-leave-card-on-person = Leave a calling card on {$targetName}, {CAPITALIZE($job)}.

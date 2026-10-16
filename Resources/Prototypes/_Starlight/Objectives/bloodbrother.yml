@@ -1,11 +1,7 @@
-# Open-ended blood brother objectives
+# Blood brother story objectives
 - type: entity
-  parent: [BaseBloodBrotherObjective, HarassObjective] # Starlight
+  parent: [BaseBloodBrotherObjective, HarassObjective]
   id: BloodBrotherDisruptDepartmentObjective
-
-#- type: entity
-#  parent: [BaseBloodBrotherObjective, InfiltrateObjective]
-#  id: BloodBrotherInfiltrateObjective
 
 - type: entity
   parent: [BaseBloodBrotherObjective, JailbreakObjective]
@@ -18,12 +14,10 @@
 - type: entity
   parent: [BaseBloodBrotherObjective, ClaimLocationObjective]
   id: BloodBrotherClaimLocationObjective
-  description: Establish this room as a base the brotherhood.
+  description: Establish this room as a base for the brotherhood.
   components:
   - type: LocationObjective
     title: objective-condition-bb-claim-room
-
-
 - type: entity
   parent: [BaseBloodBrotherObjective, RobDepartmentObjective]
   id: BloodBrotherRobDepartmentObjective
@@ -32,7 +26,7 @@
   parent: [BaseBloodBrotherObjective, RobDepartmentObjective]
   id: BloodBrotherLoudRobDepartmentObjective
   components:
-  - type: LocationObjective
+  - type: DepartmentObjective
     title: objective-condition-loud-rob-department
 
 - type: entity
@@ -40,16 +34,9 @@
   id: BloodBrotherSabotageObjective
 
 - type: entity
-  parent: [BaseBloodBrotherObjective, TeachRandomPersonObjective] # Starlight
+  parent: [BaseBloodBrotherObjective, TeachRandomPersonObjective]
   id: BloodBrotherTeachLessonObjective
 
 - type: entity
-  parent: [BaseBloodBrotherObjective, CallingCardObjective] # Starlight
+  parent: [BaseBloodBrotherObjective, CallingCardObjective]
   id: BloodBrotherLeaveCallingCardObjective
-  components:
-  - type: Objective
-    difficulty: 0.2
-    icon:
-      sprite: Objects/Misc/bureaucracy.rsi
-      state: paper_receipt_horizontal
-    unique: true # only one person needs to really send a message.
