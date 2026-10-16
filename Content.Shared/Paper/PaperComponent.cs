@@ -32,7 +32,7 @@ public sealed partial class PaperComponent : Component
     [DataField("sound")]
     public SoundSpecifier? Sound { get; private set; } = new SoundCollectionSpecifier("PaperScribbles", AudioParams.Default.WithVariation(0.1f));
 
-    #region MyRegion
+    #region Starlight
 
     /// <summary>
     /// Permits extended markup, as in, allows all markup tags to be written on the page. Intended for admin usage.

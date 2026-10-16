@@ -18,7 +18,8 @@ public sealed class SLUserFormattableTags
     public static Type[] AllTags() =>
         _allTags ??= new[] { typeof(IMarkupTagHandler).Assembly, typeof(SLUserFormattableTags).Assembly }
             .SelectMany(a => a.GetTypes())
-            .Where(t => t is { IsAbstract: false, IsInterface: false } && typeof(IMarkupTagHandler).IsAssignableFrom(t))
+            .Where(t => t is { IsAbstract: false, IsInterface: false } &&
+                (typeof(IMarkupTagHandler).IsAssignableFrom(t) || typeof(IMarkupTag).IsAssignableFrom(t)))
             .ToArray();
 
     // Notably, missing cmdlink.
