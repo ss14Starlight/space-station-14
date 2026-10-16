@@ -32,7 +32,15 @@ public sealed partial class SalvageExpeditionComponent : SharedSalvageExpedition
     [DataField]
     public EntityUid Station;
 
+
     [ViewVariables] public bool Completed = false;
+
+    /// <summary>
+    /// Whether expedition generation failed before becoming playable.
+    /// </summary>
+    [ViewVariables]
+    public bool GenerationFailed;
+
 
     /// <summary>
     /// Countdown audio stream.

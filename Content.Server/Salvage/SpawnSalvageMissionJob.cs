@@ -234,7 +234,9 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             && !await SpawnRandomEntry((mapUid, grid), new SalvageMobEntry { Proto = megafauna }, dungeon, random))
         {
             _sawmill.Warning($"Rejecting salvage expedition: no free tile for required boss {megafauna}.");
-            // Map shutdown clears coordinate disks and releases the station's claimed mission.
+
+            // Mark the expedition as failed before deleting its map.
+            expedition.GenerationFailed = true;
             _entManager.DeleteEntity(mapUid);
             return false;
         }
