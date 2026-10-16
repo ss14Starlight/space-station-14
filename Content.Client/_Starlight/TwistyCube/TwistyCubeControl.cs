@@ -224,7 +224,7 @@ public sealed partial class TwistyCubeControl : Control
         var bestDistance = float.MaxValue;
         foreach (var face in _faces)
         {
-            var distance = (point - face.Origin - _axisProjections[face.Axis] * (1.5f * face.Sign)).LengthSquared();
+            var distance = (point - face.Origin - (_axisProjections[face.Axis] * (1.5f * face.Sign))).LengthSquared();
             if (distance >= bestDistance)
                 continue;
 
@@ -242,7 +242,7 @@ public sealed partial class TwistyCubeControl : Control
         foreach (var (origin, axis, sign) in _faces)
         {
             var (a, b) = OtherAxes(axis);
-            var faceCenter = origin + _axisProjections[axis] * (1.5f * sign);
+            var faceCenter = origin + (_axisProjections[axis] * (1.5f * sign));
             if (!TrySolve(point - faceCenter, _axisProjections[a], _axisProjections[b], out var u, out var v)
                 || MathF.Abs(u) > 1.5f
                 || MathF.Abs(v) > 1.5f)
@@ -267,15 +267,15 @@ public sealed partial class TwistyCubeControl : Control
     /// </summary>
     private static bool TrySolve(Vector2 p, Vector2 a, Vector2 b, out float u, out float v)
     {
-        var det = a.X * b.Y - a.Y * b.X;
+        var det = (a.X * b.Y) - (a.Y * b.X);
         if (MathF.Abs(det) < 1e-6f)
         {
             u = v = 0;
             return false;
         }
 
-        u = (p.X * b.Y - p.Y * b.X) / det;
-        v = (a.X * p.Y - a.Y * p.X) / det;
+        u = ((p.X * b.Y) - (p.Y * b.X)) / det;
+        v = ((a.X * p.Y) - (a.Y * p.X)) / det;
         return true;
     }
 
