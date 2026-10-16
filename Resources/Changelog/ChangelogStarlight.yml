@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Added the 'Sniff' Social Interaction. Dogs and other animals can sniff anything that's nearby.
-    type: Add
-  id: 409130
-  time: '2026-10-04T10:52:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6478
-- author: Caws
-  changes:
   - message: Added the `Palpate` Social Interaction. Animals with antennae can sniff anything that's nearby with their antennae.
     type: Add
   id: 409131
@@ -2883,4 +2876,11 @@ Entries:
   id: 409529
   time: '2026-10-16T12:17:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6705
+- author: Conflee
+  changes:
+  - message: Emergency Escape Pod Airlocks no longer violate Space OSHA Regulation 1910.36(d) "An exit door must be unlocked." (These docks are now Maintenance access, so all Crew can use them. They are intended to be open at all times anyway but code regressions regularly break this function so I am just removing the lock. The lock is never meant to be a factor in gameplay anyway).
+    type: Fix
+  id: 409530
+  time: '2026-10-16T12:53:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6708
 Order: -1
