@@ -6,3 +6,9 @@ objective-harass = Harass and inconvenience {$department} this shift, without de
 objective-impersonate = Impersonate a member of {$department} this shift, and smear them and their department's reputation
 objective-feud = Falsify aggression and increase hostilities between {$department} and another department this shift
 objective-waste = Waste {$department}'s resources this shift, in any way you deem satisfactory
+
+objective-condition-disrupt-department = Disrupt the {$department} department
+objective-condition-sabotage-department = Sabotage the {$department} department
+objective-condition-infiltrate-department = Infiltrate the {$department} department
+objective-condition-rob-department = Steal from the {$department} department
+objective-condition-leave-card-on-person = Leave a calling card on {$targetName}, {CAPITALIZE($job)}.

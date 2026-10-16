@@ -42,12 +42,11 @@
     PanicObjective: 1
     RumorObjective: 1
     SyndielandObjective: 1
-    # Moffstation open-ended objectives
+    # from Moff Station
     DisruptDepartmentObjective: 1
     SabotageObjective: 1
     InfiltrateObjective: 1
     JailbreakObjective: 1
-    TeachLessonObjective: 1
     LeaveCallingCardObjective: 1
     LeaveCallingCardOnPersonObjective: 1
 
@@ -124,6 +123,14 @@
     VampireEscapeObjective: 1
 
 # Thieves
+- type: weightedRandom
+  id: ThiefObjectiveOpenEnded
+  weights:
+    StealEverythingObjective: 0.5
+    StealMoneyObjective: 0.5
+    RobDepartmentObjective: 1
+    InfiltrateThiefObjective: 1
+
 - type: weightedRandom
   id: ThiefObjectiveGroupOuter # We use this to roll for thief objectives, similar to how traitors do it. Technically, we lose some control over it doing it this way (maxPicks), but I think the long term benefits of being able to add more variants to objectives without having to make 2 whole layers of objectives is worth the tradeoff.
   weights:
