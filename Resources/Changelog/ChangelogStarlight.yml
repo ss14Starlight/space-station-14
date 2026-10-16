@@ -1,11 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Fixed ratelimiter now you can freely connect to server without problem.
-    type: Fix
-  id: 409069
-  time: '2026-10-01T20:39:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6432
 - author: Teddiousbear
   changes:
   - message: Centcomm Berets/Caps description punctuation.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409468
   time: '2026-10-16T09:13:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6709
+- author: Makeshift
+  changes:
+  - message: Downpour Station, a new low-mid pop map! (Admeme only for play-testing).
+    type: Add
+  id: 409469
+  time: '2026-10-16T09:54:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6534
 Order: -1
