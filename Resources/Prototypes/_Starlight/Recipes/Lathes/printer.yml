@@ -418,15 +418,6 @@
   materials:
     SheetPrinter: 100
 
-- type: latheRecipe
-  id: PrintedDocumentPermissionToCarryWeaponsRecipe
-  result: PrintedDocumentPermissionToCarryWeapons
-  categories:
-  - Permissions
-  completetime: 2
-  applyMaterialDiscount: false
-  materials:
-    SheetPrinter: 100
 
 - type: latheRecipe
   id: PrintedDocumentPermissionDisposeBodyRecipe
