@@ -106,3 +106,22 @@
   id: Hemorrhinol
   contrabandTier: Tier2
   contrabandSeverity: !Remove
+
+# Brute damage split across blunt, slash and piercing, and airloss across asphyxiation and bloodloss.
+- type: !PartialOnly reagent
+  id: Histamine
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !CombineIndex:0 damage:
+          types:
+            Blunt: !Remove
+          groups:
+            Brute: 2
+      - !CombineIndex:1 damage: # 45u or more
+          types:
+            Blunt: !Remove
+            Asphyxiation: !Remove
+          groups:
+            Brute: 2
+            Airloss: 2

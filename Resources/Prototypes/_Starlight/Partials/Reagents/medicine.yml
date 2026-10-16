@@ -155,3 +155,65 @@
           min: 40
       metabolites:
         Tricordrazine: 1
+
+# Brute damage split across blunt, slash and piercing.
+- type: !PartialOnly reagent
+  id: Dylovene
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !CombineIndex:1 damage: # overdose
+          types:
+            Blunt: !Remove
+          groups:
+            Brute: 2
+
+- type: !PartialOnly reagent
+  id: Arithrazine
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !CombineIndex:0 damage:
+          types:
+            Blunt: !Remove
+          groups:
+            Brute: 1.5
+
+- type: !PartialOnly reagent
+  id: Dermaline
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !CombineIndex:1 damage: # overdose
+          types:
+            Blunt: !Remove
+          groups:
+            Brute: 0.5
+
+- type: !PartialOnly reagent
+  id: Ultravasculine
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !CombineIndex:1 damage: # under 20u
+          types:
+            Blunt: !Remove
+          groups:
+            Brute: 1.5
+      - !CombineIndex:3 damage: # 20u or more
+          types:
+            Blunt: !Remove
+          groups:
+            Brute: 6
+
+- type: !PartialOnly reagent
+  id: PolypyryliumOligomers
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !CombineIndex:0 damage:
+          Brute: -2.5
+          Airloss: -2
+      - !CombineIndex:1 damage: # overdose
+          types:
+            Asphyxiation: 4.5
