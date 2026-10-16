@@ -336,15 +336,49 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
             storeComp.AccountOwner = mindId;
     }
 
+    /// <summary>
+    /// The head's existing nullspace store, if a revolutionary rule already created one.
+    /// </summary>
+    private EntityUid? FindHeadStore(EntityUid head)
+    {
+        var rules = EntityQueryEnumerator<RevolutionaryRuleComponent>();
+        while (rules.MoveNext(out _, out var rule))
+        {
+            if (rule.HeadStores.TryGetValue(head, out var existing) && Exists(existing))
+                return existing;
+        }
+
+        return null;
+    }
+
     private void AddConversionToHeadStores()
     {
         var currency = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "Conversion", FixedPoint2.New(1) } };
         foreach (var store in EnumerateHeadStores())
             _store.TryAddCurrency(currency, store);
 
+        // Currency is applied immediately. The popup waits so it does not stack on the Telebond popup.
+        var popups = new List<(EntityUid Head, FixedPoint2 Total)>();
         var heads = EntityQueryEnumerator<HeadRevolutionaryComponent>();
         while (heads.MoveNext(out var head, out _))
-            _popup.PopupEntity(Loc.GetString("+1 Conversion"), head, head, PopupType.Medium);
+        {
+            var total = FixedPoint2.Zero;
+            if (FindHeadStore(head) is { } store && TryComp<StoreComponent>(store, out var storeComp))
+                total = storeComp.Balance.GetValueOrDefault("Conversion", FixedPoint2.Zero);
+
+            popups.Add((head, total));
+        }
+
+        Timer.Spawn(TimeSpan.FromSeconds(1), () =>
+        {
+            foreach (var (head, total) in popups)
+            {
+                if (!Exists(head))
+                    continue;
+
+                _popup.PopupEntity(Loc.GetString("ussp-uplink-conversion", ("total", total)), head, head, PopupType.Medium);
+            }
+        });
     }
     // STARLIGHT END
 
@@ -363,8 +397,8 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
             return;
         // Starlight End
 
-        if (!_whitelistSystem.CheckBoth(ev.Target, comp.Blacklist, comp.Whitelist) && // Starlight-edit: rework all has comp to whitelist & blacklist.
-            !alwaysConvertible ||
+        // Always-convertible targets skip the whitelist. The blacklist still applies.
+        if (!_whitelistSystem.CheckBoth(ev.Target, comp.Blacklist, alwaysConvertible ? null : comp.Whitelist) ||
             !_mobState.IsAlive(ev.Target))
         {
             return;
@@ -398,16 +432,32 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
                 if (TryComp<StoreComponent>(store, out var storeComp))
                     finalTelebond = storeComp.Balance.GetValueOrDefault("Telebond", FixedPoint2.Zero);
 
-                _popup.PopupEntity(Loc.GetString($"+1 Telebond (Total: {finalTelebond})"), ev.User.Value, ev.User.Value, PopupType.Medium);
+                var converterName = Identity.Name(ev.User.Value, EntityManager);
+                _popup.PopupEntity(Loc.GetString("ussp-uplink-telebond", ("total", finalTelebond)), ev.User.Value, ev.User.Value, PopupType.Medium);
 
+                var notified = new HashSet<EntityUid> { ev.User.Value };
                 if (TryComp<HeadRevolutionaryImplantComponent>(ev.User.Value, out var headImplant)
                     && headImplant.ImplantUid is { } implant
                     && TryComp<SubdermalImplantComponent>(implant, out var implanted)
                     && implanted.ImplantedEntity is { } host
-                    && host != ev.User.Value)
+                    && notified.Add(host))
                 {
-                    _popup.PopupEntity(Loc.GetString($"+1 Telebond (Total: {finalTelebond}) (for {Identity.Name(ev.User.Value, EntityManager)})"),
+                    _popup.PopupEntity(Loc.GetString("ussp-uplink-telebond-total-for", ("total", finalTelebond), ("name", converterName)),
                         host, host, PopupType.Large);
+                }
+
+                // Other implants that point at this same store share its balance, so tell their hosts too.
+                var remotes = EntityQueryEnumerator<RemoteStoreComponent, USSPUplinkOwnerComponent, SubdermalImplantComponent>();
+                while (remotes.MoveNext(out _, out var remote, out var owner, out var subdermal))
+                {
+                    if (remote.Store != store || owner.OwnerUid != ev.User.Value)
+                        continue;
+
+                    if (subdermal.ImplantedEntity is not { } implantedEntity || !notified.Add(implantedEntity))
+                        continue;
+
+                    _popup.PopupEntity(Loc.GetString("ussp-uplink-telebond-for", ("name", converterName)),
+                        implantedEntity, implantedEntity, PopupType.Medium);
                 }
 
                 AddConversionToHeadStores();
