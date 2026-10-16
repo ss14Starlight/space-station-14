@@ -100,8 +100,8 @@
       Dead:
         Base: dead
   - type: Puller
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable # Starlight butchering fix
+    refineResult: # StarlightS
     - id: FoodMeatXeno
       amount: 5
   - type: GhostRole
