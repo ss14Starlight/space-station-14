@@ -6,8 +6,10 @@ using Robust.Shared.Enums;
 
 namespace Content.Server.Chat.Commands
 {
-    [AnyCommand] [Virtual] // Starlight edit
-    internal partial class SayCommand : LocalizedEntityCommands // Starlight edit
+    // Starlight-start
+    [AnyCommand] [Virtual]
+    internal partial class SayCommand : LocalizedEntityCommands
+    // Starlight-end
     {
         [Dependency] private ChatSystem _chatSystem = default!;
         public override string Command => "say";
