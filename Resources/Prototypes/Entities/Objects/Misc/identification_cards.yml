@@ -46,7 +46,7 @@
 #Command
 
 - type: entity
-  parent: [IDCardStandard, BaseGrandTheftContraband]
+  parent: [ BaseContrabandTier5, IDCardStandard, BaseCommandContraband, BaseGrandTheftContraband ]
   id: CaptainIDCard
   categories: [ ShouldMapStation ] # Starlight
   name: captain ID card
@@ -75,7 +75,7 @@
     stealGroup: CaptainIDCard
 
 - type: entity
-  parent: [IDCardStandard, BaseGrandTheftContraband]
+  parent: [ BaseContrabandTier4, IDCardStandard, BaseCommandContraband, BaseGrandTheftContraband ]
   id: HoPIDCard
   name: head of personnel ID card
   components:
@@ -97,7 +97,7 @@
     stealGroup: HOPIDCard # Starlight
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseContrabandTier4, IDCardStandard, BaseCommandContraband ]
   id: CEIDCard
   name: chief engineer ID card
   components:
@@ -117,7 +117,7 @@
     job: ChiefEngineer
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseContrabandTier4, IDCardStandard, BaseCommandContraband ]
   id: CMOIDCard
   name: chief medical officer ID card
   components:
@@ -137,7 +137,7 @@
     job: ChiefMedicalOfficer
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseContrabandTier4, IDCardStandard, BaseCommandContraband ]
   id: RDIDCard
   name: research director ID card
   components:
@@ -157,7 +157,7 @@
     job: ResearchDirector
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseContrabandTier4, IDCardStandard, BaseCommandContraband ]
   id: HoSIDCard
   name: head of security ID card
   components:
@@ -177,7 +177,7 @@
     job: HeadOfSecurity
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseContrabandTier4, IDCardStandard, BaseCommandContraband ]
   id: QuartermasterIDCard
   name: quartermaster ID card
   components:
