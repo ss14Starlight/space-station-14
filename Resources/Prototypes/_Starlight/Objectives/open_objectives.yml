@@ -1,19 +1,23 @@
-# Traitor story objectives
+# Shared story objectives
 - type: entity
   parent: BaseStoryObjective
-  id: DisruptDepartmentObjective
-  name: Disrupt Department
-  description: We need you to disrupt this department's activities.
+  id: InfiltrateObjective
+  name: Infiltrate Department
+  description: We need you to infiltrate this department and disrupt their activities.
   components:
   - type: Objective
     difficulty: 0
+    issuer: objective-issuer-mind
     icon:
-      sprite: Objects/Tools/jaws_of_life.rsi
-      state: jaws_pry
+      sprite: Clothing/Eyes/Glasses/outlawglasses.rsi
+      state: icon
+  - type: RoleRequirement
+    roles: [TraitorRole, ThiefRole]
   - type: DepartmentObjective
-    title: objective-condition-disrupt-department
+    title: objective-condition-infiltrate-department
   - type: PickRandomDepartment
 
+# Traitor story objectives
 - type: entity
   parent: BaseStoryObjective
   id: SabotageObjective
@@ -31,21 +35,6 @@
 
 - type: entity
   parent: BaseStoryObjective
-  id: InfiltrateObjective
-  name: Infiltrate Department
-  description: We need you to infiltrate this department and disrupt their activities.
-  components:
-  - type: Objective
-    difficulty: 0
-    icon:
-      sprite: Clothing/Eyes/Glasses/outlawglasses.rsi
-      state: icon
-  - type: DepartmentObjective
-    title: objective-condition-infiltrate-department
-  - type: PickRandomDepartment
-
-- type: entity
-  parent: BaseStoryObjective
   id: JailbreakObjective
   name: Jailbreak prisoners
   description: It doesn't matter who was locked up or why, we just need you to keep the jails empty.
@@ -55,19 +44,6 @@
     icon:
       sprite: Objects/Tools/access_breaker.rsi
       state: icon
-
-- type: entity
-  parent: BaseStoryObjective
-  id: LeaveCallingCardObjective
-  name: Leave a calling card.
-  description: Let them know who did it.
-  components:
-  - type: Objective
-    difficulty: 0
-    icon:
-      sprite: Objects/Misc/bureaucracy.rsi
-      state: syndicate_card
-    unique: true
 
 - type: entity
   parent: BaseStoryObjective
@@ -88,30 +64,6 @@
 # Thief story objectives
 - type: entity
   parent: [BaseThiefObjective, BaseStoryObjective]
-  id: StealEverythingObjective
-  name: Steal everything of value.
-  description: Steal everything you can get away with, so long as its worth a anything.
-  components:
-  - type: Objective
-    difficulty: 0
-    icon:
-      sprite: Objects/Economy/cash.rsi
-      state: cash
-
-- type: entity
-  parent: [BaseThiefObjective, BaseStoryObjective]
-  id: StealMoneyObjective
-  name: Steal money.
-  description: You need money, so steal as much of it as you can.
-  components:
-  - type: Objective
-    difficulty: 0
-    icon:
-      sprite: Objects/Economy/cash.rsi
-      state: cash
-
-- type: entity
-  parent: [BaseThiefObjective, BaseStoryObjective]
   id: RobDepartmentObjective
   description: This department has some nice goodies, its time to make them your own.
   components:
@@ -122,19 +74,4 @@
       state: icon
   - type: DepartmentObjective
     title: objective-condition-rob-department
-  - type: PickRandomDepartment
-
-- type: entity
-  parent: [BaseThiefObjective, BaseStoryObjective]
-  id: InfiltrateThiefObjective
-  name: Infiltrate Department
-  description: We need you to infiltrate this department and disrupt their activities.
-  components:
-  - type: Objective
-    difficulty: 0
-    icon:
-      sprite: Clothing/Eyes/Glasses/outlawglasses.rsi
-      state: icon
-  - type: DepartmentObjective
-    title: objective-condition-infiltrate-department
   - type: PickRandomDepartment
