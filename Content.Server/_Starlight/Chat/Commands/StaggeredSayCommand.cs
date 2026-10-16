@@ -12,7 +12,7 @@ namespace Content.Server._Starlight.Chat.Commands;
 /// Variant of say command, but enforces a cooldown before it can be executed again by the executing player.
 /// </summary>
 /// <remarks>
-/// /// Created mostly to curb people being incapable of using their eyeballs to read and spamming the cmdlink that I have
+/// Created mostly to curb people being incapable of using their eyeballs to read and spamming the cmdlink that I have
 /// in my (neomoth) aghost's description as a bit.
 /// </remarks>
 [AnyCommand]
