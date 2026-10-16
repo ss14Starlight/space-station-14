@@ -12,7 +12,7 @@ public sealed class TwistyCubeMenu : DefaultWindow
 
     public TwistyCubeMenu()
     {
-        MinSize = SetSize = new Vector2(512, 460);
+        MinSize = SetSize = new Vector2(512, 468);
         Title = Loc.GetString("twistycube-menu-title");
 
         var grid = new GridContainer { Rows = 4 };
