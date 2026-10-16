@@ -564,7 +564,9 @@
 # Given the purpose was to make it fit with xenosocialized, a point cost of 1
 # Felt most appropriate to still allow players with this trait one language not
 # associated with just avali/resomi as the only way to take it means spending 2
-# points on scratch already.
+# points on scratch already. Nonetheless, I left it at 2 points to maintain
+# consistency with the other species language traits as that category felt
+# the closest for this trait.
 - type: trait
   id: NexusIntegrated
   name: trait-language-nexusintegrated-name
