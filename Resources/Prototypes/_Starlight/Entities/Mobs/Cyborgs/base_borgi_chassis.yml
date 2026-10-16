@@ -273,6 +273,7 @@
     - type: IntrinsicRadioTransmitter
       channels:
       - Syndicate
+      - Gorlex
       - Binary
     - type: ActiveRadio
       channels:
