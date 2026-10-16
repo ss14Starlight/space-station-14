@@ -1,7 +1,7 @@
 using Content.Shared.Salvage.Expeditions.Modifiers;
 using Robust.Shared.Prototypes;
 using Content.Shared.Procedural;
-using Content.Shared.Storage; // Starlight
+using Content.Shared.Storage;
 
 namespace Content.Shared.Salvage.Expeditions;
 
