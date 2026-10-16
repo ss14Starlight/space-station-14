@@ -16,7 +16,7 @@
   - type: SolutionManager
     solutions:
     - SolutionLatheLube
-  - !Remove type: SolutionContainerManager
+  - type: !Remove SolutionContainerManager
 
 - type: !PartialOnly entity
   id: Autolathe
@@ -161,7 +161,7 @@
     - StarlightSecurityGrenadesEmag
   - type: StealTarget
     stealGroup: SecureTechFabCircuitboard
-  - !Remove type: LatheAnnouncing # Starlight reverted this pr
+  - type: !Remove LatheAnnouncing # Starlight reverted this pr
 
 - type: !PartialOnly entity
   id: AmmoTechFab
@@ -201,7 +201,7 @@
     - SecurityImplants
   - type: StealTarget
     stealGroup: DepartmentalTechFabCircuitboard
-  - !Remove type: LatheAnnouncing  # Starlight reverted this pr
+  - type: !Remove LatheAnnouncing  # Starlight reverted this pr
 
 - type: !PartialOnly entity
   id: UniformPrinter
