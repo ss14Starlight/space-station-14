@@ -1039,7 +1039,6 @@
         - MedTekCartridge
         - NanoChatCartridge
 
-
 - type: entity
   parent: BasePDA
   id: VeteranSalvageMedicPDA

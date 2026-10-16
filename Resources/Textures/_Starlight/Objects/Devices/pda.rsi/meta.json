@@ -218,13 +218,11 @@
     },
     {
       "name": "pda-salvagemedic",
-      "copyright": "mikeysaurus, ParadiseStation",
-      "license": "CC-BY-SA-3.0"
+      "copyright": "mikeysaurus, ParadiseStation"
     },
     {
       "name": "pda-veteransalvagemedic",
-      "copyright": "RoseHB, ParadiseStation",
-      "license": "CC-BY-SA-3.0"
+      "copyright": "deltaVelocity, ParadiseStation, recoloured by RoseHB"
     }
   ]
 }
