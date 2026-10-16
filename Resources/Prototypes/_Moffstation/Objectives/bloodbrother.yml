@@ -1,6 +1,6 @@
 # Open-ended blood brother objectives
 - type: entity
-  parent: [BaseBloodBrotherObjective, DisruptDepartmentObjective]
+  parent: [BaseBloodBrotherObjective, HarassObjective] # Starlight
   id: BloodBrotherDisruptDepartmentObjective
 
 - type: entity
@@ -20,23 +20,11 @@
   id: BloodBrotherSabotageObjective
 
 - type: entity
-  parent: [BaseBloodBrotherObjective, StealEverythingObjective]
-  id: BloodBrotherStealEverythingObjective
-
-- type: entity
-  parent: [BaseBloodBrotherObjective, StealMoneyObjective]
-  id: BloodBrotherStealMoneyObjective
-
-- type: entity
-  parent: [BaseBloodBrotherObjective, TeachLessonObjective]
+  parent: [BaseBloodBrotherObjective, TeachRandomPersonObjective] # Starlight
   id: BloodBrotherTeachLessonObjective
 
 - type: entity
-  parent: [ BaseBloodBrotherObjective, BigIronStealObjective ]
-  id: BloodBrotherBigIronStealObjective
-
-- type: entity
-  parent: [BaseBloodBrotherObjective, LeaveCallingCardObjective]
+  parent: [BaseBloodBrotherObjective, CallingCardObjective] # Starlight
   id: BloodBrotherLeaveCallingCardObjective
   components:
   - type: Objective

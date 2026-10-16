@@ -2,4 +2,4 @@
 
 namespace Content.Server._Harmony.BloodBrothers.EntitySystems;
 
-public sealed class BloodBrotherSystem : SharedBloodBrotherSystem;
+public sealed partial class BloodBrotherSystem : SharedBloodBrotherSystem;

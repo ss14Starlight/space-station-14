@@ -1,0 +1,4 @@
+- type: !PartialOnly weightedRandom
+  id: BloodBrotherObjectiveGroupSteal
+  weights:
+    BloodBrotherBigIronStealObjective: !Remove

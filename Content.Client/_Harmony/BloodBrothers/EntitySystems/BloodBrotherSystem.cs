@@ -7,10 +7,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Harmony.BloodBrothers.EntitySystems;
 
-public sealed class BloodBrotherSystem : SharedBloodBrotherSystem
+public sealed partial class BloodBrotherSystem : SharedBloodBrotherSystem
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {

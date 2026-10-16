@@ -1,0 +1,5 @@
+- type: !PartialOnly weightedRandom
+  id: BloodBrotherObjectiveGroupOpenEnded
+  weights:
+    BloodBrotherStealEverythingObjective: !Remove
+    BloodBrotherStealMoneyObjective: !Remove

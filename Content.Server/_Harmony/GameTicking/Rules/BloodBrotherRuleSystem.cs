@@ -9,7 +9,6 @@ using Content.Server.Objectives;
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Server.Popups;
-using Content.Server.Preferences.Managers;
 using Content.Server.Roles;
 using Content.Server.Stunnable;
 using Content.Shared._Harmony.BloodBrothers.Components;
@@ -20,29 +19,28 @@ using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
-using Content.Shared.Preferences;
-using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Content.Shared.Zombies;
 using Robust.Server.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Harmony.GameTicking.Rules;
 
-public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComponent>
+public sealed partial class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComponent>
 {
-    [Dependency] private readonly IAdminLogManager _adminLogManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
-    [Dependency] private readonly AntagSelectionSystem _antagSystem = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly NpcFactionSystem _npcFactionSystem = default!;
-    [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly RoleSystem _roleSystem = default!;
-    [Dependency] private readonly StunSystem _stunSystem = default!;
-    [Dependency] private readonly TargetObjectiveSystem _targetObjectiveSystem = default!;
+    [Dependency] private IAdminLogManager _adminLogManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _humanoidAppearance = default!; // Starlight
+    [Dependency] private AntagSelectionSystem _antagSystem = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private NpcFactionSystem _npcFactionSystem = default!;
+    [Dependency] private ObjectivesSystem _objectivesSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private RoleSystem _roleSystem = default!;
+    [Dependency] private StunSystem _stunSystem = default!;
+    [Dependency] private TargetObjectiveSystem _targetObjectiveSystem = default!;
 
     public override void Initialize()
     {
@@ -163,7 +161,7 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
             PopupType.LargeCaution);
 
         if (entity.Comp.ConvertStunTime != null)
-            _stunSystem.TryParalyze(args.Target, entity.Comp.ConvertStunTime.Value, true);
+            _stunSystem.TryUpdateParalyzeDuration(args.Target, entity.Comp.ConvertStunTime.Value); // Starlight
 
         // Cleanup the data
         RemCompDeferred<InitialBloodBrotherComponent>(entity);
@@ -255,13 +253,8 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
             return false;
         }
 
-        // Check antag preference
-        if (entity.Comp.RequiredAntagPreference != null &&
-            _preferencesManager.TryGetCachedPreferences(targetMind.UserId.Value, out var preferences))
+        if (entity.Comp.RequiredAntagPreference != null && _humanoidAppearance.GetBaseProfile(target) is { } profile) // Starlight
         {
-
-            var profile = (HumanoidCharacterProfile)preferences.SelectedCharacter;
-
             if (profile.AntagPreferences.Contains(entity.Comp.RequiredAntagPreference!.Value) != true)
             {
                 errorMessage = "blood-brother-convert-failed-preference";

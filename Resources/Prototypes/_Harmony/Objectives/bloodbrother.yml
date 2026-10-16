@@ -67,7 +67,7 @@
   id: BloodBrotherCMOHyposprayStealObjective
 
 - type: entity
-  parent: [BaseBloodBrotherObjective, CMOCrewMonitorStealObjective]
+  parent: [BaseBloodBrotherObjective, CrewMonitorStealCollectionObjective] # Starlight
   id: BloodBrotherCMOCrewMonitorStealObjective
 
 ## rd
@@ -83,7 +83,7 @@
 ## hos
 
 - type: entity
-  parent: [BaseBloodBrotherObjective, EnergyShotgunStealObjective]
+  parent: [BaseBloodBrotherObjective, HOSWeaponStealObjective] # Starlight
   id: BloodBrotherEnergyShotgunStealObjective
 
 ## ce
