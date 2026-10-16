@@ -1,6 +1,6 @@
 #CCNT Consortium BSOs
 - type: entity
-  parent: [ BaseNanoTrasenContraband, ClothingOuterHardsuitERTLeader ] #NTNC from syndie lead -> ERT lead <3
+  parent: [ BaseNanoTrasenContraband, ClothingOuterHardsuitERTLeader ]
   id: ClothingOuterHardsuitNTNCConsortium
   name: NanoTrasen navy marine hardsuit
   description: A protective hardsuit worn by NanoTrasen Navy Marines.
@@ -51,7 +51,7 @@
       tags:
         - Hardsuit
         - WhitelistChameleon
-    - type: ItemToggle #teh.saint update start
+    - type: ItemToggle
       onUse: false
       soundActivate:
         path: /Audio/Items/flashlight_on.ogg
@@ -75,5 +75,3 @@
       lightMask: ConeDouble
     - type: RotatingLight
       speed: 360
-      # stolen from the ERT Medic hardsuit, for the lols. 
-      # teh.saint update end
