@@ -55,10 +55,10 @@ public sealed partial class StylesheetManager
         }
 
         _hudStyleTheme = proto.Hud is { } hud && _prototype.TryIndex(hud, out var hudProto)
-            ? new StyleTheme(hudProto, ResolveAccent(hudProto))
+            ? new StyleTheme(hudProto, ResolveAccent(hudProto), ResolveSecondaryAccent(hudProto))
             : null;
 
-        return new StyleTheme(proto, ResolveAccent(proto));
+        return new StyleTheme(proto, ResolveAccent(proto), ResolveSecondaryAccent(proto));
     }
 
     private Color ResolveAccent(StyleThemePrototype proto)
@@ -68,6 +68,14 @@ public sealed partial class StylesheetManager
             return custom;
 
         return proto.Accent ?? Color.FromHex(StarlightCCVars.StyleAccent.DefaultValue);
+    }
+
+    private Color? ResolveSecondaryAccent(StyleThemePrototype proto)
+    {
+        if (_cfg.GetCVar(StarlightCCVars.StyleCustomAccent))
+            return null;
+
+        return proto.SecondaryAccent;
     }
 
     private void QueueStyleThemeRebuild()
