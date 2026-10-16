@@ -148,6 +148,43 @@
     qualities: [Slicing] # Starlight
 
 - type: entity
+  id: MobRatKingBuff
+  parent: MobRatKing
+  suffix: Buff
+  components:
+  - type: Sprite
+    sprite: Mobs/Animals/buffrat.rsi
+    scale: 1.2, 1.2
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: regalrat
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded"]
+      state: eyes
+      shader: unshaded
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      350: Dead
+  - type: MeleeWeapon
+    altDisarm: false
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh2.ogg
+    angle: 0
+    attackRate: 0.75
+    animation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 66 #oof ouch owie my bones
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      200: 0.7
+      250: 0.5
+  - type: GuideHelp
+    guides:
+    - MinorAntagonists
+
+- type: entity
   name: rat servant
   id: MobRatServant
   parent: [ SimpleMobBase, MobCombat, BaseSlicingRefinable ] # Starlight Edit: Removed BaseMobRat

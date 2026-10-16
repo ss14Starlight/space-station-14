@@ -124,6 +124,20 @@
   materials:
     Steel: 145
 
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolHighCapacityHP
+  result: MagazinePistolHighCapacityHP
+  materials:
+    Steel: 145
+
+- type: latheRecipe
+  parent: BaseEmptyAmmoRecipe
+  id: MagazinePistolHighCapacityEmpty
+  result: MagazinePistolHighCapacityEmpty
+  materials:
+    Steel: 25
+
 ############ MAGAZINES (.40) ############
 
 - type: latheRecipe

@@ -1,3 +1,4 @@
+
 - type: entity
   name: telecrystal
   parent: [BaseItem, BaseSyndicateContraband]
@@ -11,13 +12,7 @@
   - type: Item
     sprite: Objects/Specific/Syndicate/telecrystal.rsi
     size: Tiny
-  # Starlight start
-  - type: UserInterface
-    interfaces:
-      enum.StackCustomSplitUiKey.Key:
-        type: StackCustomSplitBoundUserInterface
   - type: Stack
-  # Starlight end
     count: 20
     stackType: Telecrystal
   - type: StaticPrice
@@ -80,6 +75,15 @@
 - type: entity
   parent: [BaseUplinkRadio, StorePresetUplink]
   id: BaseUplinkRadioPreset
+
+- type: entity
+  parent: BaseUplinkRadioPreset
+  id: BaseUplinkRadio20TC
+  suffix: 20 TC
+  components:
+  - type: Store
+    balance:
+      Telecrystal: 20
 
 - type: entity
   parent: BaseUplinkRadioPreset

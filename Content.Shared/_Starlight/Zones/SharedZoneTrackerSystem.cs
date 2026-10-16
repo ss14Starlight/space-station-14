@@ -29,14 +29,16 @@ public sealed partial class SharedZoneTrackerSystem : EntitySystem
         ProtoId<ZonePrototype>? zone,
         IReadOnlyList<ProtoId<ZonePrototype>> zones,
         (EntityUid Grid, Vector2i Tile) position,
-        int revision = 0)
+        int revision = 0,
+        int roomSize = 0)
     {
         ent.Comp.LastPosition = position;
         ent.Comp.LastRevision = revision;
 
-        if (ent.Comp.Zone != zone || !ent.Comp.Zones.SequenceEqual(zones))
+        if (ent.Comp.Zone != zone || ent.Comp.RoomSize != roomSize || !ent.Comp.Zones.SequenceEqual(zones))
         {
             ent.Comp.Zone = zone;
+            ent.Comp.RoomSize = roomSize;
             ent.Comp.Zones.Clear();
             ent.Comp.Zones.AddRange(zones);
             Dirty(ent);

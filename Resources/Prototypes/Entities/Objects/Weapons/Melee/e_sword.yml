@@ -3,7 +3,7 @@
   parent: BaseItem
   abstract: true
   components:
-  - type: EnergyColor # SL
+  - type: EnergySword
   - type: ItemToggle
     soundActivate:
       path: /Audio/Weapons/ebladeon.ogg
@@ -70,43 +70,8 @@
       - state: inhand-right-blade
         shader: unshaded
   - type: Reflect
-    # Starlight-start
-    reflectProb: 0.25
-    spread: 75
-    enhancedReflection:
-      TaserBolt: 0.80 # cheesy
-      DisablerBolt: 0.50
-      LaserBolt: 0.50
-      BulletDisabler: 0.50
-      BulletDisablerSmgSpread: 0.50
-      BulletLaserSpread: 0.50
-      DisablerBoltSmg: 0.50
-      BulletLaserSpreadNarrow: 0.50
-      BulletDisablerSmg: 0.45
-      PelletClusterRubber: 0.50
-      RedLaserBeam: 0.40
-      IgnitionRedLaser: 0.40
-      DestroyBeam: 0.40
-      RadOrb: 0.40
-      FreezeRay: 0.40
-      # Starlight-end
   - type: IgnitionSource
     temperature: 700
-  # 🌟Starlight-start🌟
-  - type: SurgeryTool
-  - type: Scalpel
-    successRate: 0.6
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
-  - type: Cautery
-    successRate: 0.6
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
-  # 🌟Starlight-end🌟
 
 - type: entity
   name: energy sword
@@ -379,6 +344,57 @@
     spread: 75
 
 # Item will look weird in handslot. Will need to adjust handstorage visuals in a future PR
+- type: entity
+  parent: EnergySwordDouble
+  id: HyperEutacticBlade
+  name: hypereutactic-blade
+  description: A supermassive weapon envisioned to cleave the very fabric of space and time itself in twain, the hypereutactic blade dynamically flash-forges a hypereutactic crystaline nanostructure capable of passing through most known forms of matter like a hot knife through butter.
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    attackRate: 0.8 #0.7 and below is too slow
+    angle: 100
+    range: 2.0
+    damage:
+      types:
+        Blunt: 4.5
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        volume: -3
+        variation: 0.250
+    activatedDamage:
+      types:
+        Slash: 20
+        Heat: 20
+        Structural: 20
+  - type: MeleeRequiresWield
+  - type: HeldSpeedModifier #slowdown is what balances this compared to a dsword
+    walkModifier: 0.6
+    sprintModifier: 0.6
+  - type: UseDelay
+    delay: 1.5
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/hypereutactic_blade.rsi
+    layers:
+    - state: hypereutactic
+    - state: hypereutactic_blade
+      color: "#FFFFFF"
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+    - state: hypereutactic_gem
+      color: "#FFFFFF"
+      visible: false
+      shader: unshaded
+      map: [ "gem" ]
+  - type: Item
+    size: Small
+    sprite: Objects/Weapons/Melee/hypereutactic_blade_inhands.rsi
+  - type: Reflect
+    reflectProb: 1.0
+    spread: 75
 
 # Borgs
 

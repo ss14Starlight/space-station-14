@@ -28,24 +28,12 @@ public sealed partial class MhelpPanel : BoxContainer
             if (c.Visible)
                 Unread = 0;
         };
-        SenderLineEdit.OnTextEntered += Input_OnTextEntered;
-        SenderLineEdit.OnTextChanged += Input_OnTextChanged;
+        Conversation.OnMessageSubmitted += text => OnMessageSend.Invoke(text);
+        Conversation.OnInputChanged += text => OnInputTextChanged.Invoke(text);
         CloseTicket.OnPressed += _ => OnTicketClosed.Invoke();
         TptoTicket.OnPressed += _ => OnTptoPressed.Invoke();
         UpdateTypingIndicator();
     }
-
-    private void Input_OnTextEntered(LineEdit.LineEditEventArgs args)
-    {
-        if (string.IsNullOrWhiteSpace(args.Text))
-            return;
-
-        OnMessageSend.Invoke(args.Text);
-        SenderLineEdit.Clear();
-    }
-
-    private void Input_OnTextChanged(LineEdit.LineEditEventArgs args)
-        => OnInputTextChanged?.Invoke(args.Text);
 
     public void ReceiveLine(SharedMentorSystem.MHelpTextMessage message)
     {
@@ -53,27 +41,23 @@ public sealed partial class MhelpPanel : BoxContainer
             Unread++;
         CloseTicket.Visible = message.Ticket is not null && !message.TicketClosed;
         TptoTicket.Visible = CloseTicket.Visible && ShowTpto;
+        if (!string.IsNullOrEmpty(message.Title))
+            TitleLabel.Text = message.Title;
         var formatted = new FormattedMessage(1);
         formatted.AddMarkupOrThrow(message.Text);
         LastMessage = message.CreateAt;
-        TextOutput.AddMessage(formatted);
+        Conversation.AddMessage(formatted);
     }
 
     private void UpdateTypingIndicator()
     {
-        var msg = new FormattedMessage();
-        msg.PushColor(Color.LightGray);
-
         var text = _peopleTyping.Count == 0
             ? string.Empty
             : Loc.GetString("bwoink-system-typing-indicator",
                 ("players", string.Join(", ", _peopleTyping)),
                 ("count", _peopleTyping.Count));
 
-        msg.AddText(text);
-        msg.Pop();
-
-        TypingIndicator.SetMessage(msg);
+        Conversation.SetTyping(text);
     }
 
     public void UpdatePlayerTyping(string name, bool typing)
@@ -105,5 +89,5 @@ public sealed partial class MhelpPanel : BoxContainer
     protected override void Dispose(bool disposing)
         => base.Dispose(disposing);
 
-    internal void SetInputVisibility(bool v) => SenderLineEdit.Visible = v;
+    internal void SetInputVisibility(bool v) => Conversation.InputVisible = v;
 }

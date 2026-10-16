@@ -95,3 +95,50 @@
       radius: 12
       floorPlacements: 36
 
+- type: entity
+  id: AsteroidSalvageSmall
+  parent: BaseAsteroidDebris
+  name: salvage asteroid small
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 15
+      floorPlacements: 100
+
+- type: entity
+  id: AsteroidSalvageMedium
+  parent: BaseAsteroidDebris
+  name: salvage asteroid medium
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 17
+      floorPlacements: 150
+
+- type: entity
+  id: AsteroidSalvageLarge
+  parent: BaseAsteroidDebris
+  name: salvage asteroid large
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 20
+      floorPlacements: 200
+
+- type: entity
+  id: AsteroidSalvageHuge
+  parent: BaseAsteroidDebris
+  name: salvage asteroid huge
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 23
+      floorPlacements: 250

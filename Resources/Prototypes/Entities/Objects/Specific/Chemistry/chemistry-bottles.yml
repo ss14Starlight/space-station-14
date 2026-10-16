@@ -106,6 +106,19 @@
 
 - type: entity
   parent: BaseChemistryEmptyBottle
+  id: ChemistryEmptyBottle02
+  components:
+  - type: Sprite
+    layers:
+    - state: bottle-2
+    - state: bottle-2-1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: SolutionContainerVisuals
+    fillBaseName: bottle-2-
+
+- type: entity
+  parent: BaseChemistryEmptyBottle
   id: ChemistryEmptyBottle03
   components:
   - type: Sprite
@@ -116,6 +129,19 @@
       visible: false
   - type: SolutionContainerVisuals
     fillBaseName: bottle-3-
+
+- type: entity
+  parent: BaseChemistryEmptyBottle
+  id: ChemistryEmptyBottle04
+  components:
+  - type: Sprite
+    layers:
+    - state: bottle-4
+    - state: bottle-4-1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: SolutionContainerVisuals
+    fillBaseName: bottle-4-
 
 - type: entity
   parent: BaseChemistryEmptyBottle
@@ -131,6 +157,19 @@
   #SL-edit: end
 
 # Medicine bottles
+
+- type: entity
+  id: ChemistryBottleAloxadone
+  suffix: aloxadone
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-aloxadone
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Aloxadone
+        Quantity: 30
 
 - type: entity
   id: ChemistryBottleAmbuzol
@@ -237,6 +276,19 @@
         Quantity: 30
 
 - type: entity
+  id: ChemistryBottleCryptobiolin
+  suffix: cryptobiolin
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-cryptobiolin
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Cryptobiolin
+        Quantity: 30
+
+- type: entity
   id: ChemistryBottleDermaline
   suffix: dermaline
   parent: BaseChemistryBottleFilled
@@ -302,6 +354,19 @@
         Quantity: 30
 
 - type: entity
+  id: ChemistryBottleDoxarubixadone
+  suffix: doxarubixadone
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-doxarubixadone
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Doxarubixadone
+        Quantity: 30
+
+- type: entity
   id: ChemistryBottleDylovene
   suffix: dylovene
   parent: BaseChemistryBottleFilled
@@ -325,6 +390,19 @@
     solution:
       reagents:
       - ReagentId: Epinephrine
+        Quantity: 30
+
+- type: entity
+  id: ChemistryBottleEthyloxyephedrine
+  suffix: ethyloxyephedrine
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-ethyloxyephedrine
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Ethyloxyephedrine
         Quantity: 30
 
 - type: entity
@@ -458,6 +536,45 @@
         Quantity: 30
 
 - type: entity
+  id: ChemistryBottleLipozine
+  suffix: lipozine
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-lipozine
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Lipozine
+        Quantity: 30
+
+- type: entity
+  id: ChemistryBottleMannitol
+  suffix: mannitol
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-mannitol
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Mannitol
+        Quantity: 30
+
+- type: entity
+  id: ChemistryBottleNecrosol
+  suffix: necrosol
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-necrosol
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Necrosol
+        Quantity: 30
+
+- type: entity
   id: ChemistryBottleOculine
   suffix: oculine
   parent: BaseChemistryBottleFilled
@@ -510,6 +627,58 @@
         Quantity: 30
 
 - type: entity
+  id: ChemistryBottlePolypyryliumOligomers
+  suffix: poly-oli
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-polypyrylium-oligomers
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: PolypyryliumOligomers
+        Quantity: 30
+
+- type: entity
+  id: ChemistryBottlePotassiumIodide
+  suffix: potassium iodide
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-potassium-iodide
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: PotassiumIodide
+        Quantity: 30
+
+- type: entity
+  id: ChemistryBottlePsicodine
+  suffix: psicodine
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-psicodine
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Psicodine
+        Quantity: 30
+
+- type: entity
+  id: ChemistryBottlePulpedBananaPeel
+  suffix: pulped banana peel
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-pulped-banana-peel
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: PulpedBananaPeel
+        Quantity: 30
+
+- type: entity
   id: ChemistryBottlePuncturase
   suffix: puncturase
   parent: BaseChemistryBottleFilled
@@ -549,6 +718,19 @@
         Quantity: 30
 
 - type: entity
+  id: ChemistryBottleSiderlac
+  suffix: siderlac
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-siderlac
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Siderlac
+        Quantity: 30
+
+- type: entity
   id: ChemistryBottleSigynate
   suffix: sigynate
   parent: BaseChemistryBottleFilled
@@ -559,6 +741,32 @@
     solution:
       reagents:
       - ReagentId: Sigynate
+        Quantity: 30
+
+- type: entity
+  id: ChemistryBottleStellibinin
+  suffix: stellibinin
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-stellibinin
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Stellibinin
+        Quantity: 30
+
+- type: entity
+  id: ChemistryBottleSynaptizine
+  suffix: synaptizine
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-synaptizine
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Synaptizine
         Quantity: 30
 
 - type: entity
@@ -585,6 +793,19 @@
     solution:
       reagents:
       - ReagentId: Tricordrazine
+        Quantity: 30
+
+- type: entity
+  id: ChemistryBottleUltravasculine
+  suffix: ultravasculine
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-ultravasculine
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Ultravasculine
         Quantity: 30
 
 - type: entity
@@ -1006,6 +1227,19 @@
       - ReagentId: Sulfur
         Quantity: 30
 
+- type: entity
+  id: ChemistryBottleIceialin
+  suffix: iceialin
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-iceialin
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Iceialin
+        Quantity: 30
+
 # Entity tables
 - type: entityTable
   id: BasicReagentBottlesTable
@@ -1045,3 +1279,75 @@
     - id: ChemistryBottleTricordrazine
     - id: ChemistryBottleHyronalin
 
+- type: entityTable
+  id: SpecialtyMedicineReagentBottleTable
+  table: !type:GroupSelector
+    children:
+    - id: ChemistryBottleCryoxadone
+    - id: ChemistryBottleEpinephrine
+    - id: ChemistryBottleHyronalin
+    - id: ChemistryBottleArithrazine
+    - id: ChemistryBottlePhalanximine
+    - id: ChemistryBottleTricordrazine
+    - id: ChemistryBottleTranexamicAcid
+    - id: ChemistryBottleOculine
+    - id: ChemistryBottleCharcoal
+    - id: ChemistryBottleLaughter
+
+- type: entityTable
+  id: AllMedicineReagentBottlesTable
+  table: !type:GroupSelector
+    children:
+    - id: ChemistryBottleAloxadone
+    - id: ChemistryBottleAmbuzol
+    - id: ChemistryBottleAmbuzolPlus
+    - id: ChemistryBottleArithrazine
+    - id: ChemistryBottleBarozine
+    - id: ChemistryBottleBicaridine
+    - id: ChemistryBottleBruizine
+    - id: ChemistryBottleCognizine
+    - id: ChemistryBottleCryoxadone
+    - id: ChemistryBottleCryptobiolin
+    - id: ChemistryBottleDermaline
+    - id: ChemistryBottleDexalin
+    - id: ChemistryBottleDexalinPlus
+    - id: ChemistryBottleDiphenhydramine
+    - id: ChemistryBottleDiphenylmethylamine
+    - id: ChemistryBottleDoxarubixadone
+    - id: ChemistryBottleDylovene
+    - id: ChemistryBottleEpinephrine
+    - id: ChemistryBottleEthyloxyephedrine
+    - id: ChemistryBottleEthylredoxrazine
+    - id: ChemistryBottleHaloperidol
+    - id: ChemistryBottleHolywater
+    - id: ChemistryBottleHyronalin
+    - id: ChemistryBottleIceialin
+    - id: ChemistryBottleInaprovaline
+    - id: ChemistryBottleInsuzine
+    - id: ChemistryBottleIpecac
+    - id: ChemistryBottleKelotane
+    - id: ChemistryBottleLacerinol
+    - id: ChemistryBottleLeporazine
+    - id: ChemistryBottleLipozine
+    - id: ChemistryBottleMannitol
+    - id: ChemistryBottleNecrosol
+    - id: ChemistryBottleOculine
+    - id: ChemistryBottleOmnizine
+    - id: ChemistryBottleOpporozidone
+    - id: ChemistryBottlePhalanximine
+    - id: ChemistryBottlePolypyryliumOligomers
+    - id: ChemistryBottlePotassiumIodide
+    - id: ChemistryBottlePsicodine
+    - id: ChemistryBottlePulpedBananaPeel
+    - id: ChemistryBottlePuncturase
+    - id: ChemistryBottlePyrazine
+    - id: ChemistryBottleSaline
+    - id: ChemistryBottleSiderlac
+    - id: ChemistryBottleSigynate
+    - id: ChemistryBottleStellibinin
+    - id: ChemistryBottleSynaptizine
+    - id: ChemistryBottleTranexamicAcid
+    - id: ChemistryBottleTricordrazine
+    - id: ChemistryBottleUltravasculine
+    - id: ChemistryBottleCharcoal
+    - id: ChemistryBottleLaughter

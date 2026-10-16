@@ -33,6 +33,23 @@
 
 - type: entity
   parent: CollideRune
+  id: ActivateRune
+  name: "activation rune"
+  abstract: true
+  components:
+    - type: TriggerOnActivate
+
+- type: entity
+  parent: CollideRune
+  id: CollideTimerRune
+  name: "collision timed rune"
+  abstract: true
+  components:
+    - type: TriggerOnTimedCollide
+      threshold: 5
+
+- type: entity
+  parent: CollideRune
   id: ExplosionRune
   name: "explosion rune"
   components:
@@ -70,3 +87,69 @@
         - state: trap
           color: '#FFFF0055'
 
+- type: entity
+  parent: CollideRune
+  id: IgniteRune
+  name: "ignite rune"
+  components:
+    - type: TriggerOnCollide
+      fixtureID: ignition
+      maxTriggers: 1
+    - type: Fixtures
+      fixtures:
+        ignition:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.4,-0.4,0.4,0.4"
+          hard: false
+          mask:
+          - ItemMask
+          layer:
+          - SlipLayer
+    - type: DeleteOnTrigger
+    - type: IgniteOnCollide
+      fireStacks: 5
+    - type: Sprite
+      sprite: Structures/Magic/Cult/trap.rsi
+      layers:
+        - state: trap
+          color: '#FF000055'
+
+- type: entity
+  parent: CollideTimerRune
+  id: ExplosionTimedRune
+  name: "explosion timed rune"
+  components:
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Cryo
+      totalIntensity: 20.0
+      intensitySlope: 5
+      maxIntensity: 4
+
+- type: entity
+  parent: ActivateRune
+  id: ExplosionActivateRune
+  name: "explosion activated rune"
+  components:
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Cryo
+      totalIntensity: 20.0
+      intensitySlope: 5
+      maxIntensity: 4
+
+- type: entity
+  parent: ActivateRune
+  id: FlashRune
+  name: "flash rune"
+  components:
+    - type: FlashOnTrigger
+    - type: DeleteOnTrigger
+
+- type: entity
+  parent: CollideTimerRune
+  id: FlashRuneTimer
+  name: "flash timed rune"
+  components:
+    - type: FlashOnTrigger

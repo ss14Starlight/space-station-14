@@ -10,6 +10,11 @@
   result: ComputerPersonalCircuitboardDesktop
 
 - type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceComputerRecipeCategory ]
+  id: MassMediaCircuitboardDesktop
+  result: ComputerMassMediaCircuitboardDesktop
+
+- type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseSecurityComputerRecipeCategory ]
   id: SurveillanceCameraMonitorCircuitboardDesktop
   result: SurveillanceCameraMonitorCircuitboardDesktop

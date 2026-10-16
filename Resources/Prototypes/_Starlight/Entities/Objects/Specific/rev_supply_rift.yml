@@ -8,8 +8,9 @@
   - type: RevSupplyRift
   - type: DragonRift
     spawn: CrateSovietArmaments
-    spawnCooldown: 35  # Spawn a crate every 35 seconds
-    spawnAccumulator: 35  # Spawn a crate immediately upon creation
+    maxAccumualator: 1200
+    spawnCooldown: 60  # Spawn a crate every minute
+    spawnAccumulator: 60  # Spawn a crate immediately upon creation
   - type: RevolutionaryRift
   - type: Transform
     anchored: true

@@ -171,6 +171,8 @@ public sealed partial class ContentReplayPlaybackManager
                     _entMan.System<ReplaySpectatorSystem>().SetSpectatorPosition(default);
                 return true;
             case ChatMessage chat:
+                if (ShouldSkipChatMessage(chat)) // Starlight
+                    return true; // Starlight
                 _uiMan.GetUIController<ChatUIController>().ProcessChatMessage(chat, speechBubble: !skipEffects);
                 return true;
         }

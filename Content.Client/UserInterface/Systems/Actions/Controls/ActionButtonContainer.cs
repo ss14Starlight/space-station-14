@@ -30,7 +30,16 @@ public partial class ActionButtonContainer : GridContainer
 
     public void SetActionData(ActionsSystem system, params EntityUid?[] actionTypes)
     {
-        var uniqueCount = Math.Min(system.GetClientActions().Count(), actionTypes.Length + 1);
+        // Starlight - start
+        var clientActions = system.GetClientActions().Select(action => action.Owner).ToHashSet();
+        var highestEligibleSlot = -1;
+        for (var i = 0; i < actionTypes.Length; i++)
+        {
+            if (actionTypes[i] is { } actionId && clientActions.Contains(actionId))
+                highestEligibleSlot = i;
+        }
+
+        var uniqueCount = Math.Min(Math.Max(clientActions.Count, highestEligibleSlot + 1), actionTypes.Length + 1);
         var keys = ContentKeyFunctions.GetHotbarBoundKeys();
 
         for (var i = 0; i < uniqueCount; i++)
@@ -40,10 +49,14 @@ public partial class ActionButtonContainer : GridContainer
                 AddChild(MakeButton(i));
             }
 
-            if (!actionTypes.TryGetValue(i, out var action))
+            if (!actionTypes.TryGetValue(i, out var action) ||
+                action is not { } actionId ||
+                !clientActions.Contains(actionId))
                 action = null;
+
             ((ActionButton) GetChild(i)).UpdateData(action, system);
         }
+        // Starlight - end
 
         for (var i = ChildCount - 1; i >= uniqueCount; i--)
         {

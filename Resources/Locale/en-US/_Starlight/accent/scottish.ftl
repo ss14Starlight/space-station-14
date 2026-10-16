@@ -55,6 +55,9 @@ accent-scottish-replacement-18 = o'
 accent-scottish-replaced-19 = was
 accent-scottish-replacement-19 = wis
 
+accent-scottish-replaced-20 = can't
+accent-scottish-replacement-20 = cannae
+
 accent-scottish-replaced-21 = cant
 accent-scottish-replacement-21 = cannae
 
@@ -151,6 +154,9 @@ accent-scottish-replacement-51 = wou'nae
 accent-scottish-replaced-52 = should'nt
 accent-scottish-replacement-52 = shou'nae
 
+accent-scottish-replaced-53 = could'nt
+accent-scottish-replacement-53 = cou'nae
+
 accent-scottish-replaced-54 = wouldnt
 accent-scottish-replacement-54 = wounae
 
@@ -208,11 +214,32 @@ accent-scottish-replacement-71 = sheself
 accent-scottish-replaced-72 = move
 accent-scottish-replacement-72 = moev
 
+accent-scottish-replaced-73 = moving
+accent-scottish-replacement-73 = moeven
+
+accent-scottish-replaced-74 = wasn't
+accent-scottish-replacement-74 = wis'nae
+
+accent-scottish-replaced-75 = wasnt
+accent-scottish-replacement-75 = wisnae
+
+accent-scottish-replaced-76 = wizard
+accent-scottish-replacement-76 = wizer
+
+accent-scottish-replaced-77 = fool
+accent-scottish-replacement-77 = wazzok
+
+accent-scottish-replaced-79 = for
+accent-scottish-replacement-79 = fer
+
 accent-scottish-replaced-80 = about
 accent-scottish-replacement-80 = abut
 
 accent-scottish-replaced-81 = ow
 accent-scottish-replacement-81 = och
+
+accent-scottish-replaced-82 = small
+accent-scottish-replacement-82 = wee
 
 accent-scottish-replaced-83 = tiny
 accent-scottish-replacement-83 = tinnae
@@ -460,6 +487,9 @@ accent-scottish-replacement-170 = heid
 accent-scottish-replaced-171 = highland
 accent-scottish-replacement-171 = hieland
 
+accent-scottish-replaced-172 = holding
+accent-scottish-replacement-172 = haulding
+
 accent-scottish-replaced-173 = jacket
 accent-scottish-replacement-173 = jaiket
 
@@ -498,6 +528,9 @@ accent-scottish-replacement-184 = bampot
 
 accent-scottish-replaced-185 = thoughtless
 accent-scottish-replacement-185 = glaikit
+
+accent-scottish-replaced-186 = jerk
+accent-scottish-replacement-186 = dobber
 
 accent-scottish-replaced-187 = idiot
 accent-scottish-replacement-187 = eejit

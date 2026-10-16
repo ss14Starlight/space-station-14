@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - ClusterGrenade
+    - ClusterBananaPeel
+  components:
+  - type: EorgPreventTrigger

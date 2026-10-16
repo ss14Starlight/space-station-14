@@ -148,3 +148,29 @@
       useSound:
         path: /Audio/Items/crowbar.ogg
 
+- type: entity
+  name: holocarp
+  id: RiftCarpHolo
+  parent: MobCarpHolo
+  description: A holocarp here to protect the space dragon's rift.
+  components:
+    - type: HTN
+      rootTask:
+        task: DragonCarpCompound
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: ghost-role-information-sentient-holocarp-name
+      description: ghost-role-information-sentient-holocarp-description
+      rules: ghost-role-information-space-dragon-summoned-carp-rules
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonistFlock
+    - type: GhostTakeoverAvailable
+    - type: Prying
+      pryPowered: true
+      force: true
+      speedModifier: 1
+      useSound:
+        path: /Audio/Items/crowbar.ogg
+

@@ -168,6 +168,15 @@
     state: tongue
 
 - type: entity
+  id: OrganDollEars
+  parent: [BaseDollOrgan, BaseOrganEars]
+  name: ears
+  description: "There are three parts to the ear. Inner, middle and outer. You don't want to see any of it. Or for it to see you."
+  components:
+  - type: Sprite
+    state: ears
+
+- type: entity
   id: OrganDollLungs
   parent: [BaseDollOrgan, BaseOrganLungs]
   name: lungs

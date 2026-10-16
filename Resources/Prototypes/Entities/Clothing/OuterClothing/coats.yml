@@ -10,7 +10,7 @@
     sprite: Clothing/OuterClothing/Coats/bomber.rsi
 
 - type: entity
-  parent: [ClothingOuterBaseMedium, ClothingOuterBaseWarm, ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSecurityContraband] # Starlight
+  parent: [ BaseContrabandTier2, ClothingOuterArmorBase, ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterCoatDetective
   name: detective armored trenchcoat
   description: An 18th-century multi-purpose trenchcoat. Someone who wears this means serious business.
@@ -102,7 +102,7 @@
         Caustic: 0.9
 
 - type: entity
-  parent: [BaseSecurityCommandContraband, ClothingOuterBaseWarm, ClothingOuterArmorHoS] # Starlight
+  parent: [ BaseContrabandTier2, BaseSecurityContraband, BaseCommandContraband, ClothingOuterArmorHoS ] # Blimpuf
   id: ClothingOuterCoatHoSTrench
   name: head of security's armored trenchcoat
   description: A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence.
@@ -200,6 +200,11 @@
         Caustic: 0.75
 
 - type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabChem]
+  id: ClothingOuterCoatLabChemOpened
+  name: chemist lab coat
+
+- type: entity
   parent: ClothingOuterCoatLab # Starlight
   id: ClothingOuterCoatLabViro
   name: virologist lab coat
@@ -216,6 +221,11 @@
       coefficients:
         Cold: 0.9 # Starlight
         Caustic: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabViro]
+  id: ClothingOuterCoatLabViroOpened
+  name: virologist lab coat
 
 - type: entity
   parent: ClothingOuterCoatLab # Starlight
@@ -261,6 +271,11 @@
         Caustic: 0.65
 
 - type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabCmo]
+  id: ClothingOuterCoatLabCmoOpened
+  name: chief medical officer's lab coat
+
+- type: entity
   parent: ClothingOuterCoatLab # Starlight
   id: ClothingOuterCoatRnd
   name: scientist lab coat
@@ -302,6 +317,11 @@
         Caustic: 0.75
 
 - type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatRobo]
+  id: ClothingOuterCoatRoboOpened
+  name: roboticist lab coat
+
+- type: entity
   parent: ClothingOuterCoatLab # Starlight
   id: ClothingOuterCoatRD
   name: research director lab coat
@@ -321,6 +341,11 @@
         Radiation: 0.9
 
 - type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatRD]
+  id: ClothingOuterCoatRDOpened
+  name: research director lab coat
+
+- type: entity
   parent: [ ClothingOuterStorageBase, ClothingOuterBaseWarm, AllowSuitStorageClothing ] # Starlight
   id: ClothingOuterCoatPirate
   name: pirate garb
@@ -332,7 +357,7 @@
     sprite: Clothing/OuterClothing/Coats/pirate.rsi
 
 - type: entity
-  parent: [ClothingOuterArmorWarden, ClothingOuterBaseWarm, BaseSecurityContraband] # Starlight
+  parent: [ BaseContrabandTier2, ClothingOuterArmorWarden, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterCoatWarden
   name: warden's armored jacket
   description: A sturdy, utilitarian jacket designed to protect a warden from any brig-bound threats.
@@ -393,6 +418,11 @@
     sprite: Clothing/OuterClothing/Coats/windbreaker_paramedic.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/windbreaker_paramedic.rsi
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatParamedicWB]
+  id: ClothingOuterCoatParamedicWBOpened
+  name: paramedic windbreaker
 
 - type: entity
   parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm, BaseMinorContraband] # Starlight
@@ -481,6 +511,11 @@
         Caustic: 0.75
 
 - type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorPhysician]
+  id: ClothingOuterCoatLabSeniorPhysicianOpened
+  name: senior physician lab coat
+
+- type: entity
   parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter] # Starlight
   id: ClothingOuterCoatSpaceAsshole
   name: the coat of space asshole
@@ -506,3 +541,7 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/expensive_coat.rsi
 
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatExpensive]
+  id: ClothingOuterCoatExpensiveOpened
+  name: expensive coat

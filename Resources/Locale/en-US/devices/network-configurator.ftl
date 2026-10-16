@@ -8,6 +8,9 @@ network-configurator-device-already-saved = network device: {$device} is already
 network-configurator-device-access-denied = Access denied!
 network-configurator-link-mode-started = Started linking device: {$device}
 network-configurator-link-mode-stopped = Stopped linking.
+network-configurator-mode-link = Link
+network-configurator-mode-list = List
+network-configurator-switched-mode = Switched mode to: {$mode}
 
 # Verbs
 network-configurator-save-device = Save device
@@ -41,6 +44,7 @@ network-configurator-tooltip-show = Show a holographic visualization of targets 
 network-configurator-examine-mode-link = [color=red]Link[/color]
 network-configurator-examine-mode-list = [color=green]List[/color]
 network-configurator-examine-current-mode = Current mode: {$mode}
+network-configurator-examine-switch-modes = Press {$key} to switch modes
 
 # item status
 network-configurator-item-status-label = Mode: {$mode}

@@ -137,7 +137,7 @@
   license: "CC-BY-SA-3.0"
   source: "https://github.com/cmss13-devs/cmss13"
 
-- files: ["glass_crack1.ogg", "glass_crack2.ogg", "glass_crack3.ogg", "glass_crack4.ogg", "metal_scrape1.ogg", "metal_scrape2.ogg"]
+- files: ["glass_crack1.ogg", "glass_crack2.ogg", "glass_crack3.ogg", "glass_crack4.ogg", "metal_scrape1.ogg", "metal_scrape2.ogg", "metal_scrape3.ogg"]
   copyright: "Baystation 12 at 23c0d851246ebbaeb0df647318ce9874da895d3d"
   license: "CC-BY-SA-3.0"
   source: "https://github.com/Baystation12/Baystation12"

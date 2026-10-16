@@ -1,3 +1,4 @@
+
 - type: entity
   name: WizCoin
   parent: [BaseItem, BaseMagicalContraband]
@@ -37,6 +38,22 @@
   components:
   - type: Stack
     count: 1
+
+- type: entity
+  parent: WizCoin
+  id: WizCoin5
+  suffix: 5 WC
+  components:
+  - type: Stack
+    count: 5
+
+- type: entity
+  parent: WizCoin
+  id: WizCoin10
+  suffix: 10 WC
+  components:
+  - type: Stack
+    count: 10
 
 # Wizard Duelist medallions
 - type: entity

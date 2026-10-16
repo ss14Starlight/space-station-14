@@ -12,6 +12,56 @@
       - CantBecomeRevolutionary
       - NotLabelable
 
+- type: entity
+  name: abductor scientist
+  parent: MobAbductor
+  id: MobAbductorScientist
+  components:
+  - type: AntagObjectives
+    objectives:
+    - StealResearchObjective
+  - type: GhostRole
+    name: abductors-ghost-role-name
+    description: abductors-ghost-role-desc
+    rules: abductors-ghost-role-rules
+    important: true # SL
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleLoneAbductor
+  - type: AbductorScientist
+  - type: ActionGrant
+    actions:
+    - ActionReturnToShip
+  - type: Loadout
+    prototypes:
+      - AbductorScientistGear
+
+- type: entity
+  name: abductor agent
+  parent: MobAbductor
+  id: MobAbductorAgent
+  components:
+  - type: AntagObjectives
+    objectives:
+    - StealResearchObjective
+  - type: GhostRole
+    name: abductora-ghost-role-name
+    description: abductora-ghost-role-desc
+    rules: abductors-ghost-role-rules
+    important: true # SL
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleLoneAbductor
+  - type: AbductorAgent
+  - type: ActionGrant
+    actions:
+    - ActionReturnToShip
+  - type: Loadout
+    prototypes:
+      - AbductorAgentGear
+
 - type: startingGear
   id: AbductorScientistGear
   equipment:

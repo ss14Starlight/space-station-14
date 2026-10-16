@@ -1,6 +1,29 @@
 ## Static recipes
 
+- type: latheRecipePack
+  id: StarlightSecurityEquipmentStatic
+  recipes:
+  - ClothingEyesHudSecurity
+  - ForensicPad
+  - Handcuffs
+  - TargetClown
+  - TargetHuman
+  - TargetSyndicate
+  - Zipties
+
 # Practice ammo/mags and practice weapons
+- type: latheRecipePack
+  id: StarlightSecurityPracticeStatic
+  recipes:
+  - BoxShotgunPractice
+  - MagazineBoxLightRiflePractice
+  - MagazineBoxMagnumPractice
+  - MagazineBoxPistolPractice
+  - MagazineBoxCaselessRiflePractice
+  - MagazineBoxRiflePractice
+  - WeaponDisablerPractice
+  - WeaponLaserCarbinePractice
+  - MagazineDMRPractice
 
 - type: latheRecipePack
   id: StarlightSecurityAmmoEmagStatic
@@ -92,6 +115,12 @@
   - SpeedLoaderShotgunEmpty
   - SpeedLoaderShotgunSlug
   - SpeedLoaderShotgunBeanbag
+# Bolt
+  - MagazineBoltRifleEmpty
+  - MagazineBoltRifle
+  - MagazineBoltPistolEmpty
+  - MagazineBoltPistol
+  - MagazineBoxBoltRifle
 # Battery
   - MagazineBatteryLr30
 # Peacekeeper
@@ -238,6 +267,8 @@
   - WeaponLaserSvalinn
   - WeaponTemperatureGun
   - FiringPinLaser
+  - FiringPinAdvancedLaserReplacement
+  - FiringPinSmartLMGReplacement
 
 - type: latheRecipePack
   id: StarlightSecurityMechsWeapons
@@ -256,6 +287,11 @@
   - WeaponMechCombatImmolationGun
   - WeaponMechCombatSolarisLaser
   - WeaponMechCombatFiredartLaser
+
+- type: latheRecipePack
+  id: StarlightSecurityMechsSystems
+  recipes:
+  - MechEquipmentSecGrabber
 
 - type: latheRecipePack
   id: StarlightSecurityMechs

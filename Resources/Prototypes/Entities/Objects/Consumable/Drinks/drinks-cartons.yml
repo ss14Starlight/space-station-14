@@ -34,6 +34,15 @@
 
 - type: entity
   abstract: true
+  parent: DrinkCartonNormalBase
+  id: DrinkCartonNormalBaseFull
+  suffix: Full
+  components:
+  - type: Tag
+    tags: [ ]
+
+- type: entity
+  abstract: true
   parent: [SolutionLarge, DrinkCartonBase ]
   id: DrinkCartonBaseLarge
   components:
@@ -273,6 +282,7 @@
     tags:
     - DrinkCarton
     - MilkCarton
+
 
 # Xtra large
 

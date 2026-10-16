@@ -1,0 +1,8 @@
+[head=2]Order #[/head]
+[bold]Item:[/bold]
+[bold]Requested by:[/bold]
+
+[head=3]Order Information[/head]
+[bold]Payer[/bold]: Station Supply Budget [font="Monospace"]\[SUP\][/font]
+[bold]Approved by:[/bold]
+[bold]Reason:[/bold]

@@ -14,7 +14,7 @@
     equippedPrefix: off
   - type: PointLight
     enabled: false
-    lightMask: ConeSingle
+    mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     radius: 7
     netsync: false
@@ -58,11 +58,6 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMedium
-        #Starlight Start
-        blacklist:
-          tags:
-          - MechReactor
-        #Starlight End
   - type: Item
     heldPrefix: off
   - type: ContainerContainer
@@ -148,8 +143,6 @@
     sprite: Clothing/Head/Hardhats/armored.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardhats/armored.rsi
-  - type: Pierceable
-    level: HardenedMetal
   - type: Armor #Copied from the sec helmet, as it's hard to give these sane values without locational damage existing.
     modifiers:
       coefficients:

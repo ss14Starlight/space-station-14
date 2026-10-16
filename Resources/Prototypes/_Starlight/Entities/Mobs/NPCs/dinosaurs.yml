@@ -82,6 +82,30 @@
       - FootstepSound
       - DoorBumpOpener
 
+- type: entity
+  parent: BaseMobDinosaur
+  id: BaseMobDinosaurCarno
+  name: carnivorous dinosaur
+  description: A carnivorous dino
+  abstract: true
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Xeno
+
+- type: entity
+  parent: BaseMobDinosaur
+  id: BaseMobDinosaurHerb
+  name: herbivore dinosaur
+  description: A vegetarian, but don't let that fool you. They're still out for blood
+  abstract: true
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Passive
+    - type: NPCRetaliation
+      attackMemoryLength: 10
+
 # Dinos
 # Compys - Are docile unless provoked, however they gather in groups they become hostile. Can reproduce
 - type: entity

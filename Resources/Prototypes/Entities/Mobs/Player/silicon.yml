@@ -42,6 +42,7 @@
     - ActionSurvCameraLights # Starlight: Restored removed surveillance camera lights from upstream
     - ActionAIViewLaws
     - ActionAIShunt # Starlight AI Shunt ability
+    - ActionAIRemoteControl # Starlight
     - ActionAIReconnectShunt # Starlight AI Shunt reconnect ability
     - ActionAIWarp # Starlight
   - type: UserInterface
@@ -56,6 +57,8 @@
         type: SiliconLawBoundUserInterface
       enum.CommunicationsConsoleUiKey.Key:
         type: CommunicationsConsoleBoundUserInterface
+      enum.RemoteControlUIKey.Key: # Starlight
+        type: RemoteControlConsoleBoundUserInterface # Starlight
   - type: IntrinsicUI
     uis:
       enum.RadarConsoleUiKey.Key:
@@ -89,6 +92,7 @@
   - type: ShowCrewIcons
   #region Starlight
   - type: StationAIShuntable
+  - type: RemoteControlConsole # Starlight
   #endregion Starlight
   - type: DamagedSiliconAccent
     startPowerCorruptionAtCharIdx: 4
@@ -309,6 +313,16 @@
         enum.StationAiVisualLayers.Base:
           False: { state: ai_empty }
           True: { state: ai_error }
+  - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_ai
+  - type: Reactive
+    reactions:
+    - reagents: [Water, SpaceCleaner]
+      methods: [Touch]
+      effects:
+      - !type:WashCreamPie
   - type: InteractionPopup
     interactSuccessString: petting-success-station-ai
     interactFailureString: petting-failure-station-ai
@@ -595,6 +609,28 @@
     range: 20
 
 # Borgs
+- type: entity
+  id: PlayerBorgBattery
+  parent: BorgChassisSelectable
+  suffix: Battery, Brain # Starlight edit
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - PositronicBrain
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
+  - type: StartingMindRole
+    mindRole: "MindRoleSiliconBrain"
+    silent: true
 
 - type: entity
   id: PlayerBorgSyndicateAssaultBattery
@@ -633,6 +669,22 @@
         #Starlight End
 
 - type: entity
+  id: PlayerBorgSyndicateAssaultGhostRole
+  parent: PlayerBorgSyndicateAssaultBattery
+  suffix: Ghost role
+  components:
+    - type: GhostRole
+      name: ghost-role-information-syndicate-cyborg-assault-name
+      description: ghost-role-information-syndicate-cyborg-description
+      rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleGhostRoleSiliconAntagonist] # Starlight
+      important: true # SL
+      raffle:
+        settings: default
+      job: Borg
+    - type: GhostTakeoverAvailable
+
+- type: entity
   id: PlayerBorgSyndicateSaboteurBattery
   parent: BorgChassisSyndicateSaboteur
   suffix: Battery, Module, Operative
@@ -669,6 +721,39 @@
           tags:
           - MechReactor
         #Starlight End
+
+- type: entity
+  id: PlayerBorgSyndicateSaboteurGhostRole
+  parent: PlayerBorgSyndicateSaboteurBattery
+  suffix: Ghost role
+  components:
+    - type: GhostRole
+      name: ghost-role-information-syndicate-cyborg-saboteur-name
+      description: ghost-role-information-syndicate-cyborg-description
+      rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleGhostRoleSiliconAntagonist] # Starlight
+      important: true # SL
+      raffle:
+        settings: default
+      job: Borg
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  parent: MarkerBase
+  id: PlayerBorgSyndicateInvasionGhostRoleSpawner
+  name: syndicate invasion borg spawner
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Decoration/banner.rsi
+        state: banner_syndicate
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: PlayerBorgSyndicateAssaultGhostRole
+      - id: PlayerBorgSyndicateSaboteurGhostRole
+        weight: 0.5 # Saboteurs are kinda like cyborg medics, we want less.
 
 - type: entity
   parent: EngineeringBorgChassisDerelict

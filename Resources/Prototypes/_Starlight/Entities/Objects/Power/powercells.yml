@@ -267,6 +267,14 @@
     price: 9000
 
 - type: entity
+  id: PowerCageOmegaEmpty
+  parent: PowerCageOmega
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
+
+- type: entity
   name: ultra-capacity power cell
   description: A rechargeable standardized power cell. This iteration pushes the upper limits of portable power storage, double more capacity than the hyper-capacity cell.
   id: PowerCellUltra

@@ -24,3 +24,35 @@
       - ReagentId: Protein
         Quantity: 5
 
+- type: entity
+  parent: FoodMeatBase
+  id: TP14FoodMeatSausage
+  name: raw sausage
+  description: Let's sausage!
+  components:
+  - type: Tag
+    tags:
+    - Raw
+    - Meat
+  - type: Sprite
+    state: sausage
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 3
+      - ReagentId: Fat
+        Quantity: 2
+  - type: Construction
+    graph: Cutlet
+    node: start # starlight
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    inhandVisuals:
+      left:
+      - state: sausage-inhand-left
+      right:
+      - state: sausage-inhand-right

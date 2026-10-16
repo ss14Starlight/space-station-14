@@ -9,5 +9,6 @@ item-switch-verb-cycle = Switch to {$state}
 
 speed-potion-apply-text = Apply speed potion
 
+setup-verb-text = Setup
 # Radio
 verb-categories-manage-channels = Manage channels
