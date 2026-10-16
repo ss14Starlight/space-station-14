@@ -1,53 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Language font works again.
-    type: Fix
-  id: 409117
-  time: '2026-10-04T08:24:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6480
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: You can now slice cardboard boxes for cardboard, meaning boxcutters can now do their namesake and cut boxes!
-    type: Add
-  id: 409118
-  time: '2026-10-04T09:40:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6476
-- author: ItsCharles
-  changes:
-  - message: Grant NCT Job NTPersonnel Access.
-    type: Tweak
-  id: 409119
-  time: '2026-10-04T09:40:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6474
-- author: ItsCharles
-  changes:
-  - message: Allow the NCT Job to show in the ID card console.
-    type: Tweak
-  id: 409120
-  time: '2026-10-04T09:40:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6474
-- author: ItsCharles
-  changes:
-  - message: Give the NCT Debrief access.
-    type: Tweak
-  id: 409121
-  time: '2026-10-04T09:40:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6474
-- author: ItsCharles
-  changes:
-  - message: Give the IAA Debrief access.
-    type: Tweak
-  id: 409122
-  time: '2026-10-04T09:40:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6474
-- author: Swonki
-  changes:
-  - message: Missing loadout and Nanochat for salvage medic.
-    type: Fix
-  id: 409123
-  time: '2026-10-04T10:10:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6461
 - author: SirLutz
   changes:
   - message: Malign Custodian does not deal slashdamage anymore, deals 10 blunt now instead of 5 blunt and 5 slash.
@@ -2883,4 +2834,53 @@ Entries:
   id: 409516
   time: '2026-10-16T11:06:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6692
+- author: Caws
+  changes:
+  - message: Alpha's gamemode pool has been tweaked slightly.
+    type: Tweak
+  id: 409517
+  time: '2026-10-16T11:06:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6691
+- author: Caws
+  changes:
+  - message: (Alpha) PvP gamemodes increased from 23.5% -> 25% (NukeOps, Revs, Cult, Zombies). This is lower than Beta's gamemode percentage because Alpha's rounds are much shorter (meaning they'll still roll more often 'per day').
+    type: Tweak
+  id: 409518
+  time: '2026-10-16T11:06:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6691
+- author: Caws
+  changes:
+  - message: (Alpha) Zombies lowered from 5.9% -> 5% (Zombies & Zombieteors).
+    type: Tweak
+  id: 409519
+  time: '2026-10-16T11:06:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6691
+- author: Caws
+  changes:
+  - message: (Alpha) PvE gamemodes increased from 5.9% -> 7% (Survival & Kessler).
+    type: Tweak
+  id: 409520
+  time: '2026-10-16T11:06:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6691
+- author: Caws
+  changes:
+  - message: (Alpha) Traitor-Like gamemodes increased from 29.7% -> 30% (Traitor, Traitorling, Vampire, Vamptraitorling).
+    type: Tweak
+  id: 409521
+  time: '2026-10-16T11:06:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6691
+- author: Caws
+  changes:
+  - message: (Alpha) Wizard Duel decreased from 2.3% -> 1%.
+    type: Tweak
+  id: 409522
+  time: '2026-10-16T11:06:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6691
+- author: Caws
+  changes:
+  - message: (Alpha) Shitstation decreased from 4.7% -> 3%.
+    type: Tweak
+  id: 409523
+  time: '2026-10-16T11:06:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6691
 Order: -1
