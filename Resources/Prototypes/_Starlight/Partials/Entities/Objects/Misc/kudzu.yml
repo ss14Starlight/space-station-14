@@ -1,0 +1,62 @@
+- type: !PartialOnly entity
+  id: Kudzu
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/kudzu.rsi
+    state: !Remove
+    layers:
+    - state: kudzu_11
+    - map: [ "enum.EdgeLayer.South" ]
+      state: kudzu_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: kudzu_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: kudzu_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: kudzu_west
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+  - type: SmoothEdge
+
+- type: !PartialOnly entity
+  id: KudzuFlowerFriendly
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/kudzuflower.rsi
+    state: !Remove
+    layers:
+    - state: kudzu_11
+    - map: [ "enum.EdgeLayer.South" ]
+      state: kudzu_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: kudzu_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: kudzu_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: kudzu_west
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+  - type: SmoothEdge
+
+- type: !PartialOnly entity
+  id: FleshKudzu
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/fleshkudzu.rsi
+    state: !Remove
+    layers:
+    - state: kudzu_11
+    - map: [ "enum.EdgeLayer.South" ]
+      state: kudzu_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: kudzu_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: kudzu_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: kudzu_west
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+  - type: SmoothEdge

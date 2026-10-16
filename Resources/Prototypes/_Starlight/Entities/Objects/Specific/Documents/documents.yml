@@ -318,3 +318,29 @@
       fileName: brief_sec_Xorgs.txt
     - type: StealTarget
       stealGroup: SecureKnowledgeSteal
+
+# NukeOps
+
+- type: entity
+  id: CrateOpsForDummies
+  parent: Paper
+  name: Crateops for Dummies!
+  description: A basic guide on how to carry out a crateops operation.
+  components:
+    - type: TextFilePaperContent
+      fileName: crateops.txt
+    - type: Paper
+      stampState: paper_stamp-syndicate
+      stampedBy:
+        - type: RubberStamp
+          stampedName: Syndicate High Command
+          stampedColor: '#850000FF'
+          font: /Fonts/NotoSans/NotoSans-Regular.ttf
+
+- type: entity
+  id: CrateOpsCargoInvoice
+  parent: PaperCargoInvoice
+  suffix: Crateops
+  components:
+    - type: TextFilePaperContent
+      fileName: invoice_template.txt

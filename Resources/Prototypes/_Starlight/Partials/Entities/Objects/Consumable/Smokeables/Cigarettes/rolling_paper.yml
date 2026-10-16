@@ -1,0 +1,18 @@
+- type: !PartialOnly entity
+  id: PackPaperRolling
+  components:
+  - type: Storage
+    grid: !Clear
+      - 0,0,4,1
+    whitelist:
+      tags:
+      - Smokable
+      - Cigarette
+      - Lighters
+
+# Vending Machines Prices
+- type: !PartialOnly entity
+  id: PackPaperRollingFilters
+  components:
+  - type: ItemPrice
+    priceCategory: miscellaneous

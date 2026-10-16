@@ -528,7 +528,7 @@
     state: plasma_monke
 
 - type: entity
-  parent: PosterBase
+  parent: [PosterBase, BaseSovietContraband] # Blimpuf
   id: PosterContrabandARFRadio
   name: "ARF"
   description: "An old communist radio station."

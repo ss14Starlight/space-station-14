@@ -24,4 +24,5 @@ roles-req-first-writing-roles = First Writing Contest Winner
 roles-req-senior-developer = Senior Developer
 roles-req-developer = Developer
 
+triesteport-main = TRIESTEPORT
 overall = overall

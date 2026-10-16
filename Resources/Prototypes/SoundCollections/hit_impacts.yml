@@ -6,6 +6,13 @@
   - /Audio/Effects/metal_thud3.ogg
 
 - type: soundCollection
+  id: MetalScrape
+  files:
+  - /Audio/Effects/metal_scrape1.ogg
+  - /Audio/Effects/metal_scrape2.ogg
+  - /Audio/Effects/metal_scrape3.ogg
+
+- type: soundCollection
   id: WeakHit
   files:
   - /Audio/Effects/weak_hit1.ogg

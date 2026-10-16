@@ -26,6 +26,21 @@
 
 - type: entity
   parent: WeatherBase
+  id: WeatherAshfall
+  name: ashfall
+  components:
+  - type: WeatherStatusEffect
+    sprite:
+      sprite: /Textures/Effects/weather.rsi
+      state: ashfall
+    sound:
+      path: /Audio/Effects/Weather/snowstorm_weak.ogg
+      params:
+        loop: true
+        volume: -6
+
+- type: entity
+  parent: WeatherBase
   id: WeatherAshfallLight
   name: ashfall light
   components:

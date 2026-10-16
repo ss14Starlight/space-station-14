@@ -159,3 +159,33 @@
 
 # Borgi Animal Body
 
+- type: entity
+  parent: PartAnimal
+  id: LeftHandAdmemeCorgi
+  categories: [ HideSpawnMenu ]
+  name: corgi hand
+  suffix: Corgi
+  components:
+  - type: Sprite
+    layers:
+    - state: l_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+
+- type: entity
+  parent: PartAnimal
+  id: RightHandAdmemeCorgi
+  categories: [ HideSpawnMenu ]
+  name: corgi hand
+  suffix: Corgi
+  components:
+  - type: Sprite
+    layers:
+    - state: r_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right
+
+
+

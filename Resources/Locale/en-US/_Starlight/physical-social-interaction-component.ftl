@@ -1,6 +1,8 @@
 # Menu
 social-interaction-component-verb = Social Interaction
 
+pet-verb = Pet
+
 # Wave
 wave-verb = Wave
 waving-success = You wave at {THE($target)}.

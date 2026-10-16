@@ -1,4 +1,5 @@
 ## Borg type selection UI.
+borg-select-type-menu-paints = Models
 
 ## Security borg chassis actions
 borg-call-for-help-message = SECURITY ALERT: {$borg} is requesting backup at {$position}!

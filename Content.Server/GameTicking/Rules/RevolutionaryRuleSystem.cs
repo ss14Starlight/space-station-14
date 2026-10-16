@@ -397,8 +397,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
             return;
         // Starlight End
 
-        // Always-convertible targets skip the whitelist. The blacklist still applies.
-        if (!_whitelistSystem.CheckBoth(ev.Target, comp.Blacklist, alwaysConvertible ? null : comp.Whitelist) ||
+        if (!_whitelistSystem.CheckBoth(ev.Target, comp.Blacklist, alwaysConvertible ? null : comp.Whitelist) || // Starlight-edit: rework all has comp to whitelist & blacklist.
             !_mobState.IsAlive(ev.Target))
         {
             return;

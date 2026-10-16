@@ -157,9 +157,6 @@
       hasMindState: borg_e
       noMindState: borg
     - type: ShowHealthBars
-      damageContainers: # Starlight start
-      - Biological
-      - Hybrid # Starlight end, Neocytes
     - type: InteractionPopup
       interactSuccessString: petting-success-syndicate-cyborg
       interactFailureString: petting-failure-syndicate-cyborg
@@ -217,7 +214,6 @@
       damageContainers:
       - Inorganic
       - Silicon
-      - Hybrid # Starlight
     - type: InteractionPopup
       interactSuccessString: petting-success-syndicate-cyborg
       interactFailureString: petting-failure-syndicate-cyborg
@@ -409,11 +405,9 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
-    - Hybrid # Starlight, Neocytes
   - type: ShowHealthIcons
     damageContainers:
     - Biological
-    - Hybrid # Starlight, Neocytes
 # Starlight Start
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter

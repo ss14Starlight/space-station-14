@@ -16,6 +16,19 @@ public sealed partial class ProjectileCoverComponent : Component
     public float BlockChance = 0.4f;
 
     /// <summary>
+    /// Low cover (small crates, counters) that only protects someone lying down right behind it.
+    /// Shots at a standing target always pass over it, whatever <see cref="BlockChance"/> says.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool ProneOnly;
+
+    /// <summary>
+    /// If true, cover will block all shots at prone targets, regardless of <see cref="BlockChance"/>.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool ProneAlwaysBlock = true;
+
+    /// <summary>
     /// Determines range on which we will ignore players, so player near cover can shoot through it.
     /// </summary>
 

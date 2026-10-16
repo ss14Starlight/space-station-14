@@ -343,6 +343,20 @@
     - id: RandomStalagmiteOrCrystal
       amount: 1
 
+- type: entityTable
+  id: MineshaftWalls
+  table: !type:GroupSelector
+    children:
+    # Ore
+    - id: WallRockSalt
+      prob: 0.6
+    - id: WallRockCoal
+      prob: 0.6
+    - id: WallRockTin
+      prob: 0.4
+    - id: WallMining
+      prob: 0.8
+
 # Science lab
 - type: entityTable
   id: ScienceLabsWalls
@@ -358,6 +372,12 @@
       prob: 0.1
 
 # Snowy labs
+- type: entityTable
+  id: SnowyLabsEntrance
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: AirlockFreezerHydroponicsLocked
 
 - type: entityTable
   id: SnowyLabsWalls

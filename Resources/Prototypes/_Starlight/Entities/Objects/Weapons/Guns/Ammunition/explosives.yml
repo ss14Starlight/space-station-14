@@ -9,7 +9,8 @@
   - type: CartridgeAmmo
     proto: BulletGrenadeCleanadeSyndicate
   - type: Contraband
-    severity: Syndicate
+    tier: Tier3 # Blimpuf
+    contrabandType: Syndicate # Blimpuf
 
 # 120mm Ammunition
 
@@ -89,6 +90,20 @@
   - type: StaticPrice
     price: 800
 
+- type: entity
+  parent: Magazine120mmGrenadeBlast
+  id: Magazine120mmGrenadeBlastEmpty
+  name: 120mm blast grenade magazine (empty)
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - Grenade120mm
+    capacity: 20
+
+
 # 60mm Rocket Ammunition
 
 # Override of the base 60mm rocket projectile with radar blip.
@@ -167,13 +182,26 @@
   - type: StaticPrice
     price: 600
 
+- type: entity
+  parent: Magazine60mmRocket
+  id: Magazine60mmRocketEmpty
+  name: 60mm rocket magazine (empty)
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - Cartridge60mmRocket
+    capacity: 30
+
 # PEACEKEEPER AMMO
 
 - type: entity
   id: GrenadeGaslauncher
   name: gas grenade
   description: Able to choke a room or several of your friends.
-  parent: [ BaseGrenade, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, BaseGrenade, BaseSecurityContraband ] # Blimpuf
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeGas
@@ -194,7 +222,7 @@
   id: GrenadeStingerlauncher
   name: stinger grenade
   description: An unruly crowd's favourite.
-  parent: [ BaseGrenade, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, BaseGrenade, BaseSecurityContraband ] # Blimpuf
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeStinger

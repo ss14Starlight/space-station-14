@@ -86,6 +86,17 @@
     maxCharges: 30
 
 - type: entity
+  parent: CrayonRainbow
+  id: CrayonInfinite # should not be player available to prevent decal spam
+  categories: [ DoNotMap ]
+  name: infinite crayon
+  components:
+  - type: Crayon
+    deleteEmpty: false
+  - type: AutoRecharge
+    rechargeDuration: 5
+
+- type: entity
   parent: CrayonInedible
   id: CrayonBorg
   name: electric crayon

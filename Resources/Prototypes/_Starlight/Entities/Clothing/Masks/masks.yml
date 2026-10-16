@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingMaskGas, BaseBlueShieldContraband ]
+  parent: [ BaseContrabandTier2, ClothingMaskGas, BaseBlueShieldContraband ]
   id: ClothingMaskGasBSO
   name: blue swat gas mask
   description: A elite issue Security gas mask. Now in blue!
@@ -27,7 +27,7 @@
         Heat: 0.95
 
 - type: entity
-  parent: [ ClothingMaskGas, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier2, ClothingMaskGas, BaseSecurityContraband ] # Blimpuf
   id: ClothingMaskGasCorpsman
   name: security bio mask
   description: VERY Expensive medical PPE that provides superior pathological protection.
@@ -100,6 +100,8 @@
   name: GP-32 gas mask
   description: An old uncomfortable mechanical gas mask of standard use in USSP. Meant to protect from radioactive fallout.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Sprite
     sprite: _Starlight/Clothing/Mask/sovietgas.rsi
   - type: Clothing
@@ -147,6 +149,39 @@
       coefficients:
         Blunt: 0.90
 
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingSquidOneMask
+  name: circle dangerous mask
+  description: SEE MY EYE?
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Mask/squid_one.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Mask/squid_one.rsi
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingSquidTwoMask
+  name: square dangerous mask
+  description: Glory to square!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Mask/squid_two.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Mask/squid_two.rsi
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingSquidThreeMask
+  name: triangle dangerous mask
+  description: On top. Like always.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Mask/squid_three.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Mask/squid_three.rsi
+
 # Fashion-O-Mat-Start
 - type: entity
   parent: ClothingMaskBase
@@ -181,6 +216,17 @@
     sprite: _Starlight/Clothing/Mask/cargo.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Mask/cargo.rsi
+
+- type: entity
+  parent: ClothingMaskGeneralBorg
+  id: ClothingMaskMedicBorg
+  name: protogen medic mask
+  description: Look me in the face while i cut you.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Mask/medic.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Mask/medic.rsi
 
 - type: entity
   parent: ClothingMaskGeneralBorg

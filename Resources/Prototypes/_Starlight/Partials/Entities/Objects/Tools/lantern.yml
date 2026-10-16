@@ -1,0 +1,12 @@
+- type: !PartialOnly entity
+  id: Lantern
+  components:
+  - type: PointLight
+    radius: 4
+    energy: 1.5
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor

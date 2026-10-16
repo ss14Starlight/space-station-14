@@ -156,6 +156,18 @@
         Blunt: 15
 
 - type: entity
+  parent: BaseStringInstrument
+  id: GuitarlessFretsInstrument
+  name: guitarless frets
+  description: Who even needs a body?
+  suffix: Admeme #the sound is awful
+  components:
+  - type: Instrument
+    program: 120
+  - type: Sprite
+    sprite: Objects/Fun/Instruments/guitarlessfrets.rsi
+
+- type: entity
   parent: BaseStringInstrumentClothing
   id: BanjoInstrument
   name: banjo

@@ -193,6 +193,18 @@
       maxVol: 30
 
 - type: entity
+  abstract: true
+  parent: [SolutionComposite, BaseItem]
+  id: SolutionCompositeTinyStackable
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 2.5
+  - type: Item
+    size: Tiny
+
+- type: entity
   parent: Solution
   id: SolutionToolTiny
   categories: [ HideSpawnMenu ]
@@ -295,6 +307,11 @@
   - type: Solution
     solution:
       maxVol: 480
+
+- type: entity
+  parent: [SolutionDrink, SolutionHuge]
+  id: SolutionDrinkHuge
+  categories: [ HideSpawnMenu ]
 
 ## Ginormous
 

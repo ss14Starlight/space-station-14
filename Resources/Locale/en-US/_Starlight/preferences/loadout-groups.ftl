@@ -28,6 +28,7 @@ loadout-group-musician-head = Musician head
 # Command
 
 loadout-group-nanotrasenrepresentative-head = NanoTrasen representative head
+loadout-group-nanotrasenrepresentative-outerclothing = NanoTrasen representative outer clothing
 loadout-group-nanotrasenrepresentative-jumpsuit = NanoTrasen representative jumpsuit
 loadout-group-nanotrasenrepresentative-eyewear = NanoTrasen representative eyewear
 loadout-group-nanotrasenrepresentative-shoes = NanoTrasen representative shoes
@@ -102,6 +103,9 @@ loadout-group-salvagelead-id = Salvage Lead ID
 loadout-group-mining-id = Mining Specialist ID
 loadout-group-salvage-id = Salvage Specialist ID
 loadout-group-salvage-lead-mantle = Salvage Lead mantle
+loadout-group-salvage-medic-id = Salvage Medic ID
+loadout-group-salvage-medic-jumpsuit = Salvage Medic jumpsuit
+loadout-group-salvage-medic-mantle = Salvage Medic mantle
 
 # Silicons
 loadout-group-borg-brain-type = Cyborg Brain Type
@@ -122,9 +126,11 @@ loadout-group-janitor-neck = Janitor neck
 
 loadout-group-serviceworker-head = Service worker head
 loadout-group-serviceworker-jumpsuit = Service worker jumpsuit
+loadout-group-serviceworker-outerclothing = Service worker outer clothing
 
 loadout-group-performer-head = Performer head
 loadout-group-performer-jumpsuit = Performer jumpsuit
+loadout-group-performer-outerclothing = Performer outer clothing
 
 loadout-group-lawyer-shoes = Lawyer shoes
 
@@ -132,6 +138,7 @@ loadout-group-lawyer-shoes = Lawyer shoes
 loadout-group-scarves = Scarf
 loadout-group-pins = Pins
 loadout-group-pens = Pen
+loadout-group-ties = Ties
 
 # Brighteye
 loadout-group-brighteye-jumpsuit = Brighteye jumpsuit

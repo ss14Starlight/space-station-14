@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Mobs.Components;
@@ -19,6 +20,8 @@ namespace Content.Server.Atmos.EntitySystems
         private const int SpaceWindSoundCooldownCycles = 75;
 
         private int _spaceWindSoundCooldown = 0;
+
+        [Dependency] private BreachWindSystem _breachWind = default!; // Starlight
 
         [ViewVariables(VVAccess.ReadWrite)]
         public SoundSpecifier? SpaceWindSound { get; private set; } = new SoundCollectionSpecifier(DefaultSpaceWindSounds, AudioParams.Default.WithVariation(0.125f));
@@ -107,6 +110,8 @@ namespace Content.Server.Atmos.EntitySystems
             // Don't play the space wind sound on tiles that are on fire...
             if (tile.PressureDifference > 15 && !tile.Hotspot.Valid)
             {
+                _breachWind.ReportFlow(tile.GridIndex, tile.GridIndices, tile.PressureDifference); // Starlight
+
                 if (_spaceWindSoundCooldown == 0 && SpaceWindSound != null)
                 {
                     var coordinates = _mapSystem.ToCenterCoordinates(tile.GridIndex, tile.GridIndices);

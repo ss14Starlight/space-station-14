@@ -266,24 +266,25 @@
     - EmergencyMedipen
 
 - type: !PartialOnly startingGear
-  parent: ERTSecurityGearEVA
   id: ERTSecurityGearArmedRifle
   equipment:
-    suitstorage: WeaponRiflePeacemaker
+    back: !Clear
+    suitstorage: PortableRecharger
+    pocket1: LoadoutRadioERTSec
+    pocket2: WeaponPistolPDW9
   inhand: !Clear
   storage: !Clear
-    back:
-    - MedicatedSuture
+    belt:
+    - WeaponPistolMk58HighCapacity
+    - MagazinePistolHighCapacitySP
+    - Handcuffs
+    - Handcuffs
+    - ExGrenade
     - GrenadeShrapnel
-    - GrenadeIncendiary
     - EmpGrenade
-    - MagazineRifleFMJ
-    - MagazineRifleFMJ
-    - MagazineRifleSP
-    - MagazineRifleIncendiary
-    - MedicatedSuture
-    - TelescopicShield
-    - HoloprojectorSecurity
+    - MedkitCombatFilled
+    - ToolDebug
+    - CombatMedipen
 
 - type: !PartialOnly startingGear
   parent: ERTSecurityGearEVA

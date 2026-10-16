@@ -498,6 +498,20 @@
 
 - type: entity
   parent: Jug
+  suffix: tranexamic acid
+  id: JugTranexamicAcid
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-tranexamic-acid
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: TranexamicAcid
+        Quantity: 240
+
+- type: entity
+  parent: Jug
   suffix: hyronalin
   id: JugHyronalin
   categories: [ HideSpawnMenu ]
@@ -538,3 +552,16 @@
       - ReagentId: DexalinPlus
         Quantity: 240
 
+- type: entity
+  parent: Jug
+  suffix: iceialin
+  id: JugIceialin
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-iceialin
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Iceialin
+        Quantity: 240

@@ -168,6 +168,7 @@
         Quaternary: GasPipeTankTallAlt3
         Quinary: GasPipeTankTallAlt4
     - type: SubFloorHide
+      subfloorLayer: Pipes
       blockInteractions: false
       blockAmbience: false
       visibleLayers:

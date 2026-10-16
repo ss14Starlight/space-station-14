@@ -20,3 +20,15 @@
           types:
             Blunt: 15
 
+- type: entity
+  id: ActionFakeDeath
+  name: Fake Death
+  description: Pretend to take your final breath while staying alive.
+  components:
+  - type: Action
+    useDelay: 30
+    icon:
+      sprite: Interface/Actions/actions_crit.rsi
+      state: fakedeath
+  - type: InstantAction
+    event: !type:CritFakeDeathEvent

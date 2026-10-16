@@ -1,0 +1,6 @@
+# Vending Machines Prices
+- type: !PartialOnly entity
+  id: FoodTinBase
+  components:
+  - type: ItemPrice
+    priceCategory: food_medium

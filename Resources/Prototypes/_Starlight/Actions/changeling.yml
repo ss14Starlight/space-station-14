@@ -44,6 +44,7 @@
     useInLesserForm: true
   - type: EorgPreventAction
 
+
 - type: entity
   id: ActionEnterStasis
   name: Enter regenerative stasis
@@ -392,6 +393,30 @@
   - type: ChangelingAction
     chemicalCost: 50
     useInLesserForm: true
+
+- type: entity
+  id: ActionStingTransform
+  name: Transformation Sting
+  description: Silently sting your target, transforming them into a person of your choosing. Costs 75 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
+      state: sting_transform
+  - type: TargetAction
+    interactOnMiss: false
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: false
+    event: !type:StingTransformEvent {}
+  - type: ChangelingAction
+    chemicalCost: 75
+    useInLesserForm: true
+  - type: EorgPreventAction
 
 # utility
 - type: entity

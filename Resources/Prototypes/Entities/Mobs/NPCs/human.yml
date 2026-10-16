@@ -13,6 +13,23 @@
     - NanoTrasen
 
 - type: entity
+  name: salvager
+  parent: BaseMobHuman # Starlight Edit: MobHuman -> BaseMobHuman
+  id: MobSalvager
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Loadout
+      prototypes:
+        - SalvageSpecialistGear
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+
+- type: entity
   name: spirate
   parent: BaseMobHuman # Starlight Edit: MobHuman -> BaseMobHuman
   id: MobSpirate

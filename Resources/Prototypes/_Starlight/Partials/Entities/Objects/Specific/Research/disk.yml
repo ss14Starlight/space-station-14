@@ -1,6 +1,23 @@
 - type: !PartialOnly entity
+  id: TechnologyDisk
+  components:
+  - type: Tag
+    tags:
+    - FloppyDisk
+
+- type: !PartialOnly entity
+  id: TechnologyDiskRare
+  components:
+  - type: Tag
+    tags:
+    - FloppyDisk
+
+- type: !PartialOnly entity
   id: ResearchDisk
   components:
+  - type: Tag
+    tags:
+    - FloppyDisk
   - type: EmitSoundOnPickup
     sound:
       path: /Audio/_Starlight/Items/Handling/disk_pickup.ogg
@@ -8,3 +25,23 @@
     sound:
       path: /Audio/_Starlight/Items/Handling/disk_drop.ogg
 
+- type: !PartialOnly entity
+  id: ResearchDisk5000
+  components:
+  - type: Tag
+    tags:
+    - FloppyDisk
+
+- type: !PartialOnly entity
+  id: ResearchDisk10000
+  components:
+  - type: Tag
+    tags:
+    - FloppyDisk
+
+- type: !PartialOnly entity
+  id: ResearchDiskDebug
+  components:
+  - type: Tag
+    tags:
+    - FloppyDisk

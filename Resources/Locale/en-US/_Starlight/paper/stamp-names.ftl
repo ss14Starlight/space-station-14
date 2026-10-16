@@ -26,4 +26,6 @@ stamp-component-stamped-name-rubber-stamp-tsf = Trans-Solar Federation
 stamp-component-stamped-name-rubber-stamp-tsmc = Trans-Solar Marine Corps
 stamp-component-stamped-name-rubber-stamp-solgov-law = Solgov Law Enforcement
 stamp-component-stamped-name-rubber-stamp-solgov-rep = Solgov Representative
+stamp-component-stamped-name-rubber-stamp-solgov-traders = Solgov Traders
+stamp-component-stamped-name-rubber-stamp-itg = Interstellar Trade Guild
 stamp-component-stamped-name-rubber-stamp-med-tak = MedTak

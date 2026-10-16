@@ -82,6 +82,23 @@
     entity: IceCreamMaker
 
 # Departmental techfabs
+- type: entity
+  parent: [BaseFlatpack, BaseMedicalContraband]
+  id: MedicalTechFabFlatpack
+  name: medical techfab flatpack
+  description: A flatpack used for constructing a medical techfab.
+  components:
+  - type: Flatpack
+    entity: MedicalTechFab
+
+- type: entity
+  parent: [BaseFlatpack, BaseSecurityContraband]
+  id: SecurityTechFabFlatpack
+  name: security techfab flatpack
+  description: A flatpack used for constructing a security techfab.
+  components:
+  - type: Flatpack
+    entity: SecurityTechFab
 
 - type: entity
   parent: [BaseFlatpack, BaseCargoContraband]
@@ -128,3 +145,38 @@
   - type: Flatpack
     entity: CommandTechFab
 
+- type: entity
+  parent: [BaseFlatpack, BaseNanoTrasenContraband]
+  id: NanoTrasenTechFabFlatpack
+  name: NanoTrasen techfab flatpack
+  description: A flatpack used for constructing a NanoTrasen techfab.
+  components:
+  - type: Flatpack
+    entity: NanoTrasenTechFab
+
+- type: entity
+  parent: [BaseFlatpack, BaseCentcommContraband]
+  id: CentralCommandTechFabFlatpack
+  name: Central Command techfab flatpack
+  description: A flatpack used for constructing a Central Command techfab.
+  components:
+  - type: Flatpack
+    entity: CentralCommandTechFab
+
+- type: entity
+  parent: [BaseFlatpack, BaseSyndicateContraband]
+  id: SyndicateTechFabFlatpack
+  name: Syndicate techfab flatpack
+  description: A flatpack used for constructing a Syndicate techfab.
+  components:
+  - type: Flatpack
+    entity: SyndicateTechFab
+
+- type: entity
+  parent: [BaseFlatpack, BaseSalvageContraband]
+  id: SalvageTechFabFlatpack
+  name: Salvage techfab flatpack
+  description: A flatpack used for constructing a Salvage techfab.
+  components:
+  - type: Flatpack
+    entity: SalvageTechFab

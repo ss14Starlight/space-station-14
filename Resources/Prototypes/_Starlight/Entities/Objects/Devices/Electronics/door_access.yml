@@ -17,6 +17,13 @@
     access: [["Robotics"]]
 
 # Freelance
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsFreelance
+  suffix: Freelance, Locked
+  components:
+  - type: AccessReader
+    access: [["Freelance"]]
 
 # Surgery
 - type: entity
@@ -80,6 +87,7 @@
   components:
   - type: AccessReader
     access: [["Security"], ["IAA"], ["Lawyer"]]
+
 
 # Attorney
 - type: entity

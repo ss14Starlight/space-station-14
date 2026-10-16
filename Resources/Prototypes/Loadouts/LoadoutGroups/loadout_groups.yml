@@ -283,7 +283,7 @@
   - HoPSatchel # Starlight
   - HoPDuffel # Starlight
   - HoPBackpackIan
-  - LeatherSatchel # starlight
+  - LeatherSatchel # Starlight
 
 - type: loadoutGroup
   id: HoPOuterClothing
@@ -352,6 +352,7 @@
   - VintageClothes
   - MaidOutfit # Starlight
 
+
 - type: loadoutGroup
   id: AssistantFace
   name: loadout-group-assistant-mask
@@ -367,7 +368,7 @@
   loadouts:
   - AssistantGloves
   - AssistantMittens # Starlight
-  - GreyGloves #starlight
+  - GreyGloves # starlight
 
 - type: loadoutGroup
   id: CommonBackpack
@@ -436,6 +437,7 @@
   - BartenderJumpsuitPurple
   - MaidOutfit # Starlight
 
+
 - type: loadoutGroup
   id: BartenderOuterClothing
   name: loadout-group-bartender-outerclothing
@@ -480,6 +482,7 @@
   - ChefJumpskirt
   - MaidOutfit # Starlight
   - ChefJumpsuitSenior # Starlight
+
 
 - type: loadoutGroup
   id: ChefOuterClothing
@@ -527,6 +530,7 @@
   - LawyerJumpsuitBad
   - LawyerJumpskirtBad # Starlight end
 
+
 - type: loadoutGroup
   id: LawyerNeck
   name: loadout-group-lawyer-neck
@@ -566,6 +570,7 @@
   - ChaplainJumpskirt
   - ChaplainRobesLight
   - ChaplainRobesDark
+
 
 - type: loadoutGroup
   id: ChaplainOuterClothing
@@ -636,6 +641,7 @@
   - JanitorMaidOutfit
   - JanitorMaidOutfitMini
 
+
 - type: loadoutGroup
   id: JanitorGloves
   name: loadout-group-janitor-gloves
@@ -674,6 +680,7 @@
   - BotanistJumpsuit
   - BotanistJumpskirt
   - BotanistOveralls
+
 
 - type: loadoutGroup
   id: BotanistBackpack
@@ -721,6 +728,7 @@
   - ClownSpottedJumpskirt # Starlight
   - JesterSuit
   - JesterAltSuit
+
 
 - type: loadoutGroup
   id: ClownBackpack
@@ -796,6 +804,7 @@
   - MimeJumpsuit
   - MimeJumpskirt
 
+
 - type: loadoutGroup
   id: MimeBackpack
   name: loadout-group-mime-backpack
@@ -848,6 +857,7 @@
   loadouts:
   - MusicianJumpsuit
   - MusicianJumpskirt
+
 
 - type: loadoutGroup
   id: MusicianOuterClothing
@@ -1073,6 +1083,7 @@
   - ChiefEngineerTurtleneck
   - ChiefEngineerTurtleneckSkirt
 
+
 - type: loadoutGroup
   id: ChiefEngineerNeck
   name: loadout-group-chief-engineer-neck
@@ -1138,6 +1149,7 @@
   - SeniorEngineerJumpsuit
   - SeniorEngineerJumpskirt
 
+
 - type: loadoutGroup
   id: StationEngineerBackpack
   name: loadout-group-station-engineer-backpack
@@ -1187,6 +1199,7 @@
   - AtmosphericTechnicianJumpsuit
   - AtmosphericTechnicianJumpskirt
   - AtmosphericTechnicianJumpsuitCasual
+
 
 - type: loadoutGroup
   id: AtmosphericTechnicianOuterClothing
@@ -1319,6 +1332,7 @@
   - SeniorResearcherJumpsuit
   - SeniorResearcherJumpskirt
 
+
 - type: loadoutGroup
   id: ScientistBackpack
   name: loadout-group-scientist-backpack
@@ -1375,6 +1389,13 @@
 #  name: loadout-group-jobtrinkets
 #  minLimit: 0
 #  loadouts:
+
+- type: loadoutGroup
+  id: ResearchAssistantJumpsuit
+  name: loadout-group-research-assistant-jumpsuit
+  loadouts:
+  - WhiteJumpsuit
+  - WhiteJumpskirt
 
 #- type: loadoutGroup
 #  id: ResearchAssistantJobTrinkets
@@ -1451,6 +1472,7 @@
   - WardenJumpskirt
   - ClothingUniformJumpsuitFormalWarden #starlight
   - ClothingUniformJumpskirtFormalWarden #starlight
+
 
 - type: loadoutGroup
   id: WardenOuterClothing

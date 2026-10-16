@@ -7,6 +7,11 @@
     - type: Unremoveable
 
 - type: startingGear
+  id: CCMoproachGear
+  equipment:
+    eyes: CCMoproachGlasses
+
+- type: startingGear
   id: CCMoproachGearHat
   equipment:
     head: ClothingHeadHatCentcomcap
@@ -68,6 +73,14 @@
     - type: NpcFactionMember
       factions:
         - NanoTrasen
+
+- type: entity
+  parent: MobCCMoproach
+  id: MobCCMoproachHat
+  suffix: Jani ERT, hat
+  components:
+    - type: Loadout
+      prototypes: [ CCMoproachGearHat ]
 
 - type: entity
   parent: MoproachCubeWrapped

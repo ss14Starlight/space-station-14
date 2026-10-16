@@ -1,3 +1,5 @@
+cassette-repair-start = You start winding the tape back into {THE($item)}.
+cassette-repair-finish = You manage to wind the tape back into {THE($item)}.
 tape-cassette-position = The cassette is about [color=green]{$position}%[/color] the way through.
 tape-cassette-damaged = The cassette is unspooled, use a pen or screwdriver to repair it.
 tape-recorder-playing = The tape recorder is in [color=green]playback[/color] mode.

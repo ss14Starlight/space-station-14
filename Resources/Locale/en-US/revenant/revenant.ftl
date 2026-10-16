@@ -17,3 +17,7 @@ revenant-soul-begin-harvest = {CAPITALIZE(THE($target))} suddenly rises slightly
 revenant-soul-finish-harvest = {CAPITALIZE(THE($target))} slumps onto the ground!
 
 # UI
+revenant-user-interface-title = Ability Shop
+revenant-user-interface-essence-amount = [color=plum]{$amount}[/color] Stolen Essence
+
+revenant-user-interface-cost = {$price} Essence

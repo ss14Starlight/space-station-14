@@ -1,6 +1,12 @@
 crafting-menu-name-FDB = forged double-barrel shotgun
 crafting-menu-text-FDB = The cousin of the improvised shotgun, this one is made from better quality parts and an additional barrel! Takes time and welding supplies to make, however.
 
+crafting-menu-name-MP = makeshift pistol
+crafting-menu-text-MP = A hastily built pistol, looks horrible and is liable to explode in your face.
+
+crafting-menu-name-IP = improvised pistol
+crafting-menu-text-IP = The next best thing in improvised pistols, comes with an internal magazine of five rounds.
+
 crafting-menu-name-FP = forged pistol
 crafting-menu-text-FP = A reliable, high quality firearm. Takes six-round clipazines, and needs welding supplies to make.
 
@@ -42,6 +48,12 @@ crafting-menu-text-FS = Finally, an SMG that can hit a person! Needs to be welde
 
 crafting-menu-name-ISM = improvised smg magazine
 crafting-menu-text-ISM = The fact this thing works at all is nothing short of a miracle
+
+crafting-menu-name-MRR = makeshift repeater rifle
+crafting-menu-text-MRR = Too big to fit in your pocket, but small enough to fit in your bag. An odd weapon indeed.
+
+crafting-menu-name-IRR = improvised repeater rifle
+crafting-menu-text-IRR = The weird in-between cousin, too big to be stored comfortably, but also not that inaccurate.
 
 crafting-menu-name-FRR = forged repeater rifle
 crafting-menu-text-FRR = The peak of tider engineering. But does need welding supplies to finish.

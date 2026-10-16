@@ -26,6 +26,7 @@ public sealed partial class StoreSystem : SharedStoreSystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private AccessReaderSystem _accessReader = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
 
     public override void Initialize()
     {
