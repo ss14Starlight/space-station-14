@@ -1,3 +1,4 @@
+# From Moff Station, moved here since we're making so many changes to them that it's not really viable to pull from Moff anymore.
 # Shared story objectives
 - type: entity
   parent: BaseStoryObjective
