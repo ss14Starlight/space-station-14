@@ -31,7 +31,7 @@ public sealed partial class StyleThemePrototype : IPrototype
     public bool Stock;
 
     /// <summary>
-    /// Primary accent color, controlling header text. 
+    /// Primary accent color, controlling header text.
     /// If secondaryAccent is not specified, falls back to Accent.
     /// </summary>
     [DataField]
@@ -109,7 +109,7 @@ public sealed partial class StyleThemePrototype : IPrototype
     public Color TextDisabled;
 
     /// <summary>
-    /// Placeholder text color for text inputs. 
+    /// Placeholder text color for text inputs.
     /// If textPlaceholder is not specified, falls back to TextDisabled.
     /// </summary>
     [DataField]
