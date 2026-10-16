@@ -208,6 +208,7 @@
 
 - type: !PartialOnly reagent
   id: PolypyryliumOligomers
+  desc: reagent-desc-polypyrylium-oligomers-sl
   metabolisms:
     Bloodstream:
       effects:
