@@ -477,8 +477,9 @@
       proto: annihilationsmite
     - type: EmitSoundOnSpawn
       sound:
-        path: /Audio/_Starlight/Magic/annihilationrune.ogg
-
+        path: /Audio/_Moffstation/Effects/narsie_construct_drone.ogg
+        params:
+          volume: 30
 
 - type: entity
   id: annihilationsmite
