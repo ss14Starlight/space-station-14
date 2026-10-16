@@ -147,7 +147,7 @@
 - type: entity
   name: molotov cocktail
   description: The right hand of the free tider. Do not drink.
-  parent: [ DrinkBaseMaterialGlass, BaseMajorContraband, BaseItem, SolutionNormal]
+  parent: [ DrinkBaseMaterialGlass, BaseMajorContraband, BaseItem]
   id: Molotov
   components:
   - type: Appearance
@@ -202,9 +202,10 @@
         acts: [ "Destruction" ]
   - type: Solution
     solution:
+      maxVol: 240
       reagents:
       - ReagentId: WeldingFuel
-        Quantity: 120
+        Quantity: 240 #to make the craft worth it instead of just chucking a whiskey bottle, happens only after activation so shouldnt be dupable
   - type: Spillable
     solution: solution
   - type: TriggerOnUse
@@ -272,6 +273,9 @@
   - type: Construction
     graph: MolotovGraph
     node: empty
+  - type: Tag
+    tags:
+    - HandGrenade #remove bottle tag to not be usable in the first step again
 
 - type: entity
   parent: MolotovBottleEmpty
