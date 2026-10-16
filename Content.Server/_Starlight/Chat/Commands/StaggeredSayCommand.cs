@@ -10,9 +10,11 @@ namespace Content.Server._Starlight.Chat.Commands;
 
 /// <summary>
 /// Variant of say command, but enforces a cooldown before it can be executed again by the executing player.
-/// Created mostly to curb people being incapable of using their eyeballs to read and spamming the cmdlink that I have
-/// in my aghost's description as a bit.
 /// </summary>
+/// <remarks>
+/// /// Created mostly to curb people being incapable of using their eyeballs to read and spamming the cmdlink that I have
+/// in my (neomoth) aghost's description as a bit.
+/// </remarks>
 [AnyCommand]
 internal sealed partial class StaggeredSayCommand : SayCommand
 {
