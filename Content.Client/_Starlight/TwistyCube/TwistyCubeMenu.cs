@@ -117,6 +117,7 @@ public sealed class TwistyCubeMenu : DefaultWindow
         grid.AddChild(buttonGrid);
 
         grid.AddChild(_control = new TwistyCubeControl());
+        _control.OnAction += action => OnAction?.Invoke(action);
 
         var scrambleButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-scramble") };
         scrambleButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.Scramble);
