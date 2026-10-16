@@ -58,9 +58,15 @@ public sealed class FlatHudSheetlet : Sheetlet<NanotrasenStylesheet>
                 .Prop(LineEdit.StylePropertyStyleBox, FlatBox.Bordered(proto.Surface, proto.Border)
                     .WithContentMargin(StyleBox.Margin.Horizontal, 6)
                     .WithContentMargin(StyleBox.Margin.Vertical, 3)),
-            E<ContainerButton>().Class(ChatInputBox.StyleClassChatFilterOptionButton).Box(chatButtonBox),
-            E<ContainerButton>().Class(ChannelSelectorItemButton.StyleClassChatSelectorOptionButton).Box(chatButtonBox),
         };
+
+        if (!theme.Proto.ClassicDecor)
+        {
+            rules.AddRange([
+                E<ContainerButton>().Class(ChatInputBox.StyleClassChatFilterOptionButton).Box(chatButtonBox),
+                E<ContainerButton>().Class(ChannelSelectorItemButton.StyleClassChatSelectorOptionButton).Box(chatButtonBox),
+            ]);
+        }
 
         IconColors<MenuButton>(rules, theme);
         IconColors<ChannelFilterButton>(rules, theme);
