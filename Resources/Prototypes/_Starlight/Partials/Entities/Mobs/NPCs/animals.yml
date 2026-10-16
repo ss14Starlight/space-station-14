@@ -45,3 +45,11 @@
     east: 0.2,-0.13
     west: -0.2,-0.13
   - type: CosmicCultConvertible
+
+- type: !PartialOnly entity
+  id: MobCatSpace
+  components:
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - VimPilot
