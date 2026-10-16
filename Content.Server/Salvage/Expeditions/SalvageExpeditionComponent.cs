@@ -35,11 +35,15 @@ public sealed partial class SalvageExpeditionComponent : SharedSalvageExpedition
 
     [ViewVariables] public bool Completed = false;
 
+    #region Starlight
+
     /// <summary>
     /// Whether expedition generation failed before becoming playable.
     /// </summary>
     [ViewVariables]
     public bool GenerationFailed;
+
+    #endregion
 
 
     /// <summary>
