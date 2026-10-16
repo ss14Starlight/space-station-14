@@ -1,11 +1,4 @@
 Entries:
-- author: Teddiousbear
-  changes:
-  - message: Centcomm Berets/Caps description punctuation.
-    type: Fix
-  id: 409070
-  time: '2026-10-02T13:39:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6434
 - author: Vincolan
   changes:
   - message: Added 3 new announcement sounds.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409469
   time: '2026-10-16T09:54:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6534
+- author: Tjmaxmillion
+  changes:
+  - message: Permit SOP and paperwork has been changed to work with the new contraband system.
+    type: Tweak
+  id: 409470
+  time: '2026-10-16T09:54:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6675
 Order: -1
