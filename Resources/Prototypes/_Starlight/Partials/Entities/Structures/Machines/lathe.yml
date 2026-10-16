@@ -161,7 +161,7 @@
     - StarlightSecurityGrenadesEmag
   - type: StealTarget
     stealGroup: SecureTechFabCircuitboard
-  - !Remove type: LatheAnnouncing # Stralight reverted this pr
+  - !Remove type: LatheAnnouncing # Starlight reverted this pr
 
 - type: !PartialOnly entity
   id: AmmoTechFab
@@ -201,7 +201,7 @@
     - SecurityImplants
   - type: StealTarget
     stealGroup: DepartmentalTechFabCircuitboard
-  - !Remove type: LatheAnnouncing  # Stralight reverted this pr
+  - !Remove type: LatheAnnouncing  # Starlight reverted this pr
 
 - type: !PartialOnly entity
   id: UniformPrinter
@@ -253,4 +253,3 @@
          enum.ToggleableVisuals.Layer:
           True: { visible: true }
           False: { visible: false }
-
