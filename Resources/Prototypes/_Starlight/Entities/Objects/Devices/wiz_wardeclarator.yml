@@ -27,6 +27,7 @@
         - state: sealofwardrained
     - type: AnnounceOnSpawn
       message: wizard-war
+      globalAnnounce: true
       ignoreASpace: true
       sound:
        path: /Audio/Announcements/attention.ogg
