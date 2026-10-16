@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Oasis) Added a supply bot to gen pop island.
-    type: Add
-  id: 409064
-  time: '2026-10-01T12:44:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6411
-- author: Cvlancer
-  changes:
   - message: (Oasis) Fixed roboticist having two holopads.
     type: Fix
   id: 409065
@@ -2883,4 +2876,11 @@ Entries:
   id: 409463
   time: '2026-10-15T07:03:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6684
+- author: Hot Mic
+  changes:
+  - message: 'New Station: NT-18 Flotilla Station. (Only manual map loading for Testing and Feedback).'
+    type: Add
+  id: 409464
+  time: '2026-10-16T09:12:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5952
 Order: -1
