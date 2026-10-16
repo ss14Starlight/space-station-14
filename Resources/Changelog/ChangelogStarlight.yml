@@ -1,11 +1,4 @@
 Entries:
-- author: Sparlight
-  changes:
-  - message: The 'Jump' keybind in the Controls settings now has a proper locale string.
-    type: Fix
-  id: 409083
-  time: '2026-10-02T19:16:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6382
 - author: Kasvra
   changes:
   - message: Updates Corporate Law's Guidebook entry.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409482
   time: '2026-10-16T09:54:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6646
+- author: qbrx
+  changes:
+  - message: The freedom implant now also frees you from bolas.
+    type: Tweak
+  id: 409483
+  time: '2026-10-16T10:34:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6690
 Order: -1
