@@ -1,6 +1,8 @@
 using Content.Client.Stylesheets;
+using Content.Client._Starlight.Pinpointer;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Input;
+using Content.Shared.Item;
 using Content.Shared.Pinpointer;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
@@ -33,7 +35,25 @@ public partial class NavMapControl : MapGridControl
     private readonly SharedNavMapSystem _navMapSystem;
 
     public EntityUid? Owner;
-    public EntityUid? MapUid;
+
+    #region Starlight
+    public EntityUid? MapUid
+    {
+        get;
+        set
+        {
+            if (value is { } targetGrid &&
+                Owner is { } owner &&
+                EntManager.HasComponent<ItemComponent>(owner) &&
+                !HandheldMapUtility.CanDisplayTargetMap(EntManager, owner, targetGrid, field)) // Starlight
+            {
+                value = null;
+            }
+
+            field = value;
+        }
+    }
+    #endregion
 
     protected override bool Draggable => true;
 
@@ -177,11 +197,20 @@ public partial class NavMapControl : MapGridControl
 
     public void ForceNavMapUpdate()
     {
+        // Starlight - start
+        if (Owner is { } owner)
+        {
+            MapUid = EntManager.TryGetComponent<TransformComponent>(owner, out var ownerXform)
+                ? ownerXform.GridUid
+                : null;
+        }
+
         EntManager.TryGetComponent(MapUid, out _navMap);
         EntManager.TryGetComponent(MapUid, out _grid);
         EntManager.TryGetComponent(MapUid, out _xform);
         EntManager.TryGetComponent(MapUid, out _physics);
         EntManager.TryGetComponent(MapUid, out _fixtures);
+        // Starlight - end
 
         UpdateNavMap();
     }
@@ -480,7 +509,9 @@ public partial class NavMapControl : MapGridControl
         {
             _updateTimer -= UpdateTime;
 
-            UpdateNavMap();
+            // Starlight - start
+            ForceNavMapUpdate();
+            // Starlight - end
         }
     }
 

@@ -25,6 +25,7 @@ public sealed partial class ShuttleConsoleWindow : PopOutFancyWindow, // Starlig
 
     public event Action<MapCoordinates, Angle>? RequestFTL;
     public event Action<NetEntity, Angle>? RequestBeaconFTL;
+    public event Action? SurfaceReturnRequested; // Starlight
 
     public event Action<NetEntity, NetEntity>? DockRequest;
     public event Action<NetEntity>? UndockRequest;
@@ -89,6 +90,13 @@ public sealed partial class ShuttleConsoleWindow : PopOutFancyWindow, // Starlig
         {
             DockContainer.Visible = false;
         }
+
+        // Starlight - start
+        if (mode != ShuttleConsoleMode.Surface)
+        {
+            _surfaceScreen.Visible = false;
+        }
+        // Starlight - end
     }
 
     private void NavPressed(BaseButton.ButtonEventArgs obj)
@@ -120,6 +128,11 @@ public sealed partial class ShuttleConsoleWindow : PopOutFancyWindow, // Starlig
             case ShuttleConsoleMode.Dock:
                 DockContainer.Visible = true;
                 break;
+            // Starlight - start
+            case ShuttleConsoleMode.Surface:
+                _surfaceScreen.Visible = true;
+                break;
+            // Starlight - end
             default:
                 throw new NotImplementedException();
         }
@@ -140,7 +153,10 @@ public sealed partial class ShuttleConsoleWindow : PopOutFancyWindow, // Starlig
         Nav,
         Map,
         Dock,
+        Surface, // Starlight
     }
+
+    partial void UpdateSurfaceState(EntityCoordinates? coordinates, ShuttleBoundUserInterfaceState cState); // Starlight
 
     public void UpdateState(EntityUid owner, ShuttleBoundUserInterfaceState cState)
     {
@@ -153,5 +169,6 @@ public sealed partial class ShuttleConsoleWindow : PopOutFancyWindow, // Starlig
         NavContainer.UpdateState(cState.NavState, cState.DockingPortStates); // Starlight: +dockingPortStates
         MapContainer.UpdateState(cState.MapState);
         DockContainer.UpdateState(coordinates?.EntityId, cState.DockingPortStates); // Starlight: +dockingPortStates
+        UpdateSurfaceState(coordinates, cState); // Starlight
     }
 }

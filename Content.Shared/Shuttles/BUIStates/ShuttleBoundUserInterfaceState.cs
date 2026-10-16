@@ -1,5 +1,4 @@
 using Content.Shared._Starlight.Shuttles.BUIStates;
-using Content.Shared.Shuttles.UI.MapObjects;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Shuttles.BUIStates;
@@ -11,12 +10,18 @@ public sealed class ShuttleBoundUserInterfaceState : BoundUserInterfaceState
     public ShuttleMapInterfaceState MapState;
     public DockingInterfaceState DockState;
     public DockingPortStates DockingPortStates; // Starlight
+    public bool SurfaceMode; // Starlight
+    public NetEntity? SurfaceMapGrid; // Starlight
 
-    public ShuttleBoundUserInterfaceState(NavInterfaceState navState, ShuttleMapInterfaceState mapState, DockingInterfaceState dockState, DockingPortStates dockingPortStates) // Starlight: +dockingPortStates
+    public ShuttleBoundUserInterfaceState(NavInterfaceState navState, ShuttleMapInterfaceState mapState, DockingInterfaceState dockState, DockingPortStates dockingPortStates, bool surfaceMode, NetEntity? surfaceMapGrid) // Starlight: +dockingPortStates +surfaceMode +surfaceMapGrid
     {
         NavState = navState;
         MapState = mapState;
         DockState = dockState;
-        DockingPortStates = dockingPortStates; // Starlight
+        // Starlight - start
+        DockingPortStates = dockingPortStates;
+        SurfaceMode = surfaceMode;
+        SurfaceMapGrid = surfaceMapGrid;
+        // Starlight - end
     }
 }
