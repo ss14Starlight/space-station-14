@@ -1053,7 +1053,7 @@
       appearanceDataInit:
         enum.PdaVisuals.PdaType:
           !type:String
-          pda-salvagemedic
+          pda-veteransalvagemedic
     - type: PdaBorderColor
       borderColor: "#af9366"
       accentHColor: "#edddc4"
