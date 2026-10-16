@@ -1,5 +1,8 @@
+using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared.Examine;
+using Content.Shared.Random.Helpers;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.TwistyCube;
 
@@ -10,6 +13,7 @@ public sealed partial class TwistyCubeSystem: EntitySystem
     [Dependency] private SharedUserInterfaceSystem _uiSystem = null!;
     [Dependency] private SharedAppearanceSystem _appearance = null!;
     [Dependency] private IRobustRandom _random = null!;
+    [Dependency] private IGameTiming _timing = null!;
 
     [SubscribeLocalEvent]
     private void OnExamined(Entity<TwistyCubeComponent> ent, ref ExaminedEvent args)
@@ -39,16 +43,17 @@ public sealed partial class TwistyCubeSystem: EntitySystem
         var comp = ent.Comp;
         if (action == TwistyCubeAction.Scramble)
         {
+            var netId = GetNetEntity(ent).Id;
             for (var i = 0; i < ScrambleMoves; i++)
-                comp.State.ApplyAction((TwistyCubeAction) _random.Next(
+                comp.State.ApplyAction((TwistyCubeAction) _random.NextPredictedRange(
+                    _timing,
                     (int) TwistyCubeAction.FrontClockwise,
-                    (int) TwistyCubeAction.Scramble
+                    (int) TwistyCubeAction.Scramble,
+                    SharedRandomExtensions.HashCodeCombine(netId, i)
                 ));
         }
         else
-        {
             comp.State.ApplyAction(action);
-        }
 
         Dirty(ent, comp);
         if (TryComp<AppearanceComponent>(ent, out var appearance))
