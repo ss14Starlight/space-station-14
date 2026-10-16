@@ -1,39 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: New sounds for cycling pump-action shotguns, used by the Kammerer and Combat Shotgun.
-    type: Add
-  id: 409112
-  time: '2026-10-03T20:35:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6467
-- author: Caws
-  changes:
-  - message: New 'heavy' shotgun gunshots, used by the Combat Shotgun, 'Sentiel' (Enforcer), and Bulldog.
-    type: Add
-  id: 409113
-  time: '2026-10-03T20:35:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6467
-- author: Caws
-  changes:
-  - message: The ZOZ-106 uses the bolt-action cocking sounds.
-    type: Tweak
-  id: 409114
-  time: '2026-10-03T20:35:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6467
-- author: Caws
-  changes:
-  - message: The 'Sentiel' (Enforcer) and Hushpup now use the rifle cocking sound.
-    type: Tweak
-  id: 409115
-  time: '2026-10-03T20:35:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6467
-- author: Rinary
-  changes:
-  - message: Removed "predicted" movement, until it's will be fixed, since it causes lags and we can't fix it fast.
-    type: Remove
-  id: 409116
-  time: '2026-10-04T08:23:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6482
 - author: wonderfulnewworld
   changes:
   - message: Language font works again.
@@ -2883,4 +2848,39 @@ Entries:
   id: 409511
   time: '2026-10-16T10:34:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Sparlight
+  changes:
+  - message: Fixed animals going to cryostorage not showing their job, if any.
+    type: Fix
+  id: 409512
+  time: '2026-10-16T11:06:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6692
+- author: Sparlight
+  changes:
+  - message: Fixed K9s with tracking implanters not showing their job when critting.
+    type: Fix
+  id: 409513
+  time: '2026-10-16T11:06:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6692
+- author: Sparlight
+  changes:
+  - message: Fixed animals that belong on crew manifest not showing on the manifest.
+    type: Fix
+  id: 409514
+  time: '2026-10-16T11:06:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6692
+- author: Sparlight
+  changes:
+  - message: Fixed animals going to cryostorage not showing their job, if any.
+    type: Fix
+  id: 409515
+  time: '2026-10-16T11:06:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6692
+- author: Sparlight
+  changes:
+  - message: Fixed round-end screen and ghost name for K9s being wrong; they should now show the K9 name.
+    type: Fix
+  id: 409516
+  time: '2026-10-16T11:06:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6692
 Order: -1
