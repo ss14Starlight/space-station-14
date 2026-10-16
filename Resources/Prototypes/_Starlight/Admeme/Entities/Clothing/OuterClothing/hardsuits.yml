@@ -33,7 +33,6 @@
     - type: PressureProtection
       highPressureMultiplier: 0.02
       lowPressureMultiplier: 1000
-      # teh.saint update end
         
 
 - type: entity
