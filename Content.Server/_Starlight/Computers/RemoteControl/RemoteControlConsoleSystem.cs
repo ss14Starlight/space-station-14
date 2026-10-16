@@ -154,11 +154,14 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
     private void QueueRemoteBorgActivation(EntityUid chassis)
     {
-        foreach (var console in EntityQuery<RemoteControlConsoleComponent>())
+        var query = EntityQueryEnumerator<RemoteControlConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out var console))
+        {
             if (console.Controller is not null
-                && _sharedRemoteControl.TryGetRemoteEntity((console.Owner, console), out var remoteEntity)
+                && _sharedRemoteControl.TryGetRemoteEntity((consoleUid, console), out var remoteEntity)
                 && remoteEntity == chassis)
-                _pendingRemoteBorgActivations.Add((console.Owner, chassis));
+                _pendingRemoteBorgActivations.Add((consoleUid, chassis));
+        }
     }
 
     private void RemovePendingRemoteBorgActivations(EntityUid chassis)
@@ -344,14 +347,15 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
     private void RefreshRemoteConsoleStates(EntityUid remoteEntity)
     {
-        foreach (var console in EntityQuery<RemoteControlConsoleComponent>())
+        var query = EntityQueryEnumerator<RemoteControlConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out var console))
         {
             if ((console.Users.Count == 0 && console.Controller is null)
-                || !_sharedRemoteControl.TryGetRemoteEntity((console.Owner, console), out var connectedEntity)
+                || !_sharedRemoteControl.TryGetRemoteEntity((consoleUid, console), out var connectedEntity)
                 || connectedEntity != remoteEntity)
                 continue;
 
-            RefreshRemoteState(console.Owner, console, remoteEntity);
+            RefreshRemoteState(consoleUid, console, remoteEntity);
         }
     }
 
@@ -530,15 +534,16 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnRemoteEntityPlayerAttached(PlayerAttachedEvent args)
     {
-        foreach (var console in EntityQuery<RemoteControlConsoleComponent>())
+        var query = EntityQueryEnumerator<RemoteControlConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out var console))
         {
             if (console.Controller is not { } controller
-                || !_sharedRemoteControl.TryGetRemoteEntity((console.Owner, console), out var remoteEntity)
+                || !_sharedRemoteControl.TryGetRemoteEntity((consoleUid, console), out var remoteEntity)
                 || remoteEntity != args.Entity)
                 continue;
 
-            _popup.PopupEntity(Loc.GetString("remote-control-control-taken-over"), console.Owner, controller);
-            SetController(console.Owner, console, null, remoteEntity);
+            _popup.PopupEntity(Loc.GetString("remote-control-control-taken-over"), consoleUid, controller);
+            SetController(consoleUid, console, null, remoteEntity);
         }
     }
 
@@ -572,7 +577,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private void OnRemoteTargetAction(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlTargetActionMessage args)
     {
-        if (!TryGetControlledEntity(component, args.Actor, out var remoteEntity))
+        if (!TryGetControlledEntity((uid, component), args.Actor, out var remoteEntity))
             return;
 
         var action = GetEntity(args.Action);
@@ -587,7 +592,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private void OnRemoteInteraction(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlInteractionMessage args)
     {
-        if (!TryGetControlledEntity(component, args.Actor, out var remoteEntity))
+        if (!TryGetControlledEntity((uid, component), args.Actor, out var remoteEntity))
             return;
 
         var target = args.Target is { } targetNet ? GetEntity(targetNet) : (EntityUid?)null;
@@ -696,7 +701,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private async void OnRemoteBuildConstruction(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlBuildConstructionMessage args)
     {
-        if (!TryGetControlledEntity(component, args.Actor, out var remoteEntity)
+        if (!TryGetControlledEntity((uid, component), args.Actor, out var remoteEntity)
             || !_playerManager.TryGetSessionByEntity(args.Actor, out var session))
             return;
 
@@ -710,7 +715,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private async void OnRemoteBuildItemConstruction(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlBuildItemConstructionMessage args)
     {
-        if (!TryGetControlledEntity(component, args.Actor, out var remoteEntity))
+        if (!TryGetControlledEntity((uid, component), args.Actor, out var remoteEntity))
             return;
 
         if (await EntityManager.System<ConstructionSystem>().TryStartItemConstruction(args.PrototypeName, remoteEntity))
@@ -722,7 +727,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
     private void OnRemoteHand(EntityUid uid, RemoteControlConsoleComponent component, RemoteControlHandMessage args)
     {
-        if (!TryGetControlledEntity(component, args.Actor, out var remoteEntity))
+        if (!TryGetControlledEntity((uid, component), args.Actor, out var remoteEntity))
             return;
 
         switch (args.Action)
@@ -762,7 +767,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private void OnRemoteInventory(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlInventoryMessage args)
     {
-        if (!TryGetControlledEntity(component, args.Actor, out var remoteEntity)
+        if (!TryGetControlledEntity((uid, component), args.Actor, out var remoteEntity)
             || !TryComp<InventoryComponent>(remoteEntity, out var inventory))
             return;
 
@@ -818,12 +823,12 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 checkDoafter: true, triggerHandContact: true);
     }
 
-    private bool TryGetControlledEntity(RemoteControlConsoleComponent component, EntityUid actor,
+    private bool TryGetControlledEntity(Entity<RemoteControlConsoleComponent> console, EntityUid actor,
         out EntityUid remoteEntity)
     {
         remoteEntity = default;
-        return component.Controller == actor
-                && _sharedRemoteControl.TryGetRemoteEntity((component.Owner, component), out remoteEntity);
+        return console.Comp.Controller == actor
+                && _sharedRemoteControl.TryGetRemoteEntity(console.AsNullable(), out remoteEntity);
     }
 
     public bool TryGetControlledEntity(EntityUid actor, out EntityUid remoteEntity)
@@ -961,14 +966,15 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private bool TryFindConsole(EntityUid remoteEntity, out Entity<RemoteControlConsoleComponent> console,
         out EntityUid controller)
     {
-        foreach (var candidate in EntityQuery<RemoteControlConsoleComponent>())
+        var query = EntityQueryEnumerator<RemoteControlConsoleComponent>();
+        while (query.MoveNext(out var candidateUid, out var candidate))
         {
-            if (!_sharedRemoteControl.TryGetRemoteEntity((candidate.Owner, candidate), out var candidateRemote)
+            if (!_sharedRemoteControl.TryGetRemoteEntity((candidateUid, candidate), out var candidateRemote)
                 || candidateRemote != remoteEntity
                 || candidate.Controller is not { } activeController)
                 continue;
 
-            console = (candidate.Owner, candidate);
+            console = (candidateUid, candidate);
             controller = activeController;
             return true;
         }
@@ -1060,7 +1066,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (args.NewStatus != SessionStatus.Disconnected)
             return;
 
-        foreach (var console in EntityQuery<RemoteControlConsoleComponent>())
+        var query = EntityQueryEnumerator<RemoteControlConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out var console))
         {
             EntityUid? disconnectedUser = null;
             foreach (var user in console.Users)
@@ -1068,10 +1075,10 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 if (!_playerManager.TryGetSessionByEntity(user, out var session) || session != args.Session)
                     continue;
 
-                if (_sharedRemoteControl.TryGetRemoteEntity((console.Owner, console), out var remoteEntity))
+                if (_sharedRemoteControl.TryGetRemoteEntity((consoleUid, console), out var remoteEntity))
                 {
                     if (console.Controller == user)
-                        SetController(console.Owner, console, null, remoteEntity);
+                        SetController(consoleUid, console, null, remoteEntity);
 
                     RemoveRemotePvsOverrides(remoteEntity, user, session);
                     _viewSubscriber.RemoveViewSubscriber(remoteEntity, session);
@@ -1119,14 +1126,15 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         _pendingBorgRefreshes.Clear();
 
-        foreach (var console in EntityQuery<RemoteControlConsoleComponent>())
+        var query = EntityQueryEnumerator<RemoteControlConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out var console))
         {
             if (console.Controller is not { } controller
                 || _actionBlocker.CanConsciouslyPerformAction(controller)
-                || !_sharedRemoteControl.TryGetRemoteEntity((console.Owner, console), out var remoteEntity))
+                || !_sharedRemoteControl.TryGetRemoteEntity((consoleUid, console), out var remoteEntity))
                 continue;
 
-            SetController(console.Owner, console, null, remoteEntity);
+            SetController(consoleUid, console, null, remoteEntity);
         }
 
         UpdatePendingRemoteBorgActivations();
@@ -1134,13 +1142,14 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
     private void ReleaseControlIfInvalid(EntityUid user)
     {
-        foreach (var console in EntityQuery<RemoteControlConsoleComponent>())
+        var query = EntityQueryEnumerator<RemoteControlConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out var console))
         {
             if (console.Controller != user
-                || !_sharedRemoteControl.TryGetRemoteEntity((console.Owner, console), out var remoteEntity))
+                || !_sharedRemoteControl.TryGetRemoteEntity((consoleUid, console), out var remoteEntity))
                 continue;
 
-            SetController(console.Owner, console, null, remoteEntity);
+            SetController(consoleUid, console, null, remoteEntity);
         }
     }
 
@@ -1637,11 +1646,12 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (controller is not { } controllerEntity)
             return;
 
-        foreach (var console in EntityQuery<RemoteControlConsoleComponent>())
+        var query = EntityQueryEnumerator<RemoteControlConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out var console))
         {
             if (!console.EnableRemoteView
                 || console.Controller != controllerEntity
-                || !_sharedRemoteControl.TryGetRemoteEntity((console.Owner, console), out var remoteEntity)
+                || !_sharedRemoteControl.TryGetRemoteEntity((consoleUid, console), out var remoteEntity)
                 || TerminatingOrDeleted(remoteEntity))
                 continue;
 
@@ -1664,10 +1674,11 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         var sourceXform = Transform(ev.Source);
 
-        foreach (var console in EntityQuery<RemoteControlConsoleComponent>())
+        var query = EntityQueryEnumerator<RemoteControlConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out var console))
         {
             if (!console.EnableRemoteView
-                || !_sharedRemoteControl.TryGetRemoteEntity((console.Owner, console), out var remoteEntity)
+                || !_sharedRemoteControl.TryGetRemoteEntity((consoleUid, console), out var remoteEntity)
                 || TerminatingOrDeleted(remoteEntity))
                 continue;
 

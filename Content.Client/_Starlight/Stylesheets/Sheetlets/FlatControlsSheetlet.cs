@@ -28,7 +28,7 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
         var proto = theme.Proto;
         ISliderConfig sliderCfg = sheet;
 
-        var lineEditBox = FlatBox.Bordered(proto.Background, proto.Border)
+        var lineEditBox = FlatBox.Bordered(proto.Background, proto.Border, proto.SecondaryBorderThickness)
             .WithContentMargin(StyleBox.Margin.Vertical, 3)
             .WithContentMargin(StyleBox.Margin.Horizontal, 5);
 
@@ -39,7 +39,8 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
             .WithContentMargin(StyleBox.Margin.Horizontal, 8)
             .WithContentMargin(StyleBox.Margin.Vertical, 3);
 
-        var tooltipBox = FlatBox.Bordered(proto.Surface.WithAlpha(0.96f), proto.Border, proto.BorderThickness)
+        var tooltipSurface = proto.SurfaceInspect ?? proto.Surface;
+        var tooltipBox = FlatBox.Bordered(tooltipSurface.WithAlpha(0.96f), proto.Border, proto.BorderThickness)
             .WithContentMargin(StyleBox.Margin.Vertical, 2)
             .WithContentMargin(StyleBox.Margin.Horizontal, 7);
 
@@ -48,7 +49,7 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
 
         var sliderFillTex = sheet.GetTextureOr(sliderCfg.SliderFillPath, NanotrasenStylesheet.TextureRoot);
         var sliderBack = SliderBox(sliderFillTex, proto.Background);
-        var sliderFill = SliderBox(sliderFillTex, theme.Accent);
+        var sliderFill = SliderBox(sliderFillTex, theme.SecondaryAccent);
         var sliderFore = SliderBox(sheet.GetTextureOr(sliderCfg.SliderOutlinePath, NanotrasenStylesheet.TextureRoot),
             proto.Border);
         var sliderGrab = SliderBox(sheet.GetTextureOr(sliderCfg.SliderGrabber, NanotrasenStylesheet.TextureRoot),
@@ -59,7 +60,6 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
             E<Label>().FontColor(proto.Text),
             E<Label>().Class(StyleClass.LabelSubText).FontColor(proto.TextMuted),
             E<Label>().Class(StyleClass.LabelWeak).FontColor(proto.TextMuted),
-            E<RichTextLabel>().FontColor(proto.Text),
 
             E<TextureRect>()
                 .Class(CheckBox.StyleClassCheckBox)
@@ -74,11 +74,11 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
             E<LineEdit>().Prop(LineEdit.StylePropertyStyleBox, lineEditBox),
             E<LineEdit>().Prop("font-color", proto.Text),
             E<LineEdit>().Class(LineEdit.StyleClassLineEditNotEditable).Prop("font-color", proto.TextMuted),
-            E<LineEdit>().Pseudo(LineEdit.StylePseudoClassPlaceholder).Prop("font-color", proto.TextDisabled),
-            E<TextEdit>().Pseudo(TextEdit.StylePseudoClassPlaceholder).Prop("font-color", proto.TextDisabled),
+            E<LineEdit>().Pseudo(LineEdit.StylePseudoClassPlaceholder).Prop("font-color", proto.TextPlaceholder ?? proto.TextDisabled),
+            E<TextEdit>().Pseudo(TextEdit.StylePseudoClassPlaceholder).Prop("font-color", proto.TextPlaceholder ?? proto.TextDisabled),
 
             E<TabContainer>()
-                .Prop(TabContainer.StylePropertyPanelStyleBox, FlatBox.Bordered(proto.Surface, proto.Border))
+                .Prop(TabContainer.StylePropertyPanelStyleBox, FlatBox.Bordered(proto.Surface, proto.Border, proto.SecondaryBorderThickness))
                 .Prop(TabContainer.StylePropertyTabStyleBox, tabActive)
                 .Prop(TabContainer.StylePropertyTabStyleBoxInactive, tabInactive)
                 .Prop(TabContainer.stylePropertyTabFontColor, proto.Text)
@@ -90,7 +90,7 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
 
             E<PanelContainer>()
                 .Class(StarlightStyleClass.InsetPanel)
-                .Panel(FlatBox.Bordered(proto.Surface, proto.Border)),
+                .Panel(FlatBox.Bordered(proto.Surface, proto.Border, proto.SecondaryBorderThickness)),
 
             E<StripeBack>().Prop(StripeBack.StylePropertyBackground, FlatBox.Fill(proto.Surface)),
 
