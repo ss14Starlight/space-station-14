@@ -480,7 +480,7 @@
   conditions:
   - !type:ListingLimitedStockCondition
      stock: 1
-  - !type:BuyerAccessCondition  
+  - !type:BuyerAccessCondition
 
 #Surplus
 - type: listing
