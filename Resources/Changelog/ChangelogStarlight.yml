@@ -1,88 +1,4 @@
 Entries:
-- author: Vincolan
-  changes:
-  - message: Added 3 new announcement sounds.
-    type: Add
-  id: 409071
-  time: '2026-10-02T17:46:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6438
-- author: Caws
-  changes:
-  - message: The amount of fire stacks incendiary rounds apply is now configurable per-projectile.
-    type: Tweak
-  id: 409072
-  time: '2026-10-02T18:16:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6440
-- author: Caws
-  changes:
-  - message: Incendiary ammo now applies 0.25 fire stacks per projectile instead of 0.35538095 fire stacks.
-    type: Tweak
-  id: 409073
-  time: '2026-10-02T18:16:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6440
-- author: Caws
-  changes:
-  - message: 12 gauge incendiary ammo now applies 1.5 fire stacks if all 12 projectiles hit instead of 4.2645714 fire stacks.
-    type: Tweak
-  id: 409074
-  time: '2026-10-02T18:16:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6440
-- author: Drakobird
-  changes:
-  - message: Explosions not working inside walls.
-    type: Fix
-  id: 409075
-  time: '2026-10-02T18:56:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6437
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: PDA lights once again no longer disable shadekin night vision; this was changed as a result of recent shadekin lighting system optimizations.
-    type: Fix
-  id: 409076
-  time: '2026-10-02T18:56:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6436
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Uranium and bananium ore chunks no longer disable shadekin night vision..
-    type: Tweak
-  id: 409077
-  time: '2026-10-02T18:56:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6436
-- author: CrazyPhantom
-  changes:
-  - message: Fixed decals sometimes being stolen when a grid split.
-    type: Fix
-  id: 409078
-  time: '2026-10-02T18:56:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6425
-- author: Sparlight
-  changes:
-  - message: Pacifists will be able to 'struggle' out of a K9's latch using a new minigame.
-    type: Add
-  id: 409079
-  time: '2026-10-02T19:16:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6382
-- author: Sparlight
-  changes:
-  - message: Removed K9 latch hand-blocking.  You can now use both hands while latched.
-    type: Remove
-  id: 409080
-  time: '2026-10-02T19:16:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6382
-- author: Sparlight
-  changes:
-  - message: Specific mobs (colossus and space dragon) now only slow when latched.
-    type: Tweak
-  id: 409081
-  time: '2026-10-02T19:16:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6382
-- author: Sparlight
-  changes:
-  - message: K9s latched onto floating creatures (carp, space dragons, colossi and similar) become weightless for the duration of the latch.
-    type: Tweak
-  id: 409082
-  time: '2026-10-02T19:16:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6382
 - author: Sparlight
   changes:
   - message: The 'Jump' keybind in the Controls settings now has a proper locale string.
@@ -2883,4 +2799,88 @@ Entries:
   id: 409470
   time: '2026-10-16T09:54:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6675
+- author: Darius
+  changes:
+  - message: (Prism) added vox dorm.
+    type: Add
+  id: 409471
+  time: '2026-10-16T09:54:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6646
+- author: Darius
+  changes:
+  - message: (Prism) added donk-on-the-go and i scream machines.
+    type: Add
+  id: 409472
+  time: '2026-10-16T09:54:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6646
+- author: Darius
+  changes:
+  - message: (Prism) added ice cream machine to kitchen.
+    type: Add
+  id: 409473
+  time: '2026-10-16T09:54:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6646
+- author: Darius
+  changes:
+  - message: (Prism) added more escape pods and external airlocks.
+    type: Add
+  id: 409474
+  time: '2026-10-16T09:54:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6646
+- author: Darius
+  changes:
+  - message: (Prism) added nuclear reactor crate to containment area.
+    type: Add
+  id: 409475
+  time: '2026-10-16T09:54:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6646
+- author: Darius
+  changes:
+  - message: (Prism) added firelocks to the maints windows of the artifact chambers.
+    type: Add
+  id: 409476
+  time: '2026-10-16T09:54:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6646
+- author: Darius
+  changes:
+  - message: (Prism) added washing machines to the bathroom, bridge and security breakroom.
+    type: Add
+  id: 409477
+  time: '2026-10-16T09:54:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6646
+- author: Darius
+  changes:
+  - message: (Prism) added IAA & Magistrate Offices.
+    type: Add
+  id: 409478
+  time: '2026-10-16T09:54:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6646
+- author: Darius
+  changes:
+  - message: (Prism) added some more goodies to the theatre.
+    type: Add
+  id: 409479
+  time: '2026-10-16T09:54:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6646
+- author: Darius
+  changes:
+  - message: (Prism) added more radios around the station.
+    type: Add
+  id: 409480
+  time: '2026-10-16T09:54:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6646
+- author: Darius
+  changes:
+  - message: (Prism) added ship silhouettes to the parallax, passing by against the backdrop in the far distance.
+    type: Add
+  id: 409481
+  time: '2026-10-16T09:54:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6646
+- author: Darius
+  changes:
+  - message: (Prism) removed salvage.
+    type: Remove
+  id: 409482
+  time: '2026-10-16T09:54:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6646
 Order: -1
