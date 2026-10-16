@@ -1,13 +1,11 @@
 using Content.Server._Moffstation.Objectives.Components;
 using Content.Shared.Objectives.Components;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server._Moffstation.Objectives.Systems;
 
-public sealed class LocationObjectiveSystem : EntitySystem
+public sealed partial class LocationObjectiveSystem : EntitySystem
 {
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
+    [Dependency] private MetaDataSystem _metaData = default!; // Starlight
     public override void Initialize()
     {
         base.Initialize();
@@ -20,7 +18,6 @@ public sealed class LocationObjectiveSystem : EntitySystem
         if (ent.Comp.Target is not {} target)
             return;
 
-        var departmentName = Loc.GetString(target);
-        _metaData.SetEntityName(ent.Owner, Loc.GetString(ent.Comp.Title, ("targetName", departmentName)), args.Meta);
+        _metaData.SetEntityName(ent.Owner, Loc.GetString(ent.Comp.Title, ("targetName", target)), args.Meta); // Starlight
     }
 }

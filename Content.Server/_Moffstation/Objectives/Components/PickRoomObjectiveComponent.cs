@@ -1,6 +1,3 @@
-using Content.Shared.Pinpointer;
-using Robust.Shared.Prototypes;
-
 namespace Content.Server._Moffstation.Objectives.Components;
 
 [RegisterComponent]
