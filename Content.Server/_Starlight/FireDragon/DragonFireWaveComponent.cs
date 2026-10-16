@@ -7,8 +7,19 @@ namespace Content.Server._Starlight.FireDragon;
 [RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class DragonFireWaveComponent : Component
 {
+    /// <summary>
+    /// Ground fire prototype spawned as the wave advances.
+    /// </summary>
     [DataField] public EntProtoId GroundFirePrototype = "FireDragonGroundFire";
+
+    /// <summary>
+    /// Distance in tiles advanced by each firebreath update.
+    /// </summary>
     [DataField] public float BreathStepDistance = 0.25f;
+
+    /// <summary>
+    /// Optional lifetime override for flames spawned by this wave.
+    /// </summary>
     [DataField] public TimeSpan? GroundFireLifetimeOverride;
 
     public EntityUid Source;
@@ -25,6 +36,9 @@ public sealed partial class DragonFireWaveComponent : Component
     public int NextBreathPosition;
     public TimeSpan Interval;
 
+    /// <summary>
+    /// Next time the fire wave advances.
+    /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextStep;
 }

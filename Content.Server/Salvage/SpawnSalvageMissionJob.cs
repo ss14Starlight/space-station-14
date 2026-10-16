@@ -21,6 +21,7 @@ using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Salvage.Expeditions.Modifiers;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Storage; // Starlight
 using Robust.Shared.Collections;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.Map.Components;
@@ -227,9 +228,17 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         var faction = _prototypeManager.Index<SalvageFactionPrototype>(mission.Faction);
         var randomSystem = _entManager.System<RandomSystem>();
 
-        // Reserve one placement for the faction's boss before spending the support mob budget.
-        if (faction.Megafauna is { } megafauna)
-            await SpawnRandomEntry((mapUid, grid), new SalvageMobEntry { Proto = megafauna }, dungeon, random);
+        // Starlight-start
+        // A boss expedition is only usable when its required boss was placed.
+        if (faction.Megafauna is { } megafauna
+            && !await SpawnRandomEntry((mapUid, grid), new SalvageMobEntry { Proto = megafauna }, dungeon, random))
+        {
+            _sawmill.Warning($"Rejecting salvage expedition: no free tile for required boss {megafauna}.");
+            // Map shutdown clears coordinate disks and releases the station's claimed mission.
+            _entManager.DeleteEntity(mapUid);
+            return false;
+        }
+        // Starlight-end
 
         foreach (var entry in faction.MobGroups)
         {
@@ -253,6 +262,13 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
                 _sawmill.Error($"Failed to spawn mobs for {entry.Proto}: {e}");
             }
         }
+
+        // Starlight-start: Faction reinforcements supplement the normal mob budget.
+        foreach (var proto in EntitySpawnCollection.GetSpawns(faction.ExtraMobs, random))
+        {
+            await SpawnRandomEntry((mapUid, grid), new SalvageMobEntry { Proto = proto }, dungeon, random);
+        }
+        // Starlight-end
 
         var allLoot = _prototypeManager.Index<SalvageLootPrototype>(difficultyProto.LootPrototypeId);
         var lootBudget = difficultyProto.LootBudget;
@@ -289,7 +305,8 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         return true;
     }
 
-    private async Task SpawnRandomEntry(Entity<MapGridComponent> grid, IBudgetEntry entry, Dungeon dungeon, IRobustRandom random)
+    // Starlight: Report placement failure so required bosses can reject the expedition.
+    private async Task<bool> SpawnRandomEntry(Entity<MapGridComponent> grid, IBudgetEntry entry, Dungeon dungeon, IRobustRandom random)
     {
         await SuspendIfOutOfTime();
 
@@ -316,11 +333,11 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
                 var uid = _entManager.SpawnAtPosition(entry.Proto, _map.GridTileToLocal(grid, grid, tile));
                 _entManager.RemoveComponent<GhostRoleComponent>(uid);
                 _entManager.RemoveComponent<GhostTakeoverAvailableComponent>(uid);
-                return;
+                return true; // Starlight
             }
         }
 
-        // oh noooooooooooo
+        return false; // Starlight
     }
 
     private async Task SpawnDungeonLoot(SalvageLootPrototype loot, EntityUid gridUid)

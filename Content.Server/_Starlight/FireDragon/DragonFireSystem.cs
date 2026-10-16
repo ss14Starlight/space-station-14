@@ -82,7 +82,7 @@ public sealed partial class DragonFireSystem : EntitySystem
             return;
 
         foreach (var tile in _map.GetTilesIntersecting(gridUid, grid,
-                     new Circle(origin.Position, ent.Comp.ImpactFireRadius), false))
+                    new Circle(origin.Position, ent.Comp.ImpactFireRadius), false))
         {
             var center = _map.GridTileToWorld(gridUid, grid, tile.GridIndices);
             if (_occluder.InRangeUnoccluded(origin, center, 0f, ignoreTouching: true))
@@ -172,7 +172,7 @@ public sealed partial class DragonFireSystem : EntitySystem
                 (int) MathF.Ceiling(Vector2.Distance(previous.Position, position.Position) / spacing),
                 1,
                 Math.Max(1, trail.MaxTrailSamples));
-            for (var i = 0; i <= samples; i++)
+            for (var i = 1; i <= samples; i++)
             {
                 var coords = new MapCoordinates(Vector2.Lerp(previous.Position, position.Position, (float) i / samples), position.MapId);
                 SpawnTrailTile(trail, projectile.Shooter, coords);
@@ -245,7 +245,7 @@ public sealed partial class DragonFireSystem : EntitySystem
         wave.Distance = Math.Min(wave.Length, wave.Distance + stepDistance);
         var front = wave.Distance + HalfTile;
         while (wave.NextBreathPosition < wave.BreathPositions.Count
-               && wave.BreathPositions[wave.NextBreathPosition].Distance <= front)
+            && wave.BreathPositions[wave.NextBreathPosition].Distance <= front)
         {
             var position = wave.BreathPositions[wave.NextBreathPosition++].Position;
             SpawnBreathPosition(wave, grid, origin, position);

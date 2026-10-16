@@ -74,12 +74,16 @@ public sealed partial class SalvageSystem
 
         // First wipe any disks referencing us
         var disks = AllEntityQuery<ShuttleDestinationCoordinatesComponent>();
-        while (disks.MoveNext(out var disk, out var diskComp)
-               && diskComp.Destination == uid)
+        // Starlight-start: Other expeditions' disks must not stop cleanup of this map's disks.
+        while (disks.MoveNext(out var disk, out var diskComp))
         {
+            if (diskComp.Destination != uid)
+                continue;
+
             diskComp.Destination = null;
             Dirty(disk, diskComp);
         }
+        // Starlight-end
 
         foreach (var (job, cancelToken) in _salvageJobs.ToArray())
         {
