@@ -1,200 +1,4 @@
 Entries:
-- author: Kasvra
-  changes:
-  - message: Updates Corporate Law's Guidebook entry.
-    type: Tweak
-  id: 409084
-  time: '2026-10-02T19:45:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6429
-- author: WNP78
-  changes:
-  - message: Fixed new redundant movement system not sending input while the incoming tick data is also lagging.
-    type: Fix
-  id: 409085
-  time: '2026-10-03T06:10:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6451
-- author: WNP78
-  changes:
-  - message: Fixed redundant movement system not sleeping properly (saves small amount of bandwidth).
-    type: Fix
-  id: 409086
-  time: '2026-10-03T06:10:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6451
-- author: Wizden Team
-  changes:
-  - message: Wrapped parcels can now fit in mail carts.
-    type: Add
-  id: 409087
-  time: '2026-10-03T08:24:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6414
-- author: Wizden Team
-  changes:
-  - message: Crew manifest names can now appear in ion storm laws.
-    type: Add
-  id: 409088
-  time: '2026-10-03T08:24:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6414
-- author: Wizden Team
-  changes:
-  - message: Certain small cargo products are now delivered in parcel wrap rather than in crates.
-    type: Tweak
-  id: 409089
-  time: '2026-10-03T08:24:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6414
-- author: Wizden Team
-  changes:
-  - message: Healing with a holy book now gives off a holy light.
-    type: Tweak
-  id: 409090
-  time: '2026-10-03T08:24:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6414
-- author: Wizden Team
-  changes:
-  - message: The reagent grinder interactions and user interface are now predicted and should feel much more responsive.
-    type: Tweak
-  id: 409091
-  time: '2026-10-03T08:24:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6414
-- author: Wizden Team
-  changes:
-  - message: Fixed firestarters continuing to start a fire after a flammable gas had been completely removed from a room.
-    type: Fix
-  id: 409092
-  time: '2026-10-03T08:24:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6414
-- author: Johnny
-  changes:
-  - message: Changed the contra level of NT staff clothing, it is now legal for them to wear the clothes.
-    type: Tweak
-  id: 409093
-  time: '2026-10-03T08:57:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6450
-- author: Wizden Team
-  changes:
-  - message: Retextured technology disk to have the color of their discipline and extra marks for each tier. Also increased sell price for higher-tier disks.
-    type: Tweak
-  id: 409094
-  time: '2026-10-03T09:51:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6454
-- author: Wizden Team
-  changes:
-  - message: Fixed guidebook showing the wrong value for the maximum temperature of hellfire heaters.
-    type: Tweak
-  id: 409095
-  time: '2026-10-03T09:51:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6454
-- author: Wizden Team
-  changes:
-  - message: Chat dialogue now appears in curly quotes rather than straight quotes.
-    type: Tweak
-  id: 409096
-  time: '2026-10-03T09:51:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6454
-- author: Wizden Team
-  changes:
-  - message: Changed the hitbox of borg chargers, so they no longer get stuck in doorways.
-    type: Tweak
-  id: 409097
-  time: '2026-10-03T09:51:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6454
-- author: Wizden Team
-  changes:
-  - message: Tricordrazine and Doctor's Delight no longer heal Radiation, and no longer work while crit.
-    type: Tweak
-  id: 409098
-  time: '2026-10-03T09:51:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6454
-- author: Wizden Team
-  changes:
-  - message: The chem guidebook now shows when chemicals adjust body temperature again.
-    type: Fix
-  id: 409099
-  time: '2026-10-03T09:51:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6454
-- author: Wizden Team
-  changes:
-  - message: Mead now acts like Tricordrazine for Dwarves again.
-    type: Fix
-  id: 409100
-  time: '2026-10-03T09:51:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6454
-- author: Wizden Team
-  changes:
-  - message: Fixed the nuke being able to be blocked by any wall.
-    type: Fix
-  id: 409101
-  time: '2026-10-03T09:51:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6454
-- author: Wizden Team
-  changes:
-  - message: Welders no longer perform an extra pass after a repair has completed.
-    type: Fix
-  id: 409102
-  time: '2026-10-03T09:51:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6454
-- author: Wizden Team
-  changes:
-  - message: Flatpacks now use the collision of the flatpacked entity, so they can be opened on tables and aren't blocked by ghosts.
-    type: Fix
-  id: 409103
-  time: '2026-10-03T09:51:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6454
-- author: Johnny
-  changes:
-  - message: Changed mantis blades to be super duper ultraviolet good (whatever that may mean).
-    type: Tweak
-  id: 409104
-  time: '2026-10-03T10:11:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6456
-- author: Scarlet.
-  changes:
-  - message: Added a way for admins to edit colors of energy toggable items such as the energy sword using vvwrite.
-    type: Add
-  id: 409105
-  time: '2026-10-03T13:07:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6460
-- author: joshujo, redmushie
-  changes:
-  - message: Firelocks detect spacing and high temperature properly again.
-    type: Fix
-  id: 409106
-  time: '2026-10-03T13:07:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6459
-- author: Kirb
-  changes:
-  - message: New Setting "Radio music volume" use this to lower or mute audio from station radios.
-    type: Add
-  id: 409107
-  time: '2026-10-03T13:36:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6081
-- author: Kirb
-  changes:
-  - message: Using "increase volume" on station radios will instead increase their range, don't get noise complaints!.
-    type: Tweak
-  id: 409108
-  time: '2026-10-03T13:36:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6081
-- author: Rinary
-  changes:
-  - message: Added "prediction"(lag compensation) for shooting.
-    type: Add
-  id: 409109
-  time: '2026-10-03T13:56:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6346
-- author: Rinary
-  changes:
-  - message: Fixed movement lag(now real).
-    type: Fix
-  id: 409110
-  time: '2026-10-03T17:28:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6464
-- author: Caws
-  changes:
-  - message: All emotes have punctuation at the end now (just like Upstream's emotes).
-    type: Tweak
-  id: 409111
-  time: '2026-10-03T20:35:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6469
 - author: Caws
   changes:
   - message: New sounds for cycling pump-action shotguns, used by the Kammerer and Combat Shotgun.
@@ -2883,4 +2687,200 @@ Entries:
   id: 409483
   time: '2026-10-16T10:34:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6690
+- author: Cvlancer
+  changes:
+  - message: (Hotel) Added k9 spawn in security locker room.
+    type: Add
+  id: 409484
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Manor) Added a laundryroom near cargo.
+    type: Add
+  id: 409485
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Manor) Added a washing machine to security, medical and science.
+    type: Add
+  id: 409486
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Manor) Added an assistant manager near hopline.
+    type: Add
+  id: 409487
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Manor) Changed the maints access into command bar from command to bar access.
+    type: Tweak
+  id: 409488
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Manor) Fixed bathroom toilets not being connected to disposals.
+    type: Fix
+  id: 409489
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Lagan) Added a laundry room near NCT office.
+    type: Add
+  id: 409490
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Lagan) Added a couple washing machines around station.
+    type: Add
+  id: 409491
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Lagan) Added a rock showcase replace salvage.
+    type: Add
+  id: 409492
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Lagan) Added a biomass reclaimer and other decorations to maints clone bay.
+    type: Add
+  id: 409493
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Lagan) Changed some of the door access near cargo maints from salvage to mining.
+    type: Tweak
+  id: 409494
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Starboard) Added a docuprinter to science.
+    type: Add
+  id: 409495
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Starboard) Added a roboticist locker to science.
+    type: Add
+  id: 409496
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Starboard) Added a laundromat near security.
+    type: Add
+  id: 409497
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Starboard) Added several laundry machines all around station.
+    type: Add
+  id: 409498
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Starboard) Added a small lounge to replace salvage on station.
+    type: Add
+  id: 409499
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Starboard) Added assistant manager near hop line.
+    type: Add
+  id: 409500
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Starboard) Removed a healuim tank in roboticist surgery bay.
+    type: Remove
+  id: 409501
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added laundromat near dorms.
+    type: Add
+  id: 409502
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added a couple laundry machines around station.
+    type: Add
+  id: 409503
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added a small ore showcase and game table to mining room to replace salvgone.
+    type: Add
+  id: 409504
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added a body bag and hardhats to robotics.
+    type: Add
+  id: 409505
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Bagel) Added a station radio to robotics.
+    type: Add
+  id: 409506
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Bagel) Added a laundromat by converting old salv room into a laundromat (two birds with one stone!).
+    type: Add
+  id: 409507
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Bagel) Added a blood red phone to syndie shuttle.
+    type: Add
+  id: 409508
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Bagel) Removed a empty telecoms server from ai core.
+    type: Remove
+  id: 409509
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Bagel) Changed robotics windoors from science to robotics access.
+    type: Tweak
+  id: 409510
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
+- author: Cvlancer
+  changes:
+  - message: (Bagel) Fixed exosuit fab from throwing borgs into the walls.
+    type: Fix
+  id: 409511
+  time: '2026-10-16T10:34:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6683
 Order: -1
