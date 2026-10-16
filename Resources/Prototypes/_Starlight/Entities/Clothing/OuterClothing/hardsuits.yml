@@ -1,6 +1,6 @@
 #BSO Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseBlueShieldContraband]
+  parent: [ BaseContrabandTier2, ClothingOuterHardsuitBase, BaseBlueShieldContraband ] # Blimpuf
   id: ClothingOuterHardsuitBlueshield
   name: blue shield hardsuit
   description: A high-tech hardsuit perfect for diving in front of Mr. Pre- Er, Captain.
@@ -46,6 +46,8 @@
   name: NanoTrasen representative hardsuit
   description: It used to be blue, but too many premium cigars turned it tobacco brown.
   components:
+    - type: Contraband
+      tier: Tier3
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntrepspace.rsi
     - type: Clothing
@@ -200,6 +202,8 @@
   name: syndicate infiltration hardsuit
   description: The Syndicate's Special Operations' hardsuit of choice, this hardsuit, as well as durability, has been built with stealth in mind.
   components:
+    - type: Contraband # Blimpuf
+      tier: Tier4
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi
     - type: Clothing
@@ -270,6 +274,8 @@
   name: SSF marine hardsuit
   description: SMIRNO!
   components:
+    - type: Contraband # Blimpuf
+      tier: Tier3
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/sovietmarine.rsi
     - type: Clothing
@@ -297,12 +303,6 @@
       walkModifier: 0.90
       sprintModifier: 0.90
     - type: HeldSpeedModifier
-    - type: FootstepModifier
-      footstepSoundCollection:
-        collection: FootstepHeavy
-        params:
-          volume: -6
-          variation: 0.09
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitSovietMarine
     - type: Tag
@@ -355,7 +355,7 @@
 
 # Experimental Security Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, ClothingOuterHardsuitBase, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterHardsuitSecurityExperimental
   name: experimental security hardsuit
   description: A high-tech hardsuit meant to eventually replace the standard security suit, it boasts an ID-Lock and Gun-Lock system. Rumors have it that the first prototype was stolen by the syndicate..
@@ -448,7 +448,7 @@
 
 #Mining Specialist Advanced hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSalvageMiningContraband]
+  parent: [ClothingOuterHardsuitBase, BaseSalvageContraband, BaseMiningContraband]
   id: ClothingOuterHardsuitAdvancedMining
   name: advanced mining hardsuit
   description: An advanced jetpack-equipped hardsuit designed for mining operations.
@@ -515,7 +515,7 @@
 
 #Mining Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSalvageMiningContraband]
+  parent: [ClothingOuterHardsuitBase, BaseSalvageContraband, BaseMiningContraband]
   id: ClothingOuterHardsuitMining
   name: mining hardsuit
   description: A special suit that protects against hazardous, low pressure environments encountered during space mining.
@@ -907,6 +907,7 @@
       damageCoefficient: 0.0 # 100% stamina resistance
     - type: Pierceable
       level: Rock
+    - type: WizardClothes
     - type: Armor
       modifiers:
         coefficients:
@@ -1183,12 +1184,6 @@
           Heat: 0.4
           Caustic: 0
       staminaModifier: 0.0
-    - type: FootstepModifier
-      footstepSoundCollection:
-        collection: FootstepHeavy
-        params:
-          volume: -6
-          variation: 0.09
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitTSFMARSOC
 
@@ -1270,7 +1265,7 @@
   parent: [ ClothingOuterHardsuitBase, BaseCosmicCultItem ] # Starlight Edit: Contraband
   id: ClothingOuterHardsuitCosmicCult
   name: entropic armor
-  description: An unsettling hardsuit, numbing to the touch. It pulses with a glow that makes you feel like you've forgotten something..
+  description: An unsettling hardsuit, numbing to the touch. It pulses with a glow that makes you feel like you've forgotten something...
   components:
   - type: CosmicEquipment
   - type: Sprite
@@ -1303,12 +1298,24 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+    - MonkeyWearable
+    - ScurretWearable
+    - CorgiWearable
 #Shoulder mounted flashlight
   - type: ToggleableVisuals # Starlight Edit
     spriteLayer: light
     clothingVisuals:
       outerClothing:
       - state: equipped-OUTERCLOTHING-light
+        shader: unshaded
+      outerClothing-monkey:
+      - state: equipped-OUTERCLOTHING-light-monkey
+        shader: unshaded
+      outerClothing-scurret:
+      - state: equipped-OUTERCLOTHING-light-scurret
+        shader: unshaded
+      outerClothing-dog:
+      - state: equipped-OUTERCLOTHING-light-dog
         shader: unshaded
   - type: ItemTogglePointLight # Starlight
   - type: Appearance
@@ -1425,3 +1432,49 @@
     sprintModifier: 0.95
   - type: HeldSpeedModifier
   - type: Unremoveable
+
+#ITG
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSalvageContraband]
+  id: ClothingOuterHardsuitITGLossPrevention
+  name: ITG Loss Prevention Hardsuit
+  description: A suit made by the ITG to protect expensive assets in dangerous sectors.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/lossprevention.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/lossprevention.rsi
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 3 #starlight
+    unequipDelay: 3 #starlight
+  - type: PressureProtection
+    highPressureMultiplier: 0.2
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  # - type: StaminaResistance # Should not have stamina resistance, this is purely so people know it was not forgotten.
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3
+        Heat: 0.6
+        Radiation: 0.4
+        Caustic: 0.5
+    staminaModifier: 0.5
+    # Starlight-end
+  - type: ClothingSpeedModifier
+    walkModifier: 0.6
+    sprintModifier: 0.6
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitLossPrevention
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon

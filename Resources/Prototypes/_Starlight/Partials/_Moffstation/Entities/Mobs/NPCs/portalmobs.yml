@@ -1,0 +1,61 @@
+- type: !PartialOnly entity
+  id: MoffMobDemonNarsieBase
+  components:
+  - type: Body
+    prototype: Bloodsucker
+  - type: !Remove NarSieDemonAccent
+  - type: Tag
+    tags:
+    - StutterImmune
+  - type: LanguageSpeaker
+    currentLanguage: Darktongue
+  - type: LanguageKnowledge
+    speaks:
+    - Darktongue
+    understands:
+    - GalacticCommon
+    - Darktongue
+
+- type: !PartialOnly entity
+  id: MoffMobDemonNarsieFleshBase
+  components:
+  - type: Damageable
+    damageContainer: MoffDemonBiological
+  - type: Tag
+    tags:
+    - StutterImmune
+
+- type: !PartialOnly entity
+  id: MoffMobDemonNarsieConstructBase
+  components:
+  - type: Damageable
+    damageContainer: MoffDemonInorganic
+
+- type: !PartialOnly entity
+  id: MoffMobDemonNarsieHarvester
+  components:
+  - type: Gun
+    soundEmpty: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
+  - type: BasicEntityAmmoProvider
+    ammoTable: !Remove
+    proto: MoffDemonicChainHook
+
+- type: !PartialOnly entity
+  id: MoffMobDemonNarsieShade
+  components:
+  - type: BasicEntityAmmoProvider
+    ammoTable: !Remove
+    proto: MoffBloodBolt
+
+- type: !PartialOnly entity
+  id: MoffMobDemonNarsieFleshFlyingBase
+  components:
+  - type: Tag
+    tags:
+    - StutterImmune
+
+- type: !PartialOnly entityTable
+  id: MoffHellportalFleshlingsTable
+  table:
+    children:
+    - id: MobGooseNarsie

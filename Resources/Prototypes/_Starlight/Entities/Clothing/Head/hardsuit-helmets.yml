@@ -172,6 +172,10 @@
   categories: [ HideSpawnMenu ]
   name: syndicate infiltration hardsuit helmet
   components:
+  - type: ScanDetectable # Blimpuf
+  - type: Contraband # Blimpuf
+    tier: Tier4
+    contrabandType: Syndicate
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
   - type: Clothing
@@ -201,6 +205,8 @@
   name: SSF marine hardsuit helmet
   description: From the soviet dieselpunk world.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Helmets/sovietmarine_helmet.rsi
   - type: Clothing
@@ -804,6 +810,8 @@
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
   - type: ClothesNightVision
+  - type: ShowNullSpace
+    showShader: false
   - type: FireProtection
     reduction: 0.2
   - type: Pierceable
@@ -887,6 +895,7 @@
       visible: false
       shader: unshaded
       map: [ "light" ]
+  - type: WizardClothes
   - type: HandheldLight
     addPrefix: false
   - type: ToggleableVisuals
@@ -1156,6 +1165,7 @@
     damageContainers:
     - Biological
     - Hybrid # Neocytes
+    - MoffDemonBiological
   - type: ShowHealthIcons
   - type: FlashImmunity
     blocksSpecialVision: false
@@ -1198,6 +1208,7 @@
     damageContainers:
     - Biological
     - Hybrid # Neocytes
+    - MoffDemonBiological
   - type: ShowHealthIcons
   - type: FlashImmunity
     blocksSpecialVision: false
@@ -1261,6 +1272,11 @@
     - state: icon-helmet
   - type: Clothing
     sprite: _Starlight/CosmicCult/Clothing/cosmiccult_armor.rsi
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - ScurretWearable
+    - CorgiWearable
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
@@ -1320,3 +1336,26 @@
         Slash: 0.9
         Piercing: 0.95
         Heat: 0.85
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase ]
+  id: ClothingHeadHelmetHardsuitLossPrevention
+  name: ITG loss prevention helmet
+  description: Theres a scratch mark on the side for every shoplifter that has had the displeasure of seeing this helmet.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/lossprevention.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/lossprevention.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon

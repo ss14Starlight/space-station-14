@@ -52,6 +52,9 @@ public sealed partial class DamageOverlay : Overlay
     {
         // TODO: Replace
         IoCManager.InjectDependencies(this);
+        // Starlight-start
+        ZIndex = 8;
+        // Starlight-end
         _oxygenShader = _prototypeManager.Index(CircleMaskShader).InstanceUnique();
         _critShader = _prototypeManager.Index(CircleMaskShader).InstanceUnique();
         _bruteShader = _prototypeManager.Index(CircleMaskShader).InstanceUnique();

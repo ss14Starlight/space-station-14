@@ -12,6 +12,8 @@ changeling-absorb-end-self = Another organic absorbed. You are evolving.
 changeling-absorb-end-self-ling = Another changeling absorbed. You are evolving more rapidly.
 changeling-absorb-onexamine = [color=red]The body feels hollow.[/color]
 
+changeling-transform-cycle = Switched to {$target}'s DNA.
+changeling-transform-cycle-empty = You don't have any DNA strains!
 changeling-transform-others = {CAPITALIZE(THE($user))}'s body twists and takes shape of another being!
 changeling-transform-fail-self = You can't transform into your current form!
 changeling-transform-fail-choose = You did not choose a form to transform into!
@@ -43,6 +45,7 @@ changeling-inject = You inject yourself
 changeling-inject-fail = Failed to inject yourself!
 
 changeling-passive-activate = Activated ability
+changeling-passive-activate-fail = Failed to activate the ability
 changeling-passive-active = Already active!
 
 changeling-fleshmend = Your body twists, sealing wounds and regenerating dead cells

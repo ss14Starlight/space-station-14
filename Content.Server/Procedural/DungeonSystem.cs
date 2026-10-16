@@ -45,12 +45,12 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
     private EntityQuery<MetaDataComponent> _metaQuery;
     private EntityQuery<TransformComponent> _xformQuery;
 
-    private const double DungeonJobTime = 0.005;
+    private double DungeonJobTime = 0.005; // Starlight: set from StarlightCCVars.DungeonJobTime
 
     public const int CollisionMask = (int) CollisionGroup.Impassable;
     public const int CollisionLayer = (int) CollisionGroup.Impassable;
 
-    private readonly JobQueue _dungeonJobQueue = new(DungeonJobTime);
+    private readonly TimedJobQueue _dungeonJobQueue = new(); // Starlight: budget set from StarlightCCVars.DungeonJobTime
     private readonly Dictionary<DungeonJob.DungeonJob, CancellationTokenSource> _dungeonJobs = new();
 
     #region Starlight
@@ -73,6 +73,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(PrototypeReload);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
         SubscribeLocalEvent<RoundStartingEvent>(OnRoundStart);
+        InitializeJobTime(); // Starlight
     }
 
     public override void Update(float frameTime)

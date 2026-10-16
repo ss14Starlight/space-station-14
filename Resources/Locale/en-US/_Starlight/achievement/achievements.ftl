@@ -145,11 +145,16 @@ achievement-window-progress = Progress {$current} / {$required}
 achievement-notification-title = Achievements accomplished!
 achievement-notification-footer = New trophy added to your collection
 
+achievement-notification-body =  { $name }
 game-hud-open-achievement-menu-button-tooltip = Achievements
 
 role-achievement-reward-pass = Achievement unlocked: [color=limegreen]{$achievement}[/color]
 role-achievement-reward-fail = Requires achievement: [color=yellow]{$achievement}[/color]
 role-achievement-reward-fail-hidden = Requires a [color=yellow]hidden achievement[/color]
+
+loadouts-achievement-reward-pass = Achievement reward unlocked: {$achievement}
+loadouts-achievement-reward-fail = Requires achievement reward: {$achievement}
+loadouts-achievement-reward-fail-hidden = Requires a hidden achievement reward
 
 achievement-category-milestones = Milestones
 achievement-category-onboarding = Onboarding

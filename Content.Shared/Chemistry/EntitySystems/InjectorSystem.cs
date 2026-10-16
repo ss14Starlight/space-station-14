@@ -111,10 +111,10 @@ public sealed partial class InjectorSystem : EntitySystem
 
     private void OnAttack(Entity<InjectorComponent> injector, ref MeleeHitEvent args)
     {
-        if (args.HitEntities is [])
+        if (args.HitEntities.Count == 0)
             return;
 
-        TryMobsDoAfter(injector, args.User, args.HitEntities[0]);
+        TryMobsDoAfter(injector, args.User, args.HitEntities.First());
     }
 
     /// <summary>
@@ -176,6 +176,7 @@ public sealed partial class InjectorSystem : EntitySystem
                     // we want to sort by size, not alphabetically by the verb text.
                     Priority = priority
                 };
+                priority -= 1; // Starlight: Sort unit selection properly
                 args.Verbs.Add(verb);
             }
         }

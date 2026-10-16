@@ -1,4 +1,6 @@
 # Traitor single items
+steal-target-groups-supermatter-sliver = supermatter sliver
+steal-target-groups-hypospray = hypospray
 steal-target-groups-handheld-crew-monitor = handheld crew monitor
 steal-target-groups-clothing-outer-hardsuit-rd = experimental research hardsuit
 steal-target-groups-hand-teleporter = hand teleporter
@@ -32,6 +34,7 @@ steal-target-groups-flippo-engraved-lighter = detective's Flippo engraved lighte
 steal-target-groups-ammo-tech-fab-circuitboard = ammo techfab circuit board
 steal-target-groups-clothing-head-hat-warden = warden's cap
 steal-target-groups-clothing-outer-hardsuit-void-paramed = paramedic void suit
+steal-target-groups-medical-tech-fab-circuitboard = medical techfab machine board
 steal-target-groups-clothing-headset-alt-medical = chief medical officer's over-ear headset
 steal-target-groups-research-and-development-server-machine-circuitboard = R&D server machine board
 steal-target-groups-fire-axe = fireaxe

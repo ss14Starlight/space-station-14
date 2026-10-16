@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: RandomFoodBakedSingle
+  components:
+  - type: RandomSpawner
+    prototypes: # moff cake
+      - !Remove FoodCakeCottonSlice
+      - FoodCottonCakeSlice

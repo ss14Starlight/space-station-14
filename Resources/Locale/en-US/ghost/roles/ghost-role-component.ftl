@@ -65,6 +65,7 @@ ghost-role-information-hamlet-description = Lives in the station bridge, has a b
 ghost-role-information-slimes-name = Slime
 ghost-role-information-slimes-description = An ordinary slime with no special needs or interests. You are friendly to others.
 
+ghost-role-information-angry-slimes-name = Slime
 ghost-role-information-angry-slimes-description = Everyone around you irritates your instincts, destroy them!
 ghost-role-information-angry-slimes-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with all other angry slimes.
 
@@ -97,6 +98,9 @@ ghost-role-information-rat-king-description = You are the Rat King, your interes
 ghost-role-information-rat-servant-name = Rat Servant
 ghost-role-information-rat-servant-description = You are a Rat Servant. You must follow your king's orders.
 
+ghost-role-information-salvage-carp-name = Space Carp on Salvage Wreck
+ghost-role-information-salvage-carp-description = Defend the loot inside the salvage wreck!
+
 ghost-role-information-sentient-carp-name = Sentient Carp
 ghost-role-information-sentient-carp-description = Help the dragon flood the station with carps!
 
@@ -114,6 +118,9 @@ ghost-role-information-mimebot-description = A Mimebot, act like a mime but don'
 
 ghost-role-information-supplybot-name = SupplyBot
 ghost-role-information-supplybot-description = Deliver goods around the station.
+
+ghost-role-information-space-bear-name = Space Bear
+ghost-role-information-space-bear-description = Your tummy rumbles, and these people look really yummy... What a feast!
 
 # Still exists as a commented out reference for Tropico. Keeping it around. -TsjipTsjip, 2024-06-20
 ghost-role-information-tropico-name = Tropico
@@ -186,6 +193,8 @@ ghost-role-information-cburn-agent-description = A highly trained CentComm agent
 ghost-role-information-centcom-official-name = CentComm Official
 ghost-role-information-centcom-official-description = Perform CentComm related duties such as inspect the station, jotting down performance reviews for heads of staff, and managing the fax machine.
 
+ghost-role-information-nukeop-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with all other nuclear operatives. Covert syndicate agents are not guaranteed to help you.
+
 ghost-role-information-loneop-name = Lone Operative
 ghost-role-information-loneop-description = You are a lone nuclear operative. Destroy the station!
 ghost-role-information-loneop-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-solo-antagonist-name}[/bold][/color]. Covert syndicate agents are not guaranteed to help you.
@@ -198,6 +207,7 @@ ghost-role-information-hellspawn-description = Bring death to those who do not f
 
 ghost-role-information-Death-Squad-name = Death Squad Operative
 ghost-role-information-Death-Squad-description = One of NanoTrasen's top internal affairs agents. Await orders from CentComm or an official.
+ghost-role-information-Death-Squad-rules = You are required to obey orders given by your superior, you are effectively their [color={role-type-familiar-color}][bold]{role-type-familiar-name}[/bold][/color].
 
 ghost-role-information-SyndiCat-name = SyndiCat
 ghost-role-information-SyndiCat-description = You're the faithful trained pet of nuclear operatives with a microbomb. Serve your master to the death!
@@ -215,6 +225,8 @@ ghost-role-information-space-ninja-description = Use stealth and deception to sa
 ghost-role-information-paradox-clone-name = Paradox Clone
 ghost-role-information-paradox-clone-description = A freak space-time anomaly has teleported you into another reality! Now you have to find your counterpart and kill and replace them.
 
+ghost-role-information-syndicate-reinforcement-name = Syndicate Agent
+ghost-role-information-syndicate-reinforcement-description = Someone needs reinforcements. You, the first person the syndicate could find, will help them.
 ghost-role-information-syndicate-reinforcement-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with the agent who summoned you.
 
 ghost-role-information-syndicate-reinforcement-medic-name = Syndicate Medic
@@ -294,6 +306,13 @@ ghost-role-information-lost-challenge-commander-rules = You are not hostile to t
 
 ghost-role-information-lost-challenge-cargo-technican-name = Cargo Chauffeur
 ghost-role-information-lost-challenge-cargo-technican-description = You are a cargo technician who was granted shore leave with one of your commanding officers.
+ghost-role-information-lost-challenge-cargo-technican-rules = You are not hostile to the station, do what you must to ensure your own survival.
+                                     You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
+                                     You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
+                                     You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
+
+ghost-role-information-disaster-victim-name = Disaster Victim
+ghost-role-information-disaster-victim-description = You were rescued in an escape pod from another station that suffered a terrible fate. Perhaps you will be found and rescued.
 
 ghost-role-information-syndie-disaster-victim-name = Syndicate Disaster Victim
 ghost-role-information-syndie-disaster-victim-description = You're a regular assistant from a syndicate station. Unfortunately, an evacuation pod has thrown you into an enemy sector...

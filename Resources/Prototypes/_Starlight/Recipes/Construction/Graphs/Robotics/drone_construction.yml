@@ -5,7 +5,7 @@
   - node: start
     entity: DroneShell
     edges:
-    - to: drone_complete
+    - to: drone
       steps:
       - assemblyId: generic
         guideString: drone-construction-guide-string
@@ -15,6 +15,9 @@
         amount: 1
         doAfter: 1
         store: part-container
+      - tag: ProximitySensor
+        name: construction-graph-tag-proximity-sensor
+        store: part-container
       - tag: PowerCell
         name: construction-graph-tag-power-cell
         store: cell_slot
@@ -23,5 +26,30 @@
         store: part-container
       - tool: Screwing
         doAfter: 1
-  - node: drone_complete
+  - node: drone
     entity: Drone
+
+- type: constructionGraph
+  id: DroneRogue
+  start: start
+  graph:
+  - node: start
+    entity: DroneRogueShell
+    edges:
+    - to: scrapper
+      steps:
+      - assemblyId: generic
+        guideString: drone-construction-guide-string
+      - tool: Screwing
+        doAfter: 1
+      - material: Cable
+        amount: 1
+        doAfter: 1
+        store: part-container
+      - component: Flash
+        name: construction-graph-component-flash
+        store: part-container
+      - tool: Screwing
+        doAfter: 1
+  - node: scrapper
+    entity: DroneRogue

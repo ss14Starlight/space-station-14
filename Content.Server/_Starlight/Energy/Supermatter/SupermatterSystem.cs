@@ -193,7 +193,7 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
             _ambient.SetSound(supermatter.Owner, Const.AmbienceCalm, ambience);
     }
 
-    private void HandleDestruction(Entity<SupermatterComponent> supermatter)
+    private static void HandleDestruction(Entity<SupermatterComponent> supermatter)
     {
         var regen = Const.RegenerationPerSecond * supermatter.Comp.RegenerationModifier;
         var damageToApply = MathHelper.Clamp((supermatter.Comp.AccBreak / 10) - regen, -regen, Const.MaxDamagePerSecond);
@@ -269,9 +269,9 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
 
         var ReactionMod = supermatter.Comp.ReactionModifier.Float();//make gases that risk higher reactifify also make more gas/also produce less for "safer" gases
 
-        gas.AdjustMoles((int)Gas.Tritium, breakDelta.Float()/2* ReactionMod);
-
-        gas.AdjustMoles((int)Gas.Oxygen, breakDelta.Float()*4* ReactionMod);
+        gas.AdjustMoles((int)Gas.Tritium, breakDelta.Float() / 2 * ReactionMod);
+        gas.AdjustMoles((int)Gas.Plasma, breakDelta.Float() * ReactionMod);
+        gas.AdjustMoles((int)Gas.Oxygen, breakDelta.Float() * 4 * ReactionMod);
     }
 
     private static void ProcessHeat(Entity<SupermatterComponent> supermatter, GasMixture gas, float heatTransfer, float heatModifier)

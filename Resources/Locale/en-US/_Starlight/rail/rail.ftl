@@ -7,6 +7,7 @@ card-selection-timer = Choose within {$seconds}s or you will be locked out for t
 
 character-info-cards-button = View cards
 
+
 railroading-card-examined = ┌Active card:
     ├[color={$IconColor}][font="Icon"]{$Icon}[/font][/color] [color={$Color}]{$Title}[/color]
     └[color={$Color}]{$Desc}[/color]
@@ -283,6 +284,7 @@ rr-monkeybusiness-desc = Banana, mischief, and questionable life choices.
 rr-moonshine = Moonshine
 rr-moonshine-desc = Homemade lightning in a jar.
 
+rr-neurotoxin = Neurotoxin
 rr-neurotoxin-desc = For when you want your drink to fight back.
 
 rr-painkiller = Painkiller

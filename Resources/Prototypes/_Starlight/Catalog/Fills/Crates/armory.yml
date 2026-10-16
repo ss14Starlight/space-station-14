@@ -49,7 +49,7 @@
 
 - type: entity
   id: CrateArmoryAdvancedRestraints
-  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier2, CrateWeaponSecure, BaseSecurityContraband ] # Blimpuf
   name: advanced restraints crate
   description: For the most annoying prisoners.
   components:
@@ -63,3 +63,16 @@
         - id: ClothingMaskBreath
         - id: NitrousOxideTankFilled
         - id: NitrousOxideTankFilled
+
+- type: entity
+  id: CrateArmoryMelee
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  name: armory melee weapon crate
+  description: A crate with a tactical spear and a short sword.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SpearAthena
+        - id: SwordAres

@@ -10,3 +10,4 @@ gases-zauker = Zauker
 gases-halon = Halon
 gases-helium = Helium
 gases-anti-noblium = Anti-Noblium
+gases-unknown = Unknown

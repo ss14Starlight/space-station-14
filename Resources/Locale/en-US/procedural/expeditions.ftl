@@ -1,6 +1,7 @@
 salvage-expedition-type = Mission
 salvage-expedition-window-title = Salvage expeditions
 salvage-expedition-window-difficulty = Difficulty:
+salvage-expedition-window-details = Details:
 salvage-expedition-window-hostiles = Hostiles:
 salvage-expedition-window-duration = Duration:
 salvage-expedition-window-biome = Biome:
@@ -11,6 +12,10 @@ offering-window-claim = Claim
 
 salvage-expedition-window-next = Next offer
 
+salvage-expedition-difficulty-Moderate = Moderate
+salvage-expedition-difficulty-Hazardous = Hazardous
+salvage-expedition-difficulty-Extreme = Extreme
+
 salvage-expedition-difficulty-players = Recommended salvagers:
 
 # Runner
@@ -20,6 +25,7 @@ salvage-expedition-announcement-countdown-minutes = {$duration} minutes remainin
 salvage-expedition-announcement-countdown-seconds = {$duration} seconds remaining to complete the expedition.
 salvage-expedition-announcement-dungeon = Dungeon is located {$direction}.
 salvage-expedition-completed = Expedition is completed.
+salvage-expedition-reward-description = Mission completion reward
 
 # Salvage biome mod
 salvage-biome-mod-caves = Caves
