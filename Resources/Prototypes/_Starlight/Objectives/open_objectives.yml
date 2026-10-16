@@ -7,11 +7,7 @@
   description: We need you to infiltrate this department and disrupt their activities.
   components:
   - type: Objective
-    difficulty: 0
     issuer: objective-issuer-mind
-    icon:
-      sprite: Clothing/Eyes/Glasses/outlawglasses.rsi
-      state: icon
   - type: RoleRequirement
     roles: [TraitorRole, ThiefRole]
   - type: DepartmentObjective
@@ -25,11 +21,6 @@
   name: Sabotage Department
   description: We need you to sabotage this department's activities.
   components:
-  - type: Objective
-    difficulty: 0
-    icon:
-      sprite: Objects/Tools/emag.rsi
-      state: icon
   - type: DepartmentObjective
     title: objective-condition-sabotage-department
   - type: PickRandomDepartment
@@ -39,12 +30,6 @@
   id: JailbreakObjective
   name: Jailbreak prisoners
   description: It doesn't matter who was locked up or why, we just need you to keep the jails empty.
-  components:
-  - type: Objective
-    difficulty: 0
-    icon:
-      sprite: Objects/Tools/access_breaker.rsi
-      state: icon
 
 - type: entity
   parent: BaseStoryObjective
@@ -52,12 +37,6 @@
   name: Leave a Warning
   description: This person has stepped out of line, give them a reminder.
   components:
-  - type: Objective
-    difficulty: 0
-    icon:
-      sprite: Objects/Misc/bureaucracy.rsi
-      state: syndicate_card
-    unique: true
   - type: TargetObjective
     title: objective-condition-leave-card-on-person
   - type: PickRandomPerson
@@ -68,11 +47,6 @@
   id: RobDepartmentObjective
   description: This department has some nice goodies, its time to make them your own.
   components:
-  - type: Objective
-    difficulty: 0
-    icon:
-      sprite: Clothing/Hands/Gloves/Color/black.rsi
-      state: icon
   - type: DepartmentObjective
     title: objective-condition-rob-department
   - type: PickRandomDepartment
