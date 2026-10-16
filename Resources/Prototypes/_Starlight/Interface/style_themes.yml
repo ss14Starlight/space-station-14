@@ -377,9 +377,3 @@
   textDisabled: "#6A5A3E"
   positive: "#7FA84A"
   negative: "#C9503A"
-
-- type: styleTheme
-  id: Classic
-  name: style-theme-classic
-  order: 21
-  stock: true
