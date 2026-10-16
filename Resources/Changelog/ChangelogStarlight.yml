@@ -1,39 +1,4 @@
 Entries:
-- author: SirLutz
-  changes:
-  - message: Malign Parasite anom, decreased maximum minion spawns 5->4.
-    type: Tweak
-  id: 409125
-  time: '2026-10-04T10:10:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6475
-- author: SirLutz
-  changes:
-  - message: 'Effigy Supercrit minion amount spawns: Min. 4->3, Max: 6 -> 5.'
-    type: Tweak
-  id: 409126
-  time: '2026-10-04T10:10:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6475
-- author: SirLutz
-  changes:
-  - message: Lowered the APE removal time of empowered Rifts from 60 seconds to 12 seconds.
-    type: Tweak
-  id: 409127
-  time: '2026-10-04T10:10:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6475
-- author: Johnny
-  changes:
-  - message: Massive overhaul to the head revolutionaries uplink. Adding new categories, changing current prices, and allowing differing paths that a head revolutionary can take.
-    type: Add
-  id: 409128
-  time: '2026-10-04T10:10:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6479
-- author: Caws
-  changes:
-  - message: Added the 'Pat' Social Interaction. You can pat anything.
-    type: Add
-  id: 409129
-  time: '2026-10-04T10:52:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6478
 - author: Caws
   changes:
   - message: Added the 'Sniff' Social Interaction. Dogs and other animals can sniff anything that's nearby.
@@ -2883,4 +2848,39 @@ Entries:
   id: 409524
   time: '2026-10-16T11:45:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6698
+- author: Johnny
+  changes:
+  - message: (Reach) Fine fine fine, heres your maintenance area yall REALLLY WANTED on Reach, godo.
+    type: Add
+  id: 409525
+  time: '2026-10-16T12:17:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6705
+- author: Johnny
+  changes:
+  - message: (Reach) Janitor gets laundry now.
+    type: Add
+  id: 409526
+  time: '2026-10-16T12:17:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6705
+- author: Johnny
+  changes:
+  - message: (Reach) More wall closets have been added.
+    type: Add
+  id: 409527
+  time: '2026-10-16T12:17:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6705
+- author: Johnny
+  changes:
+  - message: (Reach) Removed some protections to the brig area cuz theres a disposable maintenance area on it instead.
+    type: Remove
+  id: 409528
+  time: '2026-10-16T12:17:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6705
+- author: Johnny
+  changes:
+  - message: (Reach) Modified the distro and waste pipes to go to every dock.
+    type: Tweak
+  id: 409529
+  time: '2026-10-16T12:17:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6705
 Order: -1
