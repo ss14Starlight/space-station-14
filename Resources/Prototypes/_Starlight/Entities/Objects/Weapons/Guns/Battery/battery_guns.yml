@@ -899,7 +899,7 @@
 
 - type: entity
   name: proto-5x energy gun
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGrandTheftContraband]
+  parent: [BaseContrabandTier4, BaseWeaponBattery, BaseGunWieldable, BaseGrandTheftContraband]
   id: WeaponSubMachineGunEnergy
   description: A one-of-a-kind prototype energy sub-machine gun. It offers high energy firepower and a powerful self recharge.
   components:
@@ -1128,7 +1128,7 @@
 #Green Shield Officer
 - type: entity
   name: MT-7G Magnum
-  parent: [ BaseWeaponBatterySmall, BaseCentcommContraband, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier4, BaseWeaponBatterySmall, BaseCentcommContraband, BaseGrandTheftContraband ]
   categories: [ DoNotMap ]
   id: WeaponEnergyMagnumGunGreenshield
   description: This is an expensive, modern recreation of the Mateba revolver with a minor overclock. CED assures a 96% reliability with regular maintenance.

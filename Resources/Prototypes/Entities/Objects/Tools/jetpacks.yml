@@ -149,7 +149,7 @@
 #Empty captain
 - type: entity
   id: JetpackCaptain
-  parent: [BaseJetpack, BaseGrandTheftContraband]
+  parent: [BaseContrabandTier4, BaseJetpack, BaseGrandTheftContraband]
   name: captain's jetpack
   suffix: Empty
   components:

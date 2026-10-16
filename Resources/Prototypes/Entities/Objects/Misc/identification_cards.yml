@@ -75,7 +75,7 @@
     stealGroup: CaptainIDCard
 
 - type: entity
-  parent: [ BaseContrabandTier4, IDCardStandard, BaseCommandContraband, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier5, IDCardStandard, BaseCommandContraband, BaseGrandTheftContraband ]
   id: HoPIDCard
   name: head of personnel ID card
   components:

@@ -97,7 +97,7 @@
 #Empty CE void
 - type: entity
   id: JetpackVoidEngineer
-  parent: [ BaseJetpack, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier4, BaseJetpack, BaseGrandTheftContraband ]
   name: chief engineer's void jetpack
   suffix: Empty
   components:
