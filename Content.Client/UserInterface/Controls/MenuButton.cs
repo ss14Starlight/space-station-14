@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client._Starlight.Stylesheets;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.UserInterface.Controls;
@@ -33,11 +34,88 @@ public sealed partial class MenuButton : ContainerButton
         set
         {
             _function = value;
-            _buttonLabel!.Text = _function == null ? "" : BoundKeyHelper.ShortKeyName(_function.Value);
+            UpdateKeyText(); // Starlight-edit
         }
     }
 
     public BoxContainer ButtonRoot => _root;
+
+    #region Starlight
+    public Vector2 IconScale { set => _buttonIcon!.TextureScale = value; }
+
+    /// <summary>
+    /// Whether to show the key binding next to the icon. If false, the key binding will be hidden, but the name will still be shown if ShowName is true.
+    /// </summary>
+    public bool ShowKey
+    {
+        get;
+        set
+        {
+            field = value;
+            _buttonLabel!.Visible = value || ShowName;
+        }
+    } = true;
+
+    private Label? _nameLabel;
+
+    public const string StyleClassKeyBadge = "MenuButtonKeyBadge";
+
+    private PanelContainer? _keyBadge;
+    private Label? _keyBadgeLabel;
+
+    public bool KeyHint
+    {
+        get => _keyBadge?.Visible ?? false;
+        set
+        {
+            if (value && _keyBadge == null)
+            {
+                _keyBadgeLabel = new Label { StyleClasses = { StyleClassLabelTopButton } };
+                _keyBadge = new PanelContainer
+                {
+                    HorizontalAlignment = HAlignment.Right,
+                    VerticalAlignment = VAlignment.Bottom,
+                    StyleClasses = { StyleClassKeyBadge },
+                    Children = { _keyBadgeLabel },
+                };
+                AddChild(_keyBadge);
+                UpdateKeyText();
+            }
+
+            _keyBadge?.Visible = value && !ShowName && _function != null;
+        }
+    }
+
+    private void UpdateKeyText()
+    {
+        var text = _function == null ? "" : BoundKeyHelper.ShortKeyName(_function.Value);
+        _buttonLabel?.Text = text;
+        _keyBadgeLabel?.Text = text;
+    }
+
+    public bool ShowName
+    {
+        get => _nameLabel?.Visible ?? false;
+        set
+        {
+            if (value && _nameLabel == null)
+            {
+                _nameLabel = new Label { HorizontalExpand = true, Margin = new Thickness(6, 0) };
+                _root.AddChild(_nameLabel);
+                _buttonLabel!.SetPositionInParent(_root.ChildCount - 1);
+            }
+
+            if (_nameLabel != null)
+            {
+                _nameLabel.Text = ToolTip;
+                _nameLabel.Visible = value;
+            }
+
+            _root.Orientation = value ? BoxContainer.LayoutOrientation.Horizontal : BoxContainer.LayoutOrientation.Vertical;
+            _buttonLabel!.Visible = value || ShowKey;
+        }
+    }
+    #endregion
 
     public MenuButton()
     {
@@ -88,14 +166,10 @@ public sealed partial class MenuButton : ContainerButton
 
 
     private void OnKeyBindingChanged(IKeyBinding obj)
-    {
-        _buttonLabel!.Text = _function == null ? "" : BoundKeyHelper.ShortKeyName(_function.Value);
-    }
+        => UpdateKeyText(); // Starlight-edit
 
     private void OnKeyBindingChanged()
-    {
-        _buttonLabel!.Text = _function == null ? "" : BoundKeyHelper.ShortKeyName(_function.Value);
-    }
+        => UpdateKeyText(); // Starlight-edit
 
     protected override void StylePropertiesChanged()
     {
@@ -107,6 +181,16 @@ public sealed partial class MenuButton : ContainerButton
     private void UpdateChildColors()
     {
         if (_buttonIcon == null || _buttonLabel == null) return;
+
+        // Starlight-start
+        if (TryGetStyleProperty<Color>(StarlightStyleProperty.IconColor, out var iconColor))
+        {
+            _buttonIcon.ModulateSelfOverride = iconColor;
+            _buttonLabel.ModulateSelfOverride = iconColor;
+            return;
+        }
+        // Starlight-end
+
         switch (DrawMode)
         {
             case DrawModeEnum.Normal:

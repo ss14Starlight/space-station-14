@@ -1,6 +1,6 @@
 - type: entity
   name: riot shotgun
-  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgunAny, BaseGunWieldable, BaseSecurityContraband ] # Blimpuf
   id: WeaponShotgunRiot
   description: A sturdy shotgun with a longer magazine and a fixed tactical grip designed for non-lethal riot control.
   components:
@@ -52,7 +52,7 @@
 
 - type: entity
   name: combat shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband ] # Blimpuf
   id: WeaponShotgunCombat
   description: A semi automatic shotgun with tactical furniture and a seven-shell capacity underneath.
   components:
@@ -74,7 +74,7 @@
 
 - type: entity
   name: cycler shotgun
-  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecuritySalvageContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgunAny, BaseGunWieldable, BaseSecurityContraband, BaseSalvageContraband ] # Blimpuf
   id: WeaponShotgunCycler
   description: An advanced shotgun with two separate magazine tubes, allowing you to quickly toggle between ammo types.
   components:
@@ -108,7 +108,7 @@
 
 - type: entity
   name: Tkach Ya-Sui GA 12 revolver
-  parent: [BaseWeaponShotgunAny, BaseSecuritySalvageContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgunAny, BaseSecurityContraband, BaseSalvageContraband ] # Blimpuf
   id: WeaponShotgunGA12
   description: An outdated sidearm rarely seen in use by certain PMCs that operate throughout the frontier systems, featuring a three-shell cylinder. Thats right, shell, this one shoots twelve gauge.
   components:
@@ -153,7 +153,7 @@
 
 - type: entity
   name: "Tkach GA-6 'Fang'"
-  parent: [BaseWeaponShotgunAny, BaseSecuritySalvageContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgunAny, BaseSecurityContraband, BaseSalvageContraband ] # Blimpuf
   id: WeaponRevolverGA6Fang
   description: A heavier follow-up to the GA 12 line, featuring a six-shell cylinder and a hook spike for when shells run dry. Rare, and unpleasant to be on the wrong end of.
   components:
@@ -352,7 +352,7 @@
     angleDecay: 10
 - type: entity
   name: ZOZ-106
-  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSovietContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgunAny, BaseGunWieldable, BaseSovietContraband ] # Blimpuf
   id: WeaponShotgunToz106
   description: A cheap Soviet shotgun that received an indifferent welcome from hunters. Aim at the head and eyes for best results. Uses less-powerful 20 gauge shotgun shells.
   components:
@@ -421,7 +421,7 @@
 # fully shitposted TOZ with no mag restrictions!
 - type: entity
   name: TOZ-106
-  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSovietContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgunAny, BaseGunWieldable, BaseSovietContraband ] # Blimpuf
   id: WeaponShotgunToz106Shitpost
   description: Piotr said his custom ZOZ-106 could accept ANY magazine. No one believed him until it was too late.
   suffix: Admeme, DO NOT MAP

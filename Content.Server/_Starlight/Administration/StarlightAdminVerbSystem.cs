@@ -43,7 +43,7 @@ public sealed partial class StarlightAdminVerbSystem : EntitySystem
             Icon = new SpriteSpecifier.Rsi(new("/Textures/_Starlight/CosmicCult/Icons/antag_icons.rsi"), "CosmicCult"),
             Act = () =>
             {
-                _antagSelection.ForceMakeAntag<CosmicCultRuleComponent>(targetPlayer, "CosmicCult");
+                _antagSelection.ForceMakeAntag<CosmicCultRuleComponent>(targetPlayer, "CosmicCult", "CosmicAntagCultist");
                 _autolog.LogToDiscord(
                     string.Join(": ", cosmicCultName, Loc.GetString("admin-verb-make-cosmiccultist")),
                     player.Name);
