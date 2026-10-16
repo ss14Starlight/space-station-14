@@ -37,6 +37,7 @@ public sealed partial class USSPUplinkSystem : EntitySystem
     /// Resets all stock-limited listings in the uplink catalog.
     /// </summary>
     private void OnRoundEnd(RoundEndSystemChangedEvent ev)
+        // Reset all stock-limited listings in the uplink catalog
         => ResetUplinkStocks();
 
     /// <summary>
@@ -45,19 +46,30 @@ public sealed partial class USSPUplinkSystem : EntitySystem
     /// </summary>
     private void ResetUplinkStocks()
     {
+        // Use reflection to access the private static dictionaries in StockLimitedListingCondition
         var type = typeof(StockLimitedListingCondition);
 
+        // Get the _stockCounts dictionary
         var stockCountsField = type.GetField("_stockCounts",
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+
+        // Get the _stockLimits dictionary
         var stockLimitsField = type.GetField("_stockLimits",
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+
+        // Get the _lastPurchasers dictionary
         var lastPurchasersField = type.GetField("_lastPurchasers",
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+
+        // Get the _outOfStock dictionary
         var outOfStockField = type.GetField("_outOfStock",
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+
+        // Get the _modifiedListings dictionary
         var modifiedListingsField = type.GetField("_modifiedListings",
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
 
+        // Reset the dictionaries
         if (stockCountsField?.GetValue(null) is Dictionary<string, int> stockCounts)
             stockCounts.Clear();
 
@@ -73,6 +85,7 @@ public sealed partial class USSPUplinkSystem : EntitySystem
         if (modifiedListingsField?.GetValue(null) is Dictionary<string, bool> modifiedListings)
             modifiedListings.Clear();
 
+        // Update all uplink UIs to show the reset stock counts
         _storeSystem.UpdateAllUSSPUplinkUIs();
     }
 
@@ -95,11 +108,13 @@ public sealed partial class USSPUplinkSystem : EntitySystem
         if (TryComp<RemoteStoreComponent>(uid, out var remote))
             _storeSystem.SetRemoteStore(uid, store);
 
+        // Set this head revolutionary as the owner
         var ownerComp = EnsureComp<USSPUplinkOwnerComponent>(uid);
         ownerComp.OwnerUid = head;
 
         if (HasComp<HeadRevolutionaryComponent>(args.Implanted))
         {
+            // Update the head revolutionary's implant component to point to this implant
             var implantComponent = EnsureComp<HeadRevolutionaryImplantComponent>(args.Implanted);
             implantComponent.ImplantUid = uid;
         }
@@ -145,27 +160,33 @@ public sealed partial class USSPUplinkSystem : EntitySystem
     }
 
     /// <summary>
-    /// Restores Conversion spent on a purchase. Conversion is a shared score, not a spendable balance.
-    /// Stock-limited purchases refresh the head stores.
+    /// Handles the event when a purchase is made from a store.
+    /// Restores any spent Conversion currency since it's a global headrev progression score, not a spendable currency.
+    /// Also updates all uplinks when a stock-limited item is purchased.
     /// </summary>
     private void OnStoreBuyFinished(ref StoreBuyFinishedEvent args)
     {
+        // Get the store component
         if (!TryComp<StoreComponent>(args.StoreUid, out var store))
             return;
 
+        // Check if this store uses Conversion currency
         if (store.CurrencyWhitelist.Contains("Conversion"))
         {
+            // Check if Conversion was spent in this purchase
             foreach (var (currency, amount) in args.PurchasedItem.Cost)
             {
                 if (currency != "Conversion" || amount <= FixedPoint2.Zero)
                     continue;
 
+                // Add the Conversion currency back
                 var currencyToAdd = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "Conversion", amount } };
                 _storeSystem.TryAddCurrency(currencyToAdd, args.StoreUid);
                 break;
             }
         }
 
+        // Check if this is a stock-limited listing
         if (args.PurchasedItem.Conditions == null || !store.CurrencyWhitelist.Contains("Telebond"))
             return;
 
@@ -174,6 +195,7 @@ public sealed partial class USSPUplinkSystem : EntitySystem
             if (condition is not StockLimitedListingCondition)
                 continue;
 
+            // If this is a stock-limited listing, update all uplinks
             _storeSystem.UpdateAllUSSPUplinkUIs();
             break;
         }
