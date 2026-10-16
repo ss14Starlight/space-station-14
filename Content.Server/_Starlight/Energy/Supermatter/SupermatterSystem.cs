@@ -193,7 +193,7 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
             _ambient.SetSound(supermatter.Owner, Const.AmbienceCalm, ambience);
     }
 
-    private void HandleDestruction(Entity<SupermatterComponent> supermatter)
+    private static void HandleDestruction(Entity<SupermatterComponent> supermatter)
     {
         var regen = Const.RegenerationPerSecond * supermatter.Comp.RegenerationModifier;
         var damageToApply = MathHelper.Clamp((supermatter.Comp.AccBreak / 10) - regen, -regen, Const.MaxDamagePerSecond);
