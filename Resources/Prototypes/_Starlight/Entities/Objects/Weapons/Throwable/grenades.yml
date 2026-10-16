@@ -173,6 +173,15 @@
           False: { state: "icon" }
   - type: Item
     size: Normal
+  - type: ItemToggleSize
+    activatedSize: Huge
+  - type: ToggleableVisuals
+    spriteLayer: blade
+    inhandVisuals:
+      left:
+      - state: inhand-left-lit
+      right:
+      - state: inhand-right-lit
   - type: Tag
     tags:
     - HandGrenade
