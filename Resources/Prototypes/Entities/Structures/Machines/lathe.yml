@@ -413,8 +413,8 @@
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
-  - type: LatheAnnouncing
-    channels: [Security]
+  # - type: LatheAnnouncing # Starlight reverted this pr
+  #   channels: [Security]
 
 - type: entity
   id: AmmoTechFab
@@ -490,8 +490,8 @@
   - type: StealTarget
     stealGroup: MedicalTechFabCircuitboard
   - type: OreSiloClient
-  - type: LatheAnnouncing
-    channels: [Medical]
+  # - type: LatheAnnouncing # Starlight reverted this pr
+  #   channels: [Medical]
 
 - type: entity
   parent: BaseLathe

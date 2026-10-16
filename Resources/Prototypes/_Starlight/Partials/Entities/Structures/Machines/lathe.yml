@@ -161,7 +161,6 @@
     - StarlightSecurityGrenadesEmag
   - type: StealTarget
     stealGroup: SecureTechFabCircuitboard
-  - type: !Remove LatheAnnouncing # Starlight reverted this pr
 
 - type: !PartialOnly entity
   id: AmmoTechFab
@@ -201,7 +200,6 @@
     - SecurityImplants
   - type: StealTarget
     stealGroup: DepartmentalTechFabCircuitboard
-  - type: !Remove LatheAnnouncing  # Starlight reverted this pr
 
 - type: !PartialOnly entity
   id: UniformPrinter
