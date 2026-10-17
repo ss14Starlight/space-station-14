@@ -30,7 +30,7 @@ public sealed partial class SlimeExtractSystem : EntitySystem
         SubscribeLocalEvent<SlimeExtractComponent, ExaminedEvent>(OnExamined);
     }
 
-    public bool IsSolutionRequirementFulfilled(Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> requiredSolution, Solution currentSolution)
+    public static bool IsSolutionRequirementFulfilled(Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> requiredSolution, Solution currentSolution)
     {
         foreach (var req in requiredSolution)
         {
@@ -41,7 +41,7 @@ public sealed partial class SlimeExtractSystem : EntitySystem
         return true;
     }
 
-    public FixedPoint2 FindMinimumScalingFactor(Dictionary<ProtoId<ReagentPrototype>, FixedPoint2>requiredSolution, Solution currentSolution)
+    public static FixedPoint2 FindMinimumScalingFactor(Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> requiredSolution, Solution currentSolution)
     {
         var minimumScalingFactor = FixedPoint2.MaxValue;
         foreach (var req in requiredSolution)

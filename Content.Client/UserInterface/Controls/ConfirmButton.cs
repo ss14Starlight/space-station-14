@@ -86,8 +86,11 @@ public sealed partial class ConfirmButton : Button
             DrawModeChanged();
         }
 
-        if (Disabled && _gameTiming.CurTime > _nextCooldown)
-            Disabled = false;
+        // Starlight begin - bugfix
+        if (!Disabled || !(_gameTiming.CurTime > _nextCooldown)) return;
+        Disabled = false;
+        _nextCooldown = null;
+        // Starlight-end
     }
 
     protected override void DrawModeChanged()

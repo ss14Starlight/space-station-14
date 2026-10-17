@@ -1,0 +1,7 @@
+<Control
+	xmlns="https://spacestation14.io">
+	<HBox>
+		<Label Text="{Loc 'genetics-ui-widgets-sort-button-label'}"/>
+		<OptionButton Access="Public" Name="Button"/>
+	</HBox>
+</Control>

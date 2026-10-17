@@ -1,0 +1,7 @@
+<Control xmlns="https://spacestation14.io">
+	<HBox Orientation="Horizontal" VerticalExpand="False" Name="ButtonContainer">
+		<Button ToggleMode="True" Name="Button" HorizontalExpand="True"
+		        Text="{Loc 'genetics-ui-widgets-gene-selector-name-placeholder'}"
+		        StyleClasses="OpenRight"/>
+	</HBox>
+</Control>

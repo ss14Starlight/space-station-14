@@ -1,0 +1,21 @@
+- type: entity
+  parent: BaseItem
+  id: GeneSampler
+  name: gene sampler
+  description: Best not to think too much about what you're doing.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/gene_sampler.rsi
+      layers:
+      - state: sampling
+        map: ["base"]
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.GeneSamplerVisuals.Signal:
+          base:
+            True: { state: sampling }
+            False: { state: injecting }
+    - type: Item
+      size: Small
+    - type: GeneSampler
