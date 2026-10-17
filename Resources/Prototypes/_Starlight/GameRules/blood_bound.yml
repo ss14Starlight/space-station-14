@@ -14,7 +14,7 @@
   - type: AntagRandomObjectives
     sets:
     - groups: BloodBoundObjectiveGroups
-    maxDifficulty: 5
+    maxDifficulty: 4
     forcedObjectiveGroup: BloodBoundObjectiveGroupFate
     storyObjectiveGroup: BloodBoundObjectiveGroupStory
     storyObjectiveCount: 3

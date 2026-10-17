@@ -366,7 +366,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = bloodBoundName,
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/_Harmony/Interface/Misc/job_icons.rsi"), "BloodBound"),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_Harmony/Interface/Misc/job_icons.rsi"), "BloodBrother"),
             Act = () =>
             {
                 _antag.ForceMakeAntag<BloodBoundRuleComponent>(targetPlayer, DefaultBloodBoundRule);
