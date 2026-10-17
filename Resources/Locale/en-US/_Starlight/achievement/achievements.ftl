@@ -133,6 +133,21 @@ achievement-rodentia-rex-description = As a Rat King, have at least 30 rat serva
 achievement-the-robust-salvagers-name = The Robust Salvagers
 achievement-the-robust-salvagers-description = As a salvager, kill a nuclear operative.
 
+achievement-elite-contractor-name = Elite Contractor
+achievement-elite-contractor-description = Complete at least 15 Difficulty as a Traitor in a single round.
+
+achievement-phantom-thief-name = Phantom Thief
+achievement-phantom-thief-description = Complete at least 10 Difficulty as a Thief in a single round.
+
+achievement-first-kindred-name = First Kindred
+achievement-first-kindred-description = Complete at least 10 Difficulty as a Vampire in a single round.
+
+achievement-enemy-unknown-name = Enemy Unknown
+achievement-enemy-unknown-description = Complete at least 10 Difficulty as a Changeling in a single round.
+
+achievement-theory-of-objectivity-name = Theory of Objectivity
+achievement-theory-of-objectivity-description = Obtain Elite Contractor, Phantom Thief, First Kindred, and Enemy Unknown.
+
 achievement-window-title = Track your milestones, hidden trophies, and long-term progress
 achievement-window-categories = Categories
 achievement-window-category-all = All Achievements
@@ -160,3 +175,8 @@ achievement-category-milestones = Milestones
 achievement-category-onboarding = Onboarding
 achievement-category-special = Special
 achievement-category-vampire = Vampire
+achievement-category-traitor = Traitor
+achievement-category-thief = Thief
+achievement-category-changeling = Changeling
+achievement-category-revolutionary = Revolutionary
+achievement-category-nukeops = Nuclear Operative

@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: EscapeThiefShuttleObjective
+  components:
+  - type: Objective
+    difficulty: 0

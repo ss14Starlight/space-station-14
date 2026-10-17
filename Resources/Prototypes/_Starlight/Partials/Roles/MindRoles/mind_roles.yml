@@ -1,0 +1,141 @@
+# Moffstation - Start - Character menu faction names, colors, and crew briefing.
+# Starlight - Keep the port in prototype partials so the upstream roles retain their definitions.
+
+- type: !PartialOnly entity
+  id: MindRoleGhostRoleSilicon
+  components:
+  - type: MindRole
+    subtype: 'role-subtype-silicon'
+    subtypeColor: '#6495ed'
+
+- type: !PartialOnly entity
+  id: MindRoleGhostRoleSiliconAntagonist
+  components:
+  - type: MindRole
+    subtype: 'role-subtype-silicon'
+    subtypeColor: '#c832e6'
+
+- type: !PartialOnly entity
+  id: MindRoleJob
+  components:
+  - type: RoleBriefing
+    briefing: 'crew-briefing'
+
+- type: !PartialOnly entity
+  id: MindRoleSiliconBrain
+  components:
+  - type: MindRole
+    subtype: 'role-subtype-silicon'
+    subtypeColor: '#6495ed'
+
+- type: !PartialOnly entity
+  id: MindRoleSubvertedSilicon
+  components:
+  - type: MindRole
+    subtype: 'role-subtype-silicon'
+    subtypeColor: '#c832e6'
+
+- type: !PartialOnly entity
+  id: MindRoleDragon
+  components:
+  - type: MindRole
+    subtypeColor: '#2508ff'
+
+- type: !PartialOnly entity
+  id: MindRoleNinja
+  components:
+  - type: MindRole
+    subtypeColor: '#62C837'
+
+- type: !PartialOnly entity
+  id: MindRoleParadoxClone
+  components:
+  - type: MindRole
+    subtype: !Remove
+
+- type: !PartialOnly entity
+  id: MindRoleNukeops
+  components:
+  - type: MindRole
+    subtypeColor: 'darkred'
+
+- type: !PartialOnly entity
+  id: MindRoleLoneops
+  components:
+  - type: MindRole
+    subtypeColor: 'darkred'
+
+- type: !PartialOnly entity
+  id: MindRoleHeadRevolutionary
+  components:
+  - type: MindRole
+    subtypeColor: '#ff1e00'
+
+- type: !PartialOnly entity
+  id: MindRoleRevolutionary
+  components:
+  - type: MindRole
+    subtype: antag-category-ussp-name
+    subtypeColor: '#CC2500'
+
+- type: !PartialOnly entity
+  id: MindRoleThief
+  components:
+  - type: MindRole
+    subtype: 'role-type-free-agent-name'
+    subtypeColor: '#C28463'
+
+- type: !PartialOnly entity
+  id: MindRoleTraitor
+  components:
+  - type: MindRole
+    subtypeColor: 'darkred'
+
+- type: !PartialOnly entity
+  id: MindRoleTraitorReinforcement
+  components:
+  - type: MindRole
+    characterMenuName: role-subtype-traitor-reinforcement
+    subtypeColor: '#C43C47'
+
+- type: !PartialOnly entity
+  id: MindRoleWizard
+  components:
+  - type: MindRole
+    subtypeColor: 'turquoise'
+
+- type: !PartialOnly entity
+  id: MindRoleMothershipCore
+  components:
+  - type: MindRole
+    subtype: 'role-subtype-silicon'
+    subtypeColor: 'darkblue'
+
+- type: !PartialOnly entity
+  id: MindRoleXenoborg
+  components:
+  - type: MindRole
+    subtype: 'role-subtype-silicon'
+    subtypeColor: 'darkblue'
+
+- type: !PartialOnly entity
+  id: MindRoleInitialInfected
+  components:
+  - type: MindRole
+    subtypeColor: 'green'
+
+- type: !PartialOnly entity
+  id: MindRoleZombie
+  components:
+  - type: MindRole
+    characterMenuName: role-subtype-faction-infected
+    subtype: 'role-subtype-faction-infected'
+    subtypeColor: 'green'
+
+- type: !PartialOnly entity
+  id: MindRoleChangeling
+  components:
+  - type: MindRole
+    subtypeColor: '#FA2A55'
+
+# Moffstation - End
