@@ -1,11 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: Added bottomless oxygen and nitrogen tanks, for adbus.
-    type: Add
-  id: 409142
-  time: '2026-10-04T12:46:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6435
 - author: DogeyOT
   changes:
   - message: New vox tails, and eyes.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409541
   time: '2026-10-17T08:59:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6728
+- author: Conflee
+  changes:
+  - message: Gave Nukie Borgs their Gorlex comms.
+    type: Fix
+  id: 409542
+  time: '2026-10-17T09:27:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6724
 Order: -1
