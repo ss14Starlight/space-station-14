@@ -4,7 +4,7 @@
   - type: GhostRole
     rules: ghost-role-information-rules-team-antagonist # edit freeagent -> teamantagonist
     !Clear mindRoles:
-    - MindRoleGhostRoleNeutralSkeleton # edit - FreeAgent -> NeutralSkeleton
+    - MindRolePirate # edit - FreeAgent -> Pirate
 
 
 - type: !PartialOnly entity
