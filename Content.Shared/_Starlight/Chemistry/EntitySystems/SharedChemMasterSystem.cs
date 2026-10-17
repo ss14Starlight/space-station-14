@@ -34,6 +34,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
     [Dependency] private LabelSystem _labelSystem = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private TagSystem _tag = default!;
+    [Dependency] private SolutionTransferSystem _solutionTransferSystem = default!;
 
     private static readonly EntProtoId PillPrototypeId = "Pill";
     private static readonly EntProtoId PatchPrototypeId = "Patch";
@@ -140,25 +141,31 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
         if (fromBuffer) // Buffer to container
         {
             amount = FixedPoint2.Min(amount, containerSolution.AvailableVolume);
+
             amount = bufferSolution.RemoveReagent(id, amount, preserveOrder: true);
             _solutionContainerSystem.TryAddReagent(containerSoln.Value, id, amount, out var _);
         }
         else // Container to buffer
         {
             amount = FixedPoint2.Min(amount, containerSolution.GetReagentQuantity(id), bufferSolution.AvailableVolume);
+
             _solutionContainerSystem.RemoveReagent(containerSoln.Value, id, amount);
             _solutionContainerSystem.TryAddReagent(bufferSoln.Value, id, amount, out _);
         }
+
+        Dirty(containerSoln.Value);
+        Dirty(bufferSoln.Value);
     }
 
     private void DiscardReagents(Entity<ChemMasterComponent> chemMaster, ReagentId id, FixedPoint2 amount, bool fromBuffer)
     {
         if (fromBuffer)
         {
-            if (_solutionContainerSystem.TryGetSolution(chemMaster.Owner, SharedChemMaster.BufferSolutionName, out _, out var bufferSolution))
+            if (_solutionContainerSystem.TryGetSolution(chemMaster.Owner, SharedChemMaster.BufferSolutionName, out var bufferSoln, out var bufferSolution))
+            {
                 bufferSolution.RemoveReagent(id, amount, preserveOrder: true);
-            else
-                return;
+                Dirty(bufferSoln.Value);
+            }
         }
         else
         {
@@ -167,6 +174,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
                 _solutionContainerSystem.TryGetFitsInDispenser(container.Value, out var containerSolution, out _))
             {
                 _solutionContainerSystem.RemoveReagent(containerSolution.Value, id, amount);
+                Dirty(containerSolution.Value);
             }
             else
                 return;
@@ -207,7 +215,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
 
         for (var i = 0; i < message.Number; i++)
         {
-            var item = Spawn(PillPrototypeId, Transform(container).Coordinates);
+            var item = PredictedSpawnAtPosition(PillPrototypeId, Transform(container).Coordinates);
             _storageSystem.Insert(container, item, out _, user: user, storage);
             _labelSystem.Label(item, message.Label);
 
@@ -225,6 +233,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
         }
 
         ClickSound(chemMaster, message.Actor);
+        UpdateUi(chemMaster, ChemMasterUIDirtyFlags.Inventory | ChemMasterUIDirtyFlags.Solutions);
     }
 
     private void OnOutputToBottleMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterOutputToBottleMessage message)
@@ -256,6 +265,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
             $"{ToPrettyString(user):user} bottled {ToPrettyString(container):bottle} {SharedSolutionContainerSystem.ToPrettyString(solution)}");
 
         ClickSound(chemMaster, message.Actor);
+        UpdateUi(chemMaster, ChemMasterUIDirtyFlags.Inventory | ChemMasterUIDirtyFlags.Solutions);
     }
 
     private bool WithdrawFromSource(
@@ -386,7 +396,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
 
         for (var i = 0; i < message.Number; i++)
         {
-            var item = Spawn(PatchPrototypeId, Transform(container).Coordinates);
+            var item = PredictedSpawnAtPosition(PatchPrototypeId, Transform(container).Coordinates);
             _storageSystem.Insert(container, item, out _, user: user, storage);
             _labelSystem.Label(item, message.Label);
 
@@ -396,6 +406,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
         }
 
         ClickSound(chemMaster, message.Actor);
+        UpdateUi(chemMaster, ChemMasterUIDirtyFlags.Inventory | ChemMasterUIDirtyFlags.Solutions);
     }
 
     private void OnToggleValveMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterToggleValveMessage message)
