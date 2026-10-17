@@ -1,27 +1,6 @@
 Entries:
 - author: Rinary
   changes:
-  - message: Added more default ambience sounds.
-    type: Add
-  id: 409153
-  time: '2026-10-04T14:58:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6463
-- author: Rinary
-  changes:
-  - message: Added "loop"-ed ambience sounds, music which will be played while you staying somewhere(like det office, viro).
-    type: Add
-  id: 409154
-  time: '2026-10-04T14:58:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6463
-- author: Rinary
-  changes:
-  - message: Added "one-shot" ambience sounds, effects which will be played with interval in 1 min while you staying somewhere.
-    type: Add
-  id: 409155
-  time: '2026-10-04T14:58:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6463
-- author: Rinary
-  changes:
   - message: Added new volume sliders, now volume highly customizable(up to 19 different volume bars).
     type: Add
   id: 409156
@@ -2883,4 +2862,25 @@ Entries:
   id: 409552
   time: '2026-10-17T11:10:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6714
+- author: Sparlight
+  changes:
+  - message: Arithrazine, Ultravasculine, Dylovene, Dermaline and Histamine split their brute damage across blunt, slash and piercing again.
+    type: Tweak
+  id: 409553
+  time: '2026-10-17T11:42:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6699
+- author: Sparlight
+  changes:
+  - message: Histamine's severe reaction deals airloss again.
+    type: Tweak
+  id: 409554
+  time: '2026-10-17T11:42:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6699
+- author: Sparlight
+  changes:
+  - message: Polypyrylium Oligomers heals 2.5 brute and 2 airloss, and its overdose deals 4.5 asphyxiation.
+    type: Tweak
+  id: 409555
+  time: '2026-10-17T11:42:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6699
 Order: -1
