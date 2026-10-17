@@ -9,7 +9,7 @@ namespace Content.Server.Chemistry.Components;
 /// An industrial grade chemical manipulator with pill and bottle production included.
 /// <seealso cref="ChemMasterSystem"/>
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
 [Access(typeof(SharedChemMasterSystem))]
 public sealed partial class ChemMasterComponent : Component
 {

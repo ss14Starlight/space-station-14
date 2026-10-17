@@ -2,6 +2,7 @@
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Plumbing.EntitySystems;
 using Content.Shared.Power;
 using Content.Shared.Storage.EntitySystems;
 using JetBrains.Annotations;
@@ -27,16 +28,10 @@ public sealed partial class ReagentDispenserSystem : SharedReagentDispenserSyste
         SubscribeLocalEvent<ReagentDispenserComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUi, after: [typeof(SharedStorageSystem)]);
         SubscribeLocalEvent<ReagentDispenserComponent, PowerChangedEvent>(SubscribeUpdateUi);
         SubscribeLocalEvent<ReagentDispenserComponent, AfterAutoHandleStateEvent>(SubscribeUpdateUi);
-        SubscribeLocalEvent<PlumbingOutletComponent, AfterAutoHandleStateEvent>(OnPlumbingOutputState);
+        SubscribeLocalEvent<ReagentDispenserComponent, PlumbingOutputChangedEvent>(SubscribeUpdateUi);
     }
 
     private void SubscribeUpdateUi<T>(Entity<ReagentDispenserComponent> ent, ref T ev) => UpdateUi(ent);
-
-    private void OnPlumbingOutputState(Entity<PlumbingOutletComponent> ent, ref AfterAutoHandleStateEvent ev)
-    {
-        if (TryComp<ReagentDispenserComponent>(ent, out var comp))
-            UpdateUi((ent, comp));
-    }
 
     protected override void UpdateUi(Entity<ReagentDispenserComponent> entity)
     {

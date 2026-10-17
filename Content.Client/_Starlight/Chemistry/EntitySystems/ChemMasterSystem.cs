@@ -1,9 +1,11 @@
 ﻿using Content.Client._Starlight.Chemistry.UI;
 using Content.Server.Chemistry.Components;
+using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.DragDrop;
+using Content.Shared.Plumbing.EntitySystems;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 
@@ -29,6 +31,8 @@ public sealed partial class ChemMasterSystem : SharedChemMasterSystem
         SubscribeLocalEvent<ChemMasterComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUiState);
         SubscribeLocalEvent<ChemMasterComponent, BoundUIOpenedEvent>(SubscribeUpdateUiState);
         SubscribeLocalEvent<ChemMasterComponent, DragDropTargetEvent>(SubscribeUpdateUiState); // TRIESTE
+        SubscribeLocalEvent<ChemMasterComponent, AfterAutoHandleStateEvent>(SubscribeUpdateUiState);
+        SubscribeLocalEvent<ChemMasterComponent, PlumbingOutputChangedEvent>(SubscribeUpdateUiState);
     }
 
     private void SubscribeUpdateUiState<T>(Entity<ChemMasterComponent> ent, ref T ev) => UpdateUi(ent);
