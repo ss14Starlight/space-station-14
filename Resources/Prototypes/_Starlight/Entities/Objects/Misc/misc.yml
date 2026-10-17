@@ -46,3 +46,15 @@
       noEngravingText: "engraving-picture-no-message"
       engraveSuccessMessage: "engraving-picture-succeed"
       hasEngravingText: "engraving-picture-has-message"
+
+- type: entity
+  parent: BaseItem
+  id: DragonTreasure
+  name: dragon treasure
+  description: A flawless sapphire recovered from a fire dragon's gullet. Still warm to the touch, and worth a small fortune.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/dragon_treasure.rsi
+    state: sapphire
+  - type: StaticPrice
+    price: 10000

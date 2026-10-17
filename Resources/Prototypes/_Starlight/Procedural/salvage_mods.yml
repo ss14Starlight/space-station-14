@@ -5,7 +5,8 @@
   difficulties:
     - Moderate
     - Challenging
- #   - Difficult
+    - Difficult
+    - Impossible
 
 - type: salvageBiomeMod
   id: TrueAbyss
@@ -80,6 +81,17 @@
     - Challenging
     - Moderate
     - Easy
+
+# Keep dragon expeditions on their own copy of the upstream salvage dungeon.
+- type: salvageDungeonMod
+  id: FireDragon
+  desc: salvage-dungeon-mod-fire-dragon
+  proto: FireDragonDungeon
+  biomes:
+    - Abyss
+  difficulties:
+    - Difficult
+    - Impossible
 
 - type: salvageDungeonMod
   id: LavaBrig

@@ -1,0 +1,83 @@
+- type: entity
+  parent: BaseAction
+  id: ActionFireDragonAncientFlame
+  name: Ancient Flame
+  description: Hurl a powerful fireball that leaves lingering flames and explodes on impact.
+  components:
+  - type: Action
+    icon: { sprite: _Starlight/Interface/Actions/actions_firedragon.rsi, state: bigfireball }
+    itemIconStyle: NoItem
+    useDelay: 15
+    priority: 1
+  - type: TargetAction
+    targetingIndicator: true
+    checkCanAccess: false
+    range: 12
+  - type: WorldTargetAction
+    event: !type:FireDragonAncientFlameEvent
+  - type: EorgPreventAction
+
+- type: entity
+  parent: BaseAction
+  id: ActionFireDragonTailSlam
+  name: Tail Slam
+  description: Slam your tail into the ground, sending short-lived rings of fire around you.
+  components:
+  - type: Action
+    icon: { sprite: _Starlight/Interface/Actions/actions_firedragon.rsi, state: tailslam }
+    itemIconStyle: NoItem
+    useDelay: 25
+    priority: 2
+  - type: InstantAction
+    event: !type:FireDragonTailSlamEvent
+  - type: EorgPreventAction
+
+- type: entity
+  parent: BaseAction
+  id: ActionFireDragonRoar
+  name: Roar
+  description: Mark nearby prey with Predator Hunt, slowing them by 5% for eight seconds.
+  components:
+  - type: Action
+    icon: { sprite: _Starlight/Interface/Actions/actions_firedragon.rsi, state: roar }
+    itemIconStyle: NoItem
+    useDelay: 40
+    priority: 3
+  - type: InstantAction
+    event: !type:FireDragonRoarEvent
+  - type: EorgPreventAction
+
+- type: entity
+  parent: BaseAction
+  id: ActionFireDragonWingDash
+  name: Wing Dash
+  # Disabled on the base dragon until its movement is smoother and balanced.
+  description: Beat your wings to dash straight forward.
+  components:
+  - type: Action
+    icon: { sprite: _Starlight/Interface/Actions/actions_firedragon.rsi, state: wings }
+    itemIconStyle: NoItem
+    useDelay: 10
+    priority: 4
+  - type: InstantAction
+    event: !type:FireDragonWingDashEvent
+  - type: EorgPreventAction
+
+- type: entity
+  parent: BaseAction
+  id: ActionFireDragonFirebreath
+  name: Firebreath
+  description: Breathe a three-tile-wide lane of fire that advances four tiles along your aim.
+  components:
+  - type: Action
+    icon: { sprite: _Starlight/Interface/Actions/actions_firedragon.rsi, state: firebreath }
+    itemIconStyle: NoItem
+    useDelay: 20
+    priority: 5
+  - type: TargetAction
+    targetingIndicator: true
+    checkCanAccess: false
+    range: 12
+  - type: WorldTargetAction
+    event: !type:FireDragonFirebreathEvent
+  - type: EorgPreventAction
