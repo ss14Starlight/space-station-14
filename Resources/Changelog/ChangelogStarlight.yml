@@ -1,18 +1,4 @@
 Entries:
-- author: SevenShades
-  changes:
-  - message: Added variable ammunition for MedTak weapons.
-    type: Add
-  id: 409151
-  time: '2026-10-04T14:45:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6398
-- author: Rinary
-  changes:
-  - message: Added pickup/drop/equip sounds for various objects(all objects, some have unique).
-    type: Add
-  id: 409152
-  time: '2026-10-04T14:58:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6463
 - author: Rinary
   changes:
   - message: Added more default ambience sounds.
@@ -2883,4 +2869,18 @@ Entries:
   id: 409550
   time: '2026-10-17T11:10:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6716
+- author: Conflee
+  changes:
+  - message: Added 3 TC to the Vault Freezer, to encourage Traitors to break into the Vault more often.
+    type: Add
+  id: 409551
+  time: '2026-10-17T11:10:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6714
+- author: Conflee
+  changes:
+  - message: Fixed butchering not working for about 60% of animals and mobs. Wizden swapped the Butcherable component for a ToolRefinable component, but not only were our mobs not updated, Wizden didn't bother updating like 40% of THEIR mobs when THEY made the change either. For some reason.
+    type: Fix
+  id: 409552
+  time: '2026-10-17T11:10:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6714
 Order: -1
