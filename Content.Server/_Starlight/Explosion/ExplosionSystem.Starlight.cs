@@ -21,8 +21,9 @@ public sealed partial class ExplosionSystem
     }
 
     private static bool HasSameInternalBodies(HashSet<EntityUid> internalBodies, EntityUid? internalBody)
-        => (internalBody is { } body&& internalBodies.Count == 1 && internalBodies.Contains(body))
-            || internalBodies.Count == 0;
+        => internalBody is { } body
+            ? internalBodies.Count == 1 && internalBodies.Contains(body)
+            : internalBodies.Count == 0;
 
     private EntityUid? FindContainingBody(EntityUid cause)
     {
