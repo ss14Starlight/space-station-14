@@ -41,13 +41,13 @@
   - Spear
 - type: startingGear
   id: SovietComradeGearFinka
-  parent: SovietComradeGearCoated
+  parent: SovietComradeGear
   inhand:
   - Finka
 #shotgun
 - type: startingGear
   id: SovietComradeGearSawn
-  parent: SovietComradeGear
+  parent: [SovietComradeGear, SovietComradeGearBelt]
   equipment:
     belt: ClothingSovietBandolier
   inhand:
@@ -55,7 +55,7 @@
 #pistol
 - type: startingGear
   id: SovietComradeGearMakarov
-  parent: [SovietComradeGear, SovietComradeGearBelt]
+  parent: SovietComradeGearCoated
   inhand:
   - WeaponPistolMakarov
 #revolver
