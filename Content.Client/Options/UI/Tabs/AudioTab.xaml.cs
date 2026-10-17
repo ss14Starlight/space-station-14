@@ -25,16 +25,6 @@ public sealed partial class AudioTab : Control
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
-        // Starlight-start: one sub-tab per group of options instead of one long column.
-        AddSection(MusicPage, "ui-options-music-label");
-        AddSection(EnvironmentPage, "ui-options-environment-label");
-        AddSection(WorldPage, "ui-options-world-label");
-        AddSection(VoicesPage, "ui-options-voices-label");
-        AddSection(TtsPage, "ui-options-tts-label");
-        AddSection(OtherPage, "ui-options-other-label");
-        Pages.Orphan();
-        CollectSectionButtons();
-        // Starlight-end
 
         var masterVolume = Control.AddOptionPercentSlider(
             CVars.AudioMasterVolume,
@@ -130,7 +120,6 @@ public sealed partial class AudioTab : Control
         base.EnteredTree();
         _admin.AdminStatusUpdated += UpdateAdminButtonsVisibility;
         UpdateAdminButtonsVisibility();
-        RestoreSectionButtons(); // Starlight
     }
 
     protected override void ExitedTree()
@@ -148,64 +137,6 @@ public sealed partial class AudioTab : Control
         => _audio.SetMasterGain(value); // Starlight-edit: lambda
 
     #region Starlight
-    private void AddSection(Control page, string title)
-    {
-        page.Orphan();
-        page.Margin = new Thickness(4);
-        Sections.AddTab(page, Loc.GetString(title));
-        _sectionPages.Add(page);
-    }
-
-    private readonly List<Control> _sectionPages = [];
-    private readonly List<BaseButton> _sectionButtons = [];
-    private ButtonGroup? _sectionGroup;
-
-    private void CollectSectionButtons()
-    {
-        // The first scroll container holds the tab buttons, the second one the pages.
-        foreach (var child in Sections.Children)
-        {
-            if (child is not ScrollContainer)
-                continue;
-
-            CollectSectionButtons(child);
-            break;
-        }
-    }
-
-    private void CollectSectionButtons(Control parent)
-    {
-        foreach (var child in parent.Children)
-        {
-            if (child is BaseButton { Group: { } group } button)
-            {
-                _sectionGroup ??= group;
-                _sectionButtons.Add(button);
-            }
-            else
-            {
-                CollectSectionButtons(child);
-            }
-        }
-    }
-
-    private void RestoreSectionButtons()
-    {
-        if (_sectionGroup == null)
-            return;
-
-        foreach (var button in _sectionButtons)
-        {
-            button.Group = _sectionGroup;
-        }
-
-        for (var i = 0; i < _sectionPages.Count && i < _sectionButtons.Count; i++)
-        {
-            if (_sectionPages[i].Visible)
-                _sectionButtons[i].Pressed = true;
-        }
-    }
-
     private void AddCategorySlider(CVarDef<float> cvar, OptionSlider slider)
         => Control.AddOptionPercentSlider(cvar, slider, scale: CategoryVolumeMultiplier);
 

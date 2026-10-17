@@ -1,0 +1,76 @@
+- type: constructionGraph
+  id: StreetLamp
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: unfinished
+          steps:
+            - material: Steel
+              amount: 8
+              doAfter: 2.0
+    - node: broken
+      entity: LightStreetLampBroken
+      edges:
+        - to: streetLamp
+          steps:
+            - tool: Welding
+              doAfter: 8.0
+            - material: Glass
+              amount: 2
+              doAfter: 1.0
+        - to: start
+          steps:
+            - tool: Anchoring
+              doAfter: 4.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 8
+            - !type:SpawnPrototype
+              prototype: PartRodMetal1
+              amount: 4
+            - !type:DeleteEntity {}
+    - node: streetLamp
+      entity: PoweredLightStreetLampEmpty
+      edges:
+        - to: unfinished
+          conditions:
+            - !type:ContainerEmpty
+              container: "light_bulb"
+          steps:
+            - tool: Screwing
+              doAfter: 2.0
+            - tool: Anchoring
+              doAfter: 4.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: PartRodMetal1
+              amount: 4
+            - !type:SpawnPrototype
+              prototype: SheetGlass1
+              amount: 2
+    - node: unfinished
+      entity: LightStreetLampUnfinished
+      edges:
+        - to: start
+          steps:
+            - tool: Welding
+              doAfter: 4.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 8
+            - !type:DeleteEntity {}
+        - to: streetLamp
+          steps:
+            - tool: Welding
+              doAfter: 4.0
+            - material: MetalRod
+              amount: 4
+              doAfter: 2.0
+            - material: Glass
+              amount: 2
+              doAfter: 1.0
+            - tool: Screwing
+              doAfter: 4.0
