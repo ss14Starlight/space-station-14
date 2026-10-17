@@ -336,7 +336,11 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [SubscribeLocalEvent]
     private void OnCustomLimbTerminating(Entity<CustomLimbMarkerComponent> ent, ref EntityTerminatingEvent args)
         => RemoveCustomLimb(ent);
+    }
 
+    [SubscribeLocalEvent]
+    private void OnCustomLimbTerminating(Entity<CustomLimbMarkerComponent> ent, ref EntityTerminatingEvent args)
+        => RemoveCustomLimb(ent);
     private void CustomLimbRemoved(Entity<CustomLimbMarkerComponent> ent, ref ComponentRemove args)
         => RemoveCustomLimb(ent);
 
