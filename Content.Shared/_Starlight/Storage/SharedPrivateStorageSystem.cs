@@ -6,44 +6,48 @@ using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Strip;
 using Content.Shared.Verbs;
+using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Storage;
 
 /// <summary>
-/// Modifies access to internal storage depending on whether the user initiating it is the owner of the storage.
+/// Handles delayed outsider access to private and visibly implanted storage.
 /// </summary>
 public abstract partial class SharedPrivateStorageSystem : EntitySystem
 {
+    private static readonly TimeSpan ImplantedStorageAccessDelay = TimeSpan.FromSeconds(3);
+
     [Dependency] private SharedStorageSystem _storage = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SharedContainerSystem _containers = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PrivateStorageComponent, PrivateStorageDoAfterEvent>(OnDoAfter);
+        SubscribeLocalEvent<StorageComponent, PrivateStorageDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<PrivateStorageComponent, GetVerbsEvent<ActivationVerb>>(AddPrivateStorageVerb);
         SubscribeLocalEvent<PrivateStorageComponent, ActivateInWorldEvent>(OnActivate, after: [typeof(SharedStrippableSystem)]);
     }
 
-    private void OnDoAfter(EntityUid uid, PrivateStorageComponent component, DoAfterEvent args)
+    private void OnDoAfter(EntityUid uid, StorageComponent component, DoAfterEvent args)
     {
-        if(args.Cancelled)
+        if (args.Cancelled)
             return;
 
-        if(args.Handled)
+        if (args.Handled)
             return;
 
         if (!Exists(args.Args.User))
             return;
 
-        if (TryComp<StorageComponent>(uid, out var storageComp))
-        {
-            _storage.OpenStorageUI(uid, args.Args.User, storageComp, false);
-        }
+        if (args.Args.Target is not { } owner || !IsContainedBy(uid, owner))
+            return;
+
+        _storage.OpenStorageUI(uid, args.Args.User, component, false);
 
         args.Handled = true;
     }
@@ -131,9 +135,29 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
     /// If the user is the owner of the storage, access is granted immediately without delay.
     /// </summary>
     private void StartPrivateStorageAccess(EntityUid uid, EntityUid user, PrivateStorageComponent component)
+        => StartPrivateStorageAccess(uid, uid, user, component.AccessDelay, component.AccessPopup);
+
+    /// <summary>
+    /// Toggles visible storage carried by another entity, using its configured delay or the implanted-storage default.
+    /// </summary>
+    public void ToggleStorage(EntityUid uid, EntityUid owner, EntityUid user)
+    {
+        if (_ui.IsUiOpen(uid, StorageComponent.StorageUiKey.Key, user))
+        {
+            _ui.CloseUi(uid, StorageComponent.StorageUiKey.Key, user);
+            return;
+        }
+
+        var privateStorage = CompOrNull<PrivateStorageComponent>(uid);
+        var delay = privateStorage?.AccessDelay ?? ImplantedStorageAccessDelay;
+        var popup = privateStorage?.AccessPopup ?? (LocId) "implanted-storage-accessing";
+        StartPrivateStorageAccess(uid, owner, user, delay, popup);
+    }
+
+    private void StartPrivateStorageAccess(EntityUid uid, EntityUid owner, EntityUid user, TimeSpan delay, LocId accessPopup)
     {
         // If the user is the owner of the storage, grant immediate access
-        if (uid == user)
+        if (owner == user)
         {
             if (TryComp<StorageComponent>(uid, out var storageComp))
             {
@@ -143,8 +167,9 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
         }
 
         // For other users, require DoAfter with delay
-        var doAfterArgs = new DoAfterArgs(EntityManager, user, component.AccessDelay,
-            new PrivateStorageDoAfterEvent(), uid, target: uid)
+        // Treat the specific storage entity as the tool so separate containers on the same body can be opened concurrently.
+        var doAfterArgs = new DoAfterArgs(EntityManager, user, delay,
+            new PrivateStorageDoAfterEvent(), uid, target: owner, used: uid)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -154,7 +179,26 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
             CancelDuplicate = true
         };
 
-        _popup.PopupEntity(Loc.GetString(component.AccessPopup, ("user", user)), uid, uid, PopupType.Medium);
+        _popup.PopupEntity(Loc.GetString(accessPopup, ("user", user)), owner, owner, PopupType.Medium);
         _doAfter.TryStartDoAfter(doAfterArgs);
+    }
+
+    private bool IsContainedBy(EntityUid entity, EntityUid owner)
+    {
+        if (entity == owner)
+            return true;
+
+        while (_containers.TryGetContainingContainer(entity, out var container))
+        {
+            if (container.Owner == owner)
+                return true;
+
+            if (container.Owner == entity)
+                return false;
+
+            entity = container.Owner;
+        }
+
+        return false;
     }
 }
