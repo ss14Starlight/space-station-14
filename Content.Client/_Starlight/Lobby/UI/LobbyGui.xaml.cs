@@ -19,7 +19,7 @@ namespace Content.Client.Lobby.UI
     {
         [Dependency] private IClientConsoleHost _consoleHost = default!;
         [Dependency] private IConfigurationManager _configurationManager = default!;
-        [Dependency] private ChangelogManager _changelog = default!; // Starlight
+        [Dependency] private ChangelogManager _changelog = default!;
 
         public LobbyGui()
         {
@@ -33,7 +33,6 @@ namespace Content.Client.Lobby.UI
             LeaveButton.OnPressed += _ => _consoleHost.ExecuteCommand("disconnect");
             OptionsButton.OnPressed += _ => UserInterfaceManager.GetUIController<OptionsUIController>().ToggleWindow();
 
-            // Starlight-start
             if (LinkBanner.ChildCount > 0 && LinkBanner.GetChild(0) is BoxContainer links)
                 links.Orientation = BoxContainer.LayoutOrientation.Vertical;
             LinksButton.SetContent(LinkBanner);
@@ -63,10 +62,8 @@ namespace Content.Client.Lobby.UI
             };
 
             _configurationManager.OnValueChanged(StarlightCCVars.ServerName, name => ServerName.Text = name, true);
-            // Starlight-end
         }
 
-        #region Starlight
         protected override void EnteredTree()
         {
             base.EnteredTree();
@@ -128,8 +125,6 @@ namespace Content.Client.Lobby.UI
             if (state == LobbyGuiState.CharacterSetup)
                 UserInterfaceManager.GetUIController<LobbyUIController>().OpenCharacterSetupWindow();
         }
-
-        #endregion
 
         public enum LobbyGuiState : byte
         {

@@ -1,7 +1,6 @@
 <Control
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!-- Starlight-start -->
     <BoxContainer Name="VBox" Orientation="Vertical">
         <BoxContainer Name="Loaded" Orientation="Vertical" Visible="False" SeparationOverride="8">
             <BoxContainer Orientation="Vertical">
@@ -15,5 +14,4 @@
         </BoxContainer>
         <Label Name="Unloaded" Text="{Loc 'lobby-character-preview-panel-unloaded-preferences-label'}" />
     </BoxContainer>
-	<!-- Starlight-end -->
 </Control>

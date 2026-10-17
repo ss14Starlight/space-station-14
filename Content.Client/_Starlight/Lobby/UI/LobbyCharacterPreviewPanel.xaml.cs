@@ -37,7 +37,6 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
         Unloaded.Visible = !value;
     }
 
-    #region Starlight
 
     /// <summary>
     /// Refresh the selected character summary
@@ -60,6 +59,4 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
         CharacterCount.Text = Loc.GetString("lobby-character-preview-panel-enabled-characters",
             ("count", prefs.Characters.Values.OfType<HumanoidCharacterProfile>().Count(p => p.Enabled)));
     }
-
-    #endregion
 }

@@ -9,7 +9,6 @@
     xmlns:sc="clr-namespace:Content.Client._Starlight.UserInterface.Controls"
     xmlns:sl="clr-namespace:Content.Client._Starlight.Lobby.UI"
     xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets">
-    <!-- Starlight-start -->
     <TextureRect Access="Public" VerticalExpand="True" HorizontalExpand="True" Name="Background"
                  Stretch="KeepAspectCovered" />
     <BoxContainer Name="MainContainer" Orientation="Vertical">
@@ -103,5 +102,4 @@
 
     <!-- Links, shown by LinksButton -->
     <info:LinkBanner Name="LinkBanner" VerticalExpand="false" MinWidth="160" />
-	<!-- Starlight-end -->
 </lobbyUi:LobbyGui>
