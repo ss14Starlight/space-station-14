@@ -28,6 +28,9 @@ public sealed partial class SalvageSystem
             return;
         }
 
+        if (!_shuttle.CanFTL(shuttleUid, out _))
+            return;
+
         ReturnShuttleToStation(shuttleUid, shuttle, expedition.Station);
     }
 
