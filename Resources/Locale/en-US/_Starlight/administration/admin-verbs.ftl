@@ -1,3 +1,7 @@
+admin-verbs-edit-character =
+    Edit Characters
+admin-verbs-edit-character-description =
+    Open the character editor menu for this player.
 admin-trick-prevent-objective-targeting-description = Prevents this entity from being targeted by other player's objectives. Will also prevent paraclones of this player.
 admin-trick-reaper-arm-description = Replace the right arm with a Reaper arm.
 admin-trick-engineer-arm-description = Replace the left arm with an Engineer arm.

@@ -124,6 +124,16 @@
         /// </summary>
         NameColor = 1 << 21,
 
+        #region Starlight
+
+        /// <summary>
+        /// Permits the editing of player preferences. Is also intended
+        /// to be used as a middle-ground between +Mapping and +Pii
+        /// </summary>
+        Prefs = 1 << 22,
+
+        #endregion
+
         /// <summary>
         ///     Dangerous permissions like loading prototypes.
         /// </summary>

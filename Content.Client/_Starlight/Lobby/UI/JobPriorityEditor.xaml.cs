@@ -22,9 +22,10 @@ namespace Content.Client._Starlight.Lobby.UI;
 [GenerateTypedNameReferences]
 public sealed partial class JobPriorityEditor : BoxContainer
 {
-    private readonly IClientPreferencesManager _preferencesManager;
-    private readonly IPrototypeManager _prototypeManager;
-    private readonly JobRequirementsManager _requirements;
+    // Starlight begin
+    [Dependency] private IClientPreferencesManager _preferencesManager = null!;
+    [Dependency] private IPrototypeManager _prototypeManager = null!;
+    [Dependency] private JobRequirementsManager _requirements = null!;
 
     /// <summary>
     /// A dictionary to map Department names / Categories to a box that holds individual job priority selector controls
@@ -49,20 +50,14 @@ public sealed partial class JobPriorityEditor : BoxContainer
     /// <summary>
     /// Create a new job priority editor
     /// </summary>
-    public JobPriorityEditor(
-        IClientPreferencesManager preferencesManager,
-        IPrototypeManager prototypeManager,
-        JobRequirementsManager requirements
-        )
+    public JobPriorityEditor()
     {
-        _prototypeManager = prototypeManager;
-        _requirements = requirements;
-        _preferencesManager = preferencesManager;
+        IoCManager.InjectDependencies(this); // Starlight
         RobustXamlLoader.Load(this);
 
         ResetButton.OnPressed += args =>
         {
-            SelectedJobPriorities = _preferencesManager.Preferences?.JobPriorities.ShallowClone() ??  new Dictionary<ProtoId<JobPrototype>, JobPriority>();
+            SelectedJobPriorities = _preferencesManager.Preferences?.JobPriorities.ShallowClone() ?? new Dictionary<ProtoId<JobPrototype>, JobPriority>();
             UpdateJobPriorities();
             CheckDirty();
         };

@@ -15,7 +15,7 @@ namespace Content.Server.Database.Migrations.Sqlite
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "10.0.0");
+            modelBuilder.HasAnnotation("ProductVersion", "10.0.6");
 
             modelBuilder.Entity("Content.Server.Database.Admin", b =>
                 {
@@ -1436,6 +1436,99 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("sl_character_info", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.StarLightModel+PendingJobPriority", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("sl_pending_job_priority_id");
+
+                    b.Property<string>("JobName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("job_name");
+
+                    b.Property<int>("PendingPreferenceId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("pending_preference_id");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("priority");
+
+                    b.HasKey("Id")
+                        .HasName("PK_sl_pending_job_priority");
+
+                    b.HasIndex("PendingPreferenceId");
+
+                    b.ToTable("sl_pending_job_priority", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.StarLightModel+PendingPreference", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("sl_pending_preference_id");
+
+                    b.Property<bool>("HasJobPriorities")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("has_job_priorities");
+
+                    b.Property<string>("LastAdminName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("last_admin_name");
+
+                    b.Property<Guid>("LastAdminUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("last_admin_user_id");
+
+                    b.Property<int>("Revision")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("revision");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_sl_pending_preference");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("sl_pending_preference", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.StarLightModel+PendingProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("sl_pending_profile_id");
+
+                    b.Property<string>("Data")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("data");
+
+                    b.Property<int>("PendingPreferenceId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("pending_preference_id");
+
+                    b.Property<int>("Slot")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("slot");
+
+                    b.HasKey("Id")
+                        .HasName("PK_sl_pending_profile");
+
+                    b.HasIndex("PendingPreferenceId", "Slot")
+                        .IsUnique();
+
+                    b.ToTable("sl_pending_profile", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.StarLightModel+PlayerDataDTO", b =>
                 {
                     b.Property<Guid>("UserId")
@@ -2171,6 +2264,30 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Profile");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.StarLightModel+PendingJobPriority", b =>
+                {
+                    b.HasOne("Content.Server.Database.StarLightModel+PendingPreference", "PendingPreference")
+                        .WithMany("JobPriorities")
+                        .HasForeignKey("PendingPreferenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_sl_pending_job_priority_sl_pending_preference_pending_preference_id");
+
+                    b.Navigation("PendingPreference");
+                });
+
+            modelBuilder.Entity("Content.Server.Database.StarLightModel+PendingProfile", b =>
+                {
+                    b.HasOne("Content.Server.Database.StarLightModel+PendingPreference", "PendingPreference")
+                        .WithMany("Profiles")
+                        .HasForeignKey("PendingPreferenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_sl_pending_profile_sl_pending_preference_pending_preference_id");
+
+                    b.Navigation("PendingPreference");
+                });
+
             modelBuilder.Entity("Content.Server.Database.StarLightModel+StarLightProfile", b =>
                 {
                     b.HasOne("Content.Server.Database.Profile", "Profile")
@@ -2334,6 +2451,13 @@ namespace Content.Server.Database.Migrations.Sqlite
             modelBuilder.Entity("Content.Server.Database.ServerRoleBan", b =>
                 {
                     b.Navigation("Unban");
+                });
+
+            modelBuilder.Entity("Content.Server.Database.StarLightModel+PendingPreference", b =>
+                {
+                    b.Navigation("JobPriorities");
+
+                    b.Navigation("Profiles");
                 });
 #pragma warning restore 612, 618
         }

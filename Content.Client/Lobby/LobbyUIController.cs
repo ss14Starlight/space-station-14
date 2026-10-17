@@ -1,6 +1,7 @@
 using Content.Client.Guidebook;
 using Content.Client.Lobby.UI;
 using Content.Client.Players.PlayTimeTracking;
+using Content.Shared._Starlight.Preferences;
 using Content.Shared.CCVar;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
@@ -13,6 +14,7 @@ using Robust.Client.State;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Configuration;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -38,6 +40,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     [Dependency] private JobRequirementsManager _requirements = default!;
     [Dependency] private MarkingManager _markings = default!;
     [UISystemDependency] private readonly GuidebookSystem _guide = default!;
+    [Dependency] private INetManager _net = null!; // Starlight
 
     private CharacterSetupGui? _characterSetup;
     private HumanoidProfileEditor? _profileEditor;
@@ -93,6 +96,9 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         _configurationManager.OnValueChanged(CCVars.GameRoleTimers, _ => RefreshEditors());
 
         _configurationManager.OnValueChanged(CCVars.GameRoleWhitelist, _ => RefreshEditors());
+
+        _net.RegisterNetMessage<MsgOpenPlayerCharacterSetup>(HandleOpenPlayerCharacterSetup);// Starlight
+        _preferencesManager.OnPendingPreferencesReceived += OnPendingPreferencesReceived; // Starlight
     }
 
     private LobbyCharacterPreviewPanel? GetLobbyPreview()
@@ -152,6 +158,11 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     {
         PreviewPanel?.SetLoaded(true);
 
+        // Starlight begin
+        if (TryRegenerateAfterAccept())
+            return;
+        // Starlight end
+
         if (_stateManager.CurrentState is not LobbyState)
             return;
 
@@ -188,6 +199,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         characterGui.ReloadCharacterPickers();
         profileEditor.ResetToDefault();
         _jobPriorityEditor?.LoadJobPriorities();
+        characterGui.UpdatePendingReview(); // Starlight
     }
 
     /// <summary>
@@ -239,8 +251,8 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         var fixedProfile = EditedProfile.Clone();
         if(_preferencesManager.Preferences!.TryGetHumanoidInSlot(EditedSlot.Value, out var humanoid))
             fixedProfile = new HumanoidCharacterProfile(EditedProfile) { Enabled = humanoid.Enabled };
-
         _preferencesManager.UpdateCharacter(fixedProfile, EditedSlot.Value);
+
         OnAnyCharacterOrJobChange?.Invoke();
         _profileEditor?.SetProfile(EditedSlot.Value);
         ReloadCharacterSetup();
@@ -263,71 +275,9 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         _characterSetupWindow?.DisposePopOut(); // Starlight: also close the popped-out desktop window if any
         _characterSetupWindow?.Close(); // starlight
 
+        StopPendingReview(); // Starlight
         RefreshLobbyPreview();
     }
-    ///begin starlight
-    /// <summary>
-    /// Opens the character editor in its own window, we reuse the one from the lobby for the sake of simplicity.
-    /// </summary>
-    public void OpenCharacterSetupWindow()
-    {
-        // don't open it more than once.
-        if (_characterSetupWindow is { IsOpen: true } || _characterSetupPoppedOut) // Starlight: also block while popped out
-        {
-            _characterSetupWindow?.MoveToFront(); // Starlight
-            return;
-        }
-
-        var (characterGui, _) = EnsureGui();
-
-        // reload these, the lobby button does this so we do it aswell
-        characterGui.ReloadCharacterPickers();
-        _profileEditor?.ResetToDefault();
-        _jobPriorityEditor?.LoadJobPriorities();
-
-        // detach the gui from it's parent (Most of the time the lobby)
-        characterGui.Orphan();
-
-        var window = new CharacterSetupWindow(characterGui) // Starlight: pass the borrowed gui so it can be popped out
-        {
-            Title = Loc.GetString("ghost-gui-character-editor-button"),
-        };
-        window.MinSize = window.SetSize = new Vector2(1400, 700); // Might need adjusting but felt good to me
-
-        window.Contents.AddChild(characterGui);
-
-        // when the window closes, detach the gui from it so the gui isn't cleaned up with the window.
-        window.OnFinalClose += () =>
-        {
-            // Rescue the borrowed gui from being disposed with the window
-            var lobbyContainer = (_stateManager.CurrentState as LobbyState)?.Lobby?.CharacterSetupState;
-            if (characterGui.Parent != lobbyContainer)
-                characterGui.Orphan();
-
-            _characterSetupWindow = null;
-            _characterSetupPoppedOut = false;
-        };
-
-        // Starlight: once popped out the in-game window is gone, but keep the window ref so
-        // we can still teardown the window.
-        window.OnPopout += () => _characterSetupPoppedOut = true;
-
-        _characterSetupWindow = window;
-        window.OpenCentered();
-    }
-
-    // Starlight: Reworked to PopOutWindow for popout support
-    private sealed class CharacterSetupWindow : PopOutWindow
-    {
-        protected override Control Control { get; } // Starlight: content that moves into the desktop window on popout
-
-        public CharacterSetupWindow(Control content) // Starlight: take the content to pop out
-        {
-            Control = content; // Starlight
-            CloseButton.Visible = false;
-        }
-    }
-    // end starlight
 
     private void OpenSavePanel(Action saveAction)
     {
@@ -357,6 +307,16 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
     private (CharacterSetupGui, HumanoidProfileEditor) EnsureGui()
     {
+        /*
+         * Starlight: Moved up here amd orphaned beforehand to """fix""" a bug with the priority selector.
+         * TL;DR: Move this underneath the check below, open the UI, then open it again. Button selectors stop visually
+         * updating which ones are NOT selected so it all becomes green.
+         * TODO: Find a proper fix to the bug that doesn't involve regenerating this every time.
+         */
+        _jobPriorityEditor?.Orphan();
+        _jobPriorityEditor = new JobPriorityEditor();
+        _jobPriorityEditor.Save += SaveJobPriorities;
+
         if (_characterSetup != null && _profileEditor != null)
         {
             _characterSetup.Visible = true;
@@ -373,6 +333,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
                 _characterSetup.Orphan();
                 container.AddChild(_characterSetup);
             }
+            _characterSetup.JobPriorityEditor.AddChild(_jobPriorityEditor);
             // end starlight
             return (_characterSetup, _profileEditor);
         }
@@ -389,16 +350,20 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
             _requirements,
             _markings);
 
-        _jobPriorityEditor = new JobPriorityEditor(_preferencesManager, _prototypeManager, _requirements);
-
-        _jobPriorityEditor.Save += SaveJobPriorities;
-
         _profileEditor.OnOpenGuidebook += _guide.OpenHelp;
 
         _characterSetup = new CharacterSetupGui(_profileEditor, _jobPriorityEditor);
 
         _characterSetup.CloseButton.OnPressed += _ =>
         {
+            // Starlight begin
+            if (_preferencesManager.ReviewingPending)
+            {
+                CloseProfileEditor();
+                return;
+            }
+            // Starlight end
+
             // Open the save panel if we have unsaved changes.
             if( _profileEditor.Visible && _profileEditor.Profile != null && _profileEditor.IsDirty)
             {
@@ -407,7 +372,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
                 return;
             }
 
-            if (_jobPriorityEditor.Visible && _jobPriorityEditor.IsDirty())
+            if (_characterSetup.JobPriorityEditor.GetChild(0).Visible && ((JobPriorityEditor)_characterSetup.JobPriorityEditor.GetChild(0)).IsDirty()) // Starlight edit
             {
                 OpenSavePanel(SaveJobPriorities);
 
@@ -419,6 +384,12 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         };
 
         _profileEditor.Save += SaveProfile;
+
+        // Starlight begin
+        _characterSetup.PendingToggleButton.OnPressed += _ => TogglePendingView();
+        _characterSetup.PendingAcceptButton.OnPressed += _ => AcceptPendingPreferences();
+        _characterSetup.PendingRejectButton.OnPressed += _ => OpenPendingRejectWindow();
+        // Starlight end
 
         _characterSetup.SelectCharacter += args =>
         {

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Database;
+using Content.Shared._Starlight.Preferences;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Construction.Prototypes;
@@ -44,10 +45,17 @@ namespace Content.Server.Preferences.Managers
         public void Init()
         {
             _netManager.RegisterNetMessage<MsgPreferencesAndSettings>();
+            _netManager.RegisterNetMessage<MsgOpenPlayerCharacterSetup>(); // Starlight
             _netManager.RegisterNetMessage<MsgUpdateCharacter>(HandleUpdateCharacterMessage);
             _netManager.RegisterNetMessage<MsgDeleteCharacter>(HandleDeleteCharacterMessage);
             _netManager.RegisterNetMessage<MsgSetCharacterEnable>(HandleSetCharacterEnableMessage);
             _netManager.RegisterNetMessage<MsgUpdateJobPriorities>(HandleUpdateJobPrioritiesMessage);
+            _netManager.RegisterNetMessage<MsgForceUpdatePlayerCharacter>(HandleForceUpdatePlayerCharacter); // Starlight
+            _netManager.RegisterNetMessage<MsgForceDeletePlayerCharacter>(HandleForceDeletePlayerCharacter); // Starlight
+            _netManager.RegisterNetMessage<MsgForcePlayerCharacterEnable>(HandleForcePlayerCharacterEnable); // Starlight
+            _netManager.RegisterNetMessage<MsgForceUpdatePlayerJobPriorities>(HandleForceUpdatePlayerJobPriorities); // Starlight
+            _netManager.RegisterNetMessage<MsgHasPendingPreferenceUpdates>(); // Starlight
+            _netManager.RegisterNetMessage<MsgPreferenceConfirmationResult>(HandlePreferenceConfirmationResult); // Starlight
             _netManager.RegisterNetMessage<MsgUpdateConstructionFavorites>(HandleUpdateConstructionFavoritesMessage);
             _sawmill = _log.GetSawmill("prefs");
         }
@@ -77,10 +85,8 @@ namespace Content.Server.Preferences.Managers
                 return;
 
             var curPrefs = prefsData.Prefs!;
-            var session = _playerManager.GetSessionById(userId);
 
-            var selectionsBefore = GetSelections(profile); // Starlight
-            profile.EnsureValid(session, _dependencies);
+            // Starlight begin
 
             var profiles = new Dictionary<int, HumanoidCharacterProfile>(curPrefs.Characters)
             {
@@ -89,16 +95,15 @@ namespace Content.Server.Preferences.Managers
 
             prefsData.Prefs = new PlayerPreferences(profiles, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, curPrefs.JobPriorities);
 
-            // Starlight start
-            if (!selectionsBefore.SetEquals(GetSelections(profile)))
+            if (!_playerManager.TryGetSessionById(userId, out var session))
+                await _db.SaveCharacterSlotAsync(userId, profile, slot);
+            else
             {
-                _sawmill.Info($"Profile in slot {slot} of {session} was changed by server validation, resending preferences.");
-                SendPreferences(session, prefsData.Prefs);
+                profile.EnsureValid(session, _dependencies);
+                if (ShouldStorePrefs(session.Channel.AuthType))
+                    await _db.SaveCharacterSlotAsync(userId, profile, slot);
             }
             // Starlight end
-
-            if (ShouldStorePrefs(session.Channel.AuthType))
-                await _db.SaveCharacterSlotAsync(userId, profile, slot);
         }
 
         public async Task SetConstructionFavorites(NetUserId userId, List<ProtoId<ConstructionPrototype>> favorites)
@@ -129,11 +134,11 @@ namespace Content.Server.Preferences.Managers
             }
 
             var curPrefs = prefsData.Prefs!;
-            var session = _playerManager.GetSessionById(userId);
 
             prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, jobPriorities);
 
-            if (ShouldStorePrefs(session.Channel.AuthType))
+            // Starlight edit: target may be offline when their preferences are edited by an admin.
+            if (!_playerManager.TryGetSessionById(userId, out var session) || ShouldStorePrefs(session.Channel.AuthType))
                 await _db.SaveJobPrioritiesAsync(userId, jobPriorities);
         }
 
@@ -305,6 +310,7 @@ namespace Content.Server.Preferences.Managers
             prefsData.PrefsLoaded = true;
 
             SendPreferences(session, prefsData.Prefs); // Starlight
+            _ = SendPendingPreferencesAsync(session); // Starlight
         }
 
         public void OnClientDisconnected(ICommonSession session)

@@ -461,9 +461,6 @@ namespace Content.Client._Starlight.Lobby.UI
 
         public void SetProfile(int slot)
         {
-            if (_preferencesManager.Preferences == null)
-                return;
-
             if (!_preferencesManager.Preferences.TryGetHumanoidInSlot(slot, out var humanoid))
                 return;
 
