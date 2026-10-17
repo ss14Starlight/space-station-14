@@ -47,10 +47,12 @@
 - type: entity
   parent: [BaseBloodBoundObjective, KillRandomPersonObjective]
   id: BloodBoundKillRandomPersonObjective
+  description: We need to make sure this person doesn't make it back to CentComm, dead or alive.
 
 - type: entity
   parent: [BaseBloodBoundObjective, KillRandomHeadObjective]
   id: BloodBoundKillRandomHeadObjective
+  description: We need to make sure this person doesn't make it back to CentComm, dead or alive.
 
 # steal
 
@@ -216,10 +218,12 @@
 - type: entity
   parent: [BaseBloodBoundObjective, TeachRandomPersonObjective]
   id: BloodBoundTeachRandomPersonObjective
+  description: We need to make sure this person dies at least once this shift.
 
 - type: entity
   parent: [BaseBloodBoundObjective, TeachRandomHeadObjective]
   id: BloodBoundTeachRandomHeadObjective
+  description: We need to make sure this person dies at least once this shift.
 
 - type: entity
   parent: [BaseBloodBoundObjective, CallingCardObjective]
