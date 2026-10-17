@@ -11,3 +11,4 @@
     exclusiveAntag: true
     roleType: TeamAntagonist
     subtype: role-subtype-blood-bound
+    subtypeColor: MediumVioletRed

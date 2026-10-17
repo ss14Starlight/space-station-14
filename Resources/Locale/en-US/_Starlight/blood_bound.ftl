@@ -38,7 +38,7 @@ guide-entry-blood-bound = Blood Bound
 role-subtype-blood-bound = Blood Bound
 
 roles-antag-blood-bound-name = Blood Bound
-roles-antag-blood-bound-objective = Collaborate with your blood bound to accomplish all your objectives.
+roles-antag-blood-bound-objective = On behalf of Nar'Sie, collaborate with your blood bound to accomplish all your objectives.
 
 blood-bound-convert-failed-bound = You have already taken your blood oath.
 

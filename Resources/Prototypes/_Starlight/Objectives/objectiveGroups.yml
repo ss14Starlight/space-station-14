@@ -156,7 +156,6 @@
   id: BloodBoundObjectiveGroupStory
   weights:
     BloodBoundHarassObjective: 1
-    BloodBoundJailbreakObjective: 0.5
     BloodBoundTrashRoomObjective: 1
     BloodBoundClaimLocationObjective: 1
     BloodBoundCallingCardObjective: 0.2
@@ -191,6 +190,22 @@
     BloodBoundCaptainJetpackStealObjective: 0.5
     BloodBoundHandTeleporterStealObjective: 0.5
     BloodBoundHOSWeaponStealObjective: 0.5
+    BloodBoundForensicScannerStealObjective: 1
+    BloodBoundFlippoEngravedLighterStealObjective: 0.5
+    BloodBoundClothingHeadHatWardenStealObjective: 1
+    BloodBoundWantedListCartridgeStealObjective: 1
+    BloodBoundFiringPinAdvancedLaserStealObjective: 1
+    BloodBoundLogProbeCartridgeStealObjective: 1
+    BloodBoundMedTekCartridgeStealObjective: 1
+    BloodBoundDepartmentalTechFabCircuitboardStealObjective: 1
+    BloodBoundBrigmedicStrangeBedsheetStealObjective: 0.5
+    BloodBoundMiningShuttleCircuitboardStealObjective: 1
+    BloodBoundClothingOuterHardsuitVoidParamedStealObjective: 1
+    BloodBoundSecureTechFabCircuitboardStealObjective: 1
+    BloodBoundFireAxeStealObjective: 1
+    BloodBoundAmePartFlatpackStealObjective: 1
+    BloodBoundCargoShuttleCircuitboardStealObjective: 1
+    BloodBoundBibleStealObjective: 1
 
 - type: weightedRandom
   id: BloodBoundObjectiveGroupKill

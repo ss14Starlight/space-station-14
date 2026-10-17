@@ -3,3 +3,8 @@
   components:
   - type: Objective
     difficulty: 0
+
+# No more salvage objectives on Starlight
+- type: !PartialOnly entity
+  id: ExpeditionsCircuitboardStealObjective
+  abstract: true

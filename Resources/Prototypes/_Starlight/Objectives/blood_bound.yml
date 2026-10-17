@@ -106,14 +106,75 @@
   parent: [BaseBloodBoundObjective, NukeDiskStealObjective]
   id: BloodBoundNukeDiskStealObjective
 
+# Non-command Thief single-item objectives, so they don't just become Vamps 2
+- type: entity
+  parent: [BaseBloodBoundObjective, ForensicScannerStealObjective]
+  id: BloodBoundForensicScannerStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, FlippoEngravedLighterStealObjective]
+  id: BloodBoundFlippoEngravedLighterStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, ClothingHeadHatWardenStealObjective]
+  id: BloodBoundClothingHeadHatWardenStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, WantedListCartridgeStealObjective]
+  id: BloodBoundWantedListCartridgeStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, FiringPinAdvancedLaserStealObjective]
+  id: BloodBoundFiringPinAdvancedLaserStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, LogProbeCartridgeStealObjective]
+  id: BloodBoundLogProbeCartridgeStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, MedTekCartridgeStealObjective]
+  id: BloodBoundMedTekCartridgeStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, DepartmentalTechFabCircuitboardStealObjective]
+  id: BloodBoundDepartmentalTechFabCircuitboardStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, BrigmedicStrangeBedsheetStealObjective]
+  id: BloodBoundBrigmedicStrangeBedsheetStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, MiningShuttleCircuitboardStealObjective]
+  id: BloodBoundMiningShuttleCircuitboardStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, ClothingOuterHardsuitVoidParamedStealObjective]
+  id: BloodBoundClothingOuterHardsuitVoidParamedStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, SecureTechFabCircuitboardStealObjective]
+  id: BloodBoundSecureTechFabCircuitboardStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, FireAxeStealObjective]
+  id: BloodBoundFireAxeStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, AmePartFlatpackStealObjective]
+  id: BloodBoundAmePartFlatpackStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, CargoShuttleCircuitboardStealObjective]
+  id: BloodBoundCargoShuttleCircuitboardStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, BibleStealObjective]
+  id: BloodBoundBibleStealObjective
+
 # Blood partner story objectives
 - type: entity
   parent: [BaseBloodBoundObjective, HarassObjective]
   id: BloodBoundHarassObjective
-
-- type: entity
-  parent: [BaseBloodBoundObjective, JailbreakObjective]
-  id: BloodBoundJailbreakObjective
 
 - type: entity
   parent: [BaseBloodBoundObjective, TrashRoomObjective]
