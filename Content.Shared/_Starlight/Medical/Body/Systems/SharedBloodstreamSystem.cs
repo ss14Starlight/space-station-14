@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Medical.Circulation;
 using Content.Shared._Starlight.Medical.Body.Events;
 using Content.Shared._Blimpuf.Chemistry.Reagent;
 using Content.Shared.Alert;
@@ -89,6 +90,10 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
                 TryRegulateBloodLevel(uid, bloodstream.BloodRefreshAmount);
 
                 TickBleed((uid, bloodstream));
+
+                // Circulating bodies take hypoxia from poor perfusion instead (CirculationSystem).
+                if (TryComp<CirculationComponent>(uid, out var circulation) && circulation.HasCirculation)
+                    continue;
 
                 // deal bloodloss damage if their blood level is below a threshold.
                 var bloodPercentage = GetBloodLevel(uid);

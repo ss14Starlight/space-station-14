@@ -8,3 +8,10 @@
       types: !Remove
       groups:
         Brute: 5
+
+# Starlight Med: blood circulation (heart, perfusion, oxygen saturation, hypoxia). Bodies without a heart, like IPC,
+# leave it inert.
+- type: !PartialOnly entity
+  id: MobBloodstream
+  components:
+  - type: Circulation

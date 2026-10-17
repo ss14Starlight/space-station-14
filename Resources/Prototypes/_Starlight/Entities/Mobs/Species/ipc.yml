@@ -140,6 +140,9 @@
     - SolutionBaseMobIPCBloodstream
     - SolutionBaseMobIPCBloodstreamTemporary
     - SolutionBaseMobIPCMetabolites
+  # Coolant, not blood: no heartbeat, perfusion or hypoxia.
+  - type: Circulation
+    disabled: true
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:

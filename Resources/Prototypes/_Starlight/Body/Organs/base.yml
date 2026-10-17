@@ -348,6 +348,7 @@
   abstract: true
   components:
   - type: OrganHeart
+  - type: Heart
   - type: OrganDamage
     damage:
       types:

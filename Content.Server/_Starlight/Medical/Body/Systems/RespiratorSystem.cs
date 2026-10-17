@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Medical.Circulation;
 using Content.Shared._Starlight.Body.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
@@ -355,7 +356,9 @@ public sealed partial class RespiratorSystem : EntitySystem
         if (ent.Comp.SuffocationCycles == 2)
             _adminLogger.Add(LogType.Asphyxiation, $"{ToPrettyString(ent):entity} started suffocating");
 
-        _damageableSys.ChangeDamage(ent.Owner, ent.Comp.Damage, interruptsDoAfters: false, ignoreResistances: true);
+        // Circulating bodies suffer from the blood's oxygen running low instead (CirculationSystem).
+        if (!IsCirculating(ent))
+            _damageableSys.ChangeDamage(ent.Owner, ent.Comp.Damage, interruptsDoAfters: false, ignoreResistances: true);
 
         if (ent.Comp.SuffocationCycles < ent.Comp.SuffocationCycleThreshold)
             return;
@@ -364,12 +367,16 @@ public sealed partial class RespiratorSystem : EntitySystem
         RaiseLocalEvent(ent, ref ev);
     }
 
+    private bool IsCirculating(EntityUid uid)
+        => TryComp<CirculationComponent>(uid, out var circulation) && circulation.HasCirculation;
+
     private void StopSuffocation(Entity<RespiratorComponent> ent)
     {
         if (ent.Comp.SuffocationCycles >= 2)
             _adminLogger.Add(LogType.Asphyxiation, $"{ToPrettyString(ent):entity} stopped suffocating");
 
-        _damageableSys.ChangeDamage(ent.Owner, ent.Comp.DamageRecovery);
+        if (!IsCirculating(ent))
+            _damageableSys.ChangeDamage(ent.Owner, ent.Comp.DamageRecovery);
 
         var ev = new StopSuffocatingEvent();
         RaiseLocalEvent(ent, ref ev);
