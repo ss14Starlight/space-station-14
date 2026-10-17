@@ -140,8 +140,12 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
     /// <summary>
     /// Toggles visible storage carried by another entity, using its configured delay or the implanted-storage default.
     /// </summary>
-    public void ToggleStorage(EntityUid uid, EntityUid owner, EntityUid user)
+    public void ToggleStorage(Entity<StorageComponent?> storage, EntityUid owner, EntityUid user)
     {
+        if (!Resolve(storage, ref storage.Comp))
+            return;
+
+        var uid = storage.Owner;
         if (_ui.IsUiOpen(uid, StorageComponent.StorageUiKey.Key, user))
         {
             _ui.CloseUi(uid, StorageComponent.StorageUiKey.Key, user);

@@ -1,5 +1,6 @@
 using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Implants.Components;
 using Content.Shared.Interaction;
@@ -24,14 +25,27 @@ public sealed partial class SharedImplantedStorageAccessSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<BodyComponent, GetVerbsEvent<ActivationVerb>>(OnGetVerbs);
+        SubscribeLocalEvent<BodyPartComponent, BoundUserInterfaceCheckRangeEvent>(OnBodyPartStorageRangeCheck);
         SubscribeLocalEvent<CustomLimbMarkerComponent, BoundUserInterfaceCheckRangeEvent>(OnCustomLimbStorageRangeCheck);
+    }
+
+    private void OnBodyPartStorageRangeCheck(Entity<BodyPartComponent> part, ref BoundUserInterfaceCheckRangeEvent args)
+    {
+        if (args.UiKey is not StorageComponent.StorageUiKey.Key ||
+            !TryComp<StorageComponent>(part, out var storage) ||
+            !CanShowImplantedStorage(part.Owner, storage, bodyPart: true) ||
+            part.Comp.Body is not { } owner ||
+            !HasComp<BodyComponent>(owner))
+            return;
+
+        SetStorageRangeResult(owner, ref args);
     }
 
     private void OnCustomLimbStorageRangeCheck(Entity<CustomLimbMarkerComponent> limb, ref BoundUserInterfaceCheckRangeEvent args)
     {
         if (args.UiKey is not StorageComponent.StorageUiKey.Key ||
-            !HasComp<StorageComponent>(limb) ||
-            !IsPublicStorage(limb.Owner) ||
+            !TryComp<StorageComponent>(limb, out var storage) ||
+            !CanShowImplantedStorage(limb.Owner, storage, bodyPart: false) ||
             limb.Comp.VirtualPart is not { } virtualPart ||
             !_containers.TryGetContainingContainer(limb.Owner, out var container) ||
             !TryComp<BodyComponent>(container.Owner, out var body))
@@ -54,8 +68,13 @@ public sealed partial class SharedImplantedStorageAccessSystem : EntitySystem
         if (!attached)
             return;
 
-        args.Result = args.Actor.Owner == container.Owner ||
-            _interaction.InRangeUnobstructed(args.Actor.Owner, container.Owner, args.Data.InteractionRange)
+        SetStorageRangeResult(container.Owner, ref args);
+    }
+
+    private void SetStorageRangeResult(EntityUid owner, ref BoundUserInterfaceCheckRangeEvent args)
+    {
+        args.Result = args.Actor.Owner == owner ||
+            _interaction.InRangeUnobstructed(args.Actor.Owner, owner, args.Data.InteractionRange)
                 ? BoundUserInterfaceRangeResult.Pass
                 : BoundUserInterfaceRangeResult.Fail;
     }
@@ -70,12 +89,13 @@ public sealed partial class SharedImplantedStorageAccessSystem : EntitySystem
         var storages = new HashSet<EntityUid>();
         foreach (var (partUid, _) in _body.GetBodyChildren(body.Owner, body.Comp))
         {
-            if (TryComp<StorageComponent>(partUid, out _) && IsPublicStorage(partUid))
+            if (TryComp<StorageComponent>(partUid, out var partStorage) &&
+                CanShowImplantedStorage(partUid, partStorage, bodyPart: true))
                 storages.Add(partUid);
 
             if (TryComp<CustomLimbComponent>(partUid, out var customLimb) &&
-                TryComp<StorageComponent>(customLimb.Item, out _) &&
-                IsPublicStorage(customLimb.Item))
+                TryComp<StorageComponent>(customLimb.Item, out var itemStorage) &&
+                CanShowImplantedStorage(customLimb.Item, itemStorage, bodyPart: false))
             {
                 storages.Add(customLimb.Item);
             }
@@ -83,7 +103,7 @@ public sealed partial class SharedImplantedStorageAccessSystem : EntitySystem
 
         foreach (var storageUid in storages)
         {
-            if (!HasComp<StorageComponent>(storageUid))
+            if (!TryComp<StorageComponent>(storageUid, out var storage))
                 continue;
 
             args.Verbs.Add(new ActivationVerb
@@ -91,10 +111,17 @@ public sealed partial class SharedImplantedStorageAccessSystem : EntitySystem
                 Text = Loc.GetString("implanted-storage-verb-open"),
                 Message = Loc.GetString("implanted-storage-verb-tooltip", ("storage", Name(storageUid))),
                 IconEntity = GetNetEntity(storageUid),
-                Act = () => _privateStorage.ToggleStorage(storageUid, owner, user),
+                Act = () => _privateStorage.ToggleStorage((storageUid, storage), owner, user),
                 Priority = 1,
             });
         }
+    }
+
+    private bool CanShowImplantedStorage(EntityUid uid, StorageComponent storage, bool bodyPart)
+    {
+        // Cargo legs hide the ordinary storage verb in favor of their limb action, but still need body-context access.
+        return IsPublicStorage(uid) &&
+            (storage.ShowVerb || (bodyPart && HasComp<StorageOrganComponent>(uid)));
     }
 
     private bool IsPublicStorage(EntityUid storage)
