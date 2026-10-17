@@ -21,17 +21,17 @@ public sealed class OrganMissingTest : GameTest
 
     [TestPrototypes] private const string Prototypes = @"
 - type: entity
-  id: OrganMissingTestDummy
-  components:
-  - type: Body
-    prototype: Human
-  - type: Damageable
-  - type: MobState
-    allowedStates:
-    - Alive
+    id: OrganMissingTestDummy
+    components:
+    - type: Body
+        prototype: Human
+    - type: Damageable
+    - type: MobState
+        allowedStates:
+        - Alive
 - type: entity
-  id: OrganMissingTestItem
-  parent: BaseItem
+    id: OrganMissingTestItem
+    parent: BaseItem
 ";
 
     [Test]
