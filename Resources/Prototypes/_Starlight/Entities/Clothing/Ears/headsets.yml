@@ -147,7 +147,6 @@
     sprite: Clothing/Ears/Headsets/mining.rsi
   - type: Clothing
     sprite: Clothing/Ears/Headsets/mining.rsi
-  - type: HeadsetLoudMode
 
 - type: entity
   parent: [BaseTSFContraband, ClothingHeadset]
