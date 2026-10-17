@@ -154,8 +154,9 @@
     - SiliconLiberation
     - SubBrighteye
     - ThiefGamerule
-    - Devil
+    - BloodBound
     - CosmicCult
+    - Devil
 
 - type: gamePreset
   id: AlmostAllerAtOnce
@@ -196,6 +197,7 @@
     - RailroadingTerminator
     - RailroadingMinor
     - Devil
+    - BloodBound
     - CosmicCult
 
 - type: gamePreset
