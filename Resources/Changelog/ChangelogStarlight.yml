@@ -1,13 +1,6 @@
 Entries:
 - author: CrazyPhantom
   changes:
-  - message: Drones can no longer pick up large items, only medium and smaller.
-    type: Tweak
-  id: 409181
-  time: '2026-10-05T08:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6505
-- author: CrazyPhantom
-  changes:
   - message: You can no longer put a drone in a PDA pAI slot.
     type: Fix
   id: 409182
@@ -2883,4 +2876,11 @@ Entries:
   id: 409580
   time: '2026-10-17T19:10:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6685
+- author: Floximo
+  changes:
+  - message: Escape pods now unlock instead of launching at round end.
+    type: Tweak
+  id: 409581
+  time: '2026-10-17T19:46:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6729
 Order: -1
