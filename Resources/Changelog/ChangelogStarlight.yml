@@ -1,13 +1,6 @@
 Entries:
 - author: CrazyPhantom
   changes:
-  - message: Drones no longer see unknown people talking.
-    type: Fix
-  id: 409172
-  time: '2026-10-05T08:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6505
-- author: CrazyPhantom
-  changes:
   - message: Drones now require a proximity sensor to build.
     type: Tweak
   id: 409173
@@ -2883,4 +2876,11 @@ Entries:
   id: 409571
   time: '2026-10-17T14:09:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6689
+- author: teh.saint
+  changes:
+  - message: Changed armor values to the NTNC Marine Armor Vest and NTNC Marine Hardsuit.
+    type: Tweak
+  id: 409572
+  time: '2026-10-17T14:09:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6712
 Order: -1
