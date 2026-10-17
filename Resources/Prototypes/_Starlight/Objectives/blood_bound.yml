@@ -187,10 +187,12 @@
 - type: entity
   parent: [BaseBloodBoundObjective, HarassObjective]
   id: BloodBoundHarassObjective
+  description: We need to harass and inconvenience this department without causing direct bodily harm.
 
 - type: entity
   parent: [BaseBloodBoundObjective, TrashRoomObjective]
   id: BloodBoundTrashRoomObjective
+  description: We need to trash this room. Make sure it doesn't pass a health inspection.
 
 - type: entity
   parent: [BaseBloodBoundObjective, ClaimLocationObjective]
@@ -203,10 +205,12 @@
 - type: entity
   parent: [BaseBloodBoundObjective, RobDepartmentObjective]
   id: BloodBoundRobDepartmentObjective
+  description: We need to get this department's valuables.
 
 - type: entity
   parent: [BaseBloodBoundObjective, RobDepartmentObjective]
   id: BloodBoundLoudRobDepartmentObjective
+  description: We need to get this department's valuables.
   components:
   - type: DepartmentObjective
     title: objective-condition-loud-rob-department
@@ -214,6 +218,7 @@
 - type: entity
   parent: [BaseBloodBoundObjective, SabotageObjective]
   id: BloodBoundSabotageObjective
+  description: We need to sabotage this department's activities.
 
 - type: entity
   parent: [BaseBloodBoundObjective, TeachRandomPersonObjective]
@@ -228,3 +233,5 @@
 - type: entity
   parent: [BaseBloodBoundObjective, CallingCardObjective]
   id: BloodBoundCallingCardObjective
+  name: Leave a calling card at the scene of our crimes.
+  description: We need to leave a calling card at the scene of our crimes.
