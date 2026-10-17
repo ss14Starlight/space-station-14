@@ -1,3 +1,4 @@
+// ReSharper disable CheckNamespace
 namespace Content.Client.UserInterface.Controls;
 
 public partial class MapGridControl
