@@ -20,16 +20,21 @@ public sealed class OrganMissingTest : GameTest
     private static readonly ProtoId<DamageTypePrototype> _poisonDamageType = "Poison";
 
     [TestPrototypes] private const string Prototypes = @"
-- type: entity
+-
+    type: entity
     id: OrganMissingTestDummy
     components:
-    - type: Body
+    -
+        type: Body
         prototype: Human
-    - type: Damageable
-    - type: MobState
+    -
+        type: Damageable
+    -
+        type: MobState
         allowedStates:
         - Alive
-- type: entity
+-
+    type: entity
     id: OrganMissingTestItem
     parent: BaseItem
 ";
@@ -47,16 +52,10 @@ public sealed class OrganMissingTest : GameTest
         var map = await pair.CreateTestMap();
 
         EntityUid body = default;
-        await server.WaitAssertion(() =>
-        {
-            body = entityManager.SpawnEntity("OrganMissingTestDummy", map.MapCoords);
-        });
+        await server.WaitAssertion(() => body = entityManager.SpawnEntity("OrganMissingTestDummy", map.MapCoords));
 
         await server.WaitRunTicks(70);
-        await server.WaitAssertion(() =>
-        {
-            Assert.That(damageable.GetAllDamage(body).DamageDict, Is.Empty);
-        });
+        await server.WaitAssertion(() => Assert.That(damageable.GetAllDamage(body).DamageDict, Is.Empty));
 
         await server.WaitAssertion(() =>
         {
