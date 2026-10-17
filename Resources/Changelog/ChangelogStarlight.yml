@@ -1,25 +1,4 @@
 Entries:
-- author: CrazyPhantom
-  changes:
-  - message: You can no longer put a drone in a PDA pAI slot.
-    type: Fix
-  id: 409182
-  time: '2026-10-05T08:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6505
-- author: RedSpeeds
-  changes:
-  - message: Fixed certain entities having their vocals overwriten.
-    type: Fix
-  id: 409183
-  time: '2026-10-05T08:52:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6503
-- author: Caws
-  changes:
-  - message: Debrief access removed from NCT.
-    type: Remove
-  id: 409184
-  time: '2026-10-05T08:52:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6500
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: A message now shows when a zombie attacks a body immune to infection, indicating they can't be infected.
@@ -2883,4 +2862,25 @@ Entries:
   id: 409581
   time: '2026-10-17T19:46:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6729
+- author: Nexus Integrated Trait
+  changes:
+  - message: Added Nexus Integrated trait under languages, requiring scratch and 2 points to take.
+    type: Add
+  id: 409582
+  time: '2026-10-17T23:49:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6701
+- author: Nexus Integrated Trait
+  changes:
+  - message: Nexus uplink implant no longer requires being an avali/resomi to start with. Characters with the Nexus Integrated trait will start with an uplink in their hand that can be installed surgically by a surgeon or anyone with the appropriate tools.
+    type: Tweak
+  id: 409583
+  time: '2026-10-17T23:49:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6701
+- author: Nexus Integrated Trait
+  changes:
+  - message: Bird nexus slightly less exclusive.
+    type: Tweak
+  id: 409584
+  time: '2026-10-17T23:49:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6701
 Order: -1
