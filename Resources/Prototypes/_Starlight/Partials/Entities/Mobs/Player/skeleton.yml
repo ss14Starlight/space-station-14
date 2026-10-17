@@ -3,7 +3,7 @@
   components:
   - type: GhostRole
     rules: ghost-role-information-rules-team-antagonist # edit freeagent -> teamantagonist
-    mindRoles:
+    !Clear mindRoles:
     - MindRoleGhostRoleNeutralSkeleton # edit - FreeAgent -> NeutralSkeleton
 
 
@@ -12,7 +12,7 @@
   components:
   - type: GhostRole
     rules: ghost-role-information-nonantagonist-rules # edit freeagent -> nonantagonist
-    mindRoles:
+    !Clear mindRoles:
     - MindRoleGhostRoleNeutralSkeleton # edit - FreeAgent -> NeutralSkeleton
 
 - type: !PartialOnly entity
@@ -20,5 +20,5 @@
   components:
   - type: GhostRole
     rules: ghost-role-information-nonantagonist-rules # edit freeagent -> nonantagonist
-    mindRoles:
+    !Clear mindRoles:
     - MindRoleGhostRoleNeutralSkeleton # edit - FreeAgent -> NeutralSkeleton
