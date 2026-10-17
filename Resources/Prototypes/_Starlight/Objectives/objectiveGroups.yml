@@ -153,13 +153,13 @@
 
 # Blood Bound
 - type: weightedRandom
-  id: BloodBoundObjectiveGroupOpenEnded
+  id: BloodBoundObjectiveGroupStory
   weights:
-    BloodBoundDisruptDepartmentObjective: 1
+    BloodBoundHarassObjective: 1
     BloodBoundJailbreakObjective: 0.5
     BloodBoundTrashRoomObjective: 1
     BloodBoundClaimLocationObjective: 1
-    BloodBoundLeaveCallingCardObjective: 0.2
+    BloodBoundCallingCardObjective: 0.2
     BloodBoundRobDepartmentObjective: 1
     BloodBoundLoudRobDepartmentObjective: 1
     BloodBoundSabotageObjective: 0.5
@@ -167,18 +167,13 @@
 - type: weightedRandom
   id: BloodBoundObjectiveGroups
   weights:
-    BloodBoundObjectiveGroupState: 1
     BloodBoundObjectiveGroupSteal: 1
     BloodBoundObjectiveGroupKill: 1
-    BloodBoundObjectiveGroupOpenEnded: 0.5 # Moffstation - Added our own open-ended objectives - See Prototypes/_Moffstation/Objectives/objectiveGroups.yml for this definition.
 
 - type: weightedRandom
-  id: BloodBoundObjectiveGroupState
+  id: BloodBoundObjectiveGroupFate
   weights:
-    # Blood partners are expected to be usually trying to be stealthy, so low DAGD chance.
-    BloodBoundEscapeShuttleObjective: 0.90 # Moffstation - Since we had to remove "survive" bump up the escape shuttle objective.
-    BloodBoundDieObjective: 0.10
-    # BloodBoundSurviveObjective: 0.65 # Moffstation - Removed survive objecitve since it doesn't exist in our branch (yet, we could just make it)
+    BloodBoundEscapeShuttleObjective: 1
 
 # TODO: figure out how to make the converted partner holding the objective item also count towards the objective
 - type: weightedRandom
@@ -186,7 +181,7 @@
   weights:
     BloodBoundCaptainIDStealObjective: 1
     BloodBoundCMOHyposprayStealObjective: 1
-    BloodBoundCMOCrewMonitorStealObjective: 1
+    BloodBoundCrewMonitorStealCollectionObjective: 1
     BloodBoundRDHardsuitStealObjective: 1
     BloodBoundNukeDiskStealObjective: 1
     BloodBoundMagbootsStealObjective: 1
@@ -195,14 +190,11 @@
     BloodBoundCaptainGunStealObjective: 0.5
     BloodBoundCaptainJetpackStealObjective: 0.5
     BloodBoundHandTeleporterStealObjective: 0.5
-    BloodBoundEnergyShotgunStealObjective: 0.5
+    BloodBoundHOSWeaponStealObjective: 0.5
 
 - type: weightedRandom
   id: BloodBoundObjectiveGroupKill
   weights:
     BloodBoundKillRandomPersonObjective: 0.85
     BloodBoundKillRandomHeadObjective: 0.25
-    # Moffstation - Start - Replace Harmony's Teach a lesson with our own
-    #BloodBoundTeachLessonRandomPersonObjective: 1
-    BloodBoundTeachLessonObjective: 1
-    # Moffstation - End
+    BloodBoundTeachRandomPersonObjective: 1

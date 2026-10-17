@@ -1,12 +1,18 @@
 using Content.Shared._Starlight.Antags.BloodBound.Components;
 using Content.Shared._Starlight.Antags.BloodBound.Systems;
 using Content.Shared.Actions;
+using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Antags.BloodBound.Systems;
 
 public sealed partial class BloodBoundSystem : SharedBloodBoundSystem
 {
     [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
+
+    private static readonly ProtoId<NpcFactionPrototype> CrewFaction = "NanoTrasen";
 
     public override void Initialize()
     {
@@ -17,6 +23,9 @@ public sealed partial class BloodBoundSystem : SharedBloodBoundSystem
 
     private void OnMapInit(Entity<BloodBoundComponent> entity, ref MapInitEvent args)
     {
+        _npcFaction.RemoveFaction(entity.Owner, CrewFaction);
+        _npcFaction.AddFaction(entity.Owner, entity.Comp.BloodBoundFaction);
+
         if (!entity.Comp.CanRecruit || entity.Comp.Partner != null)
             return;
 

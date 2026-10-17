@@ -18,7 +18,6 @@ using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Roles.Components;
 using Content.Shared.Zombies;
@@ -37,7 +36,6 @@ public sealed partial class BloodBoundRuleSystem : GameRuleSystem<BloodBoundRule
     [Dependency] private AntagSelectionSystem _antagSystem = default!;
     [Dependency] private MindSystem _mindSystem = default!;
     [Dependency] private MobStateSystem _mobStateSystem = default!;
-    [Dependency] private NpcFactionSystem _npcFactionSystem = default!;
     [Dependency] private ObjectivesSystem _objectivesSystem = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private RoleSystem _roleSystem = default!;
@@ -112,10 +110,12 @@ public sealed partial class BloodBoundRuleSystem : GameRuleSystem<BloodBoundRule
             return;
 
         // Actual conversion logic
-        var convertedComp = EnsureComp<BloodBoundComponent>(args.Target);
-        convertedComp.BloodBoundIcon = originalComponent.BloodBoundIcon;
-
-        _npcFactionSystem.AddFaction(args.Target, entity.Comp.BloodBoundFaction);
+        var convertedComp = new BloodBoundComponent
+        {
+            BloodBoundIcon = originalComponent.BloodBoundIcon,
+            BloodBoundFaction = originalComponent.BloodBoundFaction,
+        };
+        AddComp(args.Target, convertedComp);
 
         _adminLogManager.Add(LogType.Mind,
             LogImpact.Medium,

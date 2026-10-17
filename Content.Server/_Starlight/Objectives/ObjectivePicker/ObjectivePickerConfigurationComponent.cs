@@ -9,6 +9,7 @@ public sealed partial class ObjectivePickerConfigurationComponent : Component
     public EntityUid? Rule;
     public Dictionary<string, float> Weights = new();
     public Dictionary<string, float> StoryWeights = new();
+    public int StoryObjectiveCount;
     public int PreferredOptions;
     public HashSet<NetEntity> DeferredTargets = new();
     public Dictionary<int, EntityUid> TargetTokens = new();

@@ -17,8 +17,9 @@
 
 - type: !PartialOnly npcFaction
   id: NanoTrasen
-  hostile:
+  friendly:
   - BloodBound
+  hostile:
   - SyndicateSilicon
   - DungeonSyndicate
   - DungeonSoviet
@@ -38,6 +39,8 @@
 
 - type: !PartialOnly npcFaction
   id: PetsNT
+  friendly:
+  - BloodBound
   hostile:
   - Abyss
   - Wizard
@@ -67,6 +70,7 @@
 - type: !PartialOnly npcFaction
   id: Syndicate
   hostile:
+  - BloodBound
   - NanoTrasenSilicon
   - DungeonSyndicate
   - DungeonSoviet
@@ -113,6 +117,7 @@
 - type: !PartialOnly npcFaction
   id: Revolutionary
   hostile:
+  - BloodBound
   - !Remove Wizard
   - !Remove Xenoborg
   - NanoTrasenSilicon

@@ -44,6 +44,7 @@ public sealed partial class AntagRandomObjectivesSystem
         var config = EnsureComp<ObjectivePickerConfigurationComponent>(mindId);
         config.Rule = rule.Owner;
         config.PreferredOptions = Math.Max(1, rule.Comp.MaxOptions);
+        config.StoryObjectiveCount = Math.Max(0, rule.Comp.StoryObjectiveCount);
         config.MinimumDifficulty = rule.Comp.MaxDifficulty;
         config.SelectionDelay = rule.Comp.SelectionDelay;
         EnsureComp<ObjectivePickerProgressComponent>(mindId);
@@ -251,7 +252,7 @@ public sealed partial class AntagRandomObjectivesSystem
             }
         }
 
-        while (storyCount < 2 && _random.TryPickAndTake(stories, out var prototype))
+        while (storyCount < config.StoryObjectiveCount && _random.TryPickAndTake(stories, out var prototype))
         {
             if (!CreateOffer(mindId, mind, prototype, counts, out var uid, out var deferred))
                 continue;

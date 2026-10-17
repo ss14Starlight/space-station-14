@@ -13,6 +13,9 @@
     sets:
     - groups: BloodBoundObjectiveGroups
     maxDifficulty: 5
+    forcedObjectiveGroup: BloodBoundObjectiveGroupFate
+    storyObjectiveGroup: BloodBoundObjectiveGroupStory
+    storyObjectiveCount: 3
   - type: AntagSelection
     agentName: blood-bound-round-end-agent-name
     selectionTime: PrePlayerSpawn

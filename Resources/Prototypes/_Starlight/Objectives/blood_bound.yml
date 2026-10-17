@@ -32,16 +32,6 @@
   parent: [BaseBloodBoundObjective, EscapeShuttleObjective]
   id: BloodBoundEscapeShuttleObjective
 
-- type: entity
-  parent: [BaseBloodBoundObjective, DieObjective]
-  id: BloodBoundDieObjective
-
-# Moffstation - Start - Survive doesn't exist as an objective yet, but it would be easy to make.
-# - type: entity
-#   parent: [BaseBloodBoundObjective, TraitorSurviveObjective]
-#   id: BloodBoundSurviveObjective
-# Moffstaion - End
-
 # kill
 
 - type: entity
@@ -52,12 +42,6 @@
   parent: [BaseBloodBoundObjective, KillRandomHeadObjective]
   id: BloodBoundKillRandomHeadObjective
 
-# Moffstation - Start - We don't have Harmony's Teach a lesson objective
-# - type: entity
-#   parent: [BaseBloodBoundObjective, TeachLessonRandomPersonObjective]
-#   id: BloodBoundTeachLessonRandomPersonObjective
-# Moffstation - end
-
 # steal
 
 ## cmo
@@ -67,8 +51,8 @@
   id: BloodBoundCMOHyposprayStealObjective
 
 - type: entity
-  parent: [BaseBloodBoundObjective, CrewMonitorStealCollectionObjective] # Starlight
-  id: BloodBoundCMOCrewMonitorStealObjective
+  parent: [BaseBloodBoundObjective, CrewMonitorStealCollectionObjective]
+  id: BloodBoundCrewMonitorStealCollectionObjective
 
 ## rd
 
@@ -83,8 +67,8 @@
 ## hos
 
 - type: entity
-  parent: [BaseBloodBoundObjective, HOSWeaponStealObjective] # Starlight
-  id: BloodBoundEnergyShotgunStealObjective
+  parent: [BaseBloodBoundObjective, HOSWeaponStealObjective]
+  id: BloodBoundHOSWeaponStealObjective
 
 ## ce
 
@@ -125,7 +109,7 @@
 # Blood partner story objectives
 - type: entity
   parent: [BaseBloodBoundObjective, HarassObjective]
-  id: BloodBoundDisruptDepartmentObjective
+  id: BloodBoundHarassObjective
 
 - type: entity
   parent: [BaseBloodBoundObjective, JailbreakObjective]
@@ -142,6 +126,7 @@
   components:
   - type: LocationObjective
     title: objective-condition-blood-bound-claim-room
+
 - type: entity
   parent: [BaseBloodBoundObjective, RobDepartmentObjective]
   id: BloodBoundRobDepartmentObjective
@@ -159,8 +144,8 @@
 
 - type: entity
   parent: [BaseBloodBoundObjective, TeachRandomPersonObjective]
-  id: BloodBoundTeachLessonObjective
+  id: BloodBoundTeachRandomPersonObjective
 
 - type: entity
   parent: [BaseBloodBoundObjective, CallingCardObjective]
-  id: BloodBoundLeaveCallingCardObjective
+  id: BloodBoundCallingCardObjective

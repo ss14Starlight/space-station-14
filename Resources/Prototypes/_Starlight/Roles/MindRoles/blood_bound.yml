@@ -4,6 +4,8 @@
   name: Blood Bound Role
   components:
   - type: BloodBoundRole
+  - type: RoleBriefing
+    briefing: blood-bound-briefing
   - type: MindRole
     antagPrototype: BloodBound
     exclusiveAntag: true
