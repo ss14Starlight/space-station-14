@@ -81,6 +81,11 @@ public sealed partial class ShuttleSurfaceScreen : BoxContainer
         AddChild(controls);
     }
 
+    /// <summary>
+    /// Displays the specified map grid and optionally marks tracked coordinates.
+    /// </summary>
+    /// <param name="mapGrid">The entity UID of the grid to display.</param>
+    /// <param name="trackedCoordinates">Coordinates to mark on the map, if any.</param>
     public void UpdateMap(EntityUid? mapGrid, EntityCoordinates? trackedCoordinates)
     {
         if (_map.MapUid != mapGrid)
@@ -94,6 +99,10 @@ public sealed partial class ShuttleSurfaceScreen : BoxContainer
             _map.TrackedCoordinates.Add(coordinates, (true, Color.Cyan));
     }
 
+    /// <summary>
+    /// Updates the FTL state label, its color, and the timing used by the progress bar.
+    /// </summary>
+    /// <param name="state">The shuttle map state containing the FTL status and timing.</param>
     public void UpdateFTLStatus(ShuttleMapInterfaceState state)
     {
         _ftlTime = state.FTLTime;
