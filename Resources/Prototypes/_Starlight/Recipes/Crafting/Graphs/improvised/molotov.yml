@@ -30,6 +30,12 @@
     entity: MolotovBottleFuel
     edges:
     - to: molotov
+      conditions:
+      - !type:MinSolution
+        solution: drink
+        reagent:
+          ReagentId: WeldingFuel
+        quantity: 120
       steps:
       - material: Cable
         amount: 1

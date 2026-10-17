@@ -156,8 +156,9 @@
     node: molotov
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Grenades/molotov.rsi
-    state: icon
-    map: ["enum.ToggleableVisuals.Layer"]
+    layers:
+    - state: icon
+      map: ["enum.ToggleableVisuals.Layer"]
   - type: ItemToggleOnTrigger
     canActivate: true
     canDeactivate: false
@@ -169,14 +170,14 @@
     visuals:
       enum.ToggleableVisuals.Enabled:
         enum.ToggleableVisuals.Layer:
-          True: { state: "lit" }
+          True: { state: "icon-lit" }
           False: { state: "icon" }
   - type: Item
     size: Normal
   - type: ItemToggleSize
     activatedSize: Huge
   - type: ToggleableVisuals
-    spriteLayer: blade
+    spriteLayer: lit
     inhandVisuals:
       left:
       - state: inhand-left-lit

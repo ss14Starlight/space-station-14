@@ -545,11 +545,11 @@
   objectType: Item
 
 - type: construction
-  name: crafting-menu-name-MOLO
+  name: crafting-menu-name-molo
   id: MolotovCocktail
   graph: MolotovGraph
   startNode: start
   targetNode: molotov
   category: construction-category-weapons
   objectType: Item
-  description: crafting-menu-text-MOLO
+  description: crafting-menu-text-molo
