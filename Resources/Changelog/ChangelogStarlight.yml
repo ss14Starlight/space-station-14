@@ -1,123 +1,4 @@
 Entries:
-- author: SirLutz
-  changes:
-  - message: Malign Custodian does not deal slashdamage anymore, deals 10 blunt now instead of 5 blunt and 5 slash.
-    type: Tweak
-  id: 409124
-  time: '2026-10-04T10:10:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6475
-- author: SirLutz
-  changes:
-  - message: Malign Parasite anom, decreased maximum minion spawns 5->4.
-    type: Tweak
-  id: 409125
-  time: '2026-10-04T10:10:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6475
-- author: SirLutz
-  changes:
-  - message: 'Effigy Supercrit minion amount spawns: Min. 4->3, Max: 6 -> 5.'
-    type: Tweak
-  id: 409126
-  time: '2026-10-04T10:10:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6475
-- author: SirLutz
-  changes:
-  - message: Lowered the APE removal time of empowered Rifts from 60 seconds to 12 seconds.
-    type: Tweak
-  id: 409127
-  time: '2026-10-04T10:10:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6475
-- author: Johnny
-  changes:
-  - message: Massive overhaul to the head revolutionaries uplink. Adding new categories, changing current prices, and allowing differing paths that a head revolutionary can take.
-    type: Add
-  id: 409128
-  time: '2026-10-04T10:10:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6479
-- author: Caws
-  changes:
-  - message: Added the 'Pat' Social Interaction. You can pat anything.
-    type: Add
-  id: 409129
-  time: '2026-10-04T10:52:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6478
-- author: Caws
-  changes:
-  - message: Added the 'Sniff' Social Interaction. Dogs and other animals can sniff anything that's nearby.
-    type: Add
-  id: 409130
-  time: '2026-10-04T10:52:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6478
-- author: Caws
-  changes:
-  - message: Added the `Palpate` Social Interaction. Animals with antennae can sniff anything that's nearby with their antennae.
-    type: Add
-  id: 409131
-  time: '2026-10-04T10:52:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6478
-- author: Caws
-  changes:
-  - message: (Social Interactions) Boop is now Lore Accurate (meaning its flavour text now respects whether or not your species has a nose).
-    type: Fix
-  id: 409132
-  time: '2026-10-04T10:52:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6478
-- author: Caws
-  changes:
-  - message: (Social Interactions) You can Look at anything now.
-    type: Fix
-  id: 409133
-  time: '2026-10-04T10:52:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6478
-- author: Caws
-  changes:
-  - message: (Social Interactions) You can Wave at anything now.
-    type: Fix
-  id: 409134
-  time: '2026-10-04T10:52:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6478
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Added a scrollbar to the ghost role rules window so that you don't have to stretch the window to read the rules and press the Request button.
-    type: Tweak
-  id: 409135
-  time: '2026-10-04T11:39:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6458
-- author: Xale
-  changes:
-  - message: Examine ID now works for IDs and PDAs in the belt slot.
-    type: Tweak
-  id: 409136
-  time: '2026-10-04T12:11:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6340
-- author: anytap
-  changes:
-  - message: Edited the Metashield page in the guidebook to match the wiki.
-    type: Tweak
-  id: 409137
-  time: '2026-10-04T12:11:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6408
-- author: Conflee
-  changes:
-  - message: 'Added a new pamphlet to the Magazine/Newspaper pools. "CentComm Pamphlet: PSO Cloning Insurance" which describes the PSO Cloning system.'
-    type: Add
-  id: 409138
-  time: '2026-10-04T12:11:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6342
-- author: Conflee
-  changes:
-  - message: Changed the description of the 'Unclonable' Trait to reflect PSO Cloning lore properly. Some people have unique genetic makeup that makes cloning their clones impossible. Like a copy of a copy in a photocopier.
-    type: Tweak
-  id: 409139
-  time: '2026-10-04T12:11:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6342
-- author: Conflee
-  changes:
-  - message: Changed the Introduction section of the New Player page in the Guidebook to give a more useful basic lore introduction to the server, front loading the fact that NanoTrasen and CentComm are two distinct companies, and a brief mention of PSO, early. These are two important lore things unique to Starlight that cause confusion often.
-    type: Tweak
-  id: 409140
-  time: '2026-10-04T12:11:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6342
 - author: Johnny
   changes:
   - message: Removed the fake shield from revolutionary uplink.
@@ -2883,4 +2764,123 @@ Entries:
   id: 409523
   time: '2026-10-16T11:06:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6691
+- author: RHSvenson
+  changes:
+  - message: Added an addendum to Rule 6 that makes clear that players should not make claims of membership (former or current) in restricted factions, like CC or Syndicate High Command, in their character information.
+    type: Add
+  id: 409524
+  time: '2026-10-16T11:45:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6698
+- author: Johnny
+  changes:
+  - message: (Reach) Fine fine fine, heres your maintenance area yall REALLLY WANTED on Reach, godo.
+    type: Add
+  id: 409525
+  time: '2026-10-16T12:17:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6705
+- author: Johnny
+  changes:
+  - message: (Reach) Janitor gets laundry now.
+    type: Add
+  id: 409526
+  time: '2026-10-16T12:17:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6705
+- author: Johnny
+  changes:
+  - message: (Reach) More wall closets have been added.
+    type: Add
+  id: 409527
+  time: '2026-10-16T12:17:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6705
+- author: Johnny
+  changes:
+  - message: (Reach) Removed some protections to the brig area cuz theres a disposable maintenance area on it instead.
+    type: Remove
+  id: 409528
+  time: '2026-10-16T12:17:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6705
+- author: Johnny
+  changes:
+  - message: (Reach) Modified the distro and waste pipes to go to every dock.
+    type: Tweak
+  id: 409529
+  time: '2026-10-16T12:17:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6705
+- author: Conflee
+  changes:
+  - message: Emergency Escape Pod Airlocks no longer violate Space OSHA Regulation 1910.36(d) "An exit door must be unlocked." (These docks are now Maintenance access, so all Crew can use them. They are intended to be open at all times anyway but code regressions regularly break this function so I am just removing the lock. The lock is never meant to be a factor in gameplay anyway).
+    type: Fix
+  id: 409530
+  time: '2026-10-16T12:53:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6708
+- author: Teddiousbear
+  changes:
+  - message: Veteran Salv Med Mantle.
+    type: Add
+  id: 409531
+  time: '2026-10-16T12:53:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6706
+- author: Teddiousbear
+  changes:
+  - message: Veteran Salv PDA.
+    type: Add
+  id: 409532
+  time: '2026-10-16T12:53:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6706
+- author: Teddiousbear
+  changes:
+  - message: Salvage Medic Jumpsuits/skirts.
+    type: Add
+  id: 409533
+  time: '2026-10-16T12:53:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6706
+- author: Teddiousbear
+  changes:
+  - message: Medical Glasses loadout option to Salv Med.
+    type: Add
+  id: 409534
+  time: '2026-10-16T12:53:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6706
+- author: Teddiousbear
+  changes:
+  - message: PKA Upgrade BP to Ticketbox.
+    type: Add
+  id: 409535
+  time: '2026-10-16T12:53:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6706
+- author: Teddiousbear
+  changes:
+  - message: Added missing ammo types to ammobp.
+    type: Tweak
+  id: 409536
+  time: '2026-10-16T12:53:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6706
+- author: Teddiousbear
+  changes:
+  - message: Salvage Tickets no longer sellable.
+    type: Tweak
+  id: 409537
+  time: '2026-10-16T12:53:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6706
+- author: Teddiousbear
+  changes:
+  - message: Blueprint ID Typos.
+    type: Fix
+  id: 409538
+  time: '2026-10-16T12:53:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6706
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Refined the NanoTrasen theme to better reflect the Classic theme, in anticipation of its eventual removal. If you were using the Classic theme, you will need to re-select the NanoTrasen theme.
+    type: Tweak
+  id: 409539
+  time: '2026-10-16T13:19:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6703
+- author: Johnny
+  changes:
+  - message: Removed of the two tiny evac pod visitation ships.
+    type: Remove
+  id: 409540
+  time: '2026-10-16T14:20:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6711
 Order: -1
