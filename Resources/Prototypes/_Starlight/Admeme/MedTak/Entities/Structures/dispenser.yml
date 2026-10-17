@@ -144,6 +144,7 @@
       map: ["enum.PowerDeviceVisualLayers.Powered"]
   - type: WallMount
   - type: SubFloorHide
+    subfloorLayer: Pipes
     allowAnchoringUnderCover: false
   - type: CollideOnAnchor
     enable: false

@@ -8,6 +8,7 @@ using Content.Shared.Radio;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.TextToSpeech;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -24,6 +25,7 @@ public sealed partial class TTSSystem : EntitySystem
     [Dependency] private ITTSClient _client = default!;
     [Dependency] private IRobustRandom _rng = default!;
     [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     private readonly List<string> _sampleText =
     [
@@ -127,6 +129,18 @@ public sealed partial class TTSSystem : EntitySystem
             var voice = args.SpeakerUid.HasValue
                 ? GetOrAssignVoice(GetEntity(args.SpeakerUid.Value), fallbackVoice: DefaultAnnounceVoice)
                 : DefaultAnnounceVoice;
+
+            // Delay voice until announcement chime finishes so the two don't overlap.
+            // Falls back to immediate playback if the duration can't be resolved.
+            try
+            {
+                if (args.AnnouncementSound is { } chime)
+                    await Task.Delay(_audio.GetAudioLength(_audio.ResolveSound(chime)));
+            }
+            catch (Exception ex)
+            {
+                _sawmill.Error($"TTS announcement chime delay failed, playing voice immediately: {ex.Message}");
+            }
 
             await GenerateAndStream(TTSType.Announcement, voice, text, filter, TTSEffect.Megaphone);
         }

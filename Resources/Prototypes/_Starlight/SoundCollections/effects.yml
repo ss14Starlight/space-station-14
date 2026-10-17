@@ -1,5 +1,26 @@
-
 - type: soundCollection
   id: IntoWater
   files:
   - /Audio/_Starlight/Effects/into_water.ogg
+
+- type: soundCollection
+  id: SovietChoirGlory
+  files:
+  - /Audio/_Starlight/Effects/sov_choir.ogg
+
+- type: soundCollection
+  id: SovietWinningGlory
+  files:
+  - /Audio/_Starlight/Misc/sov_win.ogg
+
+- type: soundCollection
+  id: SovietAdvertisementGlory
+  files:
+  - /Audio/_Starlight/Speaker/Mosin_Nagant_ad.ogg
+
+- type: soundCollection
+  id: BreachDecompression
+  files:
+  - /Audio/_Starlight/Effects/Weather/decompression1.ogg
+  - /Audio/_Starlight/Effects/Weather/decompression2.ogg
+  - /Audio/_Starlight/Effects/Weather/decompression3.ogg

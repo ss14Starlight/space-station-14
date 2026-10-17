@@ -29,7 +29,7 @@
 
 - type: gasReaction
   id: UlnitraniumRadiationProduction
-  priority: 4
+  priority: 1
   minimumTemperature: 50.0
   maximumTemperature: 273.15
   minimumRequirements:

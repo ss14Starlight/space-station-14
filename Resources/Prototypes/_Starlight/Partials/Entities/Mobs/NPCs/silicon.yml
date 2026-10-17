@@ -1,0 +1,32 @@
+- type: !PartialOnly entity
+  id: MobFireBot
+  components:
+  - type: FirelockOpener
+
+- type: !PartialOnly entity
+  id: MobCleanBot
+  components:
+  - type: FirelockOpener
+
+- type: !PartialOnly entity
+  id: MobMedibot
+  components:
+  - type: FirelockOpener
+  - type: Medibot
+    treatments:
+      Alive:
+        reagent: Tricordrazine
+        quantity: 5
+      Critical:
+        reagent: Inaprovaline
+        quantity: 15
+
+- type: !PartialOnly entity
+  id: MobHonkBot
+  components:
+  - type: FirelockOpener
+
+- type: !PartialOnly entity
+  id: MobMimeBot
+  components:
+  - type: FirelockOpener

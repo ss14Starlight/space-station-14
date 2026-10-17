@@ -1,0 +1,74 @@
+# Base
+- type: entity
+  id: BaseHostilePortal
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Fixtures
+  - type: Sprite
+    layers:
+    - sprite: Structures/Specific/carp_rift.rsi
+      state: icon
+      color: "#78090b"
+      shader: unshaded
+  - type: InteractionOutline
+  - type: Clickable
+  - type: PointLight
+    enabled: true
+    color: "#78090b"
+    radius: 20.0
+    energy: 25.0
+    falloff: 10.0
+    netsync: false
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
+
+# Hellportal
+- type: entity
+  parent: BaseHostilePortal
+  id: HellPortal
+  name: hellportal
+  description: A portal letting loose the worst hell has to offer.
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/shadow_anom.rsi
+    layers:
+    - state: pulse
+      color: "#78090b"
+      shader: unshaded
+  - type: WarpPoint
+    location: moff-hell-portal-name
+  - type: Hellportal
+    basicSpawnTable: !type:AllSelector
+      children:
+      - !type:NestedSelector
+        rolls: !type:RangeNumberSelector
+          range: 3, 5
+        tableId: MoffHellportalFleshlingsTable
+      - !type:NestedSelector
+        tableId: MoffHellportalNarsianConstructsTable
+    sound:
+      collection: RadiationPulse
+  - type: AmbientSound
+    range: 10
+    volume: -5
+    sound:
+      path: /Audio/_Moffstation/Ambience/hellportal_drone.ogg

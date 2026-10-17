@@ -7,8 +7,23 @@ namespace Content.Shared._Starlight.Zones;
 [Access(typeof(SharedZoneTrackerSystem), Other = AccessPermissions.Read)]
 public sealed partial class ZoneTrackerComponent : Component
 {
+    /// <summary>
+    /// Main zone of the current room, the highest priority one of <see cref="Zones"/>.
+    /// </summary>
     [ViewVariables, AutoNetworkedField]
     public ProtoId<ZonePrototype>? Zone;
+
+    /// <summary>
+    /// Every zone the current room belongs to, e.g. Command and Engineering in the CE office.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public List<ProtoId<ZonePrototype>> Zones = [];
+
+    /// <summary>
+    /// Tiles in the current room, 0 when not in a room (space, off grid). Used for room acoustics.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public int RoomSize;
 
     [ViewVariables]
     public ProtoId<ZonePrototype>? Raised;

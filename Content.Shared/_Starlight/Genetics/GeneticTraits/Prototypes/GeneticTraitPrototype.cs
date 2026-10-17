@@ -2,6 +2,7 @@ using Content.Shared._Starlight.Genetics.GeneticTraits;
 using Content.Shared._Starlight.Genetics.GeneticTraits.Parts;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Genetics.GeneticTraits.Prototypes;
 
@@ -9,7 +10,7 @@ namespace Content.Shared._Starlight.Genetics.GeneticTraits.Prototypes;
 /// Defines a trait that can be included in a gene. Affects the entity with the associated genome through the various
 /// genetic trait systems.
 /// </summary>
-[Prototype("geneticTrait")]
+[Prototype]
 public sealed partial class GeneticTraitPrototype: IPrototype
 {
     [ViewVariables]
@@ -57,4 +58,8 @@ public sealed partial class GeneticTraitPrototype: IPrototype
     [ViewVariables]
     [DataField(required: true)]
     public List<IGeneticTraitSetup> Parts = new();
+
+    public const string GenericTraitIcon = "/Textures/_Starlight/Interface/Genetics/trait_generic.png";
+
+    [ViewVariables, DataField] public ResPath TexturePath = new(GenericTraitIcon);
 }

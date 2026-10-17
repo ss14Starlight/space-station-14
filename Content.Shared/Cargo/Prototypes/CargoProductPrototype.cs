@@ -1,7 +1,6 @@
-using Content.Shared.Atmos;
-using Content.Shared.Atmos.Prototypes;
+using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 using Robust.Shared.Utility;
 
@@ -19,10 +18,15 @@ namespace Content.Shared.Cargo.Prototypes
         [AbstractDataField]
         public bool Abstract { get; private set; }
 
-        [DataField("name")] private string _name = string.Empty;
-        [DataField("nameLoc")] private string _nameLoc = string.Empty; // Starlight
+        [DataField("name")]
+        private LocId? _nameLoc;
 
-        [DataField("description")] private string _description = string.Empty;
+        private string _name = string.Empty;
+
+        [DataField("description")]
+        private LocId? _descLoc;
+
+        private string _description = string.Empty;
 
         [ViewVariables]
         [IdDataField]
@@ -39,11 +43,12 @@ namespace Content.Shared.Cargo.Prototypes
                 if (_name.Trim().Length != 0)
                     return _name;
 
-                if (!string.IsNullOrEmpty(_nameLoc)) // Starlight
-                    return _name = Loc.GetString(_nameLoc); // Starlight
-
-                if (!string.IsNullOrEmpty(Product) && // Starlight
-                    IoCManager.Resolve<IPrototypeManager>().Resolve(Product, out EntityPrototype? prototype)) // Starlight
+                if (_nameLoc is { } nameLoc)
+                {
+                    _name = Loc.GetString(nameLoc);
+                }
+                else if (Product is { } product &&
+                            IoCManager.Resolve<IPrototypeManager>().Resolve(product, out var prototype))
                 {
                     _name = prototype.Name;
                 }
@@ -63,8 +68,12 @@ namespace Content.Shared.Cargo.Prototypes
                 if (_description.Trim().Length != 0)
                     return _description;
 
-                if (!string.IsNullOrEmpty(Product) && // Starlight: Added not-null check
-                    IoCManager.Resolve<IPrototypeManager>().Resolve(Product, out var prototype)) // Starlight
+                if (_descLoc is { } descLoc)
+                {
+                    _description = Loc.GetString(descLoc);
+                }
+                else if (Product is { } product &&
+                            IoCManager.Resolve<IPrototypeManager>().Resolve(product, out var prototype))
                 {
                     _description = prototype.Description;
                 }
@@ -83,7 +92,13 @@ namespace Content.Shared.Cargo.Prototypes
         ///     The entity prototype ID of the product.
         /// </summary>
         [DataField]
-        public EntProtoId? Product { get; private set; } // Starlight: possibly empty string => possibly null EntProtoId
+        public EntProtoId? Product { get; private set; } // Starlight: gas products do not spawn an entity.
+
+        /// <summary>
+        /// The entity to spawn and insert the product into. If null, just the product is spawned.
+        /// </summary>
+        [DataField]
+        public CargoProductContainer? Container;
 
         /// <summary>
         ///     The point cost of the product.
@@ -102,27 +117,22 @@ namespace Content.Shared.Cargo.Prototypes
         /// </summary>
         [DataField]
         public ProtoId<CargoMarketPrototype> Group { get; private set; } = "market";
+    }
 
-        #region Starlight
+    /// <see cref="CargoProductPrototype.Container"/>
+    [DataDefinition, Serializable, NetSerializable]
+    public sealed partial class CargoProductContainer
+    {
+        /// <summary>
+        /// What entity to spawn as the container.
+        /// </summary>
+        [DataField(required: true)]
+        public EntProtoId<ContainerManagerComponent> Entity;
 
         /// <summary>
-        ///     The type of gas purchased, if any.
+        /// What container in <see cref="Entity"/> the product should be inserted into.
         /// </summary>
-        [DataField]
-        public ProtoId<GasPrototype>? GasType { get; private set; }
-
-        /// <summary>
-        ///     The amount of moles purchased.
-        /// </summary>
-        [DataField]
-        public float GasMoles { get; private set; }
-
-        /// <summary>
-        ///     The temperature the moles will have when spawned.
-        /// </summary>
-        [DataField]
-        public float GasTemperature { get; private set; } = Atmospherics.T20C;
-
-        #endregion
+        [DataField(required: true)]
+        public string ContainerId;
     }
 }

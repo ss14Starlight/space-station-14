@@ -1,13 +1,18 @@
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared._Starlight.Railroading.Events;
+using Content.Client.UserInterface.Systems.Character;
 using Robust.Client.Player;
+using Robust.Client.UserInterface;
+using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.Railroading;
 
 public sealed partial class RailroadingSystem : SharedRailroadingSystem
 {
     [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public event Action? CardsPendingChanged;
 
@@ -23,6 +28,7 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
         base.Initialize();
         SubscribeLocalEvent<RailroadCardsPendingComponent, ComponentStartup>(OnPendingStartup);
         SubscribeLocalEvent<RailroadCardsPendingComponent, ComponentShutdown>(OnPendingShutdown);
+        SubscribeLocalEvent<RailroadCardsPendingComponent, OpenCardsAlertEvent>(OnCardsAlert);
 
         _player.LocalPlayerAttached += OnLocalPlayerChanged;
         _player.LocalPlayerDetached += OnLocalPlayerChanged;
@@ -36,6 +42,13 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
     }
 
     public void RequestCardSelection() => RaiseNetworkEvent(new OpenCardsRequestEvent());
+
+    private void OnCardsAlert(Entity<RailroadCardsPendingComponent> ent, ref OpenCardsAlertEvent args)
+    {
+        args.Handled = true;
+        if (_timing.IsFirstTimePredicted)
+            _ui.GetUIController<CharacterUIController>().OpenCharacterOverview();
+    }
 
     private void OnPendingStartup(Entity<RailroadCardsPendingComponent> ent, ref ComponentStartup args)
         => SetPending(ent.Owner, true);

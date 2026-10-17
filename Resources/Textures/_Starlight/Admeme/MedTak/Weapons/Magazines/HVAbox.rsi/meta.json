@@ -1,0 +1,62 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "states": [
+        {
+            "name": "base",
+            "copyright": "SevenShades, based on sprites by KillerTamashi"
+        },
+        {
+            "name": "mag-0",
+            "copyright": "SevenShades, based on sprites by KillerTamashi"
+        },
+        {
+            "name": "mag-1",
+            "copyright": "SevenShades, based on sprites by KillerTamashi"
+        },
+        {
+            "name": "mag-2",
+            "copyright": "SevenShades, based on sprites by KillerTamashi"
+        },
+        {
+            "name": "mag-3",
+            "copyright": "SevenShades, based on sprites by KillerTamashi"
+        },
+        {
+            "name": "mag-4",
+            "copyright": "SevenShades, based on sprites by KillerTamashi"
+        },
+        {
+            "name": "mag-5",
+            "copyright": "SevenShades, based on sprites by KillerTamashi"
+        },
+        {
+            "name": "mag-6",
+            "copyright": "SevenShades, based on sprites by KillerTamashi"
+        },
+        {
+            "name": "mag-7",
+            "copyright": "SevenShades, based on sprites by KillerTamashi"
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4,
+            "copyright": "SevenShades, based on sprites by TiniestShark (github)"
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4,
+            "copyright": "SevenShades, based on sprites by TiniestShark (github)"
+        },
+        {
+            "name": "light",
+            "delays": [[0.5, 0.5]],
+            "copyright": "SevenShades"
+        }
+    ]
+}

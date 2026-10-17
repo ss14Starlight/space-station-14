@@ -11,6 +11,10 @@
   name: id-card-access-level-blueshield
 
 - type: accessLevel
+  id: NanotrasenCareerTrainer
+  name: id-card-access-level-nanotrasencareertrainer
+
+- type: accessLevel
   id: NTPersonnel
   name: id-card-access-level-ntpersonnel
   canAddToIdCard: false
@@ -22,4 +26,5 @@
   - Magistrate
   - BlueShield
   - IAA
+  - NanotrasenCareerTrainer
   - NTPersonnel

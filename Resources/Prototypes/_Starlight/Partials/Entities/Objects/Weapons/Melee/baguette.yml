@@ -2,6 +2,6 @@
   id: WeaponBaguette
   components:
     - type: MeleeChemicalInjector
-      transferAmount: 5
+      transferAmount: 2
       solution: food
 

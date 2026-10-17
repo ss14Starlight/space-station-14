@@ -31,8 +31,10 @@ using Robust.Shared.Utility;
 using Content.Shared.Atmos.Components;
 using System.Linq;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Temperature.Components;
 using Content.Server._Starlight.NPC.Queries.Considerations;
+using Content.Server._Starlight.NPC.Systems;
 using Content.Shared.Projectiles;
 using Content.Shared.Tag; // Persistence: Firebots can target reagent fires
 
@@ -60,6 +62,8 @@ public sealed partial class NPCUtilitySystem : EntitySystem
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private MobThresholdSystem _thresholdSystem = default!;
     [Dependency] private TurretTargetSettingsSystem _turretTargetSettings = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private NPCHidingWitnessSystem _hidingWitness = default!; // Starlight
 
     private EntityQuery<PuddleComponent> _puddleQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -236,6 +240,10 @@ public sealed partial class NPCUtilitySystem : EntitySystem
             }
             case TargetAccessibleCon:
             {
+                // Starlight: a hider it saw getting in gets dug out, welded shut or not.
+                if (_hidingWitness.KnowsHidingSpot(owner, targetUid, out _))
+                    return 1f;
+
                 if (_container.TryGetContainingContainer(targetUid, out var container))
                 {
                     if (container.Owner == owner)
@@ -315,9 +323,10 @@ public sealed partial class NPCUtilitySystem : EntitySystem
             {
                 if (!TryComp(targetUid, out DamageableComponent? damage))
                     return 0f;
-                if (con.TargetState != MobState.Invalid && _thresholdSystem.TryGetPercentageForState(targetUid, con.TargetState, damage.TotalDamage, out var percentage))
+                var totalDamage = _damageable.GetTotalDamage((targetUid, damage));
+                if (con.TargetState != MobState.Invalid && _thresholdSystem.TryGetPercentageForState(targetUid, con.TargetState, totalDamage, out var percentage))
                     return Math.Clamp((float)(1 - percentage), 0f, 1f);
-                if (_thresholdSystem.TryGetIncapPercentage(targetUid, damage.TotalDamage, out var incapPercentage))
+                if (_thresholdSystem.TryGetIncapPercentage(targetUid, totalDamage, out var incapPercentage))
                     return Math.Clamp((float)(1 - incapPercentage), 0f, 1f);
                 return 0f;
             }
@@ -342,7 +351,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                         return 1f;
                 }
 
-                var result = _interaction.InRangeUnobstructed(owner, targetUid, radius + bufferRange, CollisionGroup.Opaque) ? 1f : 0f;
+                var result = _hidingWitness.CanSee(owner, targetUid, radius + bufferRange, CollisionGroup.Opaque) ? 1f : 0f; // Starlight-edit
                 return result;
             }
             case TargetIsAliveCon:
@@ -507,6 +516,8 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 {
                     entities.Add(ent);
                 }
+
+                _hidingWitness.AddWitnessedHiders(owner, vision, entities); // Starlight
                 break;
             }
 
@@ -553,7 +564,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
     {
         switch (filter)
         {
-            case ComponentFilter compFilter:
+            case Content.Server.NPC.Queries.Queries.ComponentFilter compFilter:
             {
                 _entityList.Clear();
 

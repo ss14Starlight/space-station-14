@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: KingRatMigration
+  components:
+  - type: StationEvent
+    occursDuringRoundEnd: false

@@ -10,5 +10,6 @@ seeds-spear-mint-name = spear mint
 seeds-spear-mint-display-name = spear mint
 seeds-cinnamon-name = cinnamon tree
 seeds-cinnamon-display-name = cinnamon tree
+seeds-brown-mushroom-name = brown mushroom
 seeds-cinnaflare-name = cinnaflare tree
 seeds-cinnaflare-display-name = cinnaflare tree

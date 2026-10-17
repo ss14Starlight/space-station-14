@@ -88,6 +88,10 @@
     {
       "name": "nose_implant_scent",
       "copyright": "Sparlight (GitHub)"
+    },
+    {
+      "name": "brain_implant_scan",
+      "copyright": "DocMoth"
     }
   ]
 }

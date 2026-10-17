@@ -30,4 +30,10 @@ public sealed partial class SampleGenePrototype : IPrototype
     /// </summary>
     [ViewVariables, DataField(required: true)]
     public string? Name = string.Empty;
+
+    /// <summary>
+    /// The DNA sequence for this gene. Randomly generated if null.
+    /// Should be roughly 16 characters, consisting of A, C, T, and G.
+    /// </summary>
+    [ViewVariables, DataField] public string? Sequence;
 }

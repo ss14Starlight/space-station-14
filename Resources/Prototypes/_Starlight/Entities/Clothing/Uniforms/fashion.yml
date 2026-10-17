@@ -372,3 +372,58 @@
       sprite: _Starlight/Clothing/Uniforms/cuteturtleneckblack.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Uniforms/cuteturtleneckblack.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: GothicFrillDressUniformSuit
+  name: gothic frill dress # Alternative Clothing Catalog
+  description: A victorian style dress with a frilly petticoat.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/gothic_frill.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/gothic_frill.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: PastelFrillDressUniformSuit
+  name: pastel frill dress # Alternative Clothing Catalog
+  description: A victorian style dress with a frilly petticoat.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/pastel_frill.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/pastel_frill.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: PunkOffShoulderUniformSuit
+  name: punk off-shoulder top # Alternative Clothing Catalog
+  description: A loose fitting shirt that hangs off the shoulder, fit with a spikey choker and cuffs.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/punk_off_shoulder.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/punk_off_shoulder.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: LittleAngelUniformSuit
+  name: little angel dress # Alternative Clothing Catalog
+  description: An angelically cute costume dress, matches with the rest of the set!
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/little_angel.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/little_angel.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: LittleDevilUniformSuit
+  name: little devil dress # Alternative Clothing Catalog
+  description: A devilishly cute costume dress, matches with the rest of the set!
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/little_devil.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/little_devil.rsi

@@ -143,8 +143,10 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Fresium
-        Quantity: 15
+        - ReagentId: Ash
+          Quantity: 25
+        - ReagentId: Arcryox
+          Quantity: 25
   - type: GuideHelp
     guides:
     - MinorAntagonists

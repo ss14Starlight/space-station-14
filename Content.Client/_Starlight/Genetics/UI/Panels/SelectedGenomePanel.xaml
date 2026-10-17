@@ -1,0 +1,51 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+         xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+         VerticalExpand="True" HorizontalExpand="True">
+	<BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
+				<controls:StripeBack>
+					<PanelContainer>
+						<Label HorizontalAlignment="Center" Text="{Loc 'genetics-ui-panel-selected-gene-title'}"/>
+					</PanelContainer>
+				</controls:StripeBack>
+				<VBox Name="SelectedGeneDataDisplay">
+					<HBox>
+						<Label Text="{Loc 'genetics-ui-panel-selected-gene-name'}" HorizontalExpand="True"
+						       Margin="0 0 5 0"/>
+						<Label Name="SelectedGeneNameField"
+							   Text="{Loc 'genetics-ui-panel-selected-gene-name-placeholder'}"/>
+					</HBox>
+					<HBox>
+						<Label Text="{Loc 'genetics-ui-panel-selected-gene-identifier'}" HorizontalExpand="True"
+						       Margin="0 0 5 0"/>
+						<Label Name="SelectedGeneIdentifierField"
+							   Text="{Loc 'genetics-ui-panel-selected-gene-identifier-placeholder'}"/>
+					</HBox>
+					<HBox>
+						<Label Text="{Loc 'genetics-ui-panel-selected-gene-sequence'}" HorizontalExpand="True"
+						       Margin="0 0 5 0"/>
+						<Label Name="SelectedGeneSequenceField"
+						       Text="{Loc 'genetics-ui-panel-selected-gene-sequence-placeholder'}"/>
+					</HBox>
+				</VBox>
+				<!--Trait Selection-->
+				<Label Margin="0 5 0 2" Text="{Loc 'genetics-ui-panel-selected-gene-traits'}"/>
+				<customControls:HSeparator Margin="0 5 0 5"/>
+				<ScrollContainer Name="SelectedGeneTraitListDisplay" VScrollEnabled="True"
+				                 VerticalExpand="True" HScrollEnabled="False" HorizontalExpand="True" MinHeight="100">
+					<BoxContainer Name="SelectedGeneTraitListContainer" VerticalExpand="True"
+					              Orientation="Vertical" SeparationOverride="5"/>
+				</ScrollContainer>
+				<customControls:HSeparator Margin="0 5 0 5"/>
+				<HBox Name="SelectionPanelButtons">
+					<Button Name="RenameButton" Text="{Loc 'genetics-ui-panel-selected-button-rename'}"
+					        StyleClasses="OpenRight" Disabled="True"/>
+					<controls:ConfirmButton
+						Name="DeleteButton"
+						Text="{Loc 'genetics-ui-panel-selected-button-delete'}"
+						StyleClasses="negative OpenLeft"
+						ConfirmationText="{Loc 'genetics-ui-panel-selected-button-delete-confirm'}"
+						Disabled="True"/>
+				</HBox>
+			</BoxContainer>
+</Control>

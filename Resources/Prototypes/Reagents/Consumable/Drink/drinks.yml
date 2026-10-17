@@ -485,6 +485,7 @@
         - !type:MetabolizerTypeCondition
           type: [ Cyclorite, NeoVox ]
           inverted: true
+        maxScale: 9 # Prevent single-breath crit/death in Laspi
         # Starlight end
         damage:
           types:

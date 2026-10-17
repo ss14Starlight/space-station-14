@@ -26,6 +26,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
+    - MedTakAmmoStatic
     - TopicalsStatic
     - ChemistryStatic
     - MedicalClothingStatic

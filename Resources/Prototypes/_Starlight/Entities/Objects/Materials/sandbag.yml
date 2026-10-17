@@ -1,0 +1,54 @@
+- type: stack
+  parent: BaseMediumStack
+  id: Sandbag
+  name: stack-sandbag
+  icon: { sprite: /Textures/_Starlight/Objects/Materials/sandbag.rsi, state: sandbag }
+  spawn: MaterialSandbag1
+
+- type: entity
+  parent: MaterialBase
+  id: MaterialSandbag
+  name: sandbag
+  suffix: Full
+  description: A heavy cloth sack stuffed with sand. Stack a few and bullets stop caring about what's behind them.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Materials/sandbag.rsi
+    state: sandbag
+    layers:
+    - state: sandbag
+      map: ["base"]
+  - type: Item
+    sprite: _Starlight/Objects/Materials/sandbag.rsi
+    heldPrefix: sandbag
+    size: Large
+  - type: Stack
+    stackType: Sandbag
+    baseLayer: base
+    layerStates:
+    - sandbag
+    - sandbag_2
+    - sandbag_3
+  - type: Tag
+    tags:
+    - RawMaterial
+    - ConstructionMaterial
+  - type: Construction
+    graph: MaterialSandbag
+    node: sandbag
+
+- type: entity
+  parent: MaterialSandbag
+  id: MaterialSandbag12
+  suffix: 12
+  components:
+  - type: Stack
+    count: 12
+
+- type: entity
+  parent: MaterialSandbag
+  id: MaterialSandbag1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1

@@ -119,14 +119,13 @@
               type: [ Cyclorite, Bloodsucker ]
               inverted: true
         # Bloodsucker healing
-        - !type:HealthChange
+        - !type:EvenHealthChange
           conditions:
             - !type:MetabolizerTypeCondition
               type: [ Bloodsucker ]
           damage:
-            groups:
-              Brute: -3
-              Burn: -1.25
+            Brute: -3
+            Burn: -1.25
 
 - type: reagent
   id: Amalgam
@@ -280,14 +279,13 @@
       - !type:SatiateThirst #Doll blood is hydrating for everyone, but does *not* heal dolls.
         factor: 1.0
         conditions:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Bloodsucker ]
         damage:
-          groups:
-            Brute: -3
-            Burn: -1.25
+          Brute: -3
+          Burn: -1.25
     #No Bloodstream effects, Doll blood is unoffensive
   plantMetabolism:
     - !type:PlantAdjustWater
@@ -296,3 +294,14 @@
     collection: FootstepBlood
     params:
       volume: 6
+
+- type: reagent
+  parent: Blood
+  id: SawianBlood
+  name: reagent-name-sawian-blood
+  group: Biological
+  desc: reagent-desc-sawian-blood
+  flavor: sawianBlood
+  color: "#ffbb00"
+  recognizable: true
+  physicalDesc: reagent-physical-desc-sawian

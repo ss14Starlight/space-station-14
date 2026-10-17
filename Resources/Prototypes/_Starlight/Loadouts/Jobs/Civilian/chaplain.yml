@@ -65,12 +65,6 @@
     - BibleLiberChaotica
 
 - type: loadout
-  id: BibleMalleus
-  storage:
-    back:
-    - BibleMalleus
-
-- type: loadout
   id: BibleOrthodox
   storage:
     back:

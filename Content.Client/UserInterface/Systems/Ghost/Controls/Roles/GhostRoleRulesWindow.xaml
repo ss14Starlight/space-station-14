@@ -4,12 +4,18 @@
             SetSize="500 300">
     <BoxContainer Orientation="Vertical"
                   HorizontalExpand="True">
-        <RichTextLabel Name="TopBanner" VerticalExpand="True"/>
+        <!-- Starlight start -->
+        <ScrollContainer VerticalExpand="True"
+                         HScrollEnabled="False">
+            <RichTextLabel Name="TopBanner" VerticalExpand="True"/>
+        </ScrollContainer>
+        <!-- Starlight end -->
         <Button Name="RequestButton"
                 Text="{Loc 'ghost-roles-window-request-role-button'}"
                 Disabled="True"
                 TextAlign="Center"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center" />
+                VerticalAlignment="Center"
+                Margin="0 11 0 0" /> <!-- Starlight -->
     </BoxContainer>
 </DefaultWindow>

@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: IntercomElectronics
+  components:
+  - type: Tag
+    tags:
+    - RamChip # FH

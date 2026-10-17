@@ -23,11 +23,10 @@
         amount: 0.2
     Bloodstream:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         damage:
-          groups:
-            Burn: -4
-            Brute: -4
+          Burn: -4
+          Brute: -4
 
 
 - type: reagent
@@ -37,7 +36,7 @@
   desc: reagent-desc-amoxla
   physicalDesc: reagent-physical-desc-opaque
   # Starlight Edits
-  contrabandSeverity: Minor
+  contrabandTier: Tier1 # Blimpuf
   allowedDepartments:
   - Medical
   # Starlight End
@@ -341,6 +340,7 @@
 
 - type: reagent
   id: Respirazone
+  contrabandTier: Tier1
   name: reagent-name-respirazone
   group: Medicine
   desc: reagent-desc-respirazone

@@ -18,6 +18,7 @@
     - !type:TraitsRequirement
       traits:
         - Iterator
+        - Pacifist
       inverted: true
   startingGear: BlueShieldGear
   icon: JobIconBlueShield

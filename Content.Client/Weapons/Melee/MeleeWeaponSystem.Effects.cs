@@ -162,6 +162,7 @@ public sealed partial class MeleeWeaponSystem
 
         startRotation += spriteRotation;
         endRotation += spriteRotation;
+        sprite.Comp.NoRotation = true;
 
         return new Animation()
         {
@@ -411,7 +412,7 @@ public sealed partial class MeleeWeaponSystem
             if (arcComponent.User == null || EntityManager.Deleted(arcComponent.User))
                 continue;
 
-            var targetPos = TransformSystem.GetWorldPosition(arcComponent.User.Value);
+            Vector2 targetPos = TransformSystem.GetWorldPosition(arcComponent.User.Value);
 
             if (arcComponent.Offset != Vector2.Zero)
             {

@@ -20,31 +20,56 @@ namespace Content.Server.Atmos.Monitor.Systems;
 public sealed partial class AirAlarmSystem
 {
     /// <summary>
-    /// when encountering a entity on a tile add it to the links for a air alarm
+    /// When encountering a entity on a tile: add it to the links for a air alarm.
+    /// Firelocks are AtmosAlarmable, air vents / scrubbers / air sensors are AtmosMonitor.
     /// </summary>
-    private readonly EntityWhitelist _linkableWhitelist = new()
+    private readonly EntityWhitelist _airAlarmLinkableWhitelist = new()
     {
         Components = [
             "AtmosMonitor",
+            "AtmosAlarmable",
+        ]
+    };
+
+    /// <summary>
+    /// When encountering a entity on a tile: add it to the links for a fire alarm.
+    /// Firelocks are AtmosAlarmable. Linking senors to a fire alarm does nothing.
+    /// </summary>
+    private readonly EntityWhitelist _fireAlarmLinkableWhitelist = new()
+    {
+        Components = [
             "AtmosAlarmable"
         ]
     };
+
     /// <summary>
-    /// when a tile has a entity tagged with this on it. do not queue adjacent tiles.
+    /// When a tile has a entity tagged with this on it: do not queue adjacent tiles.
     /// </summary>
     private readonly EntityWhitelist _stoppingWhitelist = new()
     {
         Components = [
             "Firelock",
-            "Airtight"
+            "Airtight",
         ]
     };
+
+    /// <summary>
+    /// These entities will not be linked to air / fire alarms, even if they are in the _linkableWhitelist
+    /// </summary>
+    private readonly EntityWhitelist _doNotLinkBlacklist = new()
+    {
+        Components = [
+            "AirAlarm",
+            "FireAlarm",
+        ]
+    };
+
     private readonly Dictionary<int, Vector2i> _offset = new()
     {
-        [0] = Vector2i.Down, //South
-        [1] = Vector2i.Right, //East
-        [2] = Vector2i.Up, //North
-        [3] = Vector2i.Left, //West
+        [0] = Vector2i.Down,  // South
+        [1] = Vector2i.Right, // East
+        [2] = Vector2i.Up,    // North
+        [3] = Vector2i.Left,  // West
     };
 
     [Dependency] private TurfSystem _turf = default!;
@@ -53,18 +78,35 @@ public sealed partial class AirAlarmSystem
     [Dependency] private IAdminManager _adminManager = default!;
     [Dependency] private IConfigurationManager _configuration = default!;
 
-    //for testing reasons
+    // for debugging
     // private EntProtoId _lizardPlush = "PlushieLizard";
 
-    private int _maxDepth = 10;
-    private void SLInitialize()
-    {
-        SubscribeLocalEvent<AirAlarmComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
+    /// <summary>
+    /// Max number of tiles we'll walk away from the air alarm in search of stuff to link.
+    /// </summary>
+    private int _maxDepth = 32;
 
-        _configuration.OnValueChanged(StarlightCCVars.MaxAutoAtmosLinkDistance, x => _maxDepth = x);
-    }
+    private void SLInitialize() => _configuration.OnValueChanged(StarlightCCVars.MaxAutoAtmosLinkDistance, x => _maxDepth = x);
 
-    private void OnGetVerbs(Entity<AirAlarmComponent> ent, ref GetVerbsEvent<Verb> ev)
+    [SubscribeLocalEvent]
+    private void OnGetAirAlarmVerbs(Entity<AirAlarmComponent> ent, ref GetVerbsEvent<Verb> ev)
+        => AddAutoLinkVerb(
+            ent.Owner,
+            _airAlarmLinkableWhitelist,
+            "admin-trick-autolink-air-alarms",
+            new SpriteSpecifier.Rsi(new("/Textures/Structures/Wallmounts/air_monitors.rsi"), "alarmp"),
+            ref ev);
+
+    [SubscribeLocalEvent]
+    private void OnGetFireAlarmVerbs(Entity<FireAlarmComponent> ent, ref GetVerbsEvent<Verb> ev)
+        => AddAutoLinkVerb(
+            ent.Owner,
+            _fireAlarmLinkableWhitelist,
+            "admin-trick-autolink-fire-alarms",
+            new SpriteSpecifier.Rsi(new("/Textures/Structures/Wallmounts/air_monitors.rsi"), "fire0"),
+            ref ev);
+
+    private void AddAutoLinkVerb(EntityUid ent, EntityWhitelist linkableWhitelist, string text, SpriteSpecifier icon, ref GetVerbsEvent<Verb> ev)
     {
         if (!TryComp(ev.User, out ActorComponent? actor))
             return;
@@ -73,10 +115,11 @@ public sealed partial class AirAlarmSystem
 
         if (!_adminManager.HasAdminFlag(player, AdminFlags.Mapping))
             return;
+
         ev.Verbs.Add(new Verb()
         {
-            Text = Loc.GetString("admin-verb-autolink"),
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Structures/Wallmounts/air_monitors.rsi"), "alarmp"),
+            Text = Loc.GetString(text),
+            Icon = icon,
             Category = VerbCategory.Tricks,
             Act = () =>
             {
@@ -85,7 +128,7 @@ public sealed partial class AirAlarmSystem
 
                 var xform = Transform(ent);
                 var offset = _offset[(int)(
-                    xform.LocalRotation.Degrees / 90 //make it into a mutiple of 90
+                    xform.LocalRotation.FlipPositive().Degrees / 90 //make it into a mutiple of 90
                     % 4 //and then normalize to NSEW
                 )];
 
@@ -96,51 +139,68 @@ public sealed partial class AirAlarmSystem
                 var start = coords.Value.Offset(offset);
                 var work = new HashSet<(EntityCoordinates, int)>
                 {
-                (start,0)
+                    (start,1)
                 };
-                Log.Info($"starting at {start}");
+
+                // debug
+                //Log.Info($"starting at {start}");
+
                 while (work.Count > 0)
                 {
                     var part = work.First();
                     var test = part.Item1;
                     work.Remove(part);
                     seen.Add(test);
-                    //and we do checking here
+
+                    // debug visualizer (all important plushie)
                     // SpawnAtPosition(_lizardPlush, test);
 
                     var tref = _turf.GetTileRef(test);
+
                     if (tref == null)
                         continue; //in space. so we dont continue propogation
-                    var stop = _turf.GetEntitiesInTile(test, LookupFlags.StaticSundries)
+
+                    var entities = _turf.GetEntitiesInTile(test, LookupFlags.StaticSundries)
                         .Where(x => //Filter for entities on the tile we are checking (stupid walls are just slightly too fat)
                         {
                             var tile = _xform.GetGridTilePositionOrDefault(x);
                             return tile != Vector2i.Zero && tref.Value.GridIndices == tile;
                         })
-                        .Select(x =>
+                        .ToList();
+
+                    // link devices before checking a stopping condition
+                    // this prevents e.g. firelocks on top of airlocks from being skipped (as both are stopping conditions)
+                    foreach (var x in entities)
+                    {
+                        // don't link to other air alarms
+                        if (_whitelist.IsWhitelistPass(_doNotLinkBlacklist, x))
+                            continue;
+
+                        if (_whitelist.IsWhitelistPass(linkableWhitelist, x) && TryComp<DeviceNetworkComponent>(x, out var devNetwork))
                         {
-                            if (_whitelist.IsWhitelistPass(_linkableWhitelist, x) && TryComp<DeviceNetworkComponent>(x, out var devNetwork))
-                                _deviceList.TryAddDeviceToList(
+                            _deviceList.TryAddDeviceToList(
                                 new(ent, devList),
                                 new(x, devNetwork)
                             );
-                            Log.Info($"euid: {x} WLPass: {_whitelist.IsWhitelistPass(_linkableWhitelist, x)} DNComp: {HasComp<DeviceNetworkComponent>(x)}");
-                            return _whitelist.IsWhitelistPass(_stoppingWhitelist, x);
-                        })
-                        .Any(x => x);
+                        }
 
-                    if (stop || part.Item2 > _maxDepth)
+                        // debug
+                        //Log.Info($"euid: {x} WLPass: {_whitelist.IsWhitelistPass(linkableWhitelist, x)} DNComp: {HasComp<DeviceNetworkComponent>(x)}");
+                    }
+
+                    // check if we should stop on this tile
+                    var stop = entities.Any(x => _whitelist.IsWhitelistPass(_stoppingWhitelist, x));
+
+                    if (stop || part.Item2 >= _maxDepth)
                         continue;
 
                     foreach (var direction in _offset.Values)
                     {
                         var newWork = test.Offset(direction);
                         if (!seen.Contains(newWork))
-                            work.Add((newWork, part.Item2 + 2));
+                            work.Add((newWork, part.Item2 + 1));
                     }
                 }
-                //xform.LocalRotation
-                //xform.GridUid
             }
         });
     }

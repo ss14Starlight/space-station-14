@@ -10,6 +10,7 @@ using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Mentor;
 
@@ -89,6 +90,7 @@ public sealed partial class NCTTerminalSystem : EntitySystem
     {
         var message = Loc.GetString("nctterminal-message", ("nameAndJob", nameAndJob), ("message", requestmessage));
         var speech = _chat.GetSpeechVerb(uid, message);
+        var title = Loc.GetString("nctterminal-title");
         var wrappedMessage = Loc.GetString("chat-radio-message-wrap-bold",
                 ("color", "#2681a5"),
                 ("languageColor", "#2681a5"),
@@ -96,7 +98,7 @@ public sealed partial class NCTTerminalSystem : EntitySystem
                 ("fontSize", speech.FontSize),
                 ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
                 ("channel", $"\\[CentComm\\]"),
-                ("name", $"[icon src=\"JobIconNanotrasenCareerTrainer\" tooltip=\"NCT Dispatch\"] NCT Dispatch"),
+                ("name", $"[icon src=\"JobIconNanotrasenCareerTrainer\" tooltip=\"{FormattedMessage.EscapeStringParameter(title)}\"] {FormattedMessage.EscapeText(title)}"),
                 ("message", message));
 
         var query = EntityQueryEnumerator<NCTAgentComponent>();

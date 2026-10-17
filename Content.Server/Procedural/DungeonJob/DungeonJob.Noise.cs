@@ -19,7 +19,7 @@ public sealed partial class DungeonJob
         NoiseDunGen dungen,
         HashSet<Vector2i> reservedTiles,
         int seed,
-        Random random)
+        IRobustRandom random)
     {
         var tiles = new List<(Vector2i, Tile)>();
         var matrix = Matrix3Helpers.CreateTranslation(position);
@@ -38,6 +38,14 @@ public sealed partial class DungeonJob
         var tileCount = 0;
         var tileCap = random.NextGaussian(dungen.TileCap, dungen.CapStd);
         var visited = new HashSet<Vector2i>();
+        // Starlight - Begin
+        // Bound total search work by the requested generated area. This is cumulative across islands
+        // so sparse one-tile islands cannot each consume a fresh full-sized search budget.
+        const int ExaminedNodesPerTargetTile = 128;
+        var nodeBudget = Math.Max(1L, (long) Math.Ceiling(tileCap)) * ExaminedNodesPerTargetTile;
+        var examinedNodes = 0L;
+        var nodeBudgetExhausted = false;
+        // Starlight - End
 
         while (iterations > 0 && tileCount < tileCap)
         {
@@ -77,6 +85,16 @@ public sealed partial class DungeonJob
             // Time to floodfill again
             while (frontier.TryDequeue(out var node) && tileCount < tileCap)
             {
+                // Starlight - Begin
+                if (examinedNodes >= nodeBudget)
+                {
+                    nodeBudgetExhausted = true;
+                    break;
+                }
+
+                examinedNodes++;
+                // Starlight - End
+
                 var foundNoise = false;
 
                 foreach (var layer in dungen.Layers)
@@ -128,8 +146,28 @@ public sealed partial class DungeonJob
                 }
 
                 await SuspendIfOutOfTime();
-                ValidateResume();
+                // Starlight - Begin
+                // This function should only fail if the grid that it was working on is gone (such as exploding before it finishes generating for some reason)
+                if (!ValidateResume())
+                    return Dungeon.Empty;
+                // Starlight - End
             }
+
+            // Starlight - Begin
+            if (nodeBudgetExhausted)
+            {
+                _sawmill.Warning(
+                    $"NoiseDunGen exhausted its {nodeBudget}-node search budget after generating {tileCount} tiles on {_entManager.ToPrettyString(_gridUid)}; ending layer.");
+                break;
+            }
+
+            if (roomTiles.Count == 0)
+            {
+                _sawmill.Warning(
+                    $"NoiseDunGen produced no tiles after examining {examinedNodes}/{nodeBudget} nodes on {_entManager.ToPrettyString(_gridUid)}; ending layer.");
+                break;
+            }
+            // Starlight - End
 
             var center = Vector2.Zero;
 
@@ -141,7 +179,10 @@ public sealed partial class DungeonJob
             center /= roomTiles.Count;
             rooms.Add(new DungeonRoom(roomTiles, center, roomArea, new HashSet<Vector2i>()));
             await SuspendIfOutOfTime();
-            ValidateResume();
+            // Starlight - Begin
+            if (!ValidateResume())
+                return Dungeon.Empty;
+            // Starlight - End
         }
 
         _maps.SetTiles(_gridUid, _grid, tiles);
