@@ -28,7 +28,7 @@ public sealed partial class StationMapComponent : Component
     public EntityUid? TargetGrid;
 
     /// <summary>
-    /// Maximum distance from the target grid's center as a multiplier of the sum of its width and height.
+    /// Maximum distance from the target grid's center as a multiplier of the larger of its width and height.
     /// Zero disables the limit.
     /// </summary>
     [DataField]
