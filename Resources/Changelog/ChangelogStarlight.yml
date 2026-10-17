@@ -1,13 +1,6 @@
 Entries:
 - author: STARLIGHT TEAM
   changes:
-  - message: Made all wall-mounted flags craftable.
-    type: Add
-  id: 409167
-  time: '2026-10-05T06:14:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6439
-- author: STARLIGHT TEAM
-  changes:
   - message: Added an aspace radio for admins to mess with you with.
     type: Add
   id: 409168
@@ -2883,4 +2876,11 @@ Entries:
   id: 409566
   time: '2026-10-17T13:01:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6731
+- author: Romero/Littlemen
+  changes:
+  - message: Molotov cocktails are now available for the oppressed working class of the Starlight sector, craft one today!.
+    type: Add
+  id: 409567
+  time: '2026-10-17T13:22:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6723
 Order: -1
