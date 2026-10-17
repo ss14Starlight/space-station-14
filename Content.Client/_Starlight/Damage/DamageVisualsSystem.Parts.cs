@@ -1,7 +1,6 @@
 // SPDX-FileCopyrightText: 2026 Starlight Network
 // SPDX-License-Identifier: MIT
 
-using System.Runtime.CompilerServices;
 using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Body.Systems;
 using Content.Shared._Starlight.Medical.Body.Part;
@@ -12,7 +11,6 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
-using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
 
 // ReSharper disable once CheckNamespace
 namespace Content.Client.Damage;
@@ -22,7 +20,11 @@ public sealed partial class DamageVisualsSystem
     [Dependency] private BodyPartDamageSystem _partDamage = default!;
     [Dependency] private SLBodySystem _slBody = default!;
 
-    private readonly ConditionalWeakTable<DamageVisualsComponent, Dictionary<(Enum Layer, string Group), FixedPoint2>> _partThresholds = [];
+    private readonly Dictionary<EntityUid, Dictionary<(Enum Layer, string Group), FixedPoint2>> _partThresholds = [];
+
+    [SubscribeLocalEvent]
+    private void OnDamageVisualsShutdown(Entity<DamageVisualsComponent> ent, ref ComponentShutdown args)
+        => _partThresholds.Remove(ent);
 
     [SubscribeLocalEvent]
     private void OnPartDamageState(Entity<BodyPartDamageComponent> part, ref AfterAutoHandleStateEvent args)
@@ -54,7 +56,8 @@ public sealed partial class DamageVisualsSystem
                 parts.Add((part, damage));
         }
 
-        var thresholds = _partThresholds.GetOrCreateValue(damageVis);
+        if (!_partThresholds.TryGetValue(entity, out var thresholds))
+            _partThresholds[entity] = thresholds = [];
         foreach (var group in groups)
         {
             if (damageVis.DamageOverlayGroups?.ContainsKey(group) != true
