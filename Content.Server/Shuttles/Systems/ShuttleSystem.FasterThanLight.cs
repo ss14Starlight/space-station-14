@@ -389,8 +389,8 @@ public sealed partial class ShuttleSystem
     #region Starlight
     private bool IsValidFTLTarget(EntityCoordinates target)
         => target.IsValid(EntityManager) &&
-           HasComp<TransformComponent>(target.EntityId) &&
-           _transform.GetMap(target)?.IsValid() == true;
+            HasComp<TransformComponent>(target.EntityId) &&
+            _transform.GetMap(target)?.IsValid() == true;
     #endregion
 
     /// <summary>

@@ -35,25 +35,8 @@ public partial class NavMapControl : MapGridControl
     private readonly SharedNavMapSystem _navMapSystem;
 
     public EntityUid? Owner;
-
-    #region Starlight
-    public EntityUid? MapUid
-    {
-        get;
-        set
-        {
-            if (value is { } targetGrid &&
-                Owner is { } owner &&
-                EntManager.HasComponent<ItemComponent>(owner) &&
-                !HandheldMapUtility.CanDisplayTargetMap(EntManager, owner, targetGrid, field)) // Starlight
-            {
-                value = null;
-            }
-
-            field = value;
-        }
-    }
-    #endregion
+    public EntityUid? MapUid;
+    private bool _canRenderMap = true; // Starlight
 
     protected override bool Draggable => true;
 
@@ -198,12 +181,16 @@ public partial class NavMapControl : MapGridControl
     public void ForceNavMapUpdate()
     {
         // Starlight - start
-        if (Owner is { } owner)
+        _canRenderMap = true;
+        if (Owner is { } owner &&
+            MapUid is { } targetGrid &&
+            EntManager.HasComponent<ItemComponent>(owner))
         {
-            MapUid = EntManager.TryGetComponent<TransformComponent>(owner, out var ownerXform)
-                ? ownerXform.GridUid
-                : null;
+            _canRenderMap = HandheldMapUtility.CanDisplayTargetMap(EntManager, owner, targetGrid, MapUid);
         }
+
+        if (!_canRenderMap)
+            return;
 
         EntManager.TryGetComponent(MapUid, out _navMap);
         EntManager.TryGetComponent(MapUid, out _grid);
@@ -320,6 +307,11 @@ public partial class NavMapControl : MapGridControl
 
     protected override void Draw(DrawingHandleScreen handle)
     {
+        // Starlight - start
+        if (!_canRenderMap)
+            return;
+        // Starlight - end
+
         base.Draw(handle);
 
         // Get the components necessary for drawing the navmap

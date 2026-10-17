@@ -52,7 +52,7 @@ public static class HandheldMapUtility
                             entityManager.HasComponent<ShuttleComponent>(targetGrid);
 
         return (isStationGrid || isShuttleGrid) &&
-               IsWithinRange(entityManager, ownerXform, targetGrid, targetGridComponent, limitDistanceMultiplier);
+                IsWithinRange(entityManager, ownerXform, targetGrid, targetGridComponent, limitDistanceMultiplier);
     }
 
     private static bool IsWithinRange(IEntityManager entityManager, TransformComponent ownerXform,

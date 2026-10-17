@@ -16,6 +16,7 @@ public sealed partial class StationMapWindow : FancyWindow
     private readonly List<StationMapBeaconControl> _buttons = new();
     #region Starlight
     private EntityUid? _mapOwner;
+    private EntityUid? _lastRefreshedMapUid;
     private float _mapUpdateTimer;
     private const float MapUpdateInterval = 0.5f;
     #endregion
@@ -45,19 +46,16 @@ public sealed partial class StationMapWindow : FancyWindow
         base.FrameUpdate(args);
 
         _mapUpdateTimer += args.DeltaSeconds;
-        if (_mapUpdateTimer < MapUpdateInterval)
-            return;
+        if (_mapUpdateTimer >= MapUpdateInterval)
+        {
+            _mapUpdateTimer -= MapUpdateInterval;
 
-        _mapUpdateTimer -= MapUpdateInterval;
+            if (_mapOwner is { } owner)
+                NavMapScreen.MapUid = GetMapToDisplay(owner, NavMapScreen.MapUid); // Starlight
+        }
 
-        if (_mapOwner is not { } owner)
-            return;
-
-        var previousMapUid = NavMapScreen.MapUid;
-        NavMapScreen.MapUid = GetMapToDisplay(owner, previousMapUid); // Starlight
-
-        if (previousMapUid != NavMapScreen.MapUid)
-            UpdateMapState(NavMapScreen.MapUid);
+        if (_lastRefreshedMapUid != NavMapScreen.MapUid)
+            UpdateMapState();
     }
 
     private EntityUid? GetMapToDisplay(EntityUid owner, EntityUid? previousMapUid = null) // Starlight
@@ -80,16 +78,19 @@ public sealed partial class StationMapWindow : FancyWindow
     private void UpdateMap(EntityUid? mapUid)
     {
         NavMapScreen.MapUid = mapUid;
-        UpdateMapState(NavMapScreen.MapUid);
+        UpdateMapState();
     }
 
-    private void UpdateMapState(EntityUid? mapUid)
+    private void UpdateMapState()
     {
+        NavMapScreen.ForceNavMapUpdate();
+        var mapUid = NavMapScreen.MapUid;
+        _lastRefreshedMapUid = mapUid;
+
         StationName.Text = _entMan.TryGetComponent<MetaDataComponent>(mapUid, out var mapMetaData)
             ? mapMetaData.EntityName
             : Loc.GetString("station-map-unknown-station");
 
-        NavMapScreen.ForceNavMapUpdate();
         UpdateBeaconList(mapUid);
     }
     // Starlight - end

@@ -10,9 +10,13 @@ public sealed partial class StationSystem
     /// Resolves ITG's shared station through the ATS, falling back to the entity's owning station
     /// while the ATS has no unique station owner.
     /// </summary>
-    public EntityUid? GetItgStation(EntityUid entity, TransformComponent? xform = null)
+    public EntityUid? GetItgStation(Entity<TransformComponent?> entity)
     {
-        var fallbackStation = GetOwningStation(entity, xform);
+        if (!Resolve(entity, ref entity.Comp))
+            return null;
+
+        var entityUid = entity.Owner;
+        var fallbackStation = GetOwningStation(entityUid, entity.Comp);
         EntityUid? tradeStationOwner = null;
         var query = EntityQueryEnumerator<TradeStationComponent>();
 
@@ -25,7 +29,7 @@ public sealed partial class StationSystem
             if (tradeStationOwner is { } existing && existing != station.Value)
             {
                 _sawmill.Warning(
-                    $"Multiple stations own TradeStation grids; falling back to the owning station of entity {entity}.");
+                    $"Multiple stations own TradeStation grids; falling back to the owning station of entity {entityUid}.");
                 return fallbackStation;
             }
 

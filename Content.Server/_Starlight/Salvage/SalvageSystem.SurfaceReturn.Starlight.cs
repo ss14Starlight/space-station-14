@@ -13,10 +13,16 @@ public sealed partial class SalvageSystem
 {
     private void InitializeSurfaceReturn() =>
         Subs.BuiEvents<ShuttleConsoleComponent>(ShuttleConsoleUiKey.Key,
-            subs => { subs.Event<ShuttleConsoleSurfaceReturnMessage>(OnSurfaceReturn); });
+            subs => subs.Event<ShuttleConsoleSurfaceReturnMessage>(OnSurfaceReturn));
 
     private void OnSurfaceReturn(Entity<ShuttleConsoleComponent> entity, ref ShuttleConsoleSurfaceReturnMessage args)
     {
+        if (!TryComp<PilotComponent>(args.Actor, out var pilot) ||
+            pilot.Console != entity.Owner)
+        {
+            return;
+        }
+
         var consoleUid = _shuttleConsoles.GetDroneConsole(entity.Owner);
         if (consoleUid is not { } console ||
             !TryComp(console, out TransformComponent? consoleXform) ||

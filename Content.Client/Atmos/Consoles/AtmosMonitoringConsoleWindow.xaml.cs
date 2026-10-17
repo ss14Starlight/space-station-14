@@ -64,7 +64,7 @@ public sealed partial class AtmosMonitoringConsoleWindow : FancyWindow
         EntityCoordinates? consoleCoords = null;
         // Starlight - start
         var ownerIsHandheld = owner is { } itemOwner &&
-                              _entManager.HasComponent<ItemComponent>(itemOwner);
+                                _entManager.HasComponent<ItemComponent>(itemOwner);
         // Starlight - end
 
         if (_entManager.TryGetComponent<TransformComponent>(owner, out var xform))

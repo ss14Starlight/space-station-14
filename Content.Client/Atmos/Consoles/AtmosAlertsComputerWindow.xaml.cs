@@ -98,7 +98,7 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
             StationName.SetMessage(stationName);
             NavMap.MapUid = null;
             NavMap.Visible = owner is { } itemOwner &&
-                             _entManager.HasComponent<ItemComponent>(itemOwner);
+                            _entManager.HasComponent<ItemComponent>(itemOwner);
         }
 
         // Starlight - end

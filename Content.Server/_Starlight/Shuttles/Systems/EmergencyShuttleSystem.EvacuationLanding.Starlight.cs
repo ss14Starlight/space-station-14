@@ -21,7 +21,7 @@ public sealed partial class EmergencyShuttleSystem
         }
 
         var bounds = Comp<MapGridComponent>(shuttleUid).LocalAABB;
-        var radius = bounds.Center.Length() + new Vector2(bounds.Width, bounds.Height).Length() / 2f;
+        var radius = bounds.Center.Length() + (new Vector2(bounds.Width, bounds.Height).Length() / 2f);
 
         for (var attempt = 0; attempt < 32; attempt++)
         {
@@ -29,10 +29,10 @@ public sealed partial class EmergencyShuttleSystem
             var offset = _random.NextAngle().ToVec() * distance;
             var clear = true;
 
-            foreach (var reservation in _evacuationPodLandingReservations)
+            foreach (var (reservedPosition, reservedRadius) in _evacuationPodLandingReservations)
             {
-                var minimumDistance = radius + reservation.Radius + 2f;
-                if (!(Vector2.DistanceSquared(offset, reservation.Position) < minimumDistance * minimumDistance))
+                var minimumDistance = radius + reservedRadius + 2f;
+                if (!(Vector2.DistanceSquared(offset, reservedPosition) < minimumDistance * minimumDistance))
                     continue;
                 clear = false;
                 break;
@@ -49,9 +49,9 @@ public sealed partial class EmergencyShuttleSystem
 
         // Place just beyond all reserved landing clearances when the preferred spread is full.
         var fallbackDistance = radius + 2f;
-        foreach (var reservation in _evacuationPodLandingReservations)
+        foreach (var (reservedPosition, reservedRadius) in _evacuationPodLandingReservations)
         {
-            fallbackDistance = MathF.Max(fallbackDistance, reservation.Position.Length() + reservation.Radius + radius + 2f);
+            fallbackDistance = MathF.Max(fallbackDistance, reservedPosition.Length() + reservedRadius + radius + 2f);
         }
 
         var fallbackOffset = _random.NextAngle().ToVec() * fallbackDistance;

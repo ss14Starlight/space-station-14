@@ -25,7 +25,9 @@ public sealed partial class ShuttleConsoleWindow : PopOutFancyWindow, // Starlig
 
     public event Action<MapCoordinates, Angle>? RequestFTL;
     public event Action<NetEntity, Angle>? RequestBeaconFTL;
-    public event Action? SurfaceReturnRequested; // Starlight
+    #region Starlight
+    public event Action? SurfaceReturnRequested;
+    #endregion Starlight
 
     public event Action<NetEntity, NetEntity>? DockRequest;
     public event Action<NetEntity>? UndockRequest;
@@ -156,7 +158,9 @@ public sealed partial class ShuttleConsoleWindow : PopOutFancyWindow, // Starlig
         Surface, // Starlight
     }
 
-    partial void UpdateSurfaceState(EntityCoordinates? coordinates, ShuttleBoundUserInterfaceState cState); // Starlight
+    #region Starlight
+    partial void UpdateSurfaceState(EntityCoordinates? coordinates, ShuttleBoundUserInterfaceState cState);
+    #endregion Starlight
 
     public void UpdateState(EntityUid owner, ShuttleBoundUserInterfaceState cState)
     {

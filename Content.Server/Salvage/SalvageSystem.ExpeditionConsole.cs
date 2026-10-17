@@ -50,7 +50,7 @@ public sealed partial class SalvageSystem
         var query = AllEntityQuery<SalvageExpeditionConsoleComponent, UserInterfaceComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out _, out var uiComp, out var xform))
         {
-            var station = _station.GetItgStation(uid, xform); // Starlight
+            var station = _station.GetItgStation((uid, xform)); // Starlight
 
             if (station != component.Owner)
                 continue;

@@ -10,8 +10,10 @@ public sealed class ShuttleBoundUserInterfaceState : BoundUserInterfaceState
     public ShuttleMapInterfaceState MapState;
     public DockingInterfaceState DockState;
     public DockingPortStates DockingPortStates; // Starlight
-    public bool SurfaceMode; // Starlight
-    public NetEntity? SurfaceMapGrid; // Starlight
+    #region Starlight
+    public bool SurfaceMode;
+    public NetEntity? SurfaceMapGrid;
+    #endregion Starlight
 
     public ShuttleBoundUserInterfaceState(NavInterfaceState navState, ShuttleMapInterfaceState mapState, DockingInterfaceState dockState, DockingPortStates dockingPortStates, bool surfaceMode, NetEntity? surfaceMapGrid) // Starlight: +dockingPortStates +surfaceMode +surfaceMapGrid
     {

@@ -69,10 +69,12 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
         // Starlight - end
 
         StationName.AddStyleClass("LabelBig");
+        // Starlight - start
         StationName.Text = NavMap.MapUid is { } displayedMap &&
-                           _entManager.TryGetComponent<MetaDataComponent>(displayedMap, out var metaData)
+                            _entManager.TryGetComponent<MetaDataComponent>(displayedMap, out var metaData)
             ? metaData.EntityName
             : string.Empty;
+        // Starlight - end
         NavMap.ForceNavMapUpdate();
     }
 
