@@ -127,10 +127,8 @@ public sealed partial class LimbSystem : SharedLimbSystem
                 && metadata.EntityLifeStage == EntityLifeStage.Terminating
                 && _containers.TryGetContainer(bodyId, handId, out var handContainer)
                 && handContainer.Contains(itemId))
-            {
                 // Avoid deleting an entity again when the hand container shuts down.
                 _containers.Remove(itemId, handContainer, reparent: false, force: true);
-            }
 
             _hands.RemoveHand(bodyId, handId);
             return;
