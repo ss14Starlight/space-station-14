@@ -100,7 +100,7 @@ public sealed partial class SharedImplantedStorageAccessSystem : EntitySystem
     private bool IsPublicStorage(EntityUid storage)
     {
         return !HasComp<SubdermalImplantComponent>(storage) &&
-               !HasComp<StorageImplantComponent>(storage);
+            !HasComp<StorageImplantComponent>(storage);
     }
 
 }
