@@ -1,109 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Removed the fake shield from revolutionary uplink.
-    type: Remove
-  id: 409141
-  time: '2026-10-04T12:46:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6483
-- author: STARLIGHT TEAM
-  changes:
-  - message: Added bottomless oxygen and nitrogen tanks, for adbus.
-    type: Add
-  id: 409142
-  time: '2026-10-04T12:46:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6435
-- author: DogeyOT
-  changes:
-  - message: New vox tails, and eyes.
-    type: Add
-  id: 409143
-  time: '2026-10-04T13:13:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6380
-- author: DogeyOT
-  changes:
-  - message: Cygni standard as a language. Costs 1 language point currently due to being galactic. Does not inherently come with skb or former ussp background. Yet.
-    type: Add
-  id: 409144
-  time: '2026-10-04T13:13:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6380
-- author: DogeyOT
-  changes:
-  - message: Breathing Tube, an invisible breath mask available in trinkets.
-    type: Add
-  id: 409145
-  time: '2026-10-04T13:13:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6380
-- author: salarua
-  changes:
-  - message: Removed the malleus maleficarum chaplain book.
-    type: Remove
-  id: 409146
-  time: '2026-10-04T13:40:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6399
-- author: salarua
-  changes:
-  - message: Renamed satanic bible to satanic codex.
-    type: Tweak
-  id: 409147
-  time: '2026-10-04T13:40:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6399
-- author: STARLIGHT TEAM
-  changes:
-  - message: Artifacts can now shoot you.
-    type: Add
-  id: 409148
-  time: '2026-10-04T14:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6452
-- author: Swonki
-  changes:
-  - message: Priority Cryo Spawning Locations.
-    type: Add
-  id: 409149
-  time: '2026-10-04T14:06:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6455
-- author: Swonki
-  changes:
-  - message: ITG & Command Cryosleep spawn prototypes for mapping.
-    type: Add
-  id: 409150
-  time: '2026-10-04T14:06:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6455
-- author: SevenShades
-  changes:
-  - message: Added variable ammunition for MedTak weapons.
-    type: Add
-  id: 409151
-  time: '2026-10-04T14:45:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6398
-- author: Rinary
-  changes:
-  - message: Added pickup/drop/equip sounds for various objects(all objects, some have unique).
-    type: Add
-  id: 409152
-  time: '2026-10-04T14:58:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6463
-- author: Rinary
-  changes:
-  - message: Added more default ambience sounds.
-    type: Add
-  id: 409153
-  time: '2026-10-04T14:58:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6463
-- author: Rinary
-  changes:
-  - message: Added "loop"-ed ambience sounds, music which will be played while you staying somewhere(like det office, viro).
-    type: Add
-  id: 409154
-  time: '2026-10-04T14:58:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6463
-- author: Rinary
-  changes:
-  - message: Added "one-shot" ambience sounds, effects which will be played with interval in 1 min while you staying somewhere.
-    type: Add
-  id: 409155
-  time: '2026-10-04T14:58:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6463
 - author: Rinary
   changes:
   - message: Added new volume sliders, now volume highly customizable(up to 19 different volume bars).
@@ -2883,4 +2778,109 @@ Entries:
   id: 409540
   time: '2026-10-16T14:20:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6711
+- author: SevenShades, Way
+  changes:
+  - message: Added Street lamps.
+    type: Add
+  id: 409541
+  time: '2026-10-17T08:59:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6728
+- author: Conflee
+  changes:
+  - message: Gave Nukie Borgs their Gorlex comms.
+    type: Fix
+  id: 409542
+  time: '2026-10-17T09:27:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6724
+- author: Johnny
+  changes:
+  - message: Partialized some stuff.
+    type: Tweak
+  id: 409543
+  time: '2026-10-17T10:04:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6727
+- author: Conflee
+  changes:
+  - message: Wall Stains now take 2 seconds to scrub instead of 5.
+    type: Tweak
+  id: 409544
+  time: '2026-10-17T10:38:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6718
+- author: Xale
+  changes:
+  - message: Wooden bowl crafting recipe now works correctly.
+    type: Fix
+  id: 409545
+  time: '2026-10-17T10:38:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6720
+- author: Xale
+  changes:
+  - message: Cleaned up savoury recipes section in the guidebook.
+    type: Fix
+  id: 409546
+  time: '2026-10-17T10:38:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6720
+- author: Caws
+  changes:
+  - message: Gamma Armory now uses the new safe sprites (yay).
+    type: Tweak
+  id: 409547
+  time: '2026-10-17T10:38:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6717
+- author: Caws
+  changes:
+  - message: Gamma Armory comes with a turbo recharger.
+    type: Tweak
+  id: 409548
+  time: '2026-10-17T10:38:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6717
+- author: Caws
+  changes:
+  - message: Gamma Armory now comes with four Ares swords, four Athena spears, and eight shields.
+    type: Tweak
+  id: 409549
+  time: '2026-10-17T10:38:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6717
+- author: Caws
+  changes:
+  - message: (CentComm G24) The blast door atop the window at Debrief's entrance no longer gets stuck in the closed position.
+    type: Fix
+  id: 409550
+  time: '2026-10-17T11:10:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6716
+- author: Conflee
+  changes:
+  - message: Added 3 TC to the Vault Freezer, to encourage Traitors to break into the Vault more often.
+    type: Add
+  id: 409551
+  time: '2026-10-17T11:10:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6714
+- author: Conflee
+  changes:
+  - message: Fixed butchering not working for about 60% of animals and mobs. Wizden swapped the Butcherable component for a ToolRefinable component, but not only were our mobs not updated, Wizden didn't bother updating like 40% of THEIR mobs when THEY made the change either. For some reason.
+    type: Fix
+  id: 409552
+  time: '2026-10-17T11:10:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6714
+- author: Sparlight
+  changes:
+  - message: Arithrazine, Ultravasculine, Dylovene, Dermaline and Histamine split their brute damage across blunt, slash and piercing again.
+    type: Tweak
+  id: 409553
+  time: '2026-10-17T11:42:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6699
+- author: Sparlight
+  changes:
+  - message: Histamine's severe reaction deals airloss again.
+    type: Tweak
+  id: 409554
+  time: '2026-10-17T11:42:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6699
+- author: Sparlight
+  changes:
+  - message: Polypyrylium Oligomers heals 2.5 brute and 2 airloss, and its overdose deals 4.5 asphyxiation.
+    type: Tweak
+  id: 409555
+  time: '2026-10-17T11:42:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6699
 Order: -1
