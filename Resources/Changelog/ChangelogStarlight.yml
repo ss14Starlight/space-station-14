@@ -1,13 +1,6 @@
 Entries:
 - author: Rinary
   changes:
-  - message: Added new volume sliders, now volume highly customizable(up to 19 different volume bars).
-    type: Add
-  id: 409156
-  time: '2026-10-04T14:58:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6463
-- author: Rinary
-  changes:
   - message: Added new ambience sounds for some objects like AME, Computers, Tcomms, Cloning machine, cryopod, suppermatter and others.
     type: Add
   id: 409157
@@ -2883,4 +2876,11 @@ Entries:
   id: 409555
   time: '2026-10-17T11:42:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6699
+- author: Xale
+  changes:
+  - message: Added an examine icon for clothing items that allows an item to be held in the suit storage slot.
+    type: Add
+  id: 409556
+  time: '2026-10-17T12:07:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6695
 Order: -1
