@@ -41,6 +41,19 @@
   objectType: Structure
   placementMode: SnapgridCenter
 
+# Lighting
+- type: construction
+  id: StreetLamp
+  graph: StreetLamp
+  startNode: start
+  targetNode: streetLamp
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
 #railings
 #region Steel
 - type: construction
