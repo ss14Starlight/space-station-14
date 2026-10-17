@@ -2,18 +2,18 @@
 - type: !PartialOnly entity
   id: MobObserverBase
   components:
-  - type: LanguageSpeaker # Starlight
-  - type: UniversalLanguageSpeaker # Starlight
-  - type: DarkLight # Starlight
-  - type: ActiveInputMover # Starlight
-  - type: Speech # Starlight, only adds speech bubble while typing
-  - type: AntagImmune # Starlight
+  - type: LanguageSpeaker
+  - type: UniversalLanguageSpeaker
+  - type: DarkLight
+  - type: ActiveInputMover
+  - type: Speech # only adds speech bubble while typing
+  - type: AntagImmune
 
 # proto for player ghosts specifically
 - type: !PartialOnly entity
   id: MobObserver
   components:
-  - type: ComplexInteraction # Starlight-start
+  - type: ComplexInteraction
   - type: RadarConsole
     followEntity: true
   - type: UserInterface
@@ -23,4 +23,4 @@
   - type: IntrinsicUI
     uis:
       enum.RadarConsoleUiKey.Key:
-        toggleAction: ActionObserverShowRadar # Starlight-en
+        toggleAction: ActionObserverShowRadar

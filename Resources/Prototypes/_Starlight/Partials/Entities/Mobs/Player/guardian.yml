@@ -2,13 +2,13 @@
 - type: !PartialOnly entity
   id: MobGuardianBase
   components:
-    - type: AntagImmune # Starlight
+    - type: AntagImmune
     - type: GhostRole
-      important: true # SL
+      important: true
 
 - type: !PartialOnly entity
   id: MobHoloClownGuardian
-  parent: !Clear [MobGuardianBase, InventoryBase] #starlight Nubody will not pass.
+  parent: !Clear [MobGuardianBase, InventoryBase] # Nubody will not pass.
   components:
     - type: Body
       prototype: Primate
