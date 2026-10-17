@@ -28,6 +28,7 @@
     - type: AnnounceOnSpawn
       message: war-declarator-default-message
       ignoreASpace: true
+      globalAnnounce: true
       sound:
        path: /Audio/Announcements/war.ogg
       color: red
