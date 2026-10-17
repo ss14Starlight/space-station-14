@@ -77,8 +77,8 @@ public abstract partial class SharedSurgerySystem
 
         if (ent.Comp.Container != null)
         {
-            // Only parts that have the slot can be missing the organ.
-            if (HasOrganSlot(mainPart, ent.Comp.Container) && !HasOrganInSlot(mainPart, ent.Comp.Container, type))
+            // Something to take out: the organ, or anything that ended up where it goes.
+            if (!HasOrganSlot(mainPart, ent.Comp.Container) || GetOrganSlotContents(mainPart, ent.Comp.Container).Count == 0)
                 args.Cancelled = true;
             return;
         }
@@ -95,10 +95,34 @@ public abstract partial class SharedSurgerySystem
     /// <summary>
     /// Legacy slot names map to SLBody sockets ("heart" -> "Heart"); the cavity is a plain item container.
     /// </summary>
-    private bool HasOrganSlot(EntityUid part, string slot)
+    /// <summary>
+    /// The part has the organ slot and nothing is in it.
+    /// </summary>
+    public bool CanInsertIntoOrganSlot(EntityUid part, string slot)
+        => HasOrganSlot(part, slot) && GetOrganSlotContents(part, slot).Count == 0;
+
+    public bool HasOrganSlot(EntityUid part, string slot)
         => slot == "cavity"
             ? _containers.HasContainer(part, SharedBodySystem.GetOrganContainerId(slot), null)
             : TryComp<SLBodyPartComponent>(part, out var slPart) && slPart.Sockets.ContainsKey(SharedBodySystem.GetSocketIdForLegacySlot(slot));
+
+    /// <summary>
+    /// Everything in an organ slot of the part: the organ in its socket, and items in the slot's container (the
+    /// cavity, or a tool or food deliberately put where an organ goes).
+    /// </summary>
+    public List<EntityUid> GetOrganSlotContents(EntityUid part, string slot)
+    {
+        var contents = new List<EntityUid>();
+        if (slot != "cavity"
+            && TryComp<SLBodyPartComponent>(part, out var slPart)
+            && _slBody.TryGetPartInSocket((part, slPart), SharedBodySystem.GetSocketIdForLegacySlot(slot), out var organ))
+            contents.Add(organ);
+
+        if (_containers.TryGetContainer(part, SharedBodySystem.GetOrganContainerId(slot), out var container))
+            contents.AddRange(container.ContainedEntities);
+
+        return contents;
+    }
 
     private bool HasOrganInSlot(EntityUid part, string slot, Type type)
     {
