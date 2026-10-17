@@ -5,52 +5,78 @@ namespace Content.Client._Starlight.Stylesheets;
 /// </summary>
 public static class StarlightStyleClass
 {
+    #region General
+
     /// <summary>
     /// A bordered surface for lists and logs, so they stand apart from the window body.
     /// </summary>
     public const string InsetPanel = "InsetPanel";
 
     /// <summary>
-    /// A style class for a preview of a sprite, which is a small image or icon that represents an object or character in the game.
+    /// A framed backdrop behind a sprite preview.
     /// </summary>
     public const string SpritePreview = "SpritePreview";
 
+    #endregion
+
+    #region Lobby
+
     /// <summary>
-    /// A style class for a lobby card, which is a rectangular panel that displays information about a player or a game session in the lobby.
+    /// A translucent panel over the lobby art, such as the character card or the song and art info.
     /// </summary>
     public const string LobbyCard = "LobbyCard";
 
+    /// <summary>
+    /// The bar along the top of the lobby with the server name and the menu buttons.
+    /// </summary>
     public const string LobbyTopBar = "LobbyTopBar";
 
     /// <summary>
-    /// A style class for the ready button in the lobby, which is a button that players can click to indicate that they are ready to start the game.
-    /// </summary>
-    public const string LobbyReadyButton = "LobbyReadyButton";
-
-    /// <summary>
-    /// A style class for the buttons in the lobby bar, which are buttons that allow players to perform various actions in the lobby, such as changing settings or leaving the game.
+    /// A flat button on <see cref="LobbyTopBar"/>.
     /// </summary>
     public const string LobbyBarButton = "LobbyBarButton";
 
     /// <summary>
-    /// A style class for the action buttons in the lobby, which are buttons that allow players to perform specific actions related to the game session, such as joining a team or selecting a role.
+    /// The big ready button, filled with the accent color.
+    /// </summary>
+    public const string LobbyReadyButton = "LobbyReadyButton";
+
+    /// <summary>
+    /// A big bordered button next to <see cref="LobbyReadyButton"/>, such as observe.
     /// </summary>
     public const string LobbyActionButton = "LobbyActionButton";
 
+    #endregion
+
+    #region Server hub
+
     /// <summary>
-    /// A style class for the hub panel, which is a large container that holds various elements of the hub interface, such as job cards, priority bars, and other controls.
+    /// A panel with an accent edge on the left, for the server list and the ready block.
     /// </summary>
     public const string HubPanel = "HubPanel";
 
+    /// <summary>
+    /// A row inside <see cref="HubPanel"/>.
+    /// </summary>
     public const string HubRow = "HubRow";
 
+    #endregion
+
+    #region Job priorities
+
+    /// <summary>
+    /// A clickable card of a job in the job priorities window.
+    /// </summary>
     public const string JobCard = "JobCard";
 
     /// <summary>
-    /// A style class for a job card that is highlighted, which is a rectangular panel that displays information about a job or role in the game, and is visually emphasized to indicate its importance or urgency.
+    /// A <see cref="JobCard"/> of the high priority job, bordered with the accent color.
     /// </summary>
     public const string JobCardHigh = "JobCardHigh";
 
+    /// <summary>
+    /// The priority marker of a job that is never picked.
+    /// </summary>
     public const string PriorityBar = "PriorityBar";
 
     /// <summary>
@@ -61,9 +87,11 @@ public static class StarlightStyleClass
     public const string PriorityLow = "PriorityLow";
 
     /// <summary>
-    /// A style class for a job drop highlight, which is a visual effect that indicates that a job or role has been dropped or removed from the selection, and is used to draw attention to the change in the job list.
+    /// Highlights the column a job is dragged over in the drag and drop priority columns.
     /// </summary>
     public const string JobDropHighlight = "JobDropHighlight";
+
+    #endregion
 }
 
 /// <summary>
