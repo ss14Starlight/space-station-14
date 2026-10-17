@@ -1,11 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Removed the fake shield from revolutionary uplink.
-    type: Remove
-  id: 409141
-  time: '2026-10-04T12:46:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6483
 - author: STARLIGHT TEAM
   changes:
   - message: Added bottomless oxygen and nitrogen tanks, for adbus.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409540
   time: '2026-10-16T14:20:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6711
+- author: SevenShades, Way
+  changes:
+  - message: Added Street lamps.
+    type: Add
+  id: 409541
+  time: '2026-10-17T08:59:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6728
 Order: -1
