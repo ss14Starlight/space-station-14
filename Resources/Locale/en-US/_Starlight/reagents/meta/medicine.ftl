@@ -26,3 +26,9 @@ reagent-name-respirazone = respirazone
 reagent-desc-respirazone = Used in the treatment of severe respiratory distress and blood loss. Unlike conventional oxygenation medicines, it is compatible with a wide variety of species.
 
 reagent-desc-polypyrylium-oligomers-sl = A purple mixture of short polyelectrolyte chains not easily synthesized in the laboratory. Heals airloss and brute damage. Stops bleeding over time.
+
+reagent-name-phytovitalin = phytovitalin
+reagent-desc-phytovitalin = A complex compound, unique in origin to a select few Dionas, and an extraordinarily versatile botanical compound. It seems to be moving.
+
+reagent-name-mycophylin = mycophylin
+reagent-desc-mycophylin = A strange fungal compound produced by Diona biology. What the body makes of it seems to depend entirely on what the body is made of.

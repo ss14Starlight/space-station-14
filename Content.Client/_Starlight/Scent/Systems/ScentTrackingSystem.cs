@@ -180,7 +180,7 @@ public sealed partial class ScentTrackingSystem : EntitySystem
         _sprite.SetScale((ent.Owner, sprite), new Vector2(scale, scale));
 
         var startAlpha = MathHelper.Lerp(MinAlpha, MaxAlpha, strength);
-        var startColor = GetScentColor(ent.Comp.ScentId).WithAlpha(startAlpha);
+        var startColor = GetScentColor(ent).WithAlpha(startAlpha);
         var endColor = Color.Gray.WithAlpha(0f);
         var remaining = MathF.Max(0.1f, (float)(GetPerceivedExpiry(ent) - _timing.CurTime).TotalSeconds);
 
@@ -231,6 +231,27 @@ public sealed partial class ScentTrackingSystem : EntitySystem
     }
 
     // Convert.ToUInt32 is blocked by the client sandbox and kills the client silently on startup.
+    private static Color GetScentColor(Entity<ScentMarkerComponent> ent)
+    {
+        var scentId = ent.Comp.ScentId;
+
+        if (ent.Comp.IsPollen)
+        {
+            uint hash = 2166136261;
+
+            foreach (var c in scentId)
+            {
+                hash ^= c;
+                hash *= 16777619;
+            }
+
+            var pollenHue = hash % 360 / 360f;
+            return Color.FromHsv(new Vector4(pollenHue, 0.9f, 1f, 1f));
+        }
+
+        return GetScentColor(scentId);
+    }
+
     internal static Color GetScentColor(string scentId)
     {
         if (scentId.Length < 8)
