@@ -16,7 +16,7 @@ public sealed partial class SelectedGenomePanel : Control
     [Dependency] private IPrototypeManager _proto = null!;
 
     private GeneticsConsoleWindow _window = null!;
-    private Entity<IndividualGeneComponent> _selectedGenome;
+    private Entity<IndividualGeneComponent>? _selectedGenome;
     private DialogWindow? _dialog;
 
     public SelectedGenomePanel()
@@ -33,34 +33,43 @@ public sealed partial class SelectedGenomePanel : Control
             }
 
             const string Field = "line";
-            var prompt = Loc.GetString("xenobiology-ui-dialog-rename-prompt");
-            var placeholder = Loc.GetString("xenobiology-ui-dialog-rename-edit-placeholder");
+            var prompt = Loc.GetString("genetics-ui-dialog-rename-prompt");
+            var placeholder = Loc.GetString("genetics-ui-dialog-rename-edit-placeholder");
             var entry = new QuickDialogEntry(Field, QuickDialogEntryType.ShortText, prompt, placeholder);
             var entries = new List<QuickDialogEntry> { entry };
-            _dialog = new DialogWindow(Loc.GetString("xenobiology-ui-dialog-rename-title"), entries);
+            _dialog = new DialogWindow(Loc.GetString("genetics-ui-dialog-rename-title"), entries);
 
             _dialog.OnConfirmed += responses =>
             {
                 var line = responses[Field];
+                if (line.Length > IndividualGeneComponent.MaxNameLength)
+                    line = line[..IndividualGeneComponent.MaxNameLength];
+                var oldName = _selectedGenome?.Comp.Name ?? _selectedGenome!.Value.Comp.TechnicalName;
                 _window.RenameGene(line);
+                _window.UpdateConsoleStatus(Loc.GetString("genetics-ui-status-rename-gene",
+                    ("gene", _selectedGenome!.Value.Comp.TechnicalName), ("oldname", oldName),
+                    ("newname", line)));
             };
 
             _dialog.OnClose += () => _dialog = null;
             _dialog.OnCancelled += () => _dialog = null;
         };
 
-        DeleteButton.OnPressed += _ => _window.DeleteGene(_selectedGenome!);
+        DeleteButton.OnPressed += _ =>
+        {
+            _window.UpdateConsoleStatus(Loc.GetString("genetics-ui-status-delete-gene",
+                ("gene", _window.GetDisplayName(_selectedGenome!.Value))));
+            _window.DeleteGene(_selectedGenome!.Value);
+        };
     }
 
     public void Initialize(GeneticsConsoleWindow window) => _window = window;
 
-    public void SelectGenome(Entity<IndividualGeneComponent> genome)
+    public void SelectGenome(Entity<IndividualGeneComponent>? genome)
     {
         _selectedGenome = genome;
         _dialog?.Close();
         _dialog = null;
-        RenameButton.Disabled = false;
-        DeleteButton.Disabled = false;
         RefreshUI();
     }
 
@@ -71,18 +80,25 @@ public sealed partial class SelectedGenomePanel : Control
         SelectedGeneTraitListContainer.RemoveAllChildren();
         if (!_ent.EntityExists(_selectedGenome))
         {
+            SelectedGeneNameField.Text = Loc.GetString("genetics-ui-panel-selected-gene-name-placeholder");
+            SelectedGeneIdentifierField.Text = Loc.GetString("genetics-ui-panel-selected-gene-identifier-placeholder");
+            SelectedGeneSequenceField.Text = Loc.GetString("genetics-ui-panel-selected-gene-sequence-placeholder");
             RenameButton.Disabled = true;
             DeleteButton.Disabled = true;
             _window.RestoreTraitSelection(TraitSource.Genome, null);
             return;
         }
 
-        TraitSelector? restored = null;
-        SelectedGeneNameField.Text = _selectedGenome.Comp.Name;
-        SelectedGeneIdentifierField.Text = _selectedGenome.Comp.TechnicalName;
-        SelectedGeneSequenceField.Text = _selectedGenome.Comp.Sequence;
+        RenameButton.Disabled = false;
+        DeleteButton.Disabled = false;
 
-        foreach (var trait in _selectedGenome.Comp.Traits.Traits)
+        TraitSelector? restored = null;
+        var genome = _selectedGenome!.Value;
+        SelectedGeneNameField.Text = genome.Comp.Name ?? genome.Comp.TechnicalName;
+        SelectedGeneIdentifierField.Text = genome.Comp.TechnicalName;
+        SelectedGeneSequenceField.Text = genome.Comp.Sequence;
+
+        foreach (var trait in genome.Comp.Traits.Traits)
         {
             if (!_proto.TryIndex(trait.Key, out var proto)) continue;
             var selector = new TraitSelector { Trait = (proto, trait.Value) };

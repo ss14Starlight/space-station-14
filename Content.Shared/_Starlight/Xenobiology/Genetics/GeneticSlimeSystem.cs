@@ -98,7 +98,7 @@ public sealed partial class GeneticSlimeSystem : EntitySystem
                 }
                 if (shouldAdd)
                 {
-                    var newGene = _individualGeneSystem.GenerateGene((split, newGenesComponent));
+                    var newGene = _individualGeneSystem.GenerateGeneFromEntity((split, newGenesComponent));
                     _genesSystem.InsertGene((entity, newGenesComponent), newGene);
                 }
             }

@@ -33,9 +33,22 @@ public sealed partial class GenePoolPanel : Control
         {
             SortWidget.Button.SelectId(args.Id);
             _window.SetGenePoolSort(args.Id);
+            _window.UpdateConsoleStatus(Loc.GetString("genetics-ui-status-update-sort-gene-pool",
+                ("mode", (string)args.Button.GetItemMetadata(args.Id)!)));
         };
 
-        DispenseSamplerButton.OnPressed += _ => _window.DispenseSampler();
+        DispenseSamplerButton.OnPressed += _ =>
+        {
+            _window.DispenseSampler();
+            _window.UpdateConsoleStatus(Loc.GetString("genetics-ui-status-sampler-dispensed"));
+        };
+
+        DispenseApplicatorButton.OnPressed += _ =>
+        {
+            _window.DispenseSampler(_window.SelectedGeneButton?.Gene);
+            _window.UpdateConsoleStatus(Loc.GetString("genetics-ui-status-applicator-dispensed",
+                ("gene", _window.GetDisplayName(_window.SelectedGeneButton!.Gene))));
+        };
     }
 
     private void UpdatePool()
@@ -87,6 +100,8 @@ public sealed partial class GenePoolPanel : Control
             }
             GeneSelectors.AddChild(selector);
         }
+
+        DispenseApplicatorButton.Disabled = selected is null;
     }
 }
 

@@ -1,4 +1,3 @@
-using Content.Shared._Starlight.Genetics.Genes.Components;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Genetics;
@@ -51,38 +50,30 @@ public sealed class GeneticsConsoleDeleteGeneMessage(NetEntity uid) : BoundUserI
 }
 
 [Serializable, NetSerializable]
-public sealed class GeneticsConsoleDispenseSamplerMessage : BoundUserInterfaceMessage;
+public sealed class GeneticsConsoleDispenseSamplerMessage(NetEntity? uid = null) : BoundUserInterfaceMessage
+{
+    /// <summary>
+    /// If specified, dispenses sampler in applicator mode instead.
+    /// </summary>
+    public readonly NetEntity? Uid = uid;
+}
 
 [Serializable, NetSerializable]
 public sealed class GeneticsConsoleClearInputsMessage : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]
-public sealed class GeneticsConsoleWriteToApplicatorMessage(TraitDict traits) : BoundUserInterfaceMessage
+public sealed class GeneticsConsoleSaveGeneMessage(HashSet<NetEntity> ancestors, TraitDict traits, string? name = null)
+    : BoundUserInterfaceMessage
 {
+    public readonly HashSet<NetEntity> Ancestors = ancestors;
     public readonly TraitDict Traits = traits;
+    public readonly string? Name = name;
 }
 
-/// <summary>
-/// The data required to render the console UI for a single gene.
-/// </summary>
-[DataRecord, Serializable, NetSerializable]
-public partial record struct GeneData
+[Serializable, NetSerializable]
+public sealed class GeneticsConsoleUpdateStatusMessage(string? statusMessage) : BoundUserInterfaceMessage
 {
-    [DataField]
-    public TraitDict Traits;
-
-    [DataField]
-    public string TechnicalName;
-
-    [DataField]
-    public string? Name;
-
-    public GeneData(IndividualGeneComponent individual)
-    {
-        Traits = new TraitDict(individual.Traits.Traits);
-        TechnicalName = individual.TechnicalName;
-        Name = individual.Name;
-    }
+    public readonly string? StatusMessage = statusMessage;
 }
 
 [Serializable, NetSerializable]

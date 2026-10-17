@@ -9,10 +9,8 @@ public sealed partial class GeneticsConsoleBoundUserInterface : BoundUserInterfa
 
     [ViewVariables] private GeneticsConsoleWindow? _window;
 
-    public GeneticsConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
+    public GeneticsConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) =>
         IoCManager.InjectDependencies(this);
-    }
 
     protected override void Open()
     {
@@ -26,9 +24,26 @@ public sealed partial class GeneticsConsoleBoundUserInterface : BoundUserInterfa
         _window.OnRenameGene += (uid, newName) =>
             SendPredictedMessage(new GeneticsConsoleRenameGeneMessage(_ent.GetNetEntity(uid), newName));
         _window.OnClearInputs += () => SendPredictedMessage(new GeneticsConsoleClearInputsMessage());
-        _window.OnDeleteGene += uid => SendPredictedMessage(new GeneticsConsoleDeleteGeneMessage(_ent.GetNetEntity(uid)));
-        _window.OnDispenseSampler += () => SendPredictedMessage(new GeneticsConsoleDispenseSamplerMessage());
+        _window.OnDeleteGene +=
+            uid => SendPredictedMessage(new GeneticsConsoleDeleteGeneMessage(_ent.GetNetEntity(uid)));
+        _window.OnDispenseSampler += gene =>
+            SendPredictedMessage(new GeneticsConsoleDispenseSamplerMessage(_ent.GetNetEntity(gene)));
+        _window.OnSave += (ancestors, traits, name) =>
+        {
+            var netAncestors = new HashSet<NetEntity>();
+            foreach (var ancestor in ancestors)
+            {
+                if (!_ent.TryGetNetEntity(ancestor, out var netAncestor)) continue;
+                netAncestors.Add(netAncestor.Value);
+            }
+
+            SendPredictedMessage(new GeneticsConsoleSaveGeneMessage(netAncestors, traits, name));
+        };
+        _window.OnUpdateStatusMessage += statusMessage =>
+            SendPredictedMessage(new GeneticsConsoleUpdateStatusMessage(statusMessage));
     }
+
+    public void Refresh() => _window?.RefreshUI();
 
     // Upon receiving any kind of message just refresh the whole UI.
     protected override void ReceiveMessage(BoundUserInterfaceMessage message)

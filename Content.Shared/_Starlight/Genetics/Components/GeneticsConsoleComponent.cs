@@ -8,7 +8,7 @@ namespace Content.Shared._Starlight.Genetics.Components;
 /// <summary>
 /// A collection of traits known to the genetics console, along with an ordering players can adjust.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class GeneticsConsoleComponent : Component
 {
     /// <summary>
@@ -58,4 +58,9 @@ public sealed partial class GeneticsConsoleComponent : Component
     /// Popup for accepting sampler with gene data.
     /// </summary>
     [DataField, AutoNetworkedField] public string? SamplerInsertPopup;
+
+    /// <summary>
+    /// Status message displayed at the bottom of the console window.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField] public string? ConsoleStatus;
 }

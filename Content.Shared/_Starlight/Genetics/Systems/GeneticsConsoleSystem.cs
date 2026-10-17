@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Shared._Starlight.Genetics.Components;
 using Content.Shared._Starlight.Genetics.Genes.Components;
 using Content.Shared._Starlight.Genetics.Genes.Systems;
+using Content.Shared._Starlight.Time;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Shared.Containers;
@@ -12,10 +13,12 @@ namespace Content.Shared._Starlight.Genetics.Systems;
 public sealed partial class GeneticsConsoleSystem : EntitySystem
 {
     [Dependency] private MetaDataSystem _meta = null!;
+    [Dependency] private SharedTimeSystem _sTime = null!;
     [Dependency] private SharedPopupSystem _popup = null!;
+    [Dependency] private GeneSamplerSystem _sampler = null!;
+    [Dependency] private IndividualGeneSystem _iGene = null!;
     [Dependency] private SharedContainerSystem _container = null!;
     [Dependency] private SharedUserInterfaceSystem _ui = null!;
-    [Dependency] private IndividualGeneSystem _iGene = null!;
     [Dependency] private INetManager _net = null!;
 
     [SubscribeLocalEvent]
@@ -38,12 +41,15 @@ public sealed partial class GeneticsConsoleSystem : EntitySystem
             _container.Insert(gene.Value.Owner, pool);
             ent.Comp.AllGenes.Add(gene.Value);
         }
+        SetStatus(ent, null);
         Dirty(ent);
     }
 
     [SubscribeLocalEvent]
     private void OnComponentShutdown(Entity<GeneticsConsoleComponent> ent, ref ComponentShutdown args)
     {
+        _container.CleanContainer(ent.Comp.GenePoolContainer);
+        _container.CleanContainer(ent.Comp.InputGenesContainer);
         _container.ShutdownContainer(ent.Comp.GenePoolContainer);
         _container.ShutdownContainer(ent.Comp.InputGenesContainer);
     }
@@ -68,6 +74,8 @@ public sealed partial class GeneticsConsoleSystem : EntitySystem
             ent, args.User);
         Dirty(ent);
 
+        // Remove from container before deletion because prediction skill issue otherwise
+        _container.TryRemoveFromContainer(args.Used, true);
         PredictedQueueDel(args.Used);
         args.Handled = true;
     }
@@ -113,8 +121,9 @@ public sealed partial class GeneticsConsoleSystem : EntitySystem
         if (!TryGetEntity(args.Uid, out var uid)) return;
         if (!TryComp<IndividualGeneComponent>(uid, out var gene)) return;
 
-        gene.Name = args.NewName;
-        _meta.SetEntityName(uid.Value, $"{args.NewName} ({gene.TechnicalName})");
+        var newName = CapName(args.NewName);
+        gene.Name = newName;
+        _meta.SetEntityName(uid.Value, $"{newName} ({gene.TechnicalName})");
         Dirty(ent);
 
         RefreshUI((ent, ui), args);
@@ -147,9 +156,62 @@ public sealed partial class GeneticsConsoleSystem : EntitySystem
     private void OnDispenseSampler(Entity<GeneticsConsoleComponent> ent, ref GeneticsConsoleDispenseSamplerMessage args)
     {
         if (!TryComp<UserInterfaceComponent>(ent, out var ui)) return;
-        PredictedSpawnAtPosition(ent.Comp.SamplerPrototype, Transform(ent).Coordinates);
+        var sampler = PredictedSpawnAtPosition(ent.Comp.SamplerPrototype, Transform(ent).Coordinates);
+
+        if (!TryGetEntity(args.Uid, out var uid)) return;
+        {
+            // Clone gene and store in applicator
+            if (!TryComp<IndividualGeneComponent>(uid, out var iGene)) return;
+            var clone = _iGene.Clone((uid.Value, iGene));
+            if (!TryComp<GeneSamplerComponent>(sampler, out var comp)) return;
+            _sampler.SetGene((sampler, comp), clone.AsNullable());
+        }
+
         _popup.PopupPredicted(Loc.GetString(ent.Comp.SamplerDispensePopup ?? string.Empty), ent, args.Actor);
         RefreshUI((ent, ui), args);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnSaveGene(Entity<GeneticsConsoleComponent> ent, ref GeneticsConsoleSaveGeneMessage args)
+    {
+        if (!TryComp<UserInterfaceComponent>(ent, out var ui)) return;
+
+        // Create and save gene
+        var gene = _iGene.GenerateGeneFromTraits(args.Traits, args.Name is null ? null : CapName(args.Name));
+        _container.Insert(gene.Owner, ent.Comp.GenePoolContainer);
+        ent.Comp.AllGenes.Add(gene);
+
+        // TODO: Probably do this in individual gene system iunno...
+        // Add direct ancestors, then add the ancestors from the ancestor genes.
+        foreach (var ancestor in args.Ancestors.Select(GetEntity))
+        {
+            if (!TryComp<IndividualGeneComponent>(ancestor, out var comp)) continue;
+            gene.Comp.AncestorGenes.Add(comp.TechnicalName);
+            foreach (var grandAncestor in comp.AncestorGenes) gene.Comp.AncestorGenes.Add(grandAncestor);
+        }
+
+        SetStatus(ent,
+            Loc.GetString("genetics-ui-status-save-gene", ("gene", gene.Comp.Name ?? gene.Comp.TechnicalName)));
+
+        Dirty(ent);
+        RefreshUI((ent, ui), args);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnUpdateStatus(Entity<GeneticsConsoleComponent> ent, ref GeneticsConsoleUpdateStatusMessage args)
+    {
+        if (!TryComp<UserInterfaceComponent>(ent, out var ui)) return;
+        SetStatus(ent, args.StatusMessage);
+        RefreshUI((ent, ui), args);
+    }
+
+    private void SetStatus(Entity<GeneticsConsoleComponent> ent, string? status)
+    {
+        var time = _sTime.GetStationTime();
+        ent.Comp.ConsoleStatus =
+            $"[{time.Date} - {time.Time:hh\\:mm}]: {status ?? Loc.GetString("genetics-ui-status-fallback")}";
+
+        Dirty(ent);
     }
 
     private void RefreshUI(Entity<UserInterfaceComponent?> ent, BoundUserInterfaceMessage args) =>
@@ -157,6 +219,9 @@ public sealed partial class GeneticsConsoleSystem : EntitySystem
         {
             Actor = args.Actor
         });
+
+    private static string CapName(string name) =>
+        name.Length > IndividualGeneComponent.MaxNameLength ? name[..IndividualGeneComponent.MaxNameLength] : name;
 
     private bool IsIdenticalInPool(Entity<GeneticsConsoleComponent> ent, Entity<IndividualGeneComponent> gene) =>
         ent.Comp.AllGenes.Any(existing =>

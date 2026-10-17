@@ -33,8 +33,14 @@ public sealed partial class InputGenesPanel : Control
         {
             SortWidget.Button.SelectId(args.Id);
             _window.SetInputGenesSort(args.Id);
+            _window.UpdateConsoleStatus(Loc.GetString("genetics-ui-status-update-sort-input-genes",
+                ("mode", (string)args.Button.GetItemMetadata(args.Id)!)));
         };
-        ClearInputsButton.OnPressed += _ => _window.ClearInputs();
+        ClearInputsButton.OnPressed += _ =>
+        {
+            _window.ClearInputs();
+            _window.UpdateConsoleStatus(Loc.GetString("genetics-ui-status-input-cleared"));
+        };
     }
 
     private void UpdatePool()

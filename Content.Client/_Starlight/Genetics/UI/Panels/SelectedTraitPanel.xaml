@@ -6,7 +6,7 @@
 	<BoxContainer Orientation="Vertical" MaxHeight="280" SetHeight="280" VerticalExpand="True" HorizontalExpand="True">
 		<controls:StripeBack>
 			<PanelContainer>
-				<Label HorizontalAlignment="Center" Text="{Loc 'xenobiology-ui-panel-selected-trait'}"/>
+				<Label HorizontalAlignment="Center" Text="{Loc 'genetics-ui-panel-selected-trait'}"/>
 			</PanelContainer>
 		</controls:StripeBack>
 		<HBox>
@@ -14,33 +14,34 @@
 			             TexturePath="/Textures/_Starlight/Interface/Genetics/trait_generic.png" Stretch="Scale"/>
 			<VBox HorizontalExpand="True">
 				<HBox HorizontalExpand="True">
-					<Label Text="{Loc 'xenobiology-ui-panel-selected-trait-name'}"
+					<Label Text="{Loc 'genetics-ui-panel-selected-trait-name'}"
 					       HorizontalExpand="True" Margin="0 0 5 0"/>
 					<Label Name="SelectedTraitNameField"
-					       Text="{Loc 'xenobiology-ui-panel-selected-trait-name-placeholder'}"/>
+					       Text="{Loc 'genetics-ui-panel-selected-trait-name-placeholder'}"/>
 				</HBox>
 				<HBox HorizontalExpand="True">
-					<Label Text="{Loc 'xenobiology-ui-panel-selected-trait-threshold'}"
+					<Label Text="{Loc 'genetics-ui-panel-selected-trait-threshold'}"
 					       HorizontalExpand="True" Margin="0 0 5 0"/>
 					<Label Name="SelectedTraitThresholdField"
-					       Text="{Loc 'xenobiology-ui-panel-selected-trait-threshold-placeholder'}"/>
+					       Text="{Loc 'genetics-ui-panel-selected-trait-threshold-placeholder'}"/>
 				</HBox>
 				<HBox HorizontalExpand="True">
-					<Label Text="{Loc 'xenobiology-ui-panel-selected-trait-accumulated'}"
+					<Label Text="{Loc 'genetics-ui-panel-selected-trait-accumulated'}"
 					       HorizontalExpand="True" Margin="0 0 5 0"/>
 					<Label Name="SelectedTraitAccumulatedField"
-					       Text="{Loc 'xenobiology-ui-panel-selected-trait-accumulated-placeholder'}"/>
+					       Text="{Loc 'genetics-ui-panel-selected-trait-accumulated-placeholder'}"/>
 				</HBox>
 			</VBox>
 		</HBox>
-		<Label Text="{Loc 'xenobiology-ui-panel-selected-trait-description'}" Margin="0 5 0 2"/>
+		<Label Text="{Loc 'genetics-ui-panel-selected-trait-description'}" Margin="0 5 0 2"/>
 		<customControls:HSeparator Margin="0 5 0 5"/>
 		<BoxContainer RectClipContent="True" VerticalExpand="True">
 			<ScrollContainer VerticalExpand="True" VScrollEnabled="True"
-			                 HScrollEnabled="False" HorizontalExpand="True" MinHeight="100">
+			                 HScrollEnabled="False" HorizontalExpand="True" MinHeight="100"
+			                 StyleClasses="OpenRight">
 				<RichTextLabel Name="SelectedTraitDescriptionField"
-				               Text="{Loc 'xenobiology-ui-panel-selected-trait-description-placeholder'}"
-				               VerticalAlignment="Top"/>
+				               Text="{Loc 'genetics-ui-panel-selected-trait-description-placeholder'}"
+				               VerticalAlignment="Top" StyleClasses="OpenLeft"/>
 			</ScrollContainer>
 		</BoxContainer>
 	</BoxContainer>

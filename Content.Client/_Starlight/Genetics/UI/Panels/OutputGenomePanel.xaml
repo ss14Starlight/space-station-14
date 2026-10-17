@@ -1,12 +1,11 @@
 <Control xmlns="https://spacestation14.io"
          xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
          xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
-         xmlns:widgets="clr-namespace:Content.Client._Starlight.Genetics.UI.Widgets"
-         xmlns:panels="clr-namespace:Content.Client._Starlight.Genetics.UI.Panels" HorizontalExpand="True">
+         HorizontalExpand="True">
 	<BoxContainer Orientation="Vertical" HorizontalExpand="True">
 		<controls:StripeBack>
 			<PanelContainer>
-				<Label HorizontalAlignment="Center" Text="{Loc 'xenobiology-ui-panel-output-title'}"/>
+				<Label HorizontalAlignment="Center" Text="{Loc 'genetics-ui-panel-output-title'}"/>
 			</PanelContainer>
 		</controls:StripeBack>
 		<ScrollContainer VerticalExpand="True" HorizontalExpand="True"
@@ -16,11 +15,11 @@
 		<customControls:HSeparator Margin="0 5 0 5"/>
 		<VBox HorizontalExpand="True" SizeFlagsStretchRatio="0.1">
 			<HBox Margin="4">
-				<Label Text="{Loc 'xenobiology-ui-panel-output-name-label'}" Margin="0 0 5 0" />
-				<LineEdit Name="GeneName" PlaceHolder="{Loc 'xenobiology-ui-panel-output-name-edit-placeholder'}" HorizontalExpand="True"/>
+				<Label Text="{Loc 'genetics-ui-panel-output-name-label'}" Margin="0 0 5 0" />
+				<LineEdit Name="GeneName" PlaceHolder="{Loc 'genetics-ui-panel-output-name-edit-placeholder'}" HorizontalExpand="True"/>
 			</HBox>
 			<HBox>
-				<Button Text="{Loc 'xenobiology-ui-panel-output-button-write'}"/>
+				<Button Name="SaveButton" Text="{Loc 'genetics-ui-panel-output-button-write'}"/>
 			</HBox>
 		</VBox>
 	</BoxContainer>

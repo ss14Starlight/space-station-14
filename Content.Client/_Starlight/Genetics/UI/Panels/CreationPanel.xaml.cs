@@ -7,8 +7,5 @@ namespace Content.Client._Starlight.Genetics.UI.Panels;
 [GenerateTypedNameReferences]
 public sealed partial class CreationPanel : Control
 {
-    public CreationPanel()
-    {
-        RobustXamlLoader.Load(this);
-    }
+    public CreationPanel() => RobustXamlLoader.Load(this);
 }

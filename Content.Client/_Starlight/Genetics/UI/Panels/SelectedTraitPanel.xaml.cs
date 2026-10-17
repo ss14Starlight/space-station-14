@@ -10,33 +10,33 @@ namespace Content.Client._Starlight.Genetics.UI.Panels;
 [GenerateTypedNameReferences]
 public sealed partial class SelectedTraitPanel : Control
 {
-    private (GeneticTraitPrototype proto, FixedPoint2 accumulated)? SelectedTrait;
+    private (GeneticTraitPrototype proto, FixedPoint2 accumulated)? _selectedTrait;
 
     public SelectedTraitPanel() => RobustXamlLoader.Load(this);
 
     public void SelectTrait((GeneticTraitPrototype proto, FixedPoint2 accumulated) trait)
     {
-        SelectedTrait = trait;
+        _selectedTrait = trait;
         RefreshUI();
     }
 
     public void DeselectTrait()
     {
-        SelectedTrait = null;
+        _selectedTrait = null;
         RefreshUI();
     }
 
     public void RefreshUI()
     {
-        if (SelectedTrait is not { } trait)
+        if (_selectedTrait is not { } trait)
         {
-            SelectedTraitNameField.Text = Loc.GetString("xenobiology-ui-panel-selected-trait-name-placeholder");
+            SelectedTraitNameField.Text = Loc.GetString("genetics-ui-panel-selected-trait-name-placeholder");
             SelectedTraitThresholdField.Text =
-                Loc.GetString("xenobiology-ui-panel-selected-trait-threshold-placeholder");
+                Loc.GetString("genetics-ui-panel-selected-trait-threshold-placeholder");
             SelectedTraitAccumulatedField.Text =
-                Loc.GetString("xenobiology-ui-panel-selected-trait-accumulated-placeholder");
+                Loc.GetString("genetics-ui-panel-selected-trait-accumulated-placeholder");
             SelectedTraitDescriptionField.Text =
-                Loc.GetString("xenobiology-ui-panel-selected-trait-description-placeholder");
+                Loc.GetString("genetics-ui-panel-selected-trait-description-placeholder");
             SelectedTraitTexture.TexturePath = GeneticTraitPrototype.GenericTraitIcon;
             return;
         }

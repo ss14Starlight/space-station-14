@@ -11,9 +11,12 @@ public sealed partial class SortButton : Control
     {
         RobustXamlLoader.Load(this);
 
-        Button.AddItem(Loc.GetString("xenobiology-ui-widgets-sort-button-unsorted"), 0);
-        Button.AddItem(Loc.GetString("xenobiology-ui-widgets-sort-button-a-z"), 1);
-        Button.AddItem(Loc.GetString("xenobiology-ui-widgets-sort-button-z-a"), 2);
+        Button.AddItem(Loc.GetString("genetics-ui-widgets-sort-button-unsorted"), 0);
+        Button.SetItemMetadata(0, Loc.GetString("genetics-ui-widgets-sort-button-unsorted"));
+        Button.AddItem(Loc.GetString("genetics-ui-widgets-sort-button-a-z"), 1);
+        Button.SetItemMetadata(1, Loc.GetString("genetics-ui-widgets-sort-button-a-z"));
+        Button.AddItem(Loc.GetString("genetics-ui-widgets-sort-button-z-a"), 2);
+        Button.SetItemMetadata(2, Loc.GetString("genetics-ui-widgets-sort-button-z-a"));
         Button.SelectId(0);
     }
 }

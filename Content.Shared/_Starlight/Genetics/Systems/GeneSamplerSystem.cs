@@ -72,7 +72,20 @@ public sealed partial class GeneSamplerSystem : EntitySystem
     public void ClearGenes(Entity<GeneSamplerComponent> entity)
     {
         entity.Comp.Genes.Clear();
+        _container.CleanContainer(entity.Comp.GeneContainer);
         entity.Comp.IsCurrentlySampling = true;
+        StateChanged(entity);
+    }
+
+    public void SetGene(Entity<GeneSamplerComponent> entity, Entity<IndividualGeneComponent?> gene)
+    {
+        if (!Resolve(gene, ref gene.Comp)) return;
+
+        entity.Comp.Genes.Clear();
+        _container.CleanContainer(entity.Comp.GeneContainer);
+        entity.Comp.IsCurrentlySampling = false;
+        entity.Comp.Genes.Add(gene);
+        _container.Insert(gene.Owner, entity.Comp.GeneContainer);
         StateChanged(entity);
     }
 

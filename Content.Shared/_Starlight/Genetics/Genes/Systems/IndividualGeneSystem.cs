@@ -124,58 +124,6 @@ public sealed partial class IndividualGeneSystem : EntitySystem
             yield return traits.ElementAt(rand.Next(0, traits.Count()));
     }
 
-    public Entity<IndividualGeneComponent> GenerateGene(Entity<GenesComponent> entity)
-    {
-        var rand = _random.GetPredictedRandom(_timing, GetNetEntity(entity).Id);
-
-        const double Shape = 0.7;
-        var targetSum = 0.5 + (rand.NextDouble() * 1.5);
-        var magnitudeBudget = Math.Abs(targetSum) + 6.0 + (rand.NextDouble() * 2.0);
-        var p = (magnitudeBudget + targetSum) / 2.0;
-        var n = (magnitudeBudget - targetSum) / 2.0;
-
-        var amt = rand.Next(2, 6);
-
-        var protoList = RandomTraits(rand, entity, amt).ToList();
-        var positiveList = Enumerable.Range(0, amt).Select(_ => RandomGamma(rand, Shape)).ToList();
-        var positiveListSum = positiveList.Sum();
-        positiveList = [.. positiveList.Select(x => x * p / positiveListSum)];
-        var negativeList = Enumerable.Range(0, amt).Select(_ => RandomGamma(rand, Shape)).ToList();
-        var negativeListSum = negativeList.Sum();
-        negativeList = [.. negativeList.Select(x => x * n / negativeListSum)];
-
-        TraitDict traitDict = new();
-
-        for (var i = 0; i < amt; i++) traitDict.Traits[protoList[i]] = positiveList[i] - negativeList[i];
-
-        // This is an overly fancy way to generate technical-looking names. But meh.
-        string[] uppercaseAlphabet = ["A", "C", "G", "T", "R", "Q", "M", "P"];
-        string[] lowercaseAlphabet = ["u", "v", "m", "n", "p", "w", "a", "k"];
-
-        StringBuilder technicalName = new();
-        var limit = rand.Next(0, 4);
-        for (var i = 0; i < limit; i++)
-            technicalName.Append(uppercaseAlphabet[rand.Next(uppercaseAlphabet.Length)]);
-        limit = rand.Next(0, 5);
-        for (var i = 0; i < limit; i++)
-            technicalName.Append(lowercaseAlphabet[rand.Next(lowercaseAlphabet.Length)]);
-        limit = rand.Next(1, 4);
-        for (var i = 0; i < limit; i++)
-            technicalName.Append(uppercaseAlphabet[rand.Next(uppercaseAlphabet.Length)]);
-        technicalName.Append(rand.Next(1, 9));
-
-        var newGene = PredictedSpawn("Gene");
-        EnsureComp<IndividualGeneComponent>(newGene, out var individualGene);
-        individualGene.Traits = traitDict;
-        individualGene.TechnicalName = technicalName.ToString();
-        individualGene.Name = null;
-        individualGene.Sequence = GetDnaSequence(technicalName.ToString());
-        _meta.SetEntityName(newGene, technicalName.ToString());
-        Dirty(newGene, individualGene);
-
-        return (newGene, individualGene);
-    }
-
     public Entity<IndividualGeneComponent>? GeneFromSample(ProtoId<SampleGenePrototype> protoId)
     {
         if (!_proto.TryIndex(protoId, out var proto)) return null;
@@ -203,6 +151,79 @@ public sealed partial class IndividualGeneSystem : EntitySystem
         }
         // _geneSingletons.Add(protoId, (newGene, individualGene));
         Dirty(newGene, individualGene);
+        return (newGene, individualGene);
+    }
+
+    public Entity<IndividualGeneComponent> GenerateGeneFromEntity(Entity<GenesComponent> entity)
+    {
+        var rand = _random.GetPredictedRandom(_timing, GetNetEntity(entity).Id);
+
+        const double Shape = 0.7;
+        var targetSum = 0.5 + (rand.NextDouble() * 1.5);
+        var magnitudeBudget = Math.Abs(targetSum) + 6.0 + (rand.NextDouble() * 2.0);
+        var p = (magnitudeBudget + targetSum) / 2.0;
+        var n = (magnitudeBudget - targetSum) / 2.0;
+
+        var amt = rand.Next(2, 6);
+
+        var protoList = RandomTraits(rand, entity, amt).ToList();
+        var positiveList = Enumerable.Range(0, amt).Select(_ => RandomGamma(rand, Shape)).ToList();
+        var positiveListSum = positiveList.Sum();
+        positiveList = [.. positiveList.Select(x => x * p / positiveListSum)];
+        var negativeList = Enumerable.Range(0, amt).Select(_ => RandomGamma(rand, Shape)).ToList();
+        var negativeListSum = negativeList.Sum();
+        negativeList = [.. negativeList.Select(x => x * n / negativeListSum)];
+
+        TraitDict traitDict = new();
+
+        for (var i = 0; i < amt; i++) traitDict.Traits[protoList[i]] = positiveList[i] - negativeList[i];
+
+        var gene = GenerateGene();
+        gene.Comp.Traits = traitDict;
+        _meta.SetEntityName(gene, gene.Comp.TechnicalName);
+        Dirty(gene);
+
+        return gene;
+    }
+
+    public Entity<IndividualGeneComponent> GenerateGeneFromTraits(TraitDict traits, string? name = null)
+    {
+        var gene = GenerateGene();
+        gene.Comp.Traits = traits;
+        gene.Comp.Name = name;
+        _meta.SetEntityName(gene, name is not null
+            ? $"{name} ({gene.Comp.TechnicalName})"
+            : gene.Comp.TechnicalName);
+        Dirty(gene);
+
+        return gene;
+    }
+
+    private Entity<IndividualGeneComponent> GenerateGene()
+    {
+        var rand = _random.GetPredictedRandom(_timing);
+
+        // This is an overly fancy way to generate technical-looking names. But meh.
+        string[] uppercaseAlphabet = ["A", "C", "G", "T", "R", "Q", "M", "P"];
+        string[] lowercaseAlphabet = ["u", "v", "m", "n", "p", "w", "a", "k"];
+
+        StringBuilder technicalName = new();
+        var limit = rand.Next(0, 4);
+        for (var i = 0; i < limit; i++)
+            technicalName.Append(uppercaseAlphabet[rand.Next(uppercaseAlphabet.Length)]);
+        limit = rand.Next(0, 5);
+        for (var i = 0; i < limit; i++)
+            technicalName.Append(lowercaseAlphabet[rand.Next(lowercaseAlphabet.Length)]);
+        limit = rand.Next(1, 4);
+        for (var i = 0; i < limit; i++)
+            technicalName.Append(uppercaseAlphabet[rand.Next(uppercaseAlphabet.Length)]);
+        technicalName.Append(rand.Next(1, 9));
+
+        var newGene = PredictedSpawn("Gene");
+        EnsureComp<IndividualGeneComponent>(newGene, out var individualGene);
+        individualGene.TechnicalName = technicalName.ToString();
+        individualGene.Sequence = GetDnaSequence(technicalName.ToString());
+
         return (newGene, individualGene);
     }
 

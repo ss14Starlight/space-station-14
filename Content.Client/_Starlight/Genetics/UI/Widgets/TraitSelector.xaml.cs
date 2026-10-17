@@ -16,10 +16,7 @@ public sealed partial class TraitSelector : Control
     public TraitSource Source { get; private set; } = TraitSource.None;
     private bool _isSelected;
 
-    public TraitSelector()
-    {
-        RobustXamlLoader.Load(this);
-    }
+    public TraitSelector() => RobustXamlLoader.Load(this);
 
     public void Select()
     {
@@ -61,6 +58,7 @@ public sealed partial class TraitSelector : Control
 
             _isSelected = true;
             _window.SelectTrait(this, args);
+            _window.UpdateConsoleStatus(Loc.GetString("genetics-ui-status-select-trait", ("trait", trait.proto.Name)));
         };
     }
 }

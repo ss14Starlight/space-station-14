@@ -11,6 +11,11 @@ namespace Content.Shared._Starlight.Genetics.Genes.Components;
 public sealed partial class IndividualGeneComponent : Component
 {
     /// <summary>
+    /// The maximum length of a player-set <see cref="Name"/>.
+    /// </summary>
+    public const int MaxNameLength = 20;
+
+    /// <summary>
     /// The traits influenced by this gene.
     /// </summary>
     [DataField, AutoNetworkedField] public TraitDict Traits = new TraitDict();
@@ -37,4 +42,9 @@ public sealed partial class IndividualGeneComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public ProtoId<SampleGenePrototype>? Prototype = null;
+
+    /// <summary>
+    /// Genes that are ancestors of this gene. Tracked via technical name since gene entities can be cloned.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField] public HashSet<string> AncestorGenes = [];
 }
