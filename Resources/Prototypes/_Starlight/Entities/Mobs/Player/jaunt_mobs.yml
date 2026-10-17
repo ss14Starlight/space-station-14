@@ -13,3 +13,16 @@
     noRot: true
     overrideContainerOcclusion: true
     drawdepth: Ghosts
+
+- type: entity
+  name: shadow jaunt
+  parent: EtherealJaunt
+  id: ShadowJaunt
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/polymorph.rsi
+    layers:
+    - state: shadowjaunt
+      shader: unshaded
+    noRot: true
+    overrideContainerOcclusion: true
