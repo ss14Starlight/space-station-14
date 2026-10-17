@@ -3,6 +3,7 @@ using Content.Shared.Administration.Managers;
 using Content.Shared.Mind.Components;
 using Content.Shared.Verbs;
 using Robust.Client.Console;
+using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Client.Administration.Systems
@@ -45,7 +46,8 @@ namespace Content.Client.Administration.Systems
             // Starlight begin
             if (_admin.HasAdminFlag(args.User, AdminFlags.Admin))
             {
-                args.ExtraCategories.Add(VerbCategory.Spawn);
+                if (HasComp<ActorComponent>(args.Target))
+                    args.ExtraCategories.Add(VerbCategory.Spawn);
                 args.ExtraCategories.Add(VerbCategory.Admin);
                 args.ExtraCategories.Add(VerbCategory.Mark);
             }
