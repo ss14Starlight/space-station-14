@@ -112,14 +112,20 @@ public sealed class StarLightModel : DataModelBase
         public int Id { get; set; }
         public Guid UserId { get; set; }
 
+        /// <summary>
         /// The last admin to modify the pending data.
+        /// </summary>
         public Guid LastAdminUserId { get; set; }
         public string LastAdminName { get; set; } = string.Empty;
 
+        /// <summary>
         /// Incremented on each edit so an accept/reject only clears the edits the player actually saw.
+        /// </summary>
         public int Revision { get; set; }
 
+        /// <summary>
         /// Whether <see cref="JobPriorities"/> holds a pending change, since an empty list is also a valid change.
+        /// </summary>
         public bool HasJobPriorities { get; set; }
 
         public List<PendingProfile> Profiles { get; set; } = new();
@@ -134,7 +140,9 @@ public sealed class StarLightModel : DataModelBase
         public PendingPreference PendingPreference { get; set; } = null!;
         public int Slot { get; set; }
 
+        /// <summary>
         /// The profile serialized as a <c>HumanoidProfileExport</c> yaml document, or null if the slot is to be deleted.
+        /// </summary>
         public string? Data { get; set; }
     }
 

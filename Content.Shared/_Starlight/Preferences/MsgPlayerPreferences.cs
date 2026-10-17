@@ -7,7 +7,9 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Preferences;
 
+/// <summary>
 /// Intended to get preference data from another player other than the client requesting it.
+/// </summary>
 /// <remarks>Virtual so that other things can inherit for different purposes.</remarks>
 [Virtual]
 public class MsgPlayerPreferences : NetMessage

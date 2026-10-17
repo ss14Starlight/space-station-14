@@ -19,7 +19,9 @@ public sealed partial class LobbyUIController
         OpenCharacterSetupWindow();
     }
 
+    /// <summary>
     /// Set the character setup and profile editor to null to completely reload the UI
+    /// </summary>
     private void ReloadGui()
     {
         _characterSetup?.Orphan();
