@@ -1,0 +1,31 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: SmartCorgi
+  root:
+    bodyPart: TorsoAnimal
+    containedParts:
+      Brain:
+        bodyPart: OrganHumanBrain
+      Lungs:
+        bodyPart: OrganCorgiLungs
+      Stomach:
+        bodyPart: OrganAnimalStomach
+      Liver:
+        bodyPart: OrganAnimalLiver
+      Heart:
+        bodyPart: OrganAnimalHeart
+      Kidneys:
+        bodyPart: OrganAnimalKidneys
+    attachedParts:
+      Eyes:
+        bodyPart: OrganHumanEyes
+      Righthand:
+        bodyPart: RightHandSmartCorgi
+      Lefthand:
+        bodyPart: LeftHandSmartCorgi
+      Legs:
+        bodyPart: LegsAnimal
+        attachedParts:
+          Feet:
+            bodyPart: FeetAnimal

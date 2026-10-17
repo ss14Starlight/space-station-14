@@ -22,6 +22,8 @@
   - type: Sprite
     state: heart-on
   - type: Organ
+  - type: SLBodyPart
+    partType: Organ
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [ Experiment ]
@@ -40,6 +42,8 @@
   - type: Sprite
     state: liver
   - type: Organ
+  - type: SLBodyPart
+    partType: Organ
   - type: Metabolizer
     maxReagents: 1
     metabolizerTypes: [ Experiment ]

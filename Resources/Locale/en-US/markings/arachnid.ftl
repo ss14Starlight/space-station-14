@@ -79,16 +79,14 @@ marking-ArachnidTorsoSkull-skull = Design
 marking-ArachnidTorsoTarget = Target
 marking-ArachnidTorsoTarget-target = Design
 
-marking-ArachnidRArmStripes = Arachnid Stripes (Right)
-marking-ArachnidRArmStripes-stripes_right = Stripes
+marking-ArachnidArmStripes = Arachnid Stripes (Right)
+marking-ArachnidArmStripes-stripes_right = Stripes
 
-marking-ArachnidLArmStripes = Arachnid Stripes (Left)
-marking-ArachnidLArmStripes-stripes_left = Stripes
+marking-ArachnidArmStripes-stripes_left = Stripes
 
-marking-ArachnidRLegStripes = Arachnid Stripes (Right)
-marking-ArachnidRLegStripes-stripes_right = Stripes
+marking-ArachnidLegStripes = Arachnid Stripes (Right)
+marking-ArachnidLegStripes-stripes_right = Stripes
 
-marking-ArachnidLLegStripes = Arachnid Stripes (Left)
-marking-ArachnidLLegStripes-stripes_left = Stripes
+marking-ArachnidLegStripes-stripes_left = Stripes
 
 marking-ArachnidOverlayFuzzy = Fuzzy

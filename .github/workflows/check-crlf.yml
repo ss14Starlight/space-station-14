@@ -55,6 +55,8 @@ jobs:
         done
         echo "Checked ${checked} file(s), result ${checker_status}"
 
+        python3 Tools/_Starlight/filter_editorconfig_strings.py "$report"
+
         set +e
         reviewdog \
           -efm='%f:%l:%c: %t%*[^:]: %m' \

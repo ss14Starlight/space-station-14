@@ -4,9 +4,14 @@
   markingCategory: Snout
   forcedColoring: true
   speciesRestriction: [Vox, NeoVox] # Starlight. Not sure how much of this will be visible, but it's here in case we make different types of Neocyte heads in the future...
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: beak
+    body_snout:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: beak
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -20,9 +25,14 @@
   markingCategory: Snout
   forcedColoring: true
   speciesRestriction: [Vox, NeoVox] # Starlight
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: beak_squarecere
+    body_snout:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: beak_squarecere
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -35,9 +45,14 @@
   markingCategory: Snout
   forcedColoring: true
   speciesRestriction: [Vox, NeoVox] # Starlight
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: beak_shaved
+    body_snout:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: beak_shaved
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -50,9 +65,14 @@
   markingCategory: Snout
   forcedColoring: true
   speciesRestriction: [Vox, NeoVox] # Starlight
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: beak_hooked
+    body_snout:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: beak_hooked
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -60,14 +80,24 @@
         color: "#937e3d"
 
 - type: marking
-  id: VoxLArmScales
+  id: VoxArmScales
   bodyPart: LArm
   markingCategory: Arms
   forcedColoring: true
   speciesRestriction: [Vox, NeoVox] # Starlight
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: l_arm
+    body_lArm:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: l_arm
+      colorSource: HumanSkinColor
+    body_rArm:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: r_arm
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -75,14 +105,24 @@
         color: "#937e3d"
 
 - type: marking
-  id: VoxLLegScales
+  id: VoxLegScales
   bodyPart: LLeg
   markingCategory: Legs
   forcedColoring: true
   speciesRestriction: [Vox, NeoVox] # Starlight
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: l_leg
+    body_lLeg:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: l_leg
+      colorSource: HumanSkinColor
+    body_rLeg:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: r_leg
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -90,59 +130,24 @@
         color: "#937e3d"
 
 - type: marking
-  id: VoxRArmScales
-  bodyPart: RArm
-  markingCategory: Arms
-  forcedColoring: true
-  speciesRestriction: [Vox, NeoVox] # Starlight
-  sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: r_arm
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-        color: "#937e3d"
-
-- type: marking
-  id: VoxRLegScales
-  bodyPart: RLeg
-  markingCategory: Legs
-  forcedColoring: true
-  speciesRestriction: [Vox, NeoVox] # Starlight
-  sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: r_leg
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-        color: "#937e3d"
-
-- type: marking
-  id: VoxRHandScales
-  bodyPart: RHand
-  markingCategory: Arms
-  forcedColoring: true
-  speciesRestriction: [Vox, NeoVox] # Starlight
-  sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: r_hand
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-        color: "#937e3d"
-
-- type: marking
-  id: VoxLHandScales
+  id: VoxHandScales
   bodyPart: LHand
   markingCategory: Arms
   forcedColoring: true
   speciesRestriction: [Vox, NeoVox] # Starlight
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: l_hand
+    body_lHand:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: l_hand
+      colorSource: HumanSkinColor
+    body_rHand:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: r_hand
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -150,29 +155,24 @@
         color: "#937e3d"
 
 - type: marking
-  id: VoxLFootScales
+  id: VoxFootScales
   bodyPart: LFoot
   markingCategory: Legs
   forcedColoring: true
   speciesRestriction: [Vox, NeoVox] # Starlight
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: l_foot
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-        color: "#937e3d"
-
-- type: marking
-  id: VoxRFootScales
-  bodyPart: RFoot
-  markingCategory: Legs
-  forcedColoring: true
-  speciesRestriction: [Vox, NeoVox] # Starlight
-  sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: r_foot
+    body_lFoot:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: l_foot
+      colorSource: HumanSkinColor
+    body_rFoot:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: r_foot
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -185,9 +185,89 @@
   markingCategory: Tail
   speciesRestriction: [Vox, NeoVox] # Starlight
   forcedColoring: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: tail
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: tail
+      colorSource: HumanSkinColor
+  # Starlight end
+
+- type: marking
+  id: VoxTailShort
+  bodyPart: Tail
+  markingCategory: Tail # Starlight
+  speciesRestriction: [Vox, NeoVox] # Starlight
+  forcedColoring: true
+  # Starlight start
+  sprites:
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: tail_short
+      colorSource: HumanSkinColor
+  # Starlight end
+
+- type: marking
+  id: VoxTailBig
+  bodyPart: Tail
+  markingCategory: Tail # Starlight
+  speciesRestriction: [Vox, NeoVox] # Starlight
+  forcedColoring: true
+  # Starlight start
+  sprites:
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: tail_big
+      colorSource: HumanSkinColor
+  # Starlight end
+
+- type: marking
+  id: VoxTailSpikes
+  bodyPart: Tail
+  markingCategory: Tail # Starlight
+  speciesRestriction: [Vox, NeoVox] # Starlight
+  forcedColoring: true
+  # Starlight start
+  sprites:
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: tail_spikes
+      colorSource: HumanSkinColor
+  # Starlight end
+
+- type: marking
+  id: VoxTailDocked
+  bodyPart: Tail
+  markingCategory: Tail # Starlight
+  speciesRestriction: [Vox, NeoVox] # Starlight
+  forcedColoring: true
+  # Starlight start
+  sprites:
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: tail_docked
+      colorSource: HumanSkinColor
+  # Starlight end
+
+- type: marking
+  id: VoxTailSplit
+  bodyPart: Tail
+  markingCategory: Tail # Starlight
+  speciesRestriction: [Vox, NeoVox] # Starlight
+  forcedColoring: true
+  # Starlight start
+  sprites:
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: tail_split
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxTailAnimated
@@ -196,19 +276,14 @@
   speciesRestriction: [Vox, NeoVox] # Starlight
   # groupWhitelist # Starlight: []
   forcedColoring: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: tail_animated
-
-- type: marking
-  id: VoxTailShort
-  bodyPart: Tail
-  markingCategory: Tail # Starlight
-  speciesRestriction: [Vox, NeoVox] # Starlight
-  forcedColoring: true
-  sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: tail_short
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: tail_animated
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxTailShortAnimated
@@ -217,19 +292,14 @@
   speciesRestriction: [Vox, NeoVox] # Starlight
   # groupWhitelist # Starlight: []
   forcedColoring: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: tail_short_animated
-
-- type: marking
-  id: VoxTailBig
-  bodyPart: Tail
-  markingCategory: Tail # Starlight
-  speciesRestriction: [Vox, NeoVox] # Starlight
-  forcedColoring: true
-  sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: tail_big
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: tail_short_animated
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxTailBigAnimated
@@ -238,19 +308,14 @@
   speciesRestriction: [Vox, NeoVox] # Starlight
   # groupWhitelist # Starlight: []
   forcedColoring: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: tail_big_animated
-
-- type: marking
-  id: VoxTailSpikes
-  bodyPart: Tail
-  markingCategory: Tail # Starlight
-  speciesRestriction: [Vox, NeoVox] # Starlight
-  forcedColoring: true
-  sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: tail_spikes
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: tail_big_animated
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxTailSpikesAnimated
@@ -259,19 +324,14 @@
   speciesRestriction: [Vox, NeoVox] # Starlight
   # groupWhitelist # Starlight: []
   forcedColoring: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: tail_spikes_animated
-
-- type: marking
-  id: VoxTailDocked
-  bodyPart: Tail
-  markingCategory: Tail # Starlight
-  speciesRestriction: [Vox, NeoVox] # Starlight
-  forcedColoring: true
-  sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: tail_docked
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: tail_spikes_animated
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxTailDockedAnimated
@@ -280,20 +340,14 @@
   speciesRestriction: [Vox, NeoVox] # Starlight
   # groupWhitelist # Starlight: []
   forcedColoring: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: tail_docked_animated
-
-
-- type: marking
-  id: VoxTailSplit
-  bodyPart: Tail
-  markingCategory: Tail # Starlight
-  speciesRestriction: [Vox, NeoVox] # Starlight
-  forcedColoring: true
-  sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: tail_split
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: tail_docked_animated
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxTailSplitAnimated
@@ -302,6 +356,11 @@
   speciesRestriction: [Vox, NeoVox] # Starlight
   # groupWhitelist # Starlight: []
   forcedColoring: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_parts.rsi
-    state: tail_split_animated
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/vox_parts.rsi
+        state: tail_split_animated
+      colorSource: HumanSkinColor
+  # Starlight end

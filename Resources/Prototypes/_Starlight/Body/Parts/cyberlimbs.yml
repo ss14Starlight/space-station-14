@@ -41,7 +41,7 @@
       effect:
         stunAmount: 1.0
         dropItemsFrom:
-        - body_part_slot_left hand
+        - body/LeftArm/LeftHand
         damageAmount:
           types:
             Shock: 10
@@ -73,7 +73,7 @@
       effect:
         stunAmount: 1.0
         dropItemsFrom:
-        - body_part_slot_right hand
+        - body/RightArm/RightHand
         damageAmount:
           types:
             Shock: 10
@@ -102,7 +102,7 @@
       effect:
         stunAmount: 0.5
         dropItemsFrom:
-        - body_part_slot_left hand
+        - body/LeftArm/LeftHand
         damageAmount:
           types:
             Shock: 5
@@ -131,7 +131,7 @@
       effect:
         stunAmount: 0.5
         dropItemsFrom:
-        - body_part_slot_right hand
+        - body/RightArm/RightHand
         damageAmount:
           types:
             Shock: 5
@@ -445,7 +445,7 @@
       effect:
         stunAmount: 1.0
         dropItemsFrom:
-        - body_part_slot_left hand
+        - body/LeftArm/LeftHand
         damageAmount:
           types:
             Shock: 15
@@ -475,7 +475,7 @@
       effect:
         stunAmount: 1.0
         dropItemsFrom:
-        - body_part_slot_right hand
+        - body/RightArm/RightHand
         damageAmount:
           types:
             Shock: 15
@@ -548,7 +548,7 @@
       effect:
         stunAmount: 1.0
         dropItemsFrom:
-        - body_part_slot_left hand
+        - body/LeftArm/LeftHand
         damageAmount:
           types:
             Shock: 15
@@ -617,7 +617,7 @@
       effect:
         stunAmount: 1.0
         dropItemsFrom:
-        - body_part_slot_right hand
+        - body/RightArm/RightHand
         damageAmount:
           types:
             Shock: 15
@@ -812,7 +812,7 @@
       effect:
         stunAmount: 1.0
         dropItemsFrom:
-        - body_part_slot_left hand
+        - body/LeftArm/LeftHand
         damageAmount:
           types:
             Shock: 15
@@ -878,7 +878,7 @@
       effect:
         stunAmount: 1.0
         dropItemsFrom:
-        - body_part_slot_right hand
+        - body/RightArm/RightHand
         damageAmount:
           types:
             Shock: 15
@@ -945,7 +945,7 @@
       effect:
         stunAmount: 1.0
         dropItemsFrom:
-        - body_part_slot_left hand
+        - body/LeftArm/LeftHand
         damageAmount:
           types:
             Shock: 15
@@ -1010,7 +1010,7 @@
       effect:
         stunAmount: 1.0
         dropItemsFrom:
-        - body_part_slot_right hand
+        - body/RightArm/RightHand
         damageAmount:
           types:
             Shock: 15
@@ -1079,7 +1079,7 @@
       effect:
         stunAmount: 1.0
         dropItemsFrom:
-        - body_part_slot_left hand
+        - body/LeftArm/LeftHand
         damageAmount:
           types:
             Shock: 10
@@ -1154,7 +1154,7 @@
       effect:
         stunAmount: 1.0
         dropItemsFrom:
-        - body_part_slot_right hand
+        - body/RightArm/RightHand
         damageAmount:
           types:
             Shock: 10
@@ -2428,7 +2428,7 @@
       maxItemSize: Large
       blacklist:
         components:
-          - BodyPart
+          - SLBodyPart
           - Organ
     - type: PrivateStorage
       accessDelay: 3.0
@@ -2482,7 +2482,7 @@
       maxItemSize: Large
       blacklist:
         components:
-          - BodyPart
+          - SLBodyPart
           - Organ
     - type: PrivateStorage
       accessDelay: 3.0

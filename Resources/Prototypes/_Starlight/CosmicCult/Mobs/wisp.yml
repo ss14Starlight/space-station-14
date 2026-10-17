@@ -23,8 +23,8 @@
         - FlyingMobMask
         layer:
         - FlyingMobLayer
-  - type: Body
-    prototype: Animal
+  - type: SLBody
+    prefab: Animal
   - type: Speech
     speechSounds: Alto
     speechVerb: Ghost

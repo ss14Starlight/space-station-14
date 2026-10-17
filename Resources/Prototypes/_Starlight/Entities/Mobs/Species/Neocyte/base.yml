@@ -114,8 +114,8 @@
       walkSpeedModifier: 0.5
       sprintSpeedModifier: 0.5
       dropItemsFrom:
-        - body_part_slot_right hand
-        - body_part_slot_left hand
+        - body/RightArm/RightHand
+        - body/LeftArm/LeftHand
       additionalEffects:
         StatusEffectTemporaryBlindness: 2.0
       damageAmount:
@@ -133,8 +133,8 @@
     damage:
       types:
         Blunt: 5 # Starlight
-  - type: Body
-    prototype: Neocyte
+  - type: SLBody
+    prefab: Neocyte
     requiredLegs: 2
   - type: Tag
     tags:

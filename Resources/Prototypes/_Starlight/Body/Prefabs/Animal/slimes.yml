@@ -1,0 +1,17 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Slimes
+  root:
+    bodyPart: TorsoSlime
+    containedParts:
+      Core:
+        bodyPart: SentientSlimesCore
+      Lungs:
+        bodyPart: OrganSlimesLungs
+    attachedParts:
+      Legs:
+        bodyPart: LegsAnimal
+        attachedParts:
+          Feet:
+            bodyPart: FeetAnimal

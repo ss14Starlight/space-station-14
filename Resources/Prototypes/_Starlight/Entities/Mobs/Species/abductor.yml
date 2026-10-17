@@ -26,8 +26,8 @@
     state: full
   - type: Fingerprint
   - type: Blindable
-  - type: Body
-    prototype: Abductor
+  - type: SLBody
+    prefab: Abductor
     requiredLegs: 2
   - type: FireVisuals
     alternateState: Standing

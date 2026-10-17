@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Body.Components;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Administration;
 using Content.Shared.Administration;
@@ -35,7 +36,7 @@ internal sealed partial class DestroyMechanismCommand : LocalizedEntityCommands
             return;
         }
 
-        if (!EntityManager.TryGetComponent(attached, out BodyComponent? body))
+        if (!EntityManager.TryGetComponent(attached, out SLBodyComponent? body))
         {
             shell.WriteLine(Loc.GetString($"shell-must-have-body"));
             return;

@@ -4,8 +4,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiBackstrafe
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiBackstrafe
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiBurstShort
@@ -13,8 +16,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiBurstShort
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiBurstShort
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiDefault
@@ -22,8 +28,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiDefault
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiDefault
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiDroopy
@@ -31,8 +40,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiDroopy
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiDroopy
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiEars
@@ -40,8 +52,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiEars
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiEars
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiFluffymohawk
@@ -49,8 +64,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiFluffymohawk
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiFluffymohawk
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiHedge
@@ -58,8 +76,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiHedge
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiHedge
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiLongway
@@ -67,8 +88,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiLongway
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiLongway
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiMane
@@ -76,8 +100,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiMane
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiMane
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiManeBeardless
@@ -85,8 +112,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiManeBeardless
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiManeBeardless
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiMohawk
@@ -94,8 +124,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiMohawk
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiMohawk
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiMushroom
@@ -103,8 +136,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiMushroom
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiMushroom
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiNotree
@@ -112,8 +148,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiNotree
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiNotree
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiSpiky
@@ -121,8 +160,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiSpiky
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiSpiky
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiPointy
@@ -130,8 +172,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiPointy
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiPointy
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiTwies
@@ -139,8 +184,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiTwies
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiTwies
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiUpright
@@ -148,8 +196,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiUpright
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiUpright
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiLong
@@ -157,8 +208,11 @@
   markingCategory: Hair
   speciesRestriction: [Resomi, NeoResomi]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiLong
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiLong
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiColonel
@@ -166,8 +220,11 @@
   markingCategory: Hair
   speciesRestriction: [ Resomi ]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiColonel
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiColonel
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiWedge
@@ -175,8 +232,11 @@
   markingCategory: Hair
   speciesRestriction: [ Resomi ]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiWedge
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiWedge
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiSamurai
@@ -184,8 +244,11 @@
   markingCategory: Hair
   speciesRestriction: [ Resomi ]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiSamurai
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiSamurai
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiCube
@@ -193,8 +256,11 @@
   markingCategory: Hair
   speciesRestriction: [ Resomi ]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiCube
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiCube
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiAerodynamic
@@ -202,8 +268,11 @@
   markingCategory: Hair
   speciesRestriction: [ Resomi ]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiAerodynamic
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiAerodynamic
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiBun
@@ -211,8 +280,11 @@
   markingCategory: Hair
   speciesRestriction: [ Resomi ]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiBun
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiBun
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiCowlick
@@ -220,8 +292,11 @@
   markingCategory: Hair
   speciesRestriction: [ Resomi ]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiCowlick
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiCowlick
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiCrest
@@ -229,8 +304,11 @@
   markingCategory: Hair
   speciesRestriction: [ Resomi ]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiCrest
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiCrest
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiCrowned
@@ -238,8 +316,11 @@
   markingCategory: Hair
   speciesRestriction: [ Resomi ]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiCrowned
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiCrowned
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiMohawkAlt
@@ -247,8 +328,11 @@
   markingCategory: Hair
   speciesRestriction: [ Resomi ]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiMohawk_Alt
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiMohawk_Alt
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiPeel
@@ -256,8 +340,11 @@
   markingCategory: Hair
   speciesRestriction: [ Resomi ]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiPeel
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiPeel
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiPonytail
@@ -265,8 +352,11 @@
   markingCategory: Hair
   speciesRestriction: [ Resomi ]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiPonytail
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiPonytail
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiSleek
@@ -274,8 +364,11 @@
   markingCategory: Hair
   speciesRestriction: [ Resomi ]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiSleek
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiSleek
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiSoap
@@ -283,8 +376,11 @@
   markingCategory: Hair
   speciesRestriction: [ Resomi ]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiSoap
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiSoap
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiSpikyAlt
@@ -292,8 +388,11 @@
   markingCategory: Hair
   speciesRestriction: [ Resomi ]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiSpiky_Alt
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiSpiky_Alt
+        colorSource: HumanHairColor
 
 - type: marking
   id: HairResomiSweptup
@@ -301,5 +400,8 @@
   markingCategory: Hair
   speciesRestriction: [ Resomi ]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
-      state: ResomiSweptup
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
+          state: ResomiSweptup
+        colorSource: HumanHairColor

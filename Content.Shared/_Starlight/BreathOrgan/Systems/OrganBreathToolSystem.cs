@@ -10,6 +10,7 @@ using Content.Shared._Starlight.BreathOrgan.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared._Starlight.Medical.Body.Events;
 using Content.Shared._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Shared._Starlight.BreathOrgan.Systems;
 
@@ -28,7 +29,7 @@ public sealed partial class OrganBreathToolSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<OrganBreathToolComponent, OrganAddedToBodyEvent>(OnOrganBreathToolAddedToBody);
         SubscribeLocalEvent<OrganBreathToolComponent, OrganRemovedFromBodyEvent>(OnOrganBreathToolRemovedFromBody);
-        SubscribeLocalEvent<BodyComponent, OpenUiActionEvent>(OnBodyOpenUiAction);
+        SubscribeLocalEvent<SLBodyComponent, OpenUiActionEvent>(OnBodyOpenUiAction);
         SubscribeLocalEvent<OrganBreathToolComponent, AccessibleOverrideEvent>(OnOrganAccessibleOverride);
     }
 
@@ -50,12 +51,12 @@ public sealed partial class OrganBreathToolSystem : EntitySystem
     /// <summary>
     /// Show UI for the gas tank
     /// </summary>
-    private void OnBodyOpenUiAction(Entity<BodyComponent> body, ref OpenUiActionEvent args)
+    private void OnBodyOpenUiAction(Entity<SLBodyComponent> body, ref OpenUiActionEvent args)
     {
         if (args.Key == null || !args.Key.Equals(SharedGasTankUiKey.OrganKey))
             return;
 
-        var organTanks = _body.GetBodyOrganEntityComps<GasTankComponent>((body.Owner, body.Comp));
+        var organTanks = _body.GetBodyOrganEntityComps<GasTankComponent>((body.Owner, null));
         foreach (var organTank in organTanks)
         {
             if (HasComp<OrganBreathToolComponent>(organTank.Owner) &&

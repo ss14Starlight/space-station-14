@@ -1,0 +1,66 @@
+# Tissue repair: restores the integrity of a part (locational damage). Health heals with ordinary treatment,
+# integrity only like this.
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRealignTissue
+  name: Realign damaged tissue
+  components:
+  - type: SurgeryStep
+    duration: 4
+    tools:
+    - type: Hemostat
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: hemostat
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepMendTissue
+  name: Mend damaged tissue
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: BoneGel
+    reagentId: BoneGel
+    reagentQuantity: 5
+  - type: SurgeryStepRestoreIntegrityEffect
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryRepairTissue
+  name: Repair Tissue
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+    steps:
+    - SurgeryStepRealignTissue
+    - SurgeryStepMendTissue
+  - type: SurgeryPartIntegrityCondition
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - SlimePerson
+    - NeoSlimePerson
+    - IPC
+    - Doll
+
+- type: entity
+  parent: SurgeryRepairTissue
+  id: SurgeryRepairTissueSlime
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncisionSlime
+    steps:
+    - SurgeryStepRealignTissue
+    - SurgeryStepMendTissue
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - SlimePerson
+    - NeoSlimePerson

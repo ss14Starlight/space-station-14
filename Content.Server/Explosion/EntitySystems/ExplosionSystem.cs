@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Medical.PartDamage;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Administration.Logs;
@@ -31,7 +32,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.Camera; // Starlight | ES Screenshake
+using Content.Shared._Starlight.Camera;
 
 namespace Content.Server.Explosion.EntitySystems;
 
@@ -58,7 +59,10 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     [Dependency] private FlammableSystem _flammableSystem = default!;
     [Dependency] private DestructibleSystem _destructibleSystem = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
-    [Dependency] private ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
+    #region Starlight
+    [Dependency] private ScreenshakeSystem _shake = default!;
+    [Dependency] private BodyPartDamageSystem _partDamage = default!;
+    #endregion
 
     private EntityQuery<FlammableComponent> _flammableQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;

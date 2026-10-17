@@ -1,3 +1,5 @@
+using Content.Shared._Starlight.Body.Systems;
+using Content.Shared._Starlight.Body.Components;
 using System.Linq;
 using Content.Shared._Starlight.Actions.Components;
 using Content.Shared._Starlight.Dolls.Events;
@@ -102,7 +104,8 @@ public sealed partial class SnapShellPieceSystem : EntitySystem
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class RegrowShellEntityEffectSystem : EntityEffectSystem<ShellComponent, RegrowShell>
 {
-    [Dependency] private SharedBodySystem _body = default!;
+    private const string ShellSocket = "Shell";
+    [Dependency] private SLBodySystem _slBody = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -110,17 +113,16 @@ public sealed partial class RegrowShellEntityEffectSystem : EntityEffectSystem<S
     protected override void Effect(Entity<ShellComponent> entity, ref EntityEffectEvent<RegrowShell> args)
     {
         //Find empty shell slots
-        var emptySlots = GetShellContainers(entity.Owner).ToList();
+        var emptySlots = GetEmptyShellSockets(entity.Owner).ToList();
 
-        IEnumerable<BaseContainer> GetShellContainers(EntityUid uid)
+        IEnumerable<Entity<SLBodyPartComponent>> GetEmptyShellSockets(EntityUid uid)
         {
-            var bodyParts = _body.GetBodyChildren(uid).ToList();
-            foreach (var child in bodyParts)
+            if (!TryComp<SLBodyComponent>(uid, out var body))
+                yield break;
+            foreach (var part in _slBody.GetBodyParts((uid, body)))
             {
-                if (!_container.TryGetContainer(child.Id, SharedBodySystem.GetOrganContainerId("shell"), out var shellContainer))
-                    continue;
-                if (shellContainer.Count == 0)
-                    yield return shellContainer;
+                if (part.Comp.Sockets.ContainsKey(ShellSocket) && !_slBody.TryGetPartInSocket(part, ShellSocket, out _))
+                    yield return part;
             }
         }
 
@@ -132,18 +134,10 @@ public sealed partial class RegrowShellEntityEffectSystem : EntityEffectSystem<S
         var regrownSlot = emptySlots.First();
         var regrownShell = Spawn(args.Effect.ShellProto);
 
-        if(!_container.CanInsert(regrownShell, regrownSlot))
-            QueueDel(regrownShell); //If we can't insert the shell piece for whatever reason, delete it
-        _container.Insert(regrownShell, regrownSlot);
-
-        var part = _body.GetParentPartOrNull(regrownShell);
-        if(part == null)
-            QueueDel(regrownShell); //If insertion somehow didn't put the shell piece into a valid body part, delete it
-        else
-        {
-            var sev = new SurgeryOrganImplantationCompleted(entity.Owner, part.Value, regrownShell);
-            _entityManager.EventBus.RaiseLocalEvent(regrownShell, ref sev);
-        }
+        // Attaching the shell piece to the body raises its implantation event.
+        if (!TryComp<SLBodyPartComponent>(regrownShell, out var shellPart)
+            || !_slBody.TryAttachPart(regrownSlot, ShellSocket, (regrownShell, shellPart)))
+            QueueDel(regrownShell); //If we can't attach the shell piece for whatever reason, delete it
     }
 }
 

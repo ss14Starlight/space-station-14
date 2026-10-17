@@ -31,8 +31,8 @@
   - type: Icon
     sprite: Mobs/Species/Reptilian/parts.rsi
     state: full
-  - type: Body
-    prototype: Reptilian
+  - type: SLBody
+    prefab: Reptilian
     requiredLegs: 2
   - type: Butcherable
     spawned:

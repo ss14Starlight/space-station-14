@@ -1,0 +1,51 @@
+﻿- type: bodyPrefab
+  id: SLHumanBodyPrefab
+  root:
+    bodyPart: SLPartHumanTorso
+    containedParts:
+      Heart:
+        bodyPart: OrganHumanHeart
+      Lungs:
+        bodyPart: OrganHumanLungs
+      Stomach:
+        bodyPart: OrganHumanStomach
+      Liver:
+        bodyPart: OrganHumanLiver
+      Kidneys:
+        bodyPart: OrganHumanKidneys
+    attachedParts:
+     Head:
+       bodyPart: SLPartHumanHead
+       containedParts:
+         Brain:
+           bodyPart: OrganHumanBrain
+         Tongue:
+           bodyPart: OrganHumanTongue
+       attachedParts:
+         # TODO: replace with LeftEye/RightEye once per-eye layers are ready
+         Eyes:
+           bodyPart: OrganHumanEyes
+         #LeftEye:
+         #  bodyPart: OrganHumanEyes
+         #RightEye:
+         #  bodyPart: OrganHumanEyes
+     LeftArm:
+      bodyPart: SLPartHumanArm
+      attachedParts:
+        Hand:
+          bodyPart: SLPartHumanHand
+     RightArm:
+       bodyPart: SLPartHumanArm
+       attachedParts:
+         Hand:
+           bodyPart: SLPartHumanHand
+     LeftLeg:
+       bodyPart: SLPartHumanLeg
+       attachedParts:
+         Foot:
+           bodyPart: SLPartHumanFoot
+     RightLeg:
+       bodyPart: SLPartHumanLeg
+       attachedParts:
+         Foot:
+           bodyPart: SLPartHumanFoot

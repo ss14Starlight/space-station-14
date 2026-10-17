@@ -11,10 +11,8 @@ using Content.Server.Administration.Managers;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
-// Cosmatic Drift Record System-start
 using Content.Shared._CD.Records;
 using Content.Server._CD.Records;
-// Cosmatic Drift Record System-end
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -27,6 +25,8 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Traits;
+using Content.Shared._Starlight.Body.Editor;
+using Content.Server._Starlight.Body.Editor;
 using Content.Server._Starlight.Humanoid;
 
 namespace Content.Server.Database
@@ -84,7 +84,13 @@ namespace Content.Server.Database
             var profiles = new Dictionary<int, HumanoidCharacterProfile>(maxSlot);
             foreach (var profile in prefs.Profiles)
             {
-                profiles[profile.Slot] = ConvertProfiles(profile);
+            // 🌟Starlight🌟 start
+                var converted = ConvertProfiles(profile);
+                var bodyEditor = BodyProfileSerializer.Deserialize(profile.StarLightProfile?.BodyEditorProfile, _opsLog);
+                if (bodyEditor != null)
+                    converted = converted.WithBodyEditorProfile(bodyEditor);
+                profiles[profile.Slot] = converted;
+            // 🌟Starlight🌟 end
             }
 
             var constructionFavorites = new List<ProtoId<ConstructionPrototype>>(prefs.ConstructionFavorites.Count);
@@ -98,6 +104,10 @@ namespace Content.Server.Database
 
         public async Task SaveCharacterSlotAsync(NetUserId userId, HumanoidCharacterProfile? humanoid, int slot)
         {
+            var bodyEditorSerialized = humanoid is not null
+                ? BodyProfileSerializer.Serialize(humanoid.BodyEditorProfile, _opsLog)
+                : null; // Starlight
+
             await using var db = await GetDb();
 
             if (humanoid is null)
@@ -128,6 +138,10 @@ namespace Content.Server.Database
                 .SingleOrDefault(h => h.Slot == slot);
 
             var newProfile = ConvertProfiles(humanoid, slot, oldProfile);
+            // Starlight-start
+            newProfile.StarLightProfile ??= new StarLightModel.StarLightProfile();
+            newProfile.StarLightProfile.BodyEditorProfile = bodyEditorSerialized;
+            // Starlight-end
             if (oldProfile == null)
             {
                 var prefs = await db.DbContext
@@ -180,6 +194,7 @@ namespace Content.Server.Database
 
         public async Task<PlayerPreferences> InitPrefsAsync(NetUserId userId, HumanoidCharacterProfile defaultProfile)
         {
+            var bodyEditorSerialized = BodyProfileSerializer.Serialize(defaultProfile.BodyEditorProfile, _opsLog); // Starlight-edit
             await using var db = await GetDb();
 
             var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority>
@@ -191,6 +206,10 @@ namespace Content.Server.Database
                 .ToList();
 
             var profile = ConvertProfiles((HumanoidCharacterProfile)defaultProfile, 0);
+            // Starlight start
+            profile.StarLightProfile ??= new StarLightModel.StarLightProfile();
+            profile.StarLightProfile.BodyEditorProfile = bodyEditorSerialized;
+            // Starlight end
             var prefs = new Preference
             {
                 UserId = userId.UserId,

@@ -531,6 +531,11 @@ public sealed partial class DamageVisualsSystem : VisualizerSystem<DamageVisuals
     /// </summary>
     private void UpdateDamageVisuals(List<ProtoId<DamageGroupPrototype>> delta, Entity<DamageableComponent, SpriteComponent, DamageVisualsComponent> entity)
     {
+        // Starlight-start: a body's layers show the damage of their own parts
+        if (TryUpdatePartDamageVisuals(delta, entity))
+            return;
+        // Starlight-end
+
         var spriteComponent = entity.Comp2;
         var damageVisComp = entity.Comp3;
         var damage = _damageable.GetAllDamage((entity.Owner, entity.Comp1));

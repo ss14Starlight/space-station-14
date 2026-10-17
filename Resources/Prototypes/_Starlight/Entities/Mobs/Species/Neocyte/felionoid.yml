@@ -21,8 +21,8 @@
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Feline/parts.rsi
     state: fullcat
-  - type: Body
-    prototype: NeoFelionoid
+  - type: SLBody
+    prefab: NeoFelionoid
     requiredLegs: 2
   - type: OwOAccent
   - type: MobThresholds
@@ -139,8 +139,8 @@
   components:
   - type: HumanoidAppearance
     species: NeoFelionoid
-  - type: Body
-    prototype: NeoFelionoid
+  - type: SLBody
+    prefab: NeoFelionoid
   - type: Inventory
     templateId: neocyte
     speciesId: felionoid #Change when there's unique sprites

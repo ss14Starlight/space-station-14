@@ -19,6 +19,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Timing;
 using System.Linq;
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Shared.Materials;
 
@@ -243,7 +244,7 @@ public abstract partial class SharedMaterialReclaimerSystem : EntitySystem
         return component.Powered &&
                component.Enabled &&
                !component.Broken &&
-               HasComp<BodyComponent>(victim) &&
+               HasComp<SLBodyComponent>(victim) && // Starlight-edit
                _emag.CheckFlag(uid, EmagType.Interaction);
     }
 

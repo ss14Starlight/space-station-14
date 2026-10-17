@@ -65,37 +65,21 @@ marking-ThavenLEyeGlow-glowleft = Glowing Eye (Left)
 marking-ThavenREyeGlow = Glowing Eye (Right)
 marking-ThavenREyeGlow-glowright = Glowing Eye (Right)
 
-# RArm
+# Arms
 
-marking-ThavenRArmScales = Scales (Right Arm)
-marking-ThavenRArmScales-scales = Scales (Right Arm)
+marking-ThavenArmScales = Scales (Arms)
+marking-ThavenArmScales-scales = Scales (Arms)
 
-marking-ThavenRArmTattoo1 =  Arm Band (Right)
-marking-ThavenRArmTattoo1-tat1 = Arm Band (Right)
+marking-ThavenArmTattoo1 = Arm Bands
+marking-ThavenArmTattoo1-tat1 = Arm Bands
 
-marking-ThavenTigerRArm = Tiger Stripes (Right)
-marking-ThavenTigerRArm-tiger = Tiger Stripes (Right)
+marking-ThavenTigerArm = Tiger Stripes (Arms)
+marking-ThavenTigerArm-tiger = Tiger Stripes (Arms)
 
-# LArm
+# Legs
 
-marking-ThavenLArmScales = Scales (Left Arm)
-marking-ThavenLArmScales-scales = Scales (Left Arm)
-
-marking-ThavenLArmTattoo1 = Arm Band (Left)
-marking-ThavenLArmTattoo1-tat1 = Arm Band (Left)
-
-marking-ThavenTigerLArm = Tiger Stripes (Left)
-marking-ThavenTigerLArm-tiger = Tiger Stripes (Left)
-
-# RLeg
-
-marking-ThavenRLegScales = Scales (Right)
-marking-ThavenRLegScales-scales = Scales (Right)
-
-# LLeg
-
-marking-ThavenLLegScales = Scales (Left)
-marking-ThavenLLegScales-scales = Scales (Left)
+marking-ThavenLegScales = Scales (Legs)
+marking-ThavenLegScales-scales = Scales (Legs)
 
 # UndergarmentBottom
 

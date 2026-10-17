@@ -1,0 +1,95 @@
+﻿- type: entity
+  id: SLPartHumanoidBase
+  #parent: BaseItem #bodyparts are not items, they always live inside a body which MAY be an item!
+  name: "humanoid body part"
+  abstract: true
+  components:
+  - type: SLBodyPart
+    partType: Other
+
+- type: entity
+  id: SLPartHumanoidTorso
+  parent: SLPartHumanoidBase
+  abstract: true
+  name: "humanoid torso"
+  components:
+  - type: SLBodyPart
+    partType: Torso
+    sockets:
+     Head: HumanoidHeadSocket
+     LeftArm: HumanoidArmSocket
+     RightArm: HumanoidArmSocket
+     LeftLeg: HumanoidLegSocket
+     RightLeg: HumanoidLegSocket
+     RightWing: HumanoidWingSocket
+     LeftWing: HumanoidWingSocket
+     Tail: HumanoidTailSocket
+     Heart: OrganSocket
+     Lungs: OrganSocket
+     Stomach: OrganSocket
+     Liver: OrganSocket
+     Kidneys: OrganSocket
+     Cavity: OrganSocket
+
+- type: entity
+  id: SLPartHumanoidHead
+  parent: SLPartHumanoidBase
+  abstract: true
+  name: "humanoid head"
+  components:
+  - type: SLBodyPart
+    partType: Head
+    sockets:
+      Eyes: HumanoidEyeSocket
+      Brain: OrganSocket
+      Tongue: OrganSocket
+      EyeImplant: OrganSocket
+      NoseImplant: OrganSocket
+      BrainImplant: OrganSocket
+      # TODO: split into LeftEye/RightEye once per-eye layers are ready
+      #LeftEye: HumanoidEyeSocket
+      #RightEye: HumanoidEyeSocket
+
+- type: entity
+  id: SLPartHumanoidArm
+  parent: SLPartHumanoidBase
+  abstract: true
+  name: "humanoid arm"
+  components:
+  - type: SLBodyPart
+    partType: Arm
+    sockets:
+     Hand: HumanoidHandSocket
+
+- type: entity
+  id: SLPartHumanoidHand
+  parent: SLPartHumanoidBase
+  abstract: true
+  name: "humanoid hand"
+  components:
+  - type: SLBodyPart
+    partType: Hand
+    sockets:
+     HandImplant: OrganSocket
+  - type: BodyPartHand
+
+- type: entity
+  id: SLPartHumanoidLeg
+  parent: SLPartHumanoidBase
+  abstract: true
+  name: "humanoid leg"
+  components:
+  - type: SLBodyPart
+    partType: Leg
+    sockets:
+     Foot: HumanoidFootSocket
+  - type: MovementBodyPart
+
+- type: entity
+  id: SLPartHumanoidFoot
+  parent: SLPartHumanoidBase
+  abstract: true
+  name: "humanoid foot"
+  components:
+  - type: SLBodyPart
+    partType: Foot

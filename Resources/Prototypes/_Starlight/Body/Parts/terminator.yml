@@ -11,7 +11,7 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Cybernetic
-  - type: BodyPart
+  - type: SLBodyPart
   - type: ContainerContainer
     containers:
       bodypart: !type:Container
@@ -28,7 +28,7 @@
     state: torso_m
   - type: Icon
     state: torso_m
-  - type: BodyPart
+  - type: SLBodyPart
     partType: Torso
 
 - type: entity
@@ -41,7 +41,7 @@
     state: skull_icon
   - type: Icon
     state: skull_icon
-  - type: BodyPart
+  - type: SLBodyPart
     partType: Head
   # killing a terminators worth big bucks
   - type: StaticPrice
@@ -59,9 +59,9 @@
     state: l_arm
   - type: Icon
     state: l_arm
-  - type: BodyPart
+  - type: SLBodyPart
+    side: Left
     partType: Arm
-    symmetry: Left
 
 - type: entity
   parent: PartTerminator
@@ -72,9 +72,9 @@
     state: r_arm
   - type: Icon
     state: r_arm
-  - type: BodyPart
+  - type: SLBodyPart
+    side: Right
     partType: Arm
-    symmetry: Right
 
 - type: entity
   parent: PartTerminator
@@ -85,9 +85,10 @@
     state: l_hand
   - type: Icon
     state: l_hand
-  - type: BodyPart
+  - type: SLBodyPart
+    side: Left
     partType: Hand
-    symmetry: Left
+  - type: BodyPartHand
 
 - type: entity
   parent: PartTerminator
@@ -98,9 +99,10 @@
     state: r_hand
   - type: Icon
     state: r_hand
-  - type: BodyPart
+  - type: SLBodyPart
+    side: Right
     partType: Hand
-    symmetry: Right
+  - type: BodyPartHand
 
 - type: entity
   parent: PartTerminator
@@ -111,9 +113,9 @@
     state: l_leg
   - type: Icon
     state: l_leg
-  - type: BodyPart
+  - type: SLBodyPart
+    side: Left
     partType: Leg
-    symmetry: Left
   - type: MovementBodyPart
 
 - type: entity
@@ -125,9 +127,9 @@
     state: r_leg
   - type: Icon
     state: r_leg
-  - type: BodyPart
+  - type: SLBodyPart
+    side: Right
     partType: Leg
-    symmetry: Right
   - type: MovementBodyPart
 
 - type: entity
@@ -139,9 +141,9 @@
     state: l_foot
   - type: Icon
     state: l_foot
-  - type: BodyPart
+  - type: SLBodyPart
+    side: Left
     partType: Foot
-    symmetry: Left
 
 - type: entity
   parent: PartTerminator
@@ -152,6 +154,6 @@
     state: r_foot
   - type: Icon
     state: r_foot
-  - type: BodyPart
+  - type: SLBodyPart
+    side: Right
     partType: Foot
-    symmetry: Right

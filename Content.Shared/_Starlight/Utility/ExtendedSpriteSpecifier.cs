@@ -5,14 +5,14 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Starlight.Utility;
 
 [Serializable, NetSerializable]
-[DataDefinition]
-public sealed partial class ExtendedSpriteSpecifier
+[DataDefinition, Virtual]
+public partial class ExtendedSpriteSpecifier
 {
 
     /// <summary>
     /// Basic SpriteSpecifier
     /// </summary>
-    [DataField("sprite")]
+    [DataField]
     public SpriteSpecifier Sprite { get; internal set; }
 
     /// <summary>
@@ -27,11 +27,16 @@ public sealed partial class ExtendedSpriteSpecifier
     [DataField("noRot")]
     public bool SpriteRotation = true;
 
-    public ExtendedSpriteSpecifier(SpriteSpecifier sprite, Color? color = null, Vector2? scale = null, bool? rotation = null)
-    {
-        Sprite = sprite;
-        SpriteColor = color ?? Color.White;
-        SpriteScale = scale ?? new(1, 1);
-        SpriteRotation = rotation ?? true;
-    }
+    [DataField]
+    public Vector2 Offset = Vector2.Zero;
+
+    public override bool Equals(object? obj)
+        => obj is ExtendedSpriteSpecifier other
+            && Sprite.Equals(other.Sprite)
+            && SpriteColor == other.SpriteColor
+            && SpriteScale == other.SpriteScale
+            && Offset == other.Offset
+            && SpriteRotation == other.SpriteRotation;
+
+    public override int GetHashCode() => HashCode.Combine(Sprite, SpriteColor, SpriteScale, SpriteRotation, Offset);
 }

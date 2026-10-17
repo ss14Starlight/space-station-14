@@ -25,6 +25,8 @@
   - type: Sprite
     state: stomach
   - type: Organ
+  - type: SLBodyPart
+    partType: Organ
   - type: SolutionManager
     solutions:
     - SolutionOrganNutriment

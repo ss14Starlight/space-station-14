@@ -215,8 +215,8 @@
     radius: 3.5
     softness: 1
     netsync: false
-  - type: Body
-    prototype: Drone
+  - type: SLBody
+    prefab: Drone
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:

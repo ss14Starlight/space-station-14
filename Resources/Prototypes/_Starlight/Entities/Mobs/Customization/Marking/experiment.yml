@@ -5,8 +5,11 @@
   markingCategory: Chest
   speciesRestriction: [Experiment]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Experiment/chest.rsi
-    state: chestscar
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Experiment/chest.rsi
+        state: chestscar
+      colorSource: UniqueColor
 
 - type: marking
   id: backexpiescar
@@ -14,8 +17,11 @@
   markingCategory: Chest
   speciesRestriction: [Experiment]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Experiment/chest.rsi
-    state: backscar
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Experiment/chest.rsi
+        state: backscar
+      colorSource: UniqueColor
 
 # Head
 - type: marking
@@ -24,8 +30,11 @@
   markingCategory: Head
   speciesRestriction: [Experiment]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Experiment/head.rsi
-    state: eyescar
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Experiment/head.rsi
+        state: eyescar
+      colorSource: UniqueColor
 
 - type: marking
   id: noseexpiescar
@@ -33,8 +42,11 @@
   markingCategory: Head
   speciesRestriction: [Experiment]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Experiment/head.rsi
-    state: nosescar
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Experiment/head.rsi
+        state: nosescar
+      colorSource: UniqueColor
 
 # Arm
 - type: marking
@@ -43,8 +55,11 @@
   markingCategory: Arms
   speciesRestriction: [Experiment]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Experiment/arm.rsi
-    state: armscar
+    body_lArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Experiment/arm.rsi
+        state: armscar
+      colorSource: UniqueColor
 
 - type: marking
   id: armexpiebandage
@@ -52,8 +67,11 @@
   markingCategory: Arms
   speciesRestriction: [Experiment]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Experiment/arm.rsi
-    state: armbandage
+    body_lArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Experiment/arm.rsi
+        state: armbandage
+      colorSource: UniqueColor
 
 # Leg
 - type: marking
@@ -62,8 +80,11 @@
   markingCategory: Legs
   speciesRestriction: [Experiment]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Experiment/leg.rsi
-    state: legscar
+    body_lLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Experiment/leg.rsi
+        state: legscar
+      colorSource: UniqueColor
 
 - type: marking
   id: legexpiebandage
@@ -71,5 +92,9 @@
   markingCategory: Legs
   speciesRestriction: [Experiment]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Experiment/leg.rsi
-    state: legbandage
+    body_lLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Experiment/leg.rsi
+        state: legbandage
+      colorSource: UniqueColor
+

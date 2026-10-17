@@ -15,11 +15,19 @@
         type:
           !type:SimpleColoring
             color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/cat_parts.rsi
-    state: ears_cat_outer
-  - sprite: Mobs/Customization/cat_parts.rsi
-    state: ears_cat_inner
+    body_special@0:
+      sprite:
+        sprite: Mobs/Customization/cat_parts.rsi
+        state: ears_cat_outer
+      colorSource: UniqueColor
+    body_special@1:
+      sprite:
+        sprite: Mobs/Customization/cat_parts.rsi
+        state: ears_cat_inner
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CatTail
@@ -35,9 +43,14 @@
         - !type:CategoryColoring
           category: FacialHair
         - !type:SkinColoring
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/cat_parts.rsi
-    state: tail_cat
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/cat_parts.rsi
+        state: tail_cat
+      colorSource: HumanSkinColor
+  # Starlight end
   #region Starlight
   emotes:
     - emotePrototype: Mew

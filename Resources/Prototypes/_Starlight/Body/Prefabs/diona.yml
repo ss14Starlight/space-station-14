@@ -1,0 +1,52 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Diona
+  root:
+    bodyPart: TorsoDiona
+    containedParts:
+      Stomach:
+        bodyPart: OrganDionaStomachNymph
+      Lungs:
+        bodyPart: OrganDionaLungsNymph
+    attachedParts:
+      Head:
+        bodyPart: HeadDiona
+        containedParts:
+          Brain:
+            bodyPart: OrganDionaBrainNymph
+          Tongue:
+            bodyPart: OrganDionaTongue
+        attachedParts:
+          Eyes:
+            bodyPart: OrganHumanEyes
+        sockets:
+          EyeImplant: OrganSocket
+          NoseImplant: OrganSocket
+          BrainImplant: OrganSocket
+      RightArm:
+        bodyPart: RightArmDiona
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandDiona
+            sockets:
+              HandImplant: OrganSocket
+      LeftArm:
+        bodyPart: LeftArmDiona
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandDiona
+            sockets:
+              HandImplant: OrganSocket
+      RightLeg:
+        bodyPart: RightLegDiona
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootDiona
+      LeftLeg:
+        bodyPart: LeftLegDiona
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootDiona
+    sockets:
+      Cavity: OrganSocket

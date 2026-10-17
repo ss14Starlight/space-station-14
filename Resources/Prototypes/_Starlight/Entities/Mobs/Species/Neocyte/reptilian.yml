@@ -27,8 +27,8 @@
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Reptile/parts.rsi
     state: full
-  - type: Body
-    prototype: NeoReptilian
+  - type: SLBody
+    prefab: NeoReptilian
     requiredLegs: 2
   - type: Speech
     speechVerb: Robotic

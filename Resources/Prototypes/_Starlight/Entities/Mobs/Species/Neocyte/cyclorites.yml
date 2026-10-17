@@ -25,8 +25,8 @@
     hideLayersOnEquip:
     - Hair
     - Snout
-  - type: Body
-    prototype: NeoCyclorite
+  - type: SLBody
+    prefab: NeoCyclorite
     requiredLegs: 2
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
@@ -147,8 +147,8 @@
   components:
   - type: HumanoidAppearance
     species: NeoCyclorite
-  - type: Body
-    prototype: NeoCyclorite
+  - type: SLBody
+    prefab: NeoCyclorite
   - type: Inventory
     speciesId: cyclorite
     templateId: neocyclorite

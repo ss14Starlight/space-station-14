@@ -4,10 +4,16 @@
   markingCategory: Chest
   speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/reptilian.rsi
-    state: body_dragonwings
-  - sprite: _Starlight/Mobs/Customization/reptilian.rsi
-    state: body_dragonwings_membrane
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/reptilian.rsi
+        state: body_dragonwings
+      colorSource: ReptilianSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/reptilian.rsi
+        state: body_dragonwings_membrane
+      colorSource: UniqueColor
 
 - type: marking
   id: SnakeLargeTail
@@ -15,10 +21,16 @@
   markingCategory: Tail
   speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
-    state: snake_large
-  - sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
-    state: snake_large_overlay
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
+        state: snake_large
+      colorSource: ReptilianSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
+        state: snake_large_overlay
+      colorSource: UniqueColor
 
 - type: marking
   id: SnakeLargeTailAnimated
@@ -26,10 +38,16 @@
   markingCategory: Tail
   speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
-    state: snake_large_wagging
-  - sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
-    state: snake_large_wagging_overlay
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
+        state: snake_large_wagging
+      colorSource: ReptilianSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
+        state: snake_large_wagging_overlay
+      colorSource: UniqueColor
 
 # Eastern Dragon Snout Markings
 - type: marking
@@ -38,10 +56,16 @@
   markingCategory: Snout
   speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
-    state: eastern_dragon
-  - sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
-    state: eastern_dragon_overlay
+    body_snout@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
+        state: eastern_dragon
+      colorSource: ReptilianSkinColor
+    body_snout@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
+        state: eastern_dragon_overlay
+      colorSource: UniqueColor
 
 - type: marking
   id: LizardSnoutEasternDragonUsiki
@@ -49,12 +73,21 @@
   markingCategory: Snout
   speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
-    state: eastern_dragon
-  - sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
-    state: eastern_dragon_overlay
-  - sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
-    state: eastern_dragon_usiki
+    body_snout@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
+        state: eastern_dragon
+      colorSource: ReptilianSkinColor
+    body_snout@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
+        state: eastern_dragon_overlay
+      colorSource: UniqueColor
+    body_snout@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
+        state: eastern_dragon_usiki
+      colorSource: UniqueColor
 
 - type: marking
   id: LizardHeadGuilmon
@@ -62,5 +95,8 @@
   markingCategory: Snout
   speciesRestriction: [Reptilian, NeoReptilian, Neocyte]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
-    state: guilmon
+    body_snout:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
+        state: guilmon
+      colorSource: ReptilianSkinColor

@@ -176,3 +176,32 @@
     heat: 0
     displaced: 1
     displacementSize: 127
+
+# Missing limbs: clothing and overlays cut out where a limb is gone (LimbMaskSystem).
+- type: shader
+  id: LimbMask
+  kind: source
+  path: "/Textures/_Starlight/Shaders/limb_mask.swsl"
+  params:
+    useDisplacement: 0
+    displacementSize: 127
+
+- type: shader
+  id: LimbMaskDisplaced
+  kind: source
+  path: "/Textures/_Starlight/Shaders/limb_mask.swsl"
+  params:
+    useDisplacement: 1
+    displacementSize: 127
+
+- type: shader
+  id: LimbMaskDisplacedStencil
+  kind: source
+  path: "/Textures/_Starlight/Shaders/limb_mask.swsl"
+  stencil:
+    ref: 1
+    op: Keep
+    func: NotEqual
+  params:
+    useDisplacement: 1
+    displacementSize: 127

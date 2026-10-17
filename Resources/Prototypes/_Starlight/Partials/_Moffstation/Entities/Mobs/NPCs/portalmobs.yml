@@ -1,8 +1,8 @@
 - type: !PartialOnly entity
   id: MoffMobDemonNarsieBase
   components:
-  - type: Body
-    prototype: Bloodsucker
+  - type: SLBody
+    prefab: Bloodsucker
   - type: !Remove NarSieDemonAccent
   - type: Tag
     tags:

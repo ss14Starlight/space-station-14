@@ -62,8 +62,8 @@
   - type: Icon
     sprite: _Starlight/Mobs/Species/Avali/parts.rsi
     state: full
-  - type: Body
-    prototype: Avali
+  - type: SLBody
+    prefab: Avali
     requiredLegs: 2
   - type: Butcherable
     spawned:

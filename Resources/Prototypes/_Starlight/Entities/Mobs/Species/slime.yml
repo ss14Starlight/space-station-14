@@ -39,8 +39,8 @@
   - type: Icon
     sprite: _Starlight/Mobs/Species/Slime/parts.rsi
     state: full
-  - type: Body
-    prototype: Slime
+  - type: SLBody
+    prefab: Slime
     requiredLegs: 2
   # they like eat it idk lol
   - type: Storage

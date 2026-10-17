@@ -30,8 +30,8 @@
     noRot: true
     drawdepth: Mobs
     scale: 1, 1.05
-  - type: Body
-    prototype: NeoThaven
+  - type: SLBody
+    prefab: NeoThaven
     requiredLegs: 2
   - type: HumanoidAppearance
     species: NeoThaven

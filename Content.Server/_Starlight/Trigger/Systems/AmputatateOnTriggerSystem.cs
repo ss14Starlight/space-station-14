@@ -1,10 +1,10 @@
+using Content.Shared._Starlight.Body.Components;
 using System.Linq;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server._Starlight.Medical.Limbs;
 using Content.Shared._Starlight;
 using Content.Shared._Starlight.Trigger.Components.Effects;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
 using Content.Shared.Humanoid;
 using Content.Shared.Trigger;
 using Robust.Shared.Containers;
@@ -29,19 +29,19 @@ public sealed partial class AmputatateOnTriggerSystem : XOnTriggerSystem<Amputat
             target = container.Owner;
         }
 
-        if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(target, out var body))
+        if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, SLBodyComponent>(target, out var body))
         {
             foreach (var part in ent.Comp.Parts)
             {
                 var basepart = Spawn(part);
-                if (TryComp<BodyPartComponent>(basepart, out var bodypart))
+                if (TryComp<SLBodyPartComponent>(basepart, out var bodypart))
                 {
-                    var targetpart = _bodySystem.GetBodyChildrenOfType(target, bodypart.PartType).FirstOrDefault(p => p.Component.Symmetry == bodypart.Symmetry);
+                    var targetpart = _bodySystem.GetBodyChildrenOfType(target, bodypart.Kind).FirstOrDefault(p => p.Component.Symmetry == bodypart.Symmetry);
                     if (TryComp(targetpart.Id, out TransformComponent? targetPartTransform) &&
                        TryComp(targetpart.Id, out MetaDataComponent? targetPartMetadata) &&
-                       TryComp(targetpart.Id, out BodyPartComponent? targetPartBodyPart))
+                       TryComp(targetpart.Id, out SLBodyPartComponent? targetPartBodyPart))
                     {
-                        Entity<TransformComponent, MetaDataComponent, BodyPartComponent> PartToDelete = (targetpart.Id, targetPartTransform, targetPartMetadata, targetPartBodyPart);
+                        Entity<TransformComponent, MetaDataComponent, SLBodyPartComponent> PartToDelete = (targetpart.Id, targetPartTransform, targetPartMetadata, targetPartBodyPart);
                         _limbSystem.Amputatate(body, PartToDelete);
                     }
                 }

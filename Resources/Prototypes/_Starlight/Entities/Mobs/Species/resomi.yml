@@ -77,8 +77,8 @@
   - type: Icon
     sprite: _Starlight/Mobs/Species/Resomi/parts.rsi
     state: full
-  - type: Body
-    prototype: Resomi
+  - type: SLBody
+    prefab: Resomi
     requiredLegs: 2
   - type: Butcherable
     spawned:

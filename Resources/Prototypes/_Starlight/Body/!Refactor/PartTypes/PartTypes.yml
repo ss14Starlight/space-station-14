@@ -1,0 +1,40 @@
+# Body part types. The first eight mirror the legacy BodyPartType enum.
+
+- type: bodyPartType
+  id: Other
+
+- type: bodyPartType
+  id: Torso
+
+- type: bodyPartType
+  id: Head
+
+- type: bodyPartType
+  id: Arm
+
+- type: bodyPartType
+  id: Hand
+
+- type: bodyPartType
+  id: Leg
+
+- type: bodyPartType
+  id: Foot
+
+- type: bodyPartType
+  id: Tail
+
+- type: bodyPartType
+  id: Wing
+
+- type: bodyPartType
+  id: Horn
+
+- type: bodyPartType
+  id: Eye
+
+- type: bodyPartType
+  id: Hair
+
+- type: bodyPartType
+  id: Organ
