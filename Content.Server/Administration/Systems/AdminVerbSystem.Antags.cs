@@ -1,4 +1,3 @@
-using Content.Server._Harmony.GameTicking.Rules.Components;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.Antag;
@@ -44,7 +43,7 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultDevilRule = "Devil"; // starlight
     private static readonly EntProtoId DefaultBrighteyeRule = "SubBrighteye"; //Starlight
 	private static readonly EntProtoId DefaultSELFRule = "SiliconLiberation"; //Starlight
-    private static readonly EntProtoId DefaultBloodBrotherRule = "BloodBrothers"; // Harmony
+    private static readonly EntProtoId DefaultBloodBoundRule = "BloodBound"; // Harmony
     private static readonly string _theDarkMap = "TheDarkMap";
 
     // All antag verbs have names so invokeverb works.
@@ -362,20 +361,20 @@ public sealed partial class AdminVerbSystem
         // STARLIGHT END
 
         // Harmony start
-        var bloodBrotherName = Loc.GetString("admin-verb-text-make-blood-brother");
-        Verb bloodBrother = new()
+        var bloodBoundName = Loc.GetString("admin-verb-text-make-blood-bound");
+        Verb bloodBound = new()
         {
-            Text = bloodBrotherName,
+            Text = bloodBoundName,
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/_Harmony/Interface/Misc/job_icons.rsi"), "BloodBrother"),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_Harmony/Interface/Misc/job_icons.rsi"), "BloodBound"),
             Act = () =>
             {
-                _antag.ForceMakeAntag<BloodBrotherRuleComponent>(targetPlayer, DefaultBloodBrotherRule);
+                _antag.ForceMakeAntag<BloodBoundRuleComponent>(targetPlayer, DefaultBloodBoundRule);
             },
             Impact = LogImpact.High,
-            Message = string.Join(": ", bloodBrotherName, Loc.GetString("admin-verb-make-blood-brother")),
+            Message = string.Join(": ", bloodBoundName, Loc.GetString("admin-verb-make-blood-bound")),
         };
-        args.Verbs.Add(bloodBrother);
+        args.Verbs.Add(bloodBound);
         // Harmony end
     }
 }

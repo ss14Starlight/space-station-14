@@ -12,6 +12,6 @@ objective-condition-rob-department = Steal from the {$department} department
 objective-condition-loud-rob-department = Rob the {$department} department
 objective-condition-trash-room = Trash the {$targetName} room
 objective-condition-claim-room = Claim the {$targetName} room for the Syndicate
-objective-condition-bb-claim-room = Claim the {$targetName} room for the brotherhood
+objective-condition-blood-bound-claim-room = Claim the {$targetName} room for the blood bound
 objective-condition-gather-intel = Gather intel on {$targetName}, {CAPITALIZE($job)}
 objective-condition-leave-card-on-person = Leave a calling card on {$targetName}, {CAPITALIZE($job)}.

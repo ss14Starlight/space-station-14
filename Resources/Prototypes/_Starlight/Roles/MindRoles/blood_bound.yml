@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleBloodBound
+  name: Blood Bound Role
+  components:
+  - type: BloodBoundRole
+  - type: MindRole
+    antagPrototype: BloodBound
+    exclusiveAntag: true
+    roleType: TeamAntagonist
+    subtype: role-subtype-blood-bound

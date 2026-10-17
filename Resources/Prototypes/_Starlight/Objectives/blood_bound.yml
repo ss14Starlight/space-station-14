@@ -1,0 +1,166 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseBloodBoundObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-blood-bound
+  - type: RoleRequirement
+    roles:
+    - BloodBoundRole
+
+# Support a sworn partner
+- type: entity
+  parent: [BaseBloodBoundObjective, BaseTargetObjective]
+  id: BloodBoundAssistObjective
+  name: Help your blood bound.
+  description: Assist your blood bound in completing all of their objectives no matter the cost.
+  components:
+  - type: Objective
+    difficulty: 0 # never given randomly anyways
+    issuer: objective-issuer-blood-bound
+    icon:
+      sprite: /Textures/Interface/Alerts/bleed.rsi
+      state: bleed10
+  - type: TargetObjective
+    title: objective-condition-blood-bound-progress-title
+  - type: HelpProgressCondition
+
+# state
+
+- type: entity
+  parent: [BaseBloodBoundObjective, EscapeShuttleObjective]
+  id: BloodBoundEscapeShuttleObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, DieObjective]
+  id: BloodBoundDieObjective
+
+# Moffstation - Start - Survive doesn't exist as an objective yet, but it would be easy to make.
+# - type: entity
+#   parent: [BaseBloodBoundObjective, TraitorSurviveObjective]
+#   id: BloodBoundSurviveObjective
+# Moffstaion - End
+
+# kill
+
+- type: entity
+  parent: [BaseBloodBoundObjective, KillRandomPersonObjective]
+  id: BloodBoundKillRandomPersonObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, KillRandomHeadObjective]
+  id: BloodBoundKillRandomHeadObjective
+
+# Moffstation - Start - We don't have Harmony's Teach a lesson objective
+# - type: entity
+#   parent: [BaseBloodBoundObjective, TeachLessonRandomPersonObjective]
+#   id: BloodBoundTeachLessonRandomPersonObjective
+# Moffstation - end
+
+# steal
+
+## cmo
+
+- type: entity
+  parent: [BaseBloodBoundObjective, CMOHyposprayStealObjective]
+  id: BloodBoundCMOHyposprayStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, CrewMonitorStealCollectionObjective] # Starlight
+  id: BloodBoundCMOCrewMonitorStealObjective
+
+## rd
+
+- type: entity
+  parent: [BaseBloodBoundObjective, RDHardsuitStealObjective]
+  id: BloodBoundRDHardsuitStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, HandTeleporterStealObjective]
+  id: BloodBoundHandTeleporterStealObjective
+
+## hos
+
+- type: entity
+  parent: [BaseBloodBoundObjective, HOSWeaponStealObjective] # Starlight
+  id: BloodBoundEnergyShotgunStealObjective
+
+## ce
+
+- type: entity
+  parent: [BaseBloodBoundObjective, MagbootsStealObjective]
+  id: BloodBoundMagbootsStealObjective
+
+## qm
+
+- type: entity
+  parent: [BaseBloodBoundObjective, ClipboardStealObjective]
+  id: BloodBoundClipboardStealObjective
+
+## hop
+
+- type: entity
+  parent: [BaseBloodBoundObjective, CorgiMeatStealObjective]
+  id: BloodBoundCorgiMeatStealObjective
+
+## cap
+
+- type: entity
+  parent: [BaseBloodBoundObjective, CaptainIDStealObjective]
+  id: BloodBoundCaptainIDStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, CaptainJetpackStealObjective]
+  id: BloodBoundCaptainJetpackStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, CaptainGunStealObjective]
+  id: BloodBoundCaptainGunStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, NukeDiskStealObjective]
+  id: BloodBoundNukeDiskStealObjective
+
+# Blood partner story objectives
+- type: entity
+  parent: [BaseBloodBoundObjective, HarassObjective]
+  id: BloodBoundDisruptDepartmentObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, JailbreakObjective]
+  id: BloodBoundJailbreakObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, TrashRoomObjective]
+  id: BloodBoundTrashRoomObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, ClaimLocationObjective]
+  id: BloodBoundClaimLocationObjective
+  description: Establish this room as a base for the blood bound.
+  components:
+  - type: LocationObjective
+    title: objective-condition-blood-bound-claim-room
+- type: entity
+  parent: [BaseBloodBoundObjective, RobDepartmentObjective]
+  id: BloodBoundRobDepartmentObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, RobDepartmentObjective]
+  id: BloodBoundLoudRobDepartmentObjective
+  components:
+  - type: DepartmentObjective
+    title: objective-condition-loud-rob-department
+
+- type: entity
+  parent: [BaseBloodBoundObjective, SabotageObjective]
+  id: BloodBoundSabotageObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, TeachRandomPersonObjective]
+  id: BloodBoundTeachLessonObjective
+
+- type: entity
+  parent: [BaseBloodBoundObjective, CallingCardObjective]
+  id: BloodBoundLeaveCallingCardObjective

@@ -64,3 +64,19 @@
     - groups: ChangelingObjectiveGroupCombat
     maxDifficulty: 0
     maxOptions: 4
+
+- type: !PartialOnly entity
+  id: SubGamemodesRule
+  components:
+  - type: SubGamemodes
+    rules:
+    - id: BloodBound
+      prob: 0.5
+
+- type: !PartialOnly entity
+  id: SubGamemodesRuleNoWizardNoXenoborg
+  components:
+  - type: SubGamemodes
+    rules:
+    - id: BloodBound
+      prob: 0.5

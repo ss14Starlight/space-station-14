@@ -1,6 +1,7 @@
 - type: !PartialOnly npcFaction
   id: Dragon
   hostile:
+  - BloodBound
   - Changeling
   - DungeonSoviet
   - DungeonSyndicate
@@ -17,6 +18,7 @@
 - type: !PartialOnly npcFaction
   id: NanoTrasen
   hostile:
+  - BloodBound
   - SyndicateSilicon
   - DungeonSyndicate
   - DungeonSoviet
@@ -48,6 +50,7 @@
 - type: !PartialOnly npcFaction
   id: SimpleHostile
   hostile:
+  - BloodBound
   - NanoTrasenSilicon
   - SyndicateSilicon
   - DungeonSyndicate
@@ -78,6 +81,7 @@
 - type: !PartialOnly npcFaction
   id: Xeno
   hostile:
+  - BloodBound
   - !Remove Xenoborg
   - NanoTrasenSilicon
   - SyndicateSilicon
@@ -94,6 +98,7 @@
 - type: !PartialOnly npcFaction
   id: Zombie
   hostile:
+  - BloodBound
   - !Remove Xenoborg
   - DungeonSyndicate
   - DungeonSoviet
@@ -124,6 +129,7 @@
 - type: !PartialOnly npcFaction
   id: AllHostile
   hostile:
+  - BloodBound
   - NanoTrasenSilicon
   - SyndicateSilicon
   - HonkNeutral
@@ -139,6 +145,7 @@
 - type: !PartialOnly npcFaction
   id: Wizard
   hostile:
+  - BloodBound
   - NanoTrasenSilicon
   - SyndicateSilicon
   - Gorilla
@@ -149,6 +156,7 @@
 - type: !PartialOnly npcFaction
   id: Xenoborg
   hostile:
+  - BloodBound
   - !Remove Xeno
   - DungeonSyndicate
   - DungeonSoviet
