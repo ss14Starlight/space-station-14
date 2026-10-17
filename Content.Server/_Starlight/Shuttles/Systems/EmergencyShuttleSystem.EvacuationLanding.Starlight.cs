@@ -32,7 +32,7 @@ public sealed partial class EmergencyShuttleSystem
             foreach (var (reservedPosition, reservedRadius) in _evacuationPodLandingReservations)
             {
                 var minimumDistance = radius + reservedRadius + 2f;
-                if (!(Vector2.DistanceSquared(offset, reservedPosition) < minimumDistance * minimumDistance))
+                if (Vector2.DistanceSquared(offset, reservedPosition) >= minimumDistance * minimumDistance)
                     continue;
                 clear = false;
                 break;
