@@ -18,15 +18,30 @@
     - Flare
     - Flare
     - Flare
+#armoured soviets
+- type: startingGear
+  parent: SovietComradeGear
+  id: SovietComradeGearPlated
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSovietFatigues
+    outerClothing: ClothingOuterArmorSovietPlate
+    belt: ClothingBeltBandolier
+    mask: ClothingSovietGasMask
+- type: startingGear
+  parent: SovietComradeGear
+  id: SovietComradeGearCoated
+  equipment:
+    outerClothing: ClothingOuterSovietCoat
+    mask: ClothingMaskBear
 #melee
 - type: startingGear
-  id: SovietComradeGearBrokenBottle
+  id: SovietComradeGearSpear
   parent: [SovietComradeGear, SovietComradeGearBelt]
   inhand:
-  - BrokenBottle
+  - Spear
 - type: startingGear
   id: SovietComradeGearFinka
-  parent: SovietComradeGear
+  parent: SovietComradeGearCoated
   inhand:
   - Finka
 #shotgun
@@ -43,9 +58,16 @@
   parent: [SovietComradeGear, SovietComradeGearBelt]
   inhand:
   - WeaponPistolMakarov
+#revolver
+- type: startingGear
+  id: SovietComradeGearZOZ
+  parent: [SovietComradeGearPlated]
+  inhand:
+  - WeaponRevolverZOZ
+  - MakeshiftShield
 #rifle
 - type: startingGear
   id: SovietComradeGearAk
-  parent: [SovietComradeGear, SovietComradeGearBelt]
+  parent: [SovietComradeGearPlated]
   inhand:
   - WeaponRifleAk
