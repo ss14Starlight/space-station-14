@@ -1,8 +1,8 @@
+using Content.Shared._Starlight.Body.Components;
+using Content.Shared._Starlight.Body.Prototypes;
+using Content.Shared._Starlight.Body.Systems;
 using Content.Shared._Starlight.Medical.Body.Components;
-using Content.Shared._Starlight.Medical.Body.Prototypes;
-using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
-using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -14,11 +14,15 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Medical.Body.Systems;
 
+/// <summary>
+/// Bodies hurt while an organ they were built with, and that has <see cref="OrganMissingComponent"/>, is missing
+/// from its socket (or something else sits where it goes). A part that is missing altogether does not count.
+/// </summary>
 public sealed partial class OrganMissingSystem : EntitySystem
 {
     private static readonly TimeSpan _updateInterval = TimeSpan.FromSeconds(1);
 
-    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private SLBodySystem _body = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private IComponentFactory _componentFactory = default!;
@@ -26,7 +30,7 @@ public sealed partial class OrganMissingSystem : EntitySystem
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private IPrototypeManager _prototypes = default!;
 
-    private readonly Dictionary<string, List<OrganMissingRule>> _organMissingByBodyPrototype = new();
+    private readonly Dictionary<ProtoId<BodyPrefabPrototype>, List<OrganMissingRule>> _organMissingByPrefab = new();
     private TimeSpan _nextUpdate;
 
     public override void Initialize()
@@ -46,19 +50,17 @@ public sealed partial class OrganMissingSystem : EntitySystem
 
         _nextUpdate = currentTime + _updateInterval;
 
-        var query = EntityQueryEnumerator<BodyComponent, DamageableComponent>();
+        var query = EntityQueryEnumerator<SLBodyComponent, DamageableComponent>();
         while (query.MoveNext(out var uid, out var body, out _))
         {
             if (_mobState.IsDead(uid)
-                || body.Prototype is not { } prototypeId
-                || !_prototypes.TryIndex(prototypeId, out var prototype)
-                || !_organMissingByBodyPrototype.TryGetValue(prototype.ID, out var missingOrgans))
+                || !_organMissingByPrefab.TryGetValue(body.Prefab, out var missingOrgans))
                 continue;
 
             DamageSpecifier? damage = null;
             foreach (var missingOrgan in missingOrgans)
             {
-                if (!IsOrganMissing(uid, body, prototype, missingOrgan))
+                if (!IsOrganMissing(body, missingOrgan))
                     continue;
 
                 var organDamage = missingOrgan.DamagePerSecond * (float)_updateInterval.TotalSeconds;
@@ -72,76 +74,70 @@ public sealed partial class OrganMissingSystem : EntitySystem
 
     private void CollectOrganMissingConfigurations()
     {
-        foreach (var bodyPrototype in _prototypes.EnumeratePrototypes<BodyPrototype>())
+        foreach (var prefab in _prototypes.EnumeratePrototypes<BodyPrefabPrototype>())
         {
             var missingOrgans = new List<OrganMissingRule>();
-            foreach (var (bodyPartSlot, slot) in bodyPrototype.Slots)
-            {
-                foreach (var (organSlot, organPrototypeId) in slot.Organs)
-                {
-                    if (organPrototypeId == "null"
-                        || !_prototypes.TryIndex(organPrototypeId, out EntityPrototype? organPrototype)
-                        || !organPrototype.TryComp(out OrganMissingComponent? organMissing, _componentFactory))
-                        continue;
-
-                    missingOrgans.Add(new OrganMissingRule(
-                        bodyPartSlot,
-                        organSlot,
-                        new DamageSpecifier(organMissing.DamagePerSecond)));
-                }
-            }
-
+            CollectRules(prefab.Root, [], missingOrgans);
             if (missingOrgans.Count > 0)
-                _organMissingByBodyPrototype.Add(bodyPrototype.ID, missingOrgans);
+                _organMissingByPrefab.Add(prefab.ID, missingOrgans);
         }
     }
 
-    private bool IsOrganMissing(
-        EntityUid bodyId,
-        BodyComponent body,
-        BodyPrototype bodyPrototype,
-        OrganMissingRule missingOrgan)
+    private void CollectRules(BodyPartDef def, List<string> path, List<OrganMissingRule> rules)
     {
-        var part = GetBodyPartForSlot(bodyId, body, bodyPrototype, missingOrgan.BodyPartSlot);
-        if (part is not { } bodyPart
-            || !_body.CanInsertOrgan(bodyPart.Id, missingOrgan.OrganSlot, bodyPart.Component))
+        foreach (var children in new[] { def.ContainedParts, def.AttachedParts })
+        {
+            if (children == null)
+                continue;
+
+            foreach (var (socketId, childDef) in children)
+            {
+                if (_prototypes.TryIndex(childDef.BodyPart, out var childPrototype)
+                    && childPrototype.TryComp(out OrganMissingComponent? organMissing, _componentFactory))
+                {
+                    rules.Add(new OrganMissingRule(path.ToArray(), socketId, new DamageSpecifier(organMissing.DamagePerSecond)));
+                }
+
+                CollectRules(childDef, [.. path, socketId], rules);
+            }
+        }
+    }
+
+    private bool IsOrganMissing(SLBodyComponent body, OrganMissingRule missingOrgan)
+    {
+        if (GetPart(body, missingOrgan.PartPath) is not { } part
+            || !part.Comp.Sockets.ContainsKey(missingOrgan.Socket))
             return false;
 
-        var containerId = SharedBodySystem.GetOrganContainerId(missingOrgan.OrganSlot);
-        return !_containers.TryGetContainer(bodyPart.Id, containerId, out var container)
-            || container.ContainedEntities.Count == 0
-            || !HasComp<OrganComponent>(container.ContainedEntities[0]);
+        // Something that is not an organ, put where the organ goes.
+        if (_containers.TryGetContainer(part, SharedBodySystem.GetOrganContainerId(SharedBodySystem.GetLegacySlotName(missingOrgan.Socket)), out var items)
+            && items.ContainedEntities.Count > 0)
+            return true;
+
+        return !_body.TryGetPartInSocket(part, missingOrgan.Socket, out var organ) || !HasComp<OrganComponent>(organ);
     }
 
-    private (EntityUid Id, BodyPartComponent Component)? GetBodyPartForSlot(
-        EntityUid bodyId,
-        BodyComponent body,
-        BodyPrototype bodyPrototype,
-        string bodyPartSlot)
+    /// <summary>
+    /// The part at the socket path from the root part, if the body still has it.
+    /// </summary>
+    private Entity<SLBodyPartComponent>? GetPart(SLBodyComponent body, string[] path)
     {
-        if (bodyPartSlot == bodyPrototype.Root)
+        if (body.RootPartEntity is not { } rootUid || !TryComp<SLBodyPartComponent>(rootUid, out var root))
+            return null;
+
+        Entity<SLBodyPartComponent> part = (rootUid, root);
+        foreach (var socket in path)
         {
-            if (body.RootContainer.ContainedEntities.Count == 0)
+            if (!_body.TryGetPartInSocket(part, socket, out var child))
                 return null;
-
-            var rootPartId = body.RootContainer.ContainedEntities[0];
-            return TryComp<BodyPartComponent>(rootPartId, out var rootPart)
-                ? (rootPartId, rootPart)
-                : null;
+            part = child;
         }
 
-        foreach (var part in _body.GetBodyChildren(bodyId, body))
-        {
-            var parentPartAndSlot = _body.GetParentPartAndSlotOrNull(part.Id);
-            if (parentPartAndSlot is { } parent && parent.Slot == bodyPartSlot)
-                return part;
-        }
-
-        return null;
+        return part;
     }
 
     private readonly record struct OrganMissingRule(
-        string BodyPartSlot,
-        string OrganSlot,
+        string[] PartPath,
+        string Socket,
         DamageSpecifier DamagePerSecond);
 }

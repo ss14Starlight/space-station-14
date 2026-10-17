@@ -143,8 +143,8 @@ public sealed partial class SLBodySystem
     /// </summary>
     public bool IsInternal(Entity<SLBodyPartComponent> part)
         => part.Comp.ParentSocket is { } socket
-           && Proto.TryIndex(socket.SocketType, out var socketType)
-           && socketType.Internal;
+        && Proto.TryIndex(socket.SocketType, out var socketType)
+        && socketType.Internal;
 
     public IEnumerable<Entity<SLBodyPartComponent>> GetBodyPartsOfType(Entity<SLBodyComponent> body,
         ProtoId<BodyPartTypePrototype> partType)

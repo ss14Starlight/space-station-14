@@ -325,8 +325,8 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
 
             var oldPartId = _bodySystem.GetBodyChildrenOfType(entity, bodyPartComp.Kind).FirstOrDefault(p => p.Component.Symmetry == bodyPartComp.Symmetry);
             if (!TryComp(oldPartId.Id, out TransformComponent? oldPartTransform) ||
-               !TryComp(oldPartId.Id, out MetaDataComponent? oldPartMetadata) ||
-               !TryComp(oldPartId.Id, out SLBodyPartComponent? oldPartBodyPart))
+                !TryComp(oldPartId.Id, out MetaDataComponent? oldPartMetadata) ||
+                !TryComp(oldPartId.Id, out SLBodyPartComponent? oldPartBodyPart))
             {
                 Del(newPart);
                 continue;

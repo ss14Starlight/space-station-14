@@ -81,7 +81,7 @@ public sealed class BodyPartMovementSystem : EntitySystem
         }
 
         var density = TryComp<FixturesComponent>(body, out var fixtures)
-                      && fixtures.Fixtures.TryGetValue("fix1", out var fixture)
+            && fixtures.Fixtures.TryGetValue("fix1", out var fixture)
             ? fixture.Density
             : DefaultDensity;
 

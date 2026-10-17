@@ -235,8 +235,8 @@ public sealed partial class SLBodySystem : EntitySystem
             if (Proto.Index(socketType).Internal != internalSockets)
             {
                 Log.Error($"Body {ToPrettyString(body)}: socket '{socketId}' on {ToPrettyString(parent)} is " +
-                          $"{(internalSockets ? "external" : "internal")}, list {def.BodyPart} under " +
-                          $"{(internalSockets ? "attachedParts" : "containedParts")}");
+                        $"{(internalSockets ? "external" : "internal")}, list {def.BodyPart} under " +
+                        $"{(internalSockets ? "attachedParts" : "containedParts")}");
                 continue;
             }
 

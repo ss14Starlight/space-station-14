@@ -1,6 +1,5 @@
-using Content.Shared.Body.Components;
+using Content.Shared._Starlight.Body.Components;
 using Content.Shared.Body.Organ;
-using Content.Shared.Body.Part;
 using Content.Shared.Implants.Components;
 
 // ReSharper disable CheckNamespace
@@ -29,7 +28,7 @@ public sealed partial class ExplosionSystem
     {
         while (TryComp(cause, out TransformComponent? transform))
         {
-            if (TryComp(cause, out BodyPartComponent? bodyPart) && bodyPart.Body is { } body)
+            if (TryComp(cause, out SLBodyPartComponent? bodyPart) && bodyPart.Body is { } body)
                 return body;
 
             if (TryComp(cause, out OrganComponent? organ) && organ.Body is { } organBody)
@@ -37,9 +36,8 @@ public sealed partial class ExplosionSystem
 
             var parentUid = transform.ParentUid;
             // Body-owned containers also hold external gear, so only anatomy and implant containers count.
-            if (TryComp(parentUid, out BodyComponent? bodyComponent)
-                && ((bodyComponent.RootContainer is { } rootContainer
-                        && rootContainer.Contains(cause))
+            if (TryComp(parentUid, out SLBodyComponent? bodyComponent)
+                && (bodyComponent.RootPartEntity == cause
                     || (TryComp(parentUid, out ImplantedComponent? implanted)
                         && implanted.ImplantContainer.Contains(cause))))
                 return parentUid;

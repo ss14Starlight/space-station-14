@@ -38,8 +38,8 @@ public sealed partial class AmputatateOnTriggerSystem : XOnTriggerSystem<Amputat
                 {
                     var targetpart = _bodySystem.GetBodyChildrenOfType(target, bodypart.Kind).FirstOrDefault(p => p.Component.Symmetry == bodypart.Symmetry);
                     if (TryComp(targetpart.Id, out TransformComponent? targetPartTransform) &&
-                       TryComp(targetpart.Id, out MetaDataComponent? targetPartMetadata) &&
-                       TryComp(targetpart.Id, out SLBodyPartComponent? targetPartBodyPart))
+                        TryComp(targetpart.Id, out MetaDataComponent? targetPartMetadata) &&
+                        TryComp(targetpart.Id, out SLBodyPartComponent? targetPartBodyPart))
                     {
                         Entity<TransformComponent, MetaDataComponent, SLBodyPartComponent> PartToDelete = (targetpart.Id, targetPartTransform, targetPartMetadata, targetPartBodyPart);
                         _limbSystem.Amputatate(body, PartToDelete);

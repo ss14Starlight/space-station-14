@@ -184,7 +184,7 @@ namespace Content.Shared.Preferences
                 // Starlight-start
                 other.SiliconVoice,
                 other.PhysicalDescription,
-                other.PersonalityDescription, 
+                other.PersonalityDescription,
                 other.PersonalNotes,
                 other.OOCNotes,
                 // Starlight-end

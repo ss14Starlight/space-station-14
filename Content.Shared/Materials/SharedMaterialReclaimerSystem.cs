@@ -242,10 +242,10 @@ public abstract partial class SharedMaterialReclaimerSystem : EntitySystem
     public bool CanGib(EntityUid uid, EntityUid victim, MaterialReclaimerComponent component)
     {
         return component.Powered &&
-               component.Enabled &&
-               !component.Broken &&
-               HasComp<SLBodyComponent>(victim) && // Starlight-edit
-               _emag.CheckFlag(uid, EmagType.Interaction);
+                component.Enabled &&
+                !component.Broken &&
+                HasComp<SLBodyComponent>(victim) && // Starlight-edit
+                _emag.CheckFlag(uid, EmagType.Interaction);
     }
 
     /// <summary>
