@@ -7,13 +7,14 @@ namespace Content.Client._Starlight.Overlay.Overlays;
 public abstract partial class BaseEntityHighlightOverlay : BaseVisionOverlay
 {
     [Dependency] private IEntityManager _entityManager = default!;
-    [Dependency] private SpriteSystem _sprite = default!;
+    private readonly SpriteSystem _sprite = default!;
     private readonly ContainerSystem _containerSystem;
     private readonly TransformSystem _transform = default!;
     public BaseEntityHighlightOverlay(ShaderPrototype shader) : base(shader)
     {
         _containerSystem = _entityManager.System<ContainerSystem>();
         _transform = _entityManager.System<TransformSystem>();
+        _sprite = _entityManager.System<SpriteSystem>();
     }
 
     protected override void Draw(in OverlayDrawArgs args)

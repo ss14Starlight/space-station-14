@@ -16,7 +16,7 @@ using Content.Shared.Popups;
 
 namespace Content.Server._Starlight.Medical.PartDamage;
 
-public sealed class BodyPartDestructionSystem : EntitySystem
+public sealed partial class BodyPartDestructionSystem : EntitySystem
 {
     [Dependency] private BodyPartDamageSystem _partDamage = default!;
     [Dependency] private GibbingSystem _gibbing = default!;

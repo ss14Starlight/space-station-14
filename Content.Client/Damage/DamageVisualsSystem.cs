@@ -39,7 +39,6 @@ public sealed partial class DamageVisualsSystem : VisualizerSystem<DamageVisuals
         base.Initialize();
 
         SubscribeLocalEvent<DamageVisualsComponent, ComponentInit>(InitializeEntity);
-        InitializeParts(); // Starlight-edit: locational damage
     }
 
     private void InitializeEntity(EntityUid entity, DamageVisualsComponent comp, ComponentInit args)
