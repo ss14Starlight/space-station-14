@@ -24,7 +24,9 @@ public abstract class PopOutFancyWindow : FancyWindow, IPopOutWindow
 
     private OSWindow? _popOutWindow;
     private Control? _contentParent; // Where the contents lived before being popped out, so they can be returned.
-
+    #region Starlight
+    public bool IsPoppedOut => _popOutWindow is not null;
+    #endregion
     protected PopOutFancyWindow()
     {
         OnClose += FinalClose;
