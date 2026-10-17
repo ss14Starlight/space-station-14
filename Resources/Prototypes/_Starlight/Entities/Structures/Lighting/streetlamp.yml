@@ -127,6 +127,7 @@
       types:
         Heat: 2
     popupText: powered-light-component-burn-hand
+  - type: DeviceLinkSink
 
 - type: entity
   id: PoweredLightStreetLamp
