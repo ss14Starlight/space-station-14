@@ -559,3 +559,24 @@
       traits:
         - Iterator
       inverted: true
+
+- type: trait
+  id: NexusIntegrated
+  name: trait-language-nexusintegrated-name
+  description: trait-language-nexusintegrated-desc
+  category: LanguageTraits
+  cost: 2
+  effects:
+    - !type:SpawnItemInHandEffect
+      item: BrainImplantNexus
+  requirements:
+    - !type:TraitsRequirement
+      traits:
+        - Scratch
+    - !type:SpeciesRequirement
+      species:
+        - Avali
+        - Resomi
+        - NeoAvali
+        - NeoResomi
+      inverted: true
