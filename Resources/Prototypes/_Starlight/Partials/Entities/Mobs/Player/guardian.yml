@@ -1,0 +1,15 @@
+# Does not inherit from simplemob
+- type: !PartialOnly entity
+  id: MobGuardianBase
+  components:
+    - type: AntagImmune # Starlight
+    - type: GhostRole
+      important: true # SL
+
+- type: !PartialOnly entity
+  id: MobHoloClownGuardian
+  parent: !Clear [MobGuardianBase, InventoryBase] #starlight Nubody will not pass.
+  components:
+    - type: Body
+      prototype: Primate
+    - type: !Clear Hands

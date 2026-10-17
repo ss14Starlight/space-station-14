@@ -1,0 +1,11 @@
+
+- type: !PartialOnly entity
+  id: MobRatvar
+  components:
+  - type: AnnounceOnSpawn
+    ignoreASpace: true # Starlight
+    globalAnnounce: true # Starlight
+  - type: ActiveRadio
+    channels:
+    - Law # Starlight
+    - NanoTrasen # Starlight
