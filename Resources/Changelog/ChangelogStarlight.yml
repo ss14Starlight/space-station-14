@@ -1,62 +1,6 @@
 Entries:
 - author: CrazyPhantom
   changes:
-  - message: Drones now require a proximity sensor to build.
-    type: Tweak
-  id: 409173
-  time: '2026-10-05T08:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6505
-- author: CrazyPhantom
-  changes:
-  - message: Drones are now locked behind basic Robotics.
-    type: Tweak
-  id: 409174
-  time: '2026-10-05T08:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6505
-- author: CrazyPhantom
-  changes:
-  - message: Halved the drones power draw.
-    type: Tweak
-  id: 409175
-  time: '2026-10-05T08:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6505
-- author: CrazyPhantom
-  changes:
-  - message: External and Atmospherics access to drones.
-    type: Add
-  id: 409176
-  time: '2026-10-05T08:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6505
-- author: CrazyPhantom
-  changes:
-  - message: Drones no longer have access when unpowered.
-    type: Fix
-  id: 409177
-  time: '2026-10-05T08:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6505
-- author: CrazyPhantom
-  changes:
-  - message: Drones can no longer use their map, flashlight or play music while without power.
-    type: Fix
-  id: 409178
-  time: '2026-10-05T08:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6505
-- author: CrazyPhantom
-  changes:
-  - message: Drones are now slow when they have no power.
-    type: Tweak
-  id: 409179
-  time: '2026-10-05T08:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6505
-- author: CrazyPhantom
-  changes:
-  - message: Drones can now crawl under doors and tables.
-    type: Tweak
-  id: 409180
-  time: '2026-10-05T08:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6505
-- author: CrazyPhantom
-  changes:
   - message: Drones can no longer pick up large items, only medium and smaller.
     type: Tweak
   id: 409181
@@ -2883,4 +2827,60 @@ Entries:
   id: 409572
   time: '2026-10-17T14:09:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6712
+- author: STARLIGHT TEAM
+  changes:
+  - message: The ability to see the name of the implanted item in a surgery slot.
+    type: Add
+  id: 409573
+  time: '2026-10-17T19:10:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6685
+- author: STARLIGHT TEAM
+  changes:
+  - message: Pretty much everything of the right size can now be implanted in place of an organ.
+    type: Add
+  id: 409574
+  time: '2026-10-17T19:10:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6685
+- author: STARLIGHT TEAM
+  changes:
+  - message: The medical scanner shows now additional abnormalities (sleep and organ related).
+    type: Add
+  id: 409575
+  time: '2026-10-17T19:10:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6685
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added hands/feet can now be inspected with the Strippable Interface.
+    type: Add
+  id: 409576
+  time: '2026-10-17T19:10:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6685
+- author: STARLIGHT TEAM
+  changes:
+  - message: Newly possible surgeries get now added without needing to close and open again.
+    type: Tweak
+  id: 409577
+  time: '2026-10-17T19:10:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6685
+- author: STARLIGHT TEAM
+  changes:
+  - message: Lung, cavity item and stomach allow now normal sized items, others small.
+    type: Tweak
+  id: 409578
+  time: '2026-10-17T19:10:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6685
+- author: STARLIGHT TEAM
+  changes:
+  - message: Explosions from inside a body cause now additional damage to that body (x4).
+    type: Tweak
+  id: 409579
+  time: '2026-10-17T19:10:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6685
+- author: STARLIGHT TEAM
+  changes:
+  - message: No more bugs and crashes when surgical attached items break.
+    type: Fix
+  id: 409580
+  time: '2026-10-17T19:10:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6685
 Order: -1
