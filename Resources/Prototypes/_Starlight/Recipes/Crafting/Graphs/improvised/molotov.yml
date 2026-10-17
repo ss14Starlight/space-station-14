@@ -21,7 +21,7 @@
         solution: drink
         reagent:
           ReagentId: WeldingFuel
-        quantity: 120
+        quantity: 200
       steps:
       - material: Cloth
         amount: 5
@@ -35,7 +35,7 @@
         solution: drink
         reagent:
           ReagentId: WeldingFuel
-        quantity: 120
+        quantity: 200
       steps:
       - material: Cable
         amount: 1

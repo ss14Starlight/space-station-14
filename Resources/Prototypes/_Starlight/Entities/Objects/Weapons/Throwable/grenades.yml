@@ -212,10 +212,10 @@
         acts: [ "Destruction" ]
   - type: Solution
     solution:
-      maxVol: 240
+      maxVol: 200
       reagents:
       - ReagentId: WeldingFuel
-        Quantity: 240 #to make the craft worth it instead of just chucking a whiskey bottle, happens only after activation so shouldnt be dupable
+        Quantity: 200
   - type: Spillable
     solution: solution
   - type: TriggerOnUse
@@ -286,6 +286,9 @@
   - type: Tag
     tags:
     - HandGrenade #remove bottle tag to not be usable in the first step again
+  - type: Solution
+    solution:
+      maxVol: 200
 
 - type: entity
   parent: MolotovBottleEmpty
@@ -301,7 +304,7 @@
     solution:
       reagents:
       - ReagentId: WeldingFuel
-        Quantity: 120
+        Quantity: 200
   - type: Construction
     graph: MolotovGraph
     node: fuel
