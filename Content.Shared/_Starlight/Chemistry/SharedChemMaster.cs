@@ -147,35 +147,6 @@ public sealed partial class ContainerInfo(string displayName, FixedPoint2 curren
 }
 
 [Serializable, NetSerializable]
-public sealed partial class ChemMasterBoundUserInterfaceState(
-    ChemMasterMode mode, ChemMasterSortingType sortingType, ContainerInfo? inputContainerInfo, ContainerInfo? outputContainerInfo,
-    IReadOnlyList<ReagentQuantity> bufferReagents, FixedPoint2 bufferCurrentVolume,
-    uint selectedPillType, uint pillDosageLimit, uint patchDosageLimit, bool updateLabel, ChemMasterDrawSource drawSource, bool valveOpen, ChemMasterReagentAmount transferAmount) : BoundUserInterfaceState
-{
-    public readonly ContainerInfo? InputContainerInfo = inputContainerInfo;
-    public readonly ContainerInfo? OutputContainerInfo = outputContainerInfo;
-    public readonly ChemMasterReagentAmount TransferAmount = transferAmount;
-
-    /// <summary>
-    /// A list of the reagents and their amounts within the buffer, if applicable.
-    /// </summary>
-    public readonly IReadOnlyList<ReagentQuantity> BufferReagents = bufferReagents;
-
-    public readonly ChemMasterMode Mode = mode;
-
-    public readonly ChemMasterSortingType SortingType = sortingType;
-
-    public readonly FixedPoint2? BufferCurrentVolume = bufferCurrentVolume;
-    public readonly uint SelectedPillType = selectedPillType;
-
-    public readonly uint PillDosageLimit = pillDosageLimit;
-
-    public readonly bool UpdateLabel = updateLabel;
-
-    public readonly ChemMasterDrawSource DrawSource = drawSource;
-}
-
-[Serializable, NetSerializable]
 public enum ChemMasterUiKey
 {
     Key
@@ -196,18 +167,11 @@ public sealed class ChemMasterToggleValveMessage : BoundUserInterfaceMessage
 }
 
 [Serializable, NetSerializable]
-public sealed class ChemMasterReagentCustomAmountButtonMessage : BoundUserInterfaceMessage
+public sealed class ChemMasterReagentCustomAmountButtonMessage(ReagentId reagentId, FixedPoint2 amount, bool fromBuffer) : BoundUserInterfaceMessage
 {
-    public readonly ReagentId ReagentId;
-    public readonly FixedPoint2 Amount;
-    public readonly bool FromBuffer;
-
-    public ChemMasterReagentCustomAmountButtonMessage(ReagentId reagentId, FixedPoint2 amount, bool fromBuffer)
-    {
-        ReagentId = reagentId;
-        Amount = amount;
-        FromBuffer = fromBuffer;
-    }
+    public readonly ReagentId ReagentId = reagentId;
+    public readonly FixedPoint2 Amount = amount;
+    public readonly bool FromBuffer = fromBuffer;
 }
 
 /// <summary>
@@ -221,13 +185,6 @@ public sealed partial class ContainerInfo
     /// STARLIGHT: Added specifically for patches
     /// </summary>
     public List<(string Id, FixedPoint2 Quantity)>? PatchEntities { get; init; }
-}
-
-public sealed partial class ChemMasterBoundUserInterfaceState : BoundUserInterfaceState
-{
-    public readonly uint PatchDosageLimit = patchDosageLimit;
-
-    public readonly bool ValveOpen = valveOpen;
 }
 
 /// TRIESTE SPECIFIC

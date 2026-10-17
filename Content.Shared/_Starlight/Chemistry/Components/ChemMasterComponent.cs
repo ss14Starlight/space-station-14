@@ -39,5 +39,4 @@ public sealed partial class ChemMasterComponent : Component
 
     [DataField, AutoNetworkedField]
     public ChemMasterReagentAmount TransferAmount = ChemMasterReagentAmount.U5;
-
 }
