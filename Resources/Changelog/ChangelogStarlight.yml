@@ -1,25 +1,4 @@
 Entries:
-- author: salarua
-  changes:
-  - message: Renamed satanic bible to satanic codex.
-    type: Tweak
-  id: 409147
-  time: '2026-10-04T13:40:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6399
-- author: STARLIGHT TEAM
-  changes:
-  - message: Artifacts can now shoot you.
-    type: Add
-  id: 409148
-  time: '2026-10-04T14:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6452
-- author: Swonki
-  changes:
-  - message: Priority Cryo Spawning Locations.
-    type: Add
-  id: 409149
-  time: '2026-10-04T14:06:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6455
 - author: Swonki
   changes:
   - message: ITG & Command Cryosleep spawn prototypes for mapping.
@@ -2883,4 +2862,25 @@ Entries:
   id: 409546
   time: '2026-10-17T10:38:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6720
+- author: Caws
+  changes:
+  - message: Gamma Armory now uses the new safe sprites (yay).
+    type: Tweak
+  id: 409547
+  time: '2026-10-17T10:38:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6717
+- author: Caws
+  changes:
+  - message: Gamma Armory comes with a turbo recharger.
+    type: Tweak
+  id: 409548
+  time: '2026-10-17T10:38:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6717
+- author: Caws
+  changes:
+  - message: Gamma Armory now comes with four Ares swords, four Athena spears, and eight shields.
+    type: Tweak
+  id: 409549
+  time: '2026-10-17T10:38:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6717
 Order: -1
