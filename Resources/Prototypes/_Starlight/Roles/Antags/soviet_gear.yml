@@ -47,7 +47,7 @@
 #shotgun
 - type: startingGear
   id: SovietComradeGearSawn
-  parent: [SovietComradeGear, SovietComradeGearBelt]
+  parent: [SovietComradeGear]
   equipment:
     belt: ClothingSovietBandolier
   inhand:
