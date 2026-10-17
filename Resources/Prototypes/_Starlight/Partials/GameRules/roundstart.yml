@@ -69,14 +69,66 @@
   id: SubGamemodesRule
   components:
   - type: SubGamemodes
-    rules:
+    rules: !Clear
+    - id: Thief
+      prob: 0.4
     - id: BloodBound
-      prob: 0.5
+      prob: 0.20
+    - id: SLChangeling
+      prob: 0.20
+    - id: VampireLess
+      prob: 0.20
+    - id: SubWizard
+      prob: 0.05
+    - id: SiliconLiberation
+      prob: 0.20
+
+- type: !PartialOnly entity
+  id: SubGamemodesRuleNoWizard
+  components:
+  - type: SubGamemodes
+    rules: !Clear
+    - id: Thief
+      prob: 0.42
+    - id: BloodBound
+      prob: 0.21
+    - id: SLChangeling
+      prob: 0.20
+    - id: VampireLess
+      prob: 0.20
+    - id: SiliconLiberation
+      prob: 0.20
+
+- type: !PartialOnly entity
+  id: SubGamemodesRuleNoXenoborg
+  components:
+  - type: SubGamemodes
+    rules: !Clear
+    - id: Thief
+      prob: 0.60
+    - id: BloodBound
+      prob: 0.20
+    - id: SLChangeling
+      prob: 0.20
+    - id: VampireLess
+      prob: 0.20
+    - id: SubWizard
+      prob: 0.05
+    - id: SiliconLiberation
+      prob: 0.20
 
 - type: !PartialOnly entity
   id: SubGamemodesRuleNoWizardNoXenoborg
   components:
   - type: SubGamemodes
-    rules:
+    rules: !Clear
+    - id: Thief
+      prob: 0.70
     - id: BloodBound
-      prob: 0.5
+      prob: 0.35
+    - id: SLChangeling
+      prob: 0.15
+    - id: VampireLess
+      prob: 0.15
+    - id: SiliconLiberation
+      prob: 0.20

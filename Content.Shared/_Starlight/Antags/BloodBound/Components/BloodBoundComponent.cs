@@ -63,7 +63,7 @@ public sealed partial class BloodBoundComponent : Component
     public Color BriefingColor = Color.MediumVioletRed;
 
     [DataField]
-    public SoundSpecifier BriefingSound = new SoundPathSpecifier("/Audio/_Harmony/Misc/blood_bound_greeting.ogg");
+    public SoundSpecifier BriefingSound = new SoundPathSpecifier("/Audio/_Harmony/Misc/blood_brother_greeting.ogg");
 
     [DataField]
     public ProtoId<NpcFactionPrototype> BloodBoundFaction = "BloodBound";

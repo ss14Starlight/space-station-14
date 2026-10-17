@@ -7,7 +7,7 @@
   guides: [ BloodBound ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 3600 # 1h
+    time: 72000 # 20h
 
 - type: antagSpecifier
   parent: RestrictedAntag
@@ -17,7 +17,7 @@
   briefing:
     text: blood-bound-recruiter-greeting
     color: MediumVioletRed
-    sound: /Audio/_Harmony/Misc/blood_bound_greeting.ogg
+    sound: /Audio/_Harmony/Misc/blood_brother_greeting.ogg
   components:
   - type: BloodBound
     canRecruit: true

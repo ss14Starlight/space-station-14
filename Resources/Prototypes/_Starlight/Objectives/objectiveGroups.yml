@@ -1,4 +1,4 @@
-# Traitor
+﻿# Traitor
 - type: weightedRandom
   id: TraitorObjectiveGroupFate
   weights:
@@ -195,6 +195,7 @@
 - type: weightedRandom
   id: BloodBoundObjectiveGroupKill
   weights:
-    BloodBoundKillRandomPersonObjective: 0.85
+    BloodBoundKillRandomPersonObjective: 0.75
     BloodBoundKillRandomHeadObjective: 0.25
     BloodBoundTeachRandomPersonObjective: 1
+    BloodBoundTeachRandomHeadObjective: 0.33

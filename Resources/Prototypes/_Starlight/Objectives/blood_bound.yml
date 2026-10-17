@@ -147,5 +147,9 @@
   id: BloodBoundTeachRandomPersonObjective
 
 - type: entity
+  parent: [BaseBloodBoundObjective, TeachRandomHeadObjective]
+  id: BloodBoundTeachRandomHeadObjective
+
+- type: entity
   parent: [BaseBloodBoundObjective, CallingCardObjective]
   id: BloodBoundCallingCardObjective

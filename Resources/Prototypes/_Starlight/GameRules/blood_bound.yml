@@ -9,6 +9,8 @@
       min: 240
       max: 420
   - type: BloodBoundRule
+  - type: DynamicRuleCost
+    cost: 100
   - type: AntagRandomObjectives
     sets:
     - groups: BloodBoundObjectiveGroups
