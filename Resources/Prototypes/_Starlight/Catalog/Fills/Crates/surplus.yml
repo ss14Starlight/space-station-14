@@ -360,10 +360,8 @@
       weight: .02
     - id: FoodMeatDragon
       weight: .02
-    - id: MobSovietComradeBrokenBottle
-      weight: .01
     - id: WeaponTurretPointDefenseMachineCircuitboard
-      amount: 2
+      amount: 3
       weight: .1
     - id: WeaponSPKA
       weight: .3
