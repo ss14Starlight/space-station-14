@@ -1,6 +1,7 @@
 using Content.Shared._Starlight.Medical.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Prototypes;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
@@ -108,7 +109,8 @@ public sealed partial class OrganMissingSystem : EntitySystem
 
         var containerId = SharedBodySystem.GetOrganContainerId(missingOrgan.OrganSlot);
         return !_containers.TryGetContainer(bodyPart.Id, containerId, out var container)
-            || container.ContainedEntities.Count == 0;
+            || container.ContainedEntities.Count == 0
+            || !HasComp<OrganComponent>(container.ContainedEntities[0]);
     }
 
     private (EntityUid Id, BodyPartComponent Component)? GetBodyPartForSlot(

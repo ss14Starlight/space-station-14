@@ -6,6 +6,7 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 
@@ -28,6 +29,9 @@ public sealed class OrganMissingTest : GameTest
   - type: MobState
     allowedStates:
     - Alive
+- type: entity
+  id: OrganMissingTestItem
+  parent: BaseItem
 ";
 
     [Test]
@@ -38,6 +42,7 @@ public sealed class OrganMissingTest : GameTest
         var entityManager = server.ResolveDependency<IEntityManager>();
         var prototypeManager = server.ResolveDependency<IPrototypeManager>();
         var bodySystem = entityManager.System<SharedBodySystem>();
+        var containerSystem = entityManager.System<SharedContainerSystem>();
         var damageable = entityManager.System<DamageableSystem>();
         var map = await pair.CreateTestMap();
 
@@ -58,6 +63,8 @@ public sealed class OrganMissingTest : GameTest
             Assert.That(bodySystem.TryGetOrgansWithComponent<OrganHeartComponent>(body, out var hearts), Is.True);
             Assert.That(bodySystem.TryGetOrgansWithComponent<OrganLiverComponent>(body, out var livers), Is.True);
             Assert.That(bodySystem.TryGetOrgansWithComponent<OrganKidneysComponent>(body, out var kidneys), Is.True);
+            var heartId = hearts![0].Owner;
+            Assert.That(containerSystem.TryGetContainingContainer((heartId, null, null), out var heartContainer), Is.True);
             Assert.Multiple(() =>
             {
                 Assert.That(bodySystem.RemoveOrgan(hearts![0], entityManager.GetComponent<OrganComponent>(hearts[0])),
@@ -67,6 +74,9 @@ public sealed class OrganMissingTest : GameTest
                 Assert.That(bodySystem.RemoveOrgan(kidneys![0], entityManager.GetComponent<OrganComponent>(kidneys[0])),
                     Is.True);
             });
+
+            var replacement = entityManager.SpawnEntity("OrganMissingTestItem", map.MapCoords);
+            Assert.That(containerSystem.Insert(replacement, heartContainer!), Is.True);
         });
 
         await PoolManager.WaitUntil(server, () => damageable.GetTotalDamage(body) > FixedPoint2.Zero);
