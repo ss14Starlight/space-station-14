@@ -43,3 +43,6 @@ roles-antag-blood-bound-objective = On behalf of Nar'Sie, collaborate with your 
 blood-bound-convert-failed-bound = You have already taken your blood oath.
 
 objective-condition-blood-bound-progress-title = Help {$targetName} accomplish their objectives.
+
+objective-condition-blood-bound-steal-description = We need to get the {$itemName}.
+objective-condition-blood-bound-steal-multiply-description = We need to get {$count} {MAKEPLURAL($itemName)}.

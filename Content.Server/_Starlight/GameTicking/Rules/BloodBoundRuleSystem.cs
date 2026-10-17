@@ -114,6 +114,7 @@ public sealed partial class BloodBoundRuleSystem : GameRuleSystem<BloodBoundRule
         {
             BloodBoundIcon = originalComponent.BloodBoundIcon,
             BloodBoundFaction = originalComponent.BloodBoundFaction,
+            EscapeObjective = originalComponent.EscapeObjective,
         };
         AddComp(args.Target, convertedComp);
 
@@ -139,6 +140,8 @@ public sealed partial class BloodBoundRuleSystem : GameRuleSystem<BloodBoundRule
         _bloodBound.FinishRecruitment(entity);
         Dirty(entity, originalComponent);
         Dirty(args.Target, convertedComp);
+
+        _mindSystem.TryAddObjective(targetMindId, targetMind, entity.Comp.EscapeObjective);
 
         if (!_objectivesSystem.TryCreateObjective((targetMindId, targetMind),
                 entity.Comp.AssistObjective,

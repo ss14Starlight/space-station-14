@@ -56,6 +56,9 @@ public sealed partial class BloodBoundComponent : Component
     [DataField]
     public EntProtoId<ObjectiveComponent> AssistObjective = "BloodBoundAssistObjective";
 
+    [DataField(required: true)]
+    public EntProtoId<ObjectiveComponent> EscapeObjective;
+
     [DataField]
     public LocId BriefingText = "blood-bound-role-greeting";
 

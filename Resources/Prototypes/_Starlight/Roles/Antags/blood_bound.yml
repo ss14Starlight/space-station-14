@@ -21,5 +21,6 @@
   components:
   - type: BloodBound
     canRecruit: true
+    escapeObjective: BloodBoundEscapeShuttleObjective
   mindRoles:
   - MindRoleBloodBound
