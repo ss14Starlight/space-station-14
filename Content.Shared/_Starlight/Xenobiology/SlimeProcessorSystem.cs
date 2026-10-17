@@ -45,8 +45,10 @@ public sealed partial class SlimeProcessorSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        var itemVerb = new InteractionVerb();
-        itemVerb.Text = Loc.GetString("comp-slime-processor-verb-activate");
+        var itemVerb = new InteractionVerb
+        {
+            Text = Loc.GetString("comp-slime-processor-verb-activate"),
+        };
         if (CanActivate(ent))
         {
             itemVerb.Message = Loc.GetString("comp-slime-processor-verb-activate-message-success");
