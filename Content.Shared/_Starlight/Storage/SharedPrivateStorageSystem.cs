@@ -151,16 +151,10 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
         var privateStorage = CompOrNull<PrivateStorageComponent>(uid);
         var delay = privateStorage?.AccessDelay ?? ImplantedStorageAccessDelay;
         var popup = privateStorage?.AccessPopup ?? (LocId) "implanted-storage-accessing";
-        StartPrivateStorageAccess(uid, owner, user, delay, popup, cancelDuplicate: false);
+        StartPrivateStorageAccess(uid, owner, user, delay, popup);
     }
 
-    private void StartPrivateStorageAccess(
-        EntityUid uid,
-        EntityUid owner,
-        EntityUid user,
-        TimeSpan delay,
-        LocId accessPopup,
-        bool cancelDuplicate = true)
+    private void StartPrivateStorageAccess(EntityUid uid, EntityUid owner, EntityUid user, TimeSpan delay, LocId accessPopup)
     {
         // If the user is the owner of the storage, grant immediate access
         if (owner == user)
@@ -172,20 +166,20 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
             return;
         }
 
-        // Body-context storage shares a target, so only one access attempt can run on that body at a time.
+        // For other users, require DoAfter with delay
         var doAfterArgs = new DoAfterArgs(EntityManager, user, delay,
-            new PrivateStorageDoAfterEvent(), uid, target: owner)
+            new PrivateStorageDoAfterEvent(), uid, target: owner, used: uid)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
             NeedHand = false,
             RequireCanInteract = true,
             BlockDuplicate = true,
-            CancelDuplicate = cancelDuplicate
+            CancelDuplicate = true
         };
 
-        if (_doAfter.TryStartDoAfter(doAfterArgs))
-            _popup.PopupEntity(Loc.GetString(accessPopup, ("user", user)), owner, owner, PopupType.Medium);
+        _popup.PopupEntity(Loc.GetString(accessPopup, ("user", user)), owner, owner, PopupType.Medium);
+        _doAfter.TryStartDoAfter(doAfterArgs);
     }
 
     private bool IsContainedBy(EntityUid entity, EntityUid owner)
