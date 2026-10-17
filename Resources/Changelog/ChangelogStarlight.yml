@@ -1,13 +1,6 @@
 Entries:
 - author: STARLIGHT TEAM
   changes:
-  - message: Added a bunch of pride flags.
-    type: Add
-  id: 409166
-  time: '2026-10-05T06:14:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6439
-- author: STARLIGHT TEAM
-  changes:
   - message: Made all wall-mounted flags craftable.
     type: Add
   id: 409167
@@ -2883,4 +2876,11 @@ Entries:
   id: 409565
   time: '2026-10-17T12:07:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6722
+- author: Johnny
+  changes:
+  - message: Changed the enemies in the USSP expedition to be better equipped.
+    type: Tweak
+  id: 409566
+  time: '2026-10-17T13:01:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6731
 Order: -1
