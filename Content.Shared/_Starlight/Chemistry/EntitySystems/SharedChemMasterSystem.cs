@@ -55,7 +55,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
         SubscribeLocalEvent<ChemMasterComponent, ChemMasterSetTransferAmountMessage>(OnSetTransferAmountMessage); // TRIESTE
     }
 
-    protected virtual void UpdateUi(Entity<ChemMasterComponent> ent, bool updateLabel = false)
+    protected virtual void UpdateUi(Entity<ChemMasterComponent> ent, ChemMasterUIDirtyFlags flags)
     {
     }
 
@@ -66,7 +66,8 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
             return;
 
         chemMaster.Comp.Mode = message.ChemMasterMode;
-        UpdateUi(chemMaster);
+        Dirty(chemMaster);
+        UpdateUi(chemMaster, ChemMasterUIDirtyFlags.Settings);
         ClickSound(chemMaster, message.Actor);
     }
 
@@ -75,7 +76,8 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
         chemMaster.Comp.SortingType++;
         if (chemMaster.Comp.SortingType > ChemMasterSortingType.Latest)
             chemMaster.Comp.SortingType = ChemMasterSortingType.None;
-        UpdateUi(chemMaster);
+        Dirty(chemMaster);
+        UpdateUi(chemMaster, ChemMasterUIDirtyFlags.Settings);
         ClickSound(chemMaster, message.Actor);
     }
 
@@ -86,7 +88,8 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
             return;
 
         chemMaster.Comp.PillType = message.PillType;
-        UpdateUi(chemMaster);
+        Dirty(chemMaster);
+        UpdateUi(chemMaster, ChemMasterUIDirtyFlags.Settings);
         ClickSound(chemMaster, message.Actor);
     }
 
@@ -119,7 +122,8 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
             return;
 
         chemMaster.Comp.DrawSource = message.DrawSource;
-        UpdateUi(chemMaster);
+        Dirty(chemMaster);
+        UpdateUi(chemMaster, ChemMasterUIDirtyFlags.Settings);
         ClickSound(chemMaster, message.Actor);
     }
 
@@ -145,8 +149,6 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
             _solutionContainerSystem.RemoveReagent(containerSoln.Value, id, amount);
             _solutionContainerSystem.TryAddReagent(bufferSoln.Value, id, amount, out _);
         }
-
-        UpdateUi(chemMaster, updateLabel: true);
     }
 
     private void DiscardReagents(Entity<ChemMasterComponent> chemMaster, ReagentId id, FixedPoint2 amount, bool fromBuffer)
@@ -169,8 +171,6 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
             else
                 return;
         }
-
-        UpdateUi(chemMaster, updateLabel: fromBuffer);
     }
 
     private void OnCreatePillsMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterCreatePillsMessage message)
@@ -224,7 +224,6 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
             _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(user):user} printed {ToPrettyString(item):pill} {SharedSolutionContainerSystem.ToPrettyString(itemSolution.Comp.Solution)}");
         }
 
-        UpdateUi(chemMaster);
         ClickSound(chemMaster, message.Actor);
     }
 
@@ -256,7 +255,6 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
         _adminLogger.Add(LogType.Action, LogImpact.Low,
             $"{ToPrettyString(user):user} bottled {ToPrettyString(container):bottle} {SharedSolutionContainerSystem.ToPrettyString(solution)}");
 
-        UpdateUi(chemMaster);
         ClickSound(chemMaster, message.Actor);
     }
 
@@ -397,7 +395,6 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
             _solutionContainerSystem.TryAddSolution(itemSolution, withdrawal.SplitSolution(message.Dosage));
         }
 
-        UpdateUi(chemMaster);
         ClickSound(chemMaster, message.Actor);
     }
 
@@ -408,7 +405,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
 
         plumbingOutlet.Enabled = !plumbingOutlet.Enabled;
         Dirty(chemMaster.Owner, plumbingOutlet);
-        UpdateUi(chemMaster);
+        UpdateUi(chemMaster, ChemMasterUIDirtyFlags.PlumbingOutput);
         ClickSound(chemMaster, message.Actor);
     }
 
@@ -421,7 +418,8 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
             return;
 
         chemMaster.Comp.TransferAmount = message.Amount;
-        UpdateUi(chemMaster);
+        Dirty(chemMaster);
+        UpdateUi(chemMaster, ChemMasterUIDirtyFlags.Settings);
         ClickSound(chemMaster, message.Actor);
     }
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Serialization;
@@ -144,6 +145,66 @@ public sealed partial class ContainerInfo(string displayName, FixedPoint2 curren
     public NetEntity? Uid;
 
     public List<ReagentQuantity>? Reagents { get; init; }
+
+    /// <summary>
+    /// A list of the patch entities and their sizes within the container
+    /// STARLIGHT: Added specifically for patches
+    /// </summary>
+    public List<(string Id, FixedPoint2 Quantity)>? PatchEntities { get; init; }
+
+    public ContainerInfo DeepClone() => new(DisplayName, CurrentVolume, MaxVolume)
+    {
+        Uid = Uid,
+        ContainerLabel = ContainerLabel,
+        Reagents = Reagents == null ? null : new(Reagents),
+        PatchEntities = PatchEntities == null ? null : new(PatchEntities),
+        PillEntities = PillEntities == null ? null : new(PillEntities),
+    };
+
+    public static bool DeepEquals(ContainerInfo? a, ContainerInfo? b)
+    {
+        if (a == null || b == null)
+            return a == null && b == null;
+
+        if (a.DisplayName != b.DisplayName ||
+            a.CurrentVolume != b.CurrentVolume ||
+            a.MaxVolume != b.MaxVolume ||
+            a.ContainerLabel != b.ContainerLabel ||
+            a.Uid != b.Uid)
+        {
+            return false;
+        }
+
+        if (a.Reagents != null && b.Reagents != null)
+        {
+            if (a.Reagents.Count != b.Reagents.Count)
+                return false;
+
+            for (int i = 0; i < a.Reagents.Count; i++)
+            {
+                if (a.Reagents[i] != b.Reagents[i])
+                    return false;
+            }
+        }
+        else if (a.Reagents != null || b.Reagents != null)
+            return false;
+
+        if (a.PillEntities != null && b.PillEntities != null)
+        {
+            if (a.PillEntities.Count != b.PillEntities.Count)
+                return false;
+
+            for (int i = 0; i < a.PillEntities.Count; i++)
+            {
+                if (a.PillEntities[i] != b.PillEntities[i])
+                    return false;
+            }
+        }
+        else if (a.PillEntities != null || b.PillEntities != null)
+            return false;
+
+        return true;
+    }
 }
 
 [Serializable, NetSerializable]
@@ -172,19 +233,6 @@ public sealed class ChemMasterReagentCustomAmountButtonMessage(ReagentId reagent
     public readonly ReagentId ReagentId = reagentId;
     public readonly FixedPoint2 Amount = amount;
     public readonly bool FromBuffer = fromBuffer;
-}
-
-/// <summary>
-/// Information about the capacity and contents of a container for display in the UI
-/// </summary>
-public sealed partial class ContainerInfo
-{
-
-    /// <summary>
-    /// A list of the patch entities and their sizes within the container
-    /// STARLIGHT: Added specifically for patches
-    /// </summary>
-    public List<(string Id, FixedPoint2 Quantity)>? PatchEntities { get; init; }
 }
 
 /// TRIESTE SPECIFIC

@@ -16,7 +16,7 @@ public abstract partial class SharedPlumbingOutputSystem : EntitySystem
 
     private void OnPlumbingOutputState(Entity<PlumbingOutletComponent> ent, ref AfterAutoHandleStateEvent ev)
     {
-        PlumbingOutputChangedEvent ev2 = new(ent.Comp.Enabled);
+        PlumbingOutputAutoStateEvent ev2 = new(ent.Comp.Enabled);
         RaiseLocalEvent(ent.Owner, ref ev2);
     }
 }

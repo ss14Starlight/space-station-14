@@ -28,7 +28,7 @@ public sealed partial class ReagentDispenserSystem : SharedReagentDispenserSyste
         SubscribeLocalEvent<ReagentDispenserComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUi, after: [typeof(SharedStorageSystem)]);
         SubscribeLocalEvent<ReagentDispenserComponent, PowerChangedEvent>(SubscribeUpdateUi);
         SubscribeLocalEvent<ReagentDispenserComponent, AfterAutoHandleStateEvent>(SubscribeUpdateUi);
-        SubscribeLocalEvent<ReagentDispenserComponent, PlumbingOutputChangedEvent>(SubscribeUpdateUi);
+        SubscribeLocalEvent<ReagentDispenserComponent, PlumbingOutputAutoStateEvent>(SubscribeUpdateUi);
     }
 
     private void SubscribeUpdateUi<T>(Entity<ReagentDispenserComponent> ent, ref T ev) => UpdateUi(ent);

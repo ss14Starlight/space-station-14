@@ -25,21 +25,26 @@ public sealed partial class ChemMasterSystem : SharedChemMasterSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ChemMasterComponent, ComponentStartup>(SubscribeUpdateUiState);
-        SubscribeLocalEvent<ChemMasterComponent, SolutionChangedEvent>(SubscribeUpdateUiState);
-        SubscribeLocalEvent<ChemMasterComponent, EntInsertedIntoContainerMessage>(SubscribeUpdateUiState);
-        SubscribeLocalEvent<ChemMasterComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUiState);
-        SubscribeLocalEvent<ChemMasterComponent, BoundUIOpenedEvent>(SubscribeUpdateUiState);
-        SubscribeLocalEvent<ChemMasterComponent, DragDropTargetEvent>(SubscribeUpdateUiState); // TRIESTE
-        SubscribeLocalEvent<ChemMasterComponent, AfterAutoHandleStateEvent>(SubscribeUpdateUiState);
-        SubscribeLocalEvent<ChemMasterComponent, PlumbingOutputChangedEvent>(SubscribeUpdateUiState);
+        SubscribeUpdateUi<ComponentStartup>(ChemMasterUIDirtyFlags.All);
+        SubscribeUpdateUi<SolutionChangedEvent>(ChemMasterUIDirtyFlags.Solutions);
+        SubscribeUpdateUi<EntInsertedIntoContainerMessage>(ChemMasterUIDirtyFlags.Inventory);
+        SubscribeUpdateUi<EntRemovedFromContainerMessage>(ChemMasterUIDirtyFlags.Inventory);
+        SubscribeUpdateUi<BoundUIOpenedEvent>(ChemMasterUIDirtyFlags.All);
+        SubscribeUpdateUi<DragDropTargetEvent>(ChemMasterUIDirtyFlags.All); // TRIESTE
+        SubscribeUpdateUi<AfterAutoHandleStateEvent>(ChemMasterUIDirtyFlags.Settings);
+        SubscribeUpdateUi<PlumbingOutputAutoStateEvent>(ChemMasterUIDirtyFlags.PlumbingOutput);
     }
 
-    private void SubscribeUpdateUiState<T>(Entity<ChemMasterComponent> ent, ref T ev) => UpdateUi(ent);
+    private void SubscribeUpdateUi<TEvent>(ChemMasterUIDirtyFlags flags) where TEvent : notnull
+    {
+        void ChemMasterUiUpdateHandler(Entity<ChemMasterComponent> ent, ref TEvent ev) => UpdateUi(ent, flags);
 
-    protected override void UpdateUi(Entity<ChemMasterComponent> ent, bool updateLabel = false)
+        SubscribeLocalEvent<ChemMasterComponent, TEvent>(ChemMasterUiUpdateHandler);
+    }
+
+    protected override void UpdateUi(Entity<ChemMasterComponent> ent, ChemMasterUIDirtyFlags flags)
     {
         if (_userInterfaceSystem.TryGetOpenUi(ent.Owner, ChemMasterUiKey.Key, out ModernChemMasterBui? bui))
-            bui.Update(updateLabel);
+            bui.Update(flags);
     }
 }

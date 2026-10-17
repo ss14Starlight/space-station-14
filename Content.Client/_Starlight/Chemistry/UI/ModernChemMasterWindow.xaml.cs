@@ -23,6 +23,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
 
@@ -59,6 +60,8 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     };
 
     private static readonly Vector2 _classicMinSize = new(666, 670);
+
+    // Static since if you selected it, you probably want this. Dunno why though.
     private static bool _classicMode;
 
     [Dependency] private IPrototypeManager _prototypeManager = default!;
@@ -76,8 +79,15 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     private NetEntity? _lastOutputContainer;
     private ChemMasterReagentAmount _selectedAmount = ChemMasterReagentAmount.U5;
     private EntityUid _owner;
+    private ChemMasterUIDirtyFlags _dirtyFlags = ChemMasterUIDirtyFlags.All;
 
-    // Static since if you selected it, you probably want this. Dunno why though.
+    private ChemMasterSortingType? _sortingType;
+    private ChemMasterMode? _mode;
+    private ChemMasterDrawSource? _drawSource;
+    private ContainerInfo? _prevInputContainerInfo;
+    private List<ReagentQuantity> _prevBufferContents = [];
+    private ContainerInfo? _prevOutputContainerInfo;
+
     private bool _settingContainerLabelProgrammatically;
 
     // Reset stored custom amount on reconnect or new round
@@ -324,7 +334,18 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         SyncGrid(AmountGrid);
     }
 
-    public void UpdateData(bool updateLabel)
+    public void DirtyData(ChemMasterUIDirtyFlags flags) => _dirtyFlags |= flags;
+
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        if (_dirtyFlags != 0)
+        {
+            UpdateData(_dirtyFlags);
+            _dirtyFlags = 0;
+        }
+    }
+
+    private void UpdateData(ChemMasterUIDirtyFlags flags)
     {
         var owner = _owner;
         if (!owner.IsValid() || !_entityManager.TryGetComponent<ChemMasterComponent>(owner, out var chemMaster))
@@ -333,97 +354,194 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         if (!_solutionContainerSystem.TryGetSolution(owner, SharedChemMaster.BufferSolutionName, out _, out var bufferSolution))
             return;
 
-        var inputContainer = _itemSlotsSystem.GetItemOrNull(owner, SharedChemMaster.InputSlotName);
-        var outputContainer = _itemSlotsSystem.GetItemOrNull(owner, SharedChemMaster.OutputSlotName);
-        var inputContainerInfo = BuildInputContainerInfo(inputContainer);
-        var outputContainerInfo = BuildOutputContainerInfo(outputContainer);
+        bool outputSourceChanged = false;
+        bool bufferReagentsDirty = false;
 
-        var bufferReagents = bufferSolution.Contents;
-        var bufferCurrentVolume = bufferSolution.Volume;
-
-        SetSelectedAmount(chemMaster.TransferAmount);
-
-        if (updateLabel)
+        if ((flags & ChemMasterUIDirtyFlags.Settings) != 0)
         {
-            var reagents = chemMaster.DrawSource switch
-            {
-                ChemMasterDrawSource.Internal => bufferReagents,
-                ChemMasterDrawSource.External => inputContainerInfo?.Reagents ?? [],
-                _ => throw new($"Chemmaster {outputContainerInfo} draw source is not set"),
-            };
+            // PillType
+            PillTypeButtons[chemMaster.PillType].Pressed = true;
+            PillTypeButtonsClassic[chemMaster.PillType].Pressed = true;
 
-            if (reagents.Count == 0)
-                LabelLine = string.Empty;
-            else
+            // Mode
+            if (chemMaster.Mode != _mode)
             {
-                var reagent = reagents.MinBy(r => r.Quantity).Reagent;
-                _prototypeManager.TryIndex(reagent.Prototype, out var proto);
-                LabelLine = proto?.LocalizedName ?? string.Empty;
+                _mode = chemMaster.Mode;
+                BufferTransferButton.Pressed = chemMaster.Mode == ChemMasterMode.Transfer;
+                BufferDiscardButton.Pressed = chemMaster.Mode == ChemMasterMode.Discard;
+                BufferTransferButtonClassic.Pressed = chemMaster.Mode == ChemMasterMode.Transfer;
+                BufferDiscardButtonClassic.Pressed = chemMaster.Mode == ChemMasterMode.Discard;
+            }
+
+            // SortingType
+            if (chemMaster.SortingType != _sortingType)
+            {
+                _sortingType = chemMaster.SortingType;
+                var sortLabel = chemMaster.SortingType switch
+                {
+                    ChemMasterSortingType.Alphabetical => Loc.GetString("chem-master-window-sort-type-alphabetical"),
+                    ChemMasterSortingType.Quantity => Loc.GetString("chem-master-window-sort-type-quantity"),
+                    ChemMasterSortingType.Latest => Loc.GetString("chem-master-window-sort-type-latest"),
+                    _ => Loc.GetString("chem-master-window-sort-type-none"),
+                };
+
+                BufferSortButton.Text = sortLabel;
+                BufferSortButtonClassic.Text = sortLabel;
+
+                bufferReagentsDirty = true;
+            }
+
+            // DrawSource
+            if (chemMaster.DrawSource != _drawSource)
+            {
+                _drawSource = chemMaster.DrawSource;
+
+                OutputBufferDraw.Pressed = chemMaster.DrawSource == ChemMasterDrawSource.Internal;
+                OutputBeakerDraw.Pressed = chemMaster.DrawSource == ChemMasterDrawSource.External;
+                OutputBufferDrawClassic.Pressed = chemMaster.DrawSource == ChemMasterDrawSource.Internal;
+                OutputBeakerDrawClassic.Pressed = chemMaster.DrawSource == ChemMasterDrawSource.External;
+
+                outputSourceChanged = true;
+            }
+
+            // TransferAmount
+            SetSelectedAmount(chemMaster.TransferAmount);
+        }
+
+        // inputContainer is the inserted beaker
+        if ((flags & (ChemMasterUIDirtyFlags.Solutions | ChemMasterUIDirtyFlags.Inventory)) != 0)
+        {
+            var inputContainer = _itemSlotsSystem.GetItemOrNull(owner, SharedChemMaster.InputSlotName);
+            var inputContainerInfo = BuildInputContainerInfo(inputContainer);
+
+            if (!ContainerInfo.DeepEquals(inputContainerInfo, _prevInputContainerInfo))
+            {
+                _prevInputContainerInfo = inputContainerInfo?.DeepClone();
+
+                // beaker view in modern and classic UIs
+                BuildContainerUI(InputContainerInfo, inputContainerInfo, true, modernMode: true);
+                BuildContainerUI(InputContainerInfoClassic, inputContainerInfo, true, modernMode: false);
+
+                // output tab view should update when source is set to external
+                if (chemMaster.DrawSource == ChemMasterDrawSource.External)
+                {
+                    outputSourceChanged = true;
+                }
+
+                InputEjectButton.Disabled = inputContainerInfo is null;
+                InputEjectButtonClassic.Disabled = inputContainerInfo is null;
             }
         }
 
-        // when a different pill bottle / patch box is inserted,
-        // allow its container label to be populated again.
-        var currentContainer = outputContainerInfo?.Uid;
-        if (currentContainer != _lastOutputContainer)
+        // buffer UI
+        if (bufferReagentsDirty || (flags & ChemMasterUIDirtyFlags.Solutions) != 0)
         {
-            _lastOutputContainer = currentContainer;
-            _containerLabelManuallySet = false;
-            ContainerLabelLine = "";
+            var bufferReagents = bufferSolution.Contents;
+            var bufferCurrentVolume = bufferSolution.Volume;
+
+            static bool ReagentsEqual(List<ReagentQuantity>? a, List<ReagentQuantity>? b)
+            {
+                if (a == null || b == null)
+                    return a == b;
+
+                if (a.Count != b.Count) return false;
+
+                for (int i = 0; i < a.Count; i++)
+                {
+                    if (a[i] != b[i]) return false;
+                }
+
+                return true;
+            }
+
+            if (!ReagentsEqual(bufferReagents, _prevBufferContents))
+            {
+                _prevBufferContents ??= [];
+                _prevBufferContents.Clear();
+                _prevBufferContents.AddRange(bufferReagents);
+
+                BuildBufferUi(chemMaster, bufferSolution);
+
+                if (chemMaster.DrawSource == ChemMasterDrawSource.Internal)
+                {
+                    outputSourceChanged = true;
+                }
+            }
         }
 
-        // Until the user explicitly changes the container label, keep it
-        // synchronized with either the existing container label or the
-        // automatically generated item label.
-        if (outputContainerInfo is not null &&
-            !_containerLabelManuallySet)
+        // the output source is either the buffer or beaker, depending on the mode
+        if (outputSourceChanged)
         {
-            var existingLabel = outputContainerInfo.ContainerLabel;
-
-            ContainerLabelLine = !string.IsNullOrEmpty(existingLabel)
-                ? existingLabel
-                : LabelLine;
+            // the original code passed modern: false to both, including the modern...
+            // gonna just leave it as it is for now
+            BuildOutputLeftContainer(OutputInputContainerInfo, chemMaster, bufferSolution, _prevInputContainerInfo, modernMode: false);
+            BuildOutputLeftContainer(OutputInputContainerInfoClassic, chemMaster, bufferSolution, _prevInputContainerInfo, modernMode: false);
         }
 
-        UpdatePanelInfo(chemMaster, inputContainerInfo, outputContainerInfo, bufferSolution);
-
-        // Keep both layouts in sync with the server state.
-        InputEjectButton.Disabled = inputContainerInfo is null;
-        InputEjectButtonClassic.Disabled = inputContainerInfo is null;
-
-        OutputEjectButton.Disabled = outputContainerInfo is null;
-        OutputEjectButtonClassic.Disabled = outputContainerInfo is null;
-
-        var output = outputContainerInfo;
-        var bottleFull = output?.Reagents != null && output.CurrentVolume >= output.MaxVolume;
-        var pillFull = output?.PillEntities != null && output.CurrentVolume >= output.MaxVolume;
-        var patchFull = output?.PatchEntities != null && output.CurrentVolume >= output.MaxVolume;
-
-        CreateBottleButton.Disabled = outputContainerInfo?.Reagents == null || bottleFull;
-        CreateBottleButtonClassic.Disabled = outputContainerInfo?.Reagents == null || bottleFull;
-        CreateBottleButton.ToolTip = !CreateBottleButton.Disabled ? null : bottleFull ? Loc.GetString("chem-master-window-create-bottle-full-tooltip") : Loc.GetString("chem-master-window-create-bottle-tooltip");
-        CreateBottleButtonClassic.ToolTip = !CreateBottleButtonClassic.Disabled ? null : bottleFull ? Loc.GetString("chem-master-window-create-bottle-full-tooltip") : Loc.GetString("chem-master-window-create-bottle-tooltip");
-
-        CreatePillButton.Disabled = outputContainerInfo?.PillEntities == null || pillFull;
-        CreatePillButtonClassic.Disabled = outputContainerInfo?.PillEntities == null || pillFull;
-        CreatePillButton.ToolTip = !CreatePillButton.Disabled ? null : pillFull ? Loc.GetString("chem-master-window-create-pill-full-tooltip") : Loc.GetString("chem-master-window-create-pill-tooltip");
-        CreatePillButtonClassic.ToolTip = !CreatePillButtonClassic.Disabled ? null : pillFull ? Loc.GetString("chem-master-window-create-pill-full-tooltip") : Loc.GetString("chem-master-window-create-pill-tooltip");
-
-        CreatePatchButton.Disabled = outputContainerInfo?.PatchEntities == null || patchFull;
-        CreatePatchButtonClassic.Disabled = outputContainerInfo?.PatchEntities == null || patchFull;
-        CreatePatchButton.ToolTip = !CreatePatchButton.Disabled ? null : patchFull ? Loc.GetString("chem-master-window-create-patch-full-tooltip") : Loc.GetString("chem-master-window-create-patch-tooltip");
-        CreatePatchButtonClassic.ToolTip = !CreatePatchButtonClassic.Disabled ? null : patchFull ? Loc.GetString("chem-master-window-create-patch-full-tooltip") : Loc.GetString("chem-master-window-create-patch-tooltip");
-
-        var valveOpen = _entityManager.TryGetComponent<PlumbingOutletComponent>(owner, out var plumbingOutlet) && plumbingOutlet.Enabled;
-        var valveText = Loc.GetString(valveOpen
-            ? "chem-master-window-valve-open"
-            : "chem-master-window-valve-closed");
-
-        ValveButton.Text = valveText;
-        ValveButtonClassic.Text = valveText;
-
-        // Update Dosage Fields
+        // the output container is the inserted pill bottle, patch pack or bottle
+        bool outputContainerChanged = false;
+        if ((flags & ChemMasterUIDirtyFlags.Inventory) != 0)
         {
+            var outputContainer = _itemSlotsSystem.GetItemOrNull(owner, SharedChemMaster.OutputSlotName);
+            var outputContainerInfo = BuildOutputContainerInfo(outputContainer);
+
+            if (!ContainerInfo.DeepEquals(outputContainerInfo, _prevOutputContainerInfo))
+            {
+                outputContainerChanged = true;
+
+                _prevOutputContainerInfo = outputContainerInfo?.DeepClone();
+
+                // when a different pill bottle / patch box is inserted,
+                // allow its container label to be populated again.
+                var currentContainer = outputContainerInfo?.Uid;
+                if (currentContainer != _lastOutputContainer)
+                {
+                    _lastOutputContainer = currentContainer;
+                    _containerLabelManuallySet = false;
+                    ContainerLabelLine = "";
+                }
+
+                // Until the user explicitly changes the container label, keep it
+                // synchronized with either the existing container label or the
+                // automatically generated item label.
+                if (outputContainerInfo is not null &&
+                    !_containerLabelManuallySet)
+                {
+                    var existingLabel = outputContainerInfo.ContainerLabel;
+
+                    ContainerLabelLine = !string.IsNullOrEmpty(existingLabel)
+                        ? existingLabel
+                        : LabelLine;
+                }
+
+                BuildContainerUI(OutputContainerInfo, outputContainerInfo, false, modernMode: true, "chem-master-window-no-output-container-loaded-text", truncateName: false);
+                BuildContainerUI(OutputContainerInfoClassic, outputContainerInfo, false, modernMode: false, "chem-master-window-no-output-container-loaded-text", truncateName: false);
+
+                OutputEjectButton.Disabled = OutputEjectButtonClassic.Disabled = outputContainerInfo is null;
+
+                var containerFull = outputContainerInfo != null && outputContainerInfo.CurrentVolume >= outputContainerInfo.MaxVolume;
+                var bottleFull = outputContainerInfo?.Reagents != null && containerFull;
+                var pillFull = outputContainerInfo?.PillEntities != null && containerFull;
+                var patchFull = outputContainerInfo?.PatchEntities != null && containerFull;
+
+                CreateBottleButton.Disabled = CreateBottleButtonClassic.Disabled = outputContainerInfo?.Reagents == null || bottleFull;
+                CreateBottleButton.ToolTip = CreateBottleButtonClassic.ToolTip = !CreateBottleButton.Disabled ? null : bottleFull ?
+                    Loc.GetString("chem-master-window-create-bottle-full-tooltip") : Loc.GetString("chem-master-window-create-bottle-tooltip");
+
+                CreatePillButton.Disabled = CreatePillButtonClassic.Disabled = outputContainerInfo?.PillEntities == null || pillFull;
+                CreatePillButton.ToolTip = CreatePillButtonClassic.ToolTip = !CreatePillButton.Disabled ? null : pillFull ?
+                    Loc.GetString("chem-master-window-create-pill-full-tooltip") : Loc.GetString("chem-master-window-create-pill-tooltip");
+
+                CreatePatchButton.Disabled = CreatePatchButtonClassic.Disabled = outputContainerInfo?.PatchEntities == null || patchFull;
+                CreatePatchButton.ToolTip = CreatePatchButtonClassic.ToolTip = !CreatePatchButton.Disabled ? null : patchFull ?
+                    Loc.GetString("chem-master-window-create-patch-full-tooltip") : Loc.GetString("chem-master-window-create-patch-tooltip");
+            }
+        }
+
+        // dosage calculations
+        if (outputContainerChanged || outputSourceChanged)
+        {
+            var output = _prevOutputContainerInfo;
             var remainingCapacity = output is null ? 0 : (output.MaxVolume - output.CurrentVolume).Int();
             var holdsReagents = output?.Reagents != null;
             var itemNumberMax = holdsReagents ? 0 : remainingCapacity;
@@ -431,15 +549,13 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             var outputVolume = chemMaster.DrawSource switch
             {
                 ChemMasterDrawSource.Internal => bufferSolution.Volume.Int(),
-                ChemMasterDrawSource.External => inputContainerInfo?.CurrentVolume.Int() ?? 0,
+                ChemMasterDrawSource.External => _prevInputContainerInfo?.CurrentVolume.Int() ?? 0,
                 _ => 0,
             };
 
             // Modern layout.
             PillDosage.Value = (int)Math.Min(outputVolume, chemMaster.PillDosageLimit);
             PatchDosage.Value = (int)Math.Min(outputVolume, chemMaster.PatchDosageLimit);
-            PillTypeButtons[chemMaster.PillType].Pressed = true;
-            PillTypeButtonsClassic[chemMaster.PillType].Pressed = true;
 
             PillNumber.IsValid = x => x >= 0 && x <= itemNumberMax;
             PillDosage.IsValid = x => x > 0 && x <= chemMaster.PillDosageLimit;
@@ -473,6 +589,96 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                 : 0;
             BottleDosageClassic.Value = Math.Min(bottleAmountMax, outputVolume);
         }
+
+        // output valve toggle
+        if ((flags & ChemMasterUIDirtyFlags.PlumbingOutput) != 0)
+        {
+            var valveOpen = _entityManager.TryGetComponent<PlumbingOutletComponent>(owner, out var plumbingOutlet) && plumbingOutlet.Enabled;
+            var valveText = Loc.GetString(valveOpen
+                ? "chem-master-window-valve-open"
+                : "chem-master-window-valve-closed");
+
+            ValveButton.Text = valveText;
+            ValveButtonClassic.Text = valveText;
+        }
+
+        // output source is either the buffer or the beaker (input slot) depending on mode
+        if (outputSourceChanged)
+        {
+            var reagents = chemMaster.DrawSource switch
+            {
+                ChemMasterDrawSource.Internal => bufferSolution.Contents,
+                ChemMasterDrawSource.External => _prevInputContainerInfo?.Reagents ?? [],
+                _ => throw new($"Chemmaster {owner} draw source is not set"),
+            };
+
+            if (reagents.Count == 0)
+                LabelLine = string.Empty;
+            else
+            {
+                var reagent = reagents.MinBy(r => r.Quantity).Reagent;
+                _prototypeManager.TryIndex(reagent.Prototype, out var proto);
+                LabelLine = proto?.LocalizedName ?? string.Empty;
+            }
+        }
+    }
+
+    private void BuildBufferUi(ChemMasterComponent chemMaster, Solution bufferSolution)
+    {
+        BufferInfo.Children.Clear();
+        BufferInfoClassic.Children.Clear();
+
+        if (bufferSolution.Contents.Count == 0)
+        {
+            var emptyLabel = new Label { Text = Loc.GetString("chem-master-window-buffer-empty-text") };
+            var emptyLabelClassic = new Label { Text = Loc.GetString("chem-master-window-buffer-empty-text") };
+            BufferInfo.Children.Add(emptyLabel);
+            BufferInfoClassic.Children.Add(emptyLabelClassic);
+            return;
+        }
+
+        // Buffer volume header row
+        void AddBufferHeader(BoxContainer target)
+        {
+            var hbox = new BoxContainer { Orientation = LayoutOrientation.Horizontal };
+            hbox.AddChild(new Label { Text = $"{Loc.GetString("chem-master-window-buffer-label")} " });
+            hbox.AddChild(new Label
+            {
+                Text = $"{bufferSolution.Volume}u",
+                StyleClasses = { StyleClass.LabelWeak }
+            });
+            target.AddChild(hbox);
+        }
+        AddBufferHeader(BufferInfo);
+        AddBufferHeader(BufferInfoClassic);
+
+        var reagentList = new List<(ReagentId reagentId, string name, Color color, FixedPoint2 quantity)>();
+        foreach (var (reagent, quantity) in bufferSolution.Contents)
+        {
+            _prototypeManager.TryIndex(reagent.Prototype, out ReagentPrototype? proto);
+            var name = proto?.LocalizedName ?? Loc.GetString("chem-master-window-unknown-reagent-text");
+            var reagentColor = proto?.SubstanceColor ?? default(Color);
+            reagentList.Add((reagent, name, reagentColor, quantity));
+        }
+
+        reagentList = chemMaster.SortingType switch
+        {
+            ChemMasterSortingType.Alphabetical => reagentList.OrderBy(x => x.name).ToList(),
+            ChemMasterSortingType.Quantity => reagentList.OrderByDescending(x => x.quantity).ToList(),
+            ChemMasterSortingType.Latest => Enumerable.Reverse(reagentList).ToList(),
+            _ => reagentList
+        };
+
+        var rowCount = 0;
+        foreach (var (reagentId, name, color, quantity) in reagentList)
+        {
+            BufferInfo.Children.Add(BuildReagentRow(color, rowCount, name, reagentId, quantity, true, true, modernMode: true));
+            BufferInfoClassic.Children.Add(BuildReagentRow(color, rowCount, name, reagentId, quantity, true, true, modernMode: false));
+            rowCount++;
+        }
+
+        if (!string.IsNullOrEmpty(SearchBar.Text))
+            UpdateReagentPrototypes(SearchBar.Text);
     }
 
     /// <summary>
@@ -660,36 +866,40 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         }
     }
 
-    private void BuildOutputLeftContainer(Control control, ChemMasterComponent chemMaster, Solution solution, ContainerInfo? inputContainerInfo, bool modernMode)
+    private void BuildOutputLeftContainer(Control control, ChemMasterComponent chemMaster, Solution bufferSolution, ContainerInfo? inputContainerInfo, bool modernMode)
     {
         if (chemMaster.DrawSource == ChemMasterDrawSource.Internal)
         {
             // Show buffer contents when packaging from buffer
             control.Children.Clear();
-            if (solution.Contents.Count == 0)
+            if (bufferSolution.Contents.Count == 0)
             {
                 control.Children.Add(new Label { Text = Loc.GetString("chem-master-window-buffer-empty-text") });
                 return;
             }
+
             control.Children.Add(new BoxContainer
             {
                 Orientation = LayoutOrientation.Horizontal,
                 Children =
                 {
                     new Label { Text = $"{Loc.GetString("chem-master-window-buffer-label")} " },
-                    new Label { Text = $"{solution.Volume}u", StyleClasses = { StyleClass.LabelWeak } }
+                    new Label { Text = $"{bufferSolution.Volume}u", StyleClasses = { StyleClass.LabelWeak } }
                 }
             });
+
             var rowCount = 0;
-            foreach (var (reagent, quantity) in solution.Contents)
+            foreach (var (reagent, quantity) in bufferSolution.Contents)
             {
                 _prototypeManager.TryIndex(reagent.Prototype, out ReagentPrototype? proto);
                 var name = proto?.LocalizedName ?? Loc.GetString("chem-master-window-unknown-reagent-text");
                 control.Children.Add(BuildReagentRow(default, rowCount++, name, reagent, quantity, true, false, modernMode, truncateName: false));
             }
-            return;
         }
-        BuildContainerUI(control, inputContainerInfo, false, modernMode, "chem-master-window-no-input-container-loaded-text", truncateName: false);
+        else
+        {
+            BuildContainerUI(control, inputContainerInfo, false, modernMode, "chem-master-window-no-input-container-loaded-text", truncateName: false);
+        }
     }
 
     private Control BuildReagentRow(Color reagentColor, int rowCount, string name, ReagentId reagent, FixedPoint2 quantity, bool isBuffer, bool addReagentButtons, bool modernMode, bool truncateName = true)
@@ -910,91 +1120,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
     private void UpdatePanelInfo(ChemMasterComponent chemMaster, ContainerInfo? inputContainerInfo, ContainerInfo? outputContainerInfo, Solution solution)
     {
-        BufferTransferButton.Pressed = chemMaster.Mode == ChemMasterMode.Transfer;
-        BufferDiscardButton.Pressed = chemMaster.Mode == ChemMasterMode.Discard;
-        BufferTransferButtonClassic.Pressed = chemMaster.Mode == ChemMasterMode.Transfer;
-        BufferDiscardButtonClassic.Pressed = chemMaster.Mode == ChemMasterMode.Discard;
 
-        // Modern layout containers
-        BuildContainerUI(InputContainerInfo, inputContainerInfo, true, modernMode: true);
-        BuildContainerUI(OutputContainerInfo, outputContainerInfo, false, modernMode: true, "chem-master-window-no-output-container-loaded-text", truncateName: false);
-        BuildOutputLeftContainer(OutputInputContainerInfo, chemMaster, solution, inputContainerInfo, modernMode: false);
-
-        // Classic layout containers
-        BuildContainerUI(InputContainerInfoClassic, inputContainerInfo, true, modernMode: false);
-        BuildContainerUI(OutputContainerInfoClassic, outputContainerInfo, false, modernMode: false, "chem-master-window-no-output-container-loaded-text", truncateName: false);
-        BuildOutputLeftContainer(OutputInputContainerInfoClassic, chemMaster, solution, inputContainerInfo, modernMode: false);
-
-        BufferInfo.Children.Clear();
-        BufferInfoClassic.Children.Clear();
-
-        var sortLabel = chemMaster.SortingType switch
-        {
-            ChemMasterSortingType.Alphabetical => Loc.GetString("chem-master-window-sort-type-alphabetical"),
-            ChemMasterSortingType.Quantity => Loc.GetString("chem-master-window-sort-type-quantity"),
-            ChemMasterSortingType.Latest => Loc.GetString("chem-master-window-sort-type-latest"),
-            _ => Loc.GetString("chem-master-window-sort-type-none")
-        };
-        BufferSortButton.Text = sortLabel;
-        BufferSortButtonClassic.Text = sortLabel;
-
-        OutputBufferDraw.Pressed = chemMaster.DrawSource == ChemMasterDrawSource.Internal;
-        OutputBeakerDraw.Pressed = chemMaster.DrawSource == ChemMasterDrawSource.External;
-        OutputBufferDrawClassic.Pressed = chemMaster.DrawSource == ChemMasterDrawSource.Internal;
-        OutputBeakerDrawClassic.Pressed = chemMaster.DrawSource == ChemMasterDrawSource.External;
-
-        if (solution.Contents.Count == 0)
-        {
-            var emptyLabel = new Label { Text = Loc.GetString("chem-master-window-buffer-empty-text") };
-            var emptyLabelClassic = new Label { Text = Loc.GetString("chem-master-window-buffer-empty-text") };
-            BufferInfo.Children.Add(emptyLabel);
-            BufferInfoClassic.Children.Add(emptyLabelClassic);
-            return;
-        }
-
-        // Buffer volume header row
-        void AddBufferHeader(BoxContainer target)
-        {
-            var hbox = new BoxContainer { Orientation = LayoutOrientation.Horizontal };
-            hbox.AddChild(new Label { Text = $"{Loc.GetString("chem-master-window-buffer-label")} " });
-            hbox.AddChild(new Label
-            {
-                Text = $"{solution.Volume}u",
-                StyleClasses = { StyleClass.LabelWeak }
-            });
-            target.AddChild(hbox);
-        }
-        AddBufferHeader(BufferInfo);
-        AddBufferHeader(BufferInfoClassic);
-
-        var reagentList = new List<(ReagentId reagentId, string name, Color color, FixedPoint2 quantity)>();
-        foreach (var (reagent, quantity) in solution.Contents)
-        {
-            _prototypeManager.TryIndex(reagent.Prototype, out ReagentPrototype? proto);
-            var name = proto?.LocalizedName ?? Loc.GetString("chem-master-window-unknown-reagent-text");
-            var reagentColor = proto?.SubstanceColor ?? default(Color);
-            reagentList.Add((reagent, name, reagentColor, quantity));
-        }
-
-        reagentList = chemMaster.SortingType switch
-        {
-            ChemMasterSortingType.Alphabetical => reagentList.OrderBy(x => x.name).ToList(),
-            ChemMasterSortingType.Quantity => reagentList.OrderByDescending(x => x.quantity).ToList(),
-            ChemMasterSortingType.Latest => Enumerable.Reverse(reagentList).ToList(),
-            _ => reagentList
-        };
-
-        var rowCount = 0;
-        foreach (var reagent in reagentList)
-        {
-            BufferInfo.Children.Add(BuildReagentRow(reagent.color, rowCount, reagent.name, reagent.reagentId, reagent.quantity, true, true, modernMode: true));
-            BufferInfoClassic.Children.Add(BuildReagentRow(reagent.color, rowCount, reagent.name, reagent.reagentId, reagent.quantity, true, true, modernMode: false));
-            rowCount++;
-        }
-
-        // A bit messy, but it fixes the search resetting on click.
-        if (!string.IsNullOrEmpty(SearchBar.Text))
-            UpdateReagentPrototypes(SearchBar.Text);
     }
 
     private void UpdateReagentPrototypes(string? filter = null)

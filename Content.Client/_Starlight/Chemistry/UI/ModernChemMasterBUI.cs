@@ -105,7 +105,7 @@ public sealed class ModernChemMasterBui(EntityUid owner, Enum uiKey) : BoundUser
             SendPredictedMessage(new ChemMasterToggleValveMessage());
     }
 
-    public override void Update() => _window?.UpdateData(false);
+    public override void Update() => _window?.DirtyData(ChemMasterUIDirtyFlags.All);
 
-    public void Update(bool updateLabel) => _window?.UpdateData(updateLabel);
+    public void Update(ChemMasterUIDirtyFlags flags) => _window?.DirtyData(flags);
 }
