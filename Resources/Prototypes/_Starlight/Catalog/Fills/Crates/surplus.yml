@@ -211,16 +211,16 @@
   table: !type:GroupSelector
     children:
     - id: ClothingHandsGlovesCombat
-      amount: 3
+      amount: 1
       weight: 1
     - id: TrackingImplant
       amount: 3
       weight: 1
     - id: GrenadeStinger
-      amount: 3
+      amount: 1
       weight: 1
     - id: GrenadeFlashBang
-      amount: 3
+      amount: 1
       weight: 1
     - id: ClothingUniformJumpskirtPrisoner
       amount: 3
@@ -229,12 +229,12 @@
       amount: 3
       weight: 1
     - id: ClothingHeadHelmetJustice
-      amount: 2
+      amount: 1
       weight: 1
     - id: BoxTearGas
       weight: 1
     - id: WeaponLauncherPeacekeeper
-      weight: 1
+      weight: .25
 
 - type: entityTable
   id: ServiceSurplusEntityTable
@@ -326,7 +326,7 @@
     - id: SyndicatePersonalAI
       weight: .15
     - id: WeaponLauncherPirateCannon
-      weight: .25
+      weight: .05
     - id: PowerCellMicroreactor
       weight: .25
     - id: CrateCargoGambling
@@ -357,5 +357,18 @@
     - id: OreBagOfHolding
       weight: .1
     - id: ClothingOuterHardsuitITGLossPrevention
-      weight: .08
-
+      weight: .02
+    - id: FoodMeatDragon
+      weight: .02
+    - id: MobSovietComradeBrokenBottle
+      weight: .01
+    - id: WeaponTurretPointDefenseMachineCircuitboard
+      amount: 2
+      weight: .1
+    - id: WeaponSPKA
+      weight: .3
+    - id: PKAUpgradeDamage
+      amount: 2
+      weight: .05
+    - id: CrateITGMedicalSurplus
+      weight: .02
