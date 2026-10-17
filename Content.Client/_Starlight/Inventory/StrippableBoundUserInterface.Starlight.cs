@@ -1,6 +1,7 @@
 // ReSharper disable CheckNamespace
 using Content.Client._Starlight.Replay;
 using Content.Client.UserInterface.Controls;
+using Content.Shared.Hands.Components;
 using Content.Shared.Input;
 using Robust.Client.UserInterface;
 using Robust.Shared.Input;
@@ -31,5 +32,16 @@ public sealed partial class StrippableBoundUserInterface
         }
 
         return false;
+    }
+
+    private void AddFunctionalHandButtons(Entity<HandsComponent> ent)
+    {
+        foreach (var (id, hand) in ent.Comp.Hands)
+        {
+            if (hand.Location != HandLocation.Functional)
+                continue;
+
+            AddHandButton(ent, id, hand);
+        }
     }
 }
