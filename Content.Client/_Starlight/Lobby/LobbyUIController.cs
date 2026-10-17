@@ -1,5 +1,7 @@
 using System.Numerics;
+using Content.Client._Starlight.Lobby.UI;
 using Content.Client._Starlight.UserInterface;
+using Content.Client.Lobby.UI;
 using Content.Shared._Starlight.Player;
 using Content.Shared._Starlight.Preferences;
 using Content.Shared.Preferences;
@@ -12,8 +14,25 @@ public sealed partial class LobbyUIController
 {
     [Dependency] private ILogManager _log = null!;
 
+    private PendingPreferencesWindow? _pendingWindow;
+    private PendingPreferencesRejectWindow? _pendingRejectWindow;
+    private bool _characterSetupWindowEditingOwn;
+    private bool _regenerateOnPreferencesLoaded;
+
     private void HandleOpenPlayerCharacterSetup(MsgOpenPlayerCharacterSetup message)
     {
+        if (_preferencesManager.ReviewingPending)
+            CloseProfileEditor();
+        StopPendingReview();
+
+        if (IsEditingOwnCharacter())
+        {
+            _log.GetSawmill(nameof(LobbyUIController))
+                .Error(
+                    "Cannot open character setup window for another player while currently editing your own character.");
+            return;
+        }
+
         _preferencesManager.TargetPreferences = message.Preferences;
         _preferencesManager.TargetPlayerInfo = message.PlayerInfo;
         OpenCharacterSetupWindow();
@@ -36,15 +55,6 @@ public sealed partial class LobbyUIController
     /// </summary>
     public void OpenCharacterSetupWindow()
     {
-        if (_stateManager.CurrentState is LobbyState { Lobby.CharacterSetupState: { } control } &&
-            _characterSetup?.Parent == control)
-        {
-            _log.GetSawmill(nameof(LobbyUIController))
-                .Error(
-                    "Cannot open character setup window for another player while currently editing your own character.");
-            return;
-        }
-
         // close and reopen
         if (_characterSetupWindow is { IsOpen: true } || _characterSetupPoppedOut)
         {
@@ -56,8 +66,8 @@ public sealed partial class LobbyUIController
             _characterSetup = null;
         }
 
-        if (_preferencesManager.TargetPreferences is not null)
-            ReloadGui(); // Reload if now editing target
+        if (_preferencesManager.TargetPreferences is not null || _preferencesManager.ReviewingPending)
+            ReloadGui(); // Reload if now editing target or reviewing
 
         var (characterGui, _) = EnsureGui();
 
@@ -85,6 +95,9 @@ public sealed partial class LobbyUIController
             if (characterGui.Parent != lobbyContainer)
                 characterGui.Orphan();
 
+            if (_characterSetupWindow != window)
+                return;
+
             _characterSetupWindow = null;
             _characterSetupPoppedOut = false;
         };
@@ -98,12 +111,160 @@ public sealed partial class LobbyUIController
                 ReloadGui();
             };
 
+        if (_preferencesManager.ReviewingPending)
+            window.OnFinalClose += StopPendingReview;
+
         // Starlight: once popped out the in-game window is gone, but keep the window ref so
         // we can still teardown the window.
         window.OnPopout += () => _characterSetupPoppedOut = true;
 
         _characterSetupWindow = window;
+        _characterSetupWindowEditingOwn =
+            _preferencesManager.TargetPreferences is null && !_preferencesManager.ReviewingPending;
         window.OpenCentered();
+    }
+
+    private bool IsEditingOwnCharacter()
+    {
+        if (_stateManager.CurrentState is LobbyState { Lobby.CharacterSetupState: { Visible: true } control } &&
+            _characterSetup?.Parent == control)
+            return true;
+
+        return _characterSetupWindowEditingOwn &&
+            (_characterSetupWindow is { IsOpen: true } || _characterSetupPoppedOut);
+    }
+
+    private void OnPendingPreferencesReceived()
+    {
+        if (_preferencesManager.ReviewingPending)
+            RefreshPendingReview();
+        else
+            OpenPendingPreferencesWindow();
+    }
+
+    private void OpenPendingPreferencesWindow()
+    {
+        if (_preferencesManager.PendingPreferences is null)
+            return;
+
+        if (_pendingWindow is null)
+        {
+            _pendingWindow = new PendingPreferencesWindow();
+            _pendingWindow.ReviewButton.OnPressed += _ => StartPendingReview();
+            _pendingWindow.AcceptButton.OnPressed += _ => AcceptPendingPreferences();
+            _pendingWindow.RejectButton.OnPressed += _ => OpenPendingRejectWindow();
+            _pendingWindow.OnClose += () => _pendingWindow = null;
+        }
+
+        _pendingWindow.ReviewButton.Disabled = _preferencesManager.ReviewingPending;
+
+        _pendingWindow.SetAdmin(_preferencesManager.PendingPreferencesAdmin?.Username ?? string.Empty);
+        if (_pendingWindow.IsOpen)
+            _pendingWindow.MoveToFront();
+        else
+            _pendingWindow.OpenCentered();
+    }
+
+    public void StartPendingReview()
+    {
+        if (_preferencesManager.ReviewingPending)
+            return;
+
+        _pendingWindow?.Close();
+        _preferencesManager.StartPendingReview();
+
+        if (_stateManager.CurrentState is LobbyState lobby)
+        {
+            _characterSetupWindow?.DisposePopOut();
+            _characterSetupWindow?.Close();
+            ReloadGui();
+            lobby.SwitchState(LobbyGui.LobbyGuiState.CharacterSetup);
+            return;
+        }
+
+        OpenCharacterSetupWindow();
+    }
+
+    private void StopPendingReview()
+    {
+        if (!_preferencesManager.ReviewingPending)
+            return;
+
+        _preferencesManager.EndPendingReview();
+        _profileEditor?.LoadoutWindow?.Close();
+        ReloadGui();
+    }
+
+    private void TogglePendingView()
+    {
+        _preferencesManager.ViewingChanges = !_preferencesManager.ViewingChanges;
+        RefreshPendingReview();
+    }
+
+    private void RefreshPendingReview()
+    {
+        if (_characterSetup is null || _profileEditor is null)
+            return;
+
+        if (EditedSlot is { } slot && _preferencesManager.Preferences.Characters.ContainsKey(slot))
+            _profileEditor.SetProfile(slot);
+        else
+        {
+            _profileEditor.SetProfile(null, null);
+            _characterSetup.SelectedCharacterSlot = null;
+        }
+
+        _jobPriorityEditor?.LoadJobPriorities();
+        _characterSetup.ReloadCharacterPickers(selectJobPriorities: _characterSetup.JobPriorityEditor.Visible);
+    }
+
+    private void AcceptPendingPreferences()
+    {
+        _regenerateOnPreferencesLoaded = true;
+        ResolvePendingPreferences(_preferencesManager.AcceptPendingPreferences);
+    }
+
+    private bool TryRegenerateAfterAccept()
+    {
+        if (!_regenerateOnPreferencesLoaded)
+            return false;
+
+        _regenerateOnPreferencesLoaded = false;
+        OnAnyCharacterOrJobChange?.Invoke();
+
+        if (_characterSetupWindow is { IsOpen: true } || _characterSetupPoppedOut)
+        {
+            OpenCharacterSetupWindow();
+            return true;
+        }
+
+        _characterSetup?.SelectedCharacterSlot = null;
+        ReloadGui();
+        return true;
+    }
+
+    private void OpenPendingRejectWindow()
+    {
+        _pendingRejectWindow?.Close();
+        _pendingRejectWindow = new PendingPreferencesRejectWindow();
+        _pendingRejectWindow.OnSubmit += reason =>
+            ResolvePendingPreferences(() => _preferencesManager.RejectPendingPreferences(reason));
+        _pendingRejectWindow.OnClose += () => _pendingRejectWindow = null;
+        _pendingRejectWindow.OpenCentered();
+    }
+
+    private void ResolvePendingPreferences(Action resolve)
+    {
+        var reviewing = _preferencesManager.ReviewingPending;
+        resolve();
+        _pendingWindow?.Close();
+
+        if (!reviewing)
+            return;
+
+        _profileEditor?.LoadoutWindow?.Close();
+        CloseProfileEditor();
+        ReloadGui();
     }
 
     // Starlight: Reworked to PopOutWindow for popout support

@@ -12,6 +12,7 @@ public sealed partial class ClientPreferencesManager
     public MinimalPlayerInfo? PendingPreferencesAdmin { get; private set; }
     public MinimalPlayerInfo? TargetPlayerInfo { get; set; }
     public bool ViewingChanges { get; set; }
+    public bool ReviewingPending { get; private set; }
 
     public event Action? OnPendingPreferencesReceived;
 
@@ -37,6 +38,23 @@ public sealed partial class ClientPreferencesManager
 
     public void RejectPendingPreferences(string? reason = null) => SendPendingPreferencesResult(false, reason);
 
+    public void StartPendingReview()
+    {
+        if (PendingPreferences is null)
+            return;
+
+        TargetPreferences = null;
+        TargetPlayerInfo = null;
+        ReviewingPending = true;
+        ViewingChanges = true;
+    }
+
+    public void EndPendingReview()
+    {
+        ReviewingPending = false;
+        ViewingChanges = false;
+    }
+
     private void SendPendingPreferencesResult(bool accepted, string? reason)
     {
         if (PendingPreferences is null)
@@ -52,6 +70,6 @@ public sealed partial class ClientPreferencesManager
         // The server responds with MsgPreferencesAndSettings once resolved.
         PendingPreferences = null;
         PendingPreferencesAdmin = null;
-        ViewingChanges = false;
+        EndPendingReview();
     }
 }

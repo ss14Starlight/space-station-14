@@ -27,15 +27,23 @@ namespace Content.Client.Lobby
 
         public GameSettings Settings { get; private set; } = default!;
         // Starlight begin
+        private PlayerPreferences _preferences = null!;
+
         public PlayerPreferences Preferences
         {
-            get => TargetPreferences ?? field;
+            get
+            {
+                if (ReviewingPending)
+                    return ViewingChanges ? PendingPreferences ?? _preferences : _preferences;
+                return TargetPreferences ?? _preferences;
+            }
             set
             {
+                if (ReviewingPending) return;
                 if (TargetPreferences is not null) TargetPreferences = value;
-                else field = value;
+                else _preferences = value;
             }
-        } = null!;
+        }
         // Starlight end
 
         public void Initialize()
@@ -59,7 +67,12 @@ namespace Content.Client.Lobby
             if (e.NewLevel == ClientRunLevel.Initialize)
             {
                 Settings = default!;
-                Preferences = default!;
+                // Starlight begin
+                EndPendingReview();
+                PendingPreferences = null;
+                PendingPreferencesAdmin = null;
+                _preferences = default!;
+                // Starlight end
             }
         }
 
@@ -70,6 +83,7 @@ namespace Content.Client.Lobby
         /// <param name="enable">whether to enable or disable the character</param>
         public void SetCharacterEnable(int slot, bool enable = true)
         {
+            if (ReviewingPending) return; // Starlight
             if (!Preferences.Characters.TryGetValue(slot, out var characterProfile))
                 return;
             if (characterProfile is not HumanoidCharacterProfile profile)
@@ -97,6 +111,7 @@ namespace Content.Client.Lobby
 
         public void UpdateCharacter(HumanoidCharacterProfile profile, int slot)
         {
+            if (ReviewingPending) return; // Starlight
             var collection = IoCManager.Instance!;
             profile.EnsureValid(_playerManager.LocalSession!, collection);
             var characters = new Dictionary<int, HumanoidCharacterProfile>(Preferences.Characters) {[slot] = profile};
@@ -114,6 +129,7 @@ namespace Content.Client.Lobby
 
         public void CreateCharacter(HumanoidCharacterProfile profile)
         {
+            if (ReviewingPending) return; // Starlight
             var characters = new Dictionary<int, HumanoidCharacterProfile>(Preferences.Characters);
             var lowest = Enumerable.Range(0, Settings.MaxCharacterSlots)
                 .Except(characters.Keys)
@@ -138,6 +154,7 @@ namespace Content.Client.Lobby
 
         public void DeleteCharacter(int slot)
         {
+            if (ReviewingPending) return; // Starlight
             var characters = Preferences.Characters.Where(p => p.Key != slot);
             Preferences = new PlayerPreferences(characters, Preferences.AdminOOCColor, Preferences.ConstructionFavorites, Preferences.JobPriorities);
             // Starlight begin
@@ -157,6 +174,7 @@ namespace Content.Client.Lobby
         /// <param name="jobPriorities">Dictionary of job priorities to save to the server</param>
         public void UpdateJobPriorities(Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities)
         {
+            if (ReviewingPending) return; // Starlight
             Preferences = new PlayerPreferences(Preferences.Characters,
                 Preferences.AdminOOCColor,
                 Preferences.ConstructionFavorites,
@@ -174,7 +192,7 @@ namespace Content.Client.Lobby
 
         public void UpdateConstructionFavorites(List<ProtoId<ConstructionPrototype>> favorites)
         {
-            Preferences = new PlayerPreferences(Preferences.Characters, Preferences.AdminOOCColor, favorites, Preferences.JobPriorities);
+            _preferences = new PlayerPreferences(_preferences.Characters, _preferences.AdminOOCColor, favorites, _preferences.JobPriorities); // Starlight edit
             var msg = new MsgUpdateConstructionFavorites
             {
                 Favorites = favorites
@@ -184,7 +202,7 @@ namespace Content.Client.Lobby
 
         private void HandlePreferencesAndSettings(MsgPreferencesAndSettings message)
         {
-            Preferences = message.Preferences;
+            _preferences = message.Preferences; // Starlight edit
             Settings = message.Settings;
 
             OnServerDataLoaded?.Invoke();

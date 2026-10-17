@@ -38,7 +38,14 @@ namespace Content.Client.Lobby
         /// The target player for whom's preferences are being edited.
         /// </summary>
         MinimalPlayerInfo? TargetPlayerInfo { get; set; }
-        bool ViewingChanges { get; }
+        /// <summary>
+        /// While reviewing, whether <see cref="IClientPreferencesManager.Preferences"/> shows the pending edits or the current preferences.
+        /// </summary>
+        bool ViewingChanges { get; set; }
+        /// <summary>
+        /// Whether the pending edits are being reviewed. Preferences cannot be modified while this is true.
+        /// </summary>
+        bool ReviewingPending { get; }
         /// <summary>
         /// The last admin to edit <see cref="PendingPreferences"/>.
         /// </summary>
@@ -55,6 +62,8 @@ namespace Content.Client.Lobby
         /// Reject the pending preference edits, discarding them.
         /// </summary>
         void RejectPendingPreferences(string? reason = null);
+        void StartPendingReview();
+        void EndPendingReview();
 
         #endregion
     }

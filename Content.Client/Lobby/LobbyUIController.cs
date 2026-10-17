@@ -98,6 +98,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         _configurationManager.OnValueChanged(CCVars.GameRoleWhitelist, _ => RefreshEditors());
 
         _net.RegisterNetMessage<MsgOpenPlayerCharacterSetup>(HandleOpenPlayerCharacterSetup);// Starlight
+        _preferencesManager.OnPendingPreferencesReceived += OnPendingPreferencesReceived; // Starlight
     }
 
     private LobbyCharacterPreviewPanel? GetLobbyPreview()
@@ -157,6 +158,11 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     {
         PreviewPanel?.SetLoaded(true);
 
+        // Starlight begin
+        if (TryRegenerateAfterAccept())
+            return;
+        // Starlight end
+
         if (_stateManager.CurrentState is not LobbyState)
             return;
 
@@ -193,6 +199,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         characterGui.ReloadCharacterPickers();
         profileEditor.ResetToDefault();
         _jobPriorityEditor?.LoadJobPriorities();
+        characterGui.UpdatePendingReview(); // Starlight
     }
 
     /// <summary>
@@ -268,6 +275,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         _characterSetupWindow?.DisposePopOut(); // Starlight: also close the popped-out desktop window if any
         _characterSetupWindow?.Close(); // starlight
 
+        StopPendingReview(); // Starlight
         RefreshLobbyPreview();
     }
 
@@ -348,6 +356,14 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         _characterSetup.CloseButton.OnPressed += _ =>
         {
+            // Starlight begin
+            if (_preferencesManager.ReviewingPending)
+            {
+                CloseProfileEditor();
+                return;
+            }
+            // Starlight end
+
             // Open the save panel if we have unsaved changes.
             if( _profileEditor.Visible && _profileEditor.Profile != null && _profileEditor.IsDirty)
             {
@@ -368,6 +384,12 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         };
 
         _profileEditor.Save += SaveProfile;
+
+        // Starlight begin
+        _characterSetup.PendingToggleButton.OnPressed += _ => TogglePendingView();
+        _characterSetup.PendingAcceptButton.OnPressed += _ => AcceptPendingPreferences();
+        _characterSetup.PendingRejectButton.OnPressed += _ => OpenPendingRejectWindow();
+        // Starlight end
 
         _characterSetup.SelectCharacter += args =>
         {

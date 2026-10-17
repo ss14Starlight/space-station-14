@@ -10,6 +10,10 @@
 		<Button Access="Public" Name="SteamButton" Text="{Loc 'ui-escape-connect-steam'}"/>
         <changelog:ChangelogButton Access="Public" Name="ChangelogButton"/>
         <ui:VoteCallMenuButton />
+        <!-- Starlight begin -->
+        <Button Access="Public" Name="PendingPreferencesButton" Text="{Loc 'pending-preferences-escape-button'}"
+                Visible="False" StyleClasses="positive ButtonColorGreen" />
+        <!-- Starlight end -->
         <PanelContainer StyleClasses="LowDivider" Margin="0 2.5 0 2.5" />
         <Button Access="Public" Name="RulesButton" Text="{Loc 'ui-escape-rules'}" />
         <Button Access="Public" Name="GuidebookButton" Text="{Loc 'ui-escape-guidebook'}" />

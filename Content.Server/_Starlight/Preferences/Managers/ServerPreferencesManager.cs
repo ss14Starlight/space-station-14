@@ -194,6 +194,15 @@ public sealed partial class ServerPreferencesManager
                 : $"{session} rejected preference edits made by {pending.LastAdminName} ({pending.LastAdminUserId}).{rejection}";
             _aLog.Add(LogType.AdminCommands, LogImpact.Medium, $"{logMessage}");
             _chat.SendAdminAnnouncement(logMessage);
+            _entSys.GetEntitySystem<AutoDiscordLogSystem>().LogToDiscord(logMessage);
+
+            if (_playerManager.TryGetSessionById(new NetUserId(pending.LastAdminUserId), out var admin))
+            {
+                var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message",
+                    ("message", FormattedMessage.EscapeText(logMessage)));
+                _chat.ChatMessageToOne(ChatChannel.Server, logMessage, wrappedMessage,
+                    EntityUid.Invalid, false, admin.Channel, Color.Gold);
+            }
 
             ForceUpdateClientPrefs(session, GetPreferences(userId), message.Accepted);
         }
@@ -231,7 +240,7 @@ public sealed partial class ServerPreferencesManager
 
             if (!notifyPlayer)
                 return;
-            const string Message = "An admin has proposed changes to your character preferences. Review them to accept or reject.";
+            const string Message = "An admin has proposed changes to your character preferences.";
             var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", FormattedMessage.EscapeText(Message)));
             _chat.ChatMessageToOne(ChatChannel.Server, Message, wrappedMessage,
                 EntityUid.Invalid, false, session.Channel, Color.Gold);

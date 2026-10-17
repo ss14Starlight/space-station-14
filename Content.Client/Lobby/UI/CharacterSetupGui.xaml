@@ -31,6 +31,16 @@
                         StyleClasses="ButtonBig"/>
             </BoxContainer>
             <PanelContainer StyleClasses="highlight" MinHeight="2" />
+            <!-- Starlight begin -->
+            <BoxContainer Name="PendingReviewBar" Orientation="Horizontal" SeparationOverride="4" Margin="8 4" Visible="False">
+                <Label Name="PendingReviewLabel" HorizontalExpand="True" VAlign="Center" />
+                <Button Name="PendingToggleButton" Access="Public" />
+                <Button Name="PendingAcceptButton" Access="Public" Text="{Loc 'pending-preferences-accept-button'}"
+                        StyleClasses="ButtonColorGreen" />
+                <Button Name="PendingRejectButton" Access="Public" Text="{Loc 'pending-preferences-reject-button'}"
+                        StyleClasses="ButtonColorRed" />
+            </BoxContainer>
+            <!-- Starlight end -->
             <BoxContainer Orientation="Horizontal" VerticalExpand="True" SeparationOverride="0">
 
                 <!-- This box holds all the character pickers and job priority button, the left side of the window  -->

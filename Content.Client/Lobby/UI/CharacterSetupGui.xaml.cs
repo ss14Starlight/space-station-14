@@ -87,6 +87,7 @@ namespace Content.Client.Lobby.UI
             };
 
             CharEditor.AddChild(profileEditor);
+            profileEditor.OnLoadoutWindowOpened += OnLoadoutWindowOpened; // Starlight
             JobPriorityEditor.AddChild(jobPriorityEditor);
             RulesButton.OnPressed += _ => new RulesAndInfoWindow().Open();
 
@@ -167,6 +168,7 @@ namespace Content.Client.Lobby.UI
                     CharEditor.Visible = true;
                     JobPriorityEditor.Visible = false;
                     _humanoidProfileEditor.SetProfile(slot);
+                    UpdatePendingReview(); // Starlight
                 };
 
                 characterPickerButton.OnDeletePressed += () =>
@@ -184,6 +186,7 @@ namespace Content.Client.Lobby.UI
 
             _createNewCharacterButton.Disabled = numberOfFullSlots >= _preferencesManager.Settings.MaxCharacterSlots;
             Characters.AddChild(_createNewCharacterButton);
+            UpdatePendingReview(); // Starlight
         }
     }
 }
