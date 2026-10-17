@@ -1,11 +1,4 @@
 Entries:
-- author: Swonki
-  changes:
-  - message: ITG & Command Cryosleep spawn prototypes for mapping.
-    type: Add
-  id: 409150
-  time: '2026-10-04T14:06:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6455
 - author: SevenShades
   changes:
   - message: Added variable ammunition for MedTak weapons.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409549
   time: '2026-10-17T10:38:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6717
+- author: Caws
+  changes:
+  - message: (CentComm G24) The blast door atop the window at Debrief's entrance no longer gets stuck in the closed position.
+    type: Fix
+  id: 409550
+  time: '2026-10-17T11:10:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6716
 Order: -1
