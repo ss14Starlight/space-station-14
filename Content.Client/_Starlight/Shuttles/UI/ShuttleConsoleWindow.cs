@@ -24,8 +24,8 @@ public sealed partial class ShuttleConsoleWindow
             HorizontalExpand = true,
             VerticalExpand = true,
             Visible = false,
+            Group = NavModeButton.Group
         };
-        _surfaceModeButton.Group = NavModeButton.Group;
         _surfaceModeButton.OnPressed += _ => SwitchMode(ShuttleConsoleMode.Surface);
         ModeButtons.AddChild(_surfaceModeButton);
 
