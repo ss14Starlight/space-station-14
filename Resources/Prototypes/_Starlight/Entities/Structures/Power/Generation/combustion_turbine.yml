@@ -1,0 +1,135 @@
+
+- type: entity
+  abstract: true
+  parent: BaseMachine
+  id: BaseCombustionTurbinePart
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    noRot: false
+  - type: Rotatable
+  - type: Sprite
+    sprite: _Starlight/Structures/Power/Generation/combustion_turbine.rsi
+  - type: Appearance
+  - type: Airtight
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 2
+            max: 4
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: DeviceLinkSink
+    ports:
+    - CombustionTurbineConsoleReceiver
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
+  - type: GuideHelp
+    guides:
+    - CombustionTurbine
+    - Power
+
+- type: entity
+  parent: BaseCombustionTurbinePart
+  id: CombustionTurbineCompressor
+  name: combustion turbine compressor
+  description: The intake stage of a combustion turbine generator. Draws hot gas from the burn chamber it faces and forces it through the turbine behind it.
+  components:
+  - type: Sprite
+    layers:
+    - state: compressor
+    - state: compressor-speed1
+      shader: unshaded
+      visible: false
+      map: [ "enum.CombustionTurbineVisualLayers.Speed" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.CombustionTurbineVisuals.Speed:
+        enum.CombustionTurbineVisualLayers.Speed:
+          0: { visible: false }
+          1: { visible: true, state: compressor-speed1 }
+          2: { visible: true, state: compressor-speed2 }
+          3: { visible: true, state: compressor-speed3 }
+          4: { visible: true, state: compressor-speed4 }
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: LightningTarget
+    priority: 1
+  - type: AtmosDevice
+  - type: CombustionTurbineCompressor
+  - type: Machine
+    board: CombustionTurbineCompressorMachineCircuitboard
+
+- type: entity
+  parent: BaseCombustionTurbinePart
+  id: CombustionTurbineGenerator
+  name: combustion turbine
+  description: The power stage of a combustion turbine generator. Gas expanding through its blades spins the rotor, and the exhaust vents out of the nozzle it faces.
+  components:
+  - type: Sprite
+    layers:
+    - state: turbine
+    - state: turbine-running
+      shader: unshaded
+      visible: false
+      map: [ "enum.CombustionTurbineVisualLayers.Running" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.CombustionTurbineVisuals.Running:
+        enum.CombustionTurbineVisualLayers.Running:
+          True: { visible: true }
+          False: { visible: false }
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerSupplier
+    supplyRampRate: 100000000
+    supplyRampTolerance: 10000000000
+  - type: PowerMonitoringDevice
+    group: Generator
+    loadNode: output
+    sprite: _Starlight/Structures/Power/Generation/combustion_turbine.rsi
+    state: turbine
+  - type: CombustionTurbineGenerator
+  - type: AmbientSound
+    enabled: false
+    volume: -6
+    range: 6
+    sound:
+      path: /Audio/_FarHorizons/Ambience/Objects/turbine_room.ogg
+  - type: Machine
+    board: CombustionTurbineGeneratorMachineCircuitboard
