@@ -133,7 +133,7 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
                 && slotItems.ContainedEntities.Count > 0)
                 found.ForeignBodies = true;
 
-            var expected = def.ContainedParts?.GetValueOrDefault(socketId);
+            BodyPartDef? expected = def.ContainedParts != null && def.ContainedParts.TryGetValue(socketId, out var expectedDef) ? expectedDef : null;
             if (!_slBody.TryGetPartInSocket(part, socketId, out var child))
             {
                 if (expected != null)
@@ -152,7 +152,7 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
 
             if (!HasComp<OrganComponent>(child))
                 found.ForeignBodies = true;
-            else if (expected != null && !MatchesOrganPrototype(child, expected.BodyPart))
+            else if (expected is { } organDef && !MatchesOrganPrototype(child, organDef.BodyPart))
                 found.AbnormalOrgans = true;
         }
 

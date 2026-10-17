@@ -54,7 +54,8 @@ public sealed partial class OrganMissingSystem : EntitySystem
         while (query.MoveNext(out var uid, out var body, out _))
         {
             if (_mobState.IsDead(uid)
-                || !_organMissingByPrefab.TryGetValue(body.Prefab, out var missingOrgans))
+                || body.Prefab is not { } prefab
+                || !_organMissingByPrefab.TryGetValue(prefab, out var missingOrgans))
                 continue;
 
             DamageSpecifier? damage = null;

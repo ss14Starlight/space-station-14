@@ -1,3 +1,4 @@
+using Robust.Shared.Containers;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Humanoid;
@@ -17,6 +18,7 @@ using Content.Shared._Starlight.Medical.Surgery.Components;
 namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class LimbSystem : SharedLimbSystem
 {
+    [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private SLBodySystem _slBody = default!;
     [Dependency] private HandsSystem _hands = default!;
     [Dependency] private HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
