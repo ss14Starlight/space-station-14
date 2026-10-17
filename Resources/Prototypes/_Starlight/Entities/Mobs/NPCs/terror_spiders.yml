@@ -163,7 +163,7 @@
     name: ghost-role-terror-spider-name
     description: ghost-role-terror-spider-description
     rules: ghost-role-terror-spider-rules
-    mindRoles: [MindRoleGhostRoleTeamAntagonist]
+    mindRoles: [MindRoleTerrorSpider]
     raffle:
       settings: short
   - type: GhostTakeoverAvailable

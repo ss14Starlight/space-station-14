@@ -1,7 +1,7 @@
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared._Starlight.Railroading.Events;
-using Content.Client.UserInterface.Systems.Character;
+using Content.Client._Moffstation.CharacterMenu;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Shared.Timing;

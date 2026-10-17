@@ -1,4 +1,4 @@
-﻿using Content.Client.UserInterface.Systems.Character;
+﻿using Content.Client._Moffstation.CharacterMenu;
 using Content.Shared._Starlight.Character.Info;
 using Robust.Client.UserInterface;
 
