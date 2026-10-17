@@ -374,7 +374,7 @@ public sealed partial class ProfilePreviewSpriteView
     {
         var _cyberneticEnt = _prototypeManager.Index<EntityPrototype>(p);
         if (_cyberneticEnt.TryComp<SLBodyPartComponent>(out var part, EntMan.ComponentFactory) &&
-           _cyberneticEnt.TryComp<BaseLayerIdComponent>(out var layer, EntMan.ComponentFactory))
+            _cyberneticEnt.TryComp<BaseLayerIdComponent>(out var layer, EntMan.ComponentFactory))
         {
             return (CyberneticImplant.LayerFromBodypart(part), new(
                 !layer.Layers.TryGetValue(humanoid.Species, out var baseLayer) ? // Get layer value by species
