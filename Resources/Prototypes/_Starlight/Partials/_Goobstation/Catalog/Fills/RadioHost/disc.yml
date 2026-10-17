@@ -1,0 +1,5 @@
+- type: !PartialOnly entityTable
+  id: RandomVinylDisc
+  table: !type:GroupSelector
+    children:
+    - id: VinylHitEm
