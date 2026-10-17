@@ -42,8 +42,14 @@ namespace Content.Client.Administration.Systems
             if (!_admin.IsAdmin(args.User))
                 return;
 
+            // Starlight begin
             if (_admin.HasAdminFlag(args.User, AdminFlags.Admin))
+            {
+                args.ExtraCategories.Add(VerbCategory.Spawn);
                 args.ExtraCategories.Add(VerbCategory.Admin);
+                args.ExtraCategories.Add(VerbCategory.Mark);
+            }
+            // Starlight end
 
             if (_admin.HasAdminFlag(args.User, AdminFlags.Fun) && HasComp<MindContainerComponent>(args.Target))
                 args.ExtraCategories.Add(VerbCategory.Antag);
