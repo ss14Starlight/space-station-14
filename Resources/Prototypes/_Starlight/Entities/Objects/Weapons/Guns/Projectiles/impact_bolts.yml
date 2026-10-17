@@ -1,0 +1,35 @@
+- type: entity
+  id: BulletImpactBolt
+  name: impact bolt
+  parent: BulletGrenadeBlast
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 30
+    netsync: true
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: ImpactBolt
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 1
+    maxTileBreak: 0
+    canCreateVacuum: false
+
+- type: explosion
+  id: ImpactBolt
+  damagePerIntensity:
+    types:
+      Blunt: 4
+      Piercing: 3
+      Heat: 3
+      Structural: 12
+  tileBreakChance: [0]
+  tileBreakIntensity: [0]
+  lightColor: Orange
+  texturePath: /Textures/Effects/fire.rsi
+  fireStates: 3
+  temperature: 800

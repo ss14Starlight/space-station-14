@@ -12,17 +12,20 @@
     availableModes:
     - SemiAuto
   - type: GunWieldBonus
-    minAngle: -18
-    maxAngle: -15
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 4
+    maxAngleDivider: 2.5
+    angleIncreaseDivider: 1.5
   - type: GunJamDefect
     prob: 0.70
     jamChance: 0.15
   - type: GunSpreadDefect
     prob: 0.70
-    minAngleMin: 22
-    minAngleMax: 50
-    maxAngleMin: 50
-    maxAngleMax: 72
+    minAngleMin: 16
+    minAngleMax: 24
+    maxAngleMin: 34
+    maxAngleMax: 44
   - type: BackfireDefect
     prob: 0.10
     backfireChance: 0.04

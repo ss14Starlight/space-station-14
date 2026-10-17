@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server._Starlight.GameTicking.Rules;
+using Content.Server._Starlight.Statistics;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking.Presets;
@@ -22,11 +23,10 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
     [Dependency] private IAdminLogManager _adminLogger = default!;
-    // Starlight begin
-    [Dependency] private IChatManager _chatManager = default!;
-    [Dependency] private GameTicker _ticker = default!;
-    [Dependency] private DynamicRuleCooldownSystem _dynamicRuleCooldown = default!;
-    // Starlight end
+    [Dependency] private IChatManager _chatManager = default!; // Starlight
+    [Dependency] private GameTicker _ticker = default!;  // Starlight
+    [Dependency] private DynamicRuleCooldownSystem _dynamicRuleCooldown = default!;  // Starlight
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!;  // Starlight
 
     private readonly Dictionary<string, int> _secretPresetCooldown = new();
     private string _ruleCompName = default!;
@@ -49,7 +49,10 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
             return;
         }
 
+        gameRule.MinPlayers = Math.Max(gameRule.MinPlayers, preset.MinPlayers ?? 0); // Starlight
+
         Log.Info($"Selected {preset.ID} as the secret preset.");
+        _roundStatistics.RecordResolvedPreset(preset.ID); // Starlight
         if (_ticker.RunLevel == GameRunLevel.PreRoundLobby) _chatManager.SendAdminAnnouncement($"Round preset selected: Secret ({preset.ID})."); // Starlight
         _adminLogger.Add(LogType.EventStarted, $"Selected {preset.ID} as the secret preset.");
 
@@ -87,7 +90,7 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
         // Starligth edit Start: Extra Logging and Cooldown
         _dynamicRuleCooldown.EnsureRoundInitialized(dynamicRound: false);
         var baseOptions = _prototypeManager.Index(weights).Weights.ShallowClone();
-        var players = GameTicker.ReadyPlayerCount();
+        var players = GameTicker.GetEffectivePlayerCountGamerule(GameTicker.ReadyPlayerCount()); // Starlight
 
         Log.Info(
             $"Secret roll pool: weights={weights}, players={players}, " +
@@ -140,7 +143,7 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
     /// </summary>
     public bool CanPickAny(IEnumerable<ProtoId<GamePresetPrototype>> protos)
     {
-        var players = GameTicker.ReadyPlayerCount();
+        var players = GameTicker.GetEffectivePlayerCountGamerule(GameTicker.ReadyPlayerCount()); // Starlight
         foreach (var id in protos)
         {
             if (!_prototypeManager.TryIndex(id, out var selectedPreset))

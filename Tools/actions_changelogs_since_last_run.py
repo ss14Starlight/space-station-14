@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 import requests
+import sys
 import yaml
 import time
 
@@ -23,6 +24,9 @@ DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 DISCORD_CHANGELOG_ROLE_ID = int(os.environ.get("DISCORD_CHANGELOG_ROLE_ID", "1308143973684088883"))
 
 CHANGELOG_FILE = "Resources/Changelog/ChangelogStarlight.yml"
+# Must match the changelog job name in .github/workflows/publish.yml and publish-testing.yml
+CHANGELOG_JOB_NAME = "Publish Changelogs"
+MAX_RUN_PAGES = 10
 TYPES_TO_EMOJI = {"Fix": "🐛", "Add": "🆕", "Remove": "❌", "Tweak": "⚒️"}
 ChangelogEntry = dict[str, Any]
 
@@ -34,8 +38,9 @@ EMBED_FIELD_VALUE_LIMIT = 1024
 
 def main():
     if not DISCORD_WEBHOOK_URL:
-        print("No webhook URL; skipping send")
-        return
+        # Fail the job: a successful changelog job is what later runs treat as "already sent".
+        print("No webhook URL; cannot send changelogs", file=sys.stderr)
+        sys.exit(1)
 
     if DEBUG:
         last_changelog_stream = DEBUG_CHANGELOG_FILE_OLD.read_text()
@@ -47,6 +52,7 @@ def main():
         cur_changelog = yaml.safe_load(f) or {}
 
     new_entries = list(diff_changelog(last_changelog, cur_changelog))
+    print(f"{len(new_entries)} new changelog entries to send.")
     if not new_entries:
         print("No new entries to report.")
         return
@@ -62,29 +68,48 @@ def main():
 def get_most_recent_workflow(
     sess: requests.Session, github_repository: str, github_run: str
 ) -> Any:
+    """
+    Finds the latest previous run of this workflow whose changelog job actually finished successfully.
+
+    The changelog job runs independently of the build job, so the overall run conclusion is irrelevant:
+    a run whose build failed or was cancelled (concurrency cancel-in-progress) has still sent its changelogs.
+    """
     current = get_current_run(sess, github_repository, github_run)
-    past = get_past_runs(sess, current)
-    runs = past.get("workflow_runs", [])
-    # sort descending by creation timestamp to pick the latest successful before current
-    sorted_runs = sorted(runs, key=lambda r: r["created_at"], reverse=True)
-    for run in sorted_runs:
-        if run["id"] == current["id"]:
-            continue
-        return run
-    raise RuntimeError("No previous successful workflow run found")
+
+    for page in range(1, MAX_RUN_PAGES + 1):
+        # No query filters (branch, status, created, ...): GitHub serves those from its search index,
+        # which can return a stale or partial list and make us pick a months-old run as the base.
+        # The unfiltered list is newest first, so filter on our side.
+        resp = sess.get(f"{current['workflow_url']}/runs", params={"per_page": 100, "page": page})
+        resp.raise_for_status()
+        runs = resp.json().get("workflow_runs", [])
+        if not runs:
+            break
+
+        for run in runs:
+            if run["id"] == current["id"] or run["head_branch"] != current["head_branch"]:
+                continue
+            if run["created_at"] > current["created_at"]:
+                continue
+            if changelog_job_succeeded(sess, run):
+                return run
+
+    raise RuntimeError("No previous run with a successful changelog job found")
+
+
+def changelog_job_succeeded(sess: requests.Session, run: Any) -> bool:
+    resp = sess.get(run["jobs_url"], params={"per_page": 100})
+    resp.raise_for_status()
+    for job in resp.json().get("jobs", []):
+        if job["name"] == CHANGELOG_JOB_NAME:
+            return job["status"] == "completed" and job["conclusion"] == "success"
+    return False
 
 
 def get_current_run(
     sess: requests.Session, github_repository: str, github_run: str
 ) -> Any:
     resp = sess.get(f"{GITHUB_API_URL}/repos/{github_repository}/actions/runs/{github_run}")
-    resp.raise_for_status()
-    return resp.json()
-
-
-def get_past_runs(sess: requests.Session, current_run: Any) -> Any:
-    params = {"status": "success", "created": f"<={current_run['created_at']}"}
-    resp = sess.get(f"{current_run['workflow_url']}/runs", params=params)
     resp.raise_for_status()
     return resp.json()
 
@@ -100,8 +125,8 @@ def get_last_changelog() -> str:
     session.headers["X-GitHub-Api-Version"] = "2022-11-28"
 
     most_recent = get_most_recent_workflow(session, github_repository, github_run)
-    last_sha = most_recent["head_commit"]["id"]
-    print(f"Last successful publish job was {most_recent['id']}: {last_sha}")
+    last_sha = most_recent["head_sha"]
+    print(f"Last run with sent changelogs was {most_recent['id']} ({most_recent['created_at']}): {last_sha}")
     return get_last_changelog_by_sha(session, last_sha, github_repository)
 
 
@@ -120,7 +145,12 @@ def get_last_changelog_by_sha(
 
 
 def diff_changelog(old: dict[str, Any], cur: dict[str, Any]) -> Iterable[ChangelogEntry]:
+    # Compare by membership: ids are PR-number based, so a later-merged older PR gets a lower id.
     old_ids = {e["id"] for e in old.get("Entries", [])}
+    if not old_ids:
+        # Never dump the whole changelog because the previous one could not be read.
+        raise RuntimeError("Previous changelog has no entries; refusing to resend everything")
+
     return (e for e in cur.get("Entries", []) if e["id"] not in old_ids)
 
 
@@ -226,8 +256,9 @@ def post_with_retries(payload: dict[str, Any]):
         except requests.exceptions.RequestException as e:
             attempt += 1
             if attempt > 5:
+                # Fail the job so the next run does not treat these entries as sent.
                 print(f"Failed after retries: {e}", file=sys.stderr)
-                return
+                sys.exit(1)
             backoff = 2 ** attempt
             print(f"Request failed ({e}), backing off {backoff}s and retrying")
             time.sleep(backoff)

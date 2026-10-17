@@ -44,12 +44,12 @@
   - PrintedDocumentPermissionResearchSiliconConversionRecipe
   - PrintedDocumentPermissionResearchAnomalyHostRecipe
   - PrintedDocumentSearchPermissionRecipe
-  - PrintedDocumentPermissionToCarryWeaponsRecipe
   - PrintedDocumentPermissionDisposeBodyRecipe
   - PrintedDocumentConstructionPermitRecipe
   - PrintedDocumentSurgeryConsentPermitRecipe
   - PrintedDocumentArtPermitRecipe
   - PrintedDocumentBorgificationConsentFormRecipe
+  - PrintedDocumentMechAuthorizationFormRecipe
   # OrdersAndInstructions
   - PrintedDocumentDismissalOrderRecipe
   - PrintedDocumentAccessRevocationOrderRecipe

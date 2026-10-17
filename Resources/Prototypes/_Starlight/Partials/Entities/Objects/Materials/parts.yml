@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: PartRodMetal
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/iron_rod_pick_up.ogg

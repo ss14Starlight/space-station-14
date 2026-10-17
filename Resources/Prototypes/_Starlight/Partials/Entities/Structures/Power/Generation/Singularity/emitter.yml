@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: Emitter
+  components:
+  - type: AmbientSound
+    enabled: false
+    range: 4
+    volume: -8
+    sound:
+      path: /Audio/_Starlight/Effects/Machinery/electric_buzz.ogg

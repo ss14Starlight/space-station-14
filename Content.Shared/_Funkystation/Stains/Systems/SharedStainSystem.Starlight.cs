@@ -99,4 +99,6 @@ public abstract partial class SharedStainSystem : EntitySystem
         output.AddSolution(split, _prototype);
         UpdateVisuals((item, stain));
     }
+
+    protected virtual void OnStainSolutionChanged(Entity<StainableComponent> ent, Entity<SolutionComponent> solution) { }
 }

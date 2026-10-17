@@ -4,6 +4,7 @@ using Content.Shared.Delivery;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
+using Content.Shared.Popups;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Storage;
@@ -20,6 +21,7 @@ public sealed partial class SharedMailBoxesSystem : EntitySystem
     [Dependency] private SharedJobSystem _jobSystem = default!;
     [Dependency] private SharedContainerSystem _containerSystem = default!;
     [Dependency] private SharedIdCardSystem _idCard = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     /// <inheritdoc />
     public override void Initialize()
@@ -100,17 +102,29 @@ public sealed partial class SharedMailBoxesSystem : EntitySystem
         if (!HasComp<DeliveryComponent>(args.EntityUid) || HasComp<DeliveryBombComponent>(args.EntityUid) ||
             HasComp<DeliveryPriorityComponent>(args.EntityUid) || HasComp<DeliveryFragileComponent>(args.EntityUid))
         {
+            _popup.PopupEntity(Loc.GetString("mailbox-special-mail"), ent);
             args.Cancel();
             return;
         }
 
         var delivery = Comp<DeliveryComponent>(args.EntityUid);
-        if (delivery.RecipientJobTitle == null || !_jobSystem.TryGetDepartment(delivery.RecipientJobTitle, out var department) || delivery.RecipientName == null)
+        if (!_jobSystem.TryGetPrimaryDepartment(delivery.RecipientJobId, out var department))
+            _jobSystem.TryGetDepartment(delivery.RecipientJobId, out department);
+
+        if (delivery.RecipientName == null || department == null)
         {
+            _popup.PopupEntity(Loc.GetString("mailbox-no-department"), ent);
             args.Cancel();
             return;
         }
-        if (department != ent.Comp.Department) args.Cancel();
+
+        if (department != ent.Comp.Department)
+        {
+            _popup.PopupEntity(Loc.GetString("mailbox-wrong-department"), ent);
+            args.Cancel();
+            return;
+        }
+
         ent.Comp.Names.Add(delivery.RecipientName);
         DirtyField(ent!, nameof(ent.Comp.Names));
     }

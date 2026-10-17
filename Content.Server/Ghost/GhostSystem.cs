@@ -15,7 +15,6 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
-using Content.Shared.Examine;
 using Content.Shared.Eye;
 using Content.Shared.FixedPoint;
 using Content.Shared.Follower;
@@ -51,7 +50,6 @@ namespace Content.Server.Ghost
         [Dependency] private IAdminLogManager _adminLog = default!;
         [Dependency] private SharedEyeSystem _eye = default!;
         [Dependency] private FollowerSystem _followerSystem = default!;
-        [Dependency] private IGameTiming _gameTiming = default!;
         [Dependency] private JobSystem _jobs = default!;
         [Dependency] private EntityLookupSystem _lookup = default!;
         [Dependency] private MindSystem _minds = default!;
@@ -91,8 +89,6 @@ namespace Content.Server.Ghost
             SubscribeLocalEvent<GhostComponent, ComponentStartup>(OnGhostStartup);
             SubscribeLocalEvent<GhostComponent, MapInitEvent>(OnMapInit);
             SubscribeLocalEvent<GhostComponent, ComponentShutdown>(OnGhostShutdown);
-
-            SubscribeLocalEvent<GhostComponent, ExaminedEvent>(OnGhostExamine);
 
             SubscribeLocalEvent<GhostComponent, MindRemovedMessage>(OnMindRemovedMessage);
             SubscribeLocalEvent<GhostComponent, MindUnvisitedMessage>(OnMindUnvisitedMessage);
@@ -190,7 +186,7 @@ namespace Content.Server.Ghost
             if (!_minds.TryGetMind(uid, out var mindId, out var mind) || mind.IsVisitingEntity)
                 return;
 
-            if (component.MustBeDead && (_mobState.IsAlive(uid) || _mobState.IsCritical(uid)))
+            if (component.MustBeDead && (!_mobState.IsDead(uid))) // Starlight edit.... it was IsAlive || IsCritical... the IsDead function is right there!! >_>
                 return;
 
             OnGhostAttempt(mindId, component.CanReturn, mind: mind);
@@ -209,8 +205,10 @@ namespace Content.Server.Ghost
             }
 
             _eye.RefreshVisibilityMask(uid);
-            var time = _gameTiming.CurTime;
+            var time = _gameTiming.RealTime;
             component.TimeOfDeath = time;
+
+            Dirty(uid, component);
         }
 
         private void OnGhostShutdown(EntityUid uid, GhostComponent component, ComponentShutdown args)
@@ -239,16 +237,6 @@ namespace Content.Server.Ghost
             _actions.AddAction(uid, ref component.ToggleLightingActionEntity, component.ToggleLightingAction);
             _actions.AddAction(uid, ref component.ToggleFoVActionEntity, component.ToggleFoVAction);
             _actions.AddAction(uid, ref component.ToggleGhostsActionEntity, component.ToggleGhostsAction);
-        }
-
-        private void OnGhostExamine(EntityUid uid, GhostComponent component, ExaminedEvent args)
-        {
-            var timeSinceDeath = _gameTiming.RealTime.Subtract(component.TimeOfDeath);
-            var deathTimeInfo = timeSinceDeath.Minutes > 0
-                ? Loc.GetString("comp-ghost-examine-time-minutes", ("minutes", timeSinceDeath.Minutes))
-                : Loc.GetString("comp-ghost-examine-time-seconds", ("seconds", timeSinceDeath.Seconds));
-
-            args.PushMarkup(deathTimeInfo);
         }
 
         #region Ghost Deletion
@@ -575,7 +563,7 @@ namespace Content.Server.Ghost
                 canReturnGlobal &&
                 TryComp(playerEntity, out MobStateComponent? mobState))
             {
-                if (_mobState.IsCritical(playerEntity.Value, mobState))
+                if (_mobState.IsCritical(playerEntity.Value, mobState) || _mobState.IsSoftCritical(playerEntity.Value, mobState)) // Starlight edit softcrit
                 {
                     canReturn = true;
 
@@ -590,7 +578,7 @@ namespace Content.Server.Ghost
                         && TryComp<MobThresholdsComponent>(playerEntity, out var thresholds))
                     {
                         var playerDeadThreshold = _mobThresholdSystem.GetThresholdForState(playerEntity.Value, MobState.Dead, thresholds);
-                        dealtDamage = playerDeadThreshold - damageable.TotalDamage;
+                        dealtDamage = playerDeadThreshold - _damageable.GetTotalDamage((playerEntity.Value, damageable));
                     }
 
                     // Starlight - Start

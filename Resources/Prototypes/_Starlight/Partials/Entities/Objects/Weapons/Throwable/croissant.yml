@@ -2,8 +2,8 @@
   id: WeaponCroissant
   components:
     - type: MeleeChemicalInjector
-      transferAmount: 5
+      transferAmount: 2
       solution: food
     - type: SolutionInjectOnEmbed
-      transferAmount: 5
+      transferAmount: 3
       solution: food

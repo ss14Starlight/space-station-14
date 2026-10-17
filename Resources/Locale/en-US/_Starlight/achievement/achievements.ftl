@@ -155,3 +155,8 @@ role-achievement-reward-fail-hidden = Requires a [color=yellow]hidden achievemen
 loadouts-achievement-reward-pass = Achievement reward unlocked: {$achievement}
 loadouts-achievement-reward-fail = Requires achievement reward: {$achievement}
 loadouts-achievement-reward-fail-hidden = Requires a hidden achievement reward
+
+achievement-category-milestones = Milestones
+achievement-category-onboarding = Onboarding
+achievement-category-special = Special
+achievement-category-vampire = Vampire

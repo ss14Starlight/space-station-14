@@ -1,0 +1,119 @@
+- type: constructionGraph
+  id: BarricadeSandbags
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: bags1
+      steps:
+      - material: Sandbag
+        amount: 1
+        doAfter: 1
+
+  - node: bags1
+    entity: BarricadeSandbagsFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: bags2
+      steps:
+      - material: Sandbag
+        amount: 1
+        doAfter: 1
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialSandbag1
+        amount: 1
+      - !type:DeleteEntity {}
+      steps:
+      - tool: Prying
+        doAfter: 1
+
+  - node: bags2
+    entity: BarricadeSandbagsFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: bags3
+      steps:
+      - material: Sandbag
+        amount: 1
+        doAfter: 1
+    - to: bags1
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialSandbag1
+        amount: 1
+      steps:
+      - tool: Prying
+        doAfter: 1
+
+  - node: bags3
+    entity: BarricadeSandbagsFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: bags4
+      steps:
+      - material: Sandbag
+        amount: 1
+        doAfter: 1
+    - to: bags2
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialSandbag1
+        amount: 1
+      steps:
+      - tool: Prying
+        doAfter: 1
+
+  - node: bags4
+    entity: BarricadeSandbagsFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: bags5
+      steps:
+      - material: Sandbag
+        amount: 1
+        doAfter: 1
+    - to: bags3
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialSandbag1
+        amount: 1
+      steps:
+      - tool: Prying
+        doAfter: 1
+
+  - node: bags5
+    entity: BarricadeSandbagsFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: sandbags
+      steps:
+      - material: Sandbag
+        amount: 1
+        doAfter: 1
+    - to: bags4
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialSandbag1
+        amount: 1
+      steps:
+      - tool: Prying
+        doAfter: 1
+
+  - node: sandbags
+    entity: BarricadeSandbags
+    edges:
+    - to: bags5
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialSandbag1
+        amount: 1
+      steps:
+      - tool: Prying
+        doAfter: 1

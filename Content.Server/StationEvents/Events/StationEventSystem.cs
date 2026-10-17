@@ -1,3 +1,4 @@
+using Content.Shared.Station.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Rules;
@@ -5,11 +6,11 @@ using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Content.Shared.Station.Components; // Starlight
-using Robust.Shared.Audio; // Starlight
+using Robust.Shared.Random;
 
 namespace Content.Server.StationEvents.Events;
 
@@ -134,11 +135,11 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
         {
             var allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
 
+            // The override, when present, is the single effective sound. Its duration is what needs to get reported.
+            var playAnnouncementSound = dispatchSound || soundOverride is not null;
             ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame,
-                Loc.GetString(announcementLocId), playSound: dispatchSound,
-                colorOverride: colorOverride);
-
-            if(soundOverride is not null) Audio.PlayGlobal(soundOverride, allPlayersInGame, true);
+                Loc.GetString(announcementLocId), playSound: playAnnouncementSound,
+                announcementSound: soundOverride, colorOverride: colorOverride);
         }
         else
         {
@@ -150,11 +151,11 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
                 return stationGrid.Station == stationEvent.TargetStation;
             });
 
+            // The override, when present, is the single effective sound. Its duration is what needs to get reported.
+            var playAnnouncementSound = dispatchSound || soundOverride is not null;
             ChatSystem.DispatchFilteredAnnouncement(allPlayersOnStation,
-                Loc.GetString(announcementLocId), playSound: dispatchSound,
-                colorOverride: colorOverride);
-
-            if(soundOverride is not null) Audio.PlayGlobal(soundOverride, allPlayersOnStation, true);
+                Loc.GetString(announcementLocId), playSound: playAnnouncementSound,
+                announcementSound: soundOverride, colorOverride: colorOverride);
         }
     }
     //Starlight end

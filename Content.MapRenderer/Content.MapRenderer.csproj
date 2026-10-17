@@ -17,6 +17,7 @@
     <PackageReference Include="NUnit" />
     <PackageReference Include="Moq" />
     <PackageReference Include="SixLabors.ImageSharp" />
+    <PackageReference Include="Nett" /> <!-- Starlight: generated parallax export -->
   </ItemGroup>
 
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />

@@ -1,0 +1,9 @@
+- type: !PartialOnly paintableGroup
+  id: AirlockStandard
+  styles:
+    nanotrasen: AirlockNT
+
+- type: !PartialOnly paintableGroup
+  id: AirlockGlass
+  styles:
+    nanotrasen: AirlockNTGlass

@@ -14,6 +14,9 @@
       noRot: true
       layers:
         - state: grey
+        - state: HoseAttachment  # Starlight: An attachement for refilling quickly
+          visible: false
+          map: [ "enum.GasCanisterVisuals.HoseAttached" ]
         - state: paper
           visible: false
           map: [ "enum.PaperLabelVisuals.Layer" ]
@@ -28,6 +31,10 @@
           tankInserted:
             False: { state: can-open, visible: false }
             True: { state: can-open, visible: true }
+        enum.GasCanisterVisuals.HoseAttached: # Starlight: An attachement for refilling quickly
+          enum.GasCanisterVisuals.HoseAttached:
+            True: { visible: true }
+            False: { visible: false }
         enum.LockVisuals.Locked:
           locked:
             False: { state: unlocked, shader: "unshaded" }
@@ -117,6 +124,7 @@
       containers:
         tank_slot: !type:ContainerSlot {}
         paper_label: !type:ContainerSlot
+        hose_slot: !type:ContainerSlot {} # Starlight
     - type: NodeContainer
       nodes:
         port:
@@ -132,6 +140,17 @@
         whitelist:
           components:
             - GasTank
+    - type: GasCanisterHoseSlot # Starlight
+      hoseSlot:
+        name: comp-gas-canister-slot-name-hose
+        insertOnInteract: true
+        disableEject: true
+        whitelist:
+          components:
+            - GasCanisterHose
+    - type: SimpleToolUsage # Starlight
+      quality: Screwing
+      doAfter: 1
     - type: StaticPrice
       price: 200
     - type: AccessReader
@@ -167,6 +186,9 @@
     - type: Sprite
       layers:
         - state: storage # Starlight Edit: yellow -> storage
+        - state: HoseAttachment  # Starlight
+          visible: false
+          map: [ "enum.GasCanisterVisuals.HoseAttached" ]
     - type: GasCanister
       gasMixture:
         volume: 1500
@@ -206,6 +228,9 @@
   - type: Sprite
     layers:
       - state: air # Starlight Edit: grey -> air
+      - state: HoseAttachment  # Starlight
+        visible: false
+        map: [ "enum.GasCanisterVisuals.HoseAttached" ]
   - type: GasCanister
     gasMixture:
       volume: 1500
@@ -246,6 +271,9 @@
   - type: Sprite
     layers:
       - state: oxygen # Starlight Edit: blue -> oxygen
+      - state: HoseAttachment  # Starlight
+        visible: false
+        map: [ "enum.GasCanisterVisuals.HoseAttached" ]
   - type: GasCanister
     gasMixture:
       volume: 1500
@@ -286,6 +314,9 @@
   - type: Sprite
     layers:
       - state: l_oxygen
+      - state: HoseAttachment  # Starlight
+        visible: false
+        map: [ "enum.GasCanisterVisuals.HoseAttached" ]
   # Starlight End
   - type: GasCanister
     gasMixture:
@@ -305,6 +336,9 @@
     - type: Sprite
       layers:
         - state: nitrogen # Starlight Edit: red -> nitrogen
+        - state: HoseAttachment  # Starlight
+          visible: false
+          map: [ "enum.GasCanisterVisuals.HoseAttached" ]
     - type: GasCanister
       gasMixture:
         volume: 1500
@@ -345,6 +379,9 @@
   - type: Sprite
     layers:
       - state: l_nitrogen
+      - state: HoseAttachment  # Starlight
+        visible: false
+        map: [ "enum.GasCanisterVisuals.HoseAttached" ]
   # Starlight End
   - type: GasCanister
     gasMixture:
@@ -364,6 +401,9 @@
     - type: Sprite
       layers:
         - state: carbon # Starlight Edit: black -> carbon
+        - state: HoseAttachment  # Starlight
+          visible: false
+          map: [ "enum.GasCanisterVisuals.HoseAttached" ]
     - type: GasCanister
       gasMixture:
         volume: 1500
@@ -420,6 +460,9 @@
     - type: Sprite
       layers:
         - state: plasma # Starlight Edit: orange -> plasma
+        - state: HoseAttachment  # Starlight
+          visible: false
+          map: [ "enum.GasCanisterVisuals.HoseAttached" ]
     - type: GasCanister
       gasMixture:
         volume: 1500
@@ -461,6 +504,9 @@
     - type: Sprite
       layers:
         - state: tritium # Starlight Edit: green -> tritium
+        - state: HoseAttachment  # Starlight
+          visible: false
+          map: [ "enum.GasCanisterVisuals.HoseAttached" ]
     - type: GasCanister
       gasMixture:
         volume: 1500
@@ -502,6 +548,9 @@
     - type: Sprite
       layers:
         - state: water_vapor
+        - state: HoseAttachment  # Starlight
+          visible: false
+          map: [ "enum.GasCanisterVisuals.HoseAttached" ]
     - type: GasCanister
       gasMixture:
         volume: 1500
@@ -541,6 +590,9 @@
     - type: Sprite
       layers:
         - state: ammonia # Starlight Edit: greenys -> ammonia
+        - state: HoseAttachment  # Starlight
+          visible: false
+          map: [ "enum.GasCanisterVisuals.HoseAttached" ]
     - type: GasCanister
       gasMixture:
         volume: 1500
@@ -582,6 +634,9 @@
     - type: Sprite
       layers:
         - state: nitrous_oxide # Starlight Edit: redws -> nitrous_oxide
+        - state: HoseAttachment  # Starlight
+          visible: false
+          map: [ "enum.GasCanisterVisuals.HoseAttached" ]
     - type: GasCanister
       gasMixture:
         volume: 1500
@@ -623,6 +678,9 @@
   - type: Sprite
     layers:
     - state: freezon # Starlight Edit: frezon -> freezon
+    - state: HoseAttachment  # Starlight
+      visible: false
+      map: [ "enum.GasCanisterVisuals.HoseAttached" ]
   - type: GasCanister
     gasMixture:
       volume: 1500

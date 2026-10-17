@@ -172,7 +172,7 @@
           - ShuttleDestinationCoordinates
       # Starlight-start: added PAI slot to shuttle console.
       pai_slot:
-        name: Personal AI Device
+        name: item-slot-component-slot-name-personal-ai
         ejectOnInteract: true
         ejectOnBreak: true # Starlight: eject PAI when console is destroyed so it isn't voided.
         whitelist:

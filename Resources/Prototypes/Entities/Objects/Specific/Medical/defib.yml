@@ -59,11 +59,6 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        #Starlight Start
-        blacklist:
-          tags:
-          - MechReactor
-        #Starlight End
 
 - type: entity
   id: DefibrillatorOneHandedUnpowered
@@ -133,5 +128,5 @@
         volume: -10
     activatedDamage:
       types:
-        # Blunt: 8 # Starlight removal
-        Shock: 10 # Starlight change: 16 -> 10
+        Blunt: 8
+        Shock: 16

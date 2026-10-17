@@ -1,0 +1,15 @@
+- type: !PartialOnly entity
+  id: BaseGunWieldable
+  components:
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncreaseDivider: 2
+    minAngleDivider: 4
+    maxAngleDivider: 3
+  - type: Gun
+    minAngle: 12
+    maxAngle: 30
+    angleIncrease: 1.2
+    angleDecay: 10
+    spread: 2

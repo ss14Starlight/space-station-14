@@ -68,7 +68,7 @@ using Content.Shared._Starlight.VentCrawl.Components;
 using Content.Shared._Starlight.Revolutionary.Components;
 using Content.Shared._Starlight.Store.Events;
 using Content.Server._Starlight.Roles;
-using Content.Shared._Starlight.Medical;
+using Content.Shared._Starlight.Medical.HealthAnalyzer;
 
 namespace Content.Server._Starlight.Achievement;
 
@@ -88,6 +88,7 @@ public sealed partial class AchievementSystem : EntitySystem
     [Dependency] private PowerCellSystem _powerCell = default!;
     [Dependency] private TagSystem _tag = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
 
     private static readonly TimeSpan _achievementHydrationRetryDelay = TimeSpan.FromSeconds(3);
     private static readonly ProtoId<TagPrototype> _arrowTag = "Arrow";
@@ -589,11 +590,11 @@ public sealed partial class AchievementSystem : EntitySystem
         QueueUnlockAchievement(killerSession, "paradox_undone");
     }
 
-    private void OnDamageableChanged(EntityUid uid, DamageableComponent damageable, ref DamageChangedEvent args)
+    private void OnDamageableChanged(EntityUid uid, DamageableComponent _, ref DamageChangedEvent args)
     {
         if (!_playerManager.TryGetSessionByEntity(uid, out var session)
-            || damageable.TotalDamage.Float() < HesDeadJimDamageThreshold
-            || !HasRequiredDamageGroups(damageable))
+            || _damageableSystem.GetTotalDamage(uid).Float() < HesDeadJimDamageThreshold
+            || !HasRequiredDamageGroups(uid))
         {
             return;
         }
@@ -857,11 +858,11 @@ public sealed partial class AchievementSystem : EntitySystem
         return requiredDepartmentId == null || JobHasDepartment(job.ID, requiredDepartmentId);
     }
 
-    private bool HasRequiredDamageGroups(DamageableComponent damageable)
+    private bool HasRequiredDamageGroups(EntityUid uid)
     {
         foreach (var groupId in HealthAnalyzerFormatting.DamageGroupOrder)
         {
-            if (!damageable.DamagePerGroup.TryGetValue(groupId, out var damage)
+            if (!_damageableSystem.GetDamagePerGroup(uid).TryGetValue(groupId, out var damage)
                 || damage.Float() <= 0f)
             {
                 return false;

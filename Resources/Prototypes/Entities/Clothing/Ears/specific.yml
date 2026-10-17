@@ -1,7 +1,7 @@
 ﻿- type: entity
-  parent: [ClothingHeadsetAssistant, BaseChameleon] #Starlight de-tidification
+  parent: [ClothingHeadsetAssistant, BaseChameleon] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: ClothingHeadsetChameleon
-  name: assistant headset
+  name: passenger headset
   description: An updated, modular intercom that fits over the head. Takes encryption keys.
   suffix: Chameleon
   components:
@@ -13,4 +13,4 @@
       sprite: Clothing/Ears/Headsets/base.rsi
     - type: ChameleonClothing
       slot: [ears]
-      default: ClothingHeadsetAssistant
+      default: ClothingHeadsetGrey

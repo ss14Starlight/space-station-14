@@ -1,1 +1,6 @@
 .env
+
+# Optional bind-mounted service data.
+grafana-data/
+loki-data/
+prometheus-data/

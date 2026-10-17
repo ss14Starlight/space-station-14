@@ -315,13 +315,7 @@ namespace Content.Server.Preferences.Managers
 
             prefsData.PrefsLoaded = true;
 
-            var msg = new MsgPreferencesAndSettings();
-            msg.Preferences = prefsData.Prefs;
-            msg.Settings = new GameSettings
-            {
-                MaxCharacterSlots = MaxCharacterSlots
-            };
-            _netManager.ServerSendMessage(msg, session.Channel);
+            SendPreferences(session, prefsData.Prefs); // Starlight
         }
 
         public void OnClientDisconnected(ICommonSession session)

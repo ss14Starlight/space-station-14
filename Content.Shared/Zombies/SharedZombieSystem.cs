@@ -5,7 +5,7 @@ using Content.Shared.NameModifier.EntitySystems;
 
 namespace Content.Shared.Zombies;
 
-public abstract class SharedZombieSystem : EntitySystem
+public abstract partial class SharedZombieSystem : EntitySystem //Starlight: Made this partial
 {
     /// <inheritdoc/>
     public override void Initialize()

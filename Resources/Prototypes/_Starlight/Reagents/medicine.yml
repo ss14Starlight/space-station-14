@@ -23,11 +23,10 @@
         amount: 0.2
     Bloodstream:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         damage:
-          groups:
-            Burn: -4
-            Brute: -4
+          Burn: -4
+          Brute: -4
 
 
 - type: reagent
@@ -37,7 +36,7 @@
   desc: reagent-desc-amoxla
   physicalDesc: reagent-physical-desc-opaque
   # Starlight Edits
-  contrabandSeverity: Minor
+  contrabandTier: Tier1 # Blimpuf
   allowedDepartments:
   - Medical
   # Starlight End
@@ -84,7 +83,7 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Avali, Resomi, Vox ]
-        amount: 3
+        amount: 9
         # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent # Amoxla for Cyclorites is a toxin not medicine
         conditions:
@@ -341,6 +340,7 @@
 
 - type: reagent
   id: Respirazone
+  contrabandTier: Tier1
   name: reagent-name-respirazone
   group: Medicine
   desc: reagent-desc-respirazone

@@ -1,6 +1,4 @@
-using System.Linq; // Starlight-edit
 using Content.Shared._Afterlight.Silicons.Borgs; // Afterlight
-using Content.Shared._Starlight; // Starlight-edit
 using Content.Shared.Actions;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
@@ -8,7 +6,6 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Content.Shared._NullLink; // Starlight-edit
 
 namespace Content.Shared.Silicons.Borgs;
 
@@ -24,8 +21,6 @@ public abstract partial class SharedBorgSwitchableTypeSystem : EntitySystem
     [Dependency] private SharedUserInterfaceSystem _userInterface = default!;
     [Dependency] protected IPrototypeManager Prototypes = default!;
     [Dependency] private InteractionPopupSystem _interactionPopup = default!;
-    [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResources = default!; // Starlight-edit
-    [Dependency] private IComponentFactory _componentFactory = default!; // Starlight
 
     public static readonly EntProtoId ActionId = "ActionSelectBorgType";
 
@@ -75,29 +70,7 @@ public abstract partial class SharedBorgSwitchableTypeSystem : EntitySystem
     }
 
     private void SelectTypeMessageHandler(Entity<BorgSwitchableTypeComponent> ent, ref BorgSelectTypeMessage args)
-    {
-        if (ent.Comp.SelectedBorgType is { } selected && selected != _Starlight.Silicons.Borgs.BorgChassisResetSystem.UnselectedType) // Starlight: a reset chassis may pick again
-            return;
-
-        if (!Prototypes.HasIndex(args.Prototype))
-            return;
-
-        if (args.Prototype == _Starlight.Silicons.Borgs.BorgChassisResetSystem.UnselectedType) return;// Starlight
-
-        // Starlight-start: Handle subtype cost
-        if (TryComp<BorgSwitchableSubtypeComponent>(ent, out var subtypeComp) && subtypeComp.BorgSubtype != null
-            && Prototypes.Index(subtypeComp.BorgSubtype.Value).TryComp<BorgSubtypeDefinitionComponent>(out var subtype, _componentFactory) && subtype.Price is not null and > 0) // Starlight
-        {
-            if (!_playerResources.TryGetResource(ent.Owner, "credits", out var balance)
-                || balance < subtype.Price)
-                return;
-
-            _playerResources.TryUpdateResource(ent.Owner, "credits", -subtype.Price.Value);
-        }
-        // Starlight-end
-
-        SelectBorgModule(ent, args.Prototype);
-    }
+        => TrySelectBorgType(ent, args.Prototype); // Starlight
 
     //
     // Implementation

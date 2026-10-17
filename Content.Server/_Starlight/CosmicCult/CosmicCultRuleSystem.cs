@@ -64,7 +64,7 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Radio.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared._Starlight.Shadekin.Components;
-using Prometheus;
+using Content.Server._Starlight.Statistics;
 
 namespace Content.Server._Starlight.CosmicCult;
 
@@ -97,6 +97,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     [Dependency] private ServerGlobalSoundSystem _sound = default!;
     [Dependency] private GibbingSystem _gibbing = default!;
     [Dependency] private SharedEyeSystem _eye = default!;
+    [Dependency] private SharedCosmicCultSystem _cosmicCult = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedRoleSystem _role = default!;
@@ -107,6 +108,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     [Dependency] private LanguageSystem _languageSystem = default!;
     [Dependency] private WeatherSystem _weather = default!;
     [Dependency] private NpcFactionSystem _faction = default!;
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!;
 
     private ISawmill _sawmill = default!;
     private TimeSpan _t3RevealDelay = default!;
@@ -132,12 +134,6 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     /// Mind role to add to cultists.
     /// </summary>
     public static readonly EntProtoId MindRole = "MindRoleCosmicCult";
-
-    private static readonly Counter _cultistCounter = Metrics.CreateCounter("cultist_counter",
-        "Keeps a track of the amount of times cultist win or loose", ["results"]);
-
-    private static readonly Gauge _convertsGauage = Metrics.CreateGauge("cultist_converts",
-        "Keeps track of the amount of players converted this round");
 
     public override void Initialize()
     {
@@ -403,9 +399,11 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             if (spawnPoints.IsEmpty)
                 return;
 
-            var endQuery = EntityQueryEnumerator<HumanoidAppearanceComponent, MobStateComponent>();
-            while (endQuery.MoveNext(out var player, out _, out _))
+            var endQuery = EntityQueryEnumerator<MobStateComponent>();
+            while (endQuery.MoveNext(out var player, out _))
             {
+                if (!HasComp<HumanoidAppearanceComponent>(player) && !_cosmicCult.IsConvertible(player))
+                    continue;
                 var newSpawn = _rand.Pick(spawnPoints);
                 var spawnTgt = Transform(newSpawn.Uid).Coordinates;
 
@@ -570,8 +568,12 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         args.AddLine(Loc.GetString("cosmiccult-roundend-entropy-count", ("count", component.EntropySiphoned)));
         args.AddLine(Loc.GetString("cosmiccult-roundend-monument-stage", ("stage", component.CurrentTier)));
 
-        _cultistCounter.WithLabels(component.WinType.ToString()).Inc();
-        _convertsGauage.Set(0);
+        _roundStatistics.RecordCosmicCultOutcome(
+            component.WinType.ToString(),
+            component.TotalCult,
+            component.PercentConverted,
+            component.EntropySiphoned,
+            component.CurrentTier);
     }
 
     public void IncrementCultObjectiveEntropy(Entity<CosmicCultComponent> ent)
@@ -589,7 +591,6 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
     public void AdjustCultObjectiveConversion(int value)
     {
-        _convertsGauage.Inc(value); // I know, I know using an Inc function with potential negative values is bad. Blame Prometheus for not having an .Adjust function...
         var query = EntityQueryEnumerator<CosmicConversionConditionComponent>();
         while (query.MoveNext(out _, out var conversionComp))
         {
@@ -630,7 +631,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         if (AssociatedGamerule(uid) is not { } cult)
             return;
 
-        cult.Comp.TotalCrew = _playerMan.Sessions.Count(session => session.Status == SessionStatus.InGame && HasComp<HumanoidAppearanceComponent>(session.AttachedEntity));
+        cult.Comp.TotalCrew = _playerMan.Sessions.Count(session => session.Status == SessionStatus.InGame && (HasComp<HumanoidAppearanceComponent>(session.AttachedEntity) || _cosmicCult.IsConvertible(session.AttachedEntity)));
 
 #if DEBUG
         if (cult.Comp.TotalCrew < 25)

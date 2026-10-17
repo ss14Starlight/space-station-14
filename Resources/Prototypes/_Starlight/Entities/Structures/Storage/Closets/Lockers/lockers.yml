@@ -108,7 +108,7 @@
     stateDoorOpen: nanotrasen-black_open
     stateDoorClosed: nct_door
   - type: AccessReader
-    access: [["Command"]]
+    access: [["NTPersonnel"]]
   - type: WiresPanelSecurity
     securityLevel: medSecurity
 

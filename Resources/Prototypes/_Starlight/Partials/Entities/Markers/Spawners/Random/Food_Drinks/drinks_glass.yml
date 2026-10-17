@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: RandomDrinkGlass
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - !Remove DrinkIrishSlammer
+      - DrinkIrishCarBomb
+    rarePrototypes:
+      - DrinkTheLastCall

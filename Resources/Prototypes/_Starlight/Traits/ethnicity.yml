@@ -72,3 +72,20 @@
       species:
         - Elf
         - NeoElf
+
+- type: trait
+  id: Drakari
+  name: trait-ethnicity-reptilian-drakari-name
+  description: trait-ethnicity-reptilian-drakari-desc
+  category: EthnicityTraits
+  cost: 1
+  effects:
+    - !type:LanguageEffect
+      languagesSpoken:
+        - Draconic
+      languagesUnderstood:
+        - Draconic
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - Reptilian

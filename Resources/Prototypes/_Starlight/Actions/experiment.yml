@@ -1,0 +1,14 @@
+﻿- type: entity
+  parent: BaseAction
+  id: ActionHealthSelfAnalyze
+  name: Check Health
+  description: Use your health implant to check for injuries.
+  components:
+  - type: Action
+    icon:
+        sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+        state: brain_implant_scan
+    itemIconStyle: BigAction
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:HealthSelfAnalyzeActionEvent

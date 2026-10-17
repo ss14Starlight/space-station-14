@@ -153,7 +153,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: Decimus
-  jobName: job-name-Decimus
+  jobName: job-name-decimus
   tags:
   - JobIconCentComm
 
@@ -163,7 +163,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: NTSF
-  jobName: job-name-NTSF
+  jobName: job-name-nanotrasen-special-forces
   tags:
   - JobIconCentComm
 
@@ -183,7 +183,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: Commander
-  jobName: job-name-Commander
+  jobName: job-name-commander
   isCrewJob: false
   tags:
   - JobIconCentComm
@@ -195,7 +195,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: SyndicateAgent
-  jobName: job-name-SyndicateAgent
+  jobName: job-name-syndicate-agent
   isCrewJob: false
   tags:
   - JobIconCentComm
@@ -207,7 +207,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: Operative
-  jobName: job-name-Operative
+  jobName: job-name-operative
   isCrewJob: false
   tags:
   - JobIconCentComm
@@ -219,7 +219,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: Soviet
-  jobName: job-name-Soviet
+  jobName: job-name-soviet
   isCrewJob: false
   tags:
   - JobIconCentComm
@@ -231,7 +231,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: TSF
-  jobName: job-name-TSF
+  jobName: job-name-tsf
   isCrewJob: false
   tags:
   - JobIconCentComm
@@ -242,7 +242,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: TSFOfficer
-  jobName: job-name-TSF-officer
+  jobName: job-name-tsf-officer
   isCrewJob: false
   tags:
   - JobIconCentComm

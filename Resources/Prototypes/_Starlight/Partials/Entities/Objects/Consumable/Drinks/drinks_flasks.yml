@@ -1,6 +1,16 @@
 - type: !PartialOnly entity
   id: FlaskBase
   components:
+  - type: ShakeSpillable
+    solutionName: drink
+  - type: ReactionMixer
+    mixerType: None
+    reactionTypes:
+    - Shake
+
+- type: !PartialOnly entity
+  id: FlaskBase
+  components:
   - type: Solution
     solution:
       maxVol: 30 # Return half liter flasks

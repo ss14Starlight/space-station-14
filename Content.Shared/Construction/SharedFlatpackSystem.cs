@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared.Construction.Components;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Construction.Components;
+using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.Examine;
@@ -13,6 +14,8 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 #region Starlight
@@ -26,22 +29,22 @@ public abstract partial class SharedFlatpackSystem : EntitySystem
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] protected IPrototypeManager PrototypeManager = default!;
-    [Dependency] protected SharedAppearanceSystem Appearance = default!;
+    [Dependency] private AnchorableSystem _anchorable = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedContainerSystem _container = default!;
-    [Dependency] private EntityLookupSystem _entityLookup = default!;
     [Dependency] private SharedMapSystem _map = default!;
-    [Dependency] protected MachinePartSystem MachinePart = default!;
-    [Dependency] protected SharedMaterialStorageSystem MaterialStorage = default!;
-    [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedToolSystem _tool = default!;
+    [Dependency] protected MachinePartSystem MachinePart = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
+    [Dependency] protected SharedMaterialStorageSystem MaterialStorage = default!;
+
+    #region Starlight
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private TagSystem _tag = default!;
-
-    // Starlight start - Define tag literals
     private static readonly ProtoId<TagPrototype> _flatpackBlacklistTag = "FlatpackBlacklist";
-    private static readonly ProtoId<TagPrototype> _tableTag = "Table";
+    #endregion
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -95,19 +98,18 @@ public abstract partial class SharedFlatpackSystem : EntitySystem
             return;
         }
 
-        var buildPos = _map.TileIndicesFor(grid, gridComp, xform.Coordinates);
-        var coords = _map.ToCenterCoordinates(grid, buildPos);
-
-        // TODO FLATPACK
-        // make it ignore ghosts
-        // Starlight-start
-        if (_entityLookup.GetEntitiesIntersecting(coords, LookupFlags.Dynamic | LookupFlags.Static)
-            .Any(entity => entity != uid && (!_tag.HasTag(entity, _tableTag.Id) || !ent.Comp.AllowUnpackOnTables)))
-        // Starlight-end
+        if (!PrototypeManager.Resolve(comp.Entity, out var proto) ||
+            !proto.TryGetComponent<FixturesComponent>(out var fixture, EntityManager.ComponentFactory))
         {
-            // this popup is on the server because the predicts on the intersection is crazy
-            if (_net.IsServer)
-                _popup.PopupEntity(Loc.GetString("flatpack-unpack-no-room"), uid, args.User);
+            return;
+        }
+
+        var (layer, mask) = SharedPhysicsSystem.GetHardCollision(fixture);
+        var buildPos = _map.TileIndicesFor(grid, gridComp, xform.Coordinates);
+
+        if (!_anchorable.TileFree((grid, gridComp), buildPos, layer, mask))
+        {
+            _popup.PopupPredicted(Loc.GetString("flatpack-unpack-no-room"), uid, args.User);
             return;
         }
 

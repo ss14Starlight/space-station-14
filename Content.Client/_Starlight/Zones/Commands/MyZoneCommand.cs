@@ -28,8 +28,8 @@ public sealed partial class MyZoneCommand : LocalizedCommands
             return;
         }
 
-        shell.WriteLine(tracker.Zone is { } zone
-            ? Loc.GetString("cmd-myzone-in-zone", ("zone", zone.Id))
+        shell.WriteLine(tracker.Zones.Count > 0
+            ? Loc.GetString("cmd-myzone-in-zone", ("zone", string.Join(", ", tracker.Zones)))
             : Loc.GetString("cmd-myzone-not-in-zone"));
     }
 }

@@ -1,0 +1,43 @@
+# Additional tie colors for Starlight
+
+- type: loadout
+  id: BlueTieGeneric
+  equipment:
+    neck: ClothingNeckTieBlue
+  groupBy: "ties"
+
+- type: loadout
+  id: BrownTieGeneric
+  equipment:
+    neck: ClothingNeckTieBrown
+  groupBy: "ties"
+
+- type: loadout
+  id: GreenTieGeneric
+  equipment:
+    neck: ClothingNeckTieGreen
+  groupBy: "ties"
+
+- type: loadout
+  id: GreyTieGeneric
+  equipment:
+    neck: ClothingNeckTieGrey
+  groupBy: "ties"
+
+- type: loadout
+  id: LGBTieLoadout
+  equipment:
+    neck: ClothingNeckLGBTie
+  groupBy: "ties"
+
+- type: loadoutGroup
+  id: TiesGroup
+  name: loadout-group-ties
+  minLimit: 0
+  loadouts:
+    - BlueTieGeneric
+    - BrownTieGeneric
+    - GreenTieGeneric
+    - GreyTieGeneric
+    - LGBTieLoadout
+    - ScientistTie

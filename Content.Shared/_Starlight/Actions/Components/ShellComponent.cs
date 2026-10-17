@@ -8,7 +8,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.Actions.Components;
 
 /// <summary>
-/// Component that allows an entity to enter and exit stasis.
+/// Component that allows an entity to have a shell
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ShellComponent : Component

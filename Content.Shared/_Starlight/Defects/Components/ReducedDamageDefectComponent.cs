@@ -11,7 +11,7 @@ public sealed partial class ReducedDamageDefectComponent : DefectComponent
     public ReducedDamageDefectComponent()
     {
         Prob = 0.55f;
-        DefectLabel = "weak power cell";
+        DefectLabel = "defect-label-weak-power-cell";
     }
 
     // All MeleeWeaponComponent damage values are multiplied by this at MapInit.

@@ -1,5 +1,5 @@
+using System.Security.Cryptography;
 using Content.Shared.Alert;
-using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
@@ -85,6 +85,7 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
         component.IsEnsnared = component.Container.ContainedEntities.Count > 0;
         Dirty(uid, component);
         ensnaring.Ensnared = null;
+        ensnaring.EnsnaredHandled = false; // Starlight
 
         _hands.PickupOrDrop(args.Args.User, args.Args.Used.Value);
 
@@ -154,7 +155,7 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
         if (!HasComp<EnsnareableComponent>(target))
             return;
 
-        var freeTime = user == target ? component.BreakoutTime : component.FreeTime;
+        var freeTime = TimeSpan.FromSeconds((double) (user == target ? component.BreakoutTime : component.FreeTime)); // Starlight
         var breakOnMove = !component.CanMoveBreakout;
 
         var doAfterEventArgs = new DoAfterArgs(EntityManager, user, freeTime, new EnsnareableDoAfterEvent(), target, target: target, used: ensnare)
@@ -247,6 +248,11 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
     /// <param name="component">The ensnaring component</param>
     public bool TryEnsnare(EntityUid target, EntityUid ensnare, EnsnaringComponent component)
     {
+        // Starlight begin
+        if (component.EnsnaredHandled)
+            return false;
+        // Starlight end
+
         //Don't do anything if they don't have the ensnareable component.
         if (!TryComp<EnsnareableComponent>(target, out var ensnareable))
             return false;
@@ -257,7 +263,13 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
         if (numEnsnares >= component.MaxEnsnares)
             return false;
 
-        Container.Insert(ensnare, ensnareable.Container);
+        // Starlight begin
+        component.EnsnaredHandled = true;
+
+        var ensnareObject = component.ensnareFreedPrototype != null ? Spawn(component.ensnareFreedPrototype) : ensnare;
+
+        Container.Insert(ensnareObject, ensnareable.Container);
+        // Starlight end
 
         // Apply stamina damage to target
         if (TryComp<StaminaComponent>(target, out var stamina))
@@ -292,6 +304,7 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
         ensnareable.IsEnsnared = ensnareable.Container.ContainedEntities.Count > 0;
         Dirty(component.Ensnared.Value, ensnareable);
         component.Ensnared = null;
+        component.EnsnaredHandled = false; // Starlight
 
         UpdateAlert(target, ensnareable);
         var ev = new EnsnareRemoveEvent(component.WalkSpeed, component.SprintSpeed);

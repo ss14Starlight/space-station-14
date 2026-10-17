@@ -28,6 +28,7 @@
   abstract: true
   components:
   - type: AntagImmune
+  - type: FirelockOpener
 
 - type: entity
   parent: MobCorgiBaseTemplate

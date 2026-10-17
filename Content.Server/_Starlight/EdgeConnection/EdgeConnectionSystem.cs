@@ -161,7 +161,7 @@ public sealed partial class EdgeConnectionSystem : EntitySystem
     /// </summary>
     private bool HasMatchingNeighbor(EntityUid entity, EntityUid gridUid, MapGridComponent grid, Vector2i tile, string key, EdgeConnectionFlags requiredDirection)
     {
-        var anchored = _map.GetAnchoredEntitiesEnumerator(gridUid, grid, tile);
+        var anchored = _map.GetAnchoredEntities(gridUid, grid, tile);
         var entityXform = Transform(entity);
 
         while (anchored.MoveNext(out var other))
@@ -217,7 +217,7 @@ public sealed partial class EdgeConnectionSystem : EntitySystem
     /// </summary>
     private void UpdateNeighborsAtTile(EntityUid gridUid, MapGridComponent grid, Vector2i tile)
     {
-        var anchored = _map.GetAnchoredEntitiesEnumerator(gridUid, grid, tile);
+        var anchored = _map.GetAnchoredEntities(gridUid, grid, tile);
 
         while (anchored.MoveNext(out var other))
         {

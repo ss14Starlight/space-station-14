@@ -37,6 +37,32 @@
     - PlushieLizard
   groupBy: "wehzards" # Starlight
 
+# Starlight-start
+- type: loadout
+  id: RubberStampAssistant
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPassenger
+      time: 108000 # 30hr
+  storage:
+    back:
+    - RubberStampAssistant
+
+- type: loadout
+  id: Soap
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPassenger
+      time: 18000 # 5hr
+  storage:
+    back:
+    - Soap
+# Starlight-end
+
 - type: loadout
   id: PlushieSpaceLizard
   storage:
@@ -302,6 +328,8 @@
     back:
     - OffsetCaneNT
   groupBy: "canes"
+
+
 
 - type: loadout
   id: Cane
