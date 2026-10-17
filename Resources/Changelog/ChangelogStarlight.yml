@@ -1,18 +1,4 @@
 Entries:
-- author: DogeyOT
-  changes:
-  - message: Breathing Tube, an invisible breath mask available in trinkets.
-    type: Add
-  id: 409145
-  time: '2026-10-04T13:13:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6380
-- author: salarua
-  changes:
-  - message: Removed the malleus maleficarum chaplain book.
-    type: Remove
-  id: 409146
-  time: '2026-10-04T13:40:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6399
 - author: salarua
   changes:
   - message: Renamed satanic bible to satanic codex.
@@ -2883,4 +2869,18 @@ Entries:
   id: 409544
   time: '2026-10-17T10:38:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6718
+- author: Xale
+  changes:
+  - message: Wooden bowl crafting recipe now works correctly.
+    type: Fix
+  id: 409545
+  time: '2026-10-17T10:38:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6720
+- author: Xale
+  changes:
+  - message: Cleaned up savoury recipes section in the guidebook.
+    type: Fix
+  id: 409546
+  time: '2026-10-17T10:38:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6720
 Order: -1
