@@ -309,10 +309,7 @@ public sealed partial class EmergencyShuttleSystem
             return;
         }
 
-        var angle = _random.NextAngle();
-        var distance = _random.NextFloat(0, PodSpreadRadius);
-        var offset = angle.ToVec() * distance;
-        var landingCoords = evacuationLandingZone.Offset(offset);
+        var landingCoords = GetEvacuationPodLandingCoordinates(uid, evacuationLandingZone);
 
         var rotations = new[]
         {
