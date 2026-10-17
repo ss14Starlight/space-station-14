@@ -1,13 +1,6 @@
 Entries:
 - author: DogeyOT
   changes:
-  - message: New vox tails, and eyes.
-    type: Add
-  id: 409143
-  time: '2026-10-04T13:13:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6380
-- author: DogeyOT
-  changes:
   - message: Cygni standard as a language. Costs 1 language point currently due to being galactic. Does not inherently come with skb or former ussp background. Yet.
     type: Add
   id: 409144
@@ -2883,4 +2876,11 @@ Entries:
   id: 409542
   time: '2026-10-17T09:27:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6724
+- author: Johnny
+  changes:
+  - message: Partialized some stuff.
+    type: Tweak
+  id: 409543
+  time: '2026-10-17T10:04:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6727
 Order: -1
