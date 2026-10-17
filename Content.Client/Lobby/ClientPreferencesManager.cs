@@ -46,6 +46,7 @@ namespace Content.Client.Lobby
             _netManager.RegisterNetMessage<MsgForceDeletePlayerCharacter>(); // Starlight
             _netManager.RegisterNetMessage<MsgForcePlayerCharacterEnable>(); // Starlight
             _netManager.RegisterNetMessage<MsgForceUpdatePlayerJobPriorities>(); // Starlight
+            _netManager.RegisterNetMessage<MsgPreferenceConfirmationResult>(); // Starlight
             _netManager.RegisterNetMessage<MsgUpdateCharacter>();
             _netManager.RegisterNetMessage<MsgDeleteCharacter>();
             _netManager.RegisterNetMessage<MsgSetCharacterEnable>();

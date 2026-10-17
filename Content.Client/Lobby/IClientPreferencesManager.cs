@@ -26,13 +26,35 @@ namespace Content.Client.Lobby
 
         #region Starlight
 
+        /// <summary>
         /// Intended for editing another player's preferences.
+        /// </summary>
         PlayerPreferences? TargetPreferences { get; set; }
+        /// <summary>
         /// Pending preferences edited by an admin for viewing before saving.
+        /// </summary>
         PlayerPreferences? PendingPreferences { get; set; }
+        /// <summary>
         /// The target player for whom's preferences are being edited.
+        /// </summary>
         MinimalPlayerInfo? TargetPlayerInfo { get; set; }
         bool ViewingChanges { get; }
+        /// <summary>
+        /// The last admin to edit <see cref="PendingPreferences"/>.
+        /// </summary>
+        MinimalPlayerInfo? PendingPreferencesAdmin { get; }
+        /// <summary>
+        /// Raised when the server sends pending preference edits to review.
+        /// </summary>
+        event Action OnPendingPreferencesReceived;
+        /// <summary>
+        /// Accept the pending preference edits, applying them to your preferences.
+        /// </summary>
+        void AcceptPendingPreferences();
+        /// <summary>
+        /// Reject the pending preference edits, discarding them.
+        /// </summary>
+        void RejectPendingPreferences(string? reason = null);
 
         #endregion
     }

@@ -126,6 +126,31 @@ namespace Content.Server.Database
                 .HasIndex(e => new { e.PreferenceId, e.JobName })
                 .HasDatabaseName("UX_JobPriorityEntry_Pref_Job")
                 .IsUnique();
+
+            modelBuilder.Entity<StarLightModel.PendingPreference>()
+                .HasIndex(p => p.UserId)
+                .IsUnique();
+
+            modelBuilder.Entity<StarLightModel.PendingProfile>(entity =>
+            {
+                entity.HasOne(e => e.PendingPreference)
+                    .WithMany(p => p.Profiles)
+                    .HasForeignKey(e => e.PendingPreferenceId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasIndex(e => new { e.PendingPreferenceId, e.Slot })
+                    .IsUnique();
+            });
+
+            modelBuilder.Entity<StarLightModel.PendingJobPriority>(entity =>
+            {
+                entity.HasOne(e => e.PendingPreference)
+                    .WithMany(p => p.JobPriorities)
+                    .HasForeignKey(e => e.PendingPreferenceId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasIndex(e => e.PendingPreferenceId);
+            });
             //starlight end
 
             modelBuilder.Entity<Job>()

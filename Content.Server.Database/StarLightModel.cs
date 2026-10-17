@@ -102,13 +102,49 @@ public sealed class StarLightModel : DataModelBase
         public string OOCNotes { get; set; } = string.Empty;
     }
 
+    /// <summary>
+    /// Preference edits made by an admin that have not yet been accepted or rejected by the player they belong to.
+    /// One row per player; further edits are merged into the existing row.
+    /// </summary>
+    [Table("sl_pending_preference")]
     public class PendingPreference
     {
         public int Id { get; set; }
         public Guid UserId { get; set; }
-        public string AdminOOCColor { get; set; } = null!;
-        public List<string> ConstructionFavorites { get; set; } = new();
-        public List<Profile> Profiles { get; } = new();
-        public List<JobPriorityEntry> JobPriorities { get; set; } = new();
+
+        /// The last admin to modify the pending data.
+        public Guid LastAdminUserId { get; set; }
+        public string LastAdminName { get; set; } = string.Empty;
+
+        /// Incremented on each edit so an accept/reject only clears the edits the player actually saw.
+        public int Revision { get; set; }
+
+        /// Whether <see cref="JobPriorities"/> holds a pending change, since an empty list is also a valid change.
+        public bool HasJobPriorities { get; set; }
+
+        public List<PendingProfile> Profiles { get; set; } = new();
+        public List<PendingJobPriority> JobPriorities { get; set; } = new();
+    }
+
+    [Table("sl_pending_profile")]
+    public class PendingProfile
+    {
+        public int Id { get; set; }
+        public int PendingPreferenceId { get; set; }
+        public PendingPreference PendingPreference { get; set; } = null!;
+        public int Slot { get; set; }
+
+        /// The profile serialized as a <c>HumanoidProfileExport</c> yaml document, or null if the slot is to be deleted.
+        public string? Data { get; set; }
+    }
+
+    [Table("sl_pending_job_priority")]
+    public class PendingJobPriority
+    {
+        public int Id { get; set; }
+        public int PendingPreferenceId { get; set; }
+        public PendingPreference PendingPreference { get; set; } = null!;
+        public string JobName { get; set; } = null!;
+        public DbJobPriority Priority { get; set; }
     }
 }

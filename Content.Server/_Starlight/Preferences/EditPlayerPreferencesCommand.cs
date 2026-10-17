@@ -35,7 +35,7 @@ public sealed partial class EditPlayerPreferencesCommand : ToolshedCommand
     {
         if (_preferences is not ServerPreferencesManager preferences) return;
         var cts = new CancellationTokenSource();
-        var data = await preferences.GetProfileDataForPlayerAsync(target.UserId, cts.Token);
+        var data = await preferences.GetProfileDataWithPendingAsync(target.UserId, cts.Token);
         cts.Token.ThrowIfCancellationRequested();
         if (data is null)
         {
@@ -50,7 +50,7 @@ public sealed partial class EditPlayerPreferencesCommand : ToolshedCommand
     [CommandImplementation]
     public ICommonSession EditPrefs(IInvocationContext ctx, [PipedArgument] ICommonSession target)
     {
-        if (CommandHelpers.NoSession(ctx))
+        if (SharedCommandHelpers.NoSession(ctx))
             return target;
         _ = SendPrefsMessageAsync(ctx, new MinimalPlayerInfo(target.Name, target.UserId));
         return target;
@@ -59,7 +59,7 @@ public sealed partial class EditPlayerPreferencesCommand : ToolshedCommand
     [CommandImplementation]
     public EntityUid EditPrefs(IInvocationContext ctx, [PipedArgument] EntityUid uid)
     {
-        if (CommandHelpers.NoSession(ctx))
+        if (SharedCommandHelpers.NoSession(ctx))
             return uid;
         if (!_player.TryGetSessionByEntity(uid, out var session))
         {
@@ -89,7 +89,7 @@ public sealed partial class EditPlayerPreferencesCommand : ToolshedCommand
     [CommandImplementation]
     public void EditPrefsOffline(IInvocationContext ctx, string player)
     {
-        if (CommandHelpers.NoSession(ctx))
+        if (SharedCommandHelpers.NoSession(ctx))
             return;
         _ = FindAndEditPrefsAsync(ctx, player);
     }

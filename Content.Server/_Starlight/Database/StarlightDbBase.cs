@@ -42,85 +42,91 @@ public abstract partial class ServerDbBase
 
     #region PendingPreferenceData
 
-    // public async Task SavePendingCharacterSlotAsync(NetUserId userId, HumanoidCharacterProfile? humanoid, int slot)
-    // {
-    //     await using var db = await GetDb();
-    //
-    //     if (humanoid is null)
-    //     {
-    //         await DeletePendingCharacterSlot(db.DbContext, userId, slot);
-    //         await db.DbContext.SaveChangesAsync();
-    //         return;
-    //     }
-    //
-    //     var oldProfile = db.DbContext.Profile
-    //         .Include(p => p.StarLightProfile) // Starlight
-    //         .Include(p => p.Preference)
-    //         .Where(p => p.Preference.UserId == userId.UserId)
-    //         .Include(p => p.Jobs)
-    //         .Include(p => p.Antags)
-    //         .Include(p => p.Traits)
-    //         .Include(p => p.Loadouts)
-    //         .ThenInclude(l => l.Groups)
-    //         .ThenInclude(group => group.Loadouts)
-    //         .Include(p => p.CharacterInfo) // Starlight-edit
-    //         // Cosmatic Drift Record System-start: Pull forward existing CD profile state when editing a saved slot
-    //         .Include(p => p.CDProfile)
-    //         // Entity Framework will populate CharacterRecordEntries for any existing CDProfile,
-    //         // so it's safe to suppress the nullable warning here as well.
-    //         .ThenInclude(cdProfile => cdProfile!.CharacterRecordEntries)
-    //         // Cosmatic Drift Record System-end
-    //         .AsSplitQuery()
-    //         .SingleOrDefault(h => h.Slot == slot);
-    //
-    //     var newProfile = ConvertProfiles(humanoid, slot, oldProfile);
-    //     if (oldProfile == null)
-    //     {
-    //         var prefs = await db.DbContext
-    //             .PendingPreference
-    //             .Include(p => p.Profiles)
-    //             .SingleAsync(p => p.UserId == userId.UserId);
-    //
-    //         prefs.Profiles.Add(newProfile);
-    //     }
-    //
-    //     await db.DbContext.SaveChangesAsync();
-    // }
-    //
-    // public async Task SavePendingJobPrioritiesAsync(NetUserId userId,
-    //     Dictionary<ProtoId<JobPrototype>, JobPriority> newJobPriorities)
-    // {
-    //     await using var db = await GetDb();
-    //
-    //     var playerPreference = db.DbContext.PendingPreference
-    //         .Include(p => p.JobPriorities)
-    //         .Single(p => p.UserId == userId.UserId);
-    //
-    //     var newPrios = new List<JobPriorityEntry>();
-    //     foreach (var (job, priority) in newJobPriorities)
-    //     {
-    //         var newPrio = new JobPriorityEntry { JobName = job, Priority = (DbJobPriority)priority, };
-    //         newPrios.Add(newPrio);
-    //     }
-    //
-    //     playerPreference.JobPriorities = newPrios;
-    //
-    //     await db.DbContext.SaveChangesAsync();
-    // }
-    //
-    // private static async Task DeletePendingCharacterSlot(ServerDbContext db, NetUserId userId, int slot)
-    // {
-    //     var profile = await db.Profile.Include(p => p.Preference)
-    //         .Where(p => p.Preference.UserId == userId.UserId && p.Slot == slot)
-    //         .SingleOrDefaultAsync();
-    //
-    //     if (profile == null)
-    //     {
-    //         return;
-    //     }
-    //
-    //     db.Profile.Remove(profile);
-    // }
+    public async Task<StarLightModel.PendingPreference?> GetPendingPreferenceAsync(NetUserId userId, CancellationToken cancel)
+    {
+        await using var db = await GetDb(cancel);
+        return await db.DbContext.PendingPreference
+            .Include(p => p.Profiles)
+            .Include(p => p.JobPriorities)
+            .AsSplitQuery()
+            .AsNoTracking()
+            .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
+    }
+
+    public async Task SavePendingProfileAsync(NetUserId userId, NetUserId adminId, string adminName, int slot, string? data)
+    {
+        await using var db = await GetDb();
+        var pending = await GetOrCreatePendingPreference(db.DbContext, userId, adminId, adminName);
+
+        var existing = pending.Profiles.SingleOrDefault(p => p.Slot == slot);
+        if (existing is null)
+            pending.Profiles.Add(new StarLightModel.PendingProfile { Slot = slot, Data = data });
+        else
+            existing.Data = data;
+
+        await db.DbContext.SaveChangesAsync();
+    }
+
+    public async Task SavePendingJobPrioritiesAsync(NetUserId userId, NetUserId adminId, string adminName,
+        Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities)
+    {
+        await using var db = await GetDb();
+        var pending = await GetOrCreatePendingPreference(db.DbContext, userId, adminId, adminName);
+
+        pending.HasJobPriorities = true;
+        pending.JobPriorities =
+        [
+            .. jobPriorities
+                .Select(p =>
+                    new StarLightModel.PendingJobPriority { JobName = p.Key, Priority = (DbJobPriority)p.Value })
+        ];
+
+        await db.DbContext.SaveChangesAsync();
+    }
+
+    /// <summary>
+    /// Deletes the pending preferences for a player, but only if they are still at the given revision.
+    /// </summary>
+    /// <returns>False if the pending preferences were modified since <paramref name="revision"/> and were not deleted.</returns>
+    public async Task<bool> DeletePendingPreferenceAsync(NetUserId userId, int revision)
+    {
+        await using var db = await GetDb();
+        var pending = await db.DbContext.PendingPreference
+            .Include(p => p.Profiles)
+            .Include(p => p.JobPriorities)
+            .AsSplitQuery()
+            .SingleOrDefaultAsync(p => p.UserId == userId.UserId);
+
+        if (pending is null)
+            return true;
+        if (pending.Revision != revision)
+            return false;
+
+        db.DbContext.PendingPreference.Remove(pending);
+        await db.DbContext.SaveChangesAsync();
+        return true;
+    }
+
+    private static async Task<StarLightModel.PendingPreference> GetOrCreatePendingPreference(ServerDbContext db,
+        NetUserId userId, NetUserId adminId, string adminName)
+    {
+        var pending = await db.PendingPreference
+            .Include(p => p.Profiles)
+            .Include(p => p.JobPriorities)
+            .AsSplitQuery()
+            .SingleOrDefaultAsync(p => p.UserId == userId.UserId);
+
+        if (pending is null)
+        {
+            pending = new StarLightModel.PendingPreference { UserId = userId.UserId };
+            db.PendingPreference.Add(pending);
+        }
+
+        pending.LastAdminUserId = adminId.UserId;
+        pending.LastAdminName = adminName;
+        pending.Revision++;
+        return pending;
+    }
 
     #endregion
 }
