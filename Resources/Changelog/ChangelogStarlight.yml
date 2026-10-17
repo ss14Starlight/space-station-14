@@ -1,25 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Removed the fake shield from revolutionary uplink.
-    type: Remove
-  id: 409141
-  time: '2026-10-04T12:46:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6483
-- author: STARLIGHT TEAM
-  changes:
-  - message: Added bottomless oxygen and nitrogen tanks, for adbus.
-    type: Add
-  id: 409142
-  time: '2026-10-04T12:46:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6435
-- author: DogeyOT
-  changes:
-  - message: New vox tails, and eyes.
-    type: Add
-  id: 409143
-  time: '2026-10-04T13:13:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6380
 - author: DogeyOT
   changes:
   - message: Cygni standard as a language. Costs 1 language point currently due to being galactic. Does not inherently come with skb or former ussp background. Yet.
@@ -2883,4 +2862,25 @@ Entries:
   id: 409540
   time: '2026-10-16T14:20:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6711
+- author: SevenShades, Way
+  changes:
+  - message: Added Street lamps.
+    type: Add
+  id: 409541
+  time: '2026-10-17T08:59:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6728
+- author: Conflee
+  changes:
+  - message: Gave Nukie Borgs their Gorlex comms.
+    type: Fix
+  id: 409542
+  time: '2026-10-17T09:27:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6724
+- author: Johnny
+  changes:
+  - message: Partialized some stuff.
+    type: Tweak
+  id: 409543
+  time: '2026-10-17T10:04:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6727
 Order: -1
