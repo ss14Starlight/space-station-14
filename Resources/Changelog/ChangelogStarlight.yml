@@ -1,27 +1,6 @@
 Entries:
 - author: CrazyPhantom
   changes:
-  - message: Drones now require 10H of Cyborg Playtime.
-    type: Tweak
-  id: 409169
-  time: '2026-10-05T08:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6505
-- author: CrazyPhantom
-  changes:
-  - message: Emags will no longer consume a charge when using it on a drone. (They still do nothing).
-    type: Fix
-  id: 409170
-  time: '2026-10-05T08:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6505
-- author: CrazyPhantom
-  changes:
-  - message: Drone Playtime tracker.
-    type: Add
-  id: 409171
-  time: '2026-10-05T08:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6505
-- author: CrazyPhantom
-  changes:
   - message: Drones no longer see unknown people talking.
     type: Fix
   id: 409172
@@ -2883,4 +2862,25 @@ Entries:
   id: 409568
   time: '2026-10-17T13:48:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6713
+- author: Rescue
+  changes:
+  - message: Hypopen targets no longer hear the injection sound effect, all other nearby listeners still hear the SFX and can roleplay accordingly.
+    type: Tweak
+  id: 409569
+  time: '2026-10-17T14:09:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6689
+- author: Rescue
+  changes:
+  - message: Hyposprays / Hypopens now correctly show "You feel a tiny prick" messages again.
+    type: Fix
+  id: 409570
+  time: '2026-10-17T14:09:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6689
+- author: Rescue
+  changes:
+  - message: Hypopen no longer attempts to stir reagents, instead of drawing them.
+    type: Fix
+  id: 409571
+  time: '2026-10-17T14:09:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6689
 Order: -1
