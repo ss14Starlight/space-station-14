@@ -1,0 +1,9 @@
+﻿<Control xmlns="https://spacestation14.io">
+    <BoxContainer Orientation="Vertical">
+        <BoxContainer Orientation="Horizontal">
+            <Label Name="NameLabel" HorizontalExpand="True" VAlign="Center" />
+            <OptionButton Name="Button" Access="Public" MinWidth="240" VerticalAlignment="Center" />
+        </BoxContainer>
+        <RichTextLabel Name="DescriptionLabel" StyleClasses="LabelSubText" Visible="False" />
+    </BoxContainer>
+</Control>
