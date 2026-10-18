@@ -24,6 +24,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
   - type: Appearance
   - type: SLBody
     prefab: Human
+    requiredLegs: 2
   - type: StandingState
 ";
 
