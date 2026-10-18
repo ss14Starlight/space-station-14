@@ -208,14 +208,6 @@
   description: We need to get this department's valuables.
 
 - type: entity
-  parent: [BaseBloodBoundObjective, RobDepartmentObjective]
-  id: BloodBoundLoudRobDepartmentObjective
-  description: We need to get this department's valuables.
-  components:
-  - type: DepartmentObjective
-    title: objective-condition-loud-rob-department
-
-- type: entity
   parent: [BaseBloodBoundObjective, SabotageObjective]
   id: BloodBoundSabotageObjective
   description: We need to sabotage this department's activities.

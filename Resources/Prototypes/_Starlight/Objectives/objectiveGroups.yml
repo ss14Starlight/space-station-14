@@ -160,7 +160,6 @@
     BloodBoundClaimLocationObjective: 1
     BloodBoundCallingCardObjective: 0.2
     BloodBoundRobDepartmentObjective: 1
-    BloodBoundLoudRobDepartmentObjective: 1
     BloodBoundSabotageObjective: 0.5
 
 - type: weightedRandom

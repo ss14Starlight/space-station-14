@@ -8,8 +8,7 @@ objective-feud = Falsify aggression and increase hostilities between {$departmen
 objective-waste = Waste {$department}'s resources this shift, in any way you deem satisfactory.
 
 objective-condition-sabotage-department = Sabotage the {$department} department.
-objective-condition-rob-department = Steal from the {$department} department.
-objective-condition-loud-rob-department = Rob the {$department} department.
+objective-condition-rob-department = Rob the {$department} department.
 objective-condition-trash-room = Trash the {$targetName} room.
 objective-condition-claim-room = Claim the {$targetName} room for the Syndicate.
 objective-condition-blood-bound-claim-room = Claim the {$targetName} room for the Blood Bound.
