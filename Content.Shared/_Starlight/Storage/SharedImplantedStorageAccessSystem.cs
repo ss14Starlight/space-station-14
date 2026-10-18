@@ -71,13 +71,11 @@ public sealed partial class SharedImplantedStorageAccessSystem : EntitySystem
         SetStorageRangeResult(container.Owner, ref args);
     }
 
-    private void SetStorageRangeResult(EntityUid owner, ref BoundUserInterfaceCheckRangeEvent args)
-    {
+    private void SetStorageRangeResult(EntityUid owner, ref BoundUserInterfaceCheckRangeEvent args) =>
         args.Result = args.Actor.Owner == owner ||
             _interaction.InRangeUnobstructed(args.Actor.Owner, owner, args.Data.InteractionRange)
                 ? BoundUserInterfaceRangeResult.Pass
                 : BoundUserInterfaceRangeResult.Fail;
-    }
 
     private void OnGetVerbs(Entity<BodyComponent> body, ref GetVerbsEvent<ActivationVerb> args)
     {
@@ -117,17 +115,12 @@ public sealed partial class SharedImplantedStorageAccessSystem : EntitySystem
         }
     }
 
-    private bool CanShowImplantedStorage(EntityUid uid, StorageComponent storage, bool bodyPart)
-    {
-        // Cargo legs hide the ordinary storage verb in favor of their limb action, but still need body-context access.
-        return IsPublicStorage(uid) &&
+    // Cargo legs hide the ordinary storage verb in favor of their limb action, but still need body-context access.
+    private bool CanShowImplantedStorage(EntityUid uid, StorageComponent storage, bool bodyPart) =>
+        IsPublicStorage(uid) &&
             (storage.ShowVerb || (bodyPart && HasComp<StorageOrganComponent>(uid)));
-    }
 
-    private bool IsPublicStorage(EntityUid storage)
-    {
-        return !HasComp<SubdermalImplantComponent>(storage) &&
+    private bool IsPublicStorage(EntityUid storage) =>
+        !HasComp<SubdermalImplantComponent>(storage) &&
             !HasComp<StorageImplantComponent>(storage);
-    }
-
 }
