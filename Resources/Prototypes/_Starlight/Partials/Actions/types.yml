@@ -4,3 +4,7 @@
   - type: Action
     checkConsciousness: false
     raiseOnUser: true
+
+- type: !PartialOnly entity
+  id: ActionActivateFreedomImplant
+  description: Activating your freedom implant will free you from any hand restraints and bolas

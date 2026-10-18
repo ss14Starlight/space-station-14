@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: Bible
+  components:
+  - type: Bible
+    cluwneCureChance: 0.7
+  - type: ItemPrice # Vending Machines Prices
+    fallbackPrice: 0

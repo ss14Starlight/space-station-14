@@ -12,3 +12,5 @@ replay-observer-status-icons-off = Status icons disabled.
 replay-observer-verb-view-laws = View Laws
 replay-observer-verb-view-moods = View Moods
 replay-observer-ghostnado-none = Nobody is being followed.
+replay-observer-weather-on = Weather overlays shown.
+replay-observer-weather-off = Weather overlays hidden.

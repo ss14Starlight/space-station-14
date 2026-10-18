@@ -29,3 +29,7 @@ staff-help-mentor = Mentor Help
 
 mentor-help-tag-admin = admin
 mentor-help-tag-mentor = mentor
+
+mentor-tickets = Tickets
+mentor-settings = Settings
+mentor-select-ticket = Select a ticket to see its messages

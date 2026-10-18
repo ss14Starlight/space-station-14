@@ -1,0 +1,4 @@
+- type: !PartialOnly entity
+  id: PlushieLizardJobChaplain
+  name: lizard-priest plushie
+  description: An adorable stuffed toy that resembles a lizardperson as a Chaplain. It smells faintly of ayahuasca.

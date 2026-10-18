@@ -53,7 +53,7 @@ public sealed partial class ItemPriceManager : EntitySystem
         var categories = GetPriceCategories();
         foreach (var proto in _prototypes.EnumeratePrototypes<EntityPrototype>())
         {
-            if (!proto.TryGetComponent<ItemPriceComponent>(out var priceComp, _componentFactory))
+            if (!proto.TryComp<ItemPriceComponent>(out var priceComp, _componentFactory))
                 continue;
 
             if (_prototypePrices.ContainsKey(proto.ID))

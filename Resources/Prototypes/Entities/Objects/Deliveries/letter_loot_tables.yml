@@ -6,10 +6,6 @@
   table: !type:GroupSelector
     children:
       - id: MailSpamLetter
-        weight: .996
-      - !type:NestedSelector
-        tableId: MailAntagSpamLetter # Starlight, behold, antag on signing papers.
-        weight: .004
 
 # Letter Bundles
 ## Basically items that should always spawn together, specific to letters
@@ -37,4 +33,3 @@
     children:
     - id: Paper
     - id: Pen
-

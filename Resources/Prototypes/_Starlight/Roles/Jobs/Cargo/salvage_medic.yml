@@ -29,9 +29,6 @@
 - type: startingGear
   id: SalvageMedicGear
   equipment:
-    eyes: ClothingEyesHudMedical
-    jumpsuit: ClothingUniformJumpsuitSalvageMedic
-    id: SalvageMedicPDA
     ears: ClothingHeadsetSalvageLead
 
 - type: chameleonOutfit

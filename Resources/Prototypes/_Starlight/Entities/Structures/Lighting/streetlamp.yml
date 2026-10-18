@@ -1,0 +1,175 @@
+- type: entity
+  id: BaseLightStreetLamp
+  name: street lamp
+  description: A street lamp.
+  parent: BaseStructure
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Lighting/streetlamp.rsi
+    drawdepth: Overdoors
+    noRot: True
+    offset: 0, 0.75
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.15"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+        - BulletImpassable
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalGlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            SheetSteel1:
+              min: 2
+              max: 4
+
+- type: entity
+  id: LightStreetLamp
+  name: street lamp
+  description: A street lamp.
+  suffix: Always Powered
+  parent: BaseLightStreetLamp
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: glow
+      shader: unshaded
+    state: base
+  - type: PointLight
+    radius: 10
+    energy: 2
+    softness: 0.9
+    offset: 0, -0.4
+    color: "#EEEEFF"
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -10
+    range: 3
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: broken
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:EmptyAllContainersBehaviour
+  - type: RequireProjectileTarget
+
+- type: entity
+  id: PoweredLightStreetLampEmpty
+  suffix: Empty
+  parent: LightStreetLamp
+  components:
+  - type: Sprite
+    state: empty
+  - type: PointLight
+    enabled: false
+  - type: PoweredLight
+    bulb: Tube
+  - type: ContainerContainer
+    containers:
+      light_bulb: !type:ContainerSlot
+  - type: ApcPowerReceiver
+  - type: ExtensionCableReceiver
+  - type: Construction
+    graph: StreetLamp
+    node: streetLamp
+  - type: Appearance
+  - type: PoweredLightVisuals
+    blinkingSound:
+      path: "/Audio/Machines/light_tube_on.ogg"
+    spriteStateMap:
+      empty: empty
+      off: base
+      on: base
+      broken: light_broken
+      burned: base
+  - type: DamageOnInteract
+    damage:
+      types:
+        Heat: 2
+    popupText: powered-light-component-burn-hand
+  - type: DeviceLinkSink
+    ports:
+      - On
+      - Off
+      - Toggle
+
+- type: entity
+  id: PoweredLightStreetLamp
+  suffix: ""
+  parent: PoweredLightStreetLampEmpty
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightTube
+
+- type: entity
+  id: PoweredLightStreetLampWarm
+  suffix: Warm
+  parent: PoweredLightStreetLampEmpty
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightTubeWarm
+
+- type: entity
+  id: LightStreetLampBroken
+  name: broken street lamp
+  description: A broken street lamp.
+  parent: BaseLightStreetLamp
+  components:
+  - type: Sprite
+    state: broken
+  - type: Construction
+    graph: StreetLamp
+    node: broken
+
+- type: entity
+  id: LightStreetLampUnfinished
+  name: unfinished street lamp
+  description: A partially constructed street lamp.
+  parent: BaseLightStreetLamp
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: empty
+  - type: Construction
+    graph: StreetLamp
+    node: unfinished

@@ -1,0 +1,32 @@
+- type: !PartialOnly entity
+  id: ClothingUniformJumpsuitPyjamaSyndicateBlack
+  components:
+  - type: Contraband
+    tier: Tier1
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingUniformJumpsuitPyjamaSyndicatePink
+  components:
+  - type: Contraband
+    tier: Tier1
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingUniformJumpsuitPyjamaSyndicateRed
+  components:
+  - type: Contraband
+    tier: Tier1
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingUniformJumpsuitOperative
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: ClothingUniformJumpsuitSyndieFormal
+  components:
+  - type: Contraband
+    contrabandType: Syndicate

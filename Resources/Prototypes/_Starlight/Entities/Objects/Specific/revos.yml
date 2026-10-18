@@ -5,6 +5,8 @@
   suffix: 20 TB
   description: Outdated tickets printed with a microcrystalline pattern, used to summon supplies via an old radio uplink, the old way. "DO NOT EAT!" — Boris
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Sprite
     sprite: _Starlight/Objects/Specific/USSP/telebond.rsi
     state: telebond

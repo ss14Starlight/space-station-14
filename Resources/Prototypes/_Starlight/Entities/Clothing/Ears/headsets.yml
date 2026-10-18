@@ -48,7 +48,7 @@
     sprite: Clothing/Ears/Headsets/service.rsi
 
 - type: entity
-  parent: [ ClothingHeadset, BaseCommandManagerContraband ]
+  parent: [ ClothingHeadset, BaseCommandContraband, BaseAssistantManagerContraband ]
   id: ClothingHeadsetAssistantManager
   name: assistant manager headset
   description: A headset for the least poor among the poor.
@@ -117,6 +117,8 @@
   name: SSF marine over-ear headset
   description: Priyom.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Headset
   - type: ContainerFill
     containers:

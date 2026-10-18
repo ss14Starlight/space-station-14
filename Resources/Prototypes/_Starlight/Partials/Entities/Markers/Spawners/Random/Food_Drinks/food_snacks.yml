@@ -1,0 +1,8 @@
+- type: !PartialOnly entityTable
+  id: RandomSnackTable
+  table: !type:GroupSelector
+    children:
+    - id: FoodBoxCrispyRiceBar
+    - id: FoodSnackRiceBarPacket
+    - id: FoodLollipopPlain
+    - id: FoodSnackHardCandy

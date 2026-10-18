@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: SpaceCash
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface

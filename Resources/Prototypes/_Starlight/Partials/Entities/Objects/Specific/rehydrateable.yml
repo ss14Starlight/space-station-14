@@ -1,0 +1,21 @@
+- type: !PartialOnly entity
+  id: MonkeyCube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    # fill it out so the advanced one is rarer.
+    - MobMonkey
+    - MobMonkey
+    - MobMonkey
+    - MobMonkeyAdvanced
+
+- type: !PartialOnly entity
+  id: KoboldCube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    # fill it out so the advanced one is rarer.
+    - MobKobold
+    - MobKobold
+    - MobKobold
+    - MobKoboldAdvanced

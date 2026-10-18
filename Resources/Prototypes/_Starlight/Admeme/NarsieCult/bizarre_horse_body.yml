@@ -1,0 +1,35 @@
+# Animal body with two hands, so the horse can hold items in both stages.
+# Modelled on the Animal body and the SmartCorgi body (which also uses "righthand"/"lefthand" slots).
+- type: body
+  id: BizarreHorse
+  name: "horse"
+  root: torso
+  slots:
+    head:
+      part: HeadAnimal
+      connections:
+      - torso
+      organs:
+        eyes: OrganAnimalEyes
+    torso:
+      part: TorsoAnimal
+      connections:
+      - righthand
+      - lefthand
+      - legs
+      organs:
+        lungs: OrganAnimalLungs
+        stomach: OrganAnimalStomach
+        liver: OrganAnimalLiver
+        heart: OrganAnimalHeart
+        kidneys: OrganAnimalKidneys
+    lefthand:
+      part: LeftHandAnimal
+    righthand:
+      part: RightHandAnimal
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal

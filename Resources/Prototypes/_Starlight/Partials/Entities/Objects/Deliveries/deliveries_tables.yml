@@ -1,0 +1,79 @@
+- type: !PartialOnly entityTable
+  id: LetterCommonEntityTable
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      !CombineIndex:0 weight: .20 # changed Trash weight from 1 to .20
+    - !type:NestedSelector
+      !CombineIndex:1 weight: .20 # changed weight from .4 to .20
+    - !type:NestedSelector
+      !CombineIndex:2 weight: .10 # changed from .2 to .10
+    - !type:NestedSelector
+      !CombineIndex:3 weight: .25 # changed from .2 to .25
+    - !type:NestedSelector
+      !CombineIndex:4 weight: .25 # changed from .2 to .25
+
+# Unlike Upstream, we can go over 100 spesos, but for entries that help to build value to the mechanic.
+- type: !PartialOnly entityTable
+  id: LetterUncommonEntityTable
+  table: !type:GroupSelector
+    children:
+    - !Index:5
+      id: Brutepack # Moved From Rare Letter loot table, to Uncommon Letter loot table
+    - !Index:5
+      id: Ointment
+    - !Index:5
+      id: Gauze
+    - !Index:5
+      id: Bloodpack
+    - !Index:5
+      id: BikeHornImplanter # Added Some More Variety Of items
+    - !Index:5
+      id: SnapPopBox
+    - !Index:5
+      id: CrazyLube
+    - !Index:5
+      id: CrazyGlue
+    - !Index:5
+      id: StrangePill # Moved From Rare Letter loot table, to Uncommon Letter loot table
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - !Index:5
+      id: OminousPill
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+    - !Index:5
+      id: WeirdPill
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+
+- type: !PartialOnly entityTable
+  id: PackageCommonEntityTable
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      !CombineIndex:0 weight: .5 # changed from .25 weight to .5
+    - !type:NestedSelector
+      !CombineIndex:1 weight: .25 # changed from .5 weight to .25
+    - !type:EntSelector
+      !CombineIndex:2 weight: .25
+
+- type: !PartialOnly entityTable
+  id: PackageRareEntityTable
+  table: !type:GroupSelector
+    children:
+    - !Index:2
+      id: FakeGrenade # Added Some More Variety Of items
+    - !Index:2
+      id: CleanerGrenade
+    - !Index:2
+      id: RitualDagger
+    - !Index:2
+      id: LubeGrenade
+      weight: 0.8
+    - !Index:2
+      id: GlueGrenade
+      weight: 0.8
+    - !Index:2
+      id: ClothingMaskGoldenCursed
+      weight: 0.5

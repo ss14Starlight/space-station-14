@@ -7,6 +7,7 @@
     TraitorObjectiveGroupState: 1 #As in, something about your character. Alive, dead, arrested, gained an ability...
     TraitorObjectiveGroupSocial: 0.25 #Involves helping/harming others without killing them or stealing their stuff, lowered because the chance of rolling this was enormous when its just one objective in the category
     TraitorObjectiveGroupStory: 0.85  # Starlight
+    TraitorObjectiveGroupOther: 1
 
 - type: weightedRandom
   id: TraitorObjectiveGroupSteal
@@ -73,6 +74,13 @@
   weights:
 #    RandomTraitorAliveObjective: 1 - Removed because the objective was boring and didn't progress the round.
     RandomTraitorProgressObjective: 1
+
+#misc objectives that don't fall other another category
+- type: weightedRandom
+  id: TraitorObjectiveGroupOther
+  weights:
+    HijackTradeStationObjective: 1
+
 
 #Thief groups
 - type: weightedRandom

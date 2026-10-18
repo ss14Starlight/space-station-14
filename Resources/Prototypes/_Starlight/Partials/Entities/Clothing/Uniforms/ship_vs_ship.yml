@@ -1,0 +1,23 @@
+- type: !PartialOnly entity
+  id: ClothingUniformJumpsuitRecruitSyndie
+  components:
+  - type: Contraband
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingUniformJumpsuitRepairmanSyndie
+  components:
+  - type: Contraband
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingUniformJumpsuitParamedicSyndie
+  components:
+  - type: Contraband
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingUniformJumpsuitChiefEngineerSyndie
+  components:
+  - type: Contraband
+    contrabandType: Syndicate

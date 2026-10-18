@@ -12,6 +12,14 @@
   id: MobMedibot
   components:
   - type: FirelockOpener
+  - type: Medibot
+    treatments:
+      Alive:
+        reagent: Tricordrazine
+        quantity: 5
+      Critical:
+        reagent: Inaprovaline
+        quantity: 15
 
 - type: !PartialOnly entity
   id: MobHonkBot

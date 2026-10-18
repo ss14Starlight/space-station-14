@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - ClothingHeadHatWelding
+    - ClothingHeadHatWeldingMaskFlame
+    - ClothingHeadHatWeldingMaskFlameBlue
+    - ClothingHeadHatWeldingMaskPainted
+  components:
+  - type: Tag
+    tags:
+    - CorgiWearable

@@ -123,10 +123,10 @@
       - map: [ "head" ]
       - map: [ "pocket1" ]
       - map: [ "pocket2" ]
-      - map: [ "clownedon" ]
-        sprite: "Effects/creampie.rsi"
-        state: "creampie_moth"
-        visible: false
+  - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_moth
   - type: Vocal
   - type: Speech
     speechVerb: Robotic
@@ -245,10 +245,6 @@
       - map: [ "head" ]
       - map: [ "pocket1" ]
       - map: [ "pocket2" ]
-      - map: [ "clownedon" ]
-        sprite: "Effects/creampie.rsi"
-        state: "creampie_moth"
-        visible: false
   - type: Inventory
     speciesId: moth
     templateId: neocyte

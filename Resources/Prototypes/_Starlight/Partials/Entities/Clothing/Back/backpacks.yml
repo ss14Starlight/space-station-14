@@ -1,4 +1,10 @@
 - type: !PartialOnly entity
+  id: ClothingBackpackSyndicate
+  components:
+  - type: Contraband
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
   id: ClothingBackpack
   components:
   - type: EmitSoundOnPickup

@@ -75,7 +75,7 @@ public sealed partial class ParallaxOverlay : Overlay
             foreach (var (uid, parallax, status) in _parallaxSet)
             {
                 var alpha = _weather.GetWeatherPercent((uid, status));
-                foreach (var layer in _parallax.GetParallaxLayers(parallax.Parallax))
+                foreach (var layer in GetVisibleParallaxLayers(uid, parallax.Parallax))
                     Render(position, worldHandle, layer, realTime, args, Color.White.WithAlpha(alpha));
             }
         }

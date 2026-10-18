@@ -4,9 +4,11 @@ namespace Content.Client.Stylesheets.Stylesheets;
 
 public sealed partial class NanotrasenStylesheet
 {
-    public override ColorPalette PrimaryPalette => Palettes.Navy;
-    public override ColorPalette SecondaryPalette => Palettes.Slate;
-    public override ColorPalette PositivePalette => Palettes.Green;
-    public override ColorPalette NegativePalette => Palettes.Red;
-    public override ColorPalette HighlightPalette => Palettes.Gold;
+    // Starlight-start
+    public override ColorPalette PrimaryPalette => Theme?.Primary ?? Palettes.Navy;
+    public override ColorPalette SecondaryPalette => Theme?.Secondary ?? Palettes.Slate;
+    public override ColorPalette PositivePalette => Theme?.Positive ?? Palettes.Green;
+    public override ColorPalette NegativePalette => Theme?.Negative ?? Palettes.Red;
+    public override ColorPalette HighlightPalette => Theme?.Highlight ?? Palettes.Gold;
+    // Starlight-end
 }

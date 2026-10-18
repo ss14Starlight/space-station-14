@@ -345,6 +345,8 @@
   name: commissar overcoat
   description: Rumor has it entire regiments of aides exist solely to press seams, polish buttons, and remind the Commissar which coat goes over which.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Sprite
     sprite: _Starlight/Clothing/Neck/Cloaks/commissar.rsi
   - type: Clothing
@@ -419,6 +421,16 @@
     - type: Clothing
       sprite: _Starlight/Clothing/Neck/Mantles/medicmantle.rsi
 
+- type: entity
+  parent: [ ClothingNeckBase, BaseSalvageContraband ]
+  id: ClothingNeckMantleVeteranMedic
+  name: veteran salvage medic mantle
+  description: A ceremonial mantle with waist-capes, worn by veteran salvager medics that have brought the team back from the brink of death more times than they can count.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Neck/Mantles/veteran_salvagemedicmantle.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Neck/Mantles/veteran_salvagemedicmantle.rsi
 ## Cool
 
 - type: entity

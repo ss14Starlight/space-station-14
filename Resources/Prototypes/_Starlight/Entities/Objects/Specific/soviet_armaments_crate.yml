@@ -4,6 +4,8 @@
   name: SKB armaments crate
   description: The red tide is here.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Icon
     sprite: _Starlight/Structures/Storage/USSP/revolutionary.rsi
   - type: Sprite
@@ -14,7 +16,7 @@
         layer:
           - SovietLayer
   - type: TimedDespawn
-    lifetime: 900
+    lifetime: 600
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Effects/teleport_arrival.ogg
@@ -23,31 +25,146 @@
     occludesLight: true
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:GroupSelector
-        children:
-        - id: WeaponSniperMosin
-          weight: 11
-        - id: WeaponPistolMakarov
-          weight: 6
-        - id: SpearUranium
-          weight: 1
-        - id: MedkitFilled
-          weight: 5
-        - id: ClothingOuterSovietCoat
-          weight: 6
-        - id: WeaponRifleAk
-          weight: 1
-        - id: WeaponLightMachineGunDP28
-          weight: 2
-        - id: EmagCommie
-          weight: 1
-        - id: ClothingOuterArmorSovietPlate
-          weight: 3
-        - id: ClothingBackpackDuffelSovietEVABundle
-          weight: 7
-        - id: WeaponShotgunToz106Extended
-          weight: 6
-        - id: SpearSteel
-          weight: 1
-        rolls: !type:ConstantNumberSelector
-          value: 1
+      entity_storage: !type:NestedSelector
+        tableId: SKBArmamentsRiftLoot
+
+- type: entityTable
+  id: SKBArmamentsRiftLoot
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: SKBClothingTable
+      prob: 1
+    - !type:NestedSelector
+      tableId: SKBEquipmentTable
+      prob: 1
+    - !type:NestedSelector
+      tableId: SKBWeaponsTable
+      prob: 1
+
+- type: entityTable
+  id: SKBClothingTable
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterSovietCoat
+      weight: 0.8
+    - id: ClothingOuterArmorSovietPlate
+      weight: 0.8
+    - id: ClothingBackpackDuffelZaporozhianBundle
+      weight: 1
+    - id: ClothingHeadHelmetScrap
+      weight: 0.9
+    - id: ClothingOuterArmorScrap
+      weight: 0.9
+    - id: ClothingSovietGasMask
+      weight: 1
+    - id: ClothingBackpackDuffelSovietEVABundle
+      weight: 1
+    - id: ClothingBeltSovietMarineWebbing
+      weight: 1.1
+    - id: ClothingSovietBandolier
+      weight: 1.1
+    - id: ClothingOuterArmorBasic
+      weight: 0.5
+    - id: ClothingHeadHelmetReflective
+      weight: 0.1
+
+- type: entityTable
+  id: SKBEquipmentTable
+  table: !type:GroupSelector
+    children:
+    - id: BoxLethalshotToz
+      weight: 1.2
+    - id: SpeedLoaderLightRifle
+      weight: 1.5
+    - id: MagazineLightRifleSP
+      weight: 0.8
+    - id: MagazineRifleSP
+      weight: 0.8
+    - id: MagazineBoxRifleSP
+      weight: 0.8
+    - id: MagazineBoxMagnumSP
+      weight: 1
+    - id: SpeedLoaderMagnumBasic
+      weight: 0.8
+    - id: SpeedLoaderMagnumLeverImprovised
+      weight: 0.9
+    - id: ImprovisedShield
+      weight: 1
+    - id: MedkitFilledParamed
+      weight: 1.1
+    - id: CombatMedipenETO
+      weight: 0.5
+    - id: EmagCommie
+      weight: 0.1
+    - id: USSPDeathRattleImplanter
+      weight: 0.35
+    - id: RadioImplanterUSSP
+      weight: 0.35
+    - id: ClothingEyesGlassesSKBGlasses
+      weight: 1
+    - id: ClothingEyesHudSovietMarine
+      weight: 0.9
+    - id: EncryptionKeySoviet
+      weight: 1.1
+    - id: SmokeGrenade
+      weight: 1
+    - id: GrenadeDummy
+      weight: 0.5
+    - id: ExGrenadeWorn
+      weight: 0.3
+    - id: MaterialSandbag
+      weight: 1
+    - id: DrinkVodkizineBottleFull
+      weight: 1
+
+- type: entityTable
+  id: SKBWeaponsTable
+  table: !type:GroupSelector
+    children:
+    - id: RevolutionaryHeldBanner
+      weight: 1.1
+    - id: Spear
+      weight: 1
+    - id: SwordForged
+      weight: 1
+    - id: WeaponPistolStechkinAPS
+      weight: 0.4
+    - id: WeaponRifleZ77T1
+      weight: 0.5
+    - id: WeaponRifleAk
+      weight: 0.15
+    - id: WeaponSniperMosinWorn
+      weight: 1.5
+    - id: WeaponSniperMosin
+      weight: 1.2
+    - id: WeaponPistol75auto
+      weight: 0.7
+    - id: WeaponShotgunToz106
+      weight: 1.2
+    - id: WeaponShotgunToz106Extended
+      weight: 1
+    - id: WeaponShotgunSawn
+      weight: 1
+    - id: WeaponShotgunDoubleBarreled
+      weight: 1
+    - id: WeaponLightMachineGunDP28
+      weight: 0.3
+    - id: WeaponSubMachineGunForged
+      weight: 1
+    - id: WeaponShotgunForged
+      weight: 1
+    - id: WeaponPistolForged
+      weight: 1
+    - id: WeaponSniperForged
+      weight: 1
+    - id: WeaponRevolverForged
+      weight: 1
+    - id: WeaponPistolMakarov
+      weight: 1.2
+    - id: Finka
+      weight: 1.2
+    - id: WeaponShotgunGA12
+      weight: 0.8
+    - id: WeaponRevolverZOZ
+      weight: 0.8

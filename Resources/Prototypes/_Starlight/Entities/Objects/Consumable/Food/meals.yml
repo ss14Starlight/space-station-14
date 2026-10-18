@@ -361,3 +361,40 @@
     - type: Tag
       tags:
         - Meat
+
+- type: entity
+  parent: FoodBowlBase
+  id: FoodStroganoff
+  name: beef stroganoff
+  description: Tender beef cutlets and brown mushrooms in a rich, creamy onion sauce, served in a wooden bowl.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/wooden_bowl.rsi
+    state: stroganoff
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - creamy
+    - mushroom
+    - onion
+  - type: Edible
+    trash:
+    - FoodBowlWooden
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 15
+      - ReagentId: Protein
+        Quantity: 15
+      - ReagentId: Vitamin
+        Quantity: 5
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:SpillBehavior { }
+      - !type:DoActsBehavior
+        acts: ["Destruction"]

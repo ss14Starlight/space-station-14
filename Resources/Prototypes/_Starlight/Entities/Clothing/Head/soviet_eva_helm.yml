@@ -5,6 +5,8 @@
   name: soviet EVA helmet
   description: A sturdy EVA helmet with a red star emblazoned on the front. Glory to the workers of space!
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Helmets/soviet_eva_helm.rsi
   - type: Clothing

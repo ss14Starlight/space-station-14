@@ -24,3 +24,5 @@ reagent-desc-iceialin = Cool to the touch, a chem that can restore the temperatu
 
 reagent-name-respirazone = respirazone
 reagent-desc-respirazone = Used in the treatment of severe respiratory distress and blood loss. Unlike conventional oxygenation medicines, it is compatible with a wide variety of species.
+
+reagent-desc-polypyrylium-oligomers-sl = A purple mixture of short polyelectrolyte chains not easily synthesized in the laboratory. Heals airloss and brute damage. Stops bleeding over time.

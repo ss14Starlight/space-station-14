@@ -1,0 +1,14 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - ExGrenade
+    - SyndieMiniBomb
+    - SelfDestructSeq
+    - SingularityGrenade
+    - WhiteholeGrenade
+    - NuclearGrenade
+    - ModularGrenade
+    - EmpGrenade
+    - HolyHandGrenade
+  components:
+  - type: EorgPreventTrigger

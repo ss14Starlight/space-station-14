@@ -60,6 +60,7 @@ stack-adamantine = {$amount ->
 
 stack-bluespace-tile = bluespace tile
 stack-sepia-xenobiology-tile = sepia tile
+stack-light-tile = light floor tile
 
 stack-brutepack = {$amount ->
     [1] brutepack

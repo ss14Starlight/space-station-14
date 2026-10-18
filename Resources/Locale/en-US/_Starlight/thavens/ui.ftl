@@ -15,4 +15,5 @@ admin-trick-give-moods-description = Give this entity moods.
 
 admin-trick-floodpipes = Floodfill colors
 admin-trick-floodpipes-description = Floods pipe color to all connected pipes.
-admin-trick-autolink-air-alarms = Automatically link air alarms to atmos devices & firelocks.
+admin-trick-autolink-air-alarms = Automatically link air alarms to atmos devices & firelocks within the room.
+admin-trick-autolink-fire-alarms = Automatically link fire alarms to firelocks within the room.

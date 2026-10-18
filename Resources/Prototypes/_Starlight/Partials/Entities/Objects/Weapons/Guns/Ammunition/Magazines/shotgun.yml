@@ -1,0 +1,24 @@
+# .50 -> 12 gauge
+- type: !PartialOnly entity
+  id: BaseMagazineShotgun
+  name: 12 gauge ammo drum
+
+- type: !PartialOnly entity
+  id: MagazineShotgunEmpty
+  name: 12 gauge ammo drum
+
+- type: !PartialOnly entity
+  id: MagazineShotgun
+  name: 12 gauge buckshot drum
+
+- type: !PartialOnly entity
+  id: MagazineShotgunBeanbag
+  name: 12 gauge beanbag drum
+
+- type: !PartialOnly entity
+  id: MagazineShotgunSlug
+  name: 12 gauge slug drum
+
+- type: !PartialOnly entity
+  id: MagazineShotgunIncendiary
+  name: 12 gauge incendiary drum

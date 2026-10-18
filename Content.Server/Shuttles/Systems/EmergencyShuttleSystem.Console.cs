@@ -13,6 +13,7 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Events;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.Whitelist;
+using Content.Shared._Starlight.Computers.PodConsole;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -178,13 +179,14 @@ public sealed partial class EmergencyShuttleSystem
                 }
             }
 
-            var podQuery = AllEntityQuery<EscapePodComponent>();
-
-            // Stagger launches coz funny
-            while (podQuery.MoveNext(out _, out var pod))
+            // Starlight - start
+            var podConsoleQuery = AllEntityQuery<PodConsoleComponent>();
+            while (podConsoleQuery.MoveNext(out var podConsoleUid, out var podConsole))
             {
-                pod.LaunchTime = _timing.CurTime + TimeSpan.FromSeconds(_random.NextFloat(0.05f, 0.75f));
+                podConsole.Locked = false;
+                Dirty(podConsoleUid, podConsole);
             }
+            // Starlight - end
         }
 
         var podLaunchQuery = EntityQueryEnumerator<EscapePodComponent, ShuttleComponent>();

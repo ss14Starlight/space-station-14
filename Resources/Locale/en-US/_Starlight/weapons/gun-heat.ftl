@@ -7,3 +7,4 @@ gun-heat-examine-warm = The barrel is [color=orange]warm[/color].
 gun-heat-examine-hot = The barrel is [color=orangered]hot[/color].
 gun-heat-examine-overheated = The barrel is [color=red]overheated[/color] and may jam.
 gun-heat-examine-critical = The barrel is [color=red]glowing red[/color]! The firing pin is about to melt.
+gun-heat-crystal-cracked = The lens crystal of {THE($gun)} cracks from the heat!

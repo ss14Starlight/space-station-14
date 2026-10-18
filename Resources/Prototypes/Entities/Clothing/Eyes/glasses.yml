@@ -53,7 +53,7 @@
         Blunt: 10
 
 - type: entity
-  parent: [ ClothingEyesBase, BaseEngineeringSalvageContraband ] #Starlight salvContra
+  parent: [ ClothingEyesBase, BaseEngineeringContraband, BaseSalvageContraband ] # Blimpuf salvContra
   id: ClothingEyesGlassesMeson
   name: engineering goggles #less confusion
   description: Green-tinted goggles using a proprietary polymer that provides protection from eye damage of all types.
@@ -278,7 +278,7 @@
       - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingEyesBase, BaseHighlyIllegalContraband]
+  parent: [ BaseContrabandTier4, ClothingEyesBase ] # Blimpuf
   id: ClothingEyesVisorNinja
   name: ninja visor
   description: An advanced visor protecting a ninja's eyes from flashing lights.

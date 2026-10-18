@@ -301,12 +301,22 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         if (addLog) // dont log if already created a separate, more detailed, log.
             _adminLogger.Add(LogType.Explosion, LogImpact.High, $"Explosion ({typeId}) spawned at {epicenter:coordinates} with intensity {totalIntensity} slope {slope}");
 
+        // Starlight - start
+        // Capture body ownership before TriggerExplosive queues the cause for deletion.
+        var internalBody = cause is { } causeUid ? FindContainingBody(causeUid) : null;
+        // Starlight - end
+
         // try to combine explosions on the same tile if they are the same type
         foreach (var queued in _queuedExplosions)
         {
             // ignore different types or those on different maps
             if (queued.Proto.ID != type.ID || queued.Epicenter.MapId != epicenter.MapId)
                 continue;
+
+            // Starlight - start
+            if (!HasSameInternalBodies(queued.InternalBodies, internalBody))
+                continue;
+            // Starlight - end
 
             var dst2 = queued.Proto.MaxCombineDistance * queued.Proto.MaxCombineDistance;
             var direction = queued.Epicenter.Position - epicenter.Position;
@@ -315,6 +325,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
             // they are close enough to combine so just add total intensity and prevent queuing another one
             queued.TotalIntensity += totalIntensity;
+            AddExplosionCause(queued, cause, internalBody); // Starlight
             return;
         }
 
@@ -329,6 +340,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             CanCreateVacuum = canCreateVacuum,
             Cause = cause
         };
+        AddExplosionCause(boom, cause, internalBody); // Starlight
         _explosionQueue.Enqueue(boom);
         _queuedExplosions.Add(boom);
     }
@@ -408,6 +420,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             EntityManager,
             visualEnt,
             queued.Cause,
+            queued.InternalBodies, // Starlight
             _map,
             _damageableSystem,
             _tileHistoryQuery);

@@ -1,7 +1,7 @@
 using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.Clothing.Components;
-using Content.Shared.Contraband;
+using Content.Shared._Blimpuf.Contraband; // Blimpuf
 using Content.Shared.Emp;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;

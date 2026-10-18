@@ -66,7 +66,7 @@
   name: vampire-gamemode-title
   description: vampire-gamemode-description
   showInVote: True
-  minPlayers: 50
+  minPlayers: 20
   rules:
   - Vampire
   - SubGamemodesRuleNoVampires
@@ -83,7 +83,7 @@
   name: changeling-gamemode-title
   description: changeling-gamemode-description
   showInVote: false
-  minPlayers: 25
+  minPlayers: 20
   rules:
     - SLChangeling
     - SLChangelingLess
@@ -99,7 +99,7 @@
   name: traitorling-title
   description: traitorling-description
   showInVote: true
-  minPlayers: 50
+  minPlayers: 20
   rules:
     - SLChangeling
     - Traitor
@@ -119,7 +119,7 @@
   name: vamptraitorling-title
   description: vamptraitorling-description
   showInVote: true
-  minPlayers: 50
+  minPlayers: 25
   rules:
     - SLChangelingLess
     - TraitorLess
@@ -244,7 +244,7 @@
   name: dynamic-title
   showInVote: false # admin-only for now until we fix some bugs
   description: dynamic-description
-  minPlayers: 40
+  minPlayers: 20
   voteCooldown: 0 # This one actually can roll back to back.
   rules:
   - SLDynamicRuleLP

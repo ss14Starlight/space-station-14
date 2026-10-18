@@ -1,0 +1,31 @@
+- type: !PartialOnly entity
+  id: MaterialCloth
+  components:
+  - type: Healing
+    damageContainers:
+      - Hybrid
+  - type: Tag
+    tags:
+      - TiderAnvilParts
+
+- type: !PartialOnly entity
+  id: MaterialWoodPlank
+  components:
+  - type: Tag
+    tags:
+    - TiderAnvilParts
+
+- type: !PartialOnly entity
+  id: MaterialHideBear
+  components:
+  - type: Tag
+    tags:
+    - SpaceBearHide
+
+- type: !PartialOnly entity
+  id: MaterialGoliathHide
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Materials/hide.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Materials/hide.rsi

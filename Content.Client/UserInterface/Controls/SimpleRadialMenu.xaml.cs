@@ -10,6 +10,8 @@ using Robust.Client.Input;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Input;
 using Robust.Shared.Prototypes;
+using Content.Client._Starlight.Computers.RemoteControl;
+using Robust.Client.Player;
 
 namespace Content.Client.UserInterface.Controls;
 
@@ -30,6 +32,19 @@ public sealed partial class SimpleRadialMenu : RadialMenu
 
     public void Track(EntityUid owner)
     {
+        // Starlight - start
+        var remoteControl = _entManager.System<RemoteControlInterface>();
+        if (remoteControl.ControlledEntity is not null)
+        {
+            // RemoteControl owners are off-screen, so use the local controller for carried devices
+            // and keep world-target menus at their initial local mouse position.
+            _attachMenuToEntity = remoteControl.GetRadialMenuTrackingEntity(
+                owner,
+                IoCManager.Resolve<IPlayerManager>().LocalEntity);
+            return;
+        }
+        // Starlight - end
+
         _attachMenuToEntity = owner;
     }
 

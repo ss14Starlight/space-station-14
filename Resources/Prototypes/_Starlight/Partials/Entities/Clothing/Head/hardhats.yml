@@ -1,0 +1,18 @@
+- type: !PartialOnly entity
+  id: ClothingHeadHatHardhatBase
+  components:
+  - type: PointLight
+    mask: !Remove
+    lightMask: ConeSingle
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatHardhatArmored
+  components:
+  - type: Pierceable
+    level: HardenedMetal

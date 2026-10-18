@@ -1,0 +1,216 @@
+- type: entity
+  parent: BaseAction
+  id: ActionHorseStand
+  name: Stand Up
+  description: Rise up onto your hind hooves, or drop back down onto all fours.
+  components:
+  - type: Action
+    useDelay: 10
+    icon: { sprite: _Starlight/Admeme/NarsieCult/bizarre_horse.rsi, state: normal }
+    iconOn: { sprite: _Starlight/Admeme/NarsieCult/bizarre_horse.rsi, state: standing }
+  - type: InstantAction
+    event: !type:HorseStandActionEvent
+
+# --- Standing-only powers. The stand system grants these when the horse stands up and removes them when it drops.
+- type: entity
+  parent: BaseAction
+  id: ActionHorseEyes
+  name: Make Eyes Fall
+  description: Make someone's eyes fall out of their head and onto the ground.
+  components:
+  - type: Action
+    useDelay: 10
+    icon: Interface/Actions/eyeclose.png
+    itemIconStyle: BigAction
+  - type: TargetAction
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - Body
+    event: !type:HorseEyesActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionHorseStun
+  name: Hoof Stun
+  description: Stun and knock down someone in reach.
+  components:
+  - type: Action
+    useDelay: 20
+    icon: Interface/Actions/harm.png
+    itemIconStyle: BigAction
+  - type: TargetAction
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - MobState
+    event: !type:HorseStunActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionHorseRestrain
+  name: Bind
+  description: Instantly bind someone's hands.
+  components:
+    - type: Action
+      useDelay: 5
+      icon:
+        sprite: Interface/Actions/actions_borg.rsi
+        state: security-unlethal-module
+      itemIconStyle: BigAction
+    - type: TargetAction
+    - type: EntityTargetAction
+      canTargetSelf: false
+      whitelist:
+        components:
+          - Cuffable
+      event: !type:HorseRestrainActionEvent
+
+# Real cuffs (so uncuffing and breaking out work as normal), spawned straight onto the target by Bind.
+# They break on removal, so nothing is left lying around.
+- type: entity
+  parent: Zipties
+  id: HorseBindingCuffs
+  name: hoof bindings
+  description: Something tough and unpleasantly warm is wrapped around your wrists.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Handcuff
+    breakoutTime: 20
+
+- type: entity
+  parent: BaseAction
+  id: ActionHorseSleep
+  name: Put to Sleep
+  description: Instantly put someone to sleep.
+  components:
+    - type: Action
+      useDelay: 15
+      icon: Interface/Emotes/yawn.png
+      itemIconStyle: BigAction
+    - type: TargetAction
+    - type: EntityTargetAction
+      canTargetSelf: false
+      whitelist:
+        components:
+          - MobState
+      event: !type:HorseSleepActionEvent
+
+- type: entity
+  parent: SimpleMobBase
+  id: MobBizarreHorse
+  name: parade
+  description: It is not two people in a costume. It is not two people in a costume. Oh god, it is not two people in a costume. Something about it is wrong.
+  components:
+  # DamageStateVisuals is intentionally not used, it would reset the layer state on every mob state change.
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Admeme/NarsieCult/bizarre_horse.rsi
+    layers:
+    - map: [ "enum.HorseStandVisualLayers.Base" ]
+      state: normal
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.HorseStandVisuals.Standing:
+        enum.HorseStandVisualLayers.Base:
+          True: { state: standing }
+          False: { state: normal }
+  - type: HorseStand
+
+  #Two hands.
+  - type: Hands
+  - type: Body
+    prototype: BizarreHorse
+  - type: ComplexInteraction
+  - type: Puller
+
+  # --- Very high damage thresholds.
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      700: Critical
+      750: Dead
+  # The simple mob base slows mobs at 60/80 damage, which would cripple this creature almost immediately.
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      400: 0.9
+      600: 0.7
+      700: 0.5
+
+  #Bleeds very little.
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 500
+    maxBleedAmount: 1
+    bleedReductionAmount: 1
+    bloodlossThreshold: 0.3
+
+  #Devour: humanoids only. Swallowed humanoids are kept in the stomach container.
+  - type: Devourer
+    whitelist:
+      components:
+      - HumanoidAppearance
+    stomachStorageWhitelist:
+      components:
+      - HumanoidAppearance
+
+  - type: MeleeWeapon
+    altDisarm: false
+    soundHit:
+      path: /Audio/Weapons/punch3.ogg
+    damage:
+      types:
+        Blunt: 22
+
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0
+    damageRecovery:
+      types:
+        Asphyxiation: 0
+    maxSaturation: 100
+    minSaturation: 100
+    saturation: 100
+    suffocationThreshold: -999
+
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0
+
+  - type: TemperatureDamage
+    heatDamageThreshold: 10000
+    coldDamageThreshold: -10000
+    heatDamage:
+      types:
+        Heat: 0
+    coldDamage:
+      types:
+        Cold: 0
+
+  - type: Hunger
+    baseDecayRate: 0
+    currentThreshold: Overfed
+
+  - type: Thirst
+    baseDecayRate: 0
+
+    # Just to be sure we dont have any more antag horses
+  - type: AntagImmune
+
+    #Thermal vision
+  - type: ThermalVision
+
+  - type: Prying
+    enabled: true
+    pryPowered: true
+    force: true
+    speedModifier: 10
+    useSound:
+      path: /Audio/Items/crowbar.ogg

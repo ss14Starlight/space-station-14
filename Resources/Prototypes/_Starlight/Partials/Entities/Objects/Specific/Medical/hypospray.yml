@@ -3,3 +3,12 @@
   components:
   - type: RefillableSolution
     solution: hypospray
+
+- type: !PartialOnly entity
+  id: Hypopen
+  components:
+  - type: Injector
+    muteInjectSoundForTarget: true
+  - type: ReactionMixer
+    # Let the injector modes handle containers instead of inherited pen stirring.
+    mixerType: None

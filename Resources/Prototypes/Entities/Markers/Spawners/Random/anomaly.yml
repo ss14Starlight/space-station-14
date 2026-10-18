@@ -14,7 +14,7 @@
     - AnomalyPyroclastic
     - AnomalyGravity
     - AnomalyElectricity
-    - RandomFleshAnomalySpawner # Starlight edit, don't dilute the pool with a flesh anomaly variant
+    - AnomalyFlesh
     - AnomalyBluespace
     - AnomalyIce
     - RandomRockAnomalySpawner
@@ -23,7 +23,6 @@
     - AnomalyShadow
     - AnomalyTech
     #- AnomalySanta
-    - AnomalyBanana # Starlight
     rareChance: 0.3
     rarePrototypes:
     - RandomAnomalyInjectorSpawner

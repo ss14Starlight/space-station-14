@@ -1,0 +1,17 @@
+- type: !PartialOnly entity
+  id: LogProbeCartridge
+  components:
+    - type: StealTarget
+      stealGroup: LogProbeCartridge
+
+- type: !PartialOnly entity
+  id: MedTekCartridge
+  components:
+    - type: StealTarget
+      stealGroup: MedTekCartridge
+
+- type: !PartialOnly entity
+  id: AstroNavCartridge
+  components:
+    - type: StealTarget
+      stealGroup: AstroNavCartridge

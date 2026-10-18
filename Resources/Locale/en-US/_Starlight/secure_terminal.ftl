@@ -32,6 +32,8 @@ secure-terminal-countdown-label = Activating in {$minutes}m {$seconds}s…
 
 secure-terminal-fee-note = Processing fee: {$fee}
 secure-terminal-salary-note = Changes to salaries:
+secure-terminal-salary-source-everyone = Everyone
+secure-terminal-salary-source-interstellar-trade-guild = Interstellar Trade Guild
 secure-terminal-delay-note = { $minutes ->
     [1] ETA: 1 minute after authorization.
    *[other] ETA: {$minutes} minutes after authorization.
@@ -124,7 +126,7 @@ secure-terminal-security-name = Security
 secure-terminal-warops-security-name = Nuclear Response Team
 secure-terminal-warops-security-desc = Deploys an ERT Security detail specialized for War Ops. Only available during War Ops.
                                        Use when the station is under direct armed assault during a declared War Ops.
-secure-terminal-warops-security-announcement = An Emergency Response Team — Security Specialized detail — has been authorized and is en route. Estimated arrival: 30 minutes.
+secure-terminal-warops-security-announcement = An Emergency Response Team — Security Specialized detail — has been authorized and is en route. Estimated arrival: 50 minutes.
 
 secure-terminal-ert-security-name = ERT Security
 secure-terminal-ert-security-desc = Deploys an ERT Security detail.

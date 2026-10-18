@@ -1,0 +1,7 @@
+- type: !PartialOnly reagent
+  id: Artifexium
+  contrabandTier: Tier1
+
+- type: !PartialOnly reagent
+  id: Benzene
+  contrabandTier: Tier1

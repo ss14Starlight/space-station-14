@@ -50,7 +50,7 @@
   - type: Construction
     graph: Drone
     node: start
-    defaultTarget: drone_complete
+    defaultTarget: drone
     containers:
     - part-container
     - cell_slot
@@ -69,7 +69,7 @@
   - type: Construction
     graph: DroneRogue
     node: start
-    defaultTarget: rogue_drone_complete
+    defaultTarget: scrapper
     containers:
     - part-container
     - cell_slot

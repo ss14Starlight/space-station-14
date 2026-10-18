@@ -250,9 +250,9 @@
   - type: StealTarget
     stealGroup: AnimalNamedCat
   #region Starlight
-  - type: Butcherable
-    spawned:
-      - id: ClothingHandsCatPawsBlack
+  - type: ToolRefinable
+    refineResult:
+    - id: ClothingHandsCatPawsBlack
   #endregion Starlight
 
 - type: entity
@@ -287,9 +287,9 @@
   - type: StealTarget
     stealGroup: AnimalNamedCat
   #region Starlight
-  - type: Butcherable
-    spawned:
-      - id: ClothingHandsCatPawsBrown
+  - type: ToolRefinable
+    refineResult:
+    - id: ClothingHandsCatPawsBrown
   #endregion Starlight
 
 - type: entity
@@ -331,9 +331,9 @@
   - type: StealTarget
     stealGroup: AnimalNamedCat
     #region Starlight
-  - type: Butcherable
-    spawned:
-      - id: ClothingHandsCatPawsBrown
+  - type: ToolRefinable
+    refineResult:
+    - id: ClothingHandsCatPawsBrown
     #endregion Starlight
 
 - type: entity
@@ -979,8 +979,8 @@
   - type: StealTarget
     stealGroup: AnimalShiva
   # Starlight start: Shiva contains 5 telecrystals
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeatSpider
       amount: 3
     - id: Telecrystal5
@@ -1136,8 +1136,9 @@
     rules: ghost-role-information-nonantagonist-rules
     job: Bartender # Starlight - TODO - we need a PunPun job with the 2hr bartender requirement
   - type: GhostTakeoverAvailable
-  - type: Butcherable
-    spawned:
+  # Starlight Start - Butcherable > ToolRefinable
+  - type: ToolRefinable
+    refineResult: # Starlight End
     - id: FoodMeat
       amount: 3
     - id: DrinkTequilaBottleFull

@@ -1,0 +1,26 @@
+- type: !PartialOnly entity
+  id: BaseStockPart
+  components:
+  - type: !Remove Stack
+    count: !Remove
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+
+- type: !PartialOnly entity
+  id: MicroManipulatorStockPart
+  components:
+  - type: Stack
+    count: 1
+  - type: Tag
+    tags:
+    - MicroManipulatorStockPart
+  - type: ItemPrice
+    priceCategory: tool_cheap
+  - type: SurgeryTool
+  - type: Hemostat
+    successRate: 0.3 # These are crude but, can grab things
+    speed: 1.5
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg

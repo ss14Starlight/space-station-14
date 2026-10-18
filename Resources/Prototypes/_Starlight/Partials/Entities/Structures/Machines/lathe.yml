@@ -1,0 +1,253 @@
+- type: !PartialOnly entity
+  id: BaseLathe
+  components:
+  - type: StationAiWhitelist
+  - type: LitOnPowered
+  - type: PointLight
+    autoRot: true
+    color: "#2f6b2b"
+    radius: 2
+    energy: 1.5
+    castShadows: false
+
+- type: !PartialOnly entity
+  id: BaseLatheLube
+  components:
+  - type: SolutionManager
+    solutions:
+    - SolutionLatheLube
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: Autolathe
+  components:
+  - type: Lathe
+    staticPacks:
+    - StarlightContainersStatic
+    - ServiceBoardsStaticGoob # Goobstation - Radio Host boards
+    - CassetteTape
+    - TapeRecorder
+    dynamicPacks:
+    - StarlightAutolatheLootable
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - StarlightSyndicateAmmoStatic
+    - StarlightSecurityEmagWeaponsStatic
+    - StarlightSecurityAmmoStatic
+    - StarlightSecurityAmmoEmagStatic
+    - !Remove SecurityAmmoStatic # SL disable in favor of prior three lines
+
+- type: !PartialOnly entity
+  id: Protolathe
+  components:
+  - type: Lathe
+    staticPacks:
+    - NullSpaceDrainer
+    - ScienceBlueSpaceStatic
+    - !Remove SurgeryStatic
+    dynamicPacks:
+    - ScienceBlueSpace
+    - StarlightProtolatheLootable
+    - StarlightScienceWeapons
+    - WirelessCameraHandheld # MOFFSTATION CHANGE - Adds wireless handheld camera
+    - StarlightCargoDynamic
+  - type: EmagLatheRecipes
+    emagDynamicPacks:
+    - StarlightSurgeryDynamic
+    - StarlightCyberlimbDynamic
+    - StarlightCyberOrgansDynamic
+    - StarlightImplantDynamic
+    - StarlightBudgetCyberOrgansDynamic
+    - StarlightSecurityAmmoDynamic
+    - StarlightSecurityExplosives
+    - StarlightSecurityEquipment
+    - StarlightSecurityWeapons
+    - StarlightDefenseStatic
+    emagStaticPacks:
+    - StarlightSecurityEmagWeaponsStatic
+    - StarlightSecurityAmmoStatic
+    - StarlightSyndicateAmmoStatic
+    - !Remove SecurityExplosives
+    - !Remove SecurityEquipment
+    - !Remove SecurityWeapons
+
+- type: !PartialOnly entity
+  id: CircuitImprinter
+  components:
+  - type: Lathe
+    producingSound: /Audio/Machines/circuitprinter.ogg
+    idleState: icon
+    runningState: building
+    staticPacks:
+    - StarlightVendorBoards
+    - ElectronicsStatic
+    dynamicPacks:
+    - SecurityScienceBlueSpace
+    - StarlightShuttleBoards
+    - StarlightMechBoards
+    - StarlightLawboards
+    - StarlightCircuitImprinterLootable
+    - ReactorCircuitboards # FH edit
+    - OublietteCircuitBoard
+    - ScienceDarkBreacher
+    - ServiceBoardsGoob # Goobstation - Radio Host boards
+  - type: EmagLatheRecipes
+    emagDynamicPacks:
+    - StarlightSecurityBoards
+    emagStaticPacks:
+    - StarlightDangerousLawboards
+    - StarlightSyndicateVendorBoards
+    - StarlightLatheBoardsEmag
+    - !Remove SecurityBoards
+
+- type: !PartialOnly entity
+  id: ExosuitFabricator
+  components:
+  - type: Lathe
+    dynamicPacks:
+    - StarlightMechReactors
+    - StarlightMechEquipment
+    - StarlightSecurityMechs
+    - StarlightMechParts
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - StarlightSyndicateModules
+    emagDynamicPacks:
+    - StarlightMechWeapon
+
+- type: !PartialOnly entity
+  id: Biofabricator
+  components:
+  - type: Lathe
+    staticPacks:
+    - StarlightFriendlyCubesStatic
+    dynamicPacks:
+    - StarlightBiofabricatorLootable
+
+- type: !PartialOnly entity
+  id: SecurityTechFab
+  categories: [ ShouldMapStation ]
+  components:
+  - type: Lathe
+    staticPacks:
+    - SecurityEquipmentStatic
+    - NullSpaceDrainer
+    - StarlightSecurityAmmoStatic
+    - TapeRecorder
+    - !Remove SecurityEquipmentStatic
+    - !Remove SecurityAmmoStatic
+    dynamicPacks:
+    - SecurityScienceBlueSpace
+    - StarlightDefenseStatic
+    - StarlightSecurityEquipment
+    - StarlightSecurityBoards
+    - StarlightSecurityExplosives
+    - StarlightSecurityAmmoDynamic
+    - StarlightSecurityWeapons
+    - SecurityDisablers
+    - SecurityCyberLimbs
+    - SecurityImplants
+    - StarlightSecurityMechsWeapons
+    - StarlightSecurityTechFabLootable
+    - !Remove SecurityEquipment
+    - !Remove SecurityBoards
+    - !Remove SecurityExplosives
+    - !Remove SecurityWeapons
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - StarlightSyndicateModulesSecfab
+    - StarlightSyndicateAmmoStatic
+    - StarlightSecurityAmmoEmagStatic
+    - StarlightSecurityGrenadesEmag
+  - type: StealTarget
+    stealGroup: SecureTechFabCircuitboard
+
+- type: !PartialOnly entity
+  id: AmmoTechFab
+  components:
+  - type: Lathe
+    staticPacks:
+    - StarlightSecurityAmmoStatic
+    - !Remove SecurityAmmoStatic
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - StarlightSyndicateAmmoStatic
+
+- type: !PartialOnly entity
+  id: MedicalTechFab
+  categories: [ ShouldMapStation ]
+  components:
+  - type: Lathe
+    staticPacks:
+    - StarlightMedicalStatic
+    - AACTabletStatic # Moffstation - AAC tablet
+    - !Remove SurgeryStatic
+    dynamicPacks:
+    - StarlightSurgeryDynamic
+    - StarlightAutomendersDynamic
+    - StarlightCyberlimbDynamic
+    - StarlightCyberOrgansDynamic
+    - StarlightImplantDynamic
+    - StarlightBudgetCyberOrgansDynamic
+    - StarlightMedicalTechFabLootable
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - StarlightSecurityEmagWeaponsStatic
+    - StarlightSecurityAmmoStatic
+    - StarlightSyndicateAmmoStatic
+    emagDynamicPacks:
+    - SecurityCyberLimbs
+    - SecurityImplants
+  - type: StealTarget
+    stealGroup: DepartmentalTechFabCircuitboard
+
+- type: !PartialOnly entity
+  id: UniformPrinter
+  categories: [ ShouldMapStation ]
+  components:
+  - type: Lathe
+    dynamicPacks:
+    - StarlightUniformPrinterLootable
+
+- type: !PartialOnly entity
+  id: Biogenerator
+  categories: [ ShouldMapStation ]
+  components:
+  - type: Lathe
+    staticPacks:
+    - StarlightBioGenIngredientsStatic
+
+- type: !PartialOnly entity
+  id: OreProcessor
+  components:
+  - type: Sprite
+    layers:
+      - state: magnet_on
+        map: ["enum.ToggleableVisuals.Layer"]
+        visible: false
+  - type: ItemToggle
+    onUse: false
+    onActivate: false
+    verbToggleOn: verb-toggle-magnet-activate
+    verbToggleOff: verb-toggle-magnet-deactivate
+    soundActivate:
+      collection: sparks
+      params:
+        variation: 0.250
+    soundDeactivate:
+      collection: sparks
+      params:
+        variation: 0.250
+  - type: AltUseToggle
+  - type: ComponentToggler
+    components:
+    - type: MagnetPickup
+      range: 3
+      requiresEquipping: false
+      slotFlags: 0
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+         enum.ToggleableVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }

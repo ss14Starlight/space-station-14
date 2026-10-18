@@ -1,0 +1,6 @@
+# Vending Machines Prices
+- type: !PartialOnly entity
+  id: SmokingPipeFilledTobacco
+  components:
+  - type: ItemPrice
+    priceCategory: miscellaneous

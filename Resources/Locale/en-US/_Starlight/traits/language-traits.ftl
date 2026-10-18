@@ -74,3 +74,6 @@ trait-language-lagomorphian-desc = The lynarxical tongue, developed as an integr
 
 trait-language-squeakish-name = Squeakish
 trait-language-squeakish-desc = You can speak Squeakish, the language of the Rodentia, which is made up of a series of chirps and squeaks.
+
+trait-language-nexusintegrated-name = Nexus Integrated
+trait-language-nexusintegrated-desc = You have a Nexus uplink implant despite not being an Avali or Resomi. You were likely raised among their culture, or perhaps managed to get your hands on one after a prolonged period of fascination and cultural immersion. You must know Scratch to take this trait.

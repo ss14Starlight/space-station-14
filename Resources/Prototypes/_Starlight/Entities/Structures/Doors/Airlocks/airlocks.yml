@@ -309,7 +309,7 @@
 - type: entity
   parent: Airlock
   id: AirlockNT
-  suffix: NanoTrasen
+  suffix: NT
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/nanotrasen.rsi
@@ -321,7 +321,7 @@
 - type: entity
   parent: AirlockGlass
   id: AirlockNTGlass
-  suffix: NanoTrasen
+  suffix: NT
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Glass/nanotrasen.rsi
@@ -332,162 +332,8 @@
 
 # Maints
 - type: entity
-  parent: AirlockRobotics
-  id: AirlockRoboticsMaints
-  suffix: Robotics Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/robotics_maints.rsi
-
-- type: entity
-  parent: AirlockParamedic
-  id: AirlockParamedicMaints
-  suffix: Paramedic Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/paramedic_maints.rsi
-
-- type: entity
-  parent: AirlockSurgery
-  id: AirlockSurgeryMaints
-  suffix: Surgery Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/surgery_maints.rsi
-
-- type: entity
-  parent: AirlockMail
-  id: AirlockMailMaints
-  suffix: AirlockMail Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/mail_maints.rsi
-
-- type: entity
-  parent: AirlockBrigmed
-  id: AirlockBrigmedMaints
-  suffix: Brigmed Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/brigmedic_maints.rsi
-
-- type: entity
-  parent: AirlockService
-  id: AirlockServiceMaints
-  suffix: Service Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
-
-- type: entity
-  parent: AirlockAtmospherics
-  id: AirlockAtmosphericsMaints
-  suffix: Atmospherics Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/atmospherics_maints.rsi
-
-- type: entity
-  parent: AirlockCargo
-  id: AirlockCargoMaints
-  suffix: Cargo Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/cargo_maints.rsi
-
-- type: entity
   parent: AirlockCentralCommand
-  id: AirlockCentcommMaints
-  suffix: Centcomm Maints
+  id: AirlockMaintCentralCommand
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/centcomm_maints.rsi
-
-- type: entity
-  parent: AirlockChemistry
-  id: AirlockChemistryMaints
-  suffix: Chemistry Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/chemistry_maints.rsi
-
-- type: entity
-  parent: AirlockCommand
-  id: AirlockCommandMaints
-  suffix: Command Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/command_maints.rsi
-
-- type: entity
-  parent: AirlockEngineering
-  id: AirlockEngineeringMaints
-  suffix: Engineering Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/engineering_maints.rsi
-
-- type: entity
-  parent: AirlockEVA
-  id: AirlockEvaMaints
-  suffix: Command (EVA) Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/eva_maints.rsi
-
-- type: entity
-  parent: AirlockHydroponics
-  id: AirlockHydroponicsMaints
-  suffix: Hydroponics Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/hydroponics_maints.rsi
-
-- type: entity
-  parent: AirlockMedical
-  id: AirlockMedicalMaints
-  suffix: Medical Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/medical_maints.rsi
-
-- type: entity
-  parent: AirlockMining
-  id: AirlockMiningMaints
-  suffix: Mining Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/mining_cargo_maints.rsi
-
-- type: entity
-  parent: AirlockNT
-  id: AirlockNTMaints
-  suffix: NanoTrasen Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/nanotrasen_maints.rsi
-
-- type: entity
-  parent: AirlockScience
-  id: AirlockScienceMaints
-  suffix: Science Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/science_maints.rsi
-
-- type: entity
-  parent: AirlockSecurity
-  id: AirlockSecurityMaints
-  suffix: Security Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/security_maints.rsi
-
-- type: entity
-  parent: AirlockVirology
-  id: AirlockVirologyMaints
-  suffix: Virology Maints
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/virology_maints.rsi
-

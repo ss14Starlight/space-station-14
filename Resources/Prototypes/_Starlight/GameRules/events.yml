@@ -232,6 +232,7 @@
     - id: KudzuGrowth
     - id: PowerGridCheck
     - id: VentClog
+    - id: ScrapperSpawn
     - id: IonStormPlus # I think it's funny to have the double chance to get this.
 
 - type: entity
@@ -305,11 +306,12 @@
   id: ScrapperSpawn
   components:
   - type: StationEvent
-    earliestStart: 15
-    weight: 3
+    earliestStart: 5
+    weight: 2
     minimumPlayers: 10
     duration: null
     occursDuringRoundEnd: false
+    reoccurrenceDelay: 40
   - type: RuleGrids
   - type: LoadMapRule
     gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/Scrapper-2987.yml

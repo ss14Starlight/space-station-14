@@ -1,0 +1,23 @@
+- type: !PartialOnly entity
+  id: BaseOrganHeart
+  components:
+  - type: OrganMissing
+    damagePerSecond:
+      types:
+        Bloodloss: 1
+
+- type: !PartialOnly entity
+  id: BaseOrganLiver
+  components:
+  - type: OrganMissing
+    damagePerSecond:
+      types:
+        Poison: 0.1
+
+- type: !PartialOnly entity
+  id: BaseOrganKidneys
+  components:
+  - type: OrganMissing
+    damagePerSecond:
+      types:
+        Poison: 0.1

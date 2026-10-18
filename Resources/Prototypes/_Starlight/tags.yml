@@ -15,6 +15,12 @@
   id: AdminSpawnedPlayer # Signifies that this player entity was spawned via the "Spawn here" admin verb.
 
 - type: Tag
+  id: AnimalCube
+
+- type: Tag
+  id: AnimalCubeBox
+
+- type: Tag
   id: AnomalyCoreShadow
 
 - type: Tag
@@ -477,6 +483,18 @@
   id: MagazineBattery
 
 - type: Tag
+  id: MagazineBoltPistol
+
+- type: Tag
+  id: MagazineBoltRifle
+
+- type: Tag
+  id: MagazineBoxBoltRifle
+
+- type: Tag
+  id: CartridgeImpactBolt
+
+- type: Tag
   id: MagazineL10DMR
 
 - type: Tag
@@ -602,6 +620,9 @@
 
 - type: Tag
   id: Nexus
+
+- type: Tag
+  id: NonAnimalCube
 
 - type: Tag
   id: NonLethalMech # Used to allow nonlethal mech equipment on a mech.
@@ -817,6 +838,9 @@
 
 - type: Tag
   id: Wizard
+
+- type: Tag
+  id: WrappedCube
 
 - type: Tag
   id: RawXenoMeat #BountySalvageRawXenoMeat

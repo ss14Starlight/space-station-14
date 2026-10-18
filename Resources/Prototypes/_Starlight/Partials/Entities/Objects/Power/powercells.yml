@@ -1,0 +1,36 @@
+# Vending Machines Prices
+- type: !PartialOnly entity
+  id: BasePowerCell
+  components:
+  - type: ItemPrice
+    fallbackPrice: 10
+
+- type: !PartialOnly entity
+  id: PowerCellMedium
+  description: A rechargeable power cell. This is the kind of power cell you find in advanced machines.
+
+- type: !PartialOnly entity
+  id: PowerCellHigh
+  description: A rechargeable power cell. This premium brand stores up to 50% more energy than the competition.
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - PowerCellHyper
+    - PowerCellMicroreactor
+  components:
+  - type: Tag
+    tags:
+      - PowerCell
+      - HighTierCell
+
+# Power Cages need PowerCage tag
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - PowerCageMedium
+    - PowerCageHigh
+  components:
+  - type: Tag
+    tags:
+      - PowerCage

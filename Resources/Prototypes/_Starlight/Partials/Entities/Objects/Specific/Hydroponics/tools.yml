@@ -1,0 +1,25 @@
+- type: !PartialOnly entity
+  id: HydroponicsToolHatchet
+  components:
+  - type: SurgeryTool
+  - type: BoneSaw
+    successRate: 0.4
+    speed: 0.8
+    startSound:
+      path: /Audio/Effects/chop.ogg
+    endSound:
+      path: /Audio/Effects/chop.ogg
+
+- type: !PartialOnly entity
+  id: HydroponicsToolSpade
+  components:
+  - type: Tool
+    qualities:
+      - Digging
+    speedModifier: 0.75 # slower at digging than a full-sized shovel
+
+- type: !PartialOnly entity
+  id: PlantBag
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Hydroponics/Equipment/plant_bag.rsi

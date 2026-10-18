@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - FoodPlate
+    - FoodPlateSmall
+    - FoodPlatePlastic
+    - FoodPlateSmallPlastic
+    - FoodPlateTin
+    - FoodPlateMuffinTin
+  components:
+  - type: Tag
+    tags:
+    - Dinnerware

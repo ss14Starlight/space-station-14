@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: Igniter
+  components:
+  - type: ItemPrice # Vending Machines Prices
+    priceCategory: tool_basic

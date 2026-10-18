@@ -13,7 +13,7 @@
   - type: Appearance
   - type: MobilityAid
   - type: MeleeWeapon
-    wideAnimationRotation: 60 # Starlight
+    wideAnimationRotation: 45
     damage:
       types:
         Blunt: 5
@@ -26,10 +26,6 @@
         Blunt: 3
   - type: UseDelay
     delay: 1
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    fallbackPrice: 25
-  # Starlight-end
 
 - type: entity
   name: cane blade
@@ -92,12 +88,6 @@
         whitelist:
           tags:
           - CaneBlade
-  - type: MeleeWeapon # Starlight start
-    damage:
-      types:
-        Blunt: 9
-    soundHit:
-      collection: MetalThud # Starlight end
 
 - type: entity
   id: CaneSheathFilled

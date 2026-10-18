@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared.Damage;
 using Content.Shared.Physics;
 using Robust.Shared.Audio;
@@ -57,6 +58,13 @@ public sealed partial class FlippableStructureComponent : Component
     public int FlippedMask = (int)CollisionGroup.TableMask;
 
     /// <summary>
+    /// Hitbox of the structure lying on its side if there's no flipped proto.
+    /// When null, the upright hitbox is turned 90 degrees to follow the sprite.
+    /// </summary>
+    [DataField]
+    public Box2? FlippedBounds;
+
+    /// <summary>
     /// If structure toppled onto another entity, how much damage it will deal to entity.
     /// </summary>
     [DataField]
@@ -98,6 +106,9 @@ public sealed partial class FlippedStructureComponent : Component
 
     [ViewVariables, AutoNetworkedField]
     public Dictionary<string, (int Layer, int Mask)> SavedFixtures = [];
+
+    [ViewVariables, AutoNetworkedField]
+    public Dictionary<string, Vector2[]> SavedShapes = [];
 
     [ViewVariables, AutoNetworkedField]
     public bool AddedCover;

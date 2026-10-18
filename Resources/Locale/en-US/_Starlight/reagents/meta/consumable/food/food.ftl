@@ -21,3 +21,6 @@ reagent-physical-desc-mint-extract = minty
 reagent-name-cinnamon = Cinnamon
 reagent-desc-cinnamon = One of the spices of life. Do not try a spoonful raw.
 reagent-physical-desc-cinnamon = cinnamony
+
+reagent-name-stellibininsyrup = stellibinin syrup
+reagent-desc-stellibininsyrup = Worse as a medicine, but when added to food, can prevent theobromine and allicin poisoning. Metabolizes slowly.

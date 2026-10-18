@@ -1,0 +1,9 @@
+﻿- type: !PartialOnly entity
+  id: MobAdultSlimes
+  components:
+    - type: Speech
+      allowedEmotes: ['Squish', 'Bubble', 'Pop']
+      restrictVocalEmotesToAllowed: true
+    - type: Vocal
+      sounds:
+        Unsexed: SlimeCoreSounds

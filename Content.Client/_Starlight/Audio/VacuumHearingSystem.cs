@@ -1,7 +1,12 @@
+using System.Linq;
 using System.Numerics;
 using Content.Shared._Starlight.Sound;
 using Content.Shared.Audio;
+using Content.Shared.Doors.Components;
+using Content.Shared.Gravity;
 using Content.Shared.Inventory;
+using Content.Shared.Physics;
+using Content.Shared.Tag;
 using Robust.Client.Audio;
 using Robust.Client.Player;
 using Robust.Shared;
@@ -10,6 +15,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.Audio;
 
@@ -19,27 +25,34 @@ public sealed partial class VacuumHearingSystem : EntitySystem
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedGravitySystem _gravity = default!;
     [Dependency] private SharedMapSystem _maps = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private EntityQuery<OccluderComponent> _occluderQuery = default!;
+    [Dependency] private EntityQuery<DoorComponent> _doorQuery = default!;
 
-    public const float VacuumOcclusion = 18f;
+    private static readonly ProtoId<TagPrototype> _windowTag = "Window";
 
-    public const float ContactMuffle = 0.4f;
-
-    public const float OwnMuffle = 0.15f;
-
-    private const int OwnSearchDepth = 4;
-
+    public const float SilentOcclusion = 50f;
+    public const float StructureOcclusion = 6f;
+    public const float StructureOcclusionPerTile = 2.5f;
+    private const float AmbienceStructureOcclusion = 6f;
+    public const float OwnOcclusion = 2.7f;
     public const float HelmetOcclusion = 1.5f;
-
     public const float AmbienceHelmetOcclusion = 3.5f;
-
     public const float MuffleStartPressure = 60f;
+    private const float AirAbsorptionPerTile = 0.07f;
+    private const float VacuumWallFactor = 0.5f;
+    private const float WallWeight = 2.5f;
+    private const float DoorWeight = 1.8f;
+    private const float WindowWeight = 1.5f;
+    private const float FlimsyWeight = 0.25f;
 
-    public const float ContactRange = 1.5f;
+    private const int OcclusionMask = (int) (CollisionGroup.Impassable | CollisionGroup.InteractImpassable);
 
-    public const float WallOcclusionMultiplier = 2.5f;
+    private const float ContactRange = 1.5f;
 
     private const float SourceMatchRange = 0.05f;
 
@@ -47,14 +60,20 @@ public sealed partial class VacuumHearingSystem : EntitySystem
 
     private const float OwnBodyRange = 0.3f;
 
+    private const int OwnSearchDepth = 4;
+
+    private readonly record struct SourceInfo(MapCoordinates Position, bool OpenSpace, EntityUid? Grid);
+
     private float _maxRayLength;
-    private List<MapCoordinates> _openSources = new();
-    private List<MapCoordinates> _openSourcesNext = new();
+    private List<SourceInfo> _sources = new();
+    private List<SourceInfo> _sourcesNext = new();
     private HashSet<EntityUid> _ambientParents = new();
     private HashSet<EntityUid> _ambientParentsNext = new();
-    private EntityUid? _wornHelmet;
     private HashSet<EntityUid> _ownParents = new();
     private HashSet<EntityUid> _ownParentsNext = new();
+    private EntityUid? _wornHelmet;
+    private EntityUid? _listenerGrid;
+    private bool _listenerGrounded;
 
     public int OcclusionCalls;
 
@@ -84,11 +103,13 @@ public sealed partial class VacuumHearingSystem : EntitySystem
     {
         base.FrameUpdate(frameTime);
 
-        if (TryComp(_player.LocalEntity, out HearingPressureComponent? hearing))
+        var local = _player.LocalEntity;
+
+        if (TryComp(local, out HearingPressureComponent? hearing))
         {
             ListenerMuffleValue = Math.Clamp(1f - (hearing.Pressure / MuffleStartPressure), 0f, 1f);
             _wornHelmet = hearing.SealedHelmet
-                && _inventory.TryGetSlotEntity(_player.LocalEntity.Value, "head", out var head)
+                && _inventory.TryGetSlotEntity(local.Value, "head", out var head)
                     ? head
                     : null;
             HelmetOcclusionValue = _wornHelmet != null ? HelmetOcclusion : 0f;
@@ -100,15 +121,18 @@ public sealed partial class VacuumHearingSystem : EntitySystem
             _wornHelmet = null;
         }
 
-        AmbienceOcclusionValue = (HelmetOcclusionValue > 0f ? AmbienceHelmetOcclusion : 0f)
-            + (VacuumOcclusion * ListenerMuffleValue);
+        _listenerGrid = local != null ? Transform(local.Value).GridUid : null;
+        _listenerGrounded = local != null && _listenerGrid != null && !_gravity.IsWeightless(local.Value);
 
-        _openSourcesNext.Clear();
+        var ambienceVacuum = _listenerGrounded ? StructureOcclusion + AmbienceStructureOcclusion : SilentOcclusion;
+        AmbienceOcclusionValue = (HelmetOcclusionValue > 0f ? AmbienceHelmetOcclusion : 0f)
+            + (ambienceVacuum * ListenerMuffleValue);
+
+        _sourcesNext.Clear();
         _ambientParentsNext.Clear();
         _ownParentsNext.Clear();
-        var local = _player.LocalEntity;
         var query = AllEntityQuery<AudioComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var audio, out var xform))
+        while (query.MoveNext(out _, out var audio, out var xform))
         {
             if (audio.Global
                 || xform.MapID == MapId.Nullspace
@@ -125,11 +149,11 @@ public sealed partial class VacuumHearingSystem : EntitySystem
                 ? _maps.GetGridPosition(xform.ParentUid)
                 : _xform.GetWorldPosition(xform);
 
-            if (IsOpenSpace(xform.MapID, position))
-                _openSourcesNext.Add(new MapCoordinates(position, xform.MapID));
+            var open = IsOpenSpace(xform.MapID, position, out var grid);
+            _sourcesNext.Add(new SourceInfo(new MapCoordinates(position, xform.MapID), open, grid));
         }
 
-        (_openSources, _openSourcesNext) = (_openSourcesNext, _openSources);
+        (_sources, _sourcesNext) = (_sourcesNext, _sources);
         (_ambientParents, _ambientParentsNext) = (_ambientParentsNext, _ambientParents);
         (_ownParents, _ownParentsNext) = (_ownParentsNext, _ownParents);
     }
@@ -139,39 +163,94 @@ public sealed partial class VacuumHearingSystem : EntitySystem
         // Racy across audio threads, good enough for a debug counter.
         OcclusionCalls++;
 
-        // The engine's default occlusion, strengthened: how much solid stuff lies between source and listener.
-        var occlusion = 0f;
+        var source = FindSource(listener.MapId, listener.Position + delta);
+        var own = distance < OwnBodyRange || (ignoredEnt is { } parent && _ownParents.Contains(parent));
 
-        if (distance > ContactRange)
+        var vacuum = MathF.Max(ListenerMuffleValue, source is { OpenSpace: true } ? 1f : 0f);
+
+        var walls = 0f;
+        if (!own && distance > ContactRange)
         {
-            var rayLength = MathF.Min(distance - SourceClearance, _maxRayLength);
-            var ray = new CollisionRay(listener.Position, delta / distance, _audio.OcclusionCollisionMask);
-            occlusion = _physics.IntersectRayPenetration(listener.MapId, ray, rayLength, ignoredEnt)
-                * WallOcclusionMultiplier;
+            walls = GetWallOcclusion(listener, delta, distance, ignoredEnt)
+                * (1f - (vacuum * (1f - VacuumWallFactor)));
         }
 
-        var sourceInSpace = IsOpenSource(listener.MapId, listener.Position + delta);
-        var muffle = MathF.Max(ListenerMuffleValue, sourceInSpace ? 1f : 0f);
+        float vacuumOcclusion;
+        if (own)
+            vacuumOcclusion = OwnOcclusion;
+        else if (CarriesThroughStructure(source))
+            vacuumOcclusion = StructureOcclusion + (StructureOcclusionPerTile * distance);
+        else
+            vacuumOcclusion = SilentOcclusion;
 
         var helmet = HelmetOcclusionValue;
-
-        if (distance < OwnBodyRange || (ignoredEnt is { } parent && _ownParents.Contains(parent)))
+        if (own)
         {
-            muffle *= OwnMuffle;
-
             if (ignoredEnt != null && ignoredEnt == _wornHelmet)
                 helmet = 0f;
         }
-        else
+        else if (helmet > 0f && ignoredEnt is { } ambient && _ambientParents.Contains(ambient))
         {
-            if (distance <= ContactRange)
-                muffle *= ContactMuffle;
-
-            if (helmet > 0f && ignoredEnt is { } ambient && _ambientParents.Contains(ambient))
-                helmet = AmbienceHelmetOcclusion;
+            helmet = AmbienceHelmetOcclusion;
         }
 
-        return occlusion + helmet + (VacuumOcclusion * muffle);
+        var air = distance * AirAbsorptionPerTile * (1f - vacuum);
+
+        return walls + helmet + air + (vacuumOcclusion * vacuum);
+    }
+
+    private bool CarriesThroughStructure(SourceInfo? source)
+    {
+        return _listenerGrounded
+            && source is { OpenSpace: false, Grid: { } grid }
+            && grid == _listenerGrid;
+    }
+
+    private float GetWallOcclusion(MapCoordinates listener, Vector2 delta, float distance, EntityUid? ignoredEnt)
+    {
+        var rayLength = MathF.Min(distance - SourceClearance, _maxRayLength);
+        if (rayLength <= 0f)
+            return 0f;
+
+        var ray = new CollisionRay(listener.Position, delta / distance, OcclusionMask);
+
+        var hits = _physics.IntersectRayWithPredicate(listener.MapId,
+                ray,
+                ignoredEnt,
+                static (uid, ignored) => uid == ignored,
+                rayLength,
+                returnOnFirstHit: false)
+            .ToList();
+
+        var occlusion = 0f;
+        for (var i = 0; i < hits.Count; i++)
+        {
+            var uid = hits[i].HitEntity;
+            var seen = false;
+            for (var j = 0; j < i && !seen; j++)
+            {
+                seen = hits[j].HitEntity == uid;
+            }
+
+            if (!seen)
+                occlusion += ObstacleWeight(uid);
+        }
+
+        return occlusion;
+    }
+
+    private float ObstacleWeight(EntityUid uid)
+    {
+        if (_occluderQuery.TryComp(uid, out var occluder) && occluder.Enabled)
+            return WallWeight;
+
+        if (_doorQuery.HasComp(uid))
+            return DoorWeight;
+
+        if (_tag.HasTag(uid, _windowTag))
+            return WindowWeight;
+
+        return FlimsyWeight;
     }
 
     private bool IsOwnedBy(EntityUid uid, EntityUid owner)
@@ -187,23 +266,27 @@ public sealed partial class VacuumHearingSystem : EntitySystem
         return false;
     }
 
-    private bool IsOpenSource(MapId map, Vector2 position)
+    private SourceInfo? FindSource(MapId map, Vector2 position)
     {
-        foreach (var source in _openSources)
+        foreach (var source in _sources)
         {
-            if (source.MapId == map && (source.Position - position).LengthSquared() <= SourceMatchRange * SourceMatchRange)
-                return true;
+            if (source.Position.MapId == map
+                && (source.Position.Position - position).LengthSquared() <= SourceMatchRange * SourceMatchRange)
+                return source;
         }
 
-        return false;
+        return null;
     }
 
-    private bool IsOpenSpace(MapId map, Vector2 position)
+    private bool IsOpenSpace(MapId map, Vector2 position, out EntityUid? grid)
     {
-        if (!_maps.TryFindGridAt(map, position, out var grid, out var gridComp))
+        grid = null;
+
+        if (!_maps.TryFindGridAt(map, position, out var gridUid, out var gridComp))
             return true;
 
-        return !_maps.TryGetTileRef(grid, gridComp, _maps.WorldToTile(grid, gridComp, position), out var tile)
+        grid = gridUid;
+        return !_maps.TryGetTileRef(gridUid, gridComp, _maps.WorldToTile(gridUid, gridComp, position), out var tile)
             || tile.Tile.IsEmpty;
     }
 }

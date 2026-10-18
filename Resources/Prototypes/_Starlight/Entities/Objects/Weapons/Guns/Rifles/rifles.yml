@@ -1,6 +1,6 @@
 - type: entity
   name: Lecter
-  parent: [WeaponRifleLecter, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, WeaponRifleLecter, BaseSecurityContraband ] # Blimpuf
   id: WeaponRifleLecterRubber
   suffix: Non-lethal
   components:
@@ -25,7 +25,7 @@
 
 - type: entity
   name: lr-30
-  parent: [BaseItem, BaseGunWieldable, BaseSecuritySalvageContraband]
+  parent: [ BaseContrabandTier3, BaseItem, BaseGunWieldable, BaseSecurityContraband, BaseSalvageContraband ] # Blimpuf
   id: WeaponRifleLr30
   description: Energy carbine with lethal mode.
   components:
@@ -62,11 +62,16 @@
     containers:
       gun_magazine: !type:ContainerSlot
   - type: Gun
-    fireRate: 10
-    selectedMode: FullAuto
+    fireRate: 3.5
+    shotsPerBurst: 3
+    burstFireRate: 6
+    burstCooldown: 0.7
+    selectedMode: Burst
     availableModes:
       - SemiAuto
-      - FullAuto
+      - Burst
+    angleIncrease: 3
+    angleDecay: 8
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: MagazineVisuals
@@ -75,11 +80,11 @@
     zeroVisible: true
   - type: Appearance
   - type: GunHeat
-    heatPerShot: 1000
+    heatPerShot: 1600
 
 - type: entity
   name: IK-60 laser carbine
-  parent: [BaseItem, BaseGunWieldable, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, BaseItem, BaseGunWieldable, BaseSecurityContraband ] # Blimpuf
   id: WeaponRifleIK60
   description: A short, compact rifle-like carbine that relies more on battery-powered ammunition rather than a built-in battery. Used by the NanoTrasen Space Force in combat operations.
   components:
@@ -175,7 +180,7 @@
 
 - type: entity
   name: L10 DMR
-  parent: [ BaseWeaponRifle, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseWeaponRifle, BaseSecurityContraband ] # Blimpuf
   id: WeaponRifleL10
   description: "A scoped marksman rifle for medium range engagements, built on the Lecter platform.\nChambered in .45 magnum."
   components:
@@ -298,7 +303,7 @@
 
 - type: entity
   name: Peacemaker
-  parent: [ BaseWeaponRifle, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseWeaponRifle, BaseSecurityContraband ] # Blimpuf
   id: WeaponRiflePeacemaker
   description: The best or worst thing you'll ever see, depending if it's pointed at you or not. Uses .20 rifle ammo.
   components:
@@ -367,7 +372,7 @@
 
 - type: entity
   name: Lawbringer
-  parent: [BaseWeaponRifle, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponRifle, BaseSecurityContraband ] # Blimpuf
   id: WeaponRifleLawbringer
   description: "A bullpup carbine of modern design, commissioned by CentComm for their security forces.\nFeeds from .30 rifle magazines."
   components:
@@ -405,6 +410,82 @@
       gun_magazine: !type:ContainerSlot ""
       gun_chamber: !type:ContainerSlot ""
       firing_pin: !type:Container
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: Bolt Rifle
+  parent: [ BaseWeaponRifle, BaseSalvageContraband ]
+  id: WeaponRifleBolt
+  description: A terrifyingly powerful and rugged rifle commonly used by the ITG for their frontier logistic escorts and salvage teams. Fires high-caliber explosive impact bolts. Watch out for the recoil.
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: 2
+        staminaMultiplier: 6
+      Rodentia:
+        knockback: 2
+        staminaMultiplier: 6
+      Resomi:
+        knockback: 2
+        staminaMultiplier: 6
+      Felionoid:
+        knockback: 2
+        staminaMultiplier: 6
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/impact_bolt_rifle.rsi
+    layers:
+    - state: base
+      map:
+      - "enum.GunVisualLayers.Base"
+    - state: mag-0
+      map:
+      - "enum.GunVisualLayers.Mag"
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/m16.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,3
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -19
+    maxAngle: -20
+  - type: Gun
+    minAngle: 20
+    maxAngle: 35
+    fireRate: 3.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp.ogg
+      params:
+        pitch: 0.7
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineBoltRifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineBoltRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeImpactBolt
   - type: MagazineVisuals
     magState: mag
     steps: 1

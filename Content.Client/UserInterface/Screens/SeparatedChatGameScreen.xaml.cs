@@ -42,13 +42,11 @@ public sealed partial class SeparatedChatGameScreen : InGameScreen
         //starlight end
     }
 
-    //starlight
     private void SetMinimumChatWidth(int width)
     {
         SeparatedChatPanel.MinWidth = width;
-        //TODO: Theres a issue where the actual UI doesnt get re measured so theres some wackyness here, but its not a huge deal
+        ScreenContainer.InvalidateMeasure(); // Starlight-edit
     }
-    //starlight end
 
     private void ResizeActionContainer()
     {
@@ -60,6 +58,7 @@ public sealed partial class SeparatedChatGameScreen : InGameScreen
 
     public override void SetChatSize(Vector2 size)
     {
+        ScreenContainer.SetSplitFractionOnNextArrange(size.X); // Starlight-edit
         ScreenContainer.ResizeMode = SplitContainer.SplitResizeMode.RespectChildrenMinSize;
     }
 }

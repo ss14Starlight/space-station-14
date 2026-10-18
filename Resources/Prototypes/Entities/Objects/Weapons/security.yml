@@ -1,6 +1,6 @@
 - type: entity
   name: stun baton
-  parent: [BaseItem, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, BaseStunbaton, BaseSecurityContraband ] # Blimpuf
   id: Stunbaton
   description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
   components:
@@ -54,12 +54,10 @@
   #Starlight End
   - type: ItemToggle
     predictable: false
-  # ES START
-#    soundActivate:
-#      collection: sparks
-#      params:
-#        variation: 0.250
-  # ES END
+    soundActivate:
+      collection: sparks
+      params:
+        variation: 0.250
     soundDeactivate:
       collection: sparks
       params:
@@ -75,8 +73,6 @@
     activatedDamage:
       types:
         Blunt: 0
-    deactivatedSoundOnHit: #starlight
-      collection: GenericHit #starlight
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
@@ -85,13 +81,6 @@
     bluntStaminaDamageFactor: 2.0
     angle: 60
     animation: WeaponArcThrust
-    soundHit: #starlight
-      collection: GenericHit #starlight
-  # ES START
-  - type: ESSparkOnItemToggle
-    count: 1
-    sparkPrototype: SLEffectSparksBaton # Starlight, smaller sparks
-  # ES END
   - type: StaminaDamageOnHit
     damage: 35
     sound: /Audio/Weapons/egloves.ogg
@@ -138,7 +127,7 @@
 
 - type: entity
   name: truncheon
-  parent: [BaseItem, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, BaseItem, BaseSecurityContraband ] # Blimpuf
   id: Truncheon
   description: A rigid, steel-studded baton, meant to harm.
   components:
@@ -175,7 +164,7 @@
 
 - type: entity
   name: flash
-  parent: [BaseItem, BaseSecurityScienceCommandNanoTrasenContraband]
+  parent: [ BaseContrabandTier2, BaseItem, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband, BaseNanoTrasenContraband ] # Starlight
   id: Flash
   description: An ultrabright flashbulb with a trigger, which causes the victim to be dazed and lose their eyesight for a moment. Useless when burnt out.
   components:
@@ -231,7 +220,7 @@
 
 - type: entity
   name: portable flasher
-  parent: [BaseMachine, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, BaseMachine, BaseSecurityContraband ] # Blimpuf
   id: PortableFlasher
   description: An ultrabright flashbulb with a proximity trigger, useful for making an area security-only.
   components:

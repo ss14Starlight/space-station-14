@@ -64,7 +64,7 @@
       - DrinkIcedBeerGlass
       - DrinkIceCreamGlass
       - IrishBoolGlass
-      - DrinkIrishCarBomb #Starlight Change
+      - DrinkIrishSlammer
       - DrinkIrishCoffeeGlass
       - DrinkLemonadeGlass
       - DrinkJackRoseGlass
@@ -137,5 +137,4 @@
       - DrinkHoochGlass
       - DrinkBeepskySmashGlass
       - DrinkBacchusBlessing
-      - DrinkTheLastCall # Starlight-edit
     rareChance: 0.05

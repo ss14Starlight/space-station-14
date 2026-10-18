@@ -40,14 +40,12 @@ using Robust.Shared.Replays;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Client._Starlight.Radio.Systems;
-//Starlight begin
 using Content.Shared._Starlight.Language;
 using System.Diagnostics.CodeAnalysis;
 using Content.Client._Starlight.Language.Systems;
 using Content.Shared._Starlight.Ghost;
 using Content.Shared._Starlight.NameConfusion;
 using Content.Shared._Starlight.Radio;
-//Starlight end
 
 
 namespace Content.Client.UserInterface.Systems.Chat;
@@ -284,19 +282,7 @@ public sealed partial class ChatUIController : UIController
         if (panel is null)
             return;
 
-        Color color;
-        if (panel.PanelOverride is StyleBoxFlat styleBoxFlat)
-            color = styleBoxFlat.BackgroundColor;
-        else if (panel.TryGetStyleProperty<StyleBox>(PanelContainer.StylePropertyPanel, out var style)
-                 && style is StyleBoxFlat propStyleBoxFlat)
-            color = propStyleBoxFlat.BackgroundColor;
-        else
-            color = Color.FromHex("#25252ADD");
-
-        panel.PanelOverride = new StyleBoxFlat
-        {
-            BackgroundColor = color.WithAlpha(opacity)
-        };
+        panel.ModulateSelfOverride = Color.White.WithAlpha(opacity); // Starlight-edit
     }
 
     public void SetMainChat(bool setting)

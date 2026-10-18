@@ -1,0 +1,65 @@
+- type: entity
+  parent: IDCardStandard
+  id: StationAiIDCard
+  name: station AI ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+  - type: IdCard
+    jobPrototype: StationAi
+  - type: PresetIdCard
+    job: StationAi
+
+- type: !PartialOnly entity
+  id: StationAiBrain
+  components:
+  # The brain outlives its temporary core/card bundles, so the PDA and NanoChat identity live here.
+  - type: Pda
+    id: StationAiIDCard
+    idSlot:
+      # The ID must stay installed through core/card transfers and cannot be ejected by the AI.
+      locked: true
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+    - CrewManifestCartridge
+    - NewsReaderCartridge
+    - NanoChatCartridge
+    cartridgeSlot:
+      locked: true
+  # Declare every PDA container and its slot component here so component initialization does not mutate the brain prototype.
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      PDA-id: !type:ContainerSlot {}
+      PDA-pen: !type:ContainerSlot {}
+      PDA-pai: !type:ContainerSlot {}
+      Cartridge-Slot: !type:ContainerSlot {}
+      program-container: !type:Container
+  - type: UserInterface
+    interfaces:
+      enum.PdaUiKey.Key:
+        type: PdaBoundUserInterface
+
+# The AI core adds the PDA action, but its ID and cartridges stay on the persistent brain entity.
+- type: !PartialOnly entity
+  id: AiHeld
+  save: false
+  components:
+  # AiHeld replacement removes the brain's interface component, so restore the PDA interface on the core-held entity.
+  - type: UserInterface
+    interfaces:
+      enum.PdaUiKey.Key:
+        type: PdaBoundUserInterface
+  # The action belongs to the core-held entity; shared Station AI checks prevent it being used after a mind transfer.
+  - type: IntrinsicUI
+    uis:
+      enum.PdaUiKey.Key:
+        toggleAction: ActionStationAiOpenPDA
+
+# Intentionally no PDA interface or action here: the brain retains its data in an intellicard, but cannot access it.
+- type: !PartialOnly entity
+  id: AiHeldIntellicard
+  # This bundle is attached dynamically during card upload and is not independent saved entity state.
+  save: false

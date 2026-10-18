@@ -432,10 +432,20 @@ namespace Content.Client.Construction.UI
 
                 if (_selected.Type == ConstructionType.Item)
                 {
-                    _constructionSystem.TryStartItemConstruction(_selected.ID);
+                    if (!_entManager.System<Content.Client._Starlight.Computers.RemoteControl.RemoteControlInterface>()
+                        .TryRequestItemConstruction(_selected.ID))
+                        _constructionSystem.TryStartItemConstruction(_selected.ID);
                     _constructionView.BuildButtonPressed = false;
                     return;
                 }
+
+                // Starlight start
+                if (TryBeginRemotePlacement(_selected))
+                {
+                    _constructionView.BuildButtonPressed = true;
+                    return;
+                }
+                // Starlight end
 
                 _placementManager.BeginPlacing(new PlacementInformation
                     {
@@ -446,8 +456,10 @@ namespace Content.Client.Construction.UI
 
                 UpdateGhostPlacement();
             }
-            else
+            // Starlight start
+            else if (!StopRemotePlacement())
                 _placementManager.Clear();
+            // Starlight end
 
             _constructionView.BuildButtonPressed = pressed;
         }
@@ -459,9 +471,20 @@ namespace Content.Client.Construction.UI
 
             if (_selected.Type != ConstructionType.Structure)
             {
+                // Starlight start
+                StopRemotePlacement();
+                // Starlight end
                 _placementManager.Clear();
                 return;
             }
+
+            // Starlight start
+            if (TryBeginRemotePlacement(_selected))
+            {
+                _constructionView.BuildButtonPressed = true;
+                return;
+            }
+            // Starlight end
 
             var constructSystem = _systemManager.GetEntitySystem<ConstructionSystem>();
 

@@ -1,0 +1,54 @@
+- type: !PartialOnly entity
+  id: BaseMobCarp
+  components:
+    - type: LanguageSpeaker
+    - type: LanguageKnowledge
+      speaks:
+      - Carptongue
+      - Carpmind
+      understands:
+      - Carptongue
+      - Carpmind
+      - Thaveyan
+      - GalacticCommon
+    - type: MovementIgnoreGravity # Lets the space fish go into space alot more freely
+    - type: !Remove ReplacementAccent
+
+- type: !PartialOnly entity
+  id: MobCarpDragon
+  components:
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonistFlock
+    - type: GhostTakeoverAvailable
+    - type: HTN
+      rootTask:
+        task: DragonCarpCompound
+    - type: Temperature
+    - type: TemperatureDamage
+      heatDamageThreshold: 1200
+    - type: Flammable
+      damage:
+        types: {}
+    - type: MeleeWeapon
+      damage:
+        types:
+          Slash: 12
+    - type: Damageable
+      damageModifierSet: DragonCarpResistances
+    - type: Prying
+      pryPowered: true
+      force: true
+      speedModifier: 1.5
+      useSound:
+         path: /Audio/Items/crowbar.ogg
+
+- type: !PartialOnly entity
+  id: MobShark
+  components:
+  - type: Body
+    prototype: Bloodsucker
+    requiredLegs: 1

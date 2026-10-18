@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: SpawnPointHeadOfSecurityWeapon
+  categories: [ ShouldMapStation ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:AllSelector
+      children:
+      - !CombineIndex:0 id: WeaponSubMachineGunWt550r # Recolored, steal target.
+  - type: Sprite
+    layers:
+    - !CombineIndex:1 sprite: _Starlight/Objects/Weapons/Guns/SMGs/wt550r.rsi

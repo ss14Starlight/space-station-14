@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: BriefcaseBase
+  components:
+  # Vending Machines Prices
+  - type: ItemPrice
+    priceCategory: clothing

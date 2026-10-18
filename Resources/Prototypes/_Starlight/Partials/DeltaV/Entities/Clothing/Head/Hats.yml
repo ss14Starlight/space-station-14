@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: ClothingHeadHatSurgcapCybersun
+  components:
+  - type: Contraband
+    tier: Tier2
+    contrabandType: Syndicate

@@ -1,0 +1,9 @@
+- type: !PartialOnly entityTable
+  id: SpamMailTable
+  table: !type:GroupSelector
+    children:
+      - !type:EntSelector
+        !CombineIndex:0 weight: .996
+      - !type:NestedSelector
+        tableId: MailAntagSpamLetter # behold, antag on signing papers.
+        weight: .004

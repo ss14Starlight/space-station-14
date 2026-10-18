@@ -28,6 +28,11 @@ public abstract partial class SharedCosmicCultSystem : EntitySystem
         _mind.TryGetMind(user, out var mind, out _)
         && (HasComp<CosmicCultComponent>(user) || _role.MindHasRole<CosmicCultRoleComponent>(mind));
 
+    /// <summary>
+    /// Whether an entity counts as convertible.
+    /// </summary>
+    public bool IsConvertible(EntityUid? uid) =>
+        uid != null && TryComp<CosmicCultConvertibleComponent>(uid, out var comp) && comp.Convertible;
 
     public bool EntitySeesCult(EntityUid user) =>
         EntityIsCultist(user)

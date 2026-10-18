@@ -1,7 +1,7 @@
 - type: entity
   id: BasePeacekeeperBox
   name: grenade cartridge
-  parent: [BaseItem, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseItem, BaseSecurityContraband ] # Blimpuf
   abstract: true
   components:
   - type: Tag

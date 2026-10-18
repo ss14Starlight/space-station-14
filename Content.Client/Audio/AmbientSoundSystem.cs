@@ -111,7 +111,11 @@ public sealed partial class AmbientSoundSystem : SharedAmbientSoundSystem
         if (!_playingSounds.Remove((uid, component), out var sound))
             return;
 
-        _audio.Stop(sound.Stream);
+        // Starlight-start
+        // If the stream is still valid and client-side, queue it for deletion.
+        if (sound.Stream is { } stream && !TerminatingOrDeleted(stream) && IsClientSide(stream))
+            QueueDel(stream);
+        // Starlight-end
         _playingCount[sound.Path] -= 1;
         if (_playingCount[sound.Path] == 0)
             _playingCount.Remove(sound.Path);

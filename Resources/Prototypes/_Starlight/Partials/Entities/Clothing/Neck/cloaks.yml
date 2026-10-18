@@ -1,0 +1,66 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - ClothingNeckCloakCentcom
+    - ClothingNeckCloakCap
+    - ClothingNeckCloakHos
+    - ClothingNeckCloakCe
+    - ClothingCloakCmo
+    - ClothingNeckCloakRd
+    - ClothingNeckCloakQm
+    - ClothingNeckCloakHop
+    - ClothingNeckCloakCapFormal
+    - ClothingNeckCloakAdmin
+    - ClothingNeckCloakTrans
+    - ClothingNeckCloakAro
+    - ClothingNeckCloakBi
+    - ClothingNeckCloakIntersex
+    - ClothingNeckCloakLesbian
+    - ClothingNeckCloakEnby
+    - ClothingNeckCloakPan
+  components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+
+- type: !PartialOnly entity
+  id: ClothingNeckCloakGoliathCloak
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Cloaks/goliathcloak.rsi
+
+- type: !PartialOnly entity
+  id: ClothingNeckCloakAce
+  description: Cloak awarded to NanoTrasen's finest space aces.
+  components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+
+- type: !PartialOnly entity
+  id: ClothingNeckCloakAroace
+  description: Cloak awarded to NanoTrasen's finest pilots on planets with inhabitable atmospheres.
+  components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+
+- type: !PartialOnly entity
+  id: ClothingNeckCloakGay
+  description: This cloak is highly sought after in the NanoTrasen Marketing Offices.
+  components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable

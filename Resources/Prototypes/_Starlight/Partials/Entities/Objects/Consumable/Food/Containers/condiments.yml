@@ -1,0 +1,39 @@
+- type: !PartialOnly entity
+  id: BaseFoodCondiment
+  components:
+  - type: Tag
+    tags:
+    - Condiment
+
+# Vending Machines Prices
+- type: !PartialOnly entity
+  id: BaseFoodCondimentPacket
+  components:
+  - type: ItemPrice
+    priceCategory: miscellaneous
+
+- type: !PartialOnly entity
+  id: BaseFoodCondimentBottle
+  components:
+  - type: SurgeryTool
+  - type: BoneGel
+    successRate: 0.01 # How.
+    speed: 0.5
+    startSound:
+      path: /Audio/Items/Medical/ointment_begin.ogg
+    endSound:
+      path: /Audio/Items/Medical/ointment_end.ogg
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - FoodCondimentBottleColdsauce
+    - FoodCondimentBottleEnzyme
+    - FoodCondimentBottleVinegar
+    - FoodCondimentBottleHotsauce
+    - FoodCondimentBottleKetchup
+    - FoodCondimentBottleBBQ
+  components:
+  - type: Tag
+    tags:
+    - Condiment

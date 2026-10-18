@@ -1,0 +1,33 @@
+- type: !PartialOnly reagent
+  id: BuzzochloricBees
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Licoxide
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Razorium
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Fresium
+  contrabandTier: Tier1
+
+- type: !PartialOnly reagent
+  id: CorgiJuice
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Felinase
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Caninase
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove

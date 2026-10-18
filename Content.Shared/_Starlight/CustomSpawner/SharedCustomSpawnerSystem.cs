@@ -121,7 +121,7 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
                     : null;
             // Impossible to get here with storedPosition being null, should be anyway.
             var spawned = PredictedSpawnAtPosition(data.ProtoId, storedPosition!.Value, storedOverrides);
-            Transform(spawned).LocalRotation = float.DegreesToRadians(storedRotation!.Value);
+            _xform.SetLocalRotation(spawned, float.DegreesToRadians(storedRotation!.Value));
         }
     }
 

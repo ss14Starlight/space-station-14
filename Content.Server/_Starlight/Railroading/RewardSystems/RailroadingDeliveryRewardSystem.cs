@@ -1,3 +1,4 @@
+using Content.Server.Access.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Systems;
@@ -23,6 +24,7 @@ public sealed partial class RailroadingDeliveryRewardSystem : AccUpdateEntitySys
 {
     [Dependency] private FingerprintReaderSystem _fingerprintReader = default!;
     [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IdCardSystem _idCard = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private IPrototypeManager _protoMan = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -105,6 +107,19 @@ public sealed partial class RailroadingDeliveryRewardSystem : AccUpdateEntitySys
         var delivery = Spawn(ent.Comp.Delivery, Transform(spawner.Value).Coordinates);
         var subjectName = trackedMind.CharacterName!;
         var recordID = _records.GetRecordByName(station, subjectName);
+
+        // Records use the name on the ID card, which can differ from the character name (e.g. a custom clown name),
+        // so fall back to the record keyed on their ID, if it's filed under their name (not a stolen ID).
+        if (recordID == null
+            && _idCard.TryFindIdCard(subject, out var idCard)
+            && TryComp<StationRecordKeyStorageComponent>(idCard, out var keyStorage)
+            && keyStorage.Key is { } key
+            && key.OriginStation == station
+            && _records.TryGetRecord<GeneralStationRecord>(key, out var idRecord)
+            && idRecord.Name == Name(subject))
+        {
+            recordID = key.Id;
+        }
 
         if (ent.Comp.Dataset != null && _playerManager.TryGetSessionByEntity(subject, out var session))
         {

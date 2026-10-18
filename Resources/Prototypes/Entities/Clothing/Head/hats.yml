@@ -234,7 +234,7 @@
     - CorgiWearable
 
 - type: entity
-  parent: [ClothingHeadBase, BaseCommandManagerContraband] # Starlight
+  parent: [ ClothingHeadBase, BaseCommandContraband, BaseAssistantManagerContraband ] # Starlight
   id: ClothingHeadHatBeretCommand
   name: command beret
   description: A beret with the NanoTrasen logo. It has an aura of authority. # SL
@@ -861,7 +861,7 @@
     sprite: Clothing/Head/Hats/truckershat.rsi
 
 - type: entity
-  parent: [ ClothingHeadBaseWinter, BaseMinorContraband ] # Starlight, winter protection + major contra -> minor contra
+  parent: ClothingHeadBaseWinter # Starlight, winter protection + major contra -> minor contra
   id: ClothingHeadPyjamaSyndicateBlack
   name: syndicate black pyjama hat
   description: For keeping that traitor head of yours warm.
@@ -877,7 +877,7 @@
       HeadSide : HEAD
 
 - type: entity
-  parent: [ ClothingHeadBaseWinter, BaseMinorContraband ] # Starlight, winter protection + major contra -> minor contra
+  parent: ClothingHeadBaseWinter # Starlight, winter protection + major contra -> minor contra
   id: ClothingHeadPyjamaSyndicatePink
   name: syndicate pink pyjama hat
   description: For keeping that traitor head of yours warm.
@@ -893,7 +893,7 @@
       HeadSide : HEAD
 
 - type: entity
-  parent: [ ClothingHeadBaseWinter, BaseMinorContraband ] # Starlight, winter protection + major contra -> minor contra
+  parent: ClothingHeadBaseWinter # Starlight, winter protection + major contra -> minor contra
   id: ClothingHeadPyjamaSyndicateRed
   name: syndicate red pyjama hat
   description: For keeping that traitor head of yours warm.

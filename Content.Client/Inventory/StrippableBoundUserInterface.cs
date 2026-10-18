@@ -151,6 +151,8 @@ namespace Content.Client.Inventory
 
                     AddHandButton((Owner, handsComp), id, hand);
                 }
+
+                AddFunctionalHandButtons((Owner, handsComp)); // Starlight
             }
 
             // snare-removal button. This is just the old button before the change to item slots. It is pretty out of place.

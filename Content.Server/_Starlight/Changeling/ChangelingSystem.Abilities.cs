@@ -1,47 +1,44 @@
-using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.Reagent;
-using Content.Shared._Starlight.Actions.Components;
-using Content.Shared.Cuffs.Components;
-using Content.Shared.DoAfter;
-using Content.Shared.FixedPoint;
-using Content.Shared.IdentityManagement;
-using Content.Shared.Mobs;
-using Content.Shared.Store.Components;
-using Content.Shared.Popups;
-using Robust.Shared.Prototypes;
-using Content.Shared.Damage.Prototypes;
-using Content.Shared.Eye.Blinding.Systems;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Movement.Pulling.Components;
-using Content.Shared.Stealth.Components;
-using Content.Shared.Damage.Components;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Flash.Components;
-using Content.Shared.Mindshield.Components;
-using Content.Shared.Mindshield.FakeMindShield;
-using Content.Shared.StatusEffect;
-using Content.Shared.Light.Components;
-using Content.Shared.Actions.Events;
-using Content.Shared.RetractableItemAction;
-using Content.Shared.Changeling.Systems;
-using Content.Shared.Changeling.Components;
-using Content.Server.Changeling.Systems;
-// Starlight edit start
-using Content.Shared.Humanoid;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
 using Content.Server._Starlight.Language;
+using Content.Server._Starlight.Objectives.Components;
+using Content.Server.Changeling.Systems;
+using Content.Server.Ensnaring;
+using Content.Shared._Starlight.Actions.Components;
+using Content.Shared._Starlight.Changeling;
 using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Overlay.Components;
-using Content.Shared._Starlight.Changeling;
-using Content.Server._Starlight.Objectives.Components;
-using Content.Shared.Flash;
+using Content.Shared.Actions.Events;
 using Content.Shared.Atmos.Rotting;
-using Content.Shared.Store;
-using Content.Server.Ensnaring;
+using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
+using Content.Shared.Changeling.Components;
+using Content.Shared.Changeling.Systems;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Cuffs.Components;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.DoAfter;
 using Content.Shared.Ensnaring.Components;
+using Content.Shared.Eye.Blinding.Components;
+using Content.Shared.FixedPoint;
+using Content.Shared.Flash;
+using Content.Shared.Flash.Components;
+using Content.Shared.Humanoid;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Light.Components;
+using Content.Shared.Mindshield.Components;
+using Content.Shared.Mindshield.FakeMindShield;
+using Content.Shared.Mobs;
+using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
+using Content.Shared.RetractableItemAction;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.Stealth.Components;
+using Content.Shared.Store;
+using Content.Shared.Store.Components;
 using Content.Shared.Tag;
-// Starlight edit end
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Changeling;
 
@@ -372,7 +369,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         _blindable.AdjustEyeDamage((target, blindable), 2);
         var timeSpan = TimeSpan.FromSeconds(5f);
-        _statusEffect.TryAddStatusEffect(target, TemporaryBlindnessSystem.BlindingStatusEffect, timeSpan, false, TemporaryBlindnessSystem.BlindingStatusEffect);
+        _statusEffect.TryAddStatusEffectDuration(target, "StatusEffectTemporaryBlindness", timeSpan);
     }
 
     private void OnStingChem(Entity<ChangelingComponent> ent, ref StingChemEvent ev) => TryReagentSting(ent.Owner, ent.Comp, ev, ev.Chems);

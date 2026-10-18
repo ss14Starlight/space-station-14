@@ -141,10 +141,10 @@
       sprite: Objects/Misc/handcuffs.rsi
       state: body-overlay-2
       visible: false
-    - map: [ "clownedon" ]
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_vox" # Not default
-      visible: false
+  - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_vox
   - type: HumanoidAppearance
     species: NeoVox
     hideLayersOnEquip:
@@ -270,10 +270,6 @@
       color: "#ffffff"
       sprite: Objects/Misc/handcuffs.rsi
       state: body-overlay-2
-      visible: false
-    - map: [ "clownedon" ]
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_vox" # Not default
       visible: false
   - type: Body
     prototype: NeoVox

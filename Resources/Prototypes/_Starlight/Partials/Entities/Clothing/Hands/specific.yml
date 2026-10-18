@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: ClothingHandsChameleonThief
+  components:
+  - type: Thieving
+    stripTimeReduction: 1 # They're so abundant that they don't need to be *that* good.

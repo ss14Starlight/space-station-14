@@ -112,6 +112,9 @@
           tags:
           - PotatoBattery
           - MechReactor #Starlight
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
 
 - type: entity
   parent: [ BaseItemRecharger, ConstructibleMachine ]
@@ -177,6 +180,9 @@
           tags:
           - PotatoBattery
           - MechReactor #Starlight
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
 
 - type: entity
   parent: BaseItemRecharger
@@ -203,6 +209,9 @@
           tags:
           - PotatoBattery
           - MechReactor #Starlight
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
 
 - type: entity
   parent: [ BaseItemRecharger, BaseWallmount ]

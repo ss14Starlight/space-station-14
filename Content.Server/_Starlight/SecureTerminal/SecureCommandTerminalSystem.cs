@@ -8,6 +8,7 @@ using Content.Server.Popups;
 using Content.Server.Station.Systems;
 using Content.Server._Starlight.AlertArmory;
 using Content.Server._Starlight.Statistics;
+using Content.Shared.Access;
 using Content.Shared.Access.Systems;
 using Content.Shared.Database;
 using Content.Shared.Popups;
@@ -1148,6 +1149,9 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         return false;
     }
 
+    private string GetAccessName(ProtoId<AccessLevelPrototype> id) =>
+        _protos.TryIndex(id, out var access) ? access.GetAccessLevelName() : id.Id;
+
     private string GetJobName(EntityUid actor)
     {
         if (_mind.TryGetMind(actor, out var mindUid, out _)
@@ -1200,7 +1204,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                         Description = scheme.Description,
                         AuthorizedBy = authorizedBy,
                         GroupsSatisfied = satisfiedGroups,
-                        GroupLabels = groups.Select(g => string.Join(" / ", g)).ToList(),
+                        GroupLabels = groups.Select(g => string.Join(" / ", g.Select(GetAccessName))).ToList(),
                     };
                 }).ToList();
 
@@ -1222,7 +1226,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                         Description = scheme.Description,
                         AuthorizedBy = authorizedBy,
                         GroupsSatisfied = satisfiedGroups,
-                        GroupLabels = groups.Select(g => string.Join(" / ", g)).ToList(),
+                        GroupLabels = groups.Select(g => string.Join(" / ", g.Select(GetAccessName))).ToList(),
                     };
                 }).ToList();
 

@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: TrumpetInstrument
+  components:
+  - type: SwappableInstrument
+    instrumentList:
+      "Vampiric": {61: 8}
+      "Grand": {61: 11}

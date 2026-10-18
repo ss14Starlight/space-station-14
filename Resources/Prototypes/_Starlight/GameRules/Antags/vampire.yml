@@ -5,7 +5,7 @@
   id: BaseVampireRule
   components:
   - type: GameRule # It doesn't really make lore sense that you can "remember" you're a vampire, but it should give everyone some calm at the start.
-    minPlayers: 25
+    minPlayers: 20
     delay:
       min: 240
       max: 420

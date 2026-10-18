@@ -1,0 +1,44 @@
+- type: constructionGraph
+  id: MolotovGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: empty
+      steps:
+      - tag: DrinkBottle
+        icon:
+          sprite: Objects/Consumable/Drinks/whiskeybottle.rsi
+          state: icon_empty
+        name: construction-graph-tag-drink-bottle
+        doAfter: 1
+  - node: empty
+    entity: MolotovBottleEmpty
+    edges:
+    - to: fuel
+      conditions:
+      - !type:MinSolution
+        solution: drink
+        reagent:
+          ReagentId: WeldingFuel
+        quantity: 200
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+  - node: fuel
+    entity: MolotovBottleFuel
+    edges:
+    - to: molotov
+      conditions:
+      - !type:MinSolution
+        solution: drink
+        reagent:
+          ReagentId: WeldingFuel
+        quantity: 200
+      steps:
+      - material: Cable
+        amount: 1
+        doAfter: 2
+  - node: molotov
+    entity: Molotov

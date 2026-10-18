@@ -1,17 +1,25 @@
 ﻿<Control
     xmlns="https://spacestation14.io"
-    xmlns:cc="clr-namespace:Content.Client._Starlight.MHelp.UI">
-    <PanelContainer StyleClasses="BackgroundDark">
-        <SplitContainer Orientation="Horizontal" VerticalExpand="True">
-            <cc:TicketListControl Access="Public" Name="TicketSelector" HorizontalExpand="True" SizeFlagsStretchRatio="1" />
-            <BoxContainer Orientation="Vertical" HorizontalExpand="True" SizeFlagsStretchRatio="2">
-                <BoxContainer Access="Public" Name="MhelpArea" VerticalExpand="True" />
-                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-                    <CheckBox Visible="True" Name="PlaySound" Access="Public" Text="{Loc 'mentor-play-sound'}" Pressed="True" />
-                    <CheckBox Visible="True" Name="PingSound" Access="Public" Text="{Loc 'mentor-send-ping'}" Pressed="False" />
-                    <Control HorizontalExpand="True" MinWidth="5" />
-                </BoxContainer>
+    xmlns:cc="clr-namespace:Content.Client._Starlight.MHelp.UI"
+    xmlns:sc="clr-namespace:Content.Client._Starlight.UserInterface.Controls">
+    <SplitContainer Orientation="Horizontal" VerticalExpand="True">
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" SizeFlagsStretchRatio="1" MinWidth="200">
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'mentor-tickets'}" StyleClasses="LabelKeyText" HorizontalExpand="True" VerticalAlignment="Center" />
+                <sc:DropdownButton Name="SettingsButton" Text="{Loc 'mentor-settings'}" />
             </BoxContainer>
-        </SplitContainer>
-    </PanelContainer>
+            <cc:TicketListControl Access="Public" Name="TicketSelector" VerticalExpand="True" />
+        </BoxContainer>
+        <Control HorizontalExpand="True" SizeFlagsStretchRatio="2" Margin="6 0 0 0">
+            <BoxContainer Access="Public" Name="MhelpArea" VerticalExpand="True" />
+            <Label Name="EmptyLabel" Text="{Loc 'mentor-select-ticket'}" StyleClasses="LabelWeak"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Control>
+    </SplitContainer>
+
+    <!-- Popup contents, handed to the dropdown in code. -->
+    <BoxContainer Name="SettingsMenu" Orientation="Vertical" MinWidth="180">
+        <CheckBox Name="PlaySound" Access="Public" Text="{Loc 'mentor-play-sound'}" Pressed="True" Margin="4 2" />
+        <CheckBox Name="PingSound" Access="Public" Text="{Loc 'mentor-send-ping'}" Pressed="False" Margin="4 2" />
+    </BoxContainer>
 </Control>

@@ -29,10 +29,10 @@ public sealed partial class ClientPlayerManager : IClientPlayerRolesManager, IPo
     private void OnPlayerResourcesUpdated()
     {
         if (!_nullLinkResourcesManager.TryGetResources(out var resources)
-            || _player.LocalSession == null || _playerData == null)
+            || _player.LocalSession is not { } session || _playerData == null)
             return;
 
-        _playerData!.Resources = resources;
+        _nullLinkResourcesManager.TrySetResources(session, resources);
     }
 
     private void UpdateMessageRx(MsgUpdatePlayerStatus message)
@@ -40,6 +40,9 @@ public sealed partial class ClientPlayerManager : IClientPlayerRolesManager, IPo
         var host = IoCManager.Resolve<IClientConsoleHost>();
 
         _playerData = message.Player;
+        if (_playerData != null && _player.LocalSession is { } session && message.Resources is { } resources)
+            _nullLinkResourcesManager.TrySetResources(session, resources);
+
         _sawmill.Info("Updated player status");
 
         PlayerStatusUpdated?.Invoke();

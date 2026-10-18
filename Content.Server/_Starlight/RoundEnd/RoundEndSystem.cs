@@ -27,9 +27,9 @@ public sealed partial class RoundEndSystem
         _countdownTokenSource.Cancel();
         _countdownTokenSource = null;
         _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
-            $"Round restart timer was delayed by {CommandHelpers.PlayerNameOrServer(canceller)}");
+            $"Round restart timer was delayed by {SharedCommandHelpers.PlayerNameOrServer(canceller)}");
         _chatManager.SendAdminAnnouncement(
-            $"Round restart timer was delayed by {CommandHelpers.PlayerNameOrServer(canceller)}");
+            $"Round restart timer was delayed by {SharedCommandHelpers.PlayerNameOrServer(canceller)}");
     }
 
     public void StartRestartTimer(TimeSpan? countdownTime = null)
@@ -110,7 +110,7 @@ public sealed partial class RoundEndSystem
     {
         StartTimerOnRestart = state;
         _adminLogger.Add(LogType.AdminCommands, LogImpact.Medium,
-            $"{CommandHelpers.PlayerNameOrServer(session)} toggled {(state ? "on" : "off")} the restart timer on round end.");
+            $"{SharedCommandHelpers.PlayerNameOrServer(session)} toggled {(state ? "on" : "off")} the restart timer on round end.");
     }
 
     public void DelayShuttleTimer(float seconds)

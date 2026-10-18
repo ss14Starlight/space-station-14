@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: DoorElectronicsSecurity
+  components:
+  - type: AccessReader
+    access:
+    - ["Cadet"] # add cadet

@@ -222,6 +222,37 @@
     - CantInteract
 
 - type: entity
+  parent: BaseComputerAiAccess
+  id: RemoteControlConsole
+  name: remote control console
+  description: Enables operators to view and control a linked robotic body over virtually any distance, with minimal loss of control precision.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shuttle
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: generic_panel_open
+  - type: RemoteControlConsole
+  - type: DeviceLinkSource
+    ports:
+    - RemoteControl
+  - type: ActivatableUI
+    key: enum.RemoteControlUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.RemoteControlUIKey.Key:
+        type: RemoteControlConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: entity
   parent: BaseComputerShuttle
   id: CompuerShuttleSalvage
   name: remote salvage shuttle console
@@ -786,6 +817,133 @@
       color: "#b48b57"
 
 ## Departmental Communications Consoles END
+
+- type: entity
+  parent: ComputerComms
+  id: ComputerCommsFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: CentCommSectoralConsole
+  id: CentCommSectoralConsoleFilled
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: CentcommComputerComms
+  id: CentcommComputerCommsFilled
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsCargo
+  id: ComputerCommsCargoFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsEngineering
+  id: ComputerCommsEngineeringFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsMedical
+  id: ComputerCommsMedicalFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsScience
+  id: ComputerCommsScienceFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsSecurity
+  id: ComputerCommsSecurityFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsService
+  id: ComputerCommsServiceFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: SolgovComputerComms
+  id: SolgovComputerCommsFilled
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: SyndicateComputerComms
+  id: SyndicateComputerCommsFilled
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: WizardComputerComms
+  id: WizardComputerCommsFilled
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
 
 - type: entity
   id: ComputerShipyard

@@ -1,0 +1,6 @@
+# Vending Machines Prices
+- type: !PartialOnly entity
+  id: Vape
+  components:
+  - type: ItemPrice
+    fallbackPrice: 15

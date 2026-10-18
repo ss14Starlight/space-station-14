@@ -19,6 +19,18 @@ public sealed partial class GunHeatComponent : Component
     public float HeatPerShot = 750f;
 
     /// <summary>
+    /// The temperature rise in kelvin a single shot adds to the gun. The heat capacity of the gun is calculated as <see cref="HeatPerShot"/> / <see cref="TemperaturePerShot"/>.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public float TemperaturePerShot;
+
+    /// <summary>
+    /// The temperature of the surrounding air that the gun is in. The gun will cool down to this temperature over time.
+    /// </summary>
+    [DataField]
+    public float EnvironmentHeatMargin = 20f;
+
+    /// <summary>
     /// How well the surrounding air cools the gun.
     /// </summary>
     [DataField]
@@ -55,7 +67,8 @@ public sealed partial class GunHeatComponent : Component
     public float MeltTemperature = Atmospherics.T20C + 360f;
 
     /// <summary>
-    /// The entity prototype of the melted firing pin.
+    /// The entity prototype of the melted firing pin, used when the pin does not set its own
+    /// <see cref="FiringPins.FiringPinComponent.MeltedPrototype"/>.
     /// </summary>
     [DataField]
     public EntProtoId? MeltedPin = "FiringPinMelted";

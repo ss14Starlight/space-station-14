@@ -7,7 +7,7 @@
   - type: RuleGrids
   - type: AntagLoadProfileRule
   - type: GameRule
-    minPlayers: 35
+    minPlayers: 25 # Starlight
   - type: AntagObjectives
     objectives:
     - WizardDuelistMeetObjective

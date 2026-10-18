@@ -1,4 +1,5 @@
 using Content.Client.Hands.Systems;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared.Interaction;
 using Content.Shared.RCD;
 using Content.Shared.RCD.Components;
@@ -27,6 +28,7 @@ public sealed partial class RCDConstructionGhostSystem : EntitySystem
     [Dependency] private IPlacementManager _placementManager = default!;
     [Dependency] private IPrototypeManager _protoManager = default!;
     [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private RemoteControlInterface _remoteControl = default!; // Starlight
 
     private Direction _placementDirection = default;
     private EntityUid? _lastHeldRcd; // Starlight Edit: RPD/RPLD held-tool rotation sync
@@ -88,8 +90,10 @@ public sealed partial class RCDConstructionGhostSystem : EntitySystem
             return;
 
         // Determine if player is carrying an RCD in their active hand
-        if (_playerManager.LocalSession?.AttachedEntity is not { } player)
+        // Starlight start
+        if ((_remoteControl.ControlledEntity ?? _playerManager.LocalSession?.AttachedEntity) is not { } player)
             return;
+        // Starlight end
 
         var heldEntity = _hands.GetActiveItem(player);
 

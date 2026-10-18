@@ -16,6 +16,7 @@ public sealed partial class BatteryAmmoProviderComponent : AmmoProviderComponent
     /// The projectile or hitscan entity to spawn when firing.
     /// </summary>
     [DataField("proto", required: true)]
+    [AutoNetworkedField] // Starlight-edit: prediction
     public EntProtoId Prototype;
 
     /// <summary>

@@ -29,6 +29,8 @@ public sealed partial class StorageSystem : SharedStorageSystem
         Angle initialRotation, EntityUid? user = null)
     {
         var filter = Filter.Pvs(uid).RemoveWhereAttachedEntity(e => e == user);
-        RaiseNetworkEvent(new PickupAnimationEvent(GetNetEntity(uid), GetNetCoordinates(initialCoordinates), GetNetCoordinates(finalCoordinates), initialRotation), filter);
+        // Starlight: Remote Implementation
+        NetEntity? userNetEntity = user is { } actor ? GetNetEntity(actor) : null;
+        RaiseNetworkEvent(new PickupAnimationEvent(GetNetEntity(uid), GetNetCoordinates(initialCoordinates), GetNetCoordinates(finalCoordinates), initialRotation, userNetEntity), filter);
     }
 }

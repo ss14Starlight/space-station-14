@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: BowImprovised
+  components:
+  - type: Tag
+    tags:
+    - Bow

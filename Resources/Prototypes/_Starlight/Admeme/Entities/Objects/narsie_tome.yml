@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseItem
+  id: NarsieConversionTome
+  name: consumed tome of Nar'sie
+  description: A tome of Nar'sie that was overtaken by the Meat Fungi. The pages seem to whisper your name.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Objects/narsie_tome.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: NarsieConverter
+    conversionSound:
+      path: /Audio/_Starlight/Admeme/NarsieCult/convert.ogg
+

@@ -1,0 +1,134 @@
+- type: !PartialOnly roleLoadout
+  id: JobBartender
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobServiceWorker
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobChef
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobLibrarian
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobBotanist
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobClown
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobMime
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobMusician
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobCargoTechnician
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobSalvageSpecialist
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobTechnicalAssistant
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobStationEngineer
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobAtmosphericTechnician
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobSecurityOfficer
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobSecurityCadet
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobReporter
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobPsychologist
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobBrigmedic
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobDutyOfficer
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobAssistantManager
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobNanotrasenCareerTrainer
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobMiningSpecialist
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobMailTech
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobPerformer
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobBoxer
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobSalvageMedic
+  groups:
+    - TiesGroup
+
+- type: !PartialOnly roleLoadout
+  id: JobRadioHost
+  groups:
+    - TiesGroup

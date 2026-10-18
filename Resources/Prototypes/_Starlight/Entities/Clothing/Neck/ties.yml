@@ -1,0 +1,76 @@
+# Additional tie colors for Starlight
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckTieBlue
+  name: blue tie
+  description: A lovely blue necktie, perfect for job interviews.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Ties/bluetie.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Ties/bluetie.rsi
+  - type: Item
+    storedSprite:
+      state: storage
+      sprite: _Starlight/Clothing/Neck/Ties/bluetie.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckTieBrown
+  name: brown tie
+  description: Colored cargo brown, this tie shows off your professionalism and skill at moving crates.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Ties/browntie.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Ties/browntie.rsi
+  - type: Item
+    storedSprite:
+      state: storage
+      sprite: _Starlight/Clothing/Neck/Ties/browntie.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckTieGreen
+  name: green tie
+  description: A bright lime green tie in the colors of the service department. Very snazzy.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Ties/greentie.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Ties/greentie.rsi
+  - type: Item
+    storedSprite:
+      state: storage
+      sprite: _Starlight/Clothing/Neck/Ties/greentie.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckTieGrey
+  name: grey tie
+  description: Tider grey tie, for looking sharp in the maintenance tunnels.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Ties/greytie.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Ties/greytie.rsi
+  - type: Item
+    storedSprite:
+      state: storage
+      sprite: _Starlight/Clothing/Neck/Ties/greytie.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckLGBTie
+  name: LGBTie
+  description: Why do we have to wear these fabulous ties?
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Ties/LGBTie.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Ties/LGBTie.rsi
+  - type: Item
+    storedSprite:
+      state: storage
+      sprite: _Starlight/Clothing/Neck/Ties/LGBTie.rsi

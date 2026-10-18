@@ -1,0 +1,52 @@
+- type: !PartialOnly entity
+  id: RipleyCentralElectronics
+  description: The electrical control center for the Ripley mech.
+  components:
+    - type: Tag
+      tags:
+      - RamChip # FH
+
+- type: !PartialOnly entity
+  id: RipleyPeripheralsElectronics
+  description: The electrical peripherals control for the Ripley mech.
+  components:
+    - type: Tag
+      tags:
+      - RamChip # FH
+
+- type: !PartialOnly entity
+  id: HonkerCentralElectronics
+  components:
+    - type: Tag
+      tags:
+      - RamChip # FH
+
+- type: !PartialOnly entity
+  id: HonkerPeripheralsElectronics
+  components:
+    - type: Tag
+      tags:
+      - RamChip # FH
+
+- type: !PartialOnly entity
+  id: HonkerTargetingElectronics
+  components:
+    - type: Sprite
+      state: mcontroller
+    - type: Tag
+      tags:
+      - RamChip # FH
+
+- type: !PartialOnly entity
+  id: HamtrCentralElectronics
+  components:
+    - type: Tag
+      tags:
+      - RamChip # FH
+
+- type: !PartialOnly entity
+  id: HamtrPeripheralsElectronics
+  components:
+    - type: Tag
+      tags:
+      - RamChip # FH

@@ -34,6 +34,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Temperature.Components;
 using Content.Server._Starlight.NPC.Queries.Considerations;
+using Content.Server._Starlight.NPC.Systems;
 using Content.Shared.Projectiles;
 using Content.Shared.Tag; // Persistence: Firebots can target reagent fires
 
@@ -62,6 +63,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
     [Dependency] private MobThresholdSystem _thresholdSystem = default!;
     [Dependency] private TurretTargetSettingsSystem _turretTargetSettings = default!;
     [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private NPCHidingWitnessSystem _hidingWitness = default!; // Starlight
 
     private EntityQuery<PuddleComponent> _puddleQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -238,6 +240,10 @@ public sealed partial class NPCUtilitySystem : EntitySystem
             }
             case TargetAccessibleCon:
             {
+                // Starlight: a hider it saw getting in gets dug out, welded shut or not.
+                if (_hidingWitness.KnowsHidingSpot(owner, targetUid, out _))
+                    return 1f;
+
                 if (_container.TryGetContainingContainer(targetUid, out var container))
                 {
                     if (container.Owner == owner)
@@ -345,7 +351,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                         return 1f;
                 }
 
-                var result = _interaction.InRangeUnobstructed(owner, targetUid, radius + bufferRange, CollisionGroup.Opaque) ? 1f : 0f;
+                var result = _hidingWitness.CanSee(owner, targetUid, radius + bufferRange, CollisionGroup.Opaque) ? 1f : 0f; // Starlight-edit
                 return result;
             }
             case TargetIsAliveCon:
@@ -510,6 +516,8 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 {
                     entities.Add(ent);
                 }
+
+                _hidingWitness.AddWitnessedHiders(owner, vision, entities); // Starlight
                 break;
             }
 

@@ -1282,22 +1282,12 @@
         factor: 2
       - !type:SatiateHunger
         factor: -2
-      # Starlight start, use Mixmax instead + no healing in crit
-      - !type:HealthChange
+      - !type:EvenHealthChange
         damage:
-          mixmax:
-            value: -0.5
-            groups:
-            - Burn
-            - Brute
-            - Airloss
-            - Genetic
-            types:
-            - Poison
-        conditions:
-        - !type:MobStateCondition
-          mobstate: Alive
-      # Starlight end
+          Burn: -1
+          Brute: -1
+          Airloss: -1
+          Toxin: -1
 
 - type: reagent
   id: DriestMartini

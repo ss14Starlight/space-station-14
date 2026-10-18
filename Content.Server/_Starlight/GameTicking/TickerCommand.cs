@@ -163,9 +163,9 @@ public sealed partial class TickerCommand : ToolshedCommand
         _end.AutoCallTime += seconds;
         ctx.WriteLine($"{(Math.Sign(seconds) > 0 ? "Added" : "Removed")} {seconds} until shift change is called.");
         _aLog.Add(LogType.AdminCommands, LogImpact.High,
-            $"{CommandHelpers.PlayerNameOrServer(ctx)} changed shift time by {seconds} seconds.");
+            $"{SharedCommandHelpers.PlayerNameOrServer(ctx)} changed shift time by {seconds} seconds.");
         _chat.SendAdminAnnouncement(
-            $"{CommandHelpers.PlayerNameOrServer(ctx)} changed shift time by {seconds} seconds.");
+            $"{SharedCommandHelpers.PlayerNameOrServer(ctx)} changed shift time by {seconds} seconds.");
     }
 
     #endregion

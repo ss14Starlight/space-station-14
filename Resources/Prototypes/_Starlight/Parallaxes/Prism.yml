@@ -36,6 +36,15 @@
       tiled: false
     - texture:
         !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/Ships.png"
+      slowness: 0.99
+      scale: ".6, .6"
+      controlHomePosition: "100, 100"
+      worldHomePosition: "50, 0"
+      scrolling: "0.26, 0"
+      tiled: true
+    - texture:
+        !type:ImageParallaxTextureSource
         path: "/Textures/Parallaxes/Asteroids.png"
       slowness: 0.95046875
       scale: "0.8, 0.8"

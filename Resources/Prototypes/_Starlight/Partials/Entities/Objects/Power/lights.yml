@@ -1,0 +1,95 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - LedLightBulb
+    - DimLightBulb
+    - LightTubeOld
+  components:
+  - type: LightBulb
+    dimmable: false
+
+- type: !PartialOnly entity
+  id: LedLightTube
+  components:
+  - type: LightBulb
+    lightRadius: 13
+
+- type: !PartialOnly entity
+  id: ExteriorLightTube
+  components:
+  - type: LightBulb
+    lightEnergy: 4 # 4.5 -> 4
+    lightSoftness: 0.8 # 0.5 -> 0.8
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - LightTubeCrystalCyan
+    - LightBulbCrystalCyan
+  components:
+  - type: LightBulb
+    color: "#5ae8ed"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - LightTubeCrystalBlue
+    - LightBulbCrystalBlue
+  components:
+  - type: LightBulb
+    color: "#4ca1eb"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - LightTubeCrystalYellow
+    - LightBulbCrystalYellow
+  components:
+  - type: LightBulb
+    color: "#edd25a"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - LightTubeCrystalPink
+    - LightBulbCrystalPink
+  components:
+  - type: LightBulb
+    color: "#f075c7"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - LightTubeCrystalOrange
+    - LightBulbCrystalOrange
+  components:
+  - type: LightBulb
+    color: "#ea863e"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - LightTubeCrystalBlack
+    - LightBulbCrystalBlack
+  components:
+  - type: LightBulb
+    color: "#4d4d4d"
+  - type: DarkLight
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - LightTubeCrystalRed
+    - LightBulbCrystalRed
+  components:
+  - type: LightBulb
+    color: "#ec5555"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - LightTubeCrystalGreen
+    - LightBulbCrystalGreen
+  components:
+  - type: LightBulb
+    color: "#7eeb4c"

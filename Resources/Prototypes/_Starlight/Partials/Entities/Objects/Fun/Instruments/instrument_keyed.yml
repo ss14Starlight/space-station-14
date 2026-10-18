@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: SynthesizerInstrument
+  components:
+  - type: SwappableInstrument
+    instrumentList:
+      "Tine Piano": {4: 0} # actually give a way to access these instruments
+      "FM Piano": {5: 0}

@@ -121,6 +121,9 @@ public sealed partial class MedibotSystem : EntitySystem
         return true;
     }
 
+    partial void OnInjected(Entity<MedibotComponent?> medibot, EntityUid target); // Starlight
+    private partial bool OnTryInject(Entity<MedibotComponent?> medibot, EntityUid target); // Starlight
+
     /// <summary>
     /// Tries to inject the target.
     /// </summary>
@@ -128,13 +131,22 @@ public sealed partial class MedibotSystem : EntitySystem
     {
         if (!Resolve(medibot, ref medibot.Comp, false)) return false;
 
+        if (OnTryInject(medibot, target)) // Starlight
+            return false;
+
         if (!_interaction.InRangeUnobstructed(medibot.Owner, target)) return false;
 
         if (!TryComp<MobStateComponent>(target, out var mobState)) return false;
         if (!TryGetTreatment(medibot.Comp, mobState.CurrentState, out var treatment)) return false;
         if (!_solutionContainer.TryGetInjectableSolution(target, out var injectable, out _)) return false;
 
-        _solutionContainer.TryAddReagent(injectable.Value, treatment.Reagent, treatment.Quantity, out _);
+        // Starlight begin
+        //_solutionContainer.TryAddReagent(injectable.Value, treatment.Reagent, treatment.Quantity, out _);
+        if (!_solutionContainer.TryAddReagent(injectable.Value, treatment.Reagent, treatment.Quantity, out _))
+            return false;
+
+        OnInjected(medibot, target);
+        // Starlight end
 
         _popup.PopupEntity(Loc.GetString("injector-component-feel-prick-message"), target, target);
         _popup.PopupClient(Loc.GetString("medibot-target-injected"), medibot, medibot);

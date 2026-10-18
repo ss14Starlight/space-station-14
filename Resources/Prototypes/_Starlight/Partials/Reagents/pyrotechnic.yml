@@ -1,0 +1,19 @@
+- type: !PartialOnly reagent
+  id: Thermite
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Napalm
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Phlogiston
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: ChlorineTrifluoride
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove

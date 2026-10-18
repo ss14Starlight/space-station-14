@@ -28,6 +28,7 @@
     - type: AnnounceOnSpawn
       message: wizard-war
       ignoreASpace: true
+      globalAnnounce: true
       sound:
        path: /Audio/Announcements/attention.ogg
       color: yellow

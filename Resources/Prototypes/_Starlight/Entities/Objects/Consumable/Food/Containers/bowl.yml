@@ -1,0 +1,32 @@
+- type: entity
+  parent: FoodBowlBig
+  id: FoodBowlWooden
+  name: wooden bowl
+  description: A shallow wooden bowl for a hearty meal.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/wooden_bowl.rsi
+    layers:
+    - state: bowl
+    - sprite: Objects/Consumable/Food/bowl.rsi
+      state: fill-1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 100
+  - type: Construction
+    graph: FoodBowlWooden
+    node: bowl
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:SpillBehavior { }
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Dinnerware

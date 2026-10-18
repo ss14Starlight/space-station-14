@@ -223,6 +223,9 @@ public abstract partial class SharedSurgerySystem
         foreach (var reg in ent.Comp.Tools.Values)
         {
             var tool = args.Tools.FirstOrDefault(x => HasComp(x, reg.Component.GetType()));
+            if (tool == default && HasComp<SurgeryStepAttachLimbEffectComponent>(ent))
+                tool = args.Tools.FirstOrDefault(x => HasComp<MetaDataComponent>(x) && !HasComp<BodyPartComponent>(x));
+
             if (tool == default)
             {
                 args.Invalid = StepInvalidReason.MissingTool;
@@ -250,7 +253,9 @@ public abstract partial class SharedSurgerySystem
             {
                 args.Invalid = StepInvalidReason.NotEnoughReagent;
                 if (reg.Component is ISurgeryToolComponent toolComp)
-                    args.Popup = Loc.GetString("surgery-popup-need-reagent", ("quantity", ent.Comp.ReagentQuantity), ("reagent", ProtoMan.Index(ent.Comp.ReagentId.Value).LocalizedName), ("tool", Loc.GetString(toolComp.ToolName)));
+                    args.Popup = Loc.GetString("surgery-popup-need-reagent", ("quantity", ent.Comp.ReagentQuantity),
+                        ("reagent", ProtoMan.Index(ent.Comp.ReagentId.Value).LocalizedName),
+                        ("tool", Loc.GetString(toolComp.ToolName)));
                 return;
             }
 
@@ -395,7 +400,8 @@ public abstract partial class SharedSurgerySystem
             if (surgeryStep == step)
                 break;
 
-            if (Prototype(surgery.Owner) is not EntityPrototype surgProto || !IsStepComplete(part, surgProto.ID, surgeryStep))
+            if (Prototype(surgery.Owner) is not EntityPrototype surgProto ||
+                !IsStepComplete(part, surgProto.ID, surgeryStep))
                 return false;
         }
 
@@ -442,5 +448,23 @@ public abstract partial class SharedSurgerySystem
             return comp.CompletedSteps.Contains($"{surgery}:{step}");
         AddComp<SurgeryProgressComponent>(part);
         return false;
+    }
+
+    public (EntityUid? Target, bool MatchesExpectedOrgan) GetOrganExtractionTarget(
+        SurgeryStepOrganExtractComponent extraction, IEnumerable<EntityUid> candidates)
+    {
+        if (extraction.Organ?.Count != 1)
+            return (null, false);
+
+        var expectedOrganType = extraction.Organ.Values.First().Component.GetType();
+        EntityUid? firstCandidate = null;
+        foreach (var candidate in candidates)
+        {
+            firstCandidate ??= candidate;
+            if (HasComp(candidate, expectedOrganType))
+                return (candidate, true);
+        }
+
+        return (firstCandidate, false);
     }
 }

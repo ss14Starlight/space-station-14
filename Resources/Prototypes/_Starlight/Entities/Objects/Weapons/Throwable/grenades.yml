@@ -42,20 +42,22 @@
   parent: SmokeGrenade
   id: ToxicGasGrenade
   name: acidic gas grenade
-  description: A painful crowd control gas grenade full of Sulfuric Acid. Turn on your internals before using it.
+  description: A painful crowd control gas grenade full of Sulfuric Acid and Tear Gas. Turn on your internals before using it!
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Grenades/toxic_gas.rsi
   - type: SmokeOnTrigger
     keysIn:
     - timer
-    duration: 10
-    spreadAmount: 20
+    duration: 30
+    spreadAmount: 30
     smokePrototype: TearGasSmokeYellow
     solution:
       reagents:
       - ReagentId: SulfuricAcid
-        Quantity: 12
+        Quantity: 20
+      - ReagentId: TearGas
+        Quantity: 20
   - type: StaticPrice
     price: 500
   - type: EorgPreventTrigger # Starlight
@@ -141,3 +143,168 @@
   - type: DeleteOnTrigger
     keysIn:
     - timer
+
+- type: entity
+  name: molotov cocktail
+  description: The right hand of the free tider. Do not drink.
+  parent: [ DrinkBaseMaterialGlass, BaseMajorContraband, BaseItem]
+  id: Molotov
+  components:
+  - type: Appearance
+  - type: Construction
+    graph: MolotovGraph
+    node: molotov
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Grenades/molotov.rsi
+    layers:
+    - state: icon
+      map: ["enum.ToggleableVisuals.Layer"]
+  - type: ItemToggleOnTrigger
+    canActivate: true
+    canDeactivate: false
+  - type: ItemToggle
+    onUse: false
+    onActivate: false
+    soundActivate: /Audio/Items/Flare/flare_on.ogg
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: "icon-lit" }
+          False: { state: "icon" }
+  - type: Item
+    size: Normal
+  - type: ItemToggleSize
+    activatedSize: Huge
+  - type: ToggleableVisuals
+    spriteLayer: lit
+    inhandVisuals:
+      left:
+      - state: inhand-left-lit
+      right:
+      - state: inhand-right-lit
+  - type: Tag
+    tags:
+    - HandGrenade
+  - type: Destructible
+    thresholds:
+    - trigger: # Fragile
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          BrokenBottle:
+            min: 1
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Solution
+    solution:
+      maxVol: 200
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 200
+  - type: Spillable
+    solution: solution
+  - type: TriggerOnUse
+  - type: AddComponentsOnTrigger
+    targetUser: false
+    triggerOnce: true
+    removeExisting: true
+    components:
+      - type: Destructible
+        thresholds:
+        - trigger: # Fragile
+            !type:DamageTrigger
+            damage: 50
+          behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 5
+          behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              collection: GlassBreak
+          - !type:SpillBehavior { }
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              BrokenBottle:
+                min: 1
+                max: 1
+              burningrag:
+                min: 1
+                max: 1
+            transferForensics: true
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - type: PointLight
+        color: "#FF8080"
+        radius: 4.0
+        energy: 10.0
+
+- type: entity
+  name: burning rag
+  parent: BaseItem
+  id: burningrag
+  components:
+  - type: IgnitionSource
+    ignited: true
+    temperature: 1000
+  - type: TimedDespawn
+    lifetime: 5
+  - type: Sprite
+    sprite: Effects/fire.rsi
+    state: fire
+
+- type: entity
+  parent: [ DrinkBottleGlassBase, BaseMajorContraband ]
+  id: MolotovBottleEmpty
+  name: empty bottle
+  suffix: empty
+  description: An empty bottle ready to be filled with welding fuel.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Grenades/molotov.rsi
+    state: empty
+  - type: Construction
+    graph: MolotovGraph
+    node: empty
+  - type: Tag
+    tags:
+    - HandGrenade #remove bottle tag to not be usable in the first step again
+  - type: Solution
+    solution:
+      maxVol: 200
+
+- type: entity
+  parent: MolotovBottleEmpty
+  id: MolotovBottleFuel
+  name: molotov bottle
+  suffix: fuel
+  description: One step away from civil unrest.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Grenades/molotov.rsi
+    state: filled
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 200
+  - type: Construction
+    graph: MolotovGraph
+    node: fuel

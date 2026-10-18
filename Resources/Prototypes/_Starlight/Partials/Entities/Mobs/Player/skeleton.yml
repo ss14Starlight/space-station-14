@@ -1,0 +1,24 @@
+- type: !PartialOnly entity
+  id: MobSkeletonPirate
+  components:
+  - type: GhostRole
+    rules: ghost-role-information-rules-team-antagonist # edit freeagent -> teamantagonist
+    !Clear mindRoles:
+    - MindRolePirate # edit - FreeAgent -> Pirate
+
+
+- type: !PartialOnly entity
+  id: MobSkeletonBiker
+  components:
+  - type: GhostRole
+    rules: ghost-role-information-nonantagonist-rules # edit freeagent -> nonantagonist
+    !Clear mindRoles:
+    - MindRoleGhostRoleNeutralSkeleton # edit - FreeAgent -> NeutralSkeleton
+
+- type: !PartialOnly entity
+  id: MobSkeletonCloset
+  components:
+  - type: GhostRole
+    rules: ghost-role-information-nonantagonist-rules # edit freeagent -> nonantagonist
+    !Clear mindRoles:
+    - MindRoleGhostRoleNeutralSkeleton # edit - FreeAgent -> NeutralSkeleton

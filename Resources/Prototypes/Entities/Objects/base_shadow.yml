@@ -21,4 +21,3 @@
         Heat: 10
   - type: Damageable
     damageContainer: ShadowHaze
-  - type: DarkLight # Starlight

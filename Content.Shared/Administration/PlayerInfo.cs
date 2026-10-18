@@ -1,4 +1,5 @@
 using Content.Shared.Mind;
+using Content.Shared.Roles;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -19,7 +20,8 @@ public sealed record PlayerInfo(
     NetUserId SessionId,
     bool Connected,
     bool ActiveThisRound,
-    TimeSpan? OverallPlaytime)
+    TimeSpan? OverallPlaytime,
+    ProtoId<JobPrototype>? JobId = null) // Starlight-edit
 {
     private string? _playtimeString;
 

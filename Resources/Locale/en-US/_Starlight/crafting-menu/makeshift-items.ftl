@@ -218,3 +218,7 @@ construction-graph-tag-insulthread = insulated thread
 crafting-menu-name-false-projector = false shutter projector
 crafting-menu-text-false-projector = Looks almost like the real thing. Useful for blocking the vision of the distracted or unobservant while you do what needs done.
 construction-graph-tag-holoprojector = any holoprojector
+
+crafting-menu-name-molo = molotov cocktail
+crafting-menu-text-molo = a timeless classic for any malcontent, anarchy in the palm of your hand.
+construction-graph-tag-drink-bottle = any large glass bottle

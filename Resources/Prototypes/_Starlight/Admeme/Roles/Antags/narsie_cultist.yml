@@ -1,0 +1,6 @@
+- type: antag
+  id: NarsieCultist
+  name: roles-antag-narsie-cultist-name
+  antagonist: true
+  setPreference: false # flip to true only when a roundstart/midround rule selects cultists from player prefs
+  objective: roles-antag-narsie-cultist-objective

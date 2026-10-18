@@ -12,3 +12,15 @@
   effects:
     - !type:SpawnEntity
       entity: FoodSausage
+
+- type: reaction
+  id: StellibininSyrup
+  requiredMixerCategories:
+  - Stir
+  reactants:
+    Sugar:
+      amount: 2
+    Stellibinin:
+      amount: 1
+  products:
+    StellibininSyrup: 1

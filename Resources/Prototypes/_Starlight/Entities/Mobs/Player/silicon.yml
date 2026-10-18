@@ -50,7 +50,7 @@
   - type: VentCrawler
   - type: Construction
     graph: Drone
-    node: drone_complete
+    node: drone
     containers:
     - part-container
     - cell_slot
@@ -93,7 +93,6 @@
   - type: ArmorSparkEffect
     alwaysSparks: true
   - type: CyborgSparkEffect
-  - type: StationAIShunt # If you somehow get a shunt into one, sure.
   - type: HealthExaminable
     examinableTypes:
       - Blunt
@@ -178,6 +177,7 @@
     - Unimplantable
     - Drone
     - EmagImmune
+    - CantBecomeRevolutionary
   - type: GenericVisualizer
     visuals:
       enum.DroneVisuals.Status:
@@ -305,6 +305,7 @@
     prototypes:
       - StartingGearDrone
   - type: GlitchOnEMP
+  - type: AntagImmune
 
 #Scrapper
 - type: entity
@@ -312,13 +313,11 @@
   id: DroneRogue
   parent: Drone
   components:
-  - type: ItemSlots
   - type: Construction
     graph: DroneRogue
-    node: rogue_drone_complete
+    node: scrapper
     containers:
     - part-container
-    - cell_slot
   - type: Sprite
     noRot: true
     drawdepth: SmallMobs
@@ -356,15 +355,18 @@
         - MobMask
         layer:
         - MobLayer
+  - type: PowerCellDraw
+    drawRate: 0.01
+  - type: Access
+    enabled: false
+    tags:
+      - Robotics
+  - type: AccessReader
+    access: [["Robotics"]]
   - type: !Append Tag
     tags:
     - CanPilot
-  - type: !Remove AccessReader
-  - type: !Remove Access
   - type: !Remove StationAIShunt
-  - type: !Remove PowerCellDraw
-  - type: !Remove GlitchOnEMP
-  - type: !Remove Pacified
 
 # Borgs
 

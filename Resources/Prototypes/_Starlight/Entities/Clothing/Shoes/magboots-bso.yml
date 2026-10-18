@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingShoesBootsMagBase, BaseBlueShieldContraband, ClothingShoesMilitaryBase ]
+  parent: [ BaseContrabandTier2, ClothingShoesBootsMagBase, BaseBlueShieldContraband, ClothingShoesMilitaryBase ] # Blimpuf
   id: ClothingShoesBootsMagBSO
   name: blue shield magboots
   description: A pair of standard magnetic boots, issued alongside the BSO hardsuit.

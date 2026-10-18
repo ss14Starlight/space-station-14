@@ -10,7 +10,7 @@
       sprite: _Starlight/Clothing/Head/Hats/ntrep.rsi
 
 - type: entity
-  parent: [ClothingHeadBase, BaseBlueShieldContraband]
+  parent: [ ClothingHeadBase, BaseBlueShieldContraband ]
   id: ClothingHeadHatBeretBlueShield
   name: blueshield beret
   description: This beret completes the outfit of any true Blueshield Officer.
@@ -21,7 +21,7 @@
       sprite: _Starlight/Clothing/Head/Hats/blueshield.rsi
 
 - type: entity
-  parent: [ClothingHeadBaseSummer, BaseBlueShieldContraband]
+  parent: [ ClothingHeadBaseSummer, BaseBlueShieldContraband ]
   id: ClothingHeadHatBlueShieldSheriff
   name: blueshield bounty hunter's hat
   description: For when your charges do not wish to be tracked down.
@@ -224,6 +224,8 @@
   name: SNKVD ushanka
   description: Disappearances are entirely voluntary, tovarisch.
   components:
+    - type: Contraband # Blimpuf
+      tier: Tier3
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/Ushanka.rsi
     - type: Clothing
@@ -241,6 +243,8 @@
   name: soviet admiral hat
   description: This hat clearly belongs to someone very important.
   components:
+    - type: Contraband # Blimpuf
+      tier: Tier3
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/sovietadmiralhat.rsi
     - type: Clothing

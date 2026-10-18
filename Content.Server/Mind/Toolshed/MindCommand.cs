@@ -58,7 +58,7 @@ public sealed class MindCommand : ToolshedCommand
     {
         _mind ??= GetSys<SharedMindSystem>();
         _ai ??= GetSys<StationAiSystem>();
-        if (CommandHelpers.NoSession(ctx) || (tryAi && _mind.TryGetMind(ctx.Session, out var mindId, out _) && _ai.TryControlAI(mindId, uid))) return uid;
+        if (SharedCommandHelpers.NoSession(ctx) || (tryAi && _mind.TryGetMind(ctx.Session, out var mindId, out _) && _ai.TryControlAI(mindId, uid))) return uid;
 
         _mind.ControlMob(ctx.Session!.UserId, uid);
         return uid;
@@ -97,7 +97,7 @@ public sealed class MindCommand : ToolshedCommand
     {
         _mind ??= GetSys<SharedMindSystem>();
         _ai ??= GetSys<StationAiSystem>();
-        if (CommandHelpers.NoSession(ctx)) return uid;
+        if (SharedCommandHelpers.NoSession(ctx)) return uid;
 
         if (!_mind.TryGetMind(uid, out var mindId, out _))
         {

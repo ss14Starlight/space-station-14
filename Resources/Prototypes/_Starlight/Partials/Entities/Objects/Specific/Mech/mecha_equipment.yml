@@ -1,0 +1,19 @@
+- type: !PartialOnly entity
+  id: MechEquipmentGrabber
+  components:
+  - type: SurgeryTool
+  - type: Retractor
+    successRate: 0.05 # they are very much too large
+    speed: 1.5
+    startSound:
+      path: /Audio/Mecha/sound_mecha_hydraulic.ogg
+
+- type: !PartialOnly entity
+  id: MechEquipmentGrabberSmall
+  components:
+  - type: SurgeryTool
+  - type: Retractor
+    successRate: 0.1 # they are very much too large
+    speed: 1.5
+    startSound:
+      path: /Audio/Mecha/sound_mecha_hydraulic.ogg

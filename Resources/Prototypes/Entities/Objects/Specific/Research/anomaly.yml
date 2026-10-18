@@ -138,11 +138,6 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        #Starlight Start
-        blacklist:
-          tags:
-          - MechReactor
-        #Starlight End
 
 - type: entity
   id: AnomalyLocatorWideUnpowered
@@ -178,11 +173,6 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        #Starlight Start
-        blacklist:
-          tags:
-          - MechReactor
-        #Starlight End
 
 - type: entity
   name: G.O.R.I.L.L.A. gauntlet
