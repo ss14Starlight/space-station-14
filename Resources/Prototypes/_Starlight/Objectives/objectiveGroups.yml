@@ -179,18 +179,18 @@
   id: BloodBoundObjectiveGroupSteal
   weights:
     BloodBoundStealHeartObjective: 1
-    BloodBoundCaptainIDStealObjective: 1
-    BloodBoundCMOHyposprayStealObjective: 1
-    BloodBoundCrewMonitorStealCollectionObjective: 1
-    BloodBoundRDHardsuitStealObjective: 1
-    BloodBoundNukeDiskStealObjective: 1
-    BloodBoundMagbootsStealObjective: 1
-    BloodBoundCorgiMeatStealObjective: 1
-    BloodBoundClipboardStealObjective: 1
-    BloodBoundCaptainGunStealObjective: 0.5
-    BloodBoundCaptainJetpackStealObjective: 0.5
-    BloodBoundHandTeleporterStealObjective: 0.5
-    BloodBoundHOSWeaponStealObjective: 0.5
+    BloodBoundCaptainIDStealObjective: 0.75
+    BloodBoundCMOHyposprayStealObjective: 0.75
+    BloodBoundCrewMonitorStealCollectionObjective: 0.75
+    BloodBoundRDHardsuitStealObjective: 0.75
+    BloodBoundNukeDiskStealObjective: 0.75
+    BloodBoundMagbootsStealObjective: 0.75
+    BloodBoundCorgiMeatStealObjective: 0.75
+    BloodBoundClipboardStealObjective: 0.75
+    BloodBoundCaptainGunStealObjective: 0.25
+    BloodBoundCaptainJetpackStealObjective: 0.25
+    BloodBoundHandTeleporterStealObjective: 0.25
+    BloodBoundHOSWeaponStealObjective: 0.25
     BloodBoundForensicScannerStealObjective: 1
     BloodBoundFlippoEngravedLighterStealObjective: 0.5
     BloodBoundClothingHeadHatWardenStealObjective: 1

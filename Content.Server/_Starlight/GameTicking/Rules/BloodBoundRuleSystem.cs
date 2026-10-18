@@ -231,6 +231,13 @@ public sealed partial class BloodBoundRuleSystem : GameRuleSystem<BloodBoundRule
             return false;
         }
 
+        if (_roleSystem.MindIsAntagonist(targetMindId))
+        {
+            // Don't let them convert other antags, but also, don't let them learn *why* the conversion failed.
+            errorMessage = "blood-bound-convert-failed-preference";
+            return false;
+        }
+
         // Stop the blood bound from converting a target.
         foreach (var objective in converterMind.Objectives)
         {

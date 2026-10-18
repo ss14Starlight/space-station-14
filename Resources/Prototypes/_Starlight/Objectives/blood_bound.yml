@@ -98,6 +98,17 @@
   id: BloodBoundKillRandomHeadObjective
   description: We need to make sure this person doesn't make it back to CentComm, dead or alive.
 
+# lesson
+- type: entity
+  parent: [BaseBloodBoundObjective, TeachRandomPersonObjective]
+  id: BloodBoundTeachRandomPersonObjective
+  description: We need to make sure this person dies at least once this shift.
+
+- type: entity
+  parent: [BaseBloodBoundObjective, TeachRandomHeadObjective]
+  id: BloodBoundTeachRandomHeadObjective
+  description: We need to make sure this person dies at least once this shift.
+
 # steal
 
 ## cmo
@@ -227,7 +238,7 @@
   parent: [BaseBloodBoundStealObjective, BibleStealObjective]
   id: BloodBoundBibleStealObjective
 
-# Blood partner story objectives
+# Blood bound story objectives
 - type: entity
   parent: [BaseBloodBoundObjective, BaseStoryObjective]
   id: BloodBoundCookSentientsObjective
@@ -259,7 +270,7 @@
 - type: entity
   parent: [BaseBloodBoundObjective, ClaimLocationObjective]
   id: BloodBoundClaimLocationObjective
-  description: Establish this room as a base for the Blood Bound.
+  description: Establish this room as a base for the Children of Nar'Sie.
   components:
   - type: LocationObjective
     title: objective-condition-blood-bound-claim-room
@@ -268,16 +279,6 @@
   parent: [BaseBloodBoundObjective, RobDepartmentObjective]
   id: BloodBoundRobDepartmentObjective
   description: We need to get this department's valuables.
-
-- type: entity
-  parent: [BaseBloodBoundObjective, TeachRandomPersonObjective]
-  id: BloodBoundTeachRandomPersonObjective
-  description: We need to make sure this person dies at least once this shift.
-
-- type: entity
-  parent: [BaseBloodBoundObjective, TeachRandomHeadObjective]
-  id: BloodBoundTeachRandomHeadObjective
-  description: We need to make sure this person dies at least once this shift.
 
 - type: entity
   parent: [BaseBloodBoundObjective, CallingCardObjective]

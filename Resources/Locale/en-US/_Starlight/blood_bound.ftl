@@ -51,8 +51,8 @@ objective-condition-blood-bound-steal-heart = Steal the heart of {$targetName}, 
 objective-condition-blood-bound-firestake = Firestake {$count} { $count ->
     [one] person
     *[other] people
-    } in {$zone}.
+    } in the {$zone} location.
 objective-condition-blood-bound-firestake-description = We need to burn {$count} { $count ->
     [one] person
     *[other] people
-    } on bonfire stakes in {$zone} while they are still alive. Each person counts once.
+    } on bonfire stakes in {$zone} while they are still alive.
