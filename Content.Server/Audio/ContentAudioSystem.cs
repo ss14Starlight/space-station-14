@@ -86,7 +86,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
         if (_lobbyPlaylist != null)
         {
             var session = ev.PlayerSession;
-            RaiseNetworkEvent(new LobbyPlaylistChangedEvent(_lobbyPlaylist, IsPostRound()), session); // Starlight - postRound
+            RaiseNetworkEvent(new LobbyPlaylistChangedEvent(_lobbyPlaylist, IsPostRound()), session); // Starlight
         }
     }
 
@@ -110,7 +110,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
             _lobbyPlaylist = ShuffleLobbyPlaylist();
         }
 
-        RaiseNetworkEvent(new LobbyPlaylistChangedEvent(_lobbyPlaylist, true)); // Starlight - postRound
+        RaiseNetworkEvent(new LobbyPlaylistChangedEvent(_lobbyPlaylist, true)); // Starlight
     }
 
     #region Starlight

@@ -9,7 +9,7 @@ namespace Content.Shared.Audio.Events;
 public sealed class LobbyPlaylistChangedEvent : EntityEventArgs
 {
     /// <inheritdoc />
-    public LobbyPlaylistChangedEvent(string[] playlist, bool postRound = false) // Starlight - postRound
+    public LobbyPlaylistChangedEvent(string[] playlist, bool postRound = false) // Starlight
     {
         Playlist = playlist;
         PostRound = postRound; // Starlight
