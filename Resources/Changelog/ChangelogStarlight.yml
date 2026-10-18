@@ -1,46 +1,4 @@
 Entries:
-- author: OJG
-  changes:
-  - message: The supermatter now releases plasma alongside its existing gas products.
-    type: Tweak
-  id: 409189
-  time: '2026-10-05T13:11:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5942
-- author: OJG
-  changes:
-  - message: Changes to the gas modifiers of the SM that make exotic gasses more potent.
-    type: Tweak
-  id: 409190
-  time: '2026-10-05T13:11:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5942
-- author: Romero/Littlemen (thanks to Rocksfall too)
-  changes:
-  - message: '"Ares" Short sword.'
-    type: Add
-  id: 409191
-  time: '2026-10-05T13:52:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6444
-- author: Romero/Littlemen (thanks to Rocksfall too)
-  changes:
-  - message: '"Athena" Tactical Spear.'
-    type: Add
-  id: 409192
-  time: '2026-10-05T13:52:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6444
-- author: Romero/Littlemen (thanks to Rocksfall too)
-  changes:
-  - message: A safe for security armory containing the weapons, cargo can also buy those.
-    type: Add
-  id: 409193
-  time: '2026-10-05T13:52:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6444
-- author: Swonki
-  changes:
-  - message: Scrapper Drones. The not as helpful cousins of standard drones.
-    type: Add
-  id: 409194
-  time: '2026-10-05T13:52:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6487
 - author: walksanatora
   changes:
   - message: admin logs now display the verb name again.
@@ -2883,4 +2841,46 @@ Entries:
   id: 409588
   time: '2026-10-18T09:13:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6735
+- author: Floximo
+  changes:
+  - message: Shuttle Consoles have now a surface mode including a map and easy return from expeditions.
+    type: Add
+  id: 409589
+  time: '2026-10-18T09:32:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6725
+- author: Floximo
+  changes:
+  - message: Station Maps no longer close on grid change.
+    type: Fix
+  id: 409590
+  time: '2026-10-18T09:32:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6725
+- author: Floximo
+  changes:
+  - message: Escape pods no longer land on each other.
+    type: Fix
+  id: 409591
+  time: '2026-10-18T09:32:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6725
+- author: Floximo
+  changes:
+  - message: Station Maps and other handheld maps no longer work on planets.
+    type: Fix
+  id: 409592
+  time: '2026-10-18T09:32:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6725
+- author: Floximo
+  changes:
+  - message: A server crash and bug related to FTL coordinates was solved.
+    type: Fix
+  id: 409593
+  time: '2026-10-18T09:32:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6725
+- author: Floximo
+  changes:
+  - message: The expedition terminal can now be installed on any shuttle or even the station.
+    type: Fix
+  id: 409594
+  time: '2026-10-18T09:32:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6725
 Order: -1
