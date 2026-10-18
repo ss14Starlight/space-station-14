@@ -10,20 +10,20 @@ blood-bound-round-end-no-mind = [color=white]{CAPITALIZE($name)}[/color] ([color
 blood-bound-round-end = [color=white]{CAPITALIZE($name)}[/color] ([color=gray]{$username}[/color]) was oath-bound with [color=white]{$partnerName}[/color] ([color=gray]{$partnerUsername}[/color]).
 
 blood-bound-recruiter-greeting =
-    You are a blood bound.
+    You are a Blood Bound.
     You have been given the ability to take a blood oath with one member of the crew.
-    Use this ability wisely and finish your objectives given to you by an anonymous source.
+    Use this ability wisely and finish your objectives given to you by the Children of Nar'Sie.
 
 blood-bound-role-greeting =
     You have been sworn into a blood oath.
-    Listen to your blood bound and help them accomplish their objectives
+    Listen to your Blood Bound and help them accomplish their objectives
 
-blood-bound-briefing = Collaborate with your blood bound to accomplish all your objectives.
+blood-bound-briefing = Collaborate with your Blood Bound to accomplish all your objectives.
 
 # Conversion
 
 blood-bound-convert-failed-no-mind = {CAPITALIZE(THE($converted))} does not have a mind
-blood-bound-convert-failed-already-bound = {CAPITALIZE(THE($converted))} is already a blood bound
+blood-bound-convert-failed-already-bound = {CAPITALIZE(THE($converted))} is already a Blood Bound
 blood-bound-convert-failed-target = {CAPITALIZE(THE($converted))} is your target
 blood-bound-convert-failed-zombie = {CAPITALIZE(THE($converted))} is a zombie
 blood-bound-convert-failed-shielded = {CAPITALIZE(THE($converted))}'s mind is too protected
