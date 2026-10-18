@@ -17,14 +17,11 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-
-#region Starlight
 using Content.Client._Starlight.Lobby.UI;
 using Content.Client._Starlight.Humanoid;
-using Content.Client._Starlight.UserInterface; // Starlight: popout support
+using Content.Client._Starlight.UserInterface;
 using Content.Shared._Starlight.CCVar;
 using System.Numerics;
-#endregion
 
 namespace Content.Client.Lobby;
 
@@ -47,13 +44,14 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     private JobPriorityEditor? _jobPriorityEditor;
     private CharacterSetupGuiSavePanel? _savePanel;
 
-    /// begin starlight
+    #region Starlight
     /// <summary>
     /// character editor window, see OpenCharacterSetupWindow()
     /// </summary>
-    private PopOutWindow? _characterSetupWindow; // Starlight: PopOutWindow so teardown can close the popped-out desktop window
-    private bool _characterSetupPoppedOut; // Starlight: true while the editor lives in a pop out
-    //end starlight
+    private PopOutWindow? _characterSetupWindow;
+    private bool _characterSetupPoppedOut;
+    private JobPrioritiesWindow? _jobPrioritiesWindow;
+    #endregion
 
     /// <summary>
     /// Event invoked when any character or job selection or job priority is changed.
@@ -82,16 +80,16 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         _configurationManager.OnValueChanged(CCVars.FlavorText, args =>
         {
-            _profileEditor?.RefreshCharacterInfo(); //starlight
+            _profileEditor?.RefreshCharacterInfo(); // Starlight-edit
         });
 
-        //begin starlight
+        // Starlight-start
         _configurationManager.OnValueChanged(StarlightCCVars.ICSecrets, _ => _profileEditor?.RefreshCharacterInfo());
         _configurationManager.OnValueChanged(StarlightCCVars.OOCNotes, _ => _profileEditor?.RefreshCharacterInfo());
         _configurationManager.OnValueChanged(CCVars.GameRoleTimers, _ => RefreshEditors());
         _configurationManager.OnValueChanged(CCVars.GameRoleLoadoutTimers, _ => RefreshEditors());
         _configurationManager.OnValueChanged(StarlightCCVars.ExploitableSecrets, _ => _profileEditor?.RefreshCharacterInfo());
-        //end starlight
+        // Starlight-end
 
         _configurationManager.OnValueChanged(CCVars.GameRoleTimers, _ => RefreshEditors());
 
@@ -116,6 +114,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         _profileEditor?.RefreshAntags();
         _profileEditor?.RefreshJobs();
         _jobPriorityEditor?.RefreshJobs();
+        _jobPrioritiesWindow?.Refresh(); // Starlight-edit
     }
 
     private void OnProtoReload(PrototypesReloadedEventArgs obj)
@@ -145,7 +144,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
                 _profileEditor.RefreshSpecies();
             }
 
-            // Starlight
+            // Starlight-edit
             // if (obj.WasModified<TraitPrototype>())
             // {
             //     _profileEditor.RefreshTraits();
@@ -182,6 +181,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     public void OnStateExited(LobbyState state)
     {
         PreviewPanel?.SetLoaded(false);
+        _jobPrioritiesWindow?.Close(); // Starlight-edit
 
         if (_stateManager.CurrentState is LobbyState lobby)
         {
@@ -208,6 +208,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     private void RefreshLobbyPreview()
     {
         PreviewPanel?.Refresh();
+        (_stateManager.CurrentState as LobbyState)?.Lobby?.JobColumns.Refresh(); // Starlight-edit
     }
 
     private void RefreshEditors()
@@ -216,6 +217,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         _profileEditor?.RefreshJobs();
         _profileEditor?.RefreshLoadouts();
         _jobPriorityEditor?.RefreshJobs();
+        _jobPrioritiesWindow?.Refresh(); // Starlight-edit
     }
 
     /// <summary>
@@ -251,8 +253,8 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         var fixedProfile = EditedProfile.Clone();
         if(_preferencesManager.Preferences!.TryGetHumanoidInSlot(EditedSlot.Value, out var humanoid))
             fixedProfile = new HumanoidCharacterProfile(EditedProfile) { Enabled = humanoid.Enabled };
-        _preferencesManager.UpdateCharacter(fixedProfile, EditedSlot.Value);
 
+        _preferencesManager.UpdateCharacter(fixedProfile, EditedSlot.Value);
         OnAnyCharacterOrJobChange?.Invoke();
         _profileEditor?.SetProfile(EditedSlot.Value);
         ReloadCharacterSetup();
@@ -272,8 +274,8 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         }
 
         // make sure the window is closed.
-        _characterSetupWindow?.DisposePopOut(); // Starlight: also close the popped-out desktop window if any
-        _characterSetupWindow?.Close(); // starlight
+        _characterSetupWindow?.DisposePopOut(); // Starlight-edit
+        _characterSetupWindow?.Close(); // Starlight-edit
 
         StopPendingReview(); // Starlight
         RefreshLobbyPreview();
@@ -323,7 +325,8 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
             _profileEditor.Visible = true;
             // begin starlight
             // we borrow the gui from the lobby, so we need to make sure we return it aswell.
-            if (_stateManager.CurrentState is LobbyState lobbyState
+            if (_characterSetupWindow == null
+                && _stateManager.CurrentState is LobbyState lobbyState
                 && lobbyState.Lobby?.CharacterSetupState is { } container
                 && _characterSetup.Parent != container)
             {
@@ -349,6 +352,10 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
             _resourceCache,
             _requirements,
             _markings);
+
+        _jobPriorityEditor = new JobPriorityEditor(); // Starlight-edit: deps are injected
+
+        _jobPriorityEditor.Save += SaveJobPriorities;
 
         _profileEditor.OnOpenGuidebook += _guide.OpenHelp;
 

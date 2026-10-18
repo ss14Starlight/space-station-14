@@ -5,6 +5,8 @@ using Content.Client.Lobby.UI;
 using Content.Shared._Starlight.Player;
 using Content.Shared._Starlight.Preferences;
 using Content.Shared.Preferences;
+using Content.Shared.Roles;
+using Robust.Shared.Prototypes;
 using Robust.Client.UserInterface;
 
 // ReSharper disable CheckNamespace
@@ -48,6 +50,7 @@ public sealed partial class LobbyUIController
         _profileEditor?.Orphan();
         _profileEditor = null;
         ReloadCharacterSetup();
+        _jobPrioritiesWindow?.Refresh(); // Don't let a stale snapshot get saved onto a target player or pending review
     }
 
     /// <summary>
@@ -122,6 +125,47 @@ public sealed partial class LobbyUIController
         _characterSetupWindowEditingOwn =
             _preferencesManager.TargetPreferences is null && !_preferencesManager.ReviewingPending;
         window.OpenCentered();
+    }
+
+    /// <summary>
+    /// Sets the job priorities and updates all relevant UI elements. This is called when job priorities are changed in the job priorities window or other sources.
+    /// </summary>
+    public void SetJobPriorities(Dictionary<ProtoId<JobPrototype>, JobPriority> priorities, Control source)
+    {
+        // Pending changes are read-only, UpdateJobPriorities would drop it anyway. Refresh to undo the edit in the UI.
+        if (!_preferencesManager.ReviewingPending)
+        {
+            _preferencesManager.UpdateJobPriorities(priorities);
+            OnAnyCharacterOrJobChange?.Invoke();
+        }
+
+        _jobPriorityEditor?.LoadJobPriorities();
+        PreviewPanel?.Refresh();
+
+        if (source != _jobPrioritiesWindow || _preferencesManager.ReviewingPending)
+            _jobPrioritiesWindow?.Refresh();
+
+        var columns = (_stateManager.CurrentState as LobbyState)?.Lobby?.JobColumns;
+        if (source != columns || _preferencesManager.ReviewingPending)
+            columns?.Refresh();
+    }
+
+    /// <summary>
+    /// Opens the job priorities window, which allows for editing job priorities in a more detailed way than the lobby columns.
+    /// </summary>
+    public void OpenJobPrioritiesWindow()
+    {
+        if (_jobPrioritiesWindow is { Disposed: false })
+        {
+            _jobPrioritiesWindow.MoveToFront();
+            return;
+        }
+
+        _jobPrioritiesWindow = new JobPrioritiesWindow();
+        var window = _jobPrioritiesWindow;
+        window.OnPrioritiesChanged += priorities => SetJobPriorities(priorities, window);
+        _jobPrioritiesWindow.OnClose += () => _jobPrioritiesWindow = null;
+        _jobPrioritiesWindow.OpenCentered();
     }
 
     private bool IsEditingOwnCharacter()
