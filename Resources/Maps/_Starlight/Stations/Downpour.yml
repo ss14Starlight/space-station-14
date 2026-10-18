@@ -4,7 +4,7 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/18/2026 21:47:50
+  time: 10/18/2026 22:32:25
   entityCount: 32551
 maps:
 - 1
@@ -148181,7 +148181,7 @@ entities:
     components:
     - type: MetaData
       name: honkbot skeleton
-      desc: The remains of a rather unfortunate honkbot, jailed here for eternity for its crimes againts crew.
+      desc: The remains of a rather unfortunate honkbot, jailed here for eternity for its crimes against crew.
     - type: Transform
       parent: 2
       pos: 9.50642,-29.450071
