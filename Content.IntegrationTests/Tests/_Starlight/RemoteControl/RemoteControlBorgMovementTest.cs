@@ -25,20 +25,20 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
     [TestPrototypes]
     private const string Prototypes = """
         - type: entity
-          id: RemoteControlBorgMovementTestAI
-          parent: MobHuman
-          components:
-          - type: StationAIShuntable
-          - type: RemoteControlConsole
-          - type: UserInterface
-            interfaces:
-              enum.RemoteControlUIKey.Key:
-                type: RemoteControlConsoleBoundUserInterface
+            id: RemoteControlBorgMovementTestAI
+            parent: MobHuman
+            components:
+            -   type: StationAIShuntable
+            -   type: RemoteControlConsole
+            -   type: UserInterface
+                interfaces:
+                    enum.RemoteControlUIKey.Key:
+                        type: RemoteControlConsoleBoundUserInterface
         - type: entity
-          id: RemoteControlBorgMovementTestInterface
-          parent: AiInterfaceCube
-          components:
-          - type: RemoteControlBrain
+            id: RemoteControlBorgMovementTestInterface
+            parent: AiInterfaceCube
+            components:
+            -   type: RemoteControlBrain
         """;
 
     protected override string PlayerPrototype => "RemoteControlBorgMovementTestAI";
