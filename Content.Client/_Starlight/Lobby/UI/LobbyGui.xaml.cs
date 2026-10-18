@@ -1,5 +1,6 @@
 using Content.Client.Changelog;
 using Content.Client.Info;
+using Content.Client.Lobby;
 using Content.Client.Message;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.EscapeMenu;
@@ -12,8 +13,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Configuration;
 
-// ReSharper disable CheckNamespace
-namespace Content.Client.Lobby.UI;
+namespace Content.Client._Starlight.Lobby.UI;
 
 [GenerateTypedNameReferences]
 public sealed partial class LobbyGui : UIScreen

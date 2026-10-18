@@ -1,4 +1,4 @@
-<lobbyUi:LobbyGui
+<sl:LobbyGui
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
@@ -39,7 +39,7 @@
                                     <Button Name="CardToggle" StyleClasses="ButtonSquare" />
                                 </BoxContainer>
                                 <BoxContainer Name="CardBody" Orientation="Vertical" SeparationOverride="8">
-                                    <lobbyUi:LobbyCharacterPreviewPanel Name="CharacterPreview" Access="Public" />
+                                    <sl:LobbyCharacterPreviewPanel Name="CharacterPreview" Access="Public" />
                                     <PanelContainer StyleClasses="LowDivider" />
                                     <info:ServerInfo Name="ServerInfo" Access="Public" VerticalExpand="false" />
                                     <BoxContainer Name="JobColumnsBox" Orientation="Vertical" SeparationOverride="8" Visible="False">
@@ -102,4 +102,4 @@
 
     <!-- Links, shown by LinksButton -->
     <info:LinkBanner Name="LinkBanner" VerticalExpand="false" MinWidth="160" />
-</lobbyUi:LobbyGui>
+</sl:LobbyGui>
