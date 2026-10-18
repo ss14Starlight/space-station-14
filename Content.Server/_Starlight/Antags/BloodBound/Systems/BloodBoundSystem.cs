@@ -1,5 +1,6 @@
 using Content.Shared._Starlight.Antags.BloodBound.Components;
 using Content.Shared._Starlight.Antags.BloodBound.Systems;
+using Content.Shared._Starlight.Language.Systems;
 using Content.Shared.Actions;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
@@ -10,6 +11,7 @@ namespace Content.Server._Starlight.Antags.BloodBound.Systems;
 public sealed partial class BloodBoundSystem : SharedBloodBoundSystem
 {
     [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedLanguageSystem _language = default!;
     [Dependency] private NpcFactionSystem _npcFaction = default!;
 
     private static readonly ProtoId<NpcFactionPrototype> CrewFaction = "NanoTrasen";
@@ -23,6 +25,8 @@ public sealed partial class BloodBoundSystem : SharedBloodBoundSystem
 
     private void OnMapInit(Entity<BloodBoundComponent> entity, ref MapInitEvent args)
     {
+        _language.AddLanguage(entity.Owner, "Darktongue");
+
         _npcFaction.RemoveFaction(entity.Owner, CrewFaction);
         _npcFaction.AddFaction(entity.Owner, entity.Comp.BloodBoundFaction);
 
