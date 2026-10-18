@@ -1,11 +1,12 @@
 using Content.Shared.Preferences;
+using Content.Shared.Roles;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Roles;
+namespace Content.Shared._Starlight.Roles;
 
 /// <summary>
 /// Requires at least one nested requirement to pass, or none when inverted.
