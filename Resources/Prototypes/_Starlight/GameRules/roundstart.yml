@@ -125,7 +125,7 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.43
+      prob: 0.40
     - id: BloodBound
       prob: 0.20
     - id: VampireLess
@@ -135,7 +135,7 @@
     - id: Devil
       prob: 0.10
     - id: SiliconLiberation
-      prob: 0.17
+      prob: 0.15
 
 - type: entity
   parent: BaseGameRule
@@ -184,13 +184,13 @@
     - id: ThiefLess
       prob: 0.20
     - id: BloodBound
-      prob: 0.12
+      prob: 0.10
     - id: SubWizard
       prob: 0.05
     - id: Devil
       prob: 0.10
     - id: SiliconLiberation
-      prob: 0.12
+      prob: 0.10
 
 - type: entity
   parent: BaseGameRule
@@ -200,10 +200,10 @@
     rules:
     - id: ThiefLess
       prob: 0.50
-    - id: BloodBound
-      prob: 0.25
     - id: SubTraitor
       prob: 0.25
+    - id: BloodBound
+      prob: 0.20
     - id: VampireLess
       prob: 0.20
     - id: SLChangelingLess
@@ -220,7 +220,7 @@
     - id: Thief
       prob: 0.50
     - id: BloodBound
-      prob: 0.25
+      prob: 0.15
     - id: SLChangelingLess
       prob: 0.15
     - id: VampireLess

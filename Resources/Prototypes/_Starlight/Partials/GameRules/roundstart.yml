@@ -91,7 +91,7 @@
     - id: Thief
       prob: 0.42
     - id: BloodBound
-      prob: 0.21
+      prob: 0.20
     - id: SLChangeling
       prob: 0.20
     - id: VampireLess
@@ -125,7 +125,7 @@
     - id: Thief
       prob: 0.70
     - id: BloodBound
-      prob: 0.35
+      prob: 0.15
     - id: SLChangeling
       prob: 0.15
     - id: VampireLess
