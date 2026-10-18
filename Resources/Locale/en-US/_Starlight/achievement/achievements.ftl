@@ -146,7 +146,7 @@ achievement-enemy-unknown-name = Enemy Unknown
 achievement-enemy-unknown-description = Complete at least 10 Difficulty as a Changeling in a single round.
 
 achievement-blood-herald-name = Herald of Blood
-achievement-blood-herald-description = Complete at least 10 Difficulty as a Blood Bound (Initial) in a single round.
+achievement-blood-herald-description = Complete at least 10 Difficulty as a Blood Bound in a single round.
 
 achievement-theory-of-objectivity-name = Theory of Objectivity
 achievement-theory-of-objectivity-description = Obtain Elite Contractor, Phantom Thief, First Kindred, Enemy Unknown, and Herald of Blood.
