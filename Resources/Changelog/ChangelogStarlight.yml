@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Added the 'Pat' Social Interaction. You can pat anything.
-    type: Add
-  id: 409201
-  time: '2026-10-05T16:29:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6492
-- author: Caws
-  changes:
-  - message: Added the 'Sniff' Social Interaction. Dogs and other animals can sniff anything that's nearby.
-    type: Add
-  id: 409202
-  time: '2026-10-05T16:29:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6492
-- author: Caws
-  changes:
   - message: Added the `Palpate` Social Interaction. Animals with antennae can sniff anything that's nearby with their antennae.
     type: Add
   id: 409203
@@ -2883,4 +2869,18 @@ Entries:
   id: 409600
   time: '2026-10-18T13:34:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6634
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added several new cyborg chargers around Science.
+    type: Add
+  id: 409601
+  time: '2026-10-18T14:41:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6741
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Fixed missing disposal pipes by Robotics that would cause Botany -> Kitchen mail routes to fail.
+    type: Fix
+  id: 409602
+  time: '2026-10-18T14:41:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6741
 Order: -1
