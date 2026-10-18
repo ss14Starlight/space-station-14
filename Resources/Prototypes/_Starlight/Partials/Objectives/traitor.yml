@@ -2,6 +2,9 @@
   id: KillRandomHeadObjective
   description: We need this high value person gone. Make sure they do not make it to CentComm, even if they are dead.
   components:
+  - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-kill-head
   - type: PickRandomPerson
     pool: !type:HighValueTargetsPool
       includeCommand: true
@@ -30,6 +33,8 @@
   id: KillRandomPersonObjective
   components:
   - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-kill
     unique: true
   - type: PickRandomPerson
     pool: !type:WeightedAlivePool
@@ -40,3 +45,17 @@
   components:
   - type: Objective
     difficulty: 2 # It doesn't need to be *that* high
+
+- type: !PartialOnly entity
+  id: RandomTraitorAliveObjective
+  components:
+  - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-help-alive
+
+- type: !PartialOnly entity
+  id: RandomTraitorProgressObjective
+  components:
+  - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-help-progress

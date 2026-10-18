@@ -101,6 +101,8 @@
   description: Ensure they die at least once this shift. They know what they did.
   components:
     - type: Objective
+      hidden: true
+      hiddenTitle: objective-picker-hidden-lesson
       difficulty: 1.5
       unique: false
     - type: TargetObjective
@@ -121,6 +123,8 @@
   description: Ensure this high value person dies at least once this shift. They know what they did.
   components:
     - type: Objective
+      hidden: true
+      hiddenTitle: objective-picker-hidden-lesson-head
       # technically it's still possible for TeachRandomPersonObjective to roll a head but this is guaranteed, so higher difficulty
       difficulty: 2 #Starlight edit
       # killing 1 head is enough

@@ -4,7 +4,6 @@ using Content.Server.Antag;
 using Content.Server.Mind.Filters;
 using Content.Server.Objectives.Systems;
 using Content.Server.Objectives.Components;
-using Content.Server._Starlight.Objectives.Components;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives;
@@ -288,9 +287,15 @@ public sealed partial class AntagRandomObjectivesSystem
             return false;
         }
 
-        deferred = HasComp<TargetObjectiveComponent>(uid) &&
-                    (HasComp<KillPersonConditionComponent>(uid) || HasComp<TeachALessonConditionComponent>(uid) ||
-                        HasComp<HelpProgressConditionComponent>(uid) || HasComp<KeepAliveConditionComponent>(uid));
+        var objective = Comp<ObjectiveComponent>(uid);
+        if (objective.Hidden && objective.HiddenTitle == null)
+        {
+            Log.Error($"Hidden objective picker preview on {ToPrettyString(uid)} requires hiddenTitle.");
+            Del(uid);
+            return false;
+        }
+
+        deferred = objective.Hidden && HasComp<TargetObjectiveComponent>(uid) && HasComp<PickRandomPersonComponent>(uid);
         if (deferred)
         {
             // Check eligibility without assigning a target or revealing their identity.
@@ -321,16 +326,9 @@ public sealed partial class AntagRandomObjectivesSystem
         var objective = Comp<ObjectiveComponent>(uid);
         var netId = GetNetEntity(uid);
         ObjectiveInfo? info;
-        if (deferred && objective.Icon is { } icon)
+        if (objective.Hidden && objective.HiddenTitle is { } title && objective.Icon is { } icon)
         {
-            var lesson = HasComp<TeachALessonConditionComponent>(uid);
-            var head = Prototype(uid)?.ID.EndsWith("HeadObjective") == true;
-            var title = HasComp<HelpProgressConditionComponent>(uid) ? "objective-picker-hidden-help-progress"
-                : HasComp<KeepAliveConditionComponent>(uid) ? "objective-picker-hidden-help-alive"
-                : lesson ? head ? "objective-picker-hidden-lesson-head" : "objective-picker-hidden-lesson"
-                : head ? "objective-picker-hidden-kill-head" : "objective-picker-hidden-kill";
-            info = new ObjectiveInfo(Loc.GetString(title),
-                Loc.GetString("objective-picker-hidden-target-description"), icon, 0);
+            info = new ObjectiveInfo(Loc.GetString(title), Loc.GetString(objective.HiddenDescription), icon, 0);
         }
         else
         {
