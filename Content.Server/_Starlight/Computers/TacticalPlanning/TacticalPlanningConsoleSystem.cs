@@ -298,7 +298,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
 
         // A small burst is fine, but one console cannot produce an unbounded stream of deltas.
         var elapsed = Math.Max(0d, (now - component.LastBudgetUpdate).TotalSeconds);
-        component.SubmissionTokens = MathF.Min(5f, component.SubmissionTokens + (float) elapsed * 12f);
+        component.SubmissionTokens = MathF.Min(5f, component.SubmissionTokens + ((float) elapsed * 12f));
         component.LastBudgetUpdate = now;
         if (component.SubmissionTokens < 1f)
             return false;

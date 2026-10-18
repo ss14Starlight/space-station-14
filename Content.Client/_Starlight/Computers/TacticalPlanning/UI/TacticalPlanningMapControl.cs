@@ -124,7 +124,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
                 var ab = b - a;
                 var lengthSquared = ab.LengthSquared();
                 var t = lengthSquared > 0f ? Math.Clamp(Vector2.Dot(position - a, ab) / lengthSquared, 0f, 1f) : 0f;
-                var nearest = a + t * ab;
+                var nearest = a + (t * ab);
                 if (Vector2.DistanceSquared(position, nearest) <= maxDistanceSquared)
                     return annotation;
             }

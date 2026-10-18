@@ -84,11 +84,8 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
             if (!_synchronizing)
                 SendMessage(new TacticalPlanEraseAnnotationMessage(id));
         };
-        _window.ColorSelected += color =>
-        {
-            // Picker movement is local. Only a completed drawing sends its color to the server.
-            _cache?.SelectedColor = color;
-        };
+        // Picker movement is local. Only a completed drawing sends its color to the server.
+        _window.ColorSelected += color => _cache?.SelectedColor = color;
         _window.PlanReset += () =>
         {
             if (!_synchronizing)
