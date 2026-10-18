@@ -54,11 +54,6 @@
     MailFraudObjective: !Remove
 
 - type: !PartialOnly weightedRandom
-  id: ThiefObjectiveGroups
-  weights:
-    ThiefObjectiveOpenEnded: 0.5  # Moffstation - open ended objectives
-
-- type: !PartialOnly weightedRandom
   id: ThiefObjectiveGroupCollection
   weights:
     HeadHardsuitStealCollectionObjective: !Remove
