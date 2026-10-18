@@ -18,6 +18,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
 using Content.Server.AlertLevel;
+using Content.Server.Chat.Managers;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared._Starlight.CCVar;
@@ -37,7 +38,7 @@ namespace Content.Server._Starlight.Revolutionary;
 public sealed partial class RevSupplyRiftSystem : EntitySystem
 {
     [Dependency] private ChatSystem _chat = default!;
-    [Dependency] private Chat.Managers.IChatManager _chatManager = default!;
+    [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private NavMapSystem _navMap = default!;
     [Dependency] private StoreSystem _store = default!;
     [Dependency] private IGameTiming _timing = default!;
