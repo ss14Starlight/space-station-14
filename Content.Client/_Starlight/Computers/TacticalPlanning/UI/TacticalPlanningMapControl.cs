@@ -314,8 +314,8 @@ public sealed class TacticalPlanningMapControl : NavMapControl
 
             if (selected)
             {
-                handle.DrawLine(start + normal * 2f, end + normal * 2f, Color.White);
-                handle.DrawLine(start - normal * 2f, end - normal * 2f, Color.White);
+                handle.DrawLine(start + (normal * 2f), end + (normal * 2f), Color.White);
+                handle.DrawLine(start - (normal * 2f), end - (normal * 2f), Color.White);
             }
 
             handle.DrawLine(start + normal, end + normal, color);
