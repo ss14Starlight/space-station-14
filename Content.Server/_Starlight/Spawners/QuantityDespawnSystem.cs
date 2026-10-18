@@ -31,7 +31,7 @@ public sealed partial class QuantityDespawnSystem : EntitySystem
             _ents.Add(category, new());
 
             var proto = _prototype.Index(category);
-            proto.TryGetComponent<QuantityDespawnCategoryComponent>(out var catComp, _componentFactory);
+            proto.TryComp<QuantityDespawnCategoryComponent>(out var catComp, _componentFactory);
             _maxEnts.Add(category, catComp?.MaxEntities ?? 1000);
         }
 
