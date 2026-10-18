@@ -11,6 +11,20 @@
         task: SimpleHostileCompound
 
 - type: entity
+  name: suspicious toolbox
+  parent: ToolboxSyndicate
+  id: ToolboxSyndicateMimic
+  description: A sinister looking toolbox filled with elite syndicate tools, did it just move?
+  components:
+  - type: TriggerOnInteractHand
+  - type: TriggerOnUse
+  - type: TriggerOnExamined
+  - type: TriggerOnUiOpen
+  - type: SpawnOnTrigger
+    proto: MimicSusToolboxWaking
+  - type: DeleteOnTrigger
+
+- type: entity
   id: MimicSusToolboxWaking
   name: suspicious toolbox ?
   description: A sinister looking toolbox filled wit- wait, something's wrong.
@@ -28,9 +42,6 @@
       keysIn:
       - timer
       proto: MimicSusToolbox
-    - type: EmitSoundOnSpawn
-      sound:
-        path: /Audio/_Starlight/CosmicCult/colossus_spawn.ogg
 
 - type: entity
   name: suspicious mimic
