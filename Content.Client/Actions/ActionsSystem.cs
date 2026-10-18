@@ -128,7 +128,7 @@ namespace Content.Client.Actions
             ActionsUpdated?.Invoke();
         }
 
-        public int ActionComparer(Entity<ActionComponent> a, Entity<ActionComponent> b)
+        public int ActionComparer(Entity<ActionComponent> a, Entity<ActionComponent> b) // Starlight edit
         {
             var priorityA = a.Comp?.Priority ?? 0;
             var priorityB = b.Comp?.Priority ?? 0;
