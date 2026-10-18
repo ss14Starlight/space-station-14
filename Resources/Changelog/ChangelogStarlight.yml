@@ -1,39 +1,4 @@
 Entries:
-- author: BriocheBear
-  changes:
-  - message: Added 5 new sea critter plushies to the game, available in the hug dispenser.
-    type: Add
-  id: 409196
-  time: '2026-10-05T14:19:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6486
-- author: BriocheBear
-  changes:
-  - message: Resprited the sea bunny plushie.
-    type: Tweak
-  id: 409197
-  time: '2026-10-05T14:19:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6486
-- author: baltdev
-  changes:
-  - message: Added full-cube turns to the Twisty Cube.
-    type: Tweak
-  id: 409198
-  time: '2026-10-05T14:19:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6490
-- author: baltdev
-  changes:
-  - message: Adds the Twisty Cube as a round-start trinket.
-    type: Tweak
-  id: 409199
-  time: '2026-10-05T14:19:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6490
-- author: baltdev
-  changes:
-  - message: Adds a scramble button to the Twisty Cube.
-    type: Tweak
-  id: 409200
-  time: '2026-10-05T14:19:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6490
 - author: Caws
   changes:
   - message: Added the 'Pat' Social Interaction. You can pat anything.
@@ -2883,4 +2848,39 @@ Entries:
   id: 409595
   time: '2026-10-18T09:56:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6739
+- author: Rinary
+  changes:
+  - message: Changed Lobby UI to work with new themes and better layout.
+    type: Tweak
+  id: 409596
+  time: '2026-10-18T13:34:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6634
+- author: Rinary
+  changes:
+  - message: Now you can pick lobby art in UI Settings instead of server picked art.
+    type: Add
+  id: 409597
+  time: '2026-10-18T13:34:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6634
+- author: Rinary
+  changes:
+  - message: Now you can quickly disable antags pick near ready button.
+    type: Add
+  id: 409598
+  time: '2026-10-18T13:34:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6634
+- author: Rinary
+  changes:
+  - message: Now you can change chat width in lobby.
+    type: Add
+  id: 409599
+  time: '2026-10-18T13:34:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6634
+- author: Rinary
+  changes:
+  - message: Now you can change lobby UI transparency in settings.
+    type: Add
+  id: 409600
+  time: '2026-10-18T13:34:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6634
 Order: -1
