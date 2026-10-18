@@ -1,0 +1,59 @@
+- type: entity
+  id: Stunprod
+  components:
+  - type: Sprite
+    layers:
+    - state: stunprod_on
+      visible: false
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_on" ]
+    - state: stunprod_off
+      visible: false
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_off" ]
+    - state: stunprod_nocell
+      visible: true
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_nocell" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.StunbatonVisuals.Stunbaton_on:
+        enum.StunbatonVisualLayers.Stunbaton_on:
+          True: { visible: true }
+          False: { visible: false }
+      enum.StunbatonVisuals.Stunbaton_off:
+        enum.StunbatonVisualLayers.Stunbaton_off:
+          True: { visible: true }
+          False: { visible: false }
+      enum.StunbatonVisuals.Stunbaton_nocell:
+        enum.StunbatonVisualLayers.Stunbaton_nocell:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Stunbaton
+    energyPerUse: 180 # from 50 to account for medium power cells. (720 charge with 36 per use = 20 hits, 180 = 4 hits)
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor
+          - HighTierCell
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: PowerCellDraw
+    drawRate: 6 # 1.5 stun baton, 4x passive drain
+  - type: ToggleCellDraw
+  - type: ComponentToggler
+    components:
+    -   type: ReactionMixer
+        reactionTypes:
+        - Electrolysis
+        timeToMix: 7
+        energyPerUse: 36
+        MixMessage: "electrolysis-mixing-success"
+        mixerType: Machine #This means that you use the batong on the beaker
+        mixingSound: !type:SoundPathSpecifier
+          path: /Audio/Machines/buzz_loop.ogg
+          params:
+            volume: -6

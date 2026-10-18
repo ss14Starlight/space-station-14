@@ -6,58 +6,15 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/stunbaton.rsi
-  #Starlight Start
-    layers:
-    - state: stunbaton_on
-      visible: true
-      map: [ "enum.StunbatonVisualLayers.Stunbaton_on" ]
-    - state: stunbaton_off
-      visible: false
-      map: [ "enum.StunbatonVisualLayers.Stunbaton_off" ]
-    - state: stunbaton_nocell
-      visible: false
-      map: [ "enum.StunbatonVisualLayers.Stunbaton_nocell" ]
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.StunbatonVisuals.Stunbaton_on:
-        enum.StunbatonVisualLayers.Stunbaton_on:
-          True: { visible: true }
-          False: { visible: false }
-      enum.StunbatonVisuals.Stunbaton_off:
-        enum.StunbatonVisualLayers.Stunbaton_off:
-          True: { visible: true }
-          False: { visible: false }
-      enum.StunbatonVisuals.Stunbaton_nocell:
-        enum.StunbatonVisualLayers.Stunbaton_nocell:
-          True: { visible: true }
-          False: { visible: false }
-  - type: Stunbaton
-    energyPerUse: 36 # from 50 to account for medium power cells. (720 charge with 36 per use = 20 hits)
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMedium
-        #Starlight Start
-        blacklist:
-          tags:
-          - MechReactor
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-  - type: PowerCellDraw
-    drawRate: 1.5
-  - type: ToggleCellDraw
-  #Starlight End
   - type: ItemToggle
     predictable: false
+<<<<<<< Updated upstream
     soundActivate:
       collection: sparks
       params:
         variation: 0.250
+=======
+>>>>>>> Stashed changes
     soundDeactivate:
       collection: sparks
       params:
