@@ -155,6 +155,8 @@
   description: Do it however you like, just make sure they don't make it to CentComm.
   components:
   - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-kill
     difficulty: 0
     unique: true
   - type: TargetObjective
@@ -313,6 +315,8 @@
   description: This high value person must not make it to CentComm.
   components:
   - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-kill-head
     difficulty: 2.5
     unique: true
   - type: PickRandomPerson

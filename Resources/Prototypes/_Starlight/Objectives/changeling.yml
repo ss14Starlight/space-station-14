@@ -166,6 +166,8 @@
   description: Make sure this person does not make it to CentComm.
   components:
   - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-kill
     difficulty: 1.5
     unique: false
   - type: TargetObjective
@@ -187,6 +189,8 @@
   description: Make sure this person does not make it to CentComm.
   components:
   - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-kill-head
     difficulty: 2.5
     unique: false
   - type: TargetObjective
@@ -209,6 +213,8 @@
   description: Ensure this person dies at least once this shift.
   components:
   - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-lesson
     difficulty: 1.5
     unique: false
   - type: TargetObjective
@@ -228,6 +234,8 @@
   description: Ensure this person dies at least once this shift.
   components:
   - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-lesson-head
     difficulty: 2
     unique: false
   - type: TargetObjective
