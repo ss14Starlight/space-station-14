@@ -167,7 +167,7 @@
   id: BloodBoundObjectiveGroups
   weights:
     BloodBoundObjectiveGroupSteal: 1
-    BloodBoundObjectiveGroupKill: 1
+    BloodBoundObjectiveGroupKill: 0.33
 
 - type: weightedRandom
   id: BloodBoundObjectiveGroupFate

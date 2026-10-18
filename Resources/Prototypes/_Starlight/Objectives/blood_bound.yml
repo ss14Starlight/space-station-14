@@ -197,7 +197,7 @@
 - type: entity
   parent: [BaseBloodBoundObjective, ClaimLocationObjective]
   id: BloodBoundClaimLocationObjective
-  description: Establish this room as a base for the blood bound.
+  description: Establish this room as a base for the Blood Bound.
   components:
   - type: LocationObjective
     title: objective-condition-blood-bound-claim-room
