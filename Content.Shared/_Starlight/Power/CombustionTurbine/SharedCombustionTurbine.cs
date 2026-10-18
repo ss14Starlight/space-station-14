@@ -1,19 +1,35 @@
+using Content.Shared.DoAfter;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Power.CombustionTurbine;
 
 [Serializable, NetSerializable]
+public enum CombustionTurbineStage : byte
+{
+    Compressor,
+    Rotor,
+    Outlet,
+}
+
+[Serializable, NetSerializable]
+public enum CombustionTurbineAssembly : byte
+{
+    Ready,
+    MissingCompressor,
+    MissingOutlet,
+    PanelOpen,
+    MissingPart,
+}
+
+[Serializable, NetSerializable]
 public enum CombustionTurbineVisuals : byte
 {
-    Speed,
-
     Running,
 }
 
 [Serializable, NetSerializable]
 public enum CombustionTurbineVisualLayers : byte
 {
-    Speed,
     Running,
 }
 
@@ -27,14 +43,11 @@ public enum CombustionTurbineConsoleUiKey : byte
 public sealed class CombustionTurbineConsoleState : BoundUserInterfaceState
 {
     /// <summary>
-    /// A compressor is linked and has its generator half next to it.
+    /// A core rotor is linked to the console.
     /// </summary>
-    public bool Connected;
+    public bool Linked;
 
-    /// <summary>
-    /// A compressor is linked but the generator half is missing.
-    /// </summary>
-    public bool GeneratorMissing;
+    public CombustionTurbineAssembly Assembly = CombustionTurbineAssembly.MissingCompressor;
 
     public bool Enabled;
     public bool StarterRunning;
@@ -53,14 +66,17 @@ public sealed class CombustionTurbineConsoleState : BoundUserInterfaceState
     public float InletPressure;
     public float ChamberPressure;
     public float OutletPressure;
+    public float ExhaustTemperature;
     public float MaxTemperature;
     public float MolesPerSecond;
     public float IntakeRatio;
 
     /// <summary>
-    /// Litres per second at 100% intake.
+    /// Litres per second at 100% intake, with the compressor part's bonus.
     /// </summary>
     public float IntakeVolume;
+
+    public int[] PartTiers = new int[3];
 }
 
 [Serializable, NetSerializable]
@@ -74,3 +90,9 @@ public sealed class CombustionTurbineIntakeMessage(float ratio) : BoundUserInter
 {
     public readonly float Ratio = ratio;
 }
+
+[Serializable, NetSerializable]
+public sealed partial class CombustionTurbinePartPryDoAfterEvent : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class CombustionTurbinePartUpgradeDoAfterEvent : SimpleDoAfterEvent;

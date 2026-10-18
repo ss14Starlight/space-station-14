@@ -3,15 +3,21 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Audio;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Pinpointer;
+using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared._Starlight.Power.CombustionTurbine;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping.Components;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
+using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Power.EntitySystems;
+using Content.Shared.Stacks;
+using Content.Shared.Tools.Systems;
+using Content.Shared.Wires;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
@@ -27,12 +33,16 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
     [Dependency] private AppearanceSystem _appearance = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private ExplosionSystem _explosion = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
     [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private PopupSystem _popup = default!;
     [Dependency] private RadioSystem _radio = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedPowerReceiverSystem _receiver = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedStackSystem _stack = default!;
+    [Dependency] private SharedToolSystem _tool = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
 
     private const float RpmPerRadian = 60f / (2f * MathF.PI);
@@ -40,16 +50,20 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
     #region Simulation
 
     [SubscribeLocalEvent]
-    private void OnCompressorUpdate(Entity<CombustionTurbineCompressorComponent> ent, ref AtmosDeviceUpdateEvent args)
+    private void OnRotorUpdate(Entity<CombustionTurbineRotorComponent> ent, ref AtmosDeviceUpdateEvent args)
     {
         var comp = ent.Comp;
         var dt = args.dt;
-        var generator = FindGenerator(ent);
+
+        UpdateAssembly(ent);
+        var ready = comp.Assembly == CombustionTurbineAssembly.Ready;
+        if (!ready && comp.Enabled)
+            comp.Enabled = false;
 
         var rpm = GetRpm(comp);
         var powered = _receiver.IsPowered(ent.Owner);
 
-        var starter = comp.Enabled && powered && generator != null && rpm < comp.StarterRpm;
+        var starter = comp.Enabled && powered && rpm < comp.StarterRpm;
         if (starter != comp.StarterRunning)
         {
             comp.StarterRunning = starter;
@@ -61,10 +75,10 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
 
         GasMixture? inlet = null;
         GasMixture? outlet = null;
-        if (args.Grid is { } grid && generator is { } gen)
+        if (ready && args.Grid is { } grid)
         {
-            var inletTile = GetFacingTile(ent.Owner);
-            var outletTile = GetFacingTile(gen.Owner);
+            var inletTile = GetAdjacentTile(comp.Compressor!.Value, forward: false);
+            var outletTile = GetAdjacentTile(comp.Outlet!.Value, forward: true);
             inlet = inletTile is { } i ? _atmosphere.GetTileMixture(grid, args.Map, i, true) : null;
             outlet = outletTile is { } o ? _atmosphere.GetTileMixture(grid, args.Map, o, true) : null;
         }
@@ -73,11 +87,12 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
         comp.InletPressure = inlet?.Pressure ?? 0f;
         comp.OutletPressure = outlet?.Pressure ?? 0f;
         comp.MolesPerSecond = 0f;
+        comp.ExhaustTemperature = 0f;
 
         var compressionWork = 0f;
         var expansionWork = 0f;
 
-        if (comp.Enabled && generator != null)
+        if (comp.Enabled)
         {
             var speedup = _atmosphere.PumpSpeedup();
 
@@ -92,28 +107,30 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
         var maxEnergy = 0.5f * comp.RotorInertia * maxOmega * maxOmega;
         comp.RotorEnergy = Math.Clamp(comp.RotorEnergy + expansionWork - compressionWork, 0f, maxEnergy);
 
-        var load = generator?.Comp.LoadCoefficient ?? 0f;
+        var load = ready ? comp.LoadCoefficient : 0f;
+        var friction = (comp.FrictionCoefficient * comp.FrictionMultiplier) + (comp.Enabled ? 0f : comp.BrakeCoefficient);
         var omegaSquared = 2f * comp.RotorEnergy / comp.RotorInertia;
-        var drained = MathF.Min(comp.RotorEnergy, (load + comp.FrictionCoefficient) * omegaSquared * dt);
-        var generated = load + comp.FrictionCoefficient > 0f
-            ? drained * load / (load + comp.FrictionCoefficient)
+        var drained = MathF.Min(comp.RotorEnergy, (load + friction) * omegaSquared * dt);
+        var generated = load + friction > 0f
+            ? drained * load / (load + friction)
             : 0f;
         comp.RotorEnergy -= drained;
 
+        if (!comp.Enabled && GetRpm(comp) < comp.StopRpm)
+            comp.RotorEnergy = 0f;
+
         comp.Rpm = GetRpm(comp);
-        UpdateGovernor(comp, dt);
+        if (ready)
+            UpdateGovernor(comp, dt);
 
-        if (generator is { } g)
-            UpdateGenerator(g, generated / dt);
-
+        UpdateGenerator(ent, generated / dt);
         UpdateIntegrity(ent, dt);
-        UpdateCompressorVisuals(ent);
     }
 
-    private float Compress(CombustionTurbineCompressorComponent comp, GasMixture inlet, float rpm, float dt)
+    private float Compress(CombustionTurbineRotorComponent comp, GasMixture inlet, float rpm, float dt)
     {
         var speed = MathF.Min(1f, rpm / comp.IntakeFullRpm);
-        var volume = comp.IntakeVolume * comp.IntakeRatio * comp.GovernorFactor * speed * dt;
+        var volume = comp.IntakeVolume * comp.IntakeMultiplier * comp.IntakeRatio * comp.GovernorFactor * speed * dt;
         var inletPressure = MathF.Max(inlet.Pressure, comp.MinOutletPressure);
 
         var removed = inlet.RemoveVolume(MathF.Min(volume, inlet.Volume));
@@ -122,18 +139,21 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
             return 0f;
 
         var inletTemperature = removed.Temperature;
+        var removedHeatCapacity = _atmosphere.GetHeatCapacity(removed, true);
+        var exponent = GetIsentropicExponent(removed);
         _atmosphere.Merge(comp.Air, removed);
 
         var chamberPressure = comp.Air.Pressure;
-        if (chamberPressure <= inletPressure)
+        if (chamberPressure <= inletPressure || exponent <= 0f)
             return 0f;
 
-        var work = moles * Atmospherics.R * inletTemperature * MathF.Log(chamberPressure / inletPressure) * comp.CompressionWorkFactor;
+        var idealRise = inletTemperature * (MathF.Pow(chamberPressure / inletPressure, exponent) - 1f);
+        var work = removedHeatCapacity * idealRise / comp.CompressionEfficiency;
         _atmosphere.AddHeat(comp.Air, work);
         return work;
     }
 
-    private float Expand(CombustionTurbineCompressorComponent comp, GasMixture outlet, float scaledDt, float dt)
+    private float Expand(CombustionTurbineRotorComponent comp, GasMixture outlet, float scaledDt, float dt)
     {
         var chamberPressure = comp.Air.Pressure;
         var outletPressure = MathF.Max(outlet.Pressure, comp.MinOutletPressure);
@@ -144,25 +164,37 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
         var moles = passing.TotalMoles;
         var temperature = passing.Temperature;
         var heatCapacity = _atmosphere.GetHeatCapacity(passing, true);
+        var exponent = GetIsentropicExponent(passing);
 
         var work = 0f;
-        if (moles > 0f && heatCapacity > 0f)
+        if (moles > 0f && heatCapacity > 0f && exponent > 0f)
         {
+            var idealDrop = temperature * (1f - MathF.Pow(outletPressure / chamberPressure, exponent));
             var thermal = MathF.Tanh(MathF.Max(0f, temperature - Atmospherics.T20C) / comp.ThermalScale);
-            work = moles * Atmospherics.R * temperature * MathF.Log(chamberPressure / outletPressure) * comp.Efficiency * thermal;
-
-            work = MathF.Min(work, heatCapacity * (temperature - Atmospherics.TCMB));
-            passing.Temperature = MathF.Max(Atmospherics.TCMB, temperature - (work / heatCapacity));
+            var drop = MathF.Min(comp.ExpansionEfficiency * thermal * idealDrop, temperature - Atmospherics.TCMB);
+            work = heatCapacity * MathF.Max(0f, drop);
+            passing.Temperature = MathF.Max(Atmospherics.TCMB, temperature - drop);
         }
 
         comp.MolesPerSecond = moles / dt;
+        comp.ExhaustTemperature = passing.Temperature;
         _atmosphere.Merge(outlet, passing);
         return work;
     }
 
-    private static void UpdateGovernor(CombustionTurbineCompressorComponent comp, float dt)
+    private float GetIsentropicExponent(GasMixture mixture)
+    {
+        var moles = mixture.TotalMoles;
+        var heatCapacity = _atmosphere.GetHeatCapacity(mixture, false);
+        return moles > 0f && heatCapacity > 0f ? Atmospherics.R * moles / heatCapacity : 0f;
+    }
+
+    private static void UpdateGovernor(CombustionTurbineRotorComponent comp, float dt)
     {
         var threshold = comp.MaxRpm * comp.GovernorThreshold;
+        if (threshold <= 0f)
+            return;
+
         if (comp.Rpm > threshold)
         {
             var excess = (comp.Rpm / threshold) - 1f;
@@ -175,37 +207,26 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
         }
     }
 
-    private void UpdateGenerator(Entity<CombustionTurbineGeneratorComponent> ent, float power)
+    private void UpdateGenerator(Entity<CombustionTurbineRotorComponent> ent, float power)
     {
         ent.Comp.LastGeneration = power;
 
         if (TryComp<PowerSupplierComponent>(ent, out var supplier))
-        {
             supplier.MaxSupply = (ent.Comp.PowerSmoothing * power) + ((1f - ent.Comp.PowerSmoothing) * supplier.MaxSupply);
-        }
 
         var running = power >= ent.Comp.RunningVisualThreshold;
-        _appearance.SetData(ent, CombustionTurbineVisuals.Running, running);
         _ambient.SetAmbience(ent, running);
-    }
+        _appearance.SetData(ent, CombustionTurbineVisuals.Running, running);
 
-    private void UpdateCompressorVisuals(Entity<CombustionTurbineCompressorComponent> ent)
-    {
-        var rpm = ent.Comp.Rpm;
-        var band = rpm switch
-        {
-            _ when rpm >= ent.Comp.MaxRpm * ent.Comp.GovernorThreshold => 4,
-            > 10000f => 3,
-            > 2000f => 2,
-            > 500f => 1,
-            _ => 0,
-        };
+        if (ent.Comp.Compressor is { } compressor)
+            _appearance.SetData(compressor, CombustionTurbineVisuals.Running, running);
 
-        _appearance.SetData(ent, CombustionTurbineVisuals.Speed, band);
+        if (ent.Comp.Outlet is { } outlet)
+            _appearance.SetData(outlet, CombustionTurbineVisuals.Running, running);
     }
 
     [SubscribeLocalEvent]
-    private void OnCompressorDisabled(Entity<CombustionTurbineCompressorComponent> ent, ref AtmosDeviceDisabledEvent _)
+    private void OnRotorDisabled(Entity<CombustionTurbineRotorComponent> ent, ref AtmosDeviceDisabledEvent _)
     {
         ent.Comp.RotorEnergy = 0f;
         ent.Comp.Rpm = 0f;
@@ -216,21 +237,21 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
             _atmosphere.Merge(air, ent.Comp.Air);
         ent.Comp.Air.Clear();
 
-        if (ent.Comp.Generator is { } gen && TryComp<CombustionTurbineGeneratorComponent>(gen, out var genComp))
-            UpdateGenerator((gen, genComp), 0f);
-
-        UpdateCompressorVisuals(ent);
+        UpdateGenerator(ent, 0f);
     }
 
     [SubscribeLocalEvent]
-    private void OnCompressorShutdown(Entity<CombustionTurbineCompressorComponent> ent, ref ComponentShutdown _)
-        => SetGenerator(ent, null);
+    private void OnRotorShutdown(Entity<CombustionTurbineRotorComponent> ent, ref ComponentShutdown _)
+    {
+        SetStage(ent, ref ent.Comp.Compressor, null);
+        SetStage(ent, ref ent.Comp.Outlet, null);
+    }
 
     #endregion
 
     #region Damage
 
-    private void UpdateIntegrity(Entity<CombustionTurbineCompressorComponent> ent, float dt)
+    private void UpdateIntegrity(Entity<CombustionTurbineRotorComponent> ent, float dt)
     {
         var comp = ent.Comp;
         comp.Overheating = comp.Enabled && comp.InletTemperature > comp.MaxTemperature;
@@ -266,7 +287,7 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
         _audio.PlayPvs(comp.AlertSound, ent);
     }
 
-    private void Fail(Entity<CombustionTurbineCompressorComponent> ent)
+    private void Fail(Entity<CombustionTurbineRotorComponent> ent)
     {
         var comp = ent.Comp;
         var intensity = comp.ExplosionIntensity + (comp.Rpm * comp.ExplosionIntensityPerRpm);
@@ -295,62 +316,123 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
 
     #region Assembly
 
-    public Entity<CombustionTurbineGeneratorComponent>? FindGenerator(Entity<CombustionTurbineCompressorComponent> ent)
+    public void UpdateAssembly(Entity<CombustionTurbineRotorComponent> ent)
     {
+        var comp = ent.Comp;
+        Entity<CombustionTurbineStageComponent>? compressor = null;
+        Entity<CombustionTurbineStageComponent>? outlet = null;
+
         var xform = Transform(ent);
-        if (!xform.Anchored || xform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var grid))
-            return SetGenerator(ent, null);
+        if (xform.Anchored && xform.GridUid is { } gridUid && TryComp<MapGridComponent>(gridUid, out var grid))
+        {
+            var dir = xform.LocalRotation.GetCardinalDir();
+            var tile = _map.TileIndicesFor(gridUid, grid, xform.Coordinates);
+            compressor = FindStage((gridUid, grid), tile.Offset(dir.GetOpposite()), dir, CombustionTurbineStage.Compressor);
+            outlet = FindStage((gridUid, grid), tile.Offset(dir), dir, CombustionTurbineStage.Outlet);
+        }
 
-        var dir = xform.LocalRotation.GetCardinalDir();
-        var behind = _map.TileIndicesFor(gridUid, grid, xform.Coordinates).Offset(dir.GetOpposite());
+        SetStage(ent, ref comp.Compressor, compressor);
+        SetStage(ent, ref comp.Outlet, outlet);
 
-        var anchored = _map.GetAnchoredEntities(gridUid, grid, behind);
+        var compressorPart = compressor is { } c ? GetPart(c) : null;
+        var rotorPart = TryComp<CombustionTurbineStageComponent>(ent, out var rotorStage) ? GetPart((ent, rotorStage)) : null;
+        var statorPart = outlet is { } o ? GetPart(o) : null;
+
+        comp.Assembly = compressor == null ? CombustionTurbineAssembly.MissingCompressor
+            : outlet == null ? CombustionTurbineAssembly.MissingOutlet
+            : IsPanelOpen(ent) || IsPanelOpen(compressor.Value) || IsPanelOpen(outlet.Value) ? CombustionTurbineAssembly.PanelOpen
+            : compressorPart == null || rotorPart == null || statorPart == null ? CombustionTurbineAssembly.MissingPart
+            : CombustionTurbineAssembly.Ready;
+
+        if (comp.Assembly != CombustionTurbineAssembly.Ready)
+        {
+            comp.MaxRpm = 0f;
+            comp.MaxTemperature = 0f;
+            return;
+        }
+
+        comp.MaxRpm = (compressorPart!.GetMaxRpm() + rotorPart!.GetMaxRpm() + statorPart!.GetMaxRpm()) / 3f;
+        comp.MaxTemperature = (compressorPart.GetMaxTemperature() + rotorPart.GetMaxTemperature() + statorPart.GetMaxTemperature()) / 3f;
+        comp.IntakeMultiplier = compressorPart.GetEfficiency();
+        comp.FrictionMultiplier = rotorPart.GetEfficiency();
+        comp.ExpansionEfficiency = statorPart.GetEfficiency();
+    }
+
+    private Entity<CombustionTurbineStageComponent>? FindStage(
+        Entity<MapGridComponent> grid,
+        Vector2i tile,
+        Direction dir,
+        CombustionTurbineStage stage)
+    {
+        var anchored = _map.GetAnchoredEntities(grid.Owner, grid.Comp, tile);
         while (anchored.MoveNext(out var other))
         {
-            if (!TryComp<CombustionTurbineGeneratorComponent>(other, out var generator))
+            if (!TryComp<CombustionTurbineStageComponent>(other, out var stageComp) || stageComp.Stage != stage)
                 continue;
 
-            if (Transform(other.Value).LocalRotation.GetCardinalDir() != dir.GetOpposite())
+            if (Transform(other.Value).LocalRotation.GetCardinalDir() != dir)
                 continue;
 
-            return SetGenerator(ent, (other.Value, generator));
+            return (other.Value, stageComp);
         }
 
-        return SetGenerator(ent, null);
+        return null;
     }
 
-    private Entity<CombustionTurbineGeneratorComponent>? SetGenerator(
-        Entity<CombustionTurbineCompressorComponent> ent,
-        Entity<CombustionTurbineGeneratorComponent>? generator)
+    private void SetStage(
+        Entity<CombustionTurbineRotorComponent> rotor,
+        ref EntityUid? field,
+        Entity<CombustionTurbineStageComponent>? stage)
     {
-        var old = ent.Comp.Generator;
-        if (old == generator?.Owner)
-            return generator;
+        var old = field;
+        if (old == stage?.Owner)
+            return;
 
-        if (old is { } oldGen
-            && !TerminatingOrDeleted(oldGen)
-            && TryComp<CombustionTurbineGeneratorComponent>(oldGen, out var oldComp))
+        if (old is { } oldUid
+            && !TerminatingOrDeleted(oldUid)
+            && TryComp<CombustionTurbineStageComponent>(oldUid, out var oldStage)
+            && oldStage.Rotor == rotor.Owner)
         {
-            oldComp.Compressor = null;
-            UpdateGenerator((oldGen, oldComp), 0f);
+            oldStage.Rotor = null;
+            _appearance.SetData(oldUid, CombustionTurbineVisuals.Running, false);
         }
 
-        ent.Comp.Generator = generator?.Owner;
-        if (generator is { } gen)
-            gen.Comp.Compressor = ent.Owner;
-
-        return generator;
+        field = stage?.Owner;
+        if (stage is { } newStage)
+            newStage.Comp.Rotor = rotor.Owner;
     }
 
-    private Vector2i? GetFacingTile(EntityUid uid)
+    public Entity<CombustionTurbineRotorComponent>? GetRotor(EntityUid uid)
+    {
+        if (TryComp<CombustionTurbineRotorComponent>(uid, out var own))
+            return (uid, own);
+
+        if (!TryComp<CombustionTurbineStageComponent>(uid, out var stage)
+            || stage.Rotor is not { } rotorUid
+            || TerminatingOrDeleted(rotorUid)
+            || !TryComp<CombustionTurbineRotorComponent>(rotorUid, out var rotor)
+            || (rotor.Compressor != uid && rotor.Outlet != uid))
+        {
+            return null;
+        }
+
+        return (rotorUid, rotor);
+    }
+
+    private bool IsPanelOpen(EntityUid uid)
+        => TryComp<WiresPanelComponent>(uid, out var panel) && panel.Open;
+
+    private Vector2i? GetAdjacentTile(EntityUid uid, bool forward)
     {
         var xform = Transform(uid);
-        return xform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var grid)
-            ? null
-            : _map.TileIndicesFor(gridUid, grid, xform.Coordinates).Offset(xform.LocalRotation.GetCardinalDir());
+        if (xform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var grid))
+            return null;
+
+        var dir = xform.LocalRotation.GetCardinalDir();
+        return _map.TileIndicesFor(gridUid, grid, xform.Coordinates).Offset(forward ? dir : dir.GetOpposite());
     }
 
-    private static float GetRpm(CombustionTurbineCompressorComponent comp)
+    private static float GetRpm(CombustionTurbineRotorComponent comp)
         => MathF.Sqrt(2f * comp.RotorEnergy / comp.RotorInertia) * RpmPerRadian;
 
     #endregion
@@ -358,35 +440,44 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
     #region Examine
 
     [SubscribeLocalEvent]
-    private void OnCompressorExamined(Entity<CombustionTurbineCompressorComponent> ent, ref ExaminedEvent args)
+    private void OnStageExamined(Entity<CombustionTurbineStageComponent> ent, ref ExaminedEvent args)
     {
         if (!args.IsInDetailsRange)
             return;
 
-        using (args.PushGroup(nameof(CombustionTurbineCompressorComponent)))
+        using (args.PushGroup(nameof(CombustionTurbineStageComponent)))
         {
-            args.PushMarkup(Loc.GetString(ent.Comp.Generator == null
-                ? "combustion-turbine-examine-no-generator"
-                : "combustion-turbine-examine-connected"));
-            args.PushMarkup(Loc.GetString("combustion-turbine-examine-rpm", ("rpm", (int) ent.Comp.Rpm)));
-            args.PushMarkup(Loc.GetString("combustion-turbine-examine-integrity", ("integrity", (int) ent.Comp.Integrity)));
+            if (GetPart(ent) is { } part)
+                args.PushMarkup(Loc.GetString("combustion-turbine-examine-part", ("tier", part.Tier)));
+            else
+                args.PushMarkup(Loc.GetString("combustion-turbine-examine-no-part"));
+
+            if (GetRotor(ent) is not { } rotor)
+            {
+                args.PushMarkup(Loc.GetString("combustion-turbine-examine-unassembled"));
+                return;
+            }
+
+            if (rotor.Comp.Assembly != CombustionTurbineAssembly.Ready)
+                args.PushMarkup(Loc.GetString(GetAssemblyLoc(rotor.Comp.Assembly)));
+
+            if (ent.Comp.Stage != CombustionTurbineStage.Rotor)
+                return;
+
+            args.PushMarkup(Loc.GetString("combustion-turbine-examine-rpm", ("rpm", (int) rotor.Comp.Rpm)));
+            args.PushMarkup(Loc.GetString("combustion-turbine-examine-integrity", ("integrity", (int) rotor.Comp.Integrity)));
+            args.PushMarkup(Loc.GetString("combustion-turbine-examine-power", ("power", (int) rotor.Comp.LastGeneration)));
         }
     }
 
-    [SubscribeLocalEvent]
-    private void OnGeneratorExamined(Entity<CombustionTurbineGeneratorComponent> ent, ref ExaminedEvent args)
+    public static string GetAssemblyLoc(CombustionTurbineAssembly assembly) => assembly switch
     {
-        if (!args.IsInDetailsRange)
-            return;
-
-        using (args.PushGroup(nameof(CombustionTurbineGeneratorComponent)))
-        {
-            if (ent.Comp.Compressor == null)
-                args.PushMarkup(Loc.GetString("combustion-turbine-examine-no-compressor"));
-
-            args.PushMarkup(Loc.GetString("combustion-turbine-examine-power", ("power", (int) ent.Comp.LastGeneration)));
-        }
-    }
+        CombustionTurbineAssembly.Ready => "combustion-turbine-assembly-ready",
+        CombustionTurbineAssembly.MissingCompressor => "combustion-turbine-assembly-missing-compressor",
+        CombustionTurbineAssembly.MissingOutlet => "combustion-turbine-assembly-missing-outlet",
+        CombustionTurbineAssembly.PanelOpen => "combustion-turbine-assembly-panel-open",
+        _ => "combustion-turbine-assembly-missing-part",
+    };
 
     #endregion
 }

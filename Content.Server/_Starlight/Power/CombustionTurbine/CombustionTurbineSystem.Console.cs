@@ -43,17 +43,27 @@ public sealed partial class CombustionTurbineSystem
     [SubscribeLocalEvent]
     private void OnConsoleToggle(Entity<CombustionTurbineConsoleComponent> ent, ref CombustionTurbineToggleMessage args)
     {
-        if (GetLinkedCompressor(ent) is not { } compressor || compressor.Comp.Enabled == args.Enabled)
+        if (GetLinkedRotor(ent) is not { } rotor || rotor.Comp.Enabled == args.Enabled)
             return;
 
-        compressor.Comp.Enabled = args.Enabled;
+        if (args.Enabled)
+        {
+            UpdateAssembly(rotor);
+            if (rotor.Comp.Assembly != CombustionTurbineAssembly.Ready)
+            {
+                UpdateConsoleUi(ent);
+                return;
+            }
+        }
+
+        rotor.Comp.Enabled = args.Enabled;
         _audio.PlayPvs(new SoundPathSpecifier(args.Enabled
                 ? "/Audio/Machines/button.ogg"
                 : "/Audio/Machines/machine_switch.ogg"),
             ent);
 
         _adminLog.Add(LogType.Action, LogImpact.Medium,
-            $"{ToPrettyString(args.Actor):player} turned combustion turbine {ToPrettyString(compressor):entity} {(args.Enabled ? "on" : "off")}");
+            $"{ToPrettyString(args.Actor):player} turned combustion turbine {ToPrettyString(rotor):entity} {(args.Enabled ? "on" : "off")}");
 
         UpdateConsoleUi(ent);
     }
@@ -61,18 +71,18 @@ public sealed partial class CombustionTurbineSystem
     [SubscribeLocalEvent]
     private void OnConsoleIntake(Entity<CombustionTurbineConsoleComponent> ent, ref CombustionTurbineIntakeMessage args)
     {
-        if (GetLinkedCompressor(ent) is not { } compressor || !float.IsFinite(args.Ratio))
+        if (GetLinkedRotor(ent) is not { } rotor || !float.IsFinite(args.Ratio))
             return;
 
-        compressor.Comp.IntakeRatio = Math.Clamp(args.Ratio, compressor.Comp.MinIntakeRatio, 1f);
+        rotor.Comp.IntakeRatio = Math.Clamp(args.Ratio, rotor.Comp.MinIntakeRatio, 1f);
 
         _adminLog.Add(LogType.Action, LogImpact.Low,
-            $"{ToPrettyString(args.Actor):player} set combustion turbine {ToPrettyString(compressor):entity} intake to {compressor.Comp.IntakeRatio:P0}");
+            $"{ToPrettyString(args.Actor):player} set combustion turbine {ToPrettyString(rotor):entity} intake to {rotor.Comp.IntakeRatio:P0}");
 
         UpdateConsoleUi(ent);
     }
 
-    public Entity<CombustionTurbineCompressorComponent>? GetLinkedCompressor(Entity<CombustionTurbineConsoleComponent> ent)
+    public Entity<CombustionTurbineRotorComponent>? GetLinkedRotor(Entity<CombustionTurbineConsoleComponent> ent)
     {
         if (!TryComp<DeviceLinkSourceComponent>(ent, out var source))
             return null;
@@ -92,15 +102,8 @@ public sealed partial class CombustionTurbineSystem
             if (!linked || TerminatingOrDeleted(sink))
                 continue;
 
-            if (TryComp<CombustionTurbineCompressorComponent>(sink, out var compressor))
-                return (sink, compressor);
-
-            if (TryComp<CombustionTurbineGeneratorComponent>(sink, out var generator)
-                && generator.Compressor is { } compressorUid
-                && TryComp(compressorUid, out compressor))
-            {
-                return (compressorUid, compressor);
-            }
+            if (GetRotor(sink) is { } rotor)
+                return rotor;
         }
 
         return null;
@@ -110,13 +113,12 @@ public sealed partial class CombustionTurbineSystem
     {
         var state = new CombustionTurbineConsoleState();
 
-        if (GetLinkedCompressor(ent) is { } compressor)
+        if (GetLinkedRotor(ent) is { } rotor)
         {
-            var comp = compressor.Comp;
-            var generator = comp.Generator;
+            var comp = rotor.Comp;
 
-            state.Connected = generator != null;
-            state.GeneratorMissing = generator == null;
+            state.Linked = true;
+            state.Assembly = comp.Assembly;
             state.Enabled = comp.Enabled;
             state.StarterRunning = comp.StarterRunning;
             state.Governor = comp.GovernorFactor;
@@ -128,15 +130,24 @@ public sealed partial class CombustionTurbineSystem
             state.InletPressure = comp.InletPressure;
             state.ChamberPressure = comp.Air.Pressure;
             state.OutletPressure = comp.OutletPressure;
+            state.ExhaustTemperature = comp.ExhaustTemperature;
             state.MaxTemperature = comp.MaxTemperature;
             state.MolesPerSecond = comp.MolesPerSecond;
             state.IntakeRatio = comp.IntakeRatio;
-            state.IntakeVolume = comp.IntakeVolume;
+            state.IntakeVolume = comp.IntakeVolume * comp.IntakeMultiplier;
+            state.PartTiers[0] = GetPartTier(comp.Compressor);
+            state.PartTiers[1] = GetPartTier(rotor);
+            state.PartTiers[2] = GetPartTier(comp.Outlet);
 
-            if (generator is { } gen && TryComp<PowerSupplierComponent>(gen, out var supplier))
+            if (TryComp<PowerSupplierComponent>(rotor, out var supplier))
                 state.Power = supplier.CurrentSupply;
         }
 
         _ui.SetUiState(ent.Owner, CombustionTurbineConsoleUiKey.Key, state);
     }
+
+    private int GetPartTier(EntityUid? stage)
+        => stage is { } uid && TryComp<CombustionTurbineStageComponent>(uid, out var comp) && GetPart((uid, comp)) is { } part
+            ? part.Tier
+            : 0;
 }

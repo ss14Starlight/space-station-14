@@ -1,8 +1,7 @@
-
 - type: entity
   abstract: true
   parent: BaseMachine
-  id: BaseCombustionTurbinePart
+  id: BaseCombustionTurbineSection
   placement:
     mode: SnapgridCenter
   components:
@@ -44,10 +43,15 @@
   - type: DeviceLinkSink
     ports:
     - CombustionTurbineConsoleReceiver
+  - type: WiresPanel
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
       machine_parts: !type:Container
+      turbine_part: !type:ContainerSlot
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - turbine_part
   - type: Construction
     graph: Machine
     node: machine
@@ -60,56 +64,87 @@
     - Power
 
 - type: entity
-  parent: BaseCombustionTurbinePart
+  parent: BaseCombustionTurbineSection
   id: CombustionTurbineCompressor
-  name: combustion turbine compressor
-  description: The intake stage of a combustion turbine generator. Draws hot gas from the burn chamber it faces and forces it through the turbine behind it.
+  name: inlet compressor
+  description: The intake section of a combustion turbine. Draws hot gas from the tile behind it into the core rotor.
   components:
   - type: Sprite
     layers:
-    - state: compressor
-    - state: compressor-speed1
-      shader: unshaded
+    - state: inlet_compressor
+    - state: inlet_off
+      map: [ "enum.CombustionTurbineVisualLayers.Running" ]
+    - state: inlet_open
       visible: false
-      map: [ "enum.CombustionTurbineVisualLayers.Speed" ]
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
   - type: GenericVisualizer
     visuals:
-      enum.CombustionTurbineVisuals.Speed:
-        enum.CombustionTurbineVisualLayers.Speed:
-          0: { visible: false }
-          1: { visible: true, state: compressor-speed1 }
-          2: { visible: true, state: compressor-speed2 }
-          3: { visible: true, state: compressor-speed3 }
-          4: { visible: true, state: compressor-speed4 }
-  - type: ApcPowerReceiver
-    powerLoad: 200
-  - type: ExtensionCableReceiver
-  - type: LightningTarget
-    priority: 1
-  - type: AtmosDevice
-  - type: CombustionTurbineCompressor
+      enum.CombustionTurbineVisuals.Running:
+        enum.CombustionTurbineVisualLayers.Running:
+          True: { state: inlet_on }
+          False: { state: inlet_off }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ItemSlots
+    slots:
+      turbine_part:
+        name: combustion-turbine-slot-part
+        locked: true
+        startingItem: CombustionTurbineCompressorPart
+        whitelist:
+          components:
+          - CombustionTurbinePart
+  - type: CombustionTurbineStage
+    stage: Compressor
   - type: Machine
     board: CombustionTurbineCompressorMachineCircuitboard
 
 - type: entity
-  parent: BaseCombustionTurbinePart
-  id: CombustionTurbineGenerator
-  name: combustion turbine
-  description: The power stage of a combustion turbine generator. Gas expanding through its blades spins the rotor, and the exhaust vents out of the nozzle it faces.
+  parent: BaseCombustionTurbineSection
+  id: CombustionTurbineRotor
+  name: core rotor
+  description: The middle section of a combustion turbine, holding the rotor and the generator. Assemble it with an inlet compressor behind it and a turbine outlet in front, all facing the same way.
   components:
   - type: Sprite
     layers:
-    - state: turbine
-    - state: turbine-running
+    - state: core_rotor
+    - state: core_on
       shader: unshaded
       visible: false
       map: [ "enum.CombustionTurbineVisualLayers.Running" ]
+    - state: core_open
+      visible: false
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
   - type: GenericVisualizer
     visuals:
       enum.CombustionTurbineVisuals.Running:
         enum.CombustionTurbineVisualLayers.Running:
           True: { visible: true }
           False: { visible: false }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ItemSlots
+    slots:
+      turbine_part:
+        name: combustion-turbine-slot-part
+        locked: true
+        startingItem: CombustionTurbineRotorPart
+        whitelist:
+          components:
+          - CombustionTurbinePart
+  - type: CombustionTurbineStage
+    stage: Rotor
+  - type: CombustionTurbineRotor
+  - type: AtmosDevice
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: LightningTarget
+    priority: 1
   - type: NodeContainer
     examinable: true
     nodes:
@@ -123,8 +158,7 @@
     group: Generator
     loadNode: output
     sprite: _Starlight/Structures/Power/Generation/combustion_turbine.rsi
-    state: turbine
-  - type: CombustionTurbineGenerator
+    state: core_rotor
   - type: AmbientSound
     enabled: false
     volume: -6
@@ -132,4 +166,117 @@
     sound:
       path: /Audio/_FarHorizons/Ambience/Objects/turbine_room.ogg
   - type: Machine
-    board: CombustionTurbineGeneratorMachineCircuitboard
+    board: CombustionTurbineRotorMachineCircuitboard
+
+- type: entity
+  parent: BaseCombustionTurbineSection
+  id: CombustionTurbineOutlet
+  name: turbine outlet
+  description: The exhaust section of a combustion turbine, holding the turbine blades and the stator. Spent gas vents onto the tile in front of it.
+  components:
+  - type: Sprite
+    layers:
+    - state: turbine_outlet
+    - state: outlet_off
+      map: [ "enum.CombustionTurbineVisualLayers.Running" ]
+    - state: outlet_open
+      visible: false
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.CombustionTurbineVisuals.Running:
+        enum.CombustionTurbineVisualLayers.Running:
+          True: { state: outlet_on }
+          False: { state: outlet_off }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ItemSlots
+    slots:
+      turbine_part:
+        name: combustion-turbine-slot-part
+        locked: true
+        startingItem: CombustionTurbineStatorPart
+        whitelist:
+          components:
+          - CombustionTurbinePart
+  - type: CombustionTurbineStage
+    stage: Outlet
+  - type: Machine
+    board: CombustionTurbineOutletMachineCircuitboard
+
+# Parts
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseCombustionTurbinePart
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Power/Generation/combustion_turbine.rsi
+  - type: Item
+    size: Normal
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500
+  - type: GuideHelp
+    guides:
+    - CombustionTurbine
+
+- type: entity
+  parent: BaseCombustionTurbinePart
+  id: CombustionTurbineCompressorPart
+  name: compressor part
+  description: Install in a turbine inlet compressor. Better tiers draw more gas and handle more speed and heat.
+  components:
+  - type: Sprite
+    state: compressor_part
+  - type: CombustionTurbinePart
+    stage: Compressor
+    efficiency: [ 1, 1.2, 1.4, 1.6 ]
+    upgrades:
+    - stack: Plasteel
+      amount: 10
+    - stack: Uranium
+      amount: 10
+    - stack: MetalHydrogen
+      amount: 5
+
+- type: entity
+  parent: BaseCombustionTurbinePart
+  id: CombustionTurbineRotorPart
+  name: rotor part
+  description: Install in a turbine core rotor. Better tiers lose less power to friction and handle more speed and heat.
+  components:
+  - type: Sprite
+    state: rotor_part
+  - type: CombustionTurbinePart
+    stage: Rotor
+    efficiency: [ 1, 0.8, 0.6, 0.4 ]
+    upgrades:
+    - stack: Plasteel
+      amount: 10
+    - stack: Uranium
+      amount: 10
+    - stack: MetalHydrogen
+      amount: 5
+
+- type: entity
+  parent: BaseCombustionTurbinePart
+  id: CombustionTurbineStatorPart
+  name: stator part
+  description: Install in a turbine outlet. Better tiers catch more of the expanding gas's energy and handle more speed and heat.
+  components:
+  - type: Sprite
+    state: stator_part
+  - type: CombustionTurbinePart
+    stage: Outlet
+    efficiency: [ 0.4, 0.48, 0.56, 0.65 ]
+    upgrades:
+    - stack: Uranium
+      amount: 15
+    - stack: MetalHydrogen
+      amount: 15
+    - stack: Adamantine
+      amount: 10

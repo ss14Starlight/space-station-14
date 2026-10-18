@@ -1,5 +1,4 @@
 using Content.Shared.Atmos;
-using Content.Shared.DeviceLinking;
 using Content.Shared.Radio;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -7,13 +6,16 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.Power.CombustionTurbine;
 
 [RegisterComponent]
-public sealed partial class CombustionTurbineCompressorComponent : Component
+public sealed partial class CombustionTurbineRotorComponent : Component
 {
-    /// <summary>
-    /// The generator half, found on the tile behind the compressor.
-    /// </summary>
     [ViewVariables]
-    public EntityUid? Generator;
+    public EntityUid? Compressor;
+
+    [ViewVariables]
+    public EntityUid? Outlet;
+
+    [ViewVariables]
+    public CombustionTurbineAssembly Assembly = CombustionTurbineAssembly.MissingCompressor;
 
     /// <summary>
     /// Whether the turbine was switched on from the console.
@@ -42,8 +44,11 @@ public sealed partial class CombustionTurbineCompressorComponent : Component
     [DataField]
     public float RotorInertia = 0.4f;
 
+    /// <summary>
+    /// Litres per second the compressor draws at 100% intake, before the compressor part's multiplier.
+    /// </summary>
     [DataField]
-    public float IntakeVolume = 400f;
+    public float IntakeVolume = 800f;
 
     /// <summary>
     /// Rotor speed at which the compressor reaches its full intake. Below it intake scales linearly.
@@ -57,24 +62,50 @@ public sealed partial class CombustionTurbineCompressorComponent : Component
     [DataField]
     public float OutflowRate = 2f;
 
+    /// <summary>
+    /// Isentropic efficiency of the compressor. Work spent compressing gas into the chamber is the ideal work
+    /// divided by this, and ends up as heat in the chamber.
+    /// </summary>
     [DataField]
-    public float Efficiency = 0.35f;
+    public float CompressionEfficiency = 0.7f;
 
     /// <summary>
-    /// Expansion work is scaled by tanh((T - 20 °C) / this), so cold gas turns the turbine poorly
-    /// and it pays to burn the mix first.
+    /// The blades catch tanh((T - 20 °C) / this) of the expansion, so cold gas turns the turbine poorly and it
+    /// pays to burn the mix first. Without it a volumetric intake would make as much power from cold gas as from
+    /// hot gas at the same pressure.
     /// </summary>
     [DataField]
     public float ThermalScale = 1000f;
-
-    [DataField]
-    public float CompressionWorkFactor = 0.5f;
 
     [DataField]
     public float MinOutletPressure = 1f;
 
     [DataField]
     public float FrictionCoefficient = 0.0018f;
+
+    /// <summary>
+    /// Extra friction from the rotor brake while the turbine is switched off, so it spins down in under a minute.
+    /// </summary>
+    [DataField]
+    public float BrakeCoefficient = 0.08f;
+
+    /// <summary>
+    /// Below this speed a switched-off rotor counts as stopped, and its parts can be swapped.
+    /// </summary>
+    [DataField]
+    public float StopRpm = 50f;
+
+    /// <summary>
+    /// Generator load: electrical power drawn from the rotor is this times its angular speed squared.
+    /// </summary>
+    [DataField]
+    public float LoadCoefficient = 0.0182f;
+
+    [DataField]
+    public float PowerSmoothing = 0.3f;
+
+    [DataField]
+    public float RunningVisualThreshold = 1000f;
 
     [DataField]
     public float StarterRpm = 1000f;
@@ -85,8 +116,11 @@ public sealed partial class CombustionTurbineCompressorComponent : Component
     [DataField]
     public float IdlePower = 200f;
 
-    [DataField]
-    public float MaxRpm = 50000f;
+    /// <summary>
+    /// Rated speed, the average of the three installed parts.
+    /// </summary>
+    [ViewVariables]
+    public float MaxRpm;
 
     /// <summary>
     /// Fraction of <see cref="MaxRpm"/> above which the governor starts closing the intake.
@@ -112,8 +146,29 @@ public sealed partial class CombustionTurbineCompressorComponent : Component
     [DataField]
     public float GovernorFactor = 1f;
 
-    [DataField]
-    public float MaxTemperature = 8000f;
+    /// <summary>
+    /// Rated intake temperature, the average of the three installed parts.
+    /// </summary>
+    [ViewVariables]
+    public float MaxTemperature;
+
+    /// <summary>
+    /// Intake volume multiplier from the compressor part.
+    /// </summary>
+    [ViewVariables]
+    public float IntakeMultiplier = 1f;
+
+    /// <summary>
+    /// Friction multiplier from the rotor part.
+    /// </summary>
+    [ViewVariables]
+    public float FrictionMultiplier = 1f;
+
+    /// <summary>
+    /// Isentropic efficiency of the expansion, from the stator part.
+    /// </summary>
+    [ViewVariables]
+    public float ExpansionEfficiency;
 
     [DataField]
     public float Integrity = 100f;
@@ -152,7 +207,7 @@ public sealed partial class CombustionTurbineCompressorComponent : Component
     public float ExplosionIntensity = 50f;
 
     [DataField]
-    public float ExplosionIntensityPerRpm = 0.006f;
+    public float ExplosionIntensityPerRpm = 0.004f;
 
     [DataField]
     public float ExplosionSlope = 4f;
@@ -160,12 +215,12 @@ public sealed partial class CombustionTurbineCompressorComponent : Component
     [DataField]
     public float ExplosionMaxTileIntensity = 20f;
 
-    [DataField]
-    public ProtoId<SinkPortPrototype> ConsolePort = "CombustionTurbineConsoleReceiver";
-
     #region Last tick statistics, for the console
     [ViewVariables]
     public float Rpm;
+
+    [ViewVariables]
+    public float LastGeneration;
 
     [ViewVariables]
     public float InletTemperature;
@@ -175,6 +230,9 @@ public sealed partial class CombustionTurbineCompressorComponent : Component
 
     [ViewVariables]
     public float OutletPressure;
+
+    [ViewVariables]
+    public float ExhaustTemperature;
 
     [ViewVariables]
     public float MolesPerSecond;

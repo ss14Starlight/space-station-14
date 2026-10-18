@@ -30,14 +30,29 @@ public sealed partial class CombustionTurbineConsoleWindow : FancyWindow
 
     public void UpdateState(CombustionTurbineConsoleState state)
     {
-        ControlsBox.Visible = state.Connected;
-        StatusLabel.Text = Loc.GetString(state.Connected
-            ? "combustion-turbine-console-status-connected"
-            : state.GeneratorMissing
-                ? "combustion-turbine-console-status-no-generator"
-                : "combustion-turbine-console-status-unlinked");
+        var ready = state.Linked && state.Assembly == CombustionTurbineAssembly.Ready;
+        ControlsBox.Visible = ready;
+        PartsBox.Visible = state.Linked;
+        StatusLabel.Text = Loc.GetString(!state.Linked
+            ? "combustion-turbine-console-status-unlinked"
+            : state.Assembly switch
+            {
+                CombustionTurbineAssembly.Ready => "combustion-turbine-console-status-connected",
+                CombustionTurbineAssembly.MissingCompressor => "combustion-turbine-console-status-no-compressor",
+                CombustionTurbineAssembly.MissingOutlet => "combustion-turbine-console-status-no-outlet",
+                CombustionTurbineAssembly.PanelOpen => "combustion-turbine-console-status-panel-open",
+                _ => "combustion-turbine-console-status-missing-part",
+            });
 
-        if (!state.Connected)
+        if (!state.Linked)
+            return;
+
+        PartsText.Text = Loc.GetString("combustion-turbine-console-parts-value",
+            ("compressor", state.PartTiers[0]),
+            ("rotor", state.PartTiers[1]),
+            ("stator", state.PartTiers[2]));
+
+        if (!ready)
             return;
 
         OnButton.Pressed = state.Enabled;
@@ -68,6 +83,9 @@ public sealed partial class CombustionTurbineConsoleWindow : FancyWindow
             ("temperature", (int) state.InletTemperature),
             ("max", (int) state.MaxTemperature));
         TemperatureText.FontColorOverride = state.InletTemperature > state.MaxTemperature ? _badColor : null;
+
+        ExhaustTemperatureText.Text = Loc.GetString("combustion-turbine-console-kelvin-value",
+            ("temperature", (int) state.ExhaustTemperature));
 
         InletPressureText.Text = FormatPressure(state.InletPressure);
         ChamberPressureText.Text = FormatPressure(state.ChamberPressure);

@@ -40,8 +40,13 @@
 
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
-  id: CombustionTurbineGeneratorMachineCircuitboard
-  result: CombustionTurbineGeneratorMachineCircuitboard
+  id: CombustionTurbineRotorMachineCircuitboard
+  result: CombustionTurbineRotorMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
+  id: CombustionTurbineOutletMachineCircuitboard
+  result: CombustionTurbineOutletMachineCircuitboard
 
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]

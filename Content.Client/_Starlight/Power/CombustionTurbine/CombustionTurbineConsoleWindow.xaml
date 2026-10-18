@@ -2,8 +2,8 @@
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
                       Title="{Loc 'combustion-turbine-console-title'}"
-                      MinSize="420 430"
-                      SetSize="420 430">
+                      MinSize="420 500"
+                      SetSize="420 500">
     <BoxContainer Orientation="Vertical" Margin="10 6 10 10" SeparationOverride="4">
         <Label Name="StatusLabel" StyleClasses="LabelHeading" />
 
@@ -55,6 +55,10 @@
                 <Label Name="OutletPressureText" />
             </BoxContainer>
             <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'combustion-turbine-console-exhaust-temperature'}" MinWidth="130" />
+                <Label Name="ExhaustTemperatureText" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal">
                 <Label Text="{Loc 'combustion-turbine-console-flow'}" MinWidth="130" />
                 <Label Name="FlowText" />
             </BoxContainer>
@@ -66,6 +70,14 @@
                 <Label Name="IntakeText" />
             </BoxContainer>
             <Slider Name="IntakeSlider" HorizontalExpand="True" MinValue="1" MaxValue="100" />
+        </BoxContainer>
+
+        <BoxContainer Name="PartsBox" Orientation="Vertical" SeparationOverride="4">
+            <cc:HSeparator Margin="0 4" />
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'combustion-turbine-console-parts'}" MinWidth="130" />
+                <Label Name="PartsText" />
+            </BoxContainer>
         </BoxContainer>
     </BoxContainer>
 </controls:FancyWindow>

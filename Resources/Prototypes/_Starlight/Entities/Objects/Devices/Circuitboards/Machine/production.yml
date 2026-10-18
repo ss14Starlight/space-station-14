@@ -1507,8 +1507,8 @@
 - type: entity
   parent: BaseMachineCircuitboard
   id: CombustionTurbineCompressorMachineCircuitboard
-  name: combustion turbine compressor machine board
-  description: A machine printed circuit board for the compressor stage of a combustion turbine.
+  name: turbine inlet compressor machine board
+  description: A machine printed circuit board for the inlet compressor of a combustion turbine.
   components:
   - type: Sprite
     state: engineering
@@ -1521,18 +1521,32 @@
 
 - type: entity
   parent: BaseMachineCircuitboard
-  id: CombustionTurbineGeneratorMachineCircuitboard
-  name: combustion turbine machine board
-  description: A machine printed circuit board for the power stage of a combustion turbine.
+  id: CombustionTurbineRotorMachineCircuitboard
+  name: turbine core rotor machine board
+  description: A machine printed circuit board for the core rotor of a combustion turbine.
   components:
   - type: Sprite
     state: engineering
   - type: MachineBoard
-    prototype: CombustionTurbineGenerator
+    prototype: CombustionTurbineRotor
     stackRequirements:
       Plasteel: 5
       Manipulator: 2
       CableHV: 10
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: CombustionTurbineOutletMachineCircuitboard
+  name: turbine outlet machine board
+  description: A machine printed circuit board for the outlet of a combustion turbine.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: CombustionTurbineOutlet
+    stackRequirements:
+      Plasteel: 5
+      Manipulator: 2
 
 - type: entity
   parent: BaseMachineCircuitboard
