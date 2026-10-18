@@ -14,7 +14,7 @@
   - type: AntagRandomObjectives
     sets:
     - groups: BloodBoundObjectiveGroups
-    maxDifficulty: 4
+    maxDifficulty: 3
     forcedObjectiveGroup: BloodBoundObjectiveGroupFate
     storyObjectiveGroup: BloodBoundObjectiveGroupStory
     storyObjectiveCount: 3
@@ -24,7 +24,7 @@
     antags:
     - !type:LinearAntagCount
       proto: BloodBound
-      playerRatio: 30
+      playerRatio: 32
       range:
         min: 1
         max: 8
