@@ -137,27 +137,6 @@
       inverted: true
 
 - type: trait
-  id: Darktongue
-  name: trait-language-darktongue-name
-  description: trait-language-darktongue-desc
-  category: LanguageTraits
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Darktongue
-      languagesUnderstood:
-        - Darktongue
-  requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - DarkElf
-      inverted: true
-
-- type: trait
   id: Felyaic
   name: trait-language-felyaic-name
   description: trait-language-felyaic-desc
@@ -170,9 +149,19 @@
       languagesUnderstood:
         - Felyaic
   requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Darktongue
+    - !type:SpeciesRequirement
+      species:
+        - Doll
+        - Elf
+        - NeoElf
+    - !type:AnyRequirement
+      requirements:
+        - !type:SpeciesRequirement
+          species:
+            - Doll
+        - !type:TraitsRequirement
+          traits:
+            - DarkElf
     - !type:TraitsRequirement
       traits:
         - Iterator
