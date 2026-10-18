@@ -7,6 +7,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 
+// ReSharper disable CheckNamespace
 namespace Content.Client.Lobby.UI;
 
 /// <summary>
