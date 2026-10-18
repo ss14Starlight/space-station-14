@@ -1,11 +1,4 @@
 Entries:
-- author: XeroTec/Meepmerp
-  changes:
-  - message: admin/mentor mouse NPC aggression.
-    type: Fix
-  id: 409188
-  time: '2026-10-05T13:11:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6344
 - author: OJG
   changes:
   - message: The supermatter now releases plasma alongside its existing gas products.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409587
   time: '2026-10-18T09:13:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6734
+- author: piepie3.149
+  changes:
+  - message: Updated the Rotten icon in the Medical HUD to slowly pulse between black and purple, so it draws more notice.
+    type: Tweak
+  id: 409588
+  time: '2026-10-18T09:13:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6735
 Order: -1
