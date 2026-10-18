@@ -29,7 +29,7 @@ public sealed partial class StarlightInputSystem : EntitySystem
         SubscribeLocalEvent<ActiveInputMoverComponent, PlayerAttachedEvent>(OnActiveChanged);
         SubscribeLocalEvent<ActiveInputMoverComponent, PlayerDetachedEvent>(OnActiveChanged);
 
-        SubscribeLocalEvent<ActorComponent, ComponentStartup>(OnActiveChanged);
+        SubscribeLocalEvent<ActorComponent, ComponentStartup>(OnActiveChanged); // Ensure mover
         SubscribeLocalEvent<ActorComponent, ComponentRemove>(OnActiveChanged);
 
         SubscribeLocalEvent<ActiveNPCComponent, MapInitEvent>(OnActiveChanged);
