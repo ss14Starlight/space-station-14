@@ -311,3 +311,13 @@
   - type: RadioImplant
     radioChannels:
     - Soviet
+
+- type: entity
+  parent: MindShieldImplant
+  id: ITGMindShieldImplant
+  name: ITG mindshield implant
+  description: This implant will ensure loyalty to the Guild and prevent mind control devices.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MindShieldImplant
+    mindShieldStatusIcon: ITGMindShieldIcon
