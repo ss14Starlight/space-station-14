@@ -35,9 +35,9 @@
         - state: spawning
     - type: TriggerOnSpawn
     - type: TimerTrigger
-      delay: 3
+      delay: 1.5
     - type: TimedDespawn
-      lifetime: 3.1
+      lifetime: 1.6
     - type: SpawnOnTrigger
       keysIn:
       - timer
