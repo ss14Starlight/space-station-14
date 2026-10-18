@@ -1,25 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: A message now shows when a zombie attacks a body immune to infection, indicating they can't be infected.
-    type: Add
-  id: 409185
-  time: '2026-10-05T09:47:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6484
-- author: Yosif
-  changes:
-  - message: Cinnaflare and SpearMint now works.
-    type: Fix
-  id: 409186
-  time: '2026-10-05T10:09:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6516
-- author: Yosif
-  changes:
-  - message: Popups when you touching botany stuff now doesnt create lot of popups.
-    type: Fix
-  id: 409187
-  time: '2026-10-05T10:32:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6515
 - author: XeroTec/Meepmerp
   changes:
   - message: admin/mentor mouse NPC aggression.
@@ -2883,4 +2862,25 @@ Entries:
   id: 409584
   time: '2026-10-17T23:49:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6701
+- author: STARLIGHT TEAM
+  changes:
+  - message: ITG Mindshield.
+    type: Add
+  id: 409585
+  time: '2026-10-18T09:13:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6734
+- author: STARLIGHT TEAM
+  changes:
+  - message: surplus crate drop rates, expect less peacekeepers.
+    type: Tweak
+  id: 409586
+  time: '2026-10-18T09:13:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6734
+- author: STARLIGHT TEAM
+  changes:
+  - message: heat resistance of ITG Loss Prevention Suit.
+    type: Tweak
+  id: 409587
+  time: '2026-10-18T09:13:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6734
 Order: -1
