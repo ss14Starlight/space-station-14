@@ -1,9 +1,6 @@
 - type: !PartialOnly latheRecipePack
   id: EngineeringBoardsStatic
   recipes:
-  - CombustionTurbineCompressorMachineCircuitboard
-  - CombustionTurbineRotorMachineCircuitboard
-  - CombustionTurbineOutletMachineCircuitboard
   - CombustionTurbineComputerCircuitboard
   - IgniterMachineCircuitboard
 
@@ -13,3 +10,10 @@
   - CombustionTurbineCompressorPart
   - CombustionTurbineRotorPart
   - CombustionTurbineStatorPart
+
+- type: !PartialOnly latheRecipePack
+  id: EngineeringBoards
+  recipes:
+  - CombustionTurbineCompressorMachineCircuitboard
+  - CombustionTurbineRotorMachineCircuitboard
+  - CombustionTurbineOutletMachineCircuitboard

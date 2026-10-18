@@ -22,7 +22,7 @@ public sealed partial class CombustionTurbinePartComponent : Component
     /// Rotor speed the part is rated for, per tier. The turbine is limited by the average of its three parts.
     /// </summary>
     [DataField]
-    public float[] MaxRpm = [30000f, 40000f, 55000f, 75000f];
+    public float[] MaxRpm = [30000f, 40000f, 52000f, 67000f];
 
     /// <summary>
     /// Intake gas temperature the part is rated for, per tier. The turbine is limited by the average of its three parts.

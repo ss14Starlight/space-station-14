@@ -14,6 +14,11 @@
     <GuideEntityEmbed Entity="IgniterFloor" Caption="igniter"/>
   </Box>
 
+  ## Getting one
+
+  Cargo sells a [color=#a4885c]combustion turbine crate[/color] with all three sections flatpacked, tier 1 parts already installed, and the control computer.
+  To build more, research [color=#a4885c]Combustion turbines[/color] (Industrial). The section boards are expensive to print (plasma and gold), and each section takes plasteel and plasma sheets to build.
+
   ## Assembly
 
   The turbine is three machines in a row, all [color=#a4885c]facing the same way[/color]. Gas flows through them in that direction, and together they act as an airtight wall:
@@ -31,7 +36,7 @@
   4. Turn the turbine on from the computer. The starter motor spins the rotor up, the compressor starts drawing gas, and the burn takes it from there.
 
   The [color=#a4885c]intake regulator[/color] on the computer sets how many litres per second the compressor draws (800 L/s with a tier 1 compressor part). The same volume holds more gas at higher pressure, so a denser chamber gives more power for the same setting.
-  The turbine is hungry: at 1 MPa it draws around 30 mol/s, at 3 MPa around 50 mol/s, so keep feeding the chamber.
+  The turbine is hungry: at 1 MPa it draws around 30 mol/s, at 2 MPa around 60 mol/s, and a fully upgraded turbine at 3 MPa takes well over 100 mol/s, so keep feeding the chamber.
 
   Cold gas barely turns the rotor, however much pressure is behind it. You only get real power from burning.
   The blades take only part of the heat out of the gas, so the exhaust is still very hot, often well over 1000 K. Unburnt fuel passes straight through, so a filter on the exhaust can collect it to burn again.
@@ -46,7 +51,7 @@
   ## Parts and upgrades
 
   Every section holds one part: a [color=#a4885c]compressor part[/color], a [color=#a4885c]rotor part[/color] or a [color=#a4885c]stator part[/color]. The turbine will not run with a part missing.
-  Tier 1 parts can be printed at an engineering lathe. To reach a higher tier, use the material listed when you examine the part on it while holding it.
+  Every section comes with a tier 1 part installed, and spare tier 1 parts can be printed at an engineering lathe. To reach a higher tier, use the material listed when you examine the part on it while holding it.
 
   <Table Columns="3">
     <ColorBox>
@@ -76,7 +81,7 @@
     </ColorBox>
     <ColorBox>
       <Box>
-        15 uranium
+        15 plasteel
       </Box>
     </ColorBox>
     <ColorBox>
@@ -91,7 +96,7 @@
     </ColorBox>
     <ColorBox>
       <Box>
-        15 metal hydrogen
+        15 uranium
       </Box>
     </ColorBox>
     <ColorBox>
@@ -101,19 +106,19 @@
     </ColorBox>
     <ColorBox>
       <Box>
-        5 metal hydrogen
+        5 diamonds
       </Box>
     </ColorBox>
     <ColorBox>
       <Box>
-        10 adamantine
+        8 diamonds
       </Box>
     </ColorBox>
   </Table>
 
   Each tier raises the speed and the intake temperature the part is rated for. The turbine is rated for the [color=#a4885c]average[/color] of its three parts.
   On top of that, a better compressor part draws more gas, a better rotor part loses less power to friction, and a better stator part catches more of the gas's energy.
-  A tier 1 turbine tops out at about [color=orange]160 kW[/color]; a fully upgraded one can make close to [color=orange]1 MW[/color] from a dense, hot burn.
+  A tier 1 turbine tops out at about [color=orange]300 kW[/color] once the chamber holds around 1.5-2 MPa of burning gas; a fully upgraded one can make about [color=orange]1.5 MW[/color] from a 3 MPa burn.
 
   To swap a part, turn the turbine off and wait for the rotor to stop. Open the section's panel with a [color=#a4885c]screwdriver[/color], pry the part out with a [color=#a4885c]crowbar[/color], put the new part in and close the panel. Prying again with no part inside takes the machine apart.
 

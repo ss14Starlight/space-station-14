@@ -1515,7 +1515,8 @@
   - type: MachineBoard
     prototype: CombustionTurbineCompressor
     stackRequirements:
-      Plasteel: 5
+      Plasteel: 10
+      Plasma: 10
       Manipulator: 4
       Cable: 5
 
@@ -1530,7 +1531,8 @@
   - type: MachineBoard
     prototype: CombustionTurbineRotor
     stackRequirements:
-      Plasteel: 5
+      Plasteel: 10
+      Plasma: 10
       Manipulator: 2
       CableHV: 10
 
@@ -1545,7 +1547,8 @@
   - type: MachineBoard
     prototype: CombustionTurbineOutlet
     stackRequirements:
-      Plasteel: 5
+      Plasteel: 10
+      Plasma: 10
       Manipulator: 2
 
 - type: entity

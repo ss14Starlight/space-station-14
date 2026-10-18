@@ -70,18 +70,26 @@ public sealed partial class CombustionTurbineRotorComponent : Component
     public float CompressionEfficiency = 0.7f;
 
     /// <summary>
-    /// The blades catch tanh((T - 20 °C) / this) of the expansion, so cold gas turns the turbine poorly and it
-    /// pays to burn the mix first. Without it a volumetric intake would make as much power from cold gas as from
-    /// hot gas at the same pressure.
+    /// The blades turn tanh((T - 20 °C) / this) of the expansion into rotor work, so cold gas turns the turbine
+    /// poorly and it pays to burn the mix first. Without it a volumetric intake would make as much power from cold
+    /// gas as from hot gas at the same pressure.
     /// </summary>
     [DataField]
     public float ThermalScale = 1000f;
+
+    /// <summary>
+    /// Rotor work per joule of heat the gas loses while expanding, before the thermal factor.
+    /// Keep <c>WorkMultiplier * tanh((593 K - 293 K) / ThermalScale)</c> below 1: thermomachine heaters reach
+    /// 593 K, and above that a heater, a pump and this turbine in a loop would make free power.
+    /// </summary>
+    [DataField]
+    public float WorkMultiplier = 2f;
 
     [DataField]
     public float MinOutletPressure = 1f;
 
     [DataField]
-    public float FrictionCoefficient = 0.0018f;
+    public float FrictionCoefficient = 0.0033f;
 
     /// <summary>
     /// Extra friction from the rotor brake while the turbine is switched off, so it spins down in under a minute.
@@ -99,7 +107,7 @@ public sealed partial class CombustionTurbineRotorComponent : Component
     /// Generator load: electrical power drawn from the rotor is this times its angular speed squared.
     /// </summary>
     [DataField]
-    public float LoadCoefficient = 0.0182f;
+    public float LoadCoefficient = 0.0326f;
 
     [DataField]
     public float PowerSmoothing = 0.3f;

@@ -171,8 +171,8 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
         {
             var idealDrop = temperature * (1f - MathF.Pow(outletPressure / chamberPressure, exponent));
             var thermal = MathF.Tanh(MathF.Max(0f, temperature - Atmospherics.T20C) / comp.ThermalScale);
-            var drop = MathF.Min(comp.ExpansionEfficiency * thermal * idealDrop, temperature - Atmospherics.TCMB);
-            work = heatCapacity * MathF.Max(0f, drop);
+            var drop = MathF.Max(0f, MathF.Min(comp.ExpansionEfficiency * idealDrop, temperature - Atmospherics.TCMB));
+            work = comp.WorkMultiplier * thermal * heatCapacity * drop;
             passing.Temperature = MathF.Max(Atmospherics.TCMB, temperature - drop);
         }
 
