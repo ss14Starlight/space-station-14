@@ -106,3 +106,48 @@
   id: Hemorrhinol
   contrabandTier: Tier2
   contrabandSeverity: !Remove
+
+# Replaces the whole effects list; keep the unchanged effects in sync with upstream.
+- type: !PartialOnly reagent
+  id: Histamine
+  metabolisms:
+    Bloodstream:
+      effects: !Clear
+      - !type:HealthChange
+        probability: 0.1
+        damage:
+          groups:
+            Brute: 2
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Histamine
+          min: 45
+        damage:
+          groups:
+            Brute: 2
+            Airloss: 2
+          types:
+            Poison: 2
+      - !type:PopupMessage
+        type: Local
+        messages: [ "histamine-effect-light-itchiness" ]
+        probability: 0.1
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentCondition
+          reagent: Histamine
+          min: 45
+        type: Local
+        visualType: Medium
+        messages: [ "histamine-effect-heavy-itchiness" ]
+        probability: 0.2
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: Histamine
+          min: 0.26
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Histamine
+        amount: 0.25

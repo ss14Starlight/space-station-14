@@ -23,7 +23,7 @@
   - Shuttle
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    implants: [ ITGMindShieldImplant ]
   - !type:AddComponentSpecial
     components:
       - type: NoObjectiveTarget
