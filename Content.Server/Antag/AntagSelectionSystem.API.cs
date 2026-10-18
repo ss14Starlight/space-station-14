@@ -582,11 +582,16 @@ public sealed partial class AntagSelectionSystem
         if (!_pref.TryGetCachedPreferences(session.UserId, out var prefs))
             yield break;
 
-        foreach (var antag in prefs.Characters.Values // Starlight start
+        // Starlight-start
+        if (!AntagsEnabled(session))
+            yield break;
+
+        foreach (var antag in prefs.Characters.Values
                     .OfType<HumanoidCharacterProfile>()
                     .Where(profile => profile.Enabled)
                     .SelectMany(profile => profile.AntagPreferences)
-                    .Distinct()) // Starlight end
+                    .Distinct())
+        // Starlight-end
         {
             // We also check this in IsSessionValid, but we also check it here since this is public API.
             if (_ban.IsRoleBanned(session, antag) || !_playTime.IsAllowed(session, antag))

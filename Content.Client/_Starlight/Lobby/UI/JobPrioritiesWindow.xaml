@@ -1,0 +1,19 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc 'job-priorities-window-title'}"
+               SetSize="900 640"
+               MinSize="480 360">
+    <BoxContainer Orientation="Vertical" SeparationOverride="8">
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+            <Label Name="SummaryLabel" StyleClasses="LabelSubText" HorizontalExpand="True" VAlign="Center" ClipText="True" />
+            <LineEdit Name="SearchLineEdit" MinWidth="180" PlaceHolder="{Loc 'job-priorities-window-search'}" />
+        </BoxContainer>
+        <WrapContainer Name="FilterBox" SeparationOverride="4" CrossSeparationOverride="4" />
+        <PanelContainer StyleClasses="InsetPanel" VerticalExpand="True">
+            <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                <BoxContainer Name="DepartmentList" Orientation="Vertical" SeparationOverride="12" Margin="10" />
+            </ScrollContainer>
+        </PanelContainer>
+        <WrapContainer Name="Legend" SeparationOverride="12" CrossSeparationOverride="2" />
+        <RichTextLabel Name="HintLabel" StyleClasses="LabelSubText" />
+    </BoxContainer>
+</DefaultWindow>

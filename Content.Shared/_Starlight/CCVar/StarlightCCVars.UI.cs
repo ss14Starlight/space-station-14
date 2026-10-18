@@ -25,7 +25,7 @@ public sealed partial class StarlightCCVars
     /// The theme of the interface.
     /// </summary>
     public static readonly CVarDef<string> StyleTheme =
-        CVarDef.Create("ui.style_theme", "Nanotrasen", CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("ui.style_theme", "NanoTrasen", CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
     /// Accent color of the interface: window titles, headings, selected tabs, pressed buttons.
@@ -38,6 +38,27 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<bool> StyleCustomAccent =
         CVarDef.Create("ui.style_custom_accent", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Show the old drag and drop job priority columns in the lobby, under the round info.
+    /// </summary>
+    public static readonly CVarDef<bool> LobbyJobColumns =
+        CVarDef.Create("ui.lobby_job_columns", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> LobbyBackground =
+        CVarDef.Create("ui.lobby_background", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Width of the chat column in the lobby, dragged by its left edge.
+    /// </summary>
+    public static readonly CVarDef<int> LobbyChatWidth =
+        CVarDef.Create("ui.lobby_chat_width", 630, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Opacity of the lobby panels over the lobby art, 1 is fully opaque.
+    /// </summary>
+    public static readonly CVarDef<float> LobbyOpacity =
+        CVarDef.Create("ui.lobby_opacity", 0.95f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
     /// Where each button of the top menu bar goes: <c>Name=Pinned|Auto|Menu|Hidden;...</c>, see BarLayout.

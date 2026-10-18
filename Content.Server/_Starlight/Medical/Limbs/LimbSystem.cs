@@ -51,6 +51,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
 
         if (!_body.AttachPart(part, slot, virtualItem, part.Comp, virtualBodyPart))
         {
+            marker.VirtualPart = null;
             QueueDel(virtualItem);
             return false;
         }
@@ -59,19 +60,27 @@ public sealed partial class LimbSystem : SharedLimbSystem
         return true;
     }
 
-    public void Amputatate(Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb)
+    public bool Amputatate(Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb)
     {
         if (!_containers.TryGetContainingContainer((limb.Owner, limb.Comp1, limb.Comp2), out var container)
-         || _body.GetParentPartAndSlotOrNull(limb.Owner) is not var (_, slotId)
-         || !_containers.Remove(limb.Owner, container, destination: body.Comp1.Coordinates)) return;
+            || _body.GetParentPartAndSlotOrNull(limb.Owner) is not var (_, slotId))
+            return false;
 
-        if (TryComp<CustomLimbComponent>(limb, out var virtualLimb))
+        var virtualLimb = TryComp<CustomLimbComponent>(limb, out var limbComponent) ? limbComponent : null;
+        if (virtualLimb is not null)
+            RemoveTerminatingItemFromHand(body.Owner, virtualLimb.Item, BodySystem.GetPartSlotContainerId(slotId));
+
+        if (!_containers.Remove(limb.Owner, container, destination: body.Comp1.Coordinates))
+            return false;
+
+        if (virtualLimb is not null)
             AmputateItemLimb((body, body.Comp1, body.Comp3), limb, slotId, virtualLimb);
         else
         {
             RemoveLimbVisual(body, limb);
             RemoveLimb(body, limb);
         }
+        return true;
     }
 
     private void AddItemLimb(EntityUid body, string slot, Entity<MetaDataComponent> item)
@@ -84,6 +93,10 @@ public sealed partial class LimbSystem : SharedLimbSystem
 
     private void AmputateItemLimb(Entity<TransformComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb, string slotId, CustomLimbComponent virtualLimb)
     {
+        if (!TerminatingOrDeleted(virtualLimb.Item)
+            && TryComp<CustomLimbMarkerComponent>(virtualLimb.Item, out var marker))
+            marker.VirtualPart = null;
+
         RemoveItemLimb(body, virtualLimb.Item, BodySystem.GetPartSlotContainerId(slotId));
 
         var vizualizer = EnsureComp<CustomLimbVisualizerComponent>(body);
@@ -112,10 +125,28 @@ public sealed partial class LimbSystem : SharedLimbSystem
 
     private void RemoveItemLimb(EntityUid bodyId, EntityUid itemId, string handId)
     {
-        if (!bodyId.IsValid() || !itemId.IsValid()) return;
+        if (!bodyId.IsValid() || TerminatingOrDeleted(bodyId)) return;
+
+        if (!itemId.IsValid() || TerminatingOrDeleted(itemId))
+        {
+            RemoveTerminatingItemFromHand(bodyId, itemId, handId);
+            _hands.RemoveHand(bodyId, handId);
+            return;
+        }
 
         RemComp<UnremoveableComponent>(itemId);
         _hands.DoDrop(itemId, handId);
         _hands.RemoveHand(bodyId, handId);
+    }
+
+    private void RemoveTerminatingItemFromHand(EntityUid bodyId, EntityUid itemId, string handId)
+    {
+        if (itemId.IsValid()
+            && TryComp(itemId, out MetaDataComponent? metadata)
+            && metadata.EntityLifeStage == EntityLifeStage.Terminating
+            && _containers.TryGetContainer(bodyId, handId, out var handContainer)
+            && handContainer.Contains(itemId))
+            // Avoid deleting an entity again when the hand container shuts down.
+            _containers.Remove(itemId, handContainer, reparent: false, force: true);
     }
 }

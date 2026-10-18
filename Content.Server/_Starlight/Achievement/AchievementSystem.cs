@@ -612,11 +612,11 @@ public sealed partial class AchievementSystem : EntitySystem
         QueueUnlockAchievement(killerSession, "paradox_undone");
     }
 
-    private void OnDamageableChanged(EntityUid uid, DamageableComponent damageable, ref DamageChangedEvent args)
+    private void OnDamageableChanged(EntityUid uid, DamageableComponent _, ref DamageChangedEvent args)
     {
         if (!_playerManager.TryGetSessionByEntity(uid, out var session)
             || _damageableSystem.GetTotalDamage(uid).Float() < HesDeadJimDamageThreshold
-            || !HasRequiredDamageGroups(damageable))
+            || !HasRequiredDamageGroups(uid))
         {
             return;
         }
@@ -913,11 +913,11 @@ public sealed partial class AchievementSystem : EntitySystem
         return requiredDepartmentId == null || JobHasDepartment(job.ID, requiredDepartmentId);
     }
 
-    private bool HasRequiredDamageGroups(DamageableComponent damageable)
+    private bool HasRequiredDamageGroups(EntityUid uid)
     {
         foreach (var groupId in HealthAnalyzerFormatting.DamageGroupOrder)
         {
-            if (!_damageableSystem.GetDamagePerGroup(damageable.Owner).TryGetValue(groupId, out var damage)
+            if (!_damageableSystem.GetDamagePerGroup(uid).TryGetValue(groupId, out var damage)
                 || damage.Float() <= 0f)
             {
                 return false;
