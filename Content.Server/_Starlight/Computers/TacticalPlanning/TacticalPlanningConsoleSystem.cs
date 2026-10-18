@@ -35,8 +35,7 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
     [Dependency] private IAdminLogManager _adminLog = default!;
 
     public override void Initialize()
-    {
-        Subs.BuiEvents<TacticalPlanningConsoleComponent>(TacticalPlanningConsoleUiKey.Key, subs =>
+        => Subs.BuiEvents<TacticalPlanningConsoleComponent>(TacticalPlanningConsoleUiKey.Key, subs =>
         {
             subs.Event<BoundUIOpenedEvent>(OnOpened);
             subs.Event<BoundUIClosedEvent>(OnClosed);
@@ -45,7 +44,6 @@ public sealed partial class TacticalPlanningConsoleSystem : EntitySystem
             subs.Event<TacticalPlanEraseAnnotationMessage>(OnEraseAnnotation);
             subs.Event<TacticalPlanResetMessage>(OnReset);
         });
-    }
 
     [SubscribeLocalEvent]
     private void OnEmagged(Entity<TacticalPlanningConsoleComponent> ent, ref GotEmaggedEvent args)

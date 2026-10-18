@@ -92,7 +92,7 @@ public sealed class TacticalPlanningMapControl : NavMapControl
     {
         var radius = 10f / MinimapScale;
         var maxDistanceSquared = radius * radius;
-        var iconHitRadius = (IconSize / 2f + IconHitPadding) / MinimapScale;
+        var iconHitRadius = ((IconSize / 2f) + IconHitPadding) / MinimapScale;
 
         for (var index = _annotations.Count - 1; index >= 0; index--)
         {

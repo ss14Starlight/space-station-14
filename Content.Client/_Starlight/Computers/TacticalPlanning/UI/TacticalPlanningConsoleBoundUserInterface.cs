@@ -87,8 +87,7 @@ public sealed class TacticalPlanningConsoleBoundUserInterface : BoundUserInterfa
         _window.ColorSelected += color =>
         {
             // Picker movement is local. Only a completed drawing sends its color to the server.
-            if (_cache != null)
-                _cache.SelectedColor = color;
+            _cache?.SelectedColor = color;
         };
         _window.PlanReset += () =>
         {
