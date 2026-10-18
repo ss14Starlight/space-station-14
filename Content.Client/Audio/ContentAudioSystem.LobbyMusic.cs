@@ -91,21 +91,18 @@ public sealed partial class ContentAudioSystem
                 StartLobbyMusic();
                 break;
             default:
-                EndLobbyMusic();
+                // Starlight - keep the round-end music going when (re)joining the game after the round ended.
+                if (!_postRoundMusic)
+                    EndLobbyMusic();
                 break;
         }
     }
 
     private void OnLeave(object? sender, PlayerEventArgs args)
     {
+        _postRoundMusic = false; // Starlight
         EndLobbyMusic();
     }
-
-    #region Starlight
-
-    private void OnRoundEndCancelMessage(RoundEndCancelMessageEvent ev) => EndLobbyMusic();
-
-    #endregion
 
     private void LobbyMusicVolumeCVarChanged(float volume)
     {
@@ -133,8 +130,11 @@ public sealed partial class ContentAudioSystem
     private void OnLobbySongChanged(LobbyPlaylistChangedEvent playlistChangedEvent)
     {
         var playlist = playlistChangedEvent.Playlist;
+        _postRoundMusic = playlistChangedEvent.PostRound; // Starlight
+
         //playlist is already playing, no need to restart it
         if (_lobbySoundtrackInfo != null
+            && !IsLobbyMusicExisting(_lobbySoundtrackInfo) // Starlight
             && _lobbyPlaylist != null
             && _lobbyPlaylist.SequenceEqual(playlist)
            )
@@ -165,6 +165,10 @@ public sealed partial class ContentAudioSystem
     /// <param name="playlist">Array of soundtrack filenames for lobby playlist.</param>
     private void StartLobbyMusic(string[] playlist)
     {
+        // Starlight - a stream that died on us shouldn't block starting the music again.
+        if (_lobbySoundtrackInfo != null && IsLobbyMusicExisting(_lobbySoundtrackInfo))
+            EndLobbyMusic();
+
         if (_lobbySoundtrackInfo != null || !_configManager.GetCVar(CCVars.LobbyMusicEnabled))
             return;
 
@@ -250,7 +254,8 @@ public sealed partial class ContentAudioSystem
     {
         if (
             _lobbySoundtrackInfo != null
-            && _timing.CurTime >= _lobbySoundtrackInfo.NextTrackOn
+            && (_timing.CurTime >= _lobbySoundtrackInfo.NextTrackOn
+                || IsLobbyMusicExisting(_lobbySoundtrackInfo)) // Starlight
             && _lobbyPlaylist?.Length > 0
             )
         {
