@@ -22,8 +22,7 @@ namespace Content.IntegrationTests.Tests._Starlight.RemoteControl;
 [TestOf(typeof(RemoteControlConsoleSystem))]
 public sealed class RemoteControlBorgMovementTest : MovementTest
 {
-    [TestPrototypes]
-    private const string Prototypes = """
+    [TestPrototypes] private const string Prototypes = """
         -   type: entity
             id: RemoteControlBorgMovementTestAI
             parent: MobHuman
@@ -71,28 +70,25 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
 
         await Server.WaitAssertion(() =>
         {
-            var remoteControl = new AIRemoteControlActionEvent
-            {
-                Target = controlledBorg
-            };
+            var remoteControl = new AIRemoteControlActionEvent { Target = controlledBorg };
             SEntMan.EventBus.RaiseLocalEvent(SPlayer, remoteControl);
 
             var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(SPlayer);
             Assert.Multiple(() =>
             {
-                Assert.That(remoteControl.Handled, Is.True, "The AI remote-control action should take control of the first borg.");
+                Assert.That(remoteControl.Handled, Is.True,
+                    "The AI remote-control action should take control of the first borg.");
                 Assert.That(console.Controller, Is.EqualTo(SPlayer));
-                Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(SPlayer).RelayEntity, Is.EqualTo(controlledBorg));
+                Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(SPlayer).RelayEntity,
+                    Is.EqualTo(controlledBorg));
             });
         });
 
         await RunTicks(1);
 
         await Server.WaitAssertion(() =>
-        {
             SEntMan.EventBus.RaiseLocalEvent(SPlayer,
-                new BoundUIClosedEvent(RemoteControlUIKey.Key, SPlayer, SPlayer));
-        });
+                new BoundUIClosedEvent(RemoteControlUIKey.Key, SPlayer, SPlayer)));
 
         await RunTicks(1);
 
@@ -102,11 +98,7 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
             Assert.That(console.Controller, Is.Null, "Remote control should be released before shunting.");
             moverPresentAfterRemoteControl = SEntMan.HasComponent<InputMoverComponent>(controlledBorg);
 
-            var shunt = new AIShuntActionEvent
-            {
-                Target = controlledBorg,
-                IgnoreCameraView = true
-            };
+            var shunt = new AIShuntActionEvent { Target = controlledBorg, IgnoreCameraView = true };
             SEntMan.EventBus.RaiseLocalEvent(SPlayer, shunt);
             Assert.That(shunt.Handled, Is.True, "The AI should be able to shunt into the previously controlled borg.");
         });
@@ -114,9 +106,7 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
         await RunTicks(5);
 
         await Server.WaitAssertion(() =>
-        {
-            moverPresentAfterShunt = SEntMan.HasComponent<InputMoverComponent>(controlledBorg);
-        });
+            moverPresentAfterShunt = SEntMan.HasComponent<InputMoverComponent>(controlledBorg));
 
         var controlledBorgStart = Vector2.Zero;
         await Server.WaitAssertion(() => controlledBorgStart = Transform.GetWorldPosition(controlledBorg));
@@ -142,11 +132,7 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
 
         await Server.WaitAssertion(() =>
         {
-            var shunt = new AIShuntActionEvent
-            {
-                Target = untouchedBorg,
-                IgnoreCameraView = true
-            };
+            var shunt = new AIShuntActionEvent { Target = untouchedBorg, IgnoreCameraView = true };
             SEntMan.EventBus.RaiseLocalEvent(SPlayer, shunt);
             Assert.That(shunt.Handled, Is.True, "The AI should be able to shunt into the untouched borg.");
         });
@@ -161,7 +147,8 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
 
         Assert.Multiple(() =>
         {
-            Assert.That(untouchedBorgMoved, Is.True, "The borg that was never remote-controlled should move after shunting.");
+            Assert.That(untouchedBorgMoved, Is.True,
+                "The borg that was never remote-controlled should move after shunting.");
             Assert.That(controlledBorgMoved, Is.True,
                 $"The previously remote-controlled borg should move after shunting (InputMover after release: {moverPresentAfterRemoteControl}, after shunt: {moverPresentAfterShunt}).");
         });
