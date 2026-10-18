@@ -24,7 +24,7 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
 {
     [TestPrototypes]
     private const string Prototypes = """
-        - type: entity
+        -   type: entity
             id: RemoteControlBorgMovementTestAI
             parent: MobHuman
             components:
@@ -34,7 +34,7 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
                 interfaces:
                     enum.RemoteControlUIKey.Key:
                         type: RemoteControlConsoleBoundUserInterface
-        - type: entity
+        -   type: entity
             id: RemoteControlBorgMovementTestInterface
             parent: AiInterfaceCube
             components:
