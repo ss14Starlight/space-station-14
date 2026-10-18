@@ -9,3 +9,93 @@
     - type: HTN
       rootTask:
         task: SimpleHostileCompound
+
+- type: entity
+  id: MimicSusToolboxWaking
+  name: suspicious toolbox ?
+  description: A sinister looking toolbox filled wit- wait, something's wrong.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Mobs/Demons/susmimic.rsi
+      layers:
+        - state: spawning
+    - type: TriggerOnSpawn
+    - type: TimerTrigger
+      delay: 3
+    - type: TimedDespawn
+      lifetime: 3.1
+    - type: SpawnOnTrigger
+      keysIn:
+      - timer
+      proto: MimicSusToolbox
+    - type: EmitSoundOnSpawn
+      sound:
+        path: /Audio/_Starlight/CosmicCult/colossus_spawn.ogg
+
+- type: entity
+  name: suspicious mimic
+  id: MimicSusToolbox
+  parent: SimpleSpaceMobBase
+  description: It wasn't a free pair of combat gloves.
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
+      sprite: _Starlight/Mobs/Demons/susmimic.rsi
+  - type: Physics
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 6
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: Stamina
+    baseCritThreshold: 100
+    animationThreshold: 60
+  - type: MovementAlwaysTouching
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Dead:
+        Base: dead
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 80
+  - type: CombatMode
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/smash.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 20
