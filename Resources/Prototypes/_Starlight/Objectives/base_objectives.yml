@@ -41,14 +41,17 @@
     blacklist:
       components:
       - DieCondition
-      - DepartmentObjective
-      - LocationObjective
 
 - type: entity
   abstract: true
   parent: BaseLocationStoryObjective
   id: BaseDepartmentStoryObjective
   components:
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      components:
+      - DieCondition
+      - DepartmentObjective
   - type: PickRandomDepartment
 
 - type: entity
