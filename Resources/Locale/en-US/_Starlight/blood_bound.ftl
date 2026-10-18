@@ -46,3 +46,13 @@ objective-condition-blood-bound-progress-title = Help {$targetName} accomplish t
 
 objective-condition-blood-bound-steal-description = We need to get the {$itemName}.
 objective-condition-blood-bound-steal-multiply-description = We need to get {$count} {MAKEPLURAL($itemName)}.
+
+objective-condition-blood-bound-steal-heart = Steal the heart of {$targetName}, {CAPITALIZE($job)}.
+objective-condition-blood-bound-firestake = Firestake {$count} { $count ->
+    [one] person
+    *[other] people
+    } in {$zone}.
+objective-condition-blood-bound-firestake-description = We need to burn {$count} { $count ->
+    [one] person
+    *[other] people
+    } on bonfire stakes in {$zone} while they are still alive. Each person counts once.

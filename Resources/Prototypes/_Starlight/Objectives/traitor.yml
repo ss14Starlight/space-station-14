@@ -544,15 +544,6 @@
 
 # Story objectives from Moff Station
 - type: entity
-  parent: BaseDepartmentStoryObjective
-  id: SabotageObjective
-  name: Sabotage Department
-  description: We need you to sabotage this department's activities.
-  components:
-  - type: DepartmentObjective
-    title: objective-condition-sabotage-department
-
-- type: entity
   parent: BaseRoomStoryObjective
   id: TrashRoomObjective
   name: Trash Room

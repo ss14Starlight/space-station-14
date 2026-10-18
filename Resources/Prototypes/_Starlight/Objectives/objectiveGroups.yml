@@ -43,7 +43,6 @@
     RumorObjective: 1
     SyndielandObjective: 1
     # from Moff Station
-    SabotageObjective: 1
     TrashRoomObjective: 1
     ClaimLocationObjective: 1
     GatherIntelObjective: 1
@@ -155,12 +154,14 @@
 - type: weightedRandom
   id: BloodBoundObjectiveGroupStory
   weights:
+    BloodBoundCookSentientsObjective: 1
+    BloodBoundReplaceHeadObjective: 1
+    BloodBoundConvertFollowersObjective: 1
     BloodBoundHarassObjective: 1
     BloodBoundTrashRoomObjective: 1
     BloodBoundClaimLocationObjective: 1
     BloodBoundCallingCardObjective: 0.2
     BloodBoundRobDepartmentObjective: 1
-    BloodBoundSabotageObjective: 0.5
 
 - type: weightedRandom
   id: BloodBoundObjectiveGroups
@@ -177,6 +178,7 @@
 - type: weightedRandom
   id: BloodBoundObjectiveGroupSteal
   weights:
+    BloodBoundStealHeartObjective: 1
     BloodBoundCaptainIDStealObjective: 1
     BloodBoundCMOHyposprayStealObjective: 1
     BloodBoundCrewMonitorStealCollectionObjective: 1
@@ -209,6 +211,7 @@
 - type: weightedRandom
   id: BloodBoundObjectiveGroupKill
   weights:
+    BloodBoundFirestakeObjective: 1
     BloodBoundKillRandomPersonObjective: 0.75
     BloodBoundKillRandomHeadObjective: 0.25
     BloodBoundTeachRandomPersonObjective: 1
