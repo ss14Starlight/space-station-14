@@ -1,4 +1,4 @@
-- type: entity
+- type: !PartialOnly entity
   id: Stunprod
   components:
   - type: Sprite
