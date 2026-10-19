@@ -21,7 +21,7 @@
   - External
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    implants: [ ITGMindShieldImplant ]
   - !type:AddComponentSpecial
     components:
       - type: NoObjectiveTarget
@@ -29,9 +29,6 @@
 - type: startingGear
   id: SalvageMedicGear
   equipment:
-    eyes: ClothingEyesHudMedical
-    jumpsuit: ClothingUniformJumpsuitSalvageMedic
-    id: SalvageMedicPDA
     ears: ClothingHeadsetSalvageLead
 
 - type: chameleonOutfit
