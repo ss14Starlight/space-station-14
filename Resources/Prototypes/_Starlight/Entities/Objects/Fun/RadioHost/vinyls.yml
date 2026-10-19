@@ -141,7 +141,7 @@
       color: red
   - type: Vinyl
     song:
-      path: /Audio/Lobby/space_asshole.ogg # Reusing the lobby music.
+      path: /Audio/_Starlight/Music/Jukebox/space_asshole.ogg # Reusing jukebox file, stereo versions play incorrectly from in world objects
 - type: entity
   parent: BaseVinylDisc
   id: VinylDriverUpdate
