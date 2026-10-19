@@ -457,6 +457,8 @@
           damage:
             types:
               Cellular: -0.25 # 0.5 cell per unit, very weak
+        - !type:SatiateHunger
+          factor: 0.5
         - !type:AdjustReagent
           conditions:
             - !type:MetabolizerTypeCondition
