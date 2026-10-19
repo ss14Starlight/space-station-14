@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Placement;
 using Content.Server.GameTicking;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
@@ -13,6 +14,7 @@ using Robust.Server.Console;
 using Robust.Server.Placement;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
+using Robust.Shared.Network.Messages;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using System.Linq;
@@ -30,6 +32,7 @@ namespace Content.Server.Sandbox
         [Dependency] private ItemSlotsSystem _slots = default!;
         [Dependency] private GameTicker _ticker = default!;
         [Dependency] private SharedHandsSystem _handsSystem = default!;
+        [Dependency] private TilePlacementSystem _tilePlacement = null!; // Starlight
 
         private bool _isSandboxEnabled;
 
@@ -59,20 +62,13 @@ namespace Content.Server.Sandbox
 
             _placementManager.AllowPlacementFunc = placement =>
             {
-                if (IsSandboxEnabled)
-                {
-                    return true;
-                }
+                // Starlight start - attach tiles placed in space to adjacent grids
+                if (!CanPlace(placement))
+                    return false;
 
-                var channel = placement.MsgChannel;
-                var player = _playerManager.GetSessionByChannel(channel);
-
-                if (_conGroupController.CanAdminPlace(player))
-                {
-                    return true;
-                }
-
-                return false;
+                _tilePlacement.TryRedirectToAdjacentGrid(placement);
+                return true;
+                // Starlight end
             };
         }
 
