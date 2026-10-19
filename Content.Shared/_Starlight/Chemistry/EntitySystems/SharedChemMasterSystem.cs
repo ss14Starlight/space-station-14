@@ -233,6 +233,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
         }
 
         ClickSound(chemMaster, message.Actor);
+        Dirty<StorageComponent>((container, storage));
         UpdateUi(chemMaster, ChemMasterUIDirtyFlags.Inventory | ChemMasterUIDirtyFlags.Solutions);
     }
 
@@ -406,6 +407,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
         }
 
         ClickSound(chemMaster, message.Actor);
+        Dirty<StorageComponent>((container, storage));
         UpdateUi(chemMaster, ChemMasterUIDirtyFlags.Inventory | ChemMasterUIDirtyFlags.Solutions);
     }
 
