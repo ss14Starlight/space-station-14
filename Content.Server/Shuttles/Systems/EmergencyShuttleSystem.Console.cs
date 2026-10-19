@@ -180,12 +180,7 @@ public sealed partial class EmergencyShuttleSystem
             }
 
             // Starlight - start
-            var podConsoleQuery = AllEntityQuery<PodConsoleComponent>();
-            while (podConsoleQuery.MoveNext(out var podConsoleUid, out var podConsole))
-            {
-                podConsole.Locked = false;
-                Dirty(podConsoleUid, podConsole);
-            }
+            UnlockAllEscapePods();
             // Starlight - end
         }
 
@@ -302,8 +297,7 @@ public sealed partial class EmergencyShuttleSystem
         // Starlight edit End: Commented out for evacuation pod planet landing
 
         // Starlight Start: Evacuation pod planet landing
-        if (_evacuationPlanetMap == null || _evacuationLandingZone == null)
-            SetupEvacuationPlanet();
+        EnsureEvacuationPlanet(); // Starlight
 
         if (_evacuationPlanetMap == null || _evacuationLandingZone is not { } evacuationLandingZone)
         {
@@ -311,10 +305,25 @@ public sealed partial class EmergencyShuttleSystem
             return;
         }
 
-        var angle = _random.NextAngle();
-        var distance = _random.NextFloat(0, PodSpreadRadius);
-        var offset = angle.ToVec() * distance;
-        var landingCoords = evacuationLandingZone.Offset(offset);
+        // Starlight - start
+        if (!_evacuationPlanetGenerated)
+        {
+            if (!_pendingEvacuationPodLaunches.Exists(pending => pending.Uid == uid))
+                _pendingEvacuationPodLaunches.Add((uid, traveltime));
+
+            RemCompDeferred<EscapePodComponent>(uid);
+            return;
+        }
+        // Starlight - end
+
+        // Starlight - start
+        if (GetEvacuationPodLandingCoordinates(uid, evacuationLandingZone) is not { } landingCoords)
+        {
+            Log.Error($"Evacuation pod {ToPrettyString(uid)} could not find a clear landing area.");
+            RemCompDeferred<EscapePodComponent>(uid);
+            return;
+        }
+        // Starlight - end
 
         var rotations = new[]
         {
@@ -330,7 +339,7 @@ public sealed partial class EmergencyShuttleSystem
             shuttle,
             landingCoords,
             podRotation,
-            startupTime: 0f,
+            startupTime: _shuttle.DefaultStartupTime, // Starlight
             hyperspaceTime: traveltime);
         // Starlight End: Evacuation pod planet landing
         RemCompDeferred<EscapePodComponent>(uid);

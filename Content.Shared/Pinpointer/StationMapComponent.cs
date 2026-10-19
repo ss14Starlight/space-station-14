@@ -18,10 +18,21 @@ public sealed partial class StationMapComponent : Component
     [DataField]
     public bool InitializeWithStation = false;
 
+    #region Starlight
+
     /// <summary>
     /// The target grid that the map will display.
-    /// If null, it will display the user's current grid.
+    /// If null, it will display the user's current grid unless InitializeWithStation is true.
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? TargetGrid;
+
+    /// <summary>
+    /// Maximum distance from the target grid's center as a multiplier of the larger of its width and height.
+    /// Zero disables the limit.
+    /// </summary>
+    [DataField]
+    public float LimitDistanceMultiplier;
+
+    #endregion
 }

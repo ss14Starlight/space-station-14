@@ -1,5 +1,7 @@
 using System.Linq;
 using System.Numerics;
+using Content.Client._Starlight.Stylesheets;
+using Content.Client._Starlight.UserInterface.Controls;
 using Content.Client.Resources;
 using Content.Client.Stylesheets;
 using Content.Shared._NullLink;
@@ -27,13 +29,6 @@ internal sealed partial class Hub : PanelContainer, IDisposable
     private const string BunkerGlyph = "\uE992"; // panic bunker
     private const string ConnectGlyph = "\uEA03"; // play / connect
 
-    private static readonly Color AccentColor = Color.FromHex("#9b59b6");
-    private static readonly Color HeaderColor = Color.FromHex("#2b2b33");
-    private static readonly Color RowColor = Color.FromHex("#20202a");
-    private static readonly Color PanelColor = Color.FromHex("#14141a");
-    private static readonly Color WarningColor = Color.FromHex("#e74c3c");
-    private static readonly Color GhostColor = Color.FromHex("#5cb85c");
-
     [Dependency] private ILogManager _logs = default!;
     [Dependency] private IEntitySystemManager _systemManager = default!;
     [Dependency] private IGameController _game = default!;
@@ -41,7 +36,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
     [Dependency] private IPrototypeManager _proto = default!;
 
     private HubSystem _hub = default!;
-    private ISawmill _sawmill = default!;
+    private readonly ISawmill _sawmill = default!;
 
     private readonly BoxContainer _root;
     private readonly ScrollContainer _scroll;
@@ -60,12 +55,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         HorizontalAlignment = HAlignment.Left;
         VerticalAlignment = VAlignment.Bottom;
         Margin = new Thickness(4);
-        PanelOverride = new StyleBoxFlat
-        {
-            BackgroundColor = PanelColor,
-            BorderColor = StyleNano.NanoGold,
-            BorderThickness = new Thickness(2),
-        };
+        AddStyleClass(StarlightStyleClass.HubPanel);
 
         var outer = new BoxContainer
         {
@@ -79,13 +69,13 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         header.AddChild(new Label
         {
             Text = Loc.GetString("nulllink-hub-header"),
-            FontColorOverride = AccentColor,
+            StyleClasses = { StyleClass.LabelKeyText, StyleClass.Highlight },
             HorizontalExpand = true,
             VerticalAlignment = VAlignment.Center,
         });
         _toggleButton = new Button
         {
-            StyleBoxOverride = ButtonBox(HeaderColor),
+            StyleClasses = { StyleClass.ButtonSquare },
             VerticalAlignment = VAlignment.Center,
         };
         _toggleButton.OnPressed += _ => SetCollapsed(!_collapsed);
@@ -95,7 +85,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         _newsBlock = new PanelContainer
         {
             Visible = false,
-            PanelOverride = new StyleBoxFlat { BackgroundColor = HeaderColor },
+            StyleClasses = { StyleClass.PanelLight },
             Margin = new Thickness(0, 4, 0, 0),
         };
         outer.AddChild(_newsBlock);
@@ -165,7 +155,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
             {
                 Text = Loc.GetString("nulllink-hub-no-servers"),
                 FontOverride = _resCache.GetFont(TextFont, TextSize),
-                FontColorOverride = Color.Gray,
+                StyleClasses = { StyleClass.LabelWeak },
                 Margin = new Thickness(4),
             });
             return;
@@ -194,7 +184,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
             if (!string.Equals(group.Key, current, StringComparison.OrdinalIgnoreCase))
                 continue;
 
-            AddSectionTitle(group.Key, AccentColor);
+            AddSectionTitle(group.Key);
             foreach (var (key, server) in OrderServers(group.Value))
                 _root.AddChild(MakeServerRow(key, server));
         }
@@ -221,30 +211,30 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         }
     }
 
-    private void AddSectionTitle(string project, Color color)
+    private void AddSectionTitle(string project)
     {
         var panel = new PanelContainer
         {
-            PanelOverride = new StyleBoxFlat { BackgroundColor = HeaderColor },
+            StyleClasses = { StyleClass.PanelLight },
             Margin = new Thickness(0, 4, 0, 2),
         };
         panel.AddChild(new Label
         {
             Text = project,
             FontOverride = _resCache.GetFont(TextFont, TextSize),
-            FontColorOverride = color,
+            StyleClasses = { StyleClass.Highlight },
             Margin = new Thickness(6, 3),
         });
         _root.AddChild(panel);
     }
 
-    private Control MakeProjectHeader(string project, List<KeyValuePair<string, NullLink.Server>> list, bool expanded)
+    private Button MakeProjectHeader(string project, List<KeyValuePair<string, NullLink.Server>> list, bool expanded)
     {
         var onlinePlayers = list.Sum(kv => _hub.ServerInfo?.GetValueOrDefault(kv.Key)?.Players ?? 0);
 
         var button = new Button
         {
-            StyleBoxOverride = ButtonBox(RowColor),
+            StyleClasses = { DropdownButton.StyleClassDropdownItem },
             HorizontalExpand = true,
             Margin = new Thickness(0, 1),
         };
@@ -258,7 +248,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         {
             Text = expanded ? "▼" : "►",
             FontOverride = _resCache.GetFont(TextFont, TextSize),
-            FontColorOverride = AccentColor,
+            StyleClasses = { StyleClass.Highlight },
             Margin = new Thickness(2, 0, 6, 0),
             VerticalAlignment = VAlignment.Center,
         });
@@ -285,7 +275,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         {
             Text = Loc.GetString("nulllink-hub-online", ("online", onlinePlayers)),
             FontOverride = _resCache.GetFont(TextFont, TextSize),
-            FontColorOverride = Color.Gray,
+            StyleClasses = { StyleClass.LabelWeak },
             VerticalAlignment = VAlignment.Center,
             Margin = new Thickness(0, 0, 4, 0),
         });
@@ -301,7 +291,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         return button;
     }
 
-    private Control MakeServerRow(string key, NullLink.Server server)
+    private PanelContainer MakeServerRow(string key, NullLink.Server server)
     {
         var info = _hub.ServerInfo?.GetValueOrDefault(key);
         var insufficient = _hub.InsufficientPlaytime.GetValueOrDefault(key);
@@ -309,14 +299,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
 
         var panel = new PanelContainer
         {
-            PanelOverride = new StyleBoxFlat
-            {
-                BackgroundColor = RowColor,
-                ContentMarginTopOverride = 4,
-                ContentMarginBottomOverride = 4,
-                ContentMarginLeftOverride = 6,
-                ContentMarginRightOverride = 6,
-            },
+            StyleClasses = { StarlightStyleClass.HubRow },
             Margin = new Thickness(0, 1),
         };
 
@@ -335,11 +318,11 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         row.AddChild(title);
 
         if (info?.PanicBunkerActive == true)
-            row.AddChild(MakeGlyph(BunkerGlyph, WarningColor, PanicBunkerTooltip(server)));
+            row.AddChild(MakeGlyph(BunkerGlyph, StyleClass.Negative, PanicBunkerTooltip(server)));
         if (recognized)
-            row.AddChild(MakeGlyph(RecognitionGlyph, StyleNano.NanoGold, Loc.GetString("nulllink-hub-recognition-tooltip")));
+            row.AddChild(MakeGlyph(RecognitionGlyph, StyleClass.Highlight, Loc.GetString("nulllink-hub-recognition-tooltip")));
         if (ghost)
-            row.AddChild(MakeGlyph(GhostGlyph, GhostColor, Loc.GetString("nulllink-hub-ghost-tooltip")));
+            row.AddChild(MakeGlyph(GhostGlyph, StyleClass.Positive, Loc.GetString("nulllink-hub-ghost-tooltip")));
 
         var players = new Label
         {
@@ -350,7 +333,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         };
         if (insufficient)
         {
-            players.FontColorOverride = WarningColor;
+            players.AddStyleClass(StyleClass.Negative);
             players.ToolTip = Loc.GetString("nulllink-hub-insufficient-playtime");
         }
         row.AddChild(players);
@@ -361,7 +344,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         return panel;
     }
 
-    private Control MakeConnectButton(NullLink.Server server)
+    private Button MakeConnectButton(NullLink.Server server)
     {
         var connected = _hub.CurrentGameHostName == server.Title;
         var button = new Button
@@ -369,14 +352,14 @@ internal sealed partial class Hub : PanelContainer, IDisposable
             Disabled = connected,
             TooltipDelay = 0.2f,
             ToolTip = Loc.GetString(connected ? "nulllink-hub-connected" : "nulllink-hub-connect"),
-            StyleBoxOverride = ButtonBox(connected ? PanelColor : HeaderColor),
+            StyleClasses = { StyleClass.ButtonSquare },
             VerticalAlignment = VAlignment.Center,
         };
         button.AddChild(new Label
         {
             Text = ConnectGlyph,
             FontOverride = _resCache.GetFont(IconFont, 16),
-            FontColorOverride = connected ? Color.Gray : GhostColor,
+            StyleClasses = { connected ? StyleClass.LabelWeak : StyleClass.Positive },
             HorizontalAlignment = HAlignment.Center,
             VerticalAlignment = VAlignment.Center,
         });
@@ -385,18 +368,8 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         return button;
     }
 
-    private static StyleBoxFlat ButtonBox(Color color) => new()
-    {
-        BackgroundColor = color,
-        ContentMarginLeftOverride = 6,
-        ContentMarginRightOverride = 6,
-        ContentMarginTopOverride = 3,
-        ContentMarginBottomOverride = 3,
-    };
-
-    private static Control MakeStatusDot(NullLink.ServerInfo? info)
-    {
-        return new PanelContainer
+    private static PanelContainer MakeStatusDot(NullLink.ServerInfo? info)
+        => new()
         {
             PanelOverride = new StyleBoxFlat { BackgroundColor = StatusColor(info) },
             MinSize = new Vector2(10, 10),
@@ -405,22 +378,19 @@ internal sealed partial class Hub : PanelContainer, IDisposable
             ToolTip = info?.GetStatus() ?? Loc.GetString("nulllink-hub-status-unknown"),
             TooltipDelay = 0.2f,
         };
-    }
 
-    private Control MakeGlyph(string glyph, Color color, string tooltip)
-    {
-        return new Label
+    private Label MakeGlyph(string glyph, string styleClass, string tooltip)
+        => new()
         {
             Text = glyph,
             FontOverride = _resCache.GetFont(IconFont, 16),
-            FontColorOverride = color,
+            StyleClasses = { styleClass },
             VerticalAlignment = VAlignment.Center,
             MouseFilter = MouseFilterMode.Stop,
             ToolTip = tooltip,
             TooltipDelay = 0.2f,
             Margin = new Thickness(2, 0, 0, 0),
         };
-    }
 
     private static string PanicBunkerTooltip(NullLink.Server server)
     {
@@ -479,6 +449,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         List<KeyValuePair<string, NullLink.Server>> list)
         => list.OrderBy(kv => kv.Value.Title, StringComparer.OrdinalIgnoreCase);
 
+    [Obsolete]
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
