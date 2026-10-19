@@ -1,4 +1,6 @@
 using System.Linq;
+using System.Text.RegularExpressions;
+using Content.Shared._Starlight.Paper;
 using Content.Shared.Administration.Logs;
 using Content.Shared.UserInterface;
 using Content.Shared.Database;
@@ -341,16 +343,22 @@ public sealed partial class PaperSystem : EntitySystem
     // Umbra: Actual signature code.
     public bool TrySign(Entity<PaperComponent> paper, EntityUid signer)
     {
+        // Starlight start
+        
+        // Get entity's font, or fallback if there's not a custom one
+        string signatureFont = TryComp(signer, out SignatureFontComponent? customSignFont)
+            ? customSignFont.FontPath
+            : "/Fonts/_Starlight/Signature.ttf";
+        
         // Generate display information.
         StampDisplayInfo info = new StampDisplayInfo
         {
-            StampedName = Name(signer),
-            StampedColor = Color.FromHex("#333333"),
+            StampedName = SanitizeSignature(Name(signer)),
+            StampedColor = Color.FromHex("#333333"), // TODO: could do custom pen colors?
             Type = StampType.Signature,
-            Font = "/Fonts/_Starlight/Signature.ttf" // 🌟Starlight🌟
+            Font = signatureFont
         };
 
-        // STARLIGHT START
         // moved the paper signing event here, so that it becomes possible to cancel signing,
         // making the event dual-use.
         if (!paper.Comp.StampedBy.Contains(info))
@@ -369,7 +377,7 @@ public sealed partial class PaperSystem : EntitySystem
                 return false;
             }
         }
-        // STARLIGHT END
+        // Starlight end
 
         // Try stamp with the info, return false if failed.
         if (TryStamp(paper, info, "paper_stamp-generic"))
@@ -458,6 +466,18 @@ public sealed partial class PaperSystem : EntitySystem
     }
 
     # region Starlight
+    
+    private static readonly Regex RegexSignatureParens = new(@"^(.+?)(?:\s*\(.*\))+$", RegexOptions.Compiled);
+    
+    /// <summary>
+    /// Sanitizes an entity's name into a proper signature by stripping any trailing parenthesized text.
+    /// </summary>
+    private string SanitizeSignature(string name)
+    {
+        var match = RegexSignatureParens.Match(name);
+        if (!match.Success) return name;
+        return match.Groups[1].Value;
+    }
 
     private void OnSignatureRequest(Entity<PaperComponent> entity, ref PaperSignatureRequestMessage args)
     {
