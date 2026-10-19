@@ -308,7 +308,7 @@ public sealed partial class ShuttleSystem
 
         var mapId = _transform.GetMapId(coordinates);
         var mapUid = _mapSystem.GetMap(mapId);
-        var ev = new FTLRequestEvent(mapUid);
+        var ev = new FTLRequestEvent(mapUid, shuttleUid); // Starlight
         RaiseLocalEvent(shuttleUid, ref ev, true);
     }
 

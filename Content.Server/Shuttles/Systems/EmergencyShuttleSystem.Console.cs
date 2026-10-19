@@ -317,14 +317,6 @@ public sealed partial class EmergencyShuttleSystem
         // Starlight - end
 
         // Starlight - start
-        if (GetEvacuationPodLandingCoordinates(uid, evacuationLandingZone) is not { } landingCoords)
-        {
-            Log.Error($"Evacuation pod {ToPrettyString(uid)} could not find a clear landing area.");
-            RemCompDeferred<EscapePodComponent>(uid);
-            return;
-        }
-        // Starlight - end
-
         var rotations = new[]
         {
             Angle.Zero,
@@ -333,6 +325,14 @@ public sealed partial class EmergencyShuttleSystem
             Angle.FromDegrees(270)
         };
         var podRotation = _random.Pick(rotations);
+
+        if (GetEvacuationPodLandingCoordinates(uid, evacuationLandingZone, podRotation) is not { } landingCoords)
+        {
+            Log.Error($"Evacuation pod {ToPrettyString(uid)} could not find a clear landing area.");
+            RemCompDeferred<EscapePodComponent>(uid);
+            return;
+        }
+        // Starlight - end
 
         _shuttle.FTLToCoordinates(
             uid,
