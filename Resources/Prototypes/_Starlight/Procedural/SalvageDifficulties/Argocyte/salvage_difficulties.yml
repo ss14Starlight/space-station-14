@@ -22,7 +22,7 @@
 
 - type: salvageDifficulty
   id: Argocyte-Hard
-  lootPrototype: "SalvageLootArgocyteEasy"
+  lootPrototype: "SalvageLootArgocyteHard"
   lootBudget: 45
   mobBudget: 60
   modifierBudget: 3
