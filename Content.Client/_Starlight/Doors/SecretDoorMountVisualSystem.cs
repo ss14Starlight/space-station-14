@@ -1,6 +1,8 @@
 using System.Numerics;
+using Content.Shared.Effects;
 using Content.Shared.Doors.Components;
 using Content.Shared._Starlight.Doors.Components;
+using Content.Shared.Tag;
 using Content.Shared.Wall;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -19,7 +21,7 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transforms = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SpriteSystem _sprites = default!;
-    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private TagSystem _tags = default!;
 
     private static readonly ProtoId<ShaderPrototype> LeftShader = "SecretDoorMountLeft";
     private static readonly ProtoId<ShaderPrototype> RightShader = "SecretDoorMountRight";
@@ -29,6 +31,7 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
     private static readonly ProtoId<ShaderPrototype> BottomShader = "SecretDoorMountBottom";
     private static readonly ProtoId<ShaderPrototype> TopUnshadedShader = "SecretDoorMountTopUnshaded";
     private static readonly ProtoId<ShaderPrototype> BottomUnshadedShader = "SecretDoorMountBottomUnshaded";
+    private static readonly ProtoId<TagPrototype> HideContextMenuTag = "HideContextMenu";
 
     private readonly Dictionary<EntityUid, SplitMount> _mounts = new();
     private readonly Dictionary<EntityUid, float> _doorProgress = new();
@@ -106,7 +109,8 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
             }
 
             // Another visualizer may recolor the mount while the door is open.
-            if (sourceSprite.Color != split.OriginalColor.WithAlpha(0f))
+            if (!HasComp<ColorFlashEffectComponent>(mount) &&
+                sourceSprite.Color != split.OriginalColor.WithAlpha(0f))
                 split.OriginalColor = sourceSprite.Color;
 
             var hiddenColor = split.OriginalColor.WithAlpha(0f);
@@ -226,14 +230,15 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
                 _mounts.Add(uid, split);
             }
             else if (split.Door != door || split.Vertical != _verticalDoors.Contains(door) ||
-                     split.MaskVertical != maskVertical || split.MaskReversed != maskReversed)
+                split.MaskVertical != maskVertical || split.MaskReversed != maskReversed)
             {
                 RemoveMount(uid);
                 split = CreateMount(uid, door, sprite, xform);
                 _mounts.Add(uid, split);
             }
 
-            if (sprite.Color != split.OriginalColor.WithAlpha(0f))
+            if (!HasComp<ColorFlashEffectComponent>(uid) &&
+                sprite.Color != split.OriginalColor.WithAlpha(0f))
                 split.OriginalColor = sprite.Color;
             RefreshMount(uid, sprite, split);
         }
@@ -253,14 +258,14 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
     {
         var left = Spawn("clientsideclone", xform.Coordinates);
         var right = Spawn("clientsideclone", xform.Coordinates);
+        _tags.AddTag(left, HideContextMenuTag);
+        _tags.AddTag(right, HideContextMenuTag);
         var vertical = _verticalDoors.Contains(door);
         var localAxis = GetLocalSlideDirection(xform, sprite, vertical);
         var maskVertical = MathF.Abs(localAxis.Y) > 0.5f;
         var maskReversed = (maskVertical ? localAxis.Y : localAxis.X) < 0f;
-        var name = MetaData(mount).EntityName;
-        _metaData.SetEntityName(left, $"{name} {(vertical ? "bottom" : "left")}");
-        _metaData.SetEntityName(right, $"{name} {(vertical ? "top" : "right")}");
-        return new SplitMount(door, left, right, sprite.Color, vertical, maskVertical, maskReversed);
+        var originalColor = TryComp<ColorFlashEffectComponent>(mount, out var flash) ? flash.Color : sprite.Color;
+        return new SplitMount(door, left, right, originalColor, vertical, maskVertical, maskReversed);
     }
 
     private static Vector2 GetLocalSlideDirection(TransformComponent xform, SpriteComponent sprite, bool vertical)
@@ -281,9 +286,6 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         _sprites.SetColor((split.Right, right), split.OriginalColor);
         _sprites.SetColor((mount, source), split.OriginalColor.WithAlpha(0f));
 
-        var name = MetaData(mount).EntityName;
-        _metaData.SetEntityName(split.Left, $"{name} {(split.Vertical ? "bottom" : "left")}");
-        _metaData.SetEntityName(split.Right, $"{name} {(split.Vertical ? "top" : "right")}");
         MaskHalf(left, firstHalf: true, split.MaskVertical, split.MaskReversed);
         MaskHalf(right, firstHalf: false, split.MaskVertical, split.MaskReversed);
     }
@@ -310,6 +312,9 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
     {
         if (!_mounts.Remove(mount, out var split))
             return;
+
+        if (TryComp<ColorFlashEffectComponent>(mount, out var flash))
+            flash.Color = split.OriginalColor;
 
         if (TryComp<SpriteComponent>(mount, out var sprite))
             _sprites.SetColor((mount, sprite), split.OriginalColor);
