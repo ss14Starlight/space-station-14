@@ -78,7 +78,7 @@
           cost: 4
         - proto: ChemistryBottleEphedrine
           cost: 2
-        - proto: WeaponLaserSvalinn 
+        - proto: WeaponLaserSvalinn
           cost: 8
         - proto: FireBomb
           cost: 3
@@ -139,7 +139,7 @@
           cost: 4
         - proto: ChemistryBottleEphedrine
           cost: 2
-        - proto: WeaponLaserSvalinn 
+        - proto: WeaponLaserSvalinn
           cost: 8
         - proto: FireBomb
           cost: 3
