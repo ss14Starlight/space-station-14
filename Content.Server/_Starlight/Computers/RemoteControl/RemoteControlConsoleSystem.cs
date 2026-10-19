@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using System.Linq;
+using Content.Server._Starlight.TextToSpeech;
 using Content.Server.Chat.Systems;
 using Content.Server.Construction;
 using Content.Server.Movement.Systems;
@@ -9,6 +10,7 @@ using Content.Shared._DEN.QuickConstruction.Components;
 using Content.Shared._DEN.QuickConstruction.Events;
 using Content.Shared._Starlight.Chat;
 using Content.Shared._Starlight.Computers.RemoteControl;
+using Content.Shared._Starlight.Hands;
 using Content.Shared._Starlight.Silicons;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.ActionBlocker;
@@ -16,12 +18,14 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Chat;
 using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.CombatMode;
 using Content.Shared.Construction;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Input;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
@@ -31,6 +35,7 @@ using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Power;
 using Content.Shared.Power.Components;
@@ -51,6 +56,8 @@ using Robust.Server.Player;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Input;
+using Robust.Shared.Input.Binding;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using static Content.Server.Chat.Systems.ChatSystem;
@@ -89,6 +96,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private PullController _pullController = default!;
     [Dependency] private PvsOverrideSystem _pvsOverride = default!;
+    [Dependency] private TTSSystem _tts = default!;
 
     [Dependency] private SharedStorageSystem _storage = default!;
 
@@ -112,6 +120,11 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 subs.Event<RemoteControlHandMessage>(OnRemoteHand);
                 subs.Event<RemoteControlInventoryMessage>(OnRemoteInventory);
             });
+        CommandBinds.Builder
+            .BindBefore(ContentKeyFunctions.ReleasePulledObject,
+                new RemoteReleasePulledObjectInputCmdHandler(this),
+                typeof(PullingSystem))
+            .Register<RemoteControlConsoleSystem>();
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
         _hands.OnHandSetActive += OnHandSetActive;
     }
@@ -217,7 +230,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             return;
         }
 
-        if (!CanRemoteControlTarget(entity.Owner, remoteEntity, user))
+        if (!CanRemoteControlTarget(entity.Owner, remoteEntity, user, entity.Comp.PreviousRelayEntity))
             args.Cancelled = true;
     }
 
@@ -542,7 +555,11 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 || remoteEntity != args.Entity)
                 continue;
 
-            _popup.PopupEntity(Loc.GetString("remote-control-control-taken-over"), consoleUid, controller);
+            PopupRemoteControlMessage(
+                Loc.GetString("remote-control-control-taken-over"),
+                consoleUid,
+                controller,
+                console.PreviousRelayEntity);
             SetController(consoleUid, console, null, remoteEntity);
         }
     }
@@ -600,6 +617,14 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (args.Action == RemoteControlInteractionAction.Drop)
         {
             _hands.TryDrop(remoteEntity, GetCoordinates(args.Coordinates));
+            RefreshRemoteState(uid, component, remoteEntity);
+            return;
+        }
+
+        if (args.Action == RemoteControlInteractionAction.Throw)
+        {
+            EntityManager.System<PredictedHandsSystem>()
+                .ThrowHeldItem(remoteEntity, GetCoordinates(args.Coordinates));
             RefreshRemoteState(uid, component, remoteEntity);
             return;
         }
@@ -942,6 +967,33 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         }
     }
 
+    private bool OnRemoteReleasePulledObjectInput(ICommonSession? session, BoundKeyState state)
+    {
+        if (session?.AttachedEntity is not { Valid: true } actor
+            || !TryGetControlledEntity(actor, out var remoteEntity))
+            return false;
+
+        if (state == BoundKeyState.Down
+            && TryComp<PullerComponent>(remoteEntity, out var puller)
+            && puller.Pulling is { } pulledEntity)
+        {
+            _interaction.TryPullObject(remoteEntity, pulledEntity);
+        }
+
+        return true;
+    }
+
+    private sealed class RemoteReleasePulledObjectInputCmdHandler(RemoteControlConsoleSystem system) : InputCmdHandler
+    {
+        public override bool HandleCmdMessage(
+            IEntityManager entManager,
+            ICommonSession? session,
+            IFullInputCmdMessage message)
+        {
+            return system.OnRemoteReleasePulledObjectInput(session, message.State);
+        }
+    }
+
     [SubscribeLocalEvent]
     private void OnRemoteUiCheckRange(Entity<UserInterfaceComponent> entity, ref BoundUserInterfaceCheckRangeEvent args)
     {
@@ -1048,6 +1100,30 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         _borg.SetActive((chassis, chassisComp), false);
         console.BorgActivatedByRemote = false;
+    }
+
+    private void UpdateRemoteBorgControlledAppearance(EntityUid? remoteEntity)
+    {
+        if (remoteEntity is not { } chassis
+            || TerminatingOrDeleted(chassis)
+            || !TryComp<BorgChassisComponent>(chassis, out _))
+            return;
+
+        var controlled = false;
+        var query = EntityQueryEnumerator<RemoteControlConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out var console))
+        {
+            if (console.Controller is null
+                || !_sharedRemoteControl.TryGetRemoteEntity((consoleUid, console), out var controlledEntity)
+                || controlledEntity != chassis)
+                continue;
+
+            controlled = true;
+            break;
+        }
+
+        EnsureComp<AppearanceComponent>(chassis);
+        _appearance.SetData(chassis, BorgVisualsStarlight.RemoteControlled, controlled);
     }
 
     private bool TryActivateRemoteBorg(RemoteControlConsoleComponent console, EntityUid chassis)
@@ -1181,6 +1257,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         {
             UpdateControllerIndex(entity.Owner, entity.Comp.Controller, null);
             entity.Comp.Controller = null;
+            UpdateRemoteBorgControlledAppearance(remoteEntity);
             Dirty(entity);
             _pendingRemoteBorgActivations.RemoveWhere(pending => pending.Console == entity.Owner);
             DeactivateToyRemote(entity.Owner, entity.Comp);
@@ -1212,7 +1289,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     {
         if (controller is { } controlRequester
             && remoteEntity is { } controlledEntity
-            && !CanRemoteControlTarget(consoleUid, controlledEntity, controlRequester))
+            && !CanRemoteControlTarget(consoleUid, controlledEntity, controlRequester, component.PreviousRelayEntity))
         {
             if (refreshUi)
                 RefreshRemoteState(consoleUid, component, controlledEntity);
@@ -1235,10 +1312,11 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                     || otherRemoteEntity != requestedRemoteEntity)
                     continue;
 
-                _popup.PopupEntity(
+                PopupRemoteControlMessage(
                     Loc.GetString("remote-control-target-already-controlled"),
                     consoleUid,
-                    takeoverRequester);
+                    takeoverRequester,
+                    component.PreviousRelayEntity);
                 if (refreshUi)
                     RefreshRemoteState(consoleUid, component, requestedRemoteEntity);
 
@@ -1270,10 +1348,11 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 }
 
                 if (controlsSameTarget && !controlsBySameUser)
-                    _popup.PopupEntity(
+                    PopupRemoteControlMessage(
                         Loc.GetString("remote-control-control-taken-over"),
                         otherConsoleUid,
-                        otherController);
+                        otherController,
+                        otherConsole.PreviousRelayEntity);
 
                 var otherRemoteEntity = _sharedRemoteControl.TryGetRemoteEntity((otherConsoleUid, otherConsole),
                     out var otherRemote)
@@ -1319,6 +1398,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         var controllerBeforeUpdate = component.Controller;
         component.Controller = controller;
+        UpdateRemoteBorgControlledAppearance(remoteEntity);
         UpdateControllerIndex(consoleUid, controllerBeforeUpdate, controller);
         Dirty(consoleUid, component);
 
@@ -1425,13 +1505,41 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         _remoteUiRangeOverrides.TryRemove((remoteEntity, uiKey, controller), out _);
     }
 
-    private bool CanRemoteControlTarget(EntityUid consoleUid, EntityUid remoteEntity, EntityUid controller)
+    private bool CanRemoteControlTarget(
+        EntityUid consoleUid,
+        EntityUid remoteEntity,
+        EntityUid controller,
+        EntityUid? previousRelayEntity)
     {
         if (!HasComp<ActorComponent>(remoteEntity))
             return true;
 
-        _popup.PopupEntity(Loc.GetString("remote-control-target-player-controlled"), consoleUid, controller);
+        PopupRemoteControlMessage(
+            Loc.GetString("remote-control-target-player-controlled"),
+            consoleUid,
+            controller,
+            previousRelayEntity);
         return false;
+    }
+
+    private void PopupRemoteControlMessage(
+        string message,
+        EntityUid fallbackEntity,
+        EntityUid recipient,
+        EntityUid? previousRelayEntity = null)
+    {
+        var popupEntity = fallbackEntity;
+        if (previousRelayEntity is { } previous && !TerminatingOrDeleted(previous))
+        {
+            popupEntity = previous;
+        }
+        else if (TryComp<RelayInputMoverComponent>(recipient, out var relay)
+                 && !TerminatingOrDeleted(relay.RelayEntity))
+        {
+            popupEntity = relay.RelayEntity;
+        }
+
+        _popup.PopupEntity(message, popupEntity, recipient);
     }
 
     private void DeactivateToyRemote(EntityUid consoleUid, RemoteControlConsoleComponent component)
@@ -1664,6 +1772,29 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         EnsureComp<AppearanceComponent>(remoteEntity);
         EnsureComp<TypingIndicatorComponent>(remoteEntity);
         _appearance.SetData(remoteEntity, TypingIndicatorVisuals.State, state);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnRemoteControllerSpoke(EntitySpokeEvent ev)
+    {
+        if (TerminatingOrDeleted(ev.Source)
+            || !TryComp<RemoteControlControllerComponent>(ev.Source, out var controller))
+            return;
+
+        var spokenAt = new HashSet<EntityUid>();
+        foreach (var consoleUid in controller.Consoles)
+        {
+            if (!TryComp<RemoteControlConsoleComponent>(consoleUid, out var console)
+                || !console.EnableRemoteView
+                || console.Controller != ev.Source
+                || !_sharedRemoteControl.TryGetRemoteEntity((consoleUid, console), out var remoteEntity)
+                || remoteEntity == ev.Source
+                || TerminatingOrDeleted(remoteEntity)
+                || !spokenAt.Add(remoteEntity))
+                continue;
+
+            _tts.PlaySpeechAt(remoteEntity, ev);
+        }
     }
 
     [SubscribeLocalEvent]

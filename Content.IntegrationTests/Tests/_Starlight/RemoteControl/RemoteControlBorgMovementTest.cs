@@ -1,4 +1,5 @@
 #nullable enable
+using System.Linq;
 using System.Numerics;
 using Content.IntegrationTests.Tests.Movement;
 using Content.Server._Starlight.Computers.RemoteControl;
@@ -7,14 +8,22 @@ using Content.Server.Silicons.Borgs;
 using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Input;
 using Content.Shared.Mind;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Movement.Pulling.Systems;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
 using Content.Shared.Power.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
 using Robust.Shared.Map;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
+using Robust.Shared.Player;
 
 namespace Content.IntegrationTests.Tests._Starlight.RemoteControl;
 
@@ -152,6 +161,227 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
             Assert.That(controlledBorgMoved, Is.True,
                 $"The previously remote-controlled borg should move after shunting (InputMover after release: {moverPresentAfterRemoteControl}, after shunt: {moverPresentAfterShunt}).");
         });
+    }
+
+    [Test]
+    public async Task StartingRemoteControlStopsPreviousEyeMovement()
+    {
+        EntityUid controlledBorg = default;
+        EntityUid aiEye = default;
+
+        await Server.WaitAssertion(() =>
+        {
+            var coordinates = SEntMan.GetCoordinates(PlayerCoords);
+            controlledBorg = SpawnBorg(coordinates.Offset(new Vector2(4f, 0f)), out _);
+            aiEye = SEntMan.SpawnEntity("StationAiHolo", coordinates.Offset(new Vector2(-2f, 0f)));
+
+            var mindSystem = Server.System<SharedMindSystem>();
+            var mindId = mindSystem.CreateMind(ServerSession.UserId);
+            mindSystem.TransferTo(mindId, SPlayer);
+        });
+
+        await RunTicks(5);
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                var mover = Server.System<SharedMoverController>();
+                var playerMover = SEntMan.EnsureComponent<InputMoverComponent>(SPlayer);
+                var eyeMover = SEntMan.EnsureComponent<InputMoverComponent>(aiEye);
+                var eyePhysics = SEntMan.GetComponent<PhysicsComponent>(aiEye);
+
+                using (Assert.EnterMultipleScope())
+                {
+                    mover.SetVelocityDirection((SPlayer, playerMover), Direction.West, 0, true);
+                    Assert.That(playerMover.HeldMoveButtons, Is.EqualTo(MoveButtons.Left));
+
+                    mover.SetRelay(SPlayer, aiEye);
+                    Assert.That(playerMover.HeldMoveButtons, Is.EqualTo(MoveButtons.None));
+
+                    mover.SetVelocityDirection((aiEye, eyeMover), Direction.East, 0, true);
+                    Assert.That(eyeMover.HeldMoveButtons, Is.EqualTo(MoveButtons.Right));
+                    var eyeInput = mover.GetVelocityInput(eyeMover);
+                    Assert.That(eyeInput.Walking + eyeInput.Sprinting, Is.Not.EqualTo(Vector2.Zero));
+
+                    Server.System<SharedPhysicsSystem>()
+                        .SetLinearVelocity(aiEye, new Vector2(2f, 0f), body: eyePhysics);
+                    Assert.That(eyePhysics.LinearVelocity, Is.Not.EqualTo(Vector2.Zero));
+
+                    var remoteControl = new AIRemoteControlActionEvent { Target = controlledBorg };
+                    SEntMan.EventBus.RaiseLocalEvent(SPlayer, remoteControl);
+
+                    Assert.That(remoteControl.Handled, Is.True,
+                        "The AI should be able to remotely control the borg.");
+                    Assert.That(eyeMover.HeldMoveButtons, Is.EqualTo(MoveButtons.None),
+                        "The AI Eye should stop moving when control switches to the borg.");
+                    eyeInput = mover.GetVelocityInput(eyeMover);
+                    Assert.That(eyeInput.Walking + eyeInput.Sprinting, Is.EqualTo(Vector2.Zero));
+                    Assert.That(eyePhysics.LinearVelocity, Is.EqualTo(Vector2.Zero));
+                    Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(SPlayer).RelayEntity,
+                        Is.EqualTo(controlledBorg));
+                }
+            });
+        }
+        finally
+        {
+            await RunTicks(1);
+            await Server.WaitPost(() =>
+            {
+                if (SEntMan.EntityExists(SPlayer))
+                    SEntMan.EventBus.RaiseLocalEvent(SPlayer,
+                        new BoundUIClosedEvent(RemoteControlUIKey.Key, SPlayer, SPlayer));
+            });
+            await RunTicks(1);
+        }
+    }
+
+    [Test]
+    public async Task PlayerControlledEntityPopupUsesAiEye()
+    {
+        var popupCapture = Client.System<RemoteControlPopupTestSystem>();
+        await Client.WaitAssertion(popupCapture.Clear);
+
+        EntityUid controlledBorg = default;
+        EntityUid aiEye = default;
+        EntityUid previousRelayEntity = default;
+        var hadPreviousRelay = false;
+        NetEntity aiEyeNetEntity = default;
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                var coordinates = SEntMan.GetCoordinates(PlayerCoords);
+                controlledBorg = SpawnBorg(coordinates.Offset(new Vector2(4f, 0f)), out _);
+                aiEye = SEntMan.SpawnEntity("StationAiHolo", coordinates.Offset(new Vector2(-2f, 0f)));
+                SEntMan.AddComponent<ActorComponent>(controlledBorg);
+
+                if (SEntMan.TryGetComponent<RelayInputMoverComponent>(SPlayer, out var relay))
+                {
+                    hadPreviousRelay = true;
+                    previousRelayEntity = relay.RelayEntity;
+                }
+
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(SPlayer);
+                console.Users.Add(SPlayer);
+                Server.System<SharedMoverController>().SetRelay(SPlayer, aiEye);
+                aiEyeNetEntity = SEntMan.GetNetEntity(aiEye);
+
+                var remoteControl = new AIRemoteControlActionEvent { Target = controlledBorg };
+                SEntMan.EventBus.RaiseLocalEvent(SPlayer, remoteControl);
+
+                Assert.Multiple(() =>
+                {
+                    Assert.That(remoteControl.Handled, Is.True,
+                        "The remote-control action should be handled even though the target is directly controlled.");
+                    Assert.That(console.Controller, Is.Null,
+                        "A directly controlled target should not be remotely controlled.");
+                });
+            });
+
+            await RunTicks(5);
+
+            await Client.WaitAssertion(() =>
+            {
+                var popup = popupCapture.LastPopup;
+                Assert.That(popup, Is.Not.Null);
+                Assert.That(popup!.Uid, Is.EqualTo(aiEyeNetEntity));
+            });
+        }
+        finally
+        {
+            await RunTicks(1);
+            await Server.WaitPost(() =>
+            {
+                if (SEntMan.EntityExists(SPlayer))
+                {
+                    SEntMan.EventBus.RaiseLocalEvent(SPlayer,
+                        new BoundUIClosedEvent(RemoteControlUIKey.Key, SPlayer, SPlayer));
+
+                    if (hadPreviousRelay && SEntMan.EntityExists(previousRelayEntity))
+                        Server.System<SharedMoverController>().SetRelay(SPlayer, previousRelayEntity);
+                    else if (SEntMan.TryGetComponent<RelayInputMoverComponent>(SPlayer, out var relay))
+                        SEntMan.RemoveComponent(SPlayer, relay);
+                }
+            });
+            await RunTicks(1);
+        }
+    }
+
+    [Test]
+    public async Task ReleasePulledObjectStopsPullingForRemoteControlledBorg()
+    {
+        EntityUid controlledBorg = default;
+        EntityUid pulledEntity = default;
+        EntityUid consoleUid = default;
+
+        await Server.WaitAssertion(() =>
+        {
+            var coordinates = SEntMan.GetCoordinates(PlayerCoords);
+            controlledBorg = SpawnBorg(coordinates.Offset(new Vector2(4f, 0f)), out _);
+            pulledEntity = SEntMan.SpawnEntity("MobHuman", coordinates.Offset(new Vector2(5f, 0f)));
+
+            var mindSystem = Server.System<SharedMindSystem>();
+            var mindId = mindSystem.CreateMind(ServerSession.UserId);
+            mindSystem.TransferTo(mindId, SPlayer);
+        });
+
+        await RunTicks(5);
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                var remoteControl = new AIRemoteControlActionEvent { Target = controlledBorg };
+                SEntMan.EventBus.RaiseLocalEvent(SPlayer, remoteControl);
+                Assert.That(remoteControl.Handled, Is.True,
+                    "The AI should be able to remotely control the borg.");
+
+                var controller = SEntMan.GetComponent<RemoteControlControllerComponent>(SPlayer);
+                Assert.That(controller.Consoles, Has.Count.EqualTo(1));
+                consoleUid = controller.Consoles.Single();
+
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid, new RemoteControlInteractionMessage
+                {
+                    Actor = SPlayer,
+                    Entity = SEntMan.GetNetEntity(consoleUid),
+                    UiKey = RemoteControlUIKey.Key,
+                    Coordinates = SEntMan.GetNetCoordinates(SEntMan.GetComponent<TransformComponent>(pulledEntity).Coordinates),
+                    Target = SEntMan.GetNetEntity(pulledEntity),
+                    Action = RemoteControlInteractionAction.TryPull,
+                });
+
+                Assert.That(SEntMan.GetComponent<PullerComponent>(controlledBorg).Pulling, Is.EqualTo(pulledEntity),
+                    "TryPull should make the remote borg pull the selected object.");
+            });
+
+            await RunTicks(1);
+            await PressKey(ContentKeyFunctions.ReleasePulledObject);
+            await RunTicks(5);
+
+            await Server.WaitAssertion(() =>
+            {
+                using (Assert.EnterMultipleScope())
+                {
+                    Assert.That(SEntMan.GetComponent<PullerComponent>(controlledBorg).Pulling, Is.Null,
+                        "H should stop the remote borg from pulling.");
+                    Assert.That(SEntMan.GetComponent<PullableComponent>(pulledEntity).Puller, Is.Null,
+                        "The pulled entity should no longer have a puller.");
+                }
+            });
+        }
+        finally
+        {
+            await RunTicks(1);
+            await Server.WaitPost(() =>
+            {
+                if (SEntMan.EntityExists(SPlayer))
+                    SEntMan.EventBus.RaiseLocalEvent(SPlayer,
+                        new BoundUIClosedEvent(RemoteControlUIKey.Key, SPlayer, SPlayer));
+            });
+            await RunTicks(1);
+        }
     }
 
     private EntityUid SpawnBorg(EntityCoordinates coordinates, out EntityUid brain)
