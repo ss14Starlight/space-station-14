@@ -91,7 +91,7 @@ public sealed partial class TilePlacementSystem : EntitySystem
             ref _grids, includeMap: false);
         _adjacent.Clear();
         foreach (var grid in _grids.Where(grid =>
-                     HasAdjacentTile(grid, _map.WorldToTile(grid, grid.Comp, mapCoords.Position)))) _adjacent.Add(grid);
+                    HasAdjacentTile(grid, _map.WorldToTile(grid, grid.Comp, mapCoords.Position)))) _adjacent.Add(grid);
 
         if (_adjacent.Count == 0)
             return;
