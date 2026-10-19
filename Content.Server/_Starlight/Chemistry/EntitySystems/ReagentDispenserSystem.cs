@@ -12,5 +12,4 @@ namespace Content.Server.Chemistry.EntitySystems;
 [UsedImplicitly]
 public sealed partial class ReagentDispenserSystem : SharedReagentDispenserSystem
 {
-    
 }
