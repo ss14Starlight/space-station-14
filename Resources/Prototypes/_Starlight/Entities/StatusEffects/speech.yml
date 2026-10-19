@@ -1,0 +1,6 @@
+- type: entity
+  parent: SpeechStatusEffectBase
+  id: StatusEffectRatvarianLanguage
+  name: ratvarian language
+  components:
+  - type: RatvarianLanguage

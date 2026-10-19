@@ -21,11 +21,23 @@ public sealed partial class StylesheetManager
 
     private Stylesheet? _hudSheet;
 
+    private static readonly Dictionary<string, string> RemovedStyleThemes = new()
+    {
+        ["Classic"] = "Nanotrasen",
+    };
+
     private void InitializeStyleTheme()
     {
+        if (RemovedStyleThemes.TryGetValue(_cfg.GetCVar(StarlightCCVars.StyleTheme), out var replacement))
+        {
+            _cfg.SetCVar(StarlightCCVars.StyleTheme, replacement);
+            _cfg.SaveToFile();
+        }
+
         _cfg.OnValueChanged(StarlightCCVars.StyleTheme, _ => QueueStyleThemeRebuild());
         _cfg.OnValueChanged(StarlightCCVars.StyleAccent, _ => QueueStyleThemeRebuild());
         _cfg.OnValueChanged(StarlightCCVars.StyleCustomAccent, _ => QueueStyleThemeRebuild());
+        _cfg.OnValueChanged(StarlightCCVars.LobbyOpacity, _ => QueueStyleThemeRebuild());
         _prototype.PrototypesReloaded += args =>
         {
             if (args.WasModified<StyleThemePrototype>())
@@ -48,17 +60,11 @@ public sealed partial class StylesheetManager
             }
         }
 
-        if (proto.Stock)
-        {
-            _hudStyleTheme = null;
-            return new BaseStylesheet.NoConfig();
-        }
-
         _hudStyleTheme = proto.Hud is { } hud && _prototype.TryIndex(hud, out var hudProto)
-            ? new StyleTheme(hudProto, ResolveAccent(hudProto))
+            ? new StyleTheme(hudProto, ResolveAccent(hudProto), ResolveSecondaryAccent(hudProto))
             : null;
 
-        return new StyleTheme(proto, ResolveAccent(proto));
+        return new StyleTheme(proto, ResolveAccent(proto), ResolveSecondaryAccent(proto));
     }
 
     private Color ResolveAccent(StyleThemePrototype proto)
@@ -68,6 +74,14 @@ public sealed partial class StylesheetManager
             return custom;
 
         return proto.Accent ?? Color.FromHex(StarlightCCVars.StyleAccent.DefaultValue);
+    }
+
+    private Color? ResolveSecondaryAccent(StyleThemePrototype proto)
+    {
+        if (_cfg.GetCVar(StarlightCCVars.StyleCustomAccent))
+            return null;
+
+        return proto.SecondaryAccent;
     }
 
     private void QueueStyleThemeRebuild()
