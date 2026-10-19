@@ -5,10 +5,10 @@ using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Audio;
 using Content.Shared.Popups;
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Audio;
 using Robust.Shared.Random;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
@@ -61,7 +61,7 @@ public sealed partial class PatchSystem : EntitySystem
         if (user != target && !_interactionSystem.InRangeUnobstructed(user, target, popup: true))
             return false;
 
-        _audio.PlayPvs(patchComponent.ApplyBeginSound, patch, AudioHelpers.WithVariation(0.125f, _random).WithVolume(1f));
+        _audio.PlayPvs(patchComponent.ApplyBeginSound, patch, AudioParams.Default.WithVolume(1f) with { Variation = 0.125f });
 
         var isNotSelf = user != target;
 

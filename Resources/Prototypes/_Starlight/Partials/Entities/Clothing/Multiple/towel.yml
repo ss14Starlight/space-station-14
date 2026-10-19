@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: TowelColorSyndicate
+  components:
+  - type: Contraband
+    tier: Tier1

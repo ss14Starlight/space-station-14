@@ -98,7 +98,7 @@
 - type: entity
   name: seismic charge
   description: Concussion based explosive designed to destroy large amounts of rock.
-  parent: [ BaseSalvageMiningContraband, BasePlasticExplosive ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
+  parent: [ BaseContrabandTier3, BaseSalvageContraband, BaseMiningContraband, BasePlasticExplosive ] # TODO  Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: SeismicCharge
   components:
   - type: Sprite

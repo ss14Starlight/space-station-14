@@ -30,3 +30,5 @@ reagent-desc-mortizol = Looks like Death, smells like Death. Clears the rot and 
 
 reagent-name-cell-culture-medium = cell culture medium
 reagent-desc-cell-culture-medium = Branded and sold as Cell Grow™. Used to regrow and replace dead cells in old cadavers. Apply liberally
+
+reagent-desc-polypyrylium-oligomers-sl = A purple mixture of short polyelectrolyte chains not easily synthesized in the laboratory. Heals airloss and brute damage. Stops bleeding over time.
