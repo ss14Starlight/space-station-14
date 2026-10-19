@@ -525,9 +525,11 @@ public sealed partial class PhysicsReportSystem : EntitySystem
         AppendTime(sb, s, "Solve Islands", "    Solve Islands (parallel)");
         AppendTime(sb, s, PostSolve, "  PostSolve (controllers)");
 
-        foreach (var key in s.Samples.Keys
-                     .Where(k => k.StartsWith(PrePrefix) || k.StartsWith(PostPrefix))
-                     .OrderByDescending(k => s.Samples[k].Average()))
+        var controllers = s.Samples.Keys
+            .Where(k => k.StartsWith(PrePrefix) || k.StartsWith(PostPrefix))
+            .OrderByDescending(k => s.Samples[k].Average());
+
+        foreach (var key in controllers)
         {
             AppendTime(sb, s, key, "  " + key);
         }
