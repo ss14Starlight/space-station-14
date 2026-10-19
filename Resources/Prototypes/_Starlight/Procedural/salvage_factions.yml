@@ -46,7 +46,8 @@
     - proto: MobElder
       cost: 463
     - proto: MobWorm
-      cost: 4
+      cost: 10
+      prob: 0.01
   difficulties:
     - Elder
   configs:
@@ -87,10 +88,10 @@
   desc: salvage-faction-carps
   entries:
     - proto: MobCarpDungeon
-      cost: 5
+      cost: 3
     - proto: MobCarpMagic
       cost: 5
-      prob: 0.1
+      prob: 0.2
     - proto: MobShark
       cost: 10
       prob: 0.1
@@ -114,31 +115,23 @@
   id: Silicon
   desc: salvage-faction-silicon
   entries:
-    - proto: MobXeno
-    - proto: MobXenoDrone
-      cost: 4
-    - proto: MobXenoPraetorian
-      cost: 10
-      prob: 0.3
-    - proto: MobXenoQueen
-      cost: 20
-      prob: 0.1
-    - proto: MobXenoRavager
-      cost: 10
-    - proto: MobXenoRouny
+    - proto: MobHivebot
+    - proto: MobHivebotRanged
       cost: 6
-      prob: 0.2
-    - proto: MobXenoSpitter
-      cost: 2
-    - proto: WeaponTurretXeno
-      prob: 0.2
-      cost: 2
+    - proto: MobHivebotStrong
+      cost: 10
+    - proto: MobPurrfusHostile
+      cost: 5
+    - proto: MobDerelictSiliconHostile
+      cost: 5
+    - proto: MobDerelictEngineerHostile
+      cost: 10
+    - proto: MobDerelictJanitorHostile
+      cost: 5
   difficulties:
     - Silicon-Easy
     - Silicon-Medium
     - Silicon-Hard
-  configs:
-    DefenseStructure: WeaponTurretSyndicate
 
 # Argocyte
 
@@ -147,10 +140,11 @@
   desc: salvage-faction-argocyte
   entries:
     - proto: MobArgocyteSlurva
+      cost: 1
     - proto: MobArgocyteBarrier
       cost: 4
     - proto: MobArgocyteSkitter
-      cost: 10
+      cost: 5
       prob: 0.3
     - proto: MobArgocyteLeviathing
       cost: 20
@@ -158,7 +152,7 @@
     - proto: MobArgocyteSwiper
       cost: 10
     - proto: MobArgocyteGlider
-      cost: 6
+      cost: 4
       prob: 0.2
     - proto: MobArgocyteMolder
       cost: 2
@@ -169,6 +163,8 @@
     - Argocyte-Easy
     - Argocyte-Medium
     - Argocyte-Hard
+  configs:
+    Megafauna: MobArgocyteLeviathing
 
 # Critter
 

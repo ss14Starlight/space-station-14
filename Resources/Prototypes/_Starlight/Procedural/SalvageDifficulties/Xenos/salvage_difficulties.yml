@@ -13,19 +13,19 @@
 - type: salvageDifficulty
   id: Xeno-Medium
   lootPrototype: "SalvageLootXenosEasy"
-  lootBudget: 15
-  mobBudget: 15
+  lootBudget: 25
+  mobBudget: 25
   modifierBudget: 3
   color: "#9FED5896"
-  recommendedPlayers: 1
+  recommendedPlayers: 2
   probability: 0.3
 
 - type: salvageDifficulty
   id: Xeno-Hard
   lootPrototype: "SalvageLootXenosEasy"
-  lootBudget: 15
-  mobBudget: 15
+  lootBudget: 45
+  mobBudget: 45
   modifierBudget: 3
   color: "#9FED5896"
-  recommendedPlayers: 1
+  recommendedPlayers: 4
   probability: 0.3
