@@ -153,64 +153,34 @@
 
 - type: reaction
   id: Mortizol
+  impact: Medium
+  minTemp: 370
   reactants:
-    CoatedBruizine:
-      amount: 1
-    CoatedPuncturase:
-      amount: 1
-    CoatedLacerinol:
-      amount: 1
-    Leporazine:
-      amount: 1
-    Pyrazine:
-      amount: 1
-    Insuzine:
-      amount: 1
     Diphenhydramine:
       amount: 1
     Doxarubixadone:
       amount: 1
-    Sigynate:
+    Ultravasculine:
       amount: 1
-    Arithrazine:
+    Mannitol:
       amount: 1
-    Oculine:
+    CellCultureMedium:
       amount: 1
-    Epinephrine:
-      amount: 1
-    Plasma:
-      amount: 1
-      catalyst: true
   products:
     Mortizol: 1
-    Silicon: 3
 
 - type: reaction
-  id: CoatedBruizine
+  id: CellCultureMedium
+  requiredMixerCategories:
+  - Stir
   reactants:
-    Bruizine:
+    Fat:
+      amount: 3
+    Blood:
       amount: 1
-    Silicon:
+    Carbon:
+      amount: 1
+    Cryoxadone:
       amount: 1
   products:
-    CoatedBruizine: 1
-
-- type: reaction
-  id: CoatedPuncturase
-  reactants:
-    Puncturase:
-      amount: 1
-    Silicon:
-      amount: 1
-  products:
-    CoatedPuncturase: 1
-
-- type: reaction
-  id: CoatedLacerinol
-  reactants:
-    Lacerinol:
-      amount: 1
-    Silicon:
-      amount: 1
-  products:
-    CoatedLacerinol: 1
+    CellCultureMedium: 6
