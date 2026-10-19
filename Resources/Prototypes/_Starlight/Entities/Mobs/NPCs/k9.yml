@@ -64,6 +64,7 @@
   - type: Vocal
     screamAction: null
   - type: StatusIcon
+  - type: JobStatus
   - type: SpriteVariant
     availableVariants:
     - k9-brown
