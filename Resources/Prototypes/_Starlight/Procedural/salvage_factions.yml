@@ -1,41 +1,3 @@
-#- type: salvageFaction
-#  id: Syndicate
-#  desc: salvage-faction-syndicate
-#  entries:
-#    - proto: MobSyndicateFootsoldierFireAxe
-#      cost: 6
-#    #shotgun
-#    - proto: MobSyndicateFootsoldierSawn
-#      cost: 10
-#    #pistol
-#    - proto: MobSyndicateFootsoldierViper
-#      cost: 18
-#    - proto: MobSyndicateFootsoldierCobra
-#      cost: 22
-#      prob: 0.9
-#    #rifle
-#    - proto: MobSyndicateFootsoldierAk
-#      cost: 42
-#      prob: 0.7
-#    #grenade
-#    - proto: MobSyndicateFootsoldierChina
-#      cost: 80
-#      prob: 0.2
-#    #laser
-#    - proto: MobSyndicateFootsoldierLaserCarbine
-#      cost: 20
-#      prob: 0.8
-#    - proto: MobSyndicateFootsoldierMakeshiftLaser
-#      cost: 16
-#    #boss
-#    - proto: MobSyndicateFootsoldierBoss
-#      cost: 100
-#      prob: 0.2
-#  difficulties:
-#    - Impossible
-#  configs:
-#    DefenseStructure: WeaponTurretDungeonSyndicate
-
 - type: salvageFaction
   id: Soviet
   desc: salvage-faction-soviet
@@ -69,7 +31,9 @@
       cost: 35
       prob: 0.4
   difficulties:
-    - Difficult
+    - Communist-Easy
+    - Communist-Medium
+    - Communist-Hard
   configs:
     DefenseStructure: WeaponTurretSyndicateBroken
 
@@ -81,36 +45,12 @@
   entries:
     - proto: MobElder
       cost: 463
-  difficulties:
-    - Impossible
-  configs:
-    DefenseStructure: WeaponTurretSyndicateBroken
-
-- type: salvageFaction
-  id: Worms
-  desc: salvage-faction-worms
-  entries:
     - proto: MobWorm
       cost: 4
-  biomes:
-    - Abyss
   difficulties:
-    - Challenging
+    - Elder
   configs:
-    DefenseStructure: WeaponTurretSyndicate
-
-# - type: salvageFaction
-#   id: Elder
-#   desc: salvage-faction-elder
-#   entries:
-#     - proto: MobElder
-#       cost: 40000
-#   biomes:
-#     - Abyss
-#   difficulties:
-#     - Difficult
-#   configs:
-#     DefenseStructure: WeaponTurretSyndicate
+    DefenseStructure: WeaponTurretSyndicateBroken
 
 - type: salvageFaction
   id: Xenos
@@ -136,8 +76,9 @@
       prob: 0.2
       cost: 2
   difficulties:
-    - Challenging
-    - Moderate
+    - Xeno-Easy
+    - Xeno-Medium
+    - Xeno-Hard
   configs:
     DefenseStructure: WeaponTurretSyndicate
 
@@ -146,22 +87,93 @@
   desc: salvage-faction-carps
   entries:
     - proto: MobCarpDungeon
-    # These do too much damage for salvage, need nerfs
-    #- proto: MobCarpHolo
-    #  cost: 5
-    #  prob: 0.1
-    #- proto: MobCarpMagic
-    #  cost: 5
-    #  prob: 0.1
+      cost: 5
+    - proto: MobCarpMagic
+      cost: 5
+      prob: 0.1
+    - proto: MobShark
+      cost: 10
+      prob: 0.1
     - proto: MobCarpRainbow # carp version of rouny...
       cost: 3
       prob: 0.05
     - proto: MobDragonDungeon
-      cost: 10
+      cost: 20
       prob: 0.02
   difficulties:
-    - Moderate
-    - Easy
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
   configs:
     DefenseStructure: CarpStatue
     Megafauna: MobDragonDungeon
+
+# Silicon
+
+- type: salvageFaction
+  id: Silicon
+  desc: salvage-faction-silicon
+  entries:
+    - proto: MobXeno
+    - proto: MobXenoDrone
+      cost: 4
+    - proto: MobXenoPraetorian
+      cost: 10
+      prob: 0.3
+    - proto: MobXenoQueen
+      cost: 20
+      prob: 0.1
+    - proto: MobXenoRavager
+      cost: 10
+    - proto: MobXenoRouny
+      cost: 6
+      prob: 0.2
+    - proto: MobXenoSpitter
+      cost: 2
+    - proto: WeaponTurretXeno
+      prob: 0.2
+      cost: 2
+  difficulties:
+    - Silicon-Easy
+    - Silicon-Medium
+    - Silicon-Hard
+  configs:
+    DefenseStructure: WeaponTurretSyndicate
+
+# Argocyte
+
+- type: salvageFaction
+  id: Argocyte
+  desc: salvage-faction-argocyte
+  entries:
+    - proto: MobArgocyteSlurva
+    - proto: MobArgocyteBarrier
+      cost: 4
+    - proto: MobArgocyteSkitter
+      cost: 10
+      prob: 0.3
+    - proto: MobArgocyteLeviathing
+      cost: 20
+      prob: 0.1
+    - proto: MobArgocyteSwiper
+      cost: 10
+    - proto: MobArgocyteGlider
+      cost: 6
+      prob: 0.2
+    - proto: MobArgocyteMolder
+      cost: 2
+    - proto: MobArgocyteEnforcer
+      prob: 0.2
+      cost: 2
+  difficulties:
+    - Argocyte-Easy
+    - Argocyte-Medium
+    - Argocyte-Hard
+
+# Critter
+
+# Space Critter
+
+# Abandoned
+
+# Hive

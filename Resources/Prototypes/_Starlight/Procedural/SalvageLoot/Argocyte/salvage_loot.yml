@@ -1,5 +1,5 @@
 - type: salvageLoot
-  id: SalvageLootModerate
+  id: SalvageLootArgocyteEasy
   loots:
     - !type:RandomSpawnsLoot
       entries:
@@ -43,50 +43,33 @@
           cost: 2
         - proto: NuclearBombKeg
           cost: 5
-        - proto: ChemistryBottleOmnizine
-          prob: 0.5
         - proto: PortableGeneratorPacman
           cost: 2
         - proto: PortableGeneratorSuperPacman
           cost: 3
-        - proto: PowerCellAntiqueProto
-          cost: 5
-          prob: 0.5
-        - proto: MechReactorAntique
-          cost: 5
-          prob: 0.5
-        - proto: MechReactorBurnout
-          cost: 5
-          prob: 0.5
-        - proto: MechReactorShielded
-          cost: 5
-          prob: 0.5
-        - proto: MechReactorCavalier
-          cost: 5
-          prob: 0.5
         - proto: ProtolatheMachineCircuitboard
         - proto: RandomArtifactSpawner
           cost: 2
         - proto: RandomCargoCorpseSpawner
-          cost: 2
+          cost: 1
           prob: 0.5
         - proto: RandomCommandCorpseSpawner
-          cost: 5
+          cost: 3
           prob: 0.5
         - proto: RandomEngineerCorpseSpawner
-          cost: 2
+          cost: 1
           prob: 0.5
         - proto: RandomMedicCorpseSpawner
-          cost: 2
+          cost: 1
           prob: 0.5
         - proto: RandomScienceCorpseSpawner
-          cost: 2
+          cost: 1
           prob: 0.5
         - proto: RandomSecurityCorpseSpawner
-          cost: 2
+          cost: 1
           prob: 0.5
         - proto: RandomServiceCorpseSpawner
-          cost: 2
+          cost: 1
           prob: 0.5
         - proto: ResearchAndDevelopmentServerMachineCircuitboard
           cost: 5
@@ -102,7 +85,7 @@
         - proto: SpaceCash10000
           cost: 10
         - proto: SpaceCash2500
-          cost: 3
+          cost: 2
         - proto: SpaceCash5000
           cost: 5
         - proto: TechnologyDiskRare
@@ -111,4 +94,4 @@
         - proto: ThrusterUnanchored
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
-          cost: 3
+          cost: 2

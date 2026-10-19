@@ -1,0 +1,31 @@
+# Carp Difficulties
+
+- type: salvageDifficulty
+  id: Carp-Easy
+  lootPrototype: "SalvageLootCarpEasy"
+  lootBudget: 15
+  mobBudget: 15
+  modifierBudget: 3
+  color: "#9FED5896"
+  recommendedPlayers: 1
+  probability: 0.3
+
+- type: salvageDifficulty
+  id: Carp-Medium
+  lootPrototype: "SalvageLootCarpEasy"
+  lootBudget: 15
+  mobBudget: 15
+  modifierBudget: 3
+  color: "#9FED5896"
+  recommendedPlayers: 1
+  probability: 0.3
+
+- type: salvageDifficulty
+  id: Carp-Hard
+  lootPrototype: "SalvageLootCarpEasy"
+  lootBudget: 15
+  mobBudget: 15
+  modifierBudget: 3
+  color: "#9FED5896"
+  recommendedPlayers: 1
+  probability: 0.3

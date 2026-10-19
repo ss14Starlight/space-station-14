@@ -1,5 +1,5 @@
 - type: salvageLoot
-  id: SalvageLootEasy
+  id: SalvageLootXenosEasy
   loots:
     - !type:RandomSpawnsLoot
       entries:
