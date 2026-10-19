@@ -79,9 +79,7 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
     }
 
     private void OnMountShutdown(Entity<WallMountComponent> ent, ref ComponentShutdown args)
-    {
-        RemoveMount(ent.Owner);
-    }
+        => RemoveMount(ent.Owner);
 
     public override void FrameUpdate(float frameTime)
     {
@@ -128,8 +126,8 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
 
             var slide = 0.45f * progress;
             var direction = GetLocalSlideDirection(sourceTransform, sourceSprite, split.Vertical);
-            var leftOffset = sourceSprite.Offset - direction * slide;
-            var rightOffset = sourceSprite.Offset + direction * slide;
+            var leftOffset = sourceSprite.Offset - (direction * slide);
+            var rightOffset = sourceSprite.Offset + (direction * slide);
             if (leftSprite.Offset != leftOffset)
                 _sprites.SetOffset((split.Left, leftSprite), leftOffset);
             if (rightSprite.Offset != rightOffset)
@@ -152,8 +150,8 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
             _doorProgress[uid] = door.State switch
             {
                 DoorState.Open => 1f,
-                DoorState.Opening => MathF.Min(1f, progress + frameTime / MathF.Max(0.001f, (float)door.OpeningAnimationTime.TotalSeconds)),
-                DoorState.Closing => MathF.Max(0f, progress - frameTime / MathF.Max(0.001f, (float)door.ClosingAnimationTime.TotalSeconds)),
+                DoorState.Opening => MathF.Min(1f, progress + (frameTime / MathF.Max(0.001f, (float)door.OpeningAnimationTime.TotalSeconds))),
+                DoorState.Closing => MathF.Max(0f, progress - (frameTime / MathF.Max(0.001f, (float)door.ClosingAnimationTime.TotalSeconds))),
                 _ => progress,
             };
         }
@@ -175,7 +173,7 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
             if (door.State is not (DoorState.Open or DoorState.Opening or DoorState.Closing))
                 continue;
 
-            _doorProgress.TryAdd(uid, door.State == DoorState.Closing || door.State == DoorState.Open ? 1f : 0f);
+            _doorProgress.TryAdd(uid, door.State is DoorState.Closing or DoorState.Open ? 1f : 0f);
             _activeDoors.Add(uid);
             if (MathF.Abs(xform.LocalRotation.RotateVec(Vector2.UnitX).Y) > 0.5f)
                 _verticalDoors.Add(uid);
@@ -212,10 +210,10 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         {
             if (!HasComp<WallMountComponent>(uid) ||
                 !TryComp<SpriteComponent>(uid, out var sprite) ||
-                !TryComp<TransformComponent>(uid, out var xform))
+                !TryComp(uid, out TransformComponent? xform))
                 continue;
 
-            if (!sprite.Visible || sprite.Color.A <= 0f && !_mounts.ContainsKey(uid) ||
+            if (!sprite.Visible || (sprite.Color.A <= 0f && !_mounts.ContainsKey(uid)) ||
                 xform.GridUid is not { } grid || !HasComp<MapGridComponent>(grid) ||
                 !_doorsByTile.TryGetValue((grid, _transforms.GetGridOrMapTilePosition(uid, xform)), out var door))
                 continue;

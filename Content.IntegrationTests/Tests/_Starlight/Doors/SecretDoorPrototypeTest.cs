@@ -10,6 +10,10 @@ namespace Content.IntegrationTests.Tests._Starlight.Doors;
 
 public sealed class SecretDoorPrototypeTest : GameTest
 {
+    private static readonly ProtoId<ConstructionGraphPrototype> SecretDoorGraph = "SecretDoor";
+    private static readonly EntProtoId NormalDoor = "SolidSecretDoor";
+    private static readonly EntProtoId ReinforcedDoor = "ReinforcedSecretDoor";
+
     [Test]
     public async Task ReinforcedFacadeKeepsNormalDoorDurabilityAndConstructionLinks()
     {
@@ -17,19 +21,19 @@ public sealed class SecretDoorPrototypeTest : GameTest
         {
             var prototypes = Pair.Server.ResolveDependency<IPrototypeManager>();
             var components = Pair.Server.ResolveDependency<IComponentFactory>();
-            var graph = prototypes.Index<ConstructionGraphPrototype>("SecretDoor");
+            var graph = prototypes.Index(SecretDoorGraph);
 
             Assert.That(graph.Edge("solidSecretDoor", "reinforcedSecretDoor"), Is.Not.Null);
             Assert.That(graph.Edge("reinforcedSecretDoor", "solidSecretDoor"), Is.Not.Null);
 
-            var normal = prototypes.Index<EntityPrototype>("SolidSecretDoor");
-            var reinforced = prototypes.Index<EntityPrototype>("ReinforcedSecretDoor");
-            Assert.That(normal.TryGetComponent<DamageableComponent>(out var normalDamage, components), Is.True);
-            Assert.That(reinforced.TryGetComponent<DamageableComponent>(out var reinforcedDamage, components), Is.True);
+            var normal = prototypes.Index(NormalDoor);
+            var reinforced = prototypes.Index(ReinforcedDoor);
+            Assert.That(normal.TryComp<DamageableComponent>(out var normalDamage, components), Is.True);
+            Assert.That(reinforced.TryComp<DamageableComponent>(out var reinforcedDamage, components), Is.True);
             Assert.That(reinforcedDamage!.DamageModifierSetId, Is.EqualTo(normalDamage!.DamageModifierSetId));
 
-            Assert.That(normal.TryGetComponent<DestructibleComponent>(out var normalDestructible, components), Is.True);
-            Assert.That(reinforced.TryGetComponent<DestructibleComponent>(out var reinforcedDestructible, components), Is.True);
+            Assert.That(normal.TryComp<DestructibleComponent>(out var normalDestructible, components), Is.True);
+            Assert.That(reinforced.TryComp<DestructibleComponent>(out var reinforcedDestructible, components), Is.True);
             Assert.That(reinforcedDestructible!.Thresholds.Count, Is.EqualTo(normalDestructible!.Thresholds.Count));
             Assert.That(reinforcedDestructible.Thresholds[0].Trigger, Is.TypeOf<DamageTrigger>());
             Assert.That(((DamageTrigger) reinforcedDestructible.Thresholds[0].Trigger!).Damage,
