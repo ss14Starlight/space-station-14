@@ -25,10 +25,14 @@ public sealed partial class ReinforcedSecretDoorVisualSystem : EntitySystem
             var preview = xform.MapID == MapId.Nullspace;
 
             // A placed closed facade must use WallReinforced's upright art.
-            sprite.NoRotation = !animating && !preview;
+            var noRotation = !animating && !preview;
+            if (sprite.NoRotation != noRotation)
+                sprite.NoRotation = noRotation;
 
             // Layer zero is DoorSystem's existing animation. IconSmooth adds the
-            // remaining layers from the same RSI used by WallReinforced.
+            // remaining layers from the same RSI used by WallReinforced. Keep
+            // checking them because IconSmooth can add layers after spawn;
+            // LayerSetVisible itself skips layers already in the right state.
             _sprites.LayerSetVisible((uid, sprite), 0, animating || preview);
             var index = 0;
             foreach (var _ in sprite.AllLayers)

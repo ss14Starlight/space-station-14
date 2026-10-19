@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using Content.Shared.Effects;
 using Content.Shared.Doors.Components;
@@ -44,15 +45,19 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
     private readonly List<EntityUid> _removeDoors = new();
     private float _scanCountdown;
 
-    private sealed class SplitMount(EntityUid door, EntityUid left, EntityUid right, Color color, bool vertical, bool maskVertical, bool maskReversed)
+    // First/Second are the negative/positive slide directions. Depending on
+    // door rotation they can appear as left/right or bottom/top on screen.
+    private sealed class SplitMount(EntityUid door, EntityUid first, EntityUid second, Color color, bool vertical, bool maskVertical, bool maskReversed)
     {
         public EntityUid Door = door;
-        public EntityUid Left = left;
-        public EntityUid Right = right;
+        public EntityUid First = first;
+        public EntityUid Second = second;
         public Color OriginalColor = color;
         public bool Vertical = vertical;
         public bool MaskVertical = maskVertical;
         public bool MaskReversed = maskReversed;
+        public int VisualHash;
+        public float RefreshCountdown;
     }
 
     public override void Initialize()
@@ -99,17 +104,15 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
                 !_doorProgress.TryGetValue(split.Door, out var progress) ||
                 !TryComp<SpriteComponent>(mount, out var sourceSprite) ||
                 !TryComp(mount, out TransformComponent? sourceTransform) ||
-                !TryComp<SpriteComponent>(split.Left, out var leftSprite) ||
-                !TryComp<SpriteComponent>(split.Right, out var rightSprite))
+                !TryComp<SpriteComponent>(split.First, out var firstSprite) ||
+                !TryComp<SpriteComponent>(split.Second, out var secondSprite))
             {
                 _removeMounts.Add(mount);
                 continue;
             }
 
             // Another visualizer may recolor the mount while the door is open.
-            if (!HasComp<ColorFlashEffectComponent>(mount) &&
-                sourceSprite.Color != split.OriginalColor.WithAlpha(0f))
-                split.OriginalColor = sourceSprite.Color;
+            TrackSourceColor(mount, sourceSprite, split);
 
             var hiddenColor = split.OriginalColor.WithAlpha(0f);
             if (sourceSprite.Color != hiddenColor)
@@ -117,21 +120,21 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
 
             // Both halves retain the mount's normal position and rotation. Only
             // the sprite offsets move; the wall mount remains a single entity.
-            _transforms.SetCoordinates(split.Left, sourceTransform.Coordinates);
-            _transforms.SetCoordinates(split.Right, sourceTransform.Coordinates);
-            if (Transform(split.Left).LocalRotation != sourceTransform.LocalRotation)
-                _transforms.SetLocalRotationNoLerp(split.Left, sourceTransform.LocalRotation);
-            if (Transform(split.Right).LocalRotation != sourceTransform.LocalRotation)
-                _transforms.SetLocalRotationNoLerp(split.Right, sourceTransform.LocalRotation);
+            _transforms.SetCoordinates(split.First, sourceTransform.Coordinates);
+            _transforms.SetCoordinates(split.Second, sourceTransform.Coordinates);
+            if (Transform(split.First).LocalRotation != sourceTransform.LocalRotation)
+                _transforms.SetLocalRotationNoLerp(split.First, sourceTransform.LocalRotation);
+            if (Transform(split.Second).LocalRotation != sourceTransform.LocalRotation)
+                _transforms.SetLocalRotationNoLerp(split.Second, sourceTransform.LocalRotation);
 
             var slide = 0.45f * progress;
             var direction = GetLocalSlideDirection(sourceTransform, sourceSprite, split.Vertical);
-            var leftOffset = sourceSprite.Offset - (direction * slide);
-            var rightOffset = sourceSprite.Offset + (direction * slide);
-            if (leftSprite.Offset != leftOffset)
-                _sprites.SetOffset((split.Left, leftSprite), leftOffset);
-            if (rightSprite.Offset != rightOffset)
-                _sprites.SetOffset((split.Right, rightSprite), rightOffset);
+            var firstOffset = sourceSprite.Offset - (direction * slide);
+            var secondOffset = sourceSprite.Offset + (direction * slide);
+            if (firstSprite.Offset != firstOffset)
+                _sprites.SetOffset((split.First, firstSprite), firstOffset);
+            if (secondSprite.Offset != secondOffset)
+                _sprites.SetOffset((split.Second, secondSprite), secondOffset);
         }
 
         foreach (var mount in _removeMounts)
@@ -219,6 +222,8 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
                 continue;
 
             _seenMounts.Add(uid);
+            // Door orientation is in world space, but the clipping shader runs
+            // in sprite-local space. A rotated mount can reverse either axis.
             var localAxis = GetLocalSlideDirection(xform, sprite, _verticalDoors.Contains(door));
             var maskVertical = MathF.Abs(localAxis.Y) > 0.5f;
             var maskReversed = (maskVertical ? localAxis.Y : localAxis.X) < 0f;
@@ -235,10 +240,18 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
                 _mounts.Add(uid, split);
             }
 
-            if (!HasComp<ColorFlashEffectComponent>(uid) &&
-                sprite.Color != split.OriginalColor.WithAlpha(0f))
-                split.OriginalColor = sprite.Color;
-            RefreshMount(uid, sprite, split);
+            TrackSourceColor(uid, sprite, split);
+            // CopySprite rebuilds every layer and allocates lists. Most mounted
+            // sprites are static, so only recopy on a visual change; the slow
+            // fallback also catches properties not represented in the hash.
+            var visualHash = GetVisualHash(sprite, split.OriginalColor);
+            split.RefreshCountdown -= 0.1f;
+            if (visualHash != split.VisualHash || split.RefreshCountdown <= 0f)
+            {
+                RefreshMount(uid, sprite, split);
+                split.VisualHash = visualHash;
+                split.RefreshCountdown = 1f;
+            }
         }
 
         _removeMounts.Clear();
@@ -254,16 +267,16 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
 
     private SplitMount CreateMount(EntityUid mount, EntityUid door, SpriteComponent sprite, TransformComponent xform)
     {
-        var left = Spawn("clientsideclone", xform.Coordinates);
-        var right = Spawn("clientsideclone", xform.Coordinates);
-        _tags.AddTag(left, HideContextMenuTag);
-        _tags.AddTag(right, HideContextMenuTag);
+        var first = Spawn("clientsideclone", xform.Coordinates);
+        var second = Spawn("clientsideclone", xform.Coordinates);
+        _tags.AddTag(first, HideContextMenuTag);
+        _tags.AddTag(second, HideContextMenuTag);
         var vertical = _verticalDoors.Contains(door);
         var localAxis = GetLocalSlideDirection(xform, sprite, vertical);
         var maskVertical = MathF.Abs(localAxis.Y) > 0.5f;
         var maskReversed = (maskVertical ? localAxis.Y : localAxis.X) < 0f;
         var originalColor = TryComp<ColorFlashEffectComponent>(mount, out var flash) ? flash.Color : sprite.Color;
-        return new SplitMount(door, left, right, originalColor, vertical, maskVertical, maskReversed);
+        return new SplitMount(door, first, second, originalColor, vertical, maskVertical, maskReversed);
     }
 
     private static Vector2 GetLocalSlideDirection(TransformComponent xform, SpriteComponent sprite, bool vertical)
@@ -274,18 +287,18 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
 
     private void RefreshMount(EntityUid mount, SpriteComponent source, SplitMount split)
     {
-        if (!TryComp<SpriteComponent>(split.Left, out var left) ||
-            !TryComp<SpriteComponent>(split.Right, out var right))
+        if (!TryComp<SpriteComponent>(split.First, out var first) ||
+            !TryComp<SpriteComponent>(split.Second, out var second))
             return;
 
-        _sprites.CopySprite((mount, source), (split.Left, left));
-        _sprites.CopySprite((mount, source), (split.Right, right));
-        _sprites.SetColor((split.Left, left), split.OriginalColor);
-        _sprites.SetColor((split.Right, right), split.OriginalColor);
+        _sprites.CopySprite((mount, source), (split.First, first));
+        _sprites.CopySprite((mount, source), (split.Second, second));
+        _sprites.SetColor((split.First, first), split.OriginalColor);
+        _sprites.SetColor((split.Second, second), split.OriginalColor);
         _sprites.SetColor((mount, source), split.OriginalColor.WithAlpha(0f));
 
-        MaskHalf(left, firstHalf: true, split.MaskVertical, split.MaskReversed);
-        MaskHalf(right, firstHalf: false, split.MaskVertical, split.MaskReversed);
+        MaskHalf(first, firstHalf: true, split.MaskVertical, split.MaskReversed);
+        MaskHalf(second, firstHalf: false, split.MaskVertical, split.MaskReversed);
     }
 
     private void MaskHalf(SpriteComponent sprite, bool firstHalf, bool vertical, bool reversed)
@@ -297,9 +310,17 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
             {
                 var unshaded = renderLayer.ShaderPrototype == SpriteSystem.UnshadedId;
                 var lowSide = firstHalf != reversed;
-                var shader = vertical
-                    ? lowSide ? unshaded ? BottomUnshadedShader : BottomShader : unshaded ? TopUnshadedShader : TopShader
-                    : lowSide ? unshaded ? LeftUnshadedShader : LeftShader : unshaded ? RightUnshadedShader : RightShader;
+                var shader = (vertical, lowSide, unshaded) switch
+                {
+                    (true, true, true) => BottomUnshadedShader,
+                    (true, true, false) => BottomShader,
+                    (true, false, true) => TopUnshadedShader,
+                    (true, false, false) => TopShader,
+                    (false, true, true) => LeftUnshadedShader,
+                    (false, true, false) => LeftShader,
+                    (false, false, true) => RightUnshadedShader,
+                    _ => RightShader,
+                };
                 sprite.LayerSetShader(index, _prototypes.Index(shader).Instance(), shader);
             }
             index++;
@@ -317,7 +338,54 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         if (TryComp<SpriteComponent>(mount, out var sprite))
             _sprites.SetColor((mount, sprite), split.OriginalColor);
 
-        QueueDel(split.Left);
-        QueueDel(split.Right);
+        QueueDel(split.First);
+        QueueDel(split.Second);
+    }
+
+    private void TrackSourceColor(EntityUid mount, SpriteComponent sprite, SplitMount split)
+    {
+        // A flash temporarily changes the sprite color. Preserve the original
+        // so removing the split never leaves the wall mount transparent.
+        if (!HasComp<ColorFlashEffectComponent>(mount) &&
+            sprite.Color != split.OriginalColor.WithAlpha(0f))
+            split.OriginalColor = sprite.Color;
+    }
+
+    private static int GetVisualHash(SpriteComponent sprite, Color originalColor)
+    {
+        var hash = new HashCode();
+        hash.Add(originalColor);
+        hash.Add(sprite.Visible);
+        hash.Add(sprite.BaseRSI);
+        hash.Add(sprite.DrawDepth);
+        hash.Add(sprite.Scale);
+        hash.Add(sprite.Rotation);
+        hash.Add(sprite.Offset);
+        hash.Add(sprite.NoRotation);
+        hash.Add(sprite.DirectionOverride);
+        hash.Add(sprite.EnableDirectionOverride);
+        hash.Add(sprite.RenderOrder);
+        hash.Add(sprite.GranularLayersRendering);
+        hash.Add(sprite.Loop);
+        foreach (var layer in sprite.AllLayers)
+        {
+            if (layer is not SpriteComponent.Layer renderLayer)
+                continue;
+
+            hash.Add(renderLayer.RSI);
+            hash.Add(renderLayer.State);
+            hash.Add(renderLayer.Texture);
+            hash.Add(renderLayer.Visible);
+            hash.Add(renderLayer.Color);
+            hash.Add(renderLayer.Offset);
+            hash.Add(renderLayer.Scale);
+            hash.Add(renderLayer.Rotation);
+            hash.Add(renderLayer.ShaderPrototype);
+            hash.Add(renderLayer.AutoAnimated);
+            hash.Add(renderLayer.DirOffset);
+            hash.Add(renderLayer.RenderingStrategy);
+        }
+
+        return hash.ToHashCode();
     }
 }
