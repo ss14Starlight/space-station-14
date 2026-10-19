@@ -139,25 +139,18 @@
   id: Argocyte
   desc: salvage-faction-argocyte
   entries:
-    - proto: MobArgocyteSlurva
-      cost: 1
     - proto: MobArgocyteBarrier
       cost: 4
     - proto: MobArgocyteSkitter
       cost: 5
-      prob: 0.3
     - proto: MobArgocyteLeviathing
       cost: 20
-      prob: 0.1
     - proto: MobArgocyteSwiper
       cost: 10
     - proto: MobArgocyteGlider
       cost: 4
-      prob: 0.2
     - proto: MobArgocyteMolder
-      cost: 2
     - proto: MobArgocyteEnforcer
-      prob: 0.2
       cost: 2
   difficulties:
     - Argocyte-Easy

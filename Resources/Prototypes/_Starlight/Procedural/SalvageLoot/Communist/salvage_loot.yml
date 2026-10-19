@@ -167,6 +167,8 @@
           cost: 10
         - proto: ClothingUniformJumpsuitSovietFatigues
           cost: 5
+        - proto: ClothingNeckCloakCommissar
+          cost: 10
         - proto: AmmoTechFabCircuitboard
           cost: 15
 #baseloot
