@@ -5,6 +5,9 @@ using Robust.Shared.Console;
 
 namespace Content.Server._Starlight.Physics.Diagnostics;
 
+/// <summary>
+/// Reports where physics tick time goes over a few seconds. See <see cref="PhysicsReportSystem"/>.
+/// </summary>
 [AdminCommand(AdminFlags.Debug)]
 public sealed partial class PhysicsReportCommand : LocalizedEntityCommands
 {

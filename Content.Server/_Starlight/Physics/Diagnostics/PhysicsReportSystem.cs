@@ -100,6 +100,11 @@ public sealed partial class PhysicsReportSystem : EntitySystem
         _session = null;
     }
 
+    /// <summary>
+    /// Samples physics for <paramref name="seconds"/>, with the engine profiler on until the report is done.
+    /// The report goes to <paramref name="shell"/>, and a player also gets a copy saved on their computer.
+    /// </summary>
+    /// <returns>False if a report is already being sampled.</returns>
     public bool TryStart(IConsoleShell shell, float seconds)
     {
         if (_session != null)

@@ -11,6 +11,9 @@ public sealed class AwakeIslandEstimator
     private readonly List<int> _parent = new();
     private readonly List<int> _size = new();
 
+    /// <summary>
+    /// Removes every body so the estimator can be reused for the next sample.
+    /// </summary>
     public void Clear()
     {
         _index.Clear();
@@ -19,6 +22,9 @@ public sealed class AwakeIslandEstimator
         _size.Clear();
     }
 
+    /// <summary>
+    /// Adds a body as an island of its own. Adding a body twice does nothing.
+    /// </summary>
     public void Add(EntityUid uid)
     {
         if (!_index.TryAdd(uid, _parent.Count))
@@ -29,6 +35,9 @@ public sealed class AwakeIslandEstimator
         _size.Add(1);
     }
 
+    /// <summary>
+    /// Merges the islands of two bodies. Does nothing if either body wasn't added, such as a static or paused one.
+    /// </summary>
     public void Link(EntityUid a, EntityUid b)
     {
         if (!_index.TryGetValue(a, out var indexA) || !_index.TryGetValue(b, out var indexB))
