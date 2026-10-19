@@ -283,7 +283,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
         switch (chemMaster.Comp.DrawSource)
         {
             case ChemMasterDrawSource.Internal:
-                if (!_solutionContainerSystem.TryGetSolution(chemMaster.Owner, SharedChemMaster.BufferSolutionName, out _, out solution))
+                if (!_solutionContainerSystem.TryGetSolution(chemMaster.Owner, SharedChemMaster.BufferSolutionName, out soln, out solution))
                     return false;
 
                 if (solution.Volume == 0)
