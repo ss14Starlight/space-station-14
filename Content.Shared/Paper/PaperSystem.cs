@@ -21,6 +21,8 @@ using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
 using Content.Shared._Starlight.Time;
+using Content.Shared.Silicons.Borgs.Components;
+
 // Starlight-end
 
 namespace Content.Shared.Paper;
@@ -320,18 +322,22 @@ public sealed partial class PaperSystem : EntitySystem
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
-
-        // Pens have a `Write` tag.
-        if (!args.Using.HasValue || !_tagSystem.HasTag(args.Using.Value, WriteTag))
-            return;
+        
+        // Starlight - borgs should always be able to sign things, most of them can't even hold a pen
+        if (!HasComp<BorgChassisComponent>(args.User))
+            // Pens have a `Write` tag.
+            if (!args.Using.HasValue || !_tagSystem.HasTag(args.Using.Value, WriteTag))
+                return;
 
         EntityUid user = args.User;
+        // Starlight - track the pen used to sign
+        EntityUid? pen = args.Using;
 
         AlternativeVerb verb = new()
         {
             Act = () =>
             {
-                TrySign(uid, user);
+                TrySign(uid, user, pen);
             },
             Text = Loc.GetString("paper-component-verb-sign"),
             Priority = 4
@@ -341,22 +347,38 @@ public sealed partial class PaperSystem : EntitySystem
     }
 
     // Umbra: Actual signature code.
-    public bool TrySign(Entity<PaperComponent> paper, EntityUid signer)
+    // Starlight: Track pen used to sign
+    public bool TrySign(Entity<PaperComponent> paper, EntityUid signer, EntityUid? pen = null)
     {
         // Starlight start
-        
+
         // Get entity's font, or fallback if there's not a custom one
-        string signatureFont = TryComp(signer, out SignatureFontComponent? customSignFont)
-            ? customSignFont.FontPath
-            : "/Fonts/_Starlight/Signature.ttf";
+        // We prioritize the pen, then the signer, then the paper
+        SignatureConfig baseConfig = new();
+        Log.Debug($"init: {baseConfig}");
+        if (TryComp(paper, out CustomSignatureComponent? paperConf)) {
+            Log.Debug($"saturating with paper: {paperConf.Config}");
+            baseConfig = baseConfig.Saturate(paperConf.Config);
+        }
+        Log.Debug($"1: {baseConfig}");
+        if (TryComp(signer, out CustomSignatureComponent? signerConf)) {
+            Log.Debug($"saturating with signer: {signerConf.Config}");
+            baseConfig = baseConfig.Saturate(signerConf.Config);
+        }
+        Log.Debug($"2: {baseConfig}");
+        if (TryComp(pen, out CustomSignatureComponent? penConf)) {
+            Log.Debug($"saturating with pen: {penConf.Config}");
+            baseConfig = baseConfig.Saturate(penConf.Config);
+        }
+        Log.Debug($"3: {baseConfig}");
         
         // Generate display information.
         StampDisplayInfo info = new StampDisplayInfo
         {
             StampedName = SanitizeSignature(Name(signer)),
-            StampedColor = Color.FromHex("#333333"), // TODO: could do custom pen colors?
+            StampedColor = baseConfig.PenColor!.Value,
             Type = StampType.Signature,
-            Font = signatureFont
+            Font = baseConfig.FontPath
         };
 
         // moved the paper signing event here, so that it becomes possible to cancel signing,
