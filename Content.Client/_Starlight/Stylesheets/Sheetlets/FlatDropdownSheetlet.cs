@@ -44,6 +44,15 @@ public sealed class FlatDropdownSheetlet : Sheetlet<NanotrasenStylesheet>
             theme.Primary with { Element = proto.Surface },
             DropdownButton.StyleClassDropdownItem);
 
+        foreach (var styleClass in new[] { DropdownButton.StyleClassDropdownItem, StarlightStyleClass.LobbyBarButton })
+        {
+            rules.Add(E<ContainerButton>()
+                .Class(styleClass)
+                .Class(StyleClass.Negative)
+                .ParentOf(E<Label>())
+                .FontColor(proto.Negative));
+        }
+
         return rules.ToArray();
     }
 }

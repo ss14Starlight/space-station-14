@@ -104,6 +104,9 @@ loadout-group-salvagelead-id = Salvage Lead ID
 loadout-group-mining-id = Mining Specialist ID
 loadout-group-salvage-id = Salvage Specialist ID
 loadout-group-salvage-lead-mantle = Salvage Lead mantle
+loadout-group-salvage-medic-id = Salvage Medic ID
+loadout-group-salvage-medic-jumpsuit = Salvage Medic jumpsuit
+loadout-group-salvage-medic-mantle = Salvage Medic mantle
 
 # Silicons
 loadout-group-borg-brain-type = Cyborg Brain Type

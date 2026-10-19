@@ -247,8 +247,8 @@
     reagentId: MilkChocolate
     quantityPerUpdate: 25
     growthDelay: 30
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable # Starlight butchering fix
+    refineResult: # Starlight
     - id: FoodSnackChocolateBar
       amount: 5
 
@@ -283,8 +283,8 @@
     reagentId: MilkStrawberry
     quantityPerUpdate: 25
     growthDelay: 30
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable # Starlight butchering fix
+    refineResult: # Starlight
     - id: FoodFrozenSandwichStrawberry #Change to actual strawberries if someone implments them
       amount: 2
 
@@ -319,8 +319,8 @@
     reagentId: MilkBanana
     quantityPerUpdate: 25
     growthDelay: 30
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable # Starlight butching fix
+    refineResult: # Starlight
     - id: FoodBanana
       amount: 5
     - id: TrashBananaPeel
@@ -513,8 +513,8 @@
        Base: dead
      Dead:
        Base: dead
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable # Starlight butchering fix
+    refineResult: # Starlight
     - id: FoodMeat
       amount: 1
   - type: Speech

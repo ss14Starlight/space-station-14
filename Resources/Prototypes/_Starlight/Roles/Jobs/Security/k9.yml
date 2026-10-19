@@ -24,6 +24,7 @@
   - !type:AddComponentSpecial
     components:
     - type: SkipLoadingCharacterRecords
+    - type: UseEntityNameAsCharacterName # the dog's name is the character's, not the profile's
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
   - !type:EquipStartingGearSpecial

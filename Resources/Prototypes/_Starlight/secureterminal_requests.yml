@@ -12,7 +12,7 @@
   description: secure-terminal-warops-security-desc
   announcement: secure-terminal-warops-security-announcement
   announcementColor: "#ff4444"
-  activationDelaySecs: 3000 # Plus travel delay of 5 minutes
+  activationDelaySecs: 2700 # Plus travel delay of 5 minutes; total 50 minutes.
   requiresWarDeclared: true
   fee: 8000
   salaryModifiers:
@@ -39,9 +39,13 @@
       name: secure-terminal-security-leadership-name
       groups:
         - [Captain, HeadOfSecurity, Ntrep]
+        - [Captain, HeadOfSecurity, Ntrep]
+        - [Command, Ntrep]
     - id: Command
       name: secure-terminal-command-name
       groups:
+        - [Captain, HeadOfSecurity, Ntrep]
+        - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
   cooldownSecs: 3600

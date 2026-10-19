@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseItem, BaseMajorContraband ]
+  parent: [ BaseItem, BaseSalvageContraband ]
   id: MagazineBoltPistol
   name: bolt pistol magazine (standard)
   description: An 8-round magazine for impact bolts.
