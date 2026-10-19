@@ -16,8 +16,7 @@ public sealed class SecretDoorPrototypeTest : GameTest
 
     [Test]
     public async Task ReinforcedFacadeKeepsNormalDoorDurabilityAndConstructionLinks()
-    {
-        await Pair.Server.WaitPost(() =>
+        => await Pair.Server.WaitPost(() =>
         {
             var prototypes = Pair.Server.ResolveDependency<IPrototypeManager>();
             var components = Pair.Server.ResolveDependency<IComponentFactory>();
@@ -39,5 +38,4 @@ public sealed class SecretDoorPrototypeTest : GameTest
             Assert.That(((DamageTrigger) reinforcedDestructible.Thresholds[0].Trigger!).Damage,
                 Is.EqualTo(((DamageTrigger) normalDestructible.Thresholds[0].Trigger!).Damage));
         });
-    }
 }
