@@ -3,7 +3,7 @@
   mapName: 'Downpour Station'
   mapPath: /Maps/_Starlight/Stations/Downpour.yml
   minPlayers: 20
-  maxPlayers: 90
+  maxPlayers: 100
   randomRotation: false # random rotation looks weird with weather
   stations:
     StarlightDownpour:
@@ -20,7 +20,7 @@
           path: /Maps/Shuttles/cargo_elkridge.yml
         - type: StationJobs
           availableJobs:
-            # Total (82-83+)
+            # Total (87-88+)
             # Command (7)
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
@@ -29,7 +29,7 @@
             ResearchDirector: [ 1, 1 ]
             HeadOfSecurity: [ 1, 1 ]
             Quartermaster: [ 1, 1 ]
-            # Service (14)
+            # Service (17)
             Bartender: [ 2, 2 ]
             Botanist: [ 2, 2 ]
             Chef: [ 2, 2 ]
@@ -77,7 +77,7 @@
             # Silicon (4)
             Borg: [ 3, 3 ]
             StationAi: [ 1, 1 ]
-            # Representatives (4-5)
+            # Representatives (6-7)
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]
