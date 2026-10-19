@@ -33,7 +33,7 @@
 - type: salvageDifficulty
   id: Elder
   lootPrototype: "SalvageLootCommiesHard"
-  lootBudget: 15
+  lootBudget: 90
   mobBudget: 500
   modifierBudget: 3
   color: "#DE3A3A96"
