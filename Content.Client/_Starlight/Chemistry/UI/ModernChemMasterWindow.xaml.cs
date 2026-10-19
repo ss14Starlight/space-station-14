@@ -87,6 +87,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     private ContainerInfo? _prevInputContainerInfo;
     private List<ReagentQuantity> _prevBufferContents = [];
     private ContainerInfo? _prevOutputContainerInfo;
+    private int? _lastOutputItemCount;
 
     private bool _settingContainerLabelProgrammatically;
 
@@ -338,6 +339,23 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
     protected override void FrameUpdate(FrameEventArgs args)
     {
+        // we don't get an event when the contents of the contained container update
+        // so we'll just poll it for when it changes and set storage dirty
+        var owner = _owner;
+        if (owner.Valid)
+        {
+            int? count = null;
+            var outputContainer = _itemSlotsSystem.GetItemOrNull(_owner, SharedChemMaster.OutputSlotName);
+            if (_entityManager.TryGetComponent(outputContainer, out StorageComponent? storage))
+                count = storage.Container.Count;
+
+            if (count != _lastOutputItemCount)
+            {
+                _lastOutputItemCount = count;
+                _dirtyFlags |= ChemMasterUIDirtyFlags.Inventory;
+            }
+        }
+
         if (_dirtyFlags != 0)
         {
             UpdateData(_dirtyFlags);
