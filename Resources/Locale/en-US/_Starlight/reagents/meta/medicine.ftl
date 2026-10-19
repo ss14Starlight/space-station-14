@@ -26,7 +26,7 @@ reagent-name-respirazone = respirazone
 reagent-desc-respirazone = Used in the treatment of severe respiratory distress and blood loss. Unlike conventional oxygenation medicines, it is compatible with a wide variety of species.
 
 reagent-name-mortizol = mortizol
-reagent-desc-mortizol = Looks like Death, smells like Death. It can be used to clear the Rot and Rigor Mortis from frozen dead bodies.
+reagent-desc-mortizol = Looks like Death, smells like Death. Clears the rot and rigor mortis from frozen corpses. Its use comes at a cost. Living bodies hate this stuff.
 
 reagent-name-cell-culture-medium = cell culture medium
-reagent-desc-cell-culture-medium = Branded and sold as Cell Grow™, it is used to treat minor amounts of genetic damage in old cadavers. It's very ineffective.
+reagent-desc-cell-culture-medium = Branded and sold as Cell Grow™. Used to regrow and replace dead cells in old cadavers. Apply liberally
