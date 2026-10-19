@@ -3,6 +3,7 @@ using Content.Shared.Chemistry;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
+// ReSharper disable CheckNamespace
 namespace Content.Server.Chemistry.Components;
 
 /// <summary>
