@@ -16,6 +16,10 @@
   - type: SyncIdNameToWearer
   - type: ActivatableUI
     requiresComplex: false
+  - type: RemovePreinstalledPrograms # whichever PDA a collar is based on
+    programs:
+    - NanoTaskCartridge
+    - NanoChatCartridge
 
 - type: entity
   id: !type:CreateVariants
