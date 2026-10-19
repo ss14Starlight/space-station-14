@@ -189,21 +189,26 @@ public sealed partial class ContainerInfo(string displayName, FixedPoint2 curren
         else if (a.Reagents != null || b.Reagents != null)
             return false;
 
-        if (a.PillEntities != null && b.PillEntities != null)
+        static bool ListsEqual(List<(string Id, FixedPoint2 Quantity)>? a, List<(string Id, FixedPoint2 Quantity)>? b)
         {
-            if (a.PillEntities.Count != b.PillEntities.Count)
+            if (a != null && b != null)
+            {
+                if (a.Count != b.Count)
+                    return false;
+
+                for (int i = 0; i < a.Count; i++)
+                {
+                    if (a[i] != b[i])
+                        return false;
+                }
+            }
+            else if (a != null || b != null)
                 return false;
 
-            for (int i = 0; i < a.PillEntities.Count; i++)
-            {
-                if (a.PillEntities[i] != b.PillEntities[i])
-                    return false;
-            }
+            return true;
         }
-        else if (a.PillEntities != null || b.PillEntities != null)
-            return false;
 
-        return true;
+        return ListsEqual(a.PillEntities, b.PillEntities) && ListsEqual(a.PatchEntities, b.PatchEntities);
     }
 }
 

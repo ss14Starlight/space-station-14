@@ -12,7 +12,7 @@ using Robust.Shared.Containers;
 namespace Content.Client.Chemistry.EntitySystems;
 
 /// <summary>
-/// Contains all the client-side logic for reagent dispensers.
+/// Contains all the client-side logic for ChemMasters.
 /// <seealso cref="ReagentDispenserComponent"/>
 /// </summary>
 [UsedImplicitly]

@@ -113,6 +113,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
                 return;
         }
 
+        UpdateUi(chemMaster, ChemMasterUIDirtyFlags.Solutions);
         ClickSound(chemMaster, message.Actor);
     }
 
@@ -143,6 +144,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
             amount = FixedPoint2.Min(amount, containerSolution.AvailableVolume);
 
             amount = bufferSolution.RemoveReagent(id, amount, preserveOrder: true);
+            _solutionContainerSystem.UpdateChemicals(bufferSoln.Value);
             _solutionContainerSystem.TryAddReagent(containerSoln.Value, id, amount, out var _);
         }
         else // Container to buffer
@@ -164,7 +166,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
             if (_solutionContainerSystem.TryGetSolution(chemMaster.Owner, SharedChemMaster.BufferSolutionName, out var bufferSoln, out var bufferSolution))
             {
                 bufferSolution.RemoveReagent(id, amount, preserveOrder: true);
-                Dirty(bufferSoln.Value);
+                _solutionContainerSystem.UpdateChemicals(bufferSoln.Value);
             }
         }
         else
@@ -289,14 +291,14 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
                 if (solution.Volume == 0)
                 {
                     if (user is { } uid)
-                        _popupSystem.PopupCursor(Loc.GetString("chem-master-window-buffer-empty-text"), uid);
+                        _popupSystem.PopupPredictedCursor(Loc.GetString("chem-master-window-buffer-empty-text"), uid);
 
                     return false;
                 }
                 if (neededVolume > solution.Volume)
                 {
                     if (user is { } uid)
-                        _popupSystem.PopupCursor(Loc.GetString("chem-master-window-buffer-low-text"), uid);
+                        _popupSystem.PopupPredictedCursor(Loc.GetString("chem-master-window-buffer-low-text"), uid);
 
                     return false;
                 }
@@ -307,7 +309,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
                 if (_itemSlotsSystem.GetItemOrNull(chemMaster, SharedChemMaster.InputSlotName) is not { } container)
                 {
                     if (user.HasValue)
-                        _popupSystem.PopupCursor(Loc.GetString("chem-master-window-no-beaker-text"), user.Value);
+                        _popupSystem.PopupPredictedCursor(Loc.GetString("chem-master-window-no-beaker-text"), user.Value);
                     return false;
                 }
 
@@ -317,14 +319,14 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
                 if (solution.Volume == 0)
                 {
                     if (user is { } uid)
-                        _popupSystem.PopupCursor(Loc.GetString("chem-master-window-beaker-empty-text"), uid);
+                        _popupSystem.PopupPredictedCursor(Loc.GetString("chem-master-window-beaker-empty-text"), uid);
 
                     return false;
                 }
                 if (neededVolume > solution.Volume)
                 {
                     if (user is { } uid)
-                        _popupSystem.PopupCursor(Loc.GetString("chem-master-window-beaker-low-text"), uid);
+                        _popupSystem.PopupPredictedCursor(Loc.GetString("chem-master-window-beaker-low-text"), uid);
 
                     return false;
                 }
