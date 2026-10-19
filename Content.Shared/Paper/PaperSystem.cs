@@ -371,7 +371,7 @@ public sealed partial class PaperSystem : EntitySystem
             baseConfig = baseConfig.Saturate(penConf.Config);
         }
         Log.Debug($"3: {baseConfig}");
-        
+
         // Generate display information.
         StampDisplayInfo info = new StampDisplayInfo
         {
