@@ -54,7 +54,7 @@ public sealed partial class DirectionalSignSystem
         var spriteTileCenterOffset = spriteCenter - tileCenter;
 
         // Define caseID based on eyeRotation: 0deg>0, 90deg>1, 180deg>2, 270deg>3
-        var caseID = ((int)MathF.Floor((adjustedEyeRotationDeg + 45) / 90) % 4 + 4) % 4;
+        var caseID = (((int)MathF.Floor((adjustedEyeRotationDeg + 45) / 90) % 4) + 4) % 4;
         var nearestCardinalDeg = caseID * 90;
 
         // Smoothly counter-rotate within the quadrant; jump at 45° because 'nearestCardinalDeg' flips.
