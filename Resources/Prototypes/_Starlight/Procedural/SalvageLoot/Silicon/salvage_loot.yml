@@ -70,7 +70,7 @@
           cost: 2
         - proto: BorgModuleAdvancedLoading
         - proto: BorgModuleAdvancedPlumbing
-        - proto: cleanbot
+        - proto: MobCleanBot
           cost: 4
         - proto: ClothingEyesGlassesMeson
           cost: 4

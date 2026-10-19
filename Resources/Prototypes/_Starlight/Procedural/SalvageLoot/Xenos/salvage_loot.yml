@@ -39,14 +39,14 @@
         - proto: WeaponPistolCHIMP
         - proto: CrateMedicalSurgery
           cost: 2
-        - proto: CyberLLeg
-        - proto: CyberLArm
-        - proto: CyberLHand
-        - proto: CyberLFoot
-        - proto: CyberRLeg
-        - proto: CyberRArm
-        - proto: CyberRHand
-        - proto: CyberRFoot
+        - proto: RightLegCyber
+        - proto: RightArmCyber
+        - proto: RightHandCyber
+        - proto: RightFootCyber
+        - proto: LeftLegCyber
+        - proto: LeftArmCyber
+        - proto: LeftHandCyber
+        - proto: LeftFootCyber
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -97,14 +97,14 @@
         - proto: WeaponPistolCHIMP
         - proto: CrateMedicalSurgery
           cost: 2
-        - proto: CyberLLeg
-        - proto: CyberLArm
-        - proto: CyberLHand
-        - proto: CyberLFoot
-        - proto: CyberRLeg
-        - proto: CyberRArm
-        - proto: CyberRHand
-        - proto: CyberRFoot
+        - proto: RightLegCyber
+        - proto: RightArmCyber
+        - proto: RightHandCyber
+        - proto: RightFootCyber
+        - proto: LeftLegCyber
+        - proto: LeftArmCyber
+        - proto: LeftHandCyber
+        - proto: LeftFootCyber
         - proto: SpawnMechRipley
           cost: 5
           prob: 0.25
@@ -170,14 +170,14 @@
         - proto: WeaponPistolCHIMP
         - proto: CrateMedicalSurgery
           cost: 2
-        - proto: CyberLLeg
-        - proto: CyberLArm
-        - proto: CyberLHand
-        - proto: CyberLFoot
-        - proto: CyberRLeg
-        - proto: CyberRArm
-        - proto: CyberRHand
-        - proto: CyberRFoot
+        - proto: RightLegCyber
+        - proto: RightArmCyber
+        - proto: RightHandCyber
+        - proto: RightFootCyber
+        - proto: LeftLegCyber
+        - proto: LeftArmCyber
+        - proto: LeftHandCyber
+        - proto: LeftFootCyber
         - proto: SpawnMechRipley
           cost: 5
           prob: 0.25

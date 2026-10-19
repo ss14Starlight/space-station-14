@@ -11,7 +11,7 @@
   temperature: 323.15 # 50C
   biomes:
     - Caves
-    - LowDesert
+    #- LowDesert
     - Grasslands
     - Lava
   difficulties:
@@ -29,7 +29,7 @@
   temperature: 423.15 # 200C
   biomes:
     - Caves
-    - LowDesert
+    #- LowDesert
     - Lava
   difficulties:
     - Silicon-Medium
