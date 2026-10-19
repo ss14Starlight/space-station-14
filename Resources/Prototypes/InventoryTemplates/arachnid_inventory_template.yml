@@ -69,7 +69,7 @@
       strippingWindowPos: 2,4
       dependsOn: jumpsuit
       displayName: ID
-      blacklist:
+      blacklist: # Starlight
         tags:
         - AnimalCollar
     - name: belt
@@ -81,7 +81,7 @@
       uiWindowPos: 3,1
       strippingWindowPos: 1,5
       displayName: Belt
-      blacklist:
+      blacklist: # Starlight
         tags:
         - AnimalCollar
     - name: back

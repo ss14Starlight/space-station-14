@@ -37,7 +37,7 @@
     strippingWindowPos: 2,4
     dependsOn: jumpsuit
     displayName: ID
-    blacklist:
+    blacklist: # Starlight
       tags:
       - AnimalCollar
   - name: suitstorage

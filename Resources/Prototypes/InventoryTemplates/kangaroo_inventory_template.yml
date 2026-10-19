@@ -45,7 +45,7 @@
     whitelist:
       tags:
         - Kangaroo
-    blacklist:
+    blacklist: # Starlight
       tags:
       - AnimalCollar
 
