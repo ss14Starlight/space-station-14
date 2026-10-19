@@ -1,14 +1,4 @@
 - type: entity
-  parent: IDCardStandard
-  id: DogCollarIDCard
-  name: dog tag
-  description: A small tag for a beloved pet.
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-
-- type: entity
   parent: BasePDA
   id: DogCollarPDA
   name: dog collar
@@ -33,7 +23,7 @@
     sprite: _Starlight/Objects/Devices/dog_collar.rsi
     state: pda
   - type: Pda
-    id: DogCollarIDCard
+    id: AssistantIDCard
     paiSlot:
       priority: -2
       whitelist:
