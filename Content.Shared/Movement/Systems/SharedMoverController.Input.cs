@@ -147,8 +147,8 @@ namespace Content.Shared.Movement.Systems
             }
         }
 
-        private void OnMoverGetState(Entity<InputMoverComponent> entity, ref ComponentGetState args)
-        {
+        #region Starlight
+        private void OnMoverGetState(Entity<InputMoverComponent> entity, ref ComponentGetState args) =>
             args.State = new InputMoverComponentState()
             {
                 CanMove = entity.Comp.CanMove,
@@ -163,7 +163,7 @@ namespace Content.Shared.Movement.Systems
                 RelativeRotation = entity.Comp.RelativeRotation,
                 TargetRelativeRotation = entity.Comp.TargetRelativeRotation,
             };
-        }
+        #endregion
 
         private void ShutdownInput()
         {

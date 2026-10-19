@@ -8,18 +8,9 @@ public sealed class RemoteControlPopupTestSystem : EntitySystem
 {
     public PopupEntityEvent? LastPopup { get; private set; }
 
-    public override void Initialize()
-    {
-        SubscribeNetworkEvent<PopupEntityEvent>(OnPopupEntity);
-    }
+    public override void Initialize() => SubscribeNetworkEvent<PopupEntityEvent>(OnPopupEntity);
 
-    public void Clear()
-    {
-        LastPopup = null;
-    }
+    public void Clear() => LastPopup = null;
 
-    private void OnPopupEntity(PopupEntityEvent ev)
-    {
-        LastPopup = ev;
-    }
+    private void OnPopupEntity(PopupEntityEvent ev) => LastPopup = ev;
 }

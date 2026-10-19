@@ -267,6 +267,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
     public override void Shutdown()
     {
+        CommandBinds.Unregister<RemoteControlConsoleSystem>();
         _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
         _hands.OnHandSetActive -= OnHandSetActive;
         base.Shutdown();
@@ -988,10 +989,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         public override bool HandleCmdMessage(
             IEntityManager entManager,
             ICommonSession? session,
-            IFullInputCmdMessage message)
-        {
-            return system.OnRemoteReleasePulledObjectInput(session, message.State);
-        }
+            IFullInputCmdMessage message) =>
+            system.OnRemoteReleasePulledObjectInput(session, message.State);
     }
 
     [SubscribeLocalEvent]
@@ -1534,7 +1533,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             popupEntity = previous;
         }
         else if (TryComp<RelayInputMoverComponent>(recipient, out var relay)
-                 && !TerminatingOrDeleted(relay.RelayEntity))
+            && !TerminatingOrDeleted(relay.RelayEntity))
         {
             popupEntity = relay.RelayEntity;
         }

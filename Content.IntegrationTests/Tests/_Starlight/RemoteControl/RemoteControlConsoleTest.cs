@@ -677,8 +677,7 @@ public sealed class RemoteControlConsoleTest : GameTest
     }
 
     [Test]
-    public async Task ForcedRemoteControlTakeoverPreservesBorgActivationAndOldUiClose()
-    {
+    public async Task ForcedRemoteControlTakeoverPreservesBorgActivationAndOldUiClose() =>
         await Server.WaitAssertion(() =>
         {
             var mapSystem = Server.System<SharedMapSystem>();
@@ -748,7 +747,6 @@ public sealed class RemoteControlConsoleTest : GameTest
                 SEntMan.DeleteEntity(map);
             }
         });
-    }
 
     [Test]
     public async Task RemoteControlMirrorsSingleUserActivatableUi()
