@@ -1,3 +1,6 @@
+using Content.Shared._Starlight.CCVar;
+using Robust.Server.Configuration;
+using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -13,31 +16,45 @@ public sealed partial class AdminTestArenaSystem : EntitySystem
     [Dependency] private MapLoaderSystem _loader = default!;
     [Dependency] private MetaDataSystem _metaDataSystem = default!;
     [Dependency] private SharedMapSystem _maps = default!;
+    [Dependency] private IServerNetConfigurationManager _cfg = null!; // Starlight
 
     // Replaces Test Arena with a STARLIGHT varient
     public const string ArenaMapPath = "/Maps/_Starlight/Test/SL_admin_test_arena.yml";
 
     public Dictionary<NetUserId, EntityUid> ArenaMap { get; private set; } = new();
-    public Dictionary<NetUserId, EntityUid?> ArenaGrid { get; private set; } = new();
+    // Starlight begin - No need for grid tbh + add stuff for loading custom map.
 
-    public (EntityUid Map, EntityUid? Grid) AssertArenaLoaded(ICommonSession admin)
+    public EntityUid AssertArenaLoaded(ICommonSession admin)
     {
         if (ArenaMap.TryGetValue(admin.UserId, out var arenaMap) && !Deleted(arenaMap) && !Terminating(arenaMap))
+            return arenaMap;
+
+        var path = _cfg.GetClientCVar(admin.Channel, StarlightCCVars.AdminArenaMapPath);
+        var init = _cfg.GetClientCVar(admin.Channel, StarlightCCVars.AdminArenaMapInit);
+        if (!string.IsNullOrWhiteSpace(path))
         {
-            if (ArenaGrid.TryGetValue(admin.UserId, out var arenaGrid) && !Deleted(arenaGrid) && !Terminating(arenaGrid.Value))
+            var mapPath = new ResPath(path);
+            if (!_loader.TryLoadMap(mapPath, out var map, out var grids,
+                    new DeserializationOptions { InitializeMaps = init }))
             {
-                return (arenaMap, arenaGrid);
+                QueueDel(map);
+                throw new Exception($"Failed to load admin arena");
             }
 
+            ArenaMap[admin.UserId] = map.Value;
+            _metaDataSystem.SetEntityName(map.Value, $"ATAM-{admin.Name}");
 
-            ArenaGrid[admin.UserId] = null;
-            return (arenaMap, null);
+            foreach (var mapGrid in grids)
+                _metaDataSystem.SetEntityName(mapGrid, $"ATAG-{admin.Name}");
+
+            return map.Value;
         }
 
-        var path = new ResPath(ArenaMapPath);
-        var mapUid = _maps.CreateMap(out var mapId);
+        path = ArenaMapPath;
+        var gridPath = new ResPath(path);
+        var mapUid = _maps.CreateMap(out var mapId, init);
 
-        if (!_loader.TryLoadGrid(mapId, path, out var grid))
+        if (!_loader.TryLoadGrid(mapId, gridPath, out var grid)) // Starlight edit
         {
             QueueDel(mapUid);
             throw new Exception($"Failed to load admin arena");
@@ -46,9 +63,9 @@ public sealed partial class AdminTestArenaSystem : EntitySystem
         ArenaMap[admin.UserId] = mapUid;
         _metaDataSystem.SetEntityName(mapUid, $"ATAM-{admin.Name}");
 
-        ArenaGrid[admin.UserId] = grid.Value.Owner;
         _metaDataSystem.SetEntityName(grid.Value.Owner, $"ATAG-{admin.Name}");
 
-        return (mapUid, grid.Value.Owner);
+        return mapUid;
     }
+    // Starlight end
 }

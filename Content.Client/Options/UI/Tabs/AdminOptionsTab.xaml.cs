@@ -69,6 +69,8 @@ public sealed partial class AdminOptionsTab : Control
         }
 
         Control.AddOptionLineEdit(StarlightCCVars.AdminGhostScriptPath, AghostScriptName);
+        Control.AddOptionLineEdit(StarlightCCVars.AdminArenaMapPath, AdminArenaMapPath);
+        Control.AddOptionCheckBox(StarlightCCVars.AdminArenaMapInit, AdminArenaMapInit);
         Control.AddOptionDropDown(StarlightCCVars.AdminGhostHudJobSetting, DropDownAGhostJobIconSetting, playerTabJobIconSettings);
         Control.AddOptionDropDown(StarlightCCVars.AdminGhostHudHealthSetting, DropDownAGhostHealthIconSetting, playerTabHealthIconSettings);
         Control.AddOptionCheckBox(StarlightCCVars.AdminGhostHudShowCriminalRecordIcons, EnableAGhostCriminalRecordIcons);
