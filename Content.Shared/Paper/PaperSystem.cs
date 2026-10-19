@@ -322,7 +322,7 @@ public sealed partial class PaperSystem : EntitySystem
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
-        
+
         // Starlight - borgs should always be able to sign things, most of them can't even hold a pen
         if (!HasComp<BorgChassisComponent>(args.User))
             // Pens have a `Write` tag.
