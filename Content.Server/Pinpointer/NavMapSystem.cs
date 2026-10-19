@@ -103,7 +103,9 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
 
         foreach (var change in ev.Changes)
         {
-            if (!change.EmptyChanged)
+            // Starlight: floor-to-floor swaps matter when a secret floor changes
+            // how this tile is represented on the station map.
+            if (!change.EmptyChanged && IsSecretFloor(change.OldTile) == IsSecretFloor(change.NewTile))
                 continue;
 
             var tile = change.GridIndices;
@@ -123,7 +125,13 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
             }
             else
             {
-                tileData = FloorMask;
+                tileData = FloorMask | SecretFloorWallMask(change.NewTile);
+
+                // Preserve real wall/door bits when swapping between a secret
+                // floor and an ordinary floor beneath anchored entities.
+                if (IsSecretFloor(change.OldTile) != IsSecretFloor(change.NewTile) &&
+                    _gridQuery.TryComp(ev.Entity, out var mapGrid))
+                    RefreshTileEntityContents(ev.Entity, navMap, mapGrid, chunkOrigin, tile, setFloor: true);
             }
 
             DirtyChunk((ev.Entity, navMap), chunk);
@@ -273,6 +281,9 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
             tileData = FloorMask;
         else
             tileData &= FloorMask;
+
+        // Starlight: a walkable secret floor is drawn as a full wall on nav maps.
+        tileData |= SecretFloorWallMask(_mapSystem.GetTileRef(uid, mapGrid, tile).Tile);
 
         var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(uid, mapGrid, tile);
         while (enumerator.MoveNext(out var ent))
