@@ -50,7 +50,7 @@
   desc: salvage-dungeon-mod-experiment
   proto: Experiment
   biomes:
-    - LowDesert
+    #- LowDesert
     - Abyss
     - Grasslands
   difficulties:
