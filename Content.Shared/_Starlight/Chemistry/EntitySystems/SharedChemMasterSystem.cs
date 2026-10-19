@@ -380,7 +380,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
             return;
 
         // Ensure the amount is valid.
-        if (message.Dosage == 0 || message.Dosage > chemMaster.Comp.PillDosageLimit)
+        if (message.Dosage == 0 || message.Dosage > chemMaster.Comp.PatchDosageLimit)
             return;
 
         // Ensure label length is within the character limit.
