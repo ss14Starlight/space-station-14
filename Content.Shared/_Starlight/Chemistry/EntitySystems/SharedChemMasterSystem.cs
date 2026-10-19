@@ -365,6 +365,7 @@ public abstract partial class SharedChemMasterSystem : EntitySystem
                 return;
         }
 
+        UpdateUi(chemMaster, ChemMasterUIDirtyFlags.Solutions);
         ClickSound(chemMaster, message.Actor);
     }
 
