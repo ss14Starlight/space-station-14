@@ -41,7 +41,7 @@
           steps:
             - tool: Screwing
               doAfter: 2.0
-            - tool: Anchoring
+            - tool: Welding
               doAfter: 4.0
           completed:
             - !type:SpawnPrototype
@@ -55,7 +55,7 @@
       edges:
         - to: start
           steps:
-            - tool: Welding
+            - tool: Anchoring
               doAfter: 4.0
           completed:
             - !type:SpawnPrototype
@@ -73,4 +73,4 @@
               amount: 2
               doAfter: 1.0
             - tool: Screwing
-              doAfter: 4.0
+              doAfter: 2.0

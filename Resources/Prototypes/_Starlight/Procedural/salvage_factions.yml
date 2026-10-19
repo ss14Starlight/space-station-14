@@ -45,7 +45,7 @@
     - Caves
     - Snow
   entries:
-    - proto: MobSovietComradeBrokenBottle
+    - proto: MobSovietComradeSpear
       cost: 3
     - proto: MobSovietComradeFinka
       cost: 8
@@ -56,6 +56,10 @@
     - proto: MobSovietComradeMakarov
       cost: 10
       prob: 0.9
+    #revolver
+    - proto: MobSovietComradeRevolver
+      cost: 20
+      prob: 0.7
     #rifle
     - proto: MobSovietComradeAk
       cost: 30
