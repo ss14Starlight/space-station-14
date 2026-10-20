@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Follower;
 using Content.Shared.Follower.Components;
 using Content.Shared.Silicons.StationAi;
@@ -25,7 +26,8 @@ public sealed partial class ReplayObserverSystem
         }
 
         var followed = follower.Following;
-        if (!args.Current.EntityDeletions.Span.Contains(GetNetEntity(followed)))
+        var deletions = args.Current.EntityDeletions;
+        if (!deletions.HasContents || !deletions.Value.Contains(GetNetEntity(followed)))
             return;
 
         var cores = AllEntityQuery<StationAiCoreComponent>();
