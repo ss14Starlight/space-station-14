@@ -1,4 +1,3 @@
-using Content.Server._Starlight.Placement;
 using Content.Server.GameTicking;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
@@ -32,7 +31,6 @@ namespace Content.Server.Sandbox
         [Dependency] private ItemSlotsSystem _slots = default!;
         [Dependency] private GameTicker _ticker = default!;
         [Dependency] private SharedHandsSystem _handsSystem = default!;
-        [Dependency] private TilePlacementSystem _tilePlacement = null!; // Starlight
 
         private bool _isSandboxEnabled;
 
@@ -66,7 +64,7 @@ namespace Content.Server.Sandbox
                 if (!CanPlace(placement))
                     return false;
 
-                _tilePlacement.TryRedirectToAdjacentGrid(placement);
+                TryRedirectToAdjacentGrid(placement);
                 return true;
                 // Starlight end
             };
