@@ -1136,11 +1136,6 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         UpdateIn(OutputContainerInfoClassic);
     }
 
-    private void UpdatePanelInfo(ChemMasterComponent chemMaster, ContainerInfo? inputContainerInfo, ContainerInfo? outputContainerInfo, Solution solution)
-    {
-
-    }
-
     private void UpdateReagentPrototypes(string? filter = null)
     {
         var owner = _owner;
