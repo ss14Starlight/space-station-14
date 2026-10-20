@@ -1,13 +1,6 @@
 Entries:
 - author: Sparlight
   changes:
-  - message: Overwhelming Force prevents K9 latches.
-    type: Add
-  id: 409216
-  time: '2026-10-06T08:59:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6433
-- author: Sparlight
-  changes:
   - message: Vampire glare now works on K9s properly.
     type: Fix
   id: 409217
@@ -2883,4 +2876,11 @@ Entries:
   id: 409615
   time: '2026-10-20T07:27:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6744
+- author: Johnny
+  changes:
+  - message: Buffed IK-60 a bit.
+    type: Tweak
+  id: 409616
+  time: '2026-10-20T07:27:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6746
 Order: -1
