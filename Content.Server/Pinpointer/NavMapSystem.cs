@@ -101,11 +101,11 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
         if (!_navQuery.TryComp(ev.Entity, out var navMap))
             return;
 
+        HandleStarlightTileChanged(ref ev, navMap);
+
         foreach (var change in ev.Changes)
         {
-            // Starlight: floor-to-floor swaps matter when a secret floor changes
-            // how this tile is represented on the station map.
-            if (!change.EmptyChanged && IsSecretFloor(change.OldTile) == IsSecretFloor(change.NewTile))
+            if (!change.EmptyChanged)
                 continue;
 
             var tile = change.GridIndices;
@@ -125,13 +125,8 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
             }
             else
             {
-                tileData = FloorMask | SecretFloorWallMask(change.NewTile);
-
-                // Preserve real wall/door bits when swapping between a secret
-                // floor and an ordinary floor beneath anchored entities.
-                if (IsSecretFloor(change.OldTile) != IsSecretFloor(change.NewTile) &&
-                    _gridQuery.TryComp(ev.Entity, out var mapGrid))
-                    RefreshTileEntityContents(ev.Entity, navMap, mapGrid, chunkOrigin, tile, setFloor: true);
+                tileData = FloorMask;
+                ApplyStarlightTileMask(change.NewTile, ref tileData);
             }
 
             DirtyChunk((ev.Entity, navMap), chunk);
@@ -282,8 +277,7 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
         else
             tileData &= FloorMask;
 
-        // Starlight: a walkable secret floor is drawn as a full wall on nav maps.
-        tileData |= SecretFloorWallMask(_mapSystem.GetTileRef(uid, mapGrid, tile).Tile);
+        ApplyStarlightTileMask(_mapSystem.GetTileRef(uid, mapGrid, tile).Tile, ref tileData);
 
         var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(uid, mapGrid, tile);
         while (enumerator.MoveNext(out var ent))
@@ -311,6 +305,9 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
 
         return (tileData, chunk);
     }
+
+    private partial void HandleStarlightTileChanged(ref TileChangedEvent ev, NavMapComponent navMap);
+    private partial void ApplyStarlightTileMask(Tile tile, ref int tileData);
 
     private bool PruneEmpty(Entity<NavMapComponent> entity, NavMapChunk chunk)
     {
