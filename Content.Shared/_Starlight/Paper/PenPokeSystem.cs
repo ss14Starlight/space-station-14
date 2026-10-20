@@ -20,12 +20,18 @@ public sealed partial class PenPokeSystem : EntitySystem
         "/Audio/Items/pen_click.ogg",
         AudioParams.Default.WithVolume(-4f).WithMaxDistance(2f)); // Match the regular pen's sound, volume, and audible range.
 
+    /// <inheritdoc />
     public override void Initialize() // Subscribe pen interactions to the poke handler.
     {
         base.Initialize();
         SubscribeLocalEvent<PenPokeComponent, AfterInteractEvent>(OnAfterInteract);
     }
 
+    /// <summary>
+    /// Gives a reachable character prick feedback when a pen is used on them.
+    /// </summary>
+    /// <param name="pen">The pen used for the interaction.</param>
+    /// <param name="args">The interaction details and handled state.</param>
     private void OnAfterInteract(Entity<PenPokeComponent> pen, ref AfterInteractEvent args) // Handle pen clicks on entities.
     {
         if (args.Handled
