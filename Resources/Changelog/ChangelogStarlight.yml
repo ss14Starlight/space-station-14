@@ -1,13 +1,6 @@
 Entries:
 - author: BriocheBear
   changes:
-  - message: Added 5 outfits, 4 jackets, 8 hats, 4 accessories, and 5 bags to the clothing vends around the station. Fashionistas rejoice!
-    type: Add
-  id: 409221
-  time: '2026-10-06T09:45:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6266
-- author: BriocheBear
-  changes:
   - message: Added the star backpack + satchel to the bag category under loadouts - unlockable as a reward for having too many hours on the server.
     type: Add
   id: 409222
@@ -2883,4 +2876,11 @@ Entries:
   id: 409620
   time: '2026-10-20T08:42:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6756
+- author: Rescue
+  changes:
+  - message: Forged shields, the Bulwark cybernetic shield, and the Revolutionary held banner can now be inspected for damage.
+    type: Fix
+  id: 409621
+  time: '2026-10-20T09:12:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6768
 Order: -1
