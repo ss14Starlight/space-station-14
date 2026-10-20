@@ -38,6 +38,7 @@ public sealed partial class ScreenshakeSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        var curTime = _timing.CurTime;
         var shakers = EntityQueryEnumerator<EyeComponent, ScreenshakeComponent>();
 
         while (shakers.MoveNext(out var uid, out var eye, out var shake))
@@ -48,11 +49,8 @@ public sealed partial class ScreenshakeSystem : EntitySystem
                 continue;
             }
 
-            foreach (var command in shake.Commands.ToList().Where(command => _timing.CurTime >= command.CalculatedEnd))
-            {
-                shake.Commands.Remove(command);
+            if (shake.Commands.RemoveWhere(command => curTime >= command.CalculatedEnd) > 0)
                 Dirty(uid, shake);
-            }
         }
     }
 

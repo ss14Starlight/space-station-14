@@ -41,6 +41,9 @@ public sealed class TrailOverlay : Robust.Client.Graphics.Overlay
         var query = _entMan.EntityQueryEnumerator<TrailComponent, SpriteComponent>();
         while (query.MoveNext(out var uid, out var comp, out var sprite))
         {
+            if (!sprite.Visible)
+                continue;
+
             if (comp.Mode == TrailMode.SpriteGhost)
             {
                 if (comp.Samples.Count < 2)

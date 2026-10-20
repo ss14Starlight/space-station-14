@@ -1,0 +1,10 @@
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleNarsieCultist
+  name: Nar'Sie Cultist Role
+  components:
+  - type: MindRole
+    antagPrototype: NarsieCultist
+    roleType: TeamAntagonist
+    subtype: role-subtype-narsie-cultist
+  - type: NarsieCultistRole

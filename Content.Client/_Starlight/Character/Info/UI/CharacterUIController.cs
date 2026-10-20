@@ -1,7 +1,7 @@
 ﻿using Content.Client._Starlight.Character.Info.UI;
 
 // ReSharper disable once CheckNamespace
-namespace Content.Client.UserInterface.Systems.Character;
+namespace Content.Client._Moffstation.CharacterMenu;
 
 public sealed partial class CharacterUIController
 {
@@ -14,15 +14,7 @@ public sealed partial class CharacterUIController
 
         if (target == viewer)
         {
-            //If attempting to inspect own character, redirect to character window
-            if (_window == null || _window.IsOpen)
-            {
-                return;
-            }
-
-            _characterInfo.RequestCharacterInfo();
-            SLSetSelfCharacterInfo();
-            _window.Open();
+            OpenWindow();
             return;
         }
 
@@ -40,9 +32,22 @@ public sealed partial class CharacterUIController
 
         window.OnClose += () => _openInspectionWindows.Remove(target);
         window.Title = Loc.GetString("character-info-window-title", ("player", target));
+        window.OpenCentered();
     }
 
-    private void SLClearSelfCharacterInfo()
+    /// <summary>
+    /// Opens the local player's character window on its overview tab.
+    /// </summary>
+    public void OpenCharacterOverview()
+    {
+        if (_window == null)
+            return;
+
+        _window.CharacterInfoTabs.CurrentTab = 0;
+        OpenWindow();
+    }
+
+    private void ClearSelfCharacterInfo()
     {
         if (_window == null)
             return;
@@ -51,16 +56,14 @@ public sealed partial class CharacterUIController
         _window.InfoBackground.ClearCharacter();
     }
 
-    private void SLSetSelfCharacterInfo()
+    private void SetSelfCharacterInfo(EntityUid? ent)
     {
         if (_window == null)
             return;
-        var ent = _window.CharacterInfo.CharacterPreview.CharacterSpriteView.Entity;
-        if (!ent.HasValue)
+
+        if (!ent.HasValue || !_window.IsOpen)
         {
-            _window.InfoIC.ClearCharacter();
-            _window.InfoOOC.ClearCharacter();
-            _window.InfoBackground.ClearCharacter();
+            ClearSelfCharacterInfo();
             return;
         }
 

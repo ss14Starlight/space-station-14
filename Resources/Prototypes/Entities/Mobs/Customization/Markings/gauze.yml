@@ -1,3 +1,4 @@
+# Generic Markings
 - type: marking
   id: GauzeLefteyePatch
   bodyPart: Eyes
@@ -16,7 +17,7 @@
   id: GauzeLefteyePad
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
+  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte, Vulpkanin] # Starlight Edit: Add Elf and Neocytes
   coloring:
     default:
       type:
@@ -44,7 +45,7 @@
   id: GauzeRighteyePad
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
+  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte, Vulpkanin] # Starlight Edit: Add Elf and Neocytes
   coloring:
     default:
       type:
@@ -489,3 +490,200 @@
   sprites:
   - sprite: Mobs/Customization/gauze.rsi
     state: gauze_moth_lowerleg_l
+
+# Vulpkanin Specific Markings
+- type: marking
+  id: GauzeVulpStomach
+  bodyPart: Chest
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_abdomen
+
+- type: marking
+  id: GauzeVulpBlindfold
+  bodyPart: Eyes
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_blindfold
+
+- type: marking
+  id: GauzeVulpBoxerwrapLeft
+  bodyPart: LHand
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_boxerwrap_l
+
+- type: marking
+  id: GauzeVulpBoxerwrapRight
+  bodyPart: RHand
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_boxerwrap_r
+
+- type: marking
+  id: GauzeVulpHead
+  bodyPart: Head
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_head
+
+- type: marking
+  id: GauzeVulpLeftArm
+  bodyPart: LArm
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_leftarm
+
+- type: marking
+  id: GauzeVulpLefteyePatch
+  bodyPart: Eyes
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_lefteye_2
+
+- type: marking
+  id: GauzeVulpLowerArmRight
+  bodyPart: RHand
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_lowerarm_r
+
+- type: marking
+  id: GauzeVulpLowerLegLeft
+  bodyPart: LFoot
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_lowerleg_l
+
+- type: marking
+  id: GauzeVulpLowerLegRight
+  bodyPart: RFoot
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_lowerleg_r
+
+- type: marking
+  id: GauzeVulpRighteyePatch
+  bodyPart: Eyes
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_righteye_2
+
+- type: marking
+  id: GauzeVulpShoulder
+  bodyPart: Chest
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_shoulder
+
+- type: marking
+  id: GauzeVulpUpperLegLeft
+  bodyPart: LLeg
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_upperleg_l
+
+- type: marking
+  id: GauzeVulpUpperLegRight
+  bodyPart: RLeg
+  markingCategory: Overlay
+  speciesRestriction: [Vulpkanin]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Mobs/Customization/gauze.rsi
+    state: gauze_vulp_upperleg_r

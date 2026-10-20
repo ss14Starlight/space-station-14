@@ -1,4 +1,5 @@
 using Content.Server.Power.EntitySystems;
+using Content.Server.Salvage.Expeditions;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Systems;
@@ -26,6 +27,9 @@ using Content.Server._Starlight.Shuttles.Systems;
 using Content.Server._Starlight.Shuttles.Components;
 using Content.Shared._Starlight.Shuttles.Components;
 using Content.Shared._Starlight.Shuttles.BUIStates;
+using Content.Shared.Medical.CrewMonitoring;
+using Content.Shared.Silicons.StationAi;
+using Content.Server.Silicons.StationAi;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -45,6 +49,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private ILogManager _log = default!;
     [Dependency] private RadarLaserSystem _laserSystem = default!; // _Starlight
     [Dependency] private IGameTiming _timing = default!; // _Starlight
+    [Dependency] private StationAiSystem _stationAiSystem = default!; // Starlight
 
     #region Starlight
     // Periodic blip/laser update
@@ -88,6 +93,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         {
             subs.Event<ShuttleConsoleFTLBeaconMessage>(OnBeaconFTLMessage);
             subs.Event<ShuttleConsoleFTLPositionMessage>(OnPositionFTLMessage);
+            subs.Event<CrewMonitoringWarpRequestMessage>((uid, component, args) => HandleWarpRequest(args)); // Starlight
             subs.Event<BoundUIClosedEvent>(OnConsoleUIClose);
         });
 
@@ -95,6 +101,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         SubscribeLocalEvent<DroneConsoleComponent, AfterActivatableUIOpenEvent>(OnDronePilotConsoleOpen);
         Subs.BuiEvents<DroneConsoleComponent>(ShuttleConsoleUiKey.Key, subs =>
         {
+            subs.Event<CrewMonitoringWarpRequestMessage>((uid, component, args) => HandleWarpRequest(args)); // Starlight
             subs.Event<BoundUIClosedEvent>(OnDronePilotConsoleClose);
         });
 
@@ -184,6 +191,26 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         TryPilot(args.User, uid);
     }
 
+    #region Starlight
+    private void HandleWarpRequest(CrewMonitoringWarpRequestMessage args)
+    {
+        if (args.Actor is not { Valid: true } actor || !HasComp<StationAiHeldComponent>(actor))
+            return;
+
+        EntityCoordinates coordinates;
+        try
+        {
+            coordinates = GetCoordinates(args.Coordinates);
+        }
+        catch
+        {
+            return;
+        }
+
+        _stationAiSystem.TryWarpEyeToCoordinates((actor, null), coordinates);
+    }
+    #endregion
+
     private void OnConsoleAnchorChange(EntityUid uid, ShuttleConsoleComponent component,
         ref AnchorStateChangedEvent args)
     {
@@ -197,6 +224,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         DockingInterfaceState? dockState = null;
         DockingPortStates? dockingPortStates = null; // Starlight
         UpdateState(uid, ref dockState, ref dockingPortStates); // Starlight
+        RefreshDroneConsoles(); // Starlight
     }
 
     private bool TryPilot(EntityUid user, EntityUid uid)
@@ -304,6 +332,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         NavInterfaceState navState;
         ShuttleMapInterfaceState mapState;
+        var surfaceMode = false; // Starlight
+        NetEntity? surfaceMapGrid = null; // Starlight
         dockState ??= GetDockState();
         dockingPortStates ??= GetDockingPortStates(); // Starlight
 
@@ -311,6 +341,13 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         {
             navState = GetNavState(entity.Value); // Starlight: -dockState.Docks
             mapState = GetMapState(shuttleGridUid.Value);
+            // Starlight - start
+            if (consoleXform?.MapUid is { } mapUid && TryComp<SalvageExpeditionComponent>(mapUid, out _))
+            {
+                surfaceMode = true;
+                surfaceMapGrid = GetNetEntity(mapUid);
+            }
+            // Starlight - end
         }
         else
         {
@@ -361,7 +398,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 }
             }
 
-            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState, dockingPortStates)); // Starlight: +dockingPortStates
+            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState, dockingPortStates, surfaceMode, surfaceMapGrid)); // Starlight: +dockingPortStates +surfaceMode +surfaceMapGrid
         }
     }
 
@@ -411,6 +448,10 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     private void OnConsoleShutdown(EntityUid uid, ShuttleConsoleComponent component, ComponentShutdown args)
     {
         ClearPilots(component);
+        // Starlight - start
+        RemoveRemoteGridAccess(uid);
+        RefreshDroneConsoles();
+        // Starlight - end
     }
 
     public void AddPilot(EntityUid uid, EntityUid entity, ShuttleConsoleComponent component)

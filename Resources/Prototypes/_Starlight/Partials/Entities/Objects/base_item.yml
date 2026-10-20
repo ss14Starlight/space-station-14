@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: BaseItem
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: GenericPickup
+      params:
+        volume: -4

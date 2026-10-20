@@ -121,7 +121,7 @@ public sealed partial class DevourSystem : EntitySystem
 
         //Specific ammount of damage to apply to kill the target
         var deathThreshold = _thresholdSystem.GetThresholdForState(target, MobState.Dead);
-        var targetDamage = _damageSystem.GetDamage((target, damageable));
+        var targetDamage = _damageSystem.GetAllDamage((target, damageable));
         var targetDamageTotal = targetDamage.GetTotal();
         var requiredDamage = deathThreshold - targetDamageTotal;
 
@@ -133,7 +133,7 @@ public sealed partial class DevourSystem : EntitySystem
             if (!_damageSystem.TryChangeDamage(target, damageToApply)) //This will run as backup if airloss damage cannot be applied
             {
                 damageToApply = new DamageSpecifier { DamageDict = { { "Caustic", requiredDamage } } };
-                _damageSystem.TryChangeDamage(target, damageToApply);
+                _damageSystem.TryChangeDamage(target, damageToApply, ignoreResistances: true);
             }
         }
         //Starlight-End

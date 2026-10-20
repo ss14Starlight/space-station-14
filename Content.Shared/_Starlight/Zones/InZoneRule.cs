@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Random.Rules;
 using Robust.Shared.Prototypes;
 
@@ -9,7 +10,6 @@ public sealed partial class InZoneRule : RulesRule
     public List<ProtoId<ZonePrototype>> Zones = [];
 
     public override bool Check(EntityManager entManager, EntityUid uid) =>
-        (!entManager.TryGetComponent(uid, out ZoneTrackerComponent? tracker) ||
-        tracker.Zone is not { } zone) ?
-        Inverted : Zones.Contains(zone) != Inverted;
+        (entManager.TryGetComponent(uid, out ZoneTrackerComponent? tracker) &&
+        tracker.Zones.Any(Zones.Contains)) != Inverted;
 }

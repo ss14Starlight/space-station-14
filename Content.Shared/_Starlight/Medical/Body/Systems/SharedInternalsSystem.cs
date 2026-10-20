@@ -1,4 +1,5 @@
 using Content.Shared.Alert;
+using Content.Shared.ActionBlocker;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Body.Components;
@@ -21,6 +22,7 @@ namespace Content.Shared._Starlight.Medical.Body.Systems;
 public abstract partial class SharedInternalsSystem : EntitySystem
 {
     [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedGasTankSystem _gasTank = default!;
@@ -79,6 +81,9 @@ public abstract partial class SharedInternalsSystem : EntitySystem
         ToggleMode mode = ToggleMode.Toggle)
     {
         if (!Resolve(target, ref internals, logMissing: false))
+            return false;
+
+        if (!_actionBlocker.CanConsciouslyPerformAction(user))
             return false;
 
         // Check if a mask is present.

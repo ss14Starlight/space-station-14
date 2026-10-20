@@ -17,4 +17,96 @@
       override: !type:CreateVariants
         values: *protos
 
+- type: !PartialOnly entity
+  id: BaseGasCondenser
+  categories: [ ShouldMapStation ]
+  components:
+    - type: Sprite
+      snapCardinals: false # plumbing ducts are 4 directional, so this causes a debug assert to fail
+    - type: PlumbingConnectorAppearance
+      offset: 0.09375
+    - type: PlumbingOutlet
+      solutionName: tank
+      connectedOutlets: true
+      outletNames:
+      - outletNorth
+      - outletEast
+      - outletWest
+    - type: NodeContainer
+      nodes:
+        pipe:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: South
+        outletNorth:
+          !type:PlumbingNode
+          nodeGroupID: Plumbing
+          pipeDirection: North
+        outletEast:
+          !type:PlumbingNode
+          nodeGroupID: Plumbing
+          pipeDirection: East
+        outletWest:
+          !type:PlumbingNode
+          nodeGroupID: Plumbing
+          pipeDirection: West
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0
 
+# Fix air injector showing as Disabled in sprite and such, despite being enabled by default
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+      - GasOutletInjector
+      - GasOutletInjectorAlt1
+      - GasOutletInjectorAlt2
+      - GasOutletInjectorAlt3
+      - GasOutletInjectorAlt4
+  components:
+    - type: Sprite
+      layers:
+        - !CombineIndex:2 color: "#5eff5e" # Default color is now the green ON state.
+
+# Subfloor layers
+- type: !PartialOnly entity
+  id: GasUnaryBase
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasVentPump
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasPassiveVent
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasVentScrubber
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasOutletInjector
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+# Fan noise while the thermomachine is switched on and powered.
+- type: !PartialOnly entity
+  id: BaseGasThermoMachine
+  components:
+    - type: AmbientOnPowered
+    - type: AmbientSound
+      volume: -9
+      range: 4
+      sound:
+        path: /Audio/_Starlight/Ambience/Objects/fan_loop.ogg

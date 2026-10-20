@@ -6,7 +6,6 @@
 #Basic lights
 - type: entity
   id: AlwaysPoweredWallLight
-  parent: [SocialInteractionReceiverSimple] # Starlight
   name: light
   description: "An always powered light."
   suffix: Always powered

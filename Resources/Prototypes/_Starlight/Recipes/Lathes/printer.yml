@@ -418,15 +418,6 @@
   materials:
     SheetPrinter: 100
 
-- type: latheRecipe
-  id: PrintedDocumentPermissionToCarryWeaponsRecipe
-  result: PrintedDocumentPermissionToCarryWeapons
-  categories:
-  - Permissions
-  completetime: 2
-  applyMaterialDiscount: false
-  materials:
-    SheetPrinter: 100
 
 - type: latheRecipe
   id: PrintedDocumentPermissionDisposeBodyRecipe
@@ -471,6 +462,16 @@
 - type: latheRecipe
   id: PrintedDocumentBorgificationConsentFormRecipe
   result: PrintedDocumentBorgificationConsentForm
+  categories:
+    - Permissions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentMechAuthorizationFormRecipe
+  result: PrintedDocumentMechAuthorizationForm
   categories:
     - Permissions
   completetime: 2

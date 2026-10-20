@@ -151,6 +151,8 @@ namespace Content.Client.Inventory
 
                     AddHandButton((Owner, handsComp), id, hand);
                 }
+
+                AddFunctionalHandButtons((Owner, handsComp)); // Starlight
             }
 
             // snare-removal button. This is just the old button before the change to item slots. It is pretty out of place.
@@ -220,6 +222,9 @@ namespace Content.Client.Inventory
 
         private void SlotPressed(GUIBoundKeyEventArgs ev, SlotControl slot)
         {
+            if (TryReplaySlotPressed(ev, slot)) // Starlight
+                return; // Starlight
+
             // TODO: allow other interactions? Verbs? But they should then generate a pop-up and/or have a delay so the
             // user that is being stripped can prevent the verbs from being exectuted.
             // So for now: only stripping & examining

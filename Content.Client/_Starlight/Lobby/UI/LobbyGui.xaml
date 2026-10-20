@@ -1,0 +1,105 @@
+<sl:LobbyGui
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:vote="clr-namespace:Content.Client.Voting.UI"
+    xmlns:lobbyUi="clr-namespace:Content.Client.Lobby.UI"
+    xmlns:info="clr-namespace:Content.Client.Info"
+    xmlns:nulllink="clr-namespace:Content.Client._NullLink.UI"
+    xmlns:sc="clr-namespace:Content.Client._Starlight.UserInterface.Controls"
+    xmlns:sl="clr-namespace:Content.Client._Starlight.Lobby.UI"
+    xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets">
+    <TextureRect Access="Public" VerticalExpand="True" HorizontalExpand="True" Name="Background"
+                 Stretch="KeepAspectCovered" />
+    <BoxContainer Name="MainContainer" Orientation="Vertical">
+        <!-- Top bar -->
+        <PanelContainer StyleClasses="LobbyTopBar">
+            <BoxContainer Orientation="Horizontal" Margin="12 4" SeparationOverride="4">
+                <Label Name="ServerName" Access="Public" StyleClasses="LabelHeading" VAlign="Center" Margin="0 0 8 0" />
+                <Label Name="StationTime" Access="Public" StyleClasses="LabelSubText" VAlign="Center" HorizontalExpand="True" />
+                <Button Name="RulesButton" Text="{Loc 'server-info-rules-button'}" StyleClasses="LobbyBarButton" />
+                <Button Name="GuidebookButton" Text="{Loc 'server-info-guidebook-button'}" StyleClasses="LobbyBarButton" />
+                <Button Name="AHelpButton" Access="Public" Text="{Loc 'ui-lobby-ahelp-button'}" StyleClasses="LobbyBarButton" />
+                <vote:VoteCallMenuButton Name="CallVoteButton" StyleClasses="LobbyBarButton" />
+                <sc:DropdownButton Name="LinksButton" Text="{Loc 'ui-lobby-links-button'}" StyleClasses="LobbyBarButton" />
+                <Button Name="OptionsButton" Access="Public" Text="{Loc 'ui-lobby-options-button'}" StyleClasses="LobbyBarButton" />
+                <Button Name="LeaveButton" Access="Public" Text="{Loc 'ui-lobby-leave-button'}" StyleClasses="LobbyBarButton" />
+            </BoxContainer>
+        </PanelContainer>
+
+        <BoxContainer Name="ColumnsBox" Orientation="Horizontal" VerticalExpand="True" Margin="12" SeparationOverride="4">
+            <!-- Left -->
+            <BoxContainer Name="LeftSide" Orientation="Vertical" SetWidth="340" Margin="0 0 8 0">
+                <Control Name="DefaultState" VerticalExpand="True">
+                    <BoxContainer Orientation="Vertical" VerticalAlignment="Top" SeparationOverride="8">
+                        <PanelContainer StyleClasses="LobbyCard">
+                            <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
+                                <BoxContainer Orientation="Horizontal">
+                                    <Label Text="{Loc 'lobby-card-header'}" StyleClasses="LabelKeyText" HorizontalExpand="True" VAlign="Center" />
+                                    <Button Name="CardToggle" StyleClasses="ButtonSquare" />
+                                </BoxContainer>
+                                <BoxContainer Name="CardBody" Orientation="Vertical" SeparationOverride="8">
+                                    <sl:LobbyCharacterPreviewPanel Name="CharacterPreview" Access="Public" />
+                                    <PanelContainer StyleClasses="LowDivider" />
+                                    <info:ServerInfo Name="ServerInfo" Access="Public" VerticalExpand="false" />
+                                    <BoxContainer Name="JobColumnsBox" Orientation="Vertical" SeparationOverride="8" Visible="False">
+                                        <PanelContainer StyleClasses="LowDivider" />
+                                        <sl:LobbyJobColumns Name="JobColumns" Access="Public" />
+                                    </BoxContainer>
+                                </BoxContainer>
+                            </BoxContainer>
+                        </PanelContainer>
+                        <nulllink:Hub HorizontalAlignment="Stretch" Margin="0" />
+                        <info:DevInfoBanner Name="DevInfoBanner" VerticalExpand="false" />
+                    </BoxContainer>
+                    <PanelContainer StyleClasses="LobbyCard" VerticalAlignment="Bottom">
+                        <BoxContainer Orientation="Vertical" Margin="8 4">
+                            <RichTextLabel Name="LobbySong" Access="Public" StyleClasses="LabelSubText" />
+                            <RichTextLabel Name="LobbyBackground" Access="Public" StyleClasses="LabelSubText" />
+                        </BoxContainer>
+                    </PanelContainer>
+                </Control>
+                <!-- Character setup state, injected on startup. The lobby opens the editor as a window now. -->
+                <Control Access="Public" Visible="False" Name="CharacterSetupState" VerticalExpand="True" />
+            </BoxContainer>
+
+            <!-- Middle -->
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                <BoxContainer Orientation="Vertical" SeparationOverride="4" Name="VoteContainer"
+                              Access="Public" HorizontalAlignment="Center" />
+                <RichTextLabel Name="PlaytimeComment" Visible="False" Access="Public" HorizontalAlignment="Center" />
+            </BoxContainer>
+
+            <!-- Right, resized by dragging its left edge -->
+            <sc:ResizeHandle Name="ChatResizeHandle" />
+            <BoxContainer Name="ChatColumn" Orientation="Vertical" SeparationOverride="8">
+                <Control Name="RightSide" Access="Public" VerticalExpand="True">
+                    <widgets:ChatBox Name="Chat" Access="Public" MinSize="0 0" />
+                </Control>
+                <PanelContainer StyleClasses="HubPanel">
+                    <BoxContainer Orientation="Vertical" SeparationOverride="6" Margin="8">
+                        <BoxContainer Orientation="Horizontal">
+                            <Label Name="StartTime" Access="Public" HorizontalExpand="True" VAlign="Center" />
+                            <CheckBox Name="AntagsCheckBox" Text="{Loc 'lobby-antags-checkbox'}"
+                                      ToolTip="{Loc 'lobby-antags-checkbox-tooltip'}" />
+                        </BoxContainer>
+                        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                            <cc:UICommandButton Command="observe" Name="ObserveButton" Access="Public"
+                                                Text="{Loc 'ui-lobby-observe-button'}"
+                                                StyleClasses="LobbyActionButton"
+                                                HorizontalExpand="True"
+                                                WindowType="{x:Type lobbyUi:ObserveWarningWindow}" />
+                            <Button Name="ReadyButton" Access="Public" ToggleMode="True"
+                                    Text="{Loc 'ui-lobby-ready-up-button'}"
+                                    StyleClasses="LobbyReadyButton"
+                                    HorizontalExpand="True" />
+                        </BoxContainer>
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+
+    <!-- Links, shown by LinksButton -->
+    <info:LinkBanner Name="LinkBanner" VerticalExpand="false" MinWidth="160" />
+</sl:LobbyGui>

@@ -385,14 +385,6 @@
     - type: Paper
       content: doc-text-printer-search-permission
 
-- type: entity
-  parent: PrintedDocument
-  id: PrintedDocumentPermissionToCarryWeapons
-  name: Weapon Permit
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: Paper
-      content: doc-text-printer-permission-to-carry-weapons
 
 - type: entity
   parent: PrintedDocument
@@ -438,6 +430,15 @@
   components:
     - type: Paper
       content: doc-text-printer-borgification-consent-form
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentMechAuthorizationForm
+  name: Mech Authorization Form
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-mech-authorization-form
 
 # OrdersAndInstructions
 

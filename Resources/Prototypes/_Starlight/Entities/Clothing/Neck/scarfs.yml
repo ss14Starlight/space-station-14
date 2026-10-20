@@ -8,3 +8,91 @@
     sprite: _Starlight/Clothing/Neck/Scarfs/robo.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Neck/Scarfs/robo.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfSolidRed
+  name: solid red scarf
+  description: A stylish solid red scarf. Cozy and warm, the perfect winter accessory... But something puts you at some kind of slight unease when you look at it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/red.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/red.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfSolidBlue
+  name: solid blue scarf
+  description: A stylish solid blue scarf. The perfect winter accessory for those with a keen fashion sense, and those who can't handle a cold breeze on their necks.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/blue.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/blue.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfSolidGreen
+  name: solid green scarf
+  description: A stylish solid green scarf. The perfect winter accessory for those with a keen fashion sense, and those who can't handle a cold breeze on their necks.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/green.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/green.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfSolidBrown
+  name: solid brown scarf
+  description: A stylish solid brown scarf. The perfect winter accessory for those with a keen fashion sense, and those who can't handle a cold breeze on their necks.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/brown.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/brown.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfSolidBlack
+  name: solid black scarf
+  description: A stylish solid black scarf. The perfect winter accessory for those with a keen fashion sense, and those who can't handle a cold breeze on their necks.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/black.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/black.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfSolidOrange
+  name: solid orange scarf
+  description: A stylish solid orange scarf. The perfect winter accessory for those with a keen fashion sense, and those who can't handle a cold breeze on their necks.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/orange.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/orange.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfSolidPurple
+  name: solid purple scarf
+  description: A stylish solid purple scarf. The perfect winter accessory for those with a keen fashion sense, and those who can't handle a cold breeze on their necks.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/purple.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/purple.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfSolidLightBlue
+  name: solid light blue scarf
+  description: A stylish solid light blue scarf. The perfect winter accessory for those with a keen fashion sense, and those who can't handle a cold breeze on their necks.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/lightblue.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/lightblue.rsi

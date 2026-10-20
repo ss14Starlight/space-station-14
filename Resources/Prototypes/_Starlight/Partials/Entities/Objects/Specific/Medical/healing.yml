@@ -5,3 +5,10 @@
     damageContainers:
     - Hybrid
     modifyBloodLevel: 30
+
+- type: !PartialOnly entity
+  id: BaseHealingItem
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: MeshPickup

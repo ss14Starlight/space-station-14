@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Jittering;
 using Content.Shared.Power;
@@ -40,8 +41,10 @@ public sealed partial class SlimeProcessorSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        var itemVerb = new InteractionVerb();
-        itemVerb.Text = Loc.GetString("comp-slime-processor-verb-activate");
+        var itemVerb = new InteractionVerb
+        {
+            Text = Loc.GetString("comp-slime-processor-verb-activate"),
+        };
         if (CanActivate(ent))
         {
             itemVerb.Message = Loc.GetString("comp-slime-processor-verb-activate-message-success");
@@ -125,13 +128,12 @@ public sealed partial class ActiveSlimeProcessorSystem : EntitySystem
             }
 
             if (activeSlimeProcessorComponent.ProcessingFinishedMoment.Value > _gameTiming.CurTime) continue;
-            var random = _robustRandom.GetRandom();
             foreach (var entity in slimeProcessorComponent.SlimeContainer.ContainedEntities)
             {
                 if (!_entityManager.TryGetComponent(entity, out SlimeComponent? slimeComponent)) continue;
                 for (int i = 0; i < slimeProcessorComponent.YieldMultiplier + slimeComponent.SlimeSteroidAmount; i++)
                 {
-                    Vector2 randomOffset = new Vector2(random.NextFloat(-0.2F, 0.2F), random.NextFloat(-0.2F, 0.2F));
+                    Vector2 randomOffset = new Vector2(_robustRandom.NextFloat(-0.2F, 0.2F), _robustRandom.NextFloat(-0.2F, 0.2F));
                     EntityCoordinates ec = new EntityCoordinates(uid, uid.ToCoordinates().Position + randomOffset);
                     _entityManager.PredictedSpawnAtPosition(slimeComponent.Extract, ec);
                 }
@@ -151,6 +153,7 @@ public sealed partial class CollectingSlimeProcessorSystem : EntitySystem
     [Dependency] private EntityLookupSystem _entityLookupSystem = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     public override void Update(float frameTime)
     {
@@ -171,8 +174,7 @@ public sealed partial class CollectingSlimeProcessorSystem : EntitySystem
             foreach (var entity in _entityLookupSystem.GetEntitiesInRange<SlimeComponent>(Transform(uid).Coordinates, 1F))
             {
                 if (_container.IsEntityOrParentInContainer(entity.Owner)) continue;
-                if (!_entityManager.TryGetComponent(entity, out DamageableComponent? damageableComponent)) continue;
-                if (damageableComponent.TotalDamage >= 200)
+                if (_damageable.GetTotalDamage(entity.Owner) >= 200)
                 {
                     _container.Insert(entity.Owner, slimeProcessorComponent.SlimeContainer);
                     collectingSlimeProcessorComponent.SlimeAcquireMoment = _gameTiming.CurTime + slimeProcessorComponent.SlimeAcquireCooldown;

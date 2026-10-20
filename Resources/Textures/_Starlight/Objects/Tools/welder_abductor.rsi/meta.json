@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/199fffd989d6f7fd6ea9c5188c875137df4f34b8",
+  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/199fffd989d6f7fd6ea9c5188c875137df4f34b8. Inhand-left, inhand-right, inhand-left-flame, inhand-right-flame, and equipped-BELT states recolored from welder_experimental.rsi (same tgstation source).",
   "size": {
     "x": 32,
     "y": 32
@@ -20,11 +20,67 @@
       ]
     },
     {
-      "name": "inhand-left-flame",
+      "name": "inhand-left",
       "directions": 4
     },
     {
+      "name": "inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-flame",
+      "directions": 4,
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
       "name": "inhand-right-flame",
+      "directions": 4,
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "equipped-BELT",
       "directions": 4
     }
   ]

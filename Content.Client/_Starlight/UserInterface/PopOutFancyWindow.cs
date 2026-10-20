@@ -24,7 +24,9 @@ public abstract class PopOutFancyWindow : FancyWindow, IPopOutWindow
 
     private OSWindow? _popOutWindow;
     private Control? _contentParent; // Where the contents lived before being popped out, so they can be returned.
-
+    #region Starlight
+    public bool IsPoppedOut => _popOutWindow is not null;
+    #endregion
     protected PopOutFancyWindow()
     {
         OnClose += FinalClose;
@@ -41,7 +43,7 @@ public abstract class PopOutFancyWindow : FancyWindow, IPopOutWindow
         {
             StyleClasses = { PopOutExtensions.PopOutButtonStyleClass },
             VerticalAlignment = VAlignment.Center,
-            ToolTip = "Pop Out",
+            ToolTip = Loc.GetString("ui-pop-out"),
             Margin = new Thickness(0, 0, 6, 0),
         };
 

@@ -15,10 +15,7 @@ public sealed partial class AtmosPipeColorSystem
     [Dependency] private IAdminManager _adminManager = default!;
     [Dependency] private IConsoleHost _consoleHost = default!;
 
-    private void SLInitialize()
-    {
-        SubscribeLocalEvent<AtmosPipeColorComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
-    }
+    private void SLInitialize() => SubscribeLocalEvent<AtmosPipeColorComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
 
     private void OnGetVerbs(Entity<AtmosPipeColorComponent> ent, ref GetVerbsEvent<Verb> args)
     {

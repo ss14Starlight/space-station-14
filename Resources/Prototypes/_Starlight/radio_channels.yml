@@ -17,6 +17,7 @@
   color: "#2253b5"
   longRange: true
 
+# Soviet
 - type: radioChannel
   id: Soviet
   name: chat-radio-soviet
@@ -28,6 +29,16 @@
     sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
     state: communist
 
+# Gorlex
+- type: radioChannel
+  id: Gorlex
+  name: chat-radio-gorlex
+  keycode: "0"
+  frequency: 9001
+  color: "#eb2e21"
+  longRange: true
+
+# Expeditions
 - type: radioChannel
   id: Expedition
   name: chat-radio-expedition
@@ -37,6 +48,7 @@
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
   longRange: true
 
+# Trans-Solar Federation
 - type: radioChannel
   id: TSF
   name: chat-radio-tsf
@@ -45,6 +57,8 @@
   color: "#22a7ff"
   longRange: true
   # For merchant-type admemes/events
+
+# Merchant
 - type: radioChannel
   id: Merchant
   name: chat-radio-merchant
@@ -52,6 +66,8 @@
   frequency: 1882
   color: "#ffce2e"
   # For Blackstar mercenaries
+
+# Mercenary
 - type: radioChannel
   id: Blackstar
   name: chat-radio-blackstar
@@ -70,6 +86,7 @@
   longRange: true
 
   # For aspace stuff specifically, to keep freelance clear
+
 - type: radioChannel
   id: Aspace
   name: chat-radio-aspace
@@ -78,6 +95,7 @@
   color: "#ab489f"
 
   # for admeme stuff specifically, globally address all of your stinky goobers
+
 - type: radioChannel
   id: Global
   name: chat-radio-global
@@ -95,6 +113,15 @@
   longRange: true
   anonymousAlias: "{0}"
   autoTranslate: Abductor
+
+- type: radioChannel
+  id: CosmicRadio
+  name: language-Cosmic-name
+  keycode: 'a'
+  frequency: 77777
+  color: "#4cabb3"
+  longRange: true
+  autoTranslate: Cosmic
 
 - type: radioChannel
   id: NexusRadio

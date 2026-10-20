@@ -8,6 +8,10 @@
   - type: CookingDevice
     capacity: 10
     deviceType: Oven
+    beginCookingSound:
+      path: /Audio/_Starlight/Ambience/Objects/oven_start.ogg
+    loopingSound:
+      path: /Audio/_Starlight/Ambience/Objects/oven_loop.ogg
   - type: Appearance
   - type: GenericVisualizer
     visuals:

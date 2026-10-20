@@ -122,6 +122,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager, IAch
                         .FireAndForget(err => _sawmill.Error($"PlayerDisconnected dispatch failed: {err}"));
                 _playerById.Remove(e.Session.UserId, out _);
                 _playTimeSynced.Remove(e.Session.UserId, out _);
+                _playTimeTrackingManager.ClearNullLinkPlayTime(e.Session.UserId);
                 _mentors.Remove(e.Session.UserId, out _);
                 _discordPromptOpen.Remove(e.Session);
                 break;

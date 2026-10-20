@@ -1,7 +1,6 @@
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Atmos.Piping.Components;
 using Content.Server.Audio;
 using Content.Server.Chat.Systems;
 using Content.Server.DeviceLinking.Systems;
@@ -14,6 +13,7 @@ using Content.Server.Station.Systems;
 using Content.Shared._FarHorizons.Materials.Systems;
 using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Construction.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage.Systems;
@@ -568,7 +568,7 @@ public sealed partial class NuclearReactorSystem : EntitySystem
             _throwingSystem.TryThrow(Spawn("NuclearDebrisChunk", _transformSystem.GetMapCoordinates(uid)), _random.NextAngle().ToVec().Normalized(), _random.NextFloat(8, 16), uid);
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/metal_break5.ogg"), uid);
-        _explosionSystem.QueueExplosion(uid, "Radioactive", Math.Max(100, MeltdownBadness * 5), 1, 5, 0, canCreateVacuum: false);
+        _explosionSystem.QueueExplosion(uid, "Radioactive", Math.Max(100, MeltdownBadness * 5), 1, 800, 800, canCreateVacuum: false); // Starlight Edit: BIGGER BOOOM
 
         var lightcomp = _lightSystem.EnsureLight(uid);
         _lightSystem.SetEnergy(uid, 0.1f, lightcomp);

@@ -28,8 +28,8 @@ public sealed partial class LawboardSystem : EntitySystem
 
         var lawsetName = lawsetProto.Name != null
             ? _loc.GetString(lawsetProto.Name)
-            : "Unknown";
-        var description = $"[color=cyan]An electronics board containing the [color=yellow]{lawsetName}[/color] lawset.[/color]\n[color=orange]Uploaded Laws:[/color]";
+            : Loc.GetString("lawboard-unknown-lawset");
+        var description = Loc.GetString("lawboard-examine-header", ("lawset", lawsetName));
 
         int lawNum = lawsetProto.StartAtZero ? 0 : 1;
         foreach (var lawId in lawsetProto.Laws)
@@ -40,7 +40,7 @@ public sealed partial class LawboardSystem : EntitySystem
                     ? _loc.GetString(lawProto.LawString)
                     : lawProto.ID;
 
-                description += $"\n[color=lime]Law {lawNum}:[/color] [color=white]{lawText}[/color]";
+                description += "\n" + Loc.GetString("lawboard-examine-law", ("number", lawNum), ("law", lawText));
                 lawNum++;
             }
         }
