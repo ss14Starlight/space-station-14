@@ -16,7 +16,7 @@ blood-bound-recruiter-greeting =
 
 blood-bound-role-greeting =
     You have been sworn into a blood oath.
-    Listen to your Blood Bound and help them accomplish their objectives
+    Listen to your Blood Bound and help them accomplish their objectives.
 
 blood-bound-briefing = Collaborate with your Blood Bound to accomplish all your objectives.
 

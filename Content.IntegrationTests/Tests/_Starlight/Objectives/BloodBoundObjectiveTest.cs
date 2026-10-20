@@ -5,10 +5,12 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Buckle.Systems;
 using Content.Server.Mind;
 using Content.Server.Objectives.Systems;
+using Content.Server.Roles;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Server._Starlight.Objectives.Systems;
 using Content.Server._Starlight.Objectives.Targeting;
 using Content.Server._Starlight.Zones;
+using Content.Shared._Starlight.Antags.BloodBound.Components;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared._Starlight.Objectives.Targeting;
 using Content.Shared._Starlight.Traits.Antags;
@@ -215,12 +217,18 @@ public async Task StealHeartObjectiveTest()
 
             BurnPerson(new EntityCoordinates(gridUid, targetCoords.X, 2.5f), victimMind);
             BurnPerson(new EntityCoordinates(gridUid, targetCoords.X + 1, 2.5f), dead: true);
+
+            BurnPerson(new EntityCoordinates(gridUid, targetCoords.X, 0.5f), ownerMind);
+            var (_, bloodBoundMind) = BurnPerson(new EntityCoordinates(gridUid, targetCoords.X + 1, 0.5f));
+            Server.System<RoleSystem>().MindAddRole(bloodBoundMind, "MindRoleBloodBound");
+            var (_, bloodBoundBodyMind) = BurnPerson(new EntityCoordinates(gridUid, targetCoords.X + 2, 0.5f));
+            SEntMan.AddComponent<BloodBoundComponent>(bloodBoundBodyMind.Comp.OwnedEntity!.Value);
         });
 
         await RunTicksSync(40);
         await Server.WaitAssertion(() =>
             Assert.That(SEntMan.GetComponent<FirestakeConditionComponent>(objective).Victims,
-                Has.Count.EqualTo(1), "A replacement body or an already dead victim must not add progress."));
+                Has.Count.EqualTo(1), "The owner, other Blood Bound, replacement bodies, and already dead victims must not add progress."));
 
         (EntityUid Stake, Entity<MindComponent> Mind) BurnPerson(
             EntityCoordinates coords,

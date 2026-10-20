@@ -17,6 +17,7 @@ using Content.Shared._Starlight.Traits.Antags;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Mind;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
@@ -66,24 +67,25 @@ public sealed partial class BloodBoundRuleSystem : GameRuleSystem<BloodBoundRule
             if (boundRole.Partner == null)
                 continue;
 
-            if (!_mindSystem.TryGetMind(boundRole.Partner.Value, out _, out var partnerMind)
-                || partnerMind.UserId == null)
+            TryComp<MindComponent>(boundRole.Partner.Value, out var partnerMind);
+            var partnerName = partnerMind?.CharacterName ?? Loc.GetString("generic-unknown");
+
+            if (partnerMind?.OriginalOwnerUserId is not { } partnerUser ||
+                !_playerManager.TryGetPlayerData(partnerUser, out var partnerData))
             {
                 args.Text += "\n" + Loc.GetString("blood-bound-round-end-no-mind",
                     ("name", name),
                     ("username", sessionData.UserName),
-                    ("partnerName", MetaData(boundRole.Partner.Value).EntityName));
+                    ("partnerName", partnerName));
 
                 continue;
             }
 
-            var partnerUsername = _playerManager.GetPlayerData(partnerMind.UserId.Value).UserName;
-
             args.Text += "\n" + Loc.GetString("blood-bound-round-end",
                 ("name", name),
                 ("username", sessionData.UserName),
-                ("partnerName", MetaData(boundRole.Partner.Value).EntityName),
-                ("partnerUsername", (partnerUsername)));
+                ("partnerName", partnerName),
+                ("partnerUsername", partnerData.UserName));
         }
     }
 
@@ -125,7 +127,7 @@ public sealed partial class BloodBoundRuleSystem : GameRuleSystem<BloodBoundRule
 
         originalComponent.Partner = args.Target;
         if (_roleSystem.MindHasRole<BloodBoundRoleComponent>(mindId, out var role))
-            role.Value.Comp2.Partner = args.Target;
+            role.Value.Comp2.Partner = targetMindId;
 
         if (!_roleSystem.MindHasRole(targetMindId, out Entity<MindRoleComponent, BloodBoundRoleComponent>? targetRole))
         {
@@ -136,7 +138,7 @@ public sealed partial class BloodBoundRuleSystem : GameRuleSystem<BloodBoundRule
         DebugTools.AssertNotNull(targetRole, "Blood Bound role was null after assigning it.");
 
         convertedComp.Partner = entity;
-        targetRole!.Value.Comp2.Partner = entity;
+        targetRole!.Value.Comp2.Partner = mindId;
 
         _bloodBound.FinishRecruitment(entity);
         Dirty(entity, originalComponent);

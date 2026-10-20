@@ -370,6 +370,7 @@ public sealed partial class AdminVerbSystem
             Act = () =>
             {
                 _antag.ForceMakeAntag<BloodBoundRuleComponent>(targetPlayer, DefaultBloodBoundRule);
+                _autolog.LogToDiscord(string.Join(": ", bloodBoundName, Loc.GetString("admin-verb-make-blood-bound")), player.Name); // Starlight
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", bloodBoundName, Loc.GetString("admin-verb-make-blood-bound")),

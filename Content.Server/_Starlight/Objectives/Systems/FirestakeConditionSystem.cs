@@ -1,9 +1,12 @@
 using System.Linq;
 using Content.Server.Buckle.Systems;
 using Content.Server.Objectives.Systems;
+using Content.Server.Roles;
 using Content.Server.Station.Systems;
 using Content.Server._Starlight.Objectives.Components;
+using Content.Server._Starlight.Roles;
 using Content.Server._Starlight.Zones;
+using Content.Shared._Starlight.Antags.BloodBound.Components;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Mind;
@@ -26,6 +29,7 @@ public sealed partial class FirestakeConditionSystem : EntitySystem
     [Dependency] private NumberObjectiveSystem _numbers = default!;
     [Dependency] private MetaDataSystem _meta = default!;
     [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private RoleSystem _roles = default!;
     [Dependency] private IPrototypeManager _prototypes = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IGameTiming _timing = default!;
@@ -93,7 +97,8 @@ public sealed partial class FirestakeConditionSystem : EntitySystem
         while (victims.MoveNext(out var uid, out _, out var fire, out var buckle, out var mind))
         {
             if (!fire.OnFire || (!_mobState.IsAlive(uid) && !_mobState.IsCritical(uid)) || mind.Mind is not { } victim ||
-                buckle.BuckledTo is not { } stake || !HasComp<IgniteOnBuckleComponent>(stake))
+                buckle.BuckledTo is not { } stake || !HasComp<IgniteOnBuckleComponent>(stake) ||
+                HasComp<BloodBoundComponent>(uid) || _roles.MindHasRole<BloodBoundRoleComponent>(victim))
                 continue;
 
             var xform = Transform(stake);
@@ -105,8 +110,9 @@ public sealed partial class FirestakeConditionSystem : EntitySystem
             var objectives = EntityQueryEnumerator<FirestakeConditionComponent>();
             while (objectives.MoveNext(out var objective, out var condition))
             {
-                // don't let someone pre-harvest hearts to instantly clear the objective
-                if (condition.Grid == grid && condition.Zone is { } zone && zones.Contains(zone) &&
+                // don't let someone pre-harvest hearts (or their own) to instantly clear the objective
+                if (victim != condition.AssignedMind &&
+                    condition.Grid == grid && condition.Zone is { } zone && zones.Contains(zone) &&
                     TryComp<MindComponent>(condition.AssignedMind, out var owner) && owner.Objectives.Contains(objective))
                     condition.Victims.Add(victim);
             }

@@ -1,5 +1,5 @@
 using Content.Server._Moffstation.Objectives.Components;
-using Content.Server.Station.Systems; // Starlight
+using Content.Server.Station.Systems;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Pinpointer;
 using Robust.Shared.Random;
