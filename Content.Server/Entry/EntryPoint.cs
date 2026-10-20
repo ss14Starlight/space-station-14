@@ -124,7 +124,8 @@ namespace Content.Server.Entry
             Dependencies.BuildGraph();
             Dependencies.InjectDependencies(this);
 
-            _cfg.OverrideDefault(CVars.LookupEnableServerLightTree, true); // Starlight - ShadekinSystem needs the light tree
+            // TODO: Sadly this made performence WAY WORSE; Disabled util we make a better one.
+            // _cfg.OverrideDefault(CVars.LookupEnableServerLightTree, true); // Starlight - ShadekinSystem needs the light tree
 
             LoadConfigPresets(_cfg, _res, _log.GetSawmill("configpreset"));
 
