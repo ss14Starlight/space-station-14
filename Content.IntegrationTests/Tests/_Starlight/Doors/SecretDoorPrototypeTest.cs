@@ -14,6 +14,7 @@ public sealed class SecretDoorPrototypeTest : GameTest
     private static readonly EntProtoId NormalDoor = "SolidSecretDoor";
     private static readonly EntProtoId ReinforcedDoor = "ReinforcedSecretDoor";
 
+    /// <summary>Checks that the reinforced facade preserves door durability and construction links.</summary>
     [Test]
     public async Task ReinforcedFacadeKeepsNormalDoorDurabilityAndConstructionLinks()
         => await Pair.Server.WaitPost(() =>

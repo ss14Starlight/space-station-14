@@ -13,6 +13,7 @@ public sealed partial class ReinforcedSecretDoorVisualSystem : EntitySystem
 {
     [Dependency] private SpriteSystem _sprites = default!;
 
+    /// <summary>Shows smoothed wall art while closed and door art while opening.</summary>
     public override void FrameUpdate(float frameTime)
     {
         var query = EntityQueryEnumerator<ReinforcedSecretDoorVisualComponent, DoorComponent, SpriteComponent, TransformComponent>();

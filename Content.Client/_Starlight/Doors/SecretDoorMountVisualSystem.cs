@@ -60,6 +60,7 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         public float RefreshCountdown;
     }
 
+    /// <summary>Registers cleanup handlers for doors and their wall mounts.</summary>
     public override void Initialize()
     {
         base.Initialize();
@@ -67,6 +68,7 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         SubscribeLocalEvent<WallMountComponent, ComponentShutdown>(OnMountShutdown);
     }
 
+    /// <summary>Restores mounts and removes clones when their door is removed.</summary>
     private void OnDoorShutdown(Entity<SecretDoorPanelComponent> ent, ref ComponentShutdown args)
     {
         _removeMounts.Clear();
@@ -83,9 +85,11 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         _doorProgress.Remove(ent.Owner);
     }
 
+    /// <summary>Removes the visual split when its source mount is removed.</summary>
     private void OnMountShutdown(Entity<WallMountComponent> ent, ref ComponentShutdown args)
         => RemoveMount(ent.Owner);
 
+    /// <summary>Advances door slides and keeps split clones aligned with their mounts.</summary>
     public override void FrameUpdate(float frameTime)
     {
         UpdateDoorProgress(frameTime);
@@ -142,6 +146,7 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         _removeMounts.Clear();
     }
 
+    /// <summary>Tracks opening progress for doors that currently need split visuals.</summary>
     private void UpdateDoorProgress(float frameTime)
     {
         foreach (var uid in _activeDoors)
@@ -160,6 +165,7 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         }
     }
 
+    /// <summary>Finds wall mounts sharing a tile with an active secret door.</summary>
     private void ScanMounts()
     {
         _doorsByTile.Clear();
@@ -265,6 +271,7 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         _removeMounts.Clear();
     }
 
+    /// <summary>Creates the two non-interactive sprite clones for a wall mount.</summary>
     private SplitMount CreateMount(EntityUid mount, EntityUid door, SpriteComponent sprite, TransformComponent xform)
     {
         var first = Spawn("clientsideclone", xform.Coordinates);
@@ -279,12 +286,14 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         return new SplitMount(door, first, second, originalColor, vertical, maskVertical, maskReversed);
     }
 
+    /// <summary>Converts the door's slide axis into the mount sprite's local space.</summary>
     private static Vector2 GetLocalSlideDirection(TransformComponent xform, SpriteComponent sprite, bool vertical)
     {
         var worldAxis = vertical ? Vector2.UnitY : Vector2.UnitX;
         return sprite.NoRotation ? worldAxis : (-xform.LocalRotation).RotateVec(worldAxis);
     }
 
+    /// <summary>Copies changed source art to both halves and reapplies their masks.</summary>
     private void RefreshMount(EntityUid mount, SpriteComponent source, SplitMount split)
     {
         if (!TryComp<SpriteComponent>(split.First, out var first) ||
@@ -301,6 +310,7 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         MaskHalf(second, firstHalf: false, split.MaskVertical, split.MaskReversed);
     }
 
+    /// <summary>Clips each sprite layer to the half that follows its door panel.</summary>
     private void MaskHalf(SpriteComponent sprite, bool firstHalf, bool vertical, bool reversed)
     {
         var index = 0;
@@ -327,6 +337,7 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         }
     }
 
+    /// <summary>Restores the source color and queues its visual clones for deletion.</summary>
     private void RemoveMount(EntityUid mount)
     {
         if (!_mounts.Remove(mount, out var split))
@@ -342,6 +353,7 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         QueueDel(split.Second);
     }
 
+    /// <summary>Preserves lasting recolors without saving temporary flash colors.</summary>
     private void TrackSourceColor(EntityUid mount, SpriteComponent sprite, SplitMount split)
     {
         // A flash temporarily changes the sprite color. Preserve the original
@@ -351,6 +363,7 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
             split.OriginalColor = sprite.Color;
     }
 
+    /// <summary>Fingerprints common sprite properties to avoid redundant full copies.</summary>
     private static int GetVisualHash(SpriteComponent sprite, Color originalColor)
     {
         var hash = new HashCode();
