@@ -3,3 +3,6 @@
   table: !type:GroupSelector
     children:
     - id: VinylHitEm
+    - id: VinylResonance
+    - id: VinylFinallyLanding
+    - id: VinylLobotomy

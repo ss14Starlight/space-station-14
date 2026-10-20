@@ -253,3 +253,48 @@
   - type: Vinyl
     song:
       path: /Audio/_Starlight/RadioStation/Vinyls/music/hit_em.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylResonance
+  name: "vinyl: Resonance"
+  description: "A smash hit chillsynth reel, made by Randy Goughman...Say, isn't that name familiar?"
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: label
+      color: "#d700b3"
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/Home - Resonance - Mono Mixdown for SL.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylFinallyLanding
+  name: "vinyl: Finally Landing"
+  description: "Randy Goughman's 2nd most viral track. The royalties from this one finally let him afford tuition for the NanoTrasen medical acadamy. "
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: label
+      color: "#ae00b7"
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/Home - We'reFinallyLanding - Mono Mixdown for SL.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylLobotomy
+  name: "vinyl: Resonance 2"
+  description: "The release of this song has lead to multiple Syndicate assasination attempts on the life of Randy Goughman"
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: label
+      color: "#010200"
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/Home - Lobotomy.ogg
