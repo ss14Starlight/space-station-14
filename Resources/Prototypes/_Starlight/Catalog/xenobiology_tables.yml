@@ -486,7 +486,6 @@
       - id: MobCosmicLodestarHostile
       - id: MobCosmicOracleHostile
       - id: MobCosmicCustodianHostile
-      - id: MobArgocyteMolder
       - id: MobBluespaceHarvesterOtherthing
       - id: MobBearSoviet
       - id: MobTick
@@ -497,6 +496,13 @@
       - id: MobArgocyteGlider
       - id: MobArgocyteMolder
       - id: MobArgocyteSwiper
+      - id: MobGoliath
+      - id: MobGorilla
+      - id: MobGrenadePenguinWorn
+      - id: MobJonkBot
+      - id: MobWatcherIcewing
+      - id: MobWatcherMagmawing
+      - id: MobWatcherLavaland
 
 - type: entityTable
   id: GoldSlimeAllTable
@@ -507,6 +513,7 @@
       - id: MobCluwneBeast
       - id: MobSovietComradeAk
       - id: MobEeeplet
+      - id: MobHivebotRanged
       - id: MobElder
       - id: MobArgocyteEnforcer
       - id: MobGlockroach
@@ -515,14 +522,23 @@
       - id: MoffMobDemonNarsieJuggernaut
       - id: MoffMobDemonNarsieShade
       - id: MoffMobDemonNarsieWraith
+      - id: MobGooseNarsie
+      - id: MobCosmicLodestarHostile
+      - id: MobCosmicOracleHostile
+      - id: MobCosmicCustodianHostile
+      - id: MobGrenadePenguin
       - id: MobDragonDungeon
       - id: MobParadoxArtifact
       - id: MobStargazer
       - id: MobSyndicateFootsoldierBoss
       - id: MobWorm
       - id: UristMcStone
-      - id: MeteorUrist
       - id: MeteorClown
+      - id: MobArgocyteCrawler
+      - id: MobArgocyteGlider
+      - id: MobArgocyteMolder
+      - id: MobArgocyteSwiper
+      - id: MobArgocyteBarrier
       - id: MobArgocyteFounder
       - id: MobArgocyteLeviathing
       - id: CarpRift
@@ -530,9 +546,11 @@
       - id: ShadowPortal
       - id: CosmicEffigy
       - id: AnomalySanta
+      - id: MobWatcherPride
+      - !type:NestedSelector
+        tableId: GoldSlimePeacefulTable
       - !type:NestedSelector
         tableId: GoldSlimeHostileTable
-        tableId: GoldSlimePeacefulTable
 
 
 - type: entityTable

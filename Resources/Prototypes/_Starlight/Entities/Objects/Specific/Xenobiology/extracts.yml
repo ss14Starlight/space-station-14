@@ -750,7 +750,7 @@
 - type: extractReaction
   id: GoldSlimeExtractWaterReaction
   requirements:
-    Water: 1
+    Water: 2
   effects:
     - effect: !type:SpawnEntityFromTable
         number: 2
@@ -767,7 +767,7 @@
     Blood: 1
   effects:
     - effect: !type:SpawnEntityFromTable
-        number: 3
+        number: 2
         entityTable: !type:NestedSelector
           tableId: GoldSlimeHostileTable
         offset: 0.2
@@ -781,7 +781,7 @@
     Plasma: 1
   effects:
     - effect: !type:SpawnEntityFromTable
-        number: 5
+        number: 1
         entityTable: !type:NestedSelector
           tableId: GoldSlimeAllTable
         offset: 0.2
