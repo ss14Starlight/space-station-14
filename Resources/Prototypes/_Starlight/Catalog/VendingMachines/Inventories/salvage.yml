@@ -475,10 +475,10 @@
     - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageSurplusShotgun
-  productEntity: CrateITGShotgunSurplus
+  id: VendorSalvageSurplusArmaments
+  productEntity: CrateITGArmamentSurplus
   cost:
-    SalvageTicket: 600
+    SalvageTicket: 1000
   categories:
     - SalvageSurplus
   conditions:
