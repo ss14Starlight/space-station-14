@@ -27,9 +27,6 @@ public sealed partial class StyleThemePrototype : IPrototype
     [DataField]
     public bool Light;
 
-    [DataField]
-    public bool Stock;
-
     /// <summary>
     /// Primary accent color, controlling header text.
     /// If secondaryAccent is not specified, falls back to Accent.
