@@ -17,6 +17,7 @@ public sealed partial class EmitPollenSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private ScentSystem _scent = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
 
     /// <inheritdoc />
     public override void Update(float frameTime)
@@ -87,11 +88,10 @@ public sealed partial class EmitPollenSystem : EntitySystem
         {
             var prototype = _prototypeManager.Index(productId);
 
-            if (!prototype.TryGetComponent<ProduceComponent>(out var product) ||
+            if (!prototype.TryGetComponent<ProduceComponent>(out var product, _componentFactory) ||
                 product.PlantProtoId is not { } productPlantId)
                 continue;
 
-            //var productPollenId = NormalizePollenId(productPlantId.ToString());
             var productPollenId = productPlantId.ToString();
 
             if (resolvedId != null && resolvedId != productPollenId)
@@ -102,12 +102,4 @@ public sealed partial class EmitPollenSystem : EntitySystem
 
         return resolvedId;
     }
-
-    /*
-    private static string NormalizePollenId(string plantId)
-    {
-        const string suffix = "Plants";
-        return plantId.EndsWith(suffix, StringComparison.Ordinal) ? plantId[..^suffix.Length] : plantId;
-    }
-    */
 }

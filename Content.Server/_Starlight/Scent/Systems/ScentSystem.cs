@@ -61,6 +61,7 @@ public sealed partial class ScentSystem : SharedScentSystem
     [Dependency] private SharedStealthSystem _stealth = default!;
     [Dependency] private StainSystem _stains = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
 
     private const string ScentMarkerPrototype = "ScentMarker";
     private const int ScentIdByteLength = 8;
@@ -233,7 +234,7 @@ public sealed partial class ScentSystem : SharedScentSystem
         {
             var prototype = _prototype.Index(productId);
 
-            if (!prototype.TryGetComponent<ProduceComponent>(out var product) ||
+            if (!prototype.TryComp(out ProduceComponent? product, _componentFactory) ||
                 product.PlantProtoId is not { } productPlantId)
                 continue;
 
@@ -538,8 +539,7 @@ public sealed partial class ScentSystem : SharedScentSystem
         if (scents.Count == 0)
             return (null, false);
 
-        var selected = _random.Pick(scents);
-        return (selected.Id, selected.IsPollen);
+        return _random.Pick(scents);
     }
 
     private string? PickNormalScent(ScentComponent scent)

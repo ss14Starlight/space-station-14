@@ -33,11 +33,11 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
     [Dependency] private MovementModStatusSystem _movementMod = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
 
-    private static TimeSpan s_checkInterval = TimeSpan.FromSeconds(1);
-    private static TimeSpan s_sneezeInterval = TimeSpan.FromSeconds(10);
-    private static TimeSpan s_histamineInterval = TimeSpan.FromSeconds(0.75);
+    private static readonly TimeSpan s_checkInterval = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan s_sneezeInterval = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan s_histamineInterval = TimeSpan.FromSeconds(0.75);
     private const string PollenAllergySlowdown = "PollenAllergySlowdown";
-    private static ProtoId<ReagentPrototype> s_histamine = "Histamine";
+    private static readonly ProtoId<ReagentPrototype> s_histamine = "Histamine";
 
     public override void Update(float frameTime)
     {
@@ -63,12 +63,14 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
             sensitive.NextInteraction = now + s_checkInterval;
 
             var nearby = _lookup.GetEntitiesInRange(sensitiveTransform.Coordinates, sensitive.PollenRange);
+            var containerHere = _scent.GetAirtightContainer(sensitiveTransform);
+
             foreach (var candidate in nearby)
             {
                 if (!TryComp<ScentMarkerComponent>(candidate, out var pollen) || !pollen.IsPollen)
                     continue;
 
-                if (pollen.ContainedIn != _scent.GetAirtightContainer(sensitiveTransform))
+                if (pollen.ContainedIn != containerHere)
                     continue;
 
                 if (!_random.Prob(sensitive.InteractionChance))
@@ -94,7 +96,7 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
             return;
 
         var progress = MathF.Min((stack - 2f) / 8f, 1f);
-        var strength = 0.05f + 0.25f * MathF.Pow(progress, 1.7f);
+        var strength = 0.05f + (0.25f * MathF.Pow(progress, 1.7f));
 
         args.Strength += strength;
     }
@@ -167,19 +169,23 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
             return;
 
         ent.Comp.NextSneeze = now + s_sneezeInterval;
-        ent.Comp.AllergyStack = MathF.Max(0f, ent.Comp.AllergyStack - ent.Comp.SneezeAmount);
-        ent.Comp.AllergyStack = MathF.Round(ent.Comp.AllergyStack, 2);
 
+        bool sneezed;
         if (TryComp(ent.Owner, out SmellerComponent? smeller))
         {
-            if (_scent.ForceAllergySneeze((ent.Owner, smeller), smeller.SmokeLockout))
-                _popup.PopupEntity(Loc.GetString("scent-sneeze-allergic"), ent.Owner, ent.Owner, PopupType.Small);
+            sneezed = _scent.ForceAllergySneeze((ent.Owner, smeller), smeller.SmokeLockout);
         }
         else
         {
-            // No SmellerComponent (e.g. Humans) - no scent-tracking machinery to
-            // clear or toggle, but still give sneeze feedback.
+            // No SmellerComponent (e.g. Humans) - still give sneeze feedback.
+            sneezed = true;
+        }
+
+        if (sneezed)
+        {
             _popup.PopupEntity(Loc.GetString("scent-sneeze-allergic"), ent.Owner, ent.Owner, PopupType.Small);
+            ent.Comp.AllergyStack = MathF.Max(0f, ent.Comp.AllergyStack - ent.Comp.SneezeAmount);
+            ent.Comp.AllergyStack = MathF.Round(ent.Comp.AllergyStack, 2);
         }
 
         UpdateAllergyEffects(ent);

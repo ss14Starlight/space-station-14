@@ -59,7 +59,7 @@ public sealed partial class PollenAdvancedSystem : EntitySystem
             var delay = RollSpawnDelay(perk);
             perk.NextSpawn = now + delay;
 
-            var deviation = (float)(delay - TimeSpan.FromSeconds(perk.SpawnInterval)).TotalSeconds;
+            var deviation = (float)((delay - TimeSpan.FromSeconds(perk.SpawnInterval)).TotalSeconds);
             var lifetime = Math.Max(0.1f, perk.PollenLifetime + deviation * perk.LifetimeDeviationMultiplier);
 
             var offset = RandomPollenOffset();
