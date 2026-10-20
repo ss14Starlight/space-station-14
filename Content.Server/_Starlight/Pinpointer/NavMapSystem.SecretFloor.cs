@@ -8,10 +8,14 @@ namespace Content.Server.Pinpointer;
 
 public sealed partial class NavMapSystem
 {
-    #region Starlight
+    #region Starlight variables
 
     private static readonly ProtoId<ContentTileDefinition> SecretFloorId = "FloorSecret";
     private static readonly ProtoId<ContentTileDefinition> SecretFloorLightId = "FloorSecretLight";
+
+    #endregion
+
+    #region Starlight methods
 
     private bool IsSecretFloor(Tile tile)
     {
@@ -22,7 +26,8 @@ public sealed partial class NavMapSystem
         return tileId == SecretFloorId || tileId == SecretFloorLightId;
     }
 
-    private partial void HandleStarlightTileChanged(ref TileChangedEvent ev, NavMapComponent navMap)
+    // Refreshes a tile only when its secret-floor status changes, preserving nav-map entity flags.
+    private void HandleStarlightTileChanged(ref TileChangedEvent ev, NavMapComponent navMap)
     {
         if (!_gridQuery.TryComp(ev.Entity, out var mapGrid))
             return;
@@ -39,7 +44,8 @@ public sealed partial class NavMapSystem
         }
     }
 
-    private partial void ApplyStarlightTileMask(Tile tile, ref int tileData)
+    // Makes secret floors appear as solid walls to nav-map consumers.
+    private void ApplyStarlightTileMask(Tile tile, ref int tileData)
     {
         if (IsSecretFloor(tile))
             tileData |= WallMask;

@@ -101,7 +101,9 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
         if (!_navQuery.TryComp(ev.Entity, out var navMap))
             return;
 
+        // Starlight-start: Refresh nav-map data when a secret floor changes wall classification.
         HandleStarlightTileChanged(ref ev, navMap);
+        // Starlight-end
 
         foreach (var change in ev.Changes)
         {
@@ -126,7 +128,10 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
             else
             {
                 tileData = FloorMask;
+
+                // Starlight-start: Preserve downstream nav-map masks for direct tile placement.
                 ApplyStarlightTileMask(change.NewTile, ref tileData);
+                // Starlight-end
             }
 
             DirtyChunk((ev.Entity, navMap), chunk);
@@ -277,7 +282,9 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
         else
             tileData &= FloorMask;
 
+        // Starlight-start: Apply downstream tile masks during full and entity-driven nav-map refreshes.
         ApplyStarlightTileMask(_mapSystem.GetTileRef(uid, mapGrid, tile).Tile, ref tileData);
+        // Starlight-end
 
         var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(uid, mapGrid, tile);
         while (enumerator.MoveNext(out var ent))
@@ -305,9 +312,6 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
 
         return (tileData, chunk);
     }
-
-    private partial void HandleStarlightTileChanged(ref TileChangedEvent ev, NavMapComponent navMap);
-    private partial void ApplyStarlightTileMask(Tile tile, ref int tileData);
 
     private bool PruneEmpty(Entity<NavMapComponent> entity, NavMapChunk chunk)
     {
