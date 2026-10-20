@@ -62,7 +62,7 @@
   description: Die.
   components:
   - type: Objective
-    difficulty: 0.8 # Moffstation - Made DAGD more difficult so it's less likely
+    difficulty: 0.5
     icon:
       sprite: Mobs/Ghosts/ghost_human.rsi
       state: icon
