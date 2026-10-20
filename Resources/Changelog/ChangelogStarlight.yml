@@ -1,13 +1,6 @@
 Entries:
 - author: Sparlight
   changes:
-  - message: Vampire glare now works on K9s properly.
-    type: Fix
-  id: 409217
-  time: '2026-10-06T08:59:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6433
-- author: Sparlight
-  changes:
   - message: K9s now disengage a latch if a latch was initiated at a weird angle that would ordinarily prevent a counter-attack.
     type: Fix
   id: 409218
@@ -2883,4 +2876,11 @@ Entries:
   id: 409616
   time: '2026-10-20T07:27:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6746
+- author: Johnny
+  changes:
+  - message: Removed Laser armaments from salvage vendor.
+    type: Remove
+  id: 409617
+  time: '2026-10-20T07:27:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6749
 Order: -1
