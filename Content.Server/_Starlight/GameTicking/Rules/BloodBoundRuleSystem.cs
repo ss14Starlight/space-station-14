@@ -13,6 +13,7 @@ using Content.Server.Popups;
 using Content.Server.Roles;
 using Content.Server.Stunnable;
 using Content.Shared._Starlight.Antags.BloodBound.Components;
+using Content.Shared._Starlight.Traits.Antags;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
@@ -270,6 +271,7 @@ public sealed partial class BloodBoundRuleSystem : GameRuleSystem<BloodBoundRule
         }
 
         if (entity.Comp.RequiredAntagPreference is {} preference &&
+            !HasComp<BloodBoundConvertibleComponent>(target) &&
             (_humanoidAppearance.GetBaseProfile(target) is not {} profile || !profile.AntagPreferences.Contains(preference)))
         {
             errorMessage = "blood-bound-convert-failed-preference";

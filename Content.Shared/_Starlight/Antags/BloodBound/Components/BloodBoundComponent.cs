@@ -42,7 +42,8 @@ public sealed partial class BloodBoundComponent : Component
     public EntityUid? CheckConvertActionEntity;
 
     /// <summary>
-    /// Required antag preference for recruitment. Null skips this check.
+    /// Required antag preference for recruitment unless the target has the Blood Bound trait.
+    /// Null skips this check.
     /// </summary>
     [DataField]
     public ProtoId<AntagPrototype>? RequiredAntagPreference = "BloodBound";
