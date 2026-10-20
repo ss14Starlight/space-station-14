@@ -1,11 +1,4 @@
 Entries:
-- author: Swonki
-  changes:
-  - message: Moved ITG formal uniform to admeme.
-    type: Tweak
-  id: 409219
-  time: '2026-10-06T09:23:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6527
 - author: Johnny
   changes:
   - message: Changed NTSF loadouts based off feedback and use cases.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409618
   time: '2026-10-20T08:02:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6753
+- author: Johnny
+  changes:
+  - message: PKA Modkits now are cheaper, with more in stock.
+    type: Tweak
+  id: 409619
+  time: '2026-10-20T08:02:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6750
 Order: -1
