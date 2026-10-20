@@ -35,7 +35,9 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
         { PowerMonitoringConsoleGroup.SMES, (new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/NavMap/beveled_hexagon.png")), Color.OrangeRed) },
         { PowerMonitoringConsoleGroup.Substation, (new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/NavMap/beveled_square.png")), Color.Yellow) },
         { PowerMonitoringConsoleGroup.APC, (new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/NavMap/beveled_triangle.png")), Color.LimeGreen) },
+        // Starlight Start
         { PowerMonitoringConsoleGroup.Consumer, (new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/NavMap/beveled_diamond.png")), Color.Blue) },
+        // Starlight End
     };
 
     public EntityUid Entity;
@@ -59,7 +61,9 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
         MasterTabContainer.SetTabTitle(1, Loc.GetString("power-monitoring-window-label-smes"));
         MasterTabContainer.SetTabTitle(2, Loc.GetString("power-monitoring-window-label-substation"));
         MasterTabContainer.SetTabTitle(3, Loc.GetString("power-monitoring-window-label-apc"));
+        // Starlight Start
         MasterTabContainer.SetTabTitle(4, Loc.GetString("power-monitoring-window-label-consumer"));
+        // Starlight End
 
         // Track when the MasterTabContainer changes its tab
         MasterTabContainer.OnTabChanged += OnTabChanged;
@@ -206,8 +210,10 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
                 currentContainer = SubstationList; break;
             case PowerMonitoringConsoleGroup.APC:
                 currentContainer = ApcList; break;
+            // Starlight Start
             case PowerMonitoringConsoleGroup.Consumer:
                 currentContainer = ConsumerList; break;
+            // Starlight End
         }
 
         // Clear excess children from the container
