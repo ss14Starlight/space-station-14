@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Social Interactions) Boop is now Lore Accurate (e.g. emote flavour text respects whether or not your species has a nose).
-    type: Fix
-  id: 409204
-  time: '2026-10-05T16:29:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6492
-- author: Caws
-  changes:
-  - message: (Social Interactions) You can Look at anything now.
-    type: Fix
-  id: 409205
-  time: '2026-10-05T16:29:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6492
-- author: Caws
-  changes:
   - message: (Social Interactions) You can Wave at anything now.
     type: Fix
   id: 409206
@@ -2883,4 +2869,18 @@ Entries:
   id: 409603
   time: '2026-10-20T06:18:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6693
+- author: Rescue
+  changes:
+  - message: Added tactical planning consoles for collaborative drawing on station maps.
+    type: Add
+  id: 409604
+  time: '2026-10-20T06:18:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6649
+- author: Rescue
+  changes:
+  - message: Added a Syndicate variant that displays the target station (for nuclear operatives).
+    type: Add
+  id: 409605
+  time: '2026-10-20T06:18:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6649
 Order: -1
