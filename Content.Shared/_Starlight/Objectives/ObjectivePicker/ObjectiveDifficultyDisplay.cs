@@ -8,5 +8,5 @@ namespace Content.Shared._Starlight.Objectives.ObjectivePicker;
 public static class ObjectiveDifficultyDisplay
 {
     public static string Format(float value)
-        => (Math.Truncate((double) value * 10) / 10).ToString("0.#", CultureInfo.CurrentCulture);
+        => (Math.Truncate((decimal) value * 10) / 10).ToString("0.#", CultureInfo.CurrentCulture);
 }
