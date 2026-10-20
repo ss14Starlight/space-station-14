@@ -452,7 +452,6 @@
       - id: MobPenguinFlippers
       - id: MobCorgiCerberus
       - id: MobCowChocolate
-      - id: MobCatShadow
 
 - type: entityTable
   id: GoldSlimeHostileTable
@@ -472,7 +471,6 @@
       - id: MobFleshClamp
       - id: MobAbomination
       - id: MobArgocyteBarrier
-      - id: MobAngryBee
       - id: MobBluespaceHarvesterBlankBody
       - id: MobAdultSlimesBlueAngrySmasher
       - id: MobXeno
@@ -541,7 +539,6 @@
       - id: MobArgocyteBarrier
       - id: MobArgocyteFounder
       - id: MobArgocyteLeviathing
-      - id: CarpRift
       - id: CosmicMalignRift
       - id: ShadowPortal
       - id: CosmicEffigy
