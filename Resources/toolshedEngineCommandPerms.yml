@@ -157,18 +157,6 @@
     - methods
     - ioc
 
-# Starlight begin - 1984 anti-trialmin no-fun technology (patent pending)
-- Flags: SPAWN
-  Commands:
-    - delete
-    - spawn
-    - replace
-
-- Flags: VAREDIT
-  Commands:
-    - comp
-# Starlight end
-
 - Commands:
     - ent
     - f
