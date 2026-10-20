@@ -46,7 +46,7 @@
 - type: entity
   name: suspicious mimic
   id: MimicSusToolbox
-  parent: SimpleSpaceMobBase
+  parent: [SimpleSpaceMobBase, BaseSlicingRefinable]
   description: It wasn't a free pair of combat gloves.
   components:
   - type: InputMover
@@ -110,3 +110,9 @@
     damage:
       types:
         Slash: 20
+  - type: ToolRefinable
+    refineResult:
+    - id: ToolboxSyndicate
+      amount: 1
+    - id: FoodMeat
+      amount: 2
