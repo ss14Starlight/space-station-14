@@ -236,15 +236,6 @@
 #  - !type:BuyerAccessCondition
 
 #weapons
-- type: listing
-  id: VendorSalvageWeaponLaserImmolator
-  productEntity: WeaponLaserImmolator
-  cost:
-    SalvageTicket: 500
-  categories:
-  - SalvageWeapons
-  conditions:
-  - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvageWeaponShotgunGA12
@@ -281,16 +272,6 @@
   productEntity: WeaponShotgunCycler
   cost:
     SalvageTicket: 500
-  categories:
-  - SalvageWeapons
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageWeaponRifleLr30
-  productEntity: WeaponRifleLr30
-  cost:
-    SalvageTicket: 300
   categories:
   - SalvageWeapons
   conditions:
