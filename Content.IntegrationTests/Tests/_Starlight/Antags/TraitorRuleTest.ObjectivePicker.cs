@@ -1,16 +1,21 @@
 using System.Collections.Generic;
 using System.Linq;
-using Content.Client._Moffstation.CharacterMenu;
+using Content.Client._Starlight.Character.Info.UI;
+using Content.Client._Starlight.Objectives.ObjectivePicker;
 using Content.IntegrationTests.Fixtures.Attributes;
 using Content.Server.Mind;
-using Content.Shared._Moffstation.Objectives;
-using Content.Shared._Starlight.CCVar;
+using Content.Server.Objectives.Components;
+using Content.Server._Starlight.Objectives.Components;
+using Content.Server._Starlight.Objectives.ObjectivePicker;
+using Content.Shared._Starlight.Objectives.ObjectivePicker;
 using Content.Shared._Starlight.Character.Info;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared.CCVar;
+using Content.Shared.Preferences;
+using Content.Shared.Objectives.Components;
 using Content.Shared._Starlight.Character.Info.Components;
 using Content.Shared._Starlight.Railroading.Components;
-using Content.Shared.CCVar;
 using Content.Shared.Mind;
-using Content.Shared.Preferences;
 using Content.Shared.Tag;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -26,20 +31,35 @@ public sealed partial class TraitorRuleTest
 {
     private static readonly ProtoId<TagPrototype> _sLBackgroundTag = "CivilianTraitBackground";
 
-    private async Task SLTestObjectivePicker(EntityUid mind, EntityUid player)
+    private async Task TestObjectivePicker(EntityUid mind, EntityUid player)
     {
         await OverrideCVar(Side.Server, CCVars.FlavorText, true);
         await OverrideCVar(Side.Server, StarlightCCVars.OOCNotes, true);
 
         Dictionary<NetEntity, EntityUid> candidates = null;
+        HashSet<NetEntity> selected = null;
+        EntityUid forced = default;
         EntityUid foreignMind = default;
         EntityUid foreignObjective = default;
         NetEntity foreignMindNet = default;
         NetEntity foreignObjectiveNet = default;
         await Server.WaitAssertion(() =>
         {
-            Assert.That(SEntMan.GetComponent<MindComponent>(mind).Objectives, Is.Empty,
-                "Generating offers must not assign them to the mind.");
+            var mindComp = SEntMan.GetComponent<MindComponent>(mind);
+            Assert.That(mindComp.Objectives.Count, Is.EqualTo(1), "Only the forced objective is assigned before confirmation.");
+            forced = mindComp.Objectives.Single();
+            var offers = SEntMan.GetComponent<PotentialObjectivesComponent>(mind);
+            Assert.That(ObjectivePickerSelection.Difficulty(offers, offers.ObjectiveOptions.Keys),
+                Is.GreaterThanOrEqualTo(2 * offers.MinimumDifficulty));
+            var storyCount = offers.Difficulties.Count(pair => pair.Value == 0);
+            Assert.That(storyCount, Is.EqualTo(SEntMan.HasComponent<DieConditionComponent>(forced) ? 0 : 2));
+            foreach (var objective in offers.ObjectiveOptions.Keys.Select(SEntMan.GetEntity))
+            {
+                if ((SEntMan.HasComponent<KillPersonConditionComponent>(objective) ||
+                        SEntMan.HasComponent<TeachALessonConditionComponent>(objective)) &&
+                            SEntMan.TryGetComponent<TargetObjectiveComponent>(objective, out var target))
+                    Assert.That(target.Target, Is.Null, "Unconfirmed kill/lesson offers must not have targets.");
+            }
             candidates = SEntMan.GetComponent<PotentialObjectivesComponent>(mind).ObjectiveOptions.Keys
                 .ToDictionary(objective => objective, SEntMan.GetEntity);
 
@@ -68,7 +88,7 @@ public sealed partial class TraitorRuleTest
         });
         await Pair.RunUntilSynced();
 
-        var selected = candidates.Keys.Take(1).ToHashSet();
+        var retained = candidates.Keys.First();
         var ui = Client.ResolveDependency<IUserInterfaceManager>();
         await Client.WaitAssertion(() =>
         {
@@ -81,35 +101,49 @@ public sealed partial class TraitorRuleTest
 
         await Client.WaitAssertion(() =>
         {
-            var window = SLFindControls<MoffCharacterWindow>(ui.RootControl).Single();
-
-            // Resolve the named XAML controls through the public lookup API.
-            var characterInfoTabs = window.FindControl<TabContainer>("CharacterInfoTabs");
-            var characterDescription = window.FindControl<Control>("InfoIC").FindControl<RichTextLabel>("CharacterDesc");
-            var oocInfo = window.FindControl<Control>("InfoOOC");
-            var oocNotes = oocInfo.FindControl<RichTextLabel>("OOCNotes");
-            var personalNotes = oocInfo.FindControl<RichTextLabel>("PersonalNotes");
-            var background = window.FindControl<Control>("InfoBackground").FindControl<RichTextLabel>("Background");
+            var window = FindControls<SLCharacterWindow>(ui.RootControl).Single();
+            var tabs = window.FindControl<TabContainer>("CharacterInfoTabs");
+            var characterDesc = window.FindControl<CharacterICInfoControl>("InfoIC")
+                .FindControl<RichTextLabel>("CharacterDesc");
+            var infoOOC = window.FindControl<CharacterOOCInfoControl>("InfoOOC");
+            var oocNotes = infoOOC.FindControl<RichTextLabel>("OOCNotes");
+            var personalNotes = infoOOC.FindControl<RichTextLabel>("PersonalNotes");
+            var background = window.FindControl<CharacterBackgroundInfoControl>("InfoBackground")
+                .FindControl<RichTextLabel>("Background");
             var objectivesWrapper = window.FindControl<BoxContainer>("ObjectivesWrapper");
-
-            Assert.That(characterInfoTabs.Children.Count, Is.EqualTo(2));
-            Assert.That(characterInfoTabs.CurrentTab, Is.Zero);
-            Assert.That(characterDescription.GetMessage(), Does.Contain("Physical description"));
-            Assert.That(characterDescription.GetMessage(), Does.Contain("Personality description"));
+            var cardsButton = window.FindControl<Button>("CardsButton");
+            Assert.That(tabs.Children.Count, Is.EqualTo(2));
+            Assert.That(tabs.CurrentTab, Is.Zero);
+            Assert.That(characterDesc.GetMessage(), Does.Contain("Physical description"));
+            Assert.That(characterDesc.GetMessage(), Does.Contain("Personality description"));
             Assert.That(oocNotes.GetMessage(), Does.Contain("OOC notes"));
             Assert.That(personalNotes.GetMessage(), Does.Contain("Personal notes"));
             Assert.That(background.GetMessage(), Does.Contain(Loc.GetString("trait-background-civilian-name")));
-            Assert.That(SLFindControls<Button>(objectivesWrapper).Select(button => button.Text),
+            Assert.That(FindControls<Button>(objectivesWrapper).Select(button => button.Text),
                 Does.Contain(Loc.GetString("objective-picker-button")),
                 "The empty Cards group must not hide the objective picker.");
+            Assert.That(cardsButton.Text, Is.EqualTo(Loc.GetString("character-info-cards-button")));
+            Assert.That(objectivesWrapper.Children.ElementAt(1), Is.SameAs(cardsButton));
 
-            characterInfoTabs.CurrentTab = 1;
+            tabs.CurrentTab = 1;
             window.Close();
-            Assert.That(characterDescription.GetMessage(), Is.Null);
+            Assert.That(characterDesc.GetMessage(), Is.Null);
             Assert.That(personalNotes.GetMessage(), Is.Null);
             ui.GetUIController<CharacterUIController>().OpenCharacterOverview();
-            Assert.That(characterInfoTabs.CurrentTab, Is.Zero);
+            Assert.That(tabs.CurrentTab, Is.Zero);
             Assert.That(oocNotes.GetMessage(), Does.Contain("OOC notes"));
+
+            ui.GetUIController<ObjectivePickerUIController>().EnsureWindow();
+            var picker = FindControls<ObjectivePickerWindow>(ui.RootControl).Single();
+            var submit = FindControls<Button>(picker).Single(button => button.Name == "SubmitButton");
+            var mulligan = FindControls<Button>(picker).Single(button => button.Name == "MulliganButton");
+            Assert.That(submit.Disabled, Is.True);
+            Assert.That(mulligan.Disabled, Is.True);
+            picker.SelectedObjectives.Add(retained);
+            picker.UpdateState();
+            Assert.That(submit.Disabled, Is.True, "One under-budget objective cannot be submitted.");
+            Assert.That(mulligan.Disabled, Is.False, "Exactly one selection enables the mulligan.");
+            picker.Close();
 
             // A client must not be able to submit for another mind.
             Client.ResolveDependency<IEntityNetworkManager>().SendSystemNetworkMessage(new ObjectivePickerSelected
@@ -123,8 +157,50 @@ public sealed partial class TraitorRuleTest
         await Server.WaitAssertion(() =>
         {
             Assert.That(SEntMan.GetComponent<MindComponent>(foreignMind).Objectives, Is.Empty);
-            Assert.That(SEntMan.GetComponent<MindComponent>(mind).Objectives, Is.Empty);
+            Assert.That(SEntMan.GetComponent<MindComponent>(mind).Objectives, Is.EqualTo(new[] { forced }));
         });
+
+        // An under-budget submission must leave the picker open and assign no offers.
+        await Client.WaitAssertion(() => Client.ResolveDependency<IEntityNetworkManager>().SendSystemNetworkMessage(new ObjectivePickerSelected
+        {
+            MindId = CEntMan.GetNetEntity(Client.System<SharedMindSystem>().GetMind(Client.User!.Value)!.Value),
+            SelectedObjectives = new() { retained },
+        }));
+        await Pair.RunTicksSync(5);
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(SEntMan.GetComponent<MindComponent>(mind).Objectives, Is.EqualTo(new[] { forced }));
+            Assert.That(SEntMan.HasComponent<PotentialObjectivesComponent>(mind), Is.True);
+        });
+
+        await Client.WaitAssertion(() => Client.ResolveDependency<IEntityNetworkManager>().SendSystemNetworkMessage(new ObjectivePickerMulligan
+        {
+            MindId = CEntMan.GetNetEntity(Client.System<SharedMindSystem>().GetMind(Client.User!.Value)!.Value),
+            RetainedObjective = retained,
+        }));
+        await Pair.RunTicksSync(5);
+        await Pair.RunUntilSynced();
+        await Server.WaitAssertion(() =>
+        {
+            var offers = SEntMan.GetComponent<PotentialObjectivesComponent>(mind);
+            Assert.That(offers.MulliganUsed, Is.True);
+            Assert.That(offers.ObjectiveOptions.Keys.Intersect(candidates.Keys), Is.EqualTo(new[] { retained }));
+            foreach (var unused in candidates.Where(pair => pair.Key != retained))
+                Assert.That(SEntMan.EntityExists(unused.Value), Is.False);
+            candidates = offers.ObjectiveOptions.Keys.ToDictionary(id => id, SEntMan.GetEntity);
+            Assert.That(ObjectivePickerSelection.TryComplete(offers, offers.ObjectiveOptions.Keys,
+                new[] { retained }, out selected), Is.True);
+        });
+
+        // A second mulligan must leave the original reroll intact.
+        await Client.WaitAssertion(() => Client.ResolveDependency<IEntityNetworkManager>().SendSystemNetworkMessage(new ObjectivePickerMulligan
+        {
+            MindId = CEntMan.GetNetEntity(Client.System<SharedMindSystem>().GetMind(Client.User!.Value)!.Value),
+            RetainedObjective = retained,
+        }));
+        await Pair.RunTicksSync(5);
+        await Server.WaitAssertion(() => Assert.That(
+            SEntMan.GetComponent<PotentialObjectivesComponent>(mind).ObjectiveOptions.Keys, Is.EquivalentTo(candidates.Keys)));
 
         await Client.WaitAssertion(() => Client.ResolveDependency<IEntityNetworkManager>().SendSystemNetworkMessage(new ObjectivePickerSelected
         {
@@ -137,12 +213,33 @@ public sealed partial class TraitorRuleTest
         await Server.WaitAssertion(() =>
         {
             Assert.That(SEntMan.GetComponent<MindComponent>(mind).Objectives,
-                Is.EquivalentTo(selected.Select(objective => candidates[objective])));
+                Is.EquivalentTo(selected.Select(objective => candidates[objective]).Append(forced)));
             Assert.That(SEntMan.HasComponent<PotentialObjectivesComponent>(mind), Is.False);
             foreach (var unused in candidates.Where(candidate => !selected.Contains(candidate.Key)))
             {
                 Assert.That(SEntMan.EntityExists(unused.Value), Is.False, "Unused offers must be deleted.");
             }
+        });
+
+        await Server.WaitAssertion(() =>
+        {
+            var progress = SEntMan.GetComponent<ObjectivePickerProgressComponent>(mind);
+            progress.CanPickMore = true;
+            SEntMan.Dirty(mind, progress);
+        });
+        await Pair.RunTicksSync(5);
+        await Pair.RunUntilSynced();
+        await Client.WaitAssertion(() =>
+            ui.GetUIController<CharacterUIController>().OpenCharacterOverview());
+        await Pair.RunTicksSync(70);
+        await Client.WaitAssertion(() =>
+        {
+            var window = FindControls<SLCharacterWindow>(ui.RootControl).Single();
+            var objectivesWrapper = window.FindControl<BoxContainer>("ObjectivesWrapper");
+            Assert.That(FindControls<Button>(objectivesWrapper).Select(button => button.Text),
+                Does.Contain(Loc.GetString("objective-picker-additional-button")));
+            Assert.That(objectivesWrapper.Children.ElementAt(1), Is.SameAs(window.FindControl<Button>("CardsButton")));
+            window.Close();
         });
     }
 
@@ -160,16 +257,22 @@ public sealed partial class TraitorRuleTest
             var futureObjective = SEntMan.SpawnEntity(null, MapCoordinates.Nullspace);
             expiredObjective = SEntMan.SpawnEntity(null, MapCoordinates.Nullspace);
 
+            SEntMan.AddComponent<ObjectiveComponent>(futureObjective);
+            SEntMan.AddComponent<ObjectiveComponent>(expiredObjective);
+            SEntMan.AddComponent<ObjectivePickerConfigurationComponent>(futureMind);
+            SEntMan.AddComponent<ObjectivePickerConfigurationComponent>(expiredMind);
             SEntMan.AddComponent(futureMind, new PotentialObjectivesComponent
             {
                 AutoSelectionDelay = TimeSpan.FromHours(1),
-                MaxChoices = 1,
+                MinimumDifficulty = 1,
+                Difficulties = new() { [SEntMan.GetNetEntity(futureObjective)] = 1 },
                 ObjectiveOptions = new() { [SEntMan.GetNetEntity(futureObjective)] = default },
             });
             SEntMan.AddComponent(expiredMind, new PotentialObjectivesComponent
             {
                 AutoSelectionDelay = TimeSpan.Zero,
-                MaxChoices = 1,
+                MinimumDifficulty = 1,
+                Difficulties = new() { [SEntMan.GetNetEntity(expiredObjective)] = 1 },
                 ObjectiveOptions = new() { [SEntMan.GetNetEntity(expiredObjective)] = default },
             });
         });
@@ -185,14 +288,14 @@ public sealed partial class TraitorRuleTest
         });
     }
 
-    private static IEnumerable<T> SLFindControls<T>(Control control) where T : Control
+    private static IEnumerable<T> FindControls<T>(Control control) where T : Control
     {
         if (control is T found)
             yield return found;
 
         foreach (var child in control.Children)
         {
-            foreach (var descendant in SLFindControls<T>(child))
+            foreach (var descendant in FindControls<T>(child))
             {
                 yield return descendant;
             }

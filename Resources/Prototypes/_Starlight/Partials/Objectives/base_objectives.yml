@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: BaseKillObjective
+  components:
+  - type: Objective
+    unique: true

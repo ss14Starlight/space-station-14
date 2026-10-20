@@ -1,5 +1,5 @@
 #region Moffstation
-// Reworked and moved to Moffstation Namespace
+// Starlight: Reworked system now lives in Content.Server._Starlight.Objectives.ObjectivePicker.
 /*
 using Content.Server.Antag.Components;
 using Content.Server.Objectives;
