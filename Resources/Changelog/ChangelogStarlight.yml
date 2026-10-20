@@ -1,53 +1,4 @@
 Entries:
-- author: VictoriaActual
-  changes:
-  - message: Fixed laspi storage.
-    type: Fix
-  id: 409208
-  time: '2026-10-06T05:48:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6532
-- author: Moonomaly
-  changes:
-  - message: Pens can now stir drinks and chemicals.
-    type: Tweak
-  id: 409209
-  time: '2026-10-06T07:45:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6521
-- author: redmushie
-  changes:
-  - message: Paramedics can now open powered Firelocks freely.
-    type: Add
-  id: 409210
-  time: '2026-10-06T08:12:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6491
-- author: redmushie
-  changes:
-  - message: Security can now open powered Firelocks during Red, Gamma, Delta and Psi alerts.
-    type: Add
-  id: 409211
-  time: '2026-10-06T08:12:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6491
-- author: RedSpeeds
-  changes:
-  - message: Added Togglable subfloor layers.
-    type: Add
-  id: 409212
-  time: '2026-10-06T08:33:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6442
-- author: RedSpeeds
-  changes:
-  - message: Prevent doors from being toggled in mapping mode.
-    type: Add
-  id: 409213
-  time: '2026-10-06T08:33:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6442
-- author: RedSpeeds
-  changes:
-  - message: Setup component on certain electronics for mapping.
-    type: Add
-  id: 409214
-  time: '2026-10-06T08:33:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6442
 - author: Sparlight
   changes:
   - message: Biodegrade and Rejuvenate now break K9 latches.
@@ -2883,4 +2834,53 @@ Entries:
   id: 409607
   time: '2026-10-20T06:18:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6681
+- author: Floximo
+  changes:
+  - message: cyborgs can now move while shunted again, after remote control (RC) was used.
+    type: Fix
+  id: 409608
+  time: '2026-10-20T06:55:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6737
+- author: Floximo
+  changes:
+  - message: RC borg eyes reflect now correctly when the unit is controlled.
+    type: Fix
+  id: 409609
+  time: '2026-10-20T06:55:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6737
+- author: Floximo
+  changes:
+  - message: RC works now correctly together with TTS and its played for people nearby.
+    type: Add
+  id: 409610
+  time: '2026-10-20T06:55:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6737
+- author: Floximo
+  changes:
+  - message: RC supports now the use of the "stop dragging" command.
+    type: Add
+  id: 409611
+  time: '2026-10-20T06:55:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6737
+- author: Floximo
+  changes:
+  - message: RC stops now ongoing movement commands if control is taken.
+    type: Fix
+  id: 409612
+  time: '2026-10-20T06:55:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6737
+- author: Floximo
+  changes:
+  - message: RC supports now the throwing command.
+    type: Add
+  id: 409613
+  time: '2026-10-20T06:55:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6737
+- author: Floximo
+  changes:
+  - message: RC generated messages are now displayed correctly on the AI-eye if it exists.
+    type: Fix
+  id: 409614
+  time: '2026-10-20T06:55:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6737
 Order: -1
