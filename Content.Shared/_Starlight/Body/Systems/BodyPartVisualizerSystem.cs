@@ -11,7 +11,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Body.Systems;
 
-public sealed class BodyPartVisualizerSystem : EntitySystem
+public partial sealed class BodyPartVisualizerSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private MarkingManager _markings = default!;

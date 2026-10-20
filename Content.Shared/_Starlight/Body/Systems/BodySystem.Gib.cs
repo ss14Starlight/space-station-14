@@ -19,11 +19,7 @@ public sealed partial class SLBodySystem
 
     private static readonly ProtoId<BodyPartTypePrototype> OrganPartType = "Organ";
 
-    private void InitializeGib()
-    {
-        SubscribeLocalEvent<SLBodyComponent, BeingGibbedEvent>(OnBeingGibbed);
-    }
-
+    [SubscribeLocalEvent]
     private void OnBeingGibbed(Entity<SLBodyComponent> body, ref BeingGibbedEvent args)
     {
         var parts = new List<Entity<SLBodyPartComponent>>(GetBodyParts(body));

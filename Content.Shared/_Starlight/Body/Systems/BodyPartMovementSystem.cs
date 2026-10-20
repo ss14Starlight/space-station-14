@@ -15,7 +15,7 @@ namespace Content.Shared._Starlight.Body.Systems;
 /// Movement speed of an <see cref="SLBodyComponent"/> body comes from its attached legs
 /// (<see cref="MovementBodyPartComponent"/>). Losing every leg knocks the body down.
 /// </summary>
-public sealed class BodyPartMovementSystem : EntitySystem
+public sealed partial class BodyPartMovementSystem : EntitySystem
 {
     [Dependency] private SLBodySystem _body = default!;
     [Dependency] private MovementSpeedModifierSystem _movement = default!;
@@ -26,16 +26,11 @@ public sealed class BodyPartMovementSystem : EntitySystem
     /// </summary>
     private const float DefaultDensity = 185f;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<MovementBodyPartComponent, BodyPartEnteredBodyEvent>(OnLegEntered);
-        SubscribeLocalEvent<MovementBodyPartComponent, BodyPartLeftBodyEvent>(OnLegLeft);
-    }
-
+    [SubscribeLocalEvent]
     private void OnLegEntered(Entity<MovementBodyPartComponent> ent, ref BodyPartEnteredBodyEvent args)
         => UpdateMovementSpeed(args.Body);
 
+    [SubscribeLocalEvent]
     private void OnLegLeft(Entity<MovementBodyPartComponent> ent, ref BodyPartLeftBodyEvent args)
     {
         var legs = UpdateMovementSpeed(args.Body);

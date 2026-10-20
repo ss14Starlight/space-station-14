@@ -33,7 +33,7 @@ public sealed partial class SLBodySystem
         var children = EnsureChildren(parent);
         part.Comp.ParentSocket = socket;
         part.Comp.Parent = parent;
-        if (!ContainerSystem.Insert(part.Owner, children))
+        if (!_containerSystem.Insert(part.Owner, children))
         {
             part.Comp.ParentSocket = null;
             part.Comp.Parent = null;
@@ -53,7 +53,7 @@ public sealed partial class SLBodySystem
     {
         socket = null;
         if (!parent.Comp.Sockets.TryGetValue(socketId, out var socketTypeId)
-            || !Proto.TryIndex(socketTypeId, out var socketType))
+            || !_proto.TryIndex(socketTypeId, out var socketType))
             return false;
 
         if (socketType.AllowedTypes != null && !socketType.AllowedTypes.Contains(part.Comp.PartType))
@@ -73,12 +73,12 @@ public sealed partial class SLBodySystem
     public bool TryDetachPart(Entity<SLBodyPartComponent> part, EntityCoordinates? destination = null)
     {
         if (part.Comp.Parent is not { } parentUid
-            || !ContainerSystem.TryGetContainer(parentUid, BodyContainerId, out var container)
+            || !_containerSystem.TryGetContainer(parentUid, BodyContainerId, out var container)
             || !container.Contains(part))
             return false;
 
         // Leaving the body and clearing Parent/ParentSocket follow from the container removal (OnChildRemoved).
-        return ContainerSystem.Remove(part.Owner, container, destination: destination);
+        return _containerSystem.Remove(part.Owner, container, destination: destination);
     }
 
     private void RaiseEnteredBody(Entity<SLBodyComponent> body, Entity<SLBodyPartComponent> part)
@@ -114,7 +114,7 @@ public sealed partial class SLBodySystem
     /// </summary>
     public IEnumerable<Entity<SLBodyPartComponent>> GetChildParts(Entity<SLBodyPartComponent> part)
     {
-        if (!ContainerSystem.TryGetContainer(part, BodyContainerId, out var children))
+        if (!_containerSystem.TryGetContainer(part, BodyContainerId, out var children))
             yield break;
 
         foreach (var child in children.ContainedEntities)
@@ -143,7 +143,7 @@ public sealed partial class SLBodySystem
     /// </summary>
     public bool IsInternal(Entity<SLBodyPartComponent> part)
         => part.Comp.ParentSocket is { } socket
-        && Proto.TryIndex(socket.SocketType, out var socketType)
+        && _proto.TryIndex(socket.SocketType, out var socketType)
         && socketType.Internal;
 
     public IEnumerable<Entity<SLBodyPartComponent>> GetBodyPartsOfType(Entity<SLBodyComponent> body,

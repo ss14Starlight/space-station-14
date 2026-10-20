@@ -21,24 +21,18 @@ public sealed partial class SurgeryPartIntegrityConditionComponent : Component;
 /// <summary>
 /// Integrity does not come back with ordinary treatment; tissue repair surgery is how a part is made whole again.
 /// </summary>
-public sealed class PartRepairSurgerySystem : EntitySystem
+public sealed partial class PartRepairSurgerySystem : EntitySystem
 {
     [Dependency] private BodyPartDamageSystem _partDamage = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<SurgeryStepRestoreIntegrityEffectComponent, SurgeryStepEvent>(OnRestoreIntegrity);
-        SubscribeLocalEvent<SurgeryPartIntegrityConditionComponent, SurgeryValidEvent>(OnIntegrityCondition);
-    }
-
+    [SubscribeLocalEvent]
     private void OnRestoreIntegrity(Entity<SurgeryStepRestoreIntegrityEffectComponent> ent, ref SurgeryStepEvent args)
     {
         if (TryComp<BodyPartDamageComponent>(args.Part, out var damage))
             _partDamage.SetIntegrity(args.Body, (args.Part, damage), damage.MaxIntegrity);
     }
 
+    [SubscribeLocalEvent]
     private void OnIntegrityCondition(Entity<SurgeryPartIntegrityConditionComponent> ent, ref SurgeryValidEvent args)
     {
         if (!TryComp<BodyPartDamageComponent>(args.Part, out var damage) || damage.Integrity >= damage.MaxIntegrity)
