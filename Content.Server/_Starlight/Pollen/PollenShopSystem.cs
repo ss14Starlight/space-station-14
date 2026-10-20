@@ -20,7 +20,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Trigger.Systems;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.DoAfter;
+//using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
@@ -48,7 +48,7 @@ public sealed partial class PollenShopSystem : EntitySystem
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private TriggerSystem _trigger = default!;
-    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    //[Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private NavMapSystem _navMap = default!;
@@ -82,9 +82,9 @@ public sealed partial class PollenShopSystem : EntitySystem
 
         SubscribeLocalEvent<PollenCollectorComponent, PollenCollectorInitializedEvent>(OnCollectorInitialized);
         SubscribeLocalEvent<StorePurchaseCompletedEvent>(OnPurchaseCompleted);
-        SubscribeLocalEvent<PollenCollectorComponent, MakeWoodEvent>(OnMakeWood);
-        SubscribeLocalEvent<PollenCollectorComponent, PollenSporeCloudEvent>(OnSporeCloud);
-        SubscribeLocalEvent<PollenCollectorComponent, PollenInjectPhytovitalinEvent>(OnInjectPhytovitalin);
+        SubscribeLocalEvent<PollenCollectorComponent, PollenMakeWoodEffectEvent>(OnMakeWoodEffect);
+        SubscribeLocalEvent<PollenCollectorComponent, PollenSporeCloudEffectEvent>(OnSporeCloudEffect);
+        //SubscribeLocalEvent<PollenCollectorComponent, PollenInjectPhytovitalinEvent>(OnInjectPhytovitalin);
         SubscribeLocalEvent<PollenCollectorComponent, PollenInjectPhytovitalinDoAfterEvent>(OnInjectPhytovitalinDoAfter);
         SubscribeLocalEvent<PollenAlertPollenComponent, MobStateChangedEvent>(OnAlertPollenMobStateChanged);
     }
@@ -189,19 +189,14 @@ public sealed partial class PollenShopSystem : EntitySystem
 
 #region Bark
 
-    private void OnMakeWood(Entity<PollenCollectorComponent> ent, ref MakeWoodEvent args)
+    private void OnMakeWoodEffect(Entity<PollenCollectorComponent> ent, ref PollenMakeWoodEffectEvent args)
     {
-        if (args.Handled)
-            return;
-
         var damage = new DamageSpecifier();
         damage.DamageDict.Add("Slash", 20);
         _damageable.TryChangeDamage(ent.Owner, damage, ignoreResistances: true);
 
         var wood = Spawn(_woodPlankStack10, Transform(ent.Owner).Coordinates);
         _hands.PickupOrDrop(ent.Owner, wood);
-
-        args.Handled = true;
     }
 
     private void GrantHardenArmor(EntityUid buyer)
@@ -221,6 +216,7 @@ public sealed partial class PollenShopSystem : EntitySystem
 
 #region Mushroom
     // T1
+    /*
     private void OnInjectPhytovitalin(Entity<PollenCollectorComponent> ent, ref PollenInjectPhytovitalinEvent args)
     {
         if (args.Handled)
@@ -239,7 +235,7 @@ public sealed partial class PollenShopSystem : EntitySystem
         _doAfter.TryStartDoAfter(doAfterArgs);
         args.Handled = true;
     }
-
+    */
     private void OnInjectPhytovitalinDoAfter(Entity<PollenCollectorComponent> ent, ref PollenInjectPhytovitalinDoAfterEvent args)
     {
         if (args.Handled)
@@ -289,15 +285,10 @@ public sealed partial class PollenShopSystem : EntitySystem
     // T2
 
     // T3
-    private void OnSporeCloud(Entity<PollenCollectorComponent> ent, ref PollenSporeCloudEvent args)
+    private void OnSporeCloudEffect(Entity<PollenCollectorComponent> ent, ref PollenSporeCloudEffectEvent args)
     {
-        if (args.Handled)
-            return;
-
         var emitter = Spawn(_sporeCloudEmitter, Transform(ent.Owner).Coordinates);
         _trigger.Trigger(emitter, ent.Owner);
-
-        args.Handled = true;
     }
 #endregion Mushroom
 }

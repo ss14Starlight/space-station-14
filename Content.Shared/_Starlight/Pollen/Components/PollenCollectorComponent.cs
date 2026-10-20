@@ -18,7 +18,7 @@ public sealed partial class PollenCollectorComponent : Component
 
     /// <summary>Points granted per collected plant.</summary>
     [DataField]
-    public int PointsPerPlant = 2;
+    public int PointsPerPlant = 20;
 
     /// <summary>How many entries in <see cref="Pollen"/> are true.</summary>
     [DataField, AutoNetworkedField]

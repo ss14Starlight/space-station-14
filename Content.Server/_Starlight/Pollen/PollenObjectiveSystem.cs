@@ -3,6 +3,7 @@ using Content.Server._Starlight.Pollen.Components;
 using Content.Shared._Starlight.Pollen.Components;
 using Content.Shared.Localizations;
 using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.Objectives.Components;
 using Robust.Shared.Prototypes;
 
@@ -22,6 +23,7 @@ public sealed partial class PollenObjectiveSystem : EntitySystem
 
         SubscribeLocalEvent<PollenCollectionConditionComponent, RequirementCheckEvent>(OnRequirementCheck);
         SubscribeLocalEvent<PollenCollectionConditionComponent, ObjectiveAfterAssignEvent>(OnAfterAssign);
+        SubscribeLocalEvent<PollenCollectorComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<PollenCollectionConditionComponent, ObjectiveGetProgressEvent>(OnGetProgress);
     }
 
@@ -52,34 +54,28 @@ public sealed partial class PollenObjectiveSystem : EntitySystem
         _metaData.SetEntityDescription(uid, description, args.Meta);
     }
 
+    private void OnMindAdded(Entity<PollenCollectorComponent> ent, ref MindAddedMessage args)
+    {
+        if (!_mind.TryGetMind(ent.Owner, out var mindId, out var mind))
+            return;
+
+        if (ent.Comp.ObjectiveGrantedMind == mindId)
+            return;
+
+        ent.Comp.ObjectiveGrantedMind = mindId;
+
+        if (_mind.TryFindObjective((mindId, mind), _pollenObjective.Id, out var stale))
+            _mind.TryRemoveObjective(mindId, mind, stale.Value);
+
+        _mind.TryAddObjective(mindId, mind, _pollenObjective.Id);
+    }
+
     private void OnGetProgress(Entity<PollenCollectionConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
         if (ent.Comp.Diona is not { } diona || !TryComp<PollenCollectorComponent>(diona, out var collector))
             return;
 
         args.Progress = Progress(collector.Collected, collector.Pollen.Count);
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var query = EntityQueryEnumerator<PollenCollectorComponent>();
-        while (query.MoveNext(out var uid, out var collector))
-        {
-            if (!_mind.TryGetMind(uid, out var mindId, out var mind))
-                continue;
-
-            if (collector.ObjectiveGrantedMind == mindId)
-                continue;
-
-            collector.ObjectiveGrantedMind = mindId;
-
-            if (_mind.TryFindObjective((mindId, mind), _pollenObjective.Id, out var stale))
-                _mind.TryRemoveObjective(mindId, mind, stale.Value);
-
-            _mind.TryAddObjective(mindId, mind, _pollenObjective.Id);
-        }
     }
 
     private static float Progress(int collected, int total)

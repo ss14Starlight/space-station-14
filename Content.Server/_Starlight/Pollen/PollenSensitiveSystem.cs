@@ -76,7 +76,7 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
                 if (!_random.Prob(sensitive.InteractionChance))
                     continue;
 
-                InteractWithPollen((uid, sensitive), pollen.ScentId);
+                InteractWithPollen((uid, sensitive), pollen.ScentId, isAdvancedPollen: false);
             }
         }
     }
@@ -101,17 +101,18 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
         args.Strength += strength;
     }
 
-    private bool IsAllergicToPollen(EntityUid uid, string pollenId)
+    private bool IsAllergicToPollen(EntityUid uid, string pollenId, bool isAdvancedPollen)
     {
+        if (isAdvancedPollen)
+            return true;
+
         if (!TryComp<CharacterRecordKeyStorageComponent>(uid, out var keyStorage))
             return false;
 
         var records = _characterRecords.QueryRecords(keyStorage.Key.Station);
 
-        if (!records.TryGetValue(keyStorage.Key.Index, out var record))
-            return false;
-
-        if (string.IsNullOrWhiteSpace(record.PRecords.Allergies))
+        if (!records.TryGetValue(keyStorage.Key.Index, out var record) ||
+            string.IsNullOrWhiteSpace(record.PRecords.Allergies))
             return false;
 
         return record.PRecords.Allergies
@@ -119,14 +120,13 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
             .Any(allergy => allergy.Equals(pollenId, StringComparison.OrdinalIgnoreCase));
     }
 
-    private void InteractWithPollen(Entity<PollenSensitiveComponent> ent, string pollenId)
+    private void InteractWithPollen(Entity<PollenSensitiveComponent> ent, string pollenId, bool isAdvancedPollen)
     {
-        // Collectors (Dionas) absorb pollen via PollenCollectorSystem instead of reacting here.
-        // Which shoudnt happen as they cant have the alergic trait, but eh.
+        // Collectors (Dionas) absorb pollen through PollenCollectorSystem.
         if (HasComp<PollenCollectorComponent>(ent))
             return;
 
-        if (IsAllergicToPollen(ent.Owner, pollenId))
+        if (IsAllergicToPollen(ent.Owner, pollenId, isAdvancedPollen))
             AddAllergyStack(ent);
     }
 
