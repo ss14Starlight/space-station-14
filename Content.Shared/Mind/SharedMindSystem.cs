@@ -664,7 +664,7 @@ public abstract partial class SharedMindSystem : EntitySystem
         if (_pickingMinds.Count == 0)
             return null;
 
-        return _random.Pick(_pickingMinds);
+        return PickObjectiveTarget(pool, _pickingMinds); // Starlight
     }
 
     /// <summary>
