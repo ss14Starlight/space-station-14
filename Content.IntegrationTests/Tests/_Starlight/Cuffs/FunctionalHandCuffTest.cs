@@ -10,6 +10,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Cuffs;
 [TestFixture, TestOf(typeof(CuffableComponent))]
 public sealed class FunctionalHandCuffTest : GameTest
 {
+    // editorconfig-checker-disable
     [TestPrototypes]
     private const string Prototypes = @"
 - type: entity
@@ -32,6 +33,7 @@ public sealed class FunctionalHandCuffTest : GameTest
   components:
   - type: Handcuff
 ";
+    // editorconfig-checker-enable
 
     /// <summary>
     /// Deployed cyberlimb items add functional hands; cuffing both real hands must still fully restrain.
