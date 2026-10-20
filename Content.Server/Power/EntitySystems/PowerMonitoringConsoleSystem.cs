@@ -507,7 +507,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
 
         // Starlight Start
         // Makes the consumer tab actually show the power usage of the consumers, instead of just showing 0
-        else if (device.Group == PowerMonitoringConsoleGroup.Consumer) 
+        else if (device.Group == PowerMonitoringConsoleGroup.Consumer)
         {
             if (TryComp<PowerConsumerComponent>(uid, out var consumer))
             {
