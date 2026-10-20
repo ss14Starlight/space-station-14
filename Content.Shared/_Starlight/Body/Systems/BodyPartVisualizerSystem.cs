@@ -6,12 +6,11 @@ using Content.Shared._Starlight.Body.Editor;
 using Content.Shared._Starlight.Body.Preferences;
 using Content.Shared._Starlight.Body.Prototypes;
 using Content.Shared.Humanoid.Markings;
-using Content.Shared.Mobs;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Body.Systems;
 
-public partial sealed class BodyPartVisualizerSystem : EntitySystem
+public sealed partial class BodyPartVisualizerSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private MarkingManager _markings = default!;
