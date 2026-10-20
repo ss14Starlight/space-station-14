@@ -175,7 +175,7 @@ namespace Content.Shared.Cuffs
 
         public void UpdateCuffState(EntityUid uid, CuffableComponent component)
         {
-            var canInteract = !TryComp(uid, out HandsComponent? hands) || GetCuffableHandCount(hands) > component.CuffedHandCount; // Starlight, set true when no HandsComponent, ignore functional hands
+            var canInteract = component.CuffedHandCount == 0 || !TryComp(uid, out HandsComponent? hands) || GetCuffableHandCount(hands) > component.CuffedHandCount; // Starlight, set true when uncuffed or no HandsComponent, ignore functional hands
 
             if (canInteract == component.CanStillInteract)
                 return;
