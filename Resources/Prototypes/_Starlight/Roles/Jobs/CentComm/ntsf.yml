@@ -51,7 +51,7 @@
     - ToolDebug
     - WeaponPulseCarbine
     belt:
-    - WeaponEnergyMagnum
+    - WeaponEnergyMagnumGunGreenshield
     - DefibrillatorCompact
     - BodyBagLockableFolded
     - HoloprojectorSecurity
