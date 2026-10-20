@@ -242,7 +242,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepRestoreAbdominalWalls
-  name: to eestore the abdominal walls
+  name: to restore the abdominal walls
   components:
   - type: SurgeryStep
     duration: 3
