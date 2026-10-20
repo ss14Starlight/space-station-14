@@ -8,7 +8,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepOpenIncisionScalpel
-  name: to open an incision
+  name: Opening an incision
   components:
   - type: SurgeryStep
     tools:
@@ -27,7 +27,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepClampBleeders
-  name: to clamp the bleeding veins
+  name: Clamping the bleeders
   components:
   - type: SurgeryStep
     tools:
@@ -42,7 +42,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepSawBones
-  name: to saw through the bones
+  name: Sawing through the bones
   components:
   - type: SurgeryStep
     duration: 5
@@ -56,7 +56,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepPriseOpenBones
-  name: to pry the bones open
+  name: Prying the bones open
   components:
   - type: SurgeryStep
     tools:
@@ -68,7 +68,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepCloseBones
-  name: to close the bones
+  name: Closing the bones
   components:
   - type: SurgeryStep
     tools:
@@ -80,7 +80,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepMendRibcage
-  name: to mend the ribs
+  name: Mending the ribs
   components:
   - type: SurgeryStep
     tools:
@@ -94,7 +94,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepMendSlime
-  name: to reform the slime mass
+  name: Reforming the slime mass
   components:
   - type: SurgeryStep
     tools:
@@ -106,7 +106,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepMendSkull
-  name: to mend the skull
+  name: Mending the skull
   components:
   - type: SurgeryStep
     tools:
@@ -118,7 +118,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepCloseIncision
-  name: to close the incision
+  name: Closing the incision
   components:
   - type: SurgeryStep
     tools:
@@ -136,7 +136,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepCloseIncisionDoll
-  name: to close the incision
+  name: Closing the incision
   components:
   - type: SurgeryStep
     tools:
@@ -149,7 +149,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepMendShellDoll
-  name: to mend the shell
+  name: Mending the shell
   components:
   - type: SurgeryStep
     tools:
@@ -168,7 +168,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepOpenShell
-  name: to break open the shell
+  name: Breaking open the shell
   components:
   - type: SurgeryStep
     duration: 10
@@ -188,7 +188,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepClampTendrils
-  name: to remove the tendrils
+  name: Removing the tendrils
   components:
   - type: SurgeryStep
     add:
@@ -203,7 +203,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepCutAbdominalMuscles
-  name: to cut through the abdominal muscles
+  name: Cutting through the abdominal muscles
   components:
   - type: SurgeryStep
     duration: 5
@@ -217,7 +217,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepRetractAbdominalWalls
-  name: to retract the abdominal walls
+  name: Retracting the abdominal walls
   components:
   - type: SurgeryStep
     tools:
@@ -229,7 +229,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepSutureMuscles
-  name: to suture the abdominal muscles
+  name: Suturing the abdominal muscles
   components:
   - type: SurgeryStep
     duration: 4
@@ -242,7 +242,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepRestoreAbdominalWalls
-  name: to restore the abdominal walls
+  name: Restoring the abdominal walls
   components:
   - type: SurgeryStep
     duration: 3
