@@ -74,17 +74,16 @@
   source: "https://www.youtube.com/watch?v=fORzS8OYJmU"
 
 - files: ["Home - Resonance - Mono Mixdown for SL.ogg"]
-  license: "MIT # As confirmed on SL discord"
+  license: "MIT" # As confirmed on SL discord
   copyright: "Randy L Goughman"
   source: "https://www.youtube.com/watch?v=8GW6sLrK40k"
 
 - files: ["Home - We'reFinallyLanding - Mono Mixdown for SL.ogg"]
-  license: "MIT # As confirmed on SL discord"
+  license: "MIT" # As confirmed on SL discord
   copyright: "Randy L Goughman"
   source: "https://www.youtube.com/watch?v=zR6fECxF44I"
 
-- files: ["Home - Lobotomy.ogg]
-  license: "MIT # As confirmed on SL discord"
+- files: ["Home - Lobotomy.ogg"]
+  license: "MIT" # As confirmed on SL discord
   copyright: "Randy L Goughman"
   source: "https://slimetony.com/post/157620766892/sure-thing"
-
