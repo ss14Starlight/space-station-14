@@ -1,11 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Changed NTSF loadouts based off feedback and use cases.
-    type: Tweak
-  id: 409220
-  time: '2026-10-06T09:45:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6517
 - author: BriocheBear
   changes:
   - message: Added 5 outfits, 4 jackets, 8 hats, 4 accessories, and 5 bags to the clothing vends around the station. Fashionistas rejoice!
@@ -2883,4 +2876,11 @@ Entries:
   id: 409619
   time: '2026-10-20T08:02:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6750
+- author: Johnny
+  changes:
+  - message: Changed the shotgun surplus for salvage, it is instead the 'armament' surplus, having a wide variety of weaponry inside of it.
+    type: Tweak
+  id: 409620
+  time: '2026-10-20T08:42:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6756
 Order: -1
