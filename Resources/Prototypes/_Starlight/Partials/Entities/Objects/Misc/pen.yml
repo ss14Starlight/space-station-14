@@ -6,3 +6,4 @@
     timeToMix: 3.0
     reactionTypes:
     - Stir
+  - type: PenPoke
