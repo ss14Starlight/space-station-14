@@ -5,7 +5,6 @@ power-monitoring-window-label-smes = SMES
 power-monitoring-window-label-substation = Substation
 power-monitoring-window-label-apc = APC
 power-monitoring-window-label-misc = Misc
-power-monitoring-window-label-consumer = Consumer
 
 power-monitoring-window-object-array = {$name} array [{$count}]
 
