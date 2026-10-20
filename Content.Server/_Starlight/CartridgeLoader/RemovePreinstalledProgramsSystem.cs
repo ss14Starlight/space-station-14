@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.CartridgeLoader;
 using Content.Shared._Starlight.CartridgeLoader;
 using Content.Shared.CartridgeLoader;
 
@@ -10,10 +11,10 @@ public sealed partial class RemovePreinstalledProgramsSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<RemovePreinstalledProgramsComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<RemovePreinstalledProgramsComponent, MapInitEvent>(OnMapInit, before: [typeof(CartridgeLoaderSystem)]);
     }
 
-    private void OnInit(Entity<RemovePreinstalledProgramsComponent> ent, ref ComponentInit args)
+    private void OnMapInit(Entity<RemovePreinstalledProgramsComponent> ent, ref MapInitEvent args)
     {
         if (!TryComp<CartridgeLoaderComponent>(ent, out var loader))
             return;
