@@ -1,5 +1,6 @@
 - type: job
   id: NanoTrasenRepresentative
+  roleType: CorporateAligned
   name: job-name-ntrep
   description: job-description-ntrep
   playTimeTracker: JobNanoTrasenRepresentative
