@@ -1,74 +1,4 @@
 Entries:
-- author: wonderfulnewworld, murphyneko, DuckManZach, Nyxilath
-  changes:
-  - message: Vent critters can now pry open doors and vault/smash climbable stuff.
-    type: Tweak
-  id: 409224
-  time: '2026-10-06T10:22:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6477
-- author: Tjmaxmillion
-  changes:
-  - message: Fixed the terminal veto system so in-transit ERT dispatches can now be properly rescinded from consoles.
-    type: Fix
-  id: 409225
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Tjmaxmillion
-  changes:
-  - message: Fixed Secure Command Terminal sub-action buttons sound-spamming, failing to register clicks, or becoming disabled during active proposals (which blocked crew from viewing, authorizing, or cancelling them).
-    type: Fix
-  id: 409226
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Tjmaxmillion
-  changes:
-  - message: NukeCodes request works now.
-    type: Fix
-  id: 409227
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Tjmaxmillion
-  changes:
-  - message: Ending secure terminal alert levels works now.
-    type: Fix
-  id: 409228
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Tjmaxmillion
-  changes:
-  - message: Renamed "Veto" to "Rescind" and restricted it exclusively to ERTs; removed redundant veto schemes from non-ERT requests that either have dedicated recall/cancel functions or activate immediately.
-    type: Tweak
-  id: 409229
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Tjmaxmillion
-  changes:
-  - message: 'Improved terminal UI: nested "Dismiss ITG" under ITG Salvage Team, added sub-action back buttons, propagated pending indicators to parent requests, added an "Awaiting CC" state for admin reviews.'
-    type: Tweak
-  id: 409230
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Tjmaxmillion
-  changes:
-  - message: 'Request balancing: synchronized Code Gamma and Code Psi active minimums to 10 minutes (matching Code Violet), aligned ERT arrival announcements with travel times, and added a 2-minute recall cooldown to the Emergency Medical Pod.'
-    type: Tweak
-  id: 409231
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Tjmaxmillion
-  changes:
-  - message: 'Updated Secure Terminal Guidebook and SOP: documented the console presence requirement, ERT rescind mechanics, Unlock Escape Pods, ITG teams, arrival timers, and updated auth schemes with NTR/Command alternates.'
-    type: Add
-  id: 409232
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
-- author: Tjmaxmillion
-  changes:
-  - message: 'Undocumented change from PR #6207 walking away from an authentication window cancels the request if the requestor or removes your co-auth if a co-authorizer.'
-    type: Add
-  id: 409233
-  time: '2026-10-06T10:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6316
 - author: Johnny
   changes:
   - message: 'Did the best thing ever :godo: .'
@@ -2883,4 +2813,74 @@ Entries:
   id: 409623
   time: '2026-10-20T09:55:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6770
+- author: wonderfulnewworld
+  changes:
+  - message: Added a new Thief objective; steal departmental IDs.
+    type: Add
+  id: 409624
+  time: '2026-10-20T11:39:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6682
+- author: wonderfulnewworld
+  changes:
+  - message: 'Added a new Traitor objective: Achieve your Objectives.'
+    type: Add
+  id: 409625
+  time: '2026-10-20T11:39:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6682
+- author: wonderfulnewworld
+  changes:
+  - message: Vampires and Changelings can now gain more kill objectives (and Changelings can get lesson objectives too).
+    type: Add
+  id: 409626
+  time: '2026-10-20T11:39:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6682
+- author: wonderfulnewworld
+  changes:
+  - message: Traitors, Thieves, Vampires, and Changelings can now select their objectives.
+    type: Add
+  id: 409627
+  time: '2026-10-20T11:39:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6682
+- author: wonderfulnewworld
+  changes:
+  - message: Added 2 new traits, Marked for Death and Unglorious.
+    type: Add
+  id: 409628
+  time: '2026-10-20T11:39:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6682
+- author: wonderfulnewworld
+  changes:
+  - message: Pun Pun, Stir Stir, Kiki, K9s, Smart Corgis (Looking at you, Cheese), and ghost role Scurrets can now be lesson/kill/help targets, if they have an active player mind.
+    type: Add
+  id: 409629
+  time: '2026-10-20T11:39:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6682
+- author: wonderfulnewworld
+  changes:
+  - message: Added at least 4 new achievements.
+    type: Add
+  id: 409630
+  time: '2026-10-20T11:39:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6682
+- author: wonderfulnewworld
+  changes:
+  - message: You can now select your objectives based on difficulty, with each antag that uses this system having a different minimum difficulty you need to select.
+    type: Tweak
+  id: 409631
+  time: '2026-10-20T11:39:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6682
+- author: wonderfulnewworld
+  changes:
+  - message: Maroon/Kill objectives now also auto-clear on target cryo, total non-revivable, and catatonic/ghosting/new life-ing out.
+    type: Tweak
+  id: 409632
+  time: '2026-10-20T11:39:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6682
+- author: wonderfulnewworld
+  changes:
+  - message: Changelings now need to make sure their impersonate target doesn't make it back to CC.
+    type: Tweak
+  id: 409633
+  time: '2026-10-20T11:39:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6682
 Order: -1

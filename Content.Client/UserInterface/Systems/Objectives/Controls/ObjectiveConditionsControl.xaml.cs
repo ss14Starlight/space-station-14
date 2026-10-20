@@ -26,7 +26,7 @@ public sealed partial class ObjectiveConditionsControl : PanelContainer // Moffs
         var minColor = Color.Red;
         var maxColor = Color.LimeGreen;
         var fillColor = Color.InterpolateBetween(minColor, maxColor, condition.Progress);
-        ProgressBar.ForegroundStyleBoxOverride = new StyleBoxFlat { BackgroundColor = fillColor };
+        ProgressBar.ForegroundStyleBoxOverride = new StyleBoxFlat { BackgroundColor = fillColor.WithAlpha(0.2f) }; // Starlight
         ProgressBar.Value = condition.Progress;
 
         Title.SetMarkupPermissive(Loc.GetString("objective-title-format", ("title", condition.Title)));
