@@ -24,7 +24,7 @@ public sealed partial class PollenAdvancedPollenComponent : Component
     public float AllergicChance = 0.5f;
 
     /// <summary>
-    /// Probability of displaying the mind-related message to a nearby entity with a mind.
+    /// Probability of displaying the mind-related message to a nearby entity with mind.
     /// Checked last, if no earlier interaction consumes the cloud.
     /// </summary>
     [DataField]
