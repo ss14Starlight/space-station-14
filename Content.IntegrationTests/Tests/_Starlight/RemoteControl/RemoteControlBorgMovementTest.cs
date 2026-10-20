@@ -7,9 +7,12 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Silicons.Borgs;
 using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Silicons.Borgs;
+using Content.Shared.ActionBlocker;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Input;
 using Content.Shared.Mind;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
@@ -19,6 +22,7 @@ using Content.Shared.Power.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Input;
 using Robust.Shared.Maths;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
@@ -373,6 +377,120 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
         }
         finally
         {
+            await RunTicks(1);
+            await Server.WaitPost(() =>
+            {
+                if (SEntMan.EntityExists(SPlayer))
+                    SEntMan.EventBus.RaiseLocalEvent(SPlayer,
+                        new BoundUIClosedEvent(RemoteControlUIKey.Key, SPlayer, SPlayer));
+            });
+            await RunTicks(1);
+        }
+    }
+
+    [Test]
+    public async Task IncapacitatedRemoteBorgCannotActOrMoveButControllerCanSpeak()
+    {
+        EntityUid controlledBorg = default;
+        EntityUid pulledEntity = default;
+        EntityUid consoleUid = default;
+
+        await Server.WaitAssertion(() =>
+        {
+            var coordinates = SEntMan.GetCoordinates(PlayerCoords);
+            controlledBorg = SpawnBorg(coordinates.Offset(new Vector2(4f, 0f)), out _);
+            pulledEntity = SEntMan.SpawnEntity("MobHuman", coordinates.Offset(new Vector2(5f, 0f)));
+
+            var mindSystem = Server.System<SharedMindSystem>();
+            var mindId = mindSystem.CreateMind(ServerSession.UserId);
+            mindSystem.TransferTo(mindId, SPlayer);
+        });
+
+        await RunTicks(5);
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                var remoteControl = new AIRemoteControlActionEvent { Target = controlledBorg };
+                SEntMan.EventBus.RaiseLocalEvent(SPlayer, remoteControl);
+                Assert.That(remoteControl.Handled, Is.True,
+                    "The AI should be able to remotely control the borg.");
+
+                var controller = SEntMan.GetComponent<RemoteControlControllerComponent>(SPlayer);
+                consoleUid = controller.Consoles.Single();
+            });
+
+            var startPosition = Vector2.Zero;
+            await Server.WaitAssertion(() => startPosition = Transform.GetWorldPosition(controlledBorg));
+            await SetMovementKey(DirectionFlag.East, BoundKeyState.Down);
+            await RunSeconds(0.5f);
+
+            var movingPosition = Vector2.Zero;
+            await Server.WaitAssertion(() =>
+            {
+                movingPosition = Transform.GetWorldPosition(controlledBorg);
+                Assert.That(movingPosition.X, Is.GreaterThan(startPosition.X + 0.1f),
+                    "The remote borg should move before becoming incapacitated.");
+            });
+
+            await Server.WaitAssertion(() =>
+            {
+                Server.System<MobStateSystem>().ChangeMobState(controlledBorg, MobState.Critical);
+                var actionBlocker = Server.System<ActionBlockerSystem>();
+                var remoteControlSystem = Server.System<RemoteControlConsoleSystem>();
+                Assert.That(actionBlocker.CanConsciouslyPerformAction(controlledBorg), Is.False,
+                    "A critical borg should be unable to perform actions.");
+                Assert.That(actionBlocker.CanSpeak(SPlayer), Is.True,
+                    "Incapacitating the remote borg should not prevent its controller from speaking.");
+                Assert.That(remoteControlSystem.TryGetControlledEntity(SPlayer, out var stillControlled), Is.True);
+                Assert.That(stillControlled, Is.EqualTo(controlledBorg),
+                    "Incapacitation should not release the remote control session.");
+
+                var uiAttempt = new BoundUserInterfaceMessageAttempt(
+                    SPlayer,
+                    controlledBorg,
+                    RemoteControlUIKey.Key,
+                    new OpenBoundInterfaceMessage());
+                SEntMan.EventBus.RaiseLocalEvent(controlledBorg, uiAttempt, broadcast: true);
+                Assert.That(uiAttempt.Cancelled, Is.True,
+                    "The controller should not be able to send BUI actions to an incapacitated borg.");
+
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid, new RemoteControlInteractionMessage
+                {
+                    Actor = SPlayer,
+                    Entity = SEntMan.GetNetEntity(consoleUid),
+                    UiKey = RemoteControlUIKey.Key,
+                    Coordinates = SEntMan.GetNetCoordinates(
+                        SEntMan.GetComponent<TransformComponent>(pulledEntity).Coordinates),
+                    Target = SEntMan.GetNetEntity(pulledEntity),
+                    Action = RemoteControlInteractionAction.TryPull,
+                });
+
+                Assert.That(SEntMan.GetComponent<PullerComponent>(controlledBorg).Pulling, Is.Null,
+                    "The remote borg should not be able to start pulling while critical.");
+            });
+
+            await RunSeconds(0.5f);
+
+            var borgPosition = Vector2.Zero;
+            await Server.WaitAssertion(() =>
+            {
+                borgPosition = Transform.GetWorldPosition(controlledBorg);
+                Assert.That(borgPosition.X, Is.EqualTo(movingPosition.X).Within(0.1f),
+                    "Movement already in progress should stop when the borg becomes critical.");
+            });
+
+            await SetMovementKey(DirectionFlag.East, BoundKeyState.Up);
+            await RunTicks(1);
+            await Move(DirectionFlag.East, 1f);
+            await Server.WaitAssertion(() =>
+                Assert.That(Transform.GetWorldPosition(controlledBorg).X, Is.EqualTo(borgPosition.X).Within(0.1f),
+                    "The remote borg should not move while critical."));
+        }
+        finally
+        {
+            await SetMovementKey(DirectionFlag.East, BoundKeyState.Up);
             await RunTicks(1);
             await Server.WaitPost(() =>
             {

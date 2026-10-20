@@ -1,3 +1,4 @@
+using Content.Shared.ActionBlocker;
 using Content.Shared.Body.Organ;
 using Content.Shared.Interaction;
 using Content.Shared.Silicons.Borgs.Components;
@@ -9,6 +10,7 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
 
     public override void Initialize()
     {
@@ -41,13 +43,17 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
         return false;
     }
 
+    public bool CanRemoteControlledEntityAct(EntityUid remoteEntity)
+        => _actionBlocker.CanConsciouslyPerformAction(remoteEntity);
+
     private void OnRemoteControlInteractionCheck(ref RemoteControlInteractionCheckEvent args)
     {
         if (!TryGetControlledEntity(args.Actor, out var remoteEntity))
             return;
 
         args.RemoteEntity = remoteEntity;
-        args.Allowed = _interaction.InRangeAndAccessible(remoteEntity, args.Target);
+        args.Allowed = CanRemoteControlledEntityAct(remoteEntity)
+                       && _interaction.InRangeAndAccessible(remoteEntity, args.Target);
     }
 
     public bool TryGetRemoteEntity(Entity<RemoteControlConsoleComponent?> entity, out EntityUid remoteEntity)
