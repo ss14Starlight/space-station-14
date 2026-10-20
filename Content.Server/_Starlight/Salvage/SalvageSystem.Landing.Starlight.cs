@@ -15,35 +15,37 @@ public sealed partial class SalvageSystem
     private const float SalvageLandingGap = 18f;
     private const float SalvageLandingSearchLimit = 128f;
 
-    private void PlaceSalvageShuttleAtClearLanding(EntityUid shuttleUid, EntityUid mapUid)
+    private bool PlaceSalvageShuttleAtClearLanding(EntityUid shuttleUid, EntityUid mapUid)
     {
         if (!TryComp<SalvageExpeditionComponent>(mapUid, out var expedition))
-            return;
+            return false;
 
         if (!TryComp<FTLComponent>(shuttleUid, out var ftl) ||
             ftl.TargetCoordinates.EntityId != mapUid)
         {
             Log.Error($"Shuttle {ToPrettyString(shuttleUid)} made an FTL request for salvage map {ToPrettyString(mapUid)} without a matching FTL target.");
-            return;
+            return false;
         }
 
         if (!TryComp<MapGridComponent>(mapUid, out var mapGrid))
         {
             Log.Error($"Salvage map {ToPrettyString(mapUid)} has no grid for shuttle landing.");
-            return;
+            return false;
         }
 
         var landingAngle = Angle.Zero;
         if (!TryFindSalvageLanding(shuttleUid, mapUid, mapGrid, ftl, landingAngle, expedition.LandingBlockedTiles,
-                out var landingCoordinates))
+                out var landingCoordinates, out var dungeonCenter, out var landingCenter))
         {
             Log.Error($"Could not find a clear landing area for shuttle {ToPrettyString(shuttleUid)} on salvage map {ToPrettyString(mapUid)}.");
-            return;
+            return false;
         }
 
         ftl.TargetCoordinates = landingCoordinates;
         ftl.TargetAngle = landingAngle;
         Dirty(shuttleUid, ftl);
+        expedition.DungeonLocation = dungeonCenter - landingCenter;
+        return true;
     }
 
     private bool TryFindSalvageLanding(
@@ -53,9 +55,13 @@ public sealed partial class SalvageSystem
         FTLComponent ftl,
         Angle landingAngle,
         IReadOnlySet<Vector2i> dungeonTiles,
-        out EntityCoordinates landingCoordinates)
+        out EntityCoordinates landingCoordinates,
+        out Vector2 dungeonCenter,
+        out Vector2 landingCenter)
     {
         landingCoordinates = default;
+        dungeonCenter = default;
+        landingCenter = default;
 
         if (dungeonTiles.Count == 0)
             return false;
@@ -108,6 +114,8 @@ public sealed partial class SalvageSystem
 
                 _shuttle.ReserveLandingArea(mapUid, mapGrid, bounds);
                 landingCoordinates = new EntityCoordinates(mapUid, candidate);
+                dungeonCenter = dungeonBounds.Center;
+                landingCenter = targetCenter;
                 return true;
             }
         }

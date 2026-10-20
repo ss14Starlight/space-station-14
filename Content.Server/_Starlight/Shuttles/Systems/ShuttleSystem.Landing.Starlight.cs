@@ -1,6 +1,7 @@
 // ReSharper disable CheckNamespace
 
 using System.Numerics;
+using Content.Shared.Shuttles.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
@@ -9,10 +10,14 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleSystem
 {
+    public readonly record struct LandingAreaReservation(
+        EntityUid MapUid,
+        IReadOnlyList<Vector2i> NewlyModifiedTiles,
+        IReadOnlyList<(Vector2i Index, Tile Tile)> GeneratedTiles);
+
     private const float LandingAreaClearance = 0.2f;
 
     private readonly HashSet<EntityUid> _landingAreaLookupEntities = [];
-    private readonly List<(Vector2i Index, Tile Tile)> _landingAreaBiomeTiles = [];
 
     public float GetLandingRadius(EntityUid shuttleUid)
     {
@@ -70,9 +75,26 @@ public sealed partial class ShuttleSystem
         return true;
     }
 
-    public void ReserveLandingArea(EntityUid mapUid, MapGridComponent mapGrid, Box2 landingBounds)
+    public LandingAreaReservation ReserveLandingArea(EntityUid mapUid, MapGridComponent mapGrid, Box2 landingBounds)
     {
-        _landingAreaBiomeTiles.Clear();
-        _biomes.ReserveTiles(mapUid, landingBounds, _landingAreaBiomeTiles, mapGrid: mapGrid);
+        var generatedTiles = new List<(Vector2i Index, Tile Tile)>();
+        var newlyModifiedTiles = new List<Vector2i>();
+        _biomes.ReserveLandingTiles(mapUid, landingBounds, generatedTiles, newlyModifiedTiles, mapGrid: mapGrid);
+        return new LandingAreaReservation(mapUid, newlyModifiedTiles, generatedTiles);
+    }
+
+    public void ReleaseLandingArea(LandingAreaReservation reservation) =>
+        _biomes.ReleaseLandingTiles(reservation.MapUid, reservation.NewlyModifiedTiles, reservation.GeneratedTiles);
+
+    public bool CancelFTL(EntityUid shuttleUid)
+    {
+        if (!TryComp<FTLComponent>(shuttleUid, out var ftl))
+            return false;
+
+        _audio.Stop(ftl.StartupStream);
+        _audio.Stop(ftl.TravelStream);
+        RemComp<FTLComponent>(shuttleUid);
+        _console.RefreshShuttleConsoles(shuttleUid);
+        return true;
     }
 }

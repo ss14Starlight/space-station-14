@@ -95,7 +95,10 @@ public sealed partial class SalvageSystem
         }
 
         // Starlight - start
-        PlaceSalvageShuttleAtClearLanding(ev.ShuttleUid, ev.MapUid);
+        if (!PlaceSalvageShuttleAtClearLanding(ev.ShuttleUid, ev.MapUid))
+        {
+            _shuttle.CancelFTL(ev.ShuttleUid);
+        }
         // Starlight - end
 
         // Only one shuttle can occupy an expedition.
