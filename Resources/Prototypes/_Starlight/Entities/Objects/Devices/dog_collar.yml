@@ -40,7 +40,7 @@
     savableAddress: false
   - type: WirelessNetworkConnection
     range: 1200
-  - type: StationLimitedNetwork 
+  - type: StationLimitedNetwork
   - type: SyncIdNameToWearer
   - type: ActivatableUI
     requiresComplex: false
