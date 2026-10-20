@@ -120,6 +120,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _refollowCore = null;
         _refollowOldEye = null;
         _radarAccumulator = 0f;
+        CloseSolutionWindows();
     }
 
     private void OnAttached(EntityUid uid, ReplaySpectatorComponent component, LocalPlayerAttachedEvent args)
@@ -154,6 +155,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         UpdateActionsBarOffset();
         UpdateRadar(frameTime);
         UpdateRefollow();
+        UpdateSolutionWindows(frameTime);
     }
 
     public override void Update(float frameTime)
