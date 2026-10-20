@@ -13,7 +13,6 @@
   - type: StationLimitedNetwork
   - type: WirelessNetworkConnection
     range: 1200
-  - type: SyncIdNameToWearer
   - type: ActivatableUI
     requiresComplex: false
   - type: RemovePreinstalledPrograms # whichever PDA a collar is based on
