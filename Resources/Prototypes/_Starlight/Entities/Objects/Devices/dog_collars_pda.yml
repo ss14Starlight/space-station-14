@@ -131,111 +131,111 @@
     - RadioHostCollarPDA
   parent: !type:CreateVariants
     sequences:
-    - [ AssistantPDA, DogCollarMixin ]
-    - [ TechnicalAssistantPDA, DogCollarMixin ]
-    - [ MedicalInternPDA, DogCollarMixin ]
-    - [ SecurityCadetPDA, DogCollarMixin ]
-    - [ ResearchAssistantPDA, DogCollarMixin ]
-    - [ ServiceWorkerPDA, DogCollarMixin ]
-    - [ ChefPDA, DogCollarMixin ]
-    - [ BotanistPDA, DogCollarMixin ]
-    - [ ClownPDA, DogCollarMixin ]
-    - [ MimePDA, DogCollarMixin ]
-    - [ ChaplainPDA, DogCollarMixin ]
-    - [ QuartermasterPDA, DogCollarMixin ]
-    - [ CargoPDA, DogCollarMixin ]
-    - [ SalvagePDA, DogCollarMixin ]
-    - [ BartenderPDA, DogCollarMixin ]
-    - [ LibrarianPDA, DogCollarMixin ]
-    - [ LawyerPDA, DogCollarMixin ]
-    - [ JanitorPDA, DogCollarMixin ]
-    - [ CaptainPDA, DogCollarMixin ]
-    - [ HoPPDA, DogCollarMixin ]
-    - [ CEPDA, DogCollarMixin ]
-    - [ EngineerPDA, DogCollarMixin ]
-    - [ CMOPDA, DogCollarMixin ]
-    - [ MedicalPDA, DogCollarMixin ]
-    - [ ParamedicPDA, DogCollarMixin ]
-    - [ ChemistryPDA, DogCollarMixin ]
-    - [ RnDPDA, DogCollarMixin ]
-    - [ SciencePDA, DogCollarMixin ]
-    - [ HoSPDA, DogCollarMixin ]
-    - [ WardenPDA, DogCollarMixin ]
-    - [ SecurityPDA, DogCollarMixin ]
-    - [ CentcomPDA, DogCollarMixin ]
-    - [ MusicianPDA, DogCollarMixin ]
-    - [ AtmosPDA, DogCollarMixin ]
-    - [ ClearPDA, DogCollarMixin ]
-    - [ SyndiPDA, DogCollarMixin ]
-    - [ SyndiOperativePDA, DogCollarMixin ]
-    - [ SyndiCorpsmanPDA, DogCollarMixin ]
-    - [ SyndiCommanderPDA, DogCollarMixin ]
-    - [ ERTLeaderPDA, DogCollarMixin ]
-    - [ ERTChaplainPDA, DogCollarMixin ]
-    - [ ERTEngineerPDA, DogCollarMixin ]
-    - [ ERTJanitorPDA, DogCollarMixin ]
-    - [ ERTMedicPDA, DogCollarMixin ]
-    - [ ERTSecurityPDA, DogCollarMixin ]
-    - [ CBURNPDA, DogCollarMixin ]
-    - [ PsychologistPDA, DogCollarMixin ]
-    - [ ReporterPDA, DogCollarMixin ]
-    - [ ZookeeperPDA, DogCollarMixin ]
-    - [ BoxerPDA, DogCollarMixin ]
-    - [ DetectivePDA, DogCollarMixin ]
-    - [ BrigmedicPDA, DogCollarMixin ]
-    - [ SeniorEngineerPDA, DogCollarMixin ]
-    - [ SeniorResearcherPDA, DogCollarMixin ]
-    - [ SeniorPhysicianPDA, DogCollarMixin ]
-    - [ SeniorOfficerPDA, DogCollarMixin ]
-    - [ SeniorCourierPDA, DogCollarMixin ]
-    - [ NinjaPDA, DogCollarMixin ]
-    - [ PiratePDA, DogCollarMixin ]
-    - [ ChameleonAgentPDA, DogCollarMixin ]
-    - [ WizardPDA, DogCollarMixin ]
-    - [ ScurretPDA, DogCollarMixin ]
-    - [ SeniorChemistPDA, DogCollarMixin ]
-    - [ VeteranBrigmedicPDA, DogCollarMixin ]
-    - [ CorpsmanPDA, DogCollarMixin ]
-    - [ VeteranCorpsmanPDA, DogCollarMixin ]
-    - [ DutyOfficerPDA, DogCollarMixin ]
-    - [ MagistratePDA, DogCollarMixin ]
-    - [ NanoTrasenRepresentativePDA, DogCollarMixin ]
-    - [ CentCommOperatorPDA, DogCollarMixin ]
-    - [ IAAPDA, DogCollarMixin ]
-    - [ BlueShieldPDA, DogCollarMixin ]
-    - [ VeteranBlueShieldPDA, DogCollarMixin ]
-    - [ AssistantManagerPDA, DogCollarMixin ]
-    - [ SalvageLeadPDA, DogCollarMixin ]
-    - [ VeteranSalvageLeadPDA, DogCollarMixin ]
-    - [ VeteranSalvagePDA, DogCollarMixin ]
-    - [ MiningPDA, DogCollarMixin ]
-    - [ VeteranMiningPDA, DogCollarMixin ]
-    - [ MailPDA, DogCollarMixin ]
-    - [ SeniorMailPDA, DogCollarMixin ]
-    - [ PerformerPDA, DogCollarMixin ]
-    - [ PunPunPDA, DogCollarMixin ]
-    - [ KikiPDA, DogCollarMixin ]
-    - [ StirStirPDA, DogCollarMixin ]
-    - [ PrisonerPDA, DogCollarMixin ]
-    - [ CommanderPDA, DogCollarMixin ]
-    - [ NTNCBlueShieldPDA, DogCollarMixin ]
-    - [ CentCommGreenShieldPDA, DogCollarMixin ]
-    - [ NTNCCSPDA, DogCollarMixin ]
-    - [ SeniorParamedicPDA, DogCollarMixin ]
-    - [ NanoTrasenCareerTrainerPDA, DogCollarMixin ]
-    - [ SolGovPDA, DogCollarMixin ]
-    - [ SolGovPDAOfficer, DogCollarMixin ]
-    - [ SolGovPDAOfficerSheriff, DogCollarMixin ]
-    - [ SolGovPDACrew, DogCollarMixin ]
-    - [ SolGovPDAMarine, DogCollarMixin ]
-    - [ SolGovPDASpecOps, DogCollarMixin ]
-    - [ BlackstarPDA, DogCollarMixin ]
-    - [ CluwneBeastPDA, DogCollarMixin ]
-    - [ CentCommServiceWorkerPDA, DogCollarMixin ]
-    - [ CentCommChefPDA, DogCollarMixin ]
-    - [ CentCommBartenderPDA, DogCollarMixin ]
-    - [ CentCommJanitorPDA, DogCollarMixin ]
-    - [ RadioHostPDA, DogCollarMixin ]
+    - [ DogCollarMixin, AssistantPDA ]
+    - [ DogCollarMixin, TechnicalAssistantPDA ]
+    - [ DogCollarMixin, MedicalInternPDA ]
+    - [ DogCollarMixin, SecurityCadetPDA ]
+    - [ DogCollarMixin, ResearchAssistantPDA ]
+    - [ DogCollarMixin, ServiceWorkerPDA ]
+    - [ DogCollarMixin, ChefPDA ]
+    - [ DogCollarMixin, BotanistPDA ]
+    - [ DogCollarMixin, ClownPDA ]
+    - [ DogCollarMixin, MimePDA ]
+    - [ DogCollarMixin, ChaplainPDA ]
+    - [ DogCollarMixin, QuartermasterPDA ]
+    - [ DogCollarMixin, CargoPDA ]
+    - [ DogCollarMixin, SalvagePDA ]
+    - [ DogCollarMixin, BartenderPDA ]
+    - [ DogCollarMixin, LibrarianPDA ]
+    - [ DogCollarMixin, LawyerPDA ]
+    - [ DogCollarMixin, JanitorPDA ]
+    - [ DogCollarMixin, CaptainPDA ]
+    - [ DogCollarMixin, HoPPDA ]
+    - [ DogCollarMixin, CEPDA ]
+    - [ DogCollarMixin, EngineerPDA ]
+    - [ DogCollarMixin, CMOPDA ]
+    - [ DogCollarMixin, MedicalPDA ]
+    - [ DogCollarMixin, ParamedicPDA ]
+    - [ DogCollarMixin, ChemistryPDA ]
+    - [ DogCollarMixin, RnDPDA ]
+    - [ DogCollarMixin, SciencePDA ]
+    - [ DogCollarMixin, HoSPDA ]
+    - [ DogCollarMixin, WardenPDA ]
+    - [ DogCollarMixin, SecurityPDA ]
+    - [ DogCollarMixin, CentcomPDA ]
+    - [ DogCollarMixin, MusicianPDA ]
+    - [ DogCollarMixin, AtmosPDA ]
+    - [ DogCollarMixin, ClearPDA ]
+    - [ DogCollarMixin, SyndiPDA ]
+    - [ DogCollarMixin, SyndiOperativePDA ]
+    - [ DogCollarMixin, SyndiCorpsmanPDA ]
+    - [ DogCollarMixin, SyndiCommanderPDA ]
+    - [ DogCollarMixin, ERTLeaderPDA ]
+    - [ DogCollarMixin, ERTChaplainPDA ]
+    - [ DogCollarMixin, ERTEngineerPDA ]
+    - [ DogCollarMixin, ERTJanitorPDA ]
+    - [ DogCollarMixin, ERTMedicPDA ]
+    - [ DogCollarMixin, ERTSecurityPDA ]
+    - [ DogCollarMixin, CBURNPDA ]
+    - [ DogCollarMixin, PsychologistPDA ]
+    - [ DogCollarMixin, ReporterPDA ]
+    - [ DogCollarMixin, ZookeeperPDA ]
+    - [ DogCollarMixin, BoxerPDA ]
+    - [ DogCollarMixin, DetectivePDA ]
+    - [ DogCollarMixin, BrigmedicPDA ]
+    - [ DogCollarMixin, SeniorEngineerPDA ]
+    - [ DogCollarMixin, SeniorResearcherPDA ]
+    - [ DogCollarMixin, SeniorPhysicianPDA ]
+    - [ DogCollarMixin, SeniorOfficerPDA ]
+    - [ DogCollarMixin, SeniorCourierPDA ]
+    - [ DogCollarMixin, NinjaPDA ]
+    - [ DogCollarMixin, PiratePDA ]
+    - [ DogCollarMixin, ChameleonAgentPDA ]
+    - [ DogCollarMixin, WizardPDA ]
+    - [ DogCollarMixin, ScurretPDA ]
+    - [ DogCollarMixin, SeniorChemistPDA ]
+    - [ DogCollarMixin, VeteranBrigmedicPDA ]
+    - [ DogCollarMixin, CorpsmanPDA ]
+    - [ DogCollarMixin, VeteranCorpsmanPDA ]
+    - [ DogCollarMixin, DutyOfficerPDA ]
+    - [ DogCollarMixin, MagistratePDA ]
+    - [ DogCollarMixin, NanoTrasenRepresentativePDA ]
+    - [ DogCollarMixin, CentCommOperatorPDA ]
+    - [ DogCollarMixin, IAAPDA ]
+    - [ DogCollarMixin, BlueShieldPDA ]
+    - [ DogCollarMixin, VeteranBlueShieldPDA ]
+    - [ DogCollarMixin, AssistantManagerPDA ]
+    - [ DogCollarMixin, SalvageLeadPDA ]
+    - [ DogCollarMixin, VeteranSalvageLeadPDA ]
+    - [ DogCollarMixin, VeteranSalvagePDA ]
+    - [ DogCollarMixin, MiningPDA ]
+    - [ DogCollarMixin, VeteranMiningPDA ]
+    - [ DogCollarMixin, MailPDA ]
+    - [ DogCollarMixin, SeniorMailPDA ]
+    - [ DogCollarMixin, PerformerPDA ]
+    - [ DogCollarMixin, PunPunPDA ]
+    - [ DogCollarMixin, KikiPDA ]
+    - [ DogCollarMixin, StirStirPDA ]
+    - [ DogCollarMixin, PrisonerPDA ]
+    - [ DogCollarMixin, CommanderPDA ]
+    - [ DogCollarMixin, NTNCBlueShieldPDA ]
+    - [ DogCollarMixin, CentCommGreenShieldPDA ]
+    - [ DogCollarMixin, NTNCCSPDA ]
+    - [ DogCollarMixin, SeniorParamedicPDA ]
+    - [ DogCollarMixin, NanoTrasenCareerTrainerPDA ]
+    - [ DogCollarMixin, SolGovPDA ]
+    - [ DogCollarMixin, SolGovPDAOfficer ]
+    - [ DogCollarMixin, SolGovPDAOfficerSheriff ]
+    - [ DogCollarMixin, SolGovPDACrew ]
+    - [ DogCollarMixin, SolGovPDAMarine ]
+    - [ DogCollarMixin, SolGovPDASpecOps ]
+    - [ DogCollarMixin, BlackstarPDA ]
+    - [ DogCollarMixin, CluwneBeastPDA ]
+    - [ DogCollarMixin, CentCommServiceWorkerPDA ]
+    - [ DogCollarMixin, CentCommChefPDA ]
+    - [ DogCollarMixin, CentCommBartenderPDA ]
+    - [ DogCollarMixin, CentCommJanitorPDA ]
+    - [ DogCollarMixin, RadioHostPDA ]
   name: !type:CreateVariants
     values:
     - assistant collar
@@ -307,7 +307,7 @@
     - duty officer collar
     - magistrate collar
     - NanoTrasen representative collar
-    - cent comm operator collar
+    - CentComm operator collar
     - internal affairs agent collar
     - blue shield collar
     - veteran blue shield collar
@@ -496,18 +496,18 @@
     - DecimusCollarPDA
   parent: !type:CreateVariants
     sequences:
-    - [ VisitorClownPDA, DogCollarMixin ]
-    - [ VisitorChaplainPDA, DogCollarMixin ]
-    - [ VisitorLibrarianPDA, DogCollarMixin ]
-    - [ VisitorLawyerPDA, DogCollarMixin ]
-    - [ VisitorMedicalPDA, DogCollarMixin ]
-    - [ AdminPDA, DogCollarMixin ]
-    - [ DeathsquadPDA, DogCollarMixin ]
-    - [ VisitorMusicianPDA, DogCollarMixin ]
-    - [ VisitorPDA, DogCollarMixin ]
-    - [ BorgiClearPDA, DogCollarMixin ]
-    - [ NTSFPDA, DogCollarMixin ]
-    - [ DecimusPDA, DogCollarMixin ]
+    - [ DogCollarMixin, VisitorClownPDA ]
+    - [ DogCollarMixin, VisitorChaplainPDA ]
+    - [ DogCollarMixin, VisitorLibrarianPDA ]
+    - [ DogCollarMixin, VisitorLawyerPDA ]
+    - [ DogCollarMixin, VisitorMedicalPDA ]
+    - [ DogCollarMixin, AdminPDA ]
+    - [ DogCollarMixin, DeathsquadPDA ]
+    - [ DogCollarMixin, VisitorMusicianPDA ]
+    - [ DogCollarMixin, VisitorPDA ]
+    - [ DogCollarMixin, BorgiClearPDA ]
+    - [ DogCollarMixin, NTSFPDA ]
+    - [ DogCollarMixin, DecimusPDA ]
   name: !type:CreateVariants
     values:
     - visitor clown collar
@@ -562,7 +562,7 @@
     - AnimalCollar
 
 - type: entity
-  parent: [ XenoborgiClearPDA, DogCollarMixin ]
+  parent: [ DogCollarMixin, XenoborgiClearPDA ]
   id: XenoborgiClearCollarPDA
   name: xenoborgi clear collar
   components:
@@ -597,7 +597,7 @@
 
 # Tag lists differ from the rest, kept as their own entries.
 - type: entity
-  parent: [CluwnePDA, DogCollarMixin]
+  parent: [DogCollarMixin, CluwnePDA]
   id: CluwneCollarPDA
   name: cluwne collar
   components:
@@ -629,7 +629,7 @@
     - AnimalCollar
 
 - type: entity
-  parent: [ChameleonPDA, DogCollarMixin]
+  parent: [DogCollarMixin, ChameleonPDA]
   id: ChameleonCollarPDA
   name: assistant collar
   components:
@@ -658,7 +658,7 @@
     - AnimalCollar
 
 - type: entity
-  parent: [SecurityPDA, DogCollarMixin]
+  parent: [DogCollarMixin, SecurityPDA]
   id: K9CollarPDA
   name: K9 collar
   components:
@@ -691,7 +691,7 @@
     - AnimalCollar
 
 - type: entity
-  parent: [SeniorOfficerPDA, DogCollarMixin]
+  parent: [DogCollarMixin, SeniorOfficerPDA]
   id: K9CollarSeniorPDA
   name: senior K9 collar
   components:
@@ -726,7 +726,7 @@
 # MedTakPDA's own tag list excludes WhitelistChameleon/WhitelistChameleonPDA ("Ignore Chameleon
 # tags" pattern, same as the admin/deathsquad/visitor collars above) - kept consistent with that.
 - type: entity
-  parent: [MedTakPDASecurity, DogCollarMixin]
+  parent: [DogCollarMixin, MedTakPDASecurity]
   id: MedTakPDASecurityCollarPDA
   name: MedTak security collar
   components:

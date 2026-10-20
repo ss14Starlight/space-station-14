@@ -29,7 +29,7 @@
   id: DogCollars
   icon:
     sprite: _Starlight/Objects/Devices/dog_collar.rsi
-    state: collar
+    state: pda
   product: CrateDogCollars
   cost: 1000
   category: cargoproduct-category-name-service
