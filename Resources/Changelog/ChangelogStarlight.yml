@@ -1,151 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Added the `Palpate` Social Interaction. Animals with antennae can sniff anything that's nearby with their antennae.
-    type: Add
-  id: 409203
-  time: '2026-10-05T16:29:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6492
-- author: Caws
-  changes:
-  - message: (Social Interactions) Boop is now Lore Accurate (e.g. emote flavour text respects whether or not your species has a nose).
-    type: Fix
-  id: 409204
-  time: '2026-10-05T16:29:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6492
-- author: Caws
-  changes:
-  - message: (Social Interactions) You can Look at anything now.
-    type: Fix
-  id: 409205
-  time: '2026-10-05T16:29:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6492
-- author: Caws
-  changes:
-  - message: (Social Interactions) You can Wave at anything now.
-    type: Fix
-  id: 409206
-  time: '2026-10-05T16:29:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6492
-- author: STARLIGHT TEAM
-  changes:
-  - message: Lowered the Plasteel requirement for making Makeshift IDs in a tider anvil from 3.5 to 2.
-    type: Tweak
-  id: 409207
-  time: '2026-10-05T16:50:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6388
-- author: VictoriaActual
-  changes:
-  - message: Fixed laspi storage.
-    type: Fix
-  id: 409208
-  time: '2026-10-06T05:48:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6532
-- author: Moonomaly
-  changes:
-  - message: Pens can now stir drinks and chemicals.
-    type: Tweak
-  id: 409209
-  time: '2026-10-06T07:45:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6521
-- author: redmushie
-  changes:
-  - message: Paramedics can now open powered Firelocks freely.
-    type: Add
-  id: 409210
-  time: '2026-10-06T08:12:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6491
-- author: redmushie
-  changes:
-  - message: Security can now open powered Firelocks during Red, Gamma, Delta and Psi alerts.
-    type: Add
-  id: 409211
-  time: '2026-10-06T08:12:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6491
-- author: RedSpeeds
-  changes:
-  - message: Added Togglable subfloor layers.
-    type: Add
-  id: 409212
-  time: '2026-10-06T08:33:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6442
-- author: RedSpeeds
-  changes:
-  - message: Prevent doors from being toggled in mapping mode.
-    type: Add
-  id: 409213
-  time: '2026-10-06T08:33:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6442
-- author: RedSpeeds
-  changes:
-  - message: Setup component on certain electronics for mapping.
-    type: Add
-  id: 409214
-  time: '2026-10-06T08:33:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6442
-- author: Sparlight
-  changes:
-  - message: Biodegrade and Rejuvenate now break K9 latches.
-    type: Add
-  id: 409215
-  time: '2026-10-06T08:59:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6433
-- author: Sparlight
-  changes:
-  - message: Overwhelming Force prevents K9 latches.
-    type: Add
-  id: 409216
-  time: '2026-10-06T08:59:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6433
-- author: Sparlight
-  changes:
-  - message: Vampire glare now works on K9s properly.
-    type: Fix
-  id: 409217
-  time: '2026-10-06T08:59:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6433
-- author: Sparlight
-  changes:
-  - message: K9s now disengage a latch if a latch was initiated at a weird angle that would ordinarily prevent a counter-attack.
-    type: Fix
-  id: 409218
-  time: '2026-10-06T08:59:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6433
-- author: Swonki
-  changes:
-  - message: Moved ITG formal uniform to admeme.
-    type: Tweak
-  id: 409219
-  time: '2026-10-06T09:23:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6527
-- author: Johnny
-  changes:
-  - message: Changed NTSF loadouts based off feedback and use cases.
-    type: Tweak
-  id: 409220
-  time: '2026-10-06T09:45:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6517
-- author: BriocheBear
-  changes:
-  - message: Added 5 outfits, 4 jackets, 8 hats, 4 accessories, and 5 bags to the clothing vends around the station. Fashionistas rejoice!
-    type: Add
-  id: 409221
-  time: '2026-10-06T09:45:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6266
-- author: BriocheBear
-  changes:
-  - message: Added the star backpack + satchel to the bag category under loadouts - unlockable as a reward for having too many hours on the server.
-    type: Add
-  id: 409222
-  time: '2026-10-06T09:45:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6266
-- author: wonderfulnewworld, murphyneko, DuckManZach, Nyxilath
-  changes:
-  - message: Added the hell portal!
-    type: Add
-  id: 409223
-  time: '2026-10-06T10:22:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6477
 - author: wonderfulnewworld, murphyneko, DuckManZach, Nyxilath
   changes:
   - message: Vent critters can now pry open doors and vault/smash climbable stuff.
@@ -2883,4 +2736,151 @@ Entries:
   id: 409602
   time: '2026-10-18T14:41:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6741
+- author: baltdev
+  changes:
+  - message: Added a vinyl for the song "HIT 'EM!" by CrayZ.
+    type: Add
+  id: 409603
+  time: '2026-10-20T06:18:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6693
+- author: Rescue
+  changes:
+  - message: Added tactical planning consoles for collaborative drawing on station maps.
+    type: Add
+  id: 409604
+  time: '2026-10-20T06:18:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6649
+- author: Rescue
+  changes:
+  - message: Added a Syndicate variant that displays the target station (for nuclear operatives).
+    type: Add
+  id: 409605
+  time: '2026-10-20T06:18:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6649
+- author: wonderfulnewworld, DuckManZach
+  changes:
+  - message: You can now select your objectives as antags; you have 15 minutes to decide before it assigns them for you.
+    type: Add
+  id: 409606
+  time: '2026-10-20T06:18:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6681
+- author: wonderfulnewworld, DuckManZach
+  changes:
+  - message: Modernized the character menu (the U button) UI.
+    type: Tweak
+  id: 409607
+  time: '2026-10-20T06:18:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6681
+- author: Floximo
+  changes:
+  - message: cyborgs can now move while shunted again, after remote control (RC) was used.
+    type: Fix
+  id: 409608
+  time: '2026-10-20T06:55:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6737
+- author: Floximo
+  changes:
+  - message: RC borg eyes reflect now correctly when the unit is controlled.
+    type: Fix
+  id: 409609
+  time: '2026-10-20T06:55:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6737
+- author: Floximo
+  changes:
+  - message: RC works now correctly together with TTS and its played for people nearby.
+    type: Add
+  id: 409610
+  time: '2026-10-20T06:55:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6737
+- author: Floximo
+  changes:
+  - message: RC supports now the use of the "stop dragging" command.
+    type: Add
+  id: 409611
+  time: '2026-10-20T06:55:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6737
+- author: Floximo
+  changes:
+  - message: RC stops now ongoing movement commands if control is taken.
+    type: Fix
+  id: 409612
+  time: '2026-10-20T06:55:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6737
+- author: Floximo
+  changes:
+  - message: RC supports now the throwing command.
+    type: Add
+  id: 409613
+  time: '2026-10-20T06:55:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6737
+- author: Floximo
+  changes:
+  - message: RC generated messages are now displayed correctly on the AI-eye if it exists.
+    type: Fix
+  id: 409614
+  time: '2026-10-20T06:55:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6737
+- author: Rescue
+  changes:
+  - message: Dragon stomach acid now correctly kills creatures wearing equipment with caustic resist on it (Shadekin).
+    type: Fix
+  id: 409615
+  time: '2026-10-20T07:27:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6744
+- author: Johnny
+  changes:
+  - message: Buffed IK-60 a bit.
+    type: Tweak
+  id: 409616
+  time: '2026-10-20T07:27:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6746
+- author: Johnny
+  changes:
+  - message: Removed Laser armaments from salvage vendor.
+    type: Remove
+  id: 409617
+  time: '2026-10-20T07:27:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6749
+- author: Floximo
+  changes:
+  - message: It is no longer possible to re-enter your body after using /ghost while desynchronized.
+    type: Fix
+  id: 409618
+  time: '2026-10-20T08:02:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6753
+- author: Johnny
+  changes:
+  - message: PKA Modkits now are cheaper, with more in stock.
+    type: Tweak
+  id: 409619
+  time: '2026-10-20T08:02:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6750
+- author: Johnny
+  changes:
+  - message: Changed the shotgun surplus for salvage, it is instead the 'armament' surplus, having a wide variety of weaponry inside of it.
+    type: Tweak
+  id: 409620
+  time: '2026-10-20T08:42:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6756
+- author: Rescue
+  changes:
+  - message: Forged shields, the Bulwark cybernetic shield, and the Revolutionary held banner can now be inspected for damage.
+    type: Fix
+  id: 409621
+  time: '2026-10-20T09:12:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6768
+- author: Ohelig
+  changes:
+  - message: A large influx of unknown life forms will no longer emerge near {$location}.
+    type: Fix
+  id: 409622
+  time: '2026-10-20T09:35:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6769
+- author: Sparlight
+  changes:
+  - message: Fixed an exploit with cyberlimbs that prevented security detainment.
+    type: Fix
+  id: 409623
+  time: '2026-10-20T09:55:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6770
 Order: -1

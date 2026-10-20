@@ -2,5 +2,7 @@
     xmlns="https://spacestation14.io"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Systems.Objectives.Controls"
     Orientation="Horizontal">
-    <RichTextLabel Name="Label" Access="Public" SetWidth="325" HorizontalAlignment="Left"/>
+    <!-- Moffstation - Start - removed SetWidth so text wraps -->
+    <RichTextLabel Name="Label" Access="Public" HorizontalExpand="True" HorizontalAlignment="Left"/>
+    <!-- Moffstation - End -->
 </controls:ObjectiveBriefingControl>
