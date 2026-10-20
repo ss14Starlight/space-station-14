@@ -1,19 +1,17 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "State based copyright",
+  "copyright": "Created by Rescue",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "secret-floor-dark",
-      "copyright": "Rescue"
+      "name": "secret-floor-dark"
     },
     {
-      "name": "secret-floor-light",
-      "copyright": "Rescue"
+      "name": "secret-floor-light"
     }
   ]
 }
