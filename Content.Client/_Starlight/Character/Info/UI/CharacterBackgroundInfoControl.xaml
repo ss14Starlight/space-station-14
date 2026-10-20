@@ -4,6 +4,6 @@
     xmlns:ui1="clr-namespace:Content.Client._Starlight.Character.UI">
     <BoxContainer Orientation="Vertical" VerticalExpand="True">
         <Label Text="{Loc 'character-info-no-background'}" Name="BackgroundLabel"/>
-        <Label Name="Background" Access="Public"/>
+        <RichTextLabel Name="Background" Access="Public"/>
     </BoxContainer>
 </ui:CharacterBackgroundInfoControl>

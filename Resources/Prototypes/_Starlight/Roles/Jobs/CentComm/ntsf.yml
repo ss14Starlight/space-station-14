@@ -1,5 +1,6 @@
 - type: job
   id: NanoTrasenSpecialForces
+  roleType: CorporateAligned
   name: job-name-nanotrasen-special-forces
   description: job-description-nanotrasen-special-forces
   playTimeTracker: JobNTSF
@@ -50,7 +51,7 @@
     - ToolDebug
     - WeaponPulseCarbine
     belt:
-    - WeaponEnergyMagnum
+    - WeaponEnergyMagnumGunGreenshield
     - DefibrillatorCompact
     - BodyBagLockableFolded
     - HoloprojectorSecurity

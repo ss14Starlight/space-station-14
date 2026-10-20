@@ -112,7 +112,8 @@
   - type: MindRole
     antagPrototype: SSF
     roleType: TeamAntagonist
-    subtype: role-subtype-revolutionary
+    subtype: antag-category-ussp-name
+    subtypeColor: '#CC2500'
 
 - type: entity
   parent: MindRoleGhostRoleNeutral
@@ -155,6 +156,7 @@
     antagPrototype: Vampire
     roleType: SoloAntagonist
     subtype: role-subtype-vampire
+    subtypeColor: '#A83864'
   - type: VampireRole
 
 - type: entity
@@ -166,6 +168,7 @@
     antagPrototype: Thrall
     roleType: TeamAntagonist
     subtype: role-subtype-thrall
+    subtypeColor: '#A83864'
   - type: VampireThrall
 
 - type: entity
@@ -186,6 +189,7 @@
   components:
   - type: MindRole
     antagPrototype: Terminator
+    characterMenuName: role-subtype-terminator
     subtype: role-subtype-terminator
   - type: TerminatorRole
 
@@ -199,6 +203,7 @@
   - type: MindRole
     antagPrototype: CosmicAntagCultist
     subtype: role-subtype-cultist
+    subtypeColor: '#5F9EA0'
     exclusiveAntag: true
     roleType: TeamAntagonist
   - type: CosmicCultRole
@@ -214,6 +219,7 @@
     antagPrototype: CosmicAntagColossus
     roleType: TeamAntagonist
     subtype: role-subtype-colossus
+    subtypeColor: '#5F9EA0'
     exclusiveAntag: true
   - type: CosmicColossusRole
   - type: RoleBriefing
@@ -228,5 +234,6 @@
     antagPrototype: CosmicAntagMinion
     roleType: TeamAntagonist
     subtype: role-subtype-cosmic-minion
+    subtypeColor: '#5F9EA0'
   - type: RoleBriefing
     briefing: ghost-role-information-cosmic-minion-description

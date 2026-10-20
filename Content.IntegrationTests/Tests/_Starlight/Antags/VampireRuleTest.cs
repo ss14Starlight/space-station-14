@@ -1,18 +1,18 @@
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.Server.Antag.Components;
+using Content.Server._Moffstation.Objectives.Components;
+using Content.Shared._Moffstation.Objectives;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Objectives.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Content.Shared.Mind;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
-using Content.Server._Starlight.GameTicking.Rules;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 
 namespace Content.IntegrationTests.Tests._Starlight.Antags;
@@ -43,24 +43,26 @@ public sealed class VampireRuleTest : GameTest
         var ticker = server.System<GameTicker>();
         var mindSys = server.System<MindSystem>();
         var roleSys = server.System<RoleSystem>();
-        var ruleSys = server.System<VampireRuleSystem>();
 
-        // Look up the minimum player count and max total objective difficulty for the game rule
+        // Look up the minimum player count and fixed objectives for the game rule.
         var minPlayers = 1;
-        var maxDifficulty = 0f;
+        var fixedObjectiveIds = Array.Empty<string>();
         await server.WaitAssertion(() =>
         {
             Assert.That(protoMan.TryIndex<EntityPrototype>(VampireGameRuleProtoId, out var gameRuleEnt),
             $"Failed to lookup vampire game rule entity prototype with ID \"{VampireGameRuleProtoId}\"!");
 
-            Assert.That(gameRuleEnt.TryGetComponent<GameRuleComponent>(out var gameRule, compFact),
+            Assert.That(gameRuleEnt.TryComp<GameRuleComponent>(out var gameRule, compFact),
             $"Game rule entity {VampireGameRuleProtoId} does not have a GameRuleComponent!");
 
-            Assert.That(gameRuleEnt.TryGetComponent<AntagRandomObjectivesComponent>(out var randomObjectives, compFact),
+            Assert.That(gameRuleEnt.TryComp<AntagRandomObjectivesComponent>(out _, compFact),
             $"Game rule entity {VampireGameRuleProtoId} does not have an AntagRandomObjectivesComponent!");
 
+            Assert.That(gameRuleEnt.TryComp<AntagObjectivesComponent>(out var fixedObjectives, compFact),
+            $"Game rule entity {VampireGameRuleProtoId} does not have an AntagObjectivesComponent!");
+
             minPlayers = gameRule.MinPlayers;
-            maxDifficulty = randomObjectives.MaxDifficulty;
+            fixedObjectiveIds = fixedObjectives.Objectives.Select(objective => objective.Id).ToArray();
         });
 
         // Initially in the lobby
@@ -130,19 +132,13 @@ public sealed class VampireRuleTest : GameTest
         Assert.That(ruleComp.VampireMinds.Contains(mind),
             "The player who opted in should be selected as vampire");
 
-        // Check total objective difficulty
+        // Fixed vampire objectives are assigned immediately, additional offers wait for selection.
         Assert.That(entMan.TryGetComponent<MindComponent>(mind, out var mindComp));
-        var totalDifficulty = mindComp.Objectives.Sum(o => entMan.GetComponent<ObjectiveComponent>(o).Difficulty);
-        Assert.That(totalDifficulty, Is.AtMost(maxDifficulty),
-            $"MaxDifficulty exceeded! Objectives: {string.Join(", ", mindComp.Objectives.Select(o => FormatObjective(o, entMan)))}");
-        Assert.That(mindComp.Objectives, Is.Not.Empty,
-            $"No objectives assigned!");
-    }
-
-    private static string FormatObjective(Entity<ObjectiveComponent> entity, IEntityManager entMan)
-    {
-        var meta = entMan.GetComponent<MetaDataComponent>(entity);
-        var objective = entMan.GetComponent<ObjectiveComponent>(entity);
-        return $"{meta.EntityName} ({objective.Difficulty})";
+        Assert.That(mindComp.Objectives.Select(objective => entMan.GetComponent<MetaDataComponent>(objective).EntityPrototype?.ID),
+            Is.EquivalentTo(fixedObjectiveIds), "Only fixed vampire objectives should be assigned before selection.");
+        Assert.That(entMan.TryGetComponent<PotentialObjectivesComponent>(mind, out var potential));
+        Assert.That(potential.ObjectiveOptions, Is.Not.Empty, "No potential objectives offered!");
+        Assert.That(potential.ObjectiveOptions.Keys.Select(objective => entMan.GetEntity(objective)).Intersect(mindComp.Objectives),
+            Is.Empty, "Offered objectives must wait for the player's selection.");
     }
 }
