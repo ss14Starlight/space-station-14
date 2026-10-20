@@ -127,8 +127,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
 
     private void OnStartup(Entity<BorgChassisComponent> chassis, ref ComponentStartup args)
     {
-        if (!TryComp<ContainerManagerComponent>(chassis, out var containerManager))
-            return;
+        TryComp<ContainerManagerComponent>(chassis, out var containerManager);
 
         chassis.Comp.BrainContainer = _container.EnsureContainer<ContainerSlot>(chassis.Owner, chassis.Comp.BrainContainerId, containerManager);
         chassis.Comp.ModuleContainer = _container.EnsureContainer<Container>(chassis.Owner, chassis.Comp.ModuleContainerId, containerManager);
