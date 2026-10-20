@@ -1,0 +1,15 @@
+- type: entity
+  id: GasNode
+  name: gas node
+  description: A deposit of atmospheric gases. Use a gas extractor to mine the gases contained.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: GasNode
+    - type: Transform
+      anchored: true
+    - type: Sprite
+      sprite: _Starlight/GasMining/gas_node.rsi
+      state: gas-node
+      noRot: true
+    - type: Clickable

@@ -43,14 +43,14 @@ public sealed partial class GasNodeSystem : SharedGasNodeSystem
 
     private GasPurity RollPurity()
     {
-        var purityRoll = _random.Next(0, TotalPurityWeight() + 1);
+        var purityRoll = _random.Next(0, TotalPurityWeight());
 
         var purityEnum = 0;
         var totalWeight = 0;
         foreach (var weights in _weights.Values)
         {
             totalWeight += weights;
-            if (totalWeight <= purityRoll)
+            if (totalWeight >= purityRoll)
             {
                 break;
             }
@@ -65,7 +65,7 @@ public sealed partial class GasNodeSystem : SharedGasNodeSystem
 
     [SubscribeLocalEvent]
     public void OnGasNodeGeneration(
-        Entity<GasNodeCompoment> entity,
+        Entity<GasNodeComponent> entity,
         ref ComponentInit args
     )
     {
@@ -95,13 +95,37 @@ public sealed partial class GasNodeSystem : SharedGasNodeSystem
             }
 
             var inertGasGuard = true;
-
             while (inertGasGuard)
             {
                 var mixture = GenerateGasMixture(primaryGas, purityPercentage);
                 var testMixture = new GasMixture
                 {
-                    Temperature = temp
+                    Temperature = temp,
+                    Volume = 10000f
+                };
+                foreach (var gas in mixture)
+                {
+                    testMixture.AdjustMoles(gas.Key, gas.Value);
+                }
+
+                var result = _atmosphere.React(testMixture, null);
+
+                if (result == Shared.Atmos.Reactions.ReactionResult.NoReaction)
+                {
+                    entity.Comp.Gases = mixture;
+                    return;
+                }
+            }
+        } else
+        {
+            var inertGasGuard = true;
+            while (inertGasGuard)
+            {
+                var mixture = GenerateGasMixture(null, null);
+                var testMixture = new GasMixture
+                {
+                    Temperature = temp,
+                    Volume = 10000f,
                 };
                 foreach (var gas in mixture)
                 {
@@ -126,7 +150,6 @@ public sealed partial class GasNodeSystem : SharedGasNodeSystem
         var totalMoles = float.Clamp((float)_random.NextGaussian(50000f, 15000f), 10000f, 100000f);
         var remainingPercent = 1.0f;
 
-        Gas[] contaminants = [];
         int numContaminants;
 
         if (primaryGas is not null)
@@ -165,19 +188,57 @@ public sealed partial class GasNodeSystem : SharedGasNodeSystem
             numContaminants = _random.Next(4, 10 + 1);
         }
 
+        var contaminants = new Gas[numContaminants];
+
+        for (var i = 0; i < numContaminants; i++)
+        {
+            contaminants[i] = (Gas) _random.Next(0, Atmospherics.TotalNumberOfGases);
+            // Try again if the contaminant is the same as the primary gas
+            if (contaminants[i] == primaryGas)
+            {
+                i--;
+                continue;
+            }
+        }
+
         for (var i = 0; i < numContaminants; i++)
         {
             if (i == numContaminants - 1)
             {
-                Gases.Add(contaminants[i], totalMoles * remainingPercent);
+                if (!Gases.TryAdd(contaminants[i], totalMoles * remainingPercent))
+                {
+                    Gases[contaminants[i]] += totalMoles * remainingPercent;
+                }
             } else
             {
                 var contaminantPercentage = _random.NextFloat(0.01f, remainingPercent / 2f);
-                Gases.Add(contaminants[i], totalMoles * contaminantPercentage);
+                if (!Gases.TryAdd(contaminants[i], totalMoles * contaminantPercentage))
+                {
+                    Gases[contaminants[i]] += totalMoles * remainingPercent;
+                }
                 remainingPercent -= contaminantPercentage;
             }
         }
 
         return Gases;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnAnalyzed(Entity<GasNodeComponent> entity, ref GasAnalyzerScanEvent args)
+    {
+        args.GasMixtures ??= [];
+
+        var gasMixture = new GasMixture
+        {
+            Temperature = entity.Comp.Temperature,
+            Volume = 50000f
+        };
+
+        foreach (var gas in entity.Comp.Gases)
+        {
+            gasMixture.AdjustMoles(gas.Key, gas.Value);
+        }
+
+        args.GasMixtures.Add((Name(entity.Owner), gasMixture));
     }
 }
