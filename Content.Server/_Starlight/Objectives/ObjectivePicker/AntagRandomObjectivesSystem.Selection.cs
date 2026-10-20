@@ -200,7 +200,7 @@ public sealed partial class AntagRandomObjectivesSystem
             config.DeferredTargets.Add(retained);
 
         FillOffers(mindId, mind, rerolled, config, counts, retained);
-        if (!rerolled.ObjectiveOptions.Keys.Any(id => ObjectivePickerSelection.Available(rerolled, id)))
+        if (!rerolled.ObjectiveOptions.Keys.Any(id => id != retained && ObjectivePickerSelection.Available(rerolled, id)))
         {
             foreach (var id in rerolled.ObjectiveOptions.Keys.Where(id => id != retained))
                 TryQueueDel(GetEntity(id));
