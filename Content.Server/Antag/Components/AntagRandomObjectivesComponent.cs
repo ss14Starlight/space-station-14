@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Antag.Components;
 
 #region Moffstation
-// First part of File moved to Moffstation namespace
+// Starlight: AntagRandomObjectivesComponent now lives in Content.Server._Starlight.Objectives.ObjectivePicker.
 // Second is kept because it's used by our stuff
 // Take any upstream changes
 /*
