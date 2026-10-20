@@ -17,6 +17,7 @@ public sealed partial class NavMapSystem
 
     #region Starlight methods
 
+    // Identifies either secret tile variant so both receive the same nav-map wall mask.
     private bool IsSecretFloor(Tile tile)
     {
         if (tile.IsEmpty)
