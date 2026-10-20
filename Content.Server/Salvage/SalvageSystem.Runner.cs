@@ -98,6 +98,7 @@ public sealed partial class SalvageSystem
         if (!PlaceSalvageShuttleAtClearLanding(ev.ShuttleUid, ev.MapUid))
         {
             _shuttle.CancelFTL(ev.ShuttleUid);
+            return;
         }
         // Starlight - end
 
