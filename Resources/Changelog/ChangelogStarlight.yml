@@ -1,13 +1,6 @@
 Entries:
 - author: Sparlight
   changes:
-  - message: Biodegrade and Rejuvenate now break K9 latches.
-    type: Add
-  id: 409215
-  time: '2026-10-06T08:59:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6433
-- author: Sparlight
-  changes:
   - message: Overwhelming Force prevents K9 latches.
     type: Add
   id: 409216
@@ -2883,4 +2876,11 @@ Entries:
   id: 409614
   time: '2026-10-20T06:55:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6737
+- author: Rescue
+  changes:
+  - message: Dragon stomach acid now correctly kills creatures wearing equipment with caustic resist on it (Shadekin).
+    type: Fix
+  id: 409615
+  time: '2026-10-20T07:27:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6744
 Order: -1
