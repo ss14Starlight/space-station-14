@@ -33,7 +33,8 @@ public sealed partial class PollenObjectiveSystem : EntitySystem
             return;
 
         if (args.Mind.CurrentEntity is not { } currentEntity ||
-            !HasComp<PollenCollectorComponent>(currentEntity))
+            !TryComp<PollenCollectorComponent>(currentEntity, out var collector) ||
+            collector.Pollen.Count == 0)
         {
             args.Cancelled = true;
             return;

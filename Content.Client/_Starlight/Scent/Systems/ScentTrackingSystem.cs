@@ -254,10 +254,10 @@ public sealed partial class ScentTrackingSystem : EntitySystem
 
     internal static Color GetScentColor(string scentId)
     {
-        if (scentId.Length < 8)
+        if (scentId.Length < 8 ||
+            !uint.TryParse(scentId[..8], NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var seed))
             return Color.White;
 
-        var seed = uint.Parse(scentId[..8], NumberStyles.HexNumber);
         var hue = seed % 360 / 360f;
         return Color.FromHsv(new Vector4(hue, 0.85f, 1f, 1f));
     }

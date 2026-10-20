@@ -49,7 +49,10 @@ public sealed partial class PollenCollectorSystem : EntitySystem
         var plants = _catalog.PollenIds.ToList();
 
         if (plants.Count == 0)
+        {
             Log.Warning("PollenCatalog is empty: no prototype has both EmitPollen and Produce with a seedId.");
+            return;
+        }
 
         _random.Shuffle(plants);
 
