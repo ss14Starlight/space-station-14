@@ -1,18 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Social Interactions) You can Wave at anything now.
-    type: Fix
-  id: 409206
-  time: '2026-10-05T16:29:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6492
-- author: STARLIGHT TEAM
-  changes:
-  - message: Lowered the Plasteel requirement for making Makeshift IDs in a tider anvil from 3.5 to 2.
-    type: Tweak
-  id: 409207
-  time: '2026-10-05T16:50:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6388
 - author: VictoriaActual
   changes:
   - message: Fixed laspi storage.
@@ -2883,4 +2869,18 @@ Entries:
   id: 409605
   time: '2026-10-20T06:18:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6649
+- author: wonderfulnewworld, DuckManZach
+  changes:
+  - message: You can now select your objectives as antags; you have 15 minutes to decide before it assigns them for you.
+    type: Add
+  id: 409606
+  time: '2026-10-20T06:18:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6681
+- author: wonderfulnewworld, DuckManZach
+  changes:
+  - message: Modernized the character menu (the U button) UI.
+    type: Tweak
+  id: 409607
+  time: '2026-10-20T06:18:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6681
 Order: -1
