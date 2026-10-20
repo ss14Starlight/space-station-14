@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Added the `Palpate` Social Interaction. Animals with antennae can sniff anything that's nearby with their antennae.
-    type: Add
-  id: 409203
-  time: '2026-10-05T16:29:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6492
-- author: Caws
-  changes:
   - message: (Social Interactions) Boop is now Lore Accurate (e.g. emote flavour text respects whether or not your species has a nose).
     type: Fix
   id: 409204
@@ -2883,4 +2876,11 @@ Entries:
   id: 409602
   time: '2026-10-18T14:41:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6741
+- author: baltdev
+  changes:
+  - message: Added a vinyl for the song "HIT 'EM!" by CrayZ.
+    type: Add
+  id: 409603
+  time: '2026-10-20T06:18:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6693
 Order: -1
