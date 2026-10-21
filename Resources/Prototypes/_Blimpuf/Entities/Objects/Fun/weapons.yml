@@ -1,3 +1,4 @@
+# Rainbow Toy Sword
 - type: entity
   parent: ToySword
   id: RainbowToySword

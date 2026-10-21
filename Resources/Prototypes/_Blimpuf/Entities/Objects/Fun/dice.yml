@@ -1,3 +1,4 @@
+# This should always roll a 20
 - type: entity
   parent: d20Dice
   id: Loadedd20Dice
@@ -6,6 +7,7 @@
     sides: 1
     multiplier: 20
 
+# This should always roll a 6
 - type: entity
   parent: d6Dice
   id: Loadedd6Dice

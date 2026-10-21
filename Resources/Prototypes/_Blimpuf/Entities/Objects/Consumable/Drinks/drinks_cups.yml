@@ -1,3 +1,4 @@
+# Emagged Plasteel Chef's Dinnerware Vendor
 - type: entity
   parent: DrinkMugRed
   id: DrinkMugRedSyndiePax
@@ -12,6 +13,7 @@
       - ReagentId: Pax
         Quantity: 10
 
+# Emagged Hot Drink's vendor
 - type: entity
   parent: DrinkHotCoco
   id: DrinkHotterCoco

@@ -8,7 +8,7 @@
     sprite: _Blimpuf/Clothing/Shoes/Specific/syndicate_galoshes.rsi
   - type: Clothing
     sprite: _Blimpuf/Clothing/Shoes/Specific/syndicate_galoshes.rsi
-  - type: Contraband # Blimpuf
+  - type: Contraband
     tier: Tier2
     contrabandType: Syndicate
   - type: NoSlip

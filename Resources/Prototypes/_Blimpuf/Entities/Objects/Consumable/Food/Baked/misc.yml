@@ -1,3 +1,4 @@
+# Poison Chocolate Muffin
 - type: entity
   parent: FoodBakedMuffinChocolate
   id: FoodBakedMuffinChocolatePoison

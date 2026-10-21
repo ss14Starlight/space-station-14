@@ -1,3 +1,4 @@
+# Emagged Discount Dan's
 - type: entity
   parent: FoodSnackEnergy
   id: FoodSnackHighEnergy
@@ -29,6 +30,7 @@
       - ReagentId: Tazinide
         Quantity: 20
 
+# Emagged Discount Dan's
 - type: entity
   name: soggy popcorn
   parent: FoodSnackPopcorn
@@ -53,6 +55,7 @@
       - ReagentId: Potassium
         Quantity: 10
 
+# Mr. Chang's Emagged Food
 - type: entity
   parent: DrinkRamen
   id: DrinkCarpRamen
@@ -69,6 +72,7 @@
       - ReagentId: CarpoToxin
         Quantity: 15
 
+# Emagged Mr. Chang's
 - type: entity
   parent: FoodSnackDanDanNoodles
   id: FoodSnackNapNapNoodles

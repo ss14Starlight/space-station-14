@@ -1,3 +1,4 @@
+# Emagged Chefdrobe (had to copy over everything so it doesn't parent from the normal chef hat because the Piloted Clothing being left out. We don't want 6 mice steering someone, probably. Maybe?)
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatChefLarge
@@ -18,7 +19,7 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
-  #    - type: PilotedClothing # Blimpuf - Left out unless we want 6 mice being able to steer someone at once.
+  #    - type: PilotedClothing # Left out unless we want 6 mice being able to steer someone at once.
   #      pilotWhitelist:
   #        tags:
   #          - ChefPilot
@@ -37,7 +38,7 @@
   name: syndicate bowler hat
   description: A stylish bowler hat made from red velvet. The rim of it feels excessively sharp.
   components:
-  - type: Contraband # Blimpuf
+  - type: Contraband
     tier: Tier2
     contrabandType: Syndicate
   - type: Sprite
