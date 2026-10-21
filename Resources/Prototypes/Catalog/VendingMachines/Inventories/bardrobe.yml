@@ -12,8 +12,6 @@
     ClothingUniformJumpsuitBartender: 2
     ClothingUniformJumpskirtBartender: 2
     ClothingUniformJumpsuitBartenderPurple: 2
-    ClothingUniformJumpsuitServiceWorkerBartender: 1 # Starlight
-    ClothingUniformJumpskirtServiceWorkerBartender: 1 # Starlight
     ClothingShoesColorBlack: 2
     ClothingOuterArmorBasicSlim: 2
     ClothingOuterVest: 2
@@ -21,9 +19,3 @@
     ClothingEyesGlassesSunglasses: 2
   contrabandInventory:
     ToyFigurineBartender: 1
-  emaggedInventory: # Blimpuf
-    OminousPill: 1 # Blimpuf
-    ClothingHeadHatSyndicateBowlerHat: 1 # Blimpuf
-    ClothingOuterWinterSyndieCap: 1 # Blimpuf
-    ClothingUniformJumpsuitBartenderSyndie: 1 # Blimpuf
-    ClothingUniformJumpskirtBartenderSyndie: 1 # Blimpuf

@@ -24,13 +24,13 @@
   id: DrinkVodkizineSmallBottleFull
   name: vodkizine bottle
   components:
-    - type: SolutionContainerManager
-      solutions:
-        drink:
-          maxVol: 60
-          reagents:
-            - ReagentId: Vodkizine
-              Quantity: 60
+  - type: Solution
+    id: drink
+    solution:
+      maxVol: 60
+      reagents:
+      - ReagentId: Vodkizine
+        Quantity: 60
 
 # Blimpuf - Predrunk bottle for the Emagged Russian Soda Machine and Booze-o-Mat
 - type: entity
@@ -38,9 +38,9 @@
   id: DrinkVodkizineSmallBottleUsed
   name: vodkizine bottle
   components:
-    - type: SolutionContainerManager
-      solutions:
-        drink:
-          reagents:
-            - ReagentId: Vodkizine
-              Quantity: 40
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Vodkizine
+        Quantity: 40

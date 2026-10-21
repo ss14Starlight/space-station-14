@@ -15,15 +15,13 @@
     ClothingNeckScarfStripedSyndieGreen: 2
     ClothingNeckScarfStripedSyndieRed: 2
     ClothingShoesBootsWinterSyndicate: 2
-    ClothingBackpackSyndicate: 4 #SL edit
-    ClothingBackpackSatchelSyndicate: 4 #SL edit
-    ClothingBackpackDuffelSyndicate: 4 #SL edit
   contrabandInventory:
     ToyFigurineFootsoldier: 1
     ToyFigurineNukieElite: 1
     ToyFigurineNukieCommander: 1
+    ClothingUniformJumpskirtTacticalMaid: 5
+    ClothingHandsTacticalMaidGloves: 5
   emaggedInventory:
     ClothingOuterCoatSyndieCapArmored: 1
     ClothingOuterWinterSyndieCapArmored: 1
-    SyndieHandyFlag: 1 # Blimpuf
-    BedsheetSyndie: 1 # Blimpuf
+    ClothingHeadHatTacticalMaidHeadband: 5

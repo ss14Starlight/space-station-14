@@ -51,7 +51,3 @@
     ChemistryBottleEthanol: 3
     DrinkBottleOfNothingFull: 1
     DrinkPoisonWinebottleFull: 2
-  emaggedInventory: # Blimpuf
-    OminousPill: 1 # Blimpuf
-    DrinkPoisonWinebottleFull: 2 # Blimpuf
-    DrinkVodkizineSmallBottleUsed: 1 # Blimpuf

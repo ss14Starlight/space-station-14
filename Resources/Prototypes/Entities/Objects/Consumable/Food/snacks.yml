@@ -6,20 +6,18 @@
   id: FoodSnackBase
   abstract: true
   components:
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: food_cheap
-  # Starlight-end
   - type: Tag
     tags:
       - FoodSnack
   - type: Sprite
     sprite: Objects/Consumable/Food/snacks.rsi
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 10
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30 # Room for extra condiments
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
   - type: Item
     sprite: Objects/Consumable/Food/snacks.rsi
     heldPrefix: packet
@@ -122,11 +120,6 @@
       - id: FoodSnackChocolateBar
     sound:
       path: /Audio/Effects/unwrap.ogg
-    requireHands: false # 🌟Starlight🌟
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: food_medium
-  # Starlight-end
 
 - type: entity
   parent: FoodSnackBase
@@ -146,15 +139,17 @@
     tags:
       - FoodSnack
       - ReptilianFood
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 5
-      - ReagentId: Theobromine
-        Quantity: 3
-      - ReagentId: CocoaPowder
-        Quantity: 2
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Theobromine
+          Quantity: 3
+        - ReagentId: CocoaPowder
+          Quantity: 1
 
 - type: entity
   parent: FoodSnackBase
@@ -173,7 +168,6 @@
       - id: FoodSnackEnergyBar
     sound:
       path: /Audio/Effects/unwrap.ogg
-    requireHands: false # 🌟Starlight🌟
 
 - type: entity
   parent: FoodSnackBase
@@ -192,38 +186,6 @@
   - type: Item
     heldPrefix: energybar-open
     storedOffset: 0,-2
-
-# Blimpuf - Emagged Discount Dan's
-- type: entity
-  parent: FoodSnackEnergy
-  id: FoodSnackHighEnergy
-  name: even more energy bar
-  description: An energy bar with a lot of punch.
-  components:
-    - type: SpawnItemsOnUse
-      items:
-        - id: FoodPacketEnergyTrash
-        - id: FoodSnackHighEnergyBar
-
-- type: entity
-  parent: FoodSnackEnergyBar
-  id: FoodSnackHighEnergyBar
-  name: even more energy bar
-  description: An energy bar with a shocking amount of flavor!
-  components:
-    - type: FlavorProfile
-      flavors:
-        - nutty
-        - oats
-        - shocky
-        - sweet
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: Tazinide
-              Quantity: 20
 
 - type: entity
   parent: FoodSnackBase
@@ -266,31 +228,6 @@
   - type: Edible
     trash:
     - FoodPacketPopcornTrash
-
-# Blimpuf - Emagged Discount Dan's
-- type: entity
-  name: soggy popcorn
-  parent: FoodSnackPopcorn
-  id: FoodSnackPopcornBoom
-  description: Each popped kernel is slightly too damp.
-  components:
-    - type: FlavorProfile
-      flavors:
-        - corn
-        - salt
-        - butter
-        - wet
-        - dangerous
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          canReact: false
-          reagents:
-            - ReagentId: Water
-              Quantity: 10
-            - ReagentId: Potassium
-              Quantity: 10
 
 - type: entity
   name: 4no raisins
@@ -366,10 +303,6 @@
   - type: Edible
     trash:
     - FoodPacketSyndiTrash
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: food_medium
-  # Starlight-end
 
 - type: entity
   parent: FoodSnackBase
@@ -381,13 +314,15 @@
     solution: food
   - type: InjectableSolution
     solution: food
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: DryRamen
-        Quantity: 20
-      - ReagentId: Soysauce
-        Quantity: 5
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 50 #big cup
+        reagents:
+        - ReagentId: DryRamen
+          Quantity: 30
+        - ReagentId: Soysauce
+          Quantity: 5
   - type: Sprite
     state: ramen
   - type: Edible
@@ -397,36 +332,21 @@
     heldPrefix: ramen
     storedOffset: 0,-1
 
-# Blimpuf - Mr. Chang's Emagged Food
-- type: entity
-  parent: DrinkRamen
-  id: DrinkCarpRamen
-  name: carp ramen
-  description: A rare, discontinued ramen with chunks of spicy fried space carp.
-  components:
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 50 #big cup
-          reagents:
-            - ReagentId: DryRamen
-              Quantity: 30
-            - ReagentId: CarpoToxin
-              Quantity: 15
-
 - type: entity
   parent: DrinkRamen
   id: DrinkHellRamen
   name: hell ramen
   description: Super spicy flavor!
   components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: DryRamen
-        Quantity: 20
-      - ReagentId: CapsaicinOil
-        Quantity: 5
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 50
+        reagents:
+        - ReagentId: DryRamen
+          Quantity: 30
+        - ReagentId: CapsaicinOil
+          Quantity: 5
 
 - type: entity
   parent: FoodSnackBase
@@ -444,13 +364,15 @@
   - type: Item
     heldPrefix: chinese1
     storedOffset: 1,-2
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 10
-      - ReagentId: Soysauce
-        Quantity: 2
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30 # Room for extra condiments
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Soysauce
+          Quantity: 2
   - type: Edible
     trash:
     - FoodPacketChowMeinTrash
@@ -471,46 +393,20 @@
   - type: Item
     heldPrefix: chinese2
     storedOffset: 0,-2
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 10
-      - ReagentId: CapsaicinOil
-        Quantity: 2
-      - ReagentId: Soysauce
-        Quantity: 2
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30 # Room for extra condiments
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: CapsaicinOil
+          Quantity: 2
+        - ReagentId: Soysauce
+          Quantity: 2
   - type: Edible
     trash:
     - FoodPacketDanDanTrash
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: food_medium
-  # Starlight-end
-
-# Blimpuf - Emagged Mr. Chang's
-- type: entity
-  parent: FoodSnackDanDanNoodles
-  id: FoodSnackNapNapNoodles
-  name: nap nap noodles
-  description: A spicy snack! There's some type of powder or seasoning coating the each of the noodles.
-  components:
-    - type: FlavorProfile
-      flavors:
-        - cheapnoodles
-        - strange
-        - spicy
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 35 # Room for extra condiments
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 10
-            - ReagentId: Nocturine
-              Quantity: 17
-            - ReagentId: Soysauce
-              Quantity: 3
 
 - type: entity
   parent: FoodSnackBase
@@ -523,12 +419,13 @@
       - fortunecookie
   - type: Sprite
     state: cookie_fortune
-  - type: Solution
-    solution:
-      maxVol: 2.5
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 1
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
   - type: Item
     sprite: Objects/Consumable/Food/snacks.rsi
     heldPrefix: cookie_fortune
@@ -560,11 +457,6 @@
       - id: FoodSnackNutribrickOpen
     sound:
       path: /Audio/Effects/unwrap.ogg
-    requireHands: false # 🌟Starlight🌟
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: food_medium
-  # Starlight-end
 
 - type: entity
   parent: FoodSnackBase
@@ -582,13 +474,15 @@
   - type: Tag
     tags:
       - ReptilianFood
-      - AvianFood # Starlight
   - type: Sprite
     state: nutribrick-open
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: food_medium
-  # Starlight-end
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
 
 - type: entity
   parent: BaseItem
@@ -612,7 +506,6 @@
       - id: FoodSnackMREBrownieOpen
     sound:
       path: /Audio/Effects/unwrap.ogg
-    requireHands: false # 🌟Starlight🌟
 
 - type: entity
   parent: [SolutionVeryTiny, FoodSnackBase]
@@ -629,17 +522,15 @@
   - type: Item
     heldPrefix: mre-brownie-open
     storedOffset: -1,-1
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 5
-      - ReagentId: Theobromine
-        Quantity: 1
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: food_medium
-  # Starlight-end
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Theobromine
+          Quantity: 3
 
 - type: entity
   parent: FoodSnackBase
@@ -660,11 +551,13 @@
     tags:
     - FoodSnack
     - ReptilianFood
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Sugar
-        Quantity: 15
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20 # Room for extra condiments
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 15
   - type: FlavorProfile
     flavors:
     - sweet
@@ -699,12 +592,13 @@
   - type: SpaceGarbage
   - type: StaticPrice
     price: 0
-  - type: Solution
-    solution:
-      maxVol: 7.5
-      reagents:
-      - ReagentId: ToxinTrash
-        Quantity: 7.5
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ToxinTrash
+          Quantity: 5
   - type: Edible
     requiresSpecialDigestion: true
 
@@ -861,7 +755,6 @@
       - state: trash-inhand-right
         color: "#FF0033"
 
-
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: FoodPacketTrash
@@ -968,11 +861,13 @@
   components:
   - type: Edible
     requiresSpecialDigestion: true
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Fiber
-        Quantity: 10
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 20
   - type: Tag
     tags:
     - ClothMade

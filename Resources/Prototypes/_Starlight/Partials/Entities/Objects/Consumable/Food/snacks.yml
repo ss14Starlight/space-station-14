@@ -1,0 +1,178 @@
+- type: !PartialOnly entity
+  id: FoodSnackBase
+  components:
+  - type: ItemPrice
+    priceCategory: food_cheap
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodSnackChocolate
+  components:
+  - type: SpawnItemsOnUse
+    requireHands: false
+  - type: ItemPrice
+    priceCategory: food_medium
+
+- type: !PartialOnly entity
+  id: FoodSnackChocolateBar
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Theobromine
+        Quantity: 3
+      - ReagentId: CocoaPowder
+        Quantity: 2
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodSnackEnergy
+  components:
+  - type: SpawnItemsOnUse
+    requireHands: false
+
+- type: !PartialOnly entity
+  id: FoodSnackSyndi
+  components:
+  - type: ItemPrice
+    priceCategory: food_medium
+
+- type: !PartialOnly entity
+  id: DrinkRamen
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: DryRamen
+        Quantity: 20
+      - ReagentId: Soysauce
+        Quantity: 5
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: DrinkHellRamen
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: DryRamen
+        Quantity: 20
+      - ReagentId: CapsaicinOil
+        Quantity: 5
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodSnackChowMein
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+      - ReagentId: Soysauce
+        Quantity: 2
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodSnackDanDanNoodles
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+      - ReagentId: CapsaicinOil
+        Quantity: 2
+      - ReagentId: Soysauce
+        Quantity: 2
+  - type: ItemPrice
+    priceCategory: food_medium
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodSnackCookieFortune
+  components:
+  - type: Solution
+    solution:
+      maxVol: 2.5
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 1
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodSnackNutribrick
+  components:
+  - type: SpawnItemsOnUse
+    requireHands: false
+  - type: ItemPrice
+    priceCategory: food_medium
+
+- type: !PartialOnly entity
+  id: FoodSnackNutribrickOpen
+  components:
+  - type: Tag
+    tags: !Clear
+    - AvianFood
+    - ReptilianFood
+  - type: ItemPrice
+    priceCategory: food_medium
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodSnackMREBrownie
+  components:
+  - type: SpawnItemsOnUse
+    requireHands: false
+
+- type: !PartialOnly entity
+  id: FoodSnackMREBrownieOpen
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Theobromine
+        Quantity: 1
+  - type: ItemPrice
+    priceCategory: food_medium
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodSnackSwirlLollipop
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Sugar
+        Quantity: 15
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodPacketTrash
+  components:
+  - type: Solution
+    solution:
+      maxVol: 7.5
+      reagents:
+      - ReagentId: ToxinTrash
+        Quantity: 7.5
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodPacketMRETrash
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 10
+  - type: !Remove SolutionContainerManager

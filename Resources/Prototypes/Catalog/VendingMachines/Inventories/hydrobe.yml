@@ -8,19 +8,9 @@
     ClothingUniformOveralls: 3
     ClothingUniformJumpsuitHydroponics: 3
     ClothingUniformJumpskirtHydroponics: 3
-    ClothingUniformJumpsuitServiceWorkerBotany: 1 # Starlight
-    ClothingUniformJumpskirtServiceWorkerBotany: 1 # Starlight
     ClothingNeckScarfStripedGreen: 3
-    ClothingNeckScarfSolidGreen: 3 # Starlight
     ClothingHeadBandBotany: 3
     ClothingHeadsetService: 2
     ClothingOuterWinterHydro: 2
   contrabandInventory:
     ToyFigurineBotanist: 1
-  emaggedInventory: # Blimpuf
-    ClothingEyesGlassesChemical: 1 # Blimpuf
-    ClothingOuterWinterSyndieCap: 1 # Blimpuf
-    ClothingUniformJumpsuitHydroponicsSyndie: 1 # Blimpuf
-    ClothingUniformJumpskirtHydroponicsSyndie: 1 # Blimpuf
-    ClothingOuterApronSyndicate: 1 # Blimpuf
-    ClothingNeckScarfStripedSyndieRed: 1 # Blimpuf

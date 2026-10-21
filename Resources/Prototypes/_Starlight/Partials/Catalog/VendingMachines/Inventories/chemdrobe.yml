@@ -1,0 +1,30 @@
+- type: !PartialOnly vendingMachineInventory
+  id: ChemDrobeInventory
+  startingInventory:
+    ClothingHeadHatBeretChemist: 2
+    ClothingHeadNurseHatChemist: 2
+    ClothingShoesBootsWinterChem: 2
+    ClothingEyeGlassesChemicalPrescription: 2
+    ClothingEyesGlassesChemical: 2
+    HandLabeler: 2
+    ClothingHeadsetMedical: 2
+    ClothingBackpackChemistry: 2
+    ClothingBackpackSatchelChemistry: 2
+    ClothingBackpackDuffelChemistry: 2
+    ChemBag: 2
+    ClothingUniformJumpsuitChemistry: 2
+    ClothingUniformJumpskirtChemistry: 2
+    ClothingOuterCoatLabChem: 2
+    ClothingOuterCoatLabChemistLong: 2 # DeltaV
+    ClothingOuterWinterChem: 2
+    ClothingHandsGlovesLatex: 2
+    ClothingShoesColorWhite: 2
+  contrabandInventory:
+    StrangePill: 1 # Blimpuf
+  emaggedInventory: # Blimpuf
+    OminousPill: 1 # Blimpuf
+    ClothingHeadHatSyndie: 1 # Blimpuf
+    ClothingOuterWinterSyndieCap: 1 # Blimpuf
+    UniformScrubsColorCybersun: 1 # Blimpuf
+    UniformScrubsSkirtColorCybersun: 1 # Blimpuf
+    ClothingHeadHatSurgcapCybersun: 1 # Blimpuf

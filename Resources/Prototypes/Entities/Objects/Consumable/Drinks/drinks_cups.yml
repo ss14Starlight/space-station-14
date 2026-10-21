@@ -4,8 +4,10 @@
   parent: [SolutionTiny, DrinkBase]
   id: DrinkBaseCup
   components:
-  - type: Item
-    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 20
   - type: FitsInDispenser
     solution: drink
   - type: SolutionTransfer
@@ -13,10 +15,6 @@
     maxTransferAmount: 10
   - type: StaticPrice
     price: 10
-  # Starlight-edit: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: drink
-  # Starlight-end
 
 # A mug is a type of cup.[2]
 - type: entity
@@ -51,9 +49,6 @@
   name: teacup
   description: A plain white porcelain teacup.
   components:
-  - type: Solution
-    solution:
-      maxVol: 17 # About 5 imperial fluid ounces which is the english measurement for a teacup. Also I think fucked up volume sizes are funny. HAHAHAHAHAHAHA
   - type: Sprite
     sprite: Objects/Consumable/Drinks/teacup.rsi
   - type: SolutionContainerVisuals
@@ -65,15 +60,10 @@
   name: coupe glass
   description: A classic thin neck coupe glass, the icon of fragile labels on crates around the galaxy.
   components:
-  - type: Item
-    size: Small
   - type: Sprite
     sprite: Objects/Consumable/Drinks/glass_coupe_shape.rsi
   - type: SolutionContainerVisuals
     inHandsMaxFillLevels: 1
-  - type: Tag
-    tags:
-    - CoupeGlass # Starlight
 
 - type: entity
   parent: [DrinkBaseMaterialCardboard, DrinkBaseCup, DrinkBaseEmptyTrash, DrinkVisualsFill]
@@ -81,9 +71,12 @@
   name: water cup
   description: A paper water cup.
   components:
-  - type: Solution
-    solution:
-      maxVol: 10 # Miserably small
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 5 # One sip at a time. No rushing at the water cooler
+  - type: Item
+    size: Tiny
   - type: Sprite
     sprite: Objects/Consumable/Drinks/water_cup.rsi
   - type: SolutionContainerVisuals
@@ -201,21 +194,6 @@
   - type: Sprite
     sprite: Objects/Consumable/Drinks/mug_red.rsi
 
-# Blimpuf - Emagged Plasteel Chef's Dinnerware Vendor
-- type: entity
-  parent: DrinkMugRed
-  id: DrinkMugRedSyndiePax
-  name: peaceful red mug
-  description: A red and black mug with remnants of something that smells soothing, calming, and relaxing.
-  components:
-    - type: SolutionContainerManager
-      solutions:
-        drink:
-          maxVol: 20
-          reagents:
-            - ReagentId: Pax
-              Quantity: 10
-
 ## Filled
 
 - type: entity
@@ -225,11 +203,12 @@
   suffix: Full
   description: A heated drink consisting melted chocolate and heated milk.
   components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: HotCocoa
-        Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: HotCocoa
+          Quantity: 20
   - type: Icon
     sprite: Objects/Consumable/Drinks/mug.rsi
     state: icon-vend-brown
@@ -241,23 +220,6 @@
   - type: TrashOnSolutionEmpty
     solution: drink
 
-# Blimpuf - Emagged Hot Drink's vendor
-- type: entity
-  parent: DrinkHotCoco
-  id: DrinkHotterCoco
-  name: hotter chocolate
-  suffix: Full
-  description: Even the handle of this mug is boiling hot, it hurts to hold.
-  components:
-    - type: SolutionContainerManager
-      solutions:
-        drink:
-          reagents:
-            - ReagentId: HotCocoa
-              Quantity: 15
-            - ReagentId: Phlogiston
-              Quantity: 5
-
 - type: entity
   parent: DrinkBaseMug
   id: DrinkHotCoffee
@@ -265,11 +227,12 @@
   suffix: Full
   description: Coffee is a brewed drink prepared from roasted seeds, commonly called coffee beans, of the coffee plant.
   components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Coffee
-        Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Coffee
+          Quantity: 20
   - type: Icon
     sprite: Objects/Consumable/Drinks/mug.rsi
     state: icon-vend-brown
@@ -288,11 +251,12 @@
   suffix: Full
   description: A nice, strong and tasty beverage while you are reading.
   components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: CafeLatte
-        Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: CafeLatte
+          Quantity: 20
   - type: Icon
     sprite: Objects/Consumable/Drinks/cafe_latte.rsi
     state: icon-vend
@@ -313,11 +277,12 @@
   id: DrinkTeacup
   name: tea
   components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Tea
-        Quantity: 17
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Tea
+          Quantity: 20
   - type: Icon
     sprite: Objects/Consumable/Drinks/teacup.rsi
     state: icon-vend-tea
@@ -329,11 +294,12 @@
   id: DrinkGreenTea
   name: green tea
   components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: GreenTea
-        Quantity: 17
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: GreenTea
+          Quantity: 20
   - type: Icon
     sprite: Objects/Consumable/Drinks/teacup.rsi
     state: icon-vend-green-tea
@@ -347,16 +313,16 @@
   name: grape juice
   description: Damn, no fun allowed.
   components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: JuiceGrape
-        Quantity: 60
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: JuiceGrape
+          Quantity: 20
   - type: Sprite
     sprite: Objects/Consumable/Drinks/lean.rsi
   - type: Item
     sprite: Objects/Consumable/Drinks/lean.rsi
-    size: Small
   - type: TrashOnSolutionEmpty
     solution: drink
 

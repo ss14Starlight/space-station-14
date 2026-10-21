@@ -39,20 +39,6 @@
       Steel: 100
       Wood: 100
 
-# Blimpuf - Emagged Salvage Vendor
-- type: entity
-  name: pickaxe
-  parent: Pickaxe
-  id: DullPickaxe
-  description: The striking surface on this pickaxe is incredibly dull.
-  components:
-    - type: IncreaseDamageOnWield
-      damage:
-        groups:
-          Brute: 3
-        types:
-          Structural: 5
-
 - type: entity
   name: mining drill
   parent: BaseItem
@@ -108,16 +94,16 @@
   name: crusher
   description: An early design of the proto-kinetic accelerator.
   components:
-  - type: Tool
-    qualities:
-    - Slicing
+  - type: Sharp
   - type: Execution
+    doAfterDuration: 4.0
   - type: UnpoweredFlashlight
   - type: PointLight
     color: "#ffeead"
     enabled: false
     radius: 4
 
+# Very high burst damage if you land a mark, while also providing a small amount of healing.
 - type: entity
   parent: [ BaseContrabandTier3, BaseWeaponCrusher, BaseSecurityContraband, BaseCargoContraband ] # Blimpuf
   id: WeaponCrusher
@@ -160,25 +146,26 @@
     capacity: 1
     count: 1
   - type: MeleeWeapon
-    attackRate: 1.5
+    attackRate: 1
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 10
-        Slash: 5
+        Blunt: 6
+        Slash: 4
     soundHit:
       collection: MetalThud
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 2.5
-        Slash: 2.5
+        Blunt: 6
+        Slash: 2
         Structural: 30
   - type: GunRequiresWield
   - type: DisarmMalus
   - type: Prying
 
+# No mark ability in exchange for wideswing, autoattack, and being one-handed
 - type: entity
   parent: [ BaseContrabandTier3, BaseKnife, BaseWeaponCrusher, BaseSecurityContraband, BaseCargoContraband ] # Blimpuf
   id: WeaponCrusherDagger
@@ -223,12 +210,12 @@
         restitution: 0.3
         friction: 0.2
 
-# Like a crusher... but better
+# Less mark damage in exchange for more healing. Also has a better ratio of blunt to slash damage, but less structural.
 - type: entity
   parent: [ BaseContrabandTier3, WeaponCrusher, BaseSecurityContraband, BaseCargoContraband ] # Blimpuf
   id: WeaponCrusherGlaive
   name: crusher glaive
-  description: An early design of the proto-kinetic accelerator, in glaive form.
+  description: An early design of the proto-kinetic accelerator, in glaive form. Provides better healing in exchange for less charged damage.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/crusher_glaive.rsi
@@ -244,13 +231,29 @@
     - suitStorage
   - type: UseDelay
     delay: 1.9
+  - type: BasicEntityAmmoProvider
+    proto: BulletChargeGlaive
+    capacity: 1
+    count: 1
   - type: LeechOnMarker
     leech:
       types:
         Blunt: -5
         Piercing: -5
         Slash: -5
-  - type: MeleeWeapon
   - type: Tag
     tags:
       - Pickaxe
+  - type: MeleeWeapon
+    attackRate: 1
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 3
+        Slash: 7
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 2
+        Slash: 6
+        Structural: 20

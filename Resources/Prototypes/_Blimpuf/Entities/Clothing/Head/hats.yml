@@ -1,4 +1,37 @@
 - type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatChefLarge
+  name: spacious chef's hat
+  description: A hat used by chefs to keep their hair out of your food. It's nice and roomy, you won't have to worry about your hair getting messed up in this one.
+  components:
+  - type: Sprite
+    sprite: _Blimpuf/Clothing/Head/Hats/largechefhat.rsi
+  - type: Clothing
+    sprite: _Blimpuf/Clothing/Head/Hats/largechefhat.rsi
+  - type: Storage
+    grid:
+    - 0,0,1,2
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  #    - type: PilotedClothing # Blimpuf - Left out unless we want 6 mice being able to steer someone at once.
+  #      pilotWhitelist:
+  #        tags:
+  #          - ChefPilot
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
   parent: ClothingHeadHatBowlerHat
   id: ClothingHeadHatSyndicateBowlerHat
   name: syndicate bowler hat

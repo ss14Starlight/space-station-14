@@ -16,16 +16,8 @@
     PaperCNCSheet: 6
     MysteryFigureBox: 2
     BooksBag: 3
-    # MoffStation - Start - Card Games added to Vending Machine
-    PlayingCardDeckBoxBlack: 2
-    NunoCardDeckBox: 1
-    GoFishCardDeckBox: 1
-    # Moffstation - End
     Magic9Ball: 2
   contrabandInventory:
     Basketball: 1
     FoodSnackBoritos: 3
     DrinkSpaceMountainWindCan: 3
-  emaggedInventory: # Blimpuf
-    Loadedd20Dice: 1 # Blimpuf
-    Loadedd6Dice: 1 # Blimpuf

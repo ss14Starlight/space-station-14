@@ -13,14 +13,5 @@
     ClothingOuterSuitFire: 2
     ClothingOuterWinterAtmos: 2
     ClothingNeckScarfStripedLightBlue: 3
-    ClothingNeckScarfSolidLightBlue: 3 # Starlight
-    ClothingMaskGasAtmos: 3 # Starlight-edit
-    ClothingBeltUtility: 3 # Starlight-edit
   contrabandInventory:
     ToyFigurineAtmosTech: 1
-  emaggedInventory: # Blimpuf
-    ClothingHandsGlovesConducting: 1 # Blimpuf
-    ClothingMaskGasSyndicate: 1 # Blimpuf
-    ClothingUniformJumpsuitRepairmanSyndie: 1 # Blimpuf
-    ClothingHeadHatSyndie: 1 # Blimpuf
-    ClothingOuterWinterSyndieCap: 1 # Blimpuf

@@ -1,28 +1,4 @@
 - type: entity
-  parent: [ClothingShoesBootsMagBase, BaseJetpack, BaseContrabandTier4, ClothingShoesMilitaryBase]
-  id: ClothingShoesSamurai
-  name: waraji
-  description: A traditional pair of shoes contrasted by a pair of jet thrusters sticking out the soles.
-  components:
-    - type: Sprite
-      sprite: _Blimpuf/Clothing/Shoes/samurai.rsi
-    - type: Clothing
-      sprite: _Blimpuf/Clothing/Shoes/samurai.rsi
-    - type: Item
-      sprite: _Blimpuf/Clothing/Shoes/samurai.rsi
-    - type: GasTank
-      outputPressure: 42.6
-      air:
-        volume: 0.75
-        temperature: 293.15
-        moles:
-          Oxygen: 0.153853429 # oxygen
-          Nitrogen: 0.153853429 # nitrogen
-    - type: ClothingSpeedModifier
-      walkModifier: 1
-      sprintModifier: 1
-
-- type: entity
   parent: ClothingShoesMilitaryBase
   id: ClothingShoesSyndicateGaloshes
   name: syndicate galoshes

@@ -8,11 +8,13 @@
   - type: Edible
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 10
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
   - type: Item
     size: Tiny
   - type: Tag
@@ -40,19 +42,6 @@
     state: plain
 
 - type: entity
-  parent: [SolutionFood, SolutionTiny]
-  id: SolutionFoodDonkpocketWarm
-  categories: [ HideSpawnMenu ] # Needed for a very specific lighter so can't be abstract
-  components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 12
-      - ReagentId: Omnizine
-        Quantity: 3
-
-- type: entity
   name: warm donk-pocket
   parent: [SolutionFoodDonkpocketWarm, FoodDonkpocket]
   id: FoodDonkpocketWarm
@@ -63,6 +52,15 @@
       - bread
       - meaty
       - cheap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Omnizine
+          Quantity: 2
 
 - type: entity
   name: dank-pocket
@@ -74,6 +72,12 @@
     flavors:
       - leafy
       - cheap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
   - type: Sprite
     state: dank
 
@@ -87,6 +91,14 @@
     flavors:
       - leafy
       - cheap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Omnizine
+          Quantity: 4
 
 - type: entity
   name: spicy-pocket
@@ -113,6 +125,14 @@
       - spicy
       - meaty
       - cheap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Omnizine
+          Quantity: 2
   - type: Sprite
     state: spicy
 
@@ -141,6 +161,14 @@
       - meaty
       - sweet
       - cheap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Omnizine
+          Quantity: 2
 
 - type: entity
   name: pizza-pocket
@@ -154,6 +182,12 @@
       - cheesy
       - tomato
       - cheap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
   - type: Sprite
     state: pizza
 
@@ -169,6 +203,14 @@
       - cheesy
       - tomato
       - cheap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Omnizine
+          Quantity: 2
 
 - type: entity
   name: honk-pocket
@@ -180,13 +222,14 @@
     flavors:
       - funny
       - cheap
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 8
-      - ReagentId: Honk
-        Quantity: 2
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Honk
+          Quantity: 0.50
   - type: Sprite
     state: banana
 
@@ -200,15 +243,16 @@
     flavors:
       - funny
       - cheap
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 10
-      - ReagentId: Honk
-        Quantity: 2
-      - ReagentId: Omnizine
-        Quantity: 3
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Honk
+          Quantity: 1
+        - ReagentId: Omnizine
+          Quantity: 2
 
 - type: entity
   name: berry-pocket
@@ -220,6 +264,12 @@
     flavors:
       - sweet
       - cheap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
   - type: Sprite
     state: berry
 
@@ -233,15 +283,16 @@
     flavors:
       - sweet
       - cheap
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 10
-      - ReagentId: Omnizine
-        Quantity: 3
-      - ReagentId: JuiceBerry
-        Quantity: 2
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Omnizine
+          Quantity: 2
+        - ReagentId: Sugar
+          Quantity: 2
 
 - type: entity
   name: stonk-pocket
@@ -253,6 +304,12 @@
     flavors:
       - profits
       - cheap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
   - type: Sprite
     state: stonk
 
@@ -265,6 +322,14 @@
     flavors:
       - profits
       - cheap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Omnizine
+          Quantity: 2
 
 - type: entity
   name: carp-pocket
@@ -276,6 +341,12 @@
     flavors:
     - cheap
     - fishops
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
   - type: Sprite
     state: carp
 
@@ -288,6 +359,14 @@
     flavors:
     - cheap
     - fishops
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Omnizine
+          Quantity: 2
 
 - type: entity
   name: dink-pocket
@@ -299,15 +378,14 @@
     flavors:
       - cold
       - cheap
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 2
-      - ReagentId: JuiceCarrot
-        Quantity: 1
-      - ReagentId: Cellulose
-        Quantity: 7
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: JuiceCarrot
+          Quantity: 1
   - type: Sprite
     state: dink
 
@@ -321,13 +399,14 @@
     flavors:
     - cotton
     - cheap
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 5
-      - ReagentId: Fiber
-        Quantity: 5
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Fiber
+          Quantity: 5
   - type: Sprite
     state: moth
   - type: Edible
@@ -342,88 +421,13 @@
   parent: [SolutionFoodDonkpocketWarm, FoodDonkpocketMoth]
   id: FoodDonkpocketMothWarm
   components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Fiber
-        Quantity: 10
-      - ReagentId: Nutriment
-        Quantity: 2
-      - ReagentId: Omnizine
-        Quantity: 3
-
-# Blimpuf - Emagged Donk On The Go
-- type: entity
-  name: mime-pocket
-  parent: FoodDonkpocketBase
-  id: FoodDonkpocketMime
-  description: A desaturated donk-pocket that will leave you speechless.
-  components:
-    - type: FlavorProfile
-      flavors:
-        - cheap
-        - mindful
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 15
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 2
-            - ReagentId: MuteToxin
-              Quantity: 10
-    - type: Sprite
-      state: mime
-
-- type: entity
-  name: warm mime-pocket
-  parent: FoodDonkpocketMime
-  id: FoodDonkpocketMimeWarm
-  components:
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 2
-            - ReagentId: MuteToxin
-              Quantity: 10
-            - ReagentId: Omnizine
-              Quantity: 2
-
-- type: entity
-  name: wonk-pocket
-  parent: FoodDonkpocketBase
-  id: FoodDonkpocketWonk
-  description: It smells and looks... breathtaking. Breathtakingly bad.
-  components:
-    - type: FlavorProfile
-      flavors:
-        - cheap
-        - horrible
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 2
-            - ReagentId: Lexorin
-              Quantity: 3
-    - type: Sprite
-      state: wonk
-
-- type: entity
-  name: warm wonk-pocket
-  parent: FoodDonkpocketWonk
-  id: FoodDonkpocketWonkWarm
-  components:
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 2
-            - ReagentId: Lexorin
-              Quantity: 3
-            - ReagentId: Omnizine
-              Quantity: 2
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Fiber
+          Quantity: 5
+        - ReagentId: Omnizine
+          Quantity: 2

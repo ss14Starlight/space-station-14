@@ -1,0 +1,15 @@
+- type: entity
+  parent: d20Dice
+  id: Loadedd20Dice
+  components:
+  - type: Dice
+    sides: 1
+    multiplier: 20
+
+- type: entity
+  parent: d6Dice
+  id: Loadedd6Dice
+  components:
+  - type: Dice
+    sides: 1
+    multiplier: 6

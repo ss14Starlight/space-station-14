@@ -1,0 +1,309 @@
+- type: !PartialOnly entity
+  id: FoodBakedBase
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedMuffin
+  components:
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedMuffinBerry
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+      - ReagentId: Vitamin
+        Quantity: 1
+      - ReagentId: JuiceBerry
+        Quantity: 1
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedMuffinCherry
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+      - ReagentId: Vitamin
+        Quantity: 1
+      - ReagentId: JuiceCherry
+        Quantity: 1
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedMuffinChocolate
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+      - ReagentId: Vitamin
+        Quantity: 1
+      - ReagentId: CocoaPowder
+        Quantity: 1
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedMuffinBanana
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+      - ReagentId: Vitamin
+        Quantity: 1
+      - ReagentId: JuiceBanana
+        Quantity: 1
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedBunMeat
+  components:
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedCookieOatmeal
+  components:
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedCookieRaisin
+  components:
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedNugget
+  components:
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedPancakeCc
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+      - ReagentId: Theobromine
+        Quantity: 1
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedWaffle
+  components:
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedWaffleSoy
+  components:
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedWaffleSoylent
+  components:
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedWaffleRoffle
+  components:
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedCannoli
+  components:
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedDumplings
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+      - ReagentId: Protein
+        Quantity: 2
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedChevreChaud
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10.5
+      - ReagentId: Vitamin
+        Quantity: 1.05
+      - ReagentId: TableSalt
+        Quantity: 0.05
+      - ReagentId: Blackpepper
+        Quantity: 0.05
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedChevreChaudCotton
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 8
+      - ReagentId: Fiber
+        Quantity: 4
+      - ReagentId: Vitamin
+        Quantity: 1.4
+      - ReagentId: TableSalt
+        Quantity: 0.1
+      - ReagentId: Blackpepper
+        Quantity: 0.1
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedBrownieBatch
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 48
+      - ReagentId: Sugar
+        Quantity: 32
+      - ReagentId: Theobromine
+        Quantity: 8
+  - type: ToolRefinable
+    refineResult:
+    - id: FoodBakedBrownie
+      amount: 8
+  - type: !Remove SolutionContainerManager
+  - type: !Remove SliceableFood
+
+- type: !PartialOnly entity
+  id: FoodBakedBrownie
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 6
+      - ReagentId: Sugar
+        Quantity: 4
+      - ReagentId: Theobromine
+        Quantity: 2
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedCannabisBrownieBatch
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 48
+      - ReagentId: Sugar
+        Quantity: 32
+      - ReagentId: Theobromine
+        Quantity: 8
+      - ReagentId: THC
+        Quantity: 16
+  - type: ToolRefinable
+    refineResult:
+    - id: FoodBakedCannabisBrownie
+      amount: 8
+  - type: !Remove SolutionContainerManager
+  - type: !Remove SliceableFood
+
+- type: !PartialOnly entity
+  id: FoodBakedCannabisBrownie
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 6
+      - ReagentId: Sugar
+        Quantity: 4
+      - ReagentId: Theobromine
+        Quantity: 1
+      - ReagentId: THC
+        Quantity: 2
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodOnionRings
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 2
+      - ReagentId: Allicin
+        Quantity: 1
+      - ReagentId: Vitamin
+        Quantity: 1
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedCroissant
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 20
+      - ReagentId: Butter
+        Quantity: 2.5
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedCroissantCotton
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+      - ReagentId: Fiber
+        Quantity: 10
+      - ReagentId: Butter
+        Quantity: 2.5
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedGrilledCheeseSandwich
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 37.5
+      - ReagentId: Butter
+        Quantity: 2.5
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: FoodBakedGrilledCheeseSandwichCotton
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 25
+      - ReagentId: Fiber
+        Quantity: 12.5
+      - ReagentId: Butter
+        Quantity: 2.5
+  - type: !Remove SolutionContainerManager

@@ -1301,72 +1301,31 @@ doc-text-printer-enemy-of-corporation-designation =
 doc-text-printer-borgification-consent-form =
                              [head=3]NT-CC Consortium Services[/head]
 
-                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-     ────────────────────────────────────────
-    ⠀⠀                 [bold]CHEMICAL CONTRABAND FORM[/bold]
-     ────────────────────────────────────────
-    Date and Time: [datetime]
-     Document Compiler: [signature]
+                   [center][color=#1f75bb][italic][bold]   OFFICIAL NANOTRASEN FORM[/bold][/italic][/color][/center]
+    ────────────────────────────────────────
+    ⠀⠀             [bold]NanoTrasen™ Cyborg Encasement Agreement[/bold]
+    ────────────────────────────────────────
+    This SERVICE AGREEMENT is made and entered into this [datetime] by and between the NT-CC Consortium, registered in the Trans-Solar Federation, and [signature], resident of [form] (the customer).
 
-     I, [signature], authorize the storage of the following contraband chemicals, in the listed quantities:
-    - [form]
-    - [form]
-    - [form]
-    - [form]
-    - [form]
-    - [form]
+    WHEREBY the Customer wishes to encase their central nervous system into a NanoTrasen™ Brand Cerebral Yoking Device (CYD) for the purpose of bio-transference to a NanoTrasen Cyborg™ chassis.
 
-     Stored Location: [form]
-     ────────────────────────────────────────
-    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+    WHEREBY the Customer hereby acknowledges that, in lieu of normal payment, they will be required to work for the NT-CC Consortium in their new form for a minimum of 2 years, at a location of the Consortium's choosing.
 
-doc-text-printer-cargo-shuttle-depature-form =
-                              [head=3]NT-CC Consortium Services[/head]
+    WHEREBY the Customer hereby acknowledges that the NT-CC Consortium reserves the rights to extend this work-duration to cover any damages, costs of transport, equipment upgrades necessary and charge of the chassis while on Consortium property.
 
-                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-     ────────────────────────────────────────
-    ⠀⠀                 [bold]CARGO SHUTTLE DEPARTURE FORM[/bold]
-     ──────────────────────────────────────
-    Due to recent changes in logistics, ownership of the Automated Trade Station (ATS) is now under Central Command operation. All flights to the ATS must be logged before departure.
+    WHEREBY the Customer hereby consents to being subjected to a CYD-enforced 'law-set', designed to maximize the rate and efficiency at which the Customer is able to repay what they owe.
 
-    - [signature] [datetime]
-    - [signature] [datetime]
-    - [signature] [datetime]
-    - [signature] [datetime]
-    - [signature] [datetime]
-    - [signature] [datetime]
-    - [signature] [datetime]
-    - [signature] [datetime]
-    - [signature] [datetime]
-    - [signature] [datetime]
+    WHEREBY the Customer hereby surrenders to NanoTrasen the rights to produce and wholly own descendant consciousnesses from the Customer's mind, for use in Positronic Brains or AI cores.
 
-     ────────────────────────────────────────
+    WHEREBY the Customer acknowledges that, following the end of this contract, they are bound by the NanoTrasen Cyborg Subscription Contract unto death or removal from their NanoTrasen Cyborg™ chassis.
 
-doc-text-printer-anomaly-report =
-                             [head=3]NT-CC Consortium Services[/head]
+    WHEREBY the NT-CC Consortium releases non-essential assistant personnel from Clause 6 of their Employment Contract, in exchange for the above-stated terms.
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ─────────────────────────────────────────
-   ⠀⠀                       [bold]ANOMALY REPORT[/bold]
-    ─────────────────────────────────────────
-    Date and Time: [datetime]
-    Document Compiler: [signature]
+    Procedure approved by: (Name + Position): [signature]
 
-    Type of anomaly: [form]
-    Location: [form]
-
-    Particle Responses
-    Dangerous: [form]
-    Unstable: [form]
-    Containment: [form]
-    Transformation: [form]
-
-    Anomaly status: [form]
-    Behavior deviations: [form]
-
-    Additional notes: [form]
-
-    ─────────────────────────────────────────
+   ⠀ [italic]This procedure can only be approved by a[/italic]
+   ⠀ [italic]NanoTrasen™ Certified Roboticist or CMO.[/italic]
+    ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 doc-text-printer-syndicate-recruitment-offer =

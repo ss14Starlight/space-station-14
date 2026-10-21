@@ -32,7 +32,7 @@
   name: china lake
   parent: [BaseWeaponLauncher, BaseSyndicateContraband]
   id: WeaponLauncherChinaLake
-  description: A pump-action grenade launcher commonly used by the infamous Nuclear Operatives. PLOOP!
+  description: PLOOP.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
@@ -89,6 +89,7 @@
       tags:
       - Grenade
     proto: GrenadeCleanade
+    capacity: 6
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]
     soundEject:
@@ -206,7 +207,9 @@
 
 - type: entity
   name: tether gun
-  parent: [ BaseItem, PowerCellSlotMediumItem ] # Blimpuf
+  parent:
+  - BaseItem
+  - PowerCellSlotMediumItem
   id: WeaponTetherGun
   description: Manipulates gravity around objects to fling them at high velocities.
   components:
@@ -246,7 +249,9 @@
 
 - type: entity
   name: force gun
-  parent: [ BaseItem, PowerCellSlotMediumItem ] # Blimpuf
+  parent:
+    - BaseItem
+    - PowerCellSlotMediumItem
   id: WeaponForceGun
   description: Manipulates gravity around objects to fling them at high velocities.
   components:
@@ -292,7 +297,6 @@
 
 - type: entity
   name: grappling gun
-  description: A gun with a steel frame and brass fittings. The hook is securely fitted into the barrel.
   parent: BaseItem
   id: WeaponGrapplingGun
   components:
@@ -328,54 +332,6 @@
             True: { state: base-unshaded }
             False: { state: base-unshaded-off }
     - type: PacifismAllowedGun
-
-- type: entity
-  parent: WeaponNinjaChainSickle
-  id: WeaponGrapplingGunSyndie
-  name: grappler gun # Starlight
-  description: There's a heft to this grappling gun... you wonder what could possibly be inside.
-  components:
-    - type: GrapplingGun
-      reelMassCoefficient: 200 # You can pull everyone.
-      reelForce: 5000 # 1/4 as strong as Ninja Chain Sickle's reel-in, shouldn't be as strong as theirs.
-      reelRate: 3 # 1/2ish as fast to reel in as the Ninja Chain Sickle
-      ropeBreakPoint: 150000
-      cycleSound: /Audio/Weapons/Guns/Empty/empty.ogg # Starlight, we don't have the Moffstation sound
-      ropeSprite:
-        sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi
-        state: rope
-    - type: Ensnaring
-      freeTime: 2.0
-      breakoutTime: 6 # 1/5th as long as ninja chain breakout
-      walkSpeed: 0.8
-      sprintSpeed: 0.9
-      staminaDamage: 100
-      canThrowTrigger: true
-      canMoveBreakout: true
-      maxEnsnares: 1
-    - type: Gun
-      soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
-      fireRate: 0.5
-      clumsyProof: true
-    - type: Sprite
-      sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi
-      layers:
-        - state: base
-        - state: base-unshaded
-          map: [ "unshaded" ]
-          visible: true
-    - type: BasicEntityAmmoProvider
-      proto: GrapplerHook
-      capacity: 1
-    - type: UseDelay
-      delay: 1.5
-    - type: Appearance
-    - type: GenericVisualizer
-      visuals:
-        enum.TetherVisualsStatus.Key:
-          unshaded:
-            True: { state: base-unshaded }
-            False: { state: base-unshaded-off }
 
 # Admeme
 - type: entity
