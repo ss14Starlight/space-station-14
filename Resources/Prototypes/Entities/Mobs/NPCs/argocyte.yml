@@ -115,6 +115,8 @@
     refineResult:
     - id: FoodMeatXeno
       amount: 1
+    - id: SalvageTicket10 # Starlight
+      amount: 1
   - type: Fixtures
     fixtures:
       fix1:
@@ -154,6 +156,8 @@
   - type: ToolRefinable
     refineResult:
     - id: FoodMeatXeno
+      amount: 1
+    - id: SalvageTicket15 # Starlight
       amount: 1
   - type: Fixtures
     fixtures:
@@ -195,6 +199,8 @@
     refineResult:
     - id: FoodMeatXeno
       amount: 2
+    - id: SalvageTicket15 # Starlight
+      amount: 1
   - type: MovementSpeedModifier
     baseSprintSpeed : 5
 
@@ -219,8 +225,10 @@
       100: Dead
   - type: ToolRefinable
     refineResult:
-    - id: FoodMeatXeno
+    - id: FoodMeatXeno # Starlight
       amount: 2
+    - id: SalvageTicket15 # Starlight
+      amount: 1
   - type: MovementSpeedModifier
     baseSprintSpeed : 4
     baseWalkSpeed : 3.5
@@ -248,6 +256,8 @@
     refineResult:
     - id: FoodMeatXeno
       amount: 2
+    - id: SalvageTicket15 # Starlight
+      amount: 1
   - type: MeleeWeapon
     damage:
       types:
@@ -277,6 +287,8 @@
     refineResult:
     - id: FoodMeatXeno
       amount: 2
+    - id: SalvageTicket15 # Starlight
+      amount: 1
   - type: MeleeWeapon
     damage:
       types:
@@ -309,6 +321,8 @@
     refineResult:
     - id: FoodMeatXeno
       amount: 2
+    - id: SalvageTicket30 # Starlight
+      amount: 1
   - type: MeleeWeapon
     damage:
       types:
@@ -340,6 +354,8 @@
     refineResult:
     - id: FoodMeatXeno
       amount: 2
+    - id: SalvageTicket30 # Starlight
+      amount: 1
   - type: MeleeWeapon
     damage:
       types:
@@ -373,6 +389,8 @@
     refineResult:
     - id: FoodMeatXeno
       amount: 3
+    - id: SalvageTicket50 # Starlight
+      amount: 2
   - type: MeleeWeapon
     damage:
       types:
@@ -403,6 +421,8 @@
     refineResult: # Starlight
     - id: FoodMeatXeno
       amount: 5
+    - id: SalvageTicket50 # Starlight
+      amount: 1
   - type: Fixtures
     fixtures:
       fix1:
@@ -448,6 +468,8 @@
     refineResult: # Starlight
     - id: FoodMeatXeno
       amount: 10
+    - id: SalvageTicket100 # Starlight
+      amount: 3
   - type: Fixtures
     fixtures:
       fix1:

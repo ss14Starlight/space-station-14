@@ -145,12 +145,21 @@
     - proto: MobArgocyteSkitter
       cost: 5
       prob: 0.25
+    - proto: MobArgocyteHarvester
+      cost: 5
+      prob: 0.25
     - proto: MobArgocyteLeviathing
       cost: 100
     - proto: MobArgocyteSwiper
       cost: 10
       prob: 0.5
+    - proto: MobArgocyteCrawler
+      cost: 10
+      prob: 0.5
     - proto: MobArgocyteGlider
+      cost: 4
+      prob: 0.25
+    - proto: MobArgocytePouncer
       cost: 4
       prob: 0.25
     - proto: MobArgocyteMolder
