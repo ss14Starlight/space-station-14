@@ -60,6 +60,12 @@
         - proto: TechnologyDiskRare
           cost: 5
           prob: 0.25
+        - proto: CloningPodMachineCircuitboard
+          cost: 5
+          prob: 0.5
+        - proto: CloningConsoleComputerCircuitboard
+          cost: 5
+          prob: 0.5
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -132,6 +138,10 @@
           cost: 2
         - proto: SheetRPGlass
           cost: 2
+        - proto: CloningPodMachineCircuitboard
+          cost: 5
+        - proto: CloningConsoleComputerCircuitboard
+          cost: 5
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -158,18 +168,18 @@
           prob: 0.5
         - proto: CrateSalvageEquipment
           cost: 3
-          prob: 0.5
+          prob: 0.75
         - proto: MedicalScannerMachineCircuitboard
           cost: 2
           prob: 0.5
         - proto: PortableGeneratorSuperPacman
           cost: 2
-          prob: 0.5
+          prob: 0.25
         - proto: RandomArtifactSpawner
           cost: 2
         - proto: RandomCommandCorpseSpawner
           cost: 3
-          prob: 0.5
+          prob: 0.25
         - proto: RandomEngineerCorpseSpawner
           cost: 1
           prob: 0.5
@@ -212,6 +222,16 @@
           cost: 4
         - proto: BananiumOre1
           cost: 1
+        - proto: CloningPodMachineCircuitboard
+          cost: 5
+        - proto: CloningConsoleComputerCircuitboard
+          cost: 5
+        - proto: ComputerIFFCircuitboard
+          cost: 10
+        - proto: OpporozidoneBeakerLarge
+          cost: 10
+        - proto: CrateITGSurplus
+          cost: 5
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
