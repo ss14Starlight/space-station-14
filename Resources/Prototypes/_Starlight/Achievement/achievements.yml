@@ -27,6 +27,62 @@
   - progressType: vampire.blooddrank
     requiredProgress: 3000
 
+- type: achievement
+  id: first_kindred
+  name: achievement-first-kindred-name
+  description: achievement-first-kindred-description
+  category: vampire
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: draculaJrMedal
+  difficultyAntag:
+    role: MindRoleVampire
+    requiredDifficulty: 10
+
+# Traitor
+- type: achievement
+  id: elite_contractor
+  name: achievement-elite-contractor-name
+  description: achievement-elite-contractor-description
+  category: traitor
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: heliosMedal
+  difficultyAntag:
+    role: MindRoleTraitor
+    requiredDifficulty: 15
+
+# Changeling
+- type: achievement
+  id: enemy_unknown
+  name: achievement-enemy-unknown-name
+  description: achievement-enemy-unknown-description
+  category: changeling
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: assumingDirectControl
+  difficultyAntag:
+    role: MindRoleChangeling
+    requiredDifficulty: 10
+
+# Thief
+- type: achievement
+  id: phantom_thief
+  name: achievement-phantom-thief-name
+  description: achievement-phantom-thief-description
+  category: thief
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: whiskeyEcho
+  difficultyAntag:
+    role: MindRoleThief
+    requiredDifficulty: 10
+
+
 # manual-only, granted by admins via achievement_unlock command
 # Even though this achievement can be granted automatically checking nullink roles
 # i just want it to be test command for now
@@ -70,7 +126,7 @@
   id: whiskey_echo_whiskey
   name: achievement-whiskey-echo-whiskey-name
   description: achievement-whiskey-echo-whiskey-description
-  category: milestones
+  category: traitor
   hidden: false
   showProgress: false
   icon:
@@ -178,7 +234,7 @@
   id: viva_cargonia
   name: achievement-viva-cargonia-name
   description: achievement-viva-cargonia-description
-  category: milestones
+  category: revolutionary
   hidden: true
   showProgress: false
   icon:
@@ -238,7 +294,7 @@
   id: lone_operative
   name: achievement-lone-operative-name
   description: achievement-lone-operative-description
-  category: milestones
+  category: nukeops
   hidden: false
   showProgress: false
   icon:
@@ -250,7 +306,7 @@
   id: one_against_all
   name: achievement-one-against-all-name
   description: achievement-one-against-all-description
-  category: milestones
+  category: nukeops
   hidden: false
   showProgress: false
   icon:
@@ -262,7 +318,7 @@
   id: one_man_syndicate
   name: achievement-one-man-syndicate-name
   description: achievement-one-man-syndicate-description
-  category: milestones
+  category: nukeops
   hidden: false
   showProgress: false
   icon:
@@ -274,7 +330,7 @@
   id: john_syndicate
   name: achievement-john-syndicate-name
   description: achievement-john-syndicate-description
-  category: milestones
+  category: nukeops
   hidden: false
   showProgress: false
   icon:
@@ -325,7 +381,7 @@
   id: syndie_cat
   name: achievement-syndie-cat-name
   description: achievement-syndie-cat-description
-  category: milestones
+  category: traitor
   hidden: false
   showProgress: false
   icon:
@@ -445,7 +501,7 @@
   id: viva
   name: achievement-viva-name
   description: achievement-viva-description
-  category: milestones
+  category: revolutionary
   hidden: false
   showProgress: false
   icon:
@@ -469,7 +525,7 @@
   id: treason
   name: achievement-treason-name
   description: achievement-treason-description
-  category: milestones
+  category: traitor
   hidden: false
   showProgress: false
   icon:
@@ -548,3 +604,18 @@
     sprite: _Starlight/Interface/Achievements/icons.rsi
     state: heliosMedal
   requirements: []
+
+- type: achievement
+  id: theory_of_objectivity
+  name: achievement-theory-of-objectivity-name
+  description: achievement-theory-of-objectivity-description
+  category: milestones
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: whiskeyEcho
+  requiredAchievements:
+  - elite_contractor
+  - phantom_thief
+  - first_kindred
+  - enemy_unknown

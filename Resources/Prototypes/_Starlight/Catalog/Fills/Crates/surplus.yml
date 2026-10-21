@@ -113,52 +113,129 @@
 
 - type: entity
   parent: CrateSalvageContrabandStorageSecure
-  id: CrateITGShotgunSurplus
-  name: ITG Shotgun Surplus Crate
-  description: A box containing weapons from the back of an ITG warehouse
+  id: CrateITGArmamentSurplus
+  name: ITG Armament Surplus Crate
+  description: A box containing weapons from the back of an ITG warehouse, who knows what the interns put in this one!
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:AllSelector
         children:
         - !type:NestedSelector
-          tableId: ShotgunSurplusGunEntityTable
+          tableId: ArmamentSurplusGunEntityTable
         - !type:NestedSelector
-          tableId: ShotgunSurplusGunEntityTable
+          tableId: ArmamentSurplusGunEntityTable
         - !type:NestedSelector
-          tableId: ShotgunSurplusAmmoEntityTable
+          tableId: ArmamentSurplusAmmoEntityTable
         - !type:NestedSelector
-          tableId: ShotgunSurplusAmmoEntityTable
-        - !type:NestedSelector
-          tableId: ShotgunSurplusAmmoEntityTable
-        - !type:NestedSelector
-          tableId: ShotgunSurplusAmmoEntityTable
+          tableId: ArmamentSurplusAmmoEntityTable
 
 - type: entityTable
-  id: ShotgunSurplusGunEntityTable
+  id: ArmamentSurplusGunEntityTable
   table: !type:GroupSelector
     children:
-    - id: WeaponShotgunRiot
-      weight: 0.75
-    - id: WeaponShotgunEnforcer
-      weight: 1
     - id: WeaponShotgunKammerer
       weight: 2
+    - id: WeaponShotgunEnforcer
+      weight: 1
+    - id: WeaponShotgunRiot
+      weight: 0.75
     - id: WeaponShotgunCombat
       weight: 0.5
     - id: WeaponShotgunCycler
       weight: .15
+    - id: WeaponShotgunBulldogWorn
+      weight: .01
+    - id: WeaponRifleLecter
+      weight: 2
+    - id: WeaponLaserCarbine
+      weight: 1
+    - id: WeaponRifleL10
+      weight: 0.75
+    - id: WeaponRifleAk
+      weight: .15
+    - id: WeaponRifleBolt
+      weight: .01
+    - id: WeaponPistolMk58
+      weight: 2
+    - id: WeaponPistolMakarov
+      weight: 1
+    - id: WeaponPistolEnforcer
+      weight: 0.75
+    - id: WeaponPistolDeagle
+      weight: 0.5
+    - id: WeaponPistolGoldenMk58
+      weight: .15
+    - id: WeaponPistolBolt
+      weight: .01
+    - id: WeaponRegulator
+      weight: 1
+    - id: WeaponSPKA
+      weight: 0.75
+    - id: WeaponChainAccelerator
+      weight: .15
+    - id: WeaponShotgunGA12
+      weight: 2
+    - id: WeaponRevolverGA6Fang
+      weight: 1
+    - id: WeaponRevolverInspector
+      weight: 0.75
+    - id: WeaponRevolverZOZ
+      weight: 0.5
+    - id: WeaponRevolverPython
+      weight: .15
+    - id: KukriKnife
+      weight: 1
+    - id: SwordAres
+      weight: .50
+    - id: ChainsawSword
+      weight: .25
+    - id: WeaponSubMachineGunSP91RC
+      weight: 2
+    - id: WeaponSubMachineGunWt550
+      weight: 1
+    - id: WeaponSubMachineGunDrozd
+      weight: 0.75
+    - id: WeaponSubMachineGunUzi
+      weight: .15
+    - id: WeaponSubMachineGunBriefcase
+      weight: .01
 
 - type: entityTable
-  id: ShotgunSurplusAmmoEntityTable
+  id: ArmamentSurplusAmmoEntityTable
   table: !type:GroupSelector
     children:
     - id: BoxLethalshot
       weight: 1
-    - id: BoxShotgunSlug
-      weight: 1
     - id: BoxShotgunIncendiary
       weight: .25
+    - id: MagazineRifleSP
+      weight: 1
+    - id: MagazineRifleFMJ
+      weight: .25
+    - id: MagazinePistolSP
+      weight: 1
+    - id: MagazinePistolHighCapacitySP
+      weight: .25
+    - id: MagazinePistolSubMachineGunSP
+      weight: 1
+    - id: MagazinePistolSubMachineGunFMJ
+      weight: .25
+    - id: MagazineLightRifleSP
+      weight: .5
+    - id: MagazineLightRifleFMJ
+      weight: .15
+    - id: MagazineDMRSP
+      weight: 1
+    - id: MagazineDMRFMJ
+      weight: .25
+    - id: MagazineMagnum
+      weight: .5
+    - id: MagazineMagnumAP
+      weight: .05
+    - id: MagazineBoltPistol
+      weight: .5
+
 
 - type: entity
   parent: CrateSalvageContrabandStorageSecure
@@ -211,16 +288,16 @@
   table: !type:GroupSelector
     children:
     - id: ClothingHandsGlovesCombat
-      amount: 3
+      amount: 1
       weight: 1
     - id: TrackingImplant
       amount: 3
       weight: 1
     - id: GrenadeStinger
-      amount: 3
+      amount: 1
       weight: 1
     - id: GrenadeFlashBang
-      amount: 3
+      amount: 1
       weight: 1
     - id: ClothingUniformJumpskirtPrisoner
       amount: 3
@@ -229,12 +306,12 @@
       amount: 3
       weight: 1
     - id: ClothingHeadHelmetJustice
-      amount: 2
+      amount: 1
       weight: 1
     - id: BoxTearGas
       weight: 1
     - id: WeaponLauncherPeacekeeper
-      weight: 1
+      weight: .25
 
 - type: entityTable
   id: ServiceSurplusEntityTable
@@ -326,7 +403,7 @@
     - id: SyndicatePersonalAI
       weight: .15
     - id: WeaponLauncherPirateCannon
-      weight: .25
+      weight: .05
     - id: PowerCellMicroreactor
       weight: .25
     - id: CrateCargoGambling
@@ -357,5 +434,16 @@
     - id: OreBagOfHolding
       weight: .1
     - id: ClothingOuterHardsuitITGLossPrevention
-      weight: .08
-
+      weight: .02
+    - id: FoodMeatDragon
+      weight: .02
+    - id: WeaponTurretPointDefenseMachineCircuitboard
+      amount: 3
+      weight: .1
+    - id: WeaponSPKA
+      weight: .3
+    - id: PKAUpgradeDamage
+      amount: 2
+      weight: .05
+    - id: CrateITGMedicalSurplus
+      weight: .02

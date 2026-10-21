@@ -1,5 +1,12 @@
 ﻿# Traitor
 - type: weightedRandom
+  id: TraitorObjectiveGroupFate
+  weights:
+    EscapeShuttleObjective: 74
+    TraitorAchieveObjective: 24
+    DieObjective: 2
+
+- type: weightedRandom
   id: SubTraitorObjectiveGroups
   weights:
     TraitorObjectiveGroupSteal: 1
@@ -80,7 +87,8 @@
 - type: weightedRandom
   id: VampireObjectiveGroupKill
   weights:
-    VampireKillRandomPersonObjective: 1
+    VampirePickerKillObjective: 1
+    VampireKillRandomHeadObjective: 0.25
 
 - type: weightedRandom
   id: VampireObjectiveGroupDrain
@@ -90,10 +98,22 @@
 - type: weightedRandom
   id: VampireObjectiveGroupState
   weights:
-    VampireSurviveObjective: 1
-    VampireEscapeObjective: 1
     ReputationObjective: 0.5
     FalseOutbreakObjective: 0.75
+
+# Random picker excludes the already forced drain goal and can offer an additional kill.
+- type: weightedRandom
+  id: VampireObjectiveGroupsSelector
+  weights:
+    VampireObjectiveGroupSteal: 1
+    VampireObjectiveGroupState: 1
+    VampireObjectiveGroupKill: 0.35
+
+- type: weightedRandom
+  id: VampireObjectiveGroupFate
+  weights:
+    VampireSurviveObjective: 1
+    VampireEscapeObjective: 1
 
 # Thieves
 - type: weightedRandom
@@ -103,10 +123,18 @@
     ThiefObjectiveGroupItem: 1
     ThiefObjectiveGroupStructure: 0.7 # Inheriting from the old "big" group.
     ThiefObjectiveGroupAnimal: 0.7 # Inheriting from the old "big" group.
-    ThiefObjectiveGroupEscapeForced: 10 # High weight to basically force you to get it.
 
 - type: weightedRandom
-  id: ThiefObjectiveGroupEscapeForced
+  id: ThiefObjectiveGroupFate
   weights:
     EscapeThiefShuttleObjective: 1
     EscapeMasterThiefObjective: 0.33
+
+# Changeling
+- type: weightedRandom
+  id: ChangelingObjectiveGroupCombat
+  weights:
+    ChangelingKillRandomPersonObjective: 1
+    ChangelingKillRandomHeadObjective: 1
+    ChangelingTeachRandomPersonObjective: 1
+    ChangelingTeachRandomHeadObjective: 1

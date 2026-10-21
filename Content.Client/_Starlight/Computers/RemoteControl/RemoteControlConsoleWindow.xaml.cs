@@ -31,6 +31,7 @@ using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.UserInterface;
 using Content.Shared.Chat;
 using Content.Shared._Starlight.Chat;
+using Content.Shared._Starlight.Hands;
 using Content.Shared.Speech;
 using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.Weapons.Ranged.Systems;
@@ -209,6 +210,9 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
     private bool HandleRemoteDrop(in PointerInputCmdHandler.PointerInputCmdArgs args)
         => HandleRemoteInteraction(args, false, action: RemoteControlInteractionAction.Drop);
+
+    private bool HandleRemoteThrow(in PointerInputCmdHandler.PointerInputCmdArgs args)
+        => HandleRemoteInteraction(args, false, action: RemoteControlInteractionAction.Throw);
 
     private bool HandleRemoteMovePulled(in PointerInputCmdHandler.PointerInputCmdArgs args)
     {
@@ -961,6 +965,9 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
             .BindBefore(ContentKeyFunctions.TryPullObject,
                 new PointerInputCmdHandler(HandleRemotePull, outsidePrediction: true),
                 typeof(SharedInteractionSystem))
+            .BindBefore(ContentKeyFunctions.ThrowItemInHand,
+                new PointerInputCmdHandler(HandleRemoteThrow, outsidePrediction: true),
+                typeof(PredictedHandsSystem))
             .BindBefore(ContentKeyFunctions.Drop,
                 new PointerInputCmdHandler(HandleRemoteDrop, outsidePrediction: true),
                 typeof(SharedHandsSystem))

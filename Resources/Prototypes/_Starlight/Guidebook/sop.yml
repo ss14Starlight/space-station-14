@@ -367,8 +367,16 @@
 - type: guideEntry
   id: security-sop-permitacquisition
   name: guide-entry-sl-security-sop-permitacquisition
-  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/PermitAcquisition.xml"
+  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/Permits/PermitAcquisition.xml"
   priority: 10
+  children:
+  - security-sop-permitacquisition-examples
+
+- type: guideEntry
+  id: security-sop-permitacquisition-examples
+  name: guide-entry-sl-security-sop-permitacquisition-examples
+  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/Permits/PermitExamples.xml"
+  priority: 1
 
 - type: guideEntry
   id: security-sop-specialsituations

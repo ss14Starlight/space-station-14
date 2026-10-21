@@ -191,6 +191,15 @@ public sealed partial class PlumbingConnectorAppearanceSystem : EntitySystem
         if (!_appearance.TryGetData<bool>(uid, PowerDeviceVisuals.Powered, out var powered, appearance))
             return;
 
+        // do nothing if there is a GenericVisualizer on this entity that controls powered layers
+        // TO-DO/REVIEW: maybe it's best to just nuke this method entirely from this class and use GenericVisualizer for this.
+        if (TryComp<GenericVisualizerComponent>(uid, out var genericVisualizer))
+        {
+            var visuals = genericVisualizer.Visuals; // fuck my stupid C# chud life (can't genericVisualizer.Visuals.ContainsKey)
+            if (visuals.ContainsKey(PowerDeviceVisuals.Powered))
+                return;
+        }
+
         _sprite.LayerSetVisible((uid, sprite), layerIndex, powered);
     }
 
