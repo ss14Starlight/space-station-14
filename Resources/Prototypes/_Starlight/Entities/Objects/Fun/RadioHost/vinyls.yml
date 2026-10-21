@@ -283,18 +283,3 @@
   - type: Vinyl
     song:
       path: /Audio/_Starlight/RadioStation/Vinyls/music/Home - We'reFinallyLanding - Mono Mixdown for SL.ogg
-
-- type: entity
-  parent: BaseVinylDisc
-  id: VinylLobotomy
-  name: "vinyl: Resonance 2"
-  description: "The release of this song has led to multiple Syndicate assassination attempts on the life of Randy Goughman"
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: label
-      color: "#010200"
-  - type: Vinyl
-    song:
-      path: /Audio/_Starlight/RadioStation/Vinyls/music/Home - Lobotomy.ogg
