@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: The hellportal now counts as an anomaly, the same way the malign rift counts as one. (Although you can also still just beat it up if you want. It does have more health now, though.).
-    type: Add
-  id: 409260
-  time: '2026-10-07T17:50:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6547
-- author: wonderfulnewworld
-  changes:
   - message: When prying flesh tiles, you get random meat now.
     type: Tweak
   id: 409261
@@ -2883,4 +2876,11 @@ Entries:
   id: 409659
   time: '2026-10-21T14:17:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6754
+- author: Romero/Littlemen
+  changes:
+  - message: Tiders rejoice ! Suspicous toolboxes are now more common as maint loot, no trap there, trust me.
+    type: Tweak
+  id: 409660
+  time: '2026-10-21T14:56:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6748
 Order: -1
