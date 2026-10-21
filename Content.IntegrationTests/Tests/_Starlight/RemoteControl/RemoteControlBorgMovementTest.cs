@@ -20,6 +20,7 @@ using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Power.Components;
+using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
@@ -439,6 +440,15 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
 
             await Server.WaitAssertion(() =>
             {
+                var uiAttempt = new BoundUserInterfaceMessageAttempt(
+                    SPlayer,
+                    controlledBorg,
+                    BorgUiKey.Key,
+                    new OpenBoundInterfaceMessage());
+                SEntMan.EventBus.RaiseLocalEvent(controlledBorg, uiAttempt, broadcast: true);
+                Assert.That(uiAttempt.Cancelled, Is.False,
+                    "The controller should be able to send BUI actions to a conscious borg.");
+
                 Server.System<MobStateSystem>().ChangeMobState(controlledBorg, MobState.Critical);
                 var actionBlocker = Server.System<ActionBlockerSystem>();
                 var remoteControlSystem = Server.System<RemoteControlConsoleSystem>();
@@ -450,10 +460,10 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
                 Assert.That(stillControlled, Is.EqualTo(controlledBorg),
                     "Incapacitation should not release the remote control session.");
 
-                var uiAttempt = new BoundUserInterfaceMessageAttempt(
+                uiAttempt = new BoundUserInterfaceMessageAttempt(
                     SPlayer,
                     controlledBorg,
-                    RemoteControlUIKey.Key,
+                    BorgUiKey.Key,
                     new OpenBoundInterfaceMessage());
                 SEntMan.EventBus.RaiseLocalEvent(controlledBorg, uiAttempt, broadcast: true);
                 Assert.That(uiAttempt.Cancelled, Is.True,

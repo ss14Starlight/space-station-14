@@ -890,6 +890,17 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     public bool TryGetControlledEntity(EntityUid actor, out EntityUid remoteEntity)
         => _sharedRemoteControl.TryGetControlledEntity(actor, out remoteEntity);
 
+    /// <summary>
+    /// Checks whether the controlled remote entity is eligible to perform conscious actions.
+    /// </summary>
+    /// <remarks>
+    /// This delegates to the shared <c>ConsciousAttemptEvent</c>-based check and does not check whether the controller
+    /// can act.
+    /// </remarks>
+    /// <param name="remoteEntity">The controlled remote entity whose conscious-action eligibility is checked.</param>
+    /// <returns>
+    /// <see langword="true"/> if the remote entity can perform conscious actions; otherwise, <see langword="false"/>.
+    /// </returns>
     public bool CanRemoteControlledEntityAct(EntityUid remoteEntity)
         => _sharedRemoteControl.CanRemoteControlledEntityAct(remoteEntity);
 

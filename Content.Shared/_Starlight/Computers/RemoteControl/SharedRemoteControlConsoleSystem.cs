@@ -45,6 +45,17 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
         return false;
     }
 
+    /// <summary>
+    /// Checks whether the controlled remote entity is eligible to perform conscious actions.
+    /// </summary>
+    /// <remarks>
+    /// This checks the remote entity through <c>ConsciousAttemptEvent</c> and does not check whether the controller
+    /// can act.
+    /// </remarks>
+    /// <param name="remoteEntity">The controlled remote entity whose conscious-action eligibility is checked.</param>
+    /// <returns>
+    /// <see langword="true"/> if the remote entity can perform conscious actions; otherwise, <see langword="false"/>.
+    /// </returns>
     public bool CanRemoteControlledEntityAct(EntityUid remoteEntity)
         => _actionBlocker.CanConsciouslyPerformAction(remoteEntity);
 
