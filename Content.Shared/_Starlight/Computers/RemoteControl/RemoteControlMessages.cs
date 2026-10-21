@@ -22,6 +22,7 @@ public enum RemoteControlInteractionAction : byte
     MovePulledObject,
     Shoot,
     Drop,
+    Throw,
 }
 
 [Serializable, NetSerializable]

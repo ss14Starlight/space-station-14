@@ -60,7 +60,7 @@ public sealed partial class CharacterInfoSystem : EntitySystem
                 jobTitle = jobName;
 
             // Get briefing
-            briefing = _roles.MindGetBriefing(mindId);
+            briefing = GetCharacterBriefing(mindId); // Starlight
         }
 
         RaiseNetworkEvent(new CharacterInfoEvent(GetNetEntity(entity), jobTitle, objectives, briefing), args.SenderSession);
