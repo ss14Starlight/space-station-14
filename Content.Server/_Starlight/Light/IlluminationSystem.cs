@@ -4,6 +4,7 @@ using System.Numerics;
 using Content.Shared._Starlight.Light;
 using Robust.Server.GameObjects;
 using Robust.Shared;
+using Robust.Shared.ComponentTrees;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -11,6 +12,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Light;
 
@@ -22,6 +24,7 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IResourceManager _resources = default!;
+    [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedContainerSystem _container = default!;
@@ -46,11 +49,16 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
 
     private readonly List<Entity<SharedPointLightComponent, TransformComponent>> _loose = new();
     private readonly Dictionary<EntityUid, int> _looseIndex = new();
+    private readonly HashSet<EntityUid> _dormant = new();
+
+    private float _maxReach;
+    private TimeSpan _nextReachUpdate;
+    private static readonly TimeSpan ReachUpdateInterval = TimeSpan.FromSeconds(2);
 
     private readonly List<Candidate> _candidates = new();
     private readonly List<Entity<SharedPointLightComponent, TransformComponent>> _misplaced = new();
     private readonly List<LightContribution> _sources = new();
-    private readonly List<RayCastResults> _occluderHits = new();
+    private readonly List<OccluderTree> _occluderTrees = new();
     private List<Entity<MapGridComponent>> _grids = new();
 
     private readonly Dictionary<string, MaskImage?> _masks = new();
@@ -77,6 +85,34 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
         _anchoredIndex.Clear();
         _loose.Clear();
         _looseIndex.Clear();
+        _dormant.Clear();
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (_timing.CurTime < _nextReachUpdate)
+            return;
+
+        _nextReachUpdate = _timing.CurTime + ReachUpdateInterval;
+
+        var reach = 0f;
+        foreach (var bucket in _anchored.Values)
+        {
+            foreach (var light in bucket)
+            {
+                if (light.Comp1.Enabled)
+                    reach = MathF.Max(reach, Reach(light.Comp1));
+            }
+        }
+
+        foreach (var light in _loose)
+        {
+            reach = MathF.Max(reach, Reach(light.Comp1));
+        }
+
+        _maxReach = reach;
     }
 
     #region Index
@@ -94,6 +130,10 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
         => Relocate((ent, ent.Comp, args.Transform));
 
     [SubscribeLocalEvent]
+    private void OnToggle(Entity<PointLightComponent> ent, ref PointLightToggleEvent _)
+        => Relocate((ent, ent.Comp, Transform(ent)));
+
+    [SubscribeLocalEvent]
     private void OnReAnchor(Entity<PointLightComponent> ent, ref ReAnchorEvent args)
         => Relocate((ent, ent.Comp, args.Xform));
 
@@ -107,6 +147,9 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
 
     private void AddLight(Entity<SharedPointLightComponent, TransformComponent> light)
     {
+        if (light.Comp1.Enabled)
+            _maxReach = MathF.Max(_maxReach, Reach(light.Comp1));
+
         if (IsAnchoredToGrid(light.Comp2, out var grid))
         {
             var key = (grid, ChunkOf(light.Comp2.LocalPosition));
@@ -118,6 +161,12 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
 
             bucket.Add(light);
             _anchoredIndex[light] = key;
+            return;
+        }
+
+        if (!light.Comp1.Enabled)
+        {
+            _dormant.Add(light);
             return;
         }
 
@@ -145,7 +194,7 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
             return;
         }
 
-        if (!_looseIndex.Remove(uid, out var index))
+        if (_dormant.Remove(uid) || !_looseIndex.Remove(uid, out var index))
             return;
 
         var last = _loose[^1];
@@ -175,13 +224,29 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
         if (point.MapId == MapId.Nullspace)
             return;
 
-        CollectCandidates(point, _maxLightRadius + OffsetMargin);
+        CollectCandidates(point, MathF.Min(_maxReach, _maxLightRadius + OffsetMargin), byReach: true);
+
+        _occluderTrees.Clear();
+        var treesReady = false;
 
         foreach (var candidate in _candidates)
         {
-            if (TryEvaluate(candidate, point.Position, query, out var contribution)
-                && (!contribution.Light.Comp1.CastShadows || !IsOccluded(point.MapId, contribution.Position, point.Position)))
-                results.Add(contribution);
+            if (!TryEvaluate(candidate, point.Position, query, out var contribution))
+                continue;
+
+            if (contribution.Light.Comp1.CastShadows)
+            {
+                if (!treesReady)
+                {
+                    PrepareOccluderTrees(point);
+                    treesReady = true;
+                }
+
+                if (IsOccluded(contribution.Position, point.Position))
+                    continue;
+            }
+
+            results.Add(contribution);
         }
     }
 
@@ -201,7 +266,7 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
         if (center.MapId == MapId.Nullspace)
             return;
 
-        CollectCandidates(center, range);
+        CollectCandidates(center, range, byReach: false);
 
         foreach (var candidate in _candidates)
         {
@@ -250,7 +315,7 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
         return new Color(color);
     }
 
-    private void CollectCandidates(MapCoordinates point, float range)
+    private void CollectCandidates(MapCoordinates point, float range, bool byReach)
     {
         _candidates.Clear();
         _misplaced.Clear();
@@ -263,8 +328,8 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
 
         foreach (var grid in _grids)
         {
-            var (_, gridRot, gridMatrix) = _transform.GetWorldPositionRotationMatrix(grid.Owner);
-            var local = Vector2.Transform(point.Position, _transform.GetInvWorldMatrix(grid.Owner));
+            var (_, gridRot, gridMatrix, gridInvMatrix) = _transform.GetWorldPositionRotationMatrixWithInv(grid.Owner);
+            var local = Vector2.Transform(point.Position, gridInvMatrix);
             var min = ChunkOf(local - new Vector2(range));
             var max = ChunkOf(local + new Vector2(range));
 
@@ -272,30 +337,31 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
             {
                 for (var y = min.Y; y <= max.Y; y++)
                 {
-                    if (!_anchored.TryGetValue((grid.Owner, new Vector2i(x, y)), out var bucket))
+                    var chunk = new Vector2i(x, y);
+                    if (!_anchored.TryGetValue((grid.Owner, chunk), out var bucket))
                         continue;
 
                     foreach (var light in bucket)
                     {
+                        if (!light.Comp1.Enabled)
+                            continue;
+
                         var xform = light.Comp2;
 
                         if (!IsAnchoredToGrid(xform, out var lightGrid)
                             || lightGrid != grid.Owner
-                            || ChunkOf(xform.LocalPosition) != new Vector2i(x, y))
+                            || ChunkOf(xform.LocalPosition) != chunk)
                         {
                             _misplaced.Add(light);
-                            TryAddLoose(light, point, rangeSquared);
+                            TryAddLoose(light, point, rangeSquared, byReach);
                             continue;
                         }
 
-                        if (!light.Comp1.Enabled)
+                        var distanceSquared = (xform.LocalPosition - local).LengthSquared();
+                        if (distanceSquared > rangeSquared || byReach && distanceSquared > ReachSquared(light.Comp1))
                             continue;
 
-                        var position = Vector2.Transform(xform.LocalPosition, gridMatrix);
-                        if ((position - point.Position).LengthSquared() > rangeSquared)
-                            continue;
-
-                        _candidates.Add(new(light, position, gridRot + xform.LocalRotation));
+                        _candidates.Add(new(light, Vector2.Transform(xform.LocalPosition, gridMatrix), gridRot + xform.LocalRotation));
                     }
                 }
             }
@@ -306,7 +372,7 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
             if (light.Comp1.Enabled && IsAnchoredToGrid(light.Comp2, out _))
                 _misplaced.Add(light);
 
-            TryAddLoose(light, point, rangeSquared);
+            TryAddLoose(light, point, rangeSquared, byReach);
         }
 
         foreach (var light in _misplaced)
@@ -315,13 +381,14 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
         }
     }
 
-    private void TryAddLoose(Entity<SharedPointLightComponent, TransformComponent> light, MapCoordinates point, float rangeSquared)
+    private void TryAddLoose(Entity<SharedPointLightComponent, TransformComponent> light, MapCoordinates point, float rangeSquared, bool byReach)
     {
         if (!light.Comp1.Enabled || light.Comp2.MapID != point.MapId)
             return;
 
         var (position, rotation) = _transform.GetWorldPositionRotation(light.Comp2);
-        if ((position - point.Position).LengthSquared() > rangeSquared)
+        var distanceSquared = (position - point.Position).LengthSquared();
+        if (distanceSquared > rangeSquared || byReach && distanceSquared > ReachSquared(light.Comp1))
             return;
 
         if (IsHiddenInContainer(light))
@@ -329,6 +396,15 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
 
         _candidates.Add(new(light, position, rotation));
     }
+
+    private float ReachSquared(SharedPointLightComponent light)
+    {
+        var reach = Reach(light);
+        return reach * reach;
+    }
+
+    private float Reach(SharedPointLightComponent light)
+        => MathF.Min(light.Radius, _maxLightRadius) + light.Offset.Length();
 
     private bool TryEvaluate(Candidate candidate, Vector2 target, IlluminationQuery query, out LightContribution contribution)
     {
@@ -440,22 +516,47 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
         return image;
     }
 
-    private bool IsOccluded(MapId map, Vector2 from, Vector2 to)
+    private void PrepareOccluderTrees(MapCoordinates point)
     {
-        var delta = to - from;
+        var bounds = new Box2(point.Position, point.Position).Enlarged(_maxLightRadius + OffsetMargin);
+        foreach (var (uid, tree) in _occluder.GetIntersectingTrees(point.MapId, bounds))
+        {
+            var invMatrix = _transform.GetInvWorldMatrix(uid);
+            _occluderTrees.Add(new(tree, invMatrix));
+        }
+    }
+
+    private bool IsOccluded(Vector2 from, Vector2 to)
+    {
+        var delta = from - to;
         var length = delta.Length();
         if (MathHelper.CloseTo(length, 0f))
             return false;
 
-        _occluderHits.Clear();
-        _occluder.IntersectRay(_occluderHits, map, new Ray(to, -delta / length), length);
-
-        foreach (var hit in _occluderHits)
+        foreach (var tree in _occluderTrees)
         {
-            if (hit.Distance < length - OwnOccluderTolerance)
+            var start = Vector2.Transform(to, tree.InvMatrix);
+            var end = Vector2.Transform(from, tree.InvMatrix);
+            var state = new OcclusionState(new Ray(start, (end - start) / length), length - OwnOccluderTolerance);
+
+            tree.Tree.Tree.QueryAabb(ref state, OcclusionCallback, new Box2(Vector2.Min(start, end), Vector2.Max(start, end)), approx: true);
+            if (state.Hit)
                 return true;
         }
 
+        return false;
+    }
+
+    private static bool OcclusionCallback(ref OcclusionState state, in ComponentTreeEntry<OccluderComponent> entry)
+    {
+        var position = entry.Transform.LocalPosition;
+        var bounds = new Box2Rotated(entry.Component.LocalBounds.Translated(position), entry.Transform.LocalRotation, position)
+            .CalcBoundingBox();
+
+        if (!state.Ray.Intersects(bounds, out var distance, out _) || distance >= state.MaxDistance)
+            return true;
+
+        state.Hit = true;
         return false;
     }
 
@@ -528,6 +629,10 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
     }
 
     #endregion
+
+    private record struct OcclusionState(Ray Ray, float MaxDistance, bool Hit = false);
+
+    private readonly record struct OccluderTree(OccluderTreeComponent Tree, Matrix3x2 InvMatrix);
 
     private sealed record MaskImage(int Width, int Height, byte[] Values);
 
