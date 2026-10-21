@@ -46,6 +46,7 @@ using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
+using Content.Shared.Stunnable;
 using Content.Shared.UserInterface;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Systems;
@@ -101,6 +102,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     [Dependency] private ItemToggleSystem _itemToggle = default!;
     [Dependency] private SharedMoverController _mover = default!;
     [Dependency] private SharedRemoteControlConsoleSystem _sharedRemoteControl = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private PullController _pullController = default!;
@@ -130,6 +132,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 subs.Event<RemoteControlInventoryMessage>(OnRemoteInventory);
             });
         CommandBinds.Builder
+            .BindBefore(ContentKeyFunctions.ToggleKnockdown,
+                new RemoteToggleKnockdownInputCmdHandler(this),
+                typeof(SharedStunSystem))
             .BindBefore(ContentKeyFunctions.ReleasePulledObject,
                 new RemoteReleasePulledObjectInputCmdHandler(this),
                 typeof(PullingSystem))
@@ -1066,6 +1071,27 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         }
 
         return true;
+    }
+
+    private bool OnRemoteToggleKnockdownInput(ICommonSession? session, BoundKeyState state)
+    {
+        if (session?.AttachedEntity is not { Valid: true } actor
+            || !TryGetControlledEntity(actor, out var remoteEntity))
+            return false;
+
+        if (state == BoundKeyState.Down && CanRemoteControlledEntityAct(remoteEntity))
+            _stun.ToggleKnockdown(remoteEntity);
+
+        return true;
+    }
+
+    private sealed class RemoteToggleKnockdownInputCmdHandler(RemoteControlConsoleSystem system) : InputCmdHandler
+    {
+        public override bool HandleCmdMessage(
+            IEntityManager entManager,
+            ICommonSession? session,
+            IFullInputCmdMessage message) =>
+            system.OnRemoteToggleKnockdownInput(session, message.State);
     }
 
     private sealed class RemoteReleasePulledObjectInputCmdHandler(RemoteControlConsoleSystem system) : InputCmdHandler

@@ -20,6 +20,8 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Power.Components;
 using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Standing;
+using Content.Shared.Stunnable;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Input;
@@ -492,6 +494,69 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
         {
             await SetMovementKey(DirectionFlag.East, BoundKeyState.Up);
             await RunTicks(1);
+            await Server.WaitPost(() =>
+            {
+                if (SEntMan.EntityExists(SPlayer))
+                    SEntMan.EventBus.RaiseLocalEvent(SPlayer,
+                        new BoundUIClosedEvent(RemoteControlUIKey.Key, SPlayer, SPlayer));
+            });
+            await RunTicks(1);
+        }
+    }
+
+    [Test]
+    public async Task ToggleKnockdownKeyActsOnRemoteBorg()
+    {
+        EntityUid controlledBorg = default;
+
+        await Server.WaitAssertion(() =>
+        {
+            var coordinates = SEntMan.GetCoordinates(PlayerCoords);
+            controlledBorg = SpawnBorg(coordinates.Offset(new Vector2(4f, 0f)), out _);
+
+            var mindSystem = Server.System<SharedMindSystem>();
+            var mindId = mindSystem.CreateMind(ServerSession.UserId);
+            mindSystem.TransferTo(mindId, SPlayer);
+        });
+
+        await RunTicks(5);
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                var remoteControl = new AIRemoteControlActionEvent { Target = controlledBorg };
+                SEntMan.EventBus.RaiseLocalEvent(SPlayer, remoteControl);
+                Assert.That(remoteControl.Handled, Is.True,
+                    "The AI should be able to remotely control the borg.");
+            });
+
+            await PressKey(ContentKeyFunctions.ToggleKnockdown);
+            await RunTicks(1);
+
+            await Server.WaitAssertion(() =>
+            {
+                Assert.That(SEntMan.GetComponent<StandingStateComponent>(controlledBorg).Standing, Is.False,
+                    "The knockdown key should put the remotely controlled borg down.");
+                Assert.That(SEntMan.HasComponent<KnockedDownComponent>(controlledBorg), Is.True);
+                Assert.That(SEntMan.GetComponent<StandingStateComponent>(SPlayer).Standing, Is.True,
+                    "The knockdown key should not affect the controller.");
+                Assert.That(SEntMan.HasComponent<KnockedDownComponent>(SPlayer), Is.False);
+            });
+
+            await RunSeconds(1f);
+            await PressKey(ContentKeyFunctions.ToggleKnockdown);
+            await RunSeconds(3f);
+
+            await Server.WaitAssertion(() =>
+            {
+                Assert.That(SEntMan.GetComponent<StandingStateComponent>(controlledBorg).Standing, Is.True,
+                    "The knockdown key should also allow the remote borg to stand back up.");
+                Assert.That(SEntMan.HasComponent<KnockedDownComponent>(controlledBorg), Is.False);
+            });
+        }
+        finally
+        {
             await Server.WaitPost(() =>
             {
                 if (SEntMan.EntityExists(SPlayer))
