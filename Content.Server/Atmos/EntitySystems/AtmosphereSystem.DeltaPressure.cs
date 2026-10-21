@@ -43,12 +43,12 @@ public sealed partial class AtmosphereSystem
     private void ProcessDeltaPressureEntityBulk(GridAtmosphereComponent gridAtmosComp, int start, int end)
     {
         /*
-        To make our comparisons a little bit faster, we take advantage of SIMD-accelerated methods.
-        This requires that we load our data into spans to process them in bulk.
+         To make our comparisons a little bit faster, we take advantage of SIMD-accelerated methods.
+         This requires that we load our data into spans to process them in bulk.
 
-        This code takes advantage of ArrayPool so we can super easily reuse memory per tick
-        in threading contexts, otherwise this will literally obliterate GC with a nuclear bomb.
-        */
+         This code takes advantage of ArrayPool so we can super easily reuse memory per tick
+         in threading contexts, otherwise this will literally obliterate GC with a nuclear bomb.
+         */
 
         var entList = gridAtmosComp.DeltaPressureEntities;
         var len = end - start;
@@ -113,10 +113,10 @@ public sealed partial class AtmosphereSystem
             GetBulkTileAtmospherePressures(tiles, pressures);
 
             /*
-            This entity could be airtight but still be able to contain air on the tile it's on (ex. directional windows).
-            As such, substitute the pressure of the pressure on top of the entity for the directions that it can accept air from.
-            (Or rather, don't do so for directions that it blocks air from.)
-            */
+             This entity could be airtight but still be able to contain air on the tile it's on (ex. directional windows).
+             As such, substitute the pressure of the pressure on top of the entity for the directions that it can accept air from.
+             (Or rather, don't do so for directions that it blocks air from.)
+             */
             for (var i = 0; i < len; i++)
             {
                 var airtight = airtightCompsArr[i];
@@ -140,11 +140,11 @@ public sealed partial class AtmosphereSystem
             }
 
             /*
-            In order to perform SIMD ops we load the values into opposing pairs, where:
-            groupA: North, East, South, West
-            groupB: South, West, North, East
-            That way NumericsHelpers can just do vectorized operations on them super easily.
-            */
+             In order to perform SIMD ops we load the values into opposing pairs, where:
+             groupA: North, East, South, West
+             groupB: South, West, North, East
+             That way NumericsHelpers can just do vectorized operations on them super easily.
+             */
             for (var i = 0; i < len; i++)
             {
                 var presBase = i * dirs;
@@ -197,71 +197,6 @@ public sealed partial class AtmosphereSystem
             ArrayPool<float>.Shared.Return(groupBArr);
             ArrayPool<float>.Shared.Return(groupMaxArr);
             ArrayPool<float>.Shared.Return(pressuresArr);
-        }
-    }
-
-    /// <summary>
-    /// A DeltaPressure helper method that retrieves the pressures of all gas mixtures
-    /// in the given array of <see cref="TileAtmosphere"/>s, and stores the results in the
-    /// provided <paramref name="pressures"/> span.
-    /// </summary>
-    /// <param name="tiles">The tiles span to find the pressures of.</param>
-    /// <param name="pressures">The span to store the pressures to - this should be the same length
-    /// as the tile array.</param>
-    /// <exception cref="ArgumentException">Thrown when the length of the provided spans do not match.</exception>
-    private static void GetBulkTileAtmospherePressures(Span<TileAtmosphere?> tiles, Span<float> pressures)
-    {
-        // this shit is internal because I don't even trust myself
-        if (tiles.Length != pressures.Length)
-            throw new ArgumentException("Length of Tiles and Pressures span must be the same!");
-
-        var len = pressures.Length;
-
-        // Once again, ArrayPool might return arrays that are longer than the length.
-        // We really need them to be all the same length, so slice them here.
-        var arr1 = ArrayPool<float>.Shared.Rent(len);
-        var arr2 = ArrayPool<float>.Shared.Rent(len);
-        var arr3 = ArrayPool<float>.Shared.Rent(len);
-
-        var mixtVol = arr1.AsSpan(0, len);
-        var mixtTemp = arr2.AsSpan(0, len);
-        var mixtMoles = arr3.AsSpan(0, len);
-
-        try
-        {
-            for (var i = 0; i < len; i++)
-            {
-                if (tiles[i] is not { Air: { } mixture })
-                {
-                    // To prevent any NaN/Div/0 errors, we just bite the bullet
-                    // and set everything to the lowest possible value.
-                    mixtVol[i] = 1;
-                    mixtTemp[i] = 1;
-                    mixtMoles[i] = float.Epsilon;
-                    continue;
-                }
-
-                mixtVol[i] = mixture.Volume;
-                mixtTemp[i] = mixture.Temperature;
-                mixtMoles[i] = mixture.TotalMoles;
-            }
-
-            /*
-            Retrieval of single tile pressures requires calling a get method for each tile,
-            which does a bunch of scalar operations.
-
-            So we go ahead and batch-retrieve the pressures of all tiles
-            and process them in bulk.
-            */
-            NumericsHelpers.Multiply(mixtMoles, Atmospherics.R);
-            NumericsHelpers.Multiply(mixtMoles, mixtTemp);
-            NumericsHelpers.Divide(mixtMoles, mixtVol, pressures);
-        }
-        finally
-        {
-            ArrayPool<float>.Shared.Return(arr1);
-            ArrayPool<float>.Shared.Return(arr2);
-            ArrayPool<float>.Shared.Return(arr3);
         }
     }
 
