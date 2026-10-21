@@ -29,6 +29,7 @@
       message: wizard-war
       globalAnnounce: true
       ignoreASpace: true
+      globalAnnounce: true
       sound:
        path: /Audio/Announcements/attention.ogg
       color: yellow

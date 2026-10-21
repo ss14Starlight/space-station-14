@@ -52,4 +52,4 @@
     price: 1000
   - type: Contraband
     allowedDepartments: [ Security ]
-    severity: Restricted
+    tier: Tier1

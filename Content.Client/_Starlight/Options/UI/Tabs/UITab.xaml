@@ -1,76 +1,80 @@
 <tabs:UITab
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     xmlns:sui="clr-namespace:Content.Client._Starlight.Options.UI"
     xmlns:tabs="clr-namespace:Content.Client._Starlight.Options.UI.Tabs"
     xmlns:ui="clr-namespace:Content.Client.Options.UI">
     <BoxContainer Orientation="Vertical">
-        <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
-            <BoxContainer
-                Margin="8,8,8,8"
-                Orientation="Vertical"
-                VerticalExpand="True">
+        <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False">
+            <BoxContainer Margin="0 0 8 8" Orientation="Vertical">
+                <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-style-theme'}" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
+                    <BoxContainer Orientation="Vertical" Margin="10 8" SeparationOverride="10">
+                        <sui:StyleThemePicker Name="ThemePicker" />
+                        <sui:AccentPicker Name="AccentPicker" />
+                    </BoxContainer>
+                </PanelContainer>
 
-                <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-ui-style'}" />
-                <ui:OptionDropDown Name="DropDownHudTheme" Title="{Loc 'ui-options-hud-theme'}" />
-                <ui:OptionDropDown Name="DropDownHudLayout" Title="{Loc 'ui-options-hud-layout'}" />
-                <ui:OptionSlider Name="SeparatedChatWidthSlider" Title="{Loc 'ui-options-chat-width'}" />
+                <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-ui-style'}" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
+                    <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
+                        <sui:OptionDropDown Name="DropDownHudTheme" Title="{Loc 'ui-options-hud-theme'}" />
+                        <sui:OptionDropDown Name="DropDownHudLayout" Title="{Loc 'ui-options-hud-layout'}" />
+                        <sui:OptionDropDown Name="DropDownUIScale" Title="{Loc 'ui-options-scale-label'}" />
+                        <sui:OptionSlider Name="SeparatedChatWidthSlider" Title="{Loc 'ui-options-chat-width'}" />
+                        <sui:OptionSlider Name="ChatWindowOpacitySlider" Title="{Loc 'ui-options-chat-window-opacity'}" />
+                    </BoxContainer>
+                </PanelContainer>
 
-                <PanelContainer Margin="0,8,0,8">
-                    <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxFlat
-                            BackgroundColor="#353540"
-                            BorderColor="#2E2E35"
-                            BorderThickness="1" />
-                    </PanelContainer.PanelOverride>
+                <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-lobby-label'}" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
+                    <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
+                        <sui:OptionDropDown Name="DropDownLobbyBackground" Title="{Loc 'ui-options-lobby-background'}" />
+                        <sui:OptionSlider Name="LobbyOpacitySlider" Title="{Loc 'ui-options-lobby-opacity'}" />
+                        <CheckBox Name="LobbyJobColumnsCheckBox" Text="{Loc 'ui-options-lobby-job-columns'}" ToolTip="{Loc 'ui-options-lobby-job-columns-tooltip'}" />
+                    </BoxContainer>
+                </PanelContainer>
 
-                    <BoxContainer Margin="6" Orientation="Vertical">
-                        <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-ui-ranged-sight'}" />
-                        <PanelContainer Margin="0,6,0,6">
-                            <PanelContainer.PanelOverride>
-                                <gfx:StyleBoxFlat
-                                    BackgroundColor="#24242b"
-                                    BorderColor="#2E2E35"
-                                    BorderThickness="1" />
-                            </PanelContainer.PanelOverride>
+                <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-menu-bar-label'}" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
+                    <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
+                        <sui:OptionDropDown Name="DropDownMenuBarKeyHints" Title="{Loc 'ui-options-menu-bar-key-hints'}" />
+                        <PanelContainer StyleClasses="LowDivider" Margin="0 4" />
+                        <sui:BarLayoutEditor Name="MenuBarLayoutEditor" />
+                    </BoxContainer>
+                </PanelContainer>
 
-                            <BoxContainer
-                                Margin="6"
-                                HorizontalAlignment="Center"
-                                Orientation="Horizontal">
-                                <BoxContainer HorizontalAlignment="Center" Orientation="Vertical">
-                                    <Label
-                                        HorizontalAlignment="Center"
-                                        StyleClasses="LabelSecondaryText"
-                                        Text="{Loc 'ui-options-ranged-sight'}" />
-                                    <sui:OptionsSightPreview Name="RangedSightPreview" Access="Public" />
-                                </BoxContainer>
-
-                                <Control MinSize="12 1" />
-
-                                <BoxContainer HorizontalAlignment="Center" Orientation="Vertical">
-                                    <Label
-                                        HorizontalAlignment="Center"
-                                        StyleClasses="LabelSecondaryText"
-                                        Text="{Loc 'ui-options-melee-sight'}" />
-                                    <sui:OptionsSightPreview Name="MeleeSightPreview" Access="Public" />
-                                </BoxContainer>
+                <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-ui-ranged-sight'}" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel">
+                    <BoxContainer Margin="10 6" Orientation="Vertical" SeparationOverride="4">
+                        <BoxContainer HorizontalAlignment="Center" Orientation="Horizontal" Margin="0 4">
+                            <BoxContainer Orientation="Vertical">
+                                <Label HorizontalAlignment="Center" StyleClasses="LabelSubText" Text="{Loc 'ui-options-ranged-sight'}" />
+                                <sui:OptionsSightPreview Name="RangedSightPreview" Access="Public" />
                             </BoxContainer>
-                        </PanelContainer>
+                            <Control MinSize="12 1" />
+                            <BoxContainer Orientation="Vertical">
+                                <Label HorizontalAlignment="Center" StyleClasses="LabelSubText" Text="{Loc 'ui-options-melee-sight'}" />
+                                <sui:OptionsSightPreview Name="MeleeSightPreview" Access="Public" />
+                            </BoxContainer>
+                        </BoxContainer>
 
-                        <Label Text="{Loc 'ui-options-ui-sight-hash'}" />
-                        <LineEdit Name="SightsOptionsHash" />
-
-                        <ui:OptionDropDown Name="DropDownRangedSight" Title="{Loc 'ui-options-ranged-sight'}" />
-                        <ui:OptionDropDown Name="DropDownMeleeSight" Title="{Loc 'ui-options-melee-sight'}" />
-                        <ui:OptionSlider Name="RangedSightScaleSlider" Title="{Loc 'ui-options-ranged-sight-scale'}" />
-                        <ui:OptionSlider Name="RangedSightOffsetSlider" Title="{Loc 'ui-options-ranged-sight-offset'}" />
+                        <sui:OptionDropDown Name="DropDownRangedSight" Title="{Loc 'ui-options-ranged-sight'}" />
+                        <sui:OptionDropDown Name="DropDownMeleeSight" Title="{Loc 'ui-options-melee-sight'}" />
+                        <sui:OptionSlider Name="RangedSightScaleSlider" Title="{Loc 'ui-options-ranged-sight-scale'}" />
+                        <sui:OptionSlider Name="RangedSightOffsetSlider" Title="{Loc 'ui-options-ranged-sight-offset'}" />
                         <CheckBox Name="RangedSightRotationCheckBox" Text="{Loc 'ui-options-ranged-sight-rotation'}" />
                         <CheckBox Name="MeleeSightRotationCheckBox" Text="{Loc 'ui-options-melee-sight-rotation'}" />
-
+                        <sui:OptionDropDown Name="DropDownHeldItemShowMode" Title="{Loc 'ui-options-held-item-show-mode'}" />
+                        <CheckBox Name="SightBoltIndicatorCheckBox" Text="{Loc 'ui-options-sight-bolt-indicator'}" />
+                        <CheckBox Name="SightJamIndicatorCheckBox" Text="{Loc 'ui-options-sight-jam-indicator'}" />
+                        <CheckBox Name="SightHeatIndicatorCheckBox" Text="{Loc 'ui-options-sight-heat-indicator'}" />
                         <ui:OptionColorSlider Name="SightMainColorSlider" Title="{Loc 'ui-options-sight-main-color'}" />
                         <ui:OptionColorSlider Name="SightSecondColorSlider" Title="{Loc 'ui-options-sight-second-color'}" />
+                        <BoxContainer Orientation="Horizontal" Margin="0 4 0 0">
+                            <Label Text="{Loc 'ui-options-ui-sight-hash'}" HorizontalExpand="True" VerticalAlignment="Center" />
+                            <LineEdit Name="SightsOptionsHash" MinWidth="240" />
+                        </BoxContainer>
                     </BoxContainer>
                 </PanelContainer>
             </BoxContainer>

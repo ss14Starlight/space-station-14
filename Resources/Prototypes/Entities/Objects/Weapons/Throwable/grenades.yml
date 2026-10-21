@@ -24,7 +24,7 @@
 - type: entity
   name: flashbang
   description: Eeeeeeeeeeeeeeeeeeeeee.
-  parent: [ FragileGrenadeBase, TimerGrenadeBase, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier2, FragileGrenadeBase, TimerGrenadeBase, BaseSecurityContraband ] # Blimpuf
   id: GrenadeFlashBang
   components:
   - type: Sprite
@@ -465,3 +465,4 @@
         volume: 12
   - type: StaticPrice
     price: 50
+
