@@ -10,3 +10,32 @@
     crushDamage:
       types:
         Blunt: 15
+
+- type: !PartialOnly entity
+  id: VendingMachine
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.VendingMachineUiKey.Key:
+        type: VendingMachineKeypadBoundUserInterface
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - VendingMachineMedical
+    - VendingMachineWallMedical
+    - VendingMachineMedicalSecurity
+    - VendingMachineMedicalSyndicate
+    - VendingMachineWallMedicalSyndicate
+    - VendingMachineMedicalDeforest
+    - VendingMachineWallMedicalDeforest
+    - VendingMachineMedicalGold
+    - VendingMachineWallMedicalGold
+    - VendingMachineChemicals
+    - VendingMachineChemicalsSyndicate
+    - VendingMachineRobotics
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.VendingMachineUiKey.Key:
+        type: VendingMachineBoundUserInterface
