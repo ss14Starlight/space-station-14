@@ -75,6 +75,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         InitializeRoundSummary();
         InitializeViewer();
         InitializeLaws();
+        InitializeAudio();
     }
 
     public override void Shutdown()
@@ -156,6 +157,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         UpdateRadar(frameTime);
         UpdateRefollow();
         UpdateSolutionWindows(frameTime);
+        UpdateMutedSounds();
     }
 
     public override void Update(float frameTime)
