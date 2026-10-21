@@ -1319,6 +1319,7 @@
   minLimit: 0
   loadouts:
   - ScientistTie
+  - RetroTie
 
 - type: loadoutGroup
   id: ScientistJumpsuit

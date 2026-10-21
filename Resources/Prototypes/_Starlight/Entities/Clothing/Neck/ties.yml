@@ -14,6 +14,12 @@
     storedSprite:
       state: storage
       sprite: _Starlight/Clothing/Neck/Ties/bluetie.rsi
+  - type: Tag
+    tags:
+      - ClothMade
+      - Recyclable
+      - HamsterWearable
+      - WhitelistChameleon
 
 - type: entity
   parent: ClothingNeckBase
@@ -29,6 +35,12 @@
     storedSprite:
       state: storage
       sprite: _Starlight/Clothing/Neck/Ties/browntie.rsi
+  - type: Tag
+    tags:
+      - ClothMade
+      - Recyclable
+      - HamsterWearable
+      - WhitelistChameleon
 
 - type: entity
   parent: ClothingNeckBase
@@ -44,6 +56,12 @@
     storedSprite:
       state: storage
       sprite: _Starlight/Clothing/Neck/Ties/greentie.rsi
+  - type: Tag
+    tags:
+      - ClothMade
+      - Recyclable
+      - HamsterWearable
+      - WhitelistChameleon
 
 - type: entity
   parent: ClothingNeckBase
@@ -59,6 +77,12 @@
     storedSprite:
       state: storage
       sprite: _Starlight/Clothing/Neck/Ties/greytie.rsi
+  - type: Tag
+    tags:
+      - ClothMade
+      - Recyclable
+      - HamsterWearable
+      - WhitelistChameleon
 
 - type: entity
   parent: ClothingNeckBase
@@ -73,4 +97,25 @@
   - type: Item
     storedSprite:
       state: storage
-      sprite: _Starlight/Clothing/Neck/Ties/LGBTie.rsi
+      sprite: _Starlight/Clothing/Neck/Ties/LGBTie.rsisdd
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckTieRetro
+  name: retro tie
+  description: Why do we all have to wear these ridiculous ties?
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Neck/Ties/retrotie.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Neck/Ties/retrotie.rsi
+    - type: Item
+      storedSprite:
+        state: storage
+        sprite: _Starlight/Clothing/Neck/Ties/retrotie.rsi
+    - type: Tag
+      tags:
+        - ClothMade
+        - Recyclable
+        - HamsterWearable
+        - WhitelistChameleon
