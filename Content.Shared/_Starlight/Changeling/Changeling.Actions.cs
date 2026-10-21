@@ -27,6 +27,7 @@ public sealed partial class ChangelingTransformCycleEvent : InstantActionEvent {
 public sealed partial class ChangelingTransformEvent : InstantActionEvent { }
 public sealed partial class EnterStasisEvent : InstantActionEvent { }
 public sealed partial class ExitStasisEvent : InstantActionEvent { }
+public sealed partial class ToggleChangelingBreathingEvent : InstantActionEvent { }
 
 #endregion
 

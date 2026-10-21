@@ -440,6 +440,24 @@
     useInLesserForm: true
 
 - type: entity
+  id: ActionToggleChangelingBreathing
+  name: Respiratory Control
+  description: Toggle breathing. While disabled, you do not inhale gases or suffocate. Costs no chemicals or biomass.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    useDelay: 1
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
+      state: space_adaptation
+    checkCanInteract: false
+    checkConsciousness: false
+  - type: InstantAction
+    event: !type:ToggleChangelingBreathingEvent {}
+  # No ChangelingAction: respiration is independent of biomass, chemicals and form.
+
+- type: entity
   id: ActionAugmentedEyesight
   name: Augmented Eyesight
   description: Toggle flash protection. Must be disabled in order to use other eye augments. # Starlight

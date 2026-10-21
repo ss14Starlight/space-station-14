@@ -215,6 +215,20 @@
 # utility
 
 - type: listing
+  id: EvolutionMenuUtilityBreathing
+  name: evolutionmenu-utility-breathing-name
+  description: evolutionmenu-utility-breathing-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: space_adaptation }
+  productAction: ActionToggleChangelingBreathing
+  cost:
+    EvolutionPoint: 0
+  categories:
+  - ChangelingAbilityUtility
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: EvolutionMenuUtilityPanacea
   name: evolutionmenu-utility-panacea-name
   description: evolutionmenu-utility-panacea-desc

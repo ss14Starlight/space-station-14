@@ -7,6 +7,11 @@ evolutionmenu-combat-armblade-plus-desc =
     Costs 30 chemicals each time you summon it, and each time you retract it.
 
 # Utility
+evolutionmenu-utility-breathing-name = Respiratory Control
+evolutionmenu-utility-breathing-desc =
+    Toggle breathing at will. While disabled, you do not inhale gases or suffocate.
+    Breathing is enabled by default. Costs no chemicals or biomass and works in Lesser Form.
+
 evolutionmenu-utility-night-eyesight-name = Night Vision Eyesight
 evolutionmenu-utility-night-eyesight-desc =
     Evolve your eyes to be able to see in the dark.

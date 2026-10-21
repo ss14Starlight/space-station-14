@@ -66,6 +66,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         SubscribeLocalEvent<ChangelingComponent, StingExtractDNAEvent>(OnStingExtractDNA);
         SubscribeLocalEvent<ChangelingComponent, EnterStasisEvent>(OnEnterStasis);
         SubscribeLocalEvent<ChangelingComponent, ExitStasisEvent>(OnExitStasis);
+        SubscribeLocalEvent<ChangelingComponent, ToggleChangelingBreathingEvent>(OnToggleBreathing);
 
         SubscribeLocalEvent<ChangelingComponent, CreateBoneShardEvent>(OnCreateBoneShard);
         SubscribeLocalEvent<ChangelingComponent, ToggleChitinousArmorEvent>(OnToggleArmor);
@@ -404,6 +405,18 @@ public sealed partial class ChangelingSystem : EntitySystem
     #endregion
 
     #region Utilities
+
+    private void OnToggleBreathing(EntityUid uid, ChangelingComponent comp, ref ToggleChangelingBreathingEvent args)
+    {
+        if (args.Handled || !_respirator.SetEnabled(uid, !comp.BreathingEnabled))
+            return;
+
+        comp.BreathingEnabled = !comp.BreathingEnabled;
+        _actions.SetToggled(args.Action.AsNullable(), !comp.BreathingEnabled);
+        Dirty(uid, comp);
+        _popup.PopupEntity(Loc.GetString(comp.BreathingEnabled ? "changeling-breathing-enabled" : "changeling-breathing-disabled"), uid, uid);
+        args.Handled = true;
+    }
 
     private void OnAnatomicPanacea(EntityUid uid, ChangelingComponent comp, ref ActionAnatomicPanaceaEvent args)
     {

@@ -79,6 +79,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private DamageableSystem _damage = default!;
     [Dependency] private BloodstreamSystem _blood = default!;
+    [Dependency] private RespiratorSystem _respirator = default!;
     [Dependency] private ISerializationManager _serialization = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private HumanoidAppearanceSystem _humanoid = default!;
@@ -147,7 +148,10 @@ public sealed partial class ChangelingSystem : EntitySystem
             {
                 comp.ChemicalNextUpdateTime = _timing.CurTime + comp.ChemicalUpdateCooldown;
                 UpdateChemicals(uid, comp);
-                UpdateAbilities(uid, comp); //probably overkill since I dont think chemicals affect abilities but whatever, im cleaning up shitcode
+                // Stasis drains once per chemical tick, not again on biomass updates.
+                if (comp.IsInStasis)
+                    comp.Biomass = Math.Max(0, comp.Biomass - comp.StasisDrain * (float) comp.ChemicalUpdateCooldown.TotalSeconds);
+                UpdateAbilities(uid, comp);
             }
 
             if (_timing.CurTime >= comp.BiomassNextUpdateTime)
@@ -180,12 +184,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         var random = _rand.Prob(0.5f);
 
-        if (comp.Biomass <= 0)
-        {
-            // game over, man
-            _damage.TryChangeDamage(uid, new DamageSpecifier(_proto.Index(AbsorbedDamageGroup), 50), true);
-        }
-        else if (comp.Biomass <= comp.MaxBiomass * comp.BiomassDeficitVomitPercent)
+        if (comp.Biomass <= comp.MaxBiomass * comp.BiomassDeficitVomitPercent)
         {
             // THE FUNNY ITCH IS REAL!!
             comp.BonusChemicalRegen = 3f;
@@ -246,15 +245,10 @@ public sealed partial class ChangelingSystem : EntitySystem
             }
         }
 
-        if (comp.IsInStasis)
+        if (comp.IsInStasis && comp.Biomass <= 0)
         {
-            if (comp.Biomass > comp.StasisDrain)
-                comp.Biomass -= comp.StasisDrain;
-            else
-            {
-                comp.IsInStasis = false;
-                _mobState.ChangeMobState(uid, MobState.Dead);
-            }
+            comp.IsInStasis = false;
+            _mobState.ChangeMobState(uid, MobState.Dead);
         }
     }
 
@@ -431,6 +425,8 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         newComp.Biomass = comp.Biomass;
         newComp.MaxBiomass = comp.MaxBiomass;
+        newComp.BreathingEnabled = comp.BreathingEnabled;
+        _respirator.SetEnabled(target, newComp.BreathingEnabled);
 
         newComp.IsInLesserForm = comp.IsInLesserForm;
         newComp.CurrentForm = comp.CurrentForm;
@@ -574,6 +570,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         RemComp<HungerComponent>(uid);
         RemComp<ThirstComponent>(uid);
+        _respirator.SetEnabled(uid, comp.BreathingEnabled);
         //EnsureComp<ZombieImmuneComponent>(uid); Starlight, we're bringing Lings into Zombies!
 
         // add actions
@@ -620,7 +617,11 @@ public sealed partial class ChangelingSystem : EntitySystem
         damageSpec.ClampMax(200); // we never die. UNLESS??
     }
 
-    private void OnComponentRemove(Entity<ChangelingComponent> ent, ref ComponentRemove args) => RemoveAllChangelingEquipment(ent, ent.Comp);
+    private void OnComponentRemove(Entity<ChangelingComponent> ent, ref ComponentRemove args)
+    {
+        RemoveAllChangelingEquipment(ent, ent.Comp);
+        _respirator.SetEnabled(ent.Owner, true);
+    }
 
 
     #endregion

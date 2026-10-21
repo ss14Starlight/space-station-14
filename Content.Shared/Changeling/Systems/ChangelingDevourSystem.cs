@@ -11,6 +11,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
@@ -35,6 +36,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!;
     [Dependency] private SharedChangelingIdentitySystem _changelingIdentitySystem = default!;
     [Dependency] private InventorySystem _inventorySystem = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
@@ -49,6 +51,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         SubscribeLocalEvent<ChangelingDevourComponent, ChangelingDevourActionEvent>(OnDevourAction);
         SubscribeLocalEvent<ChangelingDevourComponent, ChangelingDevourWindupDoAfterEvent>(OnDevourWindup);
         SubscribeLocalEvent<ChangelingDevourComponent, ChangelingDevourConsumeDoAfterEvent>(OnDevourConsume);
+        SubscribeLocalEvent<ChangelingDevourComponent, DoAfterAttemptEvent<ChangelingDevourConsumeDoAfterEvent>>(OnDevourConsumeAttempt);
         SubscribeLocalEvent<ChangelingDevourComponent, ComponentShutdown>(OnShutdown);
     }
 
@@ -100,14 +103,8 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         args.Handled = true;
         var target = args.Target;
 
-        if (target == ent.Owner)
-            return; // don't eat yourself
-
-        if (!_mobState.IsDead(target))
-        {
-            _popupSystem.PopupClient(Loc.GetString("changeling-devour-attempt-failed-not-dead"), args.Performer, args.Performer, PopupType.Medium);
+        if (target == ent.Owner || !HasComp<MobStateComponent>(target))
             return;
-        }
 
         if (HasComp<RottingComponent>(target))
         {
@@ -182,6 +179,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player} began to devour {ToPrettyString(target):player}'s identity");
 
+        ent.Comp.DevourDamageProgress = 0f;
         _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager,
             ent,
             ent.Comp.DevourConsumeTime,
@@ -191,13 +189,41 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
             used: ent)
         {
             BreakOnMove = true,
+            AttemptFrequency = AttemptFrequency.EveryTick,
             CancelDuplicate = true,
             DuplicateCondition = DuplicateConditions.None,
         });
     }
 
+    private void OnDevourConsumeAttempt(Entity<ChangelingDevourComponent> ent,
+        ref DoAfterAttemptEvent<ChangelingDevourConsumeDoAfterEvent> args)
+    {
+        if (_net.IsClient || args.Cancelled || args.DoAfter.Args.Delay <= TimeSpan.Zero
+            || args.DoAfter.Args.Target is not { } target)
+            return;
+
+        // Preserve the existing damage timing for corpses.
+        if (_mobState.IsDead(target))
+            return;
+
+        // Keep one continuous progress bar, with damage once per second after the windup.
+        var seconds = Math.Floor((_timing.CurTime - args.DoAfter.StartTime).TotalSeconds);
+        var progress = (float) Math.Clamp(seconds / args.DoAfter.Args.Delay.TotalSeconds, 0, 1);
+        ApplyDevourDamage(ent, target, progress);
+    }
+
+    private void ApplyDevourDamage(Entity<ChangelingDevourComponent> ent, EntityUid target, float progress)
+    {
+        if (_net.IsClient || progress <= ent.Comp.DevourDamageProgress)
+            return;
+
+        var damage = ent.Comp.DevourDamage * (progress - ent.Comp.DevourDamageProgress);
+        ent.Comp.DevourDamageProgress = progress;
+        _damageable.ChangeDamage(target, damage, true, true, ent.Owner);
+    }
+
     // Second doafter finished.
-    // Save the identity and deal more damage.
+    // Finish the damage, kill a living victim and save its identity.
     private void OnDevourConsume(Entity<ChangelingDevourComponent> ent, ref ChangelingDevourConsumeDoAfterEvent args)
     {
         args.Handled = true;
@@ -209,9 +235,18 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         if (args.Target is not { } target)
             return;
 
-        _damageable.ChangeDamage(target, ent.Comp.DevourDamage, true, true, ent.Owner);
+        ApplyDevourDamage(ent, target, 1f);
 
-        if (!_mobState.IsDead(target))
+        if (_net.IsServer && !_mobState.IsDead(target)
+            && _mobThreshold.TryGetDeadThreshold(target, out var deathThreshold))
+        {
+            // Use the victim's actual death threshold rather than a fixed lethal dose.
+            var remaining = FixedPoint2.Max(FixedPoint2.Zero, deathThreshold.Value - _damageable.GetTotalDamage(target)) + 1;
+            var damage = ent.Comp.DevourDamage * ((float) remaining / (float) ent.Comp.DevourDamage.GetTotal());
+            _damageable.ChangeDamage(target, damage, ignoreResistances: true, origin: ent.Owner, ignoreGlobalModifiers: true);
+        }
+
+        if (_net.IsServer && !_mobState.IsDead(target))
         {
             _popupSystem.PopupClient(Loc.GetString("changeling-devour-attempt-failed-not-dead"), args.User, args.User, PopupType.Medium);
             _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player} unsuccessfully devoured {ToPrettyString(args.Target):player}'s identity");
