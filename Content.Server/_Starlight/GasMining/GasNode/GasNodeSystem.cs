@@ -71,6 +71,7 @@ public sealed partial class GasNodeSystem : SharedGasNodeSystem
     {
         var tempRand = _random.NextFloat();
         var temp = 2.7f + MathF.Pow(370.45f * (tempRand / (1.0f - tempRand)), 0.45f) + (74626.95f * MathF.Pow(tempRand, 15));
+        temp = float.Clamp(temp, 2.7f, 75000f);
         entity.Comp.Temperature = temp;
 
         var purity = RollPurity();
