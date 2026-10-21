@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Each hellportal will now have its own mob spawn limit, instead of having one shared across all of them.
-    type: Tweak
-  id: 409263
-  time: '2026-10-07T17:50:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6547
-- author: wonderfulnewworld
-  changes:
   - message: Health HUDs/medical cyborgs can now see the health of organic hellportal mobs, Diagnostic HUDs/Engineering cyborgs can now see the health of inorganic hellportal mobs.
     type: Tweak
   id: 409264
@@ -2883,4 +2876,11 @@ Entries:
   id: 409662
   time: '2026-10-21T14:59:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6759
+- author: Dragometh
+  changes:
+  - message: Gas Condensers now don't disappear when unanchored or unpowered.
+    type: Fix
+  id: 409663
+  time: '2026-10-21T15:09:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6747
 Order: -1
