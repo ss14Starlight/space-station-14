@@ -1,32 +1,4 @@
 Entries:
-- author: Sparlight
-  changes:
-  - message: You can now open the round-end screen from anywhere in a replay.
-    type: Add
-  id: 409271
-  time: '2026-10-07T18:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6422
-- author: Sparlight
-  changes:
-  - message: Replay viewers now have many ghost observer actions, such as lighting toggle and FoV toggle.
-    type: Add
-  id: 409272
-  time: '2026-10-07T18:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6422
-- author: Sparlight
-  changes:
-  - message: You can now view mind job roles, username, and antag status in replays.
-    type: Add
-  id: 409273
-  time: '2026-10-07T18:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6422
-- author: Sparlight
-  changes:
-  - message: Fixed ghost trails showing up in replays when ghosts are hidden.
-    type: Fix
-  id: 409274
-  time: '2026-10-07T18:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6422
 - author: Yosif
   changes:
   - message: Sentient plants now cant rotate their sprite.
@@ -2883,4 +2855,32 @@ Entries:
   id: 409670
   time: '2026-10-21T16:22:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6771
+- author: Floximo
+  changes:
+  - message: The FTL system ensures now reservations for escape pod landing spots.
+    type: Tweak
+  id: 409671
+  time: '2026-10-21T16:55:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6767
+- author: Floximo
+  changes:
+  - message: Distance to generated dungeons is now more reliable for expeditions.
+    type: Tweak
+  id: 409672
+  time: '2026-10-21T16:55:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6767
+- author: Floximo
+  changes:
+  - message: Expeditions no longer land wrongly aligned on planets.
+    type: Fix
+  id: 409673
+  time: '2026-10-21T16:55:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6767
+- author: Floximo
+  changes:
+  - message: Escape pods land now very close to generated structures without intersecting them.
+    type: Fix
+  id: 409674
+  time: '2026-10-21T16:55:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6767
 Order: -1
