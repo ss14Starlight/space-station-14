@@ -28,6 +28,16 @@ public sealed partial class JumpscaredComponent : Component
     [ViewVariables, AutoNetworkedField] public TimeSpan RemoveSelfAt = TimeSpan.Zero;
 
     /// <summary>
+    /// Whether the target is currently frozen by <see cref="JumpscareData.FreezeTarget"/>.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField] public bool Frozen;
+
+    /// <summary>
+    /// Time that the target stops being frozen, at the end of the hold.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField] public TimeSpan UnfreezeAt = TimeSpan.Zero;
+
+    /// <summary>
     /// Ref to the entity that did the jumpscare.
     /// </summary>
     [ViewVariables, AutoNetworkedField] public EntityUid Jumpscarer;

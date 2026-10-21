@@ -145,10 +145,10 @@
         - sprite: /Textures/_Starlight/Admeme/neomoth/tex/konilardass.png
           sound: !type:SoundPathSpecifier
             path: /Audio/Effects/newplayerping.ogg
+          cooldownTime: 5
       canMassJumpscare: true
       massJumpscareDoAfterTime: 0
       massRange: 4
-      cooldownTime: 5
 
 # modified body so that it uses feline hands and feet. paws!!!
 - type: body

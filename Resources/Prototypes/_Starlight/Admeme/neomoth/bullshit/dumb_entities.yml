@@ -48,8 +48,8 @@
 - type: entity
   id: NeomothTippyGodo
   categories: [HideSpawnMenu]
-  name: troll
-  description: ":tf:"
+  name: godo
+  description: ":godo:"
   parent: BaseItem
   suffix: Admeme
   components:
@@ -66,8 +66,8 @@
 - type: entity
   id: NeomothTippyDo
   categories: [HideSpawnMenu]
-  name: troll
-  description: ":tf:"
+  name: do
+  description: ":do:"
   parent: BaseItem
   suffix: Admeme
   components:
@@ -84,8 +84,8 @@
 - type: entity
   id: NeomothTippyDonow
   categories: [HideSpawnMenu]
-  name: troll
-  description: ":tf:"
+  name: donow
+  description: ":donow:"
   parent: BaseItem
   suffix: Admeme
   components:
@@ -102,8 +102,8 @@
 - type: entity
   id: NeomothTippyGoCrazy
   categories: [HideSpawnMenu]
-  name: troll
-  description: ":tf:"
+  name: gocrazy
+  description: ":gocrazy:"
   parent: BaseItem
   suffix: Admeme
   components:
@@ -120,8 +120,8 @@
 - type: entity
   id: NeomothTippyGodover
   categories: [HideSpawnMenu]
-  name: troll
-  description: ":tf:"
+  name: godover
+  description: ":godover:"
   parent: BaseItem
   suffix: Admeme
   components:
@@ -138,8 +138,8 @@
 - type: entity
   id: NeomothTippyGolove
   categories: [HideSpawnMenu]
-  name: troll
-  description: ":tf:"
+  name: golove
+  description: ":golove:"
   parent: BaseItem
   suffix: Admeme
   components:
@@ -156,8 +156,8 @@
 - type: entity
   id: NeomothTippyGosad
   categories: [HideSpawnMenu]
-  name: troll
-  description: ":tf:"
+  name: gosad
+  description: ":gosad:"
   parent: BaseItem
   suffix: Admeme
   components:

@@ -1,12 +1,13 @@
 using System.Linq;
 using Content.Shared._Starlight.Abstract.Extensions;
+using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Eui;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
@@ -30,6 +31,7 @@ public abstract partial class SharedJumpscareSystem : EntitySystem
     [Dependency] private EntityLookupSystem _lookup = null!;
     [Dependency] private SharedDoAfterSystem _doafter = null!;
     [Dependency] private SharedActionsSystem _actions = null!;
+    [Dependency] private ActionBlockerSystem _blocker = null!;
     [Dependency] private IGameTiming _timing = null!;
     [Dependency] private IRobustRandom _rand = null!;
 
@@ -124,17 +126,41 @@ public abstract partial class SharedJumpscareSystem : EntitySystem
             {
                 comp.DidJumpscare = true;
                 comp.RemoveSelfAt = _timing.CurTime + comp.Jumpscare.TotalTime + comp.Jumpscare.ImmunityTime;
+                comp.Frozen = comp.Jumpscare.FreezeTarget;
+                comp.UnfreezeAt = _timing.CurTime + comp.Jumpscare.FadeInTime + comp.Jumpscare.HoldTime;
                 Dirty(uid, comp);
                 Jumpscare((uid, comp));
                 continue;
             }
 
+            if (comp.Frozen && _timing.CurTime >= comp.UnfreezeAt)
+            {
+                comp.Frozen = false;
+                Dirty(uid, comp);
+                _blocker.UpdateCanMove(uid);
+            }
+
             if (_timing.CurTime < comp.RemoveSelfAt || !comp.DidJumpscare)
                 continue;
             RemComp(uid, comp);
-            if (comp.Jumpscare.FreezeTarget && TryComp<InputMoverComponent>(uid, out var input))
-                input.CanMove = true;
         }
+    }
+
+    [SubscribeLocalEvent]
+    private void OnUpdateCanMove(Entity<JumpscaredComponent> ent, ref UpdateCanMoveEvent args)
+    {
+        if (ent.Comp.LifeStage > ComponentLifeStage.Running)
+            return;
+
+        if (ent.Comp.Frozen)
+            args.Cancel();
+    }
+
+    [SubscribeLocalEvent]
+    private void OnJumpscaredShutdown(Entity<JumpscaredComponent> ent, ref ComponentShutdown args)
+    {
+        if (ent.Comp.Frozen)
+            _blocker.UpdateCanMove(ent);
     }
 
     protected virtual void Jumpscare(Entity<JumpscaredComponent> ent)
@@ -148,8 +174,8 @@ public abstract partial class SharedJumpscareSystem : EntitySystem
 
         if (ent.Comp.Jumpscare.KnockdownTarget)
             _stun.TryKnockdown(ent.Owner, ent.Comp.Jumpscare.KnockdownTime, force: true);
-        if (ent.Comp.Jumpscare.FreezeTarget && TryComp<InputMoverComponent>(ent, out var input))
-            input.CanMove = false;
+        if (ent.Comp.Jumpscare.FreezeTarget)
+            _blocker.UpdateCanMove(ent);
         if (ent.Comp.Jumpscare.Damage is null) return;
         _damage.ChangeDamage(ent.Owner, ent.Comp.Jumpscare.Damage, true, true, ent, canHeal: true);
     }
