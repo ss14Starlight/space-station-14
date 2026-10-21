@@ -2,40 +2,22 @@
 using Content.Shared.Maps;
 using Content.Shared.Pinpointer;
 using Robust.Shared.Map;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Pinpointer;
 
 public sealed partial class NavMapSystem
 {
-    #region Starlight variables
+    private bool IsNavMapWallTile(Tile tile)
+        => !tile.IsEmpty && _turfSystem.GetContentTileDefinition(tile).AppearsAsWallOnNavMap;
 
-    private static readonly ProtoId<ContentTileDefinition> SecretFloorId = "FloorSecret";
-    private static readonly ProtoId<ContentTileDefinition> SecretFloorLightId = "FloorSecretLight";
-
-    #endregion
-
-    #region Starlight methods
-
-    // Identifies either secret tile variant so both receive the same nav-map wall mask.
-    private bool IsSecretFloor(Tile tile)
-    {
-        if (tile.IsEmpty)
-            return false;
-
-        var tileId = _turfSystem.GetContentTileDefinition(tile).ID;
-        return tileId == SecretFloorId || tileId == SecretFloorLightId;
-    }
-
-    // Refreshes a tile only when its secret-floor status changes, preserving nav-map entity flags.
-    private void HandleStarlightTileChanged(ref TileChangedEvent ev, NavMapComponent navMap)
+    private void RefreshNavMapForWallFlagChanges(ref TileChangedEvent ev, NavMapComponent navMap)
     {
         if (!_gridQuery.TryComp(ev.Entity, out var mapGrid))
             return;
 
         foreach (var change in ev.Changes)
         {
-            if (change.EmptyChanged || IsSecretFloor(change.OldTile) == IsSecretFloor(change.NewTile))
+            if (change.EmptyChanged || IsNavMapWallTile(change.OldTile) == IsNavMapWallTile(change.NewTile))
                 continue;
 
             var tile = change.GridIndices;
@@ -45,12 +27,9 @@ public sealed partial class NavMapSystem
         }
     }
 
-    // Makes secret floors appear as solid walls to nav-map consumers.
-    private void ApplyStarlightTileMask(Tile tile, ref int tileData)
+    private void ApplyNavMapWallMask(Tile tile, ref int tileData)
     {
-        if (IsSecretFloor(tile))
+        if (IsNavMapWallTile(tile))
             tileData |= WallMask;
     }
-
-    #endregion
 }
