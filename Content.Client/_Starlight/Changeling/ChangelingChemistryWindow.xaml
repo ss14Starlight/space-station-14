@@ -1,0 +1,38 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:chem="clr-namespace:Content.Client.Chemistry.UI"
+                      Title="{Loc 'changeling-chemistry-title'}"
+                      MinSize="650 450" SetSize="760 550">
+    <BoxContainer Orientation="Vertical" Margin="5" SeparationOverride="8">
+        <Label Name="ChemicalReserve" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+            <Button Name="RegenerationButton" />
+            <Label Text="{Loc 'changeling-chemistry-regeneration-cost'}" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+            <Label Text="{Loc 'changeling-chemistry-add-amount'}" VerticalAlignment="Center" />
+            <chem:ButtonGrid Name="AmountGrid" Columns="6" ButtonList="1,5,10,15,20,30" RadioGroup="True" Selected="1" />
+        </BoxContainer>
+        <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False" MinHeight="120">
+            <GridContainer Name="ReagentList" Columns="3" HorizontalExpand="True" />
+        </ScrollContainer>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+            <Label Name="MixtureVolume" VerticalAlignment="Center" HorizontalExpand="True" />
+            <Button Name="ClearButton" Text="{Loc 'reagent-dispenser-window-clear-button'}" />
+        </BoxContainer>
+        <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False" MinHeight="60">
+            <chem:ReagentDisplayControl Name="MixtureContents" HorizontalExpand="True" />
+        </ScrollContainer>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+            <Label Name="CurrentTemperature" VerticalAlignment="Center" />
+            <Label Text="{Loc 'changeling-chemistry-target-temperature'}" VerticalAlignment="Center" />
+            <LineEdit Name="TemperatureInput" Text="293.15" MinWidth="80" />
+            <Button Name="SetTemperatureButton" Text="{Loc 'changeling-chemistry-set-temperature'}" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+            <Label Text="{Loc 'changeling-chemistry-sting-dose'}" VerticalAlignment="Center" />
+            <chem:ButtonGrid Name="DoseGrid" Columns="6" ButtonList="1,5,10,15,20,30" RadioGroup="True" Selected="30" />
+        </BoxContainer>
+        <Label Text="{Loc 'changeling-chemistry-sting-cost'}" />
+    </BoxContainer>
+</controls:FancyWindow>

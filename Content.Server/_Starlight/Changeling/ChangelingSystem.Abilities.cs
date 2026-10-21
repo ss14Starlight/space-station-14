@@ -19,7 +19,6 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.Ensnaring.Components;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Flash;
 using Content.Shared.Flash.Components;
@@ -75,10 +74,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         SubscribeLocalEvent<ChangelingComponent, ToggleStrainedMusclesEvent>(OnToggleStrainedMuscles);
         SubscribeLocalEvent<ChangelingComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshSpeed);
 
-        SubscribeLocalEvent<ChangelingComponent, StingBlindEvent>(OnStingBlind);
-        SubscribeLocalEvent<ChangelingComponent, StingChemEvent>(OnStingChem);
-        SubscribeLocalEvent<ChangelingComponent, StingTransformEvent>(OnStingTransform);
-        SubscribeLocalEvent<ChangelingComponent, StingFakeArmbladeEvent>(OnStingFakeArmblade);
+        SubscribeChemistry();
 
         SubscribeLocalEvent<ChangelingComponent, ActionAnatomicPanaceaEvent>(OnAnatomicPanacea);
         SubscribeLocalEvent<ChangelingComponent, ActionAugmentedEyesightEvent>(OnAugmentedEyesight);
@@ -353,53 +349,6 @@ public sealed partial class ChangelingSystem : EntitySystem
             args.ModifySpeed(1.25f, 1.5f);
         else
             args.ModifySpeed(1f, 1f);
-    }
-
-    #endregion
-
-    #region Stings
-
-    private void OnStingBlind(EntityUid uid, ChangelingComponent comp, ref StingBlindEvent args)
-    {
-        if (!TrySting(uid, args))
-            return;
-
-        var target = args.Target;
-        if (!TryComp<BlindableComponent>(target, out var blindable) || blindable.IsBlind)
-            return;
-
-        _blindable.AdjustEyeDamage((target, blindable), 2);
-        var timeSpan = TimeSpan.FromSeconds(5f);
-        _statusEffect.TryAddStatusEffectDuration(target, "StatusEffectTemporaryBlindness", timeSpan);
-    }
-
-    private void OnStingChem(Entity<ChangelingComponent> ent, ref StingChemEvent ev) => TryReagentSting(ent.Owner, ent.Comp, ev, ev.Chems);
-
-    private void OnStingTransform(EntityUid uid, ChangelingComponent comp, ref StingTransformEvent args)
-    {
-        if (!TrySting(uid, args, true))
-            return;
-
-        var target = args.Target;
-        if (!TryTransform(target, comp, true, true))
-            comp.Chemicals += Comp<ChangelingActionComponent>(args.Action).ChemicalCost;
-    }
-    private void OnStingFakeArmblade(EntityUid uid, ChangelingComponent comp, ref StingFakeArmbladeEvent args)
-    {
-        if (!TrySting(uid, args))
-            return;
-
-        var target = args.Target;
-        var fakeArmblade = Spawn(FakeArmbladePrototype, Transform(target).Coordinates);
-        if (!_hands.TryPickupAnyHand(target, fakeArmblade))
-        {
-            QueueDel(fakeArmblade);
-            comp.Chemicals += Comp<ChangelingActionComponent>(args.Action).ChemicalCost;
-            _popup.PopupEntity(Loc.GetString("changeling-sting-fail-simplemob"), uid, uid);
-            return;
-        }
-
-        PlayMeatySound(target, comp);
     }
 
     #endregion

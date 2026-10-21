@@ -115,97 +115,15 @@
 # sting
 
 - type: listing
-  id: EvolutionMenuStingBlind
-  name: evolutionmenu-sting-blind-name
-  description: evolutionmenu-sting-blind-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_blind }
-  productAction: ActionStingBlind
-  cost:
-    EvolutionPoint: 4
-  categories:
-  - ChangelingAbilitySting
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: EvolutionMenuStingCryo
-  name: evolutionmenu-sting-cryo-name
-  description: evolutionmenu-sting-cryo-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_cryo }
-  productAction: ActionStingCryo
-  cost:
-    EvolutionPoint: 3
-  categories:
-  - ChangelingAbilitySting
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: EvolutionMenuStingBurn
-  name: evolutionmenu-sting-burn-name
-  description: evolutionmenu-sting-burn-desc
-  icon: { sprite: _Starlight/Actions/changeling.rsi, state: sting_heat }
-  productAction: ActionStingBurn
-  cost:
-    EvolutionPoint: 4
-  categories:
-  - ChangelingAbilitySting
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: EvolutionMenuStingLethargic
-  name: evolutionmenu-sting-lethargic-name
-  description: evolutionmenu-sting-lethargic-desc
+  id: EvolutionMenuChemicalSting
+  name: evolutionmenu-sting-chemical-name
+  description: evolutionmenu-sting-chemical-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_lethargic }
-  productAction: ActionStingLethargic
+  productEvent: !type:LearnChemicalStingEvent {}
+  raiseProductEventOnUser: true
+  disableRefund: true
   cost:
-    EvolutionPoint: 3 # Starlight, the drain sting is the stronger version of this.
-  categories:
-  - ChangelingAbilitySting
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: EvolutionMenuStingDrain
-  name: evolutionmenu-sting-drain-name
-  description: evolutionmenu-sting-drain-desc
-  icon: { sprite: _Starlight/Actions/changeling.rsi, state: sting_starve }
-  productAction: ActionStingDrain
-  cost:
-    EvolutionPoint: 4
-  categories:
-  - ChangelingAbilitySting
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: EvolutionMenuStingMute
-  name: evolutionmenu-sting-mute-name
-  description: evolutionmenu-sting-mute-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_mute }
-  productAction: ActionStingMute
-  cost:
-    EvolutionPoint: 4
-  categories:
-  - ChangelingAbilitySting
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: EvolutionMenuStingFakeArmblade
-  name: evolutionmenu-sting-armblade-name
-  description: evolutionmenu-sting-armblade-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_armblade }
-  productAction: ActionStingFakeArmblade
-  cost:
-    EvolutionPoint: 5
+    EvolutionPoint: 10
   categories:
   - ChangelingAbilitySting
   conditions:

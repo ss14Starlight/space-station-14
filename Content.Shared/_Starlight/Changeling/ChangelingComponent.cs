@@ -1,4 +1,6 @@
 using Content.Shared.Humanoid;
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.FixedPoint;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -50,6 +52,13 @@ public sealed partial class ChangelingComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool BreathingEnabled = true;
+
+    public bool HasChemicalSting;
+    public Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> StingReagents = new();
+    public TimeSpan NextStingRegeneration;
+    public bool StingRegenerationEnabled = true;
+    public float StingTargetTemperature = 293.15f;
+    public int StingDose = ChangelingChemistry.Capacity;
 
     [DataField]
     public float StealthDrain = 1.25f; // 6.6 minutes to fully drain 100 chemicals

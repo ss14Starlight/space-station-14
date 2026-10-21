@@ -1,6 +1,6 @@
 using Content.Shared.Actions;
-using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Changeling;
 
@@ -43,15 +43,10 @@ public sealed partial class ToggleStrainedMusclesEvent : InstantActionEvent { }
 
 #region Events - Sting
 
-public sealed partial class StingBlindEvent : EntityTargetActionEvent { }
-
-public sealed partial class StingChemEvent : EntityTargetActionEvent
-{
-    [DataField(required: true)]
-    public Dictionary<string, FixedPoint2> Chems;
-}
-public sealed partial class StingFakeArmbladeEvent : EntityTargetActionEvent { }
-public sealed partial class StingTransformEvent : EntityTargetActionEvent { }
+[DataDefinition, Serializable, NetSerializable]
+public sealed partial class LearnChemicalStingEvent : EntityEventArgs { }
+public sealed partial class OpenChangelingChemistryEvent : InstantActionEvent { }
+public sealed partial class ChemicalStingEvent : EntityTargetActionEvent { }
 
 #endregion
 

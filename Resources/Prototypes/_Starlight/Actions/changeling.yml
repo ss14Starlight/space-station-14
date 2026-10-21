@@ -229,33 +229,9 @@
 
 # stings
 - type: entity
-  id: ActionStingBlind
-  name: Blind Sting
-  description: Silently sting your target, blinding them for a short time and rendering them near sighted. Costs 35 chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    useDelay: 1
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: sting_blind
-  - type: TargetAction
-    interactOnMiss: false
-  - type: EntityTargetAction
-    whitelist:
-      components:
-      - Body
-    canTargetSelf: false
-    event: !type:StingBlindEvent {}
-  - type: ChangelingAction
-    chemicalCost: 35
-    useInLesserForm: true
-
-- type: entity
-  id: ActionStingCryo
-  name: Cryogenic Sting
-  description: Silently sting your target, constantly slowing and freezing them. Costs 30 chemicals.
+  id: ActionChangelingChemistry
+  name: Chemical Synthesis
+  description: Prepare and heat a chemical mixture for your sting. Reagent regeneration consumes chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -263,52 +239,23 @@
     icon:
       sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: sting_cryo
-  - type: TargetAction
-    interactOnMiss: false
-  - type: EntityTargetAction
-    whitelist:
-      components:
-      - Body
-    canTargetSelf: false
-    event: !type:StingChemEvent {
-      chems: { Fresium: 20, ChloralHydrate: 20 }
-    }
+    checkCanInteract: false
+    checkConsciousness: false
+  - type: InstantAction
+    event: !type:OpenChangelingChemistryEvent {}
   - type: ChangelingAction
-    chemicalCost: 30
+    requireBiomass: false
     useInLesserForm: true
 
 - type: entity
-  id: ActionStingBurn
-  name: Bloodburn Sting
-  description: Silently sting your target, disorienting them while burning them from the inside out. Costs 35 chemicals.
+  id: ActionChemicalSting
+  name: Chemical Sting
+  description: Silently inject the selected dose of your prepared mixture into a target. Costs 10 chemicals on success.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
     itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Actions/changeling.rsi
-      state: sting_heat
-  - type: TargetAction
-    interactOnMiss: false
-  - type: EntityTargetAction
-    whitelist:
-      components:
-      - Body
-    canTargetSelf: false
-    event: !type:StingChemEvent {chems: {Licoxide: 15, Barozine: 10, ChlorineTrifluoride: 5}}
-  - type: ChangelingAction
-    chemicalCost: 35
-    useInLesserForm: true
-    requireAbsorbed: 2
-
-- type: entity
-  id: ActionStingLethargic
-  name: Lethargic Sting
-  description: Silently inject a cocktail of anesthetics into the target. Costs 25 chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: NoItem
+    useDelay: 1
     icon:
       sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: sting_lethargic
@@ -319,104 +266,9 @@
       components:
       - Body
     canTargetSelf: false
-    event: !type:StingChemEvent { chems: {Impedrezene: 10, MuteToxin: 5}}
+    event: !type:ChemicalStingEvent {}
   - type: ChangelingAction
-    chemicalCost: 25
     useInLesserForm: true
-
-- type: entity
-  id: ActionStingDrain
-  name: Draining Sting
-  description: Silently sting your target, draining them of all their hunger and thirst. Costs 35 chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Actions/changeling.rsi
-      state: sting_starve
-  - type: TargetAction
-    interactOnMiss: false
-  - type: EntityTargetAction
-    whitelist:
-      components:
-      - Body
-    canTargetSelf: false
-    event: !type:StingChemEvent {chems: {Lipolicide: 15, SodiumPolyacrylate: 30}}
-  - type: ChangelingAction
-    chemicalCost: 35
-    useInLesserForm: true
-    requireAbsorbed: 2
-
-- type: entity
-  id: ActionStingMute
-  name: Mute Sting
-  description: Silently sting your target, completely silencing them for a short time. Costs 35 chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: sting_mute
-  - type: TargetAction
-    interactOnMiss: false
-  - type: EntityTargetAction
-    whitelist:
-      components:
-      - Body
-    canTargetSelf: false
-    event: !type:StingChemEvent {chems: {MuteToxin: 15}}
-  - type: ChangelingAction
-    chemicalCost: 35
-    useInLesserForm: true
-
-- type: entity
-  id: ActionStingFakeArmblade
-  name: Fake Armblade Sting
-  description: Silently sting your target, making them grow a dull armblade for a short time. Costs 50 chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: sting_armblade
-  - type: TargetAction
-    interactOnMiss: false
-  - type: EntityTargetAction
-    whitelist:
-      components:
-      - Body
-    canTargetSelf: false
-    event: !type:StingFakeArmbladeEvent {}
-  - type: ChangelingAction
-    chemicalCost: 50
-    useInLesserForm: true
-
-- type: entity
-  id: ActionStingTransform
-  name: Transformation Sting
-  description: Silently sting your target, transforming them into a person of your choosing. Costs 75 chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: sting_transform
-  - type: TargetAction
-    interactOnMiss: false
-  - type: EntityTargetAction
-    whitelist:
-      components:
-      - Body
-    canTargetSelf: false
-    event: !type:StingTransformEvent {}
-  - type: ChangelingAction
-    chemicalCost: 75
-    useInLesserForm: true
-  - type: EorgPreventAction
 
 # utility
 - type: entity

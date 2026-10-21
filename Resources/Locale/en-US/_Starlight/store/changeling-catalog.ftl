@@ -48,16 +48,9 @@ evolutionmenu-utility-neocyte-desc =
 
 # Sting
 
-evolutionmenu-sting-burn-name = Bloodburn Sting
-evolutionmenu-sting-burn-desc =
-    Inject an organic target with a cocktail of chemicals that burns their blood and disorients them.
-    May be used while under the effects of Lesser Form.
-    WARNING: Requires you to absorb at least 2 organics to use the ability.
-    Costs 35 chemicals.
-
-evolutionmenu-sting-drain-name = Draining Sting
-evolutionmenu-sting-drain-desc =
-    Inject an organic target with a cocktail of chemicals that quickly erode their hunger and thirst.
-    May be used while under the effects of Lesser Form.
-    WARNING: Requires you to absorb at least 2 organics to use the ability.
-    Costs 35 chemicals.
+evolutionmenu-sting-chemical-name = Chemical Synthesis and Sting
+evolutionmenu-sting-chemical-desc =
+    Gain two abilities: prepare a chemical mixture and silently inject a chosen dose into an organic target.
+    Store up to 30u of each basic reagent and prepare up to 30u of mixture, using normal chemical reactions with heating and cooling.
+    Reagents start empty and regenerate up to 1u per 10 seconds, consuming 0.5 chemicals per unit. Regeneration can be paused.
+    Each successful sting costs another 10 chemicals. Works in Lesser Form.

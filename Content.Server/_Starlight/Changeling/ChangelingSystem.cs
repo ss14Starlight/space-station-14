@@ -37,7 +37,6 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Mind;
 using Content.Shared.NPC.Systems;
 using Content.Server.Light.EntitySystems;
-using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Cuffs;
 using Content.Shared.Fluids;
@@ -96,7 +95,6 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private MovementSpeedModifierSystem _speed = default!;
     [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private GravitySystem _gravity = default!;
-    [Dependency] private BlindableSystem _blindable = default!;
     [Dependency] private PullingSystem _pull = default!;
     [Dependency] private SharedCuffableSystem _cuffs = default!;
     [Dependency] private SharedPuddleSystem _puddle = default!;
@@ -105,8 +103,6 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private NpcFactionSystem _factionSystem = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;
     [Dependency] private GameTicker _gameTicker = default!; // Starlight
-
-    public static readonly EntProtoId FakeArmbladePrototype = "FakeArmBladeChangeling";
 
     public static readonly EntProtoId BoneShardPrototype = "ThrowingStarChangeling";
 
@@ -152,6 +148,7 @@ public sealed partial class ChangelingSystem : EntitySystem
                 if (comp.IsInStasis)
                     comp.Biomass = Math.Max(0, comp.Biomass - comp.StasisDrain * (float) comp.ChemicalUpdateCooldown.TotalSeconds);
                 UpdateAbilities(uid, comp);
+                UpdateStingChemistry(uid, comp);
             }
 
             if (_timing.CurTime >= comp.BiomassNextUpdateTime)
@@ -329,17 +326,6 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         return true;
     }
-    public bool TryReagentSting(EntityUid uid, ChangelingComponent comp, EntityTargetActionEvent action, Dictionary<string, FixedPoint2> reagents)
-    {
-        var target = action.Target;
-        if (!TrySting(uid, action))
-            return false;
-
-        if (!TryInjectReagents(target, reagents))
-            return false;
-
-        return true;
-    }
     public bool TryToggleItem(EntityUid uid, EntProtoId proto, ChangelingComponent comp, string? clothingSlot = null)
     {
         if (!comp.Equipment.TryGetValue(proto.Id, out var item))
@@ -414,7 +400,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         return true;
     }
 
-    private ChangelingComponent? CopyChangelingComponent(EntityUid target, ChangelingComponent comp)
+    private ChangelingComponent? CopyChangelingComponent(EntityUid source, EntityUid target, ChangelingComponent comp)
     {
         var newComp = EnsureComp<ChangelingComponent>(target);
         newComp.AbsorbedDNA = comp.AbsorbedDNA;
@@ -427,6 +413,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         newComp.MaxBiomass = comp.MaxBiomass;
         newComp.BreathingEnabled = comp.BreathingEnabled;
         _respirator.SetEnabled(target, newComp.BreathingEnabled);
+        CopyStingChemistry(source, target, comp, newComp);
 
         newComp.IsInLesserForm = comp.IsInLesserForm;
         newComp.CurrentForm = comp.CurrentForm;
@@ -481,7 +468,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (comp != null)
         {
             // copy our stuff
-            var newLingComp = CopyChangelingComponent(newEnt, comp);
+            var newLingComp = CopyChangelingComponent(uid, newEnt, comp);
             if (!persistentDna && data != null)
                 newLingComp?.AbsorbedDNA.Remove(data);
             RemCompDeferred<ChangelingComponent>(uid);
@@ -621,6 +608,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         RemoveAllChangelingEquipment(ent, ent.Comp);
         _respirator.SetEnabled(ent.Owner, true);
+        RemoveStingChemistry(ent.Owner);
     }
 
 
