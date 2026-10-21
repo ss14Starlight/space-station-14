@@ -1,53 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Health HUDs/medical cyborgs can now see the health of organic hellportal mobs, Diagnostic HUDs/Engineering cyborgs can now see the health of inorganic hellportal mobs.
-    type: Tweak
-  id: 409264
-  time: '2026-10-07T17:50:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6547
-- author: wonderfulnewworld
-  changes:
-  - message: Hellportal mobs now speak darktongue, and no longer stutter.
-    type: Tweak
-  id: 409265
-  time: '2026-10-07T17:50:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6547
-- author: wonderfulnewworld
-  changes:
-  - message: The hellportal will no longer spawn on occupied tiles.
-    type: Fix
-  id: 409266
-  time: '2026-10-07T17:50:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6547
-- author: wonderfulnewworld
-  changes:
-  - message: Cyborgs, Syndicate soldiers, specifically derelict xenoborgs, comrades, and Pun Pun are now hostile to the spawn of the underworld.
-    type: Fix
-  id: 409267
-  time: '2026-10-07T17:50:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6547
-- author: Sparlight
-  changes:
-  - message: You can now view the contents of bags,containers, and certain machines like chemmasters in replays.
-    type: Add
-  id: 409268
-  time: '2026-10-07T18:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6422
-- author: Sparlight
-  changes:
-  - message: You can now view the mass scanner in replays.
-    type: Add
-  id: 409269
-  time: '2026-10-07T18:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6422
-- author: Sparlight
-  changes:
-  - message: You can now view silicon laws and Thaven moods in replays.
-    type: Add
-  id: 409270
-  time: '2026-10-07T18:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6422
 - author: Sparlight
   changes:
   - message: You can now open the round-end screen from anywhere in a replay.
@@ -2883,4 +2834,53 @@ Entries:
   id: 409663
   time: '2026-10-21T15:09:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6747
+- author: Sparlight
+  changes:
+  - message: Replay observers can view the solutions inside any container or creature via the "View Solutions" verb.
+    type: Add
+  id: 409664
+  time: '2026-10-21T16:22:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6771
+- author: Sparlight
+  changes:
+  - message: Replay observers now see security status icons on the observer HUD.
+    type: Add
+  id: 409665
+  time: '2026-10-21T16:22:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6771
+- author: Sparlight
+  changes:
+  - message: '"View Laws" now works on Station AI in replays.'
+    type: Fix
+  id: 409666
+  time: '2026-10-21T16:22:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6771
+- author: Sparlight
+  changes:
+  - message: Health analyzer results now show while spectating in replays.
+    type: Fix
+  id: 409667
+  time: '2026-10-21T16:22:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6771
+- author: Sparlight
+  changes:
+  - message: Following a Station AI's eye in replays no longer freezes when the AI uses a holopad.
+    type: Fix
+  id: 409668
+  time: '2026-10-21T16:22:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6771
+- author: Sparlight
+  changes:
+  - message: Bags closed in replays can be reopened without respawning the observer.
+    type: Fix
+  id: 409669
+  time: '2026-10-21T16:22:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6771
+- author: Sparlight
+  changes:
+  - message: Replay viewers no longer hear the ghost role alert.
+    type: Fix
+  id: 409670
+  time: '2026-10-21T16:22:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6771
 Order: -1
