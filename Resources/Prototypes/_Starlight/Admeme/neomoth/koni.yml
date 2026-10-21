@@ -2,7 +2,6 @@
 - type: entity
   id: MobKoni
   parent: MobMoth # more moth-like than cat-like, makes sense to inherit this and not felionoid
-  categories: [HideSpawnMenu] # not supposed to be spawnable, designed for characterforceprototype.
   name: Koni Clothsbane
   save: false # player entity, don't save this to maps
   components:
@@ -135,6 +134,21 @@
             32:
               sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
               state: head
+
+- type: entity
+  id: MobKoniJumpscare
+  parent: MobKoni
+  categories: [HideSpawnMenu]
+  components:
+    - type: Jumpscare
+      jumpscares:
+        - sprite: /Textures/_Starlight/Admeme/neomoth/tex/konilardass.png
+          sound: !type:SoundPathSpecifier
+            path: /Audio/Effects/newplayerping.ogg
+      canMassJumpscare: true
+      massJumpscareDoAfterTime: 0
+      massRange: 4
+      cooldownTime: 5
 
 # modified body so that it uses feline hands and feet. paws!!!
 - type: body

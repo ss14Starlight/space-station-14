@@ -1,0 +1,18 @@
+<DefaultWindow
+	xmlns="https://spacestation14.io"
+	Title="{Loc 'jumpscare-ui-select-targets-title'}"
+	MinSize="750 580" SetSize="750 580">
+	<VBox>
+		<GridContainer Columns="2" HorizontalExpand="True">
+			<Button Name="SelectAllButton" Text="{Loc 'jumpscare-ui-select-all'}" HorizontalExpand="True"/>
+			<Button Name="DeselectAllButton" Text="{Loc 'jumpscare-ui-deselect-all'}" HorizontalExpand="True"/>
+			<Button Name="SelectGhostsButton" Text="{Loc 'jumpscare-ui-select-ghosts'}" HorizontalExpand="True"/>
+			<Button Name="SelectLivingButton" Text="{Loc 'jumpscare-ui-select-living'}" HorizontalExpand="True"/>
+		</GridContainer>
+		<ScrollContainer VScrollEnabled="True" HScrollEnabled="False"
+		                 HorizontalExpand="True" VerticalExpand="True">
+			<VBox Name="PlayerContainer" HorizontalExpand="True"/>
+		</ScrollContainer>
+		<Label Name="EmptyLabel" Text="{Loc 'jumpscare-ui-no-players'}" Visible="False"/>
+	</VBox>
+</DefaultWindow>

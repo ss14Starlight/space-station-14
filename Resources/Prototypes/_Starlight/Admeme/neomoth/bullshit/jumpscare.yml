@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseAction
+  id: ActionJumpscare
+  name: Jumpscare
+  description: Spook someone.
+  components:
+  - type: Action
+    icon: /Textures/Interface/emotes.svg.192dpi.png
+    itemIconStyle: NoItem
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:JumpscareActionEvent

@@ -1,0 +1,29 @@
+# halloween admeme/event
+- type: entity
+  id: MobScareRoach
+  parent: MobMothroach
+  name: scareroach
+  description: oh god oh fuck it's coming FUCKING RUN.
+  suffix: Admeme
+  components:
+    - type: Jumpscare
+      jumpscares:
+        - sprite: /Textures/_Starlight/Admeme/neomoth/tex/roach.png
+          sound: !type:SoundPathSpecifier
+            path: /Audio/_Starlight/Admeme/neomoth/scareroach.ogg
+          holdTime: 1.8
+          fadeTime: 2.2
+          knockdownTarget: true
+          knockdownTime: 5
+          immunityTime: 20
+          weight: 500
+        - sprite: /Textures/_Starlight/Admeme/neomoth/tex/roach.png
+          sound: !type:SoundPathSpecifier
+            path: /Audio/_Starlight/Admeme/neomoth/jumpscare.ogg
+          knockdownTarget: true
+          knockdownTime: 5
+          damage:
+            types:
+              Slash: 30
+          immunityTime: 20
+          weight: 0.2

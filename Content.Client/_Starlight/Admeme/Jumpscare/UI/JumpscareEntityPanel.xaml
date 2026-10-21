@@ -1,0 +1,134 @@
+<DefaultWindow
+	xmlns="https://spacestation14.io"
+	xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+	MinSize="650 450" SetSize="650 450">
+	<VBox>
+		<Button Name="SelectTargetsButton" Visible="False" HorizontalExpand="True"/>
+		<ScrollContainer VScrollEnabled="True" HScrollEnabled="False"
+	                 HorizontalExpand="True" VerticalExpand="True">
+			<VBox VerticalExpand="True" HorizontalExpand="True">
+				<HBox>
+					<Label Text="{Loc 'jumpscare-ui-sprite-specifier-label'}"/>
+					<VBox HorizontalExpand="True">
+						<HBox>
+							<OptionButton Name="SpriteType"/>
+							<LineEdit Name="SpritePath" HorizontalExpand="True" Visible="False"/>
+						</HBox>
+						<HBox Name="RsiStateContainer" Visible="False">
+							<Label Text="{Loc 'jumpscare-ui-rsi-state-label'}"/>
+							<LineEdit Name="RsiState" HorizontalExpand="True"/>
+						</HBox>
+					</VBox>
+				</HBox>
+				<HBox HorizontalExpand="True">
+					<Label Text="{Loc 'jumpscare-ui-sound-specifier-label'}"/>
+					<VBox HorizontalExpand="True">
+						<HBox>
+							<OptionButton Name="SoundType"/>
+							<LineEdit Name="SoundPath" HorizontalExpand="True" Visible="False"/>
+						</HBox>
+						<VBox Name="Params" Visible="False">
+							<HBox>
+								<Label Text="{Loc 'jumpscare-ui-audio-params-volume'}"/>
+								<LineEdit Name="AudioParamsVolume" Text="0" HorizontalExpand="True"/>
+							</HBox>
+							<HBox>
+								<Label Text="{Loc 'jumpscare-ui-audio-params-pitch'}"/>
+								<LineEdit Name="AudioParamsPitch" Text="1" HorizontalExpand="True"/>
+							</HBox>
+							<HBox>
+								<Label Text="{Loc 'jumpscare-ui-audio-params-max-distance'}"/>
+								<LineEdit Name="AudioParamsMaxDistance" Text="15" HorizontalExpand="True"/>
+							</HBox>
+							<HBox>
+								<Label Text="{Loc 'jumpscare-ui-audio-params-rolloff-factor'}"/>
+								<LineEdit Name="AudioParamsRolloffFactor" Text="1" HorizontalExpand="True"/>
+							</HBox>
+							<HBox>
+								<Label Text="{Loc 'jumpscare-ui-audio-params-reference-distance'}"/>
+								<LineEdit Name="AudioParamsReferenceDistance" Text="1" HorizontalExpand="True"/>
+							</HBox>
+							<!-- no looping infinitely that would suck ass -->
+							<HBox>
+								<Label Text="{Loc 'jumpscare-ui-audio-params-offset-seconds'}"/>
+								<LineEdit Name="AudioParamsOffsetSeconds" Text="0" HorizontalExpand="True"/>
+							</HBox>
+							<HBox>
+								<Label Text="{Loc 'jumpscare-ui-audio-params-variation'}"/>
+								<LineEdit Name="AudioParamsVariation" Text="" HorizontalExpand="True"/>
+							</HBox>
+						</VBox>
+					</VBox>
+				</HBox>
+				<HBox>
+					<Label Text="{Loc 'jumpscare-ui-fade-in-time-label'}"/>
+					<LineEdit Name="FadeInTime" HorizontalExpand="True"/>
+				</HBox>
+				<HBox>
+					<Label Text="{Loc 'jumpscare-ui-hold-time-label'}"/>
+					<LineEdit Name="HoldTime" HorizontalExpand="True"/>
+				</HBox>
+				<HBox>
+					<Label Text="{Loc 'jumpscare-ui-fade-time-label'}"/>
+					<LineEdit Name="FadeTime" HorizontalExpand="True"/>
+				</HBox>
+				<HBox>
+					<Label Text="{Loc 'jumpscare-ui-knockdown-target-label'}" HorizontalExpand="True"/>
+					<CheckBox Name="KnockdownTarget"/>
+				</HBox>
+				<HBox Visible="False" Name="KnockdownTimeContainer">
+					<Label Text="{Loc 'jumpscare-ui-knockdown-time-label'}"/>
+					<LineEdit Name="KnockdownTime" HorizontalExpand="True"/>
+				</HBox>
+				<HBox>
+					<Label Text="{Loc 'jumpscare-ui-freeze-target-label'}" HorizontalExpand="True"/>
+					<CheckBox Name="FreezeTarget"/>
+				</HBox>
+				<HBox>
+					<Label Text="{Loc 'jumpscare-ui-ash-target-label'}" HorizontalExpand="True"/>
+					<CheckBox Name="AshTarget"/>
+				</HBox>
+				<HBox>
+					<Label Text="{Loc 'jumpscare-ui-sound-audible-to-others-label'}" HorizontalExpand="True"/>
+					<CheckBox Name="SoundAudibleToOthers"/>
+				</HBox>
+				<HBox>
+					<Label Text="{Loc 'jumpscare-ui-render-above-ui-label'}" HorizontalExpand="True"/>
+					<CheckBox Name="RenderAboveUI"/>
+				</HBox>
+				<VBox>
+					<Label Text="{Loc 'jumpscare-ui-damage-specifier-label'}"/>
+					<PanelContainer HorizontalExpand="True" VerticalExpand="True" StyleClasses="PanelLight">
+						<VBox Margin="4">
+							<Label Text="{Loc 'jumpscare-ui-damage-types-label'}"/>
+							<cc:HSeparator Margin="0 5 0 5"/>
+							<VBox Margin="5 0 5 5">
+								<VBox Name="DamageTypeContainer"/>
+								<HBox>
+									<OptionButton Name="DamageTypeOptionButton" StyleClasses="OpenRight"/>
+									<Button Name="AddDamageTypeButton" Text="{Loc 'jumpscare-ui-add-damage-type-button'}"
+									        StyleClasses="OpenLeft"/>
+								</HBox>
+							</VBox>
+						</VBox>
+					</PanelContainer>
+					<PanelContainer HorizontalExpand="True" VerticalExpand="True" StyleClasses="PanelLight">
+						<VBox Margin="4">
+							<Label Text="{Loc 'jumpscare-ui-damage-groups-label'}"/>
+							<cc:HSeparator Margin="0 5 0 5"/>
+							<VBox Margin="5 0 5 5">
+								<VBox Name="DamageGroupContainer"/>
+								<HBox>
+									<OptionButton Name="DamageGroupOptionButton" StyleClasses="OpenRight"/>
+									<Button Name="AddDamageGroupButton" Text="{Loc 'jumpscare-ui-add-damage-group-button'}"
+									        StyleClasses="OpenLeft"/>
+								</HBox>
+							</VBox>
+						</VBox>
+					</PanelContainer>
+				</VBox>
+			</VBox>
+		</ScrollContainer>
+		<Button Name="SubmitButton" Text="{Loc 'jumpscare-ui-submit'}"/>
+	</VBox>
+</DefaultWindow>
