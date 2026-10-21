@@ -11,11 +11,11 @@ namespace Content.Shared.Objectives.Systems;
 /// This system stores enumerators to find valid Targets, typically searching for minds.
 /// Typically used in conjunction with a <see cref="GameRuleSystem{T}"/> or an Objective.
 /// </summary>
-public sealed class TargetSystem : EntitySystem
+public sealed partial class TargetSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     private HashSet<Entity<MindComponent>> _pickingMinds = new();
 
@@ -36,7 +36,7 @@ public sealed class TargetSystem : EntitySystem
     public void AddAliveHumans(HashSet<Entity<MindComponent>> allHumans, EntityUid? exclude = null)
     {
         // HumanoidProfileComponent is used to prevent mice, pAIs, etc from being chosen
-        var query = EntityQueryEnumerator<HumanoidProfileComponent, MobStateComponent>();
+        var query = EntityQueryEnumerator<HumanoidAppearanceComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out _, out var mobState))
         {
             // the player needs to have a mind and not be the excluded one +

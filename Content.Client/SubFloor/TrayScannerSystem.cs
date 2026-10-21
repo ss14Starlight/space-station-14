@@ -1,9 +1,22 @@
+using Content.Client._Starlight.Computers.RemoteControl;
+using Content.Client.Items;
+using Content.Client.Items.UI;
+using Content.Client.Message;
+using Content.Client.Power.Visualizers;
+using Content.Client.Stylesheets;
+using Content.Shared._Starlight.Plumbing.Components;
+using Content.Shared.Atmos.Components;
+using Content.Shared.Disposal.Tube;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Input;
 using Content.Shared.Inventory;
 using Content.Shared.SubFloor;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
+using Robust.Client.Input;
 using Robust.Client.Player;
+using Robust.Client.UserInterface;
+using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Timing;
 
 namespace Content.Client.SubFloor;
@@ -22,6 +35,8 @@ public sealed partial class TrayScannerSystem : SharedTrayScannerSystem
     [Dependency] private TrayScanRevealSystem _trayScanReveal = default!;
     [Dependency] private EntityQuery<TrayScannerComponent> _trayScannerQuery = default!;
     [Dependency] private EntityQuery<SubFloorHideComponent> _subFloorHideQuery = default!;
+    [Dependency] private RemoteControlInterface _remoteControl = default!; // Starlight
+    [Dependency] private IInputManager _inputManager = default!; // starlight edit: removed readonly
 
     private const string TRayAnimationKey = "trays";
     private const double AnimationLength = 0.3;

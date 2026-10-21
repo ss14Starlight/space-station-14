@@ -190,8 +190,6 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         RaiseLocalEvent(ent, ref consumeEv);
         #endregion
 
-        _changelingIdentitySystem.CloneToPausedMap((ent, identityStorage), target);
-
         // We add a reference to ourselves to prevent repeated identity gain.
         var targetDevoured = EnsureComp<ChangelingDevouredComponent>(target);
         targetDevoured.DevouredBy.Add(ent.Owner);

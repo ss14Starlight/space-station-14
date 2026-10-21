@@ -11,12 +11,12 @@ namespace Content.Shared.Photography;
 /// <summary>
 /// Handles everything related to photography.
 /// </summary>
-public sealed class PhotographySystem : EntitySystem
+public sealed partial class PhotographySystem : EntitySystem
 {
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly EntityTableSystem _tables = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private ExamineSystemShared _examine = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private EntityTableSystem _tables = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {
@@ -70,7 +70,7 @@ public sealed class PhotographySystem : EntitySystem
         string? nameText = null;
         if (target != null)
         {
-            description = _examine.GetExamineText(target.Value, user);
+            description = _examine.GetExamineText(target.Value, user, out _); //Starlight-edit
             // Get the full string now instead of indexing it later because we need the entity to know if it uses a proper noun or not.
             nameText = Loc.GetString("photograph-name-text", ("entity", Identity.Entity(target.Value, EntityManager)));
             // We don't want photographs to contain the descriptions of other photographs, because that makes entities with, in theory, infinite descriptions.

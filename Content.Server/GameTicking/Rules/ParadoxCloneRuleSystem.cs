@@ -144,7 +144,7 @@ public sealed partial class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxClone
     // SL start
     private Entity<MindComponent>? FindValidPlayer()
     {
-        var validPlayers = _mind.GetAliveHumans().Where(mind => !HasComp<NoObjectiveTargetComponent>(mind.Comp.OwnedEntity)).ToHashSet();
+        var validPlayers = _target.GetAliveHumans().Where(mind => !HasComp<NoObjectiveTargetComponent>(mind.Comp.OwnedEntity)).ToHashSet();
         if (validPlayers.Count == 0) return null;
         return _random.Pick(validPlayers);
     }

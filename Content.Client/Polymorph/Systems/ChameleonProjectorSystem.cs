@@ -12,8 +12,8 @@ public sealed partial class ChameleonProjectorSystem : SharedChameleonProjectorS
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SpriteSystem _sprite = default!;
 
-    [Dependency] private readonly EntityQuery<AppearanceComponent> _appearanceQuery = default!;
-    [Dependency] private readonly EntityQuery<SpriteComponent> _spriteQuery = default!;
+    [Dependency] private EntityQuery<AppearanceComponent> _appearanceQuery = default!;
+    [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
 
     public override void Initialize()
     {

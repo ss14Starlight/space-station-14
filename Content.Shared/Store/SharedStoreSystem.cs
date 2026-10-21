@@ -10,8 +10,8 @@ namespace Content.Shared.Store;
 /// </summary>
 public abstract partial class SharedStoreSystem : EntitySystem
 {
-    [Dependency] protected readonly EntityQuery<StoreComponent> StoreQuery = default!;
-    [Dependency] protected readonly EntityQuery<RemoteStoreComponent> RemoteStoreQuery = default!;
+    [Dependency] protected EntityQuery<StoreComponent> StoreQuery = default!;
+    [Dependency] protected EntityQuery<RemoteStoreComponent> RemoteStoreQuery = default!;
 
     /// <summary>
     /// Attempts to find a store connected to this entity.

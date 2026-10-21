@@ -23,6 +23,9 @@ namespace Content.Client.IconSmoothing
         [Dependency] private EntityQuery<IconSmoothComponent> _iconSmoothQuery = default!;
         [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
 
+        private readonly Queue<EntityUid> _dirtyEntities = new();
+        private readonly Queue<EntityUid> _anchorChangedEntities = new();
+
         private int _generation;
 
         public void SetEnabled(EntityUid uid, bool value, IconSmoothComponent? component = null)
@@ -289,7 +292,7 @@ namespace Content.Client.IconSmoothing
                     break;
                 // Starlight-start
                 case IconSmoothingMode.Linear:
-                    CalculateNewSpriteLinear(gridEntity, smooth, spriteEnt, xform, smoothQuery);
+                    CalculateNewSpriteLinear(gridEntity, smooth, spriteEnt, xform, _iconSmoothQuery);
                     break;
                 // Starlight-end
                 default:

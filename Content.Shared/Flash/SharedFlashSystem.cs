@@ -12,7 +12,6 @@ using Content.Shared.Inventory;
 using Content.Shared.Light;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
-using Content.Shared.Random.Helpers;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
@@ -23,12 +22,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using System.Linq;
 using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared._Starlight.Flash.Components;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Random.Helpers;
-using Content.Shared.Clothing.Components;
 using Robust.Shared.Random;
 
 namespace Content.Shared.Flash;
@@ -107,7 +102,7 @@ public abstract partial class SharedFlashSystem : EntitySystem
             Flash(target, args.User, ent.Owner, ent.Comp.MeleeDuration, ent.Comp.SlowTo, melee: true, stunDuration: ent.Comp.MeleeStunDuration);
         }
 
-        EntityUid? firstTarget = args.HitEntities.Count > 0 ? args.HitEntities[0] : null; // Just pick the first hit entity.
+        EntityUid? firstTarget = args.HitEntities.Count > 0 ? args.HitEntities.First() : null; // Just pick the first hit entity.
         var ev = new AfterFlashActivatedEvent(firstTarget, args.User);
         RaiseLocalEvent(ent, ref ev);
     }

@@ -28,8 +28,6 @@ using System.Linq;
 using System.Text;
 using Content.Shared.Station.Components;
 using Content.Shared.Store.Components;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Cuffs;
 using Robust.Shared.Prototypes;

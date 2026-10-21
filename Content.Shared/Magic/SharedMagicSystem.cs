@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._Starlight.Magic.Events;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Coordinates.Helpers;
