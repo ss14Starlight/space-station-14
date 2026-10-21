@@ -13,8 +13,8 @@
 - type: salvageDifficulty
   id: Argocyte-Medium
   lootPrototype: "SalvageLootArgocyteMedium"
-  lootBudget: 25
-  mobBudget: 40
+  lootBudget: 40
+  mobBudget: 50
   modifierBudget: 3
   color: "#52B4E996"
   recommendedPlayers: 3
@@ -23,7 +23,7 @@
 - type: salvageDifficulty
   id: Argocyte-Hard
   lootPrototype: "SalvageLootArgocyteHard"
-  lootBudget: 45
+  lootBudget: 60
   mobBudget: 120
   modifierBudget: 3
   color: "#EFB34196"

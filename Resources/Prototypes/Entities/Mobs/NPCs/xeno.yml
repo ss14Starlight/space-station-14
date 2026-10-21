@@ -2,7 +2,7 @@
 - type: entity
   name: burrower
   id: MobXeno
-  parent: SimpleSpaceMobBase
+  parent: [SimpleSpaceMobBase, BaseSlicingRefinable ]
   description: They mostly come at night. Mostly.
   components:
   # Starlight-start: Languages
@@ -100,7 +100,7 @@
       Dead:
         Base: dead
   - type: Puller
-  - type: ToolRefinable # Starlight butchering fix
+  - type: !Append ToolRefinable # Starlight butchering fix
     refineResult: # StarlightS
     - id: FoodMeatXeno
       amount: 5
@@ -335,7 +335,7 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/rouny.rsi
     offset: 0,0.6
-  - type: ToolRefinable # Starlight butchering fix
+  - type: !Append ToolRefinable # Starlight butchering fix
     refineResult: # Starlight
     - id: FoodMeatRouny
       amount: 3
@@ -407,7 +407,7 @@
         Base: dead_purple_snake
       Dead:
         Base: dead_purple_snake
-  - type: ToolRefinable
+  - type: !Append ToolRefinable
     refineResult:
     - id: FoodMeatSnake
       amount: 4
@@ -486,7 +486,7 @@
         Base: dead_small_purple_snake
       Dead:
         Base: dead_small_purple_snake
-  - type: ToolRefinable
+  - type: !Append ToolRefinable
     refineResult:
     - id: FoodMeatSnake
       amount: 2
@@ -552,7 +552,7 @@
       Dead:
         Base: dead
   - type: Puller
-  - type: ToolRefinable # Starlight butchering fix
+  - type: !Append ToolRefinable # Starlight butchering fix
     refineResult: # Starlight
     - id: FoodMeatXeno
       amount: 5
