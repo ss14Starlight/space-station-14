@@ -77,7 +77,7 @@
     thresholds:
       0: Alive
       30: Dead
-  - type: !Append ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 1
@@ -111,7 +111,7 @@
     thresholds:
       0: Alive
       30: Dead
-  - type: !Append ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 1
@@ -159,7 +159,7 @@
     thresholds:
       0: Alive
       30: Dead
-  - type: !Append ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 1
@@ -207,7 +207,7 @@
     thresholds:
       0: Alive
       60: Dead
-  - type: !Append ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 2
@@ -241,7 +241,7 @@
     thresholds:
       0: Alive
       100: Dead
-  - type: !Append ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno # Starlight
       amount: 2
@@ -275,7 +275,7 @@
     thresholds:
       0: Alive
       100: Dead
-  - type: !Append ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 2
@@ -312,7 +312,7 @@
     thresholds:
       0: Alive
       100: Dead
-  - type: !Append ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 2
@@ -352,7 +352,7 @@
     thresholds:
       0: Alive
       150: Dead
-  - type: !Append ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 2
@@ -391,7 +391,7 @@
     thresholds:
       0: Alive
       150: Dead
-  - type: !Append ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 2
@@ -432,7 +432,7 @@
     thresholds:
       0: Alive
       300: Dead
-  - type: !Append ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 3
