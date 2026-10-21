@@ -1,11 +1,12 @@
 using Content.Shared._Starlight.Replay;
+using Content.Shared.Follower.Components;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Client._Starlight.Replay;
 
 // Global sounds meant for specific players (antag briefings, held geigers) are muted unless the viewer is spectating
-// one of them. Positional sounds are left to distance falloff, which already limits them to anyone in range.
+// or following one of them. Positional sounds are left to distance falloff, which already limits them to anyone in range.
 public sealed partial class ReplayObserverSystem
 {
     [Dependency] private SharedAudioSystem _audio = default!;
@@ -54,7 +55,7 @@ public sealed partial class ReplayObserverSystem
         if (_replayMutedSounds.Contains(audio.FileName))
             return;
 
-        var audible = !audio.Global || (_player.LocalEntity is { } listener && ent.Comp.Audience.Contains(listener));
+        var audible = !audio.Global || IsInAudience(ent.Comp.Audience);
 
         if (!audible)
         {
@@ -72,5 +73,15 @@ public sealed partial class ReplayObserverSystem
 
         ent.Comp.MutedVolume = null;
         _audio.SetVolume(ent.Owner, volume, audio);
+    }
+
+    // The viewer hears what the mob they're spectating or following heard.
+    private bool IsInAudience(HashSet<EntityUid> audience)
+    {
+        if (_player.LocalEntity is not { } listener)
+            return false;
+
+        return audience.Contains(listener)
+            || (TryComp<FollowerComponent>(listener, out var follower) && audience.Contains(follower.Following));
     }
 }

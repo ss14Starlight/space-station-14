@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Starlight.Replay;
 using Robust.Server.Audio;
 using Robust.Shared.Audio.Components;
@@ -40,17 +41,23 @@ public sealed partial class ReplayAudioAudienceSystem : EntitySystem
         Dirty(ent, audience);
     }
 
+    // Broadcast if every in-game player hears it. Filters can also hold lobby sessions, so counts alone can't tell.
     // With one player in game, every filter looks like a broadcast, so that case counts as private.
     private bool IsBroadcast(Filter filter)
     {
         var inGame = 0;
         foreach (var session in _player.Sessions)
         {
-            if (session.Status == SessionStatus.InGame)
-                inGame++;
+            if (session.Status != SessionStatus.InGame)
+                continue;
+
+            if (!filter.Recipients.Contains(session))
+                return false;
+
+            inGame++;
         }
 
-        return inGame > 1 && filter.Count >= inGame;
+        return inGame > 1;
     }
 
     // Real players have a session; the replay recorder doesn't.
