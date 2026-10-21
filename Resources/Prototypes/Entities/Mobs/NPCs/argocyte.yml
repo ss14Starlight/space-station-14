@@ -534,7 +534,7 @@
     - id: FoodMeatXeno
       amount: 10
     - id: SalvageTicket100
-      amount: 3 # Starlight end
+      amount: 5 # Starlight end
   - type: Fixtures
     fixtures:
       fix1:
