@@ -33,10 +33,11 @@ public sealed partial class JumpscareEntityPanel : DefaultWindow
 
     private JumpscareTargetSelectWindow? _targetWindow;
     private List<JumpscarePlayerInfo> _players = [];
-    private DamageSpecifier _damage = new();
+    private readonly DamageSpecifier _damage = new();
 
     private readonly Dictionary<LineEdit, string> _lastText = [];
-    private readonly List<LineEdit> _damageLineEdits = [];
+    private readonly List<LineEdit> _damageTypeLineEdits = [];
+    private readonly List<LineEdit> _damageGroupLineEdits = [];
 
     public Action<JumpscareData, IReadOnlyCollection<NetEntity>>? OnDoJumpscare;
 
@@ -263,7 +264,8 @@ public sealed partial class JumpscareEntityPanel : DefaultWindow
     private void RefreshDamageTypes()
     {
         DamageTypeOptionButton.Clear();
-        foreach (var lineEdit in _damageLineEdits) _lastText.Remove(lineEdit);
+        foreach (var lineEdit in _damageTypeLineEdits) _lastText.Remove(lineEdit);
+        _damageTypeLineEdits.Clear();
         AddDamageTypeButton.Disabled = true;
         DamageTypeOptionButton.AddItem(Loc.GetString("jumpscare-ui-damage-none"), 0);
         var types = _proto.EnumeratePrototypes<DamageTypePrototype>();
@@ -287,7 +289,7 @@ public sealed partial class JumpscareEntityPanel : DefaultWindow
             {
                 if (!TryParseFloat(lineEdit, args.Text, out var value)) return;
                 _lastText[lineEdit] = args.Text;
-                _damage += new DamageSpecifier { DamageDict = { { type.Key, FixedPoint2.New(value.Value) } } };
+                _damage.DamageDict[type.Key] = FixedPoint2.New(value.Value);
             };
             var rmButton = new Button
             {
@@ -304,14 +306,15 @@ public sealed partial class JumpscareEntityPanel : DefaultWindow
             hbox.AddChild(lineEdit);
             hbox.AddChild(rmButton);
             _lastText.Add(lineEdit, lineEdit.Text);
-            _damageLineEdits.Add(lineEdit);
+            _damageTypeLineEdits.Add(lineEdit);
         }
     }
 
     private void RefreshDamageGroups()
     {
         DamageGroupOptionButton.Clear();
-        foreach (var lineEdit in _damageLineEdits) _lastText.Remove(lineEdit);
+        foreach (var lineEdit in _damageGroupLineEdits) _lastText.Remove(lineEdit);
+        _damageGroupLineEdits.Clear();
         AddDamageGroupButton.Disabled = true;
         DamageGroupOptionButton.AddItem(Loc.GetString("jumpscare-ui-damage-none"), 0);
         var types = _proto.EnumeratePrototypes<DamageGroupPrototype>();
@@ -335,20 +338,20 @@ public sealed partial class JumpscareEntityPanel : DefaultWindow
             {
                 if (!TryParseFloat(lineEdit, args.Text, out var value)) return;
                 _lastText[lineEdit] = args.Text;
-                _damage += new DamageSpecifier { DamageGroupDict = { { type.Key, FixedPoint2.New(value.Value) } } };
+                _damage.DamageGroupDict[type.Key] = FixedPoint2.New(value.Value);
             };
             var rmButton = new Button { Text = Loc.GetString("jumpscare-ui-rm-damage-button") };
             rmButton.OnPressed += _ =>
             {
                 _damage.DamageGroupDict.Remove(type.Key);
-                RefreshDamageTypes();
+                RefreshDamageGroups();
             };
             DamageGroupContainer.AddChild(hbox);
             hbox.AddChild(label);
             hbox.AddChild(lineEdit);
             hbox.AddChild(rmButton);
             _lastText.Add(lineEdit, lineEdit.Text);
-            _damageLineEdits.Add(lineEdit);
+            _damageGroupLineEdits.Add(lineEdit);
         }
     }
 
