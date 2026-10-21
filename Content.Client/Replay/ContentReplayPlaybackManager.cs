@@ -152,6 +152,7 @@ public sealed partial class ContentReplayPlaybackManager
 
     private bool OnHandleReplayMessage(object message, bool skipEffects)
     {
+        NoteRecordedMessage(); // Starlight
         // TODO REPLAYS figure out a cleaner way of doing this. This sucks.
         // Maybe wrap the event in another cancellable event and raise that?
 
