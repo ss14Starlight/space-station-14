@@ -35,9 +35,7 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
         { PowerMonitoringConsoleGroup.SMES, (new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/NavMap/beveled_hexagon.png")), Color.OrangeRed) },
         { PowerMonitoringConsoleGroup.Substation, (new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/NavMap/beveled_square.png")), Color.Yellow) },
         { PowerMonitoringConsoleGroup.APC, (new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/NavMap/beveled_triangle.png")), Color.LimeGreen) },
-        // Starlight Start
-        { PowerMonitoringConsoleGroup.Consumer, (new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/NavMap/beveled_diamond.png")), Color.Blue) },
-        // Starlight End
+        { PowerMonitoringConsoleGroup.Consumer, (new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/NavMap/beveled_diamond.png")), Color.Blue) }, //Starlight: Adds a sprite for electrolyzers on power monitoring map
     };
 
     public EntityUid Entity;
@@ -61,9 +59,7 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
         MasterTabContainer.SetTabTitle(1, Loc.GetString("power-monitoring-window-label-smes"));
         MasterTabContainer.SetTabTitle(2, Loc.GetString("power-monitoring-window-label-substation"));
         MasterTabContainer.SetTabTitle(3, Loc.GetString("power-monitoring-window-label-apc"));
-        // Starlight Start
-        MasterTabContainer.SetTabTitle(4, Loc.GetString("power-monitoring-window-label-consumer"));
-        // Starlight End
+        MasterTabContainer.SetTabTitle(4, Loc.GetString("power-monitoring-window-label-consumer")); //Starlight: Adds tab for electrolyzers
 
         // Track when the MasterTabContainer changes its tab
         MasterTabContainer.OnTabChanged += OnTabChanged;
