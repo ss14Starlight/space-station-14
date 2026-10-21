@@ -19,7 +19,10 @@ public sealed partial class EmitPollenSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IComponentFactory _componentFactory = default!;
 
-    /// <inheritdoc />
+    /// <summary>
+    /// Updates pollen-emitting entities, scheduling their next emission and emitting pollen scent markers when due.
+    /// </summary>
+    /// <param name="frameTime">The time elapsed since the previous update.</param>
     public override void Update(float frameTime)
     {
         base.Update(frameTime);

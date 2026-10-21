@@ -3,7 +3,7 @@ using Content.Shared.DoAfter;
 
 namespace Content.Shared._Starlight.Pollen;
 
-public sealed class PollenSharedShopSystem : EntitySystem
+public sealed partial class PollenSharedShopSystem : EntitySystem
 {
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
 
