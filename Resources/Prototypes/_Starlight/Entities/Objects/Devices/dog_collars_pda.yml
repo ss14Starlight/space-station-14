@@ -19,6 +19,7 @@
     programs:
     - NanoTaskCartridge
     - NanoChatCartridge
+  - type: AnimalCollar
 
 - type: entity
   id: !type:CreateVariants
@@ -474,7 +475,6 @@
     - WhitelistChameleon
     - WhitelistChameleonPDA
     - CorgiWearable
-    - AnimalCollar
 
 
 # Chameleon-restricted PDAs
@@ -558,7 +558,6 @@
     tags:
     - DoorBumpOpener
     - CorgiWearable
-    - AnimalCollar
 
 - type: entity
   parent: [ DogCollarMixin, XenoborgiClearPDA ]
@@ -592,7 +591,6 @@
     tags:
     - DoorBumpOpener
     - CorgiWearable
-    - AnimalCollar
 
 # Tag lists differ from the rest, kept as their own entries.
 - type: entity
@@ -625,7 +623,6 @@
     - WhitelistChameleonPDA
     - BibleThwackRemovable
     - CorgiWearable
-    - AnimalCollar
 
 - type: entity
   parent: [DogCollarMixin, ChameleonPDA]
@@ -654,7 +651,6 @@
     tags:
     - DoorBumpOpener
     - CorgiWearable
-    - AnimalCollar
 
 - type: entity
   parent: [DogCollarMixin, SecurityPDA]
@@ -687,7 +683,6 @@
     - WhitelistChameleon
     - WhitelistChameleonPDA
     - CorgiWearable
-    - AnimalCollar
 
 - type: entity
   parent: [DogCollarMixin, SeniorOfficerPDA]
@@ -720,7 +715,6 @@
     - WhitelistChameleon
     - WhitelistChameleonPDA
     - CorgiWearable
-    - AnimalCollar
 
 # MedTakPDA's own tag list excludes WhitelistChameleon/WhitelistChameleonPDA ("Ignore Chameleon
 # tags" pattern, same as the admin/deathsquad/visitor collars above) - kept consistent with that.
@@ -753,4 +747,3 @@
     tags:
     - DoorBumpOpener
     - CorgiWearable
-    - AnimalCollar

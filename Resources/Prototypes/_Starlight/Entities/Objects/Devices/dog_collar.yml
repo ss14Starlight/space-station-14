@@ -47,7 +47,7 @@
     programs:
     - NanoTaskCartridge
     - NanoChatCartridge
+  - type: AnimalCollar
   - type: Tag
     tags:
     - CorgiWearable
-    - AnimalCollar

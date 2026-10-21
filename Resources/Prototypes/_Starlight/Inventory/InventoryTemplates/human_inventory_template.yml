@@ -120,9 +120,6 @@
       strippingWindowPos: 2,4
       dependsOn: jumpsuit
       displayName: ID
-      blacklist:
-        tags:
-        - AnimalCollar
     - name: belt
       slotTexture: belt
       fullTextureName: template_small
@@ -132,9 +129,6 @@
       uiWindowPos: 3,1
       strippingWindowPos: 1,5
       displayName: Belt
-      blacklist:
-        tags:
-        - AnimalCollar
     - name: back
       slotTexture: back
       fullTextureName: template_small
@@ -250,9 +244,6 @@
       uiWindowPos: 3,1
       strippingWindowPos: 1,5
       displayName: Belt
-      blacklist:
-        tags:
-        - AnimalCollar
     - name: back
       slotTexture: back
       fullTextureName: template_small

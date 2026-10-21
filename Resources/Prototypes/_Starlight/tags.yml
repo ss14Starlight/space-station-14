@@ -15,9 +15,6 @@
   id: AdminSpawnedPlayer # Signifies that this player entity was spawned via the "Spawn here" admin verb.
 
 - type: Tag
-  id: AnimalCollar
-
-- type: Tag
   id: AnimalCube
 
 - type: Tag

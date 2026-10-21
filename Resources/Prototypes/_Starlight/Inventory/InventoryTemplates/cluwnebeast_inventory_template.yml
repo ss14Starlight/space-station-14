@@ -45,9 +45,6 @@
       uiWindowPos: 2,1
       strippingWindowPos: 2,4
       displayName: ID
-      blacklist:
-        tags:
-        - AnimalCollar
     - name: ears
       slotTexture: ears
       slotFlags: EARS
