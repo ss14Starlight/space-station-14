@@ -170,7 +170,7 @@ public sealed partial class VendingMachineKeypadMenu : FancyWindow
         foreach (var slot in _slots)
         {
             var matched = searching &&
-                          slot.ItemName.Contains(_searchFilter, StringComparison.CurrentCultureIgnoreCase);
+                                slot.ItemName.Contains(_searchFilter, StringComparison.CurrentCultureIgnoreCase);
 
             slot.SetSearchDimmed(searching && !matched);
             slot.SetSearchHighlight(matched);

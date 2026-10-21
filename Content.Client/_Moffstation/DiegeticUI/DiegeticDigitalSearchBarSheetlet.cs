@@ -13,7 +13,6 @@ namespace Content.Client._Moffstation.DiegeticUI;
 public sealed class DiegeticDigitalSearchBarSheetlet<T> : Sheetlet<T> where T : PalettedStylesheet
 {
     private const string StyleClassDiegeticSearchBar = "MoffDiegeticSearchBar";
-    
 
     public override StyleRule[] GetRules(T sheet, object config)
     {
