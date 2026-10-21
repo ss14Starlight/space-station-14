@@ -1,34 +1,30 @@
 {
-  "version": 1,
-  "license": "CC-BY-SA-4.0",
-  "copyright": "Syndicate variants by ItsMaitake for Blimpuf Station. Base by @Vordenburg, recolored for Starlight by wonderfulnewworld (Github)",
-  "size": {
-    "x": 32,
-    "y": 32
-  },
-  "states": [
-    {
-      "name": "icon",
-	  "copyright": "Vordenburg, wonderfulnewworld, ItsMaitake",
-	  "license": "CC-BY-SA-4.0"
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
     },
-    {
-      "name": "equipped-INNERCLOTHING",
-      "directions": 4,
-	  "copyright": "Vordenburg, wonderfulnewworld, ItsMaitake",
-	  "license": "CC-BY-SA-4.0"
-    },
-    {
-      "name": "inhand-left",
-      "directions": 4,
-	  "copyright": "Vordenburg, wonderfulnewworld, ItsMaitake",
-	  "license": "CC-BY-SA-4.0"
-    },
-    {
-      "name": "inhand-right",
-      "directions": 4,
-	  "copyright": "Vordenburg, wonderfulnewworld, ItsMaitake",
-	  "license": "CC-BY-SA-4.0"
-    }
-  ]
+    "states": [
+        {
+            "name": "icon",
+            "copyright": "Base by @Vordenburg. Recolored for Starlight by wonderfulnewworld (Github). Syndicate variants by ItsMaitake on Blimpuf Station."
+        },
+        {
+            "name": "equipped-INNERCLOTHING",
+            "copyright": "Vordenburg, wonderfulnewworld, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left",
+            "copyright": "Vordenburg, wonderfulnewworld, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "copyright": "Vordenburg, wonderfulnewworld, ItsMaitake",
+            "directions": 4
+        }
+    ]
 }
