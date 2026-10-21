@@ -97,7 +97,7 @@
   - type: Item
     storedSprite:
       state: storage
-      sprite: _Starlight/Clothing/Neck/Ties/LGBTie.rsisdd
+      sprite: _Starlight/Clothing/Neck/Ties/LGBTie.rsi
 
 - type: entity
   parent: ClothingNeckBase
