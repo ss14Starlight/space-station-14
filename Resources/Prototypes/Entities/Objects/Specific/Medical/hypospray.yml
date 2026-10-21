@@ -702,8 +702,7 @@
   parent: [ BaseItem, BaseSyndicateContraband ]
   id: HypopenBox
   name: hypopen box
-  # Starlight-edit
-  description: A small box containing a hypopen, with instructions cheerfully printed on the side. 10u capacity. Guaranteed visually identical to a normal pen. New sound-masking technology conceals the injection hiss from the target. The packaging disintegrates when opened, leaving no evidence behind.
+  description: A small box containing a hypopen. Packaging disintegrates when opened, leaving no evidence behind.
   components:
   - type: Item
     size: Tiny
