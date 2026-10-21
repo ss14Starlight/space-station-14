@@ -12,7 +12,6 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Robust.Shared.Spawners;
 using System.Numerics;
 using Content.Shared.Ghost;
 
@@ -29,6 +28,7 @@ public sealed partial class PollenAdvancedSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ScentSystem _scent = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     private static readonly EntProtoId _advancedPollenCloud = "PollenAdvancedPollenCloud";
     private static readonly ProtoId<DamageGroupPrototype> _bruteGroup = "Brute";
@@ -60,18 +60,41 @@ public sealed partial class PollenAdvancedSystem : EntitySystem
             perk.NextSpawn = now + delay;
 
             var deviation = (float)((delay - TimeSpan.FromSeconds(perk.SpawnInterval)).TotalSeconds);
-            var lifetime = Math.Max(0.1f, perk.PollenLifetime + deviation * perk.LifetimeDeviationMultiplier);
+            var lifetime = Math.Max(0.1f, perk.PollenLifetime + (deviation * perk.LifetimeDeviationMultiplier));
 
             var offset = RandomPollenOffset();
             var cloud = Spawn(_advancedPollenCloud, Transform(uid).Coordinates.Offset(offset));
-
-            if (TryComp<TimedDespawnComponent>(cloud, out var despawn))
-                despawn.Lifetime = lifetime;
+            var cloudComp = Comp<PollenAdvancedPollenComponent>(cloud);
+            cloudComp.ExpiresAt = now + TimeSpan.FromSeconds(lifetime);
         }
 
         var cloudQuery = EntityQueryEnumerator<PollenAdvancedPollenComponent, TransformComponent>();
         while (cloudQuery.MoveNext(out var cloudUid, out var cloud, out var cloudXform))
         {
+            if (cloud.Fading)
+            {
+                if (now >= cloud.FadeEndsAt)
+                    QueueDel(cloudUid);
+
+                continue;
+            }
+
+            if (cloud.ActivatesAt == TimeSpan.Zero)
+                cloud.ActivatesAt = now + cloud.ActivationDelay;
+
+            if (cloud.ExpiresAt == TimeSpan.Zero)
+                cloud.ExpiresAt = now + cloud.Lifetime;
+
+            // Do not interact with or naturally expire during the activation delay.
+            if (now < cloud.ActivatesAt)
+                continue;
+
+            if (now >= cloud.ExpiresAt)
+            {
+                BeginFade(cloudUid, cloud);
+                continue;
+            }
+
             if (now < cloud.NextCheck)
                 continue;
 
@@ -140,21 +163,21 @@ public sealed partial class PollenAdvancedSystem : EntitySystem
         if (diona is { } dionaUid && _random.Prob(cloud.DionaChance))
         {
             ApplyAdvancedPollenEffect(dionaUid, cloud);
-            QueueDel(cloudUid);
+            BeginFade(cloudUid, cloud);
             return;
         }
 
         if (allergic is { } allergicUid && _random.Prob(cloud.AllergicChance))
         {
             ForceSneeze(allergicUid);
-            QueueDel(cloudUid);
+            BeginFade(cloudUid, cloud);
             return;
         }
 
         if (minded is { } mindedUid && _random.Prob(cloud.MindChance))
         {
             _popup.PopupEntity(Loc.GetString("pollen-advanced-pollen-mind-message"), mindedUid, mindedUid, PopupType.Small);
-            QueueDel(cloudUid);
+            BeginFade(cloudUid, cloud);
         }
     }
 
@@ -196,6 +219,16 @@ public sealed partial class PollenAdvancedSystem : EntitySystem
 
         if (_scent.ForceAllergySneeze((target, smeller), smeller.SmokeLockout))
             _popup.PopupEntity(Loc.GetString("scent-sneeze-allergic"), target, target, PopupType.Small);
+    }
+
+    private void BeginFade(EntityUid uid, PollenAdvancedPollenComponent cloud)
+    {
+        if (cloud.Fading)
+            return;
+
+        cloud.Fading = true;
+        cloud.FadeEndsAt = _timing.CurTime + cloud.FadeDuration;
+        _appearance.SetData(uid, PollenAdvancedPollenVisuals.Fading, true);
     }
 }
 

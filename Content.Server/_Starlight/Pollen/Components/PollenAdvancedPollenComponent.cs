@@ -65,4 +65,49 @@ public sealed partial class PollenAdvancedPollenComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan SpeedBuffDuration = TimeSpan.FromSeconds(3);
+
+    /// <summary>
+    /// How long after spawning this cloud waits before it can interact with
+    /// anything at all. Interaction checks are skipped entirely until this
+    /// elapses - see PollenAdvancedSystem.Update.
+    /// </summary>
+    [DataField]
+    public TimeSpan ActivationDelay = TimeSpan.FromSeconds(3);
+
+    /// <summary>
+    /// Absolute time at which this cloud becomes eligible to interact. Set
+    /// once, from spawn time + ActivationDelay, the first time it's checked.
+    /// </summary>
+    [AutoPausedField]
+    public TimeSpan ActivatesAt;
+
+    /// <summary>
+    /// Whether this cloud is currently fading out.
+    /// </summary>
+    public bool Fading;
+
+    /// <summary>
+    /// Absolute time at which the cloud should disappear naturally.
+    /// </summary>
+    [AutoPausedField]
+    public TimeSpan ExpiresAt;
+
+    /// <summary>
+    /// Absolute time at which the fading animation finishes.
+    /// </summary>
+    [AutoPausedField]
+    public TimeSpan FadeEndsAt;
+
+    /// <summary>
+    /// Duration of the fading animation, this is RSI frames x time per frame.
+    /// So 0.175 * 8
+    /// </summary>
+    [DataField]
+    public TimeSpan FadeDuration = TimeSpan.FromSeconds(1.4);
+
+    /// <summary>
+    /// Default lifetime for clouds whose expiration was not set by the spawner.
+    /// </summary>
+    [DataField]
+    public TimeSpan Lifetime = TimeSpan.FromSeconds(60);
 }

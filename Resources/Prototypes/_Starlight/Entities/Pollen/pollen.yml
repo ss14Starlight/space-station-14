@@ -47,9 +47,15 @@
   - type: Sprite
     sprite: _Starlight/Pollen/advanced_pollen.rsi
     layers:
-    - state: advanced_pollen
+    - map: ["pollen"]
+      state: advanced_pollen
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PollenAdvancedPollenVisuals.Fading:
+        pollen:
+          True: { state: advanced_pollen_fading }
+          False: { state: advanced_pollen }
   - type: EmitPollen
     pollenId: advancedpollen
-  - type: TimedDespawn
-    lifetime: 60
   - type: PollenAdvancedPollen
