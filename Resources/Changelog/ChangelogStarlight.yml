@@ -1,11 +1,4 @@
 Entries:
-- author: Yosif
-  changes:
-  - message: Sentient plants now can speak Sylvan.
-    type: Tweak
-  id: 409276
-  time: '2026-10-08T05:38:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6565
 - author: wonderfulnewworld
   changes:
   - message: The servant of narsie can now spawn from the hellportal.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409675
   time: '2026-10-21T16:55:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6775
+- author: 0warie
+  changes:
+  - message: Add missing electrified sparks to clockwork grille.
+    type: Fix
+  id: 409676
+  time: '2026-10-21T17:37:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6776
 Order: -1
