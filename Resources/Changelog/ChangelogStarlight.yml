@@ -1,20 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: When prying flesh tiles, you get random meat now.
-    type: Tweak
-  id: 409261
-  time: '2026-10-07T17:50:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6547
-- author: wonderfulnewworld
-  changes:
-  - message: The hellportal will now spawn mobs proportional to player count. (49 at beta max pop).
-    type: Tweak
-  id: 409262
-  time: '2026-10-07T17:50:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6547
-- author: wonderfulnewworld
-  changes:
   - message: Each hellportal will now have its own mob spawn limit, instead of having one shared across all of them.
     type: Tweak
   id: 409263
@@ -2883,4 +2869,18 @@ Entries:
   id: 409660
   time: '2026-10-21T14:56:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6748
+- author: neomoth
+  changes:
+  - message: Fixed the issue where directional signs sometimes became weirdly misaligned and diagonal.
+    type: Fix
+  id: 409661
+  time: '2026-10-21T14:59:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6759
+- author: neomoth
+  changes:
+  - message: Fixed an issue where if a grid started rotating while you were NOT on the grid, and a directional sign was visible, the sign would not rotate with the grid.
+    type: Fix
+  id: 409662
+  time: '2026-10-21T14:59:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6759
 Order: -1
