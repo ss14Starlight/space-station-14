@@ -562,7 +562,7 @@
 # Blimpuf Emag Additions
 
 - type: entity
-  parent: Paper
+  parent: [ Paper, BaseSyndicateContraband ]
   id: PrintedDocumentSyndicateRecruitmentOffer
   name: Syndicate Recruitment Offer
   categories: [ HideSpawnMenu ]
@@ -571,7 +571,7 @@
       content: doc-text-printer-syndicate-recruitment-offer
 
 - type: entity
-  parent: Paper
+  parent: [ Paper, BaseSyndicateContraband ]
   id: PrintedDocumentSyndicateOperationTakeover
   name: Syndicate Operation - Takeover
   categories: [ HideSpawnMenu ]
@@ -580,7 +580,7 @@
       content: doc-text-printer-syndicate-operation-takeover
 
 - type: entity
-  parent: Paper
+  parent: [ Paper, BaseSyndicateContraband ]
   id: PrintedDocumentSyndicateOperationBorgification
   name: Syndicate Operation - Borgification
   categories: [ HideSpawnMenu ]
@@ -589,7 +589,7 @@
       content: doc-text-printer-syndicate-operation-borgification
 
 - type: entity
-  parent: Paper
+  parent: [ Paper, BaseSyndicateContraband ]
   id: PrintedDocumentOfficialSyndicateCommunication
   name: Official Syndicate Communication
   categories: [ HideSpawnMenu ]
@@ -598,10 +598,12 @@
       content: doc-text-printer-official-syndicate-communication
 
 - type: entity
-  parent: Paper
+  parent: [ Paper, BaseSyndicateContraband ]
   id: PrintedDocumentSyndicateDidYouKnow
   name: Did You Know?
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
       content: doc-text-printer-syndicate-did-you-know
+    - type: Contraband
+      tier: Tier1
