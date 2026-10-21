@@ -373,11 +373,9 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
         HandsGui.UpdateStatusVisibility(leftVisible, rightVisible);
     }
 
-    public void OnStateEntered(GameplayState state)
-    {
+    public void OnStateEntered(GameplayState state) =>
         //         HandsGui?.Visible = _playerHandsComponent != null; // Starlight - commented-out
         UpdateVisibleStatusPanels(); // Starlight-edit: hotbar stays visible without hands, see UnloadPlayerHands.
-    }
 
     public override void FrameUpdate(FrameEventArgs args)
     {
