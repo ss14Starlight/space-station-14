@@ -55,7 +55,7 @@ public sealed partial class JumpscarePanelEui : BaseEui
 
     private void OnPermsChanged(AdminPermsChangedEventArgs args)
     {
-        if (args.Player == Player && !_admin.HasAdminFlag(Player, AdminFlags.Fun))
+        if (args.Player == Player && !_admin.HasAdminFlag(Player, AdminFlags.Mapping))
             Close();
     }
 
@@ -63,7 +63,7 @@ public sealed partial class JumpscarePanelEui : BaseEui
     {
         base.HandleMessage(msg);
 
-        if (!_admin.HasAdminFlag(Player, AdminFlags.Fun))
+        if (!_admin.HasAdminFlag(Player, AdminFlags.Mapping))
             return;
 
         if (msg is JumpscareRefreshPlayersMessage)
