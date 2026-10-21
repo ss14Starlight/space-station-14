@@ -1,0 +1,29 @@
+- type: listing
+  id: EvolutionMenuColony
+  name: evolutionmenu-colony-name
+  description: evolutionmenu-colony-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: biodegrade }
+  productEvent: !type:LearnChangelingColonyEvent {}
+  raiseProductEventOnUser: true
+  disableRefund: true
+  cost:
+    EvolutionPoint: 10
+  categories: [ChangelingAbilityUtility]
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolutionMenuEvolution
+  name: evolutionmenu-evolution-name
+  description: evolutionmenu-evolution-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: evolution_menu }
+  productEvent: !type:EvolveChangelingEvent {}
+  raiseProductEventOnUser: true
+  disableRefund: true
+  cost:
+    EvolutionPoint: 10
+  categories: [ChangelingAbilityUtility]
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

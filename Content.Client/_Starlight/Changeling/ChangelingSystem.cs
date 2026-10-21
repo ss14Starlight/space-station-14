@@ -2,6 +2,8 @@ using Content.Client.Alerts;
 using Content.Client.UserInterface.Systems.Alerts.Controls;
 using Content.Shared._Starlight.Changeling;
 using Content.Shared.StatusIcon.Components;
+using Robust.Client.GameObjects;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.Changeling;
@@ -16,6 +18,16 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         SubscribeLocalEvent<ChangelingComponent, UpdateAlertSpriteEvent>(OnUpdateAlert);
         SubscribeLocalEvent<ChangelingComponent, GetStatusIconsEvent>(GetChanglingIcon);
+        SubscribeLocalEvent<ChangelingColonyMemberComponent, AfterAutoHandleStateEvent>(OnColonyState);
+    }
+
+    private void OnColonyState(Entity<ChangelingColonyMemberComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        if (!ent.Comp.IsFragment || ent.Comp.IsBlood)
+            return;
+        // Detached heads normally use the ghost input context; living parts need ordinary mob controls.
+        EnsureComp<InputComponent>(ent).ContextName = "human";
+        EntityManager.System<InputSystem>().SetEntityContextActive();
     }
 
     private void OnUpdateAlert(EntityUid uid, ChangelingComponent comp, ref UpdateAlertSpriteEvent args)

@@ -51,11 +51,8 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private SharedBodySystem _body = default!;
     [Dependency] private StomachSystem _stomach = default!;
     [Dependency] private TagSystem _tag = default!;
-    [Dependency] private EnsnareableSystem _ensnareable = default!;
 
     private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
-    private static readonly ProtoId<ReagentPrototype> PolytrinicAcidPrototype = "PolytrinicAcid";
-    private static readonly ProtoId<TagPrototype> BolaTag = "Bola";
 
     public void SubscribeAbilities()
     {
@@ -80,14 +77,11 @@ public sealed partial class ChangelingSystem : EntitySystem
         SubscribeLocalEvent<ChangelingComponent, ActionAugmentedEyesightEvent>(OnAugmentedEyesight);
         SubscribeLocalEvent<ChangelingComponent, ActionNightEyesightEvent>(OnNightEyesight); // Starlight
         SubscribeLocalEvent<ChangelingComponent, ActionThermalEyesightEvent>(OnThermalEyesight); // Starlight
-        SubscribeLocalEvent<ChangelingComponent, ActionBiodegradeEvent>(OnBiodegrade);
         SubscribeLocalEvent<ChangelingComponent, ActionChameleonSkinEvent>(OnChameleonSkin);
         SubscribeLocalEvent<ChangelingComponent, ActionEphedrineOverdoseEvent>(OnEphedrineOverdose);
         SubscribeLocalEvent<ChangelingComponent, ActionDesoxyephedrineOverdoseEvent>(OnDesoxyephedrineOverdose); // Starlight
         SubscribeLocalEvent<ChangelingComponent, ActionAmalgamOverdoseEvent>(OnAmalgamOverdose); // Starlight
         SubscribeLocalEvent<ChangelingComponent, ActionFleshmendEvent>(OnHealUltraSwag);
-        SubscribeLocalEvent<ChangelingComponent, ActionLastResortEvent>(OnLastResort);
-        SubscribeLocalEvent<ChangelingComponent, ActionLesserFormEvent>(OnLesserForm);
         SubscribeLocalEvent<ChangelingComponent, ActionSpacesuitEvent>(OnSpacesuit);
         SubscribeLocalEvent<ChangelingComponent, ActionNeocyteDisguiseEvent>(OnNeocyteDisguise); // Starlight
         SubscribeLocalEvent<ChangelingComponent, ActionHivemindAccessEvent>(OnHivemindAccess);
@@ -421,63 +415,6 @@ public sealed partial class ChangelingSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("changeling-passive-activate"), uid, uid);
     }
     #endregion
-    /// <summary>
-    /// Dissolves cuffs and bolas, frees the changeling from a latch, and splashes
-    /// acid on whoever is holding it (latcher, then puller, else its own tile).
-    /// </summary>
-    private void OnBiodegrade(EntityUid uid, ChangelingComponent comp, ref ActionBiodegradeEvent args)
-    {
-        if (TryComp<CuffableComponent>(uid, out var cuffs) && cuffs.Container.ContainedEntities.Count > 0)
-        {
-            if (_cuffs.TryGetLastCuff(uid, out var cuff))
-            {
-                if (cuff.HasValue)
-                {
-                    _cuffs.Uncuff(uid, uid, cuff.Value);
-                }
-            }
-
-            QueueDel(cuff);
-        }
-
-        // Remove bolas
-        if (TryComp<EnsnareableComponent>(uid, out var ensnareable))
-        {
-            foreach (var ensnaring in ensnareable.Container.ContainedEntities)
-            {
-                if (!TryComp<EnsnaringComponent>(ensnaring, out var ensnaringComponent) || !_tag.HasTag(ensnaring, BolaTag))
-                    continue;
-
-                _ensnareable.ForceFree(ensnaring, ensnaringComponent);
-                QueueDel(ensnaring);
-                break;
-            }
-        }
-
-        var soln = new Solution();
-        soln.AddReagent(PolytrinicAcidPrototype, 10f);
-
-        // Latched: free ourselves and splash whoever had their teeth in us, same as a puller.
-        if (TryComp<LatchedComponent>(uid, out var latched) && Exists(latched.Latcher))
-        {
-            var latcher = latched.Latcher;
-            _latch.TryBreakLatch((uid, latched));
-            _puddle.TrySplashSpillAt(latcher, Transform(latcher).Coordinates, soln, out _);
-            return;
-        }
-
-        if (_pull.IsPulled(uid))
-        {
-            var puller = Comp<PullableComponent>(uid).Puller;
-            if (puller != null)
-            {
-                _puddle.TrySplashSpillAt((EntityUid)puller, Transform((EntityUid)puller).Coordinates, soln, out _);
-                return;
-            }
-        }
-        _puddle.TrySplashSpillAt(uid, Transform(uid).Coordinates, soln, out _);
-    }
-
     private void OnChameleonSkin(EntityUid uid, ChangelingComponent comp, ref ActionChameleonSkinEvent args)
     {
         if (comp.StealthEnabled && HasComp<StealthComponent>(uid) && HasComp<StealthOnMoveComponent>(uid))
@@ -573,25 +510,6 @@ public sealed partial class ChangelingSystem : EntitySystem
         else return;
         PlayMeatySound(uid, comp);
     }
-    public void OnLastResort(EntityUid uid, ChangelingComponent comp, ref ActionLastResortEvent args)
-    {
-        // todo: implement
-    }
-    public void OnLesserForm(EntityUid uid, ChangelingComponent comp, ref ActionLesserFormEvent args)
-    {
-        var newUid = TransformEntity(uid, protoId: "MobLingMonkey", comp: comp); // Starlight - fix lesser form
-        if (newUid == null)
-        {
-            comp.Chemicals += Comp<ChangelingActionComponent>(args.Action).ChemicalCost;
-            return;
-        }
-
-        PlayMeatySound((EntityUid)newUid, comp);
-        var loc = Loc.GetString("changeling-transform-others", ("user", Identity.Entity((EntityUid)newUid, EntityManager)));
-        _popup.PopupEntity(loc, (EntityUid)newUid, PopupType.LargeCaution);
-
-        comp.IsInLesserForm = true;
-    }
     public void OnSpacesuit(EntityUid uid, ChangelingComponent comp, ref ActionSpacesuitEvent args)
     {
         if (!TryToggleItem(uid, SpacesuitPrototype, comp, "outerClothing")
@@ -637,7 +555,11 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     private void OnAttemptLingAction(Entity<ChangelingActionComponent> ent, ref ActionAttemptEvent ev)
     {
-        if (ev.Cancelled) return;
+        if (ev.Cancelled || !IsFragmentActionAllowed(ev.User, ent.Owner))
+        {
+            ev.Cancelled = true;
+            return;
+        }
         var uid = ev.User;
         if (!TryComp<ChangelingComponent>(uid, out var comp))
         {

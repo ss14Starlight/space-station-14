@@ -1,0 +1,11 @@
+evolutionmenu-colony-name = Colony
+evolutionmenu-colony-desc = Animate severed limbs and shed blood. Tear off a limb or rupture your whole body, even after death. Freely move your mind between your living parts and possess organic bodies. Costs 10 evolution points.
+evolutionmenu-evolution-name = Evolution
+evolutionmenu-evolution-desc = Unlocks the evolved abilities assigned to your body parts. Costs 10 evolution points.
+changeling-colony-title = Colony
+changeling-colony-parts = Tear off a part (15 chemicals; 3–8 biomass):
+changeling-colony-carriers = Living carriers:
+changeling-colony-detach = Tear off: {$part}
+changeling-colony-switch = Control: {$part}
+changeling-colony-animation-on = Animate shed blood and severed parts: ON
+changeling-colony-animation-off = Animate shed blood and severed parts: OFF

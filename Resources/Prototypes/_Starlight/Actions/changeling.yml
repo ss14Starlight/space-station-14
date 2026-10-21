@@ -365,26 +365,6 @@
     useInLesserForm: true
 
 - type: entity
-  id: ActionBiodegrade
-  name: Biodegrade
-  description: Vomit a caustic substance onto any restraints, or someone's face. Costs 30 chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    useDelay: 5
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: biodegrade
-    checkCanInteract: false
-    checkConsciousness: false # Break out while unconscious, to encourage people not letting changelings linger around for too long.
-  - type: InstantAction
-    event: !type:ActionBiodegradeEvent {}
-  - type: ChangelingAction
-    chemicalCost: 30
-  - type: EorgPreventAction
-
-- type: entity
   id: ActionChameleonSkin
   name: Chameleon Skin
   description: Slowly blend in with the environment. Costs 15 chemicals.
@@ -481,24 +461,6 @@
     chemicalCost: 35
     requireAbsorbed: 2 # easily one of the strongest combat abilities. Shouldn't be available round start
     useInLesserForm: true
-
-- type: entity
-  id: ActionToggleLesserForm
-  name: Lesser Form
-  description: Abandon your current form and transform into a monkey. Costs 20 chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    useDelay: 5
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: lesser_form
-    checkCanInteract: false
-  - type: InstantAction
-    event: !type:ActionLesserFormEvent {}
-  - type: ChangelingAction
-    chemicalCost: 20
 
 - type: entity
   id: ActionToggleSpacesuit

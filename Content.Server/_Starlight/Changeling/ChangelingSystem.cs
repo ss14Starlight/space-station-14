@@ -95,10 +95,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private MovementSpeedModifierSystem _speed = default!;
     [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private GravitySystem _gravity = default!;
-    [Dependency] private PullingSystem _pull = default!;
-    [Dependency] private SharedCuffableSystem _cuffs = default!;
     [Dependency] private SharedPuddleSystem _puddle = default!;
-    [Dependency] private SharedLatchSystem _latch = default!;
     [Dependency] private SharedJitteringSystem _jitter = default!;
     [Dependency] private NpcFactionSystem _factionSystem = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;
@@ -127,6 +124,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         SubscribeLocalEvent<ChangelingComponent, ComponentRemove>(OnComponentRemove);
 
         SubscribeAbilities();
+        InitializeColony();
     }
 
     public override void Update(float frameTime)
@@ -135,6 +133,8 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         if (!_timing.IsFirstTimePredicted)
             return;
+
+        UpdateColonies();
 
         var query = EntityQueryEnumerator<ChangelingComponent>();
 
@@ -405,12 +405,23 @@ public sealed partial class ChangelingSystem : EntitySystem
         var newComp = EnsureComp<ChangelingComponent>(target);
         newComp.AbsorbedDNA = comp.AbsorbedDNA;
         newComp.AbsorbedDNAIndex = comp.AbsorbedDNAIndex;
+        newComp.MaxAbsorbedDNA = comp.MaxAbsorbedDNA;
+        newComp.SelectedForm = comp.SelectedForm;
 
         newComp.Chemicals = comp.Chemicals;
         newComp.MaxChemicals = comp.MaxChemicals;
+        newComp.BonusChemicalRegen = comp.BonusChemicalRegen;
+        newComp.ChemicalNextUpdateTime = comp.ChemicalNextUpdateTime;
+        newComp.ChemicalUpdateCooldown = comp.ChemicalUpdateCooldown;
 
         newComp.Biomass = comp.Biomass;
         newComp.MaxBiomass = comp.MaxBiomass;
+        newComp.BiomassDrain = comp.BiomassDrain;
+        newComp.BiomassNextUpdateTime = comp.BiomassNextUpdateTime;
+        newComp.BiomassUpdateCooldown = comp.BiomassUpdateCooldown;
+        newComp.BiomassDeficitWarningPercent = comp.BiomassDeficitWarningPercent;
+        newComp.BiomassDeficitJitterPercent = comp.BiomassDeficitJitterPercent;
+        newComp.BiomassDeficitVomitPercent = comp.BiomassDeficitVomitPercent;
         newComp.BreathingEnabled = comp.BreathingEnabled;
         _respirator.SetEnabled(target, newComp.BreathingEnabled);
         CopyStingChemistry(source, target, comp, newComp);
@@ -421,7 +432,8 @@ public sealed partial class ChangelingSystem : EntitySystem
         newComp.TotalAbsorbedEntities = comp.TotalAbsorbedEntities;
         newComp.TotalStolenDNA = comp.TotalStolenDNA;
 
-        return comp;
+        Dirty(target, newComp);
+        return newComp;
     }
     private EntityUid? TransformEntity(EntityUid uid, TransformData? data = null, EntProtoId? protoId = null, ChangelingComponent? comp = null, bool persistentDna = false)
     {
@@ -555,6 +567,10 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, ChangelingComponent comp, ref ComponentStartup args)
     {
+        var members = EntityQueryEnumerator<ChangelingColonyMemberComponent>();
+        while (members.MoveNext(out var member, out _))
+            _factionSystem.IgnoreEntity(member, uid);
+
         RemComp<HungerComponent>(uid);
         RemComp<ThirstComponent>(uid);
         _respirator.SetEnabled(uid, comp.BreathingEnabled);

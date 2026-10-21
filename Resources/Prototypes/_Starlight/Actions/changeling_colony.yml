@@ -1,0 +1,63 @@
+- type: entity
+  id: ActionChangelingColony
+  name: Colony
+  description: Tear off a limb, switch carriers or toggle the animation of shed blood and severed parts.
+  categories: [HideSpawnMenu]
+  components:
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: evolution_menu }
+  - type: InstantAction
+    event: !type:OpenChangelingColonyEvent {}
+
+- type: entity
+  id: ActionChangelingRupture
+  name: Rupture
+  description: Split your body into living parts. Costs 20 biomass. Can be used after death.
+  categories: [HideSpawnMenu]
+  components:
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: biodegrade }
+  - type: InstantAction
+    event: !type:RuptureChangelingEvent {}
+  - type: EorgPreventAction
+
+- type: entity
+  parent: ActionChangelingDevour
+  id: ActionChangelingPossess
+  name: Possess body
+  description: Take over an organic body. Ten seconds of preparation, then ten seconds of feeding. Movement interrupts the process.
+
+- type: entity
+  id: ActionChangelingNeurotoxin
+  name: Neurotoxic bite
+  description: Your next hit slows the victim, then paralyses them after three seconds during possession. Recharges in five minutes.
+  categories: [HideSpawnMenu]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_lethargic }
+  - type: InstantAction
+    event: !type:ArmChangelingNeurotoxinEvent {}
+  - type: EorgPreventAction
+
+- type: entity
+  parent: StatusEffectSlowdown
+  id: ChangelingCaptureSlowdown
+  name: neurotoxic slowdown
+  components:
+  - type: StatusEffect
+    blacklist: null
+
+- type: entity
+  parent: StatusEffectStunned
+  id: ChangelingCaptureParalysis
+  name: neurotoxic paralysis
+  components:
+  - type: StatusEffect
+    blacklist: null

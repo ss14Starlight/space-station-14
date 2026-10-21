@@ -93,6 +93,12 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
     // The action was used.
     // Start the first doafter for the windup.
+    public void StartDevour(Entity<ChangelingDevourComponent> ent, EntityUid target)
+    {
+        var action = new ChangelingDevourActionEvent { Performer = ent.Owner, Target = target };
+        OnDevourAction(ent, ref action);
+    }
+
     private void OnDevourAction(Entity<ChangelingDevourComponent> ent, ref ChangelingDevourActionEvent args)
     {
         if (args.Handled
@@ -118,6 +124,14 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
             return;
         }
 
+        var attempt = new ChangelingDevourAttemptEvent(target);
+        RaiseLocalEvent(ent, ref attempt);
+        if (attempt.Cancelled)
+            return;
+
+        var started = new ChangelingDevourStartedEvent(target);
+        RaiseLocalEvent(ent, ref started);
+
         if (_net.IsServer)
         {
             ent.Comp.CurrentDevourSound = _audio.Stop(ent.Comp.CurrentDevourSound);
@@ -128,12 +142,17 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ent:player} started changeling devour windup against {target:player}");
 
-        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.DevourWindupTime, new ChangelingDevourWindupDoAfterEvent(), ent, target: target, used: ent)
+        if (!_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.DevourWindupTime, new ChangelingDevourWindupDoAfterEvent(), ent, target: target, used: ent)
         {
             BreakOnMove = true,
+            AttemptFrequency = AttemptFrequency.EveryTick,
             CancelDuplicate = true,
             DuplicateCondition = DuplicateConditions.None,
-        });
+        }))
+        {
+            FinishDevour(ent, target, false);
+            return;
+        }
 
         var selfMessage = Loc.GetString("changeling-devour-begin-windup-self", ("user", Identity.Entity(ent.Owner, EntityManager)));
         var othersMessage = Loc.GetString("changeling-devour-begin-windup-others", ("user", Identity.Entity(ent.Owner, EntityManager)));
@@ -153,7 +172,10 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         ent.Comp.CurrentDevourSound = _audio.Stop(ent.Comp.CurrentDevourSound);
 
         if (args.Cancelled)
+        {
+            FinishDevour(ent, args.Target, false);
             return;
+        }
 
         if (args.Target is not { } target)
             return;
@@ -180,7 +202,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player} began to devour {ToPrettyString(target):player}'s identity");
 
         ent.Comp.DevourDamageProgress = 0f;
-        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager,
+        if (!_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager,
             ent,
             ent.Comp.DevourConsumeTime,
             new ChangelingDevourConsumeDoAfterEvent(),
@@ -192,7 +214,8 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
             AttemptFrequency = AttemptFrequency.EveryTick,
             CancelDuplicate = true,
             DuplicateCondition = DuplicateConditions.None,
-        });
+        }))
+            FinishDevour(ent, target, false);
     }
 
     private void OnDevourConsumeAttempt(Entity<ChangelingDevourComponent> ent,
@@ -230,7 +253,10 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         ent.Comp.CurrentDevourSound = _audio.Stop(ent.Comp.CurrentDevourSound);
 
         if (args.Cancelled)
+        {
+            FinishDevour(ent, args.Target, false);
             return;
+        }
 
         if (args.Target is not { } target)
             return;
@@ -250,8 +276,12 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         {
             _popupSystem.PopupClient(Loc.GetString("changeling-devour-attempt-failed-not-dead"), args.User, args.User, PopupType.Medium);
             _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player} unsuccessfully devoured {ToPrettyString(args.Target):player}'s identity");
+            FinishDevour(ent, target, false);
             return;
         }
+
+        if (FinishDevour(ent, target, true))
+            return;
 
         var selfMessage = Loc.GetString("changeling-devour-consume-complete-self", ("user", Identity.Entity(args.User, EntityManager)));
         var othersMessage = Loc.GetString("changeling-devour-consume-complete-others", ("user", Identity.Entity(args.User, EntityManager)));
@@ -280,6 +310,15 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         #endregion
 
         Dirty(ent);
+    }
+
+    private bool FinishDevour(EntityUid user, EntityUid? target, bool completed)
+    {
+        if (target is not { } victim)
+            return false;
+        var finished = new ChangelingDevourFinishedEvent(victim, completed);
+        RaiseLocalEvent(user, ref finished);
+        return finished.Handled;
     }
 
     // TODO: This should just be an API method in the butcher system
