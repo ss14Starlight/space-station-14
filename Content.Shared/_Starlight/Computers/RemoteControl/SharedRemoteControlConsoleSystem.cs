@@ -4,6 +4,8 @@ using Content.Shared.Interaction;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Containers;
 
+// ReSharper disable CheckNamespace
+
 namespace Content.Shared._Starlight.Computers.RemoteControl;
 
 public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
@@ -53,7 +55,7 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
 
         args.RemoteEntity = remoteEntity;
         args.Allowed = CanRemoteControlledEntityAct(remoteEntity)
-                       && _interaction.InRangeAndAccessible(remoteEntity, args.Target);
+            && _interaction.InRangeAndAccessible(remoteEntity, args.Target);
     }
 
     public bool TryGetRemoteEntity(Entity<RemoteControlConsoleComponent?> entity, out EntityUid remoteEntity)
@@ -107,8 +109,8 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
         }
 
         return _containers.TryGetContainingContainer(brain, out var container)
-                && container.ID == "borg_brain"
-                && TryComp<BorgChassisComponent>(container.Owner, out _)
-                && (body = container.Owner) != default;
+            && container.ID == "borg_brain"
+            && TryComp<BorgChassisComponent>(container.Owner, out _)
+            && (body = container.Owner) != default;
     }
 }
