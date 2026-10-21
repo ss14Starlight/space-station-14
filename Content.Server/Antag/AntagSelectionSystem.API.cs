@@ -370,6 +370,14 @@ public sealed partial class AntagSelectionSystem
         if (session == null || data == null)
             return;
 
+        // Moffstation - Start - SuppressChat
+        if (data.Value.ChatNotification)
+        {
+            _audio.PlayGlobal(data.Value.Sound, session);
+            return;
+        }
+        // Moffstation - End
+
         var text = data.Value.Text == null ? string.Empty : Loc.GetString(data.Value.Text);
         SendBriefing(session, text, data.Value.Color, data.Value.Sound);
     }
