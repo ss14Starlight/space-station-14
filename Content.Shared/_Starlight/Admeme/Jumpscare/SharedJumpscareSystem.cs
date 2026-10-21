@@ -36,7 +36,7 @@ public abstract partial class SharedJumpscareSystem : EntitySystem
     [Dependency] private IRobustRandom _rand = null!;
 
     [SubscribeLocalEvent]
-    private void OnComponentInit(Entity<JumpscareComponent> ent, ref ComponentInit args) =>
+    private void OnMapInit(Entity<JumpscareComponent> ent, ref MapInitEvent args) =>
         _actions.AddAction(ent, ref ent.Comp.ActionEntity, ent.Comp.Action);
 
     [SubscribeLocalEvent]
