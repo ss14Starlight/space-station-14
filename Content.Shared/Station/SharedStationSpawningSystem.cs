@@ -329,10 +329,12 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
                     var equipmentStr = startingGear.GetGear(slot.Name);
                     if (!string.IsNullOrEmpty(equipmentStr))
                     {
+                        // Starlight begin
                         if (slot.Name == "back" && slot.Whitelist?.Tags?.Contains("CorgiWearable") == true)
                             equipmentStr = "ClothingBagPet";
-                        else if (slot.Name == "id" && slot.Whitelist?.Tags?.Contains("CorgiWearable") == true) // Starlight
-                            equipmentStr = CorgiCollarHelper.GetCollarEquivalent(equipmentStr, PrototypeManager) ?? equipmentStr; // Starlight
+                        else if (slot.Name == "id" && slot.Whitelist?.Tags?.Contains("CorgiWearable") == true)
+                            equipmentStr = CorgiCollarHelper.GetCollarEquivalent(equipmentStr, PrototypeManager) ?? equipmentStr;
+                        // Starlight end
                         var equipmentEntity = Spawn(equipmentStr, xform.Coordinates);
                         InventorySystem.TryEquip(entity, equipmentEntity, slot.Name, silent: true, force: true);
                     }

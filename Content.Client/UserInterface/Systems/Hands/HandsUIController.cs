@@ -116,8 +116,7 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
 
     private void UnloadPlayerHands()
     {
-        // Starlight-edit: only hide the hand parts, mobs without hands can still have hotbar slots
-//        HandsGui?.Visible = false; // Starlight - commented-out for above reason
+        // HandsGui?.Visible = false; // Starlight - only hide the hand parts, mobs without hands can still have hotbar slots
         HandsGui?.HandContainer.ClearButtons();
         HandsGui?.FunctionalHandContainer.ClearButtons(); // Starlight
         _playerHandsComponent = null;
@@ -374,7 +373,6 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
     }
 
     public void OnStateEntered(GameplayState state) =>
-        //         HandsGui?.Visible = _playerHandsComponent != null; // Starlight - commented-out
         UpdateVisibleStatusPanels(); // Starlight-edit: hotbar stays visible without hands, see UnloadPlayerHands.
 
     public override void FrameUpdate(FrameEventArgs args)
