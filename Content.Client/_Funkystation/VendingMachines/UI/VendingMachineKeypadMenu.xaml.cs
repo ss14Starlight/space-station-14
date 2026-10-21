@@ -28,6 +28,7 @@ public sealed partial class VendingMachineKeypadMenu : FancyWindow
     public EntityUid? User;
 
     private int _rowCount;
+    private bool _enabled; // Starlight
     private char? _bufferLetter;
     private int? _bufferNumber;
     private string _searchFilter = "";
@@ -128,8 +129,9 @@ public sealed partial class VendingMachineKeypadMenu : FancyWindow
         }
     }
 
-    public void Populate(List<VendingMachineInventoryEntry> inventory, bool enabled)
+    public void Populate(List<VendingMachineInventoryEntry> inventory, bool enabled, bool showPrices) // Starlight
     {
+        _enabled = enabled; // Starlight
         ItemGrid.RemoveAllChildren();
         _slots.Clear();
 
@@ -142,7 +144,7 @@ public sealed partial class VendingMachineKeypadMenu : FancyWindow
             var code = GetCode(i);
 
             var slot = new VendingMachineGridSlot();
-            slot.SetItem(entry.ID, code, entry.Amount, entry.Amount == 0);
+            slot.SetItem(entry.ID, code, entry.Amount, entry.Amount == 0, entry.Price, showPrices); // Starlight
 
             ItemGrid.AddChild(slot);
             _slots.Add(slot);
@@ -175,17 +177,19 @@ public sealed partial class VendingMachineKeypadMenu : FancyWindow
         }
     }
 
-    public void UpdateAmounts(List<VendingMachineInventoryEntry> inventory, bool enabled)
+    public void UpdateAmounts(List<VendingMachineInventoryEntry> inventory, bool enabled, bool showPrices) // Starlight
     {
+        _enabled = enabled; // Starlight
         if (inventory.Count != _slots.Count)
         {
-            Populate(inventory, enabled);
+            Populate(inventory, enabled, showPrices); // Starlight
             return;
         }
 
         for (var i = 0; i < inventory.Count; i++)
         {
             _slots[i].SetAmount(inventory[i].Amount, inventory[i].Amount == 0);
+            _slots[i].SetPrice(inventory[i].Price, showPrices); // Starlight
         }
     }
 
@@ -309,7 +313,7 @@ public sealed partial class VendingMachineKeypadMenu : FancyWindow
         if (_showingFeedback)
             return;
 
-        if (_bufferLetter is not { } letter || _bufferNumber is not { } number)
+        if (!_enabled || _bufferLetter is not { } letter || _bufferNumber is not { } number) // Starlight
         {
             ShowFeedback(false);
             return;

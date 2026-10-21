@@ -7,7 +7,6 @@ using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using System.Linq;
 using Content.Shared._Funkystation.VendingMachines;
-using Content.Shared.VendingMachines.Components;
 
 namespace Content.Client._Funkystation.VendingMachines;
 
@@ -36,27 +35,24 @@ public sealed class VendingMachineKeypadBoundUserInterface(EntityUid owner, Enum
 
     public void Refresh()
     {
-        var enabled = EntMan.TryGetComponent(Owner, out VendingMachineEjectComponent? eject) && !eject.Ejecting;
+        var enabled = EntMan.TryGetComponent(Owner, out VendingMachineComponent? vending) && !vending.Ejecting; // Starlight
 
         var system = EntMan.System<VendingMachineSystem>();
         _cachedInventory = system.GetAllInventory(Owner);
 
-        _menu?.Populate(_cachedInventory, enabled);
+        _menu?.Populate(_cachedInventory, enabled, vending?.ShowPrices ?? true); // Starlight
     }
 
     public void UpdateAmounts()
     {
-        var enabled = EntMan.TryGetComponent(Owner, out VendingMachineEjectComponent? eject) && !eject.Ejecting;
+        var enabled = EntMan.TryGetComponent(Owner, out VendingMachineComponent? vending) && !vending.Ejecting; // Starlight
 
         var system = EntMan.System<VendingMachineSystem>();
         _cachedInventory = system.GetAllInventory(Owner);
-        _menu?.UpdateAmounts(_cachedInventory, enabled);
+        _menu?.UpdateAmounts(_cachedInventory, enabled, vending?.ShowPrices ?? true); // Starlight
     }
 
-    private void OnAudioPlayed(VendingMachineKeypadSound type, float pitch)
-    {
-        SendMessage(new VendingMachineKeypadAudioMessage(type, pitch));
-    }
+    private void OnAudioPlayed(VendingMachineKeypadSound type, float pitch) => SendMessage(new VendingMachineKeypadAudioMessage(type, pitch));
 
     private bool OnCodeEntered(int slotIndex)
     {
@@ -79,7 +75,7 @@ public sealed class VendingMachineKeypadBoundUserInterface(EntityUid owner, Enum
         // optimistic
         _menu?.PlayVendAnimation(slotIndex);
 
-        SendPredictedMessage(new VendingMachineEjectMessage(selectedItem.Type, selectedItem.ID));
+        SendMessage(new VendingMachineEjectMessage(selectedItem.Type, selectedItem.ID)); // Starlight
         return true;
     }
 
@@ -95,6 +91,6 @@ public sealed class VendingMachineKeypadBoundUserInterface(EntityUid owner, Enum
         _menu.OnCodeEntered -= OnCodeEntered;
         _menu.OnAudioPlayed -= OnAudioPlayed;
         _menu.OnClose -= Close;
-        _menu.Close();
+        _menu.Parent?.RemoveChild(_menu); // Starlight
     }
 }

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Client._Funkystation.VendingMachines;
 using Content.Shared.VendingMachines;
@@ -61,7 +62,7 @@ public sealed partial class VendingMachineSystem : SharedVendingMachineSystem
             component.ContrabandInventory.Add(entry.Key, new(entry.Value));
         }
 
-        if (UISystem.TryGetOpenUi<VendingMachineBoundUserInterface>(uid, VendingMachineUiKey.Key, out var bui))
+        if (TryGetOpenUi(uid, out var bui)) // Starlight
         {
             if (fullUiUpdate)
             {
@@ -79,9 +80,7 @@ public sealed partial class VendingMachineSystem : SharedVendingMachineSystem
         if (!Resolve(entity, ref entity.Comp))
             return;
 
-        if (UISystem.TryGetOpenUi<VendingMachineBoundUserInterface>(entity.Owner,
-                VendingMachineUiKey.Key,
-                out var bui))
+        if (TryGetOpenUi(entity.Owner, out var bui)) // Starlight
         {
             bui.UpdateAmounts();
         }

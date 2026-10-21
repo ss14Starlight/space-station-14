@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: VendingMachine
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.VendingMachineUiKey.Key:
+        type: VendingMachineKeypadBoundUserInterface
