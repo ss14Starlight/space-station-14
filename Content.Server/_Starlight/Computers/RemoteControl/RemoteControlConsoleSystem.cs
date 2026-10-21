@@ -123,6 +123,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             {
                 subs.Event<BoundUIClosedEvent>(OnUiClosed);
                 subs.Event<RemoteControlToggleMessage>(OnToggleControl);
+                subs.Event<RemoteControlToggleKnockdownMessage>(OnRemoteToggleKnockdown);
                 subs.Event<RemoteControlInteractionMessage>(OnRemoteInteraction);
                 subs.Event<RemoteControlBuildConstructionMessage>(OnRemoteBuildConstruction);
                 subs.Event<RemoteControlBuildItemConstructionMessage>(OnRemoteBuildItemConstruction);
@@ -608,6 +609,16 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         }
 
         _actions.TryPerformAction(remoteEntity, action);
+    }
+
+    private void OnRemoteToggleKnockdown(EntityUid uid, RemoteControlConsoleComponent component,
+        RemoteControlToggleKnockdownMessage args)
+    {
+        if (!TryGetActionableControlledEntity((uid, component), args.Actor, out var remoteEntity)
+            || !CanRemoteControlledEntityAct(remoteEntity))
+            return;
+
+        _stun.ToggleKnockdown(remoteEntity);
     }
 
     private void OnRemoteTargetAction(EntityUid uid, RemoteControlConsoleComponent component,

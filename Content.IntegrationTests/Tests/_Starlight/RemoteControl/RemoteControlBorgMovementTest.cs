@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.IntegrationTests.Tests.Movement;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Server._Starlight.Computers.RemoteControl;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Silicons.Borgs;
@@ -531,7 +532,23 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
                     "The AI should be able to remotely control the borg.");
             });
 
-            await PressKey(ContentKeyFunctions.ToggleKnockdown);
+            await RunTicks(5);
+            await Client.WaitAssertion(() =>
+            {
+                Assert.That(Client.System<RemoteControlInterface>().ControlledEntity, Is.Not.Null,
+                    "The client should be controlling the borg before receiving the knockdown key.");
+                Assert.That(CEntMan.GetComponent<StandingStateComponent>(CPlayer).Standing, Is.True,
+                    "The controller should be standing before the remote knockdown key.");
+            });
+            await SetKey(ContentKeyFunctions.ToggleKnockdown, BoundKeyState.Down);
+            await Client.WaitAssertion(() =>
+            {
+                Assert.That(CEntMan.GetComponent<StandingStateComponent>(CPlayer).Standing, Is.True,
+                    "The remote knockdown key should not predict the controller going down.");
+                Assert.That(CEntMan.HasComponent<KnockedDownComponent>(CPlayer), Is.False);
+            });
+            await RunTicks(1);
+            await SetKey(ContentKeyFunctions.ToggleKnockdown, BoundKeyState.Up);
             await RunTicks(1);
 
             await Server.WaitAssertion(() =>
