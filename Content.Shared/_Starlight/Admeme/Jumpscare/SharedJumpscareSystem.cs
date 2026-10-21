@@ -70,8 +70,12 @@ public abstract partial class SharedJumpscareSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnMassJumpscareDoAfter(Entity<JumpscareComponent> ent, ref MassJumpscareDoAfterEvent args)
     {
+        if (args.Cancelled || args.Handled)
+            return;
+        args.Handled = true;
+
         var nearby = _lookup.GetEntitiesInRange(Transform(ent).Coordinates, ent.Comp.MassRange);
-        foreach (var target in nearby.Where(HasComp<ActorComponent>))
+        foreach (var target in nearby.Where(target => target != ent.Owner && HasComp<ActorComponent>(target)))
             DoJumpscareAct(ent, target);
     }
 
