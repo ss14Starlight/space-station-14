@@ -512,7 +512,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
             if (TryComp<PowerConsumerComponent>(uid, out var consumer))
             {
                 stats.PowerValue = consumer.ReceivedPower;
-                stats.PowerUsage = stats.PowerValue;
+                stats.PowerUsage = consumer.DrawRate;
             }
         }
         // Starlight End

@@ -1,7 +1,7 @@
-- type: entity
+- type: !PartialOnly entity
   id: Electrolyzer
-  Components:
-  - type: !PartialOnly PowerMonitoringDevice # Stops Electrolyzers being flagged as "Rogue Power Consuming Devices" on the monitor
+  components:
+  - type: PowerMonitoringDevice # Stops Electrolyzers being flagged as "Rogue Power Consuming Devices" on the monitor
     group: Consumer
     sourceNode: input
     sprite: _Funkystation/Structures/Machines/electrolyzer.rsi
