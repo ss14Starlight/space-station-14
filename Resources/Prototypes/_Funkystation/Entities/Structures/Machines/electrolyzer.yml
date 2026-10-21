@@ -59,9 +59,4 @@
     netsync: false
     maxCharge: 10000000
     startingCharge: 0
-  - type: PowerMonitoringDevice # Stops Electrolyzers being flagged as "Rogue Power Consuming Devices" on the monitor
-    group: Consumer
-    sourceNode: input
-    sprite: _Funkystation/Structures/Machines/electrolyzer.rsi
-    state: electrolyzerOn
   # Starlight-end
