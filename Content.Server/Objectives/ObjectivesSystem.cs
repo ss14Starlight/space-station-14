@@ -94,6 +94,8 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
             }
         }
 
+        CollectPickerSummaries(summaries); // Starlight
+
         // convert the data into summary text
         foreach (var (agent, summary) in summaries)
         {
@@ -287,6 +289,7 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
             }
             // Starlight End
 
+            successRate = AppendDifficultySummary(mindId, mind, agentSummary, successRate); // Starlight
             agentSummaries.Add((agentSummary.ToString(), successRate, completedObjectives));
         }
 
@@ -342,12 +345,14 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
         }
     }
 
-    public EntityUid? GetRandomObjective(EntityUid mindId, MindComponent mind, ProtoId<WeightedRandomPrototype> objectiveGroupProto, float maxDifficulty)
+    #region Moffstation
+    // Moffstation - Objective Picker - make sure to use our yield break implementation and take upstream changes
+    public IEnumerable<EntityUid> GetRandomObjectives(EntityUid mindId, MindComponent mind, ProtoId<WeightedRandomPrototype> objectiveGroupProto, float maxDifficulty)
     {
         if (!_prototypeManager.TryIndex(objectiveGroupProto, out var groupsProto))
         {
             Log.Error($"Tried to get a random objective, but can't index WeightedRandomPrototype {objectiveGroupProto}");
-            return null;
+            yield break; // Moffstation - Objective Picker
         }
 
         // Make a copy of the weights so we don't trash the prototype by removing entries
@@ -358,7 +363,7 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
             if (!_prototypeManager.TryIndex<WeightedRandomPrototype>(groupName, out var group))
             {
                 Log.Error($"Couldn't index objective group prototype {groupName}");
-                return null;
+                yield break; // Moffstation - Objective Picker
             }
 
             var objectives = group.Weights.ShallowClone();
@@ -368,12 +373,26 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
                     continue;
 
                 if (objectiveComp.Difficulty <= maxDifficulty && TryCreateObjective((mindId, mind), objectiveProto, out var objective))
-                    return objective;
+                    yield return objective.Value; // Moffstation - Objective Picker
             }
+        }
+    }
+    #endregion
+
+    // Moffstation - Start - Objective Picker: This is rewritten to use our IEnumerable version for maintainability
+    public EntityUid? GetRandomObjective(EntityUid mindId, MindComponent mind, ProtoId<WeightedRandomPrototype> objectiveGroupProto, float maxDifficulty)
+    {
+        #region Starlight
+        // Stop after the first candidate; Single exhausts the offer generator.
+        foreach (var objective in GetRandomObjectives(mindId, mind, objectiveGroupProto, maxDifficulty))
+        {
+            return objective;
         }
 
         return null;
+        #endregion
     }
+    // Moffstation - End
 
     /// <summary>
     /// Returns whether a target is considered 'in custody' (cuffed on the shuttle).

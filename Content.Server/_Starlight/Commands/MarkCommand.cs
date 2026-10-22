@@ -30,7 +30,8 @@ public sealed class MarkCommand : ToolshedCommand
     {
         var obj = ctx.ReadVar("marked");
         if (obj is not List<EntityUid> marked) return Mark(ctx, uid);
-        marked.ToHashSet().Add(uid);
+        if (!marked.Contains(uid))
+            marked.Add(uid);
         ctx.WriteVar("marked", marked);
         return uid;
     }
