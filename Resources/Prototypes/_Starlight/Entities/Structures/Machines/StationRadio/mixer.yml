@@ -1,0 +1,64 @@
+- type: entity
+  id: StationRadioMixer
+  name: radio mixer
+  parent: [ BaseMachinePowered, SmallConstructibleMachine ]
+  description: A mixing desk for the station radio. Sets how loud each deck, the host's voice and the whole broadcast are.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/StationRadio/mixer.rsi
+    drawdepth: SmallObjects
+    layers:
+    - state: icon
+    - state: unlit
+      shader: unshaded
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Transform
+    noRot: false
+  - type: Rotatable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.10,0.10,0.10"
+        density: 500
+        mask:
+        - TabletopMachineMask
+        layer:
+        - BulletImpassable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ApcPowerReceiver
+    powerLoad: 100
+  - type: Machine
+    board: StationRadioMixerCircuitboard
+  - type: StationRadioMixer
+  - type: StationRadioReceiver # Monitor: the host hears the show here, its volume is the mixer's Monitor fader.
+    toggleOnActivate: false
+  - type: DeviceLinkSource
+    ports:
+    - StationRadioMixerPort
+  - type: DeviceList
+  - type: ActivatableUI
+    key: enum.StationRadioMixerUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.StationRadioMixerUiKey.Key:
+        type: StationRadioMixerBoundUserInterface

@@ -1,0 +1,144 @@
+- type: entity
+  id: StationRadioServer
+  name: radio server
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  description: A rack of servers that puts the radio show on air, music and the host's microphone alike.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/StationRadio/stationradioserver.rsi
+    drawdepth: SmallObjects
+    layers:
+    - state: icon
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: mic_on # Starlight
+      shader: unshaded
+      visible: false
+      map: ["micOn"]
+    - state: mic_off # Starlight
+      shader: unshaded
+      map: ["micOff"]
+    - state: panel
+      visible: false
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+      enum.WiresVisualLayers.MaintenancePanel:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: true }
+          False: { visible: false }
+      enum.RadioDeviceVisuals.Broadcasting: # Starlight
+        micOn:
+          True: { visible: true }
+          False: { visible: false }
+        micOff:
+          True: { visible: false }
+          False: { visible: true }
+  - type: StationRadioServer
+  - type: WiresPanel
+  - type: WiresVisuals
+  - type: Wires
+    layoutId: StationRadioServer
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: DeviceLinkSource
+    ports:
+    - StationRadioServerPort
+    # TODO: unlit & maints panel sprite
+  - type: Transform
+    noRot: false
+  - type: Rotatable
+  - type: Machine
+    board: StationRadioServerCircuitboard
+  - type: TelecomExempt
+  - type: RadioMicrophone
+    powerRequired: true
+    broadcastChannel: RadioShow
+    unobstructedRequired: true
+  - type: ApcPowerReceiver
+
+- type: entity
+  id: StationRadioRig
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: radio rig
+  description: A desk with everything you need to run the radio show, and a record shelf that plays on a loop.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/StationRadio/radiostationrig.rsi
+    drawdepth: SmallObjects
+    layers:
+    - state: icon
+    - state: record0
+      visible: false
+      map: [ "slot0" ]
+    - state: record1
+      visible: false
+      map: [ "slot1" ]
+    - state: record2
+      visible: false
+      map: [ "slot2" ]
+    - state: record3
+      visible: false
+      map: [ "slot3" ]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: DeviceLinkSink
+    ports:
+    - StationRadioRigPort
+  - type: Transform
+    noRot: false
+  - type: Rotatable
+  - type: Machine
+    board: StationRadioRigCircuitboard
+  - type: RadioRig
+  - type: VinylPlayer # Record shelf playing on a loop while nobody is at the desk.
+    slots: [ playlist1, playlist2, playlist3, playlist4 ]
+    autoPlay: false
+    loop: true
+    channelName: station-radio-mixer-playlist
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      playlist1: !type:ContainerSlot
+      playlist2: !type:ContainerSlot
+      playlist3: !type:ContainerSlot
+      playlist4: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      playlist1:
+        name: item-slot-component-slot-name-playlist
+        whitelist:
+          tags:
+          - VinylSleeveFit # Records only, CDs go in the CD player.
+      playlist2:
+        name: item-slot-component-slot-name-playlist
+        whitelist:
+          tags:
+          - VinylSleeveFit # Records only, CDs go in the CD player.
+      playlist3:
+        name: item-slot-component-slot-name-playlist
+        whitelist:
+          tags:
+          - VinylSleeveFit # Records only, CDs go in the CD player.
+      playlist4:
+        name: item-slot-component-slot-name-playlist
+        whitelist:
+          tags:
+          - VinylSleeveFit # Records only, CDs go in the CD player.

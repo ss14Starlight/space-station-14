@@ -1,0 +1,101 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Drawn for Starlight, procedurally generated record sleeve and CD case covers",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "sleeve-base"
+        },
+        {
+            "name": "sleeve-motif-0"
+        },
+        {
+            "name": "sleeve-motif-1"
+        },
+        {
+            "name": "sleeve-motif-2"
+        },
+        {
+            "name": "sleeve-motif-3"
+        },
+        {
+            "name": "sleeve-motif-4"
+        },
+        {
+            "name": "sleeve-motif-5"
+        },
+        {
+            "name": "sleeve-motif-6"
+        },
+        {
+            "name": "sleeve-motif-7"
+        },
+        {
+            "name": "sleeve-motif-8"
+        },
+        {
+            "name": "sleeve-motif-9"
+        },
+        {
+            "name": "sleeve-motif-10"
+        },
+        {
+            "name": "sleeve-motif-11"
+        },
+        {
+            "name": "sleeve-shade"
+        },
+        {
+            "name": "sleeve-peek"
+        },
+        {
+            "name": "case-tray"
+        },
+        {
+            "name": "case-base"
+        },
+        {
+            "name": "case-motif-0"
+        },
+        {
+            "name": "case-motif-1"
+        },
+        {
+            "name": "case-motif-2"
+        },
+        {
+            "name": "case-motif-3"
+        },
+        {
+            "name": "case-motif-4"
+        },
+        {
+            "name": "case-motif-5"
+        },
+        {
+            "name": "case-motif-6"
+        },
+        {
+            "name": "case-motif-7"
+        },
+        {
+            "name": "case-motif-8"
+        },
+        {
+            "name": "case-motif-9"
+        },
+        {
+            "name": "case-motif-10"
+        },
+        {
+            "name": "case-motif-11"
+        },
+        {
+            "name": "case-shade"
+        }
+    ]
+}

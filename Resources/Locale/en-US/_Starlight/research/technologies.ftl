@@ -42,3 +42,5 @@ research-technology-bluespace-manipulation = Bluespace Manipulation
 research-technology-darkbreacher = Dark Breacher
 
 research-technology-basic-xenobiology = Basic Xenobiology
+
+research-technology-radio-music-communication = Radio Music Communications

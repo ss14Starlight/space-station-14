@@ -8,7 +8,13 @@ namespace Content.Shared._Starlight.StationRadio.Systems;
 
 public abstract partial class SharedVinylPlayerSystem : EntitySystem
 {
-    [Dependency] private SharedContainerSystem _container = default!;
+    /// <summary>
+    /// Container holding the disc being played.
+    /// </summary>
+    public const string VinylContainer = "vinyl";
+
+    [Dependency] protected SharedContainerSystem Container = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     [SubscribeLocalEvent]
     protected virtual void OnPowerChanged(EntityUid uid, VinylPlayerComponent comp, PowerChangedEvent args)
@@ -31,18 +37,55 @@ public abstract partial class SharedVinylPlayerSystem : EntitySystem
     }
 
     /// <summary>
+    /// The disc in the given slot of the player, if any.
+    /// </summary>
+    public EntityUid? GetDisc(Entity<VinylPlayerComponent> ent, int slot)
+    {
+        if (slot < 0 || slot >= ent.Comp.Slots.Length
+            || !Container.TryGetContainer(ent, ent.Comp.Slots[slot], out var container))
+            return null;
+
+        return container.ContainedEntities.Count > 0 ? container.ContainedEntities[0] : null;
+    }
+
+    /// <summary>
+    /// The disc being played or cued.
+    /// </summary>
+    public EntityUid? GetCurrentDisc(Entity<VinylPlayerComponent> ent) => GetDisc(ent, ent.Comp.CurrentSlot);
+
+    /// <summary>
+    /// Shows the current disc on the player, tinted with its label color.
+    /// </summary>
+    protected void UpdateVisuals(Entity<VinylPlayerComponent> ent)
+    {
+        var disc = GetCurrentDisc(ent);
+        _appearance.SetData(ent, VinylPlayerVisuals.Disc, disc != null);
+
+        var mask = 0;
+        for (var i = 0; i < ent.Comp.Slots.Length; i++)
+        {
+            if (GetDisc(ent, i) != null)
+                mask |= 1 << i;
+        }
+
+        _appearance.SetData(ent, VinylPlayerVisuals.SlotMask, mask);
+        if (TryComp<VinylComponent>(disc, out var vinyl))
+            _appearance.SetData(ent, VinylPlayerVisuals.LabelColor, vinyl.LabelColor);
+    }
+
+    /// <summary>
     /// Show what vinyl is currently inserted when examined.
     /// </summary>
     [SubscribeLocalEvent]
     private void OnExamined(EntityUid uid, VinylPlayerComponent comp, ref ExaminedEvent args)
     {
-        if (!_container.TryGetContainer(uid, "vinyl", out var container) || container.ContainedEntities.Count == 0) // confirm actual container ID
+        if (GetCurrentDisc((uid, comp)) is not { } vinyl)
         {
             args.PushMarkup(Loc.GetString("vinyl-player-examine-empty"));
             return;
         }
 
-        var vinyl = container.ContainedEntities[0];
         args.PushMarkup(Loc.GetString("vinyl-player-examine-loaded", ("vinyl", Name(vinyl))));
+        args.PushMarkup(Loc.GetString(comp.Playing ? "vinyl-player-examine-playing" : "vinyl-player-examine-paused"));
     }
 }

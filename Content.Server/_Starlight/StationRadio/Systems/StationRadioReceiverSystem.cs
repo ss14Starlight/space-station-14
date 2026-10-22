@@ -1,12 +1,17 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._Starlight.StationRadio;
 using Content.Shared._Starlight.StationRadio.Components;
 using Content.Shared._Starlight.StationRadio.Events;
 using Content.Shared._Starlight.StationRadio.Systems;
 using Content.Shared.DeviceLinking;
+using Content.Shared.Radio.Components;
+using Content.Shared.Radio.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
+using Robust.Shared.Audio;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.StationRadio.Systems;
 
@@ -16,64 +21,23 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
     [Dependency] private SharedPowerReceiverSystem _power = default!;
     [Dependency] private SharedPopupSystem _popupSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedRadioDeviceSystem _radioDevice = default!;
 
-    /// <summary>
-    /// When a station radio is initialized, check any active Radio server for if there is an
-    /// active song playing. If there is, attempt to resume play.
-    /// </summary>
     protected override void OnReceiverMapInit(EntityUid uid, StationRadioReceiverComponent comp, MapInitEvent args)
     {
         if (!TryGetPoweredGridServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp))
             return;
 
-        if (serverComp.CurrentSong == null || serverComp.PlaybackStartTime == null)
-            return;
-
-        comp.CurrentSound = serverComp.CurrentSong;
-        comp.StartTime = serverComp.PlaybackStartTime.Value;
+        comp.Tracks = serverComp.MusicMuted ? new Dictionary<NetEntity, StationRadioTrack>() : GetNetTracks(serverComp);
+        comp.Interference = serverComp.Interference;
         Dirty(uid, comp);
     }
 
-    /// <summary>
-    /// Stop broadcasting if the Radio Server loses power, despite the Vinyl Player and Rig still being powered.
-    /// Resume play when the server power returns.
-    /// </summary>
     protected override void OnServerPowerChanged(EntityUid uid, StationRadioServerComponent comp, PowerChangedEvent args)
     {
-        if (!args.Powered && Transform(uid).Anchored)
-        {
-            StopAllReceivers(uid);
-            return;
-        }
-
-        if (comp.CurrentSong == null || comp.PlaybackStartTime == null)
-            return;
-
-        var playQuery = EntityQueryEnumerator<StationRadioReceiverComponent>();
-        while (playQuery.MoveNext(out var receiver, out var receiverComp))
-        {
-            if (receiverComp.SoundEntity.HasValue)
-                continue;
-
-            if (!TryGetGridServer(receiver, out var linkedServer) || linkedServer != uid)
-                continue;
-
-            RaiseLocalEvent(receiver, new StationRadioMediaPlayedEvent(comp.CurrentSong, comp.PlaybackStartTime.Value));
-        }
-    }
-
-    protected override void OnMediaPlayed(EntityUid uid, StationRadioReceiverComponent comp, StationRadioMediaPlayedEvent args)
-    {
-        comp.CurrentSound = args.MediaPlayed;
-        comp.StartTime = args.StartTime;
-        Dirty(uid, comp);
-    }
-
-    protected override void OnMediaStopped(EntityUid uid, StationRadioReceiverComponent comp, StationRadioMediaStoppedEvent args)
-    {
-        comp.CurrentSound = null;
-        comp.StartTime = null;
-        Dirty(uid, comp);
+        if (Transform(uid).Anchored)
+            SyncReceivers((uid, comp));
     }
 
     protected override void OnServerTerminating(EntityUid uid, StationRadioServerComponent comp,
@@ -85,8 +49,81 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
 
     protected override void OnRigTerminating(EntityUid uid, RadioRigComponent comp, ref EntityTerminatingEvent args)
     {
-        if (TryGetLinkedPoweredServer(uid, out var linkedServer))
-            StopAllReceivers(linkedServer);
+        if (TryGetLinkedPoweredServer(uid, out var linkedServer) && TryComp<StationRadioServerComponent>(linkedServer, out var serverComp))
+        {
+            serverComp.Tracks.Clear();
+            SyncReceivers((linkedServer, serverComp));
+        }
+    }
+
+    [SubscribeLocalEvent]
+    private void OnVolumeMessage(EntityUid uid, StationRadioReceiverComponent comp, StationRadioReceiverVolumeMessage args) =>
+        SetVolume((uid, comp), args.Volume);
+
+    [SubscribeLocalEvent]
+    private void OnPowerMessage(EntityUid uid, StationRadioReceiverComponent comp, StationRadioReceiverPowerMessage args)
+    {
+        comp.Active = !comp.Active;
+        Dirty(uid, comp);
+
+        if (HasComp<RadioSpeakerComponent>(uid))
+            _radioDevice.SetSpeakerEnabled(uid, args.Actor, comp.Active, quiet: true);
+    }
+
+    /// <summary>
+    /// Turns the radio's own volume knob.
+    /// </summary>
+    public void SetVolume(Entity<StationRadioReceiverComponent> ent, float volume)
+    {
+        ent.Comp.Volume = Math.Clamp(volume, 0f, 1f);
+        Dirty(ent);
+    }
+
+    /// <summary>
+    /// Starts broadcasting a sound from the given source, replacing whatever that source played before.
+    /// </summary>
+    public void PlayTrack(Entity<StationRadioServerComponent> server, EntityUid source, SoundPathSpecifier sound, TimeSpan? startTime = null)
+    {
+        server.Comp.Tracks[source] = new StationRadioTrack(sound, startTime ?? _timing.CurTime);
+        SyncReceivers(server);
+    }
+
+    /// <summary>
+    /// Stops whatever the source broadcasts, on any server.
+    /// </summary>
+    public void StopTrack(EntityUid source)
+    {
+        var query = EntityQueryEnumerator<StationRadioServerComponent>();
+        while (query.MoveNext(out var server, out var serverComp))
+        {
+            if (serverComp.Tracks.Remove(source))
+                SyncReceivers((server, serverComp));
+        }
+    }
+
+    /// <summary>
+    /// Pushes the server's tracks to every receiver on its grid, or silences them if the server can't broadcast.
+    /// </summary>
+    public void SyncReceivers(Entity<StationRadioServerComponent> server)
+    {
+        var serverXform = Transform(server);
+        var broadcasting = serverXform.Anchored && _power.IsPowered(server.Owner);
+        var tracks = broadcasting && !server.Comp.MusicMuted
+            ? GetNetTracks(server.Comp)
+            : new Dictionary<NetEntity, StationRadioTrack>();
+        var interference = broadcasting ? server.Comp.Interference : 0f;
+
+        var query = EntityQueryEnumerator<StationRadioReceiverComponent, TransformComponent>();
+        while (query.MoveNext(out var receiver, out var receiverComp, out var receiverXform))
+        {
+            if (receiverXform.GridUid != serverXform.GridUid)
+                continue;
+
+            SetTracks((receiver, receiverComp), tracks, interference);
+        }
+
+        var ev = new StationRadioTracksChangedEvent();
+        RaiseLocalEvent(server, ref ev);
     }
 
     public void StopAllReceivers(EntityUid uid)
@@ -94,13 +131,49 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
         var serverXform = Transform(uid);
 
         var stopQuery = EntityQueryEnumerator<StationRadioReceiverComponent, TransformComponent>();
-        while (stopQuery.MoveNext(out var receiver, out _, out var receiverXform))
+        while (stopQuery.MoveNext(out var receiver, out var receiverComp, out var receiverXform))
         {
             if(receiverXform.GridUid != serverXform.GridUid)
                 continue;
 
-            RaiseLocalEvent(receiver, new StationRadioMediaStoppedEvent());
+            SetTracks((receiver, receiverComp), new Dictionary<NetEntity, StationRadioTrack>(), 0f);
         }
+    }
+
+    private void SetTracks(Entity<StationRadioReceiverComponent> receiver, Dictionary<NetEntity, StationRadioTrack> tracks, float interference)
+    {
+        if (receiver.Comp.Tracks.Count == tracks.Count
+            && !tracks.Except(receiver.Comp.Tracks).Any()
+            && MathHelper.CloseTo(receiver.Comp.Interference, interference))
+            return;
+
+        receiver.Comp.Interference = interference;
+        receiver.Comp.Tracks = new Dictionary<NetEntity, StationRadioTrack>(tracks);
+        Dirty(receiver);
+    }
+
+    private Dictionary<NetEntity, StationRadioTrack> GetNetTracks(StationRadioServerComponent comp) =>
+        comp.Tracks
+            .Where(pair => Exists(pair.Key))
+            .ToDictionary(pair => GetNetEntity(pair.Key), pair => pair.Value with { Gain = GetTrackGain(comp, pair.Key) * comp.MasterGain });
+
+    /// <summary>
+    /// Mixer volume of a broadcast source, full volume unless the mixer turned it down.
+    /// </summary>
+    public static float GetSourceGain(StationRadioServerComponent comp, EntityUid source) =>
+        comp.SourceGains.GetValueOrDefault(source, 1f);
+
+    /// <summary>
+    /// Mixer volume of a track before the master fader: its source's fader, and for a recorder playing a tape
+    /// also the recorder's own fader, so a whole replay can be turned down at once.
+    /// </summary>
+    public float GetTrackGain(StationRadioServerComponent comp, EntityUid source)
+    {
+        var gain = GetSourceGain(comp, source);
+        if (TryComp<BroadcastRecorderChannelComponent>(source, out var channel))
+            gain *= GetSourceGain(comp, channel.Recorder);
+
+        return gain;
     }
 
     /// <summary>
@@ -137,6 +210,21 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
     {
         server = default;
 
+        // The rig plays its own record shelf through the server feeding it.
+        if (HasComp<RadioRigComponent>(uid) && TryComp<DeviceLinkSinkComponent>(uid, out var rigSink))
+        {
+            foreach (var linkedServer in rigSink.LinkedSources)
+            {
+                if (!HasComp<StationRadioServerComponent>(linkedServer) || !_power.IsPowered(linkedServer))
+                    continue;
+
+                server = linkedServer;
+                return true;
+            }
+
+            return false;
+        }
+
         if (!TryComp<DeviceLinkSourceComponent>(uid, out var source))
             return false;
 
@@ -167,6 +255,20 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
     {
         server = default;
 
+        if (HasComp<RadioRigComponent>(uid) && TryComp<DeviceLinkSinkComponent>(uid, out var rigSink))
+        {
+            foreach (var linkedServer in rigSink.LinkedSources)
+            {
+                if (!HasComp<StationRadioServerComponent>(linkedServer))
+                    continue;
+
+                server = linkedServer;
+                return true;
+            }
+
+            return false;
+        }
+
         if (!TryComp<DeviceLinkSourceComponent>(uid, out var source))
             return false;
 
@@ -193,7 +295,13 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
     protected override void OnAttemptAnchor(EntityUid uid, StationRadioServerComponent comp, ref AnchorStateChangedEvent args)
     {
         if (!args.Anchored)
+        {
+            if (TryGetGridServer(uid, out var other) && TryComp<StationRadioServerComponent>(other, out var otherComp))
+                SyncReceivers((other.Value, otherComp));
+            else
+                StopAllReceivers(uid);
             return;
+        }
 
         var xform = Transform(uid);
         var c = 0;
@@ -211,5 +319,7 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
                 return;
             }
         }
+
+        SyncReceivers((uid, comp));
     }
 }

@@ -1,5 +1,4 @@
 using Content.Shared._Starlight.StationRadio.Components;
-using Content.Shared._Starlight.StationRadio.Events;
 using Content.Shared.Interaction;
 using Content.Shared.Power;
 using Content.Shared.Examine;
@@ -12,18 +11,11 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnRadioToggle(EntityUid uid, StationRadioReceiverComponent comp, ActivateInWorldEvent args)
     {
+        if (!comp.ToggleOnActivate)
+            return;
+
         comp.Active = !comp.Active;
         Dirty(uid, comp);
-    }
-
-    [SubscribeLocalEvent]
-    protected virtual void OnMediaPlayed(EntityUid uid, StationRadioReceiverComponent comp, StationRadioMediaPlayedEvent args)
-    {
-    }
-
-    [SubscribeLocalEvent]
-    protected virtual void OnMediaStopped(EntityUid uid, StationRadioReceiverComponent comp, StationRadioMediaStoppedEvent args)
-    {
     }
 
     /// <summary>
@@ -48,7 +40,7 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem
     /// Method for getting the current volume of the station radio.
     /// </summary>
     protected static float GetGain(StationRadioReceiverComponent comp, bool powered)
-        => comp.Active && powered ? 1f : 0f;
+        => comp.Active && powered ? comp.Volume : 0f;
 
     /// <summary>
     /// Alt Click / Context Menu Verb for turning down the volume of the radio.

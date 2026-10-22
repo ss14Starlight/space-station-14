@@ -1,0 +1,189 @@
+# Record sleeves. The cover art is drawn from the record inside (see DiscCover), so these differ only in
+# what they come with. The ids are kept because maps place them.
+- type: entity
+  parent: BaseVinylSleeve
+  id: VinylSleeve
+  suffix: Empty
+
+- type: entity
+  parent: BaseVinylSleeve
+  id: VinylSleeveAI
+  components:
+  - type: ContainerFill
+    containers:
+      vinyl:
+      - VinylSpaceJazz
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveBlockycraft
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveChristmas
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveClown
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveCoffee
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveDevil
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveDJClown
+
+- type: entity
+  parent: BaseVinylSleeve
+  id: VinylSleeveDJTider
+  components:
+  - type: ContainerFill
+    containers:
+      vinyl:
+      - VinylGreytideSong
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveEye
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveFart
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      vinyl: !type:NestedSelector
+        tableId: RandomVinylDiscFart # Fill with a random fart song.
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveFisherman
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveFlash
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveHeisenbee
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveHockey
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveJanitor
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveJapan
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveMGS
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveNewNanoYork
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveNukeDisk
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleevePDA
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleevePeace
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleevePickle
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleevePizza
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleevePlainBeige
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleevePlainBlack
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleevePlainWhite
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveQuestional
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveRat
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveReactor
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveRedSun
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveShulker
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveSkull
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveStation13
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveStation14
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveSunnySideOfLavaland
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveTH
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveVampire
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveWeird
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveWelcomeToSS13
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveNonBinary
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleevePride
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveTrans

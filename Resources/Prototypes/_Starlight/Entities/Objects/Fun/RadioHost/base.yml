@@ -1,0 +1,268 @@
+# Base Vinyl Disk
+- type: entity
+  parent: BaseItem
+  id: BaseVinylDisc
+  name: vinyl disc
+  description: A flat round disc with music encoded onto it's surface. Very fragile!
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/RadioHost/vinyl.rsi
+    state: default
+  # To create a custom Vinyl using layers, use the following template.
+  # sprite: _Starlight/Objects/Fun/RadioHost/vinyl.rsi
+  # state: default
+  # layers:
+  # - state: base-dark  # Choose either "base-dark", "base-medium" or "base-light".
+  #   color: pink       # The lighter the base, the more color will show through.
+  # - state: label      # Requires a label.
+  #   color: "#20b024"  # Adjust label color.
+  # - state: base-shine # Gives the vinyl a shine.
+  #   color: "#20b024"  # Give the shine a color to create some awesome looking Vinyls.
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          VinylBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 5
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 5
+  - type: Damageable # Starlight begin - wait so did breaking vinyls just never fucking work on goob LMAO
+    damageContainer: Inorganic
+    damageModifierSet: FlimsyMetallic # Starlight end
+  - type: Tag
+    tags:
+    - VinylSleeveFit
+  - type: Item
+    size: Normal # Records take a 2x2 spot.
+
+- type: entity
+  parent: BaseVinylDisc
+  id: BaseVinylSlippery
+  abstract: true
+  components:
+  - type: Slippery
+  - type: CollisionWake
+    enabled: false
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.3,0.4,0.3"
+        hard: false
+        layer:
+        - SlipLayer
+
+- type: entity
+  parent: BaseItem
+  id: VinylBroken
+  name: broken vinyl disc
+  description: A vinyl disk that has been broken into pieces. It is completely unplayable.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/RadioHost/vinyl.rsi
+    state: broken-vinyl-disc
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# Base CD Disc
+- type: entity
+  parent: BaseVinylDisc
+  id: BaseCDDisc
+  name: cd disk
+  description: A compact disc with sound encoded onto it's surface. Requires care when handling.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/RadioHost/cds.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - CD
+  - type: Vinyl
+    labelColor: "#ccd6e3" # Silver
+  # Starlight start - We don't want CDs to turn into broken vinyls.
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  # Starlight end
+
+# Base Disk Sleeve
+- type: entity
+  parent: BaseItem
+  id: BaseVinylSleeve
+  name: vinyl disc sleeve
+  description: A sleeve designed to hold and store vinyl disks.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/RadioHost/covers.rsi
+    layers:
+    - state: sleeve-peek
+      map: [ "enum.DiscCoverVisualLayers.Peek" ]
+      visible: false
+    - state: sleeve-base
+      map: [ "enum.DiscCoverVisualLayers.Base" ]
+      color: "#c8b78e"
+    - state: sleeve-motif-0
+      map: [ "enum.DiscCoverVisualLayers.Motif" ]
+      visible: false
+    - state: sleeve-shade
+  - type: Appearance
+  - type: DiscCover # Cover art comes from the record inside.
+  - type: Item
+    size: Normal # Records and their sleeves take a 2x2 spot.
+  - type: ItemSlots
+    slots:
+      vinyl:
+        name: item-slot-component-slot-name-vinyl
+        insertSound: /Audio/_Starlight/RadioStation/Vinyls/vinylInsert.ogg
+        ejectSound: /Audio/_Starlight/RadioStation/Vinyls/vinylEject.ogg
+        whitelist:
+          tags:
+          - VinylSleeveFit
+  - type: ContainerContainer
+    containers:
+      vinyl: !type:ContainerSlot
+  - type: Tag # Starlight
+    tags:
+    - VinylSleeve
+
+- type: entity
+  parent: BaseItem
+  id: BaseVinylSleeveFilled
+  name: vinyl disc sleeve
+  description: A sleeve designed to hold and store vinyl disks.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/RadioHost/covers.rsi
+    layers:
+    - state: sleeve-peek
+      map: [ "enum.DiscCoverVisualLayers.Peek" ]
+      visible: false
+    - state: sleeve-base
+      map: [ "enum.DiscCoverVisualLayers.Base" ]
+      color: "#c8b78e"
+    - state: sleeve-motif-0
+      map: [ "enum.DiscCoverVisualLayers.Motif" ]
+      visible: false
+    - state: sleeve-shade
+  - type: Appearance
+  - type: DiscCover # Cover art comes from the record inside.
+  - type: Item
+    size: Normal # Records and their sleeves take a 2x2 spot.
+  - type: ItemSlots
+    slots:
+      vinyl:
+        name: item-slot-component-slot-name-vinyl
+        insertSound: /Audio/_Starlight/RadioStation/Vinyls/vinylInsert.ogg
+        ejectSound: /Audio/_Starlight/RadioStation/Vinyls/vinylEject.ogg
+        whitelist:
+          tags:
+          - VinylSleeveFit
+  - type: ContainerContainer
+    containers:
+      vinyl: !type:ContainerSlot
+  - type: Tag # Starlight
+    tags:
+    - VinylSleeve
+  - type: EntityTableContainerFill # By default just put a random one in there.
+    containers:
+      vinyl: !type:NestedSelector
+        tableId: RandomVinylDisc
+
+# CD case
+- type: entity
+  parent: BaseItem
+  id: CDCase
+  name: CD case
+  description: A clear plastic jewel case for a compact disc. The cover insert matches the disc inside.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/RadioHost/covers.rsi
+    layers:
+    - state: case-tray
+    - state: case-base
+      map: [ "enum.DiscCoverVisualLayers.Base" ]
+      visible: false
+    - state: case-motif-0
+      map: [ "enum.DiscCoverVisualLayers.Motif" ]
+      visible: false
+    - state: case-shade
+  - type: Item
+    size: Tiny # Fits a CD rack slot.
+  - type: Appearance
+  - type: DiscCover
+    slot: cd
+    motifPrefix: case-motif-
+    showEmptyBase: false
+  - type: ItemSlots
+    slots:
+      cd:
+        name: item-slot-component-slot-name-cd
+        whitelist:
+          tags:
+          - CD
+  - type: ContainerContainer
+    containers:
+      cd: !type:ContainerSlot
+  - type: Tag
+    tags:
+    - CDCase
