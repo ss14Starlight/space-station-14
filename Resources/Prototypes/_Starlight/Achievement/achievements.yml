@@ -253,7 +253,7 @@
   showProgress: false
   icon:
     sprite: _Starlight/Interface/Achievements/icons.rsi
-    state: heliosMedal
+    state: viva
   requirements: []
 
 - type: achievement
@@ -520,7 +520,7 @@
   showProgress: false
   icon:
     sprite: _Starlight/Interface/Achievements/icons.rsi
-    state: heliosMedal
+    state: viva
   requirements: []
 
 - type: achievement

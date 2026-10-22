@@ -1,0 +1,4 @@
+- type: !PartialOnly vendingMachineInventory
+  id: PTechInventory
+  startingInventory:
+    DogCollarPDA: 4
