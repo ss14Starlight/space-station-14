@@ -9,7 +9,7 @@ using Robust.Shared.Utility;
 namespace Content.Server._Starlight.Administration.Systems.Commands;
 
 [ToolshedCommand]
-[AdminCommand(AdminFlags.Fun)]
+[AdminCommand(AdminFlags.VarEdit)]
 public sealed partial class VvCommand : ToolshedCommand
 {
     [Dependency] private IViewVariablesManager _vvm = default!;
