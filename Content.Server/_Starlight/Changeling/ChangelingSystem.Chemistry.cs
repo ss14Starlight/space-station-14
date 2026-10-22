@@ -93,7 +93,7 @@ public sealed partial class ChangelingSystem
             _popup.PopupEntity(Loc.GetString("changeling-chemicals-deficit"), uid, uid);
             return;
         }
-        if (!TrySting(uid, args, true)
+        if ((args.Target == uid ? !comp.Evolved : !TrySting(uid, args, true))
             || !_solution.TryGetInjectableSolution(args.Target, out var destination, out _))
             return;
 

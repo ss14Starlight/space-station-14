@@ -510,8 +510,8 @@ public sealed partial class ChangelingSystem : EntitySystem
     }
     public void OnSpacesuit(EntityUid uid, ChangelingComponent comp, ref ActionSpacesuitEvent args)
     {
-        if (!TryToggleItem(uid, SpacesuitPrototype, comp, "outerClothing")
-        || !TryToggleItem(uid, SpacesuitHelmetPrototype, comp, "head"))
+        if (!TryToggleItem(uid, comp.Evolved ? ArmorPrototype : SpacesuitPrototype, comp, "outerClothing")
+        || !TryToggleItem(uid, comp.Evolved ? ArmorHelmetPrototype : SpacesuitHelmetPrototype, comp, "head"))
         {
             _popup.PopupEntity(Loc.GetString("changeling-equip-armor-fail"), uid, uid);
             comp.Chemicals += Comp<ChangelingActionComponent>(args.Action).ChemicalCost;

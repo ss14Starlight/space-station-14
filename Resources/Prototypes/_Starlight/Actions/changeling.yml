@@ -251,7 +251,7 @@
 - type: entity
   id: ActionChemicalSting
   name: Chemical Sting
-  description: Silently inject the selected dose of your prepared mixture into a target. Costs 10 chemicals on success.
+  description: Silently inject the selected dose of your prepared mixture into a target. Evolution allows self-injection. Costs 10 chemicals on success.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -501,7 +501,7 @@
 - type: entity
   id: ActionToggleSpacesuit
   name: Toggle Space Suit
-  description: Make your body space proof. Costs 20 chemicals.
+  description: Grow an organic space suit. Evolution replaces it with reinforced, spaceworthy chitinous armor. Costs 20 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action

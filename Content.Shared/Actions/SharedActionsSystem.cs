@@ -1071,6 +1071,15 @@ public abstract partial class SharedActionsSystem : EntitySystem
         return ev.Event;
     }
 
+    public void SetCanTargetSelf(EntityUid uid, bool canTargetSelf)
+    {
+        if (!TryComp<EntityTargetActionComponent>(uid, out var targeting) || targeting.CanTargetSelf == canTargetSelf)
+            return;
+
+        targeting.CanTargetSelf = canTargetSelf;
+        Dirty(uid, targeting);
+    }
+
     public bool SetEventTarget(EntityUid uid, EntityUid target)
     {
         DebugTools.Assert(_actionQuery.HasComp(uid), $"Entity {ToPrettyString(uid)} is missing ActionComponent");

@@ -36,7 +36,11 @@ public sealed partial class ChangelingSystem
 
     private void ApplyActionEvolution(ChangelingComponent ling, EntityUid action)
     {
-        if (!ling.Evolved || !TryComp<RetractableItemActionComponent>(action, out var retractable))
+        if (!ling.Evolved)
+            return;
+        if (MetaData(action).EntityPrototype?.ID == "ActionChemicalSting")
+            _actions.SetCanTargetSelf(action, true);
+        if (!TryComp<RetractableItemActionComponent>(action, out var retractable))
             return;
         if (MetaData(action).EntityPrototype?.ID is "ActionRetractableItemArmBlade" or "ActionChangelingFragmentArmblade")
             _retractable.SetPrototype((action, retractable), "ArmBladePlus");
@@ -48,6 +52,7 @@ public sealed partial class ChangelingSystem
             return;
         if (TryComp<ChangelingDevourComponent>(uid, out var devour))
             _devour.SetEvolved((uid, devour));
+        EvolveSpacesuit(uid, ling);
         foreach (var action in _actions.GetActions(uid).ToArray())
             ApplyActionEvolution(ling, action.Owner);
         if (ling.HasChemicalSting)
@@ -74,6 +79,25 @@ public sealed partial class ChangelingSystem
         }
         _speed.RefreshMovementSpeedModifiers(uid);
         Dirty(uid, ling);
+    }
+
+    private void EvolveSpacesuit(EntityUid uid, ChangelingComponent ling)
+    {
+        foreach (var (original, replacement, slot) in new[]
+                 {
+                     (SpacesuitPrototype, ArmorPrototype, "outerClothing"),
+                     (SpacesuitHelmetPrototype, ArmorHelmetPrototype, "head"),
+                 })
+        {
+            if (!ling.Equipment.TryGetValue(original.Id, out var item) || item == null
+                || !_inventory.TryGetSlotEntity(uid, slot, out var equipped) || equipped != item
+                || !_inventory.TryUnequip(uid, slot, force: true))
+                continue;
+
+            ling.Equipment.Remove(original.Id);
+            QueueDel(item.Value);
+            TryToggleItem(uid, replacement, ling, slot);
+        }
     }
 
     private void ConfigureChameleon(EntityUid uid, ChangelingComponent ling)

@@ -12,6 +12,8 @@ evolutionmenu-utility-breathing-desc =
     Toggle breathing at will. While disabled, you do not inhale gases or suffocate.
     Breathing is enabled by default. Costs no chemicals or biomass and works in Lesser Form.
 
+evolutionmenu-evolving-spacesuit-desc = Grow an organic space suit and helmet. Evolution replaces the set with heavily reinforced chitinous armor that retains pressure and temperature protection. Costs 20 chemicals.
+
 evolutionmenu-utility-night-eyesight-name = Night Vision Eyesight
 evolutionmenu-utility-night-eyesight-desc =
     Evolve your eyes to be able to see in the dark.
@@ -53,7 +55,7 @@ evolutionmenu-sting-chemical-desc =
     Gain two abilities: prepare a chemical mixture and silently inject a chosen dose into an organic target.
     Store up to 30u of each basic reagent and prepare up to 30u of mixture, using normal chemical reactions with heating and cooling.
     Reagents start empty and regenerate up to 1u per 10 seconds, consuming 0.5 chemicals per unit. Regeneration can be paused.
-    Evolution adds Nocturine, Lexorin, Mute Toxin, Chloral Hydrate, Pax and Unstable Mutagen to the reagent stocks.
+    Evolution adds Nocturine, Lexorin, Mute Toxin, Chloral Hydrate, Pax, Unstable Mutagen, Ephedrine, Desoxyephedrine and Amalgam to the reagent stocks and allows self-injection.
     Each successful sting costs another 10 chemicals. Works in Lesser Form.
 
 evolutionmenu-sting-armblade-name = Fake Arm Blade Sting

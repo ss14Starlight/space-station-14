@@ -29,34 +29,6 @@
     stock: 1
 
 - type: listing
-  id: EvolutionMenuCombatChitinousArmor
-  name: evolutionmenu-combat-armor-name
-  description: evolutionmenu-combat-armor-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: chitinous_armor }
-  productAction: ActionToggleChitinousArmor
-  cost:
-    EvolutionPoint: 4
-  categories:
-  - ChangelingAbilityCombat
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: EvolutionMenuCombatOrganicShield
-  name: evolutionmenu-combat-shield-name
-  description: evolutionmenu-combat-shield-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: organic_shield }
-  productAction: ActionToggleOrganicShield
-  cost:
-    EvolutionPoint: 2
-  categories:
-  - ChangelingAbilityCombat
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
   id: EvolutionMenuCombatShriekDissonant
   name: evolutionmenu-combat-shriek-dissonant-name
   description: evolutionmenu-evolving-shriek-desc
@@ -147,20 +119,6 @@
     stock: 1
 
 - type: listing
-  id: EvolutionMenuUtilityPanacea
-  name: evolutionmenu-utility-panacea-name
-  description: evolutionmenu-utility-panacea-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: anatomic_panacea }
-  productAction: ActionAnatomicPanacea
-  cost:
-    EvolutionPoint: 2
-  categories:
-  - ChangelingAbilityUtility
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
   id: EvolutionMenuUtilityEyesight
   name: evolutionmenu-utility-eyesight-name
   description: evolutionmenu-evolving-eyes-desc
@@ -190,65 +148,9 @@
     stock: 1
 
 - type: listing
-  id: EvolutionMenuUtilityOverdose
-  name: evolutionmenu-utility-stims-name
-  description: evolutionmenu-utility-stims-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: epinephrine_overdose }
-  productAction: ActionEphedrineOverdose
-  cost:
-    EvolutionPoint: 3
-  categories:
-  - ChangelingAbilityUtility
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: EvolutionMenuDesoxyephedrineOverdose
-  name: evolutionmenu-utility-risky-stims-name
-  description: evolutionmenu-utility-risky-stims-desc
-  icon: { sprite: _Starlight/Actions/changeling.rsi, state: desoxyephedrine_overdose }
-  productAction: ActionDesoxyephedrineOverdose
-  cost:
-    EvolutionPoint: 4
-  categories:
-  - ChangelingAbilityUtility
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: EvolutionMenuAmalgamOverdose
-  name: evolutionmenu-utility-hyper-stims-name
-  description: evolutionmenu-utility-hyper-stims-desc
-  icon: { sprite: _Starlight/Actions/changeling.rsi, state: amalgam_overdose }
-  productAction: ActionAmalgamOverdose
-  cost:
-    EvolutionPoint: 5
-  categories:
-  - ChangelingAbilityUtility
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: EvolutionMenuUtilityFleshmend
-  name: evolutionmenu-utility-fleshmend-name
-  description: evolutionmenu-utility-fleshmend-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: fleshmend }
-  productAction: ActionFleshmend
-  cost:
-    EvolutionPoint: 5
-  categories:
-  - ChangelingAbilityUtility
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
   id: EvolutionMenuUtilitySpacesuit
   name: evolutionmenu-utility-spacesuit-name
-  description: evolutionmenu-utility-spacesuit-desc
+  description: evolutionmenu-evolving-spacesuit-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: space_adaptation }
   productAction: ActionToggleSpacesuit
   cost:

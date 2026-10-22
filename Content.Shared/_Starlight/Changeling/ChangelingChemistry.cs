@@ -28,6 +28,7 @@ public static class ChangelingChemistry
     public static readonly ProtoId<ReagentPrototype>[] EvolvedReagents =
     [
         "Nocturine", "Lexorin", "MuteToxin", "ChloralHydrate", "Pax", "UnstableMutagen",
+        "Ephedrine", "Desoxyephedrine", "Amalgam",
     ];
 }
 
